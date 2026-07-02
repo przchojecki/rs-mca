@@ -1,0 +1,15 @@
+A=426 two-core exact-threshold v26
+STATUS: PROVED_ADJACENT_THRESHOLD_ROW
+p: 29608553606109001068932302267744675430401
+p_prime_lucas: witness=13, p-1=2^120*3^4*5^2*11
+n,k,A: 512,256,426
+delta: 43/256
+LD_sw_upper_A426: 87
+LD_sw_lower_A426: 87
+deduped_total_426: 87
+budget_floor: 87
+strict_2^128_N_bad_lt_q_line: True
+first_unsafe_A425_tangent_floor: 88
+unsafe_A425_exceeds_budget_floor: True
+terminal_records_hash: c8d2a77e3e4b6633bf3e31719c967721c3027fcd8f1d78f1cc6ad5320f2b6b48
+RESULT: PASS_ADJACENT_THRESHOLD_ROW_CANDIDATE

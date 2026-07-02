@@ -1,0 +1,822 @@
+{
+  "LD_sw_lower_bound": 88,
+  "LD_sw_lower_bound_A425": 88,
+  "agreement": 425,
+  "bad_slope_encodings": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87
+  ],
+  "bad_slope_hash_sha256": "eae9b8013db01497c93476394ef48510f712c82a9ef0dce678662db9f7d731fd",
+  "domain_hash_sha256": "eecf570edb8d63b213ffc794b35ddee42e8afd5bcf40441923f89cc746e865c8",
+  "field": {
+    "domain_generator": 3523375392447676111921143830258524416047,
+    "p": 29608553606109001068932302267744675430401
+  },
+  "line_definition": {
+    "core_indices": {
+      "count": 424,
+      "start": 0,
+      "stop_inclusive": 423
+    },
+    "f_values": "f=0 on core; f=-i on outside index 424+i for i=0..87",
+    "g_values": "g=0 on core; g=1 on outside indices",
+    "outside_indices": {
+      "count": 88,
+      "start": 424,
+      "stop_inclusive": 511
+    }
+  },
+  "records": [
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 424,
+      "moving_domain_element": 26224686695027437181978270300172601255098,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 0,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 425,
+      "moving_domain_element": 1178373308255980934235615113524855522587,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 1,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 426,
+      "moving_domain_element": 17928355227255789997222860291816747098133,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 2,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 427,
+      "moving_domain_element": 6086661155043090514745573534448514889540,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 3,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 428,
+      "moving_domain_element": 21254631213603517736012669905979144362693,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 4,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 429,
+      "moving_domain_element": 13514759351815105218799232236096502629112,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 5,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 430,
+      "moving_domain_element": 4505876367794291033548799298070981341591,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 6,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 431,
+      "moving_domain_element": 5944564500944500037051934618317793799309,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 7,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 432,
+      "moving_domain_element": 15607914738675846738346389635211962770863,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 8,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 433,
+      "moving_domain_element": 4614959670834176952219041371846152224979,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 9,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 434,
+      "moving_domain_element": 21827832588568250865315350345166908261577,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 10,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 435,
+      "moving_domain_element": 11219530710135489358883599030295522522173,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 11,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 436,
+      "moving_domain_element": 14822571282630508981932624120503305156968,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 12,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 437,
+      "moving_domain_element": 1806308913870499348722938903419521281672,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 13,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 438,
+      "moving_domain_element": 27863403387711241672568543490477052292978,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 14,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 439,
+      "moving_domain_element": 16007505722186960916693019309190027114681,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 15,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 440,
+      "moving_domain_element": 13024144691199831863735008622672535664459,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 16,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 441,
+      "moving_domain_element": 12104951178399138502403484518708729095806,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 17,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 442,
+      "moving_domain_element": 10131473490324563652193845812891035197719,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 18,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 443,
+      "moving_domain_element": 18507117833297609363353234187695707841027,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 19,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 444,
+      "moving_domain_element": 15875558685532492760235508704353115224070,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 20,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 445,
+      "moving_domain_element": 21484995667060327356262307151729205912994,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 21,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 446,
+      "moving_domain_element": 22672558361400183174273455713616249991352,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 22,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 447,
+      "moving_domain_element": 8008492416052052316932504802782025284374,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 23,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 448,
+      "moving_domain_element": 19516622551008594259458499017903408444705,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 24,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 449,
+      "moving_domain_element": 20795888218143776467704356135480293584333,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 25,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 450,
+      "moving_domain_element": 22279066989926375260444827627354807555336,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 26,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 451,
+      "moving_domain_element": 21699764900024460964778948926498536874515,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 27,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 452,
+      "moving_domain_element": 349454509710436324901568296405721085585,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 28,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 453,
+      "moving_domain_element": 1716802760010460476773768547428895623452,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 29,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 454,
+      "moving_domain_element": 23434749598658274415124076078758055731439,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 30,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 455,
+      "moving_domain_element": 25237046977005148922155010918830441730264,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 31,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 456,
+      "moving_domain_element": 5453932280423268130929096383952535465203,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 32,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 457,
+      "moving_domain_element": 3198427510908242106161160780174060419613,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 33,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 458,
+      "moving_domain_element": 26024468603825037443026477984214487982448,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 34,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 459,
+      "moving_domain_element": 28379859714447396979335320476770746762010,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 35,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 460,
+      "moving_domain_element": 4775862538069860462420133737237131879505,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 36,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 461,
+      "moving_domain_element": 10827785394836129761050301950558715528863,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 37,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 462,
+      "moving_domain_element": 972539974417700283052586783430505301805,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 38,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 463,
+      "moving_domain_element": 26196849352892255508297885426085353117223,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 39,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 464,
+      "moving_domain_element": 23847448313893835939075692998239694259174,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 40,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 465,
+      "moving_domain_element": 25442278848121160007401959645795939543360,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 41,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 466,
+      "moving_domain_element": 14770277833545675958004345626070673736755,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 42,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 467,
+      "moving_domain_element": 20941752308681265317221506200953863559634,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 43,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 468,
+      "moving_domain_element": 19434096838578635956592436440879769779988,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 44,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 469,
+      "moving_domain_element": 13734858613150435939875244519873794049379,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 45,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 470,
+      "moving_domain_element": 24842752347382807878360782618686475956964,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 46,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 471,
+      "moving_domain_element": 15780799834497261830275745947327086644068,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 47,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 472,
+      "moving_domain_element": 15137063542474347381997608844659631490067,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 48,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 473,
+      "moving_domain_element": 18120846552795915419836514381809497291818,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 49,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 474,
+      "moving_domain_element": 23890397764317446419668506830311307757259,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 50,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 475,
+      "moving_domain_element": 10938075235002210403703315287206984742811,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 51,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 476,
+      "moving_domain_element": 4019075076578268271755186014647809377316,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 52,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 477,
+      "moving_domain_element": 6506842205047925787969927025930305490264,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 53,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 478,
+      "moving_domain_element": 26382578881168383353794160378583382931854,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 54,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 479,
+      "moving_domain_element": 3923489988126825407702093931913671230358,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 55,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 480,
+      "moving_domain_element": 12242594820622726167225912670582073381647,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 56,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 481,
+      "moving_domain_element": 13459336585620078488050441729633245075500,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 57,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 482,
+      "moving_domain_element": 18516583750722931459828653573354619629670,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 58,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 483,
+      "moving_domain_element": 23672441434756271655682423643678514371991,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 59,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 484,
+      "moving_domain_element": 28417391220949348978472728126269115056230,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 60,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 485,
+      "moving_domain_element": 14861790231158537003758411473185268849298,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 61,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 486,
+      "moving_domain_element": 28569022238215734253608316315242310921846,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 62,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 487,
+      "moving_domain_element": 22528859644939372619869881664902016508317,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 63,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 488,
+      "moving_domain_element": 27293627024157955786022310095079477692285,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 64,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 489,
+      "moving_domain_element": 1528708841700704820443791393727257887810,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 65,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 490,
+      "moving_domain_element": 27223028281692763489217220408609598159747,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 66,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 491,
+      "moving_domain_element": 3763860407003670160573598079456740489871,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 67,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 492,
+      "moving_domain_element": 25435001404346414954212383631650898350523,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 68,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 493,
+      "moving_domain_element": 2644077025360556388171529264892074614155,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 69,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 494,
+      "moving_domain_element": 10745031027656376426956159080619004494064,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 70,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 495,
+      "moving_domain_element": 13557458349467730419272266596619016240920,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 71,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 496,
+      "moving_domain_element": 4839092311666636846997500525025175742324,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 72,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 497,
+      "moving_domain_element": 6873959747673044082021571348282640012532,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 73,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 498,
+      "moving_domain_element": 28093069856579346056760495095698891478309,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 74,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 499,
+      "moving_domain_element": 24971350535498243830659653473779978110129,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 75,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 500,
+      "moving_domain_element": 315806756368450156332271434583455069065,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 76,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 501,
+      "moving_domain_element": 18683647906637400546687241569993622153263,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 77,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 502,
+      "moving_domain_element": 17091932269443600239664100076146237724457,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 78,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 503,
+      "moving_domain_element": 2334616537117934732890399738685329347302,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 79,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 504,
+      "moving_domain_element": 14910369605356090773484005408074963855732,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 80,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 505,
+      "moving_domain_element": 25258522205777670993937753959717585585912,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 81,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 506,
+      "moving_domain_element": 14525599321216531880285189047907810882548,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 82,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 507,
+      "moving_domain_element": 3825033324795973243577953114337858945004,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 83,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 508,
+      "moving_domain_element": 2323560399041865122764139141959486218439,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 84,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 509,
+      "moving_domain_element": 18543480899193052126095903411545479676669,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 85,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 510,
+      "moving_domain_element": 28016990371483961587173425662650107490158,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 86,
+      "support_size": 425
+    },
+    {
+      "explaining_codeword": "zero polynomial",
+      "moving_coordinate_index": 511,
+      "moving_domain_element": 27537147977450730815387010902583396665679,
+      "noncontained_reason": "direction g is zero on 424 core coordinates and one at the moving coordinate; no degree<256 polynomial can agree on this support",
+      "slope": 87,
+      "support_size": 425
+    }
+  ],
+  "support_record_hash_sha256": "dfd66e1675944e47c710b1481e9b19c3c5ccea235bdffd03ddd31e5078375adc"
+}

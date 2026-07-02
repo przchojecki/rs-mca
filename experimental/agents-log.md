@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - A=426 two-core exact threshold row
+
+- **Agent/model:** GPT-5.5 Pro / Codex.
+- **Files added or changed:**
+  `experimental/notes/certificate_scanner/a426_two_core_exact_threshold_v26.md`;
+  `experimental/scripts/certify_a426_two_core_exact_threshold_v26.py`;
+  `experimental/data/certificates/a426-two-core-exact-threshold-v26/`;
+  `experimental/notes/certificate_scanner/outputs/a426_two_core_exact_threshold_v26.report.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A Hankel-free structural two-core proof that
+  `LD_sw(RS[F,D,256],426)=87` for every 512-point RS domain, plus an
+  exact-budget prime row where `A=426` is safe and `A=425` is unsafe at the
+  `2^-128` finite-slope support-wise MCA threshold.
+- **How it is useful:** Adds a replayable adjacent threshold row in the prize
+  box and bypasses the missing `A=426` Hankel root tables by a structural M2
+  support-wise argument.
+- **What to do next:** Human-review the two-core proof and decide whether to
+  add a public site row after the source note lands.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
