@@ -263,6 +263,14 @@ def max_certified_half_l1_radius(order: int, p: int) -> int:
     return radius
 
 
+def max_norm_factor_root_budget(phi: int, p: int) -> int:
+    """Largest R with R^phi < p."""
+    root = 0
+    while (root + 1) ** phi < p:
+        root += 1
+    return root
+
+
 def row_c_graded_collision_radius() -> dict:
     """Exact Row-C consequences of the norm-height gate.
 
@@ -330,6 +338,149 @@ def row_c_graded_collision_radius() -> dict:
     }
 
 
+def scalar_coeffs(order: int, scalar: int) -> tuple[int, ...]:
+    return (scalar,) + (0,) * (order - 1)
+
+
+def coeff_mul_scalar(coeffs: tuple[int, ...], scalar: int) -> tuple[int, ...]:
+    return tuple(scalar * coeff for coeff in coeffs)
+
+
+def cluster_certificate_lemmas() -> dict:
+    """Machine-check the elementary cluster-certificate consequences.
+
+    The one-check lemma is stated with an explicit algebraic-integer quotient
+    factor.  That avoids confusing the certificate lemma with the later
+    generator-economy design problem, where such factorizations must be built.
+    """
+    graded = row_c_graded_collision_radius()
+    p_row = graded["row_c_prime"]
+    free_clique_rows = []
+    root_budget_rows = []
+    for row in graded["rows"]:
+        phi = row["phi_N"]
+        root = max_norm_factor_root_budget(phi, p_row)
+        root_budget_rows.append({
+            "N_prime": row["N_prime"],
+            "phi_N": phi,
+            "root_budget_R": root,
+            "R_power_phi_bits": (root ** phi).bit_length(),
+            "next_power_phi_bits": ((root + 1) ** phi).bit_length(),
+            "R_is_maximal": root ** phi < p_row <= (root + 1) ** phi,
+        })
+        free_clique_rows.append({
+            "N_prime": row["N_prime"],
+            "certified_half_l1_radius_d": row["certified_half_l1_radius_d"],
+            "certified_l1_radius_2d": row["certified_l1_radius_2d"],
+            "free_clique_rule": (
+                "any characteristic-zero distinct class set with pairwise "
+                "coefficient half-l1 distance <= d has no modular collisions"
+            ),
+            "full_row_c_class_is_free_clique": row[
+                "full_class_injective_mod_row_c_prime"
+            ],
+        })
+
+    # Toy one-check cross-cluster replay in Z[zeta_8], p=17.  The common
+    # center difference is the integer 3.  The quotient factors are algebraic
+    # integers with norm below p, so checking Norm(3) once certifies all
+    # products 3*q.
+    toy_order = 8
+    toy_phi = int(sympy.totient(toy_order))
+    toy_p = 17
+    toy_root_budget = max_norm_factor_root_budget(toy_phi, toy_p)
+    delta = scalar_coeffs(toy_order, 3)
+    delta_norm = abs(cyclotomic_norm(toy_order, delta))
+    quotient_factors = [
+        ("1", scalar_coeffs(toy_order, 1)),
+        ("2", scalar_coeffs(toy_order, 2)),
+        ("1+zeta", (1, 1) + (0,) * (toy_order - 2)),
+    ]
+    quotient_rows = []
+    for name, quotient in quotient_factors:
+        quotient_norm = abs(cyclotomic_norm(toy_order, quotient))
+        product = coeff_mul_scalar(quotient, 3)
+        product_norm = abs(cyclotomic_norm(toy_order, product))
+        quotient_rows.append({
+            "quotient_factor": name,
+            "quotient_norm": quotient_norm,
+            "quotient_norm_lt_p": quotient_norm < toy_p,
+            "product_norm": product_norm,
+            "product_norm_factorization_ok": (
+                product_norm == delta_norm * quotient_norm
+            ),
+            "product_certified_nonzero_mod_p": (
+                delta_norm % toy_p != 0
+                and 0 < quotient_norm < toy_p
+                and product_norm % toy_p != 0
+            ),
+        })
+
+    base = (1, 1) + (0,) * (toy_order - 2)
+    base_norm = abs(cyclotomic_norm(toy_order, base))
+    integer_rows = []
+    for multiplier in [2, 3, 16]:
+        multiplied = coeff_mul_scalar(base, multiplier)
+        multiplied_norm = abs(cyclotomic_norm(toy_order, multiplied))
+        integer_rows.append({
+            "multiplier": multiplier,
+            "multiplier_lt_p": 0 < multiplier < toy_p,
+            "norm_factorization_ok": (
+                multiplied_norm == (multiplier ** toy_phi) * base_norm
+            ),
+            "certified_nonzero_mod_p": (
+                base_norm % toy_p != 0 and multiplier % toy_p != 0
+                and multiplied_norm % toy_p != 0
+            ),
+        })
+
+    ok = (
+        graded["status"] == "PASS"
+        and all(row["R_is_maximal"] for row in root_budget_rows)
+        and all(row["certified_half_l1_radius_d"] >= 1 for row in free_clique_rows)
+        and delta_norm % toy_p != 0
+        and toy_root_budget == 2
+        and all(row["quotient_norm_lt_p"] for row in quotient_rows)
+        and all(row["product_norm_factorization_ok"] for row in quotient_rows)
+        and all(row["product_certified_nonzero_mod_p"] for row in quotient_rows)
+        and all(row["norm_factorization_ok"] for row in integer_rows)
+        and all(row["certified_nonzero_mod_p"] for row in integer_rows)
+    )
+    return {
+        "name": "cluster_certificate_lemmas",
+        "status": "PASS" if ok else "FAIL",
+        "roadmap_task": "QA.14 / cluster_certificates",
+        "free_clique_from_graded_radius": free_clique_rows,
+        "row_c_norm_factor_root_budgets": root_budget_rows,
+        "one_check_cross_cluster_lemma": {
+            "statement": (
+                "if every cross difference factors as Delta*q with q an "
+                "algebraic integer, p does not divide Norm(Delta), and "
+                "0 < |Norm(q)| < p, then one Norm(Delta) check certifies "
+                "all cross differences"
+            ),
+            "toy_order": toy_order,
+            "toy_prime": toy_p,
+            "toy_phi": toy_phi,
+            "toy_root_budget_R": toy_root_budget,
+            "delta_norm": delta_norm,
+            "quotient_rows": quotient_rows,
+        },
+        "integer_factor_freebie": {
+            "statement": (
+                "integer multiples m*Delta are certified whenever "
+                "0 < m < p and Delta is certified"
+            ),
+            "base_norm": base_norm,
+            "rows": integer_rows,
+        },
+        "non_claim": (
+            "This certifies the cluster-compression lemmas only; constructing "
+            "large generator-economy cluster designs is a separate open task."
+        ),
+    }
+
+
 def build_report() -> dict:
     checks = [
         check_order(order=8, ell=5),
@@ -348,6 +499,11 @@ def build_report() -> dict:
                 "if coefficient l1-distance <= 2d and (2d)^phi(N) < p, "
                 "the norm criterion forbids distinct-class modular collisions"
             ),
+            "cluster_certificates": (
+                "free cliques follow from the graded radius; one-check "
+                "cross-cluster certificates follow from a common certified "
+                "factor Delta and algebraic-integer quotient factors of norm < p"
+            ),
             "exceptional_prime_count": (
                 "#{p >= P0 dividing some nonzero norm} <= "
                 "sum_pairs log |Norm(Delta)| / log P0"
@@ -355,6 +511,7 @@ def build_report() -> dict:
         },
         "checks": checks,
         "row_c_graded_collision_radius": row_c_graded_collision_radius(),
+        "cluster_certificate_lemmas": cluster_certificate_lemmas(),
         "script_sha256": sha256_text(Path(__file__).read_text()),
     }
 
@@ -390,6 +547,20 @@ def main() -> None:
             f"full_height_bits={row['full_height_bound_bits']} "
             f"next_radius_bits={row['next_radius_height_bound_bits']}"
         )
+    clusters = report["cluster_certificate_lemmas"]
+    ok &= clusters["status"] == "PASS"
+    print(f"[{clusters['status']}] {clusters['name']}")
+    print(f"        roadmap_task: {clusters['roadmap_task']}")
+    print(
+        "        one_check_toy: "
+        f"order={clusters['one_check_cross_cluster_lemma']['toy_order']} "
+        f"p={clusters['one_check_cross_cluster_lemma']['toy_prime']} "
+        f"R={clusters['one_check_cross_cluster_lemma']['toy_root_budget_R']}"
+    )
+    print(
+        "        integer_freebie_rows: "
+        f"{len(clusters['integer_factor_freebie']['rows'])}"
+    )
     if args.emit:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")

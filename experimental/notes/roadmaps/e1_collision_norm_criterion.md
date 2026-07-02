@@ -152,6 +152,24 @@ characteristic-zero class, not from a distinct-class modular collision.  The
 actual E1 uncertainty starts at `N' >= 128`, where the height bound certifies
 only local neighborhoods.
 
+## Cluster-Certificate Consequences
+
+The same certificate gives the QA.14 cluster machinery recorded separately in
+`experimental/notes/roadmaps/e1_cluster_certificates.md`:
+
+- any class set of pairwise half-`l_1` diameter at most the graded radius is a
+  free clique;
+- if every cross-cluster difference factors as `Delta * Q_xy` with `Q_xy` a
+  nonzero algebraic integer of norm strictly between `0` and `p`, then one norm
+  check on `Delta` certifies all cross-pairs;
+- integer scalar multiples `m Delta` with `0 < m < p` are automatically
+  certified once `Delta` is.
+
+The algebraic-integrality/factorization hypothesis in the second item is
+deliberate.  The later generator-economy problem is to construct large
+families with those factorizations; this note only supplies the reusable
+certificate rule after such a factorization is known.
+
 ## Exceptional-Prime Counting Corollary
 
 Let `F` be any finite family of unordered pairs of distinct characteristic-zero
@@ -199,6 +217,7 @@ The verifier performs:
   bound for the checked pair family.
 - the Row-C graded collision-radius table above, including full injectivity
   at `N'=64`.
+- the QA.14 cluster-certificate lemmas and toy replay.
 
 Replay:
 

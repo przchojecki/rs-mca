@@ -15,12 +15,14 @@ Row-C slack-one quotient value-set sampler.
   gate: fixed-embedding collisions imply norm divisibility, and norm
   divisibility produces a collision in some Galois-conjugate embedding.  It
   also records the distinct exceptional-prime divisor budget for the checked
-  pair families.
+  pair families, the Row-C graded collision-radius table, and the QA.14
+  cluster-certificate lemmas.
 - The generating script is
   `experimental/scripts/verify_row_c_e1_value_set_sampler.py`.
 - Companion notes:
-  `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md` and
-  `experimental/notes/roadmaps/e1_collision_norm_criterion.md`.
+  `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md`,
+  `experimental/notes/roadmaps/e1_collision_norm_criterion.md`, and
+  `experimental/notes/roadmaps/e1_cluster_certificates.md`.
 
 Replay:
 

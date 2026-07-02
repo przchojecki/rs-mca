@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - E1 cluster certificates
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/roadmaps/e1_cluster_certificates.md`;
+  `experimental/notes/roadmaps/e1_collision_norm_criterion.md`;
+  `experimental/scripts/verify_row_c_e1_collision_norm_criterion.py`;
+  `experimental/data/certificates/row-c-e1-sampling/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** Adds the QA.14 cluster-certificate lemmas:
+  free cliques follow from the graded collision radius, one certified center
+  factor plus algebraic-integer quotient factors of norm `< p` certifies all
+  cross-cluster pairs, and integer scalar multiples of certified generators
+  require no new norm check.
+- **How it is useful:** This separates the certificate-compression theorem
+  from the still-open generator-economy design problem: later searches only
+  need to construct structured factorizations, not re-prove the norm gate for
+  every pair.
+- **What to do next:** Use these lemmas in the generator-economy evidence
+  search; keep the algebraic-integrality/factorization hypothesis explicit in
+  any claimed cluster family.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

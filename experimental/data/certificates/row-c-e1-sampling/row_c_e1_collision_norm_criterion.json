@@ -182,7 +182,121 @@
       "zero_norm_pairs_same_cyclotomic_value": 0
     }
   ],
+  "cluster_certificate_lemmas": {
+    "free_clique_from_graded_radius": [
+      {
+        "N_prime": 64,
+        "certified_half_l1_radius_d": 112,
+        "certified_l1_radius_2d": 224,
+        "free_clique_rule": "any characteristic-zero distinct class set with pairwise coefficient half-l1 distance <= d has no modular collisions",
+        "full_row_c_class_is_free_clique": true
+      },
+      {
+        "N_prime": 128,
+        "certified_half_l1_radius_d": 7,
+        "certified_l1_radius_2d": 14,
+        "free_clique_rule": "any characteristic-zero distinct class set with pairwise coefficient half-l1 distance <= d has no modular collisions",
+        "full_row_c_class_is_free_clique": false
+      },
+      {
+        "N_prime": 256,
+        "certified_half_l1_radius_d": 1,
+        "certified_l1_radius_2d": 2,
+        "free_clique_rule": "any characteristic-zero distinct class set with pairwise coefficient half-l1 distance <= d has no modular collisions",
+        "full_row_c_class_is_free_clique": false
+      }
+    ],
+    "integer_factor_freebie": {
+      "base_norm": 2,
+      "rows": [
+        {
+          "certified_nonzero_mod_p": true,
+          "multiplier": 2,
+          "multiplier_lt_p": true,
+          "norm_factorization_ok": true
+        },
+        {
+          "certified_nonzero_mod_p": true,
+          "multiplier": 3,
+          "multiplier_lt_p": true,
+          "norm_factorization_ok": true
+        },
+        {
+          "certified_nonzero_mod_p": true,
+          "multiplier": 16,
+          "multiplier_lt_p": true,
+          "norm_factorization_ok": true
+        }
+      ],
+      "statement": "integer multiples m*Delta are certified whenever 0 < m < p and Delta is certified"
+    },
+    "name": "cluster_certificate_lemmas",
+    "non_claim": "This certifies the cluster-compression lemmas only; constructing large generator-economy cluster designs is a separate open task.",
+    "one_check_cross_cluster_lemma": {
+      "delta_norm": 81,
+      "quotient_rows": [
+        {
+          "product_certified_nonzero_mod_p": true,
+          "product_norm": 81,
+          "product_norm_factorization_ok": true,
+          "quotient_factor": "1",
+          "quotient_norm": 1,
+          "quotient_norm_lt_p": true
+        },
+        {
+          "product_certified_nonzero_mod_p": true,
+          "product_norm": 1296,
+          "product_norm_factorization_ok": true,
+          "quotient_factor": "2",
+          "quotient_norm": 16,
+          "quotient_norm_lt_p": true
+        },
+        {
+          "product_certified_nonzero_mod_p": true,
+          "product_norm": 162,
+          "product_norm_factorization_ok": true,
+          "quotient_factor": "1+zeta",
+          "quotient_norm": 2,
+          "quotient_norm_lt_p": true
+        }
+      ],
+      "statement": "if every cross difference factors as Delta*q with q an algebraic integer, p does not divide Norm(Delta), and 0 < |Norm(q)| < p, then one Norm(Delta) check certifies all cross differences",
+      "toy_order": 8,
+      "toy_phi": 4,
+      "toy_prime": 17,
+      "toy_root_budget_R": 2
+    },
+    "roadmap_task": "QA.14 / cluster_certificates",
+    "row_c_norm_factor_root_budgets": [
+      {
+        "N_prime": 64,
+        "R_is_maximal": true,
+        "R_power_phi_bits": 250,
+        "next_power_phi_bits": 251,
+        "phi_N": 32,
+        "root_budget_R": 224
+      },
+      {
+        "N_prime": 128,
+        "R_is_maximal": true,
+        "R_power_phi_bits": 244,
+        "next_power_phi_bits": 251,
+        "phi_N": 64,
+        "root_budget_R": 14
+      },
+      {
+        "N_prime": 256,
+        "R_is_maximal": true,
+        "R_power_phi_bits": 203,
+        "next_power_phi_bits": 257,
+        "phi_N": 128,
+        "root_budget_R": 3
+      }
+    ],
+    "status": "PASS"
+  },
   "criterion": {
+    "cluster_certificates": "free cliques follow from the graded radius; one-check cross-cluster certificates follow from a common certified factor Delta and algebraic-integer quotient factors of norm < p",
     "exceptional_prime_count": "#{p >= P0 dividing some nonzero norm} <= sum_pairs log |Norm(Delta)| / log P0",
     "fixed_embedding_collision_implies": "p divides Norm_Q(zeta_N)(Delta)",
     "graded_collision_radius": "if coefficient l1-distance <= 2d and (2d)^phi(N) < p, the norm criterion forbids distinct-class modular collisions",
@@ -244,6 +358,6 @@
     "status": "PASS"
   },
   "schema": "row_c_e1_collision_norm_criterion_v1",
-  "script_sha256": "f30fbb42c587458031f7149fda1302f82a1fc59fb12690f585fa0cf759f6c39e",
+  "script_sha256": "37bf8d49c8265003d19844c11d232efb2119852daa29593fd3c2a6ad6c502c46",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_CRITERION"
 }
