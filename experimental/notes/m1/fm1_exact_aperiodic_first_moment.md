@@ -381,6 +381,57 @@ exchange-rigidity and averaged-slope arguments: FM1 is independent outside a
 printed Johnson neighborhood, and every remaining covariance edge is exactly
 one of the high-overlap terms in the second-moment ledger.
 
+## Dependency-degree concentration criterion
+
+The dependency graph gives a coarser but very portable concentration
+criterion.  Let
+
+```text
+D_t(n,j)
+  =
+  sum_{d=0}^{min(t-1,j,n-j)}
+      binom(j,d) binom(n-j,d)
+```
+
+be the radius-`t-1` Johnson neighborhood size, including the locator itself.
+Then
+
+```text
+Var(N_A) <= E[N_A] * D_t(n,j),
+```
+
+and therefore
+
+```text
+Var(N_A) / E[N_A]^2 <= D_t(n,j) / E[N_A].
+```
+
+**Proof.**  Write `N_A=sum_R I_R`.  The dependency-graph consumer says
+`Cov(I_R,I_T)=0` unless `d(R,T)<t`.  For every remaining ordered pair,
+
+```text
+Cov(I_R,I_T) <= Pr[I_R=I_T=1] <= Pr[I_R=1] = p_1.
+```
+
+For each fixed `R`, there are exactly `D_t(n,j)` possible `T` in the
+dependency neighborhood.  Summing over ordered pairs gives
+
+```text
+Var(N_A)
+  =
+  sum_{R,T} Cov(I_R,I_T)
+  <=
+  binom(n,j) D_t(n,j) p_1
+  =
+  E[N_A] D_t(n,j).
+```
+
+This criterion is deliberately weaker than the exact second-moment formula,
+but it has the right shape for later consumers: if the FM1 mean is larger than
+the Johnson dependency neighborhood, then `N_A` is nonzero with positive
+average probability, and if the mean dominates that neighborhood by a large
+factor, the averaged model is concentrated.
+
 ## Averaged-existence consumer
 
 The exact second moment gives the following immediate averaged-existence
@@ -441,7 +492,7 @@ sanity check for the M3/M5 chart program, not a replacement for root tables.
 
 ## Verification
 
-The verifier records seven checks.
+The verifier records eight checks.
 
 1. **Surjectivity check, `F_13`.**  For `D=F_13^*`, `n=12`, `k=3`,
    `A=8`, `t=5`, `j=4`, every one of the `binom(12,4)=495`
@@ -466,7 +517,10 @@ rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
    particular it checks that covariance is supported precisely at distances
    `d<t`; when `t` exceeds the maximum Johnson distance, the dependency graph
    is complete, as expected.
-6. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
+6. **Dependency-degree concentration criterion.**  The verifier compares the
+   exact relative variance against the portable bound `D_t/E[N_A]` in three
+   finite parameter sets, including the `F_13` row used for the rank checks.
+7. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
    `A=3`, `t=2`, `j=1`, enumeration over all `5^8` word pairs gives
 
 ```text
@@ -485,7 +539,7 @@ binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 
 and the exact second-moment / Paley-Zygmund formulas above.
 
-7. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
+8. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
    the script computes the FM1/Markov one-locator upper bound across
    `385 <= A <= 426` and verifies the endpoint ranges above.
 

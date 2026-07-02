@@ -237,6 +237,15 @@ def integer_record(value: int) -> dict:
     }
 
 
+def fraction_record(value: Fraction) -> dict:
+    return {
+        "numerator": value.numerator,
+        "denominator": value.denominator,
+        "decimal": float(value),
+        "log2": math.log2(float(value)) if value > 0 else None,
+    }
+
+
 def dependency_neighborhood(n: int, j: int, t: int) -> dict:
     """Johnson-distance dependency graph induced by the joint-rank formula."""
     locator_count = comb(n, j)
@@ -309,6 +318,49 @@ def check_dependency_graph_consumer() -> tuple[bool, dict]:
             "the radius-(t-1) Johnson ball."
         ),
         "examples": examples,
+    }
+
+
+def check_dependency_degree_concentration() -> tuple[bool, dict]:
+    rows = []
+    ok = True
+    for q, n, k, agreement in [(7, 6, 2, 3), (11, 10, 3, 5), (13, 12, 3, 8)]:
+        t = agreement - k
+        j = n - agreement
+        mean = expected_value(q, n, k, agreement)
+        second = second_moment_formula(q, n, k, agreement)
+        variance = second - mean * mean
+        neighborhood = dependency_neighborhood(n, j, t)
+        dependency = neighborhood["dependent_neighbors_including_self"]["value"]
+        variance_bound = dependency * mean
+        relative_variance = variance / (mean * mean)
+        relative_bound = Fraction(dependency, 1) / mean
+        ok &= variance <= variance_bound
+        ok &= relative_variance <= relative_bound
+        rows.append({
+            "q": q,
+            "n": n,
+            "k": k,
+            "agreement": agreement,
+            "t": t,
+            "j": j,
+            "mean": fraction_record(mean),
+            "variance": fraction_record(variance),
+            "dependency_neighborhood_size": dependency,
+            "variance_upper_bound": fraction_record(variance_bound),
+            "relative_variance": fraction_record(relative_variance),
+            "relative_variance_upper_bound": fraction_record(relative_bound),
+            "mean_over_dependency": fraction_record(mean / dependency),
+            "criterion_gives_nonzero_probability": relative_bound < 1,
+        })
+    return ok, {
+        "statement": (
+            "Since covariance is supported in the radius-(t-1) Johnson ball "
+            "and every joint event is contained in one locator event, "
+            "Var(N_A) <= E[N_A] * D_t where D_t is the dependency "
+            "neighborhood size. Hence Var(N_A)/E[N_A]^2 <= D_t/E[N_A]."
+        ),
+        "rows": rows,
     }
 
 
@@ -679,6 +731,7 @@ def build_report() -> dict:
     ok_fiber, fiber = check_fiber_product_joint_probability()
     ok_overlap, overlap = check_overlap_excess_decomposition()
     ok_dependency, dependency = check_dependency_graph_consumer()
+    ok_dep_concentration, dep_concentration = check_dependency_degree_concentration()
     ok_f5, f5 = check_f5_bruteforce()
     ok_window, window = check_f17_regular_window_tail()
     source = Path(__file__).read_text()
@@ -700,6 +753,11 @@ def build_report() -> dict:
             "Pr[N_A=0] <= Var(N_A)/E[N_A]^2 and "
             "Pr[|N_A-E[N_A]| >= eps E[N_A]] <= Var(N_A)/(eps^2 E[N_A]^2)."
         ),
+        "dependency_degree_concentration_consumer": (
+            "If E[N_A] is larger than the radius-(t-1) Johnson dependency "
+            "neighborhood D_t, then the exact second moment is concentrated "
+            "by Var(N_A)/E[N_A]^2 <= D_t/E[N_A]."
+        ),
         "definition": (
             "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. "
             "The locator is aligned when b != 0 and a lies in the one-dimensional span of b."
@@ -710,6 +768,7 @@ def build_report() -> dict:
             "f5_fiber_product_joint_probability": fiber,
             "overlap_excess_decomposition": overlap,
             "dependency_graph_consumer": dependency,
+            "dependency_degree_concentration": dep_concentration,
             "f5_bruteforce": f5,
             "f17_regular_window_markov_tail": window,
         },
@@ -719,6 +778,7 @@ def build_report() -> dict:
             and ok_fiber
             and ok_overlap
             and ok_dependency
+            and ok_dep_concentration
             and ok_f5
             and ok_window
         ),
@@ -779,6 +839,17 @@ def main() -> None:
                         dependent_radius=example["dependent_radius"],
                         deg=example["dependent_degree_excluding_self"]["log2"] or 0.0,
                         ind=example["independent_neighbors"]["log2"] or 0.0,
+                    )
+                )
+        elif name == "dependency_degree_concentration":
+            for row in data["rows"]:
+                print(
+                    "        q={q}, n={n}, k={k}, A={agreement}: "
+                    "D={dependency_neighborhood_size}, relvar={rel:.6g}, "
+                    "D/E={bound:.6g}".format(
+                        rel=row["relative_variance"]["decimal"],
+                        bound=row["relative_variance_upper_bound"]["decimal"],
+                        **row,
                     )
                 )
         elif name == "f5_bruteforce":

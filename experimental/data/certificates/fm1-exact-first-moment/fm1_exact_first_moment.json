@@ -1,6 +1,149 @@
 {
   "chebyshev_consumer": "Pr[N_A=0] <= Var(N_A)/E[N_A]^2 and Pr[|N_A-E[N_A]| >= eps E[N_A]] <= Var(N_A)/(eps^2 E[N_A]^2).",
   "checks": {
+    "dependency_degree_concentration": {
+      "rows": [
+        {
+          "agreement": 3,
+          "criterion_gives_nonzero_probability": true,
+          "dependency_neighborhood_size": 1,
+          "j": 3,
+          "k": 2,
+          "mean": {
+            "decimal": 17.142857142857142,
+            "denominator": 7,
+            "log2": 4.099535673550914,
+            "numerator": 120
+          },
+          "mean_over_dependency": {
+            "decimal": 17.142857142857142,
+            "denominator": 7,
+            "log2": 4.099535673550914,
+            "numerator": 120
+          },
+          "n": 6,
+          "q": 7,
+          "relative_variance": {
+            "decimal": 0.008333333333333333,
+            "denominator": 120,
+            "log2": -6.906890595608519,
+            "numerator": 1
+          },
+          "relative_variance_upper_bound": {
+            "decimal": 0.058333333333333334,
+            "denominator": 120,
+            "log2": -4.099535673550914,
+            "numerator": 7
+          },
+          "t": 1,
+          "variance": {
+            "decimal": 2.4489795918367347,
+            "denominator": 49,
+            "log2": 1.2921807514933104,
+            "numerator": 120
+          },
+          "variance_upper_bound": {
+            "decimal": 17.142857142857142,
+            "denominator": 7,
+            "log2": 4.099535673550914,
+            "numerator": 120
+          }
+        },
+        {
+          "agreement": 5,
+          "criterion_gives_nonzero_probability": false,
+          "dependency_neighborhood_size": 26,
+          "j": 5,
+          "k": 3,
+          "mean": {
+            "decimal": 22.719759579263712,
+            "denominator": 1331,
+            "log2": 4.5058756631965435,
+            "numerator": 30240
+          },
+          "mean_over_dependency": {
+            "decimal": 0.8738369068947581,
+            "denominator": 17303,
+            "log2": -0.19456405494454895,
+            "numerator": 15120
+          },
+          "n": 10,
+          "q": 11,
+          "relative_variance": {
+            "decimal": 0.11589781746031746,
+            "denominator": 40320,
+            "log2": -3.1090746965224794,
+            "numerator": 4673
+          },
+          "relative_variance_upper_bound": {
+            "decimal": 1.1443783068783069,
+            "denominator": 15120,
+            "log2": 0.19456405494454893,
+            "numerator": 17303
+          },
+          "t": 2,
+          "variance": {
+            "decimal": 59.82500179220473,
+            "denominator": 1771561,
+            "log2": 5.902676629870608,
+            "numerator": 105983640
+          },
+          "variance_upper_bound": {
+            "decimal": 590.7137490608565,
+            "denominator": 1331,
+            "log2": 9.206315381337635,
+            "numerator": 786240
+          }
+        },
+        {
+          "agreement": 8,
+          "criterion_gives_nonzero_probability": false,
+          "dependency_neighborhood_size": 495,
+          "j": 4,
+          "k": 3,
+          "mean": {
+            "decimal": 0.017331279255666188,
+            "denominator": 10604499373,
+            "log2": -5.8504780431998284,
+            "numerator": 183789540
+          },
+          "mean_over_dependency": {
+            "decimal": 3.50126853649822e-05,
+            "denominator": 10604499373,
+            "log2": -14.8017627581668,
+            "numerator": 371292
+          },
+          "n": 12,
+          "q": 13,
+          "relative_variance": {
+            "decimal": 263.0175803237383,
+            "denominator": 1895544052380,
+            "log2": 8.039015423506035,
+            "numerator": 498561410054041
+          },
+          "relative_variance_upper_bound": {
+            "decimal": 28561.0769232841,
+            "denominator": 371292,
+            "log2": 14.8017627581668,
+            "numerator": 10604499373
+          },
+          "t": 5,
+          "variance": {
+            "decimal": 0.07900344294657652,
+            "denominator": 112455406951957393129,
+            "log2": -3.6619406628936226,
+            "numerator": 8884364327163010620
+          },
+          "variance_upper_bound": {
+            "decimal": 8.578983231554764,
+            "denominator": 10604499373,
+            "log2": 3.1008066717671436,
+            "numerator": 90975822300
+          }
+        }
+      ],
+      "statement": "Since covariance is supported in the radius-(t-1) Johnson ball and every joint event is contained in one locator event, Var(N_A) <= E[N_A] * D_t where D_t is the dependency neighborhood size. Hence Var(N_A)/E[N_A]^2 <= D_t/E[N_A]."
+    },
     "dependency_graph_consumer": {
       "examples": [
         {
@@ -634,11 +777,12 @@
   },
   "dag_node": "fm1",
   "definition": "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. The locator is aligned when b != 0 and a lies in the one-dimensional span of b.",
+  "dependency_degree_concentration_consumer": "If E[N_A] is larger than the radius-(t-1) Johnson dependency neighborhood D_t, then the exact second moment is concentrated by Var(N_A)/E[N_A]^2 <= D_t/E[N_A].",
   "overlap_excess_statement": "The variance is the second-moment excess over independent locator indicators, supported exactly on overlaps c >= j-t+1.",
   "paley_zygmund_consumer": "Pr[N_A>0] >= E[N_A]^2 / E[N_A^2]",
   "passed": true,
   "schema": "fm1_exact_first_moment_v1",
-  "script_sha256": "097f93d80b296e3a4198e6926bd42b71354e45cea2ede4e5ec5999dd4f398c18",
+  "script_sha256": "8ee3ca3383b2ee828c1cdc572ffaa8b3e55f0f6c53227b9486c81792d4849b10",
   "second_moment_statement": "E[N_A^2] is the ordered-overlap sum of the exact defect-h joint alignment probabilities.",
   "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
   "status": "PROVED_LOCAL_VERIFICATION"
