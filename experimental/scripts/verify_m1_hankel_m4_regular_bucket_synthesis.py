@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v48"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v49"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -163,6 +163,10 @@ A385_PAIR_CORE_QUOTIENT_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-quotient-reduction/"
     "f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction.json"
 )
+A385_PAIR_CORE_RANK_TEST_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-rank-test/"
+    "f17_32_n512_k256_m3_rank6_a385_pair_core_rank_test.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -221,6 +225,9 @@ EXPECTED_SCHEMAS = {
     ),
     A385_PAIR_CORE_QUOTIENT_REF: (
         "f17-32-m3-rank6-a385-pair-core-quotient-reduction-v1"
+    ),
+    A385_PAIR_CORE_RANK_TEST_REF: (
+        "f17-32-m3-rank6-a385-pair-core-rank-test-v1"
     ),
 }
 
@@ -2800,6 +2807,58 @@ def check_a385_pair_core_quotient_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_pair_core_rank_test_packet(data: dict[str, Any]) -> None:
+    require(
+        data["agreement"]["A"] == 385,
+        "A385 pair-core rank-test agreement mismatch",
+    )
+    require(
+        data["status"] == "PROVED / AUDIT",
+        "A385 pair-core rank-test status mismatch",
+    )
+    summary = data["summary"]
+    require(
+        summary["pair_core_min"] == 24
+        and summary["Q_vector_dimension"] == 5
+        and summary["pair_line_vector_dimension"] == 2
+        and summary["external_evaluation_rank_threshold_for_pair_line"] == 3,
+        "A385 pair-core rank-test dimension summary mismatch",
+    )
+    require(
+        summary["rank_test_available"]
+        and summary["all_4_by_4_minors_must_vanish"]
+        and summary["fixed_two_core_product_collapse_not_automatic"],
+        "A385 pair-core rank-test flags mismatch",
+    )
+    comparison = data["comparison_with_fixed_two_core_product_collapse"]
+    require(
+        comparison["fixed_two_core_residual_Q_vector_dimension"] == 3
+        and comparison["line_annihilator_dimension_there"] == 1
+        and comparison["no_fixed_core_Q_vector_dimension"] == 5
+        and comparison["line_annihilator_dimension_here"] == 3,
+        "A385 pair-core rank-test product-collapse comparison mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not close the no-fixed-core A=385 frontier" in nonclaims,
+        "A385 pair-core rank-test missing frontier nonclaim",
+    )
+    require(
+        "does not prove that rank<=3 external evaluation cores of size 24 are impossible"
+        in nonclaims,
+        "A385 pair-core rank-test missing impossibility nonclaim",
+    )
+    require(
+        "does not prove that rank<=3 external evaluation cores of size 24 are paid"
+        in nonclaims,
+        "A385 pair-core rank-test missing paidness nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 pair-core rank-test missing row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -2845,6 +2904,9 @@ def build_certificate() -> dict[str, Any]:
     )
     check_a385_pair_core_quotient_packet(
         dependencies[A385_PAIR_CORE_QUOTIENT_REF]
+    )
+    check_a385_pair_core_rank_test_packet(
+        dependencies[A385_PAIR_CORE_RANK_TEST_REF]
     )
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
@@ -3014,6 +3076,12 @@ def build_certificate() -> dict[str, Any]:
                 "at the guaranteed core size |E|>=24, the ambient quotient family has vector dimension at most 104 and the two split quotient members have degree at most 103",
                 "the remaining no-fixed-core frontier is now a quotient-pencil target rather than an unconstrained occupancy problem",
             ],
+            "a385_pair_core_rank_test": [
+                "for an external core E, the rows ev_s(Q)=L_Q(s) form an |E| x 5 external-evaluation matrix M_E",
+                "a pair of finite classes sharing E spans a two-dimensional Q-line, so rowspan(M_E) lies in its three-dimensional annihilator and rank(M_E)<=3",
+                "conversely rank(M_E)<=3 gives a kernel Q-line for the linear common-core condition, but not the split-locator or noncontainment gates",
+                "the fixed two-core product-collapse lemma does not automatically apply here: the no-fixed-core line annihilator has dimension 3 rather than 1",
+            ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
@@ -3128,6 +3196,7 @@ def build_certificate() -> dict[str, Any]:
             "a385_fixed_core_synthesis_count": 1,
             "a385_no_fixed_core_pressure_count": 1,
             "a385_pair_core_quotient_reduction_count": 1,
+            "a385_pair_core_rank_test_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -3164,6 +3233,7 @@ def build_certificate() -> dict[str, Any]:
             "A=385 separated rank-6 branches with a fixed forced base core of size at least two are projective-budget safe",
             "A=385 separated rank-6 no-fixed-core over-budget branches force a pair of finite classes with at least 24 common external roots",
             "A=385 separated rank-6 no-fixed-core large pair-core branches reduce to quotient pencils with two full-split degree<=103 quotient members",
+            "A=385 separated rank-6 no-fixed-core pair-core branches must have a 24 x 5 external-evaluation matrix of rank at most 3",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",

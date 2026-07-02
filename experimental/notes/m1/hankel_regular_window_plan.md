@@ -1003,6 +1003,11 @@ the forced pair spans a projective `Q`-line whose locators share the common
 external factor `C_E`, so at the guaranteed core size the residual quotient
 family has vector dimension at most `104` and the two split quotient members
 have degree at most `103`.
+The pair-core rank-test companion gives the corresponding exact linear gate:
+the `24 x 5` external-evaluation matrix attached to the common core must have
+rank at most `3`, equivalently every `4 x 4` minor vanishes.  This explains why
+the fixed two-core line product-collapse lemma does not apply without an extra
+rank-collapse theorem.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective

@@ -352,6 +352,18 @@ factors through the common external core, `L_Q=C_E R_Q`.  At core size `24`, the
 ambient quotient family has vector dimension at most `104`, and the two split
 quotient members have degree at most `103`.
 
+The `A=385` pair-core rank-test packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-rank-test/
+  f17_32_n512_k256_m3_rank6_a385_pair_core_rank_test.json
+```
+
+records the external-evaluation normal form for that quotient-pencil target.
+A common external core `E` gives a matrix with rows `ev_s(Q)=L_Q(s)` and five
+columns.  The pair line forces rank at most `3`, so at the pressure-forced core
+size `24` all `4 x 4` minors of the `24 x 5` matrix must vanish.
+
 The `A=387` separated-boundary safety packet
 
 ```text

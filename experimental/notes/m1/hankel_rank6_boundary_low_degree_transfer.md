@@ -259,6 +259,17 @@ external core: `L_Q=C_E R_Q`.  At the guaranteed core size, the ambient quotient
 family has vector dimension at most `104`, and the two split quotient members
 have degree at most `103`.
 
+The pair-core rank-test companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_pair_core_rank_test.md
+```
+
+It states the same target as a linear-algebra gate.  For a common external core
+`E`, the matrix with rows `ev_s(Q)=L_Q(s)` has five columns, and a two-class
+pair line forces `rank M_E<=3`.  Thus a pressure-forced survivor needs a
+`24 x 5` external-evaluation matrix with all `4 x 4` minors vanishing.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note

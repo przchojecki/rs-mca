@@ -633,6 +633,12 @@ into a quotient-pencil target.  The two finite classes span a projective
 vector dimension at most `104`, while the two split quotient members have
 degree at most `103`.
 
+The `A=385` pair-core rank-test companion converts that quotient-pencil target
+into a matrix gate.  The `24` common external roots give a `24 x 5`
+external-evaluation matrix, and the pair line forces rank at most `3`.
+Equivalently, all `4 x 4` minors vanish.  This is the exact no-fixed-core
+rank-three obstruction left for the next closure attempt.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase

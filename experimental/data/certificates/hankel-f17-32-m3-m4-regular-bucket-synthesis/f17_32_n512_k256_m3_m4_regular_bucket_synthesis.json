@@ -366,6 +366,7 @@
     "A=385 separated rank-6 branches with a fixed forced base core of size at least two are projective-budget safe",
     "A=385 separated rank-6 no-fixed-core over-budget branches force a pair of finite classes with at least 24 common external roots",
     "A=385 separated rank-6 no-fixed-core large pair-core branches reduce to quotient pencils with two full-split degree<=103 quotient members",
+    "A=385 separated rank-6 no-fixed-core pair-core branches must have a 24 x 5 external-evaluation matrix of rank at most 3",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -508,7 +509,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v48",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v49",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -573,6 +574,10 @@
     "f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-quotient-reduction/f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction.json",
       "sha256": "08e631a2a1dd49f47ca2fa6eb5189d9989cba529c402c1d097a63ea6ec42a3b4"
+    },
+    "f17_32_n512_k256_m3_rank6_a385_pair_core_rank_test": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-rank-test/f17_32_n512_k256_m3_rank6_a385_pair_core_rank_test.json",
+      "sha256": "60696c6a4bd5dc1ba63920b7e3d35fb1d75b44f78dca6b6d194d14c71f2fff0b"
     },
     "f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json",
@@ -649,6 +654,7 @@
     "a385_fixed_core_synthesis_count": 1,
     "a385_no_fixed_core_pressure_count": 1,
     "a385_pair_core_quotient_reduction_count": 1,
+    "a385_pair_core_rank_test_count": 1,
     "a385_three_core_quadratic_cut_count": 1,
     "a385_three_core_residual_closure_count": 1,
     "a385_two_core_component_cut_count": 1,
@@ -663,7 +669,7 @@
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 32,
+    "dependencies_checked": 33,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -702,6 +708,12 @@
       "the common external root core factors every locator in that Q-line, so L_Q=C_E R_Q for every Q in the pair line",
       "at the guaranteed core size |E|>=24, the ambient quotient family has vector dimension at most 104 and the two split quotient members have degree at most 103",
       "the remaining no-fixed-core frontier is now a quotient-pencil target rather than an unconstrained occupancy problem"
+    ],
+    "a385_pair_core_rank_test": [
+      "for an external core E, the rows ev_s(Q)=L_Q(s) form an |E| x 5 external-evaluation matrix M_E",
+      "a pair of finite classes sharing E spans a two-dimensional Q-line, so rowspan(M_E) lies in its three-dimensional annihilator and rank(M_E)<=3",
+      "conversely rank(M_E)<=3 gives a kernel Q-line for the linear common-core condition, but not the split-locator or noncontainment gates",
+      "the fixed two-core product-collapse lemma does not automatically apply here: the no-fixed-core line annihilator has dimension 3 rather than 1"
     ],
     "a385_three_core_quadratic_cut": [
       "inside the separated A=385 rank-6 boundary, a fixed three-point base split-root core leaves a projective Q-line",

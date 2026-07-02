@@ -1,0 +1,96 @@
+{
+  "agreement": {
+    "A": 385,
+    "Q_projective_dimension": 4,
+    "Q_vector_dimension": 5,
+    "boundary_defect_h": 5,
+    "combined_support_size": 134,
+    "direction_rank": 6,
+    "j": 127,
+    "m": 128,
+    "pair_core_min": 24,
+    "pair_line_projective_dimension": 1,
+    "pair_line_vector_dimension": 2,
+    "t": 129
+  },
+  "checks": [
+    "A=385 dimensions give a five-dimensional Q-space",
+    "a pair of distinct finite classes spans a two-dimensional Q-line",
+    "the annihilator of that Q-line has dimension three",
+    "common external roots are exactly evaluation rows annihilating the Q-line",
+    "a 24-point pair-core survivor must have external-evaluation rank at most three",
+    "rank at most three is equivalent to vanishing of all 4x4 external-evaluation minors",
+    "fixed two-core line product-collapse has annihilator dimension one, not three"
+  ],
+  "comparison_with_fixed_two_core_product_collapse": {
+    "fixed_two_core_residual_Q_vector_dimension": 3,
+    "line_annihilator_dimension_here": 3,
+    "line_annihilator_dimension_there": 1,
+    "no_fixed_core_Q_vector_dimension": 5,
+    "why_old_line_collapse_does_not_immediately_apply": "In the fixed two-core residual P^2, a projective line has a one-dimensional annihilator, so two forced external roots make two evaluation functionals proportional and trigger the existing product-collapse dichotomy.  In the no-fixed-core P^4, a projective line has a three-dimensional annihilator; even 24 forced roots only imply the rank<=3 matrix condition unless an additional theorem collapses that rank-three span."
+  },
+  "nonclaims": [
+    "does not close the no-fixed-core A=385 frontier",
+    "does not prove that rank<=3 external evaluation cores of size 24 are impossible",
+    "does not prove that rank<=3 external evaluation cores of size 24 are paid",
+    "does not produce a split-locator witness from the linear converse",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not compute arbitrary A=385 rank-6 root tables",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=385 separated rank-6 pair-core external-evaluation rank test",
+  "rank_test": {
+    "closure_target": "A no-fixed-core over-budget survivor must therefore exhibit a 24-point external set E with rank(M_E)<=3, plus two distinct kernel-line points passing the split-locator, quotient-divisor, and finite noncontainment gates.",
+    "external_evaluation_functional": "For an external subgroup point s, ev_s is the linear functional on the degree-<5 Q-space given by ev_s(Q)=L_Q(s).",
+    "linear_converse": "Conversely, rank(M_E)<=3 gives dim ker(M_E)>=2, hence at least one projective Q-line whose transferred locators vanish on E.  This converse only supplies the linear common-core condition.",
+    "matrix": "For E={s_1,...,s_e}, form the e x 5 external-evaluation matrix M_E whose i-th row is ev_{s_i} in any Q-basis.",
+    "minor_form": "The rank<=3 condition is equivalent to vanishing of every 4 x 4 minor of M_E.",
+    "necessary_condition": "If a projective Q-line U supplies two finite classes sharing the external core E, then ev_s vanishes on U for every s in E; therefore rowspan(M_E) is contained in U^perp and rank(M_E)<=3."
+  },
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-pair-core-rank-test-v1",
+  "source_artifacts": {
+    "a385_pair_core_quotient_reduction": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-quotient-reduction/f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction.json",
+      "sha256": "08e631a2a1dd49f47ca2fa6eb5189d9989cba529c402c1d097a63ea6ec42a3b4"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "Q_vector_dimension": 5,
+    "agreement": 385,
+    "all_4_by_4_minors_must_vanish": true,
+    "external_evaluation_rank_threshold_for_pair_line": 3,
+    "fixed_two_core_product_collapse_not_automatic": true,
+    "pair_core_min": 24,
+    "pair_line_vector_dimension": 2,
+    "rank_test_available": true
+  }
+}

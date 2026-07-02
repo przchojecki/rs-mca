@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 pair-core rank test
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_pair_core_rank_test.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-rank-test/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_pair_core_rank_test.md`;
+  `experimental/notes/m1/hankel_rank6_a385_pair_core_quotient_reduction.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A rank-test normal form for the separated `A=385`
+  no-fixed-core large pair-core frontier: a pressure-forced `24`-point external
+  core must make the `24 x 5` external-evaluation matrix have rank at most
+  `3`.
+- **How it is useful:** This makes the next closure target exact and explains
+  why the fixed two-core line product-collapse lemma does not directly apply:
+  the no-fixed-core pair line has a three-dimensional annihilator, not a
+  one-dimensional one.
+- **What to do next:** Attack the rank-`<=3` external-evaluation obstruction:
+  either prove that such `24`-point cores are impossible/paid under the
+  separated Hankel transfer, or produce a minimal witness packet.
+
 ### 2026-07-02 - A385 pair-core quotient reduction
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

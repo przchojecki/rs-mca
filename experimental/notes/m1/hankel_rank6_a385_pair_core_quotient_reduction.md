@@ -67,6 +67,16 @@ occupancy problem: it reduces to excluding or paying a projective quotient
 pencil containing two distinct full-split quotient members of degree at most
 `103`.
 
+The companion rank-test note
+
+```text
+experimental/notes/m1/hankel_rank6_a385_pair_core_rank_test.md
+```
+
+rephrases this quotient-pencil target as a concrete external-evaluation rank
+condition: a `24`-point common external core must make the corresponding
+`24 x 5` evaluation matrix have rank at most `3`.
+
 Replay:
 
 ```sh
