@@ -123,6 +123,10 @@ Turn 24 closes that declared F_17^32 disjoint top branch: each outside domain
 point gives a quadratic condition in the Hermite parameter c, and no c is a
 root of enough quadratics to give 128 disjoint roots.
 
+Turn 25 adds the rank-one contained rank-drop packet: a support of size 127
+has rank exactly t-1 and kernel dimension 2, but its degree-127 annihilator
+already charges the branch to agreement 385.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -146,6 +150,7 @@ TOY_SIDE_PACKET_SCHEMA = "f97-mu16-m5-a384-side-chart-kernel-pivot-v1"
 F17_PACKET_SCHEMA = "f17-32-m5-a384-planted-top-chart-v1"
 F17_LOW_DEGREE_PACKET_SCHEMA = "f17-32-m5-a384-planted-low-degree-v1"
 F17_RANK_DROP_PACKET_SCHEMA = "f17-32-m5-a384-planted-rank-drop-v1"
+F17_RANK_ONE_PACKET_SCHEMA = "f17-32-m5-a384-rank-one-contained-rank-drop-v1"
 DEFAULT_TOY_PACKET = Path(
     "experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/"
     "f97_mu16_n16_k8_a12_m5_deficiency_one_toy_u1_u5.json"
@@ -169,6 +174,10 @@ DEFAULT_F17_LOW_DEGREE_PACKET = Path(
 DEFAULT_F17_RANK_DROP_PACKET = Path(
     "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/"
     "f17_32_n512_k256_a384_planted_rank_drop.json"
+)
+DEFAULT_F17_RANK_ONE_PACKET = Path(
+    "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/"
+    "f17_32_n512_k256_a384_rank_one_contained_rank_drop.json"
 )
 
 
@@ -1897,6 +1906,267 @@ def check_f17_rank_drop_packet(path: Path):
     ]
 
 
+def f17_rank_one_contained_rank_drop_payload():
+    """Deterministic F_17^32 A=384 rank-one contained rank-drop packet."""
+    descriptor = json.loads(ROW_DESCRIPTOR_REF.read_text(encoding="utf-8"))
+    field = F17Field(
+        descriptor["field_model"]["p"],
+        descriptor["field_model"]["modulus"],
+    )
+    domain = [field.decode(value) for value in descriptor["domain"]["domain_encodings"]]
+    support = domain[:127]
+    valid_roots = domain[:128]
+
+    powers = [field.one] * len(support)
+    moments = []
+    for _ in range(256):
+        acc = field.zero
+        for value in powers:
+            acc = f17_add(field, acc, value)
+        moments.append(acc)
+        powers = [field.mul(value, root) for value, root in zip(powers, support)]
+
+    rank_locator = [field.one]
+    for root in support:
+        rank_locator = f17_poly_mul(field, rank_locator, [f17_neg(field, root), field.one])
+
+    valid_locator = [field.one]
+    for root in valid_roots:
+        valid_locator = f17_poly_mul(field, valid_locator, [f17_neg(field, root), field.one])
+
+    rank_residuals = []
+    for row in range(129):
+        acc = field.zero
+        for index, coeff in enumerate(rank_locator):
+            acc = f17_add(field, acc, field.mul(coeff, moments[row + index]))
+        rank_residuals.append(acc)
+
+    valid_residuals = []
+    for row in range(128):
+        acc = field.zero
+        for index, coeff in enumerate(valid_locator):
+            acc = f17_add(field, acc, field.mul(coeff, moments[row + index]))
+        valid_residuals.append(acc)
+
+    vandermonde_det = field.one
+    for right in range(len(support)):
+        for left in range(right):
+            vandermonde_det = field.mul(
+                vandermonde_det,
+                f17_sub(field, support[right], support[left]),
+            )
+    prefix_127_minor = field.mul(vandermonde_det, vandermonde_det)
+
+    planted_slope = domain[4]
+    v_window = [field.decode(index + 13) for index in range(256)]
+    u_window = [
+        f17_sub(field, moments[index], field.mul(planted_slope, v_window[index]))
+        for index in range(256)
+    ]
+    recombined = [
+        f17_add(field, u_window[index], field.mul(planted_slope, v_window[index]))
+        for index in range(256)
+    ]
+
+    support_encodings = f17_encodings(field, support)
+    valid_root_encodings = f17_encodings(field, valid_roots)
+    rank_locator_encodings = f17_encodings(field, rank_locator)
+    valid_locator_encodings = f17_encodings(field, valid_locator)
+    moment_encodings = f17_encodings(field, moments)
+    rank_residual_encodings = f17_encodings(field, rank_residuals)
+    valid_residual_encodings = f17_encodings(field, valid_residuals)
+    u_encodings = f17_encodings(field, u_window)
+    v_encodings = f17_encodings(field, v_window)
+    valid_locator_values = f17_encodings(
+        field,
+        [f17_poly_eval(field, valid_locator, root) for root in valid_roots],
+    )
+
+    return {
+        "row_descriptor_hash": tagged_hash(descriptor),
+        "domain_hash": descriptor["row"]["domain_hash"],
+        "support_indices": list(range(127)),
+        "support_encodings_hash": tagged_hash(support_encodings),
+        "valid_locator_root_indices": list(range(128)),
+        "valid_locator_roots_hash": tagged_hash(valid_root_encodings),
+        "support_distinct": len(set(support_encodings)) == 127,
+        "valid_roots_distinct": len(set(valid_root_encodings)) == 128,
+        "support_roots_in_domain": all(field.pow(root, 512) == field.one for root in support),
+        "valid_roots_in_domain": all(field.pow(root, 512) == field.one for root in valid_roots),
+        "moment_window_hash": tagged_hash(moment_encodings),
+        "rank_locator": {
+            "degree": len(rank_locator) - 1,
+            "leading_coefficient": field.encode(rank_locator[-1]),
+            "coefficients_hash": tagged_hash(rank_locator_encodings),
+            "recurrence_rows_checked": len(rank_residuals),
+            "recurrence_residual_hash": tagged_hash(rank_residual_encodings),
+            "recurrence_residual_all_zero": all(value == field.zero for value in rank_residuals),
+        },
+        "valid_locator": {
+            "degree": len(valid_locator) - 1,
+            "leading_coefficient": field.encode(valid_locator[-1]),
+            "coefficients_hash": tagged_hash(valid_locator_encodings),
+            "values_on_roots_hash": tagged_hash(valid_locator_values),
+            "values_on_roots_all_zero": all(value == field.zero for value in [
+                f17_poly_eval(field, valid_locator, root) for root in valid_roots
+            ]),
+            "recurrence_rows_checked": len(valid_residuals),
+            "recurrence_residual_hash": tagged_hash(valid_residual_encodings),
+            "recurrence_residual_all_zero": all(value == field.zero for value in valid_residuals),
+        },
+        "rank_certificate": {
+            "rank_upper_bound": 127,
+            "rank_upper_bound_reason": "moment Hankel block factors through 127 support roots",
+            "prefix_127_minor_encoding": field.encode(prefix_127_minor),
+            "prefix_127_minor_nonzero": prefix_127_minor != field.zero,
+            "vandermonde_determinant_encoding": field.encode(vandermonde_det),
+            "vandermonde_determinant_nonzero": vandermonde_det != field.zero,
+            "rank_exact": 127,
+            "kernel_dimension": 2,
+            "maximal_128_minors_all_zero_reason": "rank <= 127 < 128",
+        },
+        "planted_slope_index": 4,
+        "planted_slope_encoding": field.encode(planted_slope),
+        "v_window_rule": "v_m is the base-field constant m+13, encoded in F_17^32",
+        "v_window_hash": tagged_hash(v_encodings),
+        "v_window_nonzero": any(value != field.zero for value in v_window),
+        "u_window_rule": "u_m = S_m - planted_slope * v_m, where S_m=sum_{r=0}^{126} h_r^m",
+        "u_window_hash": tagged_hash(u_encodings),
+        "recombination_hash": tagged_hash(f17_encodings(field, recombined)),
+        "recombination_matches_moments": recombined == moments,
+        "rank_drop_chart": {
+            "t": 128,
+            "j": 128,
+            "rank": 127,
+            "kernel_dimension": 2,
+            "lower_degree_annihilator_degree": len(rank_locator) - 1,
+            "valid_degree_128_locator_in_kernel": True,
+            "dedup_target_agreement": 512 - (len(rank_locator) - 1),
+            "contained_branch_deduped": True,
+            "new_exact_a384_contribution": False,
+            "chart_status": "generic rank-one rank-drop side chart, contained and deduped",
+        },
+    }
+
+
+def expected_f17_rank_one_packet():
+    payload = f17_rank_one_contained_rank_drop_payload()
+    return {
+        "schema_version": F17_RANK_ONE_PACKET_SCHEMA,
+        "status": "PROVED-LOCAL / EXPERIMENTAL",
+        "object": "M5 A=384 deficiency-one rank-one contained rank-drop over F_17^32",
+        "scope": {
+            "claim": (
+                "For the declared deterministic F_17^32 syndrome pencil, the "
+                "planted finite slope has rank exactly 127=t-1, kernel dimension "
+                "2, and every displayed degree-128 locator is a contained "
+                "extension of a degree-127 annihilator charged to agreement 385."
+            ),
+            "nonclaims": [
+                "does not count all rank-one rank-drop slopes over F_17^32",
+                "does not prove a threshold or worst-case row bound",
+                "does not close arbitrary generic rank-drop kernel-pivot branches",
+            ],
+        },
+        "row": {
+            "field": "F_17^32",
+            "n": 512,
+            "k": 256,
+            "agreement": 384,
+            "t": 128,
+            "j": 128,
+            "row_descriptor": str(ROW_DESCRIPTOR_REF),
+            "row_descriptor_hash": payload["row_descriptor_hash"],
+            "domain_hash": payload["domain_hash"],
+        },
+        "declared_family": {
+            "support_indices": payload["support_indices"],
+            "support_encodings_hash": payload["support_encodings_hash"],
+            "moment_rule": "S_m=sum_{r=0}^{126} h_r^m for descriptor-domain roots h_r",
+            "moment_window_hash": payload["moment_window_hash"],
+            "u_window_rule": payload["u_window_rule"],
+            "u_window_hash": payload["u_window_hash"],
+            "v_window_rule": payload["v_window_rule"],
+            "v_window_hash": payload["v_window_hash"],
+            "planted_slope_index": payload["planted_slope_index"],
+            "planted_slope_encoding": payload["planted_slope_encoding"],
+        },
+        "rank_locator": {
+            "degree": payload["rank_locator"]["degree"],
+            "leading_coefficient": payload["rank_locator"]["leading_coefficient"],
+            "coefficients_hash": payload["rank_locator"]["coefficients_hash"],
+            "recurrence_rows_checked": payload["rank_locator"]["recurrence_rows_checked"],
+        },
+        "valid_locator": {
+            "root_indices": payload["valid_locator_root_indices"],
+            "roots_hash": payload["valid_locator_roots_hash"],
+            "degree": payload["valid_locator"]["degree"],
+            "leading_coefficient": payload["valid_locator"]["leading_coefficient"],
+            "coefficients_hash": payload["valid_locator"]["coefficients_hash"],
+            "values_on_roots_hash": payload["valid_locator"]["values_on_roots_hash"],
+            "recurrence_rows_checked": payload["valid_locator"]["recurrence_rows_checked"],
+        },
+        "checks": {
+            "support_distinct": payload["support_distinct"],
+            "valid_roots_distinct": payload["valid_roots_distinct"],
+            "support_roots_in_domain": payload["support_roots_in_domain"],
+            "valid_roots_in_domain": payload["valid_roots_in_domain"],
+            "rank_locator": payload["rank_locator"],
+            "valid_locator": payload["valid_locator"],
+            "rank_certificate": payload["rank_certificate"],
+            "v_window_nonzero": payload["v_window_nonzero"],
+            "recombination_hash": payload["recombination_hash"],
+            "recombination_matches_moments": payload["recombination_matches_moments"],
+            "rank_drop_chart": payload["rank_drop_chart"],
+        },
+        "replay": {
+            "script": "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py",
+            "command": (
+                "python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py "
+                "--check-f17-rank-one experimental/data/certificates/"
+                "hankel-f17-32-m5-underdetermined-a384/"
+                "f17_32_n512_k256_a384_rank_one_contained_rank_drop.json"
+            ),
+        },
+    }
+
+
+def check_f17_rank_one_packet(path: Path):
+    observed = json.loads(path.read_text(encoding="utf-8"))
+    expected = expected_f17_rank_one_packet()
+    if observed != expected:
+        raise AssertionError(f"F_17^32 rank-one contained rank-drop packet mismatch: {path}")
+    checks = expected["checks"]
+    ok = (
+        checks["support_distinct"]
+        and checks["valid_roots_distinct"]
+        and checks["support_roots_in_domain"]
+        and checks["valid_roots_in_domain"]
+        and checks["rank_locator"]["degree"] == 127
+        and checks["rank_locator"]["recurrence_rows_checked"] == 129
+        and checks["rank_locator"]["recurrence_residual_all_zero"]
+        and checks["valid_locator"]["degree"] == 128
+        and checks["valid_locator"]["values_on_roots_all_zero"]
+        and checks["valid_locator"]["recurrence_rows_checked"] == 128
+        and checks["valid_locator"]["recurrence_residual_all_zero"]
+        and checks["rank_certificate"]["prefix_127_minor_nonzero"]
+        and checks["rank_certificate"]["rank_exact"] == 127
+        and checks["rank_certificate"]["kernel_dimension"] == 2
+        and checks["rank_drop_chart"]["dedup_target_agreement"] == 385
+        and checks["rank_drop_chart"]["contained_branch_deduped"]
+        and not checks["rank_drop_chart"]["new_exact_a384_contribution"]
+        and checks["v_window_nonzero"]
+        and checks["recombination_matches_moments"]
+    )
+    return ok, [
+        f"packet {path} matches the recomputed F_17^32 rank-one contained rank-drop payload",
+        f"schema_version = {F17_RANK_ONE_PACKET_SCHEMA}",
+        f"rank certificate prefix 127-minor = {checks['rank_certificate']['prefix_127_minor_encoding']} != 0",
+        "rank is exactly 127=t-1, so the rank-drop kernel dimension is exactly 2",
+        f"degree-127 annihilator dedupes the branch to agreement >= {checks['rank_drop_chart']['dedup_target_agreement']}",
+    ]
+
+
 def canonical_projective_vector(vec, p):
     """Normalize a nonzero projective vector by its first nonzero coordinate."""
     reduced = [x % p for x in vec]
@@ -2759,6 +3029,7 @@ CHECKS = [
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),
     ("F_17^32 planted rank-drop packet",                  lambda: check_f17_rank_drop_packet(DEFAULT_F17_RANK_DROP_PACKET)),
+    ("F_17^32 rank-one contained rank-drop packet",       lambda: check_f17_rank_one_packet(DEFAULT_F17_RANK_ONE_PACKET)),
     ("side-chart packet + local replay validation",       lambda: check_toy_side_packet(DEFAULT_TOY_SIDE_PACKET)),
     ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),
 ]
@@ -2770,6 +3041,7 @@ def run_checks(
     check_f17: Path | None = None,
     check_f17_low_degree: Path | None = None,
     check_f17_rank_drop: Path | None = None,
+    check_f17_rank_one: Path | None = None,
 ):
     print("=" * 74)
     print(f"M5 first singular-bucket pivot packet: A={A_STAR} underdetermined boundary")
@@ -2820,6 +3092,16 @@ def run_checks(
             else (title, fn)
             for title, fn in checks
         ]
+    if check_f17_rank_one is not None:
+        checks = [
+            (
+                "F_17^32 rank-one contained rank-drop packet",
+                lambda path=check_f17_rank_one: check_f17_rank_one_packet(path),
+            )
+            if title == "F_17^32 rank-one contained rank-drop packet"
+            else (title, fn)
+            for title, fn in checks
+        ]
     failed = done = pending = 0
     for title, fn in checks:
         status, details = fn()
@@ -2847,9 +3129,11 @@ def main():
     parser.add_argument("--check-f17", type=Path, help="replay and compare an F_17^32 planted packet")
     parser.add_argument("--check-f17-low-degree", type=Path, help="replay and compare an F_17^32 low-degree packet")
     parser.add_argument("--check-f17-rank-drop", type=Path, help="replay and compare an F_17^32 rank-drop packet")
+    parser.add_argument("--check-f17-rank-one", type=Path, help="replay and compare an F_17^32 rank-one contained rank-drop packet")
     parser.add_argument("--write-f17-packet", type=Path, help="write the deterministic F_17^32 planted packet")
     parser.add_argument("--write-f17-low-degree-packet", type=Path, help="write the deterministic F_17^32 low-degree packet")
     parser.add_argument("--write-f17-rank-drop-packet", type=Path, help="write the deterministic F_17^32 rank-drop packet")
+    parser.add_argument("--write-f17-rank-one-packet", type=Path, help="write the deterministic F_17^32 rank-one contained rank-drop packet")
     parser.add_argument("--write-side-packet", type=Path, help="write the deterministic toy side-chart packet")
     args = parser.parse_args()
     if args.write_f17_packet:
@@ -2873,6 +3157,13 @@ def main():
             encoding="utf-8",
         )
         return
+    if args.write_f17_rank_one_packet:
+        args.write_f17_rank_one_packet.parent.mkdir(parents=True, exist_ok=True)
+        args.write_f17_rank_one_packet.write_text(
+            json.dumps(expected_f17_rank_one_packet(), indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        return
     if args.write_side_packet:
         args.write_side_packet.parent.mkdir(parents=True, exist_ok=True)
         args.write_side_packet.write_text(
@@ -2886,6 +3177,7 @@ def main():
         args.check_f17,
         args.check_f17_low_degree,
         args.check_f17_rank_drop,
+        args.check_f17_rank_one,
     )
 
 

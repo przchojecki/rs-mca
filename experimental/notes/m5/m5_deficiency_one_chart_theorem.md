@@ -88,6 +88,14 @@ obtained by multiplying this annihilator by extra domain roots is a contained
 extension: it witnesses agreement at least `n-s`, not a new exact bucket at
 `A=n-j`.
 
+The generic rank-one instance of this contained branch has `s=j-1`.  Then the
+rank is exactly `j-1`, the `t x (j+1)` kernel has dimension exactly `2`, and
+degree-`j` extensions are charged to agreement
+
+```text
+n-(j-1)=A+1.
+```
+
 ## Specializations
 
 For the toy acid row `F_97`, `n=16`, `k=8`, `A=12`:

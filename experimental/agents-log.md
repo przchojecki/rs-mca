@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 rank-one contained rank-drop packet
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_rank_one_contained_rank_drop.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Declared rank-one contained
+  rank-drop packet; no worst-case row claim.
+- **What is being added:** Turn 25 of the `A=384` M5 packet: a deterministic
+  `F_17^32` moment-support family with support size `127`, rank exactly
+  `127=t-1`, kernel dimension `2`, and a degree-127 annihilator that dedupes
+  degree-128 extensions to agreement `385`.
+- **How it is useful:** Shows that the generic rank-drop local shape can be a
+  harmless contained branch, sharpening the remaining residual to
+  non-contained rank-drop kernel-pivot branches.
+- **What to do next:** Attack or classify non-contained generic rank-drop
+  kernel-pivot roots.
+
 ### 2026-07-02 - M5 A384 planted disjoint top closure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

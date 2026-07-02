@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 24: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 25: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -21,6 +21,8 @@
   The remaining disjoint top branch is reduced to a one-parameter Hermite
   divisor scan with real-row degree cap `770`, and this declared `F_17^32`
   disjoint top branch is now closed by the quadratic root-multiplicity table.
+  A rank-one contained rank-drop packet now covers the generic `rank=t-1`,
+  kernel-dimension-two moment-support branch and dedupes it to agreement `385`.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -153,7 +155,8 @@ belongs.
 | 5r | rank-drop contained-branch dedup theorem | **done** |
 | 5s | planted top-chart disjoint Hermite reduction | **done** |
 | 5t | declared `F_17^32` disjoint top-branch closure | **done** |
-| 5u | full `F_17^32` root-table packet for generic rank-drop charts | pending |
+| 5u | rank-one contained rank-drop packet | **done** |
+| 5v | full `F_17^32` root-table packet for non-contained generic rank-drop charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -925,6 +928,49 @@ maximum outside-root multiplicity: 1
 
 Since the maximum multiplicity is `1`, no `c` can produce the required `128`
 outside roots.  Thus the declared planted disjoint top branch is empty.
+
+### Verified in turn 25
+
+**U25, rank-one contained rank-drop packet.** The generic rank-drop local
+shape has `rank M(z0)=t-1`, hence kernel dimension `2`.  The verifier now
+emits and replays a declared `F_17^32` packet with exactly this shape:
+
+```text
+experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/
+  f17_32_n512_k256_a384_rank_one_contained_rank_drop.json
+```
+
+Construction:
+
+```text
+T = first 127 descriptor-domain roots h_0,...,h_126;
+S_m = sum_{r=0}^{126} h_r^m, 0<=m<256;
+L_127(X)=prod_{r=0}^{126}(X-h_r);
+L_128(X)=prod_{r=0}^{127}(X-h_r).
+```
+
+The `128 x 129` Hankel block factors through 127 support roots.  The leading
+`127 x 127` moment minor is a Vandermonde square and the packet records
+
+```text
+prefix 127-minor encoding = 496073742394775788598166928489200568658
+```
+
+which is nonzero.  Therefore the rank is exactly `127=t-1` and the kernel
+dimension is exactly `2`.
+
+However, the branch is still contained: the degree-127 annihilator `L_127`
+already witnesses agreement at least
+
+```text
+512-127 = 385.
+```
+
+Any degree-128 split locator obtained by multiplying `L_127` by one extra
+domain root is charged to the higher-agreement bucket, not counted as a new
+exact-`A=384` obstruction.  Thus the packet separates a harmless generic
+rank-one contained branch from the genuinely open non-contained rank-drop
+kernel-pivot branches.
 
 ## Honest scope
 
