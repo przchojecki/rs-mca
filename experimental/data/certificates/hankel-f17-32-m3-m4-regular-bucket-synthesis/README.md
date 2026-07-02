@@ -240,23 +240,27 @@ dual-evaluation-fiber quotient pencil of degree at most `54`, while a high-core
 irreducible conic has a global common forced core and becomes a quotient family
 of degree at most `57`.  After puncturing the forced core, the projective
 tangent staircase bounds finite slopes and infinity together by `127-e_G`;
-hence the very-high-core tail `e_G>=121` is projective-safe.  The remaining
-unclosed intermediate ranges are `72<=e_G<=120` for lines and `69<=e_G<=120`
-for irreducible conics.  Inside these ranges the current proof envelope has
-one-over-budget subranges `72<=e_G<=80` and `e_G=120` for lines, and
-`69<=e_G<=76` and `e_G=120` for irreducible conics; the worst current
-projective upper bounds in the middle are `18` and `26`, respectively.  The
-endpoint-only finite-incidence subranges now carry saturation constraints:
-line six-class saturation has external slack `1..41`, while conic six-class
-saturation needs `0..14` forced pair-overlap events before external excess.  A
-genuine over-budget witness must also have six distinct finite slopes and an
-unpaid endpoint; the strongest remaining pressure cases are line `e_G=72`
-near-complete base splitting and conic `e_G=69` almost-complete secants.  The
-line `e_G=72` case closes unless all six classes have a base root and at least
-five have two; the conic `e_G=69` case closes unless at least `14` of `15`
-pair secants occur, forcing at least `16` secant triangles.  Equivalently, line
-`e_G=72` survival has base-root histogram `(0,0,6)` or `(0,1,5)`, and conic
-`e_G=69` survival has secant graph `K6` or `K6` minus one edge.
+hence the very-high-core tail `e_G>=121` is projective-safe.  The boundary row
+`e_G=120` is also projective-safe by a cofactor-span obstruction: seven
+tangent-star cofactors on the punctured row would be linearly independent, but
+the fixed-core quotient family has vector dimension at most `2` on a line and
+at most `3` on an irreducible conic.  The remaining unclosed intermediate
+ranges are `72<=e_G<=119` for lines and `69<=e_G<=119` for irreducible conics.
+Inside these ranges the current proof envelope has finite-incidence
+one-over-budget subranges `72<=e_G<=80` for lines and `69<=e_G<=76` for
+irreducible conics; the worst current projective upper bounds in the middle are
+`18` and `26`, respectively.  The endpoint-only finite-incidence subranges now
+carry saturation constraints: line six-class saturation has external slack
+`1..41`, while conic six-class saturation needs `0..14` forced pair-overlap
+events before external excess.  A genuine finite-incidence over-budget witness
+must also have six distinct finite slopes and an unpaid endpoint; the strongest
+remaining pressure cases are line `e_G=72` near-complete base splitting and
+conic `e_G=69` almost-complete secants.  The line `e_G=72` case closes unless
+all six classes have a base root and at least five have two; the conic
+`e_G=69` case closes unless at least `14` of `15` pair secants occur, forcing
+at least `16` secant triangles.  Equivalently, line `e_G=72` survival has
+base-root histogram `(0,0,6)` or `(0,1,5)`, and conic `e_G=69` survival has
+secant graph `K6` or `K6` minus one edge.
 Exact degree-`126` accounting leaves line `e_G=72` with either one unused
 nonforced external root line or none, and conic `e_G=69` with either `14`
 pair-overlaps or all `15`.
@@ -278,7 +282,8 @@ line/conic punctured-tangent tail at `e_G=120`.
 Those rows split by first available saving mechanism into line base-active
 `72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
 secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the
-punctured-tangent tail `120`.
+punctured-tangent tail `120`, which is now closed by the cofactor-span
+obstruction.
 
 The rank-node dichotomy packet
 

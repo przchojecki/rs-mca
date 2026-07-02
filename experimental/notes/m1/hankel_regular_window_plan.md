@@ -325,13 +325,19 @@ row.  The projective tangent staircase closes the tail `e_G>=121`, so the
 remaining unclosed intermediate ranges are `72<=e_G<=120` for lines and
 `69<=e_G<=120` for irreducible conics.  Within those ranges the current
 projective proof envelope is only one over budget for line cores
-`72<=e_G<=80` and `e_G=120`, and for conic cores `69<=e_G<=76` and
-`e_G=120`; the worst current projective upper bounds in the middle are `18`
-for lines and `26` for conics.  The endpoint-only finite-incidence subranges
-now have explicit saturation targets: line six-class saturation has external
-slack `1..41`, and conic six-class saturation needs `0..14` forced
-pair-overlap events before external excess.  A genuine over-budget witness must
-also have six distinct finite slopes and an unpaid endpoint; the strongest
+`72<=e_G<=80` and, before the cofactor-span refinement, `e_G=120`; for conic
+cores `69<=e_G<=76` and, before the same refinement, `e_G=120`.  The
+cofactor-span obstruction closes the punctured-tangent tail `e_G=120`: seven
+tangent-star cofactors on the punctured row `(n',a')=(392,386)` would be
+linearly independent, but the fixed-core quotient family has vector dimension
+at most `2` on a line and at most `3` on a conic.  Thus the unclosed high-core
+ranges are now `72<=e_G<=119` for lines and `69<=e_G<=119` for conics.  The
+worst current projective upper bounds in the middle are `18` for lines and
+`26` for conics.  The endpoint-only finite-incidence subranges now have
+explicit saturation targets: line six-class saturation has external slack
+`1..41`, and conic six-class saturation needs `0..14` forced pair-overlap
+events before external excess.  A genuine over-budget finite-incidence witness
+must also have six distinct finite slopes and an unpaid endpoint; the strongest
 remaining pressure cases are line `e_G=72` near-complete base splitting and
 conic `e_G=69` almost-complete secants.  The line `e_G=72` case closes unless
 all six classes have a base root and at least five have two; the conic
@@ -360,11 +366,8 @@ line/conic punctured-tangent tail at `e_G=120`.
 Those rows split by first available saving mechanism into line base-active
 `72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
 secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the
-punctured-tangent tail `120`.  The tail is sharpened further: if it remains
-over budget, then after puncturing to `(n',a')=(392,386)` and choosing a nonbad
-projective point as infinity, it is a finite tangent-star extremizer with
-common support `385` and a bijection from the seven punctured residual
-coordinates to the seven bad projective slopes.
+punctured-tangent tail `120`, which is now closed by the cofactor-span
+obstruction.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

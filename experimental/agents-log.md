@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 punctured tangent-tail cofactor obstruction
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `e_G=120` punctured-tangent tail in the
+  `A=386` moving-slope packet is closed by a cofactor-span obstruction.
+- **How it is useful:** Seven saturated tangent-star quotient locators would
+  be seven independent degree-`6` cofactors of a seven-point residual set, but
+  the fixed-core quotient family has vector dimension at most `2` on a line
+  and at most `3` on a conic.  Hence the tail contributes at most six
+  projective slopes and is within budget.
+- **What to do next:** Focus remaining A386 work on the finite-incidence
+  one-over ranges `e_G=72..80` for lines and `e_G=69..76` for conics, or on
+  the larger middle quotient ranges.
+
 ### 2026-07-02 - A386 punctured tangent-tail extremizer profile
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

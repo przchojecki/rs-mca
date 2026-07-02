@@ -263,11 +263,36 @@ that is,
 |E| >= 121.
 ```
 
+Thus the tangent staircase alone closes `|E|>=121`.  The boundary row
+`|E|=120` is also closed by a cofactor-span obstruction.  If it contributed
+seven projective slopes, puncturing the forced core would give
+
+```text
+n' = 392,      a' = 386,      r' = 6.
+```
+
+Choose a nonbad projective point as infinity.  The finite tangent-star
+extremizer corollary would then force a common support of size `385`, with the
+seven punctured residual coordinates bijecting with the seven bad slopes.  The
+corresponding residual quotient locators are the seven degree-`6` cofactors
+
+```text
+R_i(X)=prod_{m != i}(X-omega_m)
+```
+
+of a seven-point residual set.  These cofactors are linearly independent:
+evaluation at `omega_i` kills all `R_m` for `m != i` and leaves
+`R_i(omega_i) != 0`.  But after the fixed forced core is factored, a line
+component supplies at most a `2`-dimensional vector space of quotient locators,
+and an irreducible conic lies in the ambient `3`-dimensional `Q`-plane.  Seven
+independent cofactors cannot lie in either family.  Therefore the `|E|=120`
+tail contributes at most six projective slopes and is projective-safe.
+
 Thus the unclosed high-core quotient range is finite:
 
 ```text
-line residuals:  72 <= |E| <= 120;
-conic residuals: 69 <= |E| <= 120.
+line residuals:  72 <= |E| <= 119;
+conic residuals: 69 <= |E| <= 119.
 ```
 
 This uses the projective high-agreement tangent theorem on the punctured row,
@@ -279,14 +304,15 @@ pair-overlap packing bound (for irreducible conics), and the punctured
 projective tangent bound gives the following current projective upper-bound
 profile.
 
-For line components:
+For line components, before applying the cofactor-span tail obstruction:
 
 ```text
 one-over-budget: 72 <= |E| <= 80, and |E| = 120;
 worst current projective upper bound: 18, attained in the middle range.
 ```
 
-For irreducible conic components:
+For irreducible conic components, before applying the cofactor-span tail
+obstruction:
 
 ```text
 one-over-budget: 69 <= |E| <= 76, and |E| = 120;
@@ -295,8 +321,10 @@ worst current projective upper bound: 26, attained in the middle range.
 
 Thus the endpoint-only subranges are now separated from the genuinely larger
 quotient/core residuals.  A single endpoint payment or one-root saving would
-close the one-over-budget subranges, while the middle ranges need a stronger
-quotient, tangent, or exact-root-table argument.
+close the finite-incidence one-over-budget subranges, while the middle ranges
+need a stronger quotient, tangent, or exact-root-table argument.  The
+punctured-tangent one-over row `|E|=120` is closed by the cofactor-span
+obstruction above.
 
 The saturation profile records the next obstruction explicitly.  Six finite
 line classes in the incidence one-over range require pairwise disjoint external
@@ -311,22 +339,6 @@ survival targets are now small and explicit: line core `|E|=72` needs
 near-complete base splitting among the six finite classes, while conic core
 `|E|=69` needs an almost complete external-secant graph among the six conic
 points.
-
-The `|E|=120` tail has a different exact saturation profile.  Puncturing the
-forced core gives a row with
-
-```text
-n' = 392,      a' = 386,      r' = 6.
-```
-
-If this row contributes seven projective slopes, then the projective tangent
-staircase is saturated.  Since `P^1(F_17^32)` has more than seven points, choose
-a nonbad projective point as infinity.  In that affine coordinate the finite
-tangent-star extremizer corollary applies: the punctured branch has a common
-support of size `385`, and the seven residual punctured coordinates biject with
-the seven bad projective slopes.  Thus the tail can only remain over budget if
-this tangent-star residual-coordinate bijection is compatible with the quotient
-split-locator family, or if none of the seven projective slopes is paid.
 
 The exact defect thresholds are now part of the packet.  The line `|E|=72`
 case closes unless all six finite classes have a base root and at least five
@@ -373,21 +385,19 @@ are `2,16,27,28,28,28,28,28`; from `e_G=72` onward all base histograms are
 possible, and pair-overlap pressure disappears completely at `e_G=75,76`.
 
 Finally, the packet includes a single-saving closure ledger for every row that
-is exactly one over budget: line cores `72..80`, conic cores `69..76`, and the
-punctured-tangent tail at `e_G=120` for both component types.  In each of these
-`19` rows, any one listed saving lowers the current projective count from `7`
-to the budget `6`: one missing split class, one duplicate finite slope, an
-absent/paid endpoint, the relevant incidence/secant deficit, or, at `e_G=120`,
-one missing/paid/duplicated punctured tangent slope.
+was exactly one over budget before the new tail obstruction: line cores
+`72..80`, conic cores `69..76`, and the punctured-tangent tail at `e_G=120` for
+both component types.  In each of these `19` rows, any one listed saving lowers
+the current projective count from `7` to the budget `6`; for `e_G=120` that
+saving is now supplied by the cofactor-span obstruction.
 
 The same ledger splits the next proof targets by first available mechanism:
 line base-splitting pressure remains only for `e_G=72..74`; line cores
 `75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
 For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
 pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
-duplicate-slope, or paid-class input.  The `e_G=120` rows are isolated as the
-punctured-tangent tail, and now carry the tangent-star extremizer profile above
-as their next structural target.
+duplicate-slope, or paid-class input.  The `e_G=120` rows are now isolated as
+closed punctured-tangent tails rather than remaining proof targets.
 
 Replay:
 
@@ -400,13 +410,12 @@ Nonclaims:
 
 ```text
 no proof that every moving-slope component is a line;
-no closure of line components with forced external split-root core in 72..120 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core in 69..120 in projective accounting;
+no closure of line components with forced external split-root core in 72..119 in projective accounting;
+no closure of irreducible conic moving-slope components with forced external split-root core in 69..119 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;
 no A=385 closure;
 no overlapping-support rank-6 classification;
 no endpoint payment theorem.
-no exclusion of the punctured tangent-star extremizer profile at e_G=120.
 ```

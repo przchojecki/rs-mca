@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v3"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v4"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v21",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v22",
 }
 
 
@@ -323,11 +323,21 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "conic punctured tangent tail threshold mismatch",
     )
     require(
-        summary["line_remaining_unclosed_external_core_range"] == [72, 120],
+        summary["line_residual_projective_safe_after_cofactor_span_for_external_core_at_least"]
+        == 120,
+        "line cofactor tail threshold mismatch",
+    )
+    require(
+        summary["conic_residual_projective_safe_after_cofactor_span_for_external_core_at_least"]
+        == 120,
+        "conic cofactor tail threshold mismatch",
+    )
+    require(
+        summary["line_remaining_unclosed_external_core_range"] == [72, 119],
         "line unclosed core range mismatch",
     )
     require(
-        summary["conic_remaining_unclosed_external_core_range"] == [69, 120],
+        summary["conic_remaining_unclosed_external_core_range"] == [69, 119],
         "conic unclosed core range mismatch",
     )
     require(
@@ -763,7 +773,7 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
                 "component_type": "line_or_irreducible_conic",
                 "core_count": 2,
                 "external_core_range": [120, 120],
-                "mechanism_class": "punctured_tangent_tail",
+                "mechanism_class": "punctured_tangent_tail_closed_by_cofactor_span",
             },
         ],
         "one-over mechanism-priority classes",
@@ -785,6 +795,31 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ],
         "punctured tangent-tail extremizer profile",
     )
+    require(
+        [
+            (
+                row["component_type"],
+                row["forced_external_core_size"],
+                row["cofactor_span_dimension"],
+                row["quotient_family_vector_dimension_at_most"],
+                row["projective_upper_bound_after_obstruction"],
+            )
+            for row in summary["punctured_tangent_tail_cofactor_span_closure"]
+        ]
+        == [
+            ("line", 120, 7, 2, 6),
+            ("irreducible_conic", 120, 7, 3, 6),
+        ],
+        "punctured tangent-tail cofactor-span closure",
+    )
+    require(
+        summary["line_remaining_unclosed_external_core_range"] == [72, 119],
+        "line remaining range after tail closure",
+    )
+    require(
+        summary["conic_remaining_unclosed_external_core_range"] == [69, 119],
+        "conic remaining range after tail closure",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -794,11 +829,6 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     require(
         "does not produce a row-level M3 safe-side bound" in nonclaims,
         "A386 moving-slope packet must keep the row-bound nonclaim",
-    )
-    require(
-        "does not exclude the punctured tangent-star extremizer profile at e_G=120"
-        in nonclaims,
-        "A386 moving-slope packet must keep the tail-extremizer nonclaim",
     )
 
 
@@ -896,9 +926,10 @@ def build_certificate() -> dict[str, Any]:
                 "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
                 "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
                 "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
-                "the still-unclosed high-core quotient ranges are e_G=72..120 for lines and e_G=69..120 for irreducible conics",
-                "within those ranges, the one-over-budget subranges are line e_G=72..80 and 120, conic e_G=69..76 and 120; the current worst projective bounds are 18 and 26",
-                "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the e_G=120 cases must instead saturate the punctured projective tangent bound",
+                "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: seven tangent-star cofactors are independent but the fixed-core quotient family has vector dimension at most 2 or 3",
+                "the still-unclosed high-core quotient ranges are e_G=72..119 for lines and e_G=69..119 for irreducible conics",
+                "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; the current worst projective bounds are 18 and 26",
+                "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
                 "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
                 "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",
                 "line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge",
@@ -908,8 +939,7 @@ def build_certificate() -> dict[str, Any]:
                 "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "all nineteen moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
-                "the one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, conic endpoint/duplicate-only 75..76, and punctured-tangent tail 120",
-                "if the e_G=120 tail remains over budget, then after puncturing to (n',a')=(392,386) and choosing a nonbad projective point as infinity, it is a finite tangent-star extremizer with common support 385 and seven residual-coordinate slopes",
+                "the one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, conic endpoint/duplicate-only 75..76, and the now-closed punctured-tangent tail 120",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

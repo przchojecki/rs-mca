@@ -180,6 +180,7 @@
     "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
     "high-core residuals satisfy the punctured high-agreement tangent inequality",
     "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
+    "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
     "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
     "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
     "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
@@ -191,8 +192,8 @@
     "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
     "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
     "every one-over moving-slope residual row has a single-saving closure ledger entry",
-    "one-over moving-slope residual rows are grouped by the first available saving mechanism",
-    "the e=120 one-over tail is sharpened to a punctured projective tangent-star extremizer profile"
+    "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
+    "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -2919,7 +2920,6 @@
     "does not cover A=385",
     "does not classify overlapping-support rank-6 pencils",
     "does not prove endpoint payment",
-    "does not exclude the punctured tangent-star extremizer profile at e_G=120",
     "does not produce a row-level M3 safe-side bound"
   ],
   "object": "A=386 separated rank-6 moving-slope split-incidence budget",
@@ -3286,11 +3286,9 @@
         120,
         120
       ],
-      "mechanism_class": "punctured_tangent_tail",
+      "mechanism_class": "punctured_tangent_tail_closed_by_cofactor_span",
       "primary_remaining_savings": [
-        "punctured tangent slope absent",
-        "duplicate slope after returning to original branch",
-        "slope paid by tangent, quotient, extension, or containment"
+        "closed: seven tangent-star cofactors cannot fit in the fixed-core quotient family"
       ]
     }
   ],
@@ -3903,6 +3901,38 @@
       "tangent_numerator_at_threshold": 58
     }
   ],
+  "punctured_tangent_tail_cofactor_span_closure": [
+    {
+      "closure_statement": "the e_G=120 tail cannot realize seven projective slopes; hence it contributes at most six projective slopes and is within budget",
+      "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so the seven cofactors are linearly independent",
+      "cofactor_polynomials": "for residual set Omega={omega_1,...,omega_7}, the saturated split locators after forced-core puncturing are R_i(X)=prod_{m != i}(X-omega_m)",
+      "cofactor_span_dimension": 7,
+      "component_type": "line",
+      "contradiction": true,
+      "forced_external_core_size": 120,
+      "hypothetical_projective_saturation_count": 7,
+      "projective_safe_after_cofactor_span_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
+      "punctured_residual_coordinate_count": 7,
+      "quotient_family_reason": "a line component is the projectivization of a 2-dimensional Q-subspace",
+      "quotient_family_vector_dimension_at_most": 2
+    },
+    {
+      "closure_statement": "the e_G=120 tail cannot realize seven projective slopes; hence it contributes at most six projective slopes and is within budget",
+      "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so the seven cofactors are linearly independent",
+      "cofactor_polynomials": "for residual set Omega={omega_1,...,omega_7}, the saturated split locators after forced-core puncturing are R_i(X)=prod_{m != i}(X-omega_m)",
+      "cofactor_span_dimension": 7,
+      "component_type": "irreducible_conic",
+      "contradiction": true,
+      "forced_external_core_size": 120,
+      "hypothetical_projective_saturation_count": 7,
+      "projective_safe_after_cofactor_span_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
+      "punctured_residual_coordinate_count": 7,
+      "quotient_family_reason": "a conic component lies in the ambient 3-dimensional Q-plane",
+      "quotient_family_vector_dimension_at_most": 3
+    }
+  ],
   "punctured_tangent_tail_extremizer_profile": [
     {
       "after_projective_recoordinate": "choose a nonbad projective point as infinity; the saturated bad projective set becomes a finite bad-slope set of size r'+1",
@@ -4021,7 +4051,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v21",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v22",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -4271,7 +4301,8 @@
         "punctured projective tangent count at most six",
         "one punctured tangent slope absent",
         "one duplicate slope after returning to the original branch",
-        "one slope paid by tangent, quotient, extension, or containment"
+        "one slope paid by tangent, quotient, extension, or containment",
+        "cofactor-span obstruction excludes the seven-slope tangent-star saturation profile"
       ]
     },
     {
@@ -4284,7 +4315,8 @@
         "punctured projective tangent count at most six",
         "one punctured tangent slope absent",
         "one duplicate slope after returning to the original branch",
-        "one slope paid by tangent, quotient, extension, or containment"
+        "one slope paid by tangent, quotient, extension, or containment",
+        "cofactor-span obstruction excludes the seven-slope tangent-star saturation profile"
       ]
     }
   ],
@@ -4814,8 +4846,9 @@
     "conic_projective_safe_for_external_core_at_most": 68,
     "conic_remaining_unclosed_external_core_range": [
       69,
-      120
+      119
     ],
+    "conic_residual_projective_safe_after_cofactor_span_for_external_core_at_least": 120,
     "conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
     "conic_residual_punctured_tangent_numerator_at_threshold": 58,
     "conic_residual_quotient_degree_at_most": 57,
@@ -5176,8 +5209,9 @@
     "line_projective_safe_for_external_core_at_most": 71,
     "line_remaining_unclosed_external_core_range": [
       72,
-      120
+      119
     ],
+    "line_residual_projective_safe_after_cofactor_span_for_external_core_at_least": 120,
     "line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
     "line_residual_punctured_tangent_numerator_at_threshold": 55,
     "line_residual_quotient_degree_at_most": 54,
@@ -5239,11 +5273,43 @@
           120,
           120
         ],
-        "mechanism_class": "punctured_tangent_tail"
+        "mechanism_class": "punctured_tangent_tail_closed_by_cofactor_span"
       }
     ],
     "positive_dimensional_component_forced_core_upper_bound": 125,
     "punctured_tangent_one_over_tail_external_core": 120,
+    "punctured_tangent_tail_cofactor_span_closure": [
+      {
+        "closure_statement": "the e_G=120 tail cannot realize seven projective slopes; hence it contributes at most six projective slopes and is within budget",
+        "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so the seven cofactors are linearly independent",
+        "cofactor_polynomials": "for residual set Omega={omega_1,...,omega_7}, the saturated split locators after forced-core puncturing are R_i(X)=prod_{m != i}(X-omega_m)",
+        "cofactor_span_dimension": 7,
+        "component_type": "line",
+        "contradiction": true,
+        "forced_external_core_size": 120,
+        "hypothetical_projective_saturation_count": 7,
+        "projective_safe_after_cofactor_span_obstruction": true,
+        "projective_upper_bound_after_obstruction": 6,
+        "punctured_residual_coordinate_count": 7,
+        "quotient_family_reason": "a line component is the projectivization of a 2-dimensional Q-subspace",
+        "quotient_family_vector_dimension_at_most": 2
+      },
+      {
+        "closure_statement": "the e_G=120 tail cannot realize seven projective slopes; hence it contributes at most six projective slopes and is within budget",
+        "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so the seven cofactors are linearly independent",
+        "cofactor_polynomials": "for residual set Omega={omega_1,...,omega_7}, the saturated split locators after forced-core puncturing are R_i(X)=prod_{m != i}(X-omega_m)",
+        "cofactor_span_dimension": 7,
+        "component_type": "irreducible_conic",
+        "contradiction": true,
+        "forced_external_core_size": 120,
+        "hypothetical_projective_saturation_count": 7,
+        "projective_safe_after_cofactor_span_obstruction": true,
+        "projective_upper_bound_after_obstruction": 6,
+        "punctured_residual_coordinate_count": 7,
+        "quotient_family_reason": "a conic component lies in the ambient 3-dimensional Q-plane",
+        "quotient_family_vector_dimension_at_most": 3
+      }
+    ],
     "punctured_tangent_tail_extremizer_profile": [
       {
         "after_projective_recoordinate": "choose a nonbad projective point as infinity; the saturated bad projective set becomes a finite bad-slope set of size r'+1",
@@ -5320,14 +5386,15 @@
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
-    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget subranges are line e_G=72..80 and e_G=120, and conic e_G=69..76 and e_G=120; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
+    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
     "one_over_design_catalog": "The whole endpoint-only finite-incidence one-over range now has an exact compact catalog.  Line cores 72,73,74 allow 2,16,27 base-root histograms respectively, and line cores 75..80 allow all 28 histograms with increasing unused external slack.  Conic cores 69,70,71 allow 2,16,27 histograms respectively, while cores 72..76 allow all 28; pair-overlap pressure disappears from cores 75 and 76.",
-    "one_over_mechanism_priority_ledger": "The one-over rows split into six mechanism classes: line base-splitting active (72..74), line external-slack only (75..80), conic base+secant pressure active (69..71), conic secant-only pressure (72..74), conic endpoint-or-duplicate only (75..76), and the punctured tangent tail (120).",
+    "one_over_mechanism_priority_ledger": "The one-over rows split into six mechanism classes: line base-splitting active (72..74), line external-slack only (75..80), conic base+secant pressure active (69..71), conic secant-only pressure (72..74), conic endpoint-or-duplicate only (75..76), and the punctured tangent tail (120), now closed by the cofactor-span obstruction.",
     "one_over_saturation_profile": "If a one-over finite-incidence branch actually reaches six finite Q-classes, the root sets must nearly saturate the incidence inequality.  For line cores e_G=72..80 the six external root sets are pairwise disjoint and have total external excess at most 5e_G-359.  For conic cores e_G=69..76, six classes require at least max(0,359-5e_G) pair-overlap events before any external excess.  The e_G=120 cases are different: they would have to saturate the punctured projective tangent bound itself.",
     "over_budget_survival_profile": "A genuine over-budget witness in a one-over row must saturate the source-class bound, have six distinct finite slopes, and keep the projective endpoint unpaid.  Line cores e_G=72,73,74 also force near-complete, positive, and weak base-splitting pressure respectively.  Conic cores e_G=69,70,71 force almost complete, dense, and nontrivial external-secants respectively.",
     "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.",
+    "punctured_tangent_tail_cofactor_span_closure": "The remaining one-over tangent tail at e_G=120 is also closed.  If it had seven projective slopes, the tangent-star extremizer profile on the punctured row would give seven degree-6 cofactors of a seven-point residual set.  These cofactors are linearly independent by evaluation on the residual points, but the fixed-core quotient family has vector dimension at most 2 on a line component and at most 3 on an irreducible conic component.  This contradiction bounds the tail by six projective slopes.",
     "punctured_tangent_tail_extremizer_profile": "If the e_G=120 tail actually exceeds budget, it must saturate the projective tangent staircase on the punctured row (n',a')=(392,386).  Since the projective bad set has size 7 and P^1(F) has q+1 points, a nonbad projective point can be sent to infinity.  The finite tangent-star extremizer corollary then forces a common support of size 385 and a bijection from the seven punctured residual coordinates to the seven bad projective slopes.",
     "single_saving_closure_ledger": "Every currently one-over row in the moving-slope packet is listed in a single-saving closure ledger.  The ledger covers line cores 72..80, conic cores 69..76, and the line/conic punctured-tangent tail at core 120.  In each row, any one listed saving lowers the projective count from 7 to the budget 6.",
     "very_high_core_projective_tail_closure": "The high-agreement projective tangent staircase applies to the punctured row and bounds finite plus infinity slopes together by r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has projective contribution at most 6.  This closes the very-high-core tail but leaves the intermediate high-core quotient range unresolved."

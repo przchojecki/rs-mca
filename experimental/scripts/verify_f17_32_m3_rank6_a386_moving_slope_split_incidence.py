@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v21"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v22"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -589,6 +589,7 @@ def tangent_tail_single_saving_closure_row(survival_row: dict[str, Any]) -> dict
             "one punctured tangent slope absent",
             "one duplicate slope after returning to the original branch",
             "one slope paid by tangent, quotient, extension, or containment",
+            "cofactor-span obstruction excludes the seven-slope tangent-star saturation profile",
         ],
     }
 
@@ -649,6 +650,53 @@ def tangent_tail_projective_extremizer_row(
         "nonclosure_reason": (
             "this is a necessary saturation profile only; it does not classify "
             "the endpoint or prove a paid slope"
+        ),
+    }
+
+
+def tangent_tail_cofactor_span_closure_row(extremizer_row: dict[str, Any]) -> dict[str, Any]:
+    """Close the e=120 tail by comparing cofactor span with the quotient family."""
+    component_type = extremizer_row["component_type"]
+    if component_type == "line":
+        quotient_family_vector_dimension_at_most = 2
+        quotient_family_reason = (
+            "a line component is the projectivization of a 2-dimensional Q-subspace"
+        )
+    else:
+        require(component_type == "irreducible_conic", "unknown component type")
+        quotient_family_vector_dimension_at_most = 3
+        quotient_family_reason = "a conic component lies in the ambient 3-dimensional Q-plane"
+
+    cofactor_count = extremizer_row["finite_tangent_star_residual_coordinate_count"]
+    require(cofactor_count == PROJECTIVE_BUDGET + 1, "tail should have seven cofactors")
+    cofactor_span_dimension = cofactor_count
+    require(
+        cofactor_span_dimension > quotient_family_vector_dimension_at_most,
+        "cofactor span should exceed the quotient-family vector dimension",
+    )
+    return {
+        "component_type": component_type,
+        "forced_external_core_size": extremizer_row["forced_external_core_size"],
+        "hypothetical_projective_saturation_count": cofactor_count,
+        "punctured_residual_coordinate_count": cofactor_count,
+        "cofactor_polynomials": (
+            "for residual set Omega={omega_1,...,omega_7}, the saturated "
+            "split locators after forced-core puncturing are "
+            "R_i(X)=prod_{m != i}(X-omega_m)"
+        ),
+        "cofactor_independence_witness": (
+            "evaluation at omega_i kills all R_m with m != i and gives "
+            "R_i(omega_i)!=0, so the seven cofactors are linearly independent"
+        ),
+        "cofactor_span_dimension": cofactor_span_dimension,
+        "quotient_family_vector_dimension_at_most": quotient_family_vector_dimension_at_most,
+        "quotient_family_reason": quotient_family_reason,
+        "contradiction": True,
+        "projective_safe_after_cofactor_span_obstruction": True,
+        "projective_upper_bound_after_obstruction": PROJECTIVE_BUDGET,
+        "closure_statement": (
+            "the e_G=120 tail cannot realize seven projective slopes; hence it "
+            "contributes at most six projective slopes and is within budget"
         ),
     }
 
@@ -744,14 +792,12 @@ def one_over_mechanism_priority_ledger(
             ],
         },
         {
-            "mechanism_class": "punctured_tangent_tail",
+            "mechanism_class": "punctured_tangent_tail_closed_by_cofactor_span",
             "component_type": "line_or_irreducible_conic",
             "external_core_range": [120, 120],
             "core_count": 2,
             "primary_remaining_savings": [
-                "punctured tangent slope absent",
-                "duplicate slope after returning to original branch",
-                "slope paid by tangent, quotient, extension, or containment",
+                "closed: seven tangent-star cofactors cannot fit in the fixed-core quotient family",
             ],
         },
     ]
@@ -1660,6 +1706,9 @@ def build_certificate() -> dict[str, Any]:
         tangent_tail_projective_extremizer_row(component_type, tangent_tail_saturation_rows[0])
         for component_type in ["line", "irreducible_conic"]
     ]
+    tangent_tail_cofactor_span_closure_rows = [
+        tangent_tail_cofactor_span_closure_row(row) for row in tangent_tail_extremizer_rows
+    ]
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
     ]
@@ -2404,7 +2453,12 @@ def build_certificate() -> dict[str, Any]:
             ),
             ("conic_secant_pressure_only", "irreducible_conic", [72, 74], 3),
             ("conic_endpoint_or_duplicate_only", "irreducible_conic", [75, 76], 2),
-            ("punctured_tangent_tail", "line_or_irreducible_conic", [120, 120], 2),
+            (
+                "punctured_tangent_tail_closed_by_cofactor_span",
+                "line_or_irreducible_conic",
+                [120, 120],
+                2,
+            ),
         ],
         "one-over mechanism-priority ledger changed",
     )
@@ -2433,6 +2487,31 @@ def build_certificate() -> dict[str, Any]:
             for row in tangent_tail_extremizer_rows
         ),
         "punctured tangent tail should force the same tangent-star profile",
+    )
+    require(
+        [
+            (
+                row["component_type"],
+                row["forced_external_core_size"],
+                row["cofactor_span_dimension"],
+                row["quotient_family_vector_dimension_at_most"],
+                row["projective_upper_bound_after_obstruction"],
+            )
+            for row in tangent_tail_cofactor_span_closure_rows
+        ]
+        == [
+            ("line", 120, 7, 2, 6),
+            ("irreducible_conic", 120, 7, 3, 6),
+        ],
+        "punctured tangent tail cofactor-span closure changed",
+    )
+    require(
+        all(
+            row["contradiction"]
+            and row["projective_safe_after_cofactor_span_obstruction"]
+            for row in tangent_tail_cofactor_span_closure_rows
+        ),
+        "punctured tangent tail should be closed by cofactor-span obstruction",
     )
 
     return {
@@ -2607,12 +2686,23 @@ def build_certificate() -> dict[str, Any]:
                 "projective contribution at most 6.  This closes the very-high-core "
                 "tail but leaves the intermediate high-core quotient range unresolved."
             ),
+            "punctured_tangent_tail_cofactor_span_closure": (
+                "The remaining one-over tangent tail at e_G=120 is also closed.  "
+                "If it had seven projective slopes, the tangent-star extremizer "
+                "profile on the punctured row would give seven degree-6 cofactors "
+                "of a seven-point residual set.  These cofactors are linearly "
+                "independent by evaluation on the residual points, but the fixed-core "
+                "quotient family has vector dimension at most 2 on a line component "
+                "and at most 3 on an irreducible conic component.  This contradiction "
+                "bounds the tail by six projective slopes."
+            ),
             "intermediate_residual_profile": (
                 "Combining the external-incidence, pair-overlap, and punctured "
                 "projective tangent bounds gives a sharp current proof envelope "
                 "for the unresolved intermediate cores.  The one-over-budget "
-                "subranges are line e_G=72..80 and e_G=120, and conic e_G=69..76 "
-                "and e_G=120; all other intermediate cores need more than a "
+                "finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  "
+                "The tangent-tail row e_G=120 is closed by the cofactor-span obstruction; "
+                "all other intermediate cores need more than a "
                 "single endpoint/root saving under the present methods."
             ),
             "one_over_saturation_profile": (
@@ -2701,7 +2791,8 @@ def build_certificate() -> dict[str, Any]:
                 "base-splitting active (72..74), line external-slack only "
                 "(75..80), conic base+secant pressure active (69..71), conic "
                 "secant-only pressure (72..74), conic endpoint-or-duplicate only "
-                "(75..76), and the punctured tangent tail (120)."
+                "(75..76), and the punctured tangent tail (120), now closed by "
+                "the cofactor-span obstruction."
             ),
             "punctured_tangent_tail_extremizer_profile": (
                 "If the e_G=120 tail actually exceeds budget, it must saturate "
@@ -2819,6 +2910,7 @@ def build_certificate() -> dict[str, Any]:
         "single_saving_closure_ledger": single_saving_closure_rows,
         "one_over_mechanism_priority_ledger": mechanism_priority_rows,
         "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
+        "punctured_tangent_tail_cofactor_span_closure": tangent_tail_cofactor_span_closure_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -2847,9 +2939,12 @@ def build_certificate() -> dict[str, Any]:
             "line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": (
                 tail_projective_safe_core_min
             ),
+            "line_residual_projective_safe_after_cofactor_span_for_external_core_at_least": (
+                tail_projective_safe_core_min - 1
+            ),
             "line_remaining_unclosed_external_core_range": [
                 line_residual_core_threshold,
-                tail_projective_safe_core_min - 1,
+                tail_projective_safe_core_min - 2,
             ],
             "line_one_over_budget_external_core_ranges": [
                 group["external_core_range"] for group in line_profile_groups if group["one_over_budget"]
@@ -2899,9 +2994,12 @@ def build_certificate() -> dict[str, Any]:
             "conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": (
                 tail_projective_safe_core_min
             ),
+            "conic_residual_projective_safe_after_cofactor_span_for_external_core_at_least": (
+                tail_projective_safe_core_min - 1
+            ),
             "conic_remaining_unclosed_external_core_range": [
                 conic_residual_core_threshold,
-                tail_projective_safe_core_min - 1,
+                tail_projective_safe_core_min - 2,
             ],
             "conic_one_over_budget_external_core_ranges": [
                 group["external_core_range"]
@@ -2958,6 +3056,9 @@ def build_certificate() -> dict[str, Any]:
                 for row in mechanism_priority_rows
             ],
             "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
+            "punctured_tangent_tail_cofactor_span_closure": (
+                tangent_tail_cofactor_span_closure_rows
+            ),
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -2991,6 +3092,7 @@ def build_certificate() -> dict[str, Any]:
             "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
             "high-core residuals satisfy the punctured high-agreement tangent inequality",
             "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
+            "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
             "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
@@ -3002,8 +3104,8 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "every one-over moving-slope residual row has a single-saving closure ledger entry",
-            "one-over moving-slope residual rows are grouped by the first available saving mechanism",
-            "the e=120 one-over tail is sharpened to a punctured projective tangent-star extremizer profile",
+            "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
+            "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
@@ -3015,7 +3117,6 @@ def build_certificate() -> dict[str, Any]:
             "does not cover A=385",
             "does not classify overlapping-support rank-6 pencils",
             "does not prove endpoint payment",
-            "does not exclude the punctured tangent-star extremizer profile at e_G=120",
             "does not produce a row-level M3 safe-side bound",
         ],
     }
@@ -3038,8 +3139,8 @@ def print_summary(certificate: dict[str, Any]) -> None:
         )
     )
     print(
-        "punctured projective tangent tail safe for external core>= "
-        "{line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least}".format(
+        "punctured/cofactor tail safe for external core>= "
+        "{line_residual_projective_safe_after_cofactor_span_for_external_core_at_least}".format(
             **summary
         )
     )
