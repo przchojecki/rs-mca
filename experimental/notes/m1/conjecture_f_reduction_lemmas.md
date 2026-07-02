@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records eleven elementary reductions around the fiber-rigidity
+This note records twelve elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -501,6 +501,51 @@ not need a separate Conjecture F argument once the projectivized chart has
 fixed dimension.  The only remaining primitive obstruction must involve
 projective dimensions growing with the row.
 
+## Corollary 12: Exponent-Budget Consumer
+
+Let `n=|H|`.  If a projective or affine chart has projective span dimension
+`d`, then the common-root reduced locator count from Corollaries 8 and 11 obeys
+
+```text
+# <= binom(n-c,d) <= n^d.
+```
+
+Thus projective dimension `d` is an explicit `n^d` ledger exponent for the
+non-quotient fixed-dimensional part.
+
+In the subgroup case, the proper quotient-union part from Corollary 10 obeys
+the coarser but uniform estimate
+
+```text
+#(P(W) cap D_j^{quot}(mu_n))
+  <= tau(gcd(n,j)) (d+1) n^d,
+```
+
+where `tau(g)` is the number of proper quotient scales `M>1` dividing
+`g=gcd(n,j)`; empty scales may be omitted.  Equivalently, for an exact `n^B`
+ledger it is enough to take
+
+```text
+B >= d + log_n(tau(gcd(n,j))(d+1)).
+```
+
+**Proof.**  The first inequality is Corollary 8 or Corollary 11, followed by
+the elementary bound `binom(n-c,d) <= n^d`.  For quotient-union points,
+Corollary 10 gives
+
+```text
+sum_{M | gcd(n,j), M>1} sum_{s=0}^d binom(n/M,s).
+```
+
+Every summand satisfies `binom(n/M,s) <= n^s <= n^d`, and there are at most
+`tau(gcd(n,j))(d+1)` such summands.
+
+This is the form used by final ledger comparisons: once a residual chart has
+bounded projective dimension, the required polynomial exponent is explicit.
+Any counterexample to an `n^B` Conjecture F consumer with `B` above this budget
+must therefore come from dimension-growing primitive charts, not from
+fixed-dimensional common-root, quotient, or affine-chart bookkeeping.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -520,6 +565,7 @@ on random subspaces plus the sharp full-space case.  It also verifies the
 common-root corollary on forced common-root subspaces and the
 fixed-dimensional quotient-pullback consumer, plus the proper quotient-union
 bound at `n=16,j=8` across the scales `M in {2,4,8}`.  It also checks the
-affine slope-table consumer directly on deterministic random affine charts.
-The verifier is supporting evidence only; the proofs above are the
-mathematical content.
+affine slope-table consumer directly on deterministic random affine charts and
+prints the resulting fixed-dimension/quotient-union exponent budgets.  The
+verifier is supporting evidence only; the proofs above are the mathematical
+content.

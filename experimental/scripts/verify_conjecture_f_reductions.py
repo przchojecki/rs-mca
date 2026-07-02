@@ -19,6 +19,7 @@ the identities over F_97 with H = mu_16:
 * the union of all proper quotient-pullback strata is fixed-dimension
   polynomial by summing the descended bounds.
 * affine slope-table families inherit the same bounds after homogenization.
+* fixed projective dimension gives an explicit n-exponent budget.
 """
 from __future__ import annotations
 
@@ -26,6 +27,7 @@ import argparse
 import hashlib
 import itertools
 import json
+import math
 import random
 from collections import Counter
 from math import comb, gcd
@@ -1071,6 +1073,81 @@ def check_affine_slope_table_consumer(H: list[int]) -> dict:
     }
 
 
+def check_exponent_budget_consumer(H: list[int]) -> dict:
+    max_fixed_slack = 0.0
+    fixed_rows = []
+    for d in range(0, J_VOTING + 1):
+        bound = comb(N, d)
+        exponent = 0.0 if bound <= 1 else math.log(bound, N)
+        slack = d - exponent
+        if exponent > d + 1e-12:
+            return {
+                "name": "exponent_budget_consumer",
+                "status": "FAIL",
+                "reason": "fixed-dimensional binomial bound exceeded n^d",
+                "d": d,
+                "bound": bound,
+                "exponent": exponent,
+            }
+        max_fixed_slack = max(max_fixed_slack, slack)
+        fixed_rows.append({
+            "d": d,
+            "bound": bound,
+            "n_power_exponent": exponent,
+            "integer_exponent_budget": d,
+        })
+
+    quotient_rows = []
+    quotient_scales = quotient_divisors(J_QUOTIENT_UNION)
+    divisor_constant = len(quotient_scales)
+    for d in range(0, min(4, J_QUOTIENT_UNION) + 1):
+        exact_bound = sum(
+            sum(comb(N // m, r) for r in range(0, min(d, N // m) + 1))
+            for m in quotient_scales
+        )
+        coarse_constant = divisor_constant * (d + 1)
+        coarse_bound = coarse_constant * (N ** d)
+        if exact_bound > coarse_bound:
+            return {
+                "name": "exponent_budget_consumer",
+                "status": "FAIL",
+                "reason": "quotient-union exact bound exceeded coarse constant bound",
+                "d": d,
+                "exact_bound": exact_bound,
+                "coarse_bound": coarse_bound,
+            }
+        exponent = 0.0 if exact_bound <= 1 else math.log(exact_bound, N)
+        budget = d + (math.log(coarse_constant, N) if coarse_constant else 0.0)
+        if exponent > budget + 1e-12:
+            return {
+                "name": "exponent_budget_consumer",
+                "status": "FAIL",
+                "reason": "quotient-union exponent exceeded printed budget",
+                "d": d,
+                "exact_exponent": exponent,
+                "budget": budget,
+            }
+        quotient_rows.append({
+            "d": d,
+            "exact_bound": exact_bound,
+            "coarse_constant": coarse_constant,
+            "coarse_bound": coarse_bound,
+            "n_power_exponent": exponent,
+            "sufficient_exponent_budget": budget,
+        })
+
+    return {
+        "name": "exponent_budget_consumer",
+        "status": "PASS",
+        "n": N,
+        "fixed_dimension_rows": fixed_rows,
+        "max_fixed_dimension_exponent_slack": max_fixed_slack,
+        "quotient_union_j": J_QUOTIENT_UNION,
+        "quotient_scales": quotient_scales,
+        "quotient_union_rows": quotient_rows,
+    }
+
+
 def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
     lines = []
     for x in H:
@@ -1267,6 +1344,7 @@ def build_report() -> dict:
         check_quotient_fixed_dimension_bound(H),
         check_quotient_union_fixed_dimension_bound(H),
         check_affine_slope_table_consumer(H),
+        check_exponent_budget_consumer(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

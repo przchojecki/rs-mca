@@ -158,6 +158,92 @@
       "name": "affine_slope_table_consumer",
       "quotient_union_j": 8,
       "status": "PASS"
+    },
+    {
+      "fixed_dimension_rows": [
+        {
+          "bound": 1,
+          "d": 0,
+          "integer_exponent_budget": 0,
+          "n_power_exponent": 0.0
+        },
+        {
+          "bound": 16,
+          "d": 1,
+          "integer_exponent_budget": 1,
+          "n_power_exponent": 1.0
+        },
+        {
+          "bound": 120,
+          "d": 2,
+          "integer_exponent_budget": 2,
+          "n_power_exponent": 1.7267226489021297
+        },
+        {
+          "bound": 560,
+          "d": 3,
+          "integer_exponent_budget": 3,
+          "n_power_exponent": 2.282320754236242
+        },
+        {
+          "bound": 1820,
+          "d": 4,
+          "integer_exponent_budget": 4,
+          "n_power_exponent": 2.707430683771515
+        }
+      ],
+      "max_fixed_dimension_exponent_slack": 1.292569316228485,
+      "n": 16,
+      "name": "exponent_budget_consumer",
+      "quotient_scales": [
+        2,
+        4,
+        8
+      ],
+      "quotient_union_j": 8,
+      "quotient_union_rows": [
+        {
+          "coarse_bound": 3,
+          "coarse_constant": 3,
+          "d": 0,
+          "exact_bound": 3,
+          "n_power_exponent": 0.3962406251802891,
+          "sufficient_exponent_budget": 0.3962406251802891
+        },
+        {
+          "coarse_bound": 96,
+          "coarse_constant": 6,
+          "d": 1,
+          "exact_bound": 17,
+          "n_power_exponent": 1.021865710312585,
+          "sufficient_exponent_budget": 1.646240625180289
+        },
+        {
+          "coarse_bound": 2304,
+          "coarse_constant": 9,
+          "d": 2,
+          "exact_bound": 52,
+          "n_power_exponent": 1.4251099295352732,
+          "sufficient_exponent_budget": 2.792481250360578
+        },
+        {
+          "coarse_bound": 49152,
+          "coarse_constant": 12,
+          "d": 3,
+          "exact_bound": 112,
+          "n_power_exponent": 1.701838730514401,
+          "sufficient_exponent_budget": 3.896240625180289
+        },
+        {
+          "coarse_bound": 983040,
+          "coarse_constant": 15,
+          "d": 4,
+          "exact_bound": 183,
+          "n_power_exponent": 1.878924959571011,
+          "sufficient_exponent_budget": 4.97672264890213
+        }
+      ],
+      "status": "PASS"
     }
   ],
   "domain": {
@@ -186,6 +272,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "3ec72833099b56d58d8471c88c6ee582b34e10551b759aa85bfa01b5501383eb",
+  "script_sha256": "52904760acfcffdeed7e960af9861ddf64ef3ac23281fb6859f3833b65f317c3",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

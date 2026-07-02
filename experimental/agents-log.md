@@ -67,6 +67,25 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - Conjecture F exponent budget consumer
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A twelfth reduction corollary translating the
+  fixed-dimensional Conjecture F bounds into explicit `n`-exponent budgets:
+  non-quotient charts cost at most `n^d`, and quotient-union charts cost at
+  most `tau(gcd(n,j))(d+1)n^d`.
+- **How it is useful:** This is the ledger-facing form needed by MCA/list
+  consumers that require an `n^B` bound.  It identifies dimension-growing
+  primitive charts as the only possible source of violations beyond the
+  printed exponent budget.
+- **What to do next:** Use the exponent budget in downstream paid/residual
+  ledgers instead of re-deriving constants per chart.
+
 ### 2026-07-02 - Conjecture F affine slope-table consumer
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.
