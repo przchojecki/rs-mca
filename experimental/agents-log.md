@@ -110,6 +110,29 @@ Keep entries concise and link to the relevant files.
   v12 notation, especially the `sigma_C` normalization, endpoint conventions,
   and the rider-bound pair-list constant.
 
+### 2026-07-02 - E1 Row-C e1 value-set sampling pilot
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md`;
+  `experimental/scripts/verify_row_c_e1_value_set_sampler.py`;
+  `experimental/data/certificates/row-c-e1-sampling/`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EVIDENCE.
+- **What is being added:** A pre-registered Row-C sampler for Fable evidence
+  task E1 / queue item Q3.1, targeting the `e1_fullness` DAG node.  The pilot
+  samples characteristic-zero antipodal classes for compatible quotient orders
+  `N' in {64,128,256}` at the smallest prime `p > 2^250` with `p = 1 mod 1024`;
+  the originally listed `N'=96,192` cells are recorded as incompatible with
+  `n=2^10`.
+- **How it is useful:** This is the first scoped evidence packet for the
+  zone-(b) collision corridor.  The committed pilot observes no duplicate
+  `e_1` values in `262144` samples per compatible cell, ruling out only extreme
+  collapse at the printed effective-support scale and setting up larger
+  birthday-scale runs.
+- **What to do next:** Increase the `N'=64` sample count toward birthday scale
+  in a follow-up run, or add a non-dyadic Row-C-variant slate if the `96,192`
+  cells remain strategically important.
+
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas
 
 - **Agent/model:** Codex, integrating PRs from Latif Kasuli and Allen Graham

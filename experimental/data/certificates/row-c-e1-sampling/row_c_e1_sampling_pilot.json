@@ -1,0 +1,116 @@
+{
+  "cells": [
+    {
+      "N_prime": 64,
+      "duplicate_pairs": 0,
+      "ell_prime": 33,
+      "empirical_pair_collision_rate": 0.0,
+      "interpretation": "no_collision_pilot_rules_out_only_extreme_collapse",
+      "log2_plateau_count": 49.718800023076994,
+      "log2_zero_collision_95pct_lower_bound": 33.417085799608756,
+      "plateau_count": 926510094425920,
+      "sample_pairs": 34359607296,
+      "samples": 262144,
+      "seed": 2090332537,
+      "top_multiplicities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "unique_sample_values": 262144,
+      "zero_collision_95pct_effective_support_lower_bound": 11469518688.076033
+    },
+    {
+      "N_prime": 128,
+      "duplicate_pairs": 0,
+      "ell_prime": 65,
+      "empirical_pair_collision_rate": 0.0,
+      "interpretation": "no_collision_pilot_rules_out_only_extreme_collapse",
+      "log2_plateau_count": 100.43760004615399,
+      "log2_zero_collision_95pct_lower_bound": 33.417085799608756,
+      "plateau_count": 1716841910146256242328924544640,
+      "sample_pairs": 34359607296,
+      "samples": 262144,
+      "seed": 2154332729,
+      "top_multiplicities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "unique_sample_values": 262144,
+      "zero_collision_95pct_effective_support_lower_bound": 11469518688.076033
+    },
+    {
+      "N_prime": 256,
+      "duplicate_pairs": 0,
+      "ell_prime": 129,
+      "empirical_pair_collision_rate": 0.0,
+      "interpretation": "no_collision_pilot_rules_out_only_extreme_collapse",
+      "log2_plateau_count": 201.87520009230798,
+      "log2_zero_collision_95pct_lower_bound": 33.417085799608756,
+      "plateau_count": 5895092288869291585760436430706259332839105796137920554548480,
+      "sample_pairs": 34359607296,
+      "samples": 262144,
+      "seed": 2282333113,
+      "top_multiplicities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "unique_sample_values": 262144,
+      "zero_collision_95pct_effective_support_lower_bound": 11469518688.076033
+    }
+  ],
+  "dag_node": "e1_fullness",
+  "evidence_task": "E1 / Q3.1 Row-C zone-(b) sampling",
+  "incompatible_requested_orders": [
+    {
+      "N_prime": 96,
+      "reason": "not a divisor of Row-C n=2^10; needs a different row slate"
+    },
+    {
+      "N_prime": 192,
+      "reason": "not a divisor of Row-C n=2^10; needs a different row slate"
+    }
+  ],
+  "object": "uniform samples from characteristic-zero antipodal classes counted by A(N', ell'), reduced via e_1 modulo the Row-C prime",
+  "pilot_limitations": [
+    "The committed run is a deterministic pilot, not the full sqrt(V) run.",
+    "Zero collisions give only an effective-support lower bound.",
+    "Sampling is over antipodal classes, not raw subsets, to target the Paper B quotient-exact value set directly."
+  ],
+  "pre_registered_interpretation": {
+    "density_to_one": "e1_fullness prior up; corridor lands near quotient crossing",
+    "heavy_collisions": "averaged_slope_conversion becomes load-bearing; inspect collision structure",
+    "mixed_by_N_prime": "zone charts gain interval structure with per-N' gates"
+  },
+  "requested_quotient_orders": [
+    64,
+    96,
+    128,
+    192,
+    256
+  ],
+  "row": {
+    "log2_p": 250.0,
+    "n": 1024,
+    "name": "Row C small-n probe",
+    "p": 1809251394333065553493296640760748560207343510400633813116524750123642699777,
+    "p_mod_n": 1,
+    "rho": "1/2"
+  },
+  "sampled_quotient_orders": [
+    64,
+    128,
+    256
+  ],
+  "schema": "row_c_e1_value_set_sampling_v1",
+  "script_sha256": "fadcee54b0b9b7f06b89adba517ffcfc4092e81b125c87903a24d74f24fd9a75",
+  "status": "EXPERIMENTAL_EVIDENCE"
+}
