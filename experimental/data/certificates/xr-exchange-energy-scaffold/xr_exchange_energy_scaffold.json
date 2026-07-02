@@ -1,0 +1,434 @@
+{
+  "checks": {
+    "block_profile_families": [
+      {
+        "block_sizes": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "energies": {
+          "E_0": {
+            "expected": {
+              "denominator": 715,
+              "float": 0.1006993006993007,
+              "log2": -3.3118744302234395,
+              "numerator": 72
+            },
+            "observed": {
+              "denominator": 715,
+              "float": 0.1006993006993007,
+              "log2": -3.3118744302234395,
+              "numerator": 72
+            }
+          },
+          "E_1": {
+            "expected": {
+              "denominator": 715,
+              "float": 0.025174825174825177,
+              "log2": -5.3118744302234395,
+              "numerator": 18
+            },
+            "observed": {
+              "denominator": 715,
+              "float": 0.025174825174825177,
+              "log2": -5.3118744302234395,
+              "numerator": 18
+            }
+          },
+          "E_3": {
+            "expected": {
+              "denominator": 5720,
+              "float": 0.0015734265734265735,
+              "log2": -9.311874430223439,
+              "numerator": 9
+            },
+            "observed": {
+              "denominator": 5720,
+              "float": 0.0015734265734265735,
+              "log2": -9.311874430223439,
+              "numerator": 9
+            }
+          }
+        },
+        "interpretation": "profile_preserving_quotient_like_family",
+        "j": 8,
+        "n": 16,
+        "name": "balanced_four_blocks",
+        "profile": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "status": "PASS"
+      },
+      {
+        "block_sizes": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "energies": {
+          "E_0": {
+            "expected": {
+              "denominator": 12870,
+              "float": 7.77000777000777e-05,
+              "log2": -13.651724433108065,
+              "numerator": 1
+            },
+            "observed": {
+              "denominator": 12870,
+              "float": 7.77000777000777e-05,
+              "log2": -13.651724433108065,
+              "numerator": 1
+            }
+          },
+          "E_1": {
+            "expected": {
+              "denominator": 1,
+              "float": 0.0,
+              "log2": null,
+              "numerator": 0
+            },
+            "observed": {
+              "denominator": 1,
+              "float": 0.0,
+              "log2": null,
+              "numerator": 0
+            }
+          },
+          "E_3": {
+            "expected": {
+              "denominator": 1,
+              "float": 0.0,
+              "log2": null,
+              "numerator": 0
+            },
+            "observed": {
+              "denominator": 1,
+              "float": 0.0,
+              "log2": null,
+              "numerator": 0
+            }
+          }
+        },
+        "interpretation": "full_block_quotient_fiber_has_zero_one_exchange_energy",
+        "j": 8,
+        "n": 16,
+        "name": "frozen_full_blocks",
+        "profile": [
+          4,
+          4,
+          0,
+          0
+        ],
+        "status": "PASS"
+      }
+    ],
+    "fixed_core_families": [
+      {
+        "core_size": 1,
+        "energies": {
+          "E_0": {
+            "expected": {
+              "denominator": 3,
+              "float": 0.3333333333333333,
+              "log2": -1.5849625007211563,
+              "numerator": 1
+            },
+            "observed": {
+              "denominator": 3,
+              "float": 0.3333333333333333,
+              "log2": -1.5849625007211563,
+              "numerator": 1
+            }
+          },
+          "E_1": {
+            "expected": {
+              "denominator": 4,
+              "float": 0.25,
+              "log2": -2.0,
+              "numerator": 1
+            },
+            "observed": {
+              "denominator": 4,
+              "float": 0.25,
+              "log2": -2.0,
+              "numerator": 1
+            }
+          },
+          "E_3": {
+            "expected": {
+              "denominator": 64,
+              "float": 0.140625,
+              "log2": -2.830074998557688,
+              "numerator": 9
+            },
+            "observed": {
+              "denominator": 64,
+              "float": 0.140625,
+              "log2": -2.830074998557688,
+              "numerator": 9
+            }
+          }
+        },
+        "family": "fixed_core",
+        "j": 4,
+        "n": 12,
+        "status": "PASS"
+      },
+      {
+        "core_size": 2,
+        "energies": {
+          "E_0": {
+            "expected": {
+              "denominator": 11,
+              "float": 0.09090909090909091,
+              "log2": -3.4594316186372973,
+              "numerator": 1
+            },
+            "observed": {
+              "denominator": 11,
+              "float": 0.09090909090909091,
+              "log2": -3.4594316186372973,
+              "numerator": 1
+            }
+          },
+          "E_1": {
+            "expected": {
+              "denominator": 22,
+              "float": 0.045454545454545456,
+              "log2": -4.459431618637297,
+              "numerator": 1
+            },
+            "observed": {
+              "denominator": 22,
+              "float": 0.045454545454545456,
+              "log2": -4.459431618637297,
+              "numerator": 1
+            }
+          },
+          "E_3": {
+            "expected": {
+              "denominator": 88,
+              "float": 0.011363636363636364,
+              "log2": -6.459431618637297,
+              "numerator": 1
+            },
+            "observed": {
+              "denominator": 88,
+              "float": 0.011363636363636364,
+              "log2": -6.459431618637297,
+              "numerator": 1
+            }
+          }
+        },
+        "family": "fixed_core",
+        "j": 4,
+        "n": 12,
+        "status": "PASS"
+      },
+      {
+        "core_size": 2,
+        "energies": {
+          "E_0": {
+            "expected": {
+              "denominator": 30,
+              "float": 0.23333333333333334,
+              "log2": -2.0995356735509145,
+              "numerator": 7
+            },
+            "observed": {
+              "denominator": 30,
+              "float": 0.23333333333333334,
+              "log2": -2.0995356735509145,
+              "numerator": 7
+            }
+          },
+          "E_1": {
+            "expected": {
+              "denominator": 40,
+              "float": 0.175,
+              "log2": -2.5145731728297585,
+              "numerator": 7
+            },
+            "observed": {
+              "denominator": 40,
+              "float": 0.175,
+              "log2": -2.5145731728297585,
+              "numerator": 7
+            }
+          },
+          "E_3": {
+            "expected": {
+              "denominator": 640,
+              "float": 0.0984375,
+              "log2": -3.344648171387446,
+              "numerator": 63
+            },
+            "observed": {
+              "denominator": 640,
+              "float": 0.0984375,
+              "log2": -3.344648171387446,
+              "numerator": 63
+            }
+          }
+        },
+        "family": "fixed_core",
+        "j": 8,
+        "n": 16,
+        "status": "PASS"
+      }
+    ],
+    "random_baseline": {
+      "check": "random_baseline_against_fixed_core",
+      "density": {
+        "denominator": 11,
+        "float": 0.09090909090909091,
+        "log2": -3.4594316186372973,
+        "numerator": 1
+      },
+      "fixed_core_E3": {
+        "denominator": 88,
+        "float": 0.011363636363636364,
+        "log2": -6.459431618637297,
+        "numerator": 1
+      },
+      "fixed_core_over_random_average": 103.58547825109588,
+      "j": 4,
+      "n": 12,
+      "random_E3_average": {
+        "denominator": 81100800,
+        "float": 0.00010970298690025252,
+        "log2": -13.154109572791771,
+        "numerator": 8897
+      },
+      "random_E3_max": {
+        "denominator": 8110080,
+        "float": 0.00019321634311868688,
+        "log2": -12.337495250494392,
+        "numerator": 1567
+      },
+      "random_E3_min": {
+        "denominator": 8110080,
+        "float": 5.930890940656566e-05,
+        "log2": -14.04139163119693,
+        "numerator": 481
+      },
+      "seed": 2026070202,
+      "status": "PASS",
+      "subset_size": 45,
+      "trials": 20
+    },
+    "spectrum": {
+      "check": "johnson_spectrum",
+      "dense_case": {
+        "expected": {
+          "-2": 5,
+          "1": 4,
+          "6": 1
+        },
+        "j": 2,
+        "n": 5,
+        "observed": {
+          "-2": 5,
+          "1": 4,
+          "6": 1
+        }
+      },
+      "gap_cases": [
+        {
+          "j": 2,
+          "n": 5,
+          "normalized_gap": {
+            "denominator": 6,
+            "float": 0.8333333333333334,
+            "log2": -0.2630344058337938,
+            "numerator": 5
+          },
+          "theta_0": 6,
+          "theta_1": 1,
+          "unnormalized_gap": 5
+        },
+        {
+          "j": 4,
+          "n": 16,
+          "normalized_gap": {
+            "denominator": 3,
+            "float": 0.3333333333333333,
+            "log2": -1.5849625007211563,
+            "numerator": 1
+          },
+          "theta_0": 48,
+          "theta_1": 32,
+          "unnormalized_gap": 16
+        },
+        {
+          "j": 8,
+          "n": 16,
+          "normalized_gap": {
+            "denominator": 4,
+            "float": 0.25,
+            "log2": -2.0,
+            "numerator": 1
+          },
+          "theta_0": 64,
+          "theta_1": 48,
+          "unnormalized_gap": 16
+        },
+        {
+          "j": 128,
+          "n": 512,
+          "normalized_gap": {
+            "denominator": 96,
+            "float": 0.010416666666666666,
+            "log2": -6.584962500721156,
+            "numerator": 1
+          },
+          "theta_0": 49152,
+          "theta_1": 48640,
+          "unnormalized_gap": 512
+        },
+        {
+          "j": 247,
+          "n": 512,
+          "normalized_gap": {
+            "denominator": 65455,
+            "float": 0.007822167901611794,
+            "log2": -6.998215781035239,
+            "numerator": 512
+          },
+          "theta_0": 65455,
+          "theta_1": 64943,
+          "unnormalized_gap": 512
+        }
+      ],
+      "status": "PASS"
+    }
+  },
+  "dag_nodes": [
+    "xr_e3_calculus",
+    "xr_inverse_toy"
+  ],
+  "energy_definition": {
+    "E_3_role": "toy odd exchange-correlation proxy for the E2/QX.1 route",
+    "E_s(A)": "Pr[T_0,...,T_s in A] for a length-s simple random walk",
+    "graph": "Johnson graph J(n,j) on j-subsets"
+  },
+  "interpretation": {
+    "caveat": "Frozen full-block quotient fibers have zero ordinary one-exchange energy, so an XR inverse test must remove paid quotient strata first or use a multi-exchange variant.",
+    "next_step": "Attach the same energy to actual aligned-locator sets A_{u,v} on n=16 toys, then run the E2 inverse falsifier.",
+    "positive": "Fixed-core and balanced profile families have exact large E_3 relative to random subsets of comparable density."
+  },
+  "not_claimed": [
+    "No RS word-pair enumeration is performed.",
+    "No XR inverse theorem is proved.",
+    "No MCA/list threshold is certified."
+  ],
+  "packet": "xr_exchange_energy_scaffold",
+  "packet_sha256_without_self": "70ecc081f487f287f34694ba3838e32ba4fa57393c97812bc829ad1bca93d66d",
+  "status": "EXPERIMENTAL_COMBINATORIAL_SCAFFOLD"
+}

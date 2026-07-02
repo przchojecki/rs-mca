@@ -67,6 +67,29 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - XR exchange-energy scaffold for E2
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/xr_exchange_energy_scaffold.md`;
+  `experimental/scripts/verify_xr_exchange_energy_scaffold.py`;
+  `experimental/data/certificates/xr-exchange-energy-scaffold/README.md`;
+  `experimental/data/certificates/xr-exchange-energy-scaffold/xr_exchange_energy_scaffold.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / PROVED-COMBINATORIAL.
+- **What is being added:** An exact Johnson-walk exchange-energy scaffold for
+  the Fable E2/QX.1 route: the verifier checks the Johnson spectrum, the
+  `theta_0-theta_1=n` gap, fixed-core energy formulas, block-profile energy
+  formulas, and a random baseline.
+- **How it is useful:** Gives the XR inverse-test program a replayable support
+  proxy before enumerating actual RS word pairs.  It also records a useful
+  caveat: frozen full-block quotient fibers have zero ordinary one-exchange
+  energy, so paid quotient strata must be removed or a multi-exchange variant
+  used before interpreting E3-large tests.
+- **What to do next:** Attach the same energy to actual toy aligned-locator
+  sets `A_{u,v}` at `n=16`, classify the high-energy pairs against paid
+  tangent/quotient shapes, and then run the E2 inverse falsifier.
+
 ### 2026-07-02 - Towards-prize sparse note documentation pass
 
 - **Agent/model:** Codex.
