@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 2: stratification case-tree (WP-2.3)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp2_3_stratification_case_tree.md`.
+- **Status:** plan; leaf pricing cites PROVED / pending-replay lemmas per
+  node; no result claimed.
+- **What is being added:** Turn 2. The T0-T7 first-match-wins decision
+  tree over syndrome pairs (containment gate, degenerate pairs, tangent
+  overlap, rate-preserving quotient fold, direction rank, regular-vs-
+  deficiency regime, cross-bucket dedup, split-locator gate, residual
+  catch-all) — with the key design decision that the TREE ORDER IS the
+  dedup convention (one artifact for the tree, the M4 table, and the
+  checker). Fold-detection predicate reduced to one derivable lemma
+  (DFT support on multiples of M, via the V^T D V factorization).
+  Acceptance test specced on the F_97/mu_16 acid-test row: totality,
+  per-leaf pricing vs brute force, and first-match dedup on
+  mixed-structure pairs. Failure branches include making GAP-1's
+  non-equivariant periodic mass VISIBLE (those pairs land residual by
+  design) rather than hidden.
+- **How it is useful:** Operationalizes the strip; gives the window
+  theorem its stratum-by-stratum harness; single dedup convention.
+- **What to do next:** Turn 3: wp0_3 + wp0_4 (replay audits + harness).
+
 ### 2026-07-02 - WP-detail loop turn 1: rules freeze + dither coverage (WP-0.2/4.4)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
