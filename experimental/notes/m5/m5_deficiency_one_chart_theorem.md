@@ -307,3 +307,27 @@ support search by a single-parameter Hermite divisor scan.  The verifier checks
 the reduction against direct `F_97/mu_16` brute force.  It also records that
 small `j=2` disjoint counterexamples exist, so the packet does not claim a
 blanket disjoint-empty theorem.
+
+For the declared `F_17^32` planted family, the Hermite divisor scan closes the
+disjoint branch.  For each outside domain point `h in H\\T`, the condition
+
+```text
+N_c(h)=0
+```
+
+is a quadratic equation in `c`.  A degree-128 disjoint locator would require
+one value of `c` to solve this quadratic for at least `128` outside points.
+The verifier computes all `384` outside-point quadratics over `F_17^32` and
+solves them in the field.  The replayed counts are:
+
+```text
+identically-zero quadratics: 0
+quadratics with no root in F_17^32: 202
+quadratics with one root in F_17^32: 0
+quadratics with two roots in F_17^32: 182
+distinct nonzero candidate c values: 364
+maximum outside-root multiplicity of any c: 1
+```
+
+Since `1 < 128`, no Hermite candidate has enough roots in `H\\T`.  Therefore
+the declared planted disjoint top branch is empty.

@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 23: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 24: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -19,7 +19,8 @@
   an overlap-one exclusion.  The planted rank-drop moment-support branch is
   now identified as a contained lower-rank branch deduped to agreement `386`.
   The remaining disjoint top branch is reduced to a one-parameter Hermite
-  divisor scan with real-row degree cap `770`.
+  divisor scan with real-row degree cap `770`, and this declared `F_17^32`
+  disjoint top branch is now closed by the quadratic root-multiplicity table.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -151,7 +152,8 @@ belongs.
 | 5q | planted top-chart overlap-one exclusion | **done** |
 | 5r | rank-drop contained-branch dedup theorem | **done** |
 | 5s | planted top-chart disjoint Hermite reduction | **done** |
-| 5t | full `F_17^32` root-table packet for rank-drop / top charts | pending |
+| 5t | declared `F_17^32` disjoint top-branch closure | **done** |
+| 5u | full `F_17^32` root-table packet for generic rank-drop charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -891,6 +893,38 @@ For `j=2` it exactly reproduces four disjoint counterexamples, showing why a
 blanket disjoint-empty statement would be false.  For the `j=3` and `j=4`
 toy cases checked in the packet, both the brute-force and Hermite scans are
 empty.
+
+### Verified in turn 24
+
+**U24, declared `F_17^32` disjoint top-branch closure.** The Hermite reduction
+from U23 makes the actual `F_17^32` branch finite and univariate.  For each
+outside domain point `h in H\\T`, the equation
+
+```text
+N_c(h)=0
+```
+
+is quadratic in `c`.  A valid disjoint degree-128 locator would require one
+nonzero `c` to solve this equation for at least `128` outside points.
+
+The verifier builds these `384` quadratics over the pinned `F_17^32` field,
+solves them using Tonelli-Shanks in `F_17^32`, and counts root multiplicities.
+The replayed table is:
+
+```text
+quadratic coefficient hash:
+  sha256:6946bcd3010ff6a1051af21c474a328e202f32a7f2cc058db0bb2097b34248fa
+outside points: 384
+identically-zero quadratics: 0
+no-root quadratics: 202
+one-root quadratics: 0
+two-root quadratics: 182
+distinct nonzero candidate c values: 364
+maximum outside-root multiplicity: 1
+```
+
+Since the maximum multiplicity is `1`, no `c` can produce the required `128`
+outside roots.  Thus the declared planted disjoint top branch is empty.
 
 ## Honest scope
 

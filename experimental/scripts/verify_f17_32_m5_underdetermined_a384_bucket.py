@@ -119,12 +119,17 @@ Turn 23 reduces the remaining disjoint planted top residual to a one-parameter
 Hermite divisor scan.  The F_97 toy scan exactly matches brute force, including
 the small j=2 counterexamples that prevent overclaiming.
 
+Turn 24 closes that declared F_17^32 disjoint top branch: each outside domain
+point gives a quadratic condition in the Hermite parameter c, and no c is a
+root of enough quadratics to give 128 disjoint roots.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 from itertools import combinations
 import json
 from hashlib import sha256
@@ -396,6 +401,43 @@ def f17_neg(field: F17Field, value):
     return tuple((-a) % field.p for a in value)
 
 
+def f17_base(field: F17Field, value: int):
+    return field.normalize([value % field.p])
+
+
+def f17_inv(field: F17Field, value):
+    if value == field.zero:
+        raise ZeroDivisionError("inverse of zero")
+    return field.pow(value, field.size - 2)
+
+
+def f17_div(field: F17Field, left, right):
+    return field.mul(left, f17_inv(field, right))
+
+
+def f17_poly_trim(field: F17Field, poly):
+    out = list(poly)
+    while len(out) > 1 and out[-1] == field.zero:
+        out.pop()
+    return out
+
+
+def f17_poly_add(field: F17Field, left, right):
+    zero = field.zero
+    out = []
+    for index in range(max(len(left), len(right))):
+        out.append(f17_add(
+            field,
+            left[index] if index < len(left) else zero,
+            right[index] if index < len(right) else zero,
+        ))
+    return f17_poly_trim(field, out)
+
+
+def f17_poly_scale(field: F17Field, poly, scalar):
+    return f17_poly_trim(field, [field.mul(coeff, scalar) for coeff in poly])
+
+
 def f17_poly_mul(field: F17Field, left, right):
     zero = field.zero
     out = [zero] * (len(left) + len(right) - 1)
@@ -407,6 +449,27 @@ def f17_poly_mul(field: F17Field, left, right):
                 continue
             out[i + j] = f17_add(field, out[i + j], field.mul(a_i, b_j))
     return out
+
+
+def f17_poly_derivative(field: F17Field, poly):
+    if len(poly) <= 1:
+        return [field.zero]
+    return f17_poly_trim(
+        field,
+        [field.mul(f17_base(field, index), coeff) for index, coeff in enumerate(poly[1:], start=1)],
+    )
+
+
+def f17_divide_by_x_minus_root(field: F17Field, poly, root):
+    """Exact quotient by X-root for low-to-high polynomials."""
+    quotient = [field.zero] * (len(poly) - 1)
+    quotient[-1] = poly[-1]
+    for index in range(len(quotient) - 2, -1, -1):
+        quotient[index] = f17_add(field, poly[index + 1], field.mul(root, quotient[index + 1]))
+    remainder = f17_add(field, poly[0], field.mul(root, quotient[0]))
+    if remainder != field.zero:
+        raise AssertionError("division by X-root had nonzero remainder")
+    return f17_poly_trim(field, quotient)
 
 
 def f17_poly_eval(field: F17Field, poly, value):
@@ -2475,6 +2538,199 @@ def check_planted_top_disjoint_hermite_reduction():
     ]
 
 
+def f17_quadratic_roots(field: F17Field, non_square, a_coeff, b_coeff, c_coeff):
+    """Roots over F_17^32 of a quadratic aX^2+bX+c."""
+    zero = field.zero
+    one = field.one
+
+    def sqrt(value):
+        if value == zero:
+            return zero
+        if field.pow(value, (field.size - 1) // 2) != one:
+            return None
+        odd_part = field.size - 1
+        two_power = 0
+        while odd_part % 2 == 0:
+            two_power += 1
+            odd_part //= 2
+        z_power = field.pow(non_square, odd_part)
+        root = field.pow(value, (odd_part + 1) // 2)
+        residue = field.pow(value, odd_part)
+        exponent = two_power
+        while residue != one:
+            index = 1
+            probe = field.mul(residue, residue)
+            while probe != one:
+                probe = field.mul(probe, probe)
+                index += 1
+                if index >= exponent:
+                    raise AssertionError("Tonelli-Shanks failed to converge")
+            factor = field.pow(z_power, 1 << (exponent - index - 1))
+            root = field.mul(root, factor)
+            z_power = field.mul(factor, factor)
+            residue = field.mul(residue, z_power)
+            exponent = index
+        return root
+
+    if a_coeff == zero:
+        if b_coeff == zero:
+            return None if c_coeff == zero else []
+        return [f17_neg(field, f17_div(field, c_coeff, b_coeff))]
+
+    discriminant = f17_sub(
+        field,
+        field.mul(b_coeff, b_coeff),
+        field.mul(f17_base(field, 4), field.mul(a_coeff, c_coeff)),
+    )
+    sqrt_discriminant = sqrt(discriminant)
+    if sqrt_discriminant is None:
+        return []
+    denominator = field.mul(f17_base(field, 2), a_coeff)
+    first = f17_div(field, f17_sub(field, f17_neg(field, b_coeff), sqrt_discriminant), denominator)
+    second = f17_div(field, f17_add(field, f17_neg(field, b_coeff), sqrt_discriminant), denominator)
+    return [first] if first == second else [first, second]
+
+
+def f17_planted_disjoint_hermite_closure_payload():
+    """Compute the actual F_17^32 disjoint Hermite quadratic root table summary."""
+    descriptor = json.loads(ROW_DESCRIPTOR_REF.read_text(encoding="utf-8"))
+    field = F17Field(
+        descriptor["field_model"]["p"],
+        descriptor["field_model"]["modulus"],
+    )
+    domain = [field.decode(value) for value in descriptor["domain"]["domain_encodings"]]
+    support = domain[:128]
+    support_set = set(support)
+    non_square = field.decode(descriptor["domain"]["generator_encoding"])
+    if field.pow(non_square, (field.size - 1) // 2) == field.one:
+        raise AssertionError("domain generator was expected to be a nonsquare")
+
+    support_locator = [field.one]
+    for root in support:
+        support_locator = f17_poly_mul(field, support_locator, [f17_neg(field, root), field.one])
+    support_derivative = f17_poly_derivative(field, support_locator)
+    support_derivative_at_one = f17_poly_eval(field, support_derivative, field.one)
+    inverse_support_derivative_at_one = f17_inv(field, support_derivative_at_one)
+
+    lagrange_basis = []
+    lagrange_derivatives_at_one = []
+    for root in support:
+        basis = f17_divide_by_x_minus_root(field, support_locator, root)
+        basis = f17_poly_scale(field, basis, f17_inv(field, f17_poly_eval(field, support_derivative, root)))
+        lagrange_basis.append(basis)
+        lagrange_derivatives_at_one.append(
+            f17_poly_eval(field, f17_poly_derivative(field, basis), field.one)
+        )
+
+    constant_part = [field.zero]
+    for basis, derivative_value in zip(lagrange_basis[1:], lagrange_derivatives_at_one[1:]):
+        constant_part = f17_poly_add(
+            field,
+            constant_part,
+            f17_poly_scale(field, basis, f17_neg(field, derivative_value)),
+        )
+
+    constant_part_derivative_at_one = f17_poly_eval(
+        field,
+        f17_poly_derivative(field, constant_part),
+        field.one,
+    )
+    quadratic_coeff = f17_neg(field, inverse_support_derivative_at_one)
+    linear_coeff = f17_neg(
+        field,
+        field.mul(
+            f17_add(
+                field,
+                field.mul(f17_base(field, 2), lagrange_derivatives_at_one[0]),
+                f17_base(field, 2),
+            ),
+            inverse_support_derivative_at_one,
+        ),
+    )
+    constant_coeff = f17_neg(
+        field,
+        field.mul(constant_part_derivative_at_one, inverse_support_derivative_at_one),
+    )
+
+    root_multiplicities = Counter()
+    identically_zero = []
+    no_root_quadratics = 0
+    one_root_quadratics = 0
+    two_root_quadratics = 0
+    quadratic_hash_rows = []
+    for point in domain:
+        if point in support_set:
+            continue
+        support_value = f17_poly_eval(field, support_locator, point)
+        ell0_value = f17_poly_eval(field, lagrange_basis[0], point)
+        constant_value = f17_poly_eval(field, constant_part, point)
+        a_coeff = field.mul(quadratic_coeff, support_value)
+        b_coeff = f17_add(field, ell0_value, field.mul(linear_coeff, support_value))
+        c_coeff = f17_add(field, constant_value, field.mul(constant_coeff, support_value))
+        quadratic_hash_rows.append([
+            field.encode(a_coeff),
+            field.encode(b_coeff),
+            field.encode(c_coeff),
+        ])
+        roots = f17_quadratic_roots(field, non_square, a_coeff, b_coeff, c_coeff)
+        if roots is None:
+            identically_zero.append(field.encode(point))
+            continue
+        if len(roots) == 0:
+            no_root_quadratics += 1
+        elif len(roots) == 1:
+            one_root_quadratics += 1
+        else:
+            two_root_quadratics += 1
+        for root in roots:
+            if root != field.zero:
+                root_multiplicities[field.encode(root)] += 1
+
+    top_multiplicities = root_multiplicities.most_common(10)
+    max_multiplicity = top_multiplicities[0][1] if top_multiplicities else 0
+    return {
+        "row_descriptor_hash": tagged_hash(descriptor),
+        "support_size": len(support),
+        "outside_domain_points": len(domain) - len(support),
+        "required_disjoint_roots": len(support),
+        "quadratic_coefficients_hash": tagged_hash(quadratic_hash_rows),
+        "identically_zero_quadratics": identically_zero,
+        "no_root_quadratics": no_root_quadratics,
+        "one_root_quadratics": one_root_quadratics,
+        "two_root_quadratics": two_root_quadratics,
+        "candidate_c_count": len(root_multiplicities),
+        "max_root_multiplicity": max_multiplicity,
+        "top_root_multiplicities": top_multiplicities,
+        "disjoint_branch_closed": max_multiplicity < len(support) and not identically_zero,
+    }
+
+
+def check_planted_top_disjoint_f17_closure():
+    """Close the declared F_17^32 planted disjoint top branch by quadratic counts."""
+    payload = f17_planted_disjoint_hermite_closure_payload()
+    ok = (
+        payload["support_size"] == 128
+        and payload["outside_domain_points"] == 384
+        and payload["required_disjoint_roots"] == 128
+        and payload["identically_zero_quadratics"] == []
+        and payload["no_root_quadratics"] == 202
+        and payload["one_root_quadratics"] == 0
+        and payload["two_root_quadratics"] == 182
+        and payload["candidate_c_count"] == 364
+        and payload["max_root_multiplicity"] == 1
+        and payload["disjoint_branch_closed"]
+    )
+    return ok, [
+        "F_17^32 disjoint Hermite closure: each outside domain point gives one quadratic in c",
+        f"quadratic coefficient hash={payload['quadratic_coefficients_hash']}",
+        f"outside points={payload['outside_domain_points']}; no-root quadratics={payload['no_root_quadratics']}; "
+        f"two-root quadratics={payload['two_root_quadratics']}",
+        f"candidate c values={payload['candidate_c_count']}; max root multiplicity={payload['max_root_multiplicity']} "
+        f"< required roots {payload['required_disjoint_roots']}",
+        "therefore no Hermite candidate has 128 roots in H\\T, so the declared planted disjoint top branch is empty",
+    ]
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -2498,6 +2754,7 @@ CHECKS = [
     ("planted top-chart support-only residual",           check_planted_top_support_only_residual),
     ("planted top-chart overlap-one exclusion",           check_planted_top_overlap_one_exclusion),
     ("planted top-chart disjoint Hermite reduction",      check_planted_top_disjoint_hermite_reduction),
+    ("F_17^32 planted disjoint top closure",              check_planted_top_disjoint_f17_closure),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),

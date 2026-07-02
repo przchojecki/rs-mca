@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 planted disjoint top closure
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Closure of the declared
+  `F_17^32` planted disjoint top branch; no worst-case row claim.
+- **What is being added:** Turn 24 of the `A=384` M5 packet: for every outside
+  domain point, the Hermite condition `N_c(h)=0` is a quadratic in `c`.  Solving
+  all 384 quadratics over `F_17^32` gives 364 candidate `c` values, each with
+  multiplicity at most 1, far below the 128 roots needed for a disjoint locator.
+- **How it is useful:** Closes the remaining planted top-chart residual for the
+  declared family and leaves the generic rank-drop kernel-pivot branches as the
+  main unfinished part of the M5 A384 packet.
+- **What to do next:** Attack the generic rank-drop kernel-pivot root table or
+  package the closed planted top branch as a reusable quadratic-multiplicity
+  pattern.
+
 ### 2026-07-02 - M5 A384 disjoint top Hermite reduction
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
