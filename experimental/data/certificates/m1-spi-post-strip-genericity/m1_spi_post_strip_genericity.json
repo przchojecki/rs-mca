@@ -1,0 +1,326 @@
+{
+  "cases": [
+    {
+      "aperiodic_count": 480,
+      "aperiodic_has_only_trivial_stabilizer": true,
+      "j": 4,
+      "n": 12,
+      "periodic_rows": [
+        {
+          "count": 495,
+          "formula_count": 495,
+          "nontrivial": false,
+          "order": 1
+        },
+        {
+          "count": 15,
+          "formula_count": 15,
+          "nontrivial": true,
+          "order": 2
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 3
+        },
+        {
+          "count": 3,
+          "formula_count": 3,
+          "nontrivial": true,
+          "order": 4
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 6
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 12
+        }
+      ],
+      "sample_intersection_checks": [
+        {
+          "generated_order": 6,
+          "intersection_count": 0,
+          "orders": [
+            2,
+            3
+          ]
+        },
+        {
+          "generated_order": 4,
+          "intersection_count": 3,
+          "orders": [
+            2,
+            4
+          ]
+        },
+        {
+          "generated_order": 6,
+          "intersection_count": 0,
+          "orders": [
+            3,
+            6
+          ]
+        },
+        {
+          "generated_order": 12,
+          "intersection_count": 0,
+          "orders": [
+            4,
+            6
+          ]
+        }
+      ],
+      "stabilizer_order_histogram": {
+        "1": 480,
+        "2": 12,
+        "4": 3
+      },
+      "stripped_count": 15,
+      "total_divisors": 495
+    },
+    {
+      "aperiodic_count": 12800,
+      "aperiodic_has_only_trivial_stabilizer": true,
+      "j": 8,
+      "n": 16,
+      "periodic_rows": [
+        {
+          "count": 12870,
+          "formula_count": 12870,
+          "nontrivial": false,
+          "order": 1
+        },
+        {
+          "count": 70,
+          "formula_count": 70,
+          "nontrivial": true,
+          "order": 2
+        },
+        {
+          "count": 6,
+          "formula_count": 6,
+          "nontrivial": true,
+          "order": 4
+        },
+        {
+          "count": 2,
+          "formula_count": 2,
+          "nontrivial": true,
+          "order": 8
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 16
+        }
+      ],
+      "sample_intersection_checks": [
+        {
+          "generated_order": 4,
+          "intersection_count": 6,
+          "orders": [
+            2,
+            4
+          ]
+        }
+      ],
+      "stabilizer_order_histogram": {
+        "1": 12800,
+        "2": 64,
+        "4": 4,
+        "8": 2
+      },
+      "stripped_count": 70,
+      "total_divisors": 12870
+    },
+    {
+      "aperiodic_count": 18468,
+      "aperiodic_has_only_trivial_stabilizer": true,
+      "j": 6,
+      "n": 18,
+      "periodic_rows": [
+        {
+          "count": 18564,
+          "formula_count": 18564,
+          "nontrivial": false,
+          "order": 1
+        },
+        {
+          "count": 84,
+          "formula_count": 84,
+          "nontrivial": true,
+          "order": 2
+        },
+        {
+          "count": 15,
+          "formula_count": 15,
+          "nontrivial": true,
+          "order": 3
+        },
+        {
+          "count": 3,
+          "formula_count": 3,
+          "nontrivial": true,
+          "order": 6
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 9
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 18
+        }
+      ],
+      "sample_intersection_checks": [
+        {
+          "generated_order": 6,
+          "intersection_count": 3,
+          "orders": [
+            2,
+            3
+          ]
+        },
+        {
+          "generated_order": 6,
+          "intersection_count": 3,
+          "orders": [
+            3,
+            6
+          ]
+        }
+      ],
+      "stabilizer_order_histogram": {
+        "1": 18468,
+        "2": 81,
+        "3": 12,
+        "6": 3
+      },
+      "stripped_count": 96,
+      "total_divisors": 18564
+    },
+    {
+      "aperiodic_count": 134352,
+      "aperiodic_has_only_trivial_stabilizer": true,
+      "j": 6,
+      "n": 24,
+      "periodic_rows": [
+        {
+          "count": 134596,
+          "formula_count": 134596,
+          "nontrivial": false,
+          "order": 1
+        },
+        {
+          "count": 220,
+          "formula_count": 220,
+          "nontrivial": true,
+          "order": 2
+        },
+        {
+          "count": 28,
+          "formula_count": 28,
+          "nontrivial": true,
+          "order": 3
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 4
+        },
+        {
+          "count": 4,
+          "formula_count": 4,
+          "nontrivial": true,
+          "order": 6
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 8
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 12
+        },
+        {
+          "count": 0,
+          "formula_count": 0,
+          "nontrivial": true,
+          "order": 24
+        }
+      ],
+      "sample_intersection_checks": [
+        {
+          "generated_order": 6,
+          "intersection_count": 4,
+          "orders": [
+            2,
+            3
+          ]
+        },
+        {
+          "generated_order": 4,
+          "intersection_count": 0,
+          "orders": [
+            2,
+            4
+          ]
+        },
+        {
+          "generated_order": 6,
+          "intersection_count": 4,
+          "orders": [
+            3,
+            6
+          ]
+        },
+        {
+          "generated_order": 12,
+          "intersection_count": 0,
+          "orders": [
+            4,
+            6
+          ]
+        }
+      ],
+      "stabilizer_order_histogram": {
+        "1": 134352,
+        "2": 216,
+        "3": 24,
+        "6": 4
+      },
+      "stripped_count": 244,
+      "total_divisors": 134596
+    }
+  ],
+  "dag_target": "spi_genericity",
+  "non_claims": [
+    "does not prove the SPI incidence bound",
+    "does not price GAP-1 non-equivariant periodic mass",
+    "does not resolve the GAP-2 support-periodic versus line-periodic dictionary"
+  ],
+  "schema": "m1-spi-post-strip-genericity-v1",
+  "status": "PROVED_COMBINATORIAL",
+  "theorem": {
+    "intersection": "Per_M(D_j) cap Per_N(D_j) = Per_lcm(M,N)(D_j)",
+    "periodic_stratum_count": "|Per_M(D_j)| = binom(n/M,j/M) if M|j, else 0",
+    "post_strip_genericity": "D_j^aper has no nontrivial subgroup-stabilized locator"
+  }
+}

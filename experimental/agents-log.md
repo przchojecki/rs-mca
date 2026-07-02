@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M1 SPI post-strip genericity
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_spi_post_strip_genericity.md`;
+  `experimental/scripts/verify_m1_spi_post_strip_genericity.py`;
+  `experimental/data/certificates/m1-spi-post-strip-genericity/README.md`;
+  `experimental/data/certificates/m1-spi-post-strip-genericity/m1_spi_post_strip_genericity.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COMBINATORIAL.
+- **What is being added:** Proves that support-side periodic locator strata are
+  exactly the nontrivial subgroup-fixed loci in `D_j`; after stripping them,
+  every remaining locator has trivial subgroup stabilizer.
+- **How it is useful:** Closes the `spi_genericity` PROVABLE node used by the
+  SPI incidence route: subgroup-special exceptional sets are precisely the
+  quotient-paid strata before any incidence theorem is applied.
+- **What to do next:** Use this only as the genericity input for SPI; GAP-1
+  pricing and the GAP-2 support/line periodic dictionary remain separate.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
