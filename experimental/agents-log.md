@@ -110,6 +110,26 @@ Keep entries concise and link to the relevant files.
   v12 notation, especially the `sigma_C` normalization, endpoint conventions,
   and the rider-bound pair-list constant.
 
+### 2026-07-02 - M5 A384 rank-drop split-locator deduplication
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.
+- **What is being added:** A compact follow-up to the distilled PR #176 M5
+  packet: in the deficiency-one `A=384` Hankel chart, a rank-drop slope with a
+  valid degree-`j` split locator has a lower-degree active-root locator in the
+  same kernel, hence is charged to a higher-agreement bucket rather than counted
+  as new exact-`A` mass.  The script adds exact toy checks for the Cramer kernel
+  vector and the rank-drop deduplication mechanism.
+- **How it is useful:** This removes the valid-split rank-drop side branch from
+  the first underdetermined M5 bucket, leaving the full-rank top
+  pseudo-remainder root table as the remaining finite branch to attack.
+- **What to do next:** Close or label the top-chart divisibility/eliminant
+  branch in a separate small PR, or pivot to the roadmap evidence program if
+  that is the current coordination priority.
+
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas
 
 - **Agent/model:** Codex, integrating PRs from Latif Kasuli and Allen Graham

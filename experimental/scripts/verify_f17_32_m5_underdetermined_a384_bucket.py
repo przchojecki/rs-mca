@@ -12,14 +12,16 @@ The regular root-containment certificate needs t >= j+1  <=>  2A >= n+k+1.
 A=384 is the MAXIMAL underdetermined agreement: t = j = 128, the matrix is
 128 x 129, rank <= 128 < 129, so the kernel is nontrivial for EVERY slope Z
 and kernel-nonemptiness certifies nothing.  This script identifies that bucket
-exactly and demonstrates the regular/underdetermined dichotomy exhaustively
-over a toy field.  Later loop turns add the deficiency-1 pivot-chart machinery
-(see the companion note experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md).
+exactly, demonstrates the regular/underdetermined dichotomy over a toy field,
+checks the deficiency-1 Cramer kernel vector, and verifies the rank-drop
+split-locator deduplication lemma on a finite toy subgroup.
 
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
 from __future__ import annotations
+
+from itertools import combinations
 
 Q = 17 ** 32          # q_line = |F|
 TWO128 = 2 ** 128
@@ -63,6 +65,77 @@ def rank_and_kernel_mod_p(matrix, p):
 def hankel(window, t, j):
     """Extractor convention: t rows, j+1 cols, entry window[row+col]."""
     return [[window[row + col] for col in range(j + 1)] for row in range(t)]
+
+
+def det_mod_p(matrix, p):
+    """Determinant over F_p for small square matrices."""
+    n = len(matrix)
+    m = [[x % p for x in row] for row in matrix]
+    det = 1
+    for c in range(n):
+        pivot = next((i for i in range(c, n) if m[i][c]), None)
+        if pivot is None:
+            return 0
+        if pivot != c:
+            m[c], m[pivot] = m[pivot], m[c]
+            det = (-det) % p
+        pivot_val = m[c][c]
+        det = (det * pivot_val) % p
+        inv = pow(pivot_val, -1, p)
+        for r in range(c + 1, n):
+            if m[r][c]:
+                f = (m[r][c] * inv) % p
+                for cc in range(c, n):
+                    m[r][cc] = (m[r][cc] - f * m[c][cc]) % p
+    return det % p
+
+
+def cramer_vector(matrix, p):
+    """Signed maximal minors for a j x (j+1) deficiency-one matrix."""
+    rows = len(matrix)
+    cols = len(matrix[0])
+    assert cols == rows + 1
+    out = []
+    for omitted in range(cols):
+        minor = [[row[c] for c in range(cols) if c != omitted] for row in matrix]
+        sign = -1 if omitted % 2 else 1
+        out.append((sign * det_mod_p(minor, p)) % p)
+    return out
+
+
+def mat_vec_zero(matrix, vec, p):
+    return all(sum(row[i] * vec[i] for i in range(len(vec))) % p == 0
+               for row in matrix)
+
+
+def poly_mul_mod_p(a, b, p):
+    out = [0] * (len(a) + len(b) - 1)
+    for i, ai in enumerate(a):
+        for j, bj in enumerate(b):
+            out[i + j] = (out[i + j] + ai * bj) % p
+    return out
+
+
+def locator_poly(roots, p):
+    """Low-to-high coefficients of prod_{r in roots} (X-r)."""
+    poly = [1]
+    for r in roots:
+        poly = poly_mul_mod_p(poly, [(-r) % p, 1], p)
+    return poly
+
+
+def moments_from_support(roots, weights, length, p):
+    return [sum(w * pow(r, m, p) for r, w in zip(roots, weights)) % p
+            for m in range(length)]
+
+
+def subgroup_of_order(p, order):
+    for g in range(2, p):
+        if pow(g, order, p) != 1:
+            continue
+        if all(pow(g, d, p) != 1 for d in range(1, order)):
+            return [pow(g, i, p) for i in range(order)]
+    raise ValueError(f"no element of order {order} in F_{p}")
 
 
 def check_bucket_identification():
@@ -145,6 +218,81 @@ def check_toy_dichotomy():
     return ok, d
 
 
+def check_cramer_kernel_vector():
+    """For a deficiency-one j x (j+1) Hankel matrix, the signed maximal-minor
+    vector is in the kernel.  It is nonzero exactly on the full-row-rank chart."""
+    p = 13
+    u = [1, 2, 3, 4, 5, 6, 7, 8]
+    v = [8, 1, 5, 2, 9, 3, 7, 4]
+    d = []
+    ok = True
+    full_rank = zero_cramer = 0
+    rank_drop = []
+    for z in range(p):
+        s = [(a + z * b) % p for a, b in zip(u, v)]
+        m = hankel(s, 4, 4)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        c = cramer_vector(m, p)
+        ok &= mat_vec_zero(m, c, p)
+        if rank == 4:
+            full_rank += 1
+            ok &= any(c)
+        else:
+            rank_drop.append(z)
+            zero_cramer += int(all(x == 0 for x in c))
+            ok &= all(x == 0 for x in c)
+    d.append(f"signed maximal-minor vector c_i=(-1)^i det(M_i) satisfies M.c=0 "
+             f"for all {p} toy slopes")
+    d.append(f"full-row-rank chart: c != 0 at {full_rank}/{p} slopes; "
+             f"rank-drop chart: c = 0 at {zero_cramer}/{len(rank_drop)} slopes {rank_drop}")
+    ok &= full_rank > 0 and zero_cramer == len(rank_drop)
+    return ok, d
+
+
+def check_rankdrop_split_locator_dedup():
+    """Toy subgroup verification of the rank-drop converse.
+
+    If a degree-j split locator L_R is in the kernel and the moment Hankel block
+    has rank < j, then the same moment window is supported on a proper subset of
+    R.  The lower-degree locator of that active subset is also in the kernel, so
+    the slope belongs to a higher-agreement bucket and is not new exact-A mass.
+    """
+    p = 97
+    h = subgroup_of_order(p, 8)
+    j = 4
+    cases = rank_drop_cases = full_rank_cases = 0
+    ok = True
+    for roots in combinations(h, j):
+        roots = list(roots)
+        full_locator = locator_poly(roots, p)
+        for mask in range(1, 1 << j):
+            active = [roots[i] for i in range(j) if (mask >> i) & 1]
+            weights = [(11 + 7 * i) % p for i in range(len(active))]
+            window = moments_from_support(active, weights, 2 * j, p)
+            m = hankel(window, j, j)
+            rank, _ = rank_and_kernel_mod_p(m, p)
+            cases += 1
+            ok &= mat_vec_zero(m, full_locator, p)
+            ok &= (rank == len(active))
+            if rank < j:
+                rank_drop_cases += 1
+                lower_locator = locator_poly(active, p)
+                padded = lower_locator + [0] * (j + 1 - len(lower_locator))
+                ok &= len(lower_locator) - 1 < j
+                ok &= mat_vec_zero(m, padded, p)
+            else:
+                full_rank_cases += 1
+    d = [
+        f"F_{p} toy subgroup |H|=8, deficiency-one shape j=t={j}: checked "
+        f"{cases} active-support patterns over all degree-{j} split locators",
+        f"rank factorization verified: rank equals active support size in every case; "
+        f"full-rank cases {full_rank_cases}, rank-drop cases {rank_drop_cases}",
+        "for every rank-drop case, the lower-degree active-support locator is also "
+        "in the kernel, giving the higher-agreement dedup witness",
+    ]
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -152,7 +300,8 @@ def _pending():
 CHECKS = [
     ("bucket identification (A=384, deficiency 1)",       check_bucket_identification),
     ("toy dichotomy: underdetermined vs regular",         check_toy_dichotomy),
-    ("deficiency-1 kernel = Cramer minor vector",         _pending),
+    ("deficiency-1 kernel = Cramer minor vector",         check_cramer_kernel_vector),
+    ("rank-drop split locators dedupe to higher A",       check_rankdrop_split_locator_dedup),
     ("pivot chart + splitting filter (X^n - 1)",          _pending),
     ("eliminant or certified residual obstruction",       _pending),
     ("packet emission + v1 schema validation",            _pending),
