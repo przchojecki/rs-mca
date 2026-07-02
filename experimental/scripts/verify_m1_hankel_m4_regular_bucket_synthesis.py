@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v27"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v28"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v45",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v46",
 }
 
 
@@ -384,7 +384,10 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["conic_four_private_six_cycle_alternating_line_triples"]
         == [[0, 2, 4], [1, 3, 5]]
         and summary["conic_four_private_six_cycle_alternating_line_factor"]
-        == "a**2*b*c - a**2*b - a**2*c**2 + a*b*c + a*c**2 - b*c**2",
+        == "a**2*b*c - a**2*b - a**2*c**2 + a*b*c + a*c**2 - b*c**2"
+        and summary["conic_four_private_six_cycle_alternating_line_branch_closes"]
+        and summary["conic_four_private_six_cycle_live_branch"]
+        == "generic irreducible hexagon branch",
         "conic four-private six-cycle reducibility summary mismatch",
     )
     require(
@@ -1463,7 +1466,10 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         and six_cycle_profile["alternating_line_triples"] == [[0, 2, 4], [1, 3, 5]]
         and six_cycle_profile["alternating_line_factor"]
         == "a**2*b*c - a**2*b - a**2*c**2 + a*b*c + a*c**2 - b*c**2"
-        and "generic irreducible conic branch" in six_cycle_profile["conclusion"]
+        and six_cycle_profile["alternating_line_branch_closes_for_irreducible_conic"]
+        and six_cycle_profile["live_irreducible_branch"]
+        == "generic irreducible hexagon branch"
+        and "generic irreducible hexagon branch" in six_cycle_profile["conclusion"]
         and six_cycle_profile["not_an_mca_witness"],
         "conic four-private six-cycle reducibility profile mismatch",
     )
@@ -1736,7 +1742,7 @@ def build_certificate() -> dict[str, Any]:
                 "the conic d=r'+3 branch e_G=103..108 is closed by a root-star Bezout obstruction: six selected pairs on five residual coordinates force three pair-quadratic points on one root-star line, impossible for an irreducible conic",
                 "the conic d=r'+4 branch e_G=97..102 is reduced to two-disjoint-triangle or six-cycle hexagon-factor quotient residuals; all max-degree-at-least-3 graphs close by root-star Bezout",
                 "the six-cycle hexagon residual is real at subgroup-coordinate level: exponents 0,255,417,261,6,356 make the normalized hexagon factor vanish, so closure must use quotient/Hankel/split-locator constraints rather than subgroup nonvanishing",
-                "within the six-cycle residual, one alternating-line factor separates the generic irreducible conic branch from the reducible branch where cycle edges 0,2,4 and 1,3,5 lie on two lines",
+                "within the six-cycle residual, one alternating-line factor separates the generic irreducible conic branch from the reducible branch where cycle edges 0,2,4 and 1,3,5 lie on two lines; that alternating-line subbranch is closed for irreducible conic components by Bezout",
                 "the two-disjoint-triangle residual is a genuine irreducible conic branch for every pair of disjoint residual triples; the six points are co-conic, and reducibility would force a forbidden line through three pair-quadratic points",
                 "the subgroup exponents 0,1,2,3,4,5 give a concrete arithmetic replay of the two-triangle irreducible branch",
                 "the still-unclosed high-core quotient ranges are e_G=72..96 for lines and e_G=69..102 for irreducible conics",
@@ -1841,7 +1847,8 @@ def build_certificate() -> dict[str, Any]:
             "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
             "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
             "A=386 conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness",
-            "A=386 conic six-cycle residuals are split by the alternating-line factor",
+            "A=386 conic six-cycle alternating-line subbranch is closed for irreducible conic components",
+            "A=386 conic six-cycle live irreducible residual is the generic hexagon branch",
             "A=386 conic two-triangle residuals are proved irreducible for all disjoint residual triples",
             "projective infinity and finite affine accounting are not conflated",
         ],
@@ -1849,7 +1856,7 @@ def build_certificate() -> dict[str, Any]:
             "does not compute arbitrary non-proportional finite root tables",
             "does not prove the projective endpoint is empty or paid in the rank=6 case",
             "does not close the A=386 intermediate high-core quotient moving-slope residual in original-row projective accounting",
-            "does not close the A=386 conic four-private two-triangle or hexagon-factor residuals",
+            "does not close the A=386 conic four-private two-triangle or generic irreducible hexagon residuals",
             "does not treat the A=386 hexagon sharpness witness as an MCA bad-slope witness",
             "does not treat the A=386 two-triangle sharpness witness as an MCA bad-slope witness",
             "does not audit quotient or extension overlap for arbitrary root tables",

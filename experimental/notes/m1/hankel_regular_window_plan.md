@@ -355,7 +355,8 @@ the six-cycle is false: exponents `0,255,417,261,6,356` give a deterministic
 order-512 subgroup witness with zero hexagon factor.  The six-cycle branch
 then splits by one alternating-line factor: away from it the conic is
 irreducible, while on it the conic is the union of the lines through cycle
-edge triples `0,2,4` and `1,3,5`.  The two-triangle
+edge triples `0,2,4` and `1,3,5`; the latter subbranch is closed for
+irreducible conics by Bezout.  The two-triangle
 branch is stronger: for every pair of disjoint residual triples, the six
 pair-quadratic points are co-conic and no line contains three of them, so the
 conic is irreducible; exponents `0,1,2,3,4,5` give the arithmetic replay.

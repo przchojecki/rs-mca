@@ -26,7 +26,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v45"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v46"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1119,9 +1119,17 @@ def six_cycle_hexagon_reducibility_profile() -> dict[str, Any]:
             "the conic splits as the union of the line through cycle edges "
             "0,2,4 and the line through cycle edges 1,3,5"
         ),
+        "alternating_line_branch_closes_for_irreducible_conic": True,
+        "alternating_line_closure_reason": (
+            "On the alternating_line_factor, cycle edges 0,2,4 are collinear "
+            "and cycle edges 1,3,5 are collinear.  An irreducible conic cannot "
+            "contain three distinct points on either line by Bezout."
+        ),
+        "live_irreducible_branch": "generic irreducible hexagon branch",
         "conclusion": (
-            "The six-cycle hexagon residual splits into a generic irreducible "
-            "conic branch and a named alternating-line reducible branch."
+            "The alternating-line subbranch is closed for irreducible conic "
+            "components; the remaining six-cycle irreducible residual is the "
+            "generic irreducible hexagon branch."
         ),
         "not_an_mca_witness": (
             "This is a coordinate-level residual decomposition; it does not "
@@ -4367,7 +4375,10 @@ def build_certificate() -> dict[str, Any]:
         == [[0, 2, 4], [1, 3, 5]]
         and conic_four_private_six_cycle_reducibility_profile["alternating_line_factor"]
         == "a**2*b*c - a**2*b - a**2*c**2 + a*b*c + a*c**2 - b*c**2"
-        and "generic irreducible conic branch"
+        and conic_four_private_six_cycle_reducibility_profile[
+            "alternating_line_branch_closes_for_irreducible_conic"
+        ]
+        and "generic irreducible hexagon branch"
         in conic_four_private_six_cycle_reducibility_profile["conclusion"],
         "conic four-private six-cycle reducibility profile changed",
     )
@@ -5766,7 +5777,8 @@ def build_certificate() -> dict[str, Any]:
                 "alternating triples 0,2,4 and 1,3,5.  These are controlled by "
                 "one alternating-line factor; off that factor the conic is "
                 "irreducible, and on it the conic is the union of the two "
-                "alternating lines."
+                "alternating lines.  The alternating-line subbranch is closed "
+                "for irreducible conic components by Bezout."
             ),
             "conic_four_private_two_triangle_sharpness_witness": (
                 "The two-disjoint-triangle residual is also a genuine "
@@ -6226,6 +6238,16 @@ def build_certificate() -> dict[str, Any]:
                     "alternating_line_triples"
                 ]
             ),
+            "conic_four_private_six_cycle_alternating_line_branch_closes": (
+                conic_four_private_six_cycle_reducibility_profile[
+                    "alternating_line_branch_closes_for_irreducible_conic"
+                ]
+            ),
+            "conic_four_private_six_cycle_live_branch": (
+                conic_four_private_six_cycle_reducibility_profile[
+                    "live_irreducible_branch"
+                ]
+            ),
             "conic_four_private_two_triangle_sharpness_rank": (
                 conic_four_private_two_triangle_sharpness_witness["conic_matrix_rank"]
             ),
@@ -6465,14 +6487,15 @@ def build_certificate() -> dict[str, Any]:
             "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
             "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness",
             "two-triangle residual is proved irreducible by root-star incidence for all disjoint residual triples",
-            "six-cycle residual is split into generic irreducible and alternating-line reducible branches",
+            "six-cycle alternating-line subbranch is closed for irreducible conic components",
+            "six-cycle residual live irreducible branch is the generic irreducible hexagon branch",
             "two-triangle reducibility dismissal is refuted by a nondegenerate conic witness",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
             "does not close line components with forced external split-root core in 72..96 in projective accounting",
             "does not close irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting",
-            "does not rule out the conic four-private two-triangle or hexagon-factor residuals",
+            "does not rule out the conic four-private two-triangle or generic irreducible hexagon residuals",
             "the conic four-private hexagon sharpness witness is not an MCA bad-slope witness",
             "the conic four-private two-triangle sharpness witness is not an MCA bad-slope witness",
             "does not prove the high-core quotient split problem is empty or paid",

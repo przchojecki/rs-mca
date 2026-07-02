@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 six-cycle alternating-line closure
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** The six-cycle alternating-line subbranch in the
+  `A=386` conic four-private residual is closed for irreducible conic
+  components.  On the alternating-line factor, the cycle-edge triples `0,2,4`
+  and `1,3,5` each lie on a line, so an irreducible conic containing the six
+  pair-quadratic points would meet one of those lines in three distinct
+  points and hence contain that line.
+- **How it is useful:** This removes the reducible alternating-line branch
+  from the live irreducible-conic residual.  The remaining six-cycle branch is
+  now explicitly the generic irreducible hexagon branch, alongside the
+  two-triangle irreducible branch.
+- **What to do next:** Continue attacking the two live conic four-private
+  residuals with quotient/Hankel/split-locator structure: the generic
+  irreducible hexagon branch and the two-triangle branch.
+
 ### 2026-07-02 - A386 tangent-tail and incidence-only sharpness
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
@@ -80,7 +106,8 @@ Keep entries concise and link to the relevant files.
   says the remaining closure must use quotient/Hankel/split-locator structure.
   The six-cycle residual is now split by one alternating-line factor: away
   from it the conic is irreducible, and on it the conic is the union of the
-  two alternating lines through cycle edge triples `0,2,4` and `1,3,5`.
+  two alternating lines through cycle edge triples `0,2,4` and `1,3,5`; the
+  latter subbranch is closed for irreducible conics by Bezout.
   The two-triangle branch is now proved irreducible for every pair of disjoint
   residual triples: the six pair-quadratic points are co-conic, and a reducible
   conic would force a line through three points, contradicting the root-star

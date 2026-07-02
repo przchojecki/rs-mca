@@ -413,8 +413,12 @@ a^2*b*c-a^2*b-a^2*c^2+a*b*c+a*c^2-b*c^2.
 ```
 
 Off this factor the six-cycle survivor is an irreducible conic.  On this
-factor the conic is the reducible union of the two alternating lines.  This
-gives two named six-cycle residual branches rather than one opaque branch.
+factor the conic is the reducible union of the two alternating lines, and this
+subbranch is closed for irreducible conic components: an irreducible conic
+cannot meet either alternating line in three distinct points without containing
+that line, by Bezout.  Thus the live irreducible six-cycle branch is the
+generic irreducible hexagon branch where the alternating-line factor is
+nonzero.
 
 The two-disjoint-triangle survivor is in fact a genuine irreducible conic
 branch for every pair of disjoint residual triples.  The six pair-quadratic
@@ -574,8 +578,8 @@ cofactor-current tangent-tail rows `e_G=97..119` for lines and `e_G=103..119`
 for conics, using the four-private line-pencil obstruction on the line side
 and the K4 determinant and three-private root-star arguments on the conic side,
 while reducing the conic four-private rows `e_G=97..102` to the two-triangle
-or hexagon-factor residuals above.  Thus the exact-current one-over rows are
-only the finite-incidence ranges.
+or generic irreducible hexagon residuals above.  Thus the exact-current
+one-over rows are only the finite-incidence ranges.
 
 The packet now records these exact-current rows as a minimal obstruction
 profile.  Any surviving projective over-budget witness must be one of the
