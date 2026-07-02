@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 two-core conic product collapse
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_collapse.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_two_core_conic_product_collapse.md`;
+  `experimental/notes/m1/hankel_rank6_a385_two_core_high_core_quotient.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A product-collapse theorem for the separated
+  `A=385` rank-6 fixed two-core irreducible-conic high-core branch: the global
+  forced core gives `L_{E R}=H R` with `deg H<=125`, closing `e_G<=122` and
+  making `e_G>=124` impossible.
+- **How it is useful:** This converts the conic side of the high-core residual
+  from a degree-`59` quotient family to a single explicit quotient tail
+  `e_G=123`, narrowing the remaining A385 fixed two-core obstruction.
+- **What to do next:** Attack the conic `e_G=123` quotient tail and the
+  high-core line quotient branches separately; keep endpoint payment and
+  row-level M3 closure as separate ledgers.
+
 ### 2026-07-02 - A385 two-core high-core quotient normal form
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

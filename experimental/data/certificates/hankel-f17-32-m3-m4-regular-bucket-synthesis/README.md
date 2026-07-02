@@ -267,6 +267,21 @@ conic component with `e_G>=68` has a global forced external core and becomes a
 quotient family of degree at most `59`.  The packet does not prove those
 quotient branches empty or paid.
 
+The `A=385` two-core conic product-collapse packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/
+  f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json
+```
+
+closes most of the irreducible-conic high-core quotient branch.  In the global
+forced-core conic case, comparison of the remainders of `G`, `T G`, and
+`T^2 G` modulo `P_X` forces the top two coefficients of the common factor `H`
+to vanish, so `L_{E R}=H R` with `deg H<=125`.  Therefore `e_G<=122` cannot
+pass the degree-`127` split-locator gate, while `e_G>=124` is impossible.  The
+packet leaves only the conic quotient tail `e_G=123` and does not address line
+high-core branches.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -578,6 +593,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_i
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quotient.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_collapse.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

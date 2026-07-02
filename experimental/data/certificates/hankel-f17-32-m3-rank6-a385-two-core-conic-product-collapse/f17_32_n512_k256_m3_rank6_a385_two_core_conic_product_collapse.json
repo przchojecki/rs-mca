@@ -1,0 +1,108 @@
+{
+  "agreement": {
+    "A": 385,
+    "boundary_defect_h": 5,
+    "combined_support_size": 134,
+    "direction_rank": 6,
+    "forced_base_core_size": 2,
+    "j": 127,
+    "m": 128,
+    "projective_Q_search_dimension_after_core": 2,
+    "projective_Q_search_dimension_before_core": 4,
+    "residual_vector_dimension_after_core": 3,
+    "split_locator_degree": 127,
+    "t": 129
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=385 fixed two-core residual has Q-plane P^2 and locator degree 127",
+    "high-core quotient dependency exposes the irreducible-conic quotient family",
+    "global external core forces the top two remainder coefficients to vanish",
+    "product collapse gives L_{E R}=H*R with deg H<=125",
+    "H has exactly two fixed base roots and e_G global external roots on the subgroup",
+    "e_G<=122 gives at most 126 subgroup roots for every H*R",
+    "e_G>=124 is impossible for a nonzero H of degree <=125 with two fixed base roots"
+  ],
+  "nonclaims": [
+    "does not close the e_G=123 irreducible-conic quotient tail",
+    "does not prove product collapse for A=385 high-core line components",
+    "does not close the full fixed two-core nonconstant moving-slope branch",
+    "does not prove that every A=385 over-budget branch has a fixed two-point base core",
+    "does not close moving-core or no-common-core A=385 branches",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=385 separated rank-6 fixed two-core irreducible-conic product collapse",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-two-core-conic-product-collapse-v1",
+  "setup": {
+    "base_multiplier": "Let S be the degree-<m interpolant S(x)=Omega_x/a_x on X, let E be the fixed two-core locator, and put G=S*E.",
+    "irreducible_conic_global_core": "In the high-core irreducible-conic branch, every forced external root is global: ev_s(R)=L_{E R}(s) vanishes on the whole residual Q-plane.",
+    "kernel_polynomial": "For residual R with deg R<3, L_{E R} is the remainder of G*R modulo P_X=prod_{x in X}(T-x)."
+  },
+  "source_artifacts": {
+    "a385_two_core_high_core_quotient": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json",
+      "sha256": "3197beb061a10b5c5d26ec658ac3926896f8eeddadfd69bfe96df057aff1f819"
+    },
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 385,
+    "conic_high_core_external_core_min": 68,
+    "conic_product_collapse_closed_external_core_range": [
+      68,
+      122
+    ],
+    "conic_product_collapse_impossible_external_core_range": [
+      124,
+      126
+    ],
+    "conic_quotient_tail_residual_external_core": 123,
+    "fixed_base_roots_in_product_common_factor": 2,
+    "product_common_factor_degree_bound": 125,
+    "remaining_conic_residual_after_product_collapse": "fixed two-core irreducible-conic quotient tail at e_G=123",
+    "residual_extra_root_cap": 2,
+    "split_locator_degree": 127
+  },
+  "theorem": {
+    "base_roots_of_H": "On the base support, H(x)R(x)=a_x^{-1}Omega_x E(x)R(x).  Thus H has exactly the two fixed base-core roots on X and no other base roots.",
+    "core_bound": "Because H is nonzero of degree at most 125 and already has the two fixed base roots, an irreducible-conic global external core has size at most 123 after product collapse.",
+    "external_roots_of_H": "For an external subgroup point s, H(s)=0 is equivalent to ev_s vanishing on the whole residual Q-plane.  Hence the external subgroup roots of H are exactly the global forced external core.",
+    "product_collapse": "With deg H<=m-3 and deg R<3, no modular reduction occurs: L_{E R}=H*R for every residual R.",
+    "remainder_comparison": "Write G=q_0 P_X+H with deg H<m.  If ev_s(1)=ev_s(T)=ev_s(T^2)=0 for some external s, then comparing ev_s(T)-s ev_s(1) and ev_s(T^2)-s ev_s(T) forces the T^(m-1) and T^(m-2) coefficients of H to vanish because P_X(s)!=0.  Thus deg H<=m-3.",
+    "root_count_obstruction": "Every product H*R has at most e_G forced external roots, the two fixed base roots, and at most two further subgroup roots from the nonzero residual polynomial R.  If e_G<=122, this is at most 126 roots, fewer than the 127 roots required by the degree-127 split-locator gate."
+  }
+}

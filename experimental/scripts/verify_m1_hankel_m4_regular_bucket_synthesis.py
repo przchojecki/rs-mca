@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v42"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v43"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -139,6 +139,10 @@ A385_TWO_CORE_HIGH_CORE_QUOTIENT_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/"
     "f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json"
 )
+A385_TWO_CORE_CONIC_PRODUCT_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/"
+    "f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -179,6 +183,9 @@ EXPECTED_SCHEMAS = {
     ),
     A385_TWO_CORE_HIGH_CORE_QUOTIENT_REF: (
         "f17-32-m3-rank6-a385-two-core-high-core-quotient-v1"
+    ),
+    A385_TWO_CORE_CONIC_PRODUCT_REF: (
+        "f17-32-m3-rank6-a385-two-core-conic-product-collapse-v1"
     ),
 }
 
@@ -2437,6 +2444,52 @@ def check_a385_two_core_high_core_quotient_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_two_core_conic_product_packet(data: dict[str, Any]) -> None:
+    require(
+        data["agreement"]["A"] == 385,
+        "A385 two-core conic product agreement mismatch",
+    )
+    require(
+        data["status"] == "PROVED / AUDIT",
+        "A385 two-core conic product status mismatch",
+    )
+    summary = data["summary"]
+    require(
+        summary["split_locator_degree"] == 127
+        and summary["conic_high_core_external_core_min"] == 68
+        and summary["product_common_factor_degree_bound"] == 125
+        and summary["fixed_base_roots_in_product_common_factor"] == 2
+        and summary["residual_extra_root_cap"] == 2,
+        "A385 two-core conic product degree summary mismatch",
+    )
+    require(
+        summary["conic_product_collapse_closed_external_core_range"] == [68, 122]
+        and summary["conic_product_collapse_impossible_external_core_range"]
+        == [124, 126]
+        and summary["conic_quotient_tail_residual_external_core"] == 123,
+        "A385 two-core conic product residual range mismatch",
+    )
+    require(
+        summary["remaining_conic_residual_after_product_collapse"]
+        == "fixed two-core irreducible-conic quotient tail at e_G=123",
+        "A385 two-core conic product residual label mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not close the e_G=123 irreducible-conic quotient tail" in nonclaims,
+        "A385 two-core conic product missing e=123 nonclaim",
+    )
+    require(
+        "does not prove product collapse for A=385 high-core line components"
+        in nonclaims,
+        "A385 two-core conic product missing line nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 two-core conic product missing row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -2466,6 +2519,9 @@ def build_certificate() -> dict[str, Any]:
     )
     check_a385_two_core_high_core_quotient_packet(
         dependencies[A385_TWO_CORE_HIGH_CORE_QUOTIENT_REF]
+    )
+    check_a385_two_core_conic_product_packet(
+        dependencies[A385_TWO_CORE_CONIC_PRODUCT_REF]
     )
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
@@ -2596,6 +2652,13 @@ def build_certificate() -> dict[str, Any]:
                 "for irreducible conic components, containment in a root hyperplane forces the evaluation functional to vanish on the whole residual Q-plane, giving a projective-plane quotient family of degree at most 59",
                 "the quotient normal form does not yet prove product collapse or paidness of the high-core quotient branches",
             ],
+            "a385_two_core_conic_product_collapse": [
+                "inside the fixed two-core irreducible-conic high-core branch, a global forced external core makes the root functional vanish on the whole residual Q-plane",
+                "writing G=q_0 P_X+H, comparison of G, TG, and T^2G at one global external core point forces the top two coefficients of H to vanish",
+                "therefore L_{E R}=H R with deg H<=125 for every residual R of degree <3",
+                "H carries the two fixed base roots and exactly the global forced external core on the subgroup, while R contributes at most two further subgroup roots",
+                "hence e_G<=122 cannot meet the degree-127 split-locator gate, e_G>=124 is impossible for nonzero H, and only the conic quotient tail e_G=123 remains from this packet",
+            ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
@@ -2704,6 +2767,7 @@ def build_certificate() -> dict[str, Any]:
             "a385_two_core_slope_free_empty_count": 1,
             "a385_two_core_moving_slope_incidence_count": 1,
             "a385_two_core_high_core_quotient_count": 1,
+            "a385_two_core_conic_product_collapse_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -2734,6 +2798,7 @@ def build_certificate() -> dict[str, Any]:
             "A=385 separated rank-6 fixed two-core slope-free base loci and global components are empty by the residual degree<3 root-count obstruction",
             "A=385 separated rank-6 fixed two-core moving-slope line/conic branches have external-incidence thresholds e<=70 and e<=67 for projective safety",
             "A=385 separated rank-6 fixed two-core high-core moving-slope branches reduce to quotient pencils/families of degrees at most 56 and 59",
+            "A=385 separated rank-6 fixed two-core irreducible-conic high-core branches close by product collapse except for the e_G=123 quotient tail",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",

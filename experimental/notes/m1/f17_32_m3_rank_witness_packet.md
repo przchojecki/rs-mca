@@ -587,8 +587,16 @@ residual.
 The `A=385` two-core high-core quotient companion puts those high-core residuals
 in quotient normal form.  Lines become quotient pencils of degree at most `56`;
 irreducible conics have a global forced external core and become quotient
-families of degree at most `59`.  These quotient branches are not yet proved
-empty or paid.
+families of degree at most `59`.
+
+The `A=385` two-core conic product-collapse companion closes most of that
+irreducible-conic high-core branch.  In the global forced-core conic case,
+comparison of the remainders of `G`, `T G`, and `T^2 G` modulo `P_X` forces the
+top two coefficients of the common factor `H` to vanish, so `L_{E R}=H R` with
+`deg H<=125`.  Hence `e_G<=122` cannot pass the degree-`127` split-locator
+gate and `e_G>=124` is impossible; the remaining conic quotient tail is
+`e_G=123`.  The line high-core quotient branches are not addressed by this
+packet.
 
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
@@ -938,6 +946,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_i
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quotient.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_collapse.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

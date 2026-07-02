@@ -186,6 +186,20 @@ conic, containment in a root hyperplane forces the external root functional to
 vanish on the whole residual plane, so the branch is a quotient family of
 degree at most `127-68=59`.  The quotient branches remain unclosed.
 
+The fixed two-core conic product-collapse companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_conic_product_collapse.md
+```
+
+It closes most of the irreducible-conic high-core quotient branch.  If the
+global forced external core has size `e_G`, comparison of the remainders of
+`G`, `T G`, and `T^2 G` modulo `P_X` forces the top two coefficients of the
+common factor `H` to vanish, so `L_{E R}=H R` with `deg H<=125`.  Thus
+`e_G<=122` cannot pass the degree-`127` split-locator gate, while `e_G>=124`
+is impossible.  The remaining irreducible-conic high-core tail from this
+packet is exactly `e_G=123`.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -329,6 +343,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_i
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quotient.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_collapse.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json
 ```
 
 Nonclaims:

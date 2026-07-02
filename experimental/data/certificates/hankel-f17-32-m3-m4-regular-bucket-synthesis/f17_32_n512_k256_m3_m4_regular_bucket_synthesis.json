@@ -360,6 +360,7 @@
     "A=385 separated rank-6 fixed two-core slope-free base loci and global components are empty by the residual degree<3 root-count obstruction",
     "A=385 separated rank-6 fixed two-core moving-slope line/conic branches have external-incidence thresholds e<=70 and e<=67 for projective safety",
     "A=385 separated rank-6 fixed two-core high-core moving-slope branches reduce to quotient pencils/families of degrees at most 56 and 59",
+    "A=385 separated rank-6 fixed two-core irreducible-conic high-core branches close by product collapse except for the e_G=123 quotient tail",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -502,7 +503,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v42",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v43",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -568,6 +569,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json",
       "sha256": "a07907e41c5cabe83c2dbcbd0f27a9607b7bd921b8fd07417f9c2dbceaa63141"
     },
+    "f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json",
+      "sha256": "aec03f363c3f922f3896c1101f0da3ca5eac205682182bba4c8e7f32f3a23f14"
+    },
     "f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json",
       "sha256": "fcff20da15e17efc860def7d707ee17c1aff41a28a0d2ebbbd90bb670045419e"
@@ -619,6 +624,7 @@
     "a385_three_core_quadratic_cut_count": 1,
     "a385_two_core_component_cut_count": 1,
     "a385_two_core_conic_pair_safety_count": 1,
+    "a385_two_core_conic_product_collapse_count": 1,
     "a385_two_core_global_component_slope_dichotomy_count": 1,
     "a385_two_core_high_core_quotient_count": 1,
     "a385_two_core_moving_slope_incidence_count": 1,
@@ -627,7 +633,7 @@
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 26,
+    "dependencies_checked": 27,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -666,6 +672,13 @@
       "if two residual direction-consistency conics have no common component on that Q-plane, Bezout gives at most four compatible Q-classes",
       "each compatible non-slope-free Q-class determines at most one finite noncontained slope, and the endpoint gives projective total at most 5<=6",
       "the remaining fixed-two-core residual is the common-component branch on the residual Q-plane"
+    ],
+    "a385_two_core_conic_product_collapse": [
+      "inside the fixed two-core irreducible-conic high-core branch, a global forced external core makes the root functional vanish on the whole residual Q-plane",
+      "writing G=q_0 P_X+H, comparison of G, TG, and T^2G at one global external core point forces the top two coefficients of H to vanish",
+      "therefore L_{E R}=H R with deg H<=125 for every residual R of degree <3",
+      "H carries the two fixed base roots and exactly the global forced external core on the subgroup, while R contributes at most two further subgroup roots",
+      "hence e_G<=122 cannot meet the degree-127 split-locator gate, e_G>=124 is impossible for nonzero H, and only the conic quotient tail e_G=123 remains from this packet"
     ],
     "a385_two_core_global_component_slope_dichotomy": [
       "inside the fixed two-core global-component residual, the direction linear pairs induce a rational slope map on the component off the base locus",
