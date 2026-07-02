@@ -1,0 +1,258 @@
+{
+  "degrees": [
+    3,
+    4
+  ],
+  "field": {
+    "domain": "F_17^*",
+    "n": 16,
+    "p": 17
+  },
+  "interpretation": {
+    "no_unclassified_support_le_3_sparse_flat_seen": true,
+    "note": "Third structural class found: support-3-only sparse dual words occur in both toy dimensions.  This is not an unstructured counterexample; it is the sparse-dependence descent branch that the QF.7 reduction packet is designed to handle.",
+    "outcome": "THIRD_STRUCTURAL_CLASS_FOUND__SPARSE_DEPENDENCE_DESCENT",
+    "recommended_restatement": "Do not phrase the many-sparse residue as pullback/tangent only. Include a support-3 sparse-dependence descent ledger before the primitive residue.",
+    "third_class_found": true
+  },
+  "max_sparse_support_tested": 3,
+  "nonclaims": [
+    "does not prove Conjecture F",
+    "does not enumerate non-hyperplane flats",
+    "does not test sparse dual support larger than 3",
+    "literal pullback-container counts are only a small quotient sanity check"
+  ],
+  "object": "codimension-one projective flats ker(a) in P(F_17[X]_{<=j}); a support-w sparse dual word is counted when a lies in the span of the w corresponding evaluation vectors",
+  "payload_sha256": "5cb2b76e527b0f94832a67b3942e77e4eb20c798940880eb9accfd3391c0a564",
+  "roadmap_task": "E9 / QF.8 / f_many_sparse_structure toy census",
+  "runs": [
+    {
+      "ambient_projective_dimension": 3,
+      "class_counts": {
+        "common_root": 16,
+        "dual_distance_ge_4": 2,
+        "sparse3_only": 3282,
+        "twin": 1920
+      },
+      "classified_support_le_3_sparse_count": 5218,
+      "degree": 3,
+      "dual_distance_ge_4_count": 2,
+      "expected_normal_count": 5220,
+      "literal_pullback_container_counts": {},
+      "max_by_class": {
+        "common_root": {
+          "normal": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "support_counts": [
+            1,
+            15,
+            105
+          ]
+        },
+        "dual_distance_ge_4": {
+          "normal": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "support_counts": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sparse3_only": {
+          "normal": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "support_counts": [
+            0,
+            0,
+            35
+          ]
+        },
+        "twin": {
+          "normal": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "support_counts": [
+            0,
+            1,
+            38
+          ]
+        }
+      },
+      "normal_count": 5220,
+      "projective_flat_dimension": 2,
+      "support3_count_distribution_by_class": {
+        "common_root": {
+          "105": 16
+        },
+        "dual_distance_ge_4": {
+          "0": 2
+        },
+        "sparse3_only": {
+          "26": 64,
+          "27": 208,
+          "28": 288,
+          "29": 224,
+          "30": 496,
+          "31": 1232,
+          "32": 674,
+          "33": 80,
+          "35": 16
+        },
+        "twin": {
+          "36": 720,
+          "37": 960,
+          "38": 240
+        }
+      },
+      "support_span_incidence_totals": {
+        "1": 16,
+        "2": 2160,
+        "3": 171920
+      },
+      "support_span_projective_sizes": {
+        "1": 1,
+        "2": 18,
+        "3": 307
+      },
+      "support_totals": {
+        "1": 16,
+        "2": 120,
+        "3": 560
+      }
+    },
+    {
+      "ambient_projective_dimension": 4,
+      "class_counts": {
+        "common_root": 16,
+        "dual_distance_ge_4": 8357,
+        "sparse3_only": 78448,
+        "twin": 1920
+      },
+      "classified_support_le_3_sparse_count": 80384,
+      "degree": 4,
+      "dual_distance_ge_4_count": 8357,
+      "expected_normal_count": 88741,
+      "literal_pullback_container_counts": {
+        "2": {
+          "dual_distance_ge_4": 10,
+          "twin": 8
+        },
+        "4": {
+          "dual_distance_ge_4": 43,
+          "sparse3_only": 240,
+          "twin": 24
+        }
+      },
+      "max_by_class": {
+        "common_root": {
+          "normal": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "support_counts": [
+            1,
+            15,
+            105
+          ]
+        },
+        "dual_distance_ge_4": {
+          "normal": [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "support_counts": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sparse3_only": {
+          "normal": [
+            1,
+            1,
+            2,
+            4,
+            16
+          ],
+          "support_counts": [
+            0,
+            0,
+            5
+          ]
+        },
+        "twin": {
+          "normal": [
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "support_counts": [
+            0,
+            1,
+            14
+          ]
+        }
+      },
+      "normal_count": 88741,
+      "projective_flat_dimension": 3,
+      "support3_count_distribution_by_class": {
+        "common_root": {
+          "105": 16
+        },
+        "dual_distance_ge_4": {
+          "0": 8357
+        },
+        "sparse3_only": {
+          "1": 27696,
+          "2": 37584,
+          "3": 12192,
+          "4": 960,
+          "5": 16
+        },
+        "twin": {
+          "14": 1920
+        }
+      },
+      "support_span_incidence_totals": {
+        "1": 16,
+        "2": 2160,
+        "3": 171920
+      },
+      "support_span_projective_sizes": {
+        "1": 1,
+        "2": 18,
+        "3": 307
+      },
+      "support_totals": {
+        "1": 16,
+        "2": 120,
+        "3": 560
+      }
+    }
+  ],
+  "schema": "conjecture_f_many_sparse_census.v1",
+  "status": "EXPERIMENTAL_EVIDENCE"
+}

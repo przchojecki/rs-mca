@@ -1,3 +1,27 @@
+# 2026-07-02 - Conjecture F many-sparse toy census
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/m1/conjecture_f_many_sparse_census.md`,
+  `experimental/scripts/verify_conjecture_f_many_sparse_census.py`,
+  `experimental/data/certificates/conjecture-f-many-sparse-census/README.md`,
+  `experimental/data/certificates/conjecture-f-many-sparse-census/conjecture_f_many_sparse_census.json`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EXACT TOY EVIDENCE.
+- **What is being added:** The pre-registered E9/QF.8 census for
+  `K=F_17`, `H=F_17^*`, and codimension-one flats in
+  `P(K[X]_{<=3})` and `P(K[X]_{<=4})`.  The verifier counts support
+  `1`, `2`, and `3` sparse dual words and classifies flats as common-root,
+  twin, support-3-only, or dual-distance at least `4`.
+- **How it is useful:** It falsifies the overly narrow toy phrasing
+  "many-sparse means only pullback/tangent" by finding a large support-3-only
+  class, while showing that this class is structured and should be routed
+  through the existing sparse-dependence descent ledger rather than treated as
+  an unstructured obstruction.
+- **What to do next:** Restate the Conjecture F many-sparse residue with an
+  explicit sparse-dependence descent bucket, then decide whether to extend the
+  census to non-hyperplane flats or move to the stripped toy inverse task E11.
+
 # Agents Log
 
 This file is the working ledger for agent-created material in `experimental/`.
