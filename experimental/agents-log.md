@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Quotient census window compiler
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/quotient_census_window_compiler.md`;
+  `experimental/scripts/verify_quotient_census_window_compiler.py`;
+  `experimental/data/certificates/quotient-census-window/README.md`;
+  `experimental/data/certificates/quotient-census-window/quotient_census_window_compiler.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-COMPILER-ARITHMETIC / 2-POWER QUOTIENT COUNT.
+- **What is being added:** A compiler note and verifier for exact 2-power
+  quotient census counts, bounded relaxed and dyadic scale-crossing tables,
+  and exact `floor(q/2^128)` window arithmetic for certified lower/upper
+  census gaps.
+- **How it is useful:** Turns the quotient-census endgame into exact bignum
+  and interval arithmetic at bounded scales, while explicitly separating the
+  unresolved quotient-collision and prime-counting layers.
+- **What to do next:** Consume the compiler in row-specific quotient packets,
+  add optional prime subcounts inside the emitted admissible-integer windows,
+  and keep mixed-radix counts or zone-b collision lower bounds in separate
+  notes.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

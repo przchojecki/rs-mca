@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "details": [
+        "A_2(16,9) = 3280",
+        "A_2(32,17) = 21523360",
+        "rate 1/2 closed form (3^(N/2)-1)/2 checked for N=2..512",
+        "all official-rate relaxed counts N<=400 evaluated exactly; max bit length 316",
+        "all official-rate dyadic counts N<=512 evaluated exactly; max bit length 405"
+      ],
+      "name": "exact 2-power quotient count evaluation",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "budget bits 64: 1/2: 82->84; 1/4: 84->88; 1/8: 120->128; 1/16: 176->192",
+        "budget bits 96: 1/2: 122->124; 1/4: 128->132; 1/8: 176->184; 1/16: 272->288",
+        "budget bits 128: 1/2: 162->164; 1/4: 172->176; 1/8: 240->248; 1/16: 368->384",
+        "dyadic B_max crossings: 1/2: 128->256; 1/4: 128->256; 1/8: 128->256; 1/16: 256->512",
+        "relaxed first crossings are <=384; dyadic coarsening reaches 512 only at rate 1/16"
+      ],
+      "name": "bounded exact-count scale census",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "A_2(16,9)=K=3280; certified lower L=3264; budget window has 16 integer budget values",
+        "q interval: [1110681645629943144744454718657291442192384, 1116126163500678160159868712376199733575679]",
+        "q == 1 mod 512 admissible integers in window: 10633823966279326983230456482242756608",
+        "L=K gives an empty unresolved window",
+        "field-range clipping at q<2^256 checked"
+      ],
+      "name": "exact budget-window arithmetic",
+      "status": "PASS"
+    }
+  ],
+  "dag_nodes": [
+    "census_bounded_scales",
+    "census_exact_counts",
+    "census_window_arithmetic"
+  ],
+  "field_range": "q < 2^256",
+  "non_claims": [
+    "does not resolve quotient collisions below the norm threshold",
+    "does not count primes inside admissible-integer q windows",
+    "does not prove mixed-radix exact quotient counts",
+    "does not prove global quotient-periodic exhaustion"
+  ],
+  "note": "experimental/notes/thresholds/quotient_census_window_compiler.md",
+  "script": "experimental/scripts/verify_quotient_census_window_compiler.py",
+  "status": "PROVED-COMPILER-ARITHMETIC / 2-POWER QUOTIENT COUNT",
+  "target_exponent": 128
+}
