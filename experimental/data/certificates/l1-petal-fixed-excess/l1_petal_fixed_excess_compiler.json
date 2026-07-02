@@ -1,0 +1,330 @@
+{
+  "conclusion": "At the L1 lower cutoff M=O(log n) and q=poly(n), every fixed cofactor-excess full-petal layer is polynomially bounded; any full-petal obstruction must use growing excess.",
+  "lemma_dependency": {
+    "lemma": "Lemma 16. Cofactor-Budgeted Full-Petal Layers",
+    "source": "experimental/notes/l1/l1_full_list_quotient_proof_program.md",
+    "used_bound": "for ell <= d <= ell+E, count <= binom(M,2)q + 2^M sum_{e=1}^E q^(e+1)"
+  },
+  "lower_cutoff_profiles": [
+    {
+      "cumulative_bound_bit_length": 101,
+      "field_size_q": 1048576,
+      "layers": [
+        {
+          "bound": 199229440,
+          "bound_bit_length": 28,
+          "ceil_log2_bound": 28,
+          "defect": "d = ell + e",
+          "excess_e": 0,
+          "n_power_upper_as_fraction": "28/20",
+          "source": "binom(M,2) q"
+        },
+        {
+          "bound": 1152921504606846976,
+          "bound_bit_length": 61,
+          "ceil_log2_bound": 61,
+          "defect": "d = ell + e",
+          "excess_e": 1,
+          "n_power_upper_as_fraction": "61/20",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1208925819614629174706176,
+          "bound_bit_length": 81,
+          "ceil_log2_bound": 81,
+          "defect": "d = ell + e",
+          "excess_e": 2,
+          "n_power_upper_as_fraction": "81/20",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1267650600228229401496703205376,
+          "bound_bit_length": 101,
+          "ceil_log2_bound": 101,
+          "defect": "d = ell + e",
+          "excess_e": 3,
+          "n_power_upper_as_fraction": "101/20",
+          "source": "2^M q^(e+1)"
+        }
+      ],
+      "log2_n": 20,
+      "max_excess_E": 3,
+      "n": 1048576,
+      "petal_count_M": 20,
+      "polynomial_exponent_rule": "for fixed E, 2^M q^(E+1) <= n^(1 + q_power*(E+1)) when M=log2(n)",
+      "q_power": 1
+    },
+    {
+      "cumulative_bound_bit_length": 181,
+      "field_size_q": 1099511627776,
+      "layers": [
+        {
+          "bound": 208907209277440,
+          "bound_bit_length": 48,
+          "ceil_log2_bound": 48,
+          "defect": "d = ell + e",
+          "excess_e": 0,
+          "n_power_upper_as_fraction": "48/20",
+          "source": "binom(M,2) q"
+        },
+        {
+          "bound": 1267650600228229401496703205376,
+          "bound_bit_length": 101,
+          "ceil_log2_bound": 101,
+          "defect": "d = ell + e",
+          "excess_e": 1,
+          "n_power_upper_as_fraction": "101/20",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1393796574908163946345982392040522594123776,
+          "bound_bit_length": 141,
+          "ceil_log2_bound": 141,
+          "defect": "d = ell + e",
+          "excess_e": 2,
+          "n_power_upper_as_fraction": "141/20",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1532495540865888858358347027150309183618739122183602176,
+          "bound_bit_length": 181,
+          "ceil_log2_bound": 181,
+          "defect": "d = ell + e",
+          "excess_e": 3,
+          "n_power_upper_as_fraction": "181/20",
+          "source": "2^M q^(e+1)"
+        }
+      ],
+      "log2_n": 20,
+      "max_excess_E": 3,
+      "n": 1048576,
+      "petal_count_M": 20,
+      "polynomial_exponent_rule": "for fixed E, 2^M q^(E+1) <= n^(1 + q_power*(E+1)) when M=log2(n)",
+      "q_power": 2
+    },
+    {
+      "cumulative_bound_bit_length": 201,
+      "field_size_q": 1099511627776,
+      "layers": [
+        {
+          "bound": 857619069665280,
+          "bound_bit_length": 50,
+          "ceil_log2_bound": 50,
+          "defect": "d = ell + e",
+          "excess_e": 0,
+          "n_power_upper_as_fraction": "50/40",
+          "source": "binom(M,2) q"
+        },
+        {
+          "bound": 1329227995784915872903807060280344576,
+          "bound_bit_length": 121,
+          "ceil_log2_bound": 121,
+          "defect": "d = ell + e",
+          "excess_e": 1,
+          "n_power_upper_as_fraction": "121/40",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1461501637330902918203684832716283019655932542976,
+          "bound_bit_length": 161,
+          "ceil_log2_bound": 161,
+          "defect": "d = ell + e",
+          "excess_e": 2,
+          "n_power_upper_as_fraction": "161/40",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1606938044258990275541962092341162602522202993782792835301376,
+          "bound_bit_length": 201,
+          "ceil_log2_bound": 201,
+          "defect": "d = ell + e",
+          "excess_e": 3,
+          "n_power_upper_as_fraction": "201/40",
+          "source": "2^M q^(e+1)"
+        }
+      ],
+      "log2_n": 40,
+      "max_excess_E": 3,
+      "n": 1099511627776,
+      "petal_count_M": 40,
+      "polynomial_exponent_rule": "for fixed E, 2^M q^(E+1) <= n^(1 + q_power*(E+1)) when M=log2(n)",
+      "q_power": 1
+    },
+    {
+      "cumulative_bound_bit_length": 361,
+      "field_size_q": 1208925819614629174706176,
+      "layers": [
+        {
+          "bound": 942962139299410756270817280,
+          "bound_bit_length": 90,
+          "ceil_log2_bound": 90,
+          "defect": "d = ell + e",
+          "excess_e": 0,
+          "n_power_upper_as_fraction": "90/40",
+          "source": "binom(M,2) q"
+        },
+        {
+          "bound": 1606938044258990275541962092341162602522202993782792835301376,
+          "bound_bit_length": 201,
+          "ceil_log2_bound": 201,
+          "defect": "d = ell + e",
+          "excess_e": 1,
+          "n_power_upper_as_fraction": "201/40",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1942668892225729070919461906823518906642406839052139521251812409738904285205208498176,
+          "bound_bit_length": 281,
+          "ceil_log2_bound": 281,
+          "defect": "d = ell + e",
+          "excess_e": 2,
+          "n_power_upper_as_fraction": "281/40",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 2348542582773833227889480596789337027375682548908319870707290971532209025114608443463698998384768703031934976,
+          "bound_bit_length": 361,
+          "ceil_log2_bound": 361,
+          "defect": "d = ell + e",
+          "excess_e": 3,
+          "n_power_upper_as_fraction": "361/40",
+          "source": "2^M q^(e+1)"
+        }
+      ],
+      "log2_n": 40,
+      "max_excess_E": 3,
+      "n": 1099511627776,
+      "petal_count_M": 40,
+      "polynomial_exponent_rule": "for fixed E, 2^M q^(E+1) <= n^(1 + q_power*(E+1)) when M=log2(n)",
+      "q_power": 2
+    }
+  ],
+  "non_claim": "This packet does not close mixed-petal sunflower amplification and does not enumerate actual list codewords beyond the Lemma-16 upper-bound compiler.",
+  "object": {
+    "core_defect": "d = ell + e",
+    "fixed_excess_range_checked": "0 <= e <= 3",
+    "petal_count": "M",
+    "petal_size": "ell",
+    "setting": "background-free full-petal sunflower listed codewords"
+  },
+  "per_layer_formula": {
+    "e=0": "binom(M,2) q",
+    "e>=1": "2^M q^(e+1)"
+  },
+  "roadmap_task": "Q2.9 / petal_fixed_excess",
+  "schema": "l1-petal-fixed-excess-v1",
+  "status": "PROVED_COMPILER__CITES_L1_LEMMA_16",
+  "toy_growth_tables": [
+    {
+      "cumulative_bound": 1419670,
+      "cumulative_bound_bit_length": 21,
+      "field_size_q": 17,
+      "layers": [
+        {
+          "bound": 102,
+          "bound_bit_length": 7,
+          "defect": "d = ell + e",
+          "excess_e": 0,
+          "source": "binom(M,2) q"
+        },
+        {
+          "bound": 4624,
+          "bound_bit_length": 13,
+          "defect": "d = ell + e",
+          "excess_e": 1,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 78608,
+          "bound_bit_length": 17,
+          "defect": "d = ell + e",
+          "excess_e": 2,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1336336,
+          "bound_bit_length": 21,
+          "defect": "d = ell + e",
+          "excess_e": 3,
+          "source": "2^M q^(e+1)"
+        }
+      ],
+      "max_excess_E": 3,
+      "petal_count_M": 4
+    },
+    {
+      "cumulative_bound": 26905833996,
+      "cumulative_bound_bit_length": 35,
+      "field_size_q": 101,
+      "layers": [
+        {
+          "bound": 2828,
+          "bound_bit_length": 12,
+          "defect": "d = ell + e",
+          "excess_e": 0,
+          "source": "binom(M,2) q"
+        },
+        {
+          "bound": 2611456,
+          "bound_bit_length": 22,
+          "defect": "d = ell + e",
+          "excess_e": 1,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 263757056,
+          "bound_bit_length": 28,
+          "defect": "d = ell + e",
+          "excess_e": 2,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 26639462656,
+          "bound_bit_length": 35,
+          "defect": "d = ell + e",
+          "excess_e": 3,
+          "source": "2^M q^(e+1)"
+        }
+      ],
+      "max_excess_E": 3,
+      "petal_count_M": 8
+    },
+    {
+      "cumulative_bound": 287015635744888,
+      "cumulative_bound_bit_length": 49,
+      "field_size_q": 257,
+      "layers": [
+        {
+          "bound": 30840,
+          "bound_bit_length": 15,
+          "defect": "d = ell + e",
+          "excess_e": 0,
+          "source": "binom(M,2) q"
+        },
+        {
+          "bound": 4328587264,
+          "bound_bit_length": 33,
+          "defect": "d = ell + e",
+          "excess_e": 1,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1112446926848,
+          "bound_bit_length": 41,
+          "defect": "d = ell + e",
+          "excess_e": 2,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 285898860199936,
+          "bound_bit_length": 49,
+          "defect": "d = ell + e",
+          "excess_e": 3,
+          "source": "2^M q^(e+1)"
+        }
+      ],
+      "max_excess_E": 3,
+      "petal_count_M": 16
+    }
+  ]
+}

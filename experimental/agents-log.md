@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - L1 petal fixed-excess compiler
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:** `experimental/notes/l1/l1_petal_fixed_excess_compiler.md`;
+  `experimental/scripts/verify_l1_petal_fixed_excess_compiler.py`;
+  `experimental/data/certificates/l1-petal-fixed-excess/README.md`;
+  `experimental/data/certificates/l1-petal-fixed-excess/l1_petal_fixed_excess_compiler.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / ARITHMETIC-COMPILER.
+- **What is being added:** Extracts Lemma 16 of the L1 full-list quotient proof
+  program into exact per-layer bounds for fixed full-petal cofactor excess
+  `0 <= d-ell <= 3`, together with lower-cutoff polynomial growth tables.
+- **How it is useful:** Discharges the `petal_fixed_excess` node in the
+  conservative bound sense: fixed-excess full-petal layers are polynomially
+  controlled, so any full-petal obstruction must have growing excess.
+- **What to do next:** Continue with the mixed-petal sunflower amplification
+  residual or with generator-economy evidence; do not treat this as a safe-side
+  full L1 proof.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
