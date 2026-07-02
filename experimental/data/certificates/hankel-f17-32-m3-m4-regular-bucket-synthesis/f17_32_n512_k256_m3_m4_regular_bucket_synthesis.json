@@ -352,6 +352,7 @@
     "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
     "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
+    "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
     "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
     "A=386 generic conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness off the alternating-line factor",
@@ -492,7 +493,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v32",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v33",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -544,7 +545,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "7a5d64850e440bb710616696d036f2e21770ad75d480fe978429722c7d30d1f6"
+      "sha256": "fbb5310c782a7740e97eddd07b7c1aa8b7c01d0d3cacf4f6b25a2f338faff48b"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -591,6 +592,7 @@
     "a386_moving_slope_refinement": [
       "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
       "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
+      "slope-free same-slope shadows add no extra support-wise parameter; any independent noncontained vector at that same finite parameter is charged once through the non-slope-free slope-map branch",
       "the high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54 before the forced-core product collapse is applied",
       "two distinct forced external roots on a line component force product collapse: either the component is a common-root pencil with L_{(T-alpha)S}=F*S and deg F<=125, or modular reduction vanishes as L_Q=R*Q; in both cases a degree-126 split locator requires at least 124 external forced roots",
       "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",

@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v32"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v33"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v50",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v51",
 }
 
 
@@ -1254,6 +1254,12 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "line forced-core collapse summary mismatch",
     )
     require(
+        summary["same_slope_slope_free_shadow_additional_parameter_contribution"] == 0
+        and summary["same_slope_noncontained_witness_charged_to_non_slope_free_branch"]
+        and summary["remaining_unclosed_residuals"] == [],
+        "same-slope slope-free accounting summary mismatch",
+    )
+    require(
         summary["conic_global_core_collapse_closed_external_core_range"] == [69, 123]
         and summary["conic_pre_tangent_residual_closed_by_global_core_range"] == [69, 120]
         and summary["conic_moving_slope_components_projective_safe_all_external_cores"],
@@ -1834,6 +1840,7 @@ def build_certificate() -> dict[str, Any]:
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
+                "slope-free same-slope shadows add no extra support-wise parameter; any independent noncontained vector at that same finite parameter is charged once through the non-slope-free slope-map branch",
                 "the high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54 before the forced-core product collapse is applied",
                 "two distinct forced external roots on a line component force product collapse: either the component is a common-root pencil with L_{(T-alpha)S}=F*S and deg F<=125, or modular reduction vanishes as L_Q=R*Q; in both cases a degree-126 split locator requires at least 124 external forced roots",
                 "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
@@ -1951,6 +1958,7 @@ def build_certificate() -> dict[str, Any]:
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
+            "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
             "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
             "A=386 generic conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness off the alternating-line factor",

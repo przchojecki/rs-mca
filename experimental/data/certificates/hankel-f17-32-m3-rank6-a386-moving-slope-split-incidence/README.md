@@ -82,12 +82,11 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_inci
 Nonclaims:
 
 ```text
-does not prove every moving-slope component is a line;
-does not close line components with forced external split-root core >=72 in projective accounting;
-does not close irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting;
-does not prove the high-core quotient split problem is empty or paid;
-does not claim the punctured tangent numerator is within the original row budget;
-does not rule out another independent noncontained vector at the same finite slope;
+does not prove every moving-slope component is covered by the separated line/conic positive-dimensional branch;
+line quotient-pencil and conic Pascal/four-private diagnostics are not used as the closure mechanism, because the product collapses supersede them;
+does not claim the high-core quotient diagnostic problems are empty or paid;
+does not claim the punctured tangent numerator at the residual threshold is within the original row budget;
+does not prove existence or nonexistence of another independent noncontained vector at the same finite slope; such a parameter is charged through the non-slope-free branch and the slope-free shadow adds no extra count;
 does not cover A=385;
 does not classify overlapping-support rank-6 pencils;
 does not prove endpoint payment.

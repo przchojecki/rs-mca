@@ -218,7 +218,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containmen
 filters the displayed slope-free transfer vectors.  They satisfy
 `H(v)L_Q=H(u)L_Q=0`, so they fail both finite-affine and projective
 noncontainment gates and do not contribute support-wise parameters by
-themselves.
+themselves.  If the same finite parameter also has an independent noncontained
+vector, that parameter is charged once through the non-slope-free branch; the
+slope-free vector is a contained shadow and adds no second count.
 
 The `A=386` moving-slope split-incidence packet
 

@@ -134,9 +134,10 @@ experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md
 
 then filters the displayed slope-free transfer vectors: they lie in both
 `ker H(v)` and `ker H(u)`, so they fail finite and projective noncontainment
-gates.  The remaining unclosed branch is the nonconstant moving-slope case, or
-another independent noncontained vector at a slope that also has a slope-free
-contained vector.
+gates.  If a slope with a slope-free contained vector also has an independent
+noncontained vector, that finite parameter is charged once through the
+non-slope-free branch; the slope-free vector adds no second count.  The
+remaining branch is therefore the nonconstant moving-slope case.
 
 The moving-slope split-incidence companion
 

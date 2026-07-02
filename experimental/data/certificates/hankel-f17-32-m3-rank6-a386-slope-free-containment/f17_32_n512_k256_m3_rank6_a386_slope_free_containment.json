@@ -16,11 +16,12 @@
     "finite-affine dependency uses H(v)ell!=0 as the noncontainment gate",
     "projective dependency uses H(u)ell!=0 as the endpoint noncontainment gate",
     "slope-free D_y=0 implies H(v)L_Q=0",
-    "slope-free N_y=0 plus the transfer nullspace implies H(u)L_Q=0"
+    "slope-free N_y=0 plus the transfer nullspace implies H(u)L_Q=0",
+    "same-slope slope-free shadows add no support-wise parameter beyond a non-slope-free witness charged elsewhere"
   ],
   "nonclaims": [
     "does not close nonconstant moving-slope components",
-    "does not rule out another independent noncontained vector at the same finite slope",
+    "does not prove existence or nonexistence of another independent noncontained vector at the same finite slope",
     "does not cover A=385",
     "does not classify overlapping-support rank-6 pencils",
     "does not prove endpoint payment",
@@ -47,7 +48,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-slope-free-containment-v1",
+  "schema_version": "f17-32-m3-rank6-a386-slope-free-containment-v2",
   "setup": {
     "direction_forms": "For each direction node y, N_y(Q)=Omega_y Q(y) and D_y(Q)=b_y L_Q(y).",
     "low_degree_transfer": "For Q with deg Q<3, L_Q is the unique degree-<m polynomial satisfying a_x L_Q(x)=Omega_x Q(x) on X.",
@@ -81,15 +82,19 @@
     "boundary_defect_h": 3,
     "finite_noncontainment_gate": "H(v)ell != 0",
     "projective_noncontainment_gate": "H(u)ell != 0",
-    "remaining_unclosed_residual": "nonconstant moving-slope components, plus any independent noncontained vectors at slopes also admitting a slope-free vector",
+    "remaining_unclosed_residual": "nonconstant moving-slope components; same-slope slope-free shadows add no extra parameter beyond the non-slope-free branch",
+    "same_slope_noncontained_witness_charged_to_non_slope_free_branch": true,
+    "same_slope_shadow_additional_finite_parameter_contribution": 0,
+    "same_slope_shadow_additional_projective_parameter_contribution": 0,
     "slope_free_vector_finite_noncontained_contribution": 0,
     "slope_free_vector_projective_endpoint_contribution": 0
   },
   "theorem": {
-    "accounting_scope": "Slope-free low-degree-transfer vectors themselves contribute zero finite or projective support-wise noncontained parameters.  If the same finite slope has another independent vector with H(v)ell!=0, that vector is outside this slope-free filter and must be counted by another branch.",
+    "accounting_scope": "Slope-free low-degree-transfer vectors themselves contribute zero finite or projective support-wise noncontained parameters.  If the same finite slope has another independent vector with H(v)ell!=0, that finite parameter is charged once through the non-slope-free branch; the slope-free vector is a contained shadow and adds no second count.",
     "base_containment": "The vector (Omega_s Q(s))_{s in X union Y} is in the first-t Vandermonde nullspace.  Since the direction terms Omega_y Q(y)=N_y(Q) vanish, the X terms give H(u)L_Q=0.",
     "direction_containment": "The direction Hankel action is H(v)L_Q = (sum_y b_y L_Q(y)y^a)_{0<=a<t}.  Under the slope-free condition all b_y L_Q(y)=D_y(Q) vanish, so H(v)L_Q=0.",
     "finite_affine_filter": "For every finite slope z, H(u+zv)L_Q=0 and H(v)L_Q=0.  Thus the displayed slope-free vector is in the contained branch and fails the finite-affine noncontainment gate H(v)ell!=0.",
-    "projective_filter": "At projective infinity the same vector has H(v)L_Q=0 and H(u)L_Q=0, so it also fails the projective noncontainment gate H(u)ell!=0."
+    "projective_filter": "At projective infinity the same vector has H(v)L_Q=0 and H(u)L_Q=0, so it also fails the projective noncontainment gate H(u)ell!=0.",
+    "same_slope_shadow_accounting": "Support-wise MCA counts parameters, not kernel-vector multiplicity.  A slope-free vector at a finite parameter z is a contained shadow of the z-fiber.  If the same z-fiber contains an independent noncontained vector, z is charged once through the non-slope-free slope-map branch.  The slope-free shadow adds zero additional finite parameters and zero projective endpoint parameters."
   }
 }

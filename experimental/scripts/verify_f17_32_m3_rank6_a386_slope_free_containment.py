@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-slope-free-containment-v1"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-slope-free-containment-v2"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -207,8 +207,18 @@ def build_certificate() -> dict[str, Any]:
                 "Slope-free low-degree-transfer vectors themselves contribute "
                 "zero finite or projective support-wise noncontained parameters.  "
                 "If the same finite slope has another independent vector with "
-                "H(v)ell!=0, that vector is outside this slope-free filter and "
-                "must be counted by another branch."
+                "H(v)ell!=0, that finite parameter is charged once through the "
+                "non-slope-free branch; the slope-free vector is a contained "
+                "shadow and adds no second count."
+            ),
+            "same_slope_shadow_accounting": (
+                "Support-wise MCA counts parameters, not kernel-vector "
+                "multiplicity.  A slope-free vector at a finite parameter z is a "
+                "contained shadow of the z-fiber.  If the same z-fiber contains "
+                "an independent noncontained vector, z is charged once through "
+                "the non-slope-free slope-map branch.  The slope-free shadow "
+                "adds zero additional finite parameters and zero projective "
+                "endpoint parameters."
             ),
         },
         "sampler_denominators": {
@@ -228,11 +238,14 @@ def build_certificate() -> dict[str, Any]:
             "boundary_defect_h": h_value,
             "slope_free_vector_finite_noncontained_contribution": 0,
             "slope_free_vector_projective_endpoint_contribution": 0,
+            "same_slope_shadow_additional_finite_parameter_contribution": 0,
+            "same_slope_shadow_additional_projective_parameter_contribution": 0,
+            "same_slope_noncontained_witness_charged_to_non_slope_free_branch": True,
             "finite_noncontainment_gate": "H(v)ell != 0",
             "projective_noncontainment_gate": "H(u)ell != 0",
             "remaining_unclosed_residual": (
-                "nonconstant moving-slope components, plus any independent "
-                "noncontained vectors at slopes also admitting a slope-free vector"
+                "nonconstant moving-slope components; same-slope slope-free "
+                "shadows add no extra parameter beyond the non-slope-free branch"
             ),
         },
         "checks": [
@@ -243,10 +256,11 @@ def build_certificate() -> dict[str, Any]:
             "projective dependency uses H(u)ell!=0 as the endpoint noncontainment gate",
             "slope-free D_y=0 implies H(v)L_Q=0",
             "slope-free N_y=0 plus the transfer nullspace implies H(u)L_Q=0",
+            "same-slope slope-free shadows add no support-wise parameter beyond a non-slope-free witness charged elsewhere",
         ],
         "nonclaims": [
             "does not close nonconstant moving-slope components",
-            "does not rule out another independent noncontained vector at the same finite slope",
+            "does not prove existence or nonexistence of another independent noncontained vector at the same finite slope",
             "does not cover A=385",
             "does not classify overlapping-support rank-6 pencils",
             "does not prove endpoint payment",

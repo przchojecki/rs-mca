@@ -26,7 +26,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v50"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v51"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -3799,12 +3799,20 @@ def build_certificate() -> dict[str, Any]:
         "moving-slope residual is not exposed by dependency",
     )
     require(
-        slope_free["schema_version"] == "f17-32-m3-rank6-a386-slope-free-containment-v1",
+        slope_free["schema_version"] == "f17-32-m3-rank6-a386-slope-free-containment-v2",
         "slope-free schema mismatch",
     )
     require(
         slope_free["summary"]["slope_free_vector_finite_noncontained_contribution"] == 0,
         "slope-free finite contribution mismatch",
+    )
+    require(
+        slope_free["summary"]["same_slope_shadow_additional_finite_parameter_contribution"] == 0
+        and slope_free["summary"]["same_slope_shadow_additional_projective_parameter_contribution"] == 0
+        and slope_free["summary"][
+            "same_slope_noncontained_witness_charged_to_non_slope_free_branch"
+        ],
+        "slope-free same-slope accounting mismatch",
     )
     require(
         endpoint_uniform["schema_version"]
@@ -5939,6 +5947,15 @@ def build_certificate() -> dict[str, Any]:
                 "multi-saving ledgers are retained only as diagnostic "
                 "pre-collapse ledgers."
             ),
+            "slope_free_shadow_accounting": (
+                "Slope-free transfer vectors satisfy H(v)L_Q=H(u)L_Q=0, so they "
+                "are contained shadows and add no finite or projective parameter. "
+                "If the same finite parameter also has an independent "
+                "noncontained vector, support-wise MCA still counts that "
+                "parameter once; it is charged through the non-slope-free "
+                "slope-map branch, which is the branch closed here for separated "
+                "line/conic positive-dimensional components."
+            ),
             "irreducible_conic_global_core_product_collapse": (
                 "The global-common-core condition is stronger than quotient "
                 "factorization.  Write R for the degree-<127 base interpolant "
@@ -6937,15 +6954,16 @@ def build_certificate() -> dict[str, Any]:
             "punctured_tangent_one_over_tail_external_core": tangent_one_over_tail_cores[0],
             "line_high_core_forced_core_is_dual_evaluation_fiber": True,
             "conic_high_core_forced_core_is_global_common_core": True,
-            "remaining_unclosed_residuals": [
-                "possible independent noncontained vectors at slopes also admitting a slope-free vector",
-            ],
+            "same_slope_slope_free_shadow_additional_parameter_contribution": 0,
+            "same_slope_noncontained_witness_charged_to_non_slope_free_branch": True,
+            "remaining_unclosed_residuals": [],
         },
         "checks": [
             "row descriptor and dependency schemas match",
             "A=386 has locator degree j=126 and Q-space P^2",
             "moving-slope residual is exposed by the slope-dichotomy dependency",
             "slope-free displayed vectors have already been filtered by noncontainment",
+            "same-slope slope-free shadows add no extra support-wise parameter beyond a non-slope-free witness",
             "base interpolation Q->L_Q is injective because |X|=127>deg Q",
             "base roots satisfy L_Q(x)=0 iff Q(x)=0 and therefore at most two occur on X",
             "r_G>=126 is impossible for a positive-dimensional component",
@@ -7004,7 +7022,7 @@ def build_certificate() -> dict[str, Any]:
             "the conic four-private two-triangle sharpness witness is not an MCA bad-slope witness",
             "does not claim the high-core quotient diagnostic problems are empty or paid",
             "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
-            "does not rule out another independent noncontained vector at the same finite slope",
+            "does not prove existence or nonexistence of another independent noncontained vector at the same finite slope; it only charges such a parameter through the non-slope-free branch",
             "does not cover A=385",
             "does not classify overlapping-support rank-6 pencils",
             "does not prove endpoint payment",

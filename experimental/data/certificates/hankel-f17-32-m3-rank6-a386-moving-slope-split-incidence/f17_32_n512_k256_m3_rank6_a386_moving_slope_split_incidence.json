@@ -164,6 +164,7 @@
     "A=386 has locator degree j=126 and Q-space P^2",
     "moving-slope residual is exposed by the slope-dichotomy dependency",
     "slope-free displayed vectors have already been filtered by noncontainment",
+    "same-slope slope-free shadows add no extra support-wise parameter beyond a non-slope-free witness",
     "base interpolation Q->L_Q is injective because |X|=127>deg Q",
     "base roots satisfy L_Q(x)=0 iff Q(x)=0 and therefore at most two occur on X",
     "r_G>=126 is impossible for a positive-dimensional component",
@@ -16953,7 +16954,7 @@
     "the conic four-private two-triangle sharpness witness is not an MCA bad-slope witness",
     "does not claim the high-core quotient diagnostic problems are empty or paid",
     "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
-    "does not rule out another independent noncontained vector at the same finite slope",
+    "does not prove existence or nonexistence of another independent noncontained vector at the same finite slope; it only charges such a parameter through the non-slope-free branch",
     "does not cover A=385",
     "does not classify overlapping-support rank-6 pencils",
     "does not prove endpoint payment",
@@ -21608,7 +21609,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v50",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v51",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -21884,7 +21885,7 @@
     },
     "a386_slope_free_containment": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json",
-      "sha256": "b8adf74036744b02a21c1e51ffea876081f2938b8da34430046534f6f05ef651"
+      "sha256": "94b2b5d84ff6ab6ea738875cd414b85c156dcaafc10194b2ad18f82b808bb77a"
     },
     "nullpolynomial_split_locator_gate": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
@@ -26955,9 +26956,9 @@
         "tangent_gate_margin_3a_minus_2n_minus_k": 118
       }
     ],
-    "remaining_unclosed_residuals": [
-      "possible independent noncontained vectors at slopes also admitting a slope-free vector"
-    ],
+    "remaining_unclosed_residuals": [],
+    "same_slope_noncontained_witness_charged_to_non_slope_free_branch": true,
+    "same_slope_slope_free_shadow_additional_parameter_contribution": 0,
     "single_saving_closure_ledger_core_ranges": {
       "irreducible_conic_pair_overlap": [
         69,
@@ -27023,6 +27024,7 @@
     "punctured_tangent_tail_cofactor_span_closure": "The remaining one-over tangent tail at e_G=120 is also closed.  If it had seven projective slopes, the tangent-star extremizer profile on the punctured row would give seven degree-6 cofactors of a seven-point residual set.  At most one of the seven projective bad points is the original endpoint, so at least six cofactors come from finite Q-classes on the component.  Any six cofactors are linearly independent by evaluation on the residual points, but the fixed-core quotient family has vector dimension at most 2 on a line component and at most 3 on an irreducible conic component.  This contradiction bounds the tail by six projective slopes.",
     "punctured_tangent_tail_extremizer_profile": "If the e_G=120 tail actually exceeds budget, it must saturate the projective tangent staircase on the punctured row (n',a')=(392,386).  Since the projective bad set has size 7 and P^1(F) has q+1 points, a nonbad projective point can be sent to infinity.  The finite tangent-star extremizer corollary then forces a common support of size 385 and a bijection from the seven punctured residual coordinates to the seven bad projective slopes.",
     "single_saving_closure_ledger": "Every cofactor-current one-over row in the pre-collapse moving-slope packet is listed in a single-saving closure ledger.  The ledger covers line cores 72..80, diagnostic conic cores 69..76, and the line/conic punctured-tangent tail at core 120.  In each listed row, any one saving lowers the projective count from 7 to the budget 6.",
+    "slope_free_shadow_accounting": "Slope-free transfer vectors satisfy H(v)L_Q=H(u)L_Q=0, so they are contained shadows and add no finite or projective parameter. If the same finite parameter also has an independent noncontained vector, support-wise MCA still counts that parameter once; it is charged through the non-slope-free slope-map branch, which is the branch closed here for separated line/conic positive-dimensional components.",
     "very_high_core_projective_tail_closure": "The high-agreement projective tangent staircase applies to the punctured row and bounds finite plus infinity slopes together by r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has projective contribution at most 6.  This closes the very-high-core tail; the lower intermediate line and conic ranges are closed by the forced-core product collapses."
   },
   "unrefined_sample_budget_rows": [

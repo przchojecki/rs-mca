@@ -36,9 +36,9 @@ finite noncontained slopes:      0
 projective endpoint witnesses:  0
 ```
 
-This does not rule out another independent vector at the same finite slope
-with `H(v)ell != 0`; such a vector is outside this slope-free filter and must
-be counted by another branch.
+If another independent vector with `H(v)ell != 0` occurs at the same finite
+parameter, that parameter is charged once through the non-slope-free branch.
+The slope-free vector is a contained shadow and adds no second count.
 
 Replay:
 
@@ -51,7 +51,7 @@ Nonclaims:
 
 ```text
 does not close nonconstant moving-slope components;
-does not rule out another independent noncontained vector at the same finite slope;
+does not prove existence or nonexistence of another independent noncontained vector at the same finite slope;
 does not cover A=385;
 does not classify overlapping-support rank-6 pencils;
 does not prove endpoint payment.

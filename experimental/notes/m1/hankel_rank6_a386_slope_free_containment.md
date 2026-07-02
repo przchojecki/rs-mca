@@ -69,9 +69,11 @@ where an endpoint witness would require `H(u)L_Q != 0`.
 
 Consequently slope-free transfer vectors contribute zero finite support-wise
 noncontained slopes and zero projective endpoint witnesses.  This statement is
-about the displayed vector.  If the same finite slope also has another
-independent kernel vector with `H(v)ell != 0`, that other vector is outside
-this slope-free filter and must be counted by another branch.
+about the displayed vector.  Support-wise MCA counts parameters, not the number
+of ambient kernel vectors above a parameter.  If the same finite slope also has
+another independent kernel vector with `H(v)ell != 0`, that slope is charged
+once through the non-slope-free branch.  The slope-free vector is only a
+contained shadow of that fiber and adds no second finite parameter.
 
 The moving-slope companion
 
@@ -144,7 +146,7 @@ Nonclaims:
 
 ```text
 no closure of nonconstant moving-slope components;
-no exclusion of another independent noncontained vector at the same finite slope;
+no proof of existence or nonexistence of another independent noncontained vector at the same finite slope;
 no A=385 closure;
 no overlapping-support rank-6 classification;
 no endpoint payment theorem.

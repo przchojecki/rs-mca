@@ -87,7 +87,9 @@ applies the existing finite-affine and projective noncontainment gates to that
 slope-free locus.  The displayed slope-free transfer vectors satisfy
 `H(v)L_Q=H(u)L_Q=0`, so they contribute no finite noncontained slope and no
 projective endpoint witness.  A different independent noncontained vector at
-the same finite slope remains outside that filter.
+the same finite parameter is charged once through the non-slope-free branch;
+the slope-free vector is a contained shadow and adds no second support-wise
+parameter.
 
 The split-incidence companion
 

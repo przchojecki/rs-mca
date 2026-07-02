@@ -704,7 +704,7 @@ no proof that every moving-slope component is covered by the separated line/coni
 line quotient-pencil and conic Pascal/four-private diagnostics are not used as the closure mechanism, because the product collapses supersede them;
 no claim that the high-core quotient diagnostic problems are empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
-no exclusion of another independent noncontained vector at the same finite slope;
+no proof of existence or nonexistence of another independent noncontained vector at the same finite slope; such a parameter is charged through the non-slope-free branch and the slope-free shadow adds no extra count;
 no A=385 closure;
 no overlapping-support rank-6 classification;
 no endpoint payment theorem.

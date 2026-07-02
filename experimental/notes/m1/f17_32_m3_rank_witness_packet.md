@@ -561,8 +561,10 @@ nonconstant moving-slope component and a slope-free base locus or component.
 The `A=386` slope-free containment companion filters the displayed slope-free
 transfer vectors.  Such vectors have both `H(v)L_Q=0` and `H(u)L_Q=0`, so they
 fail finite and projective noncontainment gates and contribute no support-wise
-parameter by themselves.  Another independent noncontained vector at the same
-finite slope remains outside this filter.
+parameter by themselves.  If another independent noncontained vector occurs at
+the same finite parameter, that parameter is charged once through the
+non-slope-free branch; the slope-free vector is a contained shadow and adds no
+second count.
 
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with

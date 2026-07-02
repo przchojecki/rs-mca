@@ -296,8 +296,10 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containmen
 
 removes the displayed slope-free transfer vectors from the support-wise count:
 they satisfy `H(v)L_Q=H(u)L_Q=0`, so they fail both finite-affine and
-projective noncontainment gates.  This does not rule out a different
-independent noncontained vector at the same finite slope.
+projective noncontainment gates.  If the same finite parameter has a different
+independent noncontained vector, that parameter is charged once through the
+non-slope-free branch; the slope-free vector is a contained shadow and adds no
+second support-wise parameter.
 
 The `A=386` moving-slope split-incidence companion
 

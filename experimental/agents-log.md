@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 slope-free shadow accounting
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_slope_free_containment.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/`;
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` slope-free containment packet now records
+  a same-slope shadow accounting lemma: slope-free vectors satisfy
+  `H(v)L_Q=H(u)L_Q=0` and add zero finite/projective parameters; if the same
+  finite parameter has an independent noncontained vector, that parameter is
+  charged once through the non-slope-free branch.
+- **How it is useful:** This removes the previous double-counting caveat from
+  the separated `A=386` line/conic moving-slope closure without claiming that
+  such independent vectors cannot exist.  The moving-slope packet now has an
+  empty post-collapse residual list for this separated positive-dimensional
+  branch.
+- **What to do next:** Continue with the larger remaining rank-6 walls:
+  `A=385`, overlapping-support rank-6 classification, and general
+  non-proportional rank-6 endpoint/root-table accounting.
+
 ### 2026-07-02 - M3 A386 line forced-core product collapse
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
