@@ -402,6 +402,20 @@ subgroup.  Any closure must use more structure: quotient-family equations,
 Hankel constraints, endpoint payment, or split-locator noncontainment.  This
 witness is not an MCA bad-slope witness.
 
+The same symbolic profile splits the six-cycle residual further.  Under the
+hexagon relation and distinct-coordinate assumptions, every possible
+three-point collinearity is forced by a coordinate collision except the two
+alternating triples of cycle edges `0,2,4` and `1,3,5`.  Both alternating
+collinearities are controlled by the single factor
+
+```text
+a^2*b*c-a^2*b-a^2*c^2+a*b*c+a*c^2-b*c^2.
+```
+
+Off this factor the six-cycle survivor is an irreducible conic.  On this
+factor the conic is the reducible union of the two alternating lines.  This
+gives two named six-cycle residual branches rather than one opaque branch.
+
 The two-disjoint-triangle survivor is in fact a genuine irreducible conic
 branch for every pair of disjoint residual triples.  The six pair-quadratic
 points are co-conic identically.  If this conic were reducible, one component

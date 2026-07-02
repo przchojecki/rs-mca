@@ -78,6 +78,9 @@ Keep entries concise and link to the relevant files.
   subgroup-coordinate witness: exponents `0,255,417,261,6,356` make the
   normalized hexagon factor vanish.  This is not an MCA bad-slope witness; it
   says the remaining closure must use quotient/Hankel/split-locator structure.
+  The six-cycle residual is now split by one alternating-line factor: away
+  from it the conic is irreducible, and on it the conic is the union of the
+  two alternating lines through cycle edge triples `0,2,4` and `1,3,5`.
   The two-triangle branch is now proved irreducible for every pair of disjoint
   residual triples: the six pair-quadratic points are co-conic, and a reducible
   conic would force a line through three points, contradicting the root-star

@@ -26,7 +26,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v44"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v45"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1044,6 +1044,91 @@ def two_triangle_irreducible_family_profile() -> dict[str, Any]:
             "assert split-locator noncontainment, quotient membership, or "
             "endpoint accounting."
         ),
+    }
+
+
+@lru_cache(maxsize=1)
+def six_cycle_hexagon_reducibility_profile() -> dict[str, Any]:
+    """Classify reducibility inside the six-cycle hexagon residual."""
+    import sympy as sp
+
+    a, b, c = sp.symbols("a b c")
+    denominator = sp.factor(a * b - a * c - a + c)
+    d_expr = sp.factor(c * (b - a) / denominator)
+    coords = [sp.Integer(0), sp.Integer(1), a, b, c, d_expr]
+    cycle_edges = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]
+    alternating_line_factor = sp.factor(
+        a**2 * b * c - a**2 * b - a**2 * c**2 + a * b * c + a * c**2 - b * c**2
+    )
+
+    def add_distinctness_factor(factors: set[Any], expr: Any) -> None:
+        numerator = sp.factor(sp.fraction(sp.together(expr))[0])
+        for base, _exponent in sp.factor_list(numerator)[1]:
+            factors.add(sp.factor(base))
+
+    distinctness_factors: set[Any] = set()
+    for left, right in itertools.combinations(coords, 2):
+        add_distinctness_factor(distinctness_factors, left - right)
+
+    def pair_point(edge: tuple[int, int]) -> list[Any]:
+        left, right = edge
+        s = -(coords[left] + coords[right])
+        p = coords[left] * coords[right]
+        return [1, s, p]
+
+    alternating_triples = {(0, 2, 4), (1, 3, 5)}
+    triple_rows: list[dict[str, Any]] = []
+    for triple in itertools.combinations(range(6), 3):
+        determinant = sp.Matrix([pair_point(cycle_edges[index]) for index in triple]).det()
+        numerator = sp.factor(sp.fraction(sp.together(determinant))[0])
+        extras: list[str] = []
+        for base, _exponent in sp.factor_list(numerator)[1]:
+            base = sp.factor(base)
+            if base in distinctness_factors or -base in distinctness_factors:
+                continue
+            if base == alternating_line_factor or -base == alternating_line_factor:
+                extras.append("alternating_line_factor")
+            else:
+                extras.append(str(base))
+        expected_extras = ["alternating_line_factor"] if triple in alternating_triples else []
+        require(extras == expected_extras, "six-cycle collinearity profile changed")
+        triple_rows.append(
+            {
+                "triple": list(triple),
+                "edges": [list(cycle_edges[index]) for index in triple],
+                "extra_collinearity_factor": extras,
+            }
+        )
+
+    return {
+        "status": "PROVED",
+        "hexagon_relation": "a*b*d-a*c*d+a*c-a*d-b*c+c*d=0",
+        "normalization": "residual coordinates are 0,1,a,b,c,d",
+        "solved_coordinate": "d=c*(b-a)/(a*b-a*c-a+c)",
+        "distinctness_denominator": "a*b-a*c-a+c",
+        "alternating_line_factor": str(alternating_line_factor),
+        "alternating_line_triples": [list(triple) for triple in sorted(alternating_triples)],
+        "collinearity_profile": triple_rows,
+        "irreducible_branch_condition": (
+            "all normalized coordinates are distinct and the alternating_line_factor is nonzero"
+        ),
+        "reducible_branch_condition": (
+            "all normalized coordinates are distinct and the alternating_line_factor is zero"
+        ),
+        "reducible_branch_shape": (
+            "the conic splits as the union of the line through cycle edges "
+            "0,2,4 and the line through cycle edges 1,3,5"
+        ),
+        "conclusion": (
+            "The six-cycle hexagon residual splits into a generic irreducible "
+            "conic branch and a named alternating-line reducible branch."
+        ),
+        "not_an_mca_witness": (
+            "This is a coordinate-level residual decomposition; it does not "
+            "assert split-locator noncontainment, quotient membership, or "
+            "endpoint accounting."
+        ),
+        "checked_with_sympy": sp.__version__,
     }
 
 
@@ -3778,6 +3863,9 @@ def build_certificate() -> dict[str, Any]:
     conic_four_private_two_triangle_family_profile = (
         two_triangle_irreducible_family_profile()
     )
+    conic_four_private_six_cycle_reducibility_profile = (
+        six_cycle_hexagon_reducibility_profile()
+    )
     conic_four_private_hexagon_sharpness_witness = (
         subgroup_hexagon_factor_sharpness_witness()
     )
@@ -4272,6 +4360,16 @@ def build_certificate() -> dict[str, Any]:
         and "nondegenerate irreducible conic"
         in conic_four_private_two_triangle_family_profile["conclusion"],
         "conic four-private two-triangle family profile changed",
+    )
+    require(
+        conic_four_private_six_cycle_reducibility_profile["status"] == "PROVED"
+        and conic_four_private_six_cycle_reducibility_profile["alternating_line_triples"]
+        == [[0, 2, 4], [1, 3, 5]]
+        and conic_four_private_six_cycle_reducibility_profile["alternating_line_factor"]
+        == "a**2*b*c - a**2*b - a**2*c**2 + a*b*c + a*c**2 - b*c**2"
+        and "generic irreducible conic branch"
+        in conic_four_private_six_cycle_reducibility_profile["conclusion"],
+        "conic four-private six-cycle reducibility profile changed",
     )
     require(
         conic_four_private_two_triangle_sharpness_witness["subgroup_exponents"]
@@ -5660,6 +5758,16 @@ def build_certificate() -> dict[str, Any]:
                 "edges from one root triangle, whose line is a root-star line, "
                 "and the third selected edge does not contain that root."
             ),
+            "conic_four_private_six_cycle_reducibility_profile": (
+                "The six-cycle hexagon residual has an exact reducibility "
+                "split.  After normalizing coordinates to 0,1,a,b,c,d and "
+                "using the hexagon relation to eliminate d, every three-point "
+                "collinearity is forced by coordinate collision except the two "
+                "alternating triples 0,2,4 and 1,3,5.  These are controlled by "
+                "one alternating-line factor; off that factor the conic is "
+                "irreducible, and on it the conic is the union of the two "
+                "alternating lines."
+            ),
             "conic_four_private_two_triangle_sharpness_witness": (
                 "The two-disjoint-triangle residual is also a genuine "
                 "coordinate-level conic branch, not just a reducible artifact. "
@@ -5866,6 +5974,9 @@ def build_certificate() -> dict[str, Any]:
         ),
         "conic_four_private_two_triangle_family_profile": (
             conic_four_private_two_triangle_family_profile
+        ),
+        "conic_four_private_six_cycle_reducibility_profile": (
+            conic_four_private_six_cycle_reducibility_profile
         ),
         "conic_four_private_two_triangle_sharpness_witness": (
             conic_four_private_two_triangle_sharpness_witness
@@ -6104,6 +6215,16 @@ def build_certificate() -> dict[str, Any]:
             ),
             "conic_four_private_two_triangle_family_three_point_profile": (
                 conic_four_private_two_triangle_family_profile["three_point_profile"]
+            ),
+            "conic_four_private_six_cycle_alternating_line_factor": (
+                conic_four_private_six_cycle_reducibility_profile[
+                    "alternating_line_factor"
+                ]
+            ),
+            "conic_four_private_six_cycle_alternating_line_triples": (
+                conic_four_private_six_cycle_reducibility_profile[
+                    "alternating_line_triples"
+                ]
             ),
             "conic_four_private_two_triangle_sharpness_rank": (
                 conic_four_private_two_triangle_sharpness_witness["conic_matrix_rank"]
@@ -6344,6 +6465,7 @@ def build_certificate() -> dict[str, Any]:
             "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
             "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness",
             "two-triangle residual is proved irreducible by root-star incidence for all disjoint residual triples",
+            "six-cycle residual is split into generic irreducible and alternating-line reducible branches",
             "two-triangle reducibility dismissal is refuted by a nondegenerate conic witness",
         ],
         "nonclaims": [
