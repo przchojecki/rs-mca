@@ -118,23 +118,24 @@ Keep entries concise and link to the relevant files.
   `experimental/data/certificates/conjecture-f-reductions/`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / EXPERIMENTAL.
-- **What is being added:** Six elementary reduction lemmas around the
+- **What is being added:** Seven elementary reduction lemmas around the
   Conjecture F fiber-rigidity target: common-GCD division reduces to a smaller
   divisor set, quotient-pullback points recurse to scale `n/M`, and
   gcd-trivial projective pencils meet `D_j` in at most `floor(n/j)` points by
   a voting argument.  The note also proves the exact hyperplane-concurrency
   reformulation for arbitrary gcd-trivial projective linear spaces, the
   vanishing-flat dimension bound, and the weighted pair-counting bound for
-  gcd-trivial projective planes.
+  gcd-trivial projective planes.  Finally, it proves the fixed-dimensional
+  incidence bound `#(P(W) cap D_j) <= binom(n,d)` for projective dimension
+  `d`.
 - **How it is useful:** The note turns two paid structures in the proof sketch
   into reductions rather than separate cases, proves the dimension-one base
   case, and identifies the primitive dimension-at-least-two core as a
-  `j`-fold incidence problem for evaluation hyperplanes.  In dimension two,
-  it gives a polynomial bound even with repeated evaluation lines, leaving
-  dimension at least three as the first remaining primitive incidence core.
-- **What to do next:** Use these reductions before attacking dimension at
-  least three, and state future Conjecture F attacks on the gcd-trivial
-  non-pullback primitive core.
+  `j`-fold incidence problem for evaluation hyperplanes.  It now closes every
+  fixed projective dimension with exponent `d`; the remaining primitive core
+  is a dimension-growing problem.
+- **What to do next:** Use these reductions to focus future Conjecture F
+  attacks on dimension-growing gcd-trivial non-pullback primitive subspaces.
 
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas
 

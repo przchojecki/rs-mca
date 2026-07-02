@@ -13,6 +13,7 @@ the identities over F_97 with H = mu_16:
   pair-counting bound #D_j <= binom(n,2)/(j-1).
 * vanishing on m domain points cuts any degree <= j subspace down to dimension
   at most j+1-m.
+* fixed projective dimension d gives #D_j <= binom(n,d).
 """
 from __future__ import annotations
 
@@ -537,6 +538,103 @@ def check_vanishing_flat_bound(H: list[int]) -> dict:
     }
 
 
+def in_span(poly: tuple[int, ...], basis: list[tuple[int, ...]], width: int) -> bool:
+    return rank_polys(basis + [poly], width) == rank_polys(basis, width)
+
+
+def independent_root_subset(poly_basis: list[tuple[int, ...]],
+                            roots: tuple[int, ...],
+                            d: int) -> tuple[int, ...] | None:
+    for subset in itertools.combinations(roots, d):
+        rows = [[poly_eval(poly, root) for poly in poly_basis] for root in subset]
+        if matrix_rank(rows) == d:
+            return subset
+    return None
+
+
+def locator_roots(poly: tuple[int, ...], H: list[int]) -> tuple[int, ...]:
+    return tuple(x for x in H if poly_eval(poly, x) == 0)
+
+
+def random_independent_basis(rng: random.Random, dimension: int,
+                             max_degree: int) -> list[tuple[int, ...]]:
+    basis: list[tuple[int, ...]] = []
+    while len(basis) < dimension:
+        candidate = random_poly(rng, max_degree)
+        if rank_polys(basis + [candidate], max_degree + 1) == len(basis) + 1:
+            basis.append(candidate)
+    return basis
+
+
+def check_fixed_dimension_incidence_bound(H: list[int]) -> dict:
+    D = divisor_set(H, J_VOTING)
+    rng = random.Random(SEED + 5)
+    checked_spaces = 0
+    max_hits_by_dimension: dict[int, int] = {}
+    witness_checks = 0
+
+    full_basis = [
+        tuple(1 if i == degree else 0 for i in range(J_VOTING + 1))
+        for degree in range(J_VOTING + 1)
+    ]
+    full_hits = [poly for poly in D if in_span(poly, full_basis, J_VOTING + 1)]
+    if len(full_hits) != comb(N, J_VOTING):
+        return {
+            "name": "fixed_dimension_incidence_bound",
+            "status": "FAIL",
+            "reason": "full degree-j space did not attain sharp D_j count",
+            "hits": len(full_hits),
+            "expected": comb(N, J_VOTING),
+        }
+    max_hits_by_dimension[J_VOTING] = len(full_hits)
+
+    for d in range(0, J_VOTING):
+        for _ in range(50):
+            basis = random_independent_basis(rng, d + 1, J_VOTING)
+            if not gcd_trivial_space(basis, H):
+                continue
+            hits = []
+            for poly in D:
+                if in_span(poly, basis, J_VOTING + 1):
+                    roots = locator_roots(poly, H)
+                    witness = independent_root_subset(basis, roots, d)
+                    if witness is None:
+                        return {
+                            "name": "fixed_dimension_incidence_bound",
+                            "status": "FAIL",
+                            "reason": "locator hit had no independent d-root witness",
+                            "d": d,
+                            "roots": roots,
+                        }
+                    hits.append(poly)
+                    witness_checks += 1
+            if len(hits) > comb(N, d):
+                return {
+                    "name": "fixed_dimension_incidence_bound",
+                    "status": "FAIL",
+                    "reason": "hit count exceeded binomial bound",
+                    "d": d,
+                    "hits": len(hits),
+                    "bound": comb(N, d),
+                }
+            max_hits_by_dimension[d] = max(max_hits_by_dimension.get(d, 0), len(hits))
+            checked_spaces += 1
+
+    return {
+        "name": "fixed_dimension_incidence_bound",
+        "status": "PASS",
+        "n": N,
+        "j": J_VOTING,
+        "checked_random_subspaces": checked_spaces,
+        "witness_checks": witness_checks,
+        "max_hits_by_projective_dimension": {
+            str(key): value for key, value in sorted(max_hits_by_dimension.items())
+        },
+        "sharp_full_space_hits": len(full_hits),
+        "sharp_full_space_bound": comb(N, J_VOTING),
+    }
+
+
 def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
     lines = []
     for x in H:
@@ -728,6 +826,7 @@ def build_report() -> dict:
         check_hyperplane_concurrency(H),
         check_vanishing_flat_bound(H),
         check_plane_pair_counting_bound(H),
+        check_fixed_dimension_incidence_bound(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

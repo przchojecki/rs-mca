@@ -6,9 +6,10 @@ This directory contains the toy verifier output for
 - `conjecture_f_reductions_toy.json` records exact checks over `F_97` with
   `H = mu_16`: common-GCD reduction, quotient-pullback recursion,
   dimension-one voting, and the hyperplane-concurrency reformulation on
-  random projective planes.  It also checks the vanishing-flat dimension bound
-  and the weighted projective-plane pair-counting bound, including forced
-  repeated-line planes.
+  random projective planes.  It also checks the vanishing-flat dimension bound,
+  the weighted projective-plane pair-counting bound, including forced
+  repeated-line planes, and the fixed-dimensional incidence bound with the
+  sharp full-space case.
 - The verifier is
   `experimental/scripts/verify_conjecture_f_reductions.py`.
 

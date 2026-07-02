@@ -69,6 +69,23 @@
       "status": "PASS",
       "weighted_bound_floor": 40,
       "weighted_bound_rational": "120/3"
+    },
+    {
+      "checked_random_subspaces": 191,
+      "j": 4,
+      "max_hits_by_projective_dimension": {
+        "0": 0,
+        "1": 0,
+        "2": 2,
+        "3": 28,
+        "4": 1820
+      },
+      "n": 16,
+      "name": "fixed_dimension_incidence_bound",
+      "sharp_full_space_bound": 1820,
+      "sharp_full_space_hits": 1820,
+      "status": "PASS",
+      "witness_checks": 953
     }
   ],
   "domain": {
@@ -97,6 +114,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "f4a930a4c0093dc01ef52a0b4173b908aa6f1913d7d487ff14c9dc91061742eb",
+  "script_sha256": "e1b08541ada24ef182d895a9a29a1589983246a322bf3dbab028942066cb0b1c",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

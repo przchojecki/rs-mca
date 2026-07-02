@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records six elementary reductions around the fiber-rigidity
+This note records seven elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -300,6 +300,40 @@ Thus the primitive dimension-two Conjecture F case is polynomial for arbitrary
 gcd-trivial projective planes.  Higher-dimensional primitive intersections are
 the first remaining incidence-theoretic core.
 
+## Lemma 7: Fixed-Dimension Incidence Bound
+
+Let `W <= K[X]_{<=j}` have vector dimension `d+1`, and assume `W` is
+gcd-trivial on `H`.  Then
+
+```text
+#(P(W) cap D_j(H)) <= binom(|H|,d).
+```
+
+Consequently every fixed projective dimension `d` satisfies Conjecture F with
+exponent at most `d`.  The remaining primitive core is necessarily a
+dimension-growing problem.
+
+**Proof.**  Let `[L] in P(W) cap D_j(H)`, and let `R subset H` be the `j`
+roots of `L`.  Since `L` spans a line in `W(-R)`, Lemma 5 gives
+
+```text
+1 <= dim W(-R) <= j+1-j = 1.
+```
+
+Thus `dim W(-R)=1`.  Since `dim W=d+1`, the evaluation equations
+`M(r)=0`, `r in R`, have rank `d` on `W`.  Hence some `d`-element subset
+`T subset R` already has rank `d`; equivalently, the `d` evaluation
+hyperplanes for `T` intersect in the single projective point `[L]`.
+
+Choose, for each `[L]`, the lexicographically first such independent
+`d`-subset of its root set.  This choice is injective: if two locator points
+chose the same independent `T`, both would lie in the one-point intersection
+of the evaluation hyperplanes indexed by `T`.  Therefore the number of locator
+points is at most the number of `d`-subsets of `H`.
+
+For `d=j` and `W=K[X]_{<=j}`, the bound is sharp: every `j`-subset of `H`
+gives its locator.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -313,6 +347,7 @@ It exhaustively checks the common-GCD and quotient-pullback identities in the
 toy parameters used by the script, tests the voting bound on deterministic
 random gcd-trivial pencils, checks the hyperplane-concurrency equivalence on
 deterministic random gcd-trivial projective planes, verifies the vanishing-flat
-dimension bound, and verifies the projective-plane pair-counting bound,
-including forced repeated-line planes.  The verifier is supporting evidence
-only; the proofs above are the mathematical content.
+dimension bound, verifies the projective-plane pair-counting bound including
+forced repeated-line planes, and verifies the fixed-dimension incidence bound
+on random subspaces plus the sharp full-space case.  The verifier is supporting
+evidence only; the proofs above are the mathematical content.
