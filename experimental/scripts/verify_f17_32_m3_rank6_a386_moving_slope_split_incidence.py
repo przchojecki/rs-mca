@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v15"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v16"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -865,6 +865,71 @@ def conic_extremal_design_shapes(
     return shapes
 
 
+def line_design_multiplicity_profiles(
+    shapes: list[dict[str, Any]],
+    external_root_count: int,
+    forced_external_core_size: int,
+) -> list[dict[str, Any]]:
+    """Exact line-design membership counts on the nonforced external roots."""
+    available_external = external_root_count - forced_external_core_size
+    profiles: list[dict[str, Any]] = []
+    for shape in shapes:
+        covered = shape["covered_nonforced_external_root_lines"]
+        unused = shape["unused_nonforced_external_root_lines"]
+        require(covered + unused == available_external, "line design universe mismatch")
+        profiles.append(
+            {
+                "base_root_histogram": shape["base_root_histogram"],
+                "class_size_sequence": shape["nonforced_external_class_sizes"],
+                "available_nonforced_external_root_lines": available_external,
+                "multiplicity_zero_lines": unused,
+                "multiplicity_one_lines": covered,
+                "multiplicity_two_or_more_lines": 0,
+                "pairwise_class_intersections": "all_zero",
+            }
+        )
+    return profiles
+
+
+def conic_design_multiplicity_profiles(
+    shapes: list[dict[str, Any]],
+    external_root_count: int,
+    forced_external_core_size: int,
+) -> list[dict[str, Any]]:
+    """Exact conic-design membership counts; irreducibility excludes triple use."""
+    available_external = external_root_count - forced_external_core_size
+    profiles: list[dict[str, Any]] = []
+    for shape in shapes:
+        covered = shape["covered_nonforced_external_root_lines"]
+        unused = shape["unused_nonforced_external_root_lines"]
+        double_lines = shape["pair_overlaps"]
+        single_lines = covered - double_lines
+        require(covered + unused == available_external, "conic design universe mismatch")
+        require(single_lines >= 0, "conic single-line count negative")
+        profiles.append(
+            {
+                "base_root_histogram": shape["base_root_histogram"],
+                "class_size_sequence": shape["nonforced_external_class_sizes"],
+                "secant_graph": shape["secant_graph"],
+                "class_overlap_degree_sequence": (
+                    [5, 5, 5, 5, 5, 5]
+                    if shape["secant_graph"] == "K6"
+                    else [4, 4, 5, 5, 5, 5]
+                ),
+                "available_nonforced_external_root_lines": available_external,
+                "multiplicity_zero_lines": unused,
+                "multiplicity_one_lines": single_lines,
+                "multiplicity_two_lines": double_lines,
+                "multiplicity_three_or_more_lines": 0,
+                "reason_no_triple_use": (
+                    "a nonforced external root line meets an irreducible conic "
+                    "in length at most two"
+                ),
+            }
+        )
+    return profiles
+
+
 def quotient_residual_row(
     component_type: str,
     forced_external_core_threshold: int,
@@ -1279,6 +1344,16 @@ def build_certificate() -> dict[str, Any]:
         locator_degree=j_value,
         external_root_count=external_root_count,
     )
+    line_e72_design_multiplicity_profiles = line_design_multiplicity_profiles(
+        line_e72_extremal_design_shapes,
+        external_root_count=external_root_count,
+        forced_external_core_size=72,
+    )
+    conic_e69_design_multiplicity_profiles = conic_design_multiplicity_profiles(
+        conic_e69_extremal_design_shapes,
+        external_root_count=external_root_count,
+        forced_external_core_size=69,
+    )
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -1597,6 +1672,81 @@ def build_certificate() -> dict[str, Any]:
         ],
         "conic e=69 extremal design shapes changed",
     )
+    require(
+        line_e72_design_multiplicity_profiles
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "class_size_sequence": [52, 52, 52, 52, 52, 52],
+                "available_nonforced_external_root_lines": 313,
+                "multiplicity_zero_lines": 1,
+                "multiplicity_one_lines": 312,
+                "multiplicity_two_or_more_lines": 0,
+                "pairwise_class_intersections": "all_zero",
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "class_size_sequence": [53, 52, 52, 52, 52, 52],
+                "available_nonforced_external_root_lines": 313,
+                "multiplicity_zero_lines": 0,
+                "multiplicity_one_lines": 313,
+                "multiplicity_two_or_more_lines": 0,
+                "pairwise_class_intersections": "all_zero",
+            },
+        ],
+        "line e=72 design multiplicity profiles changed",
+    )
+    require(
+        conic_e69_design_multiplicity_profiles
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "class_size_sequence": [55, 55, 55, 55, 55, 55],
+                "secant_graph": "K6",
+                "class_overlap_degree_sequence": [5, 5, 5, 5, 5, 5],
+                "available_nonforced_external_root_lines": 316,
+                "multiplicity_zero_lines": 1,
+                "multiplicity_one_lines": 300,
+                "multiplicity_two_lines": 15,
+                "multiplicity_three_or_more_lines": 0,
+                "reason_no_triple_use": (
+                    "a nonforced external root line meets an irreducible conic "
+                    "in length at most two"
+                ),
+            },
+            {
+                "base_root_histogram": [0, 0, 6],
+                "class_size_sequence": [55, 55, 55, 55, 55, 55],
+                "secant_graph": "K6_minus_one_edge",
+                "class_overlap_degree_sequence": [4, 4, 5, 5, 5, 5],
+                "available_nonforced_external_root_lines": 316,
+                "multiplicity_zero_lines": 0,
+                "multiplicity_one_lines": 302,
+                "multiplicity_two_lines": 14,
+                "multiplicity_three_or_more_lines": 0,
+                "reason_no_triple_use": (
+                    "a nonforced external root line meets an irreducible conic "
+                    "in length at most two"
+                ),
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "class_size_sequence": [56, 55, 55, 55, 55, 55],
+                "secant_graph": "K6",
+                "class_overlap_degree_sequence": [5, 5, 5, 5, 5, 5],
+                "available_nonforced_external_root_lines": 316,
+                "multiplicity_zero_lines": 0,
+                "multiplicity_one_lines": 301,
+                "multiplicity_two_lines": 15,
+                "multiplicity_three_or_more_lines": 0,
+                "reason_no_triple_use": (
+                    "a nonforced external root line meets an irreducible conic "
+                    "in length at most two"
+                ),
+            },
+        ],
+        "conic e=69 design multiplicity profiles changed",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -1829,6 +1979,13 @@ def build_certificate() -> dict[str, Any]:
                 "edge covering all roots, or one size-56 plus five size-55 classes "
                 "with K6 covering all roots."
             ),
+            "extremal_design_multiplicity_profiles": (
+                "The line designs have no pairwise external overlap: their "
+                "nonforced external roots have multiplicities (zero, one, >=two) "
+                "equal to (1,312,0) or (0,313,0).  The conic designs have no "
+                "triple external overlap, and their multiplicities (zero, one, two) "
+                "are (1,300,15), (0,302,14), or (0,301,15)."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -1918,6 +2075,10 @@ def build_certificate() -> dict[str, Any]:
             "line_e72": line_e72_extremal_design_shapes,
             "irreducible_conic_e69": conic_e69_extremal_design_shapes,
         },
+        "extremal_design_multiplicity_profiles": {
+            "line_e72": line_e72_design_multiplicity_profiles,
+            "irreducible_conic_e69": conic_e69_design_multiplicity_profiles,
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -1977,6 +2138,9 @@ def build_certificate() -> dict[str, Any]:
             ),
             "line_e72_exact_root_budget_alternatives": line_e72_exact_root_budget_alternatives,
             "line_e72_extremal_design_shapes": line_e72_extremal_design_shapes,
+            "line_e72_design_multiplicity_profiles": (
+                line_e72_design_multiplicity_profiles
+            ),
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -2031,6 +2195,9 @@ def build_certificate() -> dict[str, Any]:
                 conic_e69_exact_root_budget_alternatives
             ),
             "conic_e69_extremal_design_shapes": conic_e69_extremal_design_shapes,
+            "conic_e69_design_multiplicity_profiles": (
+                conic_e69_design_multiplicity_profiles
+            ),
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -2071,6 +2238,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal survival shapes are classified by exact enumeration",
             "line e=72 and conic e=69 exact degree-126 root-budget alternatives are enumerated",
             "line e=72 and conic e=69 extremal finite design shapes are enumerated",
+            "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "244d5e90e18c277d8fdb8fb61b9d11c2ecd2c80400e22d94bf7cbc9924528faf"
+      "sha256": "bb9e13d2b23a3e08c829fb32a3f9904be9420e5a578ba2ff87fcd0f4ed39c4d2"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -593,7 +593,8 @@
       "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",
       "line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge",
       "exact degree-126 accounting leaves line e_G=72 with either one unused nonforced external root line or none, and conic e_G=69 with either 14 pair overlaps or all 15 pair overlaps",
-      "extremal design accounting leaves two line partition shapes and three conic secant-cover shapes"
+      "extremal design accounting leaves two line partition shapes and three conic secant-cover shapes",
+      "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",

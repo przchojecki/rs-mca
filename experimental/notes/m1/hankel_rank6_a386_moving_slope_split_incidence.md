@@ -336,6 +336,12 @@ size-`55` classes with secant graph `K6` leave one line unused, six size-`55`
 classes with `K6` minus one edge cover all lines, or one size-`56` class and
 five size-`55` classes with `K6` cover all lines.
 
+Equivalently, the line external-root multiplicity profiles are exactly
+`(1,312,0)` or `(0,313,0)` for multiplicities `(0,1,>=2)`.  The irreducible
+conic profiles are exactly `(1,300,15)`, `(0,302,14)`, or `(0,301,15)` for
+multiplicities `(0,1,2)`, with no multiplicity-`>=3` lines because a nonforced
+external line meets the irreducible conic in length at most `2`.
+
 Replay:
 
 ```sh

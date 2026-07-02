@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v15",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v16",
 }
 
 
@@ -521,6 +521,81 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ],
         "conic e=69 extremal design shapes",
     )
+    require(
+        summary["line_e72_design_multiplicity_profiles"]
+        == [
+            {
+                "available_nonforced_external_root_lines": 313,
+                "base_root_histogram": [0, 0, 6],
+                "class_size_sequence": [52, 52, 52, 52, 52, 52],
+                "multiplicity_one_lines": 312,
+                "multiplicity_two_or_more_lines": 0,
+                "multiplicity_zero_lines": 1,
+                "pairwise_class_intersections": "all_zero",
+            },
+            {
+                "available_nonforced_external_root_lines": 313,
+                "base_root_histogram": [0, 1, 5],
+                "class_size_sequence": [53, 52, 52, 52, 52, 52],
+                "multiplicity_one_lines": 313,
+                "multiplicity_two_or_more_lines": 0,
+                "multiplicity_zero_lines": 0,
+                "pairwise_class_intersections": "all_zero",
+            },
+        ],
+        "line e=72 design multiplicity profiles",
+    )
+    require(
+        summary["conic_e69_design_multiplicity_profiles"]
+        == [
+            {
+                "available_nonforced_external_root_lines": 316,
+                "base_root_histogram": [0, 0, 6],
+                "class_overlap_degree_sequence": [5, 5, 5, 5, 5, 5],
+                "class_size_sequence": [55, 55, 55, 55, 55, 55],
+                "multiplicity_one_lines": 300,
+                "multiplicity_three_or_more_lines": 0,
+                "multiplicity_two_lines": 15,
+                "multiplicity_zero_lines": 1,
+                "reason_no_triple_use": (
+                    "a nonforced external root line meets an irreducible conic "
+                    "in length at most two"
+                ),
+                "secant_graph": "K6",
+            },
+            {
+                "available_nonforced_external_root_lines": 316,
+                "base_root_histogram": [0, 0, 6],
+                "class_overlap_degree_sequence": [4, 4, 5, 5, 5, 5],
+                "class_size_sequence": [55, 55, 55, 55, 55, 55],
+                "multiplicity_one_lines": 302,
+                "multiplicity_three_or_more_lines": 0,
+                "multiplicity_two_lines": 14,
+                "multiplicity_zero_lines": 0,
+                "reason_no_triple_use": (
+                    "a nonforced external root line meets an irreducible conic "
+                    "in length at most two"
+                ),
+                "secant_graph": "K6_minus_one_edge",
+            },
+            {
+                "available_nonforced_external_root_lines": 316,
+                "base_root_histogram": [0, 1, 5],
+                "class_overlap_degree_sequence": [5, 5, 5, 5, 5, 5],
+                "class_size_sequence": [56, 55, 55, 55, 55, 55],
+                "multiplicity_one_lines": 301,
+                "multiplicity_three_or_more_lines": 0,
+                "multiplicity_two_lines": 15,
+                "multiplicity_zero_lines": 0,
+                "reason_no_triple_use": (
+                    "a nonforced external root line meets an irreducible conic "
+                    "in length at most two"
+                ),
+                "secant_graph": "K6",
+            },
+        ],
+        "conic e=69 design multiplicity profiles",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -635,6 +710,7 @@ def build_certificate() -> dict[str, Any]:
                 "line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge",
                 "exact degree-126 accounting leaves line e_G=72 with either one unused nonforced external root line or none, and conic e_G=69 with either 14 pair overlaps or all 15 pair overlaps",
                 "extremal design accounting leaves two line partition shapes and three conic secant-cover shapes",
+                "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

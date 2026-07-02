@@ -186,7 +186,8 @@
     "line base-root and conic secant-graph defect thresholds are computed by six-class exact enumeration",
     "line e=72 and conic e=69 extremal survival shapes are classified by exact enumeration",
     "line e=72 and conic e=69 exact degree-126 root-budget alternatives are enumerated",
-    "line e=72 and conic e=69 extremal finite design shapes are enumerated"
+    "line e=72 and conic e=69 extremal finite design shapes are enumerated",
+    "line e=72 and conic e=69 extremal multiplicity profiles are enumerated"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -483,6 +484,142 @@
         "exact_nonforced_external_root_incidences": 313,
         "total_base_root_incidences": 11,
         "unused_nonforced_external_root_lines": 0
+      }
+    ]
+  },
+  "extremal_design_multiplicity_profiles": {
+    "irreducible_conic_e69": [
+      {
+        "available_nonforced_external_root_lines": 316,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_overlap_degree_sequence": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "class_size_sequence": [
+          55,
+          55,
+          55,
+          55,
+          55,
+          55
+        ],
+        "multiplicity_one_lines": 300,
+        "multiplicity_three_or_more_lines": 0,
+        "multiplicity_two_lines": 15,
+        "multiplicity_zero_lines": 1,
+        "reason_no_triple_use": "a nonforced external root line meets an irreducible conic in length at most two",
+        "secant_graph": "K6"
+      },
+      {
+        "available_nonforced_external_root_lines": 316,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_overlap_degree_sequence": [
+          4,
+          4,
+          5,
+          5,
+          5,
+          5
+        ],
+        "class_size_sequence": [
+          55,
+          55,
+          55,
+          55,
+          55,
+          55
+        ],
+        "multiplicity_one_lines": 302,
+        "multiplicity_three_or_more_lines": 0,
+        "multiplicity_two_lines": 14,
+        "multiplicity_zero_lines": 0,
+        "reason_no_triple_use": "a nonforced external root line meets an irreducible conic in length at most two",
+        "secant_graph": "K6_minus_one_edge"
+      },
+      {
+        "available_nonforced_external_root_lines": 316,
+        "base_root_histogram": [
+          0,
+          1,
+          5
+        ],
+        "class_overlap_degree_sequence": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "class_size_sequence": [
+          56,
+          55,
+          55,
+          55,
+          55,
+          55
+        ],
+        "multiplicity_one_lines": 301,
+        "multiplicity_three_or_more_lines": 0,
+        "multiplicity_two_lines": 15,
+        "multiplicity_zero_lines": 0,
+        "reason_no_triple_use": "a nonforced external root line meets an irreducible conic in length at most two",
+        "secant_graph": "K6"
+      }
+    ],
+    "line_e72": [
+      {
+        "available_nonforced_external_root_lines": 313,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_size_sequence": [
+          52,
+          52,
+          52,
+          52,
+          52,
+          52
+        ],
+        "multiplicity_one_lines": 312,
+        "multiplicity_two_or_more_lines": 0,
+        "multiplicity_zero_lines": 1,
+        "pairwise_class_intersections": "all_zero"
+      },
+      {
+        "available_nonforced_external_root_lines": 313,
+        "base_root_histogram": [
+          0,
+          1,
+          5
+        ],
+        "class_size_sequence": [
+          53,
+          52,
+          52,
+          52,
+          52,
+          52
+        ],
+        "multiplicity_one_lines": 313,
+        "multiplicity_two_or_more_lines": 0,
+        "multiplicity_zero_lines": 0,
+        "pairwise_class_intersections": "all_zero"
       }
     ]
   },
@@ -3295,7 +3432,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v15",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v16",
   "source_artifacts": {
     "a386_global_component_slope_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
@@ -3350,6 +3487,98 @@
       "required_secant_edges_before_external_excess": 14,
       "six_finite_classes": 6
     },
+    "conic_e69_design_multiplicity_profiles": [
+      {
+        "available_nonforced_external_root_lines": 316,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_overlap_degree_sequence": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "class_size_sequence": [
+          55,
+          55,
+          55,
+          55,
+          55,
+          55
+        ],
+        "multiplicity_one_lines": 300,
+        "multiplicity_three_or_more_lines": 0,
+        "multiplicity_two_lines": 15,
+        "multiplicity_zero_lines": 1,
+        "reason_no_triple_use": "a nonforced external root line meets an irreducible conic in length at most two",
+        "secant_graph": "K6"
+      },
+      {
+        "available_nonforced_external_root_lines": 316,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_overlap_degree_sequence": [
+          4,
+          4,
+          5,
+          5,
+          5,
+          5
+        ],
+        "class_size_sequence": [
+          55,
+          55,
+          55,
+          55,
+          55,
+          55
+        ],
+        "multiplicity_one_lines": 302,
+        "multiplicity_three_or_more_lines": 0,
+        "multiplicity_two_lines": 14,
+        "multiplicity_zero_lines": 0,
+        "reason_no_triple_use": "a nonforced external root line meets an irreducible conic in length at most two",
+        "secant_graph": "K6_minus_one_edge"
+      },
+      {
+        "available_nonforced_external_root_lines": 316,
+        "base_root_histogram": [
+          0,
+          1,
+          5
+        ],
+        "class_overlap_degree_sequence": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "class_size_sequence": [
+          56,
+          55,
+          55,
+          55,
+          55,
+          55
+        ],
+        "multiplicity_one_lines": 301,
+        "multiplicity_three_or_more_lines": 0,
+        "multiplicity_two_lines": 15,
+        "multiplicity_zero_lines": 0,
+        "reason_no_triple_use": "a nonforced external root line meets an irreducible conic in length at most two",
+        "secant_graph": "K6"
+      }
+    ],
     "conic_e69_exact_root_budget_alternatives": [
       {
         "base_root_histogram": [
@@ -3505,6 +3734,48 @@
       "required_total_base_root_incidences": 11,
       "six_finite_classes": 6
     },
+    "line_e72_design_multiplicity_profiles": [
+      {
+        "available_nonforced_external_root_lines": 313,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_size_sequence": [
+          52,
+          52,
+          52,
+          52,
+          52,
+          52
+        ],
+        "multiplicity_one_lines": 312,
+        "multiplicity_two_or_more_lines": 0,
+        "multiplicity_zero_lines": 1,
+        "pairwise_class_intersections": "all_zero"
+      },
+      {
+        "available_nonforced_external_root_lines": 313,
+        "base_root_histogram": [
+          0,
+          1,
+          5
+        ],
+        "class_size_sequence": [
+          53,
+          52,
+          52,
+          52,
+          52,
+          52
+        ],
+        "multiplicity_one_lines": 313,
+        "multiplicity_two_or_more_lines": 0,
+        "multiplicity_zero_lines": 0,
+        "pairwise_class_intersections": "all_zero"
+      }
+    ],
     "line_e72_exact_root_budget_alternatives": [
       {
         "base_root_histogram": [
@@ -3624,6 +3895,7 @@
     "conic_status": "For an irreducible conic c=2, the base-sharpened budget gives six finite Q-classes at e_G=0 and finite safety through e_G<=19, but the projective endpoint still makes total seven at best.  The conic pair-overlap packing lemma below supplies the needed extra saving through e_G<=68.",
     "defect_threshold_profile": "The survival pressures are converted into exact closure-by-defect thresholds.  At line e_G=72, six finite classes require at least eleven base-root incidences, so all six classes have a base root and at least five have two.  At conic e_G=69, six finite classes require at least fourteen of the fifteen pair secants before external excess, hence at least sixteen secant triangles.",
     "exact_root_budget_alternatives": "Using exact degree-126 split-locator accounting, line e_G=72 has only two alternatives: histogram (0,0,6) leaves exactly one unused nonforced external root line, while histogram (0,1,5) uses all nonforced external root lines.  For conic e_G=69, histogram (0,0,6) requires fourteen pair overlaps and histogram (0,1,5) requires all fifteen pair overlaps.",
+    "extremal_design_multiplicity_profiles": "The line designs have no pairwise external overlap: their nonforced external roots have multiplicities (zero, one, >=two) equal to (1,312,0) or (0,313,0).  The conic designs have no triple external overlap, and their multiplicities (zero, one, two) are (1,300,15), (0,302,14), or (0,301,15).",
     "extremal_design_shapes": "Combining the root budgets with the extremal line/conic shapes, line e_G=72 is a disjoint partition by six size-52 classes plus one unused nonforced external root line, or by one size-53 class and five size-52 classes covering all nonforced external roots.  Conic e_G=69 has only three designs: six size-55 classes with K6 and one unused root line, six size-55 classes with K6 minus one edge covering all roots, or one size-56 plus five size-55 classes with K6 covering all roots.",
     "extremal_survival_shape_profile": "The extremal e_G=72 line case has only two possible base-root histograms among the six finite classes: six two-root classes, or five two-root classes plus one one-root class.  The extremal e_G=69 conic case has secant graph K6 or K6 with one missing edge.",
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",

@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 extremal multiplicity profiles
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now records the exact
+  external-root multiplicity profiles forced by the extremal design targets.
+- **How it is useful:** Line designs have profiles `(1,312,0)` or `(0,313,0)`
+  for multiplicities `(0,1,>=2)`.  Conic designs have profiles `(1,300,15)`,
+  `(0,302,14)`, or `(0,301,15)` for multiplicities `(0,1,2)`, with no triple
+  use.  This turns the remaining conic target into an exact double-line cover.
+- **What to do next:** Use the multiplicity profiles to test whether the
+  external evaluation-line arrangement can realize these covers without a
+  quotient-paid or tangent-paid structure.
+
 ### 2026-07-02 - A386 extremal design targets
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

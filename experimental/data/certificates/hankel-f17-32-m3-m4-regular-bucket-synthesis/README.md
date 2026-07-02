@@ -262,6 +262,9 @@ nonforced external root line or none, and conic `e_G=69` with either `14`
 pair-overlaps or all `15`.
 Combining the shape and root-budget constraints leaves two line partition
 shapes and three conic secant-cover shapes.
+Equivalently, the line multiplicity profiles are `(1,312,0)` and `(0,313,0)`,
+while the conic multiplicity profiles are `(1,300,15)`, `(0,302,14)`, and
+`(0,301,15)`.
 
 The rank-node dichotomy packet
 
