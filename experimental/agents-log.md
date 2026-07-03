@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Cyclotomic root-difference germ
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/thresholds/cyclotomic_root_difference_germ.md`,
+  `experimental/scripts/verify_cyclotomic_root_difference_germ.py`,
+  `experimental/data/certificates/cyclotomic-root-difference-germ/README.md`,
+  `experimental/data/certificates/cyclotomic-root-difference-germ/cyclotomic_root_difference_germ.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CERTIFICATION-ARITHMETIC.
+- **What is being added:** The exact factorization
+  `zeta_N^a-zeta_N^b = zeta_N^b(zeta_N^{a-b}-1)` and the closed norm formula
+  `Phi_M(1)^(phi(N)/phi(M))` for singleton root differences, with exact
+  resultant checks across power-of-two and mixed quotient orders.
+- **How it is useful:** Supplies the theorem-backed primitive for the
+  generator-economy lane and explains why singleton root differences over
+  `2`-power quotient orders are automatically certified away from odd
+  reduction primes.
+- **What to do next:** Use this as the base germ for `ell`-sum
+  generator-economy design searches; the lift to large all-pairs-certified
+  families remains open.
+
 ### 2026-07-03 - Height-only certification limit
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
