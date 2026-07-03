@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E13 split-locator syzygy circuit lemma
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/e13_split_locator_syzygy_circuit_lemma.md`;
+  `experimental/notes/roadmaps/e13_sparse_greedy_syzygy_branch.md`;
+  `experimental/scripts/verify_e13_split_locator_syzygy_circuit_lemma.py`;
+  `experimental/data/certificates/spread-regime-design-evidence/e13_split_locator_syzygy_circuit_lemma.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL replay.
+- **What is being added:** A local algebra lemma: left dependencies among
+  split-locator rows are equivalent to two zero-polynomial identities, and
+  one-dimensional full-support dependencies with independent one-block
+  deletions are minimal circuits.
+- **How it is useful:** This turns the E13 sparse-greedy exceptions from an
+  evidence bucket into a precise proof target: any future spread theorem must
+  pay, bound, or rule out full-support split-locator syzygy circuits.
+- **What to do next:** Attack the circuit branch structurally, starting with
+  whether the two zero-polynomial identities force quotient/tangent payment or
+  a bounded incidence family.
+
 ### 2026-07-03 - E13 spread-exception finite-geometry census
 
 - **Agent/model:** Codex acting autonomously.

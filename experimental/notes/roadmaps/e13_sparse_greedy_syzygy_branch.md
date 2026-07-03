@@ -87,6 +87,12 @@ uniformly, paid by an existing ledger after a change of coordinates, or
 impossible once the toy control restrictions are replaced by the actual
 prize-scale hypotheses.
 
+The local algebra that makes the word "circuit" precise is recorded separately
+in `experimental/notes/roadmaps/e13_split_locator_syzygy_circuit_lemma.md`.
+That lemma proves that split-row dependencies are exactly the two
+zero-polynomial identities and that the certified full-support,
+one-deletion-independent exceptions are minimal circuits.
+
 ## Non-claims
 
 This packet does not prove `spread_regime_bound`.

@@ -1,0 +1,165 @@
+{
+  "all_records_are_minimal_full_support_circuits": true,
+  "cell_counts": {
+    "greedy_32_j5_lambda1::distinct_geometric::size5": 1,
+    "greedy_32_j6_lambda2::distinct_geometric::size6": 34,
+    "greedy_32_j6_lambda2::distinct_linear::size6": 36
+  },
+  "dag_nodes": [
+    "spread_exception_classification",
+    "spread_regime_bound"
+  ],
+  "lemma": "Left dependencies among split-locator rows are equivalent to the two displayed zero-polynomial identities.  One-dimensional full-support dependencies whose one-block deletions are independent are minimal circuits.",
+  "records_checked": 71,
+  "sample_records": [
+    {
+      "all_one_block_deletions_independent": true,
+      "block_count": 5,
+      "case_name": "greedy_32_j5_lambda1",
+      "deletion_count": 5,
+      "nonzero_block_count": 5,
+      "relation_left_nullity": 1,
+      "size": 5,
+      "slope_mode": "distinct_geometric",
+      "subset_indices": [
+        3,
+        4,
+        7,
+        10,
+        12
+      ]
+    },
+    {
+      "all_one_block_deletions_independent": true,
+      "block_count": 6,
+      "case_name": "greedy_32_j6_lambda2",
+      "deletion_count": 6,
+      "nonzero_block_count": 6,
+      "relation_left_nullity": 1,
+      "size": 6,
+      "slope_mode": "distinct_linear",
+      "subset_indices": [
+        0,
+        1,
+        2,
+        3,
+        8,
+        14
+      ]
+    },
+    {
+      "all_one_block_deletions_independent": true,
+      "block_count": 6,
+      "case_name": "greedy_32_j6_lambda2",
+      "deletion_count": 6,
+      "nonzero_block_count": 6,
+      "relation_left_nullity": 1,
+      "size": 6,
+      "slope_mode": "distinct_linear",
+      "subset_indices": [
+        0,
+        1,
+        8,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "all_one_block_deletions_independent": true,
+      "block_count": 6,
+      "case_name": "greedy_32_j6_lambda2",
+      "deletion_count": 6,
+      "nonzero_block_count": 6,
+      "relation_left_nullity": 1,
+      "size": 6,
+      "slope_mode": "distinct_linear",
+      "subset_indices": [
+        0,
+        2,
+        3,
+        9,
+        13,
+        14
+      ]
+    },
+    {
+      "all_one_block_deletions_independent": true,
+      "block_count": 6,
+      "case_name": "greedy_32_j6_lambda2",
+      "deletion_count": 6,
+      "nonzero_block_count": 6,
+      "relation_left_nullity": 1,
+      "size": 6,
+      "slope_mode": "distinct_linear",
+      "subset_indices": [
+        0,
+        2,
+        6,
+        7,
+        10,
+        11
+      ]
+    },
+    {
+      "all_one_block_deletions_independent": true,
+      "block_count": 6,
+      "case_name": "greedy_32_j6_lambda2",
+      "deletion_count": 6,
+      "nonzero_block_count": 6,
+      "relation_left_nullity": 1,
+      "size": 6,
+      "slope_mode": "distinct_linear",
+      "subset_indices": [
+        0,
+        2,
+        8,
+        9,
+        11,
+        15
+      ]
+    },
+    {
+      "all_one_block_deletions_independent": true,
+      "block_count": 6,
+      "case_name": "greedy_32_j6_lambda2",
+      "deletion_count": 6,
+      "nonzero_block_count": 6,
+      "relation_left_nullity": 1,
+      "size": 6,
+      "slope_mode": "distinct_linear",
+      "subset_indices": [
+        0,
+        3,
+        6,
+        10,
+        12,
+        14
+      ]
+    },
+    {
+      "all_one_block_deletions_independent": true,
+      "block_count": 6,
+      "case_name": "greedy_32_j6_lambda2",
+      "deletion_count": 6,
+      "nonzero_block_count": 6,
+      "relation_left_nullity": 1,
+      "size": 6,
+      "slope_mode": "distinct_linear",
+      "subset_indices": [
+        0,
+        3,
+        8,
+        9,
+        12,
+        14
+      ]
+    }
+  ],
+  "schema": "e13-split-locator-syzygy-circuit-lemma-v1",
+  "script_sha256": "cf4f147d21eb6894db99dd03f1d6d064df3bc20acbd89291af3a709748afbb67",
+  "source_artifact": "experimental/data/certificates/spread-regime-design-evidence/e13_sparse_greedy_syzygy_branch.json",
+  "source_sha256": "e0684657126a05a87539f925b1636f7e0fb0edd1613f6b170ef9a1491982a0e5",
+  "status": "PASS",
+  "total_one_block_deletions_checked": 425
+}
