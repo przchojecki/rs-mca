@@ -51,6 +51,28 @@ Keep entries concise and link to the relevant files.
   and decide whether they are paid, bounded exceptional ledgers, or evidence
   that the spread-regime statement needs another named branch.
 
+### 2026-07-03 - E13 sparse-greedy syzygy branch
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/e13_sparse_greedy_syzygy_branch.md`;
+  `experimental/scripts/verify_e13_sparse_greedy_syzygy_branch.py`;
+  `experimental/data/certificates/spread-regime-design-evidence/e13_sparse_greedy_syzygy_branch.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A replay of the `71` nondegenerate `n=32`
+  sparse-greedy exceptions from E13 which certifies that every one has a
+  one-dimensional full-support row-dependency syzygy; the artifact stores the
+  relation coefficients by locator block.
+- **How it is useful:** Replaces the opaque `unclassified non-geometry`
+  bucket by a precise algebraic branch that can be attacked: full-support
+  sparse-greedy syzygies must be classified, paid, bounded, or ruled out under
+  the actual spread-regime hypotheses.
+- **What to do next:** Try to prove a local structure theorem for these
+  full-support syzygies, starting with whether the two zero-polynomial
+  identities force a bounded incidence pattern or an existing quotient/tangent
+  payment after normalization.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
