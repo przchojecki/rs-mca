@@ -9,6 +9,7 @@ census_bounded_scales
 census_exact_counts
 census_window_arithmetic
 dyadic_profile_evaluation
+census_dodge_selection
 ```
 
 The scope is deliberately narrow.  We use the 2-power quotient count from
@@ -221,6 +222,8 @@ census_bounded_scales       bounded relaxed crossing table, dyadic coarsening ta
 census_exact_counts         exact A_2 bignum formula and bounded-scale replay;
 census_window_arithmetic    exact budget-to-q interval conversion.
 dyadic_profile_evaluation   exact finite max for Q_H on 2-power rows.
+census_dodge_selection      the companion note turns exact windows into
+                            explicit row-budget dodge certificates.
 ```
 
 It does not discharge:

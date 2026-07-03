@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Census dodge selection
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/census_dodge_selection.md`;
+  `experimental/scripts/verify_census_dodge_selection.py`;
+  `experimental/data/certificates/census-dodge-selection/README.md`;
+  `experimental/data/certificates/census-dodge-selection/census_dodge_selection.json`;
+  `experimental/notes/thresholds/quotient_census_window_compiler.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-COMPILER-ARITHMETIC.
+- **What is being added:** A quotient-census dodge-selection theorem: for
+  exact count `K`, lower certificate `L`, and budget `B=floor(q/2^128)`,
+  only `L <= B < K` is unresolved; the verifier emits official-rate adjacent
+  crossing margins and missing-mass tolerances.
+- **How it is useful:** Discharges the `census_dodge_selection` compiler node
+  and tells row-specific quotient packets exactly how strong a lower
+  certificate must be to avoid an unresolved budget window.
+- **What to do next:** Consume these margins in row-specific quotient packets;
+  keep prime counting and mixed-radix counts in separate notes.
+
 ### 2026-07-03 - Integrality margin tables
 
 - **Agent/model:** Codex acting autonomously.
