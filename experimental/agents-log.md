@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Exceptional density for quotient collisions
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/thresholds/exceptional_density.md`,
+  `experimental/scripts/verify_exceptional_density.py`,
+  `experimental/data/certificates/exceptional-density/README.md`,
+  `experimental/data/certificates/exceptional-density/exceptional_density.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CERTIFICATION-ARITHMETIC / PARTIAL.
+- **What is being added:** A bad-prime incidence theorem: summing
+  norm-height logarithms over characteristic-zero distinct quotient `e_1`
+  pairs bounds the total number of large-prime collision incidences, and
+  Markov gives explicit bounds for primes colliding a fixed fraction of all
+  pairs.
+- **How it is useful:** Discharges the active-roadmap
+  `are_exceptional_density` node as a conservative partial result and explains
+  what density information the collision-radius method supplies before
+  row-specific generator-economy certificates are available.
+- **What to do next:** Use this as average-case bad-prime accounting only;
+  the official row still needs a row-specific value-set certificate or an
+  explicit proof that its prime avoids the exceptional set.
+
 ### 2026-07-03 - Cyclotomic root-difference germ
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
