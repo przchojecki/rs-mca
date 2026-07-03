@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E13 spread-exception finite-geometry census
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/e13_spread_exception_finite_geometry_census.md`;
+  `experimental/scripts/verify_e13_spread_exception_finite_geometry_census.py`;
+  `experimental/data/certificates/spread-regime-design-evidence/e13_spread_exception_finite_geometry_census.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT / COUNTEREXAMPLE-REFINEMENT.
+- **What is being added:** A follow-up to E3 which exhaustively classifies the
+  replayable `AG(2,4)` below-cap exceptions as finite-geometry line-net
+  configurations, then runs bounded `n=32` greedy control censuses that find
+  `71` nondegenerate exceptions outside the current AG/net classifier.
+- **How it is useful:** This grounds the AG exception class but red-teams the
+  overly narrow `spread_exception_classification` wording: the spread-regime
+  route now needs a broader taxonomy, a payment for the sparse-greedy class, or
+  a proof that these controls are finite-geometry in a larger sense.
+- **What to do next:** Classify the `n=32` sparse-greedy examples structurally
+  and decide whether they are paid, bounded exceptional ledgers, or evidence
+  that the spread-regime statement needs another named branch.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

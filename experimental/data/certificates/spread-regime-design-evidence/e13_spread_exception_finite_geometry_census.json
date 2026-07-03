@@ -1,0 +1,1924 @@
+{
+  "ag24_nondegenerate_exception_count": 373,
+  "cells": [
+    {
+      "A": 12,
+      "degree_cap": 12,
+      "exhaustive_scope": "all subfamilies of all 20 AG(2,4) lines, in every size where the E3 packet observed below-cap loss or its first possible predecessors",
+      "family_size": 20,
+      "j": 4,
+      "k": 10,
+      "modes": [
+        "distinct_linear",
+        "distinct_geometric"
+      ],
+      "n": 16,
+      "name": "ag2_4_all_lines_exact_exception_census",
+      "prime": 193,
+      "rows": [
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "4": 190
+          },
+          "size": 2,
+          "total_subsets": 190
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "6": 1140
+          },
+          "size": 3,
+          "total_subsets": 1140
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "8": 4845
+          },
+          "size": 4,
+          "total_subsets": 4845
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "10": 15504
+          },
+          "size": 5,
+          "total_subsets": 15504
+        },
+        {
+          "degenerate_loss_subsets": 240,
+          "first_degenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                0,
+                1,
+                2,
+                3
+              ],
+              [
+                0,
+                4,
+                8,
+                12
+              ],
+              [
+                0,
+                5,
+                10,
+                15
+              ],
+              [
+                0,
+                6,
+                11,
+                13
+              ],
+              [
+                0,
+                7,
+                9,
+                14
+              ],
+              [
+                1,
+                4,
+                11,
+                14
+              ]
+            ],
+            "rank": 11,
+            "signature": {
+              "classification": "finite_geometry_ag24_line_net",
+              "max_point_multiplicity": 5,
+              "pair_intersection_histogram": {
+                "0": 1,
+                "1": 14
+              },
+              "parallel_class_histogram": {
+                "0": 1,
+                "1": 1,
+                "2": 2,
+                "3": 1,
+                "4": 1
+              },
+              "parallel_class_size_signature": [
+                2,
+                1,
+                1,
+                1,
+                1
+              ],
+              "point_multiplicity_histogram": {
+                "1": 11,
+                "2": 4,
+                "5": 1
+              }
+            },
+            "subset_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "zero_restriction_locator_count": 5
+          },
+          "first_nondegenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                0,
+                1,
+                2,
+                3
+              ],
+              [
+                0,
+                4,
+                8,
+                12
+              ],
+              [
+                0,
+                5,
+                10,
+                15
+              ],
+              [
+                0,
+                6,
+                11,
+                13
+              ],
+              [
+                2,
+                5,
+                11,
+                12
+              ],
+              [
+                12,
+                13,
+                14,
+                15
+              ]
+            ],
+            "rank": 11,
+            "signature": {
+              "classification": "finite_geometry_ag24_line_net",
+              "max_point_multiplicity": 4,
+              "pair_intersection_histogram": {
+                "0": 1,
+                "1": 14
+              },
+              "parallel_class_histogram": {
+                "0": 2,
+                "1": 1,
+                "2": 1,
+                "3": 1,
+                "4": 1
+              },
+              "parallel_class_size_signature": [
+                2,
+                1,
+                1,
+                1,
+                1
+              ],
+              "point_multiplicity_histogram": {
+                "0": 2,
+                "1": 7,
+                "2": 5,
+                "3": 1,
+                "4": 1
+              }
+            },
+            "subset_indices": [
+              0,
+              1,
+              2,
+              3,
+              10,
+              19
+            ],
+            "zero_restriction_locator_count": 0
+          },
+          "loss_subsets": 435,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {
+            "finite_geometry_ag24_line_net": 195
+          },
+          "nondegenerate_loss_subsets": 195,
+          "nondegenerate_signature_histogram": {
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 2], [\"1\", 7], [\"2\", 5], [\"3\", 1], [\"4\", 1]]]": 16,
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 2], [\"1\", 8], [\"2\", 2], [\"3\", 4]]]": 1,
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 3], [\"1\", 4], [\"2\", 8], [\"4\", 1]]]": 2,
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 3], [\"1\", 5], [\"2\", 5], [\"3\", 3]]]": 13,
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 4], [\"1\", 2], [\"2\", 8], [\"3\", 2]]]": 6,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 1, 1], [[\"0\", 1], [\"1\", 9], [\"2\", 4], [\"3\", 1], [\"4\", 1]]]": 13,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 1, 1], [[\"0\", 2], [\"1\", 6], [\"2\", 7], [\"4\", 1]]]": 8,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 1, 1], [[\"0\", 2], [\"1\", 7], [\"2\", 4], [\"3\", 3]]]": 30,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 1, 1], [[\"0\", 3], [\"1\", 4], [\"2\", 7], [\"3\", 2]]]": 43,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 2], [[\"0\", 2], [\"1\", 6], [\"2\", 6], [\"3\", 2]]]": 9,
+            "[\"finite_geometry_ag24_line_net\", [3, 1, 1, 1], [[\"0\", 1], [\"1\", 8], [\"2\", 6], [\"4\", 1]]]": 3,
+            "[\"finite_geometry_ag24_line_net\", [3, 1, 1, 1], [[\"0\", 1], [\"1\", 9], [\"2\", 3], [\"3\", 3]]]": 4,
+            "[\"finite_geometry_ag24_line_net\", [3, 1, 1, 1], [[\"0\", 2], [\"1\", 6], [\"2\", 6], [\"3\", 2]]]": 17,
+            "[\"finite_geometry_ag24_line_net\", [3, 2, 1], [[\"0\", 1], [\"1\", 8], [\"2\", 5], [\"3\", 2]]]": 14,
+            "[\"finite_geometry_ag24_line_net\", [3, 2, 1], [[\"0\", 2], [\"1\", 5], [\"2\", 8], [\"3\", 1]]]": 10,
+            "[\"finite_geometry_ag24_line_net\", [3, 3], [[\"0\", 1], [\"1\", 6], [\"2\", 9]]]": 4,
+            "[\"finite_geometry_ag24_line_net\", [4, 1, 1], [[\"1\", 9], [\"2\", 6], [\"3\", 1]]]": 1,
+            "[\"finite_geometry_ag24_line_net\", [4, 2], [[\"1\", 8], [\"2\", 8]]]": 1
+          },
+          "nondegenerate_signature_type_count": 18,
+          "rank_distribution": {
+            "11": 435,
+            "12": 38325
+          },
+          "size": 6,
+          "total_subsets": 38760
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                0,
+                4,
+                8,
+                12
+              ],
+              [
+                0,
+                5,
+                10,
+                15
+              ],
+              [
+                1,
+                4,
+                11,
+                14
+              ],
+              [
+                1,
+                5,
+                9,
+                13
+              ],
+              [
+                2,
+                6,
+                10,
+                14
+              ],
+              [
+                3,
+                6,
+                9,
+                12
+              ],
+              [
+                3,
+                7,
+                11,
+                15
+              ]
+            ],
+            "rank": 11,
+            "signature": {
+              "classification": "finite_geometry_ag24_line_net",
+              "max_point_multiplicity": 2,
+              "pair_intersection_histogram": {
+                "0": 9,
+                "1": 12
+              },
+              "parallel_class_histogram": {
+                "1": 4,
+                "2": 3
+              },
+              "parallel_class_size_signature": [
+                4,
+                3
+              ],
+              "point_multiplicity_histogram": {
+                "1": 4,
+                "2": 12
+              }
+            },
+            "subset_indices": [
+              1,
+              2,
+              5,
+              6,
+              11,
+              15,
+              16
+            ],
+            "zero_restriction_locator_count": 0
+          },
+          "loss_subsets": 2,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {
+            "finite_geometry_ag24_line_net": 2
+          },
+          "nondegenerate_loss_subsets": 2,
+          "nondegenerate_signature_histogram": {
+            "[\"finite_geometry_ag24_line_net\", [4, 3], [[\"1\", 4], [\"2\", 12]]]": 2
+          },
+          "nondegenerate_signature_type_count": 1,
+          "rank_distribution": {
+            "11": 2,
+            "12": 77518
+          },
+          "size": 7,
+          "total_subsets": 77520
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "4": 190
+          },
+          "size": 2,
+          "total_subsets": 190
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "6": 1140
+          },
+          "size": 3,
+          "total_subsets": 1140
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "8": 4845
+          },
+          "size": 4,
+          "total_subsets": 4845
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "10": 15504
+          },
+          "size": 5,
+          "total_subsets": 15504
+        },
+        {
+          "degenerate_loss_subsets": 240,
+          "first_degenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                0,
+                1,
+                2,
+                3
+              ],
+              [
+                0,
+                4,
+                8,
+                12
+              ],
+              [
+                0,
+                5,
+                10,
+                15
+              ],
+              [
+                0,
+                6,
+                11,
+                13
+              ],
+              [
+                0,
+                7,
+                9,
+                14
+              ],
+              [
+                1,
+                4,
+                11,
+                14
+              ]
+            ],
+            "rank": 11,
+            "signature": {
+              "classification": "finite_geometry_ag24_line_net",
+              "max_point_multiplicity": 5,
+              "pair_intersection_histogram": {
+                "0": 1,
+                "1": 14
+              },
+              "parallel_class_histogram": {
+                "0": 1,
+                "1": 1,
+                "2": 2,
+                "3": 1,
+                "4": 1
+              },
+              "parallel_class_size_signature": [
+                2,
+                1,
+                1,
+                1,
+                1
+              ],
+              "point_multiplicity_histogram": {
+                "1": 11,
+                "2": 4,
+                "5": 1
+              }
+            },
+            "subset_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "zero_restriction_locator_count": 5
+          },
+          "first_nondegenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                0,
+                1,
+                2,
+                3
+              ],
+              [
+                0,
+                4,
+                8,
+                12
+              ],
+              [
+                0,
+                5,
+                10,
+                15
+              ],
+              [
+                0,
+                6,
+                11,
+                13
+              ],
+              [
+                2,
+                4,
+                9,
+                15
+              ],
+              [
+                2,
+                7,
+                8,
+                13
+              ]
+            ],
+            "rank": 11,
+            "signature": {
+              "classification": "finite_geometry_ag24_line_net",
+              "max_point_multiplicity": 4,
+              "pair_intersection_histogram": {
+                "0": 2,
+                "1": 13
+              },
+              "parallel_class_histogram": {
+                "0": 1,
+                "1": 1,
+                "2": 2,
+                "3": 2
+              },
+              "parallel_class_size_signature": [
+                2,
+                2,
+                1,
+                1
+              ],
+              "point_multiplicity_histogram": {
+                "0": 1,
+                "1": 9,
+                "2": 4,
+                "3": 1,
+                "4": 1
+              }
+            },
+            "subset_indices": [
+              0,
+              1,
+              2,
+              3,
+              9,
+              12
+            ],
+            "zero_restriction_locator_count": 0
+          },
+          "loss_subsets": 416,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {
+            "finite_geometry_ag24_line_net": 176
+          },
+          "nondegenerate_loss_subsets": 176,
+          "nondegenerate_signature_histogram": {
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 2], [\"1\", 7], [\"2\", 5], [\"3\", 1], [\"4\", 1]]]": 15,
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 2], [\"1\", 8], [\"2\", 2], [\"3\", 4]]]": 3,
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 3], [\"1\", 4], [\"2\", 8], [\"4\", 1]]]": 4,
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 3], [\"1\", 5], [\"2\", 5], [\"3\", 3]]]": 12,
+            "[\"finite_geometry_ag24_line_net\", [2, 1, 1, 1, 1], [[\"0\", 4], [\"1\", 2], [\"2\", 8], [\"3\", 2]]]": 2,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 1, 1], [[\"0\", 1], [\"1\", 9], [\"2\", 4], [\"3\", 1], [\"4\", 1]]]": 11,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 1, 1], [[\"0\", 2], [\"1\", 6], [\"2\", 7], [\"4\", 1]]]": 6,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 1, 1], [[\"0\", 2], [\"1\", 7], [\"2\", 4], [\"3\", 3]]]": 23,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 1, 1], [[\"0\", 3], [\"1\", 4], [\"2\", 7], [\"3\", 2]]]": 34,
+            "[\"finite_geometry_ag24_line_net\", [2, 2, 2], [[\"0\", 2], [\"1\", 6], [\"2\", 6], [\"3\", 2]]]": 9,
+            "[\"finite_geometry_ag24_line_net\", [3, 1, 1, 1], [[\"0\", 1], [\"1\", 8], [\"2\", 6], [\"4\", 1]]]": 6,
+            "[\"finite_geometry_ag24_line_net\", [3, 1, 1, 1], [[\"0\", 1], [\"1\", 9], [\"2\", 3], [\"3\", 3]]]": 9,
+            "[\"finite_geometry_ag24_line_net\", [3, 1, 1, 1], [[\"0\", 2], [\"1\", 6], [\"2\", 6], [\"3\", 2]]]": 11,
+            "[\"finite_geometry_ag24_line_net\", [3, 1, 1, 1], [[\"0\", 3], [\"1\", 3], [\"2\", 9], [\"3\", 1]]]": 3,
+            "[\"finite_geometry_ag24_line_net\", [3, 2, 1], [[\"0\", 1], [\"1\", 8], [\"2\", 5], [\"3\", 2]]]": 10,
+            "[\"finite_geometry_ag24_line_net\", [3, 2, 1], [[\"0\", 2], [\"1\", 5], [\"2\", 8], [\"3\", 1]]]": 15,
+            "[\"finite_geometry_ag24_line_net\", [4, 1, 1], [[\"1\", 9], [\"2\", 6], [\"3\", 1]]]": 2,
+            "[\"finite_geometry_ag24_line_net\", [4, 2], [[\"1\", 8], [\"2\", 8]]]": 1
+          },
+          "nondegenerate_signature_type_count": 18,
+          "rank_distribution": {
+            "11": 416,
+            "12": 38344
+          },
+          "size": 6,
+          "total_subsets": 38760
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "12": 77520
+          },
+          "size": 7,
+          "total_subsets": 77520
+        }
+      ],
+      "signature_kind": "ag24",
+      "sizes": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "t": 2,
+      "unclassified_nondegenerate_count": 0,
+      "unclassified_nondegenerate_examples": []
+    },
+    {
+      "A": 27,
+      "degree_cap": 16,
+      "exhaustive_scope": "all subfamilies of the first 16 deterministic E3 greedy blocks; this is a bounded non-geometry control, not a full n=32 support census",
+      "family_size": 16,
+      "j": 5,
+      "k": 24,
+      "modes": [
+        "distinct_linear",
+        "distinct_geometric"
+      ],
+      "n": 32,
+      "name": "greedy_32_j5_lambda1_first16_control",
+      "prime": 193,
+      "rows": [
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "6": 120
+          },
+          "size": 2,
+          "total_subsets": 120
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "9": 560
+          },
+          "size": 3,
+          "total_subsets": 560
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "12": 1820
+          },
+          "size": 4,
+          "total_subsets": 1820
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "15": 4368
+          },
+          "size": 5,
+          "total_subsets": 4368
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "16": 8008
+          },
+          "size": 6,
+          "total_subsets": 8008
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "6": 120
+          },
+          "size": 2,
+          "total_subsets": 120
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "9": 560
+          },
+          "size": 3,
+          "total_subsets": 560
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "12": 1820
+          },
+          "size": 4,
+          "total_subsets": 1820
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                7,
+                14,
+                17,
+                19,
+                24
+              ],
+              [
+                0,
+                12,
+                18,
+                28,
+                30
+              ],
+              [
+                5,
+                12,
+                13,
+                15,
+                19
+              ],
+              [
+                6,
+                9,
+                12,
+                22,
+                29
+              ],
+              [
+                3,
+                7,
+                12,
+                23,
+                26
+              ]
+            ],
+            "rank": 14,
+            "signature": {
+              "classification": "non_geometry_control_family",
+              "pair_intersection_histogram": {
+                "0": 2,
+                "1": 8
+              },
+              "point_multiplicity_histogram": {
+                "0": 12,
+                "1": 17,
+                "2": 2,
+                "4": 1
+              }
+            },
+            "subset_indices": [
+              3,
+              4,
+              7,
+              10,
+              12
+            ],
+            "zero_restriction_locator_count": 0
+          },
+          "loss_subsets": 1,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {
+            "non_geometry_control_family": 1
+          },
+          "nondegenerate_loss_subsets": 1,
+          "nondegenerate_signature_histogram": {
+            "[\"non_geometry_control_family\", [], [[\"0\", 12], [\"1\", 17], [\"2\", 2], [\"4\", 1]]]": 1
+          },
+          "nondegenerate_signature_type_count": 1,
+          "rank_distribution": {
+            "14": 1,
+            "15": 4367
+          },
+          "size": 5,
+          "total_subsets": 4368
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "16": 8008
+          },
+          "size": 6,
+          "total_subsets": 8008
+        }
+      ],
+      "signature_kind": "generic",
+      "sizes": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "t": 3,
+      "unclassified_nondegenerate_count": 1,
+      "unclassified_nondegenerate_examples": [
+        {
+          "degree_deficiency": 1,
+          "family": [
+            [
+              7,
+              14,
+              17,
+              19,
+              24
+            ],
+            [
+              0,
+              12,
+              18,
+              28,
+              30
+            ],
+            [
+              5,
+              12,
+              13,
+              15,
+              19
+            ],
+            [
+              6,
+              9,
+              12,
+              22,
+              29
+            ],
+            [
+              3,
+              7,
+              12,
+              23,
+              26
+            ]
+          ],
+          "rank": 14,
+          "signature": {
+            "classification": "non_geometry_control_family",
+            "pair_intersection_histogram": {
+              "0": 2,
+              "1": 8
+            },
+            "point_multiplicity_histogram": {
+              "0": 12,
+              "1": 17,
+              "2": 2,
+              "4": 1
+            }
+          },
+          "subset_indices": [
+            3,
+            4,
+            7,
+            10,
+            12
+          ],
+          "zero_restriction_locator_count": 0
+        }
+      ]
+    },
+    {
+      "A": 26,
+      "degree_cap": 18,
+      "exhaustive_scope": "all subfamilies of the first 16 deterministic E3 greedy blocks; this is a bounded non-geometry control, not a full n=32 support census",
+      "family_size": 16,
+      "j": 6,
+      "k": 23,
+      "modes": [
+        "distinct_linear",
+        "distinct_geometric"
+      ],
+      "n": 32,
+      "name": "greedy_32_j6_lambda2_first16_control",
+      "prime": 193,
+      "rows": [
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "6": 120
+          },
+          "size": 2,
+          "total_subsets": 120
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "9": 560
+          },
+          "size": 3,
+          "total_subsets": 560
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "12": 1820
+          },
+          "size": 4,
+          "total_subsets": 1820
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "15": 4368
+          },
+          "size": 5,
+          "total_subsets": 4368
+        },
+        {
+          "degenerate_loss_subsets": 22,
+          "first_degenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                8,
+                13,
+                15,
+                17,
+                22,
+                25
+              ],
+              [
+                8,
+                9,
+                17,
+                21,
+                24,
+                28
+              ],
+              [
+                0,
+                13,
+                19,
+                21,
+                25,
+                29
+              ],
+              [
+                9,
+                10,
+                14,
+                15,
+                20,
+                25
+              ],
+              [
+                3,
+                4,
+                6,
+                22,
+                25,
+                30
+              ],
+              [
+                3,
+                16,
+                17,
+                20,
+                25,
+                31
+              ]
+            ],
+            "rank": 17,
+            "signature": {
+              "classification": "non_geometry_control_family",
+              "pair_intersection_histogram": {
+                "0": 1,
+                "1": 7,
+                "2": 7
+              },
+              "point_multiplicity_histogram": {
+                "0": 10,
+                "1": 12,
+                "2": 8,
+                "3": 1,
+                "5": 1
+              }
+            },
+            "subset_indices": [
+              0,
+              1,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 5
+          },
+          "first_nondegenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                8,
+                13,
+                15,
+                17,
+                22,
+                25
+              ],
+              [
+                8,
+                9,
+                17,
+                21,
+                24,
+                28
+              ],
+              [
+                2,
+                3,
+                5,
+                14,
+                28,
+                31
+              ],
+              [
+                6,
+                7,
+                15,
+                19,
+                20,
+                30
+              ],
+              [
+                0,
+                13,
+                19,
+                21,
+                25,
+                29
+              ],
+              [
+                0,
+                4,
+                7,
+                10,
+                11,
+                24
+              ]
+            ],
+            "rank": 17,
+            "signature": {
+              "classification": "non_geometry_control_family",
+              "pair_intersection_histogram": {
+                "0": 6,
+                "1": 7,
+                "2": 2
+              },
+              "point_multiplicity_histogram": {
+                "0": 7,
+                "1": 14,
+                "2": 11
+              }
+            },
+            "subset_indices": [
+              0,
+              1,
+              2,
+              3,
+              8,
+              14
+            ],
+            "zero_restriction_locator_count": 0
+          },
+          "loss_subsets": 58,
+          "mode": "distinct_linear",
+          "nondegenerate_classification": {
+            "non_geometry_control_family": 36
+          },
+          "nondegenerate_loss_subsets": 36,
+          "nondegenerate_signature_histogram": {
+            "[\"non_geometry_control_family\", [], [[\"0\", 10], [\"1\", 10], [\"2\", 10], [\"3\", 2]]]": 2,
+            "[\"non_geometry_control_family\", [], [[\"0\", 10], [\"1\", 11], [\"2\", 8], [\"3\", 3]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 11], [\"1\", 10], [\"2\", 7], [\"3\", 4]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 6], [\"1\", 16], [\"2\", 10]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 6], [\"1\", 17], [\"2\", 8], [\"3\", 1]]]": 2,
+            "[\"non_geometry_control_family\", [], [[\"0\", 6], [\"1\", 18], [\"2\", 6], [\"3\", 2]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 7], [\"1\", 14], [\"2\", 11]]]": 3,
+            "[\"non_geometry_control_family\", [], [[\"0\", 7], [\"1\", 15], [\"2\", 9], [\"3\", 1]]]": 3,
+            "[\"non_geometry_control_family\", [], [[\"0\", 7], [\"1\", 16], [\"2\", 7], [\"3\", 2]]]": 3,
+            "[\"non_geometry_control_family\", [], [[\"0\", 7], [\"1\", 16], [\"2\", 8], [\"4\", 1]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 7], [\"1\", 17], [\"2\", 5], [\"3\", 3]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 8], [\"1\", 13], [\"2\", 10], [\"3\", 1]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 8], [\"1\", 14], [\"2\", 8], [\"3\", 2]]]": 3,
+            "[\"non_geometry_control_family\", [], [[\"0\", 8], [\"1\", 15], [\"2\", 6], [\"3\", 3]]]": 3,
+            "[\"non_geometry_control_family\", [], [[\"0\", 8], [\"1\", 15], [\"2\", 7], [\"3\", 1], [\"4\", 1]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 12], [\"2\", 9], [\"3\", 2]]]": 4,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 13], [\"2\", 7], [\"3\", 3]]]": 2,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 13], [\"2\", 8], [\"3\", 1], [\"4\", 1]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 14], [\"2\", 5], [\"3\", 4]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 14], [\"2\", 7], [\"4\", 2]]]": 1
+          },
+          "nondegenerate_signature_type_count": 20,
+          "rank_distribution": {
+            "17": 58,
+            "18": 7950
+          },
+          "size": 6,
+          "total_subsets": 8008
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "6": 120
+          },
+          "size": 2,
+          "total_subsets": 120
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "9": 560
+          },
+          "size": 3,
+          "total_subsets": 560
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "12": 1820
+          },
+          "size": 4,
+          "total_subsets": 1820
+        },
+        {
+          "degenerate_loss_subsets": 0,
+          "first_degenerate_example": null,
+          "first_nondegenerate_example": null,
+          "loss_subsets": 0,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {},
+          "nondegenerate_loss_subsets": 0,
+          "nondegenerate_signature_histogram": {},
+          "nondegenerate_signature_type_count": 0,
+          "rank_distribution": {
+            "15": 4368
+          },
+          "size": 5,
+          "total_subsets": 4368
+        },
+        {
+          "degenerate_loss_subsets": 22,
+          "first_degenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                8,
+                13,
+                15,
+                17,
+                22,
+                25
+              ],
+              [
+                8,
+                9,
+                17,
+                21,
+                24,
+                28
+              ],
+              [
+                0,
+                13,
+                19,
+                21,
+                25,
+                29
+              ],
+              [
+                9,
+                10,
+                14,
+                15,
+                20,
+                25
+              ],
+              [
+                3,
+                4,
+                6,
+                22,
+                25,
+                30
+              ],
+              [
+                3,
+                16,
+                17,
+                20,
+                25,
+                31
+              ]
+            ],
+            "rank": 17,
+            "signature": {
+              "classification": "non_geometry_control_family",
+              "pair_intersection_histogram": {
+                "0": 1,
+                "1": 7,
+                "2": 7
+              },
+              "point_multiplicity_histogram": {
+                "0": 10,
+                "1": 12,
+                "2": 8,
+                "3": 1,
+                "5": 1
+              }
+            },
+            "subset_indices": [
+              0,
+              1,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 5
+          },
+          "first_nondegenerate_example": {
+            "degree_deficiency": 1,
+            "family": [
+              [
+                8,
+                13,
+                15,
+                17,
+                22,
+                25
+              ],
+              [
+                8,
+                9,
+                17,
+                21,
+                24,
+                28
+              ],
+              [
+                2,
+                3,
+                5,
+                14,
+                28,
+                31
+              ],
+              [
+                1,
+                6,
+                12,
+                15,
+                16,
+                29
+              ],
+              [
+                0,
+                13,
+                19,
+                21,
+                25,
+                29
+              ],
+              [
+                2,
+                3,
+                8,
+                23,
+                27,
+                29
+              ]
+            ],
+            "rank": 17,
+            "signature": {
+              "classification": "non_geometry_control_family",
+              "pair_intersection_histogram": {
+                "0": 4,
+                "1": 8,
+                "2": 3
+              },
+              "point_multiplicity_histogram": {
+                "0": 8,
+                "1": 14,
+                "2": 8,
+                "3": 2
+              }
+            },
+            "subset_indices": [
+              0,
+              1,
+              2,
+              5,
+              8,
+              13
+            ],
+            "zero_restriction_locator_count": 0
+          },
+          "loss_subsets": 56,
+          "mode": "distinct_geometric",
+          "nondegenerate_classification": {
+            "non_geometry_control_family": 34
+          },
+          "nondegenerate_loss_subsets": 34,
+          "nondegenerate_signature_histogram": {
+            "[\"non_geometry_control_family\", [], [[\"0\", 10], [\"1\", 10], [\"2\", 10], [\"3\", 2]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 10], [\"1\", 11], [\"2\", 8], [\"3\", 3]]]": 2,
+            "[\"non_geometry_control_family\", [], [[\"0\", 10], [\"1\", 12], [\"2\", 6], [\"3\", 4]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 10], [\"1\", 13], [\"2\", 6], [\"3\", 1], [\"4\", 2]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 11], [\"1\", 11], [\"2\", 5], [\"3\", 5]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 12], [\"1\", 9], [\"2\", 8], [\"3\", 1], [\"4\", 2]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 3], [\"1\", 22], [\"2\", 7]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 4], [\"1\", 21], [\"2\", 6], [\"3\", 1]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 5], [\"1\", 19], [\"2\", 7], [\"3\", 1]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 6], [\"1\", 18], [\"2\", 6], [\"3\", 2]]]": 3,
+            "[\"non_geometry_control_family\", [], [[\"0\", 7], [\"1\", 14], [\"2\", 11]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 8], [\"1\", 14], [\"2\", 8], [\"3\", 2]]]": 7,
+            "[\"non_geometry_control_family\", [], [[\"0\", 8], [\"1\", 14], [\"2\", 9], [\"4\", 1]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 8], [\"1\", 15], [\"2\", 6], [\"3\", 3]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 8], [\"1\", 15], [\"2\", 7], [\"3\", 1], [\"4\", 1]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 10], [\"2\", 13]]]": 1,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 12], [\"2\", 9], [\"3\", 2]]]": 2,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 13], [\"2\", 7], [\"3\", 3]]]": 3,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 13], [\"2\", 8], [\"3\", 1], [\"4\", 1]]]": 2,
+            "[\"non_geometry_control_family\", [], [[\"0\", 9], [\"1\", 14], [\"2\", 5], [\"3\", 4]]]": 2
+          },
+          "nondegenerate_signature_type_count": 20,
+          "rank_distribution": {
+            "17": 56,
+            "18": 7952
+          },
+          "size": 6,
+          "total_subsets": 8008
+        }
+      ],
+      "signature_kind": "generic",
+      "sizes": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "t": 3,
+      "unclassified_nondegenerate_count": 70,
+      "unclassified_nondegenerate_examples": [
+        {
+          "degree_deficiency": 1,
+          "family": [
+            [
+              8,
+              13,
+              15,
+              17,
+              22,
+              25
+            ],
+            [
+              8,
+              9,
+              17,
+              21,
+              24,
+              28
+            ],
+            [
+              2,
+              3,
+              5,
+              14,
+              28,
+              31
+            ],
+            [
+              6,
+              7,
+              15,
+              19,
+              20,
+              30
+            ],
+            [
+              0,
+              13,
+              19,
+              21,
+              25,
+              29
+            ],
+            [
+              0,
+              4,
+              7,
+              10,
+              11,
+              24
+            ]
+          ],
+          "rank": 17,
+          "signature": {
+            "classification": "non_geometry_control_family",
+            "pair_intersection_histogram": {
+              "0": 6,
+              "1": 7,
+              "2": 2
+            },
+            "point_multiplicity_histogram": {
+              "0": 7,
+              "1": 14,
+              "2": 11
+            }
+          },
+          "subset_indices": [
+            0,
+            1,
+            2,
+            3,
+            8,
+            14
+          ],
+          "zero_restriction_locator_count": 0
+        },
+        {
+          "degree_deficiency": 1,
+          "family": [
+            [
+              8,
+              13,
+              15,
+              17,
+              22,
+              25
+            ],
+            [
+              8,
+              9,
+              17,
+              21,
+              24,
+              28
+            ],
+            [
+              0,
+              13,
+              19,
+              21,
+              25,
+              29
+            ],
+            [
+              3,
+              4,
+              6,
+              22,
+              25,
+              30
+            ],
+            [
+              3,
+              16,
+              17,
+              20,
+              25,
+              31
+            ],
+            [
+              0,
+              5,
+              14,
+              17,
+              27,
+              29
+            ]
+          ],
+          "rank": 17,
+          "signature": {
+            "classification": "non_geometry_control_family",
+            "pair_intersection_histogram": {
+              "0": 2,
+              "1": 7,
+              "2": 6
+            },
+            "point_multiplicity_histogram": {
+              "0": 9,
+              "1": 14,
+              "2": 7,
+              "4": 2
+            }
+          },
+          "subset_indices": [
+            0,
+            1,
+            8,
+            10,
+            11,
+            12
+          ],
+          "zero_restriction_locator_count": 0
+        },
+        {
+          "degree_deficiency": 1,
+          "family": [
+            [
+              8,
+              13,
+              15,
+              17,
+              22,
+              25
+            ],
+            [
+              2,
+              3,
+              5,
+              14,
+              28,
+              31
+            ],
+            [
+              6,
+              7,
+              15,
+              19,
+              20,
+              30
+            ],
+            [
+              9,
+              10,
+              14,
+              15,
+              20,
+              25
+            ],
+            [
+              2,
+              3,
+              8,
+              23,
+              27,
+              29
+            ],
+            [
+              0,
+              4,
+              7,
+              10,
+              11,
+              24
+            ]
+          ],
+          "rank": 17,
+          "signature": {
+            "classification": "non_geometry_control_family",
+            "pair_intersection_histogram": {
+              "0": 7,
+              "1": 5,
+              "2": 3
+            },
+            "point_multiplicity_histogram": {
+              "0": 6,
+              "1": 17,
+              "2": 8,
+              "3": 1
+            }
+          },
+          "subset_indices": [
+            0,
+            2,
+            3,
+            9,
+            13,
+            14
+          ],
+          "zero_restriction_locator_count": 0
+        },
+        {
+          "degree_deficiency": 1,
+          "family": [
+            [
+              8,
+              13,
+              15,
+              17,
+              22,
+              25
+            ],
+            [
+              2,
+              3,
+              5,
+              14,
+              28,
+              31
+            ],
+            [
+              0,
+              6,
+              9,
+              10,
+              27,
+              28
+            ],
+            [
+              7,
+              10,
+              16,
+              20,
+              21,
+              29
+            ],
+            [
+              3,
+              4,
+              6,
+              22,
+              25,
+              30
+            ],
+            [
+              3,
+              16,
+              17,
+              20,
+              25,
+              31
+            ]
+          ],
+          "rank": 17,
+          "signature": {
+            "classification": "non_geometry_control_family",
+            "pair_intersection_histogram": {
+              "0": 6,
+              "1": 4,
+              "2": 5
+            },
+            "point_multiplicity_histogram": {
+              "0": 8,
+              "1": 14,
+              "2": 8,
+              "3": 2
+            }
+          },
+          "subset_indices": [
+            0,
+            2,
+            6,
+            7,
+            10,
+            11
+          ],
+          "zero_restriction_locator_count": 0
+        },
+        {
+          "degree_deficiency": 1,
+          "family": [
+            [
+              8,
+              13,
+              15,
+              17,
+              22,
+              25
+            ],
+            [
+              2,
+              3,
+              5,
+              14,
+              28,
+              31
+            ],
+            [
+              0,
+              13,
+              19,
+              21,
+              25,
+              29
+            ],
+            [
+              9,
+              10,
+              14,
+              15,
+              20,
+              25
+            ],
+            [
+              3,
+              16,
+              17,
+              20,
+              25,
+              31
+            ],
+            [
+              11,
+              12,
+              16,
+              18,
+              21,
+              31
+            ]
+          ],
+          "rank": 17,
+          "signature": {
+            "classification": "non_geometry_control_family",
+            "pair_intersection_histogram": {
+              "0": 4,
+              "1": 5,
+              "2": 6
+            },
+            "point_multiplicity_histogram": {
+              "0": 9,
+              "1": 13,
+              "2": 8,
+              "3": 1,
+              "4": 1
+            }
+          },
+          "subset_indices": [
+            0,
+            2,
+            8,
+            9,
+            11,
+            15
+          ],
+          "zero_restriction_locator_count": 0
+        }
+      ]
+    }
+  ],
+  "dag_nodes": [
+    "spread_exception_classification",
+    "spread_regime_bound"
+  ],
+  "fable_evidence_item": "E13",
+  "method": "Enumerate every subfamily in the AG(2,4) line-net cell at sizes 2..7 and classify every below-cap nondegenerate loss by incidence signature.  Then run bounded n=32 non-geometry controls on the first 16 deterministic E3 greedy blocks.",
+  "n32_control_nondegenerate_exception_count": 71,
+  "non_claims": [
+    "This is not a proof of spread_regime_bound.",
+    "This does not enumerate all support families for every n in 16..32.",
+    "The n=32 controls are bounded falsification cells, not exhaustive n=32 censuses."
+  ],
+  "overall_interpretation": "UNCLASSIFIED_NON_GEOMETRY_EXCEPTION_FOUND",
+  "question": "In replayable small spread cells, do below-cap nondegenerate rank-loss exceptions embed in the finite-geometry AG/net class, or is there an unclassified non-geometric exception?",
+  "script_sha256": "e0ceea5d5ce9f070092e2ec0eda919f615dcb409679782141f69509d358db90a",
+  "status": "EXPERIMENTAL / AUDIT",
+  "title": "E13 spread-exception finite-geometry census",
+  "unclassified_nondegenerate_exception_count": 71
+}
