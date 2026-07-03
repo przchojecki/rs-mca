@@ -1517,3 +1517,41 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+### 2026-07-04 - L1 coset mixed-vacancy threshold (m <= t kills primitive full-petal extras)
+
+- **Agent/model:** Claude Fable 5 (PI) with a Claude Opus 4.8 / Sonnet 5 fan-out
+  panel (5 agents, two independent proofs plus a from-scratch verification);
+  holmbuar.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_coset_mixed_vacancy_threshold.md`,
+  `experimental/scripts/verify_l1_coset_mixed_vacancy_threshold.py`.
+- **Status:** PROVED-LOCAL (vacancy Theorem m <= t: every full-petal codeword is
+  H-invariant, so no mixed minimal kernel set; Theorem B: single-active-sector
+  primitive vacancy for all ell; Lemma L2); CERTIFICATE (m=t+1 sharpness;
+  composite-ell m<ell refutation); EXPERIMENTAL / OPEN (primitive m<ell vacancy
+  for two-or-more active sectors).
+- **What is being added:** For the background-free coset sunflower (PR #219
+  bijection), a proved threshold: m <= t forces every full-petal codeword to be a
+  polynomial in X^ell (H-invariant), zeroing the primitive (Q_1) full-petal
+  contribution; sharp at m=t+1 (explicit mixed witnesses). Support-fraction
+  corollary (scope-limited): m <= t <=> m/(m+t) <= 1/2 within the sunflower
+  support only — this is NOT the ambient rate rho=k/n of l1.tex; the Theorem
+  covers exactly the petal-heavy corner m <= t, not the whole displayed dyadic
+  window. A certificate-backed REFUTATION of the naive
+  "m<ell => no mixed" for composite ell (witnesses at p in {487,2011,499},
+  ell=6, all imprimitive with Stab=mu_3), which corrects the open target to
+  PRIMITIVE m<ell vacancy. Records a sampling-artifact fix: (t=4,ell=3,m=5) has a
+  genuine primitive mixed minimal set (supersedes an earlier sampled zero).
+- **How it is useful:** Meets the coset full-petal mixed-vacancy demand of the
+  L1 residual (Conjecture 1) for the petal-heavy corner (m <= t) unconditionally
+  — the general displayed-window demand remains OPEN on the primitive m<ell
+  target — and pins down the exact remaining research target (primitive
+  vacancy at two-or-more active sectors); the char-p failure of the Fourier
+  uncertainty route is recorded so it is not re-attempted. Feeds l1.tex Prop.
+  `dyadic planted crossings` and its primitive-image-fiber / non-planted-extras
+  remark.
+- **What to do next:** Prove the primitive m<ell vacancy for |S|>=2 (descent /
+  minimality for composite ell; a rigidity hierarchy beyond the n_j=1 level for
+  prime ell); a top-defect reduction (mixed minimal => defect (t-1)ell) would
+  collapse it to the tight listedness slice. No paper text changes; material
+  stays in `experimental/`.
