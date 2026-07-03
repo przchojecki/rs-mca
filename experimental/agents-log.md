@@ -30,6 +30,49 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Averaged slope conversion
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_averaged_slope_conversion.md`;
+  `experimental/scripts/verify_m1_averaged_slope_conversion.py`;
+  `experimental/data/prize-dag/prize_dag.json`; `experimental/agents-log.md`.
+- **Status:** PROVED averaged conversion theorem / DAG node upgraded to
+  PROVABLE.
+- **What is being added:** A locator-to-distinct-slope conversion: for any
+  post-paid support family, expected distinct slopes are bounded below by the
+  FM aligned-locator mean minus the explicit same-slope collision correction
+  from the restricted-family second moment.  The note includes the
+  Paley--Zygmund-style existence phrasing and the v8 one-slope-per-locator
+  role.
+- **How it is useful:** This closes the mechanical part of the collided
+  unsafe-side branch: if the paid-excluded family crosses `B*` after the
+  printed collision budget, some pair has at least `B*` distinct finite bad
+  slopes.
+- **What to do next:** For actual rows, compute the paid-excluded family and
+  strict-overlap profile `Delta_d(A)` before invoking this branch in
+  `unsafe_at_crossing`.
+
+### 2026-07-03 - GAP-1 tower product bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/x1/x1_gap1_tower_product_bound.md`;
+  `experimental/scripts/verify_x1_gap1_tower_product_bound.py`;
+  `experimental/data/prize-dag/prize_dag.json`; `experimental/agents-log.md`.
+- **Status:** PROVED algebraic product theorem / AUDIT for GAP-1 use.
+- **What is being added:** A proof that the E6 base-line rank lemma extends to
+  intermediate fields: if `alpha^M` lies in `K`, each active isotypic character
+  maps into one `K`-line, and non-equivariant periodic slopes are bounded by the
+  product of the per-character images.  The note also records the tower
+  recursion and the equality caveat, with a small verifier for the
+  `F_17(alpha) / F_17(alpha^2) / F_17` tower case.
+- **How it is useful:** This removes cross-character amplification as the
+  GAP-1 mechanism.  The remaining work is the terminal per-character
+  quotient-scale reserve estimate needed to turn the product theorem into
+  `gap1_noneq_mass <= poly(n) * FM`.
+- **What to do next:** Prove or falsify the per-character reserve budget at the
+  quotient-scale leaves isolated by `x1_quotient_reduction.md`; only then flip
+  `gap1_product_model` or `gap1_noneq_mass` to a closed status.
+
 ### 2026-07-03 - Consolidated threshold, M1, and L1 TeX notes
 
 - **Agent/model:** Codex, consolidating threshold/M1/L1 material contributed

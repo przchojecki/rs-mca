@@ -1431,11 +1431,13 @@
   {
    "id": "averaged_slope_conversion",
    "title": "Averaged fiber-to-slope conversion: FM locator mean => existence of a many-SLOPE pair",
-   "status": "CONJECTURE",
+   "status": "PROVABLE",
    "refs": [
-    "proof_sketch/s2_paid_ledger.md#6"
+    "proof_sketch/s2_paid_ledger.md#6",
+    "experimental/notes/m1/m1_averaged_slope_conversion.md"
    ],
-   "notes": "s2 fork F2: plausibly provable (second moment + paid-fiber exclusion); needed exactly when zone-(b) is collided"
+   "statement": "For any post-paid deterministic support family A, the expected distinct finite slope count is at least the FM aligned-locator mean minus the explicit same-slope collision budget from the restricted-family second moment. Hence if M(1-q^-t)q^(1-t) - (q/2)C_t(A) > B-1, some pair has at least B distinct bad slopes.",
+   "notes": "Codex 2026-07-03: proved as an averaged occupancy/Paley-Zygmund conversion using FM1, the slope-resolved second moment, and the v8 one-slope-per-locator cap. Paid fibers must be removed or charged before applying the theorem; the only loss is the printed strict-overlap same-slope collision profile."
   },
   {
    "id": "dyadic_profile_evaluation",
@@ -1851,16 +1853,17 @@
   },
   {
    "id": "gap1_product_model",
-   "title": "LEAP: non-equivariant periodic mass EQUALS the per-character product (tower extension)",
+   "title": "LEAP: non-equivariant periodic mass is bounded by the per-character product (tower extension)",
    "status": "CONJECTURE",
    "key": true,
-   "statement": "The per-character product model is exact: non-equivariant K_M-periodic slope mass is bounded by the product over active characters, uniformly \u2014 via tower recursion on the E6 base-line lemma (alpha^M in an intermediate field K: each character maps into one K-line; recurse K down to the base). GAP-1 follows with the fitted constant.",
-   "attack_surface": "extend the PROVED base-case lemma (alpha^M in base field) to intermediate fields \u2014 the repo's most-repeated recursion pattern, fourth appearance; then sum over characters",
+   "statement": "The algebraic tower product bound is proved: if alpha^M lies in an intermediate field K, each active isotypic character maps into one K-line, and multi-isotypic periodic slopes are bounded by the product of the per-character images; tower recursion only refines those per-character factors. The remaining GAP-1 content is the terminal per-character reserve/F-word budget.",
+   "attack_surface": "convert the proved tower product theorem into the GAP-1 poly(n)*FM bound by proving the terminal per-character quotient-scale reserve estimates",
    "falsifier": "a periodic model exceeding the per-character product rank (E6 found none across F_13/F_97 exact + F_257 to n=256)",
    "refs": [
-    "experimental/notes/roadmaps/evidence_plan_codex.md"
+    "experimental/notes/roadmaps/evidence_plan_codex.md",
+    "experimental/notes/x1/x1_gap1_tower_product_bound.md"
    ],
-   "notes": "CALCULATED LEAP grounded in E6 (PR #187): the mechanism lemma is proved in the base case and no tested model exceeds the product. Closing this flips strip's conditionality."
+   "notes": "CALCULATED LEAP grounded in E6 (PR #187): the mechanism lemma is proved in the base case and no tested model exceeds the product. Codex 2026-07-03 proves the algebraic intermediate-field/tower product bound and records the remaining product-to-FM reserve step separately; do not treat this node as closing GAP-1 until that terminal reserve budget is proved."
   },
   {
    "id": "f_pair_bound_envelope",
