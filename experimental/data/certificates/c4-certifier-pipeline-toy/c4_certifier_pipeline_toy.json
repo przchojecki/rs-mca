@@ -1,0 +1,442 @@
+{
+  "branch_and_bound_certificate": {
+    "complete": true,
+    "leaves_checked": 686401,
+    "nodes_visited": 1761761,
+    "relation_weight_histogram": {
+      "2": 8,
+      "4": 56,
+      "6": 224
+    },
+    "relations_found": 288
+  },
+  "comparison": {
+    "all_relations_antipodal_cyclotomic": true,
+    "expected_antipodal_relation_count": 288,
+    "non_cyclotomic_relation_count": 0,
+    "relation_set_sha256": "8c070aa2fececead17569900acb6f3b4b6c4230109457ca9a0f04cf0bbf2f353",
+    "relation_sets_equal": true
+  },
+  "dag_nodes": [
+    "QA.16",
+    "QA.18",
+    "height_only_impossibility",
+    "weight_graded_mitm",
+    "certifier_uniformity"
+  ],
+  "mitm_certificate": {
+    "left_assignments": 5281,
+    "matching_residue_pair_checks": 5601,
+    "relation_weight_histogram": {
+      "2": 8,
+      "4": 56,
+      "6": 224
+    },
+    "relations_found": 288,
+    "right_assignments": 5281,
+    "split": [
+      8,
+      8
+    ]
+  },
+  "mitm_cost_table_for_N128": [
+    {
+      "N_prime": 128,
+      "cost_model": "binom(N', w/2) * 2^(w/2)",
+      "half_weight": 6,
+      "log2_state_count": 38.336607,
+      "state_count": 347111116800,
+      "target_weight_w": 12
+    },
+    {
+      "N_prime": 128,
+      "cost_model": "binom(N', w/2) * 2^(w/2)",
+      "half_weight": 7,
+      "log2_state_count": 43.459989,
+      "state_count": 12099301785600,
+      "target_weight_w": 14
+    },
+    {
+      "N_prime": 128,
+      "cost_model": "binom(N', w/2) * 2^(w/2)",
+      "half_weight": 8,
+      "log2_state_count": 48.378852,
+      "state_count": 366003879014400,
+      "target_weight_w": 16
+    }
+  ],
+  "nonclaims": [
+    "does not run N'=128 or any heavy search",
+    "does not prove certifier uniformity for every admissible prime",
+    "does not use or rescue the multiplier route",
+    "does not exclude non-cyclotomic relations at N'=32; this is only the printed N'=16 toy anchor"
+  ],
+  "payload_sha256": "564204c5f4f7ee843301697fdf1f8c01fe554afc699816732a93fcaf48df9389",
+  "post_impossibility_policy": {
+    "height_only": "scoping only; full N'=128 cells exceed p<2^256 by height alone",
+    "multiplier": "not used; direct mod-p MITM enumerates sparse sums of zeta powers",
+    "totality_anchor": "complete branch-and-bound mode independently enumerates the finite toy row"
+  },
+  "printed_certificate": {
+    "format": "support/sign rows, canonicalized up to global sign",
+    "relation_count": 288,
+    "sample_relations": [
+      {
+        "signs": [
+          1,
+          1
+        ],
+        "support": [
+          7,
+          15
+        ],
+        "weight": 2
+      },
+      {
+        "signs": [
+          1,
+          1
+        ],
+        "support": [
+          6,
+          14
+        ],
+        "weight": 2
+      },
+      {
+        "signs": [
+          1,
+          1
+        ],
+        "support": [
+          5,
+          13
+        ],
+        "weight": 2
+      },
+      {
+        "signs": [
+          1,
+          1
+        ],
+        "support": [
+          4,
+          12
+        ],
+        "weight": 2
+      },
+      {
+        "signs": [
+          1,
+          1
+        ],
+        "support": [
+          3,
+          11
+        ],
+        "weight": 2
+      },
+      {
+        "signs": [
+          1,
+          1
+        ],
+        "support": [
+          2,
+          10
+        ],
+        "weight": 2
+      },
+      {
+        "signs": [
+          1,
+          1
+        ],
+        "support": [
+          1,
+          9
+        ],
+        "weight": 2
+      },
+      {
+        "signs": [
+          1,
+          1
+        ],
+        "support": [
+          0,
+          8
+        ],
+        "weight": 2
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          6,
+          7,
+          14,
+          15
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "support": [
+          6,
+          7,
+          14,
+          15
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          5,
+          6,
+          13,
+          14
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          5,
+          7,
+          13,
+          15
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "support": [
+          5,
+          7,
+          13,
+          15
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "support": [
+          5,
+          6,
+          13,
+          14
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          4,
+          5,
+          12,
+          13
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          4,
+          6,
+          12,
+          14
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          4,
+          7,
+          12,
+          15
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "support": [
+          4,
+          7,
+          12,
+          15
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "support": [
+          4,
+          6,
+          12,
+          14
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "support": [
+          4,
+          5,
+          12,
+          13
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          3,
+          4,
+          11,
+          12
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          3,
+          5,
+          11,
+          13
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          3,
+          6,
+          11,
+          14
+        ],
+        "weight": 4
+      },
+      {
+        "signs": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "support": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "weight": 4
+      }
+    ]
+  },
+  "schema_version": "c4-certifier-pipeline-toy-v1",
+  "status": "TOY_TOTALITY_ANCHOR / DIRECT_MOD_P_MITM",
+  "task_id": "C-4",
+  "toy_row": {
+    "N_prime": 16,
+    "max_weight": 6,
+    "p": 12289,
+    "primitive_root": 11,
+    "zeta_order_N": 4134,
+    "zeta_powers": [
+      1,
+      4134,
+      8246,
+      11567,
+      1479,
+      6553,
+      5146,
+      1305,
+      12288,
+      8155,
+      4043,
+      722,
+      10810,
+      5736,
+      7143,
+      10984
+    ]
+  }
+}

@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - C-4 certifier pipeline toy
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_c4_certifier_pipeline_toy.py`;
+  `experimental/notes/roadmaps/c4_certifier_pipeline_toy.md`;
+  `experimental/data/certificates/c4-certifier-pipeline-toy/`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** TOY CERTIFIER / VERIFIED / TOTALITY ANCHOR.
+- **What is being added:** A direct mod-p MITM certifier toy at `N'=16`,
+  `p=12289`, `w<=6`, paired with an exact branch-and-bound solver over the
+  same finite search space.  Both modes find the same 288 antipodal
+  cyclotomic relations and zero non-cyclotomic relations.
+- **How it is useful:** This demonstrates the post-impossibility QA.16-18
+  pipeline shape: no multiplier route, a direct MITM band, and a complete
+  solver mode as the Reading-B totality anchor.  The packet also prints the
+  corrected `N'=128` state counts for `w=12,14,16`.
+- **What to do next:** Add larger toy rows or proof-logged SAT/VeriPB
+  variants, then decide which complete mode is practical enough to serve as
+  the per-row certificate emitter.
+
 ### 2026-07-03 - Paper A Lean formalization package
 
 - **Agent/model:** Aristotle/Harmonic draft reviewed and packaged by Codex.
