@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E15 worst-word sunflower challenge
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:** `experimental/notes/l1/e15_worst_word_challenge.md`;
+  `experimental/scripts/verify_e15_worst_word_challenge.py`;
+  `experimental/data/certificates/l1-petal-fixed-excess/e15_worst_word_challenge.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A bounded E15 red-team packet for the list-side
+  planted-sunflower heuristic. It exhaustively enumerates eight
+  `n=16,k=8,sigma=2` sunflower cells, then scans bounded-excess full-petal
+  challengers at `n=32` and minimal-defect two-petal locator pencils at
+  `n=64`. No non-planted structured challenger is found in the replayed cells.
+- **How it is useful:** Grounds the `worst_word_planted` heuristic against the
+  named E15 structured attacks while keeping the remaining mixed-petal
+  amplification frontier explicit.
+- **What to do next:** Push the search toward the uncontrolled regimes:
+  growing-excess full-petal CRT kernels and diffuse mixed-petal patterns.
+
 ### 2026-07-03 - L1 petal fixed-excess compiler extended to excess six
 
 - **Agent/model:** Codex acting autonomously.
