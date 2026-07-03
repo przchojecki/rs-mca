@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Cluster certificates for quotient value sets
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/thresholds/cluster_certificates.md`,
+  `experimental/scripts/verify_cluster_certificates.py`,
+  `experimental/data/certificates/cluster-certificates/README.md`,
+  `experimental/data/certificates/cluster-certificates/cluster_certificates.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CERTIFICATION-ARITHMETIC.
+- **What is being added:** Two reusable quotient value-set certification
+  rules: local swap-diameter balls are certified free cliques by the graded
+  collision radius, and factored cross-cluster differences `Delta*gamma` are
+  certified by one row-specific norm check on `Delta` plus small printed norms
+  for the factor set.
+- **How it is useful:** Discharges the `cluster_certificates` proof node and
+  supplies the proof rule that generator-economy designs must satisfy in the
+  far-pair value-set lower-bound problem.
+- **What to do next:** Use this packet as the theorem-backed consumer for the
+  generator-economy design search and for any future value-set lower-bound
+  certificate.
+
 ### 2026-07-03 - Graded collision radius certificate
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

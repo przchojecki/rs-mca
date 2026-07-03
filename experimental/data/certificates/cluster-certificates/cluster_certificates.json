@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "details": [
+        "N=8, p=1009, log2 floor=9, d_*=2, family diameter=1",
+        "checked 6 pair norms and nondivisibility certificates"
+      ],
+      "name": "local free clique",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "N=8, p=1009, Norm(delta)=2",
+        "checked 3 small factor products with one Delta norm check"
+      ],
+      "name": "multiplicative cross-cluster certificate",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "N=8, p=1009, Norm(delta)=2",
+        "checked factors [1, 2, 3, 4]"
+      ],
+      "name": "integer-factor certification",
+      "status": "PASS"
+    }
+  ],
+  "dag_nodes": [
+    "cluster_certificates"
+  ],
+  "depends_on": [
+    "graded_collision_radius"
+  ],
+  "integer_factor_rows": [
+    {
+      "integer_factor": 1,
+      "norm_abs_product": 2,
+      "norm_factor": 1,
+      "norm_factor_mod_p": 1
+    },
+    {
+      "integer_factor": 2,
+      "norm_abs_product": 32,
+      "norm_factor": 16,
+      "norm_factor_mod_p": 16
+    },
+    {
+      "integer_factor": 3,
+      "norm_abs_product": 162,
+      "norm_factor": 81,
+      "norm_factor_mod_p": 81
+    },
+    {
+      "integer_factor": 4,
+      "norm_abs_product": 512,
+      "norm_factor": 256,
+      "norm_factor_mod_p": 256
+    }
+  ],
+  "multiplicative_packet": {
+    "delta": "1 - x",
+    "gamma_rows": [
+      {
+        "gamma": "1",
+        "norm_abs_delta_gamma": 2,
+        "norm_abs_gamma": 1
+      },
+      {
+        "gamma": "x + 1",
+        "norm_abs_delta_gamma": 4,
+        "norm_abs_gamma": 2
+      },
+      {
+        "gamma": "2 - x**2",
+        "norm_abs_delta_gamma": 50,
+        "norm_abs_gamma": 25
+      }
+    ],
+    "norm_abs_delta": 2,
+    "prime": 1009,
+    "quotient_order": 8
+  },
+  "non_claims": [
+    "does not construct large generator-economy designs",
+    "does not close the far-pair value-set lower bound",
+    "does not certify characteristic-zero injectivity outside the stated family"
+  ],
+  "object": "quotient e_1 value-set certification",
+  "script": "experimental/scripts/verify_cluster_certificates.py",
+  "script_sha256": "4603c7602748f56feb6dfc6f7ccff822c110ed323967004f8b5dd8ac178b0915",
+  "status": "PROVED_CLUSTER_CERTIFICATES"
+}
