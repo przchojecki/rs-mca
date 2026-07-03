@@ -1,0 +1,646 @@
+{
+  "dag_nodes": [
+    "Q3R.4",
+    "QL.5",
+    "E22",
+    "pma_pullback_lists",
+    "pma_wide_residual"
+  ],
+  "e15_challenger_test": {
+    "caveat": "The full_petal examples are pattern-compatible with whole-petal phenomena, but the recorded E15 layouts are not quotient-fiber layouts; they should be priced as the low-defect/fixed-excess challenger column, not as pma_pullback_lists.",
+    "exact_nonplanted_class_counts": {
+      "full_petal": 13,
+      "mixed_petal": 323
+    },
+    "nonplanted_cell_examples": [
+      {
+        "k": 2,
+        "layout": "cyclic_step_1",
+        "n": 16,
+        "nonplanted_class_counts": {
+          "mixed_petal": 6
+        },
+        "nonplanted_count": 6,
+        "petals_are_power_map_quotient_fibers": false,
+        "scalar_mode": "linear",
+        "sigma": 1
+      },
+      {
+        "k": 2,
+        "layout": "cyclic_step_1",
+        "n": 16,
+        "nonplanted_class_counts": {
+          "mixed_petal": 4
+        },
+        "nonplanted_count": 4,
+        "petals_are_power_map_quotient_fibers": false,
+        "scalar_mode": "geometric",
+        "sigma": 1
+      },
+      {
+        "k": 2,
+        "layout": "shuffle_1501",
+        "n": 16,
+        "nonplanted_class_counts": {
+          "mixed_petal": 1
+        },
+        "nonplanted_count": 1,
+        "petals_are_power_map_quotient_fibers": false,
+        "scalar_mode": "linear",
+        "sigma": 1
+      },
+      {
+        "k": 2,
+        "layout": "shuffle_1501",
+        "n": 16,
+        "nonplanted_class_counts": {
+          "mixed_petal": 2
+        },
+        "nonplanted_count": 2,
+        "petals_are_power_map_quotient_fibers": false,
+        "scalar_mode": "geometric",
+        "sigma": 1
+      },
+      {
+        "k": 4,
+        "layout": "cyclic_step_1",
+        "n": 16,
+        "nonplanted_class_counts": {
+          "mixed_petal": 23
+        },
+        "nonplanted_count": 23,
+        "petals_are_power_map_quotient_fibers": false,
+        "scalar_mode": "linear",
+        "sigma": 1
+      },
+      {
+        "k": 4,
+        "layout": "cyclic_step_1",
+        "n": 16,
+        "nonplanted_class_counts": {
+          "mixed_petal": 25
+        },
+        "nonplanted_count": 25,
+        "petals_are_power_map_quotient_fibers": false,
+        "scalar_mode": "geometric",
+        "sigma": 1
+      },
+      {
+        "k": 4,
+        "layout": "shuffle_1501",
+        "n": 16,
+        "nonplanted_class_counts": {
+          "mixed_petal": 18
+        },
+        "nonplanted_count": 18,
+        "petals_are_power_map_quotient_fibers": false,
+        "scalar_mode": "linear",
+        "sigma": 1
+      },
+      {
+        "k": 4,
+        "layout": "shuffle_1501",
+        "n": 16,
+        "nonplanted_class_counts": {
+          "mixed_petal": 22
+        },
+        "nonplanted_count": 22,
+        "petals_are_power_map_quotient_fibers": false,
+        "scalar_mode": "geometric",
+        "sigma": 1
+      }
+    ],
+    "nonplanted_exact_cell_count": 12,
+    "quotient_fiber_compatible_cell_count": 0,
+    "source_summary": {
+      "beating_cell_count": 12,
+      "cell_count": 72,
+      "exact_n16_beating_cell_count": 12,
+      "exact_n16_sigma_ge_two_beating_cell_count": 0,
+      "exact_n16_sigma_one_beating_cell_count": 12,
+      "nonplanted_hit_cell_count": 12,
+      "total_exact_n16_agreement_sets_checked": 328504,
+      "total_exact_n16_list_size": 584,
+      "total_exact_n16_nonplanted_count": 336,
+      "total_n32_candidates_checked": 330330,
+      "total_n64_pencil_candidates_checked": 5286120
+    },
+    "verdict": "E15 challenger is not an instance of the pma_pullback_lists quotient-pullback family: the dominant extras are mixed-petal, and no nonplanted exact cell has petals equal to fibers of a power-map quotient on the cyclic subgroup."
+  },
+  "nonclaims": [
+    "does not rerun the full E15 exhaustive/structured search",
+    "does not prove the primitive residual polynomial bound",
+    "does not update the DAG JSON or SVG on main",
+    "does not price the list crossing numerically; it only names the extra E15 column"
+  ],
+  "payload_sha256": "e82403b610e25bd8f9580ce3788e811063c839ae01d9e972fbf54dc2c237a8a5",
+  "primitive_residual_restatement": {
+    "charged_strata": {
+      "L_lowdef_fixed_excess": "covered or separately priced by fixed-excess/E15 challenger machinery",
+      "L_quotient_pullback": "charged to dyadic/quotient-profile budget"
+    },
+    "remaining_target": "L_primitive contains non-pullback, non-low-defect wide sub-Johnson auxiliary lists; this is the only PMA wide residual left for a correlated-target or descent argument.",
+    "split": "L(D) = L_quotient_pullback union L_lowdef_fixed_excess union L_primitive"
+  },
+  "pullback_strip": {
+    "charge": "The family is indexed by quotient-fiber subsets S, so its mass is the quotient-profile cell count binom(M,m+1), not primitive residual mass.",
+    "construction": "Choose quotient fibers T_i={x^ell=alpha_i}; set L_D=H(X^ell), U*(x)=alpha_i H(alpha_i) on T_i, and W_S=G_S(X^ell) with G_S(Y)=YH(Y)-prod_{i in S}(Y-alpha_i), |S|=m+1.",
+    "verified_cases": [
+      {
+        "agreement_a": 6,
+        "agreement_histogram": {
+          "6": 20
+        },
+        "defect_degree_d": 4,
+        "domain_size": 12,
+        "examples": [
+          {
+            "G_S_coefficients_low_to_high": [
+              8,
+              17,
+              7
+            ],
+            "W_S_coefficients_low_to_high": [
+              8,
+              0,
+              17,
+              0,
+              7
+            ],
+            "agreement_fibers": [
+              1,
+              2,
+              4
+            ],
+            "agreement_points": 6,
+            "quotient_subset_S": [
+              1,
+              2,
+              4
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              10,
+              14,
+              8
+            ],
+            "W_S_coefficients_low_to_high": [
+              10,
+              0,
+              14,
+              0,
+              8
+            ],
+            "agreement_fibers": [
+              1,
+              2,
+              5
+            ],
+            "agreement_points": 6,
+            "quotient_subset_S": [
+              1,
+              2,
+              5
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              14,
+              8,
+              10
+            ],
+            "W_S_coefficients_low_to_high": [
+              14,
+              0,
+              8,
+              0,
+              10
+            ],
+            "agreement_fibers": [
+              1,
+              2,
+              7
+            ],
+            "agreement_points": 6,
+            "quotient_subset_S": [
+              1,
+              2,
+              7
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              16,
+              5,
+              11
+            ],
+            "W_S_coefficients_low_to_high": [
+              16,
+              0,
+              5,
+              0,
+              11
+            ],
+            "agreement_fibers": [
+              1,
+              2,
+              8
+            ],
+            "agreement_points": 6,
+            "quotient_subset_S": [
+              1,
+              2,
+              8
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              20,
+              2,
+              10
+            ],
+            "W_S_coefficients_low_to_high": [
+              20,
+              0,
+              2,
+              0,
+              10
+            ],
+            "agreement_fibers": [
+              1,
+              4,
+              5
+            ],
+            "agreement_points": 6,
+            "quotient_subset_S": [
+              1,
+              4,
+              5
+            ]
+          }
+        ],
+        "fiber_size_ell": 2,
+        "field": "F_31",
+        "m": 2,
+        "map": "x -> x^2",
+        "max_W_degree": 4,
+        "profile_charge_count": 20,
+        "pullback_member_count": 20,
+        "pullback_member_count_formula": "binom(6, 3)",
+        "quotient_fiber_count_M": 6,
+        "sub_johnson": true,
+        "sub_johnson_formula": "(3)^2 < 6*2"
+      },
+      {
+        "agreement_a": 9,
+        "agreement_histogram": {
+          "9": 20
+        },
+        "defect_degree_d": 6,
+        "domain_size": 18,
+        "examples": [
+          {
+            "G_S_coefficients_low_to_high": [
+              8,
+              17,
+              7
+            ],
+            "W_S_coefficients_low_to_high": [
+              8,
+              0,
+              0,
+              17,
+              0,
+              0,
+              7
+            ],
+            "agreement_fibers": [
+              1,
+              2,
+              4
+            ],
+            "agreement_points": 9,
+            "quotient_subset_S": [
+              1,
+              2,
+              4
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              16,
+              5,
+              11
+            ],
+            "W_S_coefficients_low_to_high": [
+              16,
+              0,
+              0,
+              5,
+              0,
+              0,
+              11
+            ],
+            "agreement_fibers": [
+              1,
+              2,
+              8
+            ],
+            "agreement_points": 9,
+            "quotient_subset_S": [
+              1,
+              2,
+              8
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              30,
+              15,
+              18
+            ],
+            "W_S_coefficients_low_to_high": [
+              30,
+              0,
+              0,
+              15,
+              0,
+              0,
+              18
+            ],
+            "agreement_fibers": [
+              1,
+              2,
+              15
+            ],
+            "agreement_points": 9,
+            "quotient_subset_S": [
+              1,
+              2,
+              15
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              1,
+              12,
+              19
+            ],
+            "W_S_coefficients_low_to_high": [
+              1,
+              0,
+              0,
+              12,
+              0,
+              0,
+              19
+            ],
+            "agreement_fibers": [
+              1,
+              2,
+              16
+            ],
+            "agreement_points": 9,
+            "quotient_subset_S": [
+              1,
+              2,
+              16
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              1,
+              18,
+              13
+            ],
+            "W_S_coefficients_low_to_high": [
+              1,
+              0,
+              0,
+              18,
+              0,
+              0,
+              13
+            ],
+            "agreement_fibers": [
+              1,
+              4,
+              8
+            ],
+            "agreement_points": 9,
+            "quotient_subset_S": [
+              1,
+              4,
+              8
+            ]
+          }
+        ],
+        "fiber_size_ell": 3,
+        "field": "F_31",
+        "m": 2,
+        "map": "x -> x^3",
+        "max_W_degree": 6,
+        "profile_charge_count": 20,
+        "pullback_member_count": 20,
+        "pullback_member_count_formula": "binom(6, 3)",
+        "quotient_fiber_count_M": 6,
+        "sub_johnson": true,
+        "sub_johnson_formula": "(3)^2 < 6*2"
+      },
+      {
+        "agreement_a": 15,
+        "agreement_histogram": {
+          "15": 10
+        },
+        "defect_degree_d": 10,
+        "domain_size": 25,
+        "examples": [
+          {
+            "G_S_coefficients_low_to_high": [
+              30,
+              21,
+              12
+            ],
+            "W_S_coefficients_low_to_high": [
+              30,
+              0,
+              0,
+              0,
+              0,
+              21,
+              0,
+              0,
+              0,
+              0,
+              12
+            ],
+            "agreement_fibers": [
+              1,
+              5,
+              6
+            ],
+            "agreement_points": 15,
+            "quotient_subset_S": [
+              1,
+              5,
+              6
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              1
+            ],
+            "W_S_coefficients_low_to_high": [
+              1
+            ],
+            "agreement_fibers": [
+              1,
+              5,
+              25
+            ],
+            "agreement_points": 15,
+            "quotient_subset_S": [
+              1,
+              5,
+              25
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              6,
+              25,
+              1
+            ],
+            "W_S_coefficients_low_to_high": [
+              6,
+              0,
+              0,
+              0,
+              0,
+              25,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "agreement_fibers": [
+              1,
+              5,
+              26
+            ],
+            "agreement_points": 15,
+            "quotient_subset_S": [
+              1,
+              5,
+              26
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              26,
+              5,
+              1
+            ],
+            "W_S_coefficients_low_to_high": [
+              26,
+              0,
+              0,
+              0,
+              0,
+              5,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "agreement_fibers": [
+              1,
+              6,
+              25
+            ],
+            "agreement_points": 15,
+            "quotient_subset_S": [
+              1,
+              6,
+              25
+            ]
+          },
+          {
+            "G_S_coefficients_low_to_high": [
+              1,
+              29,
+              2
+            ],
+            "W_S_coefficients_low_to_high": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              29,
+              0,
+              0,
+              0,
+              0,
+              2
+            ],
+            "agreement_fibers": [
+              1,
+              6,
+              26
+            ],
+            "agreement_points": 15,
+            "quotient_subset_S": [
+              1,
+              6,
+              26
+            ]
+          }
+        ],
+        "fiber_size_ell": 5,
+        "field": "F_31",
+        "m": 2,
+        "map": "x -> x^5",
+        "max_W_degree": 10,
+        "profile_charge_count": 10,
+        "pullback_member_count": 10,
+        "pullback_member_count_formula": "binom(5, 3)",
+        "quotient_fiber_count_M": 5,
+        "sub_johnson": true,
+        "sub_johnson_formula": "(3)^2 < 5*2"
+      }
+    ]
+  },
+  "schema_version": "c3-pullback-strip-packet-v1",
+  "source_artifacts": {
+    "e15_worst_word_challenge": {
+      "path": "experimental/data/certificates/l1-petal-fixed-excess/e15_worst_word_challenge.json",
+      "sha256": "56ab36abf1bde52c1479471619e3744a27af8e80fd685a3e8a8df31a9642631f",
+      "status": "EXPERIMENTAL_AUDIT"
+    },
+    "pma_auxiliary_johnson": {
+      "path": "experimental/data/certificates/l1-pma-auxiliary-johnson/l1_pma_auxiliary_johnson.json",
+      "sha256": "cf5b8679746a7ced42c75a6017fa17aa65c874e90698a04e7120e330b9f9a691",
+      "status": "PROVED_COMPILER__CITES_LEMMA_2_AND_THEOREM_J"
+    }
+  },
+  "status": "PACKET_VERIFIED / PULLBACK_CHARGED_TO_PROFILE_BUDGET",
+  "summary": {
+    "e15_exact_nonplanted_class_counts": {
+      "full_petal": 13,
+      "mixed_petal": 323
+    },
+    "e15_is_pure_quotient_pullback": false,
+    "e15_quotient_fiber_compatible_cell_count": 0,
+    "pullback_counterexample_verified_cases": 3,
+    "pullback_counts": [
+      "binom(6, 3)",
+      "binom(6, 3)",
+      "binom(5, 3)"
+    ]
+  },
+  "task_id": "C-3"
+}

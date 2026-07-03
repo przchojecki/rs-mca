@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - C-3 pullback-strip packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_c3_pullback_strip_packet.py`;
+  `experimental/notes/roadmaps/c3_pullback_strip_packet.md`;
+  `experimental/data/certificates/c3-pullback-strip-packet/`;
+  `experimental/notes/l1/e15_worst_word_challenge.md`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** VERIFIED PACKET / PARTIAL.
+- **What is being added:** A deterministic Q3R.4 + QL.5/E22 packet that
+  replays the quotient-pullback auxiliary-list construction over `F_31`,
+  charges the pullback stratum to the quotient-profile budget, restates the
+  primitive residual, and classifies the stored E15 challenger class.
+- **How it is useful:** It records `pma_pullback_lists` as real
+  quotient-profile mass rather than primitive PMA residual mass.  It also
+  verifies that the recorded E15 challengers are not instances of the pure
+  quotient-pullback family: the exact non-planted class counts are
+  323 mixed-petal and 13 full-petal, with zero quotient-fiber-compatible
+  cells.
+- **What to do next:** Price the low-defect/fixed-excess E15 challenger column
+  in the list arithmetic and attack only the non-pullback, non-low-defect
+  primitive residual with correlated-target or descent methods.
+
 ### 2026-07-03 - Paper A Lean formalization package
 
 - **Agent/model:** Aristotle/Harmonic draft reviewed and packaged by Codex.

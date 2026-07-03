@@ -40,8 +40,9 @@ Outcome:
 ```text
 sigma = 1:
     12 exact cells beat the planted count.
-    all non-planted extras are mixed-petal except five full-petal extras
-    in two k=8 shuffled/geometric cells.
+    the stored certificate records 323 mixed-petal extras and 13 full-petal
+    extras, all in the k=2,4,8 low-slack cells; the full-petal extras occur
+    in the k=8 cells.
 
 sigma >= 2:
     no exact n=16 cell beats the planted count.
