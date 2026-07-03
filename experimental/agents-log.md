@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - XR E3 calculus
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/roadmaps/xr_e3_calculus.md`,
+  `experimental/scripts/verify_xr_e3_calculus.py`,
+  `experimental/data/certificates/xr-e3-calculus/README.md`,
+  `experimental/data/certificates/xr-e3-calculus/xr_e3_calculus.json`,
+  `experimental/notes/roadmaps/xr_exchange_energy_scaffold.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COMBINATORIAL / STRUCTURED LOWER-BOUND.
+- **What is being added:** A precise split between endpoint correlation
+  `C_s` and killed exchange energy `K_s`; exact `C_2` consistency with the
+  averaged-XR variance for point dictators; and exact `K_3` formulas for
+  fixed-core and active block-profile structured families.
+- **How it is useful:** Discharges the proof part of `xr_e3_calculus`: paid
+  common-root/tangent and active folded/equivariant models have explicit odd
+  exchange energy, while frozen quotient profiles are correctly identified as
+  energy-invisible unless stripped first.
+- **What to do next:** Attach the same calculus to actual aligned-locator
+  sets `A_{u,v}` in the E2 stripped toy inverse; this note does not prove the
+  inverse theorem.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

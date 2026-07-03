@@ -126,6 +126,13 @@ Second, the quotient caveat is already visible in the simplest block example.
 The correct E2 inverse falsifier should be run on the paid-stripped aperiodic
 set, with quotient strata classified before energy thresholds are interpreted.
 
+The follow-up note `experimental/notes/roadmaps/xr_e3_calculus.md` promotes
+the structured part of this scaffold to theorem status.  It separates endpoint
+correlation `C_s`, which matches the averaged-XR spectral normalization at
+`C_2`, from killed energy `K_s`, which is the stricter odd proxy used for
+paid-stripped falsification.  The fixed-core and active block-profile formulas
+above are proved there for all `s`, with exact `K_3` replay.
+
 ## Reproduce
 
 ```bash

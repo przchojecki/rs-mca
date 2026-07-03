@@ -1,0 +1,407 @@
+{
+  "block_profile_killed_e3_rows": [
+    {
+      "K_3": {
+        "denominator": 5720,
+        "float": 0.0015734265734265735,
+        "log2": -9.311874430223439,
+        "numerator": 9
+      },
+      "active_profile": true,
+      "block_sizes": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "density": {
+        "denominator": 715,
+        "float": 0.1006993006993007,
+        "log2": -3.3118744302234395,
+        "numerator": 72
+      },
+      "gamma": {
+        "denominator": 4,
+        "float": 0.25,
+        "log2": -2.0,
+        "numerator": 1
+      },
+      "j": 8,
+      "n": 16,
+      "name": "balanced_four_blocks",
+      "profile": [
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "K_3": {
+        "denominator": 732160,
+        "float": 0.00046847683566433564,
+        "log2": -11.05973466549294,
+        "numerator": 343
+      },
+      "active_profile": true,
+      "block_sizes": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "density": {
+        "denominator": 715,
+        "float": 0.044755244755244755,
+        "log2": -4.481799431665752,
+        "numerator": 32
+      },
+      "gamma": {
+        "denominator": 32,
+        "float": 0.21875,
+        "log2": -2.192645077942396,
+        "numerator": 7
+      },
+      "j": 8,
+      "n": 16,
+      "name": "unbalanced_active",
+      "profile": [
+        3,
+        2,
+        2,
+        1
+      ]
+    },
+    {
+      "K_3": {
+        "denominator": 1,
+        "float": 0.0,
+        "log2": null,
+        "numerator": 0
+      },
+      "active_profile": false,
+      "block_sizes": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "density": {
+        "denominator": 12870,
+        "float": 7.77000777000777e-05,
+        "log2": -13.651724433108065,
+        "numerator": 1
+      },
+      "gamma": {
+        "denominator": 1,
+        "float": 0.0,
+        "log2": null,
+        "numerator": 0
+      },
+      "j": 8,
+      "n": 16,
+      "name": "frozen_full_blocks",
+      "profile": [
+        4,
+        4,
+        0,
+        0
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "details": [
+        "checked C_s(point dictator)=delta^2+lambda^s delta(1-delta) for s=0..3",
+        "C_2-delta^2 equals lambda^2 times the Johnson first-mode variance"
+      ],
+      "name": "endpoint E2 consistency",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "checked K_s(A_C)=density*((j-c)/j)^s for s=0..3",
+        "fixed-core K_3 is explicitly large relative to the independent delta^4 baseline in the tested paid models"
+      ],
+      "name": "fixed-core killed E3",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "checked K_s(profile)=density*gamma^s for s=0..3",
+        "active folded profiles have positive K_3",
+        "frozen full-block quotient profile has gamma=0 and K_3=0"
+      ],
+      "name": "block-profile killed E3",
+      "status": "PASS"
+    }
+  ],
+  "dag_nodes": [
+    "xr_e3_calculus"
+  ],
+  "endpoint_e2_rows": [
+    {
+      "C_2": {
+        "denominator": 8,
+        "float": 0.125,
+        "log2": -3.0,
+        "numerator": 1
+      },
+      "C_2_minus_delta_squared": {
+        "denominator": 72,
+        "float": 0.013888888888888888,
+        "log2": -6.169925001442312,
+        "numerator": 1
+      },
+      "delta": {
+        "denominator": 3,
+        "float": 0.3333333333333333,
+        "log2": -1.5849625007211563,
+        "numerator": 1
+      },
+      "j": 2,
+      "lambda": {
+        "denominator": 4,
+        "float": 0.25,
+        "log2": -2.0,
+        "numerator": 1
+      },
+      "lambda_squared_variance": {
+        "denominator": 72,
+        "float": 0.013888888888888888,
+        "log2": -6.169925001442312,
+        "numerator": 1
+      },
+      "n": 6
+    },
+    {
+      "C_2": {
+        "denominator": 120,
+        "float": 0.19166666666666668,
+        "log2": -2.3833286395515056,
+        "numerator": 23
+      },
+      "C_2_minus_delta_squared": {
+        "denominator": 960,
+        "float": 0.051041666666666666,
+        "log2": -4.29218075149331,
+        "numerator": 49
+      },
+      "delta": {
+        "denominator": 8,
+        "float": 0.375,
+        "log2": -1.415037499278844,
+        "numerator": 3
+      },
+      "j": 3,
+      "lambda": {
+        "denominator": 15,
+        "float": 0.4666666666666667,
+        "log2": -1.0995356735509143,
+        "numerator": 7
+      },
+      "lambda_squared_variance": {
+        "denominator": 960,
+        "float": 0.051041666666666666,
+        "log2": -4.29218075149331,
+        "numerator": 49
+      },
+      "n": 8
+    },
+    {
+      "C_2": {
+        "denominator": 96,
+        "float": 0.19791666666666666,
+        "log2": -2.337034987277571,
+        "numerator": 19
+      },
+      "C_2_minus_delta_squared": {
+        "denominator": 288,
+        "float": 0.08680555555555555,
+        "log2": -3.526068811667588,
+        "numerator": 25
+      },
+      "delta": {
+        "denominator": 3,
+        "float": 0.3333333333333333,
+        "log2": -1.5849625007211563,
+        "numerator": 1
+      },
+      "j": 4,
+      "lambda": {
+        "denominator": 8,
+        "float": 0.625,
+        "log2": -0.6780719051126377,
+        "numerator": 5
+      },
+      "lambda_squared_variance": {
+        "denominator": 288,
+        "float": 0.08680555555555555,
+        "log2": -3.526068811667588,
+        "numerator": 25
+      },
+      "n": 12
+    },
+    {
+      "C_2": {
+        "denominator": 64,
+        "float": 0.390625,
+        "log2": -1.3561438102252754,
+        "numerator": 25
+      },
+      "C_2_minus_delta_squared": {
+        "denominator": 64,
+        "float": 0.140625,
+        "log2": -2.830074998557688,
+        "numerator": 9
+      },
+      "delta": {
+        "denominator": 2,
+        "float": 0.5,
+        "log2": -1.0,
+        "numerator": 1
+      },
+      "j": 8,
+      "lambda": {
+        "denominator": 4,
+        "float": 0.75,
+        "log2": -0.4150374992788438,
+        "numerator": 3
+      },
+      "lambda_squared_variance": {
+        "denominator": 64,
+        "float": 0.140625,
+        "log2": -2.830074998557688,
+        "numerator": 9
+      },
+      "n": 16
+    }
+  ],
+  "fixed_core_killed_e3_rows": [
+    {
+      "K_3": {
+        "denominator": 64,
+        "float": 0.140625,
+        "log2": -2.830074998557688,
+        "numerator": 9
+      },
+      "K_3_over_delta^4": {
+        "denominator": 64,
+        "float": 11.390625,
+        "log2": 3.509775004326937,
+        "numerator": 729
+      },
+      "core_size": 1,
+      "density": {
+        "denominator": 3,
+        "float": 0.3333333333333333,
+        "log2": -1.5849625007211563,
+        "numerator": 1
+      },
+      "j": 4,
+      "n": 12,
+      "random_same_density_delta^4": {
+        "denominator": 81,
+        "float": 0.012345679012345678,
+        "log2": -6.339850002884625,
+        "numerator": 1
+      }
+    },
+    {
+      "K_3": {
+        "denominator": 88,
+        "float": 0.011363636363636364,
+        "log2": -6.459431618637297,
+        "numerator": 1
+      },
+      "K_3_over_delta^4": {
+        "denominator": 8,
+        "float": 166.375,
+        "log2": 7.378294855911892,
+        "numerator": 1331
+      },
+      "core_size": 2,
+      "density": {
+        "denominator": 11,
+        "float": 0.09090909090909091,
+        "log2": -3.4594316186372973,
+        "numerator": 1
+      },
+      "j": 4,
+      "n": 12,
+      "random_same_density_delta^4": {
+        "denominator": 14641,
+        "float": 6.830134553650706e-05,
+        "log2": -13.83772647454919,
+        "numerator": 1
+      }
+    },
+    {
+      "K_3": {
+        "denominator": 640,
+        "float": 0.0984375,
+        "log2": -3.344648171387446,
+        "numerator": 63
+      },
+      "K_3_over_delta^4": {
+        "denominator": 2744,
+        "float": 33.20881924198251,
+        "log2": 5.053494522816212,
+        "numerator": 91125
+      },
+      "core_size": 2,
+      "density": {
+        "denominator": 30,
+        "float": 0.23333333333333334,
+        "log2": -2.0995356735509145,
+        "numerator": 7
+      },
+      "j": 8,
+      "n": 16,
+      "random_same_density_delta^4": {
+        "denominator": 810000,
+        "float": 0.0029641975308641977,
+        "log2": -8.398142694203658,
+        "numerator": 2401
+      }
+    },
+    {
+      "K_3": {
+        "denominator": 88,
+        "float": 0.011363636363636364,
+        "log2": -6.459431618637297,
+        "numerator": 1
+      },
+      "K_3_over_delta^4": {
+        "denominator": 8,
+        "float": 166.375,
+        "log2": 7.378294855911892,
+        "numerator": 1331
+      },
+      "core_size": 3,
+      "density": {
+        "denominator": 11,
+        "float": 0.09090909090909091,
+        "log2": -3.4594316186372973,
+        "numerator": 1
+      },
+      "j": 6,
+      "n": 12,
+      "random_same_density_delta^4": {
+        "denominator": 14641,
+        "float": 6.830134553650706e-05,
+        "log2": -13.83772647454919,
+        "numerator": 1
+      }
+    }
+  ],
+  "non_claims": [
+    "does not prove the XR inverse theorem",
+    "does not enumerate Reed-Solomon word-pair aligned-locator sets",
+    "does not certify an M1 or list threshold"
+  ],
+  "object": "Johnson endpoint correlation and killed exchange energy",
+  "script": "experimental/scripts/verify_xr_e3_calculus.py",
+  "script_sha256": "0119fd9f77f0934ddddfe5d4e39344d9154861c06762f419d0143cc077284e80",
+  "status": "PROVED_XR_E3_CALCULUS"
+}
