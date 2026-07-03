@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E20 KMS/KLLM loss-exponent tables
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_kms_kllm_loss_tables.py`;
+  `experimental/data/certificates/kms-kllm-loss-tables/kms_kllm_loss_tables.json`;
+  `experimental/notes/roadmaps/kms_kllm_loss_tables.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / STATEMENT ARITHMETIC.
+- **What is being added:** A source-extraction and exponent-arithmetic packet
+  for E20/QX.10.  It records that raw Johnson/Grassmann KMS/DKKMS statements
+  are structural/asymptotic rather than finite `q`-power FM engines as stated,
+  while KLLM gives a conditional stay-probability exponent `(g+t-1)/4` from a
+  `beta<=q^-g` globalness certificate at FM measure `q^(1-t)`.
+- **How it is useful:** This decides the next XR route obligation: QX.11 must
+  produce an actual paid-ledger globalness exponent `g`, after which QX.14 can
+  compare `(g+t-1)/4` against each rate/slack row.  The raw KMS/DKKMS import is
+  not enough on its own.
+- **What to do next:** Prove or falsify the QX.11 globalness ledger conversion
+  on actual post-strip alignment sets; then run the QX.14 rate arithmetic with
+  the resulting exponent.
+
 ### 2026-07-03 - Consolidated threshold, M1, and L1 TeX notes
 
 - **Agent/model:** Codex, consolidating threshold/M1/L1 material contributed

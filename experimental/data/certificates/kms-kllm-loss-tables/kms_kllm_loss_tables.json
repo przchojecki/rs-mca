@@ -1,0 +1,396 @@
+{
+  "fm_scale_convention": {
+    "fm_measure_exponent": "t-1",
+    "measure": "mu ~= q^(1-t)",
+    "slack_parameter": "t = A-k in the FM1 split-locator convention"
+  },
+  "kllm_conversion": {
+    "assumption": "indicator family A has measure mu=q^(1-t) and beta-small generalized influences with beta<=q^(-g)",
+    "globalness_needed_to_match_full_fm_stay": "g >= 3(t-1)",
+    "holder_step": "<f,Tf> <= ||f||_{4/3} ||Tf||_4",
+    "internal_stay_exponent": "(g+t-1)/4",
+    "source_loss": "||T_{1/5} f||_4 <= beta^(1/4) ||f||_2"
+  },
+  "kllm_full_fm_match_table": [
+    {
+      "fm_measure": "mu = q^(-1)",
+      "full_fm_stay_exponent": 1,
+      "globalness_beta": "beta <= q^(-3)",
+      "globalness_exponent_needed_to_match_full_fm": 3,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-1)",
+      "kllm_internal_stay_exponent": "1",
+      "matches_full_fm_stay_exponent": true,
+      "slack_t": 2
+    },
+    {
+      "fm_measure": "mu = q^(-2)",
+      "full_fm_stay_exponent": 2,
+      "globalness_beta": "beta <= q^(-6)",
+      "globalness_exponent_needed_to_match_full_fm": 6,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-2)",
+      "kllm_internal_stay_exponent": "2",
+      "matches_full_fm_stay_exponent": true,
+      "slack_t": 3
+    },
+    {
+      "fm_measure": "mu = q^(-3)",
+      "full_fm_stay_exponent": 3,
+      "globalness_beta": "beta <= q^(-9)",
+      "globalness_exponent_needed_to_match_full_fm": 9,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-3)",
+      "kllm_internal_stay_exponent": "3",
+      "matches_full_fm_stay_exponent": true,
+      "slack_t": 4
+    },
+    {
+      "fm_measure": "mu = q^(-4)",
+      "full_fm_stay_exponent": 4,
+      "globalness_beta": "beta <= q^(-12)",
+      "globalness_exponent_needed_to_match_full_fm": 12,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-4)",
+      "kllm_internal_stay_exponent": "4",
+      "matches_full_fm_stay_exponent": true,
+      "slack_t": 5
+    },
+    {
+      "fm_measure": "mu = q^(-5)",
+      "full_fm_stay_exponent": 5,
+      "globalness_beta": "beta <= q^(-15)",
+      "globalness_exponent_needed_to_match_full_fm": 15,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-5)",
+      "kllm_internal_stay_exponent": "5",
+      "matches_full_fm_stay_exponent": true,
+      "slack_t": 6
+    },
+    {
+      "fm_measure": "mu = q^(-7)",
+      "full_fm_stay_exponent": 7,
+      "globalness_beta": "beta <= q^(-21)",
+      "globalness_exponent_needed_to_match_full_fm": 21,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-7)",
+      "kllm_internal_stay_exponent": "7",
+      "matches_full_fm_stay_exponent": true,
+      "slack_t": 8
+    }
+  ],
+  "kllm_no_extra_globalness_table": [
+    {
+      "fm_measure": "mu = q^(-1)",
+      "full_fm_stay_exponent": 1,
+      "globalness_beta": "beta <= q^(-0)",
+      "globalness_exponent_needed_to_match_full_fm": 3,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-1/4)",
+      "kllm_internal_stay_exponent": "1/4",
+      "matches_full_fm_stay_exponent": false,
+      "slack_t": 2
+    },
+    {
+      "fm_measure": "mu = q^(-2)",
+      "full_fm_stay_exponent": 2,
+      "globalness_beta": "beta <= q^(-0)",
+      "globalness_exponent_needed_to_match_full_fm": 6,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-1/2)",
+      "kllm_internal_stay_exponent": "1/2",
+      "matches_full_fm_stay_exponent": false,
+      "slack_t": 3
+    },
+    {
+      "fm_measure": "mu = q^(-3)",
+      "full_fm_stay_exponent": 3,
+      "globalness_beta": "beta <= q^(-0)",
+      "globalness_exponent_needed_to_match_full_fm": 9,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-3/4)",
+      "kllm_internal_stay_exponent": "3/4",
+      "matches_full_fm_stay_exponent": false,
+      "slack_t": 4
+    },
+    {
+      "fm_measure": "mu = q^(-4)",
+      "full_fm_stay_exponent": 4,
+      "globalness_beta": "beta <= q^(-0)",
+      "globalness_exponent_needed_to_match_full_fm": 12,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-1)",
+      "kllm_internal_stay_exponent": "1",
+      "matches_full_fm_stay_exponent": false,
+      "slack_t": 5
+    },
+    {
+      "fm_measure": "mu = q^(-5)",
+      "full_fm_stay_exponent": 5,
+      "globalness_beta": "beta <= q^(-0)",
+      "globalness_exponent_needed_to_match_full_fm": 15,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-5/4)",
+      "kllm_internal_stay_exponent": "5/4",
+      "matches_full_fm_stay_exponent": false,
+      "slack_t": 6
+    },
+    {
+      "fm_measure": "mu = q^(-7)",
+      "full_fm_stay_exponent": 7,
+      "globalness_beta": "beta <= q^(-0)",
+      "globalness_exponent_needed_to_match_full_fm": 21,
+      "kllm_internal_stay_bound": "Pr[one KLLM-noise step stays in A | A] <= q^(-7/4)",
+      "kllm_internal_stay_exponent": "7/4",
+      "matches_full_fm_stay_exponent": false,
+      "slack_t": 8
+    }
+  ],
+  "nonclaims": [
+    "does not prove a KMS/DKKMS/KLLM import theorem",
+    "does not verify the hypotheses of KLLM for RS alignment sets",
+    "does not settle the final XR wall arithmetic",
+    "does not extract hidden constants from the primary papers"
+  ],
+  "payload_sha256": "294d13c3003c79598e4e629d56b662a5fda67f24dcee794fa9231afe82d59fba",
+  "rate_table": [
+    {
+      "direct_rate_dependency_in_extracted_theorems": "none",
+      "interpretation": "The extracted KMS/DKKMS/KLLM loss exponents do not depend on the Reed-Solomon rate directly.  Rate enters later through which FM slack t and which paid tangent/globalness ledgers the XR assembly must certify.",
+      "rate": "1/2",
+      "slack_rows": [
+        {
+          "fm_measure_exponent": 1,
+          "globalness_exponent_needed_to_match_full_fm": 3,
+          "kllm_stay_exponent_if_beta_le_1": "1/4",
+          "slack_t": 2
+        },
+        {
+          "fm_measure_exponent": 2,
+          "globalness_exponent_needed_to_match_full_fm": 6,
+          "kllm_stay_exponent_if_beta_le_1": "1/2",
+          "slack_t": 3
+        },
+        {
+          "fm_measure_exponent": 3,
+          "globalness_exponent_needed_to_match_full_fm": 9,
+          "kllm_stay_exponent_if_beta_le_1": "3/4",
+          "slack_t": 4
+        },
+        {
+          "fm_measure_exponent": 4,
+          "globalness_exponent_needed_to_match_full_fm": 12,
+          "kllm_stay_exponent_if_beta_le_1": "1",
+          "slack_t": 5
+        },
+        {
+          "fm_measure_exponent": 5,
+          "globalness_exponent_needed_to_match_full_fm": 15,
+          "kllm_stay_exponent_if_beta_le_1": "5/4",
+          "slack_t": 6
+        },
+        {
+          "fm_measure_exponent": 7,
+          "globalness_exponent_needed_to_match_full_fm": 21,
+          "kllm_stay_exponent_if_beta_le_1": "7/4",
+          "slack_t": 8
+        }
+      ]
+    },
+    {
+      "direct_rate_dependency_in_extracted_theorems": "none",
+      "interpretation": "The extracted KMS/DKKMS/KLLM loss exponents do not depend on the Reed-Solomon rate directly.  Rate enters later through which FM slack t and which paid tangent/globalness ledgers the XR assembly must certify.",
+      "rate": "1/4",
+      "slack_rows": [
+        {
+          "fm_measure_exponent": 1,
+          "globalness_exponent_needed_to_match_full_fm": 3,
+          "kllm_stay_exponent_if_beta_le_1": "1/4",
+          "slack_t": 2
+        },
+        {
+          "fm_measure_exponent": 2,
+          "globalness_exponent_needed_to_match_full_fm": 6,
+          "kllm_stay_exponent_if_beta_le_1": "1/2",
+          "slack_t": 3
+        },
+        {
+          "fm_measure_exponent": 3,
+          "globalness_exponent_needed_to_match_full_fm": 9,
+          "kllm_stay_exponent_if_beta_le_1": "3/4",
+          "slack_t": 4
+        },
+        {
+          "fm_measure_exponent": 4,
+          "globalness_exponent_needed_to_match_full_fm": 12,
+          "kllm_stay_exponent_if_beta_le_1": "1",
+          "slack_t": 5
+        },
+        {
+          "fm_measure_exponent": 5,
+          "globalness_exponent_needed_to_match_full_fm": 15,
+          "kllm_stay_exponent_if_beta_le_1": "5/4",
+          "slack_t": 6
+        },
+        {
+          "fm_measure_exponent": 7,
+          "globalness_exponent_needed_to_match_full_fm": 21,
+          "kllm_stay_exponent_if_beta_le_1": "7/4",
+          "slack_t": 8
+        }
+      ]
+    },
+    {
+      "direct_rate_dependency_in_extracted_theorems": "none",
+      "interpretation": "The extracted KMS/DKKMS/KLLM loss exponents do not depend on the Reed-Solomon rate directly.  Rate enters later through which FM slack t and which paid tangent/globalness ledgers the XR assembly must certify.",
+      "rate": "1/8",
+      "slack_rows": [
+        {
+          "fm_measure_exponent": 1,
+          "globalness_exponent_needed_to_match_full_fm": 3,
+          "kllm_stay_exponent_if_beta_le_1": "1/4",
+          "slack_t": 2
+        },
+        {
+          "fm_measure_exponent": 2,
+          "globalness_exponent_needed_to_match_full_fm": 6,
+          "kllm_stay_exponent_if_beta_le_1": "1/2",
+          "slack_t": 3
+        },
+        {
+          "fm_measure_exponent": 3,
+          "globalness_exponent_needed_to_match_full_fm": 9,
+          "kllm_stay_exponent_if_beta_le_1": "3/4",
+          "slack_t": 4
+        },
+        {
+          "fm_measure_exponent": 4,
+          "globalness_exponent_needed_to_match_full_fm": 12,
+          "kllm_stay_exponent_if_beta_le_1": "1",
+          "slack_t": 5
+        },
+        {
+          "fm_measure_exponent": 5,
+          "globalness_exponent_needed_to_match_full_fm": 15,
+          "kllm_stay_exponent_if_beta_le_1": "5/4",
+          "slack_t": 6
+        },
+        {
+          "fm_measure_exponent": 7,
+          "globalness_exponent_needed_to_match_full_fm": 21,
+          "kllm_stay_exponent_if_beta_le_1": "7/4",
+          "slack_t": 8
+        }
+      ]
+    },
+    {
+      "direct_rate_dependency_in_extracted_theorems": "none",
+      "interpretation": "The extracted KMS/DKKMS/KLLM loss exponents do not depend on the Reed-Solomon rate directly.  Rate enters later through which FM slack t and which paid tangent/globalness ledgers the XR assembly must certify.",
+      "rate": "1/16",
+      "slack_rows": [
+        {
+          "fm_measure_exponent": 1,
+          "globalness_exponent_needed_to_match_full_fm": 3,
+          "kllm_stay_exponent_if_beta_le_1": "1/4",
+          "slack_t": 2
+        },
+        {
+          "fm_measure_exponent": 2,
+          "globalness_exponent_needed_to_match_full_fm": 6,
+          "kllm_stay_exponent_if_beta_le_1": "1/2",
+          "slack_t": 3
+        },
+        {
+          "fm_measure_exponent": 3,
+          "globalness_exponent_needed_to_match_full_fm": 9,
+          "kllm_stay_exponent_if_beta_le_1": "3/4",
+          "slack_t": 4
+        },
+        {
+          "fm_measure_exponent": 4,
+          "globalness_exponent_needed_to_match_full_fm": 12,
+          "kllm_stay_exponent_if_beta_le_1": "1",
+          "slack_t": 5
+        },
+        {
+          "fm_measure_exponent": 5,
+          "globalness_exponent_needed_to_match_full_fm": 15,
+          "kllm_stay_exponent_if_beta_le_1": "5/4",
+          "slack_t": 6
+        },
+        {
+          "fm_measure_exponent": 7,
+          "globalness_exponent_needed_to_match_full_fm": 21,
+          "kllm_stay_exponent_if_beta_le_1": "7/4",
+          "slack_t": 8
+        }
+      ]
+    }
+  ],
+  "roadmap_task": "E20 / QX.10 / xr_kms_parameter_matching",
+  "schema": "kms_kllm_loss_tables.v1",
+  "script_sha256": "85ded5e6dbe37e1cb327fde63b245fd31e14460a5111ea8c6e9080c8ee538a33",
+  "sources": [
+    {
+      "authors": [
+        "Subhash Khot",
+        "Dor Minzer",
+        "Dana Moshkovitz",
+        "Muli Safra"
+      ],
+      "extracted_statement_type": "qualitative structural small-set expansion",
+      "id": "KMMS_Johnson_2025_ToC_Theorem_1_3",
+      "reason": "The statement has the form: for fixed alpha and eta there exist r and epsilon so pseudorandom Johnson sets have expansion above 1-eta.  It gives the right tangent/junta obstruction, but no explicit q-power exponent at mu=q^(1-t).",
+      "title": "Small-Set Expansion in the Johnson Graph",
+      "url": "https://theoryofcomputing.org/articles/v021a002/",
+      "usable_q_power_loss": null,
+      "venue": "Theory of Computing 21(2), 2025",
+      "verdict": "NO_DIRECT_FM_SCALE_IMPORT"
+    },
+    {
+      "authors": [
+        "Irit Dinur",
+        "Subhash Khot",
+        "Guy Kindler",
+        "Dor Minzer",
+        "Muli Safra"
+      ],
+      "extracted_statement_type": "constant-threshold partial Grassmann inverse theorem",
+      "id": "DKKMS_Grassmann_2021_IJM",
+      "reason": "The extracted quantitative threshold is constant-scale: expansion below 7/8 implies non-pseudorandomness.  This is too coarse to price FM-scale measure q^(1-t) without a separate q-power bridge.",
+      "title": "On non-optimally expanding sets in Grassmann graphs",
+      "url": "https://doi.org/10.1007/s11856-021-2164-7",
+      "usable_q_power_loss": null,
+      "venue": "Israel Journal of Mathematics 243, 2021",
+      "verdict": "NO_DIRECT_FM_SCALE_IMPORT"
+    },
+    {
+      "authors": [
+        "Subhash Khot",
+        "Dor Minzer",
+        "Muli Safra"
+      ],
+      "extracted_statement_type": "asymptotic near-perfect expansion for pseudorandom Grassmann sets",
+      "id": "KMS_Grassmann_2023_Annals",
+      "reason": "The Annals theorem supplies the qualitative endpoint that pseudorandom Grassmann sets expand as 1-o(1).  The E20 arithmetic still needs explicit finite exponents before it can pay a q^(1-t) FM ledger directly.",
+      "title": "Pseudorandom sets in Grassmann graph have near-perfect expansion",
+      "url": "https://doi.org/10.4007/annals.2023.198.1.1",
+      "usable_q_power_loss": null,
+      "venue": "Annals of Mathematics 198(1), 2023",
+      "verdict": "NO_DIRECT_FM_SCALE_IMPORT_AS_STATED"
+    },
+    {
+      "authors": [
+        "Peter Keevash",
+        "Noam Lifshitz",
+        "Eoin Long",
+        "Dor Minzer"
+      ],
+      "extracted_statement_type": "global hypercontractivity",
+      "id": "KLLM_Global_Hypercontractivity_2024_JAMS",
+      "loss_exponent_beta_to_L4": "1/4",
+      "noise_parameter_recorded": "rho = 1/5 in the highlighted (4,2) cube statement",
+      "reason": "The source theorem gives a p-independent noise rate and a beta^(1/4) loss for beta-small generalized influences.  Thus a q-power globalness certificate converts to an explicit q-power small-set-expansion loss.",
+      "title": "Hypercontractivity for global functions and sharp thresholds",
+      "url": "https://doi.org/10.1090/jams/1027",
+      "usable_q_power_loss": "conditional",
+      "venue": "Journal of the AMS 37(1), 2024; arXiv:2103.04604",
+      "verdict": "SURVIVES_CONDITIONALLY_ON_QX11_GLOBALNESS"
+    }
+  ],
+  "status": "AUDIT_STATEMENT_ARITHMETIC",
+  "verdict": {
+    "kllm_route": "CONDITIONALLY_CARRIES_IF_QX11_CERTIFIES_GLOBALNESS",
+    "next_required_certificate": "QX.11 must convert paid tangent ledgers into beta<=q^(-g) generalized-influence/globalness bounds.  QX.14 then decides whether the resulting (g+t-1)/4 exponent is enough for each rate/slack row.",
+    "raw_kms_dkkms_direct_import": "FAILS_FOR_FM_SCALE_AS_STATED"
+  }
+}
