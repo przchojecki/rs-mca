@@ -1,0 +1,223 @@
+{
+  "checks": [
+    {
+      "details": [
+        "constructed max-swap witness pairs for 16 official-rate toy cells"
+      ],
+      "name": "full-cell diameter witnesses",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "N=64 official-rate full-cell height bounds are below the 2^256 ceiling",
+        "N=128 official-rate full-cell height bounds all exceed the 2^256 ceiling",
+        "the obstruction strengthens for N=256 and N=512"
+      ],
+      "name": "prize-range height-only frontier",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "N=64: phi=32, d_*(N,256)=127",
+        "N=128: phi=64, d_*(N,256)=7",
+        "N=256: phi=128, d_*(N,256)=1",
+        "N=512: phi=256, d_*(N,256)=0"
+      ],
+      "name": "2-power certified radius monotonicity",
+      "status": "PASS"
+    }
+  ],
+  "dag_nodes": [
+    "height_only_impossibility"
+  ],
+  "depends_on": [
+    "graded_collision_radius"
+  ],
+  "frontier_rows": [
+    {
+      "certified_radius_under_2_256": 127,
+      "ell": 33,
+      "full_cell_height_bound_below_2_256": true,
+      "height_bound_bit_length": 191,
+      "height_bound_log2_floor": 190,
+      "phi": 32,
+      "quotient_order": 64,
+      "rate": "1/2",
+      "s_max": 31
+    },
+    {
+      "certified_radius_under_2_256": 127,
+      "ell": 17,
+      "full_cell_height_bound_below_2_256": true,
+      "height_bound_bit_length": 163,
+      "height_bound_log2_floor": 162,
+      "phi": 32,
+      "quotient_order": 64,
+      "rate": "1/4",
+      "s_max": 17
+    },
+    {
+      "certified_radius_under_2_256": 127,
+      "ell": 9,
+      "full_cell_height_bound_below_2_256": true,
+      "height_bound_bit_length": 134,
+      "height_bound_log2_floor": 133,
+      "phi": 32,
+      "quotient_order": 64,
+      "rate": "1/8",
+      "s_max": 9
+    },
+    {
+      "certified_radius_under_2_256": 127,
+      "ell": 5,
+      "full_cell_height_bound_below_2_256": true,
+      "height_bound_bit_length": 107,
+      "height_bound_log2_floor": 106,
+      "phi": 32,
+      "quotient_order": 64,
+      "rate": "1/16",
+      "s_max": 5
+    },
+    {
+      "certified_radius_under_2_256": 7,
+      "ell": 65,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 447,
+      "height_bound_log2_floor": 446,
+      "phi": 64,
+      "quotient_order": 128,
+      "rate": "1/2",
+      "s_max": 63
+    },
+    {
+      "certified_radius_under_2_256": 7,
+      "ell": 33,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 387,
+      "height_bound_log2_floor": 386,
+      "phi": 64,
+      "quotient_order": 128,
+      "rate": "1/4",
+      "s_max": 33
+    },
+    {
+      "certified_radius_under_2_256": 7,
+      "ell": 17,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 326,
+      "height_bound_log2_floor": 325,
+      "phi": 64,
+      "quotient_order": 128,
+      "rate": "1/8",
+      "s_max": 17
+    },
+    {
+      "certified_radius_under_2_256": 7,
+      "ell": 9,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 267,
+      "height_bound_log2_floor": 266,
+      "phi": 64,
+      "quotient_order": 128,
+      "rate": "1/16",
+      "s_max": 9
+    },
+    {
+      "certified_radius_under_2_256": 1,
+      "ell": 129,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 1023,
+      "height_bound_log2_floor": 1022,
+      "phi": 128,
+      "quotient_order": 256,
+      "rate": "1/2",
+      "s_max": 127
+    },
+    {
+      "certified_radius_under_2_256": 1,
+      "ell": 65,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 899,
+      "height_bound_log2_floor": 898,
+      "phi": 128,
+      "quotient_order": 256,
+      "rate": "1/4",
+      "s_max": 65
+    },
+    {
+      "certified_radius_under_2_256": 1,
+      "ell": 33,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 774,
+      "height_bound_log2_floor": 773,
+      "phi": 128,
+      "quotient_order": 256,
+      "rate": "1/8",
+      "s_max": 33
+    },
+    {
+      "certified_radius_under_2_256": 1,
+      "ell": 17,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 652,
+      "height_bound_log2_floor": 651,
+      "phi": 128,
+      "quotient_order": 256,
+      "rate": "1/16",
+      "s_max": 17
+    },
+    {
+      "certified_radius_under_2_256": 0,
+      "ell": 257,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 2303,
+      "height_bound_log2_floor": 2302,
+      "phi": 256,
+      "quotient_order": 512,
+      "rate": "1/2",
+      "s_max": 255
+    },
+    {
+      "certified_radius_under_2_256": 0,
+      "ell": 129,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 2051,
+      "height_bound_log2_floor": 2050,
+      "phi": 256,
+      "quotient_order": 512,
+      "rate": "1/4",
+      "s_max": 129
+    },
+    {
+      "certified_radius_under_2_256": 0,
+      "ell": 65,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 1798,
+      "height_bound_log2_floor": 1797,
+      "phi": 256,
+      "quotient_order": 512,
+      "rate": "1/8",
+      "s_max": 65
+    },
+    {
+      "certified_radius_under_2_256": 0,
+      "ell": 33,
+      "full_cell_height_bound_below_2_256": false,
+      "height_bound_bit_length": 1548,
+      "height_bound_log2_floor": 1547,
+      "phi": 256,
+      "quotient_order": 512,
+      "rate": "1/16",
+      "s_max": 33
+    }
+  ],
+  "non_claims": [
+    "does not assert collisions exist beyond the height-only radius",
+    "does not rule out exact p-specific norm checks or factorization certificates",
+    "does not close the zone-b value-set lower bound"
+  ],
+  "object": "quotient e_1 value-set certification",
+  "script": "experimental/scripts/verify_height_only_impossibility.py",
+  "script_sha256": "c41a53fee5d0a1c2f194d6554fdafdd002d45d06383d5d3ced82a667f0fdbc91",
+  "status": "PROVED_HEIGHT_ONLY_IMPOSSIBILITY"
+}

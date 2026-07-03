@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Height-only certification limit
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/thresholds/height_only_impossibility.md`,
+  `experimental/scripts/verify_height_only_impossibility.py`,
+  `experimental/data/certificates/height-only-impossibility/README.md`,
+  `experimental/data/certificates/height-only-impossibility/height_only_impossibility.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CERTIFICATION-ARITHMETIC / METHOD LIMIT.
+- **What is being added:** A pure-height scoping theorem: the triangle
+  inequality norm gate can certify a full quotient cell only when the
+  max-swap bound `(2 s_max)^phi(N) < p` holds.  The verifier shows that all
+  official-rate cells at `N=128` already exceed the `p < 2^256` prize range,
+  while `N=64` remains below that ceiling and is certified for sufficiently
+  large primes above the printed bounds.
+- **How it is useful:** Discharges the `height_only_impossibility` node and
+  explains why far-pair value-set lower bounds must use exact `p`-specific,
+  cluster, or generator-factorized certificates rather than pure height alone.
+- **What to do next:** Feed this limit and the cluster-certificate lemmas into
+  generator-economy design searches and any future certified value-set lower
+  bound.
+
 ### 2026-07-03 - Cluster certificates for quotient value sets
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
