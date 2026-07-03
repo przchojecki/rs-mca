@@ -1,0 +1,1949 @@
+{
+  "a425_lower_witness": {
+    "LD_sw_lower_bound": 88,
+    "agreement": 425,
+    "bad_finite_slope_count": 88,
+    "bad_slope_encodings": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "bad_slope_hash_sha256": "eae9b8013db01497c93476394ef48510f712c82a9ef0dce678662db9f7d731fd",
+    "checks": {
+      "all_slope_values_are_distinct": true,
+      "direction_word_noncontained_on_each_support": true,
+      "each_support_has_requested_size": true,
+      "zero_codeword_explains_each_line_word_on_its_support": true
+    },
+    "core_size": 424,
+    "field": {
+      "domain_generator": 3523375392447676111921143830258524416047,
+      "domain_hash_sha256": "eecf570edb8d63b213ffc794b35ddee42e8afd5bcf40441923f89cc746e865c8",
+      "p": 29608553606109001068932302267744675430401
+    },
+    "line_definition": {
+      "core_indices": {
+        "count": 424,
+        "start": 0,
+        "stop_inclusive": 423
+      },
+      "f_values_hash_sha256": "890e3885443cc7deb82838939ab4df8b14fa85ad0fb00f1251f950f3b7b947ed",
+      "f_values_rule": "f=0 on indices < 424; f=-i on index 424+i for i=0..87",
+      "g_values_hash_sha256": "f65329c51f7f15887200752000a5c40e35d5713c37a74480843cf443267dbf24",
+      "g_values_rule": "g=0 on indices < 424; g=1 on indices >= 424",
+      "outside_indices": {
+        "count": 88,
+        "start": 424,
+        "stop_inclusive": 511
+      },
+      "received_words_are_coordinate_values_on_D": true
+    },
+    "outside_count": 88,
+    "records": [
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 424,
+        "moving_domain_element": 26224686695027437181978270300172601255098,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 0,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 425,
+        "moving_domain_element": 1178373308255980934235615113524855522587,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 1,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 426,
+        "moving_domain_element": 17928355227255789997222860291816747098133,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 2,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 427,
+        "moving_domain_element": 6086661155043090514745573534448514889540,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 3,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 428,
+        "moving_domain_element": 21254631213603517736012669905979144362693,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 4,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 429,
+        "moving_domain_element": 13514759351815105218799232236096502629112,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 5,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 430,
+        "moving_domain_element": 4505876367794291033548799298070981341591,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 6,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 431,
+        "moving_domain_element": 5944564500944500037051934618317793799309,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 7,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 432,
+        "moving_domain_element": 15607914738675846738346389635211962770863,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 8,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 433,
+        "moving_domain_element": 4614959670834176952219041371846152224979,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 9,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 434,
+        "moving_domain_element": 21827832588568250865315350345166908261577,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 10,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 435,
+        "moving_domain_element": 11219530710135489358883599030295522522173,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 11,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 436,
+        "moving_domain_element": 14822571282630508981932624120503305156968,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 12,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 437,
+        "moving_domain_element": 1806308913870499348722938903419521281672,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 13,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 438,
+        "moving_domain_element": 27863403387711241672568543490477052292978,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 14,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 439,
+        "moving_domain_element": 16007505722186960916693019309190027114681,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 15,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 440,
+        "moving_domain_element": 13024144691199831863735008622672535664459,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 16,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 441,
+        "moving_domain_element": 12104951178399138502403484518708729095806,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 17,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 442,
+        "moving_domain_element": 10131473490324563652193845812891035197719,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 18,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 443,
+        "moving_domain_element": 18507117833297609363353234187695707841027,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 19,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 444,
+        "moving_domain_element": 15875558685532492760235508704353115224070,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 20,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 445,
+        "moving_domain_element": 21484995667060327356262307151729205912994,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 21,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 446,
+        "moving_domain_element": 22672558361400183174273455713616249991352,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 22,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 447,
+        "moving_domain_element": 8008492416052052316932504802782025284374,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 23,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 448,
+        "moving_domain_element": 19516622551008594259458499017903408444705,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 24,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 449,
+        "moving_domain_element": 20795888218143776467704356135480293584333,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 25,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 450,
+        "moving_domain_element": 22279066989926375260444827627354807555336,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 26,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 451,
+        "moving_domain_element": 21699764900024460964778948926498536874515,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 27,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 452,
+        "moving_domain_element": 349454509710436324901568296405721085585,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 28,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 453,
+        "moving_domain_element": 1716802760010460476773768547428895623452,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 29,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 454,
+        "moving_domain_element": 23434749598658274415124076078758055731439,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 30,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 455,
+        "moving_domain_element": 25237046977005148922155010918830441730264,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 31,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 456,
+        "moving_domain_element": 5453932280423268130929096383952535465203,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 32,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 457,
+        "moving_domain_element": 3198427510908242106161160780174060419613,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 33,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 458,
+        "moving_domain_element": 26024468603825037443026477984214487982448,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 34,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 459,
+        "moving_domain_element": 28379859714447396979335320476770746762010,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 35,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 460,
+        "moving_domain_element": 4775862538069860462420133737237131879505,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 36,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 461,
+        "moving_domain_element": 10827785394836129761050301950558715528863,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 37,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 462,
+        "moving_domain_element": 972539974417700283052586783430505301805,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 38,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 463,
+        "moving_domain_element": 26196849352892255508297885426085353117223,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 39,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 464,
+        "moving_domain_element": 23847448313893835939075692998239694259174,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 40,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 465,
+        "moving_domain_element": 25442278848121160007401959645795939543360,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 41,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 466,
+        "moving_domain_element": 14770277833545675958004345626070673736755,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 42,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 467,
+        "moving_domain_element": 20941752308681265317221506200953863559634,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 43,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 468,
+        "moving_domain_element": 19434096838578635956592436440879769779988,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 44,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 469,
+        "moving_domain_element": 13734858613150435939875244519873794049379,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 45,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 470,
+        "moving_domain_element": 24842752347382807878360782618686475956964,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 46,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 471,
+        "moving_domain_element": 15780799834497261830275745947327086644068,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 47,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 472,
+        "moving_domain_element": 15137063542474347381997608844659631490067,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 48,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 473,
+        "moving_domain_element": 18120846552795915419836514381809497291818,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 49,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 474,
+        "moving_domain_element": 23890397764317446419668506830311307757259,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 50,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 475,
+        "moving_domain_element": 10938075235002210403703315287206984742811,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 51,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 476,
+        "moving_domain_element": 4019075076578268271755186014647809377316,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 52,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 477,
+        "moving_domain_element": 6506842205047925787969927025930305490264,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 53,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 478,
+        "moving_domain_element": 26382578881168383353794160378583382931854,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 54,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 479,
+        "moving_domain_element": 3923489988126825407702093931913671230358,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 55,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 480,
+        "moving_domain_element": 12242594820622726167225912670582073381647,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 56,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 481,
+        "moving_domain_element": 13459336585620078488050441729633245075500,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 57,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 482,
+        "moving_domain_element": 18516583750722931459828653573354619629670,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 58,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 483,
+        "moving_domain_element": 23672441434756271655682423643678514371991,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 59,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 484,
+        "moving_domain_element": 28417391220949348978472728126269115056230,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 60,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 485,
+        "moving_domain_element": 14861790231158537003758411473185268849298,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 61,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 486,
+        "moving_domain_element": 28569022238215734253608316315242310921846,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 62,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 487,
+        "moving_domain_element": 22528859644939372619869881664902016508317,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 63,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 488,
+        "moving_domain_element": 27293627024157955786022310095079477692285,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 64,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 489,
+        "moving_domain_element": 1528708841700704820443791393727257887810,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 65,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 490,
+        "moving_domain_element": 27223028281692763489217220408609598159747,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 66,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 491,
+        "moving_domain_element": 3763860407003670160573598079456740489871,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 67,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 492,
+        "moving_domain_element": 25435001404346414954212383631650898350523,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 68,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 493,
+        "moving_domain_element": 2644077025360556388171529264892074614155,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 69,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 494,
+        "moving_domain_element": 10745031027656376426956159080619004494064,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 70,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 495,
+        "moving_domain_element": 13557458349467730419272266596619016240920,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 71,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 496,
+        "moving_domain_element": 4839092311666636846997500525025175742324,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 72,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 497,
+        "moving_domain_element": 6873959747673044082021571348282640012532,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 73,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 498,
+        "moving_domain_element": 28093069856579346056760495095698891478309,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 74,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 499,
+        "moving_domain_element": 24971350535498243830659653473779978110129,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 75,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 500,
+        "moving_domain_element": 315806756368450156332271434583455069065,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 76,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 501,
+        "moving_domain_element": 18683647906637400546687241569993622153263,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 77,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 502,
+        "moving_domain_element": 17091932269443600239664100076146237724457,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 78,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 503,
+        "moving_domain_element": 2334616537117934732890399738685329347302,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 79,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 504,
+        "moving_domain_element": 14910369605356090773484005408074963855732,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 80,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 505,
+        "moving_domain_element": 25258522205777670993937753959717585585912,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 81,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 506,
+        "moving_domain_element": 14525599321216531880285189047907810882548,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 82,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 507,
+        "moving_domain_element": 3825033324795973243577953114337858945004,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 83,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 508,
+        "moving_domain_element": 2323560399041865122764139141959486218439,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 84,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 509,
+        "moving_domain_element": 18543480899193052126095903411545479676669,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 85,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 510,
+        "moving_domain_element": 28016990371483961587173425662650107490158,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 86,
+        "support_size": 425
+      },
+      {
+        "explaining_codeword": "zero polynomial",
+        "moving_coordinate_index": 511,
+        "moving_domain_element": 27537147977450730815387010902583396665679,
+        "noncontained_reason": "g has 424 zero coordinates on the support and value 1 at the moving coordinate, so no degree-<256 polynomial can agree with g there",
+        "slope": 87,
+        "support_size": 425
+      }
+    ],
+    "support_record_hash_sha256": "01b51aee365514921826e0f447c3fb5906dd0e98dedaa4eea85fc955a89bed47",
+    "support_threshold": 425
+  },
+  "a425_two_core_exact_attempt": {
+    "agreement": 425,
+    "case_1_no_large_pair_core": {
+      "binomial_512_5": 287515515392,
+      "binomial_87_5": 36949857,
+      "closes_against_88": false,
+      "complement_pair_intersection_at_most": 4,
+      "packing_bound": 7781,
+      "packing_bound_formula": "floor(binomial(512,5)/binomial(87,5))",
+      "packing_subsets_size": 5,
+      "support_pair_intersection_at_most": 342
+    },
+    "case_2_large_pair_core": {
+      "bound_formula": "floor((n-c)/max(1,A-c)) for c=|common code-line support|",
+      "core_bound_rows": [
+        {
+          "bound": 2,
+          "common_core_size": 343,
+          "outside_coordinates": 169,
+          "outside_required_per_slope": 82
+        },
+        {
+          "bound": 2,
+          "common_core_size": 344,
+          "outside_coordinates": 168,
+          "outside_required_per_slope": 81
+        },
+        {
+          "bound": 2,
+          "common_core_size": 345,
+          "outside_coordinates": 167,
+          "outside_required_per_slope": 80
+        },
+        {
+          "bound": 2,
+          "common_core_size": 346,
+          "outside_coordinates": 166,
+          "outside_required_per_slope": 79
+        },
+        {
+          "bound": 2,
+          "common_core_size": 347,
+          "outside_coordinates": 165,
+          "outside_required_per_slope": 78
+        },
+        {
+          "bound": 2,
+          "common_core_size": 348,
+          "outside_coordinates": 164,
+          "outside_required_per_slope": 77
+        },
+        {
+          "bound": 2,
+          "common_core_size": 349,
+          "outside_coordinates": 163,
+          "outside_required_per_slope": 76
+        },
+        {
+          "bound": 2,
+          "common_core_size": 350,
+          "outside_coordinates": 162,
+          "outside_required_per_slope": 75
+        },
+        {
+          "bound": 2,
+          "common_core_size": 351,
+          "outside_coordinates": 161,
+          "outside_required_per_slope": 74
+        },
+        {
+          "bound": 2,
+          "common_core_size": 352,
+          "outside_coordinates": 160,
+          "outside_required_per_slope": 73
+        },
+        {
+          "bound": 2,
+          "common_core_size": 353,
+          "outside_coordinates": 159,
+          "outside_required_per_slope": 72
+        },
+        {
+          "bound": 2,
+          "common_core_size": 354,
+          "outside_coordinates": 158,
+          "outside_required_per_slope": 71
+        },
+        {
+          "bound": 2,
+          "common_core_size": 355,
+          "outside_coordinates": 157,
+          "outside_required_per_slope": 70
+        },
+        {
+          "bound": 2,
+          "common_core_size": 356,
+          "outside_coordinates": 156,
+          "outside_required_per_slope": 69
+        },
+        {
+          "bound": 2,
+          "common_core_size": 357,
+          "outside_coordinates": 155,
+          "outside_required_per_slope": 68
+        },
+        {
+          "bound": 2,
+          "common_core_size": 358,
+          "outside_coordinates": 154,
+          "outside_required_per_slope": 67
+        },
+        {
+          "bound": 2,
+          "common_core_size": 359,
+          "outside_coordinates": 153,
+          "outside_required_per_slope": 66
+        },
+        {
+          "bound": 2,
+          "common_core_size": 360,
+          "outside_coordinates": 152,
+          "outside_required_per_slope": 65
+        },
+        {
+          "bound": 2,
+          "common_core_size": 361,
+          "outside_coordinates": 151,
+          "outside_required_per_slope": 64
+        },
+        {
+          "bound": 2,
+          "common_core_size": 362,
+          "outside_coordinates": 150,
+          "outside_required_per_slope": 63
+        },
+        {
+          "bound": 2,
+          "common_core_size": 363,
+          "outside_coordinates": 149,
+          "outside_required_per_slope": 62
+        },
+        {
+          "bound": 2,
+          "common_core_size": 364,
+          "outside_coordinates": 148,
+          "outside_required_per_slope": 61
+        },
+        {
+          "bound": 2,
+          "common_core_size": 365,
+          "outside_coordinates": 147,
+          "outside_required_per_slope": 60
+        },
+        {
+          "bound": 2,
+          "common_core_size": 366,
+          "outside_coordinates": 146,
+          "outside_required_per_slope": 59
+        },
+        {
+          "bound": 2,
+          "common_core_size": 367,
+          "outside_coordinates": 145,
+          "outside_required_per_slope": 58
+        },
+        {
+          "bound": 2,
+          "common_core_size": 368,
+          "outside_coordinates": 144,
+          "outside_required_per_slope": 57
+        },
+        {
+          "bound": 2,
+          "common_core_size": 369,
+          "outside_coordinates": 143,
+          "outside_required_per_slope": 56
+        },
+        {
+          "bound": 2,
+          "common_core_size": 370,
+          "outside_coordinates": 142,
+          "outside_required_per_slope": 55
+        },
+        {
+          "bound": 2,
+          "common_core_size": 371,
+          "outside_coordinates": 141,
+          "outside_required_per_slope": 54
+        },
+        {
+          "bound": 2,
+          "common_core_size": 372,
+          "outside_coordinates": 140,
+          "outside_required_per_slope": 53
+        },
+        {
+          "bound": 2,
+          "common_core_size": 373,
+          "outside_coordinates": 139,
+          "outside_required_per_slope": 52
+        },
+        {
+          "bound": 2,
+          "common_core_size": 374,
+          "outside_coordinates": 138,
+          "outside_required_per_slope": 51
+        },
+        {
+          "bound": 2,
+          "common_core_size": 375,
+          "outside_coordinates": 137,
+          "outside_required_per_slope": 50
+        },
+        {
+          "bound": 2,
+          "common_core_size": 376,
+          "outside_coordinates": 136,
+          "outside_required_per_slope": 49
+        },
+        {
+          "bound": 2,
+          "common_core_size": 377,
+          "outside_coordinates": 135,
+          "outside_required_per_slope": 48
+        },
+        {
+          "bound": 2,
+          "common_core_size": 378,
+          "outside_coordinates": 134,
+          "outside_required_per_slope": 47
+        },
+        {
+          "bound": 2,
+          "common_core_size": 379,
+          "outside_coordinates": 133,
+          "outside_required_per_slope": 46
+        },
+        {
+          "bound": 2,
+          "common_core_size": 380,
+          "outside_coordinates": 132,
+          "outside_required_per_slope": 45
+        },
+        {
+          "bound": 2,
+          "common_core_size": 381,
+          "outside_coordinates": 131,
+          "outside_required_per_slope": 44
+        },
+        {
+          "bound": 3,
+          "common_core_size": 382,
+          "outside_coordinates": 130,
+          "outside_required_per_slope": 43
+        },
+        {
+          "bound": 3,
+          "common_core_size": 383,
+          "outside_coordinates": 129,
+          "outside_required_per_slope": 42
+        },
+        {
+          "bound": 3,
+          "common_core_size": 384,
+          "outside_coordinates": 128,
+          "outside_required_per_slope": 41
+        },
+        {
+          "bound": 3,
+          "common_core_size": 385,
+          "outside_coordinates": 127,
+          "outside_required_per_slope": 40
+        },
+        {
+          "bound": 3,
+          "common_core_size": 386,
+          "outside_coordinates": 126,
+          "outside_required_per_slope": 39
+        },
+        {
+          "bound": 3,
+          "common_core_size": 387,
+          "outside_coordinates": 125,
+          "outside_required_per_slope": 38
+        },
+        {
+          "bound": 3,
+          "common_core_size": 388,
+          "outside_coordinates": 124,
+          "outside_required_per_slope": 37
+        },
+        {
+          "bound": 3,
+          "common_core_size": 389,
+          "outside_coordinates": 123,
+          "outside_required_per_slope": 36
+        },
+        {
+          "bound": 3,
+          "common_core_size": 390,
+          "outside_coordinates": 122,
+          "outside_required_per_slope": 35
+        },
+        {
+          "bound": 3,
+          "common_core_size": 391,
+          "outside_coordinates": 121,
+          "outside_required_per_slope": 34
+        },
+        {
+          "bound": 3,
+          "common_core_size": 392,
+          "outside_coordinates": 120,
+          "outside_required_per_slope": 33
+        },
+        {
+          "bound": 3,
+          "common_core_size": 393,
+          "outside_coordinates": 119,
+          "outside_required_per_slope": 32
+        },
+        {
+          "bound": 3,
+          "common_core_size": 394,
+          "outside_coordinates": 118,
+          "outside_required_per_slope": 31
+        },
+        {
+          "bound": 3,
+          "common_core_size": 395,
+          "outside_coordinates": 117,
+          "outside_required_per_slope": 30
+        },
+        {
+          "bound": 4,
+          "common_core_size": 396,
+          "outside_coordinates": 116,
+          "outside_required_per_slope": 29
+        },
+        {
+          "bound": 4,
+          "common_core_size": 397,
+          "outside_coordinates": 115,
+          "outside_required_per_slope": 28
+        },
+        {
+          "bound": 4,
+          "common_core_size": 398,
+          "outside_coordinates": 114,
+          "outside_required_per_slope": 27
+        },
+        {
+          "bound": 4,
+          "common_core_size": 399,
+          "outside_coordinates": 113,
+          "outside_required_per_slope": 26
+        },
+        {
+          "bound": 4,
+          "common_core_size": 400,
+          "outside_coordinates": 112,
+          "outside_required_per_slope": 25
+        },
+        {
+          "bound": 4,
+          "common_core_size": 401,
+          "outside_coordinates": 111,
+          "outside_required_per_slope": 24
+        },
+        {
+          "bound": 4,
+          "common_core_size": 402,
+          "outside_coordinates": 110,
+          "outside_required_per_slope": 23
+        },
+        {
+          "bound": 4,
+          "common_core_size": 403,
+          "outside_coordinates": 109,
+          "outside_required_per_slope": 22
+        },
+        {
+          "bound": 5,
+          "common_core_size": 404,
+          "outside_coordinates": 108,
+          "outside_required_per_slope": 21
+        },
+        {
+          "bound": 5,
+          "common_core_size": 405,
+          "outside_coordinates": 107,
+          "outside_required_per_slope": 20
+        },
+        {
+          "bound": 5,
+          "common_core_size": 406,
+          "outside_coordinates": 106,
+          "outside_required_per_slope": 19
+        },
+        {
+          "bound": 5,
+          "common_core_size": 407,
+          "outside_coordinates": 105,
+          "outside_required_per_slope": 18
+        },
+        {
+          "bound": 6,
+          "common_core_size": 408,
+          "outside_coordinates": 104,
+          "outside_required_per_slope": 17
+        },
+        {
+          "bound": 6,
+          "common_core_size": 409,
+          "outside_coordinates": 103,
+          "outside_required_per_slope": 16
+        },
+        {
+          "bound": 6,
+          "common_core_size": 410,
+          "outside_coordinates": 102,
+          "outside_required_per_slope": 15
+        },
+        {
+          "bound": 7,
+          "common_core_size": 411,
+          "outside_coordinates": 101,
+          "outside_required_per_slope": 14
+        },
+        {
+          "bound": 7,
+          "common_core_size": 412,
+          "outside_coordinates": 100,
+          "outside_required_per_slope": 13
+        },
+        {
+          "bound": 8,
+          "common_core_size": 413,
+          "outside_coordinates": 99,
+          "outside_required_per_slope": 12
+        },
+        {
+          "bound": 8,
+          "common_core_size": 414,
+          "outside_coordinates": 98,
+          "outside_required_per_slope": 11
+        },
+        {
+          "bound": 9,
+          "common_core_size": 415,
+          "outside_coordinates": 97,
+          "outside_required_per_slope": 10
+        },
+        {
+          "bound": 10,
+          "common_core_size": 416,
+          "outside_coordinates": 96,
+          "outside_required_per_slope": 9
+        },
+        {
+          "bound": 11,
+          "common_core_size": 417,
+          "outside_coordinates": 95,
+          "outside_required_per_slope": 8
+        },
+        {
+          "bound": 13,
+          "common_core_size": 418,
+          "outside_coordinates": 94,
+          "outside_required_per_slope": 7
+        },
+        {
+          "bound": 15,
+          "common_core_size": 419,
+          "outside_coordinates": 93,
+          "outside_required_per_slope": 6
+        },
+        {
+          "bound": 18,
+          "common_core_size": 420,
+          "outside_coordinates": 92,
+          "outside_required_per_slope": 5
+        },
+        {
+          "bound": 22,
+          "common_core_size": 421,
+          "outside_coordinates": 91,
+          "outside_required_per_slope": 4
+        },
+        {
+          "bound": 30,
+          "common_core_size": 422,
+          "outside_coordinates": 90,
+          "outside_required_per_slope": 3
+        },
+        {
+          "bound": 44,
+          "common_core_size": 423,
+          "outside_coordinates": 89,
+          "outside_required_per_slope": 2
+        },
+        {
+          "bound": 88,
+          "common_core_size": 424,
+          "outside_coordinates": 88,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 87,
+          "common_core_size": 425,
+          "outside_coordinates": 87,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 86,
+          "common_core_size": 426,
+          "outside_coordinates": 86,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 85,
+          "common_core_size": 427,
+          "outside_coordinates": 85,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 84,
+          "common_core_size": 428,
+          "outside_coordinates": 84,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 83,
+          "common_core_size": 429,
+          "outside_coordinates": 83,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 82,
+          "common_core_size": 430,
+          "outside_coordinates": 82,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 81,
+          "common_core_size": 431,
+          "outside_coordinates": 81,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 80,
+          "common_core_size": 432,
+          "outside_coordinates": 80,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 79,
+          "common_core_size": 433,
+          "outside_coordinates": 79,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 78,
+          "common_core_size": 434,
+          "outside_coordinates": 78,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 77,
+          "common_core_size": 435,
+          "outside_coordinates": 77,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 76,
+          "common_core_size": 436,
+          "outside_coordinates": 76,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 75,
+          "common_core_size": 437,
+          "outside_coordinates": 75,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 74,
+          "common_core_size": 438,
+          "outside_coordinates": 74,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 73,
+          "common_core_size": 439,
+          "outside_coordinates": 73,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 72,
+          "common_core_size": 440,
+          "outside_coordinates": 72,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 71,
+          "common_core_size": 441,
+          "outside_coordinates": 71,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 70,
+          "common_core_size": 442,
+          "outside_coordinates": 70,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 69,
+          "common_core_size": 443,
+          "outside_coordinates": 69,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 68,
+          "common_core_size": 444,
+          "outside_coordinates": 68,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 67,
+          "common_core_size": 445,
+          "outside_coordinates": 67,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 66,
+          "common_core_size": 446,
+          "outside_coordinates": 66,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 65,
+          "common_core_size": 447,
+          "outside_coordinates": 65,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 64,
+          "common_core_size": 448,
+          "outside_coordinates": 64,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 63,
+          "common_core_size": 449,
+          "outside_coordinates": 63,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 62,
+          "common_core_size": 450,
+          "outside_coordinates": 62,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 61,
+          "common_core_size": 451,
+          "outside_coordinates": 61,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 60,
+          "common_core_size": 452,
+          "outside_coordinates": 60,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 59,
+          "common_core_size": 453,
+          "outside_coordinates": 59,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 58,
+          "common_core_size": 454,
+          "outside_coordinates": 58,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 57,
+          "common_core_size": 455,
+          "outside_coordinates": 57,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 56,
+          "common_core_size": 456,
+          "outside_coordinates": 56,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 55,
+          "common_core_size": 457,
+          "outside_coordinates": 55,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 54,
+          "common_core_size": 458,
+          "outside_coordinates": 54,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 53,
+          "common_core_size": 459,
+          "outside_coordinates": 53,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 52,
+          "common_core_size": 460,
+          "outside_coordinates": 52,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 51,
+          "common_core_size": 461,
+          "outside_coordinates": 51,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 50,
+          "common_core_size": 462,
+          "outside_coordinates": 50,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 49,
+          "common_core_size": 463,
+          "outside_coordinates": 49,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 48,
+          "common_core_size": 464,
+          "outside_coordinates": 48,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 47,
+          "common_core_size": 465,
+          "outside_coordinates": 47,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 46,
+          "common_core_size": 466,
+          "outside_coordinates": 46,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 45,
+          "common_core_size": 467,
+          "outside_coordinates": 45,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 44,
+          "common_core_size": 468,
+          "outside_coordinates": 44,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 43,
+          "common_core_size": 469,
+          "outside_coordinates": 43,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 42,
+          "common_core_size": 470,
+          "outside_coordinates": 42,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 41,
+          "common_core_size": 471,
+          "outside_coordinates": 41,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 40,
+          "common_core_size": 472,
+          "outside_coordinates": 40,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 39,
+          "common_core_size": 473,
+          "outside_coordinates": 39,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 38,
+          "common_core_size": 474,
+          "outside_coordinates": 38,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 37,
+          "common_core_size": 475,
+          "outside_coordinates": 37,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 36,
+          "common_core_size": 476,
+          "outside_coordinates": 36,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 35,
+          "common_core_size": 477,
+          "outside_coordinates": 35,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 34,
+          "common_core_size": 478,
+          "outside_coordinates": 34,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 33,
+          "common_core_size": 479,
+          "outside_coordinates": 33,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 32,
+          "common_core_size": 480,
+          "outside_coordinates": 32,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 31,
+          "common_core_size": 481,
+          "outside_coordinates": 31,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 30,
+          "common_core_size": 482,
+          "outside_coordinates": 30,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 29,
+          "common_core_size": 483,
+          "outside_coordinates": 29,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 28,
+          "common_core_size": 484,
+          "outside_coordinates": 28,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 27,
+          "common_core_size": 485,
+          "outside_coordinates": 27,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 26,
+          "common_core_size": 486,
+          "outside_coordinates": 26,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 25,
+          "common_core_size": 487,
+          "outside_coordinates": 25,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 24,
+          "common_core_size": 488,
+          "outside_coordinates": 24,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 23,
+          "common_core_size": 489,
+          "outside_coordinates": 23,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 22,
+          "common_core_size": 490,
+          "outside_coordinates": 22,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 21,
+          "common_core_size": 491,
+          "outside_coordinates": 21,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 20,
+          "common_core_size": 492,
+          "outside_coordinates": 20,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 19,
+          "common_core_size": 493,
+          "outside_coordinates": 19,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 18,
+          "common_core_size": 494,
+          "outside_coordinates": 18,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 17,
+          "common_core_size": 495,
+          "outside_coordinates": 17,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 16,
+          "common_core_size": 496,
+          "outside_coordinates": 16,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 15,
+          "common_core_size": 497,
+          "outside_coordinates": 15,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 14,
+          "common_core_size": 498,
+          "outside_coordinates": 14,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 13,
+          "common_core_size": 499,
+          "outside_coordinates": 13,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 12,
+          "common_core_size": 500,
+          "outside_coordinates": 12,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 11,
+          "common_core_size": 501,
+          "outside_coordinates": 11,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 10,
+          "common_core_size": 502,
+          "outside_coordinates": 10,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 9,
+          "common_core_size": 503,
+          "outside_coordinates": 9,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 8,
+          "common_core_size": 504,
+          "outside_coordinates": 8,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 7,
+          "common_core_size": 505,
+          "outside_coordinates": 7,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 6,
+          "common_core_size": 506,
+          "outside_coordinates": 6,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 5,
+          "common_core_size": 507,
+          "outside_coordinates": 5,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 4,
+          "common_core_size": 508,
+          "outside_coordinates": 4,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 3,
+          "common_core_size": 509,
+          "outside_coordinates": 3,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 2,
+          "common_core_size": 510,
+          "outside_coordinates": 2,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 1,
+          "common_core_size": 511,
+          "outside_coordinates": 1,
+          "outside_required_per_slope": 1
+        },
+        {
+          "bound": 0,
+          "common_core_size": 512,
+          "outside_coordinates": 0,
+          "outside_required_per_slope": 1
+        }
+      ],
+      "core_bound_rows_hash_sha256": "ec2610c6ff29a2fa8bb162fa4c5142579d9698b65b28be3c1a7919de31ac7a81",
+      "max_attained_at_common_core_size": 424,
+      "max_bound": 88
+    },
+    "complement_size": 87,
+    "exact_upper_status": {
+      "claimed_exact_LD_sw_A425": false,
+      "direct_two_core_attempt_closes": false,
+      "large_core_branch_upper_bound": 88,
+      "low_pair_branch_upper_bound": 7781,
+      "reason": "the low-pair packing branch gives 7781, not 88"
+    },
+    "pair_core_threshold": {
+      "formula": "n+k-A",
+      "meaning": "a pair intersection this large gives at least k common zeros for every third residual branch",
+      "value": 343
+    },
+    "status": "AUDIT_EXACT_UPPER_NOT_CLOSED_BY_CHEAP_TWO_CORE_PACKING"
+  },
+  "a426_context": {
+    "agreement": 426,
+    "budget_floor": 87,
+    "context_only": "A=426 exact upper is the adjacent row handled by the two-core packet; this E23 packet only certifies the A=425 unsafe side.",
+    "tangent_lower_bound": 87
+  },
+  "budget_prime": {
+    "comparison_budget": "87",
+    "floor_p_minus_1_over_2_128": 87,
+    "floor_p_over_2_128": 87,
+    "lucas_primitive_root_witness": 13,
+    "p": 29608553606109001068932302267744675430401,
+    "p_is_prime_by_lucas": true,
+    "p_minus_1_factorization": {
+      "11": 1,
+      "2": 120,
+      "3": 4,
+      "5": 2
+    },
+    "remainder_p_minus_1_mod_2_128": 3987683987354747618711421180841033728,
+    "target_security_bits": 128
+  },
+  "domain": {
+    "checks": {
+      "generator_512_torsion": true,
+      "generator_not_256_torsion": true,
+      "p_congruent_1_mod_512": true
+    },
+    "domain_generator": 3523375392447676111921143830258524416047,
+    "domain_hash_sha256": "eecf570edb8d63b213ffc794b35ddee42e8afd5bcf40441923f89cc746e865c8",
+    "generator_order": 512
+  },
+  "evidence_id": "E23",
+  "nonclaims": [
+    "does not prove LD_sw(RS[F_p,D,256],425)=88",
+    "does not close the A=425 low-pair exact upper branch",
+    "does not reprove the adjacent A=426 exact upper certificate",
+    "does not address infinite/projective-slope conventions"
+  ],
+  "question": "is LD_sw(RS[F_p,D,256],425) > 87 at the budget-prime row?",
+  "row": {
+    "code": "RS[F_p,D,256]",
+    "domain": "multiplicative subgroup generated by domain_generator",
+    "domain_size": 512,
+    "field": "F_p",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "a425-second-pin-unsafe-v1",
+  "status": "CERTIFIED_UNSAFE_FALLBACK / EXACT_A425_UPPER_OPEN",
+  "target_node": "second_pin_a426",
+  "verdict": {
+    "LD_sw_lower_bound_A425": 88,
+    "budget_floor": 87,
+    "comparison": "88 > 87",
+    "exact_evaluation_status": "not proved by this packet",
+    "finite_slope_support_wise_mca_status": "UNSAFE_BY_CERTIFIED_LOWER_WITNESS"
+  }
+}

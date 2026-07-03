@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E23 A=425 second-pin unsafe fallback
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_a425_second_pin_unsafe.py`;
+  `experimental/data/certificates/a425-second-pin-unsafe/README.md`;
+  `experimental/data/certificates/a425-second-pin-unsafe/a425_second_pin_unsafe.json`;
+  `experimental/notes/certificate_scanner/a425_second_pin_unsafe.md`;
+  `experimental/agents-log.md`.
+- **Status:** CERTIFIED_UNSAFE_FALLBACK / EXACT_A425_UPPER_OPEN.
+- **What is being added:** A deterministic E23 certificate for the budget-prime
+  row `p=22275*2^120+1`, proving
+  `LD_sw(RS[F_p,D,256],425) >= 88 > floor((p-1)/2^128)=87` by an explicit
+  support-wise line witness.  The verifier also records the one-step-down
+  two-core exact-attempt arithmetic: the large-core branch gives `88`, but the
+  low-pair packing branch only gives `7781`.
+- **How it is useful:** Completes the E23 unsafe-side decision at the second-pin
+  budget row while preserving the exact `A=425` upper bound as an explicit open
+  branch rather than overclaiming it.
+- **What to do next:** If exact `LD_sw(C,425)=88` is still needed, replace the
+  low-pair packing audit with a sharper structural computation for `87`-set
+  complements with pairwise intersection at most `4`.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
