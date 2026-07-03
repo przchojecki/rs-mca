@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - M1 SPI dimension-one eliminant bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_spi_dim1_eliminant_bound.md`;
+  `experimental/scripts/verify_m1_spi_dim1_eliminant_bound.py`;
+  `experimental/data/certificates/m1-spi-dim1-eliminant-bound/README.md`;
+  `experimental/data/certificates/m1-spi-dim1-eliminant-bound/m1_spi_dim1_eliminant_bound.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A symbolic proof packet for roadmap node
+  `spi_dim1`: in a deficiency-one one-parameter split Hankel chart, new
+  degree-`j` split-locator slopes are cut by an eliminant of degree at most
+  `t + (n-j+1)t`, unless the top chart is an identically valid residual.
+- **How it is useful:** Converts the `A=384` dimension-one SPI target into a
+  bounded eliminant-or-residual problem; for the pinned row the cap is `49408`.
+- **What to do next:** Compute or classify the actual root table/residuals for
+  the `F_17^32` dimension-one charts, then extend the ladder beyond
+  deficiency one.
+
 ### 2026-07-02 - M1 SPI post-strip genericity
 
 - **Agent/model:** Codex.

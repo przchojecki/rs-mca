@@ -1,0 +1,79 @@
+{
+  "cases": [
+    {
+      "agreement": 12,
+      "all_coefficients_within_bound": true,
+      "cramer_minor_degree_bound": 4,
+      "degree_profile_first_last": [
+        52,
+        52
+      ],
+      "degree_profile_max": 52,
+      "degree_profile_min": 52,
+      "delta": 13,
+      "global_eliminant_degree_cap": 56,
+      "j": 4,
+      "k": 8,
+      "n": 16,
+      "name": "F_97/mu_16 acid-scale toy",
+      "rank_drop_degree_cap": 4,
+      "t": 4,
+      "top_pseudo_remainder_degree_bound": 52
+    },
+    {
+      "agreement": 384,
+      "all_coefficients_within_bound": true,
+      "cramer_minor_degree_bound": 128,
+      "degree_profile_first_last": [
+        49280,
+        49280
+      ],
+      "degree_profile_max": 49280,
+      "degree_profile_min": 49280,
+      "delta": 385,
+      "global_eliminant_degree_cap": 49408,
+      "j": 128,
+      "k": 256,
+      "n": 512,
+      "name": "F_17^32 pinned A=384 row",
+      "rank_drop_degree_cap": 128,
+      "t": 128,
+      "top_pseudo_remainder_degree_bound": 49280
+    },
+    {
+      "agreement": 24,
+      "all_coefficients_within_bound": true,
+      "cramer_minor_degree_bound": 8,
+      "degree_profile_first_last": [
+        200,
+        200
+      ],
+      "degree_profile_max": 200,
+      "degree_profile_min": 200,
+      "delta": 25,
+      "global_eliminant_degree_cap": 208,
+      "j": 8,
+      "k": 16,
+      "n": 32,
+      "name": "symbolic-size smoke n=32",
+      "rank_drop_degree_cap": 8,
+      "t": 8,
+      "top_pseudo_remainder_degree_bound": 200
+    }
+  ],
+  "dag_target": "spi_dim1",
+  "non_claims": [
+    "does not compute the F_17^32 root table",
+    "does not classify identically valid residual pencils",
+    "does not prove higher-dimensional SPI incidence"
+  ],
+  "schema": "m1-spi-dim1-eliminant-bound-v1",
+  "status": "PROVED_SYMBOLIC",
+  "theorem": {
+    "chart": "deficiency-one one-parameter split Hankel pencil with t=j",
+    "global_eliminant_or_residual": "degree <= t + (n-j+1)t, unless the top chart is identically valid",
+    "pinned_row_cap": "n=512, k=256, A=384 gives 49408",
+    "rank_drop_cap": "degree <= t from a nonzero Cramer maximal minor",
+    "top_chart_cap": "degree <= (n-j+1)t for each pseudo-remainder coefficient"
+  }
+}
