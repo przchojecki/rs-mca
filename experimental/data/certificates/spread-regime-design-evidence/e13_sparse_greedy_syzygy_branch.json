@@ -1,11 +1,13 @@
 {
   "all_exceptions_have_one_dimensional_left_nullspace": true,
   "all_relations_have_full_locator_support": true,
+  "all_single_deletions_are_independent": true,
   "cells": [
     {
       "A": 27,
       "all_exceptions_have_one_dimensional_left_nullspace": true,
       "all_relations_have_full_locator_support": true,
+      "all_single_deletions_are_independent": true,
       "case_name": "greedy_32_j5_lambda1",
       "degenerate_loss_subsets": 0,
       "degree_cap": 16,
@@ -93,6 +95,39 @@
           "relation_coefficients_sha256": "8cde25302c0c38e13bed97412dce268c4bea35c384acf73d63d60735c95eeb54",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 12,
+              "rank": 12,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 12,
+              "rank": 12,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 12,
+              "rank": 12,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 12,
+              "rank": 12,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 12,
+              "rank": 12,
+              "removed_locator_position": 4
+            }
+          ],
           "subset_indices": [
             3,
             4,
@@ -118,6 +153,9 @@
       "relation_weight_type_histogram": {
         "[[\"3\", 5]]": 1
       },
+      "single_deletion_deficiency_histogram": {
+        "0": 5
+      },
       "size": 5,
       "slope_mode": "distinct_geometric",
       "slopes": [
@@ -134,6 +172,7 @@
       "A": 26,
       "all_exceptions_have_one_dimensional_left_nullspace": true,
       "all_relations_have_full_locator_support": true,
+      "all_single_deletions_are_independent": true,
       "case_name": "greedy_32_j6_lambda2",
       "degenerate_loss_subsets": 22,
       "degree_cap": 18,
@@ -239,6 +278,45 @@
           "relation_coefficients_sha256": "9de68f4381736d50fe040327517527fbb74dd004482699652eb23bc241cc3f5e",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             1,
@@ -350,6 +428,45 @@
           "relation_coefficients_sha256": "23cb1507a189510719fe0f0e6fc1815eac52168a6d44e3ab3ddea838562a33b9",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             1,
@@ -461,6 +578,45 @@
           "relation_coefficients_sha256": "9270f342ea7fc9d9ccb94fc5140972740f09c1059aa4461bbbaf94c79125c2a4",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             2,
@@ -572,6 +728,45 @@
           "relation_coefficients_sha256": "0aeff5f64dc8a282581efbd29346eab4793a4a7b9ef665783dfca2fd18e98633",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             2,
@@ -684,6 +879,45 @@
           "relation_coefficients_sha256": "d54bee2fe5dc71afcf448971ebe0457bd284d051b70083de0adb5e351eb9e204",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             2,
@@ -795,6 +1029,45 @@
           "relation_coefficients_sha256": "edef44aabaa9ee7180bf1c7069b35dad6f219e2355f4db8469975f7b8ddeae6c",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             3,
@@ -906,6 +1179,45 @@
           "relation_coefficients_sha256": "48cedb83696f13f8fb48b959086272a4f6fe555672dc9b80b2ae807336a64427",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             3,
@@ -1016,6 +1328,45 @@
           "relation_coefficients_sha256": "595a2f92dd9f9621a703bd8cb962d4a02dc6f36c7fbfc0dba4068ae146e8c23b",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             4,
@@ -1126,6 +1477,45 @@
           "relation_coefficients_sha256": "269c00d0e0c034d4d9f5a2a9081fda7a549be64c39ecb17ca3cb158074203f42",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             4,
@@ -1237,6 +1627,45 @@
           "relation_coefficients_sha256": "47113dd04a887a26cabf9659cfcd0eeac9f4d80c4ec92d1c564b50e4e05b6c07",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             5,
@@ -1348,6 +1777,45 @@
           "relation_coefficients_sha256": "0049875433cee95ebbabe86b1036cbc483362d0ace816d43071f60e7b6ad5a6b",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             2,
@@ -1459,6 +1927,45 @@
           "relation_coefficients_sha256": "4552abdfa4147ca8d80c4d4fcf2288856489a2fea6c161daa4c2e21b488ab0c6",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             2,
@@ -1570,6 +2077,45 @@
           "relation_coefficients_sha256": "51b9ac11856fa775535d5a355bf0ecd4d6d136c3947a58e420efe5bbcbc1e0ad",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             2,
@@ -1681,6 +2227,45 @@
           "relation_coefficients_sha256": "edd3faab00e8a9d0cb2c776fbcfa131361bd79499012bc76292e6eb334fcb0f1",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             2,
@@ -1791,6 +2376,45 @@
           "relation_coefficients_sha256": "a9d66b2c072931fe1d88613d36ae65cd9e5094f629f505051012448d2ae2deb1",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             3,
@@ -1902,6 +2526,45 @@
           "relation_coefficients_sha256": "e5e7f74e8f6c8d89d12f482ed192bb9ad8f17cb65f85e2a6ea13455886ea3363",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             3,
@@ -2013,6 +2676,45 @@
           "relation_coefficients_sha256": "ce0539b1141f64f73ad5811afa2ea4f42ab6a4c632fae6ef08a8c5c2356382cc",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             5,
@@ -2124,6 +2826,45 @@
           "relation_coefficients_sha256": "74de25248a60da1c1c8a673d579ef279e201e304dabb12ba140866028ffa605c",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             6,
@@ -2235,6 +2976,45 @@
           "relation_coefficients_sha256": "2a85a033df2c71c4cedb314cb050638308abe69f4e55257cbf607118e1651a18",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             7,
@@ -2346,6 +3126,45 @@
           "relation_coefficients_sha256": "4dbc58c32fed0246689f1dffbc94ebec320ffbf5a91ea9eea2941deca4e17471",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             4,
@@ -2457,6 +3276,45 @@
           "relation_coefficients_sha256": "5757450541965172e8208d07d30b49b949c1eb395a3b45351b159590ff598c82",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             4,
@@ -2568,6 +3426,45 @@
           "relation_coefficients_sha256": "4fd8769c5414e2742245bdb9f707cd57dd14a13bc1901502a5a3967a027eff42",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             8,
@@ -2679,6 +3576,45 @@
           "relation_coefficients_sha256": "66f649d44c5a02fabf5d7aa427a291df7e09a64744086beff7d0b46bcb5ad18a",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             3,
             4,
@@ -2790,6 +3726,45 @@
           "relation_coefficients_sha256": "f33a3799297714f620d8be77dc9deafef8a721fc098969c9b6f6644c586110af",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             3,
             4,
@@ -2901,6 +3876,45 @@
           "relation_coefficients_sha256": "49c695d78b709531027d49446f5d8b25bcb5da2098b2c0256c362330b2f87ac5",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             3,
             4,
@@ -3013,6 +4027,45 @@
           "relation_coefficients_sha256": "cb518f7ab404d93e3751bbd04aeccb983d5e9e88a827f6cf72aeca957bbb9114",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             3,
             5,
@@ -3124,6 +4177,45 @@
           "relation_coefficients_sha256": "d5e7b1e1472bd8fec1a231affbbc44cbd21f9ff7bb9163dd38056e046743b646",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             3,
             7,
@@ -3235,6 +4327,45 @@
           "relation_coefficients_sha256": "4b8add452e5157f53e4bd86f649bef85acecb19caaab6589b0d943dabb2174d6",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             3,
             8,
@@ -3346,6 +4477,45 @@
           "relation_coefficients_sha256": "9c386ed1f2635300325f9d074a81b8678fc29113d494a16b87726f7d5d94f658",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             3,
             8,
@@ -3457,6 +4627,45 @@
           "relation_coefficients_sha256": "6b45c4c157490cfd17676279f576d465834caae6a18d3fc0e29eb73c48e578d0",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             4,
             5,
@@ -3568,6 +4777,45 @@
           "relation_coefficients_sha256": "89a4ac6d3c28bbd04fe4a318d4cde2156849111a3a2143b0e2997db27654ea0d",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             4,
             5,
@@ -3679,6 +4927,45 @@
           "relation_coefficients_sha256": "8667b82fab40f890d46f222a03f44508878a93e76a8622f7f8d38a6aa4079830",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             4,
             8,
@@ -3790,6 +5077,45 @@
           "relation_coefficients_sha256": "5f0c836753afa7f449d47a3f6af9fd9983a706324554daed2b8f39db61be7871",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             4,
             8,
@@ -3901,6 +5227,45 @@
           "relation_coefficients_sha256": "d886265f31ab1821eb0e47e2c76e97263c42a7fd8f3aec83f404ae2ec3ea5d96",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             5,
             6,
@@ -4012,6 +5377,45 @@
           "relation_coefficients_sha256": "4386b7ff6abb94ce34518729ba87c8f8f1f06947cc57f4f1efe0651d2e0819e1",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             6,
             8,
@@ -4123,6 +5527,45 @@
           "relation_coefficients_sha256": "3808a129c88457fe268485b513750087721a67fefe24e678472cab528d0e65ee",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             8,
             9,
@@ -4149,6 +5592,9 @@
       "relation_weight_type_histogram": {
         "[[\"3\", 6]]": 36
       },
+      "single_deletion_deficiency_histogram": {
+        "0": 216
+      },
       "size": 6,
       "slope_mode": "distinct_linear",
       "slopes": [
@@ -4166,6 +5612,7 @@
       "A": 26,
       "all_exceptions_have_one_dimensional_left_nullspace": true,
       "all_relations_have_full_locator_support": true,
+      "all_single_deletions_are_independent": true,
       "case_name": "greedy_32_j6_lambda2",
       "degenerate_loss_subsets": 22,
       "degree_cap": 18,
@@ -4272,6 +5719,45 @@
           "relation_coefficients_sha256": "4e5ef639ba3ec0adf650ad8aeaad3b03d96bcd33a5c3b6ff1bb2f374d22e1dbd",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             1,
@@ -4383,6 +5869,45 @@
           "relation_coefficients_sha256": "1ce1b5d9bad97c3d1a40167b226ba3c196b59da415f4f95e439efacd24c5d3fd",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             1,
@@ -4494,6 +6019,45 @@
           "relation_coefficients_sha256": "ac29c1792bb0af48acfea60020cfbfdc9e7ae474c5fd7fe1a79998eb179a2883",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             1,
@@ -4605,6 +6169,45 @@
           "relation_coefficients_sha256": "093be88636e0ccdaa4e6d5efaccfd1af2d3540e2f6f525749d1a3031e7f24857",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             1,
@@ -4716,6 +6319,45 @@
           "relation_coefficients_sha256": "c30576cbfd66a3e0bfdc415c1b4217ec4ae237c3103db9310ffdce6afe925fba",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             1,
@@ -4827,6 +6469,45 @@
           "relation_coefficients_sha256": "81dbddaca87781cec580870ba1c4e34dd97a962ba988cc9a71e11363f98d4d97",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             2,
@@ -4937,6 +6618,45 @@
           "relation_coefficients_sha256": "111109e7b7346e50d750bb2e737f7011c2a9362bb8e900f43fb0357df8c747d7",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             2,
@@ -5049,6 +6769,45 @@
           "relation_coefficients_sha256": "6099cb35ffa50f114edc12c2b399da1563185adad494ac3bcb9447e951058462",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             2,
@@ -5160,6 +6919,45 @@
           "relation_coefficients_sha256": "232313bfad3b343033e5779bd6b4758c9806912e2dac731cc3c1a875bc1e460e",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             2,
@@ -5273,6 +7071,45 @@
           "relation_coefficients_sha256": "2bfc1d48d71991bf8119b9f3d1708a24a6742ca7ef2db201bf4fb5197d8248db",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             3,
@@ -5384,6 +7221,45 @@
           "relation_coefficients_sha256": "6add1bba7be2a7075dd6c01a65636a5458e0d8695940a0d4255ed54e0c0cbb00",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             3,
@@ -5495,6 +7371,45 @@
           "relation_coefficients_sha256": "637ab9afa86f62f20be5abcb3f961af01b94325ba88806b0da0407532741f60f",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             3,
@@ -5607,6 +7522,45 @@
           "relation_coefficients_sha256": "a52ffc131a917f7daca836165301b538d15fa30e3dc14cd489850075aca38da5",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             3,
@@ -5718,6 +7672,45 @@
           "relation_coefficients_sha256": "22c29d30e08933c00e0bc2dffe3d1b8a9f32adc8ffe6888a670f755840072f07",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             3,
@@ -5830,6 +7823,45 @@
           "relation_coefficients_sha256": "8a43be4a055fe1daeb0d76510233d41b7f082a3c2ab19ca32d2e579b0075ab97",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             3,
@@ -5941,6 +7973,45 @@
           "relation_coefficients_sha256": "a3feb6d6b9e53a27d33e01267e7df311668ae4e48cb534a4d7cbd34c746609f4",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             0,
             6,
@@ -6052,6 +8123,45 @@
           "relation_coefficients_sha256": "c921cbcca9948e9678c3d18cbd3f44418b00763323d496bcf99c1767058b9de9",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             2,
@@ -6163,6 +8273,45 @@
           "relation_coefficients_sha256": "916e121aa3618c832bf8894ad8c1d970bc8eeb726d3be0acef781dd7167312ae",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             3,
@@ -6275,6 +8424,45 @@
           "relation_coefficients_sha256": "e2be18a94958828f477b12e233d11fec39fbd7086783beb30959e80aee798cff",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             3,
@@ -6384,6 +8572,45 @@
           "relation_coefficients_sha256": "3d81161baca1f2fa4596e94ec07208ea116e8b58cff9b541f65bc1393cec5720",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             3,
@@ -6495,6 +8722,45 @@
           "relation_coefficients_sha256": "a06d5fe258b7ec1619d782653932b826252442b5a2f7c07d9625bbaf32f86c88",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             4,
@@ -6606,6 +8872,45 @@
           "relation_coefficients_sha256": "beb6eda89c24288cb0eee83347bc85328f0bb2b10cb5667374fd266d84f0dc35",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             4,
@@ -6717,6 +9022,45 @@
           "relation_coefficients_sha256": "0ba25eb4dbe03a36096b0088c4d91b5ba7569f2e47e84af89860417bb438a537",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             5,
@@ -6828,6 +9172,45 @@
           "relation_coefficients_sha256": "fe0786d3d5916c0e9eb8a177879f6d57f96567416dfddb03ea51b10386022d15",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             1,
             8,
@@ -6939,6 +9322,45 @@
           "relation_coefficients_sha256": "e25ce7ec2dd1084b809711e8fdcef68551291cd9f861cd2431093cad78254956",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             3,
@@ -7050,6 +9472,45 @@
           "relation_coefficients_sha256": "4839abfe5c745eb01109ed85394d65f939e2f96b690de313ac239acbec114101",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             4,
@@ -7162,6 +9623,45 @@
           "relation_coefficients_sha256": "fa3f00dce2abebfcdcb65363949f427ccc846bd713531dbd61575ad38ec7567e",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             4,
@@ -7273,6 +9773,45 @@
           "relation_coefficients_sha256": "e17a73550291999cf473838c7c8ef003b9eeb1d8e784a472f8d69f98ea7e7607",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             6,
@@ -7384,6 +9923,45 @@
           "relation_coefficients_sha256": "f2029fa1188c127b16d2fdcd01391667e35ddcecb2235e8978f26aaa9c91dd80",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             6,
@@ -7495,6 +10073,45 @@
           "relation_coefficients_sha256": "83320ed84eaa912f7b25393dae05f8c84a0d52cb57b7531a1793406e7a8bb17a",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             2,
             7,
@@ -7606,6 +10223,45 @@
           "relation_coefficients_sha256": "1e6da0e9e32cce9bc4bf68d9767c0b68b18e8792046ea5d27bc086652700d736",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             4,
             6,
@@ -7717,6 +10373,45 @@
           "relation_coefficients_sha256": "8ed1c7563358ed00c6173d9d2728c6b070d631c580587be734c738f70a767aad",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             5,
             6,
@@ -7829,6 +10524,45 @@
           "relation_coefficients_sha256": "a1a75ed1114db16df6a82f786be9d5ba4a8fcd53f54d1477464be8c8ced33d14",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             5,
             7,
@@ -7940,6 +10674,45 @@
           "relation_coefficients_sha256": "73157c0b52c0c42d26cfcb1a2f7b586259f85ed066133b25629a13dd4f0a96e1",
           "relation_full_locator_support": true,
           "relation_left_nullity": 1,
+          "single_deletion_independence": true,
+          "single_deletion_rank_records": [
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 0
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 1
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 2
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 3
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 4
+            },
+            {
+              "degree_deficiency": 0,
+              "expected_degree_cap_rank": 15,
+              "rank": 15,
+              "removed_locator_position": 5
+            }
+          ],
           "subset_indices": [
             5,
             7,
@@ -7967,6 +10740,9 @@
         "[[\"2\", 1], [\"3\", 5]]": 5,
         "[[\"3\", 6]]": 29
       },
+      "single_deletion_deficiency_histogram": {
+        "0": 204
+      },
       "size": 6,
       "slope_mode": "distinct_geometric",
       "slopes": [
@@ -7986,7 +10762,7 @@
     "spread_regime_bound"
   ],
   "fable_evidence_item": "E13 follow-up",
-  "interpretation": "All replayed n=32 control exceptions are one-dimensional, full-locator-support sparse-greedy syzygies. This does not pay or bound the branch asymptotically, but it replaces the opaque unclassified bucket by a precise algebraic target.",
+  "interpretation": "All replayed n=32 control exceptions are one-dimensional, full-locator-support sparse-greedy syzygies, and every one-block deletion is independent. This does not pay or bound the branch asymptotically, but it replaces the opaque unclassified bucket by a precise algebraic target.",
   "method": "Replay the bounded n=32 control cells from E13. For every nondegenerate below-cap rank loss, compute the left-nullspace relation and verify the two zero-polynomial identities using the E3 row-dependency certificate.",
   "non_claims": [
     "This is not a proof of spread_regime_bound.",
@@ -7994,7 +10770,7 @@
     "This does not show the sparse-greedy branch is paid or bounded uniformly."
   ],
   "question": "Do the n=32 non-geometry controls from the E13 census share an exact algebraic structure that can be named as a separate branch?",
-  "script_sha256": "6ad9c590ea268f618fdbc81f45ec990fa1d58a40e94e749d2a8f9a62e5d9bb8a",
+  "script_sha256": "4547d456016e9a9bb3711030b711e29293c3a3f29e52d9077ecb3f3648361b7a",
   "status": "EXPERIMENTAL / AUDIT",
   "title": "E13 sparse-greedy syzygy branch certificate",
   "total_nondegenerate_syzygy_exceptions": 71

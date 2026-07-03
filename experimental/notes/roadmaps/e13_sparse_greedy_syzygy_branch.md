@@ -16,12 +16,15 @@ uniform algebraic shape.
 ## Outcome
 
 Every replayed `n=32` control exception is a one-dimensional full-support
-syzygy among the split-locator moment rows.
+syzygy among the split-locator moment rows.  Moreover, every one-block
+deletion is independent.  Equivalently, in the tested linear matroid these
+exceptions are minimal circuits, not unions of smaller hidden dependencies.
 
 ```text
 total sparse-greedy syzygy exceptions: 71
 one-dimensional left nullspace: true
 full locator support: true
+single-deletion independent: true
 ```
 
 By cell:
@@ -55,6 +58,17 @@ relations use all three moment rows in every block; the only exception is five
 geometric `j=6` cases where one block has two nonzero coefficients and the
 other five blocks use all three.
 
+The verifier also stores the rank of each one-block deletion.  In all `425`
+deletions the rank reaches the expected degree-cap rank:
+
+```text
+j=5, size 5 cell:  5 independent deletions
+j=6, size 6 cells: 420 independent deletions
+```
+
+Since every smaller subfamily is contained in a one-block deletion, this
+certifies circuit minimality for the replayed exceptions.
+
 ## Interpretation
 
 This does not repair the finite-geometry-only conjecture.  It gives a sharper
@@ -64,14 +78,14 @@ replacement target:
 below-cap spread rank loss is either
   finite-geometry/net shaped,
   v-syndrome degenerate,
-  or a full-support sparse-greedy syzygy.
+  or a full-support sparse-greedy syzygy circuit.
 ```
 
 The new branch is now exact enough to attack.  A useful next theorem would
-show that full-support sparse-greedy syzygies are either bounded uniformly,
-paid by an existing ledger after a change of coordinates, or impossible once
-the toy control restrictions are replaced by the actual prize-scale
-hypotheses.
+show that full-support sparse-greedy syzygy circuits are either bounded
+uniformly, paid by an existing ledger after a change of coordinates, or
+impossible once the toy control restrictions are replaced by the actual
+prize-scale hypotheses.
 
 ## Non-claims
 

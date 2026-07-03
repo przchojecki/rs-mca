@@ -121,14 +121,16 @@ def exception_record(
     subset_indices: tuple[int, ...],
     family: list[tuple[int, ...]],
     n: int,
+    j: int,
     t: int,
     slopes: list[int],
     rank: int,
     degree_deficiency: int,
     p: int,
 ) -> dict[str, Any]:
+    domain = E3.subgroup_domain(n, p)
     relation = E3.row_dependency_certificate(
-        E3.subgroup_domain(n, p),
+        domain,
         family,
         t,
         slopes,
@@ -141,6 +143,23 @@ def exception_record(
     if zero_blocks:
         raise AssertionError(("zero relation block", subset_indices, zero_blocks))
     relation_digest = sha256_text(json.dumps(coeffs, sort_keys=True))
+    deletion_records = []
+    for remove_index in range(len(family)):
+        subfamily = [block for idx, block in enumerate(family) if idx != remove_index]
+        subslopes = [slope for idx, slope in enumerate(slopes) if idx != remove_index]
+        subrank = E3.rank_mod_p(
+            E3.stacked_alignment_matrix(domain, subfamily, t, subslopes, p),
+            p,
+        )
+        expected = min(len(subfamily) * t, 2 * (j + t))
+        deletion_records.append({
+            "removed_locator_position": remove_index,
+            "rank": subrank,
+            "expected_degree_cap_rank": expected,
+            "degree_deficiency": expected - subrank,
+        })
+    if any(record["degree_deficiency"] for record in deletion_records):
+        raise AssertionError(("nonminimal syzygy", subset_indices, deletion_records))
     return {
         "subset_indices": list(subset_indices),
         "family": [list(item) for item in family],
@@ -151,6 +170,8 @@ def exception_record(
         "relation_coefficients_by_block": coeffs,
         "relation_coefficient_weight_histogram": coefficient_weight_histogram(coeffs, p),
         "relation_coefficients_sha256": relation_digest,
+        "single_deletion_independence": True,
+        "single_deletion_rank_records": deletion_records,
         "point_multiplicity_histogram": point_histogram(family, n),
         "pair_intersection_histogram": pair_intersection_histogram(family),
     }
@@ -187,6 +208,7 @@ def analyze_cell(cell: dict[str, Any]) -> dict[str, Any]:
             subset_indices=subset_indices,
             family=family,
             n=n,
+            j=j,
             t=t,
             slopes=slopes,
             rank=rank,
@@ -197,12 +219,15 @@ def analyze_cell(cell: dict[str, Any]) -> dict[str, Any]:
     weight_hist = Counter()
     point_hist_types = Counter()
     pair_hist_types = Counter()
+    deletion_deficiencies = Counter()
     for record in exceptions:
         weight_hist.update({
             tuple(sorted(record["relation_coefficient_weight_histogram"].items())): 1
         })
         point_hist_types[tuple(sorted(record["point_multiplicity_histogram"].items()))] += 1
         pair_hist_types[tuple(sorted(record["pair_intersection_histogram"].items()))] += 1
+        for deletion_record in record["single_deletion_rank_records"]:
+            deletion_deficiencies[deletion_record["degree_deficiency"]] += 1
 
     return {
         "case_name": case_name,
@@ -230,6 +255,12 @@ def analyze_cell(cell: dict[str, Any]) -> dict[str, Any]:
         "all_relations_have_full_locator_support": all(
             record["relation_full_locator_support"] for record in exceptions
         ),
+        "all_single_deletions_are_independent": all(
+            record["single_deletion_independence"] for record in exceptions
+        ),
+        "single_deletion_deficiency_histogram": {
+            str(key): value for key, value in sorted(deletion_deficiencies.items())
+        },
         "relation_weight_type_histogram": canonical_counter(weight_hist),
         "point_histogram_type_count": len(point_hist_types),
         "pair_histogram_type_count": len(pair_hist_types),
@@ -258,9 +289,10 @@ def build_report() -> dict[str, Any]:
         ),
         "interpretation": (
             "All replayed n=32 control exceptions are one-dimensional, "
-            "full-locator-support sparse-greedy syzygies. This does not pay or "
-            "bound the branch asymptotically, but it replaces the opaque "
-            "unclassified bucket by a precise algebraic target."
+            "full-locator-support sparse-greedy syzygies, and every one-block "
+            "deletion is independent. This does not pay or bound the branch "
+            "asymptotically, but it replaces the opaque unclassified bucket by "
+            "a precise algebraic target."
         ),
         "non_claims": [
             "This is not a proof of spread_regime_bound.",
@@ -275,6 +307,9 @@ def build_report() -> dict[str, Any]:
         "all_relations_have_full_locator_support": all(
             cell["all_relations_have_full_locator_support"] for cell in cells
         ),
+        "all_single_deletions_are_independent": all(
+            cell["all_single_deletions_are_independent"] for cell in cells
+        ),
         "cells": cells,
         "script_sha256": sha256_text(source),
     }
@@ -287,6 +322,8 @@ def assert_report_invariants(report: dict[str, Any]) -> None:
         raise AssertionError("left-nullity invariant failed")
     if not report["all_relations_have_full_locator_support"]:
         raise AssertionError("full-support invariant failed")
+    if not report["all_single_deletions_are_independent"]:
+        raise AssertionError("single-deletion independence failed")
     expected = {
         ("greedy_32_j5_lambda1", "distinct_geometric", 5): (1, 1, 0),
         ("greedy_32_j6_lambda2", "distinct_linear", 6): (36, 58, 22),
@@ -304,6 +341,8 @@ def assert_report_invariants(report: dict[str, Any]) -> None:
         )
         if got != (nondeg, loss, deg):
             raise AssertionError((key, got))
+        if cell["single_deletion_deficiency_histogram"] != {"0": nondeg * cell["size"]}:
+            raise AssertionError((key, cell["single_deletion_deficiency_histogram"]))
 
 
 def main() -> None:
@@ -320,6 +359,7 @@ def main() -> None:
         f"{report['all_exceptions_have_one_dimensional_left_nullspace']}"
     )
     print(f"full locator support: {report['all_relations_have_full_locator_support']}")
+    print(f"single-deletion independent: {report['all_single_deletions_are_independent']}")
     for cell in report["cells"]:
         print(
             "{case} {mode} size={size}: nondeg={nondeg}, loss={loss}, degenerate={deg}".format(
