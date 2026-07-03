@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E26 dihedral window arithmetic
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_e26_dihedral_window_arithmetic.py`;
+  `experimental/data/certificates/e26-dihedral-window-arithmetic/README.md`;
+  `experimental/data/certificates/e26-dihedral-window-arithmetic/e26_dihedral_window_arithmetic.json`;
+  `experimental/notes/roadmaps/e26_dihedral_window_arithmetic.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED_ARITHMETIC / COVERAGE_FOUND_CONDITIONAL_ON_DIHEDRAL_LEDGER.
+- **What is being added:** A pure arithmetic verifier for E26.  It enumerates
+  dihedral and mixed dihedral-multiplicative twin-fiber window scales
+  `d=m*ell`, checks the rate-`1/2` prize-max gap
+  `(2^33, 8,592,912,738]`, and records the first new pure-dihedral scale
+  `2^33+2` with formula `binom(2^40, 2^32+1)`.
+- **How it is useful:** Shows that the dihedral/Chebyshev window arithmetic
+  does land inside the previously uncovered rate-`1/2` band.  The result is
+  conditional on E25 classifying the dihedral stratum as paid.
+- **What to do next:** Run E25's dihedral audit.  If E25 absorbs the stratum,
+  this arithmetic is the rate-`1/2` coverage-gap input for the next RK wave;
+  if E25 finds unpaid slopes, this packet becomes the unsafe floor arithmetic.
+
 ### 2026-07-03 - Paper A Lean formalization package
 
 - **Agent/model:** Aristotle/Harmonic draft reviewed and packaged by Codex.

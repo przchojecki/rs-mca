@@ -1,0 +1,587 @@
+{
+  "dag_nodes": [
+    "rate_half_coverage_gap",
+    "dihedral_quotient_stratum"
+  ],
+  "model": {
+    "old_endpoint_policy": "the old multiplicative endpoint is counted separately; new coverage means d > old endpoint",
+    "twin_fiber_size_m": "m=2 is pure inversion-pair/Chebyshev; m>2 is mixed multiplicative quotient followed by inversion",
+    "unsafe_count_formula": "binom(n/m, ell) for moving twin-fiber windows",
+    "window_scale": "d = m * ell"
+  },
+  "nonclaims": [
+    "does not prove the dihedral stratum is paid; that is E25",
+    "does not solve alignment systems or run M5 charts",
+    "does not enumerate received-word pairs",
+    "does not claim non-2-power quotient coverage"
+  ],
+  "payload_sha256": "ad01da497bd5a25f6b40019683c53048abb9a9208d634217c250334ddcc06456",
+  "rows": [
+    {
+      "checks": {
+        "endpoint_is_power_of_two": true,
+        "first_new_count_exceeds_budget_when_present": true,
+        "inclusive_band_count_matches_bounds": true,
+        "strict_band_count_matches_bounds": true,
+        "strict_hit_count_nonnegative": true
+      },
+      "coverage_found_strictly_beyond_old_endpoint": false,
+      "endpoint_dihedral_formula": {
+        "bstar_log2": 2.584963,
+        "count_exceeds_Bstar": true,
+        "ell": 2,
+        "fiber_count": 256,
+        "formula": "binom(256, 2)",
+        "log2_count_lower": 14.994353,
+        "log2_count_upper": 14.994353,
+        "scale_d": 4,
+        "twin_fiber_size_m": 2
+      },
+      "first_new_dihedral_formula": null,
+      "hit_classes": [
+        {
+          "inclusive_first_scale": 4,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 4,
+          "kind": "pure_dihedral",
+          "quotient_twin_fiber_count": 256,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 2
+        },
+        {
+          "inclusive_first_scale": 4,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 4,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 128,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 4
+        }
+      ],
+      "inclusive_interval": {
+        "count": 1,
+        "lower": 4,
+        "upper": 4
+      },
+      "k": 256,
+      "label": "pinned_f17_mu512",
+      "max_mixed_twin_fiber_size_with_new_hit": null,
+      "n": 512,
+      "old_multiplicative_endpoint": 4,
+      "rate": "256/512",
+      "sigma_star": 4,
+      "strict_distinct_scale_hit_count": 0,
+      "strict_hit_class_count": 0,
+      "strict_hit_scale_count_with_twin_size_multiplicity": 0,
+      "strict_new_interval": {
+        "count": 0,
+        "lower": 5,
+        "upper": 4
+      }
+    },
+    {
+      "checks": {
+        "endpoint_is_power_of_two": true,
+        "first_new_count_exceeds_budget_when_present": true,
+        "inclusive_band_count_matches_bounds": true,
+        "strict_band_count_matches_bounds": true,
+        "strict_hit_count_nonnegative": true
+      },
+      "coverage_found_strictly_beyond_old_endpoint": false,
+      "endpoint_dihedral_formula": {
+        "bstar_log2": 122.0,
+        "count_exceeds_Bstar": false,
+        "ell": 2,
+        "fiber_count": 512,
+        "formula": "binom(512, 2)",
+        "log2_count_lower": 16.997179,
+        "log2_count_upper": 16.997179,
+        "scale_d": 4,
+        "twin_fiber_size_m": 2
+      },
+      "first_new_dihedral_formula": null,
+      "hit_classes": [
+        {
+          "inclusive_first_scale": 4,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 4,
+          "kind": "pure_dihedral",
+          "quotient_twin_fiber_count": 512,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 2
+        },
+        {
+          "inclusive_first_scale": 4,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 4,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 256,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 4
+        }
+      ],
+      "inclusive_interval": {
+        "count": 1,
+        "lower": 4,
+        "upper": 4
+      },
+      "k": 512,
+      "label": "row_c_n1024",
+      "max_mixed_twin_fiber_size_with_new_hit": null,
+      "n": 1024,
+      "old_multiplicative_endpoint": 4,
+      "rate": "512/1024",
+      "sigma_star": 4,
+      "strict_distinct_scale_hit_count": 0,
+      "strict_hit_class_count": 0,
+      "strict_hit_scale_count_with_twin_size_multiplicity": 0,
+      "strict_new_interval": {
+        "count": 0,
+        "lower": 5,
+        "upper": 4
+      }
+    },
+    {
+      "checks": {
+        "endpoint_is_power_of_two": true,
+        "first_new_count_exceeds_budget_when_present": true,
+        "inclusive_band_count_matches_bounds": true,
+        "strict_band_count_matches_bounds": true,
+        "strict_hit_count_nonnegative": true
+      },
+      "coverage_found_strictly_beyond_old_endpoint": true,
+      "endpoint_dihedral_formula": {
+        "bstar_log2": 127.9,
+        "count_exceeds_Bstar": true,
+        "ell": 4294967296,
+        "fiber_count": 1099511627776,
+        "formula": "binom(1099511627776, 4294967296)",
+        "log2_count_lower": 40543948377.30797,
+        "log2_count_upper": 40543948377.30829,
+        "scale_d": 8589934592,
+        "twin_fiber_size_m": 2
+      },
+      "first_new_dihedral_formula": {
+        "bstar_log2": 127.9,
+        "count_exceeds_Bstar": true,
+        "ell": 4294967297,
+        "fiber_count": 1099511627776,
+        "formula": "binom(1099511627776, 4294967297)",
+        "log2_count_lower": 40543948385.302246,
+        "log2_count_upper": 40543948385.30257,
+        "scale_d": 8589934594,
+        "twin_fiber_size_m": 2
+      },
+      "hit_classes": [
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1489074,
+          "inclusive_last_scale": 8592912738,
+          "kind": "pure_dihedral",
+          "quotient_twin_fiber_count": 1099511627776,
+          "strict_first_new_scale": 8589934594,
+          "strict_last_new_scale": 8592912738,
+          "strict_new_hit_count": 1489073,
+          "twin_fiber_size_m": 2
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 744537,
+          "inclusive_last_scale": 8592912736,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 549755813888,
+          "strict_first_new_scale": 8589934596,
+          "strict_last_new_scale": 8592912736,
+          "strict_new_hit_count": 744536,
+          "twin_fiber_size_m": 4
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 372269,
+          "inclusive_last_scale": 8592912736,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 274877906944,
+          "strict_first_new_scale": 8589934600,
+          "strict_last_new_scale": 8592912736,
+          "strict_new_hit_count": 372268,
+          "twin_fiber_size_m": 8
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 186135,
+          "inclusive_last_scale": 8592912736,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 137438953472,
+          "strict_first_new_scale": 8589934608,
+          "strict_last_new_scale": 8592912736,
+          "strict_new_hit_count": 186134,
+          "twin_fiber_size_m": 16
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 93068,
+          "inclusive_last_scale": 8592912736,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 68719476736,
+          "strict_first_new_scale": 8589934624,
+          "strict_last_new_scale": 8592912736,
+          "strict_new_hit_count": 93067,
+          "twin_fiber_size_m": 32
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 46534,
+          "inclusive_last_scale": 8592912704,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 34359738368,
+          "strict_first_new_scale": 8589934656,
+          "strict_last_new_scale": 8592912704,
+          "strict_new_hit_count": 46533,
+          "twin_fiber_size_m": 64
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 23267,
+          "inclusive_last_scale": 8592912640,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 17179869184,
+          "strict_first_new_scale": 8589934720,
+          "strict_last_new_scale": 8592912640,
+          "strict_new_hit_count": 23266,
+          "twin_fiber_size_m": 128
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 11634,
+          "inclusive_last_scale": 8592912640,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 8589934592,
+          "strict_first_new_scale": 8589934848,
+          "strict_last_new_scale": 8592912640,
+          "strict_new_hit_count": 11633,
+          "twin_fiber_size_m": 256
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 5817,
+          "inclusive_last_scale": 8592912384,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 4294967296,
+          "strict_first_new_scale": 8589935104,
+          "strict_last_new_scale": 8592912384,
+          "strict_new_hit_count": 5816,
+          "twin_fiber_size_m": 512
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 2909,
+          "inclusive_last_scale": 8592912384,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 2147483648,
+          "strict_first_new_scale": 8589935616,
+          "strict_last_new_scale": 8592912384,
+          "strict_new_hit_count": 2908,
+          "twin_fiber_size_m": 1024
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1455,
+          "inclusive_last_scale": 8592912384,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 1073741824,
+          "strict_first_new_scale": 8589936640,
+          "strict_last_new_scale": 8592912384,
+          "strict_new_hit_count": 1454,
+          "twin_fiber_size_m": 2048
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 728,
+          "inclusive_last_scale": 8592912384,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 536870912,
+          "strict_first_new_scale": 8589938688,
+          "strict_last_new_scale": 8592912384,
+          "strict_new_hit_count": 727,
+          "twin_fiber_size_m": 4096
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 364,
+          "inclusive_last_scale": 8592908288,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 268435456,
+          "strict_first_new_scale": 8589942784,
+          "strict_last_new_scale": 8592908288,
+          "strict_new_hit_count": 363,
+          "twin_fiber_size_m": 8192
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 182,
+          "inclusive_last_scale": 8592900096,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 134217728,
+          "strict_first_new_scale": 8589950976,
+          "strict_last_new_scale": 8592900096,
+          "strict_new_hit_count": 181,
+          "twin_fiber_size_m": 16384
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 91,
+          "inclusive_last_scale": 8592883712,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 67108864,
+          "strict_first_new_scale": 8589967360,
+          "strict_last_new_scale": 8592883712,
+          "strict_new_hit_count": 90,
+          "twin_fiber_size_m": 32768
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 46,
+          "inclusive_last_scale": 8592883712,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 33554432,
+          "strict_first_new_scale": 8590000128,
+          "strict_last_new_scale": 8592883712,
+          "strict_new_hit_count": 45,
+          "twin_fiber_size_m": 65536
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 23,
+          "inclusive_last_scale": 8592818176,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 16777216,
+          "strict_first_new_scale": 8590065664,
+          "strict_last_new_scale": 8592818176,
+          "strict_new_hit_count": 22,
+          "twin_fiber_size_m": 131072
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 12,
+          "inclusive_last_scale": 8592818176,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 8388608,
+          "strict_first_new_scale": 8590196736,
+          "strict_last_new_scale": 8592818176,
+          "strict_new_hit_count": 11,
+          "twin_fiber_size_m": 262144
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 6,
+          "inclusive_last_scale": 8592556032,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 4194304,
+          "strict_first_new_scale": 8590458880,
+          "strict_last_new_scale": 8592556032,
+          "strict_new_hit_count": 5,
+          "twin_fiber_size_m": 524288
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 3,
+          "inclusive_last_scale": 8592031744,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 2097152,
+          "strict_first_new_scale": 8590983168,
+          "strict_last_new_scale": 8592031744,
+          "strict_new_hit_count": 2,
+          "twin_fiber_size_m": 1048576
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 2,
+          "inclusive_last_scale": 8592031744,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 1048576,
+          "strict_first_new_scale": 8592031744,
+          "strict_last_new_scale": 8592031744,
+          "strict_new_hit_count": 1,
+          "twin_fiber_size_m": 2097152
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 524288,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 4194304
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 262144,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 8388608
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 131072,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 16777216
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 65536,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 33554432
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 32768,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 67108864
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 16384,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 134217728
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 8192,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 268435456
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 4096,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 536870912
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 2048,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 1073741824
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 1024,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 2147483648
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 512,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 4294967296
+        },
+        {
+          "inclusive_first_scale": 8589934592,
+          "inclusive_hit_count": 1,
+          "inclusive_last_scale": 8589934592,
+          "kind": "mixed_dihedral_multiplicative",
+          "quotient_twin_fiber_count": 256,
+          "strict_first_new_scale": null,
+          "strict_last_new_scale": null,
+          "strict_new_hit_count": 0,
+          "twin_fiber_size_m": 8589934592
+        }
+      ],
+      "inclusive_interval": {
+        "count": 2978147,
+        "lower": 8589934592,
+        "upper": 8592912738
+      },
+      "k": 1099511627776,
+      "label": "prize_max_rate_half",
+      "max_mixed_twin_fiber_size_with_new_hit": 2097152,
+      "n": 2199023255552,
+      "old_multiplicative_endpoint": 8589934592,
+      "rate": "1099511627776/2199023255552",
+      "sigma_star": 8592912738,
+      "strict_distinct_scale_hit_count": 1489073,
+      "strict_hit_class_count": 21,
+      "strict_hit_scale_count_with_twin_size_multiplicity": 2978135,
+      "strict_new_interval": {
+        "count": 2978146,
+        "lower": 8589934593,
+        "upper": 8592912738
+      }
+    }
+  ],
+  "schema_version": "e26-dihedral-window-arithmetic-v1",
+  "status": "PROVED_ARITHMETIC / COVERAGE_FOUND_CONDITIONAL_ON_DIHEDRAL_LEDGER",
+  "summary": {
+    "first_new_exceeds_Bstar": true,
+    "first_new_formula": "binom(1099511627776, 4294967297)",
+    "first_new_log2_count_lower": 40543948385.302246,
+    "first_new_scale": 8589934594,
+    "first_new_twin_fiber_size": 2,
+    "mixed_hit_max_twin_fiber_size": 2097152,
+    "rate_half_coverage_found": true,
+    "rate_half_inclusive_band_count": 2978147,
+    "rate_half_old_endpoint": 8589934592,
+    "rate_half_sigma_star": 8592912738,
+    "rate_half_strict_distinct_dihedral_scale_count": 1489073,
+    "rate_half_strict_new_band_count": 2978146
+  },
+  "task_id": "E26"
+}
