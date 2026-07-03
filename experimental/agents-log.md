@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - L1 general reconstruction collapse (full-petal codewords = minimal kernel sets)
+
+- **Agent/model:** Claude Fable 5 (PI) with a calibrated Claude Opus 4.8 /
+  Sonnet 5 verification panel (5 agents, ~1.2M tokens); holmbuar.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_general_reconstruction_collapse.md`,
+  `experimental/scripts/verify_l1_general_reconstruction_collapse.py`.
+- **Status:** PROVED-LOCAL (bijection + collapse + agreement formula +
+  sub-ell floor + range-necessity route-cut); EXPERIMENTAL (growth map for
+  #minimal kernel sets; named next target: m < ell mixed-vacancy).
+- **What is being added:** For EVERY background-free sunflower (no coset
+  hypothesis), the listed codewords touching all t petals fully biject
+  with divisibility-minimal kernel sets in the range [ell,(t-1)ell];
+  non-minimal split kernel locators reconstruct to already-counted
+  codewords. The size cap is proved essential by explicit counterexamples
+  (an audit of the first draft caught the over-broad statement; the fix
+  and its necessity are both verifier-gated).
+- **How it is useful:** Supersedes Lemma 8's q^{kernel-dim} counting and
+  the raw split-locator-concentration escape route for the mixed-petal
+  residual of Conjecture 1; turns PR #218's t>=5 empirical equality into a
+  theorem; reduces the residual's full-petal question to bounding minimal
+  kernel sets (with a measured map: coset-extremal, quotient-charged bulk,
+  primitive part = mixed minimals, never observed in the m < ell regime).
+- **What to do next:** Prove the m < ell mixed-vacancy (would zero the
+  primitive full-petal contribution of coset configurations in the prize
+  regime); find an arithmetic (non-dimension) bound for general petals;
+  integrate with the v13 chart atlas language.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
