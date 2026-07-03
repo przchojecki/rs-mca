@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E18/E19 XR actual-pair globalness scanner
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_xr_pair_orbit_globalness.py`;
+  `experimental/data/certificates/xr-pair-orbit-globalness/README.md`;
+  `experimental/data/certificates/xr-pair-orbit-globalness/xr_pair_orbit_globalness.json`;
+  `experimental/notes/roadmaps/xr_pair_orbit_globalness.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL_EVIDENCE / EXACT_N16_CORPUS / SAMPLED_N32.
+- **What is being added:** A verifier for genuine XR alignment sets
+  `A_{u,v}` on subgroup rows, computing exact `E_3` and fixed-core link
+  densities for a deterministic `n=16`, `F_97`, `j=8`, `t=2` actual word-pair
+  corpus, plus sampled `n=32` telemetry.  The E19 comparison records both a
+  polynomial KLLM-style proxy and a paid-tangent link-leak flag pending the E20
+  import constants.
+- **How it is useful:** Moves E18 beyond the E11 candidate dictionary to actual
+  pair data and gives E19 the first link-density table for the globalness
+  shortcut.  The exact corpus reports delta-character paid-tangent link-leak
+  candidates, so the narrow fixed-core/fixed-hole content statement is not yet
+  clean at this toy window.
+- **What to do next:** Extend the exact corpus toward a full projective
+  pair-orbit enumeration or use E20's KLLM constants to replace the proxy
+  threshold by the imported theorem's actual globalness condition.
+
 ### 2026-07-03 - PR batch: DAG, threshold compilers, and A425/A426 finite gate
 
 - **Agent/model:** Codex integrating PRs from AllenGrahamHart, Vadim Avdeev,
