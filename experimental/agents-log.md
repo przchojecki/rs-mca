@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Q3R.2 link-leak adjudication
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_q3r2_link_leak_adjudication.py`;
+  `experimental/data/certificates/q3r2-link-leak-adjudication/README.md`;
+  `experimental/data/certificates/q3r2-link-leak-adjudication/q3r2_link_leak_adjudication.json`;
+  `experimental/notes/roadmaps/q3r2_link_leak_adjudication.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT_N16_CORPUS_ADJUDICATION.
+- **What is being added:** A C-1/Q3R.2 adjudication of the ten #209
+  post-strip link-leak candidates.  The verifier computes each aligned
+  support's finite slope, strips same-slope `(j-1)`-core buckets as T2
+  `paid:tangent`, and checks the residual `L_tan` per-core cap.
+- **How it is useful:** Resolves the #209 warning for
+  `xr_globalness_from_ledger`: all ten candidates are strippable or allowed
+  under the residual-edge `L_tan=2` convention, and no genuine unpaid tangent
+  leak remains in the exact `F_97`, `n=16`, `j=8`, `t=2` corpus.
+- **What to do next:** Keep the two character-pair rows as a regression test
+  for any later packet that tries to enforce the stricter `L_tan=1` convention
+  without a residual-edge deduplication rule.
+
 ### 2026-07-03 - E18/E19 XR actual-pair globalness scanner
 
 - **Agent/model:** Codex.
