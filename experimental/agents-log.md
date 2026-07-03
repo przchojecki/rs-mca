@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Q3R.3 clean-rate corridor pipeline
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_clean_rate_corridor_pipeline.py`;
+  `experimental/data/certificates/clean-rate-corridor-pipeline/README.md`;
+  `experimental/data/certificates/clean-rate-corridor-pipeline/clean_rate_corridor_pipeline_skeleton.json`;
+  `experimental/notes/thresholds/clean_rate_corridor_pipeline.md`;
+  `experimental/agents-log.md`.
+- **Status:** SKELETON / REPLAYED_CERTIFICATE_PACKET.
+- **What is being added:** A C-2/Q3R.3 aggregation verifier for the clean
+  rates `1/4`, `1/8`, and `1/16`.  It locates the r2 corridor crossings,
+  checks per-row E14 integrality margins, replays the adjacent high-agreement
+  pinned-class boundary probes, and records the Row-C e1 norm-height frontiers.
+- **How it is useful:** Provides concrete per-row certificate skeletons for
+  the Row-C and pinned classes without launching new numerical scans.  The rows
+  identify the exact pinned bit cutoffs `168`, `169`, `170` and the next
+  lower-agreement bits `169`, `170`, `171`.
+- **What to do next:** Attach structural lower-agreement or Row-C proofs to
+  these skeletons.  Do not use this packet as a Row-C sampling result or a
+  leaderboard promotion.
+
 ### 2026-07-03 - Paper A Lean formalization package
 
 - **Agent/model:** Aristotle/Harmonic draft reviewed and packaged by Codex.

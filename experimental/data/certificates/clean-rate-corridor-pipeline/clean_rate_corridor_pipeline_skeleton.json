@@ -1,0 +1,553 @@
+{
+  "campaign_id": "C-2",
+  "dag_node": "Q3R.3",
+  "nonclaims": [
+    "does not run Row-C value-set sampling",
+    "does not prove lower-agreement theory beyond the pinned class",
+    "does not prove the list-side safe theorem",
+    "does not promote any leaderboard row"
+  ],
+  "payload_sha256": "2bb95675dc33913f0adbe0581d57028e1f87197f83d9f628448468f0eae0a8db",
+  "rows": [
+    {
+      "all_checks_passed": true,
+      "certificate_skeleton": {
+        "campaign_id": "C-2",
+        "classes": [
+          {
+            "class": "Row-C-class",
+            "required_inputs": [
+              "experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json",
+              "experimental/data/certificates/row-c-e1-sampling/e1_sharp_norm_height_constants.json"
+            ],
+            "status": "skeleton_ready / arithmetic replayed"
+          },
+          {
+            "class": "pinned-class",
+            "required_inputs": [
+              "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json"
+            ],
+            "status": "skeleton_ready / adjacent boundary replayed"
+          }
+        ],
+        "dag_node": "Q3R.3",
+        "rate": "1/4",
+        "row_id": "clean_rate_1_over_4",
+        "safe_replay_commands": [
+          "python3 experimental/scripts/verify_roadmap_r2_numbers.py",
+          "python3 experimental/scripts/verify_integrality_margin_tables.py --check experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json",
+          "python3 experimental/scripts/certify_high_agreement_threshold_package.py --check experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json",
+          "python3 experimental/scripts/verify_e1_sharp_norm_height_constants.py --check experimental/data/certificates/row-c-e1-sampling/e1_sharp_norm_height_constants.json"
+        ]
+      },
+      "corridor": {
+        "cap_crossing": 0.748047,
+        "cap_exponent": 9,
+        "checks": {
+          "cap_matches_r2_table": true,
+          "corridor_ordering": true,
+          "list_lower_matches_r2_table": true,
+          "list_upper_matches_r2_table": true,
+          "list_upper_tracks_tau": true,
+          "quotient_matches_r2_table": true,
+          "tau_matches_r2_table": true,
+          "width_matches_r2_table": true
+        },
+        "list_window": {
+          "lower": 0.743662,
+          "upper": 0.746831
+        },
+        "quotient_crossing": 0.744141,
+        "rate": "1/4",
+        "rate_denominator": 4,
+        "tau_star_crossing": 0.746811,
+        "width_in_cap_cells": 2.0
+      },
+      "integrality_margins": {
+        "candidate_scales": {
+          "budget_bits": 128,
+          "list_planted_crossing_N": 256,
+          "mca_dyadic_a2_crossing_N": 256,
+          "mca_relaxed_a2_crossing_N": 176,
+          "rate": "1/4"
+        },
+        "checks": {
+          "all_margin_rows_pass": true,
+          "all_margin_rows_positive": true,
+          "row_count_is_three": true,
+          "scale_dyadic_crossing_matches": true,
+          "scale_planted_crossing_matches": true,
+          "scale_relaxed_crossing_matches": true
+        },
+        "crossings": {
+          "dyadic_A2_crossing": 256,
+          "planted_dyadic_crossing": 256,
+          "relaxed_A2_crossing": 176
+        },
+        "margin_rows": [
+          {
+            "candidate_family": "relaxed_A2_crossing",
+            "minus_log2_n_pow_B_times_proxy": 2790056676289.764,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 176,
+            "side": "MCA"
+          },
+          {
+            "candidate_family": "dyadic_A2_crossing",
+            "minus_log2_n_pow_B_times_proxy": 803035429458.8638,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 256,
+            "side": "MCA"
+          },
+          {
+            "candidate_family": "planted_dyadic_crossing",
+            "minus_log2_n_pow_B_times_proxy": 803035429714.8638,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 256,
+            "side": "LIST"
+          }
+        ],
+        "minimum_margin_bits_for_rate": 803035429458.8638
+      },
+      "pinned_class_boundary": {
+        "adjacent_boundary_probes": {
+          "first_unpinned": {
+            "budget": 2199023255552,
+            "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+            "field_bits": 169,
+            "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+            "safe_through_exact_radius": 1099511627776
+          },
+          "last_pinned": {
+            "budget": 1099511627776,
+            "classifier_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+            "field_bits": 168,
+            "first_unsafe_integer_radius": 1099511627776,
+            "inverse_status": "PINNED_BY_HIGH_AGREEMENT_COMPILER",
+            "largest_safe_integer_radius": 1099511627775
+          }
+        },
+        "checks": {
+          "certificate_first_unpinned_matches": true,
+          "certificate_last_pinned_matches": true,
+          "last_probe_inverse_pinned": true,
+          "last_probe_is_pinned": true,
+          "next_probe_requires_lower_agreement": true,
+          "next_probe_safe_only_through_exact_range": true
+        },
+        "k": 1099511627776,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "pinned_power2_bit_interval": {
+          "count": 41,
+          "max": 168,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 87,
+          "max": 255,
+          "min": 169
+        },
+        "rho": "1/4"
+      },
+      "rate": "1/4",
+      "row_c_class_frontier": {
+        "bit_budget": 256,
+        "checks": {
+          "dyadic_frontier_matches": true,
+          "dyadic_has_first_failing": true,
+          "even_frontier_matches": true,
+          "even_has_first_failing": true
+        },
+        "frontiers": {
+          "dyadic": {
+            "first_failing_N_prime": 128,
+            "max_certified_N_prime": 64,
+            "max_certified_height_bits": 163
+          },
+          "even_prefix": {
+            "first_failing_N_prime": 104,
+            "max_certified_N_prime": 100,
+            "max_certified_height_bits": 229
+          }
+        },
+        "rate": "1/4"
+      }
+    },
+    {
+      "all_checks_passed": true,
+      "certificate_skeleton": {
+        "campaign_id": "C-2",
+        "classes": [
+          {
+            "class": "Row-C-class",
+            "required_inputs": [
+              "experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json",
+              "experimental/data/certificates/row-c-e1-sampling/e1_sharp_norm_height_constants.json"
+            ],
+            "status": "skeleton_ready / arithmetic replayed"
+          },
+          {
+            "class": "pinned-class",
+            "required_inputs": [
+              "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json"
+            ],
+            "status": "skeleton_ready / adjacent boundary replayed"
+          }
+        ],
+        "dag_node": "Q3R.3",
+        "rate": "1/8",
+        "row_id": "clean_rate_1_over_8",
+        "safe_replay_commands": [
+          "python3 experimental/scripts/verify_roadmap_r2_numbers.py",
+          "python3 experimental/scripts/verify_integrality_margin_tables.py --check experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json",
+          "python3 experimental/scripts/certify_high_agreement_threshold_package.py --check experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json",
+          "python3 experimental/scripts/verify_e1_sharp_norm_height_constants.py --check experimental/data/certificates/row-c-e1-sampling/e1_sharp_norm_height_constants.json"
+        ]
+      },
+      "corridor": {
+        "cap_crossing": 0.873047,
+        "cap_exponent": 9,
+        "checks": {
+          "cap_matches_r2_table": true,
+          "corridor_ordering": true,
+          "list_lower_matches_r2_table": true,
+          "list_upper_matches_r2_table": true,
+          "list_upper_tracks_tau": true,
+          "quotient_matches_r2_table": true,
+          "tau_matches_r2_table": true,
+          "width_matches_r2_table": true
+        },
+        "list_window": {
+          "lower": 0.870753,
+          "upper": 0.872877
+        },
+        "quotient_crossing": 0.870854,
+        "rate": "1/8",
+        "rate_denominator": 8,
+        "tau_star_crossing": 0.872853,
+        "width_in_cap_cells": 1.12
+      },
+      "integrality_margins": {
+        "candidate_scales": {
+          "budget_bits": 128,
+          "list_planted_crossing_N": 256,
+          "mca_dyadic_a2_crossing_N": 256,
+          "mca_relaxed_a2_crossing_N": 248,
+          "rate": "1/8"
+        },
+        "checks": {
+          "all_margin_rows_pass": true,
+          "all_margin_rows_positive": true,
+          "row_count_is_three": true,
+          "scale_dyadic_crossing_matches": true,
+          "scale_planted_crossing_matches": true,
+          "scale_relaxed_crossing_matches": true
+        },
+        "crossings": {
+          "dyadic_A2_crossing": 256,
+          "planted_dyadic_crossing": 256,
+          "relaxed_A2_crossing": 248
+        },
+        "margin_rows": [
+          {
+            "candidate_family": "relaxed_A2_crossing",
+            "minus_log2_n_pow_B_times_proxy": 4199957626828.787,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 248,
+            "side": "MCA"
+          },
+          {
+            "candidate_family": "dyadic_A2_crossing",
+            "minus_log2_n_pow_B_times_proxy": 3919267045601.578,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 256,
+            "side": "MCA"
+          },
+          {
+            "candidate_family": "planted_dyadic_crossing",
+            "minus_log2_n_pow_B_times_proxy": 3919267045857.578,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 256,
+            "side": "LIST"
+          }
+        ],
+        "minimum_margin_bits_for_rate": 3919267045601.578
+      },
+      "pinned_class_boundary": {
+        "adjacent_boundary_probes": {
+          "first_unpinned": {
+            "budget": 4398046511104,
+            "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+            "field_bits": 170,
+            "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+            "safe_through_exact_radius": 2565527131477
+          },
+          "last_pinned": {
+            "budget": 2199023255552,
+            "classifier_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+            "field_bits": 169,
+            "first_unsafe_integer_radius": 2199023255552,
+            "inverse_status": "PINNED_BY_HIGH_AGREEMENT_COMPILER",
+            "largest_safe_integer_radius": 2199023255551
+          }
+        },
+        "checks": {
+          "certificate_first_unpinned_matches": true,
+          "certificate_last_pinned_matches": true,
+          "last_probe_inverse_pinned": true,
+          "last_probe_is_pinned": true,
+          "next_probe_requires_lower_agreement": true,
+          "next_probe_safe_only_through_exact_range": true
+        },
+        "k": 1099511627776,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "pinned_power2_bit_interval": {
+          "count": 42,
+          "max": 169,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 86,
+          "max": 255,
+          "min": 170
+        },
+        "rho": "1/8"
+      },
+      "rate": "1/8",
+      "row_c_class_frontier": {
+        "bit_budget": 256,
+        "checks": {
+          "dyadic_frontier_matches": true,
+          "dyadic_has_first_failing": true,
+          "even_frontier_matches": true,
+          "even_has_first_failing": true
+        },
+        "frontiers": {
+          "dyadic": {
+            "first_failing_N_prime": 128,
+            "max_certified_N_prime": 64,
+            "max_certified_height_bits": 134
+          },
+          "even_prefix": {
+            "first_failing_N_prime": 128,
+            "max_certified_N_prime": 120,
+            "max_certified_height_bits": 161
+          }
+        },
+        "rate": "1/8"
+      }
+    },
+    {
+      "all_checks_passed": true,
+      "certificate_skeleton": {
+        "campaign_id": "C-2",
+        "classes": [
+          {
+            "class": "Row-C-class",
+            "required_inputs": [
+              "experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json",
+              "experimental/data/certificates/row-c-e1-sampling/e1_sharp_norm_height_constants.json"
+            ],
+            "status": "skeleton_ready / arithmetic replayed"
+          },
+          {
+            "class": "pinned-class",
+            "required_inputs": [
+              "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json"
+            ],
+            "status": "skeleton_ready / adjacent boundary replayed"
+          }
+        ],
+        "dag_node": "Q3R.3",
+        "rate": "1/16",
+        "row_id": "clean_rate_1_over_16",
+        "safe_replay_commands": [
+          "python3 experimental/scripts/verify_roadmap_r2_numbers.py",
+          "python3 experimental/scripts/verify_integrality_margin_tables.py --check experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json",
+          "python3 experimental/scripts/certify_high_agreement_threshold_package.py --check experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json",
+          "python3 experimental/scripts/verify_e1_sharp_norm_height_constants.py --check experimental/data/certificates/row-c-e1-sampling/e1_sharp_norm_height_constants.json"
+        ]
+      },
+      "corridor": {
+        "cap_crossing": 0.936523,
+        "cap_exponent": 10,
+        "checks": {
+          "cap_matches_r2_table": true,
+          "corridor_ordering": true,
+          "list_lower_matches_r2_table": true,
+          "list_upper_matches_r2_table": true,
+          "list_upper_tracks_tau": true,
+          "quotient_matches_r2_table": true,
+          "tau_matches_r2_table": true,
+          "width_matches_r2_table": true
+        },
+        "list_window": {
+          "lower": 0.934865,
+          "upper": 0.936182
+        },
+        "quotient_crossing": 0.934888,
+        "rate": "1/16",
+        "rate_denominator": 16,
+        "tau_star_crossing": 0.936162,
+        "width_in_cap_cells": 1.67
+      },
+      "integrality_margins": {
+        "candidate_scales": {
+          "budget_bits": 128,
+          "list_planted_crossing_N": 512,
+          "mca_dyadic_a2_crossing_N": 512,
+          "mca_relaxed_a2_crossing_N": 384,
+          "rate": "1/16"
+        },
+        "checks": {
+          "all_margin_rows_pass": true,
+          "all_margin_rows_positive": true,
+          "row_count_is_three": true,
+          "scale_dyadic_crossing_matches": true,
+          "scale_planted_crossing_matches": true,
+          "scale_relaxed_crossing_matches": true
+        },
+        "crossings": {
+          "dyadic_A2_crossing": 512,
+          "planted_dyadic_crossing": 512,
+          "relaxed_A2_crossing": 384
+        },
+        "margin_rows": [
+          {
+            "candidate_family": "relaxed_A2_crossing",
+            "minus_log2_n_pow_B_times_proxy": 5616918216798.644,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 384,
+            "side": "MCA"
+          },
+          {
+            "candidate_family": "dyadic_A2_crossing",
+            "minus_log2_n_pow_B_times_proxy": 2729001948841.092,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 512,
+            "side": "MCA"
+          },
+          {
+            "candidate_family": "planted_dyadic_crossing",
+            "minus_log2_n_pow_B_times_proxy": 2729001949097.092,
+            "passes_n3_integrality_margin": true,
+            "quotient_order_N": 512,
+            "side": "LIST"
+          }
+        ],
+        "minimum_margin_bits_for_rate": 2729001948841.092
+      },
+      "pinned_class_boundary": {
+        "adjacent_boundary_probes": {
+          "first_unpinned": {
+            "budget": 8796093022208,
+            "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+            "field_bits": 171,
+            "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+            "safe_through_exact_radius": 5497558138880
+          },
+          "last_pinned": {
+            "budget": 4398046511104,
+            "classifier_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+            "field_bits": 170,
+            "first_unsafe_integer_radius": 4398046511104,
+            "inverse_status": "PINNED_BY_HIGH_AGREEMENT_COMPILER",
+            "largest_safe_integer_radius": 4398046511103
+          }
+        },
+        "checks": {
+          "certificate_first_unpinned_matches": true,
+          "certificate_last_pinned_matches": true,
+          "last_probe_inverse_pinned": true,
+          "last_probe_is_pinned": true,
+          "next_probe_requires_lower_agreement": true,
+          "next_probe_safe_only_through_exact_range": true
+        },
+        "k": 1099511627776,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "pinned_power2_bit_interval": {
+          "count": 43,
+          "max": 170,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 85,
+          "max": 255,
+          "min": 171
+        },
+        "rho": "1/16"
+      },
+      "rate": "1/16",
+      "row_c_class_frontier": {
+        "bit_budget": 256,
+        "checks": {
+          "dyadic_frontier_matches": true,
+          "dyadic_has_first_failing": true,
+          "even_frontier_matches": true,
+          "even_has_first_failing": true
+        },
+        "frontiers": {
+          "dyadic": {
+            "first_failing_N_prime": 128,
+            "max_certified_N_prime": 64,
+            "max_certified_height_bits": 107
+          },
+          "even_prefix": {
+            "first_failing_N_prime": 128,
+            "max_certified_N_prime": 112,
+            "max_certified_height_bits": 193
+          }
+        },
+        "rate": "1/16"
+      }
+    }
+  ],
+  "schema_version": "clean-rate-corridor-pipeline-skeleton-v1",
+  "scope": {
+    "classes": [
+      "Row-C-class",
+      "pinned-class"
+    ],
+    "description": "per-rate skeleton rows locating corridor crossings, replaying integrality margins, and pinning adjacent high-agreement boundary probes",
+    "k": 1099511627776,
+    "rates": [
+      "1/4",
+      "1/8",
+      "1/16"
+    ],
+    "target_bits": 128
+  },
+  "sources": {
+    "high_agreement_threshold_package": {
+      "path": "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json",
+      "sha256": "03437b604c3d84e9f9cb23b735a67a9769dbbff064940fe20ec5571f82ddcc60"
+    },
+    "integrality_margin_tables": {
+      "path": "experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json",
+      "sha256": "1a9d525ba04b760b2156ac89e188555a5989a87bf792d4150942a6f37960e403"
+    },
+    "row_c_e1_norm_height": {
+      "path": "experimental/data/certificates/row-c-e1-sampling/e1_sharp_norm_height_constants.json",
+      "sha256": "42a450e917d46346586860f04a0e0577d0f7a556d46146317e46eeb2bde8c6c5"
+    }
+  },
+  "status": "SKELETON / REPLAYED_CERTIFICATE_PACKET",
+  "summary": {
+    "all_rows_green": true,
+    "minimum_integrality_margin_bits": 803035429458.8638,
+    "pinned_last_bits_by_rate": {
+      "1/16": 170,
+      "1/4": 168,
+      "1/8": 169
+    },
+    "row_c_even_frontier_by_rate": {
+      "1/16": 112,
+      "1/4": 100,
+      "1/8": 120
+    },
+    "row_count": 3
+  }
+}
