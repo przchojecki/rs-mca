@@ -357,6 +357,11 @@ This is the QF.4 skeleton used by the roadmap: simple arrangements are handled
 by the sharp pair count, while repeated-line violations are not new primitive
 mass; they are common-divisor charts one degree lower.
 
+The standalone packet
+`experimental/notes/m1/conjecture_f_dim2_skeleton.md` records this as the DAG
+node `f_dim2_skeleton` and adds an exhaustive `F_17` degree-three replay over
+all projective planes.
+
 ## Corollary 6B: Sparse-Dependence Descent
 
 Let `W <= K[X]_{<=j}` have projective dimension `d`, and let

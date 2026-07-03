@@ -1,0 +1,231 @@
+{
+  "claims_checked": {
+    "common_root_planes_routed_to_paid_branch": true,
+    "residual_obeys_singleton_pair_bound": true,
+    "twin_branches_reduce_to_projective_lines": true,
+    "twin_classes_are_all_or_none": true
+  },
+  "counts": {
+    "common_root_paid_planes": 16,
+    "degree_j_locators": 560,
+    "gcd_trivial_planes_checked": 5204,
+    "planes_with_divisor_hits": 5202,
+    "projective_planes_total": 5220,
+    "simple_planes": 3284,
+    "total_divisor_hits": 170240,
+    "total_residual_hits": 143360,
+    "total_twin_branch_hits": 26880,
+    "twin_planes": 1920
+  },
+  "dag_node": "f_dim2_skeleton",
+  "domain": {
+    "elements": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "n": 16,
+    "type": "F_p_star"
+  },
+  "field": {
+    "p": 17
+  },
+  "maxima": {
+    "common_roots_in_paid_plane": 1,
+    "hits_per_plane": 38,
+    "reduced_projective_dimension": 1,
+    "reduced_vector_rank": 2,
+    "residual_hits_per_plane": 35,
+    "twin_class_size": 2,
+    "twin_classes_per_plane": 1,
+    "twin_group_hits": 14
+  },
+  "parameters": {
+    "ambient_vector_dimension": 4,
+    "j": 3,
+    "projective_dimension": 2
+  },
+  "residual_pair_bound": {
+    "minimum_slack": 15,
+    "tight_nonempty_planes": 0,
+    "weight_per_residual_hit": 3
+  },
+  "sample_twin_reductions": [
+    {
+      "group": [
+        1,
+        16
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        6,
+        11
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        2,
+        15
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        0,
+        4
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        5,
+        12
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        0,
+        8
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        3,
+        14
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        0,
+        9
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        8,
+        9
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        0,
+        13
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        7,
+        10
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        0,
+        15
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        4,
+        13
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        0,
+        16
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        2,
+        16
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        1,
+        3
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    },
+    {
+      "group": [
+        5,
+        13
+      ],
+      "group_hits": 14,
+      "normal": [
+        0,
+        1,
+        1,
+        4
+      ],
+      "reduced_j": 1,
+      "reduced_projective_dimension": 1,
+      "reduced_vector_rank": 2
+    }
+  ],
+  "schema": "conjecture_f_dim2_skeleton_v1",
+  "script_sha256": "496420478d99f844623b6dc7aad9f3ff3d7a2657d61c62552e4fdc00bc3c2d5d",
+  "status": "PASS"
+}

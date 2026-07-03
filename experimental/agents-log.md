@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Conjecture F dimension-two skeleton
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_dim2_skeleton.md`;
+  `experimental/scripts/verify_conjecture_f_dim2_skeleton.py`;
+  `experimental/data/certificates/conjecture-f-dim2-skeleton/`;
+  `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL verifier.
+- **What is being added:** A standalone statement and proof of the
+  `f_dim2_skeleton` DAG node: in projective planes, twin evaluation-line
+  classes are all-or-none and reduce by common-GCD division to projective
+  lines, while the residual twin-free branch satisfies the sharp singleton
+  pair-counting bound.
+- **How it is useful:** This makes the dimension-two Conjecture F fork an
+  explicit auditable node rather than an implicit corollary inside the larger
+  reduction packet, supporting the required path toward both prize branches.
+- **What to do next:** Use the skeleton as the baseline for the E10 twin-pair
+  evidence comparison and then attack the many-sparse census.
+
 ### 2026-07-02 - Conjecture F dual-distance moment frame
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.
