@@ -1,0 +1,469 @@
+{
+  "counts": {
+    "common_root_paid_planes": 83400,
+    "divisor_points": 1820,
+    "expected_projective_dual_points": 88741,
+    "expected_projective_planes": 25734890,
+    "primitive_planes": 25651490,
+    "projective_dual_points": 88741,
+    "projective_planes_enumerated": 25734890,
+    "proper_quotient_orders": [
+      2,
+      4
+    ]
+  },
+  "distributions": {
+    "all_plane_hit_distribution": {
+      "0": 12839,
+      "1": 41792,
+      "10": 909152,
+      "11": 423456,
+      "12": 195064,
+      "13": 85988,
+      "14": 48528,
+      "15": 52528,
+      "16": 55704,
+      "17": 28080,
+      "18": 5664,
+      "19": 256,
+      "2": 328608,
+      "20": 272,
+      "21": 2088,
+      "22": 6240,
+      "23": 5760,
+      "24": 8848,
+      "25": 15728,
+      "26": 13968,
+      "27": 2880,
+      "28": 441,
+      "29": 720,
+      "3": 1378288,
+      "30": 8544,
+      "31": 12384,
+      "32": 5184,
+      "33": 384,
+      "4": 3514998,
+      "5": 5323152,
+      "6": 5024984,
+      "7": 3621656,
+      "8": 2761208,
+      "9": 1839384,
+      "91": 120
+    },
+    "common_root_hit_distribution": {
+      "0": 48,
+      "20": 240,
+      "21": 1920,
+      "22": 6240,
+      "23": 5760,
+      "24": 8848,
+      "25": 15728,
+      "26": 13968,
+      "27": 2880,
+      "28": 432,
+      "29": 720,
+      "30": 8544,
+      "31": 12384,
+      "32": 5184,
+      "33": 384,
+      "91": 120
+    },
+    "primitive_hit_distribution": {
+      "0": 12791,
+      "1": 41792,
+      "10": 909152,
+      "11": 423456,
+      "12": 195064,
+      "13": 85988,
+      "14": 48528,
+      "15": 52528,
+      "16": 55704,
+      "17": 28080,
+      "18": 5664,
+      "19": 256,
+      "2": 328608,
+      "20": 32,
+      "21": 168,
+      "28": 9,
+      "3": 1378288,
+      "4": 3514998,
+      "5": 5323152,
+      "6": 5024984,
+      "7": 3621656,
+      "8": 2761208,
+      "9": 1839384
+    }
+  },
+  "domain": {
+    "elements": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "n": 16,
+    "type": "F_p_star"
+  },
+  "field": {
+    "p": 17
+  },
+  "pair_bound_envelope": {
+    "primitive_max_hits": 28,
+    "primitive_planes_above_simple_bound": 177,
+    "primitive_top_plane_count": 9,
+    "simple_line_bound_floor": 20,
+    "simple_line_bound_rational": "120/6",
+    "top_planes_with_twins": 9,
+    "top_planes_without_twins": 0,
+    "weighted_pair_bound_floor": 40,
+    "weighted_pair_bound_rational": "120/3"
+  },
+  "parameters": {
+    "ambient_projective_space": "P^4",
+    "dual_line_vector_dimension": 2,
+    "j": 4,
+    "projective_plane_vector_dimension": 3
+  },
+  "roadmap_task": "E10 / dim-2 skeleton predictions / j=4 Grassmannian census",
+  "schema": "conjecture_f_dim2_j4_grassmannian_v1",
+  "script_sha256": "a1588b577e7b11e5be551af0cd95f3b509dcd52cb1bedd9997cde3e92a3d8f19",
+  "status": "PASS",
+  "top_primitive_examples": [
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          1,
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          1,
+          0,
+          3,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    },
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          1,
+          0,
+          0,
+          0,
+          9
+        ],
+        [
+          0,
+          1,
+          0,
+          5,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    },
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          1,
+          0,
+          0,
+          0,
+          15
+        ],
+        [
+          0,
+          1,
+          0,
+          6,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    },
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          1,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          7,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    },
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          1,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          10,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    },
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          1,
+          0,
+          0,
+          0,
+          15
+        ],
+        [
+          0,
+          1,
+          0,
+          11,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    },
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          1,
+          0,
+          0,
+          0,
+          9
+        ],
+        [
+          0,
+          1,
+          0,
+          12,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    },
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          1,
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          1,
+          0,
+          14,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    },
+    {
+      "distinct_evaluation_lines": 8,
+      "dual_rref_rows": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "hit_count": 28,
+      "max_line_multiplicity": 2,
+      "multiplicity_histogram": {
+        "2": 8
+      },
+      "twin_class_count": 8,
+      "twin_class_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "twin_point_count": 16
+    }
+  ]
+}

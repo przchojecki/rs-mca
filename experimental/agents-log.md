@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E10 j=4 Grassmannian census
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_dim2_evidence.md`;
+  `experimental/scripts/verify_conjecture_f_dim2_j4_grassmannian.py`;
+  `experimental/data/certificates/conjecture-f-dim2-evidence/`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EVIDENCE.
+- **What is being added:** The E10 companion verifier exhaustively enumerates
+  all projective planes in `P(F_17[X]_{<=4})`, separates common-root paid
+  planes, and compares the primitive maximum with the simple and weighted
+  pair-bound envelopes.
+- **How it is useful:** This completes the E10 dimension-two regression target:
+  the `j=4` primitive maximum lies above the simple-line bound but below the
+  weighted pair envelope, and the recorded top planes have twin
+  evaluation-line structure.  Because quotient orders `2` and `4` are active,
+  this is structured regression evidence rather than a quotient-free theorem.
+- **What to do next:** Use the E7/E10 pair as the low-dimensional baseline
+  before moving to the many-sparse census and higher-dimensional F induction
+  residue.
+
 ### 2026-07-02 - E7 top-plane twin prediction check
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.

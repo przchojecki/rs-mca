@@ -23,8 +23,11 @@ D_j(H) = { prod_{h in S} (X-h) : S subset H, |S| = j }
 
 inside projective locator-coefficient space.  A projective plane `P(W)` is
 called common-root paid if all polynomials in `W` vanish at some `h in H`.
-Both tested degrees have `gcd(n,j)=1`, so there is no proper quotient-pullback
-stratum in these runs.
+The base `j=3` and `j=5` runs have `gcd(n,j)=1`, so there is no proper
+quotient-pullback stratum there.  The E10 `j=4` census deliberately does not
+have this simplification: quotient orders `2` and `4` are active, so its top
+planes should be read as quotient/twin-structured regression data rather than
+as a quotient-free primitive residual.
 
 ## Pre-Registered Runs
 
@@ -44,6 +47,12 @@ stratum in these runs.
    and counts `D_5(H)` points in the projective kernel plane.  This second run
    is not exhaustive; it is included because it probes the kernel/fiber-plane
    geometry that the proof program actually consumes.
+
+3. E10 exact Grassmannian census at `j=4`.  The companion verifier
+   `verify_conjecture_f_dim2_j4_grassmannian.py` enumerates all
+   `25,734,890` projective planes in `P(F_17[X]_{<=4})` via the dual
+   projective-line Grassmannian.  This is intentionally kept out of the
+   base E7 replay because it is much heavier.
 
 ## Results
 
@@ -90,6 +99,28 @@ class.  In fact the recorded profiles all have multiplicity histogram
 `1^12 4^1`, so the excess over the simple-line count is explained by repeated
 evaluation lines rather than by a new primitive simple-arrangement mechanism.
 
+The E10 `j=4` Grassmannian census gives an exact regression target for the
+pair-bound envelope:
+
+```text
+all projective planes        25,734,890
+common-root paid planes          83,400
+primitive planes              25,651,490
+primitive max hit count              28
+top primitive plane count             9
+primitive planes above simple       177
+simple-line bound floor              20 = floor(binom(16,2)/binom(4,2))
+weighted pair bound floor            40 = floor(binom(16,2)/(4-1))
+```
+
+Thus the primitive maximum sits above the simple-line envelope and below the
+weighted pair envelope.  All nine top primitive planes have twin evaluation-line
+structure, with multiplicity profile `2^8`.  Since `j=4` also has proper
+quotient orders, this is evidence for the intended split rather than a
+quotient-free theorem: the excess over the simple-line count appears in
+structured repeated-line/quotient-compatible planes, not in a recorded
+twin-free top plane.
+
 The verifier also replays both runs against the fixed-dimensional/common-root
 consumer bound from the Conjecture F reduction lemmas.  For projective
 dimension two, every plane with `c` common roots should have at most
@@ -127,4 +158,9 @@ Non-claims:
 python3 experimental/scripts/verify_conjecture_f_dim2_evidence.py
 python3 experimental/scripts/verify_conjecture_f_dim2_evidence.py --emit
 python3 -m py_compile experimental/scripts/verify_conjecture_f_dim2_evidence.py
+
+# heavier E10 companion replay
+python3 experimental/scripts/verify_conjecture_f_dim2_j4_grassmannian.py --emit
+python3 experimental/scripts/verify_conjecture_f_dim2_j4_grassmannian.py \
+  --check experimental/data/certificates/conjecture-f-dim2-evidence/conjecture_f_dim2_j4_grassmannian.json
 ```
