@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Graded collision radius certificate
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/thresholds/graded_collision_radius.md`,
+  `experimental/scripts/verify_graded_collision_radius.py`,
+  `experimental/data/certificates/graded-collision-radius/README.md`,
+  `experimental/data/certificates/graded-collision-radius/graded_collision_radius.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CERTIFICATION-ARITHMETIC.
+- **What is being added:** A norm-height theorem showing that two
+  characteristic-zero distinct quotient `e_1` values at swap distance `s`
+  cannot collide modulo `p` when `(2s)^phi(N) < p`, with the `N=128`,
+  `log2(p)>=250` radius `d_*=7` and small-scale full-cell frontiers replayed
+  by a deterministic certificate.
+- **How it is useful:** Discharges the required-path `graded_collision_radius`
+  node and the single-swap base rung, and clarifies that `N'=64` collision-free
+  observations are theorem-forced rather than evidence for the far-pair zone.
+- **What to do next:** Use this as the local-radius input for the separate
+  cluster-certificate and generator-economy value-set lower-bound tasks.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

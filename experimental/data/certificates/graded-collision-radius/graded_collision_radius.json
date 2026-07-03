@@ -1,0 +1,764 @@
+{
+  "certified_radius_table": [
+    {
+      "certified_swap_radius": 8388607,
+      "log2_p_floor": 192,
+      "phi": 8,
+      "quotient_order": 16
+    },
+    {
+      "certified_swap_radius": 1276901416,
+      "log2_p_floor": 250,
+      "phi": 8,
+      "quotient_order": 16
+    },
+    {
+      "certified_swap_radius": 2147483647,
+      "log2_p_floor": 256,
+      "phi": 8,
+      "quotient_order": 16
+    },
+    {
+      "certified_swap_radius": 2047,
+      "log2_p_floor": 192,
+      "phi": 16,
+      "quotient_order": 32
+    },
+    {
+      "certified_swap_radius": 25267,
+      "log2_p_floor": 250,
+      "phi": 16,
+      "quotient_order": 32
+    },
+    {
+      "certified_swap_radius": 32767,
+      "log2_p_floor": 256,
+      "phi": 16,
+      "quotient_order": 32
+    },
+    {
+      "certified_swap_radius": 31,
+      "log2_p_floor": 192,
+      "phi": 32,
+      "quotient_order": 64
+    },
+    {
+      "certified_swap_radius": 112,
+      "log2_p_floor": 250,
+      "phi": 32,
+      "quotient_order": 64
+    },
+    {
+      "certified_swap_radius": 127,
+      "log2_p_floor": 256,
+      "phi": 32,
+      "quotient_order": 64
+    },
+    {
+      "certified_swap_radius": 31,
+      "log2_p_floor": 192,
+      "phi": 32,
+      "quotient_order": 80
+    },
+    {
+      "certified_swap_radius": 112,
+      "log2_p_floor": 250,
+      "phi": 32,
+      "quotient_order": 80
+    },
+    {
+      "certified_swap_radius": 127,
+      "log2_p_floor": 256,
+      "phi": 32,
+      "quotient_order": 80
+    },
+    {
+      "certified_swap_radius": 13,
+      "log2_p_floor": 192,
+      "phi": 40,
+      "quotient_order": 82
+    },
+    {
+      "certified_swap_radius": 38,
+      "log2_p_floor": 250,
+      "phi": 40,
+      "quotient_order": 82
+    },
+    {
+      "certified_swap_radius": 42,
+      "log2_p_floor": 256,
+      "phi": 40,
+      "quotient_order": 82
+    },
+    {
+      "certified_swap_radius": 31,
+      "log2_p_floor": 192,
+      "phi": 32,
+      "quotient_order": 96
+    },
+    {
+      "certified_swap_radius": 112,
+      "log2_p_floor": 250,
+      "phi": 32,
+      "quotient_order": 96
+    },
+    {
+      "certified_swap_radius": 127,
+      "log2_p_floor": 256,
+      "phi": 32,
+      "quotient_order": 96
+    },
+    {
+      "certified_swap_radius": 3,
+      "log2_p_floor": 192,
+      "phi": 64,
+      "quotient_order": 128
+    },
+    {
+      "certified_swap_radius": 7,
+      "log2_p_floor": 250,
+      "phi": 64,
+      "quotient_order": 128
+    },
+    {
+      "certified_swap_radius": 7,
+      "log2_p_floor": 256,
+      "phi": 64,
+      "quotient_order": 128
+    },
+    {
+      "certified_swap_radius": 3,
+      "log2_p_floor": 192,
+      "phi": 64,
+      "quotient_order": 160
+    },
+    {
+      "certified_swap_radius": 7,
+      "log2_p_floor": 250,
+      "phi": 64,
+      "quotient_order": 160
+    },
+    {
+      "certified_swap_radius": 7,
+      "log2_p_floor": 256,
+      "phi": 64,
+      "quotient_order": 160
+    },
+    {
+      "certified_swap_radius": 1,
+      "log2_p_floor": 192,
+      "phi": 128,
+      "quotient_order": 256
+    },
+    {
+      "certified_swap_radius": 1,
+      "log2_p_floor": 250,
+      "phi": 128,
+      "quotient_order": 256
+    },
+    {
+      "certified_swap_radius": 1,
+      "log2_p_floor": 256,
+      "phi": 128,
+      "quotient_order": 256
+    }
+  ],
+  "checks": [
+    {
+      "details": [
+        "N=4, ell=2: 14 nonzero deltas checked, 6 subsets, worst norm/bound=4/4",
+        "N=8, ell=3: 1516 nonzero deltas checked, 56 subsets, worst norm/bound=16/16",
+        "total unordered pairs=1555",
+        "upstairs duplicate deltas=25"
+      ],
+      "name": "toy cyclotomic norm bound",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "computed d_*(N,L)=max{s:(2s)^phi(N)<2^L}",
+        "anchor N=128, L=250 gives d_*=7",
+        "N=64, L=250 certifies all rate-1/2 swap distances",
+        "N=256, L=250 certifies exactly the single-swap rung"
+      ],
+      "name": "certified swap-radius table",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "checked ell=rho*N+1 cells for rates 1/2,1/4,1/8,1/16",
+        "at L=250, rate 1/2 is fully certified through N=64 but not N=128",
+        "frontier uses max swap distance min(ell,N-ell), with ell also printed"
+      ],
+      "name": "rate-cell full-certification frontier",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "N=16: phi=8, s=1 certified for p>=2^9",
+        "N=32: phi=16, s=1 certified for p>=2^17",
+        "N=64: phi=32, s=1 certified for p>=2^33",
+        "N=128: phi=64, s=1 certified for p>=2^65",
+        "N=256: phi=128, s=1 certified for p>=2^129"
+      ],
+      "name": "single-swap gate",
+      "status": "PASS"
+    }
+  ],
+  "dag_nodes": [
+    "graded_collision_radius",
+    "single_swap_injectivity"
+  ],
+  "full_cell_frontier": [
+    {
+      "certified_swap_radius": 8388607,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 7,
+      "quotient_order": 16,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 2047,
+      "ell": 17,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 15,
+      "quotient_order": 32,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 31,
+      "ell": 33,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 31,
+      "quotient_order": 64,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 3,
+      "ell": 65,
+      "full_cell_certified": false,
+      "log2_p_floor": 192,
+      "max_swap_distance": 63,
+      "quotient_order": 128,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 129,
+      "full_cell_certified": false,
+      "log2_p_floor": 192,
+      "max_swap_distance": 127,
+      "quotient_order": 256,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 8388607,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 5,
+      "quotient_order": 16,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 2047,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 9,
+      "quotient_order": 32,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 31,
+      "ell": 17,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 17,
+      "quotient_order": 64,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 3,
+      "ell": 33,
+      "full_cell_certified": false,
+      "log2_p_floor": 192,
+      "max_swap_distance": 33,
+      "quotient_order": 128,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 65,
+      "full_cell_certified": false,
+      "log2_p_floor": 192,
+      "max_swap_distance": 65,
+      "quotient_order": 256,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 8388607,
+      "ell": 3,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 3,
+      "quotient_order": 16,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 2047,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 5,
+      "quotient_order": 32,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 31,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 9,
+      "quotient_order": 64,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 3,
+      "ell": 17,
+      "full_cell_certified": false,
+      "log2_p_floor": 192,
+      "max_swap_distance": 17,
+      "quotient_order": 128,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 33,
+      "full_cell_certified": false,
+      "log2_p_floor": 192,
+      "max_swap_distance": 33,
+      "quotient_order": 256,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 8388607,
+      "ell": 2,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 2,
+      "quotient_order": 16,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 2047,
+      "ell": 3,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 3,
+      "quotient_order": 32,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 31,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 192,
+      "max_swap_distance": 5,
+      "quotient_order": 64,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 3,
+      "ell": 9,
+      "full_cell_certified": false,
+      "log2_p_floor": 192,
+      "max_swap_distance": 9,
+      "quotient_order": 128,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 17,
+      "full_cell_certified": false,
+      "log2_p_floor": 192,
+      "max_swap_distance": 17,
+      "quotient_order": 256,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 1276901416,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 7,
+      "quotient_order": 16,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 25267,
+      "ell": 17,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 15,
+      "quotient_order": 32,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 112,
+      "ell": 33,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 31,
+      "quotient_order": 64,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 7,
+      "ell": 65,
+      "full_cell_certified": false,
+      "log2_p_floor": 250,
+      "max_swap_distance": 63,
+      "quotient_order": 128,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 129,
+      "full_cell_certified": false,
+      "log2_p_floor": 250,
+      "max_swap_distance": 127,
+      "quotient_order": 256,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 1276901416,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 5,
+      "quotient_order": 16,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 25267,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 9,
+      "quotient_order": 32,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 112,
+      "ell": 17,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 17,
+      "quotient_order": 64,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 7,
+      "ell": 33,
+      "full_cell_certified": false,
+      "log2_p_floor": 250,
+      "max_swap_distance": 33,
+      "quotient_order": 128,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 65,
+      "full_cell_certified": false,
+      "log2_p_floor": 250,
+      "max_swap_distance": 65,
+      "quotient_order": 256,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 1276901416,
+      "ell": 3,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 3,
+      "quotient_order": 16,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 25267,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 5,
+      "quotient_order": 32,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 112,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 9,
+      "quotient_order": 64,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 7,
+      "ell": 17,
+      "full_cell_certified": false,
+      "log2_p_floor": 250,
+      "max_swap_distance": 17,
+      "quotient_order": 128,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 33,
+      "full_cell_certified": false,
+      "log2_p_floor": 250,
+      "max_swap_distance": 33,
+      "quotient_order": 256,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 1276901416,
+      "ell": 2,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 2,
+      "quotient_order": 16,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 25267,
+      "ell": 3,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 3,
+      "quotient_order": 32,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 112,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 250,
+      "max_swap_distance": 5,
+      "quotient_order": 64,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 7,
+      "ell": 9,
+      "full_cell_certified": false,
+      "log2_p_floor": 250,
+      "max_swap_distance": 9,
+      "quotient_order": 128,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 17,
+      "full_cell_certified": false,
+      "log2_p_floor": 250,
+      "max_swap_distance": 17,
+      "quotient_order": 256,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 2147483647,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 7,
+      "quotient_order": 16,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 32767,
+      "ell": 17,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 15,
+      "quotient_order": 32,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 127,
+      "ell": 33,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 31,
+      "quotient_order": 64,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 7,
+      "ell": 65,
+      "full_cell_certified": false,
+      "log2_p_floor": 256,
+      "max_swap_distance": 63,
+      "quotient_order": 128,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 129,
+      "full_cell_certified": false,
+      "log2_p_floor": 256,
+      "max_swap_distance": 127,
+      "quotient_order": 256,
+      "rate": "1/2"
+    },
+    {
+      "certified_swap_radius": 2147483647,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 5,
+      "quotient_order": 16,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 32767,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 9,
+      "quotient_order": 32,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 127,
+      "ell": 17,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 17,
+      "quotient_order": 64,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 7,
+      "ell": 33,
+      "full_cell_certified": false,
+      "log2_p_floor": 256,
+      "max_swap_distance": 33,
+      "quotient_order": 128,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 65,
+      "full_cell_certified": false,
+      "log2_p_floor": 256,
+      "max_swap_distance": 65,
+      "quotient_order": 256,
+      "rate": "1/4"
+    },
+    {
+      "certified_swap_radius": 2147483647,
+      "ell": 3,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 3,
+      "quotient_order": 16,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 32767,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 5,
+      "quotient_order": 32,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 127,
+      "ell": 9,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 9,
+      "quotient_order": 64,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 7,
+      "ell": 17,
+      "full_cell_certified": false,
+      "log2_p_floor": 256,
+      "max_swap_distance": 17,
+      "quotient_order": 128,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 33,
+      "full_cell_certified": false,
+      "log2_p_floor": 256,
+      "max_swap_distance": 33,
+      "quotient_order": 256,
+      "rate": "1/8"
+    },
+    {
+      "certified_swap_radius": 2147483647,
+      "ell": 2,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 2,
+      "quotient_order": 16,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 32767,
+      "ell": 3,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 3,
+      "quotient_order": 32,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 127,
+      "ell": 5,
+      "full_cell_certified": true,
+      "log2_p_floor": 256,
+      "max_swap_distance": 5,
+      "quotient_order": 64,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 7,
+      "ell": 9,
+      "full_cell_certified": false,
+      "log2_p_floor": 256,
+      "max_swap_distance": 9,
+      "quotient_order": 128,
+      "rate": "1/16"
+    },
+    {
+      "certified_swap_radius": 1,
+      "ell": 17,
+      "full_cell_certified": false,
+      "log2_p_floor": 256,
+      "max_swap_distance": 17,
+      "quotient_order": 256,
+      "rate": "1/16"
+    }
+  ],
+  "non_claims": [
+    "does not prove characteristic-zero injectivity of B -> e_1(B)",
+    "does not close the far-pair value-set lower bound at N=128",
+    "does not certify a new MCA threshold row"
+  ],
+  "object": "quotient e_1 value-set certification",
+  "script": "experimental/scripts/verify_graded_collision_radius.py",
+  "script_sha256": "88b2e15f3a87792019203d304bbae68241e257ab9281c4015920d8c7507c2a9c",
+  "status": "PROVED_GRADED_COLLISION_RADIUS",
+  "theorem": "(2s)^phi(N) < p prevents new mod-p collisions between characteristic-zero distinct e_1 values at swap distance s"
+}
