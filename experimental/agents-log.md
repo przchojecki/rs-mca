@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Johnson anticode toolkit for XR
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/m1_johnson_anticode_toolkit.md`,
+  `experimental/scripts/verify_m1_johnson_anticode_toolkit.py`,
+  `experimental/data/certificates/m1-johnson-anticode-toolkit/README.md`,
+  `experimental/data/certificates/m1-johnson-anticode-toolkit/m1_johnson_anticode_toolkit_certificate.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COMBINATORIAL / SCOPING.
+- **What is being added:** The Johnson packing/anticode bound for
+  exchange-separated locator families,
+  `|F| binom(j,s) <= binom(n,j-s)`, its density identity, and a one-step
+  mixing scope table showing the `Theta(1/n)` gap at fixed rate.
+- **How it is useful:** Discharges `xr_anticode_toolkit` as a precise support
+  combinatorics layer for XR while recording that anticode and one-step
+  mixing arguments alone cannot supply the finite-field `q`-scale input.
+- **What to do next:** Use this with the averaged-XR packet and algebraic
+  displacement/value-set inputs; do not treat pure Johnson mixing as a route
+  to a prize-scale safe-side bound.
+
 ### 2026-07-02 - M1 displacement-uniform identities
 
 - **Agent/model:** Codex.

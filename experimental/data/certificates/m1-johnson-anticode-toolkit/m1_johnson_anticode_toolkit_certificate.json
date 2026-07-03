@@ -1,0 +1,261 @@
+{
+  "checks": [
+    {
+      "details": [
+        "exact maximum separated families checked for three small Johnson graphs",
+        "greedy separated families use disjoint (j-s)-cores exactly as in the proof",
+        "packing bound equals floor(binomial(n,j-s)/binomial(j,s))"
+      ],
+      "name": "core-disjoint anticode packing",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "verified binom(n,j)/binom(n-j+s,s) = binom(n,j-s)/binom(j,s)",
+        "tables print the support-space saving available from pure anticode packing"
+      ],
+      "name": "density-loss identity",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "computed gap=n/(j(n-j)) for official rates",
+        "single-step endpoint factor is 1-O(1/n) at fixed rate",
+        "128-bit decay needs more than ten thousand exchange steps even at n=512"
+      ],
+      "name": "Johnson one-step mixing scope",
+      "status": "PASS"
+    }
+  ],
+  "dag_nodes": [
+    "xr_anticode_toolkit"
+  ],
+  "density_identity_rows": [
+    {
+      "all_j_sets_log2_floor": 13,
+      "density_denominator": 9,
+      "j": 8,
+      "n": 16,
+      "s": 1,
+      "separated_bound_floor": 1430,
+      "separated_bound_log2_floor": 10
+    },
+    {
+      "all_j_sets_log2_floor": 13,
+      "density_denominator": 45,
+      "j": 8,
+      "n": 16,
+      "s": 2,
+      "separated_bound_floor": 286,
+      "separated_bound_log2_floor": 8
+    },
+    {
+      "all_j_sets_log2_floor": 29,
+      "density_denominator": 969,
+      "j": 16,
+      "n": 32,
+      "s": 3,
+      "separated_bound_floor": 620310,
+      "separated_bound_log2_floor": 19
+    },
+    {
+      "all_j_sets_log2_floor": 60,
+      "density_denominator": 52360,
+      "j": 33,
+      "n": 64,
+      "s": 4,
+      "separated_bound_floor": 33939841024933,
+      "separated_bound_log2_floor": 44
+    }
+  ],
+  "exact_small_packing_rows": [
+    {
+      "anticode_bound_floor": 5,
+      "exact_max_separated": 4,
+      "greedy_family_size": 4,
+      "j": 3,
+      "n": 6,
+      "packing_denominator_binom_j_s": 3,
+      "packing_numerator_binom_n_j_minus_s": 15,
+      "s": 1,
+      "vertices": 20
+    },
+    {
+      "anticode_bound_floor": 7,
+      "exact_max_separated": 7,
+      "greedy_family_size": 7,
+      "j": 3,
+      "n": 7,
+      "packing_denominator_binom_j_s": 3,
+      "packing_numerator_binom_n_j_minus_s": 21,
+      "s": 1,
+      "vertices": 35
+    },
+    {
+      "anticode_bound_floor": 4,
+      "exact_max_separated": 2,
+      "greedy_family_size": 2,
+      "j": 4,
+      "n": 8,
+      "packing_denominator_binom_j_s": 6,
+      "packing_numerator_binom_n_j_minus_s": 28,
+      "s": 2,
+      "vertices": 70
+    }
+  ],
+  "mixing_scope_rows": [
+    {
+      "j": 32,
+      "n": 64,
+      "one_step_gap_denominator": 1024,
+      "one_step_gap_log2_floor_negative": 4,
+      "one_step_gap_numerator": 64,
+      "rate": "1/2",
+      "steps_for_exp_bound_2^-128": 1420
+    },
+    {
+      "j": 16,
+      "n": 64,
+      "one_step_gap_denominator": 768,
+      "one_step_gap_log2_floor_negative": 3,
+      "one_step_gap_numerator": 64,
+      "rate": "1/4",
+      "steps_for_exp_bound_2^-128": 1065
+    },
+    {
+      "j": 8,
+      "n": 64,
+      "one_step_gap_denominator": 448,
+      "one_step_gap_log2_floor_negative": 2,
+      "one_step_gap_numerator": 64,
+      "rate": "1/8",
+      "steps_for_exp_bound_2^-128": 622
+    },
+    {
+      "j": 4,
+      "n": 64,
+      "one_step_gap_denominator": 240,
+      "one_step_gap_log2_floor_negative": 1,
+      "one_step_gap_numerator": 64,
+      "rate": "1/16",
+      "steps_for_exp_bound_2^-128": 333
+    },
+    {
+      "j": 64,
+      "n": 128,
+      "one_step_gap_denominator": 4096,
+      "one_step_gap_log2_floor_negative": 5,
+      "one_step_gap_numerator": 128,
+      "rate": "1/2",
+      "steps_for_exp_bound_2^-128": 2840
+    },
+    {
+      "j": 32,
+      "n": 128,
+      "one_step_gap_denominator": 3072,
+      "one_step_gap_log2_floor_negative": 4,
+      "one_step_gap_numerator": 128,
+      "rate": "1/4",
+      "steps_for_exp_bound_2^-128": 2130
+    },
+    {
+      "j": 16,
+      "n": 128,
+      "one_step_gap_denominator": 1792,
+      "one_step_gap_log2_floor_negative": 3,
+      "one_step_gap_numerator": 128,
+      "rate": "1/8",
+      "steps_for_exp_bound_2^-128": 1243
+    },
+    {
+      "j": 8,
+      "n": 128,
+      "one_step_gap_denominator": 960,
+      "one_step_gap_log2_floor_negative": 2,
+      "one_step_gap_numerator": 128,
+      "rate": "1/16",
+      "steps_for_exp_bound_2^-128": 666
+    },
+    {
+      "j": 256,
+      "n": 512,
+      "one_step_gap_denominator": 65536,
+      "one_step_gap_log2_floor_negative": 7,
+      "one_step_gap_numerator": 512,
+      "rate": "1/2",
+      "steps_for_exp_bound_2^-128": 11357
+    },
+    {
+      "j": 128,
+      "n": 512,
+      "one_step_gap_denominator": 49152,
+      "one_step_gap_log2_floor_negative": 6,
+      "one_step_gap_numerator": 512,
+      "rate": "1/4",
+      "steps_for_exp_bound_2^-128": 8518
+    },
+    {
+      "j": 64,
+      "n": 512,
+      "one_step_gap_denominator": 28672,
+      "one_step_gap_log2_floor_negative": 5,
+      "one_step_gap_numerator": 512,
+      "rate": "1/8",
+      "steps_for_exp_bound_2^-128": 4969
+    },
+    {
+      "j": 32,
+      "n": 512,
+      "one_step_gap_denominator": 15360,
+      "one_step_gap_log2_floor_negative": 4,
+      "one_step_gap_numerator": 512,
+      "rate": "1/16",
+      "steps_for_exp_bound_2^-128": 2662
+    },
+    {
+      "j": 2048,
+      "n": 4096,
+      "one_step_gap_denominator": 4194304,
+      "one_step_gap_log2_floor_negative": 10,
+      "one_step_gap_numerator": 4096,
+      "rate": "1/2",
+      "steps_for_exp_bound_2^-128": 90853
+    },
+    {
+      "j": 1024,
+      "n": 4096,
+      "one_step_gap_denominator": 3145728,
+      "one_step_gap_log2_floor_negative": 9,
+      "one_step_gap_numerator": 4096,
+      "rate": "1/4",
+      "steps_for_exp_bound_2^-128": 68140
+    },
+    {
+      "j": 512,
+      "n": 4096,
+      "one_step_gap_denominator": 1835008,
+      "one_step_gap_log2_floor_negative": 8,
+      "one_step_gap_numerator": 4096,
+      "rate": "1/8",
+      "steps_for_exp_bound_2^-128": 39748
+    },
+    {
+      "j": 256,
+      "n": 4096,
+      "one_step_gap_denominator": 983040,
+      "one_step_gap_log2_floor_negative": 7,
+      "one_step_gap_numerator": 4096,
+      "rate": "1/16",
+      "steps_for_exp_bound_2^-128": 21294
+    }
+  ],
+  "non_claims": [
+    "does not prove an XR inverse theorem",
+    "does not prove a finite-field q-scale value-set lower bound",
+    "does not prove an M1 safe-side threshold"
+  ],
+  "object": "Johnson locator graph support combinatorics for XR",
+  "script": "experimental/scripts/verify_m1_johnson_anticode_toolkit.py",
+  "script_sha256": "961a9c07e24871c1e1ccbb9a7ec156e37b6ea654177496ea8f76b062563ebb15",
+  "status": "PROVED_JOHNSON_ANTICODE_TOOLKIT"
+}
