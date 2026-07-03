@@ -1,0 +1,740 @@
+{
+  "cases": [
+    {
+      "accepted_full_rank_rowspaces": 128,
+      "attempts": 128,
+      "degree": 3,
+      "examples": {
+        "1:singleton_common_root": {
+          "class": "singleton_common_root",
+          "hankel_rows": [
+            [
+              11,
+              12,
+              3,
+              12
+            ],
+            [
+              12,
+              3,
+              12,
+              2
+            ]
+          ],
+          "nontrivial_coset_union_orders": [],
+          "relation": {
+            "dual_vector": [
+              1,
+              6,
+              2,
+              12
+            ],
+            "row_coefficients": [
+              2,
+              11
+            ],
+            "support_coefficients": [
+              1
+            ]
+          },
+          "support_exponents": [
+            15
+          ],
+          "support_size": 1,
+          "support_values": [
+            6
+          ]
+        },
+        "2:noncoset": {
+          "class": "noncoset",
+          "hankel_rows": [
+            [
+              5,
+              15,
+              6,
+              0
+            ],
+            [
+              15,
+              6,
+              0,
+              5
+            ]
+          ],
+          "nontrivial_coset_union_orders": [],
+          "relation": {
+            "dual_vector": [
+              4,
+              1,
+              6,
+              11
+            ],
+            "row_coefficients": [
+              1,
+              9
+            ],
+            "support_coefficients": [
+              3,
+              1
+            ]
+          },
+          "support_exponents": [
+            1,
+            2
+          ],
+          "support_size": 2,
+          "support_values": [
+            3,
+            9
+          ]
+        },
+        "2:nontrivial_coset_union": {
+          "class": "nontrivial_coset_union",
+          "hankel_rows": [
+            [
+              5,
+              15,
+              3,
+              8
+            ],
+            [
+              15,
+              3,
+              8,
+              7
+            ]
+          ],
+          "nontrivial_coset_union_orders": [
+            2
+          ],
+          "relation": {
+            "dual_vector": [
+              5,
+              13,
+              7,
+              8
+            ],
+            "row_coefficients": [
+              13,
+              13
+            ],
+            "support_coefficients": [
+              4,
+              1
+            ]
+          },
+          "support_exponents": [
+            3,
+            11
+          ],
+          "support_size": 2,
+          "support_values": [
+            10,
+            7
+          ]
+        },
+        "3:noncoset": {
+          "class": "noncoset",
+          "hankel_rows": [
+            [
+              5,
+              15,
+              6,
+              0
+            ],
+            [
+              15,
+              6,
+              0,
+              5
+            ]
+          ],
+          "nontrivial_coset_union_orders": [],
+          "relation": {
+            "dual_vector": [
+              11,
+              1,
+              0,
+              15
+            ],
+            "row_coefficients": [
+              0,
+              3
+            ],
+            "support_coefficients": [
+              11,
+              16,
+              1
+            ]
+          },
+          "support_exponents": [
+            0,
+            1,
+            3
+          ],
+          "support_size": 3,
+          "support_values": [
+            1,
+            3,
+            10
+          ]
+        }
+      },
+      "hankel_rows": 2,
+      "kernel_projective_dimension": 1,
+      "kernel_vector_dimension": 2,
+      "max_sparse_support_tested": 3,
+      "name": "sampled_hankel_kernel_lines_j3_t2",
+      "noncoset_min_support_size": 2,
+      "noncoset_support_count": 60975,
+      "rowspaces_with_noncoset_support": 128,
+      "seed": 202607031732,
+      "support_class_counts": {
+        "noncoset": 60975,
+        "nontrivial_coset_union": 53,
+        "singleton_common_root": 11
+      },
+      "support_class_counts_by_size": {
+        "1": {
+          "singleton_common_root": 11
+        },
+        "2": {
+          "noncoset": 733,
+          "nontrivial_coset_union": 53
+        },
+        "3": {
+          "noncoset": 60242
+        }
+      }
+    },
+    {
+      "accepted_full_rank_rowspaces": 256,
+      "attempts": 256,
+      "degree": 4,
+      "examples": {
+        "1:singleton_common_root": {
+          "class": "singleton_common_root",
+          "hankel_rows": [
+            [
+              4,
+              11,
+              13,
+              13,
+              12
+            ],
+            [
+              11,
+              13,
+              13,
+              12,
+              6
+            ]
+          ],
+          "nontrivial_coset_union_orders": [],
+          "relation": {
+            "dual_vector": [
+              1,
+              3,
+              9,
+              10,
+              13
+            ],
+            "row_coefficients": [
+              3,
+              16
+            ],
+            "support_coefficients": [
+              1
+            ]
+          },
+          "support_exponents": [
+            1
+          ],
+          "support_size": 1,
+          "support_values": [
+            3
+          ]
+        },
+        "2:noncoset": {
+          "class": "noncoset",
+          "hankel_rows": [
+            [
+              0,
+              11,
+              14,
+              5,
+              13
+            ],
+            [
+              11,
+              14,
+              5,
+              13,
+              1
+            ]
+          ],
+          "nontrivial_coset_union_orders": [],
+          "relation": {
+            "dual_vector": [
+              6,
+              8,
+              6,
+              14,
+              8
+            ],
+            "row_coefficients": [
+              2,
+              16
+            ],
+            "support_coefficients": [
+              5,
+              1
+            ]
+          },
+          "support_exponents": [
+            2,
+            9
+          ],
+          "support_size": 2,
+          "support_values": [
+            9,
+            14
+          ]
+        },
+        "2:nontrivial_coset_union": {
+          "class": "nontrivial_coset_union",
+          "hankel_rows": [
+            [
+              14,
+              14,
+              8,
+              1,
+              6
+            ],
+            [
+              14,
+              8,
+              1,
+              6,
+              14
+            ]
+          ],
+          "nontrivial_coset_union_orders": [
+            2
+          ],
+          "relation": {
+            "dual_vector": [
+              12,
+              13,
+              6,
+              15,
+              3
+            ],
+            "row_coefficients": [
+              16,
+              14
+            ],
+            "support_coefficients": [
+              11,
+              1
+            ]
+          },
+          "support_exponents": [
+            1,
+            9
+          ],
+          "support_size": 2,
+          "support_values": [
+            3,
+            14
+          ]
+        },
+        "3:noncoset": {
+          "class": "noncoset",
+          "hankel_rows": [
+            [
+              0,
+              11,
+              14,
+              5,
+              13
+            ],
+            [
+              11,
+              14,
+              5,
+              13,
+              1
+            ]
+          ],
+          "nontrivial_coset_union_orders": [],
+          "relation": {
+            "dual_vector": [
+              0,
+              4,
+              2,
+              8,
+              14
+            ],
+            "row_coefficients": [
+              5,
+              0
+            ],
+            "support_coefficients": [
+              8,
+              8,
+              1
+            ]
+          },
+          "support_exponents": [
+            0,
+            5,
+            11
+          ],
+          "support_size": 3,
+          "support_values": [
+            1,
+            5,
+            7
+          ]
+        }
+      },
+      "hankel_rows": 2,
+      "kernel_projective_dimension": 2,
+      "kernel_vector_dimension": 3,
+      "max_sparse_support_tested": 3,
+      "name": "sampled_hankel_kernel_planes_j4_t2",
+      "noncoset_min_support_size": 2,
+      "noncoset_support_count": 7134,
+      "rowspaces_with_noncoset_support": 255,
+      "seed": 202607031742,
+      "support_class_counts": {
+        "noncoset": 7134,
+        "nontrivial_coset_union": 6,
+        "singleton_common_root": 1
+      },
+      "support_class_counts_by_size": {
+        "1": {
+          "singleton_common_root": 1
+        },
+        "2": {
+          "noncoset": 93,
+          "nontrivial_coset_union": 6
+        },
+        "3": {
+          "noncoset": 7041
+        }
+      }
+    },
+    {
+      "accepted_full_rank_rowspaces": 512,
+      "attempts": 512,
+      "degree": 5,
+      "examples": {
+        "2:noncoset": {
+          "class": "noncoset",
+          "hankel_rows": [
+            [
+              6,
+              12,
+              9,
+              10,
+              7,
+              3
+            ],
+            [
+              12,
+              9,
+              10,
+              7,
+              3,
+              15
+            ],
+            [
+              9,
+              10,
+              7,
+              3,
+              15,
+              15
+            ]
+          ],
+          "nontrivial_coset_union_orders": [],
+          "relation": {
+            "dual_vector": [
+              16,
+              9,
+              6,
+              1,
+              6,
+              7
+            ],
+            "row_coefficients": [
+              5,
+              6,
+              15
+            ],
+            "support_coefficients": [
+              15,
+              1
+            ]
+          },
+          "support_exponents": [
+            2,
+            3
+          ],
+          "support_size": 2,
+          "support_values": [
+            9,
+            10
+          ]
+        },
+        "2:nontrivial_coset_union": {
+          "class": "nontrivial_coset_union",
+          "hankel_rows": [
+            [
+              6,
+              12,
+              9,
+              10,
+              7,
+              3
+            ],
+            [
+              12,
+              9,
+              10,
+              7,
+              3,
+              15
+            ],
+            [
+              9,
+              10,
+              7,
+              3,
+              15,
+              15
+            ]
+          ],
+          "nontrivial_coset_union_orders": [
+            2
+          ],
+          "relation": {
+            "dual_vector": [
+              7,
+              16,
+              3,
+              2,
+              11,
+              13
+            ],
+            "row_coefficients": [
+              4,
+              10,
+              15
+            ],
+            "support_coefficients": [
+              6,
+              1
+            ]
+          },
+          "support_exponents": [
+            3,
+            11
+          ],
+          "support_size": 2,
+          "support_values": [
+            10,
+            7
+          ]
+        },
+        "3:noncoset": {
+          "class": "noncoset",
+          "hankel_rows": [
+            [
+              15,
+              13,
+              8,
+              3,
+              1,
+              13
+            ],
+            [
+              13,
+              8,
+              3,
+              1,
+              13,
+              9
+            ],
+            [
+              8,
+              3,
+              1,
+              13,
+              9,
+              11
+            ]
+          ],
+          "nontrivial_coset_union_orders": [],
+          "relation": {
+            "dual_vector": [
+              9,
+              2,
+              0,
+              2,
+              9,
+              16
+            ],
+            "row_coefficients": [
+              1,
+              4,
+              14
+            ],
+            "support_coefficients": [
+              9,
+              16,
+              1
+            ]
+          },
+          "support_exponents": [
+            0,
+            2,
+            14
+          ],
+          "support_size": 3,
+          "support_values": [
+            1,
+            9,
+            2
+          ]
+        }
+      },
+      "hankel_rows": 3,
+      "kernel_projective_dimension": 2,
+      "kernel_vector_dimension": 3,
+      "max_sparse_support_tested": 3,
+      "name": "sampled_hankel_kernel_planes_j5_t3",
+      "noncoset_min_support_size": 2,
+      "noncoset_support_count": 14312,
+      "rowspaces_with_noncoset_support": 511,
+      "seed": 202607031753,
+      "support_class_counts": {
+        "noncoset": 14312,
+        "nontrivial_coset_union": 16
+      },
+      "support_class_counts_by_size": {
+        "1": {},
+        "2": {
+          "noncoset": 184,
+          "nontrivial_coset_union": 16
+        },
+        "3": {
+          "noncoset": 14128
+        }
+      }
+    }
+  ],
+  "field": {
+    "domain": "F_17^*",
+    "domain_by_exponent": [
+      1,
+      3,
+      9,
+      10,
+      13,
+      5,
+      15,
+      11,
+      16,
+      14,
+      8,
+      7,
+      4,
+      12,
+      2,
+      6
+    ],
+    "n": 16,
+    "p": 17,
+    "primitive_generator": 3
+  },
+  "interpretation": {
+    "counterexample": {
+      "case": "sampled_hankel_kernel_planes_j5_t3",
+      "class": "noncoset",
+      "hankel_rows": [
+        [
+          6,
+          12,
+          9,
+          10,
+          7,
+          3
+        ],
+        [
+          12,
+          9,
+          10,
+          7,
+          3,
+          15
+        ],
+        [
+          9,
+          10,
+          7,
+          3,
+          15,
+          15
+        ]
+      ],
+      "nontrivial_coset_union_orders": [],
+      "relation": {
+        "dual_vector": [
+          16,
+          9,
+          6,
+          1,
+          6,
+          7
+        ],
+        "row_coefficients": [
+          5,
+          6,
+          15
+        ],
+        "support_coefficients": [
+          15,
+          1
+        ]
+      },
+      "support_exponents": [
+        2,
+        3
+      ],
+      "support_size": 2,
+      "support_values": [
+        9,
+        10
+      ]
+    },
+    "noncoset_support_found": true,
+    "outcome": "NONCOSET_SPARSE_SUPPORT_FOUND__COSET_UNION_PREDICTION_FALSE",
+    "qf14_consequence": "The divisor-poset-only termination prediction is false in the tested Hankel-kernel toy cases.  The descent should use the general sparse-support lattice branch unless additional hypotheses exclude these supports."
+  },
+  "max_sparse_support_tested": 3,
+  "nonclaims": [
+    "does not prove a theorem about all Hankel kernels",
+    "does not enumerate all syndrome sequences or all rowspaces",
+    "does not test sparse support size larger than 3",
+    "singletons are recorded as common-root/tangent supports, not as coset-union failures"
+  ],
+  "object": "full-rank Hankel rowspaces R in the dual coefficient space; a support S is counted when R intersects span{ev(x): x in S} with every coefficient on S nonzero",
+  "payload_sha256": "69f466a2a69322618610f964a365016bc282777ecc654d06d2be544ce6889a6a",
+  "roadmap_task": "E17 / QF.14 / f_termination_hankel",
+  "schema": "hankel_kernel_coset_census.v1",
+  "script_sha256": "d4d548e7d2bd152f1f053f868b04539d70b0cdcf99f6a9db26e08e9a25be9cb5",
+  "status": "COUNTEREXAMPLE"
+}

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E17 Hankel-kernel coset-pattern counterexample
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_hankel_kernel_coset_census.py`;
+  `experimental/data/certificates/hankel-kernel-coset-census/hankel_kernel_coset_census_f17_n16.json`;
+  `experimental/notes/m1/hankel_kernel_coset_census.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / COUNTEREXAMPLE.
+- **What is being added:** A deterministic `F_17^*, n=16` E17 verifier for
+  exact sparse dual supports of sampled full-rank Hankel rowspaces, classified
+  against the nontrivial coset-union lattice.  It finds non-coset exact
+  supports, including a `j=5,t=3` support-2 witness on exponents `{2,3}`.
+- **How it is useful:** This triggers the pre-registered E17 failure branch:
+  the divisor-poset-only version of `f_termination_hankel` is false in the
+  tested Hankel-kernel toy cases, so QF.14 should route through the general
+  sparse-support lattice unless later hypotheses restrict the support class.
+- **What to do next:** Decide whether any intended top-rich or primitive-twin
+  hypothesis should be added before salvaging a coset-only statement; otherwise
+  carry the QF.12 general lattice accounting into the Hankel termination lane.
+
 ### 2026-07-03 - Consolidated threshold, M1, and L1 TeX notes
 
 - **Agent/model:** Codex, consolidating threshold/M1/L1 material contributed
