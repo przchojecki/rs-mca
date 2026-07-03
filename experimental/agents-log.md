@@ -37,15 +37,18 @@ Keep entries concise and link to the relevant files.
   `experimental/scripts/verify_e15_worst_word_challenge.py`;
   `experimental/data/certificates/l1-petal-fixed-excess/e15_worst_word_challenge.json`;
   `experimental/agents-log.md`.
-- **Status:** EXPERIMENTAL / AUDIT.
+- **Status:** EXPERIMENTAL / AUDIT / COUNTEREXAMPLE-REFINEMENT.
 - **What is being added:** A bounded E15 red-team packet for the list-side
-  planted-sunflower heuristic. It exhaustively enumerates eight
-  `n=16,k=8,sigma=2` sunflower cells, then scans bounded-excess full-petal
-  challengers at `n=32` and minimal-defect two-petal locator pencils at
-  `n=64`. No non-planted structured challenger is found in the replayed cells.
-- **How it is useful:** Grounds the `worst_word_planted` heuristic against the
-  named E15 structured attacks while keeping the remaining mixed-petal
-  amplification frontier explicit.
+  planted-sunflower heuristic. It exhaustively enumerates `72` replay cells:
+  a toy official-rate `n=16` exact sweep, bounded-excess full-petal
+  challengers at `n=32`, and minimal-defect two-petal locator pencils at
+  `n=64`. The exact sweep finds `sigma=1` mixed-petal cells beating the
+  planted count, while all exact `sigma>=2` cells and all structured larger
+  cells stay clean.
+- **How it is useful:** Refines `worst_word_planted` into a stratified target:
+  low-slack mixed-petal extras are a real exception, while the bounded
+  full-petal/two-petal structured attacks do not explain the remaining L1
+  frontier.
 - **What to do next:** Push the search toward the uncontrolled regimes:
   growing-excess full-petal CRT kernels and diffuse mixed-petal patterns.
 

@@ -1,12 +1,2201 @@
 {
   "cells": [
     {
+      "agreement_sets_checked": 120,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 8
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 8,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 8,
+      "planted_count": 8,
+      "s": 2,
+      "scalar_mode": "linear",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 120,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 8
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 8,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 8,
+      "planted_count": 8,
+      "s": 2,
+      "scalar_mode": "geometric",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 120,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 8
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 8,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 8,
+      "planted_count": 8,
+      "s": 2,
+      "scalar_mode": "linear",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 120,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 8
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 8,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 8,
+      "planted_count": 8,
+      "s": 2,
+      "scalar_mode": "geometric",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 560,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 5
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 5,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 5,
+      "planted_count": 5,
+      "s": 3,
+      "scalar_mode": "linear",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 560,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 5
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 5,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 5,
+      "planted_count": 5,
+      "s": 3,
+      "scalar_mode": "geometric",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 560,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 5
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 5,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 5,
+      "planted_count": 5,
+      "s": 3,
+      "scalar_mode": "linear",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 560,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 5
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 5,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 5,
+      "planted_count": 5,
+      "s": 3,
+      "scalar_mode": "geometric",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 1820,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 4
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 4,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 4,
+      "scalar_mode": "linear",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 1820,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 4
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 4,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 4,
+      "scalar_mode": "geometric",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 1820,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 4
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 4,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 4,
+      "scalar_mode": "linear",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 1820,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 4
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 4,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 4,
+      "scalar_mode": "geometric",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 5,
+      "scalar_mode": "linear",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 5,
+      "scalar_mode": "geometric",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 5,
+      "scalar_mode": "linear",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 1,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 5,
+      "scalar_mode": "geometric",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 560,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "mixed_petal": 6,
+        "planted": 7
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            59,
+            181
+          ]
+        },
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            37,
+            45
+          ]
+        },
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            166,
+            42
+          ]
+        },
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            158,
+            166
+          ]
+        },
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            134,
+            98
+          ]
+        }
+      ],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 13,
+      "n": 16,
+      "nonplanted_count": 6,
+      "petal_count_M": 7,
+      "planted_count": 7,
+      "s": 3,
+      "scalar_mode": "linear",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 560,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "mixed_petal": 4,
+        "planted": 7
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "polynomial_coefficients": [
+            123,
+            180
+          ]
+        },
+        {
+          "agreement": 3,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "polynomial_coefficients": [
+            125,
+            106
+          ]
+        },
+        {
+          "agreement": 3,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          "polynomial_coefficients": [
+            11,
+            68
+          ]
+        },
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            57,
+            8
+          ]
+        }
+      ],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 11,
+      "n": 16,
+      "nonplanted_count": 4,
+      "petal_count_M": 7,
+      "planted_count": 7,
+      "s": 3,
+      "scalar_mode": "geometric",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 560,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "mixed_petal": 1,
+        "planted": 7
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 3,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "polynomial_coefficients": [
+            79,
+            38
+          ]
+        }
+      ],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 8,
+      "n": 16,
+      "nonplanted_count": 1,
+      "petal_count_M": 7,
+      "planted_count": 7,
+      "s": 3,
+      "scalar_mode": "linear",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 560,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "mixed_petal": 2,
+        "planted": 7
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            94,
+            39
+          ]
+        },
+        {
+          "agreement": 3,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            160,
+            54
+          ]
+        }
+      ],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 9,
+      "n": 16,
+      "nonplanted_count": 2,
+      "petal_count_M": 7,
+      "planted_count": 7,
+      "s": 3,
+      "scalar_mode": "geometric",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 1820,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 5
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 5,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 5,
+      "planted_count": 5,
+      "s": 4,
+      "scalar_mode": "linear",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 1820,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 5
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 5,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 5,
+      "planted_count": 5,
+      "s": 4,
+      "scalar_mode": "geometric",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 1820,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 5
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 5,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 5,
+      "planted_count": 5,
+      "s": 4,
+      "scalar_mode": "linear",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 1820,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 5
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 5,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 5,
+      "planted_count": 5,
+      "s": 4,
+      "scalar_mode": "geometric",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 3,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 5,
+      "scalar_mode": "linear",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 3,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 5,
+      "scalar_mode": "geometric",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 3,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 5,
+      "scalar_mode": "linear",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 3,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 5,
+      "scalar_mode": "geometric",
+      "sigma": 3
+    },
+    {
       "agreement_sets_checked": 8008,
       "background_size": 0,
       "beats_planted": false,
       "class_counts": {
         "planted": 3
       },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 6,
+      "scalar_mode": "linear",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 8008,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 6,
+      "scalar_mode": "geometric",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 8008,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 6,
+      "scalar_mode": "linear",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 8008,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 2,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 6,
+      "scalar_mode": "geometric",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "mixed_petal": 23,
+        "planted": 6
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            180,
+            176,
+            57,
+            166
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            27,
+            37,
+            78,
+            51
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            61,
+            92,
+            91,
+            142
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            180,
+            127,
+            106,
+            166
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            27,
+            186,
+            122,
+            51
+          ]
+        }
+      ],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 29,
+      "n": 16,
+      "nonplanted_count": 23,
+      "petal_count_M": 6,
+      "planted_count": 6,
+      "s": 5,
+      "scalar_mode": "linear",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "mixed_petal": 25,
+        "planted": 6
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "polynomial_coefficients": [
+            167,
+            81,
+            151,
+            180
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "polynomial_coefficients": [
+            38,
+            153,
+            40,
+            155
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            69,
+            161,
+            32,
+            124
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            18,
+            124,
+            178,
+            66
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            101,
+            26,
+            140,
+            119
+          ]
+        }
+      ],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 31,
+      "n": 16,
+      "nonplanted_count": 25,
+      "petal_count_M": 6,
+      "planted_count": 6,
+      "s": 5,
+      "scalar_mode": "geometric",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "mixed_petal": 18,
+        "planted": 6
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            2
+          ],
+          "polynomial_coefficients": [
+            158,
+            10,
+            28,
+            63
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            1,
+            0,
+            2,
+            1
+          ],
+          "polynomial_coefficients": [
+            8,
+            147,
+            149,
+            148
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            63,
+            123,
+            37,
+            36
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            1,
+            0,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            145,
+            44,
+            174,
+            89
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 0,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            1,
+            2,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            91,
+            26,
+            142,
+            71
+          ]
+        }
+      ],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 24,
+      "n": 16,
+      "nonplanted_count": 18,
+      "petal_count_M": 6,
+      "planted_count": 6,
+      "s": 5,
+      "scalar_mode": "linear",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "mixed_petal": 22,
+        "planted": 6
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 5,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            1,
+            0,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            55,
+            185,
+            40,
+            57
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            0,
+            0,
+            2,
+            1
+          ],
+          "polynomial_coefficients": [
+            99,
+            110,
+            143,
+            178
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            59,
+            87,
+            13,
+            178
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "polynomial_coefficients": [
+            92,
+            13,
+            173,
+            59
+          ]
+        },
+        {
+          "agreement": 5,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 1,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            0,
+            2,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            162,
+            161,
+            120,
+            121
+          ]
+        }
+      ],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 28,
+      "n": 16,
+      "nonplanted_count": 22,
+      "petal_count_M": 6,
+      "planted_count": 6,
+      "s": 5,
+      "scalar_mode": "geometric",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 8008,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 4
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 4,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 6,
+      "scalar_mode": "linear",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 8008,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 4
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 4,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 6,
+      "scalar_mode": "geometric",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 8008,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 4
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 4,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 6,
+      "scalar_mode": "linear",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 8008,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 4
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 4,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 6,
+      "scalar_mode": "geometric",
+      "sigma": 2
+    },
+    {
+      "agreement_sets_checked": 11440,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 7,
+      "scalar_mode": "linear",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 11440,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 7,
+      "scalar_mode": "geometric",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 11440,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 7,
+      "scalar_mode": "linear",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 11440,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 3,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 3,
+      "planted_count": 3,
+      "s": 7,
+      "scalar_mode": "geometric",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 12870,
+      "background_size": 3,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 2
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 2,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 2,
+      "planted_count": 2,
+      "s": 8,
+      "scalar_mode": "linear",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 12870,
+      "background_size": 3,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 2
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 2,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 2,
+      "planted_count": 2,
+      "s": 8,
+      "scalar_mode": "geometric",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 12870,
+      "background_size": 3,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 2
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 2,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 2,
+      "planted_count": 2,
+      "s": 8,
+      "scalar_mode": "linear",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 12870,
+      "background_size": 3,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 2
+      },
+      "first_nonplanted_examples": [],
+      "k": 4,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 2,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 2,
+      "planted_count": 2,
+      "s": 8,
+      "scalar_mode": "geometric",
+      "sigma": 4
+    },
+    {
+      "agreement_sets_checked": 11440,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "full_petal": 1,
+        "mixed_petal": 55,
+        "planted": 4
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            2,
+            0
+          ],
+          "polynomial_coefficients": [
+            31,
+            98,
+            182,
+            149,
+            79,
+            183,
+            97,
+            146
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 6,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            30,
+            28,
+            48,
+            83,
+            54,
+            105,
+            181,
+            50
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            75,
+            163,
+            100,
+            142,
+            98,
+            65,
+            72,
+            57
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 6,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            30,
+            177,
+            124,
+            92,
+            88,
+            68,
+            143,
+            50
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            0,
+            2,
+            1
+          ],
+          "polynomial_coefficients": [
+            182,
+            161,
+            122,
+            125,
+            168,
+            73,
+            11,
+            123
+          ]
+        }
+      ],
+      "k": 8,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 60,
+      "n": 16,
+      "nonplanted_count": 56,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 9,
+      "scalar_mode": "linear",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 11440,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "full_petal": 2,
+        "mixed_petal": 61,
+        "planted": 4
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 6,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "polynomial_coefficients": [
+            40,
+            178,
+            73,
+            121,
+            86,
+            42,
+            52,
+            180
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            25,
+            16,
+            38,
+            61,
+            16,
+            40,
+            73,
+            117
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            2,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            3,
+            184,
+            13,
+            182,
+            122,
+            115,
+            102,
+            51
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            2,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            108,
+            63,
+            158,
+            142,
+            171,
+            86,
+            151,
+            86
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            2,
+            1
+          ],
+          "polynomial_coefficients": [
+            149,
+            98,
+            50,
+            159,
+            113,
+            132,
+            12,
+            59
+          ]
+        }
+      ],
+      "k": 8,
+      "kind": "exact_all_agreement_sets",
+      "layout": "cyclic_step_1",
+      "list_size": 67,
+      "n": 16,
+      "nonplanted_count": 63,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 9,
+      "scalar_mode": "geometric",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 11440,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "full_petal": 5,
+        "mixed_petal": 60,
+        "planted": 4
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 3,
+          "is_planted": false,
+          "petal_agreements": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            90,
+            64,
+            107,
+            147,
+            139,
+            85,
+            131,
+            125
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            0,
+            2,
+            1
+          ],
+          "polynomial_coefficients": [
+            4,
+            81,
+            1,
+            177,
+            79,
+            46,
+            161,
+            146
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 2,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "polynomial_coefficients": [
+            143,
+            140,
+            24,
+            2,
+            151,
+            137,
+            86,
+            12
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 3,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            2,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            25,
+            59,
+            149,
+            21,
+            32,
+            69,
+            110,
+            37
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 3,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "polynomial_coefficients": [
+            187,
+            75,
+            159,
+            136,
+            133,
+            89,
+            158,
+            144
+          ]
+        }
+      ],
+      "k": 8,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 69,
+      "n": 16,
+      "nonplanted_count": 65,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 9,
+      "scalar_mode": "linear",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 11440,
+      "background_size": 1,
+      "beats_planted": true,
+      "class_counts": {
+        "full_petal": 5,
+        "mixed_petal": 46,
+        "planted": 4
+      },
+      "first_nonplanted_examples": [
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 4,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            2,
+            1
+          ],
+          "polynomial_coefficients": [
+            33,
+            173,
+            130,
+            132,
+            93,
+            138,
+            163,
+            169
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 0,
+          "class": "mixed_petal",
+          "core_agreement": 4,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "polynomial_coefficients": [
+            85,
+            171,
+            13,
+            156,
+            90,
+            3,
+            146,
+            174
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 5,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            94,
+            145,
+            130,
+            79,
+            87,
+            165,
+            108,
+            30
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 3,
+          "is_planted": false,
+          "petal_agreements": [
+            0,
+            2,
+            1,
+            2
+          ],
+          "polynomial_coefficients": [
+            104,
+            38,
+            166,
+            86,
+            33,
+            168,
+            126,
+            117
+          ]
+        },
+        {
+          "agreement": 9,
+          "background_agreement": 1,
+          "class": "mixed_petal",
+          "core_agreement": 3,
+          "is_planted": false,
+          "petal_agreements": [
+            1,
+            2,
+            1,
+            1
+          ],
+          "polynomial_coefficients": [
+            122,
+            118,
+            64,
+            130,
+            4,
+            0,
+            36,
+            171
+          ]
+        }
+      ],
+      "k": 8,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 55,
+      "n": 16,
+      "nonplanted_count": 51,
+      "petal_count_M": 4,
+      "planted_count": 4,
+      "s": 9,
+      "scalar_mode": "geometric",
+      "sigma": 1
+    },
+    {
+      "agreement_sets_checked": 8008,
+      "background_size": 0,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 3
+      },
+      "first_nonplanted_examples": [],
       "k": 8,
       "kind": "exact_all_agreement_sets",
       "layout": "cyclic_step_1",
@@ -26,6 +2215,7 @@
       "class_counts": {
         "planted": 3
       },
+      "first_nonplanted_examples": [],
       "k": 8,
       "kind": "exact_all_agreement_sets",
       "layout": "cyclic_step_1",
@@ -45,44 +2235,7 @@
       "class_counts": {
         "planted": 3
       },
-      "k": 8,
-      "kind": "exact_all_agreement_sets",
-      "layout": "cyclic_step_3",
-      "list_size": 3,
-      "n": 16,
-      "nonplanted_count": 0,
-      "petal_count_M": 3,
-      "planted_count": 3,
-      "s": 10,
-      "scalar_mode": "linear",
-      "sigma": 2
-    },
-    {
-      "agreement_sets_checked": 8008,
-      "background_size": 0,
-      "beats_planted": false,
-      "class_counts": {
-        "planted": 3
-      },
-      "k": 8,
-      "kind": "exact_all_agreement_sets",
-      "layout": "cyclic_step_3",
-      "list_size": 3,
-      "n": 16,
-      "nonplanted_count": 0,
-      "petal_count_M": 3,
-      "planted_count": 3,
-      "s": 10,
-      "scalar_mode": "geometric",
-      "sigma": 2
-    },
-    {
-      "agreement_sets_checked": 8008,
-      "background_size": 0,
-      "beats_planted": false,
-      "class_counts": {
-        "planted": 3
-      },
+      "first_nonplanted_examples": [],
       "k": 8,
       "kind": "exact_all_agreement_sets",
       "layout": "shuffle_1501",
@@ -102,6 +2255,7 @@
       "class_counts": {
         "planted": 3
       },
+      "first_nonplanted_examples": [],
       "k": 8,
       "kind": "exact_all_agreement_sets",
       "layout": "shuffle_1501",
@@ -115,42 +2269,84 @@
       "sigma": 2
     },
     {
-      "agreement_sets_checked": 8008,
-      "background_size": 0,
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
       "beats_planted": false,
       "class_counts": {
-        "planted": 3
+        "planted": 2
       },
+      "first_nonplanted_examples": [],
       "k": 8,
       "kind": "exact_all_agreement_sets",
-      "layout": "shuffle_1502",
-      "list_size": 3,
+      "layout": "cyclic_step_1",
+      "list_size": 2,
       "n": 16,
       "nonplanted_count": 0,
-      "petal_count_M": 3,
-      "planted_count": 3,
-      "s": 10,
+      "petal_count_M": 2,
+      "planted_count": 2,
+      "s": 11,
       "scalar_mode": "linear",
-      "sigma": 2
+      "sigma": 3
     },
     {
-      "agreement_sets_checked": 8008,
-      "background_size": 0,
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
       "beats_planted": false,
       "class_counts": {
-        "planted": 3
+        "planted": 2
       },
+      "first_nonplanted_examples": [],
       "k": 8,
       "kind": "exact_all_agreement_sets",
-      "layout": "shuffle_1502",
-      "list_size": 3,
+      "layout": "cyclic_step_1",
+      "list_size": 2,
       "n": 16,
       "nonplanted_count": 0,
-      "petal_count_M": 3,
-      "planted_count": 3,
-      "s": 10,
+      "petal_count_M": 2,
+      "planted_count": 2,
+      "s": 11,
       "scalar_mode": "geometric",
-      "sigma": 2
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 2
+      },
+      "first_nonplanted_examples": [],
+      "k": 8,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 2,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 2,
+      "planted_count": 2,
+      "s": 11,
+      "scalar_mode": "linear",
+      "sigma": 3
+    },
+    {
+      "agreement_sets_checked": 4368,
+      "background_size": 1,
+      "beats_planted": false,
+      "class_counts": {
+        "planted": 2
+      },
+      "first_nonplanted_examples": [],
+      "k": 8,
+      "kind": "exact_all_agreement_sets",
+      "layout": "shuffle_1501",
+      "list_size": 2,
+      "n": 16,
+      "nonplanted_count": 0,
+      "petal_count_M": 2,
+      "planted_count": 2,
+      "s": 11,
+      "scalar_mode": "geometric",
+      "sigma": 3
     },
     {
       "background_size": 1,
@@ -359,7 +2555,7 @@
   ],
   "field": "F_193",
   "method": {
-    "exact_cells": "n=16,k=8,sigma=2: enumerate every agreement subset of size s=10 and deduplicate degree-<k codewords.",
+    "exact_cells": "n=16: for toy official rates k in {1,2,4,8} and selected small sigma, enumerate every agreement subset of size s=k+sigma and deduplicate degree-<k codewords.",
     "n32_cells": "n=32,k=16,sigma=3: scan all full-petal candidates with cofactor excess d-ell<=2 for selected adversarial layouts.",
     "n64_cells": "n=64,k=32,sigma=3: scan minimal-defect two-petal locator pencils for selected adversarial layouts."
   },
@@ -368,17 +2564,22 @@
     "The n=32 and n=64 scans are structured challenger cells, not exhaustive list decoding.",
     "A clean result here only grounds the worst_word_planted heuristic in these cells."
   ],
-  "overall_interpretation": "NO_STRUCTURED_CHALLENGER_FOUND_IN_BOUNDED_CELLS",
+  "overall_interpretation": "STRUCTURED_NONPLANTED_CHALLENGER_FOUND",
   "question": "Do structured sunflower words in small replayable cells beat the planted sunflower list at matched radius?",
   "roadmap_task": "E15 / worst-word challenge / QL.2",
   "schema": "e15-worst-word-challenge-v1",
-  "script_sha256": "66c3d15a7d825fd6db8aea3afa19ec0237abd5a36d0f37e14b8d16f818e269d0",
+  "script_sha256": "c7c57532285720a0e45000457047574b2c0b287fb4ed9b765cef5f7887e0ee41",
   "status": "EXPERIMENTAL_AUDIT",
   "summary": {
-    "beating_cell_count": 0,
-    "cell_count": 20,
-    "nonplanted_hit_cell_count": 0,
-    "total_exact_n16_list_size": 24,
+    "beating_cell_count": 12,
+    "cell_count": 72,
+    "exact_n16_beating_cell_count": 12,
+    "exact_n16_sigma_ge_two_beating_cell_count": 0,
+    "exact_n16_sigma_one_beating_cell_count": 12,
+    "nonplanted_hit_cell_count": 12,
+    "total_exact_n16_agreement_sets_checked": 328504,
+    "total_exact_n16_list_size": 584,
+    "total_exact_n16_nonplanted_count": 336,
     "total_n32_candidates_checked": 330330,
     "total_n64_pencil_candidates_checked": 5286120
   }

@@ -260,8 +260,28 @@ def classify_pattern(record: dict[str, Any], ell: int) -> str:
     return "background_or_core_only"
 
 
-def exact_n16_cell(layout: str, scalar_mode: str) -> dict[str, Any]:
-    word = sunflower_word(16, 8, 2, layout, scalar_mode)
+EXACT_N16_PARAMETER_CELLS = [
+    # Toy official rates k/n in {1/16, 1/8, 1/4, 1/2}, with small slacks.
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4),
+    (4, 1),
+    (4, 2),
+    (4, 3),
+    (4, 4),
+    (8, 1),
+    (8, 2),
+    (8, 3),
+]
+
+
+def exact_n16_cell(k: int, sigma: int, layout: str, scalar_mode: str) -> dict[str, Any]:
+    word = sunflower_word(16, k, sigma, layout, scalar_mode)
     found: dict[tuple[int, ...], dict[str, Any]] = {}
     for indices in itertools.combinations(range(word["n"]), word["s"]):
         poly = polynomial_through(list(indices), word["domain"], word["values"], word["k"])
@@ -272,6 +292,17 @@ def exact_n16_cell(layout: str, scalar_mode: str) -> dict[str, Any]:
             found[poly] = rec
     class_counts = Counter(classify_pattern(rec, word["ell"]) for rec in found.values())
     nonplanted = sum(1 for poly in found if poly not in word["planted_polynomials"])
+    first_nonplanted = []
+    for poly, rec in found.items():
+        if poly in word["planted_polynomials"]:
+            continue
+        first_nonplanted.append({
+            "polynomial_coefficients": list(poly),
+            "class": classify_pattern(rec, word["ell"]),
+            **rec,
+        })
+        if len(first_nonplanted) >= 5:
+            break
     return {
         "kind": "exact_all_agreement_sets",
         "n": word["n"],
@@ -288,6 +319,7 @@ def exact_n16_cell(layout: str, scalar_mode: str) -> dict[str, Any]:
         "nonplanted_count": nonplanted,
         "beats_planted": len(found) > len(word["planted_polynomials"]),
         "class_counts": dict(sorted(class_counts.items())),
+        "first_nonplanted_examples": first_nonplanted,
     }
 
 
@@ -406,10 +438,11 @@ def two_petal_pencil_scan(
 
 
 def build_report() -> dict[str, Any]:
-    exact_layouts = ["cyclic_step_1", "cyclic_step_3", "shuffle_1501", "shuffle_1502"]
+    exact_layouts = ["cyclic_step_1", "shuffle_1501"]
     scalar_modes = ["linear", "geometric"]
     exact_cells = [
-        exact_n16_cell(layout, scalar_mode)
+        exact_n16_cell(k, sigma, layout, scalar_mode)
+        for k, sigma in EXACT_N16_PARAMETER_CELLS
         for layout in exact_layouts
         for scalar_mode in scalar_modes
     ]
@@ -431,6 +464,13 @@ def build_report() -> dict[str, Any]:
         or cell.get("unique_nonplanted_candidates", 0)
         or cell.get("nonplanted_pencil_solutions", 0)
     ]
+    exact_beating_cells = [cell for cell in exact_cells if cell["beats_planted"]]
+    exact_sigma_one_beating_cells = [
+        cell for cell in exact_beating_cells if cell["sigma"] == 1
+    ]
+    exact_sigma_ge_two_beating_cells = [
+        cell for cell in exact_beating_cells if cell["sigma"] >= 2
+    ]
     source = Path(__file__).read_text()
     return {
         "schema": "e15-worst-word-challenge-v1",
@@ -442,7 +482,8 @@ def build_report() -> dict[str, Any]:
         ),
         "method": {
             "exact_cells": (
-                "n=16,k=8,sigma=2: enumerate every agreement subset of size s=10 "
+                "n=16: for toy official rates k in {1,2,4,8} and selected "
+                "small sigma, enumerate every agreement subset of size s=k+sigma "
                 "and deduplicate degree-<k codewords."
             ),
             "n32_cells": (
@@ -461,6 +502,15 @@ def build_report() -> dict[str, Any]:
             "beating_cell_count": len(beating_cells),
             "nonplanted_hit_cell_count": len(nonplanted_hits),
             "total_exact_n16_list_size": sum(cell["list_size"] for cell in exact_cells),
+            "total_exact_n16_nonplanted_count": sum(
+                cell["nonplanted_count"] for cell in exact_cells
+            ),
+            "exact_n16_beating_cell_count": len(exact_beating_cells),
+            "exact_n16_sigma_one_beating_cell_count": len(exact_sigma_one_beating_cells),
+            "exact_n16_sigma_ge_two_beating_cell_count": len(exact_sigma_ge_two_beating_cells),
+            "total_exact_n16_agreement_sets_checked": sum(
+                cell["agreement_sets_checked"] for cell in exact_cells
+            ),
             "total_n32_candidates_checked": sum(cell["candidates_checked"] for cell in n32_cells),
             "total_n64_pencil_candidates_checked": sum(cell["candidate_pairs_checked"] for cell in n64_cells),
         },
@@ -479,17 +529,23 @@ def build_report() -> dict[str, Any]:
 
 
 def assert_invariants(report: dict[str, Any]) -> None:
-    if report["overall_interpretation"] != "NO_STRUCTURED_CHALLENGER_FOUND_IN_BOUNDED_CELLS":
+    if report["overall_interpretation"] != "STRUCTURED_NONPLANTED_CHALLENGER_FOUND":
         raise AssertionError(report["overall_interpretation"])
-    if report["summary"]["cell_count"] != 20:
+    if report["summary"]["cell_count"] != 72:
         raise AssertionError(report["summary"]["cell_count"])
-    if report["summary"]["beating_cell_count"] != 0:
+    if report["summary"]["beating_cell_count"] != 12:
         raise AssertionError(report["summary"]["beating_cell_count"])
-    if report["summary"]["nonplanted_hit_cell_count"] != 0:
+    if report["summary"]["nonplanted_hit_cell_count"] != 12:
         raise AssertionError(report["summary"]["nonplanted_hit_cell_count"])
+    if report["summary"]["exact_n16_sigma_one_beating_cell_count"] != 12:
+        raise AssertionError(report["summary"])
+    if report["summary"]["exact_n16_sigma_ge_two_beating_cell_count"] != 0:
+        raise AssertionError(report["summary"])
     for cell in report["cells"]:
         if cell["kind"] == "exact_all_agreement_sets":
-            if cell["list_size"] != cell["planted_count"]:
+            if cell["sigma"] >= 2 and cell["list_size"] != cell["planted_count"]:
+                raise AssertionError(cell)
+            if cell["sigma"] == 1 and cell["beats_planted"] != (cell["k"] in {2, 4, 8}):
                 raise AssertionError(cell)
         if cell["kind"] == "structured_full_petal_bounded_excess_scan":
             if cell["unique_nonplanted_candidates"] != 0:
