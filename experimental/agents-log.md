@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - L1 coset petal rank theorem and reconstruction collapse
+
+- **Agent/model:** Claude Fable 5 (PI) with Claude Opus 4.8 / Sonnet 5
+  verification workflows; holmbuar.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_coset_petal_rank_collapse.md`,
+  `experimental/scripts/verify_l1_coset_petal_rank_collapse.py`.
+- **Status:** PROVED-LOCAL (block decomposition, rank cap + exact forced-drop
+  window, Hankel normal form, t=3 reconstruction collapse with exact 0/1
+  extra count); EXPERIMENTAL (t>=5 delimitation: top-defect polynomial
+  growth law, minimal-generator equality observed).
+- **What is being added:** A complete rank/kernel theory of the
+  round-robin-coset petal family from the PR #169 route-cut: the CRT
+  operator block-diagonalizes by degree mod ell, forcing the rank drop
+  (t odd, exact window) for every scalar choice; and at t=3 all abundant
+  split kernel locators reconstruct to a single listed codeword, so the
+  stratum's full-petal extra count is exactly 0 or 1.
+- **How it is useful:** Pays a named stratum of the mixed-petal residual of
+  Conjecture 1 (l1_full_list_quotient_proof_program.md) exactly, closes the
+  split-locator-concentration escape route of Lemma 8 for this family,
+  upgrades the #169 route-cut to a theorem, and supplies reusable
+  Hankel-lane normal forms; decode-verified on both sides of the resonance
+  dichotomy and of the window boundary.
+- **What to do next:** Prove the t>=5 divisibility-minimality equality and
+  the interior O(t)-type bound; treat the top-defect layer d=(t-1)ell
+  (populated without resonance) as the next chart; check overlap with
+  Lemma 14-16 coverage during integration.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
