@@ -242,3 +242,123 @@ The roadmap-maker lane commits to processing every completed packet into
 the DAG within one maintenance pass: gate reweighting notes, grounded
 conjecture nodes (with the measured constants), or S9 events — with the
 packet cited as the evidence edge.
+
+# WAVE 3 (2026-07-03) — evidence for the morning decompositions
+
+Same discipline: pre-registered tables, one PR per task, negative
+results publish identically. Ranked by expected information.
+
+## E17 — Hankel-kernel support patterns (gates f_termination_hankel)
+
+```text
+TARGET    f_termination_hankel / f_descent_termination
+QUESTION  are sparse-dual-word supports of Hankel-kernel flats always
+          COSET UNIONS (the displacement-structure prediction)?
+PRIOR     ~80% yes — E7's kernel twins were exactly coset pairs
+METHOD    E9-style census RESTRICTED to Hankel-pencil kernel flats
+          (n = 16, j <= 5; the #183 kernel-sample machinery reruns);
+          record every sparse word's support against the coset lattice
+INTERPRET all coset unions => the lattice bound (QF.14) proceeds on
+          the divisor poset; ONE non-coset support => the prediction
+          dies and termination needs the general lattice argument
+```
+
+## E18 — Full pair-orbit E_3 scanner (the c_xr_content kill-switch)
+
+```text
+TARGET    c_xr_content / xr_inverse
+QUESTION  E11 scanned a candidate DICTIONARY; do actual A_{u,v}
+          pair-orbit alignment sets, post-strip, have top E_3 only at
+          fixed-core/fixed-hole structures?
+PRIOR     ~75% clean (dictionary + k=1 dictators both agree)
+METHOD    exhaustive pair orbits at n = 16 (mu_16 in F_97), sampled at
+          n = 32; strip quotient strata; compute E_3 of the true
+          alignment sets; classify every top-decile set
+INTERPRET clean => c_xr_content grounded at the object level; the KMS
+          route proceeds with confidence | an unstructured top set =>
+          C_XR needs a new member BEFORE the import note is written
+```
+
+## E19 — Globalness measurement (previews the XR shortcut)
+
+```text
+TARGET    xr_globalness_from_ledger
+QUESTION  do post-strip alignment sets have link densities BELOW the
+          KLLM globalness threshold at every core size r?
+PRIOR     ~70% yes (the tangent ledger should enforce it; never measured)
+METHOD    same pair-orbit data as E18: for each alignment set, tabulate
+          density on every fixed-core link (r = 1..4) vs the paid
+          tangent bound and vs the KLLM threshold formula
+INTERPRET below threshold everywhere => the globalness certificate is
+          real; QX.11 becomes a write-up | a leak at some r => either
+          an unpaid tangent leak (R2-relevant — report loudly) or the
+          strip is incomplete at that scale
+```
+
+## E20 — KMS/KLLM loss-exponent tables (statement arithmetic, no compute)
+
+```text
+TARGET    xr_kms_parameter_matching
+QUESTION  do the published quantitative forms (KMS Johnson, DKKMS
+          Grassmann, KLLM global hypercontractivity) survive FM-scale
+          measure mu ~ q^{1-t}?
+PRIOR     raw KMS ~25%; KLLM route ~65%
+METHOD    literature statement extraction ONLY: tabulate each theorem's
+          loss exponents; per rate, compare against the available FM
+          gap; no experiments
+INTERPRET KLLM survives => the import (QX.12) proceeds | both fail =>
+          the XR wall needs a strengthened small-set theorem — named,
+          honest, and known before anyone writes bridge notes
+```
+
+## E21 — Circuit census growth (calibrates the syzygy branch)
+
+```text
+TARGET    spread_syzygy_circuit_bound / circuit_locus_density
+QUESTION  how does the minimal-circuit count grow in n (E13: 71 at
+          n = 32, first 16 blocks)?
+PRIOR     q-suppressed poly growth (~75%) per the determinantal-locus
+          prediction
+METHOD    extend the E13 census across n = 16..64, full block ranges,
+          two field sizes (to see the q-dependence directly);
+          also settle the flagged caveat: do the two identities
+          involve (u,v) or locator data only
+INTERPRET growth matches deg/q^c => QS.4's density argument is
+          calibrated | faster growth => the locus argument misses
+          circuit families — the branch needs its own taxonomy
+```
+
+## E22 — Challenger-class census (completes the E15 repair)
+
+```text
+TARGET    worst_word_planted (revised) / list_planted_arithmetic
+QUESTION  does planted + the E15 structured challenger class EXHAUST
+          the extremal words, and what is the challenger's exact count
+          formula?
+PRIOR     ~70% two classes suffice
+METHOD    extend the E15 search at sigma = 1..3, n = 16..64: enumerate
+          all words beating 0.9 x planted list; classify against the
+          two known classes; extract the challenger count formula
+INTERPRET two classes exhaust => QL.5's two-column arithmetic closes
+          the repair | a THIRD class => iterate the E15 protocol
+          (enlarge, price, re-census) — the endgame absorbs it
+```
+
+## E23 — The A=425 unsafe side (the strongest unclaimed item, now with compute)
+
+```text
+TARGET    second_pin_a426
+QUESTION  is LD_sw(RS[F_p, D, 256], 425) > 87 at the #204 budget-prime
+          row?
+PRIOR     ~85% yes (the staircase steps by q-factors; 425 sits one
+          step below a count that EQUALS B*)
+METHOD    exact computation in the #204 framework one grid step down:
+          the two-core structural numerator at A = 425, specialized to
+          the budget prime; if exact evaluation is heavy, a certified
+          witness family (qfloor at the active scale) suffices for >
+INTERPRET > 87 => THE SECOND PIN IS COMPLETE — a window-edge
+          threshold-pinned row, the strongest partial of the program;
+          <= 87 => the crossing sits deeper: relocate the budget prime
+          per the staircase table and re-run (the framework makes this
+          a parameter change, not new mathematics)
+```
