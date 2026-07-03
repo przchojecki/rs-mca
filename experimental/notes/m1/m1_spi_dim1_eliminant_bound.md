@@ -8,6 +8,8 @@ This note packages the roadmap node `spi_dim1`: the first underdetermined
 dimension-one divisor-pencil chart has a finite eliminant unless it is an
 identically valid residual.  For the pinned `F_17^32`, `n=512`, `k=256`,
 `A=384` row, the resulting global one-parameter degree cap is `49408`.
+The local U1-U5 chart identities used below are isolated in
+`experimental/notes/m1/m1_deficiency_one_u1_u5_chain.md`.
 
 ## Setup
 

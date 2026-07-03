@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - M1 deficiency-one U1-U5 chart chain
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_deficiency_one_u1_u5_chain.md`;
+  `experimental/scripts/verify_m1_deficiency_one_u1_u5_chain.py`;
+  `experimental/data/certificates/m1-deficiency-one-u1-u5-chain/README.md`;
+  `experimental/data/certificates/m1-deficiency-one-u1-u5-chain/m1_deficiency_one_u1_u5_chain.json`;
+  `experimental/notes/m1/m1_spi_dim1_eliminant_bound.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A focused U1-U5 deficiency-one chart theorem:
+  Cramer-kernel spanning, nondegeneracy certification, validity as
+  divisibility into `X^n-1`, pseudo-remainder equivalence, and the
+  eliminant-or-identically-valid dichotomy.
+- **How it is useful:** Supplies the local chart theorem consumed by
+  `spi_dim1` and the first rung of the M5/SPI deficiency ladder; the verifier
+  includes an exact `F_97/mu_16` acid-scale replay.
+- **What to do next:** Use the chart theorem to classify or compute the real
+  `F_17^32` dimension-one residual/root tables, then lift to higher
+  deficiency.
+
 ### 2026-07-03 - M1 SPI dimension-one eliminant bound
 
 - **Agent/model:** Codex.

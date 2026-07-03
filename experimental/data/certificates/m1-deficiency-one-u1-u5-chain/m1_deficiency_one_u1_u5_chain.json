@@ -1,0 +1,88 @@
+{
+  "dag_targets": [
+    "u1_cramer",
+    "u2_nondegeneracy",
+    "u3_divisibility",
+    "u4_pseudoremainder",
+    "u5_dichotomy"
+  ],
+  "f97_u3_u5_acid_test": {
+    "agreement": 12,
+    "chart_counts": {
+      "low_degree": 0,
+      "rank_drop": 0,
+      "top": 97
+    },
+    "coefficient_polynomial_degrees": [
+      52,
+      52,
+      52,
+      52
+    ],
+    "coefficient_polynomial_hashes": [
+      "9ef7062d337d920524e5a164c25a4aa962a283c14fc56ab10c8da0efc420e8ce",
+      "f8f55fad962ea04b4aea957f0eb020920df4b9075a4d40801fd6ab6a77c62aa6",
+      "34f1c6f4111422dd6a53910a8ba91f6ecf4850e77906eefdd9503f34c098e7c0",
+      "7b734dabcdcf39676a5e6da3e27d872bac641082f394fd6edc611c6ecd1c8f98"
+    ],
+    "family": "F_97/mu_16 acid-scale family",
+    "field": "F_97",
+    "j": 4,
+    "k": 8,
+    "n": 16,
+    "pseudo_remainder_delta": 13,
+    "separable": true,
+    "subgroup_order": 16,
+    "t": 4,
+    "u3_divisibility_agrees_with_roots": true,
+    "u4_pseudo_remainder_agrees_with_direct_division": true,
+    "u5_gcd_eliminant": [
+      1
+    ],
+    "u5_gcd_roots": [],
+    "valid_top_chart_slopes": []
+  },
+  "non_claims": [
+    "does not compute the F_17^32 root table",
+    "does not classify identically valid residual pencils",
+    "does not close higher-dimensional SPI"
+  ],
+  "schema": "m1-deficiency-one-u1-u5-chain-v1",
+  "status": "PROVED_SYMBOLIC_WITH_TOY_REPLAY",
+  "theorem": {
+    "pinned_global_cap": "for n=512,k=256,A=384, t+(n-j+1)t = 49408",
+    "u1": "signed maximal-minor vector spans the kernel at full row rank",
+    "u2": "one nonzero maximal-minor evaluation certifies a nondegenerate Cramer chart",
+    "u3": "top degree-j locator is valid iff it divides X^n-1",
+    "u4": "top-chart pseudo-remainder has the same zero set as direct divisibility",
+    "u5": "nonzero pseudo-remainder coefficients give an eliminant; all zero is an identically valid residual"
+  },
+  "u1_u2_families": [
+    {
+      "family": "F_13 smoke family",
+      "field": "F_13",
+      "full_row_rank_slopes": 12,
+      "rank_drop_slopes": [
+        0
+      ],
+      "u1_cramer_matches_rref": true,
+      "u2_nonzero_minor_certificate": {
+        "minor_value": 3,
+        "omitted_column": 0,
+        "slope": 1
+      }
+    },
+    {
+      "family": "F_97/mu_16 acid-scale family",
+      "field": "F_97",
+      "full_row_rank_slopes": 97,
+      "rank_drop_slopes": [],
+      "u1_cramer_matches_rref": true,
+      "u2_nonzero_minor_certificate": {
+        "minor_value": 88,
+        "omitted_column": 0,
+        "slope": 0
+      }
+    }
+  ]
+}
