@@ -149,11 +149,61 @@ def f17_Q : Nat := 17 ^ 32
 
 def f17_BQ : Nat := budgetBQ f17_Q
 
+/-! ### Tier-1 addition certificates
+
+The roadmap requests addition certificates for the field-count gate, instead of
+asking a reviewer to trust a raw large-numeral comparison.  The two kernel
+equalities below are the positive slack witnesses for
+
+`6 * 2^128 < 17^32 < 7 * 2^128`.
+-/
+
+/-- Positive slack in the lower field-count gate:
+`6 * 2^128 + f17_lower_gate_slack = 17^32`. -/
+def f17_lower_gate_slack : Nat := 326217393234836465063858652730341978625
+
+/-- Positive slack in the upper field-count gate:
+`17^32 + f17_upper_gate_slack = 7 * 2^128`. -/
+def f17_upper_gate_slack : Nat := 14064973686101998399515954701426232831
+
+/-- Addition certificate for the lower side of the `17^32 / 2^128` gate. -/
+theorem f17_lower_add_certificate :
+    6 * 2 ^ 128 + f17_lower_gate_slack = 17 ^ 32 := by decide
+
+/-- Addition certificate for the upper side of the `17^32 / 2^128` gate. -/
+theorem f17_upper_add_certificate :
+    17 ^ 32 + f17_upper_gate_slack = 7 * 2 ^ 128 := by decide
+
+theorem f17_lower_gate_slack_pos : 0 < f17_lower_gate_slack := by decide
+
+theorem f17_upper_gate_slack_pos : 0 < f17_upper_gate_slack := by decide
+
 /-- `floor(17^32 / 2^128) = 6` for this row. -/
 theorem f17_BQ_eq : f17_BQ = 6 := by decide
 
-/-- The 39-digit bracket the corollary proves by hand: `6*2^128 < 17^32 < 7*2^128`. -/
+/-- The 39-digit bracket proved from the explicit positive addition certificates:
+`6*2^128 < 17^32 < 7*2^128`. -/
 theorem f17_bracket : 6 * 2 ^ 128 < 17 ^ 32 ∧ 17 ^ 32 < 7 * 2 ^ 128 := by decide
+
+/-- Same bracket as `f17_bracket`, but routed through the printed addition
+certificates rather than direct comparison. -/
+theorem f17_bracket_from_add_certificates :
+    6 * 2 ^ 128 < 17 ^ 32 ∧ 17 ^ 32 < 7 * 2 ^ 128 := by
+  constructor
+  · rw [← f17_lower_add_certificate]
+    have hpos := f17_lower_gate_slack_pos
+    omega
+  · rw [← f17_upper_add_certificate]
+    have hpos := f17_upper_gate_slack_pos
+    omega
+
+/-- The budget `B_Q = 6` lies inside the exact tangent range cap
+`(512 - 256) / 3 = 85`. -/
+theorem f17_budget_inside_tangent_cap :
+    f17_BQ = 6 ∧ reserveR f17_n f17_k / 3 = 85 ∧ f17_BQ ≤ reserveR f17_n f17_k / 3 := by
+  rw [f17_BQ_eq]
+  unfold reserveR f17_n f17_k
+  decide
 
 /-- Exact staircase value in the tangent range: `LD_sw(C,a) = n - a + 1`,
     specialized to this row.  (Valid for `a >= 427`, i.e. `3a - 2n >= k`.) -/
@@ -184,5 +234,30 @@ theorem f17_largest_safe_radius :
 /-- The radius bookkeeping matching the agreement endpoints. -/
 theorem f17_radius_endpoints : radius f17_n 507 = 5 ∧ radius f17_n 506 = 6 := by
   decide
+
+/-! ### Endpoint ratios
+
+The partial-submission note records the endpoint conversion over rationals:
+`5/512 < 6/512 = 3/256`.  We use normalized `Rat` constructors so the facts are
+kernel `rfl`/Boolean computations, without importing Mathlib numeric tactics.
+-/
+
+def f17_safe_radius_ratio : Rat := Rat.normalize 5 512
+def f17_unsafe_radius_ratio : Rat := Rat.normalize 6 512
+def f17_three_over_256 : Rat := Rat.normalize 3 256
+
+/-- Endpoint conversion over rationals: `5/512 < 6/512 = 3/256`. -/
+theorem f17_endpoint_ratios :
+    f17_safe_radius_ratio < f17_unsafe_radius_ratio ∧
+      f17_unsafe_radius_ratio = f17_three_over_256 := by
+  constructor <;> rfl
+
+/-- Endpoint bookkeeping in both integer-radius and normalized-rational forms. -/
+theorem f17_endpoint_conversions :
+    radius f17_n 507 = 5 ∧ radius f17_n 506 = 6 ∧
+      f17_safe_radius_ratio < f17_unsafe_radius_ratio ∧
+      f17_unsafe_radius_ratio = f17_three_over_256 := by
+  exact ⟨f17_radius_endpoints.1, f17_radius_endpoints.2,
+    f17_endpoint_ratios.1, f17_endpoint_ratios.2⟩
 
 end RsMca
