@@ -624,6 +624,24 @@ QS.5 [circuit_pricing] (S)  The deficiency-1 reuse: minimal circuit =
       applies verbatim; O(1) slopes per circuit or a named paid branch.
 ```
 
+## Tier D6 — the XR wall's final assembly (2026-07-03; the soft-wall push)
+
+```text
+QX.13 [xr_ledger_qpower] (S-M)  Formalize the q-factor-per-constraint
+      suppression c(s,t) from the #152 residual-system ranks (t=2, s=1
+      proved; parameterize the general shape).
+QX.14 [xr_radius_arithmetic] (S, after QX.13's parameterization)  THE
+      TABLE: per rate, ledger q-powers + anticode factors + structured
+      absorption vs the FM target; solve for the required ledger reach
+      s*(rate). One spreadsheet-grade computation that prices the
+      entire wall: s* small => the wall is soft and exchange_ledger_
+      gen_t knows exactly what to prove; s* growing with t => the
+      wall is hard and we know WHERE.
+QX.15 [xr_distance_dichotomy assembly note] (M; after QX.14)  The
+      three-tool exhaustive split written as the wall's master
+      statement, with the coverage table as its quantitative spine.
+```
+
 ## Sequencing notes
 
 STRATEGIC OVERLAY: see `strategic_recommendations.md` (computed from the

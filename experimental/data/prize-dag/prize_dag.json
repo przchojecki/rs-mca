@@ -453,7 +453,8 @@
    "status": "TARGET",
    "refs": [
     "proof_sketch/s3b_iii_2_displacement_spectral.md#7"
-   ]
+   ],
+   "notes": "QUANTIFIED GOAL (via xr_radius_arithmetic): the generalization now has a numeric target \u2014 reach s*(rate); each unit of algebraic reach is worth ~log q ~ 250 combinatorial steps."
   },
   {
    "id": "averaged_xr",
@@ -2395,6 +2396,35 @@
    "refs": [
     "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
    ]
+  },
+  {
+   "id": "xr_distance_dichotomy",
+   "title": "The XR final assembly: three tools partition the distance scales",
+   "status": "TARGET",
+   "key": true,
+   "statement": "For a fixed post-strip pair, bound |A| by the exhaustive per-scale split: (i) CLOSE pairs (exchange distance <= ledger reach s_L): residual systems suppress at a q-FACTOR per step (#152's mechanism); (ii) FAR-ONLY sets (distance-s independent): Delsarte/anticode bounds at (j/n) per step; (iii) STRUCTURED mass (link-dense): the KMS/globalness route (juntas = tangent-paid). The wall closes iff the three coverages overlap \u2014 determined by xr_radius_arithmetic. The dichotomy is exhaustive by construction; the assembly is the wall.",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#2"
+   ]
+  },
+  {
+   "id": "xr_ledger_qpower",
+   "title": "Each residual constraint is worth a q-factor: the ledger's exchange rate over combinatorics",
+   "status": "PROVABLE",
+   "statement": "From the #152 structure: each exchange step's residual constraint is an algebraic equation over F_q, so aligned-pair probability at distance s carries q^{-c(s,t)} suppression (c >= 1 per overdetermined step) \u2014 versus the anticode's (j/n) ~ 2^{-1} per step. One algebraic step buys what ~log q ~ 250 combinatorial steps buy. Formalize c(s,t) from the residual-system ranks (t = 2, s = 1 proved; the general shape is the target of exchange_ledger_gen_t).",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#2"
+   ]
+  },
+  {
+   "id": "xr_radius_arithmetic",
+   "title": "The coverage table: compute the REQUIRED ledger reach s*(rate) \u2014 a number, not a hope",
+   "status": "PROVABLE",
+   "statement": "Pure arithmetic once c(s,t) is parameterized: per rate, tabulate total suppression from (ledger q-powers up to s_L) + (anticode factors beyond) + (KMS-side structured absorption) against the FM target q^{t-1}/n^B; solve for the minimal ledger reach s* that closes the gap. Turns exchange_ledger_gen_t from 'generalize past t = 2' into 'reach s* = <specific number>' \u2014 and reveals immediately whether s* is small (soft wall) or grows with t (hard wall).",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#2"
+   ],
+   "notes": "the single most information-dense computation available on the XR front: it prices the whole wall"
   }
  ],
  "edges": [
@@ -4452,6 +4482,46 @@
    "from": "u5_dichotomy",
    "to": "circuit_pricing",
    "kind": "ev"
+  },
+  {
+   "from": "xr_distance_dichotomy",
+   "to": "xr_wall",
+   "kind": "req"
+  },
+  {
+   "from": "xr_ledger_qpower",
+   "to": "xr_distance_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "xr_radius_arithmetic",
+   "to": "xr_distance_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "xr_anticode_toolkit",
+   "to": "xr_distance_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "xr_globalness_from_ledger",
+   "to": "xr_distance_dichotomy",
+   "kind": "ev"
+  },
+  {
+   "from": "exchange_calculus",
+   "to": "xr_ledger_qpower",
+   "kind": "req"
+  },
+  {
+   "from": "xr_ledger_qpower",
+   "to": "xr_radius_arithmetic",
+   "kind": "req"
+  },
+  {
+   "from": "exchange_ledger_gen_t",
+   "to": "xr_distance_dichotomy",
+   "kind": "req"
   }
  ]
 }
