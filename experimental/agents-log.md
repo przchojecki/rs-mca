@@ -1517,3 +1517,34 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+### 2026-07-04 - L1 prime-ell onset (pair-counting kills the t=3 mixed kernel set)
+
+- **Agent/model:** Claude Fable 5 (PI) with a Claude Opus 4.8 / Sonnet 5 fan-out
+  panel (draft, two-verifier panel, re-audit); holmbuar.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_prime_ell_onset.md`,
+  `experimental/scripts/verify_l1_prime_ell_onset.py`.
+- **Status:** PROVED-LOCAL (Theorem R: `ell` an odd prime, `t=3`, `m=t+1` — no
+  mixed minimal kernel set, every `p`, every distinct-nonzero scalar vector;
+  Lemma R pair-count bound `sum_j rho_j(rho_j-1) <= (ell-1)(ell-2)`, valid for
+  every `m=t+1` and every `t`; Lemma Psi_1, the first rung of the general-`m`
+  rigidity hierarchy; the `ell=5` `m<ell` vacancy for all `t>=3` and `(2,3)`).
+  CERTIFICATE (razor-tight retained-`2ell-1` witness at `(5,3,4)`, `p=41`).
+  EXPERIMENTAL (`(t=2,m=4,ell=5)` exhaustive all-scalar vacancy, verifier gate
+  (v)). PROVED limitation: pair-counting closes exactly `t=3` (the closing
+  integer program exceeds `2ell-1` for `t>=4`).
+- **What is being added:** The first `m > t` vacancy theorem on the `m < ell`
+  frontier, complementing the companion threshold note (Theorem A, `m <= t`).
+  The proof mechanism (a single fixed sector polynomial `Gamma` at `m=t+1`,
+  pair-counted against `mu_ell`-rotations) is exactly what composite `ell`
+  lacks (`omega^r = 1` for `r = ell/e`), explaining the prime/composite onset
+  dichotomy observed in the companion's `ell=6` counterexamples.
+- **How it is useful:** Pins the prime-`ell` mixed onset strictly above
+  `m = t+1` at `t=3`, resolves `ell=5` on the `m < ell` frontier (one `t=2`
+  cell experimental), and records both the tight extremal configuration and
+  the proved method boundary so follow-up work targets the actual gap (the
+  realizability constraint for `t>=4`; the rigidity hierarchy for `m > t+1`).
+- **What to do next:** Assemble the `Psi_nu` rungs against the listedness
+  budget for general `m`; find the `t>=4` realizability constraint; composite
+  `ell` routes through the stabilizer-descent classification instead. No paper
+  text changes; material stays in `experimental/`.
