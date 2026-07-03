@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - E25 dihedral toy audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_e25_dihedral_toy_audit.py`;
+  `experimental/notes/roadmaps/e25_dihedral_toy_audit.md`;
+  `experimental/data/certificates/e25-dihedral-toy-audit/`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** TOY AUDIT / PARTIAL / ABSORBED.
+- **What is being added:** A deterministic `F_17`/`F_97` `mu_16` audit for
+  E25.  It verifies inverse-pair palindromic locators as
+  Chebyshev/dihedral pullbacks and solves the finite alignment systems for
+  Chebyshev-character basis lines at `k=8`, `A=10,12,14`.
+- **How it is useful:** The audit finds dihedral-only toy alignment events but
+  charges all of them to the tangent, cyclic-quotient, or
+  dihedral/antipodal ledgers, leaving zero unpaid residual in the checked toy
+  packet.  This is first evidence for the absorbed E25 branch feeding E26/E28.
+- **What to do next:** Extend from basis-line toys to the full dihedral word
+  space and then run the restricted M5 `A=384..426` chart machinery before
+  promoting E25 to a global payment-completeness statement.
+
 ### 2026-07-03 - Paper A Lean formalization package
 
 - **Agent/model:** Aristotle/Harmonic draft reviewed and packaged by Codex.

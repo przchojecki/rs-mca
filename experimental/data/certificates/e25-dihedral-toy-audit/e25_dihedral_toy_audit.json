@@ -1,0 +1,1634 @@
+{
+  "cases": [
+    {
+      "alignment_examples": [
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            9
+          ],
+          "character_line": [
+            2,
+            4
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            12,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            2
+          ],
+          "character_line": [
+            5,
+            7
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            12,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            14
+          ],
+          "character_line": [
+            1,
+            4
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            11
+          ],
+          "character_line": [
+            1,
+            6
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            8
+          ],
+          "character_line": [
+            3,
+            5
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            7
+          ],
+          "character_line": [
+            3,
+            8
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            15
+          ],
+          "character_line": [
+            4,
+            6
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            14
+          ],
+          "character_line": [
+            5,
+            8
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            8,
+            11,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            16
+          ],
+          "character_line": [
+            3,
+            6
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            8,
+            10,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            1
+          ],
+          "character_line": [
+            2,
+            7
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            8,
+            9,
+            13,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            1
+          ],
+          "character_line": [
+            3,
+            6
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            8,
+            11,
+            12,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            1
+          ],
+          "character_line": [
+            4,
+            5
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            8,
+            10,
+            11,
+            14,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        }
+      ],
+      "alignment_summary": {
+        "audited_character_lines_per_support": 36,
+        "finite_alignment_events_by_ledger": {
+          "dihedral_antipodal_charge": 100,
+          "multiplicative_quotient_overlap": 80,
+          "tangent_code_endpoint": 736
+        },
+        "unpaid_after_tangent_quotient_dihedral_ledgers": 0
+      },
+      "dimension_summary": {
+        "A=10:C=8:D=5:I=3": 21,
+        "A=10:C=8:D=6:I=4": 35,
+        "A=12:C=8:D=6:I=2": 7,
+        "A=12:C=8:D=7:I=3": 21,
+        "A=14:C=8:D=7:I=1": 1,
+        "A=14:C=8:D=8:I=2": 7
+      },
+      "domain": {
+        "mu_16_generator": 3,
+        "n": 16,
+        "values_by_exponent": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ]
+      },
+      "p": 17,
+      "row": {
+        "agreements": [
+          10,
+          12,
+          14
+        ],
+        "k": 8
+      },
+      "support_examples": [
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            10,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            3,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            4,
+            7,
+            9,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            10,
+            11,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            4,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            5,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            9,
+            10,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            3,
+            4,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            9,
+            11,
+            12,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [
+            8
+          ],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            3,
+            5,
+            6
+          ],
+          "orbit_ledger": "multiplicative_quotient_overlap",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0,
+            8
+          ],
+          "support_exponents": [
+            1,
+            2,
+            4,
+            6,
+            7,
+            9,
+            10,
+            12,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            4,
+            5,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [
+            8
+          ],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            2,
+            3,
+            4,
+            6
+          ],
+          "orbit_ledger": "multiplicative_quotient_overlap",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0,
+            8
+          ],
+          "support_exponents": [
+            1,
+            3,
+            4,
+            5,
+            7,
+            9,
+            11,
+            12,
+            13,
+            15
+          ]
+        }
+      ],
+      "support_summary": {
+        "by_family": {
+          "A=10:fixed_branch_pm1": 35,
+          "A=10:moving_inverse_pairs": 21,
+          "A=12:fixed_branch_pm1": 21,
+          "A=12:moving_inverse_pairs": 7,
+          "A=14:fixed_branch_pm1": 7,
+          "A=14:moving_inverse_pairs": 1
+        },
+        "by_orbit_ledger": {
+          "dihedral_antipodal_only": 80,
+          "multiplicative_quotient_overlap": 12
+        },
+        "total_supports": 92
+      }
+    },
+    {
+      "alignment_examples": [
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            1,
+            5
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            8,
+            11,
+            12,
+            13,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            2,
+            6
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            8,
+            11,
+            12,
+            13,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            3,
+            7
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            8,
+            11,
+            12,
+            13,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            48
+          ],
+          "character_line": [
+            4,
+            8
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            8,
+            11,
+            12,
+            13,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            1,
+            5
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            8,
+            9,
+            12,
+            13,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            2,
+            6
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            8,
+            9,
+            12,
+            13,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            3,
+            7
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            8,
+            9,
+            12,
+            13,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            48
+          ],
+          "character_line": [
+            4,
+            8
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            8,
+            9,
+            12,
+            13,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            1,
+            5
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            9,
+            11,
+            12,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            2,
+            6
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            9,
+            11,
+            12,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            96
+          ],
+          "character_line": [
+            3,
+            7
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            9,
+            11,
+            12,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        },
+        {
+          "aligned_finite_slope_count": 1,
+          "aligned_finite_slopes_sample": [
+            48
+          ],
+          "character_line": [
+            4,
+            8
+          ],
+          "ledger_counts": {
+            "dihedral_antipodal_charge": 1
+          },
+          "support_exponents": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            9,
+            11,
+            12,
+            15
+          ],
+          "u_fits_code_on_support": false,
+          "v_fits_code_on_support": false
+        }
+      ],
+      "alignment_summary": {
+        "audited_character_lines_per_support": 36,
+        "finite_alignment_events_by_ledger": {
+          "dihedral_antipodal_charge": 64,
+          "multiplicative_quotient_overlap": 80,
+          "tangent_code_endpoint": 736
+        },
+        "unpaid_after_tangent_quotient_dihedral_ledgers": 0
+      },
+      "dimension_summary": {
+        "A=10:C=8:D=5:I=3": 21,
+        "A=10:C=8:D=6:I=4": 35,
+        "A=12:C=8:D=6:I=2": 7,
+        "A=12:C=8:D=7:I=3": 21,
+        "A=14:C=8:D=7:I=1": 1,
+        "A=14:C=8:D=8:I=2": 7
+      },
+      "domain": {
+        "mu_16_generator": 8,
+        "n": 16,
+        "values_by_exponent": [
+          1,
+          8,
+          64,
+          27,
+          22,
+          79,
+          50,
+          12,
+          96,
+          89,
+          33,
+          70,
+          75,
+          18,
+          47,
+          85
+        ]
+      },
+      "p": 97,
+      "row": {
+        "agreements": [
+          10,
+          12,
+          14
+        ],
+        "k": 8
+      },
+      "support_examples": [
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            10,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            3,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            4,
+            7,
+            9,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            10,
+            11,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            4,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            2,
+            5,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            9,
+            10,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            3,
+            4,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            9,
+            11,
+            12,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [
+            8
+          ],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            3,
+            5,
+            6
+          ],
+          "orbit_ledger": "multiplicative_quotient_overlap",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0,
+            8
+          ],
+          "support_exponents": [
+            1,
+            2,
+            4,
+            6,
+            7,
+            9,
+            10,
+            12,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            1,
+            4,
+            5,
+            6
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            2,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            14,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "orbit_ledger": "dihedral_antipodal_only",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0
+          ],
+          "support_exponents": [
+            1,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            15
+          ]
+        },
+        {
+          "agreement": 10,
+          "cyclic_stabilizers": [
+            8
+          ],
+          "dihedral_quotient_degree": 5,
+          "family": "moving_inverse_pairs",
+          "fixed_exponents": [],
+          "h": 5,
+          "locator_degree": 10,
+          "moving_pair_indices": [
+            0,
+            2,
+            3,
+            4,
+            6
+          ],
+          "orbit_ledger": "multiplicative_quotient_overlap",
+          "reciprocal_multiplier": 1,
+          "reflection_stabilizers": [
+            0,
+            8
+          ],
+          "support_exponents": [
+            1,
+            3,
+            4,
+            5,
+            7,
+            9,
+            11,
+            12,
+            13,
+            15
+          ]
+        }
+      ],
+      "support_summary": {
+        "by_family": {
+          "A=10:fixed_branch_pm1": 35,
+          "A=10:moving_inverse_pairs": 21,
+          "A=12:fixed_branch_pm1": 21,
+          "A=12:moving_inverse_pairs": 7,
+          "A=14:fixed_branch_pm1": 7,
+          "A=14:moving_inverse_pairs": 1
+        },
+        "by_orbit_ledger": {
+          "dihedral_antipodal_only": 80,
+          "multiplicative_quotient_overlap": 12
+        },
+        "total_supports": 92
+      }
+    }
+  ],
+  "dag_nodes": [
+    "payment_completeness",
+    "dihedral_quotient_stratum",
+    "zone_b"
+  ],
+  "model": {
+    "alignment_lines": "all unordered Chebyshev-character basis lines T_e + z T_f, 0 <= e < f <= 8",
+    "audited_agreements": [
+      10,
+      12,
+      14
+    ],
+    "domain": "multiplicative row mu_16 in F_p",
+    "palindromic_locator_forms": [
+      "prod_{i in I}(X^2-(a_i+a_i^-1)X+1) = X^h q(X+X^-1)",
+      "(X^2-1) prod_{i in I}(X^2-(a_i+a_i^-1)X+1) for the fixed +-1 branch"
+    ],
+    "toy_rate": "k/n = 8/16"
+  },
+  "nonclaims": [
+    "does not enumerate all projective lines in the full 9-dimensional dihedral word space",
+    "does not run the M5 A=384..426 chart restriction",
+    "does not prove global E25 payment completeness by itself",
+    "does not audit extension-field rows or non-mu_16 multiplicative rows"
+  ],
+  "payload_sha256": "ddd9f23c623572fb62376fe7e644d9d73864b5894eec0d955ded234585fddcb9",
+  "schema_version": "e25-dihedral-toy-audit-v1",
+  "status": "TOY_AUDIT / LOCATOR_ABSORBED_BY_DIHEDRAL_LEDGER",
+  "summary": {
+    "alignment_verdict": "all audited finite Chebyshev-basis-line alignments are charged to tangent, cyclic-quotient overlap, or dihedral/antipodal ledger",
+    "character_lines_per_support": 36,
+    "locator_verdict": "every audited inverse-pair locator is a Chebyshev/dihedral pullback; fixed +-1 supports carry the expected anti-reciprocal branch factor",
+    "primes": [
+      17,
+      97
+    ],
+    "total_supports_per_prime": 92,
+    "unpaid_after_dihedral_ledger_all_cases": 0
+  },
+  "task_id": "E25"
+}
