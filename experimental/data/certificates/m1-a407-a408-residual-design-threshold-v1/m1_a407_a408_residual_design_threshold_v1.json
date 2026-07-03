@@ -1,0 +1,980 @@
+{
+  "exact_values": {
+    "407": 106,
+    "408": 105
+  },
+  "first_failure_of_this_method": {
+    "failure": {
+      "base_set_size_j": 106,
+      "best_three_neighbor_lower_bound": 87,
+      "high_edge_threshold": 45,
+      "q_max": 16,
+      "reason": "The inclusion-exclusion degree argument gives no finite high-neighbor bound."
+    },
+    "parameters": {
+      "A": 406,
+      "compact_T_paid_cap": 150,
+      "j": 106,
+      "pair_cap_no_paid_exit": 61,
+      "pair_trigger": 62,
+      "target_j_plus_1": 107,
+      "tau": 362
+    },
+    "saturated_triple_classification": {
+      "high_edge_threshold": 45,
+      "labelled_type_count": 2685,
+      "min_delta": 151,
+      "q_max": 16,
+      "sample_unique_types": [
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            45,
+            61
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            46,
+            60
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            47,
+            59
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            48,
+            58
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            49,
+            57
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            50,
+            56
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            51,
+            55
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            52,
+            54
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            45,
+            53,
+            53
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            46,
+            46,
+            59
+          ],
+          "t2": 151,
+          "union": 167
+        },
+        {
+          "delta": 152,
+          "q": 0,
+          "sorted_pair_intersections": [
+            46,
+            46,
+            60
+          ],
+          "t2": 152,
+          "union": 166
+        },
+        {
+          "delta": 151,
+          "q": 0,
+          "sorted_pair_intersections": [
+            46,
+            47,
+            58
+          ],
+          "t2": 151,
+          "union": 167
+        }
+      ],
+      "sat_delta_cap": 167,
+      "unique_type_count": 600
+    },
+    "status": "FAIL_HIGH_NEIGHBOR_DEGREE_BOUND"
+  },
+  "gate": {
+    "floor_p_minus_1_over_2^128": 106,
+    "floor_p_over_2^128": 106,
+    "q_chal": "not protocol-bound",
+    "q_gen": "36112466189484594435050630213696401440769",
+    "q_line": "36112466189484594435050630213696401440769",
+    "safe_A": 407,
+    "safe_LD_sw": 106,
+    "safe_delta": "105/512",
+    "safe_margin_p_minus_106_2^128": 42535295865117307932921825928971026433,
+    "safe_strict_check_106_times_2^128_lt_p": true,
+    "status": "PROVED_ADJACENT_THRESHOLD_ROW",
+    "unsafe_A": 406,
+    "unsafe_delta": "53/256",
+    "unsafe_margin_107_2^128_minus_p": 297747071055821155530452781502797185023,
+    "unsafe_strict_check_107_times_2^128_gt_p": true,
+    "unsafe_tangent_lower": 107
+  },
+  "object": "finite-slope support-wise LD_sw / MCA line-slope numerator",
+  "parameters": {
+    "epsilon_target": "2^-128",
+    "k": 256,
+    "n": 512,
+    "r": 256,
+    "rho": "1/2"
+  },
+  "prime": {
+    "bit_length": 135,
+    "factorization_product_matches": true,
+    "fermat_pow": 1,
+    "h_order_512_checks": {
+      "h^256_mod_p": 36112466189484594435050630213696401440768,
+      "h^512_mod_p": 1
+    },
+    "lucas_primality_certificate_passes": true,
+    "lucas_witness": 11,
+    "p": 36112466189484594435050630213696401440769,
+    "p_expression": "27168*2^120+1",
+    "p_minus_1_factorization": "2^125 * 3 * 283",
+    "p_mod_512": 1,
+    "prime_factors_checked": {
+      "2": {
+        "gcd_minus_one_p": 1,
+        "not_one": true,
+        "pow": 36112466189484594435050630213696401440768
+      },
+      "283": {
+        "gcd_minus_one_p": 1,
+        "not_one": true,
+        "pow": 3959919423295697945812592299795687921018
+      },
+      "3": {
+        "gcd_minus_one_p": 1,
+        "not_one": true,
+        "pow": 19469229210755587610526728684120823606453
+      }
+    },
+    "subgroup_generator_h": 6235302609873284985040447863180679299171
+  },
+  "proved_rows_summary": [
+    {
+      "A": 408,
+      "LD_sw_exact": 105,
+      "j": 104,
+      "moment_threshold_m": 51,
+      "no_paid_residual_size_bound": 50
+    },
+    {
+      "A": 407,
+      "LD_sw_exact": 106,
+      "j": 105,
+      "moment_threshold_m": 94,
+      "no_paid_residual_size_bound": 93
+    }
+  ],
+  "rows": [
+    {
+      "conclusions": {
+        "LD_sw_exact_if_tangent_lower": 105,
+        "no_paid_residual_size_bound": 50,
+        "paid_exit_size_bound": 105,
+        "proves_exact_row_by_tangent_lower": true
+      },
+      "high_neighbor_graph": {
+        "degree_forbidden_check": {
+          "first_forbidden_degree_plus_one": 3,
+          "union_lower_bound": 129
+        },
+        "max_degree_bound": 2,
+        "triangle_bound": "floor(m*C(2,2)/3)"
+      },
+      "moment_inequality": {
+        "first_forbidden": {
+          "balanced_lower": 1149400,
+          "balanced_minimizer_certificate": {
+            "balanced_high_count": 184,
+            "balanced_high_degree": 11,
+            "balanced_low_count": 328,
+            "balanced_low_degree": 10,
+            "exchange_conclusion": "For fixed total degree, the minimum is attained by degrees q and q+1.",
+            "kernel_convexity_domain": "0 <= d <= m-2",
+            "kernel_convexity_formula_checked_for_this_m": true,
+            "kernel_second_difference_formula": "phi_m(d+2)-2*phi_m(d+1)+phi_m(d)=m-d-2",
+            "m": 51,
+            "total_degree": 5304
+          },
+          "balanced_q": 10,
+          "balanced_remainder": 184,
+          "m": 51,
+          "margin": 2257,
+          "upper": 1147143
+        },
+        "min_residue_start_record": {
+          "diffs": [
+            2257,
+            2632383968,
+            15125819904,
+            14799863808
+          ],
+          "m0": 51,
+          "margin": 2257,
+          "residue": 51,
+          "t0": 0
+        },
+        "no_paid_residual_bound": 50,
+        "period": 1536,
+        "previous_m": {
+          "balanced_lower": 1079280,
+          "balanced_minimizer_certificate": {
+            "balanced_high_count": 80,
+            "balanced_high_degree": 11,
+            "balanced_low_count": 432,
+            "balanced_low_degree": 10,
+            "exchange_conclusion": "For fixed total degree, the minimum is attained by degrees q and q+1.",
+            "kernel_convexity_domain": "0 <= d <= m-2",
+            "kernel_convexity_formula_checked_for_this_m": true,
+            "kernel_second_difference_formula": "phi_m(d+2)-2*phi_m(d+1)+phi_m(d)=m-d-2",
+            "m": 50,
+            "total_degree": 5200
+          },
+          "balanced_q": 10,
+          "balanced_remainder": 80,
+          "m": 50,
+          "margin": -384,
+          "upper": 1079664
+        },
+        "sample_residue_records": [
+          {
+            "diffs": [
+              2383946240,
+              17018364416,
+              29434281984,
+              14799863808
+            ],
+            "m0": 1536,
+            "residue": 0,
+            "t0": 1,
+            "values": [
+              2383946240,
+              19402310656,
+              65854957056,
+              156541749248
+            ]
+          },
+          {
+            "diffs": [
+              2257,
+              2632383968,
+              15125819904,
+              14799863808
+            ],
+            "m0": 51,
+            "residue": 51,
+            "t0": 0,
+            "values": [
+              2257,
+              2632386225,
+              20390590097,
+              68074477681
+            ]
+          },
+          {
+            "diffs": [
+              2379290095,
+              17004072992,
+              29424646656,
+              14799863808
+            ],
+            "m0": 1535,
+            "residue": 1535,
+            "t0": 0,
+            "values": [
+              2379290095,
+              19383363087,
+              65812082735,
+              156465312847
+            ]
+          }
+        ],
+        "threshold_m": 51
+      },
+      "parameters": {
+        "A": 408,
+        "compact_T_paid_cap": 152,
+        "j": 104,
+        "pair_cap_no_paid_exit": 55,
+        "pair_trigger": 56,
+        "target_j_plus_1": 105,
+        "tau": 360
+      },
+      "saturated_triple_classification": {
+        "high_edge_threshold": 49,
+        "labelled_type_count": 130,
+        "min_delta": 153,
+        "q_max": 6,
+        "sample_unique_types": [
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              49,
+              49,
+              55
+            ],
+            "t2": 153,
+            "union": 159
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              49,
+              50,
+              54
+            ],
+            "t2": 153,
+            "union": 159
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              49,
+              51,
+              53
+            ],
+            "t2": 153,
+            "union": 159
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              49,
+              52,
+              52
+            ],
+            "t2": 153,
+            "union": 159
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              50,
+              50,
+              53
+            ],
+            "t2": 153,
+            "union": 159
+          },
+          {
+            "delta": 154,
+            "q": 0,
+            "sorted_pair_intersections": [
+              50,
+              50,
+              54
+            ],
+            "t2": 154,
+            "union": 158
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              50,
+              51,
+              52
+            ],
+            "t2": 153,
+            "union": 159
+          },
+          {
+            "delta": 154,
+            "q": 0,
+            "sorted_pair_intersections": [
+              50,
+              51,
+              53
+            ],
+            "t2": 154,
+            "union": 158
+          },
+          {
+            "delta": 154,
+            "q": 0,
+            "sorted_pair_intersections": [
+              50,
+              52,
+              52
+            ],
+            "t2": 154,
+            "union": 158
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              51,
+              51,
+              51
+            ],
+            "t2": 153,
+            "union": 159
+          },
+          {
+            "delta": 154,
+            "q": 0,
+            "sorted_pair_intersections": [
+              51,
+              51,
+              52
+            ],
+            "t2": 154,
+            "union": 158
+          },
+          {
+            "delta": 155,
+            "q": 0,
+            "sorted_pair_intersections": [
+              51,
+              51,
+              53
+            ],
+            "t2": 155,
+            "union": 157
+          }
+        ],
+        "sat_delta_cap": 159,
+        "unique_type_count": 39
+      },
+      "status": "PROVES_EXACT_ROW_BY_A409_METHOD"
+    },
+    {
+      "conclusions": {
+        "LD_sw_exact_if_tangent_lower": 106,
+        "no_paid_residual_size_bound": 93,
+        "paid_exit_size_bound": 106,
+        "proves_exact_row_by_tangent_lower": true
+      },
+      "high_neighbor_graph": {
+        "degree_forbidden_check": {
+          "first_forbidden_degree_plus_one": 3,
+          "union_lower_bound": 108
+        },
+        "max_degree_bound": 2,
+        "triangle_bound": "floor(m*C(2,2)/3)"
+      },
+      "moment_inequality": {
+        "first_forbidden": {
+          "balanced_lower": 7782590,
+          "balanced_minimizer_certificate": {
+            "balanced_high_count": 142,
+            "balanced_high_degree": 20,
+            "balanced_low_count": 370,
+            "balanced_low_degree": 19,
+            "exchange_conclusion": "For fixed total degree, the minimum is attained by degrees q and q+1.",
+            "kernel_convexity_domain": "0 <= d <= m-2",
+            "kernel_convexity_formula_checked_for_this_m": true,
+            "kernel_second_difference_formula": "phi_m(d+2)-2*phi_m(d+1)+phi_m(d)=m-d-2",
+            "m": 94,
+            "total_degree": 9870
+          },
+          "balanced_q": 19,
+          "balanced_remainder": 142,
+          "m": 94,
+          "margin": 4783,
+          "upper": 7777807
+        },
+        "min_residue_start_record": {
+          "diffs": [
+            4783,
+            1485162232,
+            8235755298,
+            7913175552
+          ],
+          "m0": 94,
+          "margin": 4783,
+          "residue": 94,
+          "t0": 0
+        },
+        "no_paid_residual_bound": 93,
+        "period": 1536,
+        "previous_m": {
+          "balanced_lower": 7528750,
+          "balanced_minimizer_certificate": {
+            "balanced_high_count": 37,
+            "balanced_high_degree": 20,
+            "balanced_low_count": 475,
+            "balanced_low_degree": 19,
+            "exchange_conclusion": "For fixed total degree, the minimum is attained by degrees q and q+1.",
+            "kernel_convexity_domain": "0 <= d <= m-2",
+            "kernel_convexity_formula_checked_for_this_m": true,
+            "kernel_second_difference_formula": "phi_m(d+2)-2*phi_m(d+1)+phi_m(d)=m-d-2",
+            "m": 93,
+            "total_degree": 9765
+          },
+          "balanced_q": 19,
+          "balanced_remainder": 37,
+          "m": 93,
+          "margin": -933,
+          "upper": 7529683
+        },
+        "sample_residue_records": [
+          {
+            "diffs": [
+              1238041600,
+              8989527040,
+              15664660992,
+              7913175552
+            ],
+            "m0": 1536,
+            "residue": 0,
+            "t0": 1,
+            "values": [
+              1238041600,
+              10227568640,
+              34881756672,
+              83113781248
+            ]
+          },
+          {
+            "diffs": [
+              4783,
+              1485162232,
+              8235755298,
+              7913175552
+            ],
+            "m0": 94,
+            "residue": 94,
+            "t0": 0,
+            "values": [
+              4783,
+              1485167015,
+              11206084545,
+              37075932925
+            ]
+          },
+          {
+            "diffs": [
+              1235623550,
+              8981957230,
+              15659509185,
+              7913175552
+            ],
+            "m0": 1535,
+            "residue": 1535,
+            "t0": 0,
+            "values": [
+              1235623550,
+              10217580780,
+              34859047195,
+              83073198347
+            ]
+          }
+        ],
+        "threshold_m": 94
+      },
+      "parameters": {
+        "A": 407,
+        "compact_T_paid_cap": 151,
+        "j": 105,
+        "pair_cap_no_paid_exit": 58,
+        "pair_trigger": 59,
+        "target_j_plus_1": 106,
+        "tau": 361
+      },
+      "saturated_triple_classification": {
+        "high_edge_threshold": 47,
+        "labelled_type_count": 784,
+        "min_delta": 152,
+        "q_max": 11,
+        "sample_unique_types": [
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              47,
+              47,
+              58
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              47,
+              48,
+              57
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              47,
+              49,
+              56
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              47,
+              50,
+              55
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              47,
+              51,
+              54
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              47,
+              52,
+              53
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              48,
+              48,
+              56
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              48,
+              48,
+              57
+            ],
+            "t2": 153,
+            "union": 162
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              48,
+              49,
+              55
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              48,
+              49,
+              56
+            ],
+            "t2": 153,
+            "union": 162
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              48,
+              50,
+              54
+            ],
+            "t2": 152,
+            "union": 163
+          },
+          {
+            "delta": 153,
+            "q": 0,
+            "sorted_pair_intersections": [
+              48,
+              50,
+              55
+            ],
+            "t2": 153,
+            "union": 162
+          }
+        ],
+        "sat_delta_cap": 163,
+        "unique_type_count": 192
+      },
+      "status": "PROVES_EXACT_ROW_BY_A409_METHOD"
+    },
+    {
+      "failure": {
+        "base_set_size_j": 106,
+        "best_three_neighbor_lower_bound": 87,
+        "high_edge_threshold": 45,
+        "q_max": 16,
+        "reason": "The inclusion-exclusion degree argument gives no finite high-neighbor bound."
+      },
+      "parameters": {
+        "A": 406,
+        "compact_T_paid_cap": 150,
+        "j": 106,
+        "pair_cap_no_paid_exit": 61,
+        "pair_trigger": 62,
+        "target_j_plus_1": 107,
+        "tau": 362
+      },
+      "saturated_triple_classification": {
+        "high_edge_threshold": 45,
+        "labelled_type_count": 2685,
+        "min_delta": 151,
+        "q_max": 16,
+        "sample_unique_types": [
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              45,
+              61
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              46,
+              60
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              47,
+              59
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              48,
+              58
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              49,
+              57
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              50,
+              56
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              51,
+              55
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              52,
+              54
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              45,
+              53,
+              53
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              46,
+              46,
+              59
+            ],
+            "t2": 151,
+            "union": 167
+          },
+          {
+            "delta": 152,
+            "q": 0,
+            "sorted_pair_intersections": [
+              46,
+              46,
+              60
+            ],
+            "t2": 152,
+            "union": 166
+          },
+          {
+            "delta": 151,
+            "q": 0,
+            "sorted_pair_intersections": [
+              46,
+              47,
+              58
+            ],
+            "t2": 151,
+            "union": 167
+          }
+        ],
+        "sat_delta_cap": 167,
+        "unique_type_count": 600
+      },
+      "status": "FAIL_HIGH_NEIGHBOR_DEGREE_BOUND"
+    }
+  ],
+  "status": "PROVED_A407_A408_EXACT_AND_A407_PUBLIC_GATE",
+  "theorem": {
+    "exact_support_reduction": "Uses the repo's support-wise RS/MDS exact-support reduction for A>=k+1: a bad slope may be represented by an exact A-subset witness unless it has already fallen into a contained/common-code-line branch.",
+    "nonclaims": [
+      "No A406 exact upper bound is claimed.",
+      "No M1 closure is claimed.",
+      "No ordinary list-decoding or interleaved-list claim is made.",
+      "No protocol q_chal soundness claim is made.",
+      "No use is made of the false global RNC Fano-line classification."
+    ],
+    "proof_dependencies": [
+      "Exact-support reduction for support-wise noncontained finite-slope witnesses when A>=k+1, after contained/common-code-line branches are separated.",
+      "Per-support uniqueness for noncontained finite slopes.",
+      "Moving-root tangent lower witness LD_sw >= n-A+1.",
+      "RS uniqueness from k common coordinates in compact triples and common-code-line branches."
+    ],
+    "public_gate": "For p=27168*2^120+1 and H the order-512 subgroup of F_p^*, A=407 is safe and A=406 is unsafe at the 2^-128 finite-slope support-wise MCA threshold.",
+    "universal_exact_rows": "For every finite field F and every distinct 512-point RS domain D, LD_sw(RS[F,D,256],408)=105 and LD_sw(RS[F,D,256],407)=106."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "agreement": 406,
+  "authors": "residual-design notes / Codex audit",
+  "badSlopes": "107",
+  "id": "prime-a406-a407-adjacent-gate",
+  "k": 256,
+  "label": "exact finite-slope gate",
+  "links": [
+    {
+      "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_a407_a408_residual_design_threshold_v1.md",
+      "label": "A407/A408 residual-design threshold note"
+    },
+    {
+      "href": "https://github.com/przchojecki/rs-mca/tree/main/experimental/data/certificates/m1-a407-a408-residual-design-threshold-v1",
+      "label": "A407/A408 certificate data"
+    },
+    {
+      "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/outputs/m1_a407_a408_residual_design_threshold_v1.report.md",
+      "label": "Scanner report"
+    }
+  ],
+  "n": 512,
+  "nonclaims": "Finite-slope support-wise MCA / LD_sw only. Not ordinary list decoding, not interleaved-list safety, not protocol soundness, not an exact A406 value, and not based on the false global RNC Fano-line route.",
+  "proof": "The residual-design sweep proves LD_sw(RS[F,D,256],407)=106 and LD_sw(RS[F,D,256],408)=105 for every 512-point RS domain. The moving-root tangent witness gives LD_sw(C,406)>=107. For p=27168*2^120+1, p is prime, p is 1 mod 512, and 106*2^128 < p < 107*2^128, so A=407 is safe and A=406 is the first unsafe closed-grid finite-slope point.",
+  "q": "36112466189484594435050630213696401440769",
+  "radiusLabel": "53/256",
+  "rho": 0.5,
+  "row": "RS[F_p,H,256], p=27168*2^120+1",
+  "short": "Residual-design sweep plus the tangent floor pins a new finite-slope gate 19 grid points below the A425/A426 row.",
+  "status": "proved",
+  "tag": "proved",
+  "title": "Prime-field A406/A407 adjacent threshold row"
+}

@@ -1,0 +1,9 @@
+{
+  "author": "Codex audit",
+  "date": "2026-07-03",
+  "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_a407_a408_residual_design_threshold_v1.md",
+  "impact": "Moves the prime-field rate-1/2 finite-slope MCA gate from A425/A426 down to A406/A407 for a smooth budget-106 prime row; deliberately does not claim A406 exactness or M1 closure.",
+  "status": "proved threshold row / M1 residual design",
+  "summary": "The A409 residual-design method proves exact support-wise finite-slope numerators LD_sw(408)=105 and LD_sw(407)=106 for every 512-point rate-half RS domain. For the prime p=27168*2^120+1, this pins a new adjacent finite-slope MCA gate: A=407 is safe and A=406 is unsafe.",
+  "title": "A407/A408 residual-design exact rows and budget-106 gate"
+}

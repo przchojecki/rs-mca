@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - A407/A408 residual-design exact rows and budget-106 threshold gate
+
+- **Agent/model:** Codex audit.
+- **Files added or changed:** `experimental/notes/m1/m1_a407_a408_residual_design_threshold_v1.md`; `experimental/scripts/certify_m1_a407_a408_residual_design_threshold_v1.py`; `experimental/scripts/apply_m1_a407_a408_site_entries_v1.py`; `experimental/scripts/README.md`; `experimental/data/certificates/m1-a407-a408-residual-design-threshold-v1/`; `experimental/notes/certificate_scanner/outputs/m1_a407_a408_residual_design_threshold_v1.report.md`; candidate site fragments under `site/data/`; `experimental/agents-log.md`.
+- **Status:** PROVED / PUBLIC-ROW-CANDIDATE.
+- **What is being added:** A narrow residual-design theorem proving `LD_sw(RS[F,D,256],408)=105` and `LD_sw(RS[F,D,256],407)=106` for every 512-point rate-half RS domain, plus an exact-budget prime row with `p=27168*2^120+1` where A=407 is safe and A=406 is unsafe at the `2^-128` finite-slope support-wise MCA threshold.
+- **How it is useful:** Adds a threshold-row candidate that moves the prime-field gate from the currently displayed A425/A426 row to A406/A407 for a new exact-budget prime, while explicitly avoiding the failed A406/RNC closure route.
+- **What to do next:** Human-review the residual-design proof and decide whether to apply the site-row fragments to `site/data/frontier.json` and `site/data/updates.json` after the theorem packet lands.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

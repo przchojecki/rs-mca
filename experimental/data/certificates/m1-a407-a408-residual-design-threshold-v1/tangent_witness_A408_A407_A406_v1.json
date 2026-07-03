@@ -1,0 +1,33 @@
+{
+  "field_requirement": "at least 512 distinct domain points and j+1 distinct finite slopes",
+  "status": "SYMBOLIC_TANGENT_MOVING_ROOT_WITNESS",
+  "witnesses": [
+    {
+      "A": 408,
+      "claimed_bad_slopes": 105,
+      "construction": "Choose a core C0 of size A-1 and j+1 outside points x_i. On C0 set f=g=0. At x_i set g(x_i)=1 and f(x_i)=-z_i for distinct slopes z_i. Then f+z_i g agrees with the zero codeword on C0 union {x_i}.",
+      "core_size": 407,
+      "j": 104,
+      "moving_coordinates": 105,
+      "noncontainment_check": "On each exact support, g has A-1 >= k zeros and one nonzero value, so g restricted to the support is not a degree-<k RS word."
+    },
+    {
+      "A": 407,
+      "claimed_bad_slopes": 106,
+      "construction": "Choose a core C0 of size A-1 and j+1 outside points x_i. On C0 set f=g=0. At x_i set g(x_i)=1 and f(x_i)=-z_i for distinct slopes z_i. Then f+z_i g agrees with the zero codeword on C0 union {x_i}.",
+      "core_size": 406,
+      "j": 105,
+      "moving_coordinates": 106,
+      "noncontainment_check": "On each exact support, g has A-1 >= k zeros and one nonzero value, so g restricted to the support is not a degree-<k RS word."
+    },
+    {
+      "A": 406,
+      "claimed_bad_slopes": 107,
+      "construction": "Choose a core C0 of size A-1 and j+1 outside points x_i. On C0 set f=g=0. At x_i set g(x_i)=1 and f(x_i)=-z_i for distinct slopes z_i. Then f+z_i g agrees with the zero codeword on C0 union {x_i}.",
+      "core_size": 405,
+      "j": 106,
+      "moving_coordinates": 107,
+      "noncontainment_check": "On each exact support, g has A-1 >= k zeros and one nonzero value, so g restricted to the support is not a degree-<k RS word."
+    }
+  ]
+}
