@@ -50,10 +50,14 @@ The third module, `RsMca.HighAgreementLedger`, formalizes the stdlib-only
   with `line_first_unsafe` (first unsafe line radius is exactly `r = B_Q`) and
   `lineListSafe_iff` (`r <= B_Q - 2` for a line plus one interleaved-list term);
 - the exact `F_{17^32}`, rate-`1/2` row (`n=512, k=256`): `f17_BQ_eq`
-  (`floor(17^32/2^128) = 6`), `f17_bracket` (the 39-digit
-  `6*2^128 < 17^32 < 7*2^128`), `f17_staircase` (agreement `507` clears the
-  budget, `506` does not), and `f17_largest_safe_radius` (largest safe integer
-  radius `5`).
+  (`floor(17^32/2^128) = 6`), the positive-slack addition certificates
+  `f17_lower_add_certificate` and `f17_upper_add_certificate`,
+  `f17_bracket_from_add_certificates` (deriving the 39-digit
+  `6*2^128 < 17^32 < 7*2^128` bracket from those witnesses), `f17_staircase`
+  (agreement `507` clears the budget, `506` does not),
+  `f17_budget_inside_tangent_cap`, `f17_largest_safe_radius`, and the normalized
+  rational endpoint facts `f17_endpoint_ratios` / `f17_endpoint_conversions`
+  (`5/512 < 6/512 = 3/256`).
 
 All `RsMca.HighAgreementLedger` theorems are proved (no `sorry`). The concrete
 numeric certificates are proved by kernel `decide` (not `native_decide`) and
@@ -91,3 +95,8 @@ lake build
 This is not a formal proof of the main rs-mca theorems. It is a typed starting
 point for later agents to connect finite script certificates and locator
 identities to theorem statements.
+
+`CERTIFICATION_MAP.md` is the reviewer-facing index for the tier-1 Lean gates:
+it maps every submission-gate arithmetic claim to the Lean theorem that
+certifies it and marks the typed targets that are deliberately outside the
+stdlib-only Lean scope.

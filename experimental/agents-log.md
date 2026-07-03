@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Lean tier-1 certification map
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/lean/rs_mca_formalization/RsMca/HighAgreementLedger.lean`;
+  `experimental/lean/rs_mca_formalization/CERTIFICATION_MAP.md`;
+  `experimental/lean/rs_mca_formalization/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / FORMALIZATION.
+- **What is being added:** The Lean high-agreement ledger now includes the
+  WP-1.2 positive-slack addition certificates for the `17^32 / 2^128` gate,
+  the derived bracket from those witnesses, the tangent-range budget cap, and
+  normalized rational endpoint conversions `5/512 < 6/512 = 3/256`.  A new
+  certification map records which Lean theorem certifies each tier-1
+  submission-gate arithmetic claim.
+- **How it is useful:** This targets DAG node `lean_tier1`: the finite-row
+  partial package now has reviewer-facing Lean theorem names for the exact
+  arithmetic gates instead of relying on prose or ad hoc large-number
+  comparisons.
+- **What to do next:** Keep later dossier claims classified through the map as
+  `Lean-certified`, `harness-verified`, `cited-proof`, or `conditional(...)`;
+  extend the map only when a new Lean theorem or verified harness covers the
+  claim boundary.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
