@@ -9,6 +9,23 @@
   `proof_sketch/s7_list_side.md`, and the local `t=2` exchange packet
   `m1_t2_one_exchange_residual_degree.md`.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route.  Together with
+`xr_pencil_cascade.md`, it decomposes the face-4 small-core obligation before
+the clean-rate compiler consumes the terminal polynomial residue:
+
+- same-slope aligned supports are exactly the list-lane worst-word object;
+- distinct-slope cores with `k+1 <= r <= A-2` are paid tangent-depth cells;
+- distinct-slope cores with `r >= A-1` are handled by the pencil cascade;
+- the remaining uncharged piece is the irreducible `r <= k` rank/spread shell.
+
+Thus this packet does not assert the terminal polynomial bound itself.  It
+identifies which bands are already proved/paid, so the downstream conditional
+step can focus on the residual small-core shell and the
+`active_core_count_bound` / PTE residue rather than recounting list or tangent
+families.
+
 ## 0. Setup
 
 Let `C = RS[D,k]`, `|D|=n`, and let the agreement threshold be

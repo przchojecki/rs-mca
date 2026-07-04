@@ -43,9 +43,11 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A ready upstream packet proving the same-slope
   list bridge and the distinct-slope partial-forcing bridge for small-core
   rungs 2a/2b.
-- **How it is useful:** This removes the same-slope and partial tangent-depth
-  bands from the irreducible small-core residue, leaving the genuine 2c
-  rank/spread shell.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it removes the same-slope/list band and the partial tangent-depth band from
+  `xr_smallcore_spread_count`, so the downstream compiler only has to consume
+  the irreducible 2c rank/spread shell together with the terminal
+  `active_core_count_bound` / PTE polynomial residue.
 - **What to do next:** Submit after the current upstream review batch has
   capacity, then follow with the syzygy/support and eliminant packets.
 
