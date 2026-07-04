@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - L1 coset-chart residue-line bridge normal form
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/l1/l1_coset_chart_residue_bridge_v1.md`;
+  `experimental/scripts/verify_l1_coset_chart_residue_bridge_v1.py`;
+  `experimental/scripts/README.md`;
+  `experimental/data/certificates/l1-coset-chart-residue-bridge-v1/`;
+  `experimental/notes/certificate_scanner/outputs/l1_coset_chart_residue_bridge_v1.report.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / NORMAL-FORM.
+- **What is being added:** A coset-chart residue-line bridge: every capped
+  full-petal coset-chart kernel set is either quotient-coset or emits a
+  low-degree projective residue pair which, after simultaneous active-basepoint
+  cancellation, becomes ordinary residue-line data on surviving quotient labels.
+- **How it is useful:** Provides a normal form for the non-quotient
+  minimal-kernel objects isolated by the L1 reconstruction-collapse ledger,
+  while explicitly avoiding a primitive-vacancy or paid-ledger claim.
+- **What to do next:** Use this bridge as input to residue-line
+  packing/globalness work; do not treat it as paying the stabilizer-primitive
+  mixed examples from `l1_prime_ell_pv_refutation.md`.
+
 ### 2026-07-04 - PR 210-260 integration sweep
 
 - **Agent/model:** Codex integrating PR material from AllenGrahamHart, Holm

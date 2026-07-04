@@ -1,0 +1,709 @@
+{
+  "cases": [
+    {
+      "classification_errors": [],
+      "counts": {
+        "kernel_sets": 1,
+        "max_residue_bridge_basepoints": 0,
+        "minimal_kernel_sets": 1,
+        "minimal_quotient": 1,
+        "minimal_residue_bridge": 0,
+        "minimal_unclassified_after_quotient_or_residue_bridge": 0,
+        "quotient_kernel_sets": 1,
+        "residue_bridge_basepoint_certificates": 0,
+        "residue_bridge_certificates": 0,
+        "residue_bridge_kernel_sets": 0,
+        "subsets_checked": 63,
+        "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+      },
+      "ok": true,
+      "parameters": {
+        "cap": 6,
+        "core_size": 6,
+        "ell": 2,
+        "labels": [
+          1,
+          4,
+          9,
+          16
+        ],
+        "m_core_cosets": 3,
+        "p": 17,
+        "scalars": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "t": 4
+      },
+      "sample_residue_certificates": []
+    },
+    {
+      "classification_errors": [],
+      "counts": {
+        "kernel_sets": 4,
+        "max_residue_bridge_basepoints": 0,
+        "minimal_kernel_sets": 4,
+        "minimal_quotient": 4,
+        "minimal_residue_bridge": 0,
+        "minimal_unclassified_after_quotient_or_residue_bridge": 0,
+        "quotient_kernel_sets": 4,
+        "residue_bridge_basepoint_certificates": 0,
+        "residue_bridge_certificates": 0,
+        "residue_bridge_kernel_sets": 0,
+        "subsets_checked": 246,
+        "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+      },
+      "ok": true,
+      "parameters": {
+        "cap": 6,
+        "core_size": 8,
+        "ell": 2,
+        "labels": [
+          1,
+          4,
+          9,
+          16
+        ],
+        "m_core_cosets": 4,
+        "p": 17,
+        "scalars": [
+          3,
+          5,
+          7,
+          11
+        ],
+        "t": 4
+      },
+      "sample_residue_certificates": []
+    },
+    {
+      "classification_errors": [],
+      "counts": {
+        "kernel_sets": 3,
+        "max_residue_bridge_basepoints": 0,
+        "minimal_kernel_sets": 3,
+        "minimal_quotient": 3,
+        "minimal_residue_bridge": 0,
+        "minimal_unclassified_after_quotient_or_residue_bridge": 0,
+        "quotient_kernel_sets": 3,
+        "residue_bridge_basepoint_certificates": 0,
+        "residue_bridge_certificates": 0,
+        "residue_bridge_kernel_sets": 0,
+        "subsets_checked": 465,
+        "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+      },
+      "ok": true,
+      "parameters": {
+        "cap": 6,
+        "core_size": 9,
+        "ell": 3,
+        "labels": [
+          1,
+          8,
+          7
+        ],
+        "m_core_cosets": 3,
+        "p": 19,
+        "scalars": [
+          1,
+          2,
+          5
+        ],
+        "t": 3
+      },
+      "sample_residue_certificates": []
+    },
+    {
+      "classification_errors": [],
+      "counts": {
+        "kernel_sets": 3,
+        "max_residue_bridge_basepoints": 0,
+        "minimal_kernel_sets": 3,
+        "minimal_quotient": 3,
+        "minimal_residue_bridge": 0,
+        "minimal_unclassified_after_quotient_or_residue_bridge": 0,
+        "quotient_kernel_sets": 3,
+        "residue_bridge_basepoint_certificates": 0,
+        "residue_bridge_certificates": 0,
+        "residue_bridge_kernel_sets": 0,
+        "subsets_checked": 465,
+        "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+      },
+      "ok": true,
+      "parameters": {
+        "cap": 6,
+        "core_size": 9,
+        "ell": 3,
+        "labels": [
+          1,
+          8,
+          7
+        ],
+        "m_core_cosets": 3,
+        "p": 19,
+        "scalars": [
+          4,
+          7,
+          11
+        ],
+        "t": 3
+      },
+      "sample_residue_certificates": []
+    },
+    {
+      "classification_errors": [],
+      "counts": {
+        "kernel_sets": 164,
+        "max_residue_bridge_basepoints": 0,
+        "minimal_kernel_sets": 2,
+        "minimal_quotient": 2,
+        "minimal_residue_bridge": 0,
+        "minimal_unclassified_after_quotient_or_residue_bridge": 0,
+        "quotient_kernel_sets": 4,
+        "residue_bridge_basepoint_certificates": 0,
+        "residue_bridge_certificates": 160,
+        "residue_bridge_kernel_sets": 160,
+        "subsets_checked": 3796,
+        "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+      },
+      "ok": true,
+      "parameters": {
+        "cap": 8,
+        "core_size": 12,
+        "ell": 4,
+        "labels": [
+          1,
+          16,
+          23
+        ],
+        "m_core_cosets": 3,
+        "p": 29,
+        "scalars": [
+          1,
+          3,
+          9
+        ],
+        "t": 3
+      },
+      "sample_residue_certificates": [
+        {
+          "E": [
+            4,
+            10,
+            19,
+            25,
+            6
+          ],
+          "G_not_zero_on_all_active_labels": true,
+          "G_values": [
+            6,
+            21,
+            28
+          ],
+          "H_values": [
+            6,
+            5,
+            20
+          ],
+          "deg_G": 1,
+          "deg_H": 1,
+          "degree_bound_t_minus_2": 1,
+          "r": 1,
+          "relation_ok": true,
+          "residue_line_bridge": {
+            "active_count_after_basepoint_cancellation": 3,
+            "basepoint_positions": [],
+            "denominator_nonzero_on_survivors": true,
+            "ordinary_residue_line_datum_after_cancellation": true,
+            "reduced_G_values_on_survivors": [
+              6,
+              21,
+              28
+            ],
+            "reduced_H_values_on_survivors": [
+              6,
+              5,
+              20
+            ],
+            "reduced_deg_G": 1,
+            "reduced_deg_H": 1,
+            "reduced_degree_bound_active_minus_2": 1,
+            "reduced_relation_ok_on_survivors": true,
+            "surviving_positions": [
+              0,
+              1,
+              2
+            ]
+          },
+          "simultaneous_zero_positions": []
+        },
+        {
+          "E": [
+            4,
+            10,
+            19,
+            25,
+            14
+          ],
+          "G_not_zero_on_all_active_labels": true,
+          "G_values": [
+            6,
+            21,
+            28
+          ],
+          "H_values": [
+            6,
+            5,
+            20
+          ],
+          "deg_G": 1,
+          "deg_H": 1,
+          "degree_bound_t_minus_2": 1,
+          "r": 1,
+          "relation_ok": true,
+          "residue_line_bridge": {
+            "active_count_after_basepoint_cancellation": 3,
+            "basepoint_positions": [],
+            "denominator_nonzero_on_survivors": true,
+            "ordinary_residue_line_datum_after_cancellation": true,
+            "reduced_G_values_on_survivors": [
+              6,
+              21,
+              28
+            ],
+            "reduced_H_values_on_survivors": [
+              6,
+              5,
+              20
+            ],
+            "reduced_deg_G": 1,
+            "reduced_deg_H": 1,
+            "reduced_degree_bound_active_minus_2": 1,
+            "reduced_relation_ok_on_survivors": true,
+            "surviving_positions": [
+              0,
+              1,
+              2
+            ]
+          },
+          "simultaneous_zero_positions": []
+        },
+        {
+          "E": [
+            4,
+            10,
+            19,
+            25,
+            15
+          ],
+          "G_not_zero_on_all_active_labels": true,
+          "G_values": [
+            6,
+            21,
+            28
+          ],
+          "H_values": [
+            6,
+            5,
+            20
+          ],
+          "deg_G": 1,
+          "deg_H": 1,
+          "degree_bound_t_minus_2": 1,
+          "r": 1,
+          "relation_ok": true,
+          "residue_line_bridge": {
+            "active_count_after_basepoint_cancellation": 3,
+            "basepoint_positions": [],
+            "denominator_nonzero_on_survivors": true,
+            "ordinary_residue_line_datum_after_cancellation": true,
+            "reduced_G_values_on_survivors": [
+              6,
+              21,
+              28
+            ],
+            "reduced_H_values_on_survivors": [
+              6,
+              5,
+              20
+            ],
+            "reduced_deg_G": 1,
+            "reduced_deg_H": 1,
+            "reduced_degree_bound_active_minus_2": 1,
+            "reduced_relation_ok_on_survivors": true,
+            "surviving_positions": [
+              0,
+              1,
+              2
+            ]
+          },
+          "simultaneous_zero_positions": []
+        },
+        {
+          "E": [
+            4,
+            10,
+            19,
+            25,
+            23
+          ],
+          "G_not_zero_on_all_active_labels": true,
+          "G_values": [
+            6,
+            21,
+            28
+          ],
+          "H_values": [
+            6,
+            5,
+            20
+          ],
+          "deg_G": 1,
+          "deg_H": 1,
+          "degree_bound_t_minus_2": 1,
+          "r": 1,
+          "relation_ok": true,
+          "residue_line_bridge": {
+            "active_count_after_basepoint_cancellation": 3,
+            "basepoint_positions": [],
+            "denominator_nonzero_on_survivors": true,
+            "ordinary_residue_line_datum_after_cancellation": true,
+            "reduced_G_values_on_survivors": [
+              6,
+              21,
+              28
+            ],
+            "reduced_H_values_on_survivors": [
+              6,
+              5,
+              20
+            ],
+            "reduced_deg_G": 1,
+            "reduced_deg_H": 1,
+            "reduced_degree_bound_active_minus_2": 1,
+            "reduced_relation_ok_on_survivors": true,
+            "surviving_positions": [
+              0,
+              1,
+              2
+            ]
+          },
+          "simultaneous_zero_positions": []
+        },
+        {
+          "E": [
+            4,
+            10,
+            19,
+            25,
+            8
+          ],
+          "G_not_zero_on_all_active_labels": true,
+          "G_values": [
+            6,
+            21,
+            28
+          ],
+          "H_values": [
+            6,
+            5,
+            20
+          ],
+          "deg_G": 1,
+          "deg_H": 1,
+          "degree_bound_t_minus_2": 1,
+          "r": 1,
+          "relation_ok": true,
+          "residue_line_bridge": {
+            "active_count_after_basepoint_cancellation": 3,
+            "basepoint_positions": [],
+            "denominator_nonzero_on_survivors": true,
+            "ordinary_residue_line_datum_after_cancellation": true,
+            "reduced_G_values_on_survivors": [
+              6,
+              21,
+              28
+            ],
+            "reduced_H_values_on_survivors": [
+              6,
+              5,
+              20
+            ],
+            "reduced_deg_G": 1,
+            "reduced_deg_H": 1,
+            "reduced_degree_bound_active_minus_2": 1,
+            "reduced_relation_ok_on_survivors": true,
+            "surviving_positions": [
+              0,
+              1,
+              2
+            ]
+          },
+          "simultaneous_zero_positions": []
+        }
+      ]
+    },
+    {
+      "classification_errors": [],
+      "counts": {
+        "kernel_sets": 8,
+        "max_residue_bridge_basepoints": 0,
+        "minimal_kernel_sets": 8,
+        "minimal_quotient": 6,
+        "minimal_residue_bridge": 2,
+        "minimal_unclassified_after_quotient_or_residue_bridge": 0,
+        "quotient_kernel_sets": 6,
+        "residue_bridge_basepoint_certificates": 0,
+        "residue_bridge_certificates": 2,
+        "residue_bridge_kernel_sets": 2,
+        "subsets_checked": 39202,
+        "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+      },
+      "ok": true,
+      "parameters": {
+        "cap": 8,
+        "core_size": 16,
+        "ell": 4,
+        "labels": [
+          1,
+          16,
+          23
+        ],
+        "m_core_cosets": 4,
+        "p": 29,
+        "scalars": [
+          2,
+          5,
+          13
+        ],
+        "t": 3
+      },
+      "sample_residue_certificates": [
+        {
+          "E": [
+            4,
+            25,
+            6,
+            23,
+            9,
+            20,
+            11,
+            18
+          ],
+          "G_not_zero_on_all_active_labels": true,
+          "G_values": [
+            26,
+            15,
+            6
+          ],
+          "H_values": [
+            23,
+            17,
+            20
+          ],
+          "deg_G": 1,
+          "deg_H": 1,
+          "degree_bound_t_minus_2": 1,
+          "r": 2,
+          "relation_ok": true,
+          "residue_line_bridge": {
+            "active_count_after_basepoint_cancellation": 3,
+            "basepoint_positions": [],
+            "denominator_nonzero_on_survivors": true,
+            "ordinary_residue_line_datum_after_cancellation": true,
+            "reduced_G_values_on_survivors": [
+              26,
+              15,
+              6
+            ],
+            "reduced_H_values_on_survivors": [
+              23,
+              17,
+              20
+            ],
+            "reduced_deg_G": 1,
+            "reduced_deg_H": 1,
+            "reduced_degree_bound_active_minus_2": 1,
+            "reduced_relation_ok_on_survivors": true,
+            "surviving_positions": [
+              0,
+              1,
+              2
+            ]
+          },
+          "simultaneous_zero_positions": []
+        },
+        {
+          "E": [
+            10,
+            19,
+            14,
+            15,
+            8,
+            21,
+            13,
+            16
+          ],
+          "G_not_zero_on_all_active_labels": true,
+          "G_values": [
+            3,
+            14,
+            23
+          ],
+          "H_values": [
+            6,
+            12,
+            9
+          ],
+          "deg_G": 1,
+          "deg_H": 1,
+          "degree_bound_t_minus_2": 1,
+          "r": 2,
+          "relation_ok": true,
+          "residue_line_bridge": {
+            "active_count_after_basepoint_cancellation": 3,
+            "basepoint_positions": [],
+            "denominator_nonzero_on_survivors": true,
+            "ordinary_residue_line_datum_after_cancellation": true,
+            "reduced_G_values_on_survivors": [
+              3,
+              14,
+              23
+            ],
+            "reduced_H_values_on_survivors": [
+              6,
+              12,
+              9
+            ],
+            "reduced_deg_G": 1,
+            "reduced_deg_H": 1,
+            "reduced_degree_bound_active_minus_2": 1,
+            "reduced_relation_ok_on_survivors": true,
+            "surviving_positions": [
+              0,
+              1,
+              2
+            ]
+          },
+          "simultaneous_zero_positions": []
+        }
+      ]
+    },
+    {
+      "classification_errors": [],
+      "counts": {
+        "kernel_sets": 1,
+        "max_residue_bridge_basepoints": 0,
+        "minimal_kernel_sets": 1,
+        "minimal_quotient": 1,
+        "minimal_residue_bridge": 0,
+        "minimal_unclassified_after_quotient_or_residue_bridge": 0,
+        "quotient_kernel_sets": 1,
+        "residue_bridge_basepoint_certificates": 0,
+        "residue_bridge_certificates": 0,
+        "residue_bridge_kernel_sets": 0,
+        "subsets_checked": 1023,
+        "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+      },
+      "ok": true,
+      "parameters": {
+        "cap": 10,
+        "core_size": 10,
+        "ell": 5,
+        "labels": [
+          1,
+          26,
+          25
+        ],
+        "m_core_cosets": 2,
+        "p": 31,
+        "scalars": [
+          1,
+          6,
+          17
+        ],
+        "t": 3
+      },
+      "sample_residue_certificates": []
+    },
+    {
+      "classification_errors": [],
+      "counts": {
+        "kernel_sets": 3,
+        "max_residue_bridge_basepoints": 0,
+        "minimal_kernel_sets": 3,
+        "minimal_quotient": 3,
+        "minimal_residue_bridge": 0,
+        "minimal_unclassified_after_quotient_or_residue_bridge": 0,
+        "quotient_kernel_sets": 3,
+        "residue_bridge_basepoint_certificates": 0,
+        "residue_bridge_certificates": 0,
+        "residue_bridge_kernel_sets": 0,
+        "subsets_checked": 30826,
+        "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+      },
+      "ok": true,
+      "parameters": {
+        "cap": 10,
+        "core_size": 15,
+        "ell": 5,
+        "labels": [
+          1,
+          26,
+          25
+        ],
+        "m_core_cosets": 3,
+        "p": 31,
+        "scalars": [
+          2,
+          8,
+          19
+        ],
+        "t": 3
+      },
+      "sample_residue_certificates": []
+    }
+  ],
+  "nonclaims": [
+    "Does not prove the full L1 generated-field locator local limit.",
+    "Does not classify arbitrary non-coset petal configurations.",
+    "Does not prove a quotient-only classification of mixed minimal sets.",
+    "Does not prove primitive vacancy under the current stabilizer-primitive ledger.",
+    "Does not prove a global quantitative bound for residue-line packing.",
+    "Does not edit Papers A-D."
+  ],
+  "object": "L1 full-petal coset-chart capped kernel sets",
+  "self_tests": {
+    "optimized_crt_cross_checks": 12,
+    "synthetic_basepoint_bridge_checked": true,
+    "synthetic_basepoint_count": 1
+  },
+  "status": "PROVED_LOCAL_COSET_CHART_RESIDUE_BRIDGE_NORMAL_FORM",
+  "theorem": {
+    "classification": "Every capped coset-chart kernel set is quotient-coset or emits a degree <= t-2 projective pair.",
+    "dependencies": [
+      "experimental/notes/l1/l1_coset_petal_rank_collapse.md.",
+      "experimental/notes/l1/l1_general_reconstruction_collapse.md."
+    ],
+    "ledger_condition": "The bridge proves a residue-line normal form. A separate ledger theorem is still needed to pay, bound, or absorb that residue-line family.",
+    "minimal_kernel_corollary": "The bridge classifies the non-quotient minimal-kernel examples by residue-line normal-form data; it does not declare them paid or absent from the current primitive ledger.",
+    "residue_line_bridge": "After cancelling simultaneous active basepoints, every emitted projective pair is an ordinary residue-line datum on the surviving quotient labels, with denominator nonzero and degree <= active_count-2."
+  },
+  "totals": {
+    "cases_checked": 8,
+    "kernel_sets_checked": 187,
+    "max_residue_bridge_basepoints": 0,
+    "minimal_kernel_sets_checked": 25,
+    "minimal_quotient_kernel_sets": 23,
+    "minimal_residue_bridge_kernel_sets": 2,
+    "minimal_unclassified_kernel_sets_after_quotient_or_residue_bridge": 0,
+    "quotient_kernel_sets": 25,
+    "residue_bridge_basepoint_certificates": 0,
+    "residue_bridge_certificates_checked": 162,
+    "residue_bridge_kernel_sets": 162,
+    "subsets_checked": 76086,
+    "unclassified_kernel_sets_after_quotient_or_residue_bridge": 0
+  }
+}
