@@ -41,8 +41,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** The X12 h=3 rational parametrization of active
   partner triples, together with the cubic cap showing anchored h=3 active
   pairs are strictly below `n^3`.
-- **How it is useful:** This banks the h=3 base rung used by the terminal
-  active-core/split-pair route and later high-q vanishing probes.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it removes `h=3` from the terminal active-core residue by proving an
+  explicit parametrization and an `< n^3` anchored active-pair cap before any
+  toral/pullback strip.
 - **What to do next:** Treat the h=3 bound as a base-case/consumer input;
   higher h and high-q vanishing remain separate packets.
 

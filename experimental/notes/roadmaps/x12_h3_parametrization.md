@@ -6,6 +6,18 @@
 - **Certificate:**
   `experimental/data/certificates/x12-h3-parametrization/x12_h3_parametrization.json`.
 
+## Critical-path role
+
+This is a proof-spine packet for the terminal `active_core_count_bound` route.
+It closes the first nontrivial trade size in final row-count currency: the
+`h=3` active partners admit an explicit rational parametrization, and the
+resulting value-set equation gives fewer than `n^3` anchored active pairs even
+before any toral or pullback strip.
+
+Thus `h=3` is no longer part of the conditional residue.  The remaining
+terminal work is the higher-`h` non-toral/PTE active-core bound and its
+certifier/dictionary reductions.
+
 ## Statement
 
 Let `H = mu_n` in a field of odd characteristic and let
