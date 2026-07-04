@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "sigma_C sparse census certificate",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "theorem_or_problem_id",
+    "object",
+    "conventions",
+    "rows",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "sigma-c-sparse-census-v1"
+    },
+    "status": {
+      "type": "string"
+    },
+    "theorem_or_problem_id": {
+      "type": "string"
+    },
+    "object": {
+      "type": "string"
+    },
+    "conventions": {
+      "type": "object",
+      "required": [
+        "finite_slopes_only",
+        "slope_denominator",
+        "witness_set",
+        "symmetry_policy",
+        "field_ledger"
+      ],
+      "properties": {
+        "finite_slopes_only": {
+          "type": "boolean"
+        },
+        "slope_denominator": {
+          "type": "string"
+        },
+        "witness_set": {
+          "type": "string"
+        },
+        "symmetry_policy": {
+          "type": "string"
+        },
+        "field_ledger": {
+          "type": "string"
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "q_line",
+          "q_gen",
+          "q_chal",
+          "n",
+          "k",
+          "rho",
+          "r",
+          "delta_floor_convention",
+          "domain",
+          "codeword_count",
+          "sparse_pair_count",
+          "bad_pair_count",
+          "sigma_c",
+          "expected_sigma_c",
+          "trivial_regime_2r_le_n_minus_k",
+          "max_pairs_sample"
+        ],
+        "properties": {
+          "q_line": {
+            "type": "integer"
+          },
+          "q_gen": {
+            "type": "integer"
+          },
+          "q_chal": {
+            "type": ["integer", "null"]
+          },
+          "n": {
+            "type": "integer"
+          },
+          "k": {
+            "type": "integer"
+          },
+          "rho": {
+            "type": "string"
+          },
+          "r": {
+            "type": "integer"
+          },
+          "delta_floor_convention": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "codeword_count": {
+            "type": "integer"
+          },
+          "sparse_pair_count": {
+            "type": "integer"
+          },
+          "bad_pair_count": {
+            "type": "integer"
+          },
+          "sigma_c": {
+            "type": "integer"
+          },
+          "expected_sigma_c": {
+            "type": ["integer", "null"]
+          },
+          "trivial_regime_2r_le_n_minus_k": {
+            "type": "boolean"
+          },
+          "max_pairs_sample": {
+            "type": "array"
+          }
+        }
+      }
+    },
+    "non_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "conventions": {
+    "field_ledger": "toy prime-field rows use q_gen=q_line; no q_chal soundness division is claimed",
+    "finite_slopes_only": true,
+    "slope_denominator": "q_line",
+    "symmetry_policy": "no symmetry quotient is used here; optimized searches must not use full Mobius reductions because they can send finite slopes to infinity",
+    "witness_set": "maximal S_z={i: eps1_i + gamma eps2_i equals close codeword z_i}"
+  },
+  "non_claims": [
+    "No asymptotic bound is claimed.",
+    "No prize-band deployed-row claim is made.",
+    "No GPU search result is included in this certificate."
+  ],
+  "object": "sigma_C(r)=max sparse-pair count of finite MCA-bad slopes",
+  "rows": [
+    {
+      "bad_pair_count": 34272,
+      "codeword_count": 343,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        3,
+        2,
+        6,
+        4,
+        5
+      ],
+      "expected_sigma_c": 7,
+      "k": 3,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 7,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 80,
+              "distance": 2,
+              "gamma": 1,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 159,
+              "distance": 2,
+              "gamma": 2,
+              "maximal_witness_set": [
+                0,
+                1,
+                3,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 57,
+              "distance": 2,
+              "gamma": 3,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                4
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 131,
+              "distance": 2,
+              "gamma": 4,
+              "maximal_witness_set": [
+                0,
+                1,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 5,
+              "maximal_witness_set": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 54,
+              "distance": 2,
+              "gamma": 6,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                5
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            4,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 7,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 206,
+              "distance": 2,
+              "gamma": 1,
+              "maximal_witness_set": [
+                0,
+                1,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 111,
+              "distance": 2,
+              "gamma": 2,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 3,
+              "maximal_witness_set": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 311,
+              "distance": 2,
+              "gamma": 4,
+              "maximal_witness_set": [
+                0,
+                1,
+                3,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 96,
+              "distance": 2,
+              "gamma": 5,
+              "maximal_witness_set": [
+                0,
+                1,
+                3,
+                4
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 114,
+              "distance": 2,
+              "gamma": 6,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                4
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            4,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 7,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 1,
+              "maximal_witness_set": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 171,
+              "distance": 2,
+              "gamma": 2,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                4
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 184,
+              "distance": 2,
+              "gamma": 3,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 148,
+              "distance": 2,
+              "gamma": 4,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 330,
+              "distance": 2,
+              "gamma": 5,
+              "maximal_witness_set": [
+                0,
+                1,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 120,
+              "distance": 2,
+              "gamma": 6,
+              "maximal_witness_set": [
+                0,
+                1,
+                3,
+                5
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            4,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 6,
+      "q_chal": null,
+      "q_gen": 7,
+      "q_line": 7,
+      "r": 2,
+      "rho": "3/6",
+      "sigma_c": 7,
+      "sparse_pair_count": 34849,
+      "trivial_regime_2r_le_n_minus_k": false
+    }
+  ],
+  "schema_version": "sigma-c-sparse-census-v1",
+  "status": "EXPERIMENTAL / PROVED-by-enumeration for the finite rows listed",
+  "theorem_or_problem_id": "towards-prize prob:mutual; thm:sparsify sparse mutual layer"
+}

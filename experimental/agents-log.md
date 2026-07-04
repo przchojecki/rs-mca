@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - sigma_C sparse-layer census certificates
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/scripts/verify_sigma_c_sparse_census.py`;
+  `experimental/data/certificates/sigma-c-sparse-census/`;
+  `experimental/notes/m1/sigma_c_sparse_census.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / PROVED-by-enumeration for the stated finite rows.
+- **What is being added:** Adds a stdlib exact verifier and replayable JSON
+  certificates for small sparse-layer `sigma_C` rows, including the extended
+  `(q,n,k,r)=(7,6,3,2)` row with `sigma_C=7`.  The committed rows are certified
+  by CPU exact maximal-witness checks; GPU work remains lab-only.
+- **How it is useful:** Provides a reproducible finite-row package for
+  `towards-prize` `prob:mutual` / `thm:sparsify` without promoting sampled or
+  GPU-only evidence to theorem status.
+- **What to do next:** Extend only through the same `--row`/`--check` CPU exact
+  replay path; keep any larger GPU sweeps outside the repo until their witnesses
+  are CPU-certified.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
