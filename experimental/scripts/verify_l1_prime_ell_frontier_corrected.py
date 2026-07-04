@@ -19,7 +19,8 @@ Seven gate classes; exit 0 iff ALL pass, nonzero on ANY failure:
         rank==ell-2 (boundary-realizable), rank==ell-1 (boundary-non-realizable) and
         delta>0 cases so BOTH the (P-K)-delta identity AND the `ell-2` threshold constant
         are load-bearing (a wrong threshold, e.g. ell-3, fails the rank==ell-2 configs).
-  (iv)  the KEY LEMMA (NUMERIC)  E_3 <= ell-3,  solve-based bounded seeded sweep,
+  (iv)  the KEY LEMMA (NUMERIC)  E_3 <= ell-2,  solve-based bounded seeded sweep
+        + saturation by the shipped p=331/p=313 witnesses (E_3 = ell-2 exactly),
         saturated by the concentrated Gamma.
   (v)   the geometric / concentrated Gamma is a NON-LISTER: spectrum [ell-1,1,..,1],
         top-m = ell+m-2 < 2ell for every m<=ell-1.
@@ -631,7 +632,8 @@ def gate_iii_rank_formula(tamper=False):
     return (not caught), ("identity-flip caught=%s threshold-flip caught=%s" % (ident_caught, thresh_caught))
 
 def gate_iv_e3_bound(tamper=False):
-    off = 1 if tamper else 0  # tamper tightens KEY LEMMA to E_3<=ell-4; concentrated catches it
+    off = 1 if tamper else 0  # tamper tightens KEY LEMMA to E_3<=ell-3; the saturating
+    # witnesses (p=331 E_3=9=ell-2, p=313 E_3=11=ell-2) catch it
     ok = True
     viol = 0
     maxE = {}
@@ -682,18 +684,28 @@ def gate_iv_e3_bound(tamper=False):
                 e = E3(spec)
                 mE = max(mE, e)
                 seen_total += 1
-                if e > ell - 3 - off:
+                if e > ell - 2 - off:
                     viol += 1
         maxE[ell] = mE
-    # saturation anchor: concentrated Gamma achieves E_3 = ell-3 exactly (so off=1 -> violation)
+    # saturation anchors: two of the shipped witnesses attain E_3 = ell-2 EXACTLY
+    # (p=331: 9, p=313: 11), so a tightened cap (off=1 -> ell-3) must fail here.
     sat_ok = True
+    sat_seen = []
+    for W in (WITNESSES[1], WITNESSES[2]):
+        spec = spectrum_A(W["gamma"], W["p"], W["ell"])
+        e = E3(spec)
+        sat_seen.append(e)
+        if not (e == W["ell"] - 2 and e <= W["ell"] - 2 - off):
+            sat_ok = False
+    # structural identity (not a saturator): concentrated Gamma has E_3 = ell-3 exactly
+    conc_ok = True
     for ell, p in [(7, 211), (11, 199), (13, 313)]:
         spec = spectrum_A([1] * (ell - 1), p, ell)
-        if not (E3(spec) == ell - 3 and E3(spec) <= ell - 3 - off):
-            sat_ok = False
-    ok = (viol == 0) and sat_ok
-    return ok, "solve-based sweep %d gammas maxE_3=%s (cap ell-3); concentrated saturates(off=%d):%s viol=%d" % (
-        seen_total, maxE, off, sat_ok, viol)
+        if E3(spec) != ell - 3:
+            conc_ok = False
+    ok = (viol == 0) and sat_ok and conc_ok
+    return ok, "solve-based sweep %d gammas maxE_3=%s (cap ell-2); witness saturation E_3=%s(off=%d):%s concentrated-identity:%s viol=%d" % (
+        seen_total, maxE, sat_seen, off, sat_ok, conc_ok, viol)
 
 def gate_v_geometric_nonlister(tamper=False):
     ok = True
@@ -755,7 +767,7 @@ GATES = [
     ("(i)   witness spectra (2 impls)          ", gate_i_spectra),
     ("(ii)  top-m <= 2m+E_3 (tight)            ", gate_ii_topm_bound),
     ("(iii) rank formula rank=(P-K)-delta      ", gate_iii_rank_formula),
-    ("(iv)  KEY LEMMA E_3<=ell-3 (solve sweep) ", gate_iv_e3_bound),
+    ("(iv)  KEY LEMMA E_3<=ell-2 (solve sweep) ", gate_iv_e3_bound),
     ("(v)   geometric Gamma non-lister         ", gate_v_geometric_nonlister),
     ("(vi)  lambda-freeness + full codeword    ", gate_vi_lambda_freeness),
     ("(vii) negative control (refutation)      ", gate_vii_negative_control),

@@ -51,7 +51,7 @@ The frontier is pinned from both sides:
 > **Upper (`m* <= (ell+3)/2`): UNCONDITIONAL** — the explicit lambda-free witnesses above (§5).
 >
 > **Lower (`m* >= (ell+3)/2`, i.e. `top-m < 2ell` for all `m <= (ell+1)/2`): the VACANCY
-> THEOREM, rigorous *modulo* the KEY LEMMA `E_3 <= ell-3`** (§3-§4); **unconditional at
+> THEOREM, rigorous *modulo* the KEY LEMMA `E_3 <= ell-2`** (§3-§4); **unconditional at
 > `ell=7`, where `(ell+1)/2 = 4` is exactly Theorem R.**
 
 `(ell+1)/2` and `(ell+3)/2` are consecutive, so the two sides meet with no gap.
@@ -126,7 +126,7 @@ The naive dimension cap `#{mu >= nu} <= floor((ell-1)/(nu-1))` is FALSE (the `el
 `A_checks` L6-geom, `B_checks` CHECK 3; PI-cross-probed at 6 `(ell,p)` pairs).** The geometric
 family `gamma_r = C tau^r` (in particular the concentrated `Gamma = X + X^2 + ... + X^{ell-1}`,
 `tau=C=1`) has spectrum **`[ell-1, 1, 1, ..., 1]`**: one coset with `mu = ell-1`, all others
-`mu = 1`. Hence `E_3 = ell-3` (saturated) but spread `a = 1`, and
+`mu = 1`. Hence `E_3 = ell-3` (one below the tight `ell-2` cap of §3) but spread `a = 1`, and
 
 > **`top-m = ell + m - 2 <= 2ell - 3 < 2ell` for every `m <= ell-1`** — it never lists.
 
@@ -145,33 +145,40 @@ realizability forbids it — exactly the regime the KEY LEMMA controls.
 
 ---
 
-## 3. The KEY LEMMA `E_3 <= ell-3` (NUMERIC, tight)
+## 3. The KEY LEMMA `E_3 <= ell-2` (NUMERIC, tight; constant corrected in-PR)
 
-> **KEY LEMMA (NUMERIC).** Every mixed `Gamma` has `E_3 = sum_b (mu_b - 2)_+ <= ell-3`.
-> Equivalently (rank form): any **realizable** `K`-fiber config has `sum_k (mu_k - 2) <= ell-3`,
-> i.e. the rank drop `delta <= K-1`.
+> **KEY LEMMA (NUMERIC).** Every mixed `Gamma` has `E_3 = sum_b (mu_b - 2)_+ <= ell-2`.
+> Equivalently (rank form): any **realizable** `K`-fiber config has `sum_k (mu_k - 2) <= ell-2`,
+> i.e. the rank drop `delta <= K` — via the PROVED identity `delta = P - ell - K + dim U`,
+> `U = {A : deg A <= ell-1, A constant on each fiber}` (extremals have `dim U = 2`).
+> This PR's first commit claimed `ell-3` (`delta <= K-1`); that is FALSE — two of §5's own
+> witnesses saturate `ell-2` (below). `ell-2` still yields §4 unchanged, by parity.
 
-**Evidence.** 0 violations over **> 4·10^5** exact solve-based `Gamma` at `ell = 7, 11, 13`
-(441,118, summed over the five `(ell,p)` runs of `B_e5.py`; verifier gate iv reruns a bounded
-seeded solve-based sweep). **Saturated** by two
-structurally different extremals: the concentrated `Gamma` (`E_3 = ell-3`, `a=1`, every `ell`)
-and the spread witnesses (`ell=7`: `[3,3,3,3,2,2,2]`; `ell=11`: `[4,4,3,3,3,3,2,2]`, `E_3=8=ell-3`).
+**Evidence.** Tight and **saturated at `ell-2`** by two of §5's own listing witnesses —
+`ell=11 p=331` (spectrum `[5,5,4,3,2,2,2,...]`, `E_3 = 9 = ell-2`) and `ell=13 p=313`
+(`[5,4,4,3,3,3,3,2,2,2,...]`, `E_3 = 11 = ell-2`) — and by `[4,3,3,3]` at `ell=7`
+(`E_3 = 5 = ell-2`). No config with `E_3 >= ell-1` is known: solve-based beam + random search
+at `ell = 7, 11, 13` caps at exactly `ell-2` (0 violations; verifier gate iv reruns a bounded
+seeded sweep plus the witness-saturation checks). The earlier `B_e5.py` census (441,118 `Gamma`,
+max `E_3 = ell-3`) was search-capped below the extremals — its `ell-3` reading is refuted by the
+`p=331`/`p=313` witnesses. Sub-extremal at `ell-3`: the concentrated `Gamma` (`a=1`) and the
+`ell=11 p=199` witness (`[4,4,3,3,3,3,2]`, `E_3=8`).
 The **non-realizable** high-excess configs (`[6,6],[5,5],[4,4,4],[4,4,3,3]` at `ell=7`) all have
-`sum(mu-2) >= ell-2` and full rank `ell-1` (`delta > K-1`) — the contrapositive (`B_checks` CHECK 5).
+`sum(mu-2) >= ell-1` and full rank `ell-1` (they would need `delta > K`) — the contrapositive (`B_checks` CHECK 5).
 
 **Rank-lemma reduction (PROVED equivalence).** On `Z`, the sum of the `K` fiber-sum functionals
 `fs_k` is the `r=0` Vandermonde row, `≡ 0`, so `rank(fs|_Z) <= K-1` and
-`delta = dim Z - rank(fs|_Z) >= dim Z - (K-1)`. Hence the KEY LEMMA is exactly:
+`delta = dim Z - rank(fs|_Z) >= dim Z - (K-1)`. Hence the corrected KEY LEMMA is exactly:
 
-> **realizable `<=>` the fiber-sum functionals are NOT full-rank on `Z` (`rank(fs|_Z) <= K-2`)**;
-> equivalently, if `sum(mu_k-2) >= ell-2` then `rank(fs|_Z) = K-1` (non-realizable). **This is the
-> single OPEN core.**
+> **`delta <= K`, i.e. `rank(fs|_Z) >= dim Z - K`**; equivalently, if `sum(mu_k-2) >= ell-1`
+> then the config is non-realizable (the vectors `{(x_i^r)_i : r=1..ell-1} ∪ {1_{F_k}}` are
+> linearly independent in `F_p^P`). **This is the single OPEN core.**
 
 **Three PROVED cases of the reduction.**
-1. **Generic (`delta=0`): PROVED.** `sum(mu_k-1) <= ell-2` forces `E_3 <= ell-2-K <= ell-4 < ell-3`.
+1. **Generic (`delta=0`): PROVED.** `sum(mu_k-1) <= ell-2` forces `E_3 <= ell-2-K <= ell-4 < ell-2`.
 2. **Single shared value: PROVED (degree bound).** Fibers sharing one value `lambda` are roots of
    `Gamma - lambda`, total size `<= deg Gamma <= ell-1`; so if the `K` fibers share a value,
-   `sum mu_k <= ell-1` and `sum(mu_k-2) <= ell-1-2K <= ell-3`. The obstruction to a full proof is
+   `sum mu_k <= ell-1` and `sum(mu_k-2) <= ell-1-2K <= ell-3 <= ell-2`. The obstruction to a full proof is
    precisely the coupling **across distinct fiber-values** (one `Gamma`, many cosets).
 3. **`P = ell+1` (the `[4,4]`, `[5,3]` case at `ell=7`): PROVED-numerically non-realizable.**
    `dim Z = 1`; the unique dependency is the divided-difference `lambda_i = 1/prod_{j != i}(x_i-x_j)`,
@@ -181,21 +188,23 @@ The **non-realizable** high-excess configs (`[6,6],[5,5],[4,4,4],[4,4,3,3]` at `
    `P=8<ell` so `dim Z=0` and `[4,4]` IS realizable (matching the S1 census). Route A supplies the
    parallel balanced-two-fiber residue identity for this stratum (`A_checks` L5b).
 
-*(A sharper NUMERIC form `E_3 <= max(0, deg Gamma - 2)`, 0 violations over 22400 exact-degree
-`Gamma`, specializes to `E_3 <= ell-3` at `deg = ell-1` and may be the more tractable proof route;
-`B_e7.py`.)*
+*(The earlier sharper candidate `E_3 <= max(0, deg Gamma - 2)` is FALSE: `Gamma = X + X^3` at
+`ell = 11, p = 23` has a size-4 fiber (`E_3 = 2 > 1`); per-fiber uncertainty bounds fail mod `p`
+because the relevant `F_p` evaluation code is non-MDS — only the aggregate `E_3` is rigid.)*
 
 ---
 
 ## 4. The VACANCY THEOREM (LEMMA-conditional on §3)
 
-Combining §2.1 (`top-m <= 2m + E_3`) with §3 (`E_3 <= ell-3`):
+Combining §2.1 (`top-m <= 2m + E_3`) with §3 (`E_3 <= ell-2`):
 
 > **VACANCY THEOREM (rigorous *modulo* the KEY LEMMA).** For prime `ell`, `m = t+1`:
 > **`top-m < 2ell` for all `m <= (ell+1)/2`** — i.e. no primitive mixed kernel set below the
 > frontier. Unconditionally PROVED at `ell = 7` (`(ell+1)/2 = 4`, this is Theorem R).
 
-*Proof.* `top-m <= 2m + (ell-3) < 2ell <=> 2m < ell+3 <=> m <= (ell+1)/2`. ∎
+*Proof.* `top-m <= 2m + (ell-2) < 2ell <=> 2m < ell+2 <=> m <= (ell+1)/2` (`ell` odd). ∎
+`ell-2` is the unique sufficient constant here: `ell-1` gives only `<= 2ell` (insufficient),
+and `ell-3`, while sufficient, is false (§3).
 This strictly extends Theorem R (only `m=4`, all `ell`) to `m <= (ell+1)/2` (`= 6, 7, ...` at
 `ell = 11, 13, ...`) **through realizability**, the ingredient the moment method provably cannot
 reach (§2.4). Together with §5 it forces `m* = (ell+3)/2` (ell >= 7). **Label: this vacancy band is
@@ -263,8 +272,9 @@ were triple-cross-checked (methodA=methodB=methodC) in lab C. `A_checks.py` (41/
 `B_checks.py` (all CHECK 1-7 PASS) were both re-run to green before this note's claims were used.
 
 **Caps (explicit).**
-- KEY LEMMA `E_3 <= ell-3` is **NUMERIC** (> 4·10^5 solve-based `Gamma` at `ell in {7,11,13}`;
-  441,118 via `B_e5.py`, 0 violations, saturated), **not proved**; the OPEN core is the fiber-sum full-rank statement on `Z`
+- KEY LEMMA `E_3 <= ell-2` is **NUMERIC** (tight: saturated by §5's `p=331`/`p=313` witnesses;
+  solve-based beam search at `ell in {7,11,13}` never exceeds it; the earlier 441,118-`Gamma`
+  `B_e5.py` census was search-capped at `ell-3`), **not proved**; the OPEN core is the fiber-sum full-rank statement on `Z`
   (§3). Consequently the VACANCY THEOREM (§4) and the *lower* half of `m* = (ell+3)/2` are
   LEMMA-conditional. The **upper** half (witnesses, §5) and the **refutation of `ceil(2ell/3)`**
   (§0.1) are unconditional.
@@ -276,7 +286,7 @@ were triple-cross-checked (methodA=methodB=methodC) in lab C. `A_checks.py` (41/
 - The verifier's gate-iii/iv sweeps are **bounded and seeded** (16 rank configs incl.
   `rank == ell-2`/`ell-1` boundary and `delta>0` cases; ~700 solve-based `Gamma` at
   `ell in {7,11}`); they are a spot-suite re-confirmation, not the full `B_e5` census.
-- Whether the spread `E_3` attains `ell-3` for *every* `ell` (hence `m* = (ell+3)/2` sharply) is
+- Whether `E_3` attains `ell-2` for *every* `ell` (hence `m* = (ell+3)/2` sharply) is
   confirmed at `ell = 7, 11, 13`; larger `ell` is OPEN (a harder-search question, orthogonal to the
   vacancy theorem).
 
@@ -285,7 +295,7 @@ non-lister; §2.4 T1(`ell in {5,7}`)=Theorem R; §3 the rank-lemma reduction and
 (generic, single-value, `P=ell+1`); Lemma LF surjectivity (upstream). **UNCONDITIONAL (witnesses).**
 The `ell in {11,13}` full lambda-free primitive-mixed-kernel codewords listing at `m = (ell+3)/2`,
 refuting `ceil(2ell/3)` (§0.1, §5). **NUMERIC (tight, 0 violations, saturated).** KEY LEMMA
-`E_3 <= ell-3`; the frontier `m* = (ell+3)/2` at `ell = 7, 11, 13`. **LEMMA-conditional.** The
+`E_3 <= ell-2`; the frontier `m* = (ell+3)/2` at `ell = 7, 11, 13`. **LEMMA-conditional.** The
 VACANCY THEOREM `top-m < 2ell` for `m <= (ell+1)/2` (on the KEY LEMMA). **OPEN.** A proof of the KEY
 LEMMA (= the fiber-sum full-rank statement on `Z`); whether `m* = (ell+3)/2` persists for `ell >= 17`.
 
