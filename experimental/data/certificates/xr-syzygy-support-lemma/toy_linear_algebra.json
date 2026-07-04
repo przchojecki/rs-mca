@@ -1,0 +1,34 @@
+{
+  "checks": 23478,
+  "node": "xr_syzygy_support_lemma",
+  "toy_rows": [
+    {
+      "A": 4,
+      "k": 2,
+      "maximum_kernel_dimension": 1,
+      "minimum_nonzero_dual_weight": 3,
+      "n": 6,
+      "nonzero_block_projections": 360,
+      "ordered_triples": 2730,
+      "p": 7,
+      "rank_stagnations_checked": 5460,
+      "supports": 15,
+      "syzygy_kernel_vectors": 120,
+      "t": 2
+    },
+    {
+      "A": 5,
+      "k": 3,
+      "maximum_kernel_dimension": 1,
+      "minimum_nonzero_dual_weight": 4,
+      "n": 7,
+      "nonzero_block_projections": 630,
+      "ordered_triples": 7980,
+      "p": 11,
+      "rank_stagnations_checked": 15960,
+      "supports": 21,
+      "syzygy_kernel_vectors": 210,
+      "t": 2
+    }
+  ]
+}

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - XR syzygy support lemma packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/xr_syzygy_support_lemma.md`;
+  `experimental/scripts/verify_xr_syzygy_support_lemma.py`;
+  `experimental/data/certificates/xr-syzygy-support-lemma/toy_linear_algebra.json`;
+  `experimental/data/certificates/xr-syzygy-support-lemma/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A ready upstream packet proving that rank
+  stagnation for distinct-slope alignment blocks forces a nonzero shortened
+  dual word whose support is covered by pairwise intersections, yielding the
+  `k+1` overlap budget.
+- **How it is useful:** This is the 2c-alpha syzygy-support constraint used
+  to localize far-spread rank stagnation before the sunflower and eliminant
+  packets.
+- **What to do next:** Submit after the current upstream review batch has
+  capacity, then follow with the sunflower rank-additivity packet.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
