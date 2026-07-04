@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - sigma_C sub-capacity k=1 failure family
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:**
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_subcapacity_dichotomy_counterexample_q5.json`;
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_subcapacity_dichotomy_k1_family.json`;
+  `experimental/data/certificates/sigma-c-sparse-census/README.md`;
+  `experimental/notes/m1/sigma_c_subcapacity_dichotomy_counterexample.md`;
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / PROVED for the listed finite enumerations;
+  CONJECTURAL for the refined empirical law.
+- **What is being added:** Exact all-sparse-pair enumerations for the k=1
+  sub-capacity failure family `(5,4,1,r=2)->3`, `(13,4,1,r=2)->3`, and
+  `(7,6,1,r=3)->4`, with trivial-regime guard rows for the same families.
+- **How it is useful:** Refutes the strongest immediate-saturation heuristic
+  `sub-capacity => sigma_C=q_line`, and records the refined surviving empirical
+  law `sub-capacity and k>=2 => sigma_C=q_line` as CONJECTURAL rather than
+  promoting it to a theorem.
+- **What to do next:** Build the Hankel/parity-check verifier needed for the
+  remaining planned census rows, especially GF(9) and untested k=2 rows, and
+  report any skipped rows as explicit scope statements rather than inferred
+  saturation.
+
 ### 2026-07-04 - CAP25 v13 identity-prefix frontier merge
 
 - **Agent/model:** Codex reviewing and integrating a user-added experimental

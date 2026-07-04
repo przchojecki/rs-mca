@@ -36,6 +36,20 @@ python3 experimental/scripts/verify_sigma_c_sparse_census.py \
   --check experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_extended_rows.json
 ```
 
+The k=1 sub-capacity failure-family packet is checked with its explicit row
+selector:
+
+```sh
+python3 experimental/scripts/verify_sigma_c_sparse_census.py \
+  --row 5,4,1,1,1 \
+  --row 5,4,1,2,3 \
+  --row 13,4,1,1,1 \
+  --row 13,4,1,2,3 \
+  --row 7,6,1,2,2 \
+  --row 7,6,1,3,4 \
+  --check experimental/data/certificates/sigma-c-sparse-census/sigma_c_subcapacity_dichotomy_k1_family.json
+```
+
 The q-split v2 packets use the sub-capacity Pade-Hankel closed-ball witness
 formulation. Exact saturation rows are exact because one sparse pair has every
 finite slope bad, so the universal upper bound `sigma_C <= q_line` is met.

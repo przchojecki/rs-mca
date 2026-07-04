@@ -1,0 +1,981 @@
+{
+  "conventions": {
+    "field_ledger": "toy prime-field rows use q_gen=q_line; no q_chal soundness division is claimed",
+    "finite_slopes_only": true,
+    "slope_denominator": "q_line",
+    "symmetry_policy": "no symmetry quotient is used here; optimized searches must not use full Mobius reductions because they can send finite slopes to infinity",
+    "witness_set": "maximal S_z={i: eps1_i + gamma eps2_i equals close codeword z_i}"
+  },
+  "non_claims": [
+    "No asymptotic bound is claimed.",
+    "No prize-band deployed-row claim is made.",
+    "No GPU search result is included in this certificate."
+  ],
+  "object": "sigma_C(r)=max sparse-pair count of finite MCA-bad slopes",
+  "rows": [
+    {
+      "bad_pair_count": 80,
+      "codeword_count": 5,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "expected_sigma_c": 1,
+      "k": 1,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 1,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 0,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 1,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 0,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            2,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 1,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 0,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            3,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 4,
+      "q_chal": null,
+      "q_gen": 5,
+      "q_line": 5,
+      "r": 1,
+      "rho": "1/4",
+      "sigma_c": 1,
+      "sparse_pair_count": 97,
+      "trivial_regime_2r_le_n_minus_k": true
+    },
+    {
+      "bad_pair_count": 3440,
+      "codeword_count": 5,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "expected_sigma_c": 3,
+      "k": 1,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 3,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 2,
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 2,
+              "codeword_index": 4,
+              "distance": 2,
+              "gamma": 4,
+              "maximal_witness_set": [
+                0,
+                1
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 3,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 2,
+              "codeword_index": 2,
+              "distance": 2,
+              "gamma": 2,
+              "maximal_witness_set": [
+                0,
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 3,
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 3,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 1,
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 2,
+              "codeword_index": 3,
+              "distance": 2,
+              "gamma": 3,
+              "maximal_witness_set": [
+                0,
+                1
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            4,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 4,
+      "q_chal": null,
+      "q_gen": 5,
+      "q_line": 5,
+      "r": 2,
+      "rho": "1/4",
+      "sigma_c": 3,
+      "sparse_pair_count": 3553,
+      "trivial_regime_2r_le_n_minus_k": false
+    },
+    {
+      "bad_pair_count": 624,
+      "codeword_count": 13,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        8,
+        12,
+        5
+      ],
+      "expected_sigma_c": 1,
+      "k": 1,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 1,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 0,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 1,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 0,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            2,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 1,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 0,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            3,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 4,
+      "q_chal": null,
+      "q_gen": 13,
+      "q_line": 13,
+      "r": 1,
+      "rho": "1/4",
+      "sigma_c": 1,
+      "sparse_pair_count": 673,
+      "trivial_regime_2r_le_n_minus_k": true
+    },
+    {
+      "bad_pair_count": 169104,
+      "codeword_count": 13,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        8,
+        12,
+        5
+      ],
+      "expected_sigma_c": 3,
+      "k": 1,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 3,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 6,
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 2,
+              "codeword_index": 12,
+              "distance": 2,
+              "gamma": 12,
+              "maximal_witness_set": [
+                0,
+                1
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 3,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 4,
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 2,
+              "codeword_index": 6,
+              "distance": 2,
+              "gamma": 6,
+              "maximal_witness_set": [
+                0,
+                1
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 3,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 3,
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "agreement": 2,
+              "codeword_index": 4,
+              "distance": 2,
+              "gamma": 4,
+              "maximal_witness_set": [
+                0,
+                1
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            4,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 4,
+      "q_chal": null,
+      "q_gen": 13,
+      "q_line": 13,
+      "r": 2,
+      "rho": "1/4",
+      "sigma_c": 3,
+      "sparse_pair_count": 170017,
+      "trivial_regime_2r_le_n_minus_k": false
+    },
+    {
+      "bad_pair_count": 34272,
+      "codeword_count": 7,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        3,
+        2,
+        6,
+        4,
+        5
+      ],
+      "expected_sigma_c": 2,
+      "k": 1,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 2,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 6,
+              "maximal_witness_set": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 2,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 3,
+              "maximal_witness_set": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 2,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 5,
+              "codeword_index": 0,
+              "distance": 1,
+              "gamma": 2,
+              "maximal_witness_set": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 6,
+      "q_chal": null,
+      "q_gen": 7,
+      "q_line": 7,
+      "r": 2,
+      "rho": "1/6",
+      "sigma_c": 2,
+      "sparse_pair_count": 34849,
+      "trivial_regime_2r_le_n_minus_k": true
+    },
+    {
+      "bad_pair_count": 2241792,
+      "codeword_count": 7,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        3,
+        2,
+        6,
+        4,
+        5
+      ],
+      "expected_sigma_c": 4,
+      "k": 1,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 4,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 3,
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 4,
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 6,
+              "distance": 3,
+              "gamma": 6,
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            2,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            2,
+            3,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 4,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 1,
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 3,
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 6,
+              "distance": 3,
+              "gamma": 6,
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            3,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            2,
+            4,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 4,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 0,
+              "maximal_witness_set": [
+                0,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 2,
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "codeword_index": 0,
+              "distance": 2,
+              "gamma": 3,
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "codeword_index": 6,
+              "distance": 3,
+              "gamma": 6,
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "eps1": [
+            0,
+            1,
+            4,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            2,
+            5,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 6,
+      "q_chal": null,
+      "q_gen": 7,
+      "q_line": 7,
+      "r": 3,
+      "rho": "1/6",
+      "sigma_c": 4,
+      "sparse_pair_count": 2246689,
+      "trivial_regime_2r_le_n_minus_k": false
+    }
+  ],
+  "schema_version": "sigma-c-sparse-census-v1",
+  "status": "EXPERIMENTAL / PROVED-by-enumeration for the finite rows listed",
+  "theorem_or_problem_id": "towards-prize prob:mutual; thm:sparsify sparse mutual layer"
+}
