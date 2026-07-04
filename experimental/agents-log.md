@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Paid residual ledger source lookup fix
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/scripts/verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py`;
+  `experimental/scripts/verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py`;
+  `experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py`;
+  `experimental/notes/audits/paid_residual_ledger_source_drift.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A root-cause audit and verifier repair for the
+  paid-residual ledger replay failure caused by the `paper_d_v10` to
+  `paper_d_v12` source-key rename after the consumed source certificates were
+  already committed.  The affine-GCD sibling verifier also gets a `--jobs`
+  option for parallel agreement-row replay, plus normalization for the exact
+  stale `v12`/`v10` construction-prose label introduced when upstream commit
+  `718df24` hand-edited the stored certificate prose but not the generator
+  string.
+- **How it is useful:** Restores replay of the low-rank2..12 paid-residual
+  ledger without changing certificate payloads, while preserving the intended
+  check that both consumed certificates cite the same Paper D and row
+  descriptor hashes.  The affine-GCD sibling replay now completes locally with
+  `--jobs 6`; the earlier completed serial replay failed only on the stored
+  source/prose byte comparison, and field-by-field regeneration confirms the
+  arithmetic payload is unchanged.
+- **What to do next:** Review the note and local validation results, then let
+  the maintainer choose whether the stored certificate prose or generator string
+  should be the canonical upstream spelling.
+
 ### 2026-07-04 - CAP25 v13 identity-prefix frontier merge
 
 - **Agent/model:** Codex reviewing and integrating a user-added experimental

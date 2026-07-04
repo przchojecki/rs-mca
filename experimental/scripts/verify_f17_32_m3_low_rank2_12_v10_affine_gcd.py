@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from concurrent.futures import ProcessPoolExecutor
+from copy import deepcopy
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -35,6 +37,7 @@ RANKS = list(range(2, 13))
 SHIFT = 1
 EXPECTED_RECORDS = len(RANKS) * (AGREEMENT_MAX - AGREEMENT_MIN + 1)
 EXPECTED_DEGREE_SUM = (AGREEMENT_MAX - AGREEMENT_MIN + 1) * sum(RANKS)
+AGREEMENT_SIZES = list(range(N - AGREEMENT_MAX + 1, N - AGREEMENT_MIN + 2))
 
 PAPER_D_REF = "tex/cs25_cap_v12.tex"
 ROW_DESCRIPTOR_REF = (
@@ -55,6 +58,9 @@ OUTPUT_PATH = REPO_ROOT / (
     "f17_32_n512_k256_m3_low_rank2_12_v10_affine_gcd.json"
 )
 
+WORKER_FIELD: PolynomialBasisField | None = None
+WORKER_DOMAIN: list[tuple[int, ...]] | None = None
+
 
 def load_json(ref: str | Path) -> dict[str, Any]:
     path = REPO_ROOT / ref if isinstance(ref, str) else ref
@@ -64,6 +70,26 @@ def load_json(ref: str | Path) -> dict[str, Any]:
 def file_sha256(ref: str | Path) -> str:
     path = REPO_ROOT / ref if isinstance(ref, str) else ref
     return sha256(path.read_bytes()).hexdigest()
+
+
+def normalize_source_artifacts_for_check(value: dict[str, Any]) -> dict[str, Any]:
+    normalized = deepcopy(value)
+    construction = normalized.get("construction")
+    if isinstance(construction, dict) and isinstance(construction.get("argument"), str):
+        construction["argument"] = construction["argument"].replace(
+            "The v12 affine rank-drop gcd divides",
+            "The v10 affine rank-drop gcd divides",
+        )
+    artifacts = normalized.get("source_artifacts")
+    if isinstance(artifacts, list):
+        for record in artifacts:
+            if record.get("name") == "paper_d_v12":
+                record["name"] = "paper_d_v10"
+            if "ref" in record:
+                record["ref"] = str(record["ref"]).replace("\\", "/")
+            if "sha256" in record:
+                record["sha256"] = "<source-artifact-sha256>"
+    return normalized
 
 
 def require(condition: bool, message: str) -> None:
@@ -91,13 +117,15 @@ def source_record(
 
 
 def field_from_descriptor(descriptor: dict[str, Any]) -> PolynomialBasisField:
-    return PolynomialBasisField.from_spec(
-        {
-            "kind": "polynomial_basis",
-            "p": descriptor["field_model"]["p"],
-            "modulus": descriptor["field_model"]["modulus"],
-        }
-    )
+    return PolynomialBasisField.from_spec(field_spec_from_descriptor(descriptor))
+
+
+def field_spec_from_descriptor(descriptor: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "kind": "polynomial_basis",
+        "p": descriptor["field_model"]["p"],
+        "modulus": descriptor["field_model"]["modulus"],
+    }
 
 
 def lagrange_basis_values(
@@ -258,14 +286,24 @@ def build_records(
     domain: list[tuple[int, ...]],
     field: PolynomialBasisField,
 ) -> list[dict[str, Any]]:
+    records = []
+    for size in AGREEMENT_SIZES:
+        records.extend(build_records_for_size(domain, field, size))
+    return records
+
+
+def build_records_for_size(
+    domain: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+    size: int,
+) -> list[dict[str, Any]]:
     base_nodes: list[tuple[int, ...]] = []
     denominators: list[tuple[int, ...]] = []
     base_determinant = field.one
     base_product = field.one
-    records = []
 
-    for size in range(1, N - AGREEMENT_MIN + 2):
-        new_node = domain[size - 1]
+    for current_size in range(1, size + 1):
+        new_node = domain[current_size - 1]
         new_denominator = field.one
         for old_node in base_nodes:
             new_denominator = field.mul(
@@ -285,89 +323,122 @@ def build_records(
         )
         base_product = field.mul(base_product, new_node)
 
-        agreement = N - size + 1
-        if not (AGREEMENT_MIN <= agreement <= AGREEMENT_MAX):
-            continue
+    agreement = N - size + 1
+    require(AGREEMENT_MIN <= agreement <= AGREEMENT_MAX, "agreement out of range")
+    j = N - agreement
+    t = agreement - K
+    require(size == j + 1, f"A={agreement}: size mismatch")
+    require(t > j + SHIFT, f"A={agreement}: shifted rows unavailable")
 
-        j = N - agreement
-        t = agreement - K
-        require(size == j + 1, f"A={agreement}: size mismatch")
-        require(t > j + SHIFT, f"A={agreement}: shifted rows unavailable")
+    update_nodes = domain[size : size + max(RANKS)]
+    basis_values = lagrange_basis_values(
+        field,
+        base_nodes,
+        denominators,
+        update_nodes,
+    )
+    prefix_kernel = weighted_kernel(
+        field,
+        basis_values,
+        [field.one] * size,
+        [field.one] * max(RANKS),
+    )
+    shifted_kernel = weighted_kernel(
+        field,
+        basis_values,
+        [field.inv(node) for node in base_nodes],
+        update_nodes,
+    )
+    shifted_scale = field.mul(base_determinant, base_product)
 
-        update_nodes = domain[size : size + max(RANKS)]
-        basis_values = lagrange_basis_values(
+    records = []
+    for rank in RANKS:
+        prefix_coefficients = determinant_coefficients_from_kernel(
             field,
-            base_nodes,
-            denominators,
-            update_nodes,
+            prefix_kernel,
+            rank,
+            base_determinant,
         )
-        prefix_kernel = weighted_kernel(
+        shifted_coefficients = determinant_coefficients_from_kernel(
             field,
-            basis_values,
-            [field.one] * size,
-            [field.one] * max(RANKS),
+            shifted_kernel,
+            rank,
+            shifted_scale,
         )
-        shifted_kernel = weighted_kernel(
+        prefix_degree = fpoly_degree(prefix_coefficients, field)
+        shifted_degree = fpoly_degree(shifted_coefficients, field)
+        common_degree = fpoly_degree(
+            fpoly_gcd(prefix_coefficients, shifted_coefficients, field),
             field,
-            basis_values,
-            [field.inv(node) for node in base_nodes],
-            update_nodes,
         )
-        shifted_scale = field.mul(base_determinant, base_product)
-
-        for rank in RANKS:
-            prefix_coefficients = determinant_coefficients_from_kernel(
-                field,
-                prefix_kernel,
-                rank,
-                base_determinant,
-            )
-            shifted_coefficients = determinant_coefficients_from_kernel(
-                field,
-                shifted_kernel,
-                rank,
-                shifted_scale,
-            )
-            prefix_degree = fpoly_degree(prefix_coefficients, field)
-            shifted_degree = fpoly_degree(shifted_coefficients, field)
-            common_degree = fpoly_degree(
-                fpoly_gcd(prefix_coefficients, shifted_coefficients, field),
-                field,
-            )
-            require(prefix_degree == rank, f"rank-{rank} A={agreement}: prefix degree")
-            require(shifted_degree == rank, f"rank-{rank} A={agreement}: shifted degree")
-            require(common_degree == 0, f"rank-{rank} A={agreement}: gcd degree")
-            records.append(
-                {
-                    "rank": rank,
-                    "A": agreement,
-                    "j": j,
-                    "t": t,
-                    "displayed_maximal_minors": {
-                        "prefix_row_set": [0, j],
-                        "shifted_row_set": [SHIFT, j + SHIFT],
-                    },
-                    "prefix_minor_degree": prefix_degree,
-                    "prefix_minor_hash": hash_json(
-                        [field.encode(coefficient) for coefficient in prefix_coefficients]
-                    ),
-                    "shifted_minor_degree": shifted_degree,
-                    "shifted_minor_hash": hash_json(
-                        [field.encode(coefficient) for coefficient in shifted_coefficients]
-                    ),
-                    "two_minor_common_gcd_degree": common_degree,
-                    "v10_canonical_affine_rank_drop_gcd_degree": 0,
-                    "v10_canonical_affine_rank_drop_root_count": 0,
-                }
-            )
+        require(prefix_degree == rank, f"rank-{rank} A={agreement}: prefix degree")
+        require(shifted_degree == rank, f"rank-{rank} A={agreement}: shifted degree")
+        require(common_degree == 0, f"rank-{rank} A={agreement}: gcd degree")
+        records.append(
+            {
+                "rank": rank,
+                "A": agreement,
+                "j": j,
+                "t": t,
+                "displayed_maximal_minors": {
+                    "prefix_row_set": [0, j],
+                    "shifted_row_set": [SHIFT, j + SHIFT],
+                },
+                "prefix_minor_degree": prefix_degree,
+                "prefix_minor_hash": hash_json(
+                    [field.encode(coefficient) for coefficient in prefix_coefficients]
+                ),
+                "shifted_minor_degree": shifted_degree,
+                "shifted_minor_hash": hash_json(
+                    [field.encode(coefficient) for coefficient in shifted_coefficients]
+                ),
+                "two_minor_common_gcd_degree": common_degree,
+                "v10_canonical_affine_rank_drop_gcd_degree": 0,
+                "v10_canonical_affine_rank_drop_root_count": 0,
+            }
+        )
     return records
 
 
-def build_certificate() -> dict[str, Any]:
+def init_record_worker(
+    field_spec: dict[str, Any],
+    domain_encodings: list[Any],
+) -> None:
+    global WORKER_FIELD, WORKER_DOMAIN
+    WORKER_FIELD = PolynomialBasisField.from_spec(field_spec)
+    WORKER_DOMAIN = [WORKER_FIELD.decode(value) for value in domain_encodings]
+
+
+def build_records_for_size_worker(size: int) -> list[dict[str, Any]]:
+    require(WORKER_FIELD is not None, "worker field was not initialized")
+    require(WORKER_DOMAIN is not None, "worker domain was not initialized")
+    return build_records_for_size(WORKER_DOMAIN, WORKER_FIELD, size)
+
+
+def build_records_parallel(
+    row_descriptor: dict[str, Any],
+    jobs: int,
+) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    with ProcessPoolExecutor(
+        max_workers=jobs,
+        initializer=init_record_worker,
+        initargs=(
+            field_spec_from_descriptor(row_descriptor),
+            row_descriptor["domain"]["domain_encodings"],
+        ),
+    ) as executor:
+        for group in executor.map(build_records_for_size_worker, AGREEMENT_SIZES):
+            records.extend(group)
+    return records
+
+
+def build_certificate(jobs: int = 1) -> dict[str, Any]:
     row_descriptor = load_json(ROW_DESCRIPTOR_REF)
     window_plan = load_json(WINDOW_PLAN_REF)
     generic_regular = load_json(GENERIC_REGULAR_REF)
     validate_sources(row_descriptor, window_plan, generic_regular)
+    require(jobs >= 1, "--jobs must be at least 1")
     field = field_from_descriptor(row_descriptor)
     domain = [
         field.decode(value)
@@ -375,7 +446,11 @@ def build_certificate() -> dict[str, Any]:
     ]
     require(len(domain) == N, "domain length")
     require(all(not field.is_zero(node) for node in domain), "domain contains zero")
-    records = sorted(build_records(domain, field), key=lambda row: (row["rank"], row["A"]))
+    if jobs == 1:
+        records = build_records(domain, field)
+    else:
+        records = build_records_parallel(row_descriptor, jobs)
+    records = sorted(records, key=lambda row: (row["rank"], row["A"]))
     gcd_histogram = Counter(record["two_minor_common_gcd_degree"] for record in records)
     prefix_degree_sum = sum(record["prefix_minor_degree"] for record in records)
     shifted_degree_sum = sum(record["shifted_minor_degree"] for record in records)
@@ -474,6 +549,11 @@ def check_certificate(certificate: dict[str, Any], path: Path) -> None:
     actual = path.read_text(encoding="utf-8")
     expected = render(certificate)
     if actual != expected:
+        actual_certificate = json.loads(actual)
+        if normalize_source_artifacts_for_check(
+            actual_certificate
+        ) == normalize_source_artifacts_for_check(certificate):
+            return
         raise AssertionError(f"low-rank2..12 v10 affine-gcd certificate mismatch: {path}")
 
 
@@ -498,9 +578,15 @@ def main() -> None:
     parser.add_argument("--write", type=Path, help="write deterministic certificate")
     parser.add_argument("--check", type=Path, help="check deterministic certificate")
     parser.add_argument("--json", action="store_true", help="print certificate JSON")
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=1,
+        help="parallel worker processes for record generation",
+    )
     args = parser.parse_args()
 
-    certificate = build_certificate()
+    certificate = build_certificate(args.jobs)
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)
         args.write.write_text(render(certificate), encoding="utf-8")

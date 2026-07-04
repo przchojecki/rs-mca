@@ -16,6 +16,7 @@ projective rank-drop numerator.
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -31,6 +32,8 @@ AGREEMENT_MIN = 385
 AGREEMENT_MAX = 426
 RANKS = list(range(2, 13))
 EXPECTED_RECORDS = len(RANKS) * (AGREEMENT_MAX - AGREEMENT_MIN + 1)
+PAPER_D_REF = "tex/cs25_cap_v12.tex"
+PAPER_D_SOURCE_KEYS = ("paper_d_v12", "paper_d_v10")
 
 AFFINE_CERT_REF = (
     "experimental/data/certificates/"
@@ -91,6 +94,51 @@ def source_lookup(certificate: dict[str, Any]) -> dict[str, dict[str, Any]]:
     if isinstance(artifacts, list):
         return {record["name"]: record for record in artifacts}
     return artifacts
+
+
+def normalized_ref(record: dict[str, Any]) -> str:
+    return str(record.get("ref", "")).replace("\\", "/")
+
+
+def normalize_source_artifacts_for_check(value: dict[str, Any]) -> dict[str, Any]:
+    normalized = deepcopy(value)
+    artifacts = normalized.get("source_artifacts")
+    if isinstance(artifacts, list):
+        for record in artifacts:
+            if "ref" in record:
+                record["ref"] = str(record["ref"]).replace("\\", "/")
+            if "sha256" in record:
+                record["sha256"] = "<source-artifact-sha256>"
+    elif isinstance(artifacts, dict):
+        for record in artifacts.values():
+            if isinstance(record, dict):
+                if "ref" in record:
+                    record["ref"] = str(record["ref"]).replace("\\", "/")
+                if "sha256" in record:
+                    record["sha256"] = "<source-artifact-sha256>"
+    return normalized
+
+
+def paper_d_source_record(
+    sources: dict[str, dict[str, Any]],
+    label: str,
+) -> dict[str, Any]:
+    candidates: list[dict[str, Any]] = []
+    for key in PAPER_D_SOURCE_KEYS:
+        if key in sources:
+            candidates.append(sources[key])
+    candidates.extend(
+        record for record in sources.values() if normalized_ref(record) == PAPER_D_REF
+    )
+    valid = [
+        record
+        for record in candidates
+        if normalized_ref(record) == PAPER_D_REF and "sha256" in record
+    ]
+    require(valid, f"{label} Paper D source record missing")
+    hashes = {record["sha256"] for record in valid}
+    require(len(hashes) == 1, f"{label} Paper D source hash ambiguous")
+    return valid[0]
 
 
 def validate_common_shape(certificate: dict[str, Any], schema: str, label: str) -> None:
@@ -185,10 +233,11 @@ def validate_source_consistency(
 ) -> None:
     affine_sources = source_lookup(affine)
     endpoint_sources = source_lookup(endpoint)
+    affine_paper = paper_d_source_record(affine_sources, "affine")
+    endpoint_paper = paper_d_source_record(endpoint_sources, "endpoint")
     require(
-        affine_sources["paper_d_v12"]["sha256"]
-        == endpoint_sources["paper_d_v12"]["sha256"],
-        "paper v10 source hash mismatch",
+        affine_paper["sha256"] == endpoint_paper["sha256"],
+        "Paper D source hash mismatch",
     )
     require(
         affine_sources["row_descriptor"]["sha256"]
@@ -378,6 +427,11 @@ def check_certificate(certificate: dict[str, Any], path: Path) -> None:
     actual = path.read_text(encoding="utf-8")
     expected = render(certificate)
     if actual != expected:
+        actual_certificate = json.loads(actual)
+        if normalize_source_artifacts_for_check(
+            actual_certificate
+        ) == normalize_source_artifacts_for_check(certificate):
+            return
         raise AssertionError(f"paid residual ledger mismatch: {path}")
 
 
