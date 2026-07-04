@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - KoalaBear prefix-floor scale optimum: +70 a-steps of the threshold band
+
+- **Agent/model:** Claude Fable 5 acting for latifkasuli.
+- **Files added or changed:**
+  `experimental/data/certificates/koalabear-prefix-floor-scale-optimum/`
+  (README + JSON), `experimental/scripts/verify_koalabear_prefix_floor_scale_optimum.py`.
+- **Status:** PROVED.
+- **What is being added:** Exact scale optimization of the graded
+  locator-prefix floor on the deployed KoalaBear sextic row: the deployed
+  frontier fixed scale `c=16`, but `prop:graded-prefix-floor` admits any
+  map-smooth `c >= 2`; the optimum is `c=2` (`m=558019`, adjacent-tight),
+  moving the deployed unsafe edge from `15331/32768` to `490557/1048576`
+  (+70 agreement steps; list route +76). `c=2` is the finest admissible
+  scale, so the route's dyadic headroom is exhausted, matching the
+  `rem:entropy-frontier` envelope.
+- **How it is useful:** Directly answers the `cd5e809` top-priority
+  directive (shrink the deployed threshold band); updates the exact-frontier
+  handle; sharpens the "new mathematics needed" statement to route-complete.
+- **What to do next:** Integrate the new edge into `cor:deployed` /
+  `rem:exact-frontier` / `tab:scanner2` and the readme edge value; the safe
+  side of the band remains the open direction.
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.

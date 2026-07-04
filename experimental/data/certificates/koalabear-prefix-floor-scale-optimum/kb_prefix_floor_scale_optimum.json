@@ -1,0 +1,220 @@
+{
+ "deployed_anchor_mca": {
+  "Delta": 67392,
+  "c": 16,
+  "m": 69748,
+  "note": "reproduces rem:exact-frontier / kb_mca_pf exactly",
+  "w": 4211
+ },
+ "nonclaims": [
+  "No safe-side claim: this widens the certified unsafe band only.",
+  "No claim beyond the graded prefix-floor route; the remaining open band down to delta = 1/4 (import) / 1/6-deep (self-contained) is untouched.",
+  "Closed-grid statements on the integer agreement lattice only; no supremum claim."
+ ],
+ "object": "graded locator-prefix floor (prop:graded-prefix-floor + thm:A), scale-optimized",
+ "optimum_list": {
+  "Delta": 67468,
+  "a_steps_closed_vs_deployed": 76,
+  "c": 2,
+  "m": 558022,
+  "new_unsafe_edge": "245277/524288"
+ },
+ "optimum_mca": {
+  "Delta": 67462,
+  "a_steps_closed_vs_deployed": 70,
+  "c": 2,
+  "m": 558019,
+  "new_unsafe_edge": "490557/1048576"
+ },
+ "q_line": "93571093019388561295270373781649880353786165192103559169",
+ "route_exhaustion": "c=2 is the finest map-smooth power scale on the 2-power domain and Delta is monotone toward finer scale, so the dyadic headroom of the graded prefix-floor route is exhausted at this certificate.",
+ "row": {
+  "base_prime_p": 2130706433,
+  "domain": "multiplicative subgroup of F_p^x of order 2^21",
+  "extension_degree": 6,
+  "k": 1048576,
+  "list_budget_T": "274980728111395087",
+  "n": 2097152,
+  "target": "2^-128"
+ },
+ "rows": [
+  {
+   "Delta": 67462,
+   "N": 1048576,
+   "agreement_a": 1116038,
+   "c": 2,
+   "m": 558019,
+   "route": "mca",
+   "unsafe_edge_delta_den": 1048576,
+   "unsafe_edge_delta_num": 490557,
+   "w": 33730
+  },
+  {
+   "Delta": 67452,
+   "N": 524288,
+   "agreement_a": 1116028,
+   "c": 4,
+   "m": 279007,
+   "route": "mca",
+   "unsafe_edge_delta_den": 524288,
+   "unsafe_edge_delta_num": 245281,
+   "w": 16862
+  },
+  {
+   "Delta": 67432,
+   "N": 262144,
+   "agreement_a": 1116008,
+   "c": 8,
+   "m": 139501,
+   "route": "mca",
+   "unsafe_edge_delta_den": 262144,
+   "unsafe_edge_delta_num": 122643,
+   "w": 8428
+  },
+  {
+   "Delta": 67392,
+   "N": 131072,
+   "agreement_a": 1115968,
+   "c": 16,
+   "m": 69748,
+   "route": "mca",
+   "unsafe_edge_delta_den": 32768,
+   "unsafe_edge_delta_num": 15331,
+   "w": 4211
+  },
+  {
+   "Delta": 67296,
+   "N": 65536,
+   "agreement_a": 1115872,
+   "c": 32,
+   "m": 34871,
+   "route": "mca",
+   "unsafe_edge_delta_den": 65536,
+   "unsafe_edge_delta_num": 30665,
+   "w": 2102
+  },
+  {
+   "Delta": 67136,
+   "N": 32768,
+   "agreement_a": 1115712,
+   "c": 64,
+   "m": 17433,
+   "route": "mca",
+   "unsafe_edge_delta_den": 32768,
+   "unsafe_edge_delta_num": 15335,
+   "w": 1048
+  },
+  {
+   "Delta": 66816,
+   "N": 16384,
+   "agreement_a": 1115392,
+   "c": 128,
+   "m": 8714,
+   "route": "mca",
+   "unsafe_edge_delta_den": 8192,
+   "unsafe_edge_delta_num": 3835,
+   "w": 521
+  },
+  {
+   "Delta": 66304,
+   "N": 8192,
+   "agreement_a": 1114880,
+   "c": 256,
+   "m": 4355,
+   "route": "mca",
+   "unsafe_edge_delta_den": 8192,
+   "unsafe_edge_delta_num": 3837,
+   "w": 258
+  },
+  {
+   "Delta": 67468,
+   "N": 1048576,
+   "agreement_a": 1116044,
+   "c": 2,
+   "m": 558022,
+   "route": "list",
+   "unsafe_edge_delta_den": 524288,
+   "unsafe_edge_delta_num": 245277,
+   "w": 33734
+  },
+  {
+   "Delta": 67460,
+   "N": 524288,
+   "agreement_a": 1116036,
+   "c": 4,
+   "m": 279009,
+   "route": "list",
+   "unsafe_edge_delta_den": 524288,
+   "unsafe_edge_delta_num": 245279,
+   "w": 16865
+  },
+  {
+   "Delta": 67448,
+   "N": 262144,
+   "agreement_a": 1116024,
+   "c": 8,
+   "m": 139503,
+   "route": "list",
+   "unsafe_edge_delta_den": 262144,
+   "unsafe_edge_delta_num": 122641,
+   "w": 8431
+  },
+  {
+   "Delta": 67424,
+   "N": 131072,
+   "agreement_a": 1116000,
+   "c": 16,
+   "m": 69750,
+   "route": "list",
+   "unsafe_edge_delta_den": 65536,
+   "unsafe_edge_delta_num": 30661,
+   "w": 4214
+  },
+  {
+   "Delta": 67392,
+   "N": 65536,
+   "agreement_a": 1115968,
+   "c": 32,
+   "m": 34874,
+   "route": "list",
+   "unsafe_edge_delta_den": 32768,
+   "unsafe_edge_delta_num": 15331,
+   "w": 2106
+  },
+  {
+   "Delta": 67328,
+   "N": 32768,
+   "agreement_a": 1115904,
+   "c": 64,
+   "m": 17436,
+   "route": "list",
+   "unsafe_edge_delta_den": 8192,
+   "unsafe_edge_delta_num": 3833,
+   "w": 1052
+  },
+  {
+   "Delta": 67200,
+   "N": 16384,
+   "agreement_a": 1115776,
+   "c": 128,
+   "m": 8717,
+   "route": "list",
+   "unsafe_edge_delta_den": 16384,
+   "unsafe_edge_delta_num": 7667,
+   "w": 525
+  },
+  {
+   "Delta": 66816,
+   "N": 8192,
+   "agreement_a": 1115392,
+   "c": 256,
+   "m": 4357,
+   "route": "list",
+   "unsafe_edge_delta_den": 8192,
+   "unsafe_edge_delta_num": 3835,
+   "w": 261
+  }
+ ],
+ "sampler": "finite_affine",
+ "schema": "koalabear-prefix-floor-scale-optimum-v1"
+}
