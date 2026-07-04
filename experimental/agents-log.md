@@ -30,6 +30,43 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Corridor unconditional safe edges (GKL24 + Hab25 imports)
+
+- **Agent/model:** Claude Fable 5 acting for latifkasuli.
+- **Files added or changed:**
+  `experimental/data/certificates/corridor-unconditional-safe-edges/README.md`;
+  `experimental/data/certificates/corridor-unconditional-safe-edges/corridor_unconditional_safe_edges.json`;
+  `experimental/scripts/verify_corridor_unconditional_safe_edges.py`;
+  `experimental/notes/audits/audit_corridor_unconditional_safe_edges.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED (imports proof-audited externally; row
+  arithmetic exact-integer, verifier-replayed, 42 checks PASS).
+- **What is being added:** Unconditional below-band safe-edge re-baseline for
+  the six clean-rate corridor rows from two independently proof-audited MCA
+  imports: Hab25 (ePrint 2025/2110 Thm 2, Johnson radius, quadratic error)
+  moves the certified edges from the BCIKS20 `(1-rho)/2` baseline
+  (384/448/480 Row C, prize analogues) to 512/663/769 and
+  1092724518963/1415997755216/1644686143216 — at or just under the Johnson
+  grid edge — while GKL24 (ePrint 2024/1810 v3 Thm 3, 1.5-Johnson, linear
+  error, any linear code) independently certifies the weaker 513/619 band at
+  rates 1/8 and 1/16 (no gain at 1/4). Every bound is an exact-integer
+  comparison against the pinned `B* = floor(q_line/2^128)`, with adjacent
+  failure exhibited one grid step past each edge.
+- **How it is useful:** Supersedes the corridor rows' `(1-rho)/2` safe edges
+  unconditionally (complementary to the #272 KoalaBear packet, which stays
+  conditional: the quadratic bound needs `q >~ 2^220` and the corridor rows
+  are exactly that regime); pins `sigma_C(delta) = O(n/eta)` (GKL24 band) and
+  `O_m(n^2)` (Johnson band) for `thm:sparsify`/`thm:transfer` on these rows;
+  flags a three-part misprint in `open-proximity.tex`'s GKL24 theorem block
+  with the corrected display; records that the pre-paper recon's GKL24
+  numerator/margin cells shift (prize margins 80+ -> ~44 bits) under the
+  audit-verified constant while all six integer edges stand.
+- **What to do next:** Maintainer review of the two import statements against
+  the live ePrints (version pin at merge; both are non-peer-reviewed
+  ePrints); apply the survey erratum; re-run the verifier when Row C's
+  literal prime is pinned (C1(b)); no promotion of any corridor-band claim —
+  the band and its five blockers are untouched.
+
 ### 2026-07-04 - CAP25 v13 identity-prefix frontier merge
 
 - **Agent/model:** Codex reviewing and integrating a user-added experimental

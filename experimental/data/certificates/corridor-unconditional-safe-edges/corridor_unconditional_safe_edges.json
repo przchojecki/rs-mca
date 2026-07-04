@@ -1,0 +1,351 @@
+{
+ "budgets": {
+  "prize_Bstar": "317494674775468773183020924238786383963",
+  "prize_Bstar_definition": "exact integer 10th root of 2^1279 = floor(2^127.9) (xr_budget_audit.md section 1)",
+  "rowC_Bstar": "5316911983139663491615228241121378304"
+ },
+ "epsilon_rule": "epsilon <= 2^-128 certified as count <= B* = floor(q_line/2^128); closed integer radius grid, supremum open at the first unadmitted point (M0 freeze conventions)",
+ "external_audit_commit": "github.com/latifkasuli/mca @ 3fea63a (docs/gkl24-proof-audit.md; docs/bchks25-thm46-import-audit.md incl. 'Hab25 proof audit'; docs/gkl24-corridor-import-audit.md)",
+ "imports": {
+  "gkl24": {
+   "name": "GKL24 Theorem 3 (l = 1) via the Definition-8 bridge",
+   "provenance": {
+    "audit": "github.com/latifkasuli/mca docs/gkl24-proof-audit.md @ 3fea63a",
+    "caveats": "ePrint, not peer-reviewed; v3 follows a v1 with an acknowledged critical mistake (found by Kopparty; v1 was RS-only); re-verify the live ePrint version/date against the pinned sha256 when this import lands",
+    "proof_status": "PROOF-COMPLETE for the mutual form (external line-by-line audit; 12 recoverable errata closed in-audit; zero external proof dependencies; Definition-8 <=> def:mca bridge proved in the audit, >=-direction unconditional, equivalence on delta < Delta_C)",
+    "source": "Gao-Kan-Li, Linear Proximity Gaps for Linear Codes within the 1.5 Johnson Bound, Cryptology ePrint 2024/1810, v3 (2025-03-30)",
+    "source_sha256_prefix": "bdab46f002f8"
+   },
+   "statement": "Let C be any linear code in F_q^n with minimum relative distance Delta_C, let eta > 0 and delta <= 1 - (1 - Delta_C + eta)^(1/3) (eta inside the radical; 1.5-Johnson endpoint open). Then, in the normalization of def:mca, q * eps_mca(C, delta) < (n+6)/eta + 2/(eta * ((1-Delta_C+eta)^(1/3) - (1-Delta_C+eta)^(1/2))). For C = RS[F,D,k] (upstream convention, dim k), Delta_C = 1-(k-1)/n and an integer radius r is admissible iff (n-r)^3 > (k-1)*n^2. For l >= 1 independent batching challenges multiply the bound by l (GKL24 Thm 4). Projective sampler: numerator +1, denominator q+1."
+  },
+  "hab25": {
+   "name": "Hab25 Theorem 2 (M = 1 affine line = def:mca verbatim)",
+   "provenance": {
+    "audit": "github.com/latifkasuli/mca docs/bchks25-thm46-import-audit.md, section 'Hab25 proof audit' @ 3fea63a",
+    "caveats": "ePrint, not peer-reviewed; re-verify the live ePrint version at import time",
+    "proof_status": "PROVED (external line-by-line audit: Definition 1 = def:mca event at M = 1 verbatim; quadratic error; bookkeeping gaps G1-G3 closed in-audit; all deferrals verified against BCIKS20 ECCC TR20-083). The improved linear-in-n constant of BCHKS25 Thm 4.6 and M > 1 remain sketch-only (gap G4) and are NOT used here.",
+    "source": "Ulrich Haboeck, A note on mutual correlated agreement for Reed-Solomon codes, Cryptology ePrint 2025/2110 (2025-11-17)"
+   },
+   "statement": "Let C = RS[F_q, D, k_note] with |D| = n and dimension k_note + 1 (upstream bridge: k_note = k - 1, rho_B = (k-1)/n). For every integer m >= 3, at gamma = 1 - (1 + 1/(2m)) * sqrt(rho_B): q * eps_mca(C, gamma) <= (l^7/3) * (rho_B * n)^2 with l = (m + 1/2)/sqrt(rho_B), i.e. <= (2m+1)^7 * n^(7/2) / (2^7 * 3 * (k-1)^(3/2)). Every delta <= gamma is covered by monotonicity of the def:mca event. Projective sampler: numerator +1, denominator q+1."
+  }
+ },
+ "nonclaims": [
+  "Below-band move only: the corridor band decision candidates (delta_A ~ 0.745 / 0.870 / 0.935, A = k + n/N'_dec + 1) and the five certification/counting blockers of the clean-rate program are untouched; nothing here decides any corridor row.",
+  "Row C q_line is idealized 2^250 with the literal ~2^250 prime unpinned (qa3 flag C1(b)); prize q_line 2^255.9 is the prize-max convention. All margins are >= 43.9 bits except the Hab25 prize edges, which are budget-sharp by construction; any literal prime at those scales inherits the verdicts via the pinned exact B*.",
+  "Both imports are ePrints, not peer-reviewed venues; a live-version check against the pinned artifacts (GKL24 v3 sha256 bdab46f002f8..., Hab25 2025/2110) is recommended when this packet is merged.",
+  "No deployed-KoalaBear claim: on the rho = 1/2, q = p^6 ~ 2^185.9 row the proved Hab25 quadratic bound certifies only delta <= 428878/2^21 ~ 0.2045 < 1/4 (below the existing edge) and the linear-in-n constant remains conditional per the #272 packet (gap G4).",
+  "GKL24 adds nothing at rate 1/4 (1.5-Johnson < (1-rho)/2 exactly when Delta_C <= 3 - sqrt(5); RS rates rho >= sqrt(5) - 2): the rate-1/4 GKL24 edges 379 / 813725411113 sit below the current 384 / 824633720832 and are recorded as cross-checks only.",
+  "Claims are for the l = 1 / M = 1 affine line (= def:mca) only; l > 1 affine subspaces (GKL24 Thm 4) are available at cost factor l, and M > 1 curves are NOT covered (Hab25 asserts them without proof).",
+  "No supremum claim: closed integer radius grid only, open at the first unadmitted point per the M0 freeze conventions."
+ ],
+ "object": "unconditional below-band safe-edge re-baseline for the six clean-rate corridor rows, from two independently proof-audited MCA imports (GKL24 1.5-Johnson linear-in-n; Hab25 Johnson quadratic-in-n); certified safe edges in def:mca normalization",
+ "rows": [
+  {
+   "Bstar": "5316911983139663491615228241121378304",
+   "certified_safe_edge_r": 512,
+   "certified_safe_edge_source": "hab25_johnson_quadratic",
+   "corridor_decision_candidate_A": 261,
+   "current_edge_r": 384,
+   "current_edge_source": "BCIKS20 (1-rho)/2 import (cor:conditional-half packaging; fully published)",
+   "gkl24_15J": {
+    "admissibility_gate": {
+     "fails_at_r_plus_1": true,
+     "holds": true,
+     "lhs_(n-r)^3": "268336125",
+     "next_lhs_(n-r-1)^3": "267089984",
+     "rhs_(k-1)n^2": "267386880"
+    },
+    "bound_log2_upper": 20.173,
+    "budget_ok_exact": true,
+    "delta": "379/1024",
+    "delta_float": 0.370117,
+    "eta_star": "949245/1073741824",
+    "gain_vs_current_r": -5,
+    "margin_bits": 101.83,
+    "min_qline_log2_for_2^-128": 148.2,
+    "r": 379,
+    "supersedes_current": false
+   },
+   "hab25_johnson_quadratic": {
+    "adjacent_failure": {
+     "m_min": 261121,
+     "mode": "budget",
+     "r_plus_1": 513,
+     "witness": "m_min(r+1) = 261121 > m_max = 21145; B_note(m_min) exceeds B* (exact 14th-power check), and B_note is increasing in m"
+    },
+    "bound_log2_at_witness": 77.443,
+    "budget_ok_exact": true,
+    "delta": "512/1024",
+    "delta_float": 0.5,
+    "gain_vs_current_r": 128,
+    "m_budget_max": 21145,
+    "m_witness": 256,
+    "margin_bits": 44.56,
+    "r": 512,
+    "supersedes_current": true
+   },
+   "johnson_grid_edge_r": 513,
+   "k": 256,
+   "n": 1024,
+   "q_line": "idealized 2^250, prime unpinned (qa3 flag C1(b))",
+   "rho": "1/4",
+   "row": "RowC-1/4"
+  },
+  {
+   "Bstar": "5316911983139663491615228241121378304",
+   "certified_safe_edge_r": 663,
+   "certified_safe_edge_source": "hab25_johnson_quadratic",
+   "corridor_decision_candidate_A": 133,
+   "current_edge_r": 448,
+   "current_edge_source": "BCIKS20 (1-rho)/2 import (cor:conditional-half packaging; fully published)",
+   "gkl24_15J": {
+    "admissibility_gate": {
+     "fails_at_r_plus_1": true,
+     "holds": true,
+     "lhs_(n-r)^3": "133432831",
+     "next_lhs_(n-r-1)^3": "132651000",
+     "rhs_(k-1)n^2": "133169152"
+    },
+    "bound_log2_upper": 22.019,
+    "budget_ok_exact": true,
+    "delta": "513/1024",
+    "delta_float": 0.500977,
+    "eta_star": "263679/1073741824",
+    "gain_vs_current_r": 65,
+    "margin_bits": 99.98,
+    "min_qline_log2_for_2^-128": 150.0,
+    "r": 513,
+    "supersedes_current": true
+   },
+   "hab25_johnson_quadratic": {
+    "adjacent_failure": {
+     "mode": "past_johnson_grid",
+     "r_plus_1": 664,
+     "witness": "(n-r-1)^2 = 129600 <= (k-1)n = 130048: no integer m admits the radius"
+    },
+    "bound_log2_at_witness": 85.228,
+    "budget_ok_exact": true,
+    "delta": "663/1024",
+    "delta_float": 0.647461,
+    "gain_vs_current_r": 215,
+    "m_budget_max": 18211,
+    "m_witness": 477,
+    "margin_bits": 36.77,
+    "r": 663,
+    "supersedes_current": true
+   },
+   "johnson_grid_edge_r": 663,
+   "k": 128,
+   "n": 1024,
+   "q_line": "idealized 2^250, prime unpinned (qa3 flag C1(b))",
+   "rho": "1/8",
+   "row": "RowC-1/8"
+  },
+  {
+   "Bstar": "5316911983139663491615228241121378304",
+   "certified_safe_edge_r": 769,
+   "certified_safe_edge_source": "hab25_johnson_quadratic",
+   "corridor_decision_candidate_A": 67,
+   "current_edge_r": 480,
+   "current_edge_source": "BCIKS20 (1-rho)/2 import (cor:conditional-half packaging; fully published)",
+   "gkl24_15J": {
+    "admissibility_gate": {
+     "fails_at_r_plus_1": true,
+     "holds": true,
+     "lhs_(n-r)^3": "66430125",
+     "next_lhs_(n-r-1)^3": "65939264",
+     "rhs_(k-1)n^2": "66060288"
+    },
+    "bound_log2_upper": 21.531,
+    "budget_ok_exact": true,
+    "delta": "619/1024",
+    "delta_float": 0.604492,
+    "eta_star": "369837/1073741824",
+    "gain_vs_current_r": 139,
+    "margin_bits": 100.47,
+    "min_qline_log2_for_2^-128": 149.5,
+    "r": 619,
+    "supersedes_current": true
+   },
+   "hab25_johnson_quadratic": {
+    "adjacent_failure": {
+     "m_min": 16129,
+     "mode": "budget",
+     "r_plus_1": 770,
+     "witness": "m_min(r+1) = 16129 > m_max = 15670; B_note(m_min) exceeds B* (exact 14th-power check), and B_note is increasing in m"
+    },
+    "bound_log2_at_witness": 73.41,
+    "budget_ok_exact": true,
+    "delta": "769/1024",
+    "delta_float": 0.750977,
+    "gain_vs_current_r": 289,
+    "m_budget_max": 15670,
+    "m_witness": 127,
+    "margin_bits": 48.59,
+    "r": 769,
+    "supersedes_current": true
+   },
+   "johnson_grid_edge_r": 770,
+   "k": 64,
+   "n": 1024,
+   "q_line": "idealized 2^250, prime unpinned (qa3 flag C1(b))",
+   "rho": "1/16",
+   "row": "RowC-1/16"
+  },
+  {
+   "Bstar": "317494674775468773183020924238786383963",
+   "certified_safe_edge_r": 1092724518963,
+   "certified_safe_edge_source": "hab25_johnson_quadratic",
+   "corridor_decision_candidate_A": 558345748481,
+   "current_edge_r": 824633720832,
+   "current_edge_source": "BCIKS20 (1-rho)/2 import (cor:conditional-half packaging; fully published)",
+   "gkl24_15J": {
+    "admissibility_gate": {
+     "fails_at_r_plus_1": true,
+     "holds": true,
+     "lhs_(n-r)^3": "2658455991568916893911926199977176519",
+     "next_lhs_(n-r-1)^3": "2658455991563159743558508336341035672",
+     "rhs_(k-1)n^2": "2658455991564996042529155603861864448"
+    },
+    "bound_log2_upper": 82.303,
+    "budget_ok_exact": true,
+    "delta": "813725411113/2199023255552",
+    "delta_float": 0.370039,
+    "eta_star": "3920851382770596115312071/10633823966279326983230456482242756608",
+    "gain_vs_current_r": -10908309719,
+    "margin_bits": 45.6,
+    "min_qline_log2_for_2^-128": 210.3,
+    "r": 813725411113,
+    "supersedes_current": false
+   },
+   "hab25_johnson_quadratic": {
+    "adjacent_failure": {
+     "m_min": 82,
+     "mode": "budget",
+     "r_plus_1": 1092724518964,
+     "witness": "m_min(r+1) = 82 > m_max = 81; B_note(m_min) exceeds B* (exact 14th-power check), and B_note is increasing in m"
+    },
+    "bound_log2_at_witness": 127.856,
+    "budget_ok_exact": true,
+    "delta": "1092724518963/2199023255552",
+    "delta_float": 0.496914,
+    "gain_vs_current_r": 268090798131,
+    "m_budget_max": 81,
+    "m_witness": 81,
+    "margin_bits": 0.04,
+    "r": 1092724518963,
+    "supersedes_current": true
+   },
+   "johnson_grid_edge_r": 1099511627777,
+   "k": 549755813888,
+   "n": 2199023255552,
+   "q_line": "idealized 2^255.9 (prize-max convention)",
+   "rho": "1/4",
+   "row": "prize-1/4"
+  },
+  {
+   "Bstar": "317494674775468773183020924238786383963",
+   "certified_safe_edge_r": 1415997755216,
+   "certified_safe_edge_source": "hab25_johnson_quadratic",
+   "corridor_decision_candidate_A": 283467841537,
+   "current_edge_r": 962072674304,
+   "current_edge_source": "BCIKS20 (1-rho)/2 import (cor:conditional-half packaging; fully published)",
+   "gkl24_15J": {
+    "admissibility_gate": {
+     "fails_at_r_plus_1": true,
+     "holds": true,
+     "lhs_(n-r)^3": "1329227995781289095444966471291109375",
+     "next_lhs_(n-r-1)^3": "1329227995777662317986132479371640824",
+     "rhs_(k-1)n^2": "1329227995780080169625348543581519872"
+    },
+    "bound_log2_upper": 84.0,
+    "budget_ok_exact": true,
+    "delta": "1099511627777/2199023255552",
+    "delta_float": 0.5,
+    "eta_star": "1208925819617927709589503/10633823966279326983230456482242756608",
+    "gain_vs_current_r": 137438953473,
+    "margin_bits": 43.9,
+    "min_qline_log2_for_2^-128": 212.0,
+    "r": 1099511627777,
+    "supersedes_current": true
+   },
+   "hab25_johnson_quadratic": {
+    "adjacent_failure": {
+     "m_min": 71,
+     "mode": "budget",
+     "r_plus_1": 1415997755217,
+     "witness": "m_min(r+1) = 71 > m_max = 70; B_note(m_min) exceeds B* (exact 14th-power check), and B_note is increasing in m"
+    },
+    "bound_log2_at_witness": 127.892,
+    "budget_ok_exact": true,
+    "delta": "1415997755216/2199023255552",
+    "delta_float": 0.643921,
+    "gain_vs_current_r": 453925080912,
+    "m_budget_max": 70,
+    "m_witness": 70,
+    "margin_bits": 0.01,
+    "r": 1415997755216,
+    "supersedes_current": true
+   },
+   "johnson_grid_edge_r": 1421551127559,
+   "k": 274877906944,
+   "n": 2199023255552,
+   "q_line": "idealized 2^255.9 (prize-max convention)",
+   "rho": "1/8",
+   "row": "prize-1/8"
+  },
+  {
+   "Bstar": "317494674775468773183020924238786383963",
+   "certified_safe_edge_r": 1644686143216,
+   "certified_safe_edge_source": "hab25_johnson_quadratic",
+   "corridor_decision_candidate_A": 141733920769,
+   "current_edge_r": 1030792151040,
+   "current_edge_source": "BCIKS20 (1-rho)/2 import (cor:conditional-half packaging; fully published)",
+   "gkl24_15J": {
+    "admissibility_gate": {
+     "fails_at_r_plus_1": true,
+     "holds": true,
+     "lhs_(n-r)^3": "664613997889156765702988951705489000",
+     "next_lhs_(n-r-1)^3": "664613997886872039071158309861928569",
+     "rhs_(k-1)n^2": "664613997887622233173445013441347584"
+    },
+    "bound_log2_upper": 83.656,
+    "budget_ok_exact": true,
+    "delta": "1326340298262/2199023255552",
+    "delta_float": 0.60315,
+    "eta_star": "191816566192992283017677/1329227995784915872903807060280344576",
+    "gain_vs_current_r": 295548147222,
+    "margin_bits": 44.24,
+    "min_qline_log2_for_2^-128": 211.7,
+    "r": 1326340298262,
+    "supersedes_current": true
+   },
+   "hab25_johnson_quadratic": {
+    "adjacent_failure": {
+     "m_min": 61,
+     "mode": "budget",
+     "r_plus_1": 1644686143217,
+     "witness": "m_min(r+1) = 61 > m_max = 60; B_note(m_min) exceeds B* (exact 14th-power check), and B_note is increasing in m"
+    },
+    "bound_log2_at_witness": 127.847,
+    "budget_ok_exact": true,
+    "delta": "1644686143216/2199023255552",
+    "delta_float": 0.747917,
+    "gain_vs_current_r": 613893992176,
+    "m_budget_max": 60,
+    "m_witness": 60,
+    "margin_bits": 0.05,
+    "r": 1644686143216,
+    "supersedes_current": true
+   },
+   "johnson_grid_edge_r": 1649267441666,
+   "k": 137438953472,
+   "n": 2199023255552,
+   "q_line": "idealized 2^255.9 (prize-max convention)",
+   "rho": "1/16",
+   "row": "prize-1/16"
+  }
+ ],
+ "sampler": "finite_affine",
+ "schema": "corridor-unconditional-safe-edges-v1"
+}
