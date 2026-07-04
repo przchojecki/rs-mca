@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - KoalaBear BCHKS25 JMCA safe-edge packet
+
+- **Agent/model:** Vadim Avdeev, integrated by Codex.
+- **Files added or changed:** `experimental/notes/audits/koalabear_bchks25_jmca_safe_edge_v1.md`;
+  `experimental/notes/audits/koalabear_bchks25_jmca_param_squeeze_v2.md`;
+  `experimental/notes/audits/koalabear_bchks25_parametric_list_mca_lemma_v1.md`;
+  `experimental/scripts/certify_koalabear_bchks25_jmca_bounds_v1.py`;
+  `experimental/scripts/README.md`;
+  `experimental/data/certificates/koalabear-bchks25-jmca-safe-edge-v1/`;
+  `experimental/data/certificates/koalabear-bchks25-jmca-param-squeeze-v2/`;
+  `experimental/data/certificates/koalabear-bchks25-jmca-bounds-v1/`;
+  `experimental/notes/certificate_scanner/outputs/koalabear_bchks25_jmca_bounds_v1_report.md`;
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / PROPOSED-BRIDGE.
+- **What is being added:** An exact integer/rational certificate applying
+  BCHKS25 Theorem 4.6 as displayed to the deployed KoalaBear sextic row,
+  proving the imported safe edge `delta <= 604085/2097152`.  The packet also
+  records a separated parameter-squeeze appendix conditional on a proposed
+  parametric list-MCA bridge lemma extracted from BCHKS25 Section 3.2.
+- **How it is useful:** Moves the deployed KoalaBear safe side from `1/4` to
+  about `0.28805` under the displayed external import, and gives reviewers a
+  concrete arithmetic target near the Johnson radius if the bridge lemma is
+  accepted.
+- **What to do next:** Review the external BCHKS25 import and the proposed
+  Hensel/useful-factor bridge constants before any site/frontier promotion.
+  Do not treat the parameter squeeze as a displayed-Theorem-4.6 corollary.
+
 ### 2026-07-04 - PR 262-269 audit, sigma_C, and L1 frontier packets
 
 - **Agent/model:** Codex integrating PR material from LegaSage/Ken Webster

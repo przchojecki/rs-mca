@@ -1,0 +1,84 @@
+{
+  "certificate": {
+    "A": 1485169,
+    "D_X": "3260187343008905712904437761/18446744073709551616",
+    "D_X_integer_plus_epsilon": "176735110 + 1/18446744073709551616",
+    "D_Y": "3099053004383204671489/18446744073709551616",
+    "D_Y_integer_plus_epsilon": "168 + 1/18446744073709551616",
+    "D_Z": "508060225278108470607873/18446744073709551616",
+    "D_Z_integer_plus_epsilon": "27542 + 1/18446744073709551616",
+    "U_ceil_DX": 176735111,
+    "V_ceil_DY": 169,
+    "W_ceil_DZ": 27543,
+    "budget": 274980728111395087,
+    "budget_minus_ceil_R_bound": 212275626832014,
+    "delta": "611983/2097152",
+    "epsilon": "1/18446744073709551616",
+    "interpolation_admissibility": {
+      "U_gt_k_times_V_minus_1": true,
+      "V_ge_m": true,
+      "W_ge_V": true,
+      "W_gt_V_minus_1": true
+    },
+    "interpolation_count": {
+      "n_eqs": 411830698639360,
+      "n_vars": 411830702773581,
+      "n_vars_gt_n_eqs": true,
+      "n_vars_minus_n_eqs": 4134221
+    },
+    "label": "koalabear-bchks25-parametric-list-mca-squeeze-v2-r611983",
+    "m": 119,
+    "optimized_integer_cell_search": {
+      "family": "D_X=U-1+epsilon, D_Y=V-1+epsilon, D_Z=W-1+epsilon, epsilon->0+, with theorem admissibility constraints",
+      "m_search_upper_bound": 602,
+      "r_611983_best_cell": {
+        "U_ceil_DX": 176735111,
+        "V_ceil_DY": 169,
+        "W_ceil_DZ": 27543,
+        "budget_margin": 212275626832014,
+        "ceil_R_bound": 274768452484563073,
+        "m": 119
+      },
+      "r_611984_has_no_budget_clearing_cell_in_this_family": true
+    },
+    "r": 611983,
+    "root_agreement_condition": {
+      "D_X_lt_m_times_A": true,
+      "m_times_A_minus_D_X": "18446744073709551615/18446744073709551616"
+    },
+    "status": "CONDITIONAL_ON_PARAMETRIC_LIST_MCA_LEMMA_V1",
+    "theorem_dependency": "experimental/notes/audits/koalabear_bchks25_parametric_list_mca_lemma_v1.md",
+    "useful_factor_bound": {
+      "R_bound": "15908006584845901062608375958763736475887239884750145348823178837184988099004810611120469442561/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+      "ceil_R_bound": 274768452484563073,
+      "ceil_R_bound_lt_budget": true,
+      "floor_R_bound": 274768452484563072,
+      "formula": "R = 2*D_X*D_Y^2*D_Z + (r+1)*D_Y"
+    }
+  },
+  "global_parameters": {
+    "BCHKS_degree_parameter_k_dimension_k_plus_1": 1048575,
+    "budget_floor((p^6-1)/2^128)": 274980728111395087,
+    "extension_degree": 6,
+    "external_source": {
+      "accessed": "2026-07-04",
+      "authors": "Eli Ben-Sasson, Dan Carmon, Ulrich Habock, Swastik Kopparty, Shubhangi Saraf",
+      "doi": "https://dl.acm.org/doi/10.1145/3798129.3800827",
+      "headline_import": "Theorem 4.6, List correlated agreement up to Johnson bound",
+      "headline_import_pages": "pp. 27-28",
+      "parametric_appendix_dependency": "Section 3.2 improved-bound proof, especially the unnumbered Hensel/useful-factor step beginning with |S_{x0,R,H}| > 2 D_X D_Y^(R) D_Y^(H) D_Z^(R), and the Theorem 4.6 paragraph generalizing that all-useful-factor bookkeeping to list correlated agreement.",
+      "parametric_appendix_dependency_pages": "Section 3.2, pp. 23-25; Theorem 4.6 proof paragraph, p. 28",
+      "pdf_date": "2025-11-11",
+      "pdf_sha256": "4ADDED3E55B83C15FCC8A698FB57E137F5BD83E79EA25CE79382817C1AD26A46",
+      "pdf_url": "https://www.math.toronto.edu/swastik/rs-proximity-gaps-2025.pdf",
+      "title": "On Proximity Gaps for Reed-Solomon Codes"
+    },
+    "n": 2097152,
+    "p": 2130706433,
+    "q_line": 93571093019388561295270373781649880353786165192103559169,
+    "repo_dimension_K_degree_lt_K": 1048576,
+    "target_bits": 128,
+    "target_denominator": 340282366920938463463374607431768211456
+  },
+  "non_claim": "This appendix is not a consequence of BCHKS25 Theorem 4.6 as displayed; it depends on the parametric list-MCA bridge lemma added in this packet."
+}

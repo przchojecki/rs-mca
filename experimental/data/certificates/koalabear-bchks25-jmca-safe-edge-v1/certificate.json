@@ -1,0 +1,96 @@
+{
+  "certificate": {
+    "conservative_rho_half_endpoint": {
+      "A": 1493068,
+      "X_pre_sqrt": "1132160554476914299/6",
+      "budget": 274980728111395087,
+      "budget_minus_ceil_N_JMCA": 8127926290545834,
+      "ceil_N_JMCA": 266852801820849253,
+      "ceil_N_JMCA_le_budget": true,
+      "ceil_N_JMCA_lt_budget": true,
+      "delta": "604084/2097152",
+      "label": "koalabear-bchks25-theorem46-displayed-conservative-rho-half-r604084",
+      "m": 146,
+      "r": 604084,
+      "rho": "1/2",
+      "status": "CONDITIONAL_ON_BCHKS25_THEOREM_4_6_AS_STATED"
+    },
+    "conservative_rho_half_next_grid_fails_displayed_bound": {
+      "A": 1493067,
+      "X_pre_sqrt": "585665986008108055/3",
+      "budget": 274980728111395087,
+      "budget_minus_ceil_N_JMCA": -1104865366364158,
+      "ceil_N_JMCA": 276085593477759245,
+      "ceil_N_JMCA_le_budget": false,
+      "ceil_N_JMCA_lt_budget": false,
+      "delta": "604085/2097152",
+      "label": "koalabear-bchks25-theorem46-displayed-conservative-rho-half-r604085-next-grid",
+      "m": 147,
+      "r": 604085,
+      "rho": "1/2",
+      "status": "CONDITIONAL_ON_BCHKS25_THEOREM_4_6_AS_STATED"
+    },
+    "exact_rho_endpoint": {
+      "A": 1493067,
+      "X_pre_sqrt": "593578192785592639347467/3145725",
+      "budget": 274980728111395087,
+      "budget_minus_ceil_N_JMCA": 8127544554095645,
+      "ceil_N_JMCA": 266853183557299442,
+      "ceil_N_JMCA_le_budget": true,
+      "ceil_N_JMCA_lt_budget": true,
+      "delta": "604085/2097152",
+      "label": "koalabear-bchks25-theorem46-displayed-reduced-rho-r604085",
+      "m": 146,
+      "r": 604085,
+      "rho": "1048575/2097152",
+      "status": "CONDITIONAL_ON_BCHKS25_THEOREM_4_6_AS_STATED"
+    },
+    "exact_rho_next_grid_fails_displayed_bound": {
+      "A": 1493066,
+      "X_pre_sqrt": "49129223755555048685285/251658",
+      "budget": 274980728111395087,
+      "budget_minus_ceil_N_JMCA": -1105260310444501,
+      "ceil_N_JMCA": 276085988421839588,
+      "ceil_N_JMCA_le_budget": false,
+      "ceil_N_JMCA_lt_budget": false,
+      "delta": "604086/2097152",
+      "label": "koalabear-bchks25-theorem46-displayed-reduced-rho-r604086-next-grid",
+      "m": 147,
+      "r": 604086,
+      "rho": "1048575/2097152",
+      "status": "CONDITIONAL_ON_BCHKS25_THEOREM_4_6_AS_STATED"
+    },
+    "status": "CONDITIONAL_ON_BCHKS25_THEOREM_4_6_AS_STATED"
+  },
+  "global_parameters": {
+    "BCHKS_degree_parameter_k_dimension_k_plus_1": 1048575,
+    "budget_floor((p^6-1)/2^128)": 274980728111395087,
+    "extension_degree": 6,
+    "external_source": {
+      "accessed": "2026-07-04",
+      "authors": "Eli Ben-Sasson, Dan Carmon, Ulrich Habock, Swastik Kopparty, Shubhangi Saraf",
+      "doi": "https://dl.acm.org/doi/10.1145/3798129.3800827",
+      "headline_import": "Theorem 4.6, List correlated agreement up to Johnson bound",
+      "headline_import_pages": "pp. 27-28",
+      "parametric_appendix_dependency": "Section 3.2 improved-bound proof, especially the unnumbered Hensel/useful-factor step beginning with |S_{x0,R,H}| > 2 D_X D_Y^(R) D_Y^(H) D_Z^(R), and the Theorem 4.6 paragraph generalizing that all-useful-factor bookkeeping to list correlated agreement.",
+      "parametric_appendix_dependency_pages": "Section 3.2, pp. 23-25; Theorem 4.6 proof paragraph, p. 28",
+      "pdf_date": "2025-11-11",
+      "pdf_sha256": "4ADDED3E55B83C15FCC8A698FB57E137F5BD83E79EA25CE79382817C1AD26A46",
+      "pdf_url": "https://www.math.toronto.edu/swastik/rs-proximity-gaps-2025.pdf",
+      "title": "On Proximity Gaps for Reed-Solomon Codes"
+    },
+    "n": 2097152,
+    "p": 2130706433,
+    "q_line": 93571093019388561295270373781649880353786165192103559169,
+    "repo_dimension_K_degree_lt_K": 1048576,
+    "target_bits": 128,
+    "target_denominator": 340282366920938463463374607431768211456
+  },
+  "headline": {
+    "claim": "Displayed BCHKS25 Theorem 4.6 JMCA safe edge",
+    "non_headline_appendix": "The parametric squeeze is separated and depends on the new bridge lemma in this packet.",
+    "safe_A": 1493067,
+    "safe_delta": "604085/2097152",
+    "status": "CONDITIONAL_ON_BCHKS25_THEOREM_4_6_AS_STATED"
+  }
+}
