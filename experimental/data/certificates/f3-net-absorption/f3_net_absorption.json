@@ -1,0 +1,1959 @@
+{
+  "anchor_slope_excluded": 0,
+  "case_count": 14,
+  "cases": [
+    {
+      "line_count": 40,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "p3_original_three_direction_net",
+      "pair_trades": 130,
+      "rich_points": 65,
+      "samples": [
+        {
+          "a": 2,
+          "incident": [
+            "H2",
+            "N3",
+            "P1"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                5,
+                192
+              ],
+              "e2": [
+                6,
+                191,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 1,
+              "root": 1,
+              "slope": 192
+            },
+            "pair": [
+              "H2",
+              "N3"
+            ]
+          },
+          "trade_count": 2,
+          "z": 1
+        },
+        {
+          "a": 3,
+          "incident": [
+            "H3",
+            "N4",
+            "P2"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                7,
+                192
+              ],
+              "e2": [
+                12,
+                190,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 1,
+              "root": 1,
+              "slope": 192
+            },
+            "pair": [
+              "H3",
+              "N4"
+            ]
+          },
+          "trade_count": 2,
+          "z": 1
+        },
+        {
+          "a": 4,
+          "incident": [
+            "H4",
+            "N5",
+            "P3"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                9,
+                192
+              ],
+              "e2": [
+                20,
+                189,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 1,
+              "root": 1,
+              "slope": 192
+            },
+            "pair": [
+              "H4",
+              "N5"
+            ]
+          },
+          "trade_count": 2,
+          "z": 1
+        },
+        {
+          "a": 5,
+          "incident": [
+            "H5",
+            "N6",
+            "P4"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                11,
+                192
+              ],
+              "e2": [
+                30,
+                188,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 1,
+              "root": 1,
+              "slope": 192
+            },
+            "pair": [
+              "H5",
+              "N6"
+            ]
+          },
+          "trade_count": 2,
+          "z": 1
+        }
+      ]
+    },
+    {
+      "line_count": 63,
+      "max_multiplicity": 4,
+      "min_direction_count": 3,
+      "name": "generic_four_direction_grid",
+      "pair_trades": 175,
+      "rich_points": 77,
+      "samples": [
+        {
+          "a": 30,
+          "incident": [
+            "G4_s113_c110",
+            "G4_s17_c13",
+            "G4_s71_c152"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                123,
+                130
+              ],
+              "e2": [
+                79,
+                58,
+                184
+              ]
+            },
+            "linear_equality": {
+              "constant": 96,
+              "root": 1,
+              "slope": 97
+            },
+            "pair": [
+              "G4_s113_c110",
+              "G4_s17_c13"
+            ]
+          },
+          "trade_count": 2,
+          "z": 1
+        },
+        {
+          "a": 7,
+          "incident": [
+            "G4_s0_c7",
+            "G4_s113_c167",
+            "G4_s17_c166",
+            "G4_s71_c58"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                174,
+                113
+              ],
+              "e2": [
+                11,
+                19,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 160,
+              "root": 2,
+              "slope": 113
+            },
+            "pair": [
+              "G4_s0_c7",
+              "G4_s113_c167"
+            ]
+          },
+          "trade_count": 3,
+          "z": 2
+        },
+        {
+          "a": 19,
+          "incident": [
+            "G4_s0_c19",
+            "G4_s113_c179",
+            "G4_s17_c178",
+            "G4_s71_c70"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                5,
+                113
+              ],
+              "e2": [
+                120,
+                24,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 160,
+              "root": 2,
+              "slope": 113
+            },
+            "pair": [
+              "G4_s0_c19",
+              "G4_s113_c179"
+            ]
+          },
+          "trade_count": 3,
+          "z": 2
+        },
+        {
+          "a": 53,
+          "incident": [
+            "G4_s0_c53",
+            "G4_s113_c20",
+            "G4_s17_c19",
+            "G4_s71_c104"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                73,
+                113
+              ],
+              "e2": [
+                95,
+                6,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 160,
+              "root": 2,
+              "slope": 113
+            },
+            "pair": [
+              "G4_s0_c53",
+              "G4_s113_c20"
+            ]
+          },
+          "trade_count": 3,
+          "z": 2
+        }
+      ]
+    },
+    {
+      "line_count": 39,
+      "max_multiplicity": 5,
+      "min_direction_count": 3,
+      "name": "five_direction_high_multiplicity_grid",
+      "pair_trades": 72,
+      "rich_points": 27,
+      "samples": [
+        {
+          "a": 10,
+          "incident": [
+            "G5_s0_c10",
+            "G5_s12_c131",
+            "G5_s144_c111",
+            "G5_s1_c4",
+            "G5_s55_c66"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                141,
+                12
+              ],
+              "e2": [
+                152,
+                120,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 121,
+              "root": 6,
+              "slope": 12
+            },
+            "pair": [
+              "G5_s0_c10",
+              "G5_s12_c131"
+            ]
+          },
+          "trade_count": 4,
+          "z": 6
+        },
+        {
+          "a": 44,
+          "incident": [
+            "G5_s0_c44",
+            "G5_s12_c165",
+            "G5_s144_c145",
+            "G5_s1_c38",
+            "G5_s55_c100"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                16,
+                12
+              ],
+              "e2": [
+                119,
+                142,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 121,
+              "root": 6,
+              "slope": 12
+            },
+            "pair": [
+              "G5_s0_c44",
+              "G5_s12_c165"
+            ]
+          },
+          "trade_count": 4,
+          "z": 6
+        },
+        {
+          "a": 120,
+          "incident": [
+            "G5_s0_c120",
+            "G5_s12_c48",
+            "G5_s144_c28",
+            "G5_s1_c114",
+            "G5_s55_c176"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                168,
+                12
+              ],
+              "e2": [
+                163,
+                89,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 121,
+              "root": 6,
+              "slope": 12
+            },
+            "pair": [
+              "G5_s0_c120",
+              "G5_s12_c48"
+            ]
+          },
+          "trade_count": 4,
+          "z": 6
+        },
+        {
+          "a": 10,
+          "incident": [
+            "G5_s0_c10",
+            "G5_s12_c35",
+            "G5_s144_c117",
+            "G5_s1_c189",
+            "G5_s55_c12"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                45,
+                12
+              ],
+              "e2": [
+                157,
+                120,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 25,
+              "root": 14,
+              "slope": 12
+            },
+            "pair": [
+              "G5_s0_c10",
+              "G5_s12_c35"
+            ]
+          },
+          "trade_count": 4,
+          "z": 14
+        }
+      ]
+    },
+    {
+      "line_count": 63,
+      "max_multiplicity": 4,
+      "min_direction_count": 3,
+      "name": "seeded_adversarial_generic_slopes",
+      "pair_trades": 227,
+      "rich_points": 112,
+      "samples": [
+        {
+          "a": 186,
+          "incident": [
+            "A_s111_z90_a111",
+            "A_s5_z128_a44",
+            "D2"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                140,
+                116
+              ],
+              "e2": [
+                33,
+                56,
+                169
+              ]
+            },
+            "linear_equality": {
+              "constant": 19,
+              "root": 2,
+              "slope": 87
+            },
+            "pair": [
+              "A_s111_z90_a111",
+              "A_s5_z128_a44"
+            ]
+          },
+          "trade_count": 2,
+          "z": 2
+        },
+        {
+          "a": 54,
+          "incident": [
+            "A_s37_z53_a167",
+            "D1",
+            "D2"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                64,
+                79
+              ],
+              "e2": [
+                51,
+                153,
+                10
+              ]
+            },
+            "linear_equality": {
+              "constant": 178,
+              "root": 3,
+              "slope": 5
+            },
+            "pair": [
+              "A_s37_z53_a167",
+              "D1"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 116,
+          "incident": [
+            "A_s111_z41_a88",
+            "D0",
+            "D3"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                23,
+                134
+              ],
+              "e2": [
+                30,
+                33,
+                44
+              ]
+            },
+            "linear_equality": {
+              "constant": 71,
+              "root": 3,
+              "slope": 105
+            },
+            "pair": [
+              "A_s111_z41_a88",
+              "D0"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 115,
+          "incident": [
+            "A_s111_z99_a45",
+            "A_s5_z53_a167",
+            "D2"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                152,
+                116
+              ],
+              "e2": [
+                11,
+                22,
+                169
+              ]
+            },
+            "linear_equality": {
+              "constant": 38,
+              "root": 4,
+              "slope": 87
+            },
+            "pair": [
+              "A_s111_z99_a45",
+              "A_s5_z53_a167"
+            ]
+          },
+          "trade_count": 2,
+          "z": 4
+        }
+      ]
+    },
+    {
+      "line_count": 14,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_0_1_2",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_0_1_2_s0_c4",
+            "template_0_1_2_s1_c1",
+            "template_0_1_2_s2_c191"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                5,
+                1
+              ],
+              "e2": [
+                4,
+                4,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 190,
+              "root": 3,
+              "slope": 1
+            },
+            "pair": [
+              "template_0_1_2_s0_c4",
+              "template_0_1_2_s1_c1"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_1_2_s0_c31",
+            "template_0_1_2_s1_c28",
+            "template_0_1_2_s2_c25"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                59,
+                1
+              ],
+              "e2": [
+                96,
+                31,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 190,
+              "root": 3,
+              "slope": 1
+            },
+            "pair": [
+              "template_0_1_2_s0_c31",
+              "template_0_1_2_s1_c28"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_0_1_2_s0_c4",
+            "template_0_1_2_s1_c188",
+            "template_0_1_2_s2_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                192,
+                1
+              ],
+              "e2": [
+                173,
+                4,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 184,
+              "root": 9,
+              "slope": 1
+            },
+            "pair": [
+              "template_0_1_2_s0_c4",
+              "template_0_1_2_s1_c188"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_1_2_s0_c31",
+            "template_0_1_2_s1_c22",
+            "template_0_1_2_s2_c13"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                53,
+                1
+              ],
+              "e2": [
+                103,
+                31,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 184,
+              "root": 9,
+              "slope": 1
+            },
+            "pair": [
+              "template_0_1_2_s0_c31",
+              "template_0_1_2_s1_c22"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 14,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_0_1_5",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_0_1_5_s0_c4",
+            "template_0_1_5_s1_c1",
+            "template_0_1_5_s5_c182"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                5,
+                1
+              ],
+              "e2": [
+                4,
+                4,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 190,
+              "root": 3,
+              "slope": 1
+            },
+            "pair": [
+              "template_0_1_5_s0_c4",
+              "template_0_1_5_s1_c1"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_1_5_s0_c31",
+            "template_0_1_5_s1_c28",
+            "template_0_1_5_s5_c16"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                59,
+                1
+              ],
+              "e2": [
+                96,
+                31,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 190,
+              "root": 3,
+              "slope": 1
+            },
+            "pair": [
+              "template_0_1_5_s0_c31",
+              "template_0_1_5_s1_c28"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_0_1_5_s0_c4",
+            "template_0_1_5_s1_c188",
+            "template_0_1_5_s5_c152"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                192,
+                1
+              ],
+              "e2": [
+                173,
+                4,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 184,
+              "root": 9,
+              "slope": 1
+            },
+            "pair": [
+              "template_0_1_5_s0_c4",
+              "template_0_1_5_s1_c188"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_1_5_s0_c31",
+            "template_0_1_5_s1_c22",
+            "template_0_1_5_s5_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                53,
+                1
+              ],
+              "e2": [
+                103,
+                31,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 184,
+              "root": 9,
+              "slope": 1
+            },
+            "pair": [
+              "template_0_1_5_s0_c31",
+              "template_0_1_5_s1_c22"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 14,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_0_1_17",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_0_1_17_s0_c4",
+            "template_0_1_17_s17_c146",
+            "template_0_1_17_s1_c1"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                150,
+                17
+              ],
+              "e2": [
+                5,
+                68,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 142,
+              "root": 3,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_1_17_s0_c4",
+              "template_0_1_17_s17_c146"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_1_17_s0_c31",
+            "template_0_1_17_s17_c173",
+            "template_0_1_17_s1_c28"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                11,
+                17
+              ],
+              "e2": [
+                152,
+                141,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 142,
+              "root": 3,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_1_17_s0_c31",
+              "template_0_1_17_s17_c173"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_0_1_17_s0_c4",
+            "template_0_1_17_s17_c44",
+            "template_0_1_17_s1_c188"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                48,
+                17
+              ],
+              "e2": [
+                176,
+                68,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 40,
+              "root": 9,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_1_17_s0_c4",
+              "template_0_1_17_s17_c44"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_1_17_s0_c31",
+            "template_0_1_17_s17_c71",
+            "template_0_1_17_s1_c22"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                102,
+                17
+              ],
+              "e2": [
+                78,
+                141,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 40,
+              "root": 9,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_1_17_s0_c31",
+              "template_0_1_17_s17_c71"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 14,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_0_2_5",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_0_2_5_s0_c4",
+            "template_0_2_5_s2_c191",
+            "template_0_2_5_s5_c182"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                2,
+                2
+              ],
+              "e2": [
+                185,
+                8,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 187,
+              "root": 3,
+              "slope": 2
+            },
+            "pair": [
+              "template_0_2_5_s0_c4",
+              "template_0_2_5_s2_c191"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_2_5_s0_c31",
+            "template_0_2_5_s2_c25",
+            "template_0_2_5_s5_c16"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                56,
+                2
+              ],
+              "e2": [
+                3,
+                62,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 187,
+              "root": 3,
+              "slope": 2
+            },
+            "pair": [
+              "template_0_2_5_s0_c31",
+              "template_0_2_5_s2_c25"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_0_2_5_s0_c4",
+            "template_0_2_5_s2_c179",
+            "template_0_2_5_s5_c152"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                183,
+                2
+              ],
+              "e2": [
+                137,
+                8,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 175,
+              "root": 9,
+              "slope": 2
+            },
+            "pair": [
+              "template_0_2_5_s0_c4",
+              "template_0_2_5_s2_c179"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_2_5_s0_c31",
+            "template_0_2_5_s2_c13",
+            "template_0_2_5_s5_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                44,
+                2
+              ],
+              "e2": [
+                17,
+                62,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 175,
+              "root": 9,
+              "slope": 2
+            },
+            "pair": [
+              "template_0_2_5_s0_c31",
+              "template_0_2_5_s2_c13"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 14,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_0_2_17",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_0_2_17_s0_c4",
+            "template_0_2_17_s17_c146",
+            "template_0_2_17_s2_c191"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                150,
+                17
+              ],
+              "e2": [
+                5,
+                68,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 142,
+              "root": 3,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_2_17_s0_c4",
+              "template_0_2_17_s17_c146"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_2_17_s0_c31",
+            "template_0_2_17_s17_c173",
+            "template_0_2_17_s2_c25"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                11,
+                17
+              ],
+              "e2": [
+                152,
+                141,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 142,
+              "root": 3,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_2_17_s0_c31",
+              "template_0_2_17_s17_c173"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_0_2_17_s0_c4",
+            "template_0_2_17_s17_c44",
+            "template_0_2_17_s2_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                48,
+                17
+              ],
+              "e2": [
+                176,
+                68,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 40,
+              "root": 9,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_2_17_s0_c4",
+              "template_0_2_17_s17_c44"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_2_17_s0_c31",
+            "template_0_2_17_s17_c71",
+            "template_0_2_17_s2_c13"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                102,
+                17
+              ],
+              "e2": [
+                78,
+                141,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 40,
+              "root": 9,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_2_17_s0_c31",
+              "template_0_2_17_s17_c71"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 14,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_0_5_17",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_0_5_17_s0_c4",
+            "template_0_5_17_s17_c146",
+            "template_0_5_17_s5_c182"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                150,
+                17
+              ],
+              "e2": [
+                5,
+                68,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 142,
+              "root": 3,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_5_17_s0_c4",
+              "template_0_5_17_s17_c146"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_5_17_s0_c31",
+            "template_0_5_17_s17_c173",
+            "template_0_5_17_s5_c16"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                11,
+                17
+              ],
+              "e2": [
+                152,
+                141,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 142,
+              "root": 3,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_5_17_s0_c31",
+              "template_0_5_17_s17_c173"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_0_5_17_s0_c4",
+            "template_0_5_17_s17_c44",
+            "template_0_5_17_s5_c152"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                48,
+                17
+              ],
+              "e2": [
+                176,
+                68,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 40,
+              "root": 9,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_5_17_s0_c4",
+              "template_0_5_17_s17_c44"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_0_5_17_s0_c31",
+            "template_0_5_17_s17_c71",
+            "template_0_5_17_s5_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                102,
+                17
+              ],
+              "e2": [
+                78,
+                141,
+                0
+              ]
+            },
+            "linear_equality": {
+              "constant": 40,
+              "root": 9,
+              "slope": 17
+            },
+            "pair": [
+              "template_0_5_17_s0_c31",
+              "template_0_5_17_s17_c71"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 18,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_1_2_5",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_1_2_5_s1_c1",
+            "template_1_2_5_s2_c191",
+            "template_1_2_5_s5_c182"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                192,
+                3
+              ],
+              "e2": [
+                191,
+                0,
+                2
+              ]
+            },
+            "linear_equality": {
+              "constant": 190,
+              "root": 3,
+              "slope": 1
+            },
+            "pair": [
+              "template_1_2_5_s1_c1",
+              "template_1_2_5_s2_c191"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_1_2_5_s1_c28",
+            "template_1_2_5_s2_c25",
+            "template_1_2_5_s5_c16"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                53,
+                3
+              ],
+              "e2": [
+                121,
+                81,
+                2
+              ]
+            },
+            "linear_equality": {
+              "constant": 190,
+              "root": 3,
+              "slope": 1
+            },
+            "pair": [
+              "template_1_2_5_s1_c28",
+              "template_1_2_5_s2_c25"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_1_2_5_s1_c188",
+            "template_1_2_5_s2_c179",
+            "template_1_2_5_s5_c152"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                174,
+                3
+              ],
+              "e2": [
+                70,
+                169,
+                2
+              ]
+            },
+            "linear_equality": {
+              "constant": 184,
+              "root": 9,
+              "slope": 1
+            },
+            "pair": [
+              "template_1_2_5_s1_c188",
+              "template_1_2_5_s2_c179"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_1_2_5_s1_c22",
+            "template_1_2_5_s2_c13",
+            "template_1_2_5_s5_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                35,
+                3
+              ],
+              "e2": [
+                93,
+                57,
+                2
+              ]
+            },
+            "linear_equality": {
+              "constant": 184,
+              "root": 9,
+              "slope": 1
+            },
+            "pair": [
+              "template_1_2_5_s1_c22",
+              "template_1_2_5_s2_c13"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 18,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_1_2_17",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_1_2_17_s17_c146",
+            "template_1_2_17_s1_c1",
+            "template_1_2_17_s2_c191"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                147,
+                18
+              ],
+              "e2": [
+                146,
+                163,
+                17
+              ]
+            },
+            "linear_equality": {
+              "constant": 48,
+              "root": 3,
+              "slope": 177
+            },
+            "pair": [
+              "template_1_2_17_s17_c146",
+              "template_1_2_17_s1_c1"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_1_2_17_s17_c173",
+            "template_1_2_17_s1_c28",
+            "template_1_2_17_s2_c25"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                8,
+                18
+              ],
+              "e2": [
+                19,
+                70,
+                17
+              ]
+            },
+            "linear_equality": {
+              "constant": 48,
+              "root": 3,
+              "slope": 177
+            },
+            "pair": [
+              "template_1_2_17_s17_c173",
+              "template_1_2_17_s1_c28"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_1_2_17_s17_c44",
+            "template_1_2_17_s1_c188",
+            "template_1_2_17_s2_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                39,
+                18
+              ],
+              "e2": [
+                166,
+                152,
+                17
+              ]
+            },
+            "linear_equality": {
+              "constant": 144,
+              "root": 9,
+              "slope": 177
+            },
+            "pair": [
+              "template_1_2_17_s17_c44",
+              "template_1_2_17_s1_c188"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_1_2_17_s17_c71",
+            "template_1_2_17_s1_c22",
+            "template_1_2_17_s2_c13"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                93,
+                18
+              ],
+              "e2": [
+                18,
+                59,
+                17
+              ]
+            },
+            "linear_equality": {
+              "constant": 144,
+              "root": 9,
+              "slope": 177
+            },
+            "pair": [
+              "template_1_2_17_s17_c71",
+              "template_1_2_17_s1_c22"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 18,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_1_5_17",
+      "pair_trades": 12,
+      "rich_points": 6,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_1_5_17_s17_c146",
+            "template_1_5_17_s1_c1",
+            "template_1_5_17_s5_c182"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                147,
+                18
+              ],
+              "e2": [
+                146,
+                163,
+                17
+              ]
+            },
+            "linear_equality": {
+              "constant": 48,
+              "root": 3,
+              "slope": 177
+            },
+            "pair": [
+              "template_1_5_17_s17_c146",
+              "template_1_5_17_s1_c1"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_1_5_17_s17_c173",
+            "template_1_5_17_s1_c28",
+            "template_1_5_17_s5_c16"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                8,
+                18
+              ],
+              "e2": [
+                19,
+                70,
+                17
+              ]
+            },
+            "linear_equality": {
+              "constant": 48,
+              "root": 3,
+              "slope": 177
+            },
+            "pair": [
+              "template_1_5_17_s17_c173",
+              "template_1_5_17_s1_c28"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_1_5_17_s17_c44",
+            "template_1_5_17_s1_c188",
+            "template_1_5_17_s5_c152"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                39,
+                18
+              ],
+              "e2": [
+                166,
+                152,
+                17
+              ]
+            },
+            "linear_equality": {
+              "constant": 144,
+              "root": 9,
+              "slope": 177
+            },
+            "pair": [
+              "template_1_5_17_s17_c44",
+              "template_1_5_17_s1_c188"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_1_5_17_s17_c71",
+            "template_1_5_17_s1_c22",
+            "template_1_5_17_s5_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                93,
+                18
+              ],
+              "e2": [
+                18,
+                59,
+                17
+              ]
+            },
+            "linear_equality": {
+              "constant": 144,
+              "root": 9,
+              "slope": 177
+            },
+            "pair": [
+              "template_1_5_17_s17_c71",
+              "template_1_5_17_s1_c22"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    },
+    {
+      "line_count": 18,
+      "max_multiplicity": 3,
+      "min_direction_count": 3,
+      "name": "template_2_5_17",
+      "pair_trades": 14,
+      "rich_points": 7,
+      "samples": [
+        {
+          "a": 4,
+          "incident": [
+            "template_2_5_17_s17_c146",
+            "template_2_5_17_s2_c191",
+            "template_2_5_17_s5_c182"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                144,
+                19
+              ],
+              "e2": [
+                94,
+                65,
+                34
+              ]
+            },
+            "linear_equality": {
+              "constant": 45,
+              "root": 3,
+              "slope": 178
+            },
+            "pair": [
+              "template_2_5_17_s17_c146",
+              "template_2_5_17_s2_c191"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_2_5_17_s17_c173",
+            "template_2_5_17_s2_c25",
+            "template_2_5_17_s5_c16"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                5,
+                19
+              ],
+              "e2": [
+                79,
+                192,
+                34
+              ]
+            },
+            "linear_equality": {
+              "constant": 45,
+              "root": 3,
+              "slope": 178
+            },
+            "pair": [
+              "template_2_5_17_s17_c173",
+              "template_2_5_17_s2_c25"
+            ]
+          },
+          "trade_count": 2,
+          "z": 3
+        },
+        {
+          "a": 4,
+          "incident": [
+            "template_2_5_17_s17_c44",
+            "template_2_5_17_s2_c179",
+            "template_2_5_17_s5_c152"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                30,
+                19
+              ],
+              "e2": [
+                156,
+                43,
+                34
+              ]
+            },
+            "linear_equality": {
+              "constant": 135,
+              "root": 9,
+              "slope": 178
+            },
+            "pair": [
+              "template_2_5_17_s17_c44",
+              "template_2_5_17_s2_c179"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        },
+        {
+          "a": 31,
+          "incident": [
+            "template_2_5_17_s17_c71",
+            "template_2_5_17_s2_c13",
+            "template_2_5_17_s5_c179"
+          ],
+          "sample_trade": {
+            "block_symmetric_coefficients": {
+              "e1": [
+                84,
+                19
+              ],
+              "e2": [
+                151,
+                170,
+                34
+              ]
+            },
+            "linear_equality": {
+              "constant": 135,
+              "root": 9,
+              "slope": 178
+            },
+            "pair": [
+              "template_2_5_17_s17_c71",
+              "template_2_5_17_s2_c13"
+            ]
+          },
+          "trade_count": 2,
+          "z": 9
+        }
+      ]
+    }
+  ],
+  "checks": 31,
+  "field": "F_193",
+  "lemma": "At any multi-direction rich point of affine branches L_i(z), a pivot line and each other incident line give a nonzero linear equality L_i-L_0.  The b=2 fiber dictionary records the pair by its elementary symmetric coefficients; mixed pair maps cover the entire incident block.",
+  "local_assertions": 4314,
+  "node": "p3_affine_net_richline_residue",
+  "status": "PROVED: U3 survives; affine-net rich points charge to mixed b=2 degree-1 pullback cells",
+  "task": "F3",
+  "threshold": 3,
+  "total_pair_trades": 726,
+  "total_rich_points": 342
+}

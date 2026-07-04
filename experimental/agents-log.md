@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - F3 affine-net absorption packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/f3_net_absorption.md`,
+  `experimental/scripts/verify_f3_net_absorption.py`,
+  `experimental/data/certificates/f3-net-absorption/`.
+- **Status:** PROVED for the P3 fixed-subcore affine-plane model, under the
+  unified pullback strip.
+- **What is being added:** A proof and verifier showing that multi-direction
+  affine-net rich points in the P1/P3 fixed-subcore reduction decompose into
+  mixed `b=2` degree-1 pullback cells.
+- **How it is useful:** Removes the registered U3 affine-net residue inside
+  the post-strip rich-line cap route.
+- **What to do next:** Use only in the stated P3 fixed-subcore model and keep
+  the unified pullback-strip hypothesis explicit in downstream references.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
