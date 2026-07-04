@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Lean build verification refresh
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/notes/audits/lean_build_verification.md`;
+  `experimental/lean/RS_disproof_v3/.gitignore`;
+  `experimental/lean/cs25_cap_v12/.gitignore`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / LOCAL ENV.
+- **What is being added:** Records the faster-drive clean reproduction of the
+  Paper A Lean package at
+  `0f45bf377386fe8d7e448df218fab2692e0b216a`, the original
+  `rs_mca_formalization` build check, and the CAP25 Lean skeleton build check.
+  The new Lean package cache directories get `.gitignore` files so `.lake/`
+  output stays out of review artifacts.
+- **How it is useful:** Reclassifies the earlier Paper A `Main:olean` timeout
+  as a local environment/performance issue after the C-drive reproduction
+  passed, and keeps the CAP25 skeleton's `sorry` status explicit.
+- **What to do next:** Keep the captured raw build logs local under
+  `_migration/lab/` for Ken review; do not present the CAP25 skeleton build as
+  a proof-completeness claim.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
