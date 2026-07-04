@@ -4,6 +4,20 @@ DAG node: `xr_triangle_eliminant_form`.
 
 Status: PROVED as a construction.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route.  After the
+large-core/list/tangent bands are paid and the syzygy-support lemma localizes
+residual rank stagnation, the light-triangle branch needs an exact algebraic
+object to classify.  This packet supplies that object: rank stagnation for a
+fixed triple of supports and distinct slopes is exactly the determinantal
+locus of the explicit matrix `E(T,z)`.
+
+The packet is deliberately a normal-form construction, not a population
+bound.  It makes the downstream `xr_eliminant_vanishing_class` statement
+checkable and keeps the terminal conditional work isolated in the remaining
+support-lattice / active-core polynomial residue.
+
 ## Statement
 
 Let `C` be a length-`n`, dimension-`k` Reed-Solomon evaluation code on

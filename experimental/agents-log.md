@@ -46,9 +46,13 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED.
 - **What is being added:** A ready upstream packet combining the light-triangle
   eliminant normal form with the scattered-syzygy flat-transport dictionary.
-- **How it is useful:** This supplies the exact rank-drop matrix for the
-  light-triangle residue and transports diffuse syzygy supports into the
-  Conjecture-F/E30 support-lattice language.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it makes the light-triangle rank-drop branch an explicit determinantal
+  locus and transports diffuse syzygy supports into the existing
+  Conjecture-F/E30 support-lattice language.  It therefore keeps the remaining
+  conditional burden concentrated in the support-lattice /
+  `active_core_count_bound` polynomial residue rather than creating a new
+  face-4 exception class.
 - **What to do next:** Submit after the current upstream review batch has
   capacity; downstream consumers are the 2c vanishing-class and support-lattice
   accounting packets.

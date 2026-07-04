@@ -4,6 +4,19 @@ DAG node: `xr_syzygy_flat_transport`.
 
 Status: PROVED as a dictionary/reduction.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route.  The scattered
+side of the residual 2c syzygy problem should not create a new counting
+language.  This dictionary proves that its sparse dual supports and closures
+are exactly the same trace-matroid support-lattice objects used by the
+Conjecture-F/E30 machinery.
+
+Thus diffuse syzygy support counting is transported to an existing downstream
+consumer instead of becoming a separate terminal conjecture.  Any remaining
+conditional bound is still charged through the support-lattice / active-core
+polynomial residue, not through a new face-4 exception class.
+
 ## Statement
 
 The diffuse part of rung 2c produces syzygy members that are constrained-
