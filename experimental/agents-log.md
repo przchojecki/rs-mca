@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Certificate provenance normalization
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:**
+  `experimental/scripts/verify_cluster_certificates.py`;
+  `experimental/scripts/verify_cyclotomic_root_difference_germ.py`;
+  `experimental/scripts/verify_xr_e3_calculus.py`;
+  `experimental/scripts/verify_m1_johnson_anticode_toolkit.py`;
+  `experimental/scripts/verify_height_only_impossibility.py`;
+  `experimental/scripts/verify_graded_collision_radius.py`;
+  `experimental/scripts/verify_exceptional_density.py`;
+  `experimental/notes/audits/certificate_provenance_normalization.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The seven certificate verifiers now emit POSIX
+  script paths and LF-normalized script hashes, and replay existing
+  certificates by strict mathematical payload while treating `script_sha256`
+  as recorded generation provenance.
+- **How it is useful:** Removes CRLF/path-separator replay drift on Windows
+  without changing certificate JSON files, while preserving exact checks for
+  all non-provenance certificate fields.
+- **What to do next:** Decide whether stale historical `script_sha256`
+  provenance should be regenerated in a later data-only sweep.
+
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.

@@ -35,8 +35,38 @@ def require(condition: bool, message: str) -> None:
         raise AssertionError(message)
 
 
-def file_sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha256_text(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def script_source(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def script_ref(path: Path) -> str:
+    return path.relative_to(REPO).as_posix()
+
+
+def is_sha256_hex(value: object) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(char in "0123456789abcdef" for char in value)
+    )
+
+
+def require_replay_match(expected: dict, result: dict) -> None:
+    if expected == result:
+        return
+    expected_payload = dict(expected)
+    result_payload = dict(result)
+    expected_hash = expected_payload.pop("script_sha256", None)
+    result_payload.pop("script_sha256", None)
+    require(
+        expected_payload == result_payload,
+        "certificate does not match verifier output; rerun with --emit",
+    )
+    require(is_sha256_hex(expected_hash), "certificate script_sha256 is not a sha256 hex digest")
 
 
 def vertices(n: int, j: int) -> list[Vertex]:
@@ -283,12 +313,13 @@ def build_result() -> dict[str, object]:
     core_check, core_rows = check_fixed_core_killed_e3()
     profile_check, profile_rows = check_block_profile_killed_e3()
     script = Path(__file__).resolve()
+    source = script_source(script)
     return {
         "status": "PROVED_XR_E3_CALCULUS",
         "dag_nodes": ["xr_e3_calculus"],
         "object": "Johnson endpoint correlation and killed exchange energy",
-        "script": str(script.relative_to(REPO)),
-        "script_sha256": file_sha256(script),
+        "script": script_ref(script),
+        "script_sha256": sha256_text(source),
         "checks": [asdict(endpoint_check), asdict(core_check), asdict(profile_check)],
         "endpoint_e2_rows": endpoint_rows,
         "fixed_core_killed_e3_rows": core_rows,
@@ -312,8 +343,8 @@ def main() -> None:
         OUT.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
         print(f"wrote {OUT.relative_to(REPO)}")
     else:
-        expected = json.loads(Path(args.check).read_text())
-        require(expected == result, "certificate does not match verifier output; rerun with --emit")
+        expected = json.loads(Path(args.check).read_text(encoding="utf-8"))
+        require_replay_match(expected, result)
         print(result["status"])
         for check in result["checks"]:
             print(f"  {check['name']}: {check['status']}")
