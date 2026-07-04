@@ -1,0 +1,124 @@
+{
+  "char0_descent_rows": [
+    {
+      "M": 2,
+      "bad_examples": [],
+      "expected_coset_unions": 16,
+      "n": 8,
+      "nondivisible_zero": 0,
+      "t": 1,
+      "zero_masks": 16
+    },
+    {
+      "M": 4,
+      "bad_examples": [],
+      "expected_coset_unions": 16,
+      "n": 16,
+      "nondivisible_zero": 0,
+      "t": 3,
+      "zero_masks": 16
+    },
+    {
+      "M": 8,
+      "bad_examples": [],
+      "expected_coset_unions": 4,
+      "n": 16,
+      "nondivisible_zero": 0,
+      "t": 4,
+      "zero_masks": 4
+    }
+  ],
+  "checks": 20,
+  "claim": "Above p > max_r binom(b,r)^phi(n), finite t-null b-subsets of mu_n lift to characteristic zero and are unions of mu_M-cosets, M=2^ceil(log2(t+1)).",
+  "finite_lift_rows": [
+    {
+      "M": 2,
+      "b": 4,
+      "bad_examples": [],
+      "expected_coset_unions_of_size_b": 6,
+      "n": 8,
+      "phi_n": 4,
+      "prime": 257,
+      "t": 1,
+      "threshold": 256,
+      "zero_subsets": 6
+    },
+    {
+      "M": 4,
+      "b": 4,
+      "bad_examples": [],
+      "expected_coset_unions_of_size_b": 2,
+      "n": 8,
+      "phi_n": 4,
+      "prime": 1297,
+      "t": 3,
+      "threshold": 1296,
+      "zero_subsets": 2
+    },
+    {
+      "M": 4,
+      "b": 4,
+      "bad_examples": [],
+      "expected_coset_unions_of_size_b": 4,
+      "n": 16,
+      "phi_n": 8,
+      "prime": 1679633,
+      "t": 3,
+      "threshold": 1679616,
+      "zero_subsets": 4
+    },
+    {
+      "M": 4,
+      "b": 5,
+      "bad_examples": [],
+      "expected_coset_unions_of_size_b": 0,
+      "n": 16,
+      "phi_n": 8,
+      "prime": 100000049,
+      "t": 3,
+      "threshold": 100000000,
+      "zero_subsets": 0
+    }
+  ],
+  "node": "u2_large_characteristic_lift",
+  "status": "PROVED",
+  "task": "W-C large-characteristic lift and dyadic descent",
+  "threshold_rows": [
+    {
+      "M": 2,
+      "M_divides_b": true,
+      "b": 4,
+      "n": 8,
+      "phi_n": 4,
+      "t": 1,
+      "threshold": 256
+    },
+    {
+      "M": 4,
+      "M_divides_b": true,
+      "b": 4,
+      "n": 8,
+      "phi_n": 4,
+      "t": 3,
+      "threshold": 1296
+    },
+    {
+      "M": 4,
+      "M_divides_b": true,
+      "b": 4,
+      "n": 16,
+      "phi_n": 8,
+      "t": 3,
+      "threshold": 1679616
+    },
+    {
+      "M": 4,
+      "M_divides_b": false,
+      "b": 5,
+      "n": 16,
+      "phi_n": 8,
+      "t": 3,
+      "threshold": 100000000
+    }
+  ]
+}

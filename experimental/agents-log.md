@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - W-C large-characteristic lift
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/w_c_large_characteristic_lift.md`;
+  `experimental/scripts/verify_w_c_large_characteristic_lift.py`;
+  `experimental/data/certificates/w-c-large-characteristic-lift/w_c_large_characteristic_lift.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof that finite-field `t`-null locator blocks
+  over `mu_n`, `n` a power of two, lift to characteristic zero above the norm
+  threshold and then descend antipodally to full `mu_M`-coset unions.
+- **How it is useful:** This banks the characteristic-zero residue from the
+  U2 lane and separates it from the later per-row small-characteristic
+  certifier.
+- **What to do next:** Do not use the large norm threshold as an official-row
+  certifier; consume it as the structural lift/descent lemma only.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
