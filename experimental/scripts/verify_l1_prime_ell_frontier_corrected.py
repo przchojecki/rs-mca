@@ -500,6 +500,10 @@ WITNESSES = [
      "gamma": [254, 289, 29, 276, 242, 219, 201, 261, 79, 232, 133, 1],
      "spectrum_head": [5, 4, 4, 3, 3, 3, 3, 2, 2, 2], "top_m": 27,
      "lam_free": True, "full": True},
+    {"label": "ell=17 m=10 p=409", "p": 409, "ell": 17, "m": 10,
+     "gamma": [165, 169, 244, 263, 276, 149, 333, 170, 86, 260, 80, 398, 377, 77, 324, 1],
+     "spectrum_head": [6, 5, 4, 4, 4, 3, 2, 2, 2, 2, 2, 2, 2, 2], "top_m": 34,
+     "lam_free": True, "full": True},
 ]
 
 SPECTRUM_EVIDENCE_17 = [

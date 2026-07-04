@@ -270,8 +270,16 @@ consecutive data point on `m* = (ell+3)/2` (and 2 below `ceil(2*ell/3) = 12`):
 - `p = 307` (`n = 18`): `gamma = [228, 204, 58, 38, 264, 64, 141, 107, 259, 208, 216, 48, 69, 281, 201, 1]`, profile `[5, 4, 4, 4, 4, 3, 3, 3, 2, 2, 1]...`, `E_3 = 14 <= 15`.
 - `p = 239` (`n = 14`): `gamma = [191, 180, 118, 44, 62, 65, 196, 62, 156, 90, 217, 77, 169, 126, 183, 1]`, profile `[5, 5, 4, 4, 4, 3, 3, 2, 2, 2, 2]...`, `E_3 = 14 <= 15`.
 
-Lambda-freeness is not checkable at these primes (`n < t+m = 19`; see caps) — these are
-NUMERIC spectrum-side entries, verifier gate viii.
+Lambda-freeness is not checkable at these two primes (`n < t+m = 19`; see caps) — they remain
+NUMERIC spectrum-side entries, verifier gate viii. **At `p = 409` (`n = 24 >= 19`, the first
+checkable prime) the hunt succeeds AND the full chain passes:** explicit
+`gamma = [165,169,244,263,276,149,333,170,86,260,80,398,377,77,324,1]`, spectrum
+`[6,5,4,4,4,3,2,2,...]`, `top-10 = 34 = 2*ell` exactly, `top-9 = 32` (vacant at `(ell+1)/2`),
+`E_3 = 14 <= 15`; lambda-free, full codeword `deg P = 169 <= 170`, retained `R = 34`, minimal +
+primitive missed core (`|M| = 136`) — all 16 chain gates pass (verifier gates i/vi/vii row
+"ell=17 m=10 p=409"; 5 independent spectrum implementations agree). **`ell = 17` is therefore a
+FULL unconditional witness**, and `m*(17) = 10 < ceil(2*17/3) = 12` joins `ell = 11, 13` in the
+unconditional refutation tier.
 
 ## 6. Reconciliation with the upstream onset table
 
@@ -306,12 +314,9 @@ were triple-cross-checked (methodA=methodB=methodC) in lab C. `A_checks.py` (41/
 - The `(ell+3)/2` law is stated for **`ell >= 7`**; `ell = 5` is the excluded boundary
   (`m*(5) = 5`: the `m=4` vacancy half is Theorem R (PROVED); the `m=5` listing half is
   NUMERIC spectrum-side only — `top-5 = 10 = 2ell` by exhaustive search, `ell5_boundary.py`,
-  lambda-freeness not checked). Full lambda-free codewords are exhibited at `ell in {7,11,13}`;
-  **`ell = 17` is witnessed spectrum-side** (below, §5), and `ell >= 19` is not witnessed — OPEN.
-- **`ell = 17` lambda-freeness is NOT CHECKABLE at the witness primes:** the full-petal
-  `m = t+1` construction needs `t + m = 2m - 1 = 19` distinct cosets, but `n = (p-1)/ell` is
-  18 at `p = 307` and 14 at `p = 239`. The first checkable prime is `p = 409` (`n = 24`);
-  running the witness hunt + LF chain there is OPEN.
+  lambda-freeness not checked). Full lambda-free codewords are exhibited at
+  `ell in {7, 11, 13, 17}` (`ell = 17` at `p = 409`; the `p = 239/307` entries stay
+  spectrum-side because `n < t+m = 19` there); `ell >= 19` is not witnessed — OPEN.
 - The verifier's gate-iii/iv sweeps are **bounded and seeded** (16 rank configs incl.
   `rank == ell-2`/`ell-1` boundary and `delta>0` cases; ~700 solve-based `Gamma` at
   `ell in {7,11}`); they are a spot-suite re-confirmation, not the full `B_e5` census.
@@ -324,7 +329,7 @@ non-lister; §2.4 T1(`ell in {5,7}`)=Theorem R; §3 the rank-lemma reduction and
 (generic, single-value, `P=ell+1`); Lemma LF surjectivity (upstream). **UNCONDITIONAL (witnesses).**
 The `ell in {11,13}` full lambda-free primitive-mixed-kernel codewords listing at `m = (ell+3)/2`,
 refuting `ceil(2ell/3)` (§0.1, §5). **NUMERIC (tight, 0 violations, saturated).** KEY LEMMA
-`E_3 <= ell-2`; the frontier `m* = (ell+3)/2` at `ell = 7, 11, 13` (+ `ell = 17` spectrum-side). **LEMMA-conditional.** The
+`E_3 <= ell-2`; the frontier `m* = (ell+3)/2` at `ell = 7, 11, 13, 17` (full witnesses; `ell = 17` via `p = 409`). **LEMMA-conditional.** The
 VACANCY THEOREM `top-m < 2ell` for `m <= (ell+1)/2` (on the KEY LEMMA). **OPEN.** A proof of the KEY
 LEMMA (= the fiber-sum full-rank statement on `Z`); whether `m* = (ell+3)/2` persists for `ell >= 17`.
 
