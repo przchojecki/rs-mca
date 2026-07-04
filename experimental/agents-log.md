@@ -42,9 +42,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A self-contained upstream packet proving the
   uniform forced-square-root obstruction gate for split 2h-supports, including
   denominator exponents and finite-row sanity certificates.
-- **How it is useful:** This converts the X81 normal form into h-1 explicit
-  low-coefficient obstruction equations for square-shift certifiers and the
-  active-core count branch.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it converts the X81 square-shift normal form into explicit low-coefficient
+  obstruction equations with controlled denominators, which is the certifier
+  shape consumed by the terminal `active_core_count_bound` route.
 - **What to do next:** Review the p-specific norm-gate clause for
   non-power-of-two h, then connect the obstruction gate to row-level
   certifier packets.

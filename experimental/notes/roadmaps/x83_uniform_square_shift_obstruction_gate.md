@@ -7,6 +7,18 @@
 - **Certificate:**
   `experimental/data/certificates/x83-uniform-square-shift-obstruction-gate/x83_uniform_square_shift_obstruction_gate.json`.
 
+## Critical-path role
+
+This is a proof-spine packet for the terminal active-core/PTE route.  X81 puts
+minimal trades into square-shift support currency; X82 fixes the legal keys;
+this packet turns the remaining square-shift predicate into explicit
+low-coefficient obstruction equations with controlled denominators.
+
+For non-power-of-two `h`, the obstruction gate is the bridge from a qualitative
+dyadic-descent statement to row-level norm/resultant certifiers.  It does not
+prove all obstruction norms nonzero at official rows; it supplies the exact
+certifier shape consumed by the conditional `active_core_count_bound` route.
+
 ## Statement
 
 Let `F` have odd characteristic and let
