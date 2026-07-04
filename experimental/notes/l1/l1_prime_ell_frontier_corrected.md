@@ -162,7 +162,10 @@ at `ell = 7, 11, 13` caps at exactly `ell-2` (0 violations; verifier gate iv rer
 seeded sweep plus the witness-saturation checks). The earlier `B_e5.py` census (441,118 `Gamma`,
 max `E_3 = ell-3`) was search-capped below the extremals — its `ell-3` reading is refuted by the
 `p=331`/`p=313` witnesses. Sub-extremal at `ell-3`: the concentrated `Gamma` (`a=1`) and the
-`ell=11 p=199` witness (`[4,4,3,3,3,3,2]`, `E_3=8`).
+`ell=11 p=199` witness (`[4,4,3,3,3,3,2]`, `E_3=8`). **Ceiling corroborated at
+`ell=17`** (`p in {103,137,239,307}`; TIGHT at `p=103`: spectrum `[6,5,5,4,4,3]`,
+`E_3 = 15 = ell-2`, verifier gate viii anchor) **and `ell=19`** (`p in {191,229,419}`,
+max found 15 <= 17): no `E_3 >= ell-1` anywhere (`L_e1_*` data).
 The **non-realizable** high-excess configs (`[6,6],[5,5],[4,4,4],[4,4,3,3]` at `ell=7`) all have
 `sum(mu-2) >= ell-1` and full rank `ell-1` (they would need `delta > K`) — the contrapositive (`B_checks` CHECK 5).
 
@@ -187,6 +190,17 @@ The **non-realizable** high-excess configs (`[6,6],[5,5],[4,4,4],[4,4,3,3]` at `
    `ell`-specific: at `ell=11`,
    `P=8<ell` so `dim Z=0` and `[4,4]` IS realizable (matching the S1 census). Route A supplies the
    parallel balanced-two-fiber residue identity for this stratum (`A_checks` L5b).
+
+**Second-pass PROVED partials (sharper reduction; night session).** (i) `E_3 <= ell-2` is
+EXACTLY the statement `dim(V_1 + ... + V_K) >= E_3` for the explicit subspaces
+`V_k = h_k * F_p[X]_{<= mu_k-2}`, `h_k = (X^ell - w_k)/g_k` the co-fiber locator — a concrete
+non-vanishing claim about low-degree multiples of the `h_k`, tight at the extremal witnesses.
+(ii) `K = 2` is fully PROVED: the 2x2 syzygy minor has numerator
+`(c_1-c_2) X^ell - (w_1-w_2) Gamma + (w_1 c_2 - w_2 c_1)`, never zero, so `delta = 0` and
+`E_3 <= ell-4`. (iii) Trichotomy (PROVED): every realizable config is `P <= ell`
+(`E_3 <= ell-4`), or single-value (`E_3 <= ell-3`), or has `K >= 3` with affinely-independent
+fiber data `(w_k, c_k)` — the sole remaining OPEN chart, which is precisely the residue-line
+coordinate of `l1_coset_chart_residue_bridge_v1.md`.
 
 *(The earlier sharper candidate `E_3 <= max(0, deg Gamma - 2)` is FALSE: `Gamma = X + X^3` at
 `ell = 11, p = 23` has a size-4 fiber (`E_3 = 2 > 1`); per-fiber uncertainty bounds fail mod `p`
@@ -248,6 +262,17 @@ construction is the only route by which any of these rare, rigid witnesses is re
 
 ---
 
+**`ell = 17` (spectrum-side; night evidence run).** Explicit `Gamma` with
+`top-10 = 34 = 2*ell` EXACTLY (`m = (ell+3)/2 = 10`), found independently at two primes,
+each 4-way cross-checked, both with `m = 9 = (ell+1)/2` VACANT (`top-9 = 32`) — the fourth
+consecutive data point on `m* = (ell+3)/2` (and 2 below `ceil(2*ell/3) = 12`):
+
+- `p = 307` (`n = 18`): `gamma = [228, 204, 58, 38, 264, 64, 141, 107, 259, 208, 216, 48, 69, 281, 201, 1]`, profile `[5, 4, 4, 4, 4, 3, 3, 3, 2, 2, 1]...`, `E_3 = 14 <= 15`.
+- `p = 239` (`n = 14`): `gamma = [191, 180, 118, 44, 62, 65, 196, 62, 156, 90, 217, 77, 169, 126, 183, 1]`, profile `[5, 5, 4, 4, 4, 3, 3, 2, 2, 2, 2]...`, `E_3 = 14 <= 15`.
+
+Lambda-freeness is not checkable at these primes (`n < t+m = 19`; see caps) — these are
+NUMERIC spectrum-side entries, verifier gate viii.
+
 ## 6. Reconciliation with the upstream onset table
 
 `l1_prime_ell_pv_refutation.md` §4 reported achieved `m*(11)=8`, `m*(13)=10` (the latter flagged
@@ -281,8 +306,12 @@ were triple-cross-checked (methodA=methodB=methodC) in lab C. `A_checks.py` (41/
 - The `(ell+3)/2` law is stated for **`ell >= 7`**; `ell = 5` is the excluded boundary
   (`m*(5) = 5`: the `m=4` vacancy half is Theorem R (PROVED); the `m=5` listing half is
   NUMERIC spectrum-side only — `top-5 = 10 = 2ell` by exhaustive search, `ell5_boundary.py`,
-  lambda-freeness not checked). Witnesses are exhibited only at `ell in {7,11,13}`; `ell >= 17`
-  (where `(ell+3)/2 < ceil(2ell/3)` also predicts refutation) is **not** witnessed here — OPEN.
+  lambda-freeness not checked). Full lambda-free codewords are exhibited at `ell in {7,11,13}`;
+  **`ell = 17` is witnessed spectrum-side** (below, §5), and `ell >= 19` is not witnessed — OPEN.
+- **`ell = 17` lambda-freeness is NOT CHECKABLE at the witness primes:** the full-petal
+  `m = t+1` construction needs `t + m = 2m - 1 = 19` distinct cosets, but `n = (p-1)/ell` is
+  18 at `p = 307` and 14 at `p = 239`. The first checkable prime is `p = 409` (`n = 24`);
+  running the witness hunt + LF chain there is OPEN.
 - The verifier's gate-iii/iv sweeps are **bounded and seeded** (16 rank configs incl.
   `rank == ell-2`/`ell-1` boundary and `delta>0` cases; ~700 solve-based `Gamma` at
   `ell in {7,11}`); they are a spot-suite re-confirmation, not the full `B_e5` census.
@@ -295,7 +324,7 @@ non-lister; §2.4 T1(`ell in {5,7}`)=Theorem R; §3 the rank-lemma reduction and
 (generic, single-value, `P=ell+1`); Lemma LF surjectivity (upstream). **UNCONDITIONAL (witnesses).**
 The `ell in {11,13}` full lambda-free primitive-mixed-kernel codewords listing at `m = (ell+3)/2`,
 refuting `ceil(2ell/3)` (§0.1, §5). **NUMERIC (tight, 0 violations, saturated).** KEY LEMMA
-`E_3 <= ell-2`; the frontier `m* = (ell+3)/2` at `ell = 7, 11, 13`. **LEMMA-conditional.** The
+`E_3 <= ell-2`; the frontier `m* = (ell+3)/2` at `ell = 7, 11, 13` (+ `ell = 17` spectrum-side). **LEMMA-conditional.** The
 VACANCY THEOREM `top-m < 2ell` for `m <= (ell+1)/2` (on the KEY LEMMA). **OPEN.** A proof of the KEY
 LEMMA (= the fiber-sum full-rank statement on `Z`); whether `m* = (ell+3)/2` persists for `ell >= 17`.
 

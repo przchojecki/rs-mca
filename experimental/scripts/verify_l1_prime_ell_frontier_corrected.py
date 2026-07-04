@@ -502,6 +502,17 @@ WITNESSES = [
      "lam_free": True, "full": True},
 ]
 
+SPECTRUM_EVIDENCE_17 = [
+    # spectrum-side ell=17 evidence (lambda-freeness not checkable: n < t+m = 19)
+    {"label": "ell=17 m=10 p=307 (spectrum-side)", "p": 307, "ell": 17, "m": 10,
+     "gamma": [228, 204, 58, 38, 264, 64, 141, 107, 259, 208, 216, 48, 69, 281, 201, 1], "top_m": 34, "E3": 14},
+    {"label": "ell=17 m=10 p=239 (spectrum-side)", "p": 239, "ell": 17, "m": 10,
+     "gamma": [191, 180, 118, 44, 62, 65, 196, 62, 156, 90, 217, 77, 169, 126, 183, 1], "top_m": 34, "E3": 14},
+    # tight E_3 ceiling anchor at ell=17: E_3 = 15 = ell-2 exactly
+    {"label": "ell=17 p=103 E3-anchor", "p": 103, "ell": 17, "m": None,
+     "gamma": [30, 82, 52, 3, 7, 90, 70, 30, 27, 71, 85, 33, 12, 85, 66, 0], "top_m": None, "E3": 15},
+]
+
 def ceil2ell3(ell):
     return -(-2 * ell // 3)  # ceil(2ell/3)
 
@@ -707,6 +718,25 @@ def gate_iv_e3_bound(tamper=False):
     return ok, "solve-based sweep %d gammas maxE_3=%s (cap ell-2); witness saturation E_3=%s(off=%d):%s concentrated-identity:%s viol=%d" % (
         seen_total, maxE, sat_seen, off, sat_ok, conc_ok, viol)
 
+def gate_viii_ell17_evidence(tamper=False):
+    ok = True
+    lines = []
+    for wi, W in enumerate(SPECTRUM_EVIDENCE_17):
+        gamma = list(W["gamma"])
+        if tamper and wi == 0:
+            gamma[0] = (gamma[0] + 1) % W["p"]  # corrupt -> recomputed top-10/E3 must mismatch
+        sA = spectrum_A(gamma, W["p"], W["ell"])
+        sB = spectrum_B(gamma, W["p"], W["ell"])
+        good = (sA == sB) and (E3(sA) == W["E3"])
+        if W["m"] is not None:
+            good = good and (topk(sA, W["m"]) == W["top_m"] == 2 * W["ell"])
+            good = good and (topk(sA, W["m"] - 1) < 2 * W["ell"])  # (ell+1)/2 stays vacant here
+        else:
+            good = good and (E3(sA) == W["ell"] - 2)  # tight ceiling anchor
+        ok = ok and good
+        lines.append("%s: %s" % (W["label"], "ok" if good else "MISMATCH"))
+    return ok, " | ".join(lines)
+
 def gate_v_geometric_nonlister(tamper=False):
     ok = True
     lines = []
@@ -771,6 +801,7 @@ GATES = [
     ("(v)   geometric Gamma non-lister         ", gate_v_geometric_nonlister),
     ("(vi)  lambda-freeness + full codeword    ", gate_vi_lambda_freeness),
     ("(vii) negative control (refutation)      ", gate_vii_negative_control),
+    ("(viii) ell=17 evidence (spectrum-side)    ", gate_viii_ell17_evidence),
 ]
 
 def main():
