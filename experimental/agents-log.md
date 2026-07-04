@@ -1517,3 +1517,51 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+### 2026-07-04 - L1 threshold ledger: Theorem R closing + QF.10 double-count (stdlib Lean)
+
+- **Agent/model:** Claude Fable 5 (PI) with a Claude Opus 4.8 / Sonnet 5 fan-out
+  panel; holmbuar.
+- **Files added or changed:** `experimental/lean/l1_threshold_ledger/`
+  (`L1Threshold/PairCountClosing.lean`, `L1Threshold/FiberDoubleCount.lean`,
+  `L1Threshold.lean`, `lakefile.lean`, `lean-toolchain`, `lake-manifest.json`,
+  `README.md`, `CORRESPONDENCE.md`); `experimental/agents-log.md`.
+- **Status:** FORMALIZATION / SUBSTANTIAL / GREEN. No `sorry`, no `native_decide`,
+  no mathlib; `lake build` completes offline in ~1.5 s on toolchain `v4.31.0`
+  (`lake-manifest.json` packages `[]`), mirroring the `rs_mca_formalization`
+  stdlib-only track.
+- **What is being added:** A stdlib-only Lean package certifying the finite
+  arithmetic gates of tonight's L1/M1 threshold PRs.
+  - `PairCountClosing` (PR #223 Theorem R; companion PR #222 Theorem A) proves the
+    **Cauchy–Schwarz closing** of the prime-`ell` onset as an exact integer
+    inequality: `closing_four` (`t=3`, `m=4`) and `closing_three` (`t=2`, `m=3`)
+    derive the retained-count bound `R = sum_j rho_j <= 2ell-1 < 2ell` from the
+    Lemma-R pair-count budget `sum_j rho_j(rho_j-1) <= (ell-1)(ell-2)` and
+    `ell >= 3`. Discrete Cauchy–Schwarz (`cs3`/`cs4`) is assembled from the
+    pairwise AM–GM `2xy <= x^2+y^2`, and the endgame `quad_closing` is the integer
+    "positive root `< 2ell` iff `ell > 2`" step — all by hand-distributed products
+    + `omega`, since Lean core has no `ring`/`nlinarith`. Two kernel-`decide`,
+    axiom-free certificates pin the sharpness the note claims: `tightness_four`
+    (`[3,2,2,2]` at `ell=5` hits the budget with equality and `R=2ell-1=9`) and
+    `noclose_five`/`noclose_five_11` (at `t=4` the budget admits `R >= 2ell`, so
+    pair-counting closes exactly `t=3`).
+  - `FiberDoubleCount` (PR #225 QF.10) proves the **fiber double-count skeleton**
+    `#E_p <= binom(n,d)/binom(j,d)` in a `Finset`-free `List` model: a `Nat`-list
+    pigeonhole `nodup_lt_length`, the injective-packing `double_count`
+    (`#members * binom(j,d) <= binom(n,d)` from the "each `d`-subset in `<= 1`
+    member" hypothesis, entering as a `Nodup` condition), the division step
+    `fiber_card_bound`, and their composite `fiber_bound`.
+- **How it is useful:** It converts the two notes' elementary cores into
+  compiler-checked theorems and isolates the exact field-theoretic boundary. The
+  finite-field inputs stay cited/verifier-backed and are recorded as typed
+  interfaces (`LemmaR_pairCount` for Lemma R's `(*)` twisted-root bound;
+  `SingletonOwnerBound` for QF.10's shortened-RS MDS/dual-distance `<= 1 owner`),
+  matching the `CERTIFICATION_MAP` convention. `CORRESPONDENCE.md` maps every
+  theorem to its note claim and PR. Notably the `t`-boundary is now machine-checked
+  both ways: the closing is proved at `t=3`/`(2,3)` and decidably fails at `t=4`.
+- **What to do next:** Optionally fold the two modules into
+  `rs_mca_formalization/RsMca/` (rename `namespace L1Threshold` → `RsMca`, extend
+  its `CERTIFICATION_MAP.md` with the `CORRESPONDENCE.md` rows). The natural next
+  Lean gate is the general-`m` rigidity rung (Lemma `Psi_1`, `#{j : n_j=1} <= 1`
+  at `m=t+1`) once its resultant-degree input is reduced to arithmetic; and, on
+  the M1 side, replaying Lemma R itself as a `double_count` instance (its pair sum
+  is the same injective packing as `FiberDoubleCount.double_count`).
