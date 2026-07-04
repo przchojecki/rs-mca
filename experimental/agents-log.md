@@ -1517,3 +1517,60 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-04 - L1 prime-ell primitive vacancy refuted at the onset m = t+1
+
+- **Agent/model:** Claude Fable 5 (PI) with a Claude Opus 4.8 / Sonnet 5 fan-out
+  panel (witness verifier, spectrum-frontier lab, repo-recon, drafter); holmbuar.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_prime_ell_pv_refutation.md`,
+  `experimental/scripts/verify_l1_prime_ell_pv_refutation.py`.
+- **Status:** REFUTATION, NUMERIC-exact (not sampled): explicit
+  **stabilizer-primitive mixed minimal kernel sets** at `(t,ell,m) = (5,7,6)` and
+  `(4,7,5)` — both `t < m < ell`, at the onset `m = t+1` — verified point-by-point
+  (degree, `35`/`28` petal agreements, retained `R`, listedness, kernel by
+  independent polynomial division, each core coset's retained count `=` top fiber of
+  the fixed `Gamma`, primitive coset traces) at `9` and `9/10` primes respectively;
+  divisibility-minimality of the exact missed core is structural, and the verifier
+  shows the deletion criterion discriminates on a planted non-minimal set. This makes
+  the companion open PR #224's named target `PV(t,d,m)` (`m < d => #PrimMinMix = 0`)
+  **FALSE** at prime `d = ell`, and the companion open PR #222's prose "PRIMITIVE
+  `m<ell` mixed-vacancy" (`m < ell => no stabilizer-primitive mixed minimal kernel
+  set`) FALSE (both anchors quoted verbatim in the note).
+  PROVED support: Lemma LF (`lambda`-freeness at general `m=t+1`, the
+  `N(Z)`-degree argument); the pair-cap salvage closed form
+  `R <= (m+sqrt(m^2+4mB))/2`, `B=(ell-1)(ell-2)`, which re-derives Theorem R at the
+  `m=4` slice and gives `Theta(ell^{3/2})` extras at `m=ell-1`; the moment-method
+  triple-cap boundary (gate MM: concentrated `Gamma` saturates the pair-cap on one
+  coset yet has `T3=Theta(ell^3)`; the higher-moment `k=2`-extremal generalization is
+  a scaling LEMMA); the Replication Lemma. NUMERIC: the corrected frontier onset
+  `m0 = ceil(2ell/3)` (achieved onset `m*=m0` at `ell=7,11`, `m*=m0+1` search-limited
+  at `ell=13,17`; monotonicity `top-(m+1)>=top-m` fills `m*<=m<=ell-1` from one
+  witness, gate FR replays embedded `ell=11,13` `Gamma`). OPEN (low side only):
+  non-listing for `m < m*` (rigorous just at `t=3`/`m=4`, giving `t0 >= 4`) and
+  whether the onset drops to `ceil(2ell/3)` for `ell >= 13`; the `t>=4` realizability
+  constraint; composite `ell`.
+- **What is being added:** The first explicit refutation of the primitive `m<ell`
+  mixed-vacancy on the prime-`ell` coset-sunflower frontier, complementing (not
+  contradicting) the companion notes: Theorem A (PR #222, `m<=t` total mixed
+  vacancy) and Theorem R (PR #223, `t=3`/`m=4` prime-`ell` vacancy) both stand; the
+  onset is strictly `m = t+1` for `t >= 4` at `ell=7`. The mechanism is the fixed
+  `m=t+1` sector polynomial `Gamma` with its per-coset level sets, made explicit by
+  decoupling the scalars (Lemma LF) so the modal fibers are realized by actual
+  distinct-nonzero `c_i` — the step the night `w2_r2_hight.py` fixed-`c` search
+  (2 DOF against `m=t+1` targets) missed, exactly as PR #223's own Scope section
+  had flagged the `t>=4` numerics OPEN/non-probative.
+- **How it is useful:** Files the primitive mixed count `> 0` at `m=t+1` against the
+  pre-registered TARGET nodes `petal_mixed_amplification` and `pma_wide_residual`
+  (`key:true`), with the honest placement: no proved chart claims zero here — the
+  fixed-excess full-petal charts (`petal_fixed_excess`, PR #197) reach only excess
+  `e<=6`, while these witnesses sit at excess `e~20`, inside the declared-open
+  `prob:v13-l1-residuals`; no upstream inconsistency. Support fraction `m/(m+t) =
+  (t+1)/(2t+1) > 1/2` strictly, so the displayed discrete prize rate set
+  `{1/2,1/4,1/8,1/16}` and the `m<=t` corner are untouched. Records the corrected
+  frontier and the proved salvage ceiling so follow-up targets the actual gap.
+- **What to do next:** Pin the low-side onset (prove non-listing for `m < m*`, and
+  test whether `m*` drops to `ceil(2ell/3)` at `ell >= 13`); find the `t>=4`
+  realizability constraint that would upgrade the frontier onset to a theorem; route
+  composite `ell` through the PR #224 stabilizer-descent classification. No paper text
+  changes; material stays in `experimental/`.
