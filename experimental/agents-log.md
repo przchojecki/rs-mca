@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Exact worst-case eca/emca staircases
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:**
+  `experimental/scripts/verify_exact_worstcase_eca_emca_staircase.py`;
+  `experimental/data/certificates/exact-worstcase-eca-emca-staircase/`;
+  `experimental/notes/thresholds/exact_worstcase_eca_emca_staircase.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A stdlib verifier and certificate for complete
+  CPU-tier toy-row worst-case `eca_C`/`emca_C` staircases, including an
+  end-to-end numerical check of `emca_C=max(eca_C,sigma_C)`.
+- **How it is useful:** Provides the first local full-row staircase package for
+  toy finite-slope CA/MCA numerators and confirms the saturated
+  `F_7,n=6,k=3,r=2` signal from the sparse-sigma census.
+- **What to do next:** Review whether the exact interpolation cross-check is
+  sufficient for publication, then decide whether to add optional GPU-tier
+  rows in a later branch.
+
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.

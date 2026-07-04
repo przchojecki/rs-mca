@@ -1,0 +1,1448 @@
+{
+  "endpoint_conventions": {
+    "agreement": "a = n - r",
+    "mca_witness": "exists S with |S| >= n-r, point restricted to S in C|S, and eps2|S not in C|S",
+    "pair_distance": "same radius r for CA point closeness and pair-far condition",
+    "radius": "r = floor(delta*n), with sub-capacity r in [0, n-k-1]",
+    "slopes": "finite slopes gamma in F_q only; denominator q_line=q"
+  },
+  "engines": {
+    "codeword_tables": "not used by the committed verifier; q^k materialization is deliberately avoided",
+    "primary": "syndrome-class representatives plus nullspace parity-check restricted-code membership",
+    "secondary": "same pair enumeration with Vandermonde interpolation high-coefficient membership checks"
+  },
+  "family_signals": [
+    {
+      "first_r_with_emca_gt_r": 0,
+      "k": 2,
+      "m": 2,
+      "n": 4,
+      "q": 5,
+      "saturation_radii": []
+    },
+    {
+      "first_r_with_emca_gt_r": 0,
+      "k": 5,
+      "m": 1,
+      "n": 6,
+      "q": 7,
+      "saturation_radii": []
+    },
+    {
+      "first_r_with_emca_gt_r": 0,
+      "k": 3,
+      "m": 3,
+      "n": 6,
+      "q": 7,
+      "saturation_radii": [
+        2
+      ]
+    },
+    {
+      "first_r_with_emca_gt_r": 0,
+      "k": 8,
+      "m": 2,
+      "n": 10,
+      "q": 11,
+      "saturation_radii": []
+    },
+    {
+      "first_r_with_emca_gt_r": 0,
+      "k": 10,
+      "m": 2,
+      "n": 12,
+      "q": 13,
+      "saturation_radii": []
+    },
+    {
+      "first_r_with_emca_gt_r": 0,
+      "k": 14,
+      "m": 2,
+      "n": 16,
+      "q": 17,
+      "saturation_radii": []
+    }
+  ],
+  "non_claims": [
+    "not a deployed-row certificate",
+    "not a leaderboard or protocol q_chal claim",
+    "not a proof for q>=97",
+    "toy rows use q_line=q finite slopes"
+  ],
+  "object": "worst-case finite-slope CA/MCA numerators over syndrome-class pair representatives",
+  "payload_sha256": "0d72b4ab1b281080d3ccb0a23ed1f9a604aa554c14c2347748a72da1bf8aaaa2",
+  "proof_status": "EXPERIMENTAL",
+  "rows": [
+    {
+      "codeword_materialization_feasible": true,
+      "domain": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "domain_note": "canonical affine domain; staircase numerators are RS-domain invariant for these toy rows",
+      "engine_cross_check": {
+        "matched_radii": [
+          0,
+          1
+        ],
+        "matches": true,
+        "secondary_membership_engine": "interpolation"
+      },
+      "k": 2,
+      "m": 2,
+      "membership_engine": "nullspace",
+      "n": 4,
+      "pair_classes_total": 625,
+      "q": 5,
+      "radii": [
+        {
+          "agreement": 4,
+          "argmax_eca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [],
+            "eps1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "0/4",
+          "eca_num": 1,
+          "emca_num": 1,
+          "r": 0,
+          "sigma_num": 0,
+          "sparsify_holds": true,
+          "sparsify_rhs": 1
+        },
+        {
+          "agreement": 3,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              4
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              1,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              4
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              1,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "delta": "1/4",
+          "eca_num": 4,
+          "emca_num": 4,
+          "r": 1,
+          "sigma_num": 1,
+          "sparsify_holds": true,
+          "sparsify_rhs": 4
+        }
+      ],
+      "word_classes_total": 25
+    },
+    {
+      "codeword_materialization_feasible": true,
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "domain_note": "canonical affine domain; staircase numerators are RS-domain invariant for these toy rows",
+      "engine_cross_check": {
+        "matched_radii": [
+          0
+        ],
+        "matches": true,
+        "secondary_membership_engine": "interpolation"
+      },
+      "k": 5,
+      "m": 1,
+      "membership_engine": "nullspace",
+      "n": 6,
+      "pair_classes_total": 49,
+      "q": 7,
+      "radii": [
+        {
+          "agreement": 6,
+          "argmax_eca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "0/6",
+          "eca_num": 1,
+          "emca_num": 1,
+          "r": 0,
+          "sigma_num": 0,
+          "sparsify_holds": true,
+          "sparsify_rhs": 1
+        }
+      ],
+      "word_classes_total": 7
+    },
+    {
+      "codeword_materialization_feasible": true,
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "domain_note": "canonical affine domain; staircase numerators are RS-domain invariant for these toy rows",
+      "engine_cross_check": {
+        "matched_radii": [
+          0,
+          1,
+          2
+        ],
+        "matches": true,
+        "secondary_membership_engine": "interpolation"
+      },
+      "k": 3,
+      "m": 3,
+      "membership_engine": "nullspace",
+      "n": 6,
+      "pair_classes_total": 117649,
+      "q": 7,
+      "radii": [
+        {
+          "agreement": 6,
+          "argmax_eca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "0/6",
+          "eca_num": 1,
+          "emca_num": 1,
+          "r": 0,
+          "sigma_num": 0,
+          "sparsify_holds": true,
+          "sparsify_rhs": 1
+        },
+        {
+          "agreement": 5,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              6
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              6
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "delta": "1/6",
+          "eca_num": 2,
+          "emca_num": 2,
+          "r": 1,
+          "sigma_num": 1,
+          "sparsify_holds": true,
+          "sparsify_rhs": 2
+        },
+        {
+          "agreement": 4,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              0
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ]
+          },
+          "delta": "2/6",
+          "eca_num": 7,
+          "emca_num": 7,
+          "r": 2,
+          "sigma_num": 7,
+          "sparsify_holds": true,
+          "sparsify_rhs": 7
+        }
+      ],
+      "word_classes_total": 343
+    },
+    {
+      "codeword_materialization_feasible": false,
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "domain_note": "canonical affine domain; staircase numerators are RS-domain invariant for these toy rows",
+      "engine_cross_check": {
+        "matched_radii": [
+          0,
+          1
+        ],
+        "matches": true,
+        "secondary_membership_engine": "interpolation"
+      },
+      "k": 8,
+      "m": 2,
+      "membership_engine": "nullspace",
+      "n": 10,
+      "pair_classes_total": 14641,
+      "q": 11,
+      "radii": [
+        {
+          "agreement": 10,
+          "argmax_eca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "0/10",
+          "eca_num": 1,
+          "emca_num": 1,
+          "r": 0,
+          "sigma_num": 0,
+          "sparsify_holds": true,
+          "sparsify_rhs": 1
+        },
+        {
+          "agreement": 9,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              7,
+              8,
+              9,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              7
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              7,
+              8,
+              9,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              7
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "delta": "1/10",
+          "eca_num": 10,
+          "emca_num": 10,
+          "r": 1,
+          "sigma_num": 1,
+          "sparsify_holds": true,
+          "sparsify_rhs": 10
+        }
+      ],
+      "word_classes_total": 121
+    },
+    {
+      "codeword_materialization_feasible": false,
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "domain_note": "canonical affine domain; staircase numerators are RS-domain invariant for these toy rows",
+      "engine_cross_check": {
+        "matched_radii": [
+          0,
+          1
+        ],
+        "matches": true,
+        "secondary_membership_engine": "interpolation"
+      },
+      "k": 10,
+      "m": 2,
+      "membership_engine": "nullspace",
+      "n": 12,
+      "pair_classes_total": 28561,
+      "q": 13,
+      "radii": [
+        {
+          "agreement": 12,
+          "argmax_eca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "0/12",
+          "eca_num": 1,
+          "emca_num": 1,
+          "r": 0,
+          "sigma_num": 0,
+          "sparsify_holds": true,
+          "sparsify_rhs": 1
+        },
+        {
+          "agreement": 11,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              9
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              9
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "delta": "1/12",
+          "eca_num": 12,
+          "emca_num": 12,
+          "r": 1,
+          "sigma_num": 1,
+          "sparsify_holds": true,
+          "sparsify_rhs": 12
+        }
+      ],
+      "word_classes_total": 169
+    },
+    {
+      "codeword_materialization_feasible": false,
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "domain_note": "canonical affine domain; staircase numerators are RS-domain invariant for these toy rows",
+      "engine_cross_check": {
+        "matched_radii": [
+          0,
+          1
+        ],
+        "matches": true,
+        "secondary_membership_engine": "interpolation"
+      },
+      "k": 14,
+      "m": 2,
+      "membership_engine": "nullspace",
+      "n": 16,
+      "pair_classes_total": 83521,
+      "q": 17,
+      "radii": [
+        {
+          "agreement": 16,
+          "argmax_eca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "0/16",
+          "eca_num": 1,
+          "emca_num": 1,
+          "r": 0,
+          "sigma_num": 0,
+          "sparsify_holds": true,
+          "sparsify_rhs": 1
+        },
+        {
+          "agreement": 15,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              13
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              13
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "delta": "1/16",
+          "eca_num": 16,
+          "emca_num": 16,
+          "r": 1,
+          "sigma_num": 1,
+          "sparsify_holds": true,
+          "sparsify_rhs": 16
+        }
+      ],
+      "word_classes_total": 289
+    }
+  ],
+  "schema_version": "exact-worstcase-eca-emca-staircase-v1",
+  "status": "AUDIT",
+  "theorem_problem_id": "towards-prize-thm-sparsify-toy-staircases"
+}
