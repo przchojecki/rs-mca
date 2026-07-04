@@ -4,6 +4,23 @@ DAG node: `xr_syzygy_support_lemma`.
 
 Status: PROVED in the rank-linear algebra model used by `qx13_pair_rank_ledger`.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route.  After
+`xr_pencil_cascade.md` and `xr_smallcore_rungs_2a_2b.md` remove the paid
+large-core, list, and tangent-depth bands, the remaining face-4 work is the
+irreducible `r <= k` rank/spread shell.  This lemma is the first structural
+filter on that shell: if adding a new distinct-slope support does not raise
+the stacked rank by the expected `t`, then a shortened-dual syzygy must exist,
+and its nonzero support must be covered by pairwise intersections with overlap
+budget at least `k+1`.
+
+The lemma therefore converts an abstract rank-stagnation event into a finite
+support geometry problem.  Downstream sunflower and eliminant packets classify
+or charge those geometries; the separate terminal condition remains the
+`active_core_count_bound` / PTE polynomial residue consumed by the clean-rate
+compiler.
+
 ## Statement
 
 Let `C` be the length-`n`, dimension-`k` Reed-Solomon evaluation code on a

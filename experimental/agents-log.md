@@ -44,9 +44,12 @@ Keep entries concise and link to the relevant files.
   stagnation for distinct-slope alignment blocks forces a nonzero shortened
   dual word whose support is covered by pairwise intersections, yielding the
   `k+1` overlap budget.
-- **How it is useful:** This is the 2c-alpha syzygy-support constraint used
-  to localize far-spread rank stagnation before the sunflower and eliminant
-  packets.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  after the large-core/list/tangent bands are paid, it converts residual
+  `r<=k` rank stagnation into a concrete overlap-support geometry problem.
+  The sunflower and eliminant packets then classify that support geometry
+  before the downstream compiler invokes the terminal
+  `active_core_count_bound` / PTE polynomial residue.
 - **What to do next:** Submit after the current upstream review batch has
   capacity, then follow with the sunflower rank-additivity packet.
 
