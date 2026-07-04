@@ -4,6 +4,21 @@ DAG node: `xr_sunflower_rank_additive`.
 
 Status: PROVED.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route.  The syzygy
+support lemma says that residual `r <= k` rank stagnation must be carried by
+overlap geometry.  This packet proves that one large class of such geometry,
+sunflowers with common core below the RS dual distance, cannot stagnate at all:
+the tensor row rank is exactly additive.
+
+Consequently planted-sunflower/list-lane configurations are not a separate
+unpaid MCA residue in the distinct-slope face-4 branch.  They either stay in
+the list lane already isolated by `xr_smallcore_rungs_2a_2b.md`, or they are
+rank-additive and bounded by the ambient `2n` dimension cap.  The remaining
+conditional terminal work is still the non-sunflower active-core/PTE
+polynomial residue.
+
 ## Statement
 
 Let `C` be the length-`n`, dimension-`k` Reed-Solomon evaluation code on

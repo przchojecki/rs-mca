@@ -43,8 +43,12 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A ready upstream packet proving that
   distinct-slope sunflower blocks with common core below dual distance have
   additive tensor rank, giving the `m <= floor(2n/t)` cap.
-- **How it is useful:** This discharges the sunflower safe side of the 2c-beta
-  split and complements the syzygy-support localization packet.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  after syzygy support localizes residual `r<=k` stagnation to overlap
+  geometry, this proves the sunflower safe side is rank-additive and hence
+  bounded by the ambient `2n` dimension cap.  It leaves only the non-sunflower
+  residual geometry and terminal `active_core_count_bound` / PTE polynomial
+  residue for downstream packets.
 - **What to do next:** Submit after the current upstream review batch has
   capacity, then follow with the eliminant and flat-transport packets.
 
