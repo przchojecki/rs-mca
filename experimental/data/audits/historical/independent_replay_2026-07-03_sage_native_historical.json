@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "repo": "D:\\dev\\RSMCA",
+    "out": "D:\\dev\\rsmca-lab\\replay-sage-native-final",
+    "python": "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+    "timeout": 120,
+    "task_count": 5,
+    "include_write": false,
+    "only": "sage",
+    "cwd_policy": "repo root unless a README command script is local to its README directory",
+    "output_policy": "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory"
+  },
+  "results": [
+    {
+      "task_id": "sage__experimental_scripts_audit_m1_interleaved_list_threshold_descent.sage",
+      "kind": "sage-native-companion",
+      "source": "experimental/scripts/audit_m1_interleaved_list_threshold_descent.sage (native companion: threshold-descent)",
+      "command": [
+        "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "experimental/scripts/verify_native_sage_replays.py",
+        "--case",
+        "threshold-descent"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.193,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_descent.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_descent.sage.stderr.txt",
+      "stdout_tail": "Native Sage replay companions\nproof_status: AUDIT\ntheorem_problem_id: native-sage-replay-companions\nresult: PASS\ncases_checked: 1\n- threshold-descent: PASS (AUDIT_PASS_NATIVE_REPLAY_LOWER_BOUND_A291); replacement_for=experimental/scripts/audit_m1_interleaved_list_threshold_descent.sage\ncase_hash: 6da93baa70de37fec0b3e888380f5c1c044988d286eb8610a35bcb4e8a51a294\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "sage__experimental_scripts_audit_m1_interleaved_list_threshold_interval_sharpening.sage",
+      "kind": "sage-native-companion",
+      "source": "experimental/scripts/audit_m1_interleaved_list_threshold_interval_sharpening.sage (native companion: threshold-interval-sharpening)",
+      "command": [
+        "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "experimental/scripts/verify_native_sage_replays.py",
+        "--case",
+        "threshold-interval-sharpening"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 59.402,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_interval_sharpening.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_interval_sharpening.sage.stderr.txt",
+      "stdout_tail": "Native Sage replay companions\nproof_status: AUDIT\ntheorem_problem_id: native-sage-replay-companions\nresult: PASS\ncases_checked: 1\n- threshold-interval-sharpening: PASS (AUDIT_PASS_NATIVE_REPLAY_LOWER_BOUND_A292); replacement_for=experimental/scripts/audit_m1_interleaved_list_threshold_interval_sharpening.sage\ncase_hash: f384a3e994b804d921355d17c2f655272aac4186cb2e5aa005370ca4370e8b28\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "sage__experimental_scripts_audit_m1_interleaved_list_threshold_upward_push.sage",
+      "kind": "sage-native-companion",
+      "source": "experimental/scripts/audit_m1_interleaved_list_threshold_upward_push.sage (native companion: threshold-upward-push)",
+      "command": [
+        "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "experimental/scripts/verify_native_sage_replays.py",
+        "--case",
+        "threshold-upward-push"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.282,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_upward_push.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_upward_push.sage.stderr.txt",
+      "stdout_tail": "Native Sage replay companions\nproof_status: AUDIT\ntheorem_problem_id: native-sage-replay-companions\nresult: PASS\ncases_checked: 1\n- threshold-upward-push: PASS (AUDIT_PASS_NATIVE_REPLAY_LOWER_BOUND_A320); replacement_for=experimental/scripts/audit_m1_interleaved_list_threshold_upward_push.sage\ncase_hash: 3972822cbc7b158d80b38a6731704e1fe82ac34406c968f5f40d8c6c1b567efe\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "sage__experimental_scripts_audit_m1_interleaved_list_hybrid_quotient_residual.sage",
+      "kind": "sage-native-companion",
+      "source": "experimental/scripts/audit_m1_interleaved_list_hybrid_quotient_residual.sage (native companion: hybrid-quotient-residual)",
+      "command": [
+        "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "experimental/scripts/verify_native_sage_replays.py",
+        "--case",
+        "hybrid-quotient-residual"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.277,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_hybrid_quotient_residual.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_hybrid_quotient_residual.sage.stderr.txt",
+      "stdout_tail": "Native Sage replay companions\nproof_status: AUDIT\ntheorem_problem_id: native-sage-replay-companions\nresult: PASS\ncases_checked: 1\n- hybrid-quotient-residual: PASS (AUDIT_PASS_NATIVE_REPLAY_LOWER_BOUND_A326); replacement_for=experimental/scripts/audit_m1_interleaved_list_hybrid_quotient_residual.sage\ncase_hash: 4270e2d1b0711c8f39ed8347c6ef0d889de2eed4db07e5eb0ed26cfefb90e928\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "sage__experimental_scripts_locator_sage_locator_fiber_crosscheck_sage_locator_fiber_crosscheck.sage",
+      "kind": "sage-native-companion",
+      "source": "experimental/scripts/locator/sage_locator_fiber_crosscheck/sage_locator_fiber_crosscheck.sage (native companion: locator-selected)",
+      "command": [
+        "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "experimental/scripts/verify_native_sage_replays.py",
+        "--case",
+        "locator-selected"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.65,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_locator_sage_locator_fiber_crosscheck_sage_locator_fiber_crosscheck.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-native-final\\logs\\sage__experimental_scripts_locator_sage_locator_fiber_crosscheck_sage_locator_fiber_crosscheck.sage.stderr.txt",
+      "stdout_tail": "Native Sage replay companions\nproof_status: AUDIT\ntheorem_problem_id: native-sage-replay-companions\nresult: PASS\ncases_checked: 1\n- locator-selected: PASS (AUDIT_PASS_NATIVE_REPLAY_LOCATOR_SELECTED); replacement_for=experimental/scripts/locator/sage_locator_fiber_crosscheck/sage_locator_fiber_crosscheck.sage\ncase_hash: b6bf25984126628eb4b6624ec7834e98c4c68689ea3b406049210f0a59760b12\n",
+      "stderr_tail": "",
+      "note": ""
+    }
+  ]
+}

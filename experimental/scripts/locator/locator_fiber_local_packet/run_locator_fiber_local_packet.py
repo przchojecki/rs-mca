@@ -45,6 +45,8 @@ CLAIM = (
 )
 SAGE_SCRIPT = (
     Path("experimental")
+    / "scripts"
+    / "locator"
     / "sage_locator_fiber_crosscheck"
     / "sage_locator_fiber_crosscheck.sage"
 )

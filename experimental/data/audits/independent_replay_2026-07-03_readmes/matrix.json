@@ -1,0 +1,1969 @@
+{
+  "metadata": {
+    "repo": "C:\\dev\\research\\RSMCA",
+    "out": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes",
+    "python": "C:\\Program Files\\Python313\\python.exe",
+    "timeout": 300,
+    "task_count": 105,
+    "include_write": false,
+    "only": "readmes",
+    "sage_mode": "auto",
+    "wsl_distro": "Ubuntu",
+    "wsl_sage": "sage",
+    "cwd_policy": "repo root unless a README command script is local to its README directory",
+    "output_policy": "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory"
+  },
+  "results": [
+    {
+      "task_id": "readme__experimental_data_certificates_a425-second-pin-unsafe_README.md__13__experimental_scripts_verify_a425_second_pin_unsafe.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/a425-second-pin-unsafe/README.md:13",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_a425_second_pin_unsafe.py",
+        "--check"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.12,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_a425-second-pin-unsafe_README.md__13__exper__e5cce78ce22b.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_a425-second-pin-unsafe_README.md__13__exper__e5cce78ce22b.stderr.txt",
+      "stdout_tail": "E23 A=425 second-pin unsafe packet\nprime budget: floor((p-1)/2^128) = 87\nA=425 lower witness: LD_sw >= 88 (88 > 87)\nstatus: UNSAFE_BY_CERTIFIED_LOWER_WITNESS\nexact attempt: large-core <= 88, low-pair <= 7781; closes=False\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_adjacency-staircase-localization_README.md__4__experimental_scripts_verify_adjacency_staircase_localization.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/adjacency-staircase-localization/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_adjacency_staircase_localization.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.129,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_adjacency-staircase-localization_README.md__ad66550294d3.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_adjacency-staircase-localization_README.md__ad66550294d3.stderr.txt",
+      "stdout_tail": ", 'first_safe_agreement': 23, 'last_unsafe_agreement': 22}\n\n[PASS] F_17^32 high-agreement tangent anchor\n       floor(17^32/2^128) = 6\n       LD_sw(C,a)=512-a+1 on a in [427,512]\n       classification: {'case': 'INTERIOR', 'first_safe_agreement': 507, 'last_unsafe_agreement': 506}\n       largest safe radius = 5, first unsafe radius = 6\n       tangent exactness gate floor((n-k)/3) = 85\n\n[PASS] lower/upper certificate corridor\n       bounds lower=[8, 6, 3, 0, 0], upper=[10, 8, 5, 2, 1], budget=4\n       corridor for first safe agreement: [12,13]\n       brute-forced 135 nonincreasing numerator staircases inside bounds\n       interior cases checked: 135\n\n[PASS] list-radius monotone staircase\n       radius values: [(0, 1), (1, 1), (2, 2), (3, 3), (4, 5), (5, 9), (6, 13)]\n       radius classification: {'case': 'INTERIOR', 'largest_safe_radius': 4, 'first_unsafe_radius': 5}\n       agreement-coordinate classification: {'case': 'INTERIOR', 'first_safe_agreement': 8, 'last_unsafe_agreement': 7}\n\n[PASS] relative-envelope steepness compiler\n       model ratios are exactly q=17; envelope E=4; E^2=16<q\n       adjacent ambiguity intervals are disjoint\n       maximum ambiguous agreements over tested budgets: 1\n       B=1: ['UNSAFE', 'UNSAFE', 'UNSAFE', 'UNSAFE', 'UNSAFE', 'AMBIGUOUS']\n       B=20: ['UNSAFE', 'UNSAFE', 'UNSAFE', 'UNSAFE', 'AMBIGUOUS', 'SAFE']\n       B=300: ['UNSAFE', 'UNSAFE', 'UNSAFE', 'AMBIGUOUS', 'SAFE', 'SAFE']\n       B=5000: ['UNSAFE', 'UNSAFE', 'AMBIGUOUS', 'SAFE', 'SAFE', 'SAFE']\n       B=80000: ['UNSAFE', 'AMBIGUOUS', 'SAFE', 'SAFE', 'SAFE', 'SAFE']\n\n--------------------------------------------------------------------------\nimplemented PASS: 5   FAIL: 0\nemitted: experimental\\data\\certificates\\adjacency-staircase-localization\\adjacency_staircase_localization.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_adjacency-staircase-localization_README.md__5__experimental_scripts_verify_adjacency_staircase_localization.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/adjacency-staircase-localization/README.md:5",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_adjacency_staircase_localization.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.302,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_adjacency-staircase-localization_README.md__5104f7284a38.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_adjacency-staircase-localization_README.md__5104f7284a38.stderr.txt",
+      "stdout_tail": "R', 'first_safe_agreement': 24, 'last_unsafe_agreement': 23}\n       interior at last point: {'case': 'INTERIOR', 'first_safe_agreement': 23, 'last_unsafe_agreement': 22}\n\n[PASS] F_17^32 high-agreement tangent anchor\n       floor(17^32/2^128) = 6\n       LD_sw(C,a)=512-a+1 on a in [427,512]\n       classification: {'case': 'INTERIOR', 'first_safe_agreement': 507, 'last_unsafe_agreement': 506}\n       largest safe radius = 5, first unsafe radius = 6\n       tangent exactness gate floor((n-k)/3) = 85\n\n[PASS] lower/upper certificate corridor\n       bounds lower=[8, 6, 3, 0, 0], upper=[10, 8, 5, 2, 1], budget=4\n       corridor for first safe agreement: [12,13]\n       brute-forced 135 nonincreasing numerator staircases inside bounds\n       interior cases checked: 135\n\n[PASS] list-radius monotone staircase\n       radius values: [(0, 1), (1, 1), (2, 2), (3, 3), (4, 5), (5, 9), (6, 13)]\n       radius classification: {'case': 'INTERIOR', 'largest_safe_radius': 4, 'first_unsafe_radius': 5}\n       agreement-coordinate classification: {'case': 'INTERIOR', 'first_safe_agreement': 8, 'last_unsafe_agreement': 7}\n\n[PASS] relative-envelope steepness compiler\n       model ratios are exactly q=17; envelope E=4; E^2=16<q\n       adjacent ambiguity intervals are disjoint\n       maximum ambiguous agreements over tested budgets: 1\n       B=1: ['UNSAFE', 'UNSAFE', 'UNSAFE', 'UNSAFE', 'UNSAFE', 'AMBIGUOUS']\n       B=20: ['UNSAFE', 'UNSAFE', 'UNSAFE', 'UNSAFE', 'AMBIGUOUS', 'SAFE']\n       B=300: ['UNSAFE', 'UNSAFE', 'UNSAFE', 'AMBIGUOUS', 'SAFE', 'SAFE']\n       B=5000: ['UNSAFE', 'UNSAFE', 'AMBIGUOUS', 'SAFE', 'SAFE', 'SAFE']\n       B=80000: ['UNSAFE', 'AMBIGUOUS', 'SAFE', 'SAFE', 'SAFE', 'SAFE']\n\n--------------------------------------------------------------------------\nimplemented PASS: 5   FAIL: 0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.md__10__experimental_scripts_verify_aperiodic_hankel_regular_minor_toy.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/README.md:10",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_aperiodic_hankel_regular_minor_toy.py",
+        "--check",
+        "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/f17_n16_k8_a13_regular_minor_certificate.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.14,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.m__998dbee5c2aa.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.m__998dbee5c2aa.stderr.txt",
+      "stdout_tail": "Paper D v12 regular Hankel-minor toy certificate\nrow: F_17, n=16, k=8, threshold a=13\ndomain_hash=c8aa3562cf53e860d2bff96611bbd511190e1ba0d75e502cbab10a106f04248e\nA=13 j=3 t=5 degree=4 roots=[11] bad=[]\nA=14 j=2 t=6 degree=3 roots=[10, 11] bad=[]\nA=15 j=1 t=7 degree=2 roots=[0, 2] bad=[]\nA=16 j=0 t=8 degree=1 roots=[2] bad=[]\ndeclared_aperiodic_numerator=4\nregular Hankel-minor certificate checks passed\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.md__11__scripts_check_aperiodic_eliminant_packet.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/README.md:11",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/f17_n16_k8_a13_regular_minor_certificate.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.742,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.m__18778cd6996b.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.m__18778cd6996b.stderr.txt",
+      "stdout_tail": "OK experimental\\data\\certificates\\aperiodic-hankel-regular-minor-toy\\f17_n16_k8_a13_regular_minor_certificate.json: schema and arithmetic checks passed\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.md__17__scripts_check_aperiodic_eliminant_packet.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/README.md:17",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "--expect-fail",
+        "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/invalid_bad_j_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 2.136,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.m__cd2139b084b3.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_README.m__cd2139b084b3.stderr.txt",
+      "stdout_tail": "EXPECTED-FAIL experimental\\data\\certificates\\aperiodic-hankel-regular-minor-toy\\invalid_bad_j_packet.json: A=13: j=2 but n-A=3\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_census-dodge-selection_README.md__4__experimental_scripts_verify_census_dodge_selection.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/census-dodge-selection/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_census_dodge_selection.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.134,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_census-dodge-selection_README.md__4__experi__3e14793b0edd.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_census-dodge-selection_README.md__4__experi__3e14793b0edd.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\census-dodge-selection\\census_dodge_selection.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_census-dodge-selection_README.md__6__experimental_scripts_verify_census_dodge_selection.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/census-dodge-selection/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_census_dodge_selection.py",
+        "--check",
+        "experimental/data/certificates/census-dodge-selection/census_dodge_selection.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.126,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_census-dodge-selection_README.md__6__experi__62488c5ec9f1.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_census-dodge-selection_README.md__6__experi__62488c5ec9f1.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\census-dodge-selection\\census_dodge_selection.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_cluster-certificates_README.md__4__experimental_scripts_verify_cluster_certificates.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/cluster-certificates/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_cluster_certificates.py"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 0.953,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cluster-certificates_README.md__4__experime__d2ea15d7dde5.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cluster-certificates_README.md__4__experime__d2ea15d7dde5.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_cluster_certificates.py\", line 258, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_cluster_certificates.py\", line 251, in main\n    require(expected == result, \"certificate does not match verifier output; rerun with --emit\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_cluster_certificates.py\", line 30, in require\n    raise AssertionError(message)\nAssertionError: certificate does not match verifier output; rerun with --emit\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_cluster-certificates_README.md__6__experimental_scripts_verify_cluster_certificates.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/cluster-certificates/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_cluster_certificates.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.93,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cluster-certificates_README.md__6__experime__eabe728e0f69.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cluster-certificates_README.md__6__experime__eabe728e0f69.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\cluster-certificates\\cluster_certificates.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_conjecture-f-dim2-skeleton_README.md__9__experimental_scripts_verify_conjecture_f_dim2_skeleton.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/conjecture-f-dim2-skeleton/README.md:9",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_conjecture_f_dim2_skeleton.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 7.961,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_conjecture-f-dim2-skeleton_README.md__9__ex__5de733d0f082.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_conjecture-f-dim2-skeleton_README.md__9__ex__5de733d0f082.stderr.txt",
+      "stdout_tail": "========================================================================\nConjecture F dimension-two skeleton verifier\n========================================================================\nstatus: PASS\nprojective planes: 5220\ngcd-trivial planes checked: 5204\ntwin planes: 1920\nmax residual hits per plane: 35\nmax reduced projective dimension: 1\nwrote experimental\\data\\certificates\\conjecture-f-dim2-skeleton\\conjecture_f_dim2_skeleton.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_conjecture-f-dim2-skeleton_README.md__10__experimental_scripts_verify_conjecture_f_dim2_skeleton.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/conjecture-f-dim2-skeleton/README.md:10",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_conjecture_f_dim2_skeleton.py",
+        "--check",
+        "experimental/data/certificates/conjecture-f-dim2-skeleton/conjecture_f_dim2_skeleton.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 8.71,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_conjecture-f-dim2-skeleton_README.md__10__e__b4944070b391.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_conjecture-f-dim2-skeleton_README.md__10__e__b4944070b391.stderr.txt",
+      "stdout_tail": "========================================================================\nConjecture F dimension-two skeleton verifier\n========================================================================\nstatus: PASS\nprojective planes: 5220\ngcd-trivial planes checked: 5204\ntwin planes: 1920\nmax residual hits per plane: 35\nmax reduced projective dimension: 1\nchecked experimental\\data\\certificates\\conjecture-f-dim2-skeleton\\conjecture_f_dim2_skeleton.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_conjecture-f-many-sparse-census_README.md__2__experimental_scripts_verify_conjecture_f_many_sparse_census.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/conjecture-f-many-sparse-census/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_conjecture_f_many_sparse_census.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 2.619,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_conjecture-f-many-sparse-census_README.md__132f4f46ac90.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_conjecture-f-many-sparse-census_README.md__132f4f46ac90.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_conjecture-f-reductions_README.md__21__experimental_scripts_verify_conjecture_f_reductions.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/conjecture-f-reductions/README.md:21",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_conjecture_f_reductions.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 179.305,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_conjecture-f-reductions_README.md__21__expe__0639608d80f6.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_conjecture-f-reductions_README.md__21__expe__0639608d80f6.stderr.txt",
+      "stdout_tail": "t-1)).\n        toy_exact_rows: [{'n': 16, 'j': 4, 't': 1, 'radius': 0, 'exact_ordered_pairs': 1820, 'formula_ordered_pairs': 1820, 'common_core_cover_ordered_bound': 1820, 'per_center_cover_bound': 1}, {'n': 16, 'j': 4, 't': 2, 'radius': 1, 'exact_ordered_pairs': 89180, 'formula_ordered_pairs': 89180, 'common_core_cover_ordered_bound': 94640, 'per_center_cover_bound': 52}, {'n': 16, 'j': 4, 't': 3, 'radius': 2, 'exact_ordered_pairs': 809900, 'formula_ordered_pairs': 809900, 'common_core_cover_ordered_bound': 993720, 'per_center_cover_bound': 546}, {'n': 16, 'j': 4, 't': 4, 'radius': 3, 'exact_ordered_pairs': 2411500, 'formula_ordered_pairs': 2411500, 'common_core_cover_ordered_bound': 3312400, 'per_center_cover_bound': 1820}]\n        deployed_shape_rows: [{'n': 512, 'j': 127, 't': 9, 'radius': 8, 'per_center_exact_log2': 93.59267693629697, 'per_center_cover_log2': 93.83017128234832, 'ordered_exact_log2': 502.75911518484656, 'ordered_cover_log2': 502.9966095308979, 'per_center_cover_n_power_exponent': 10.42557458692759, 'per_center_coarse_exponent_budget': 16}, {'n': 512, 'j': 247, 't': 9, 'radius': 8, 'per_center_exact_log2': 97.06968221939695, 'per_center_cover_log2': 97.4160111902117, 'ordered_exact_log2': 603.787548855523, 'ordered_cover_log2': 604.1338778263378, 'per_center_cover_n_power_exponent': 10.824001243356856, 'per_center_coarse_exponent_budget': 16}, {'n': 1048576, 'j': 524288, 't': 4, 'radius': 3, 'per_center_exact_log2': 108.8300584882442, 'per_center_cover_log2': 108.83008325367507, 'ordered_exact_log2': 1048674.5043100796, 'ordered_cover_log2': 1048674.5043348449, 'per_center_cover_n_power_exponent': 5.441504162683754, 'per_center_coarse_exponent_budget': 6}]\n\nwrote experimental\\data\\certificates\\conjecture-f-reductions\\conjecture_f_reductions_toy.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_cs25-v12-deployed-certificates_README.md__5__experimental_scripts_verify_cs25_v12_deployed_certificates.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/cs25-v12-deployed-certificates/README.md:5",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_cs25_v12_deployed_certificates.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 25.737,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cs25-v12-deployed-certificates_README.md__5__ee379ae5f64f.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cs25-v12-deployed-certificates_README.md__5__ee379ae5f64f.stderr.txt",
+      "stdout_tail": "ck_bits=65433\n\n[PASS] KB MCA, XH (kb_mca_xh)\n       binom(256,129) > q/k+1, checked as binom*k > q+k\n       lhs_bits=272 rhs_bits=186 slack_bits=272\n\n[PASS] KB list, XH (kb_list_xh)\n       binom(63,32) > 2^-128*q, checked as binom*2^target > q\n       lhs_bits=188 rhs_bits=186 slack_bits=188\n\n[PASS] Circle MCA, XH (circle_mca_xh)\n       binom(256,129) > q/k+1, checked as binom*k > q+k\n       lhs_bits=272 rhs_bits=124 slack_bits=272\n\n[PASS] Circle list, XH (circle_list_xh)\n       binom(63,32) > 2^-100*q, checked as binom*2^target > q\n       lhs_bits=160 rhs_bits=124 slack_bits=160\n\n[PASS] Both rows, MC (both_rows_mc)\n       koalabear: 2r=1048576 <= n-k=1048576\n       circle: 2r=1048576 <= n-k=1048576\n\n[PASS] KB safe, HJ (kb_safe_hj)\n       n-2r=1482910; Johnson gap=909700\n       (L2+1)*gap > n*(n-2r-k+1), slack_bits=20\n       (1+(r+1)L2)/q < 2^-147, slack_bits=185\n\n[PASS] KB safe, CH import (kb_safe_ch_import)\n       2r=1048576 <= n-k=1048576\n       n/q < 2^-164, slack_bits=185\n\n[PASS] Circle safe, CH import (circle_safe_ch_import)\n       2r=1048576 <= n-k=1048576\n       n/q < 2^-102, slack_bits=123\n\n[PASS] KB profile, PR (kb_profile_pr)\n       L=ceil(binom(256,130)/p), kappa=2^54\n       L*k > k+kappa*(q-n), slack_bits=240\n       floor((L-1)k/(q-n)) >= kappa, slack_bits=240\n\n[PASS] Circle profile corollary (circle_profile_corollary)\n       L=ceil(binom(256,130)/p), kappa=2^116\n       L*k > k+kappa*(q-n), slack_bits=240\n       floor((L-1)k/(q-n)) >= kappa, slack_bits=240\n\n[PASS] i-free circle, RF (ifree_circle_rf)\n       binom(2097152,1081345) > p^65536*2^256\n       lhs_bits=2095664 rhs_bits=2031872 slack_bits=2095664\n       margin exceeds 2^63000, slack_bits=2095664\n\n--------------------------------------------------------------------------\nimplemented PASS: 15   FAIL: 0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_cyclotomic-root-difference-germ_README.md__4__experimental_scripts_verify_cyclotomic_root_difference_germ.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/cyclotomic-root-difference-germ/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_cyclotomic_root_difference_germ.py"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 0.651,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cyclotomic-root-difference-germ_README.md__df041ce832db.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cyclotomic-root-difference-germ_README.md__df041ce832db.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_cyclotomic_root_difference_germ.py\", line 237, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_cyclotomic_root_difference_germ.py\", line 230, in main\n    require(expected == result, \"certificate does not match verifier output; rerun with --emit\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_cyclotomic_root_difference_germ.py\", line 36, in require\n    raise AssertionError(message)\nAssertionError: certificate does not match verifier output; rerun with --emit\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_cyclotomic-root-difference-germ_README.md__6__experimental_scripts_verify_cyclotomic_root_difference_germ.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/cyclotomic-root-difference-germ/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_cyclotomic_root_difference_germ.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.699,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cyclotomic-root-difference-germ_README.md__6f04e6f98f82.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_cyclotomic-root-difference-germ_README.md__6f04e6f98f82.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\cyclotomic-root-difference-germ\\cyclotomic_root_difference_germ.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_exceptional-density_README.md__4__experimental_scripts_verify_exceptional_density.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/exceptional-density/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_exceptional_density.py"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 31.838,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_exceptional-density_README.md__4__experimen__b4bf21db8bcd.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_exceptional-density_README.md__4__experimen__b4bf21db8bcd.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_exceptional_density.py\", line 277, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_exceptional_density.py\", line 270, in main\n    require(expected == result, \"certificate does not match verifier output; rerun with --emit\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_exceptional_density.py\", line 36, in require\n    raise AssertionError(message)\nAssertionError: certificate does not match verifier output; rerun with --emit\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_exceptional-density_README.md__6__experimental_scripts_verify_exceptional_density.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/exceptional-density/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_exceptional_density.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 30.711,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_exceptional-density_README.md__6__experimen__692144bd8e07.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_exceptional-density_README.md__6__experimen__692144bd8e07.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\exceptional-density\\exceptional_density.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_f-consumer-scoped-audit_README.md__4__experimental_scripts_verify_f_consumer_scoped_audit.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/f-consumer-scoped-audit/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f_consumer_scoped_audit.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.212,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_f-consumer-scoped-audit_README.md__4__exper__7c6813710c69.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_f-consumer-scoped-audit_README.md__4__exper__7c6813710c69.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\f-consumer-scoped-audit\\f_consumer_scoped_audit.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_f-consumer-scoped-audit_README.md__6__experimental_scripts_verify_f_consumer_scoped_audit.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/f-consumer-scoped-audit/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f_consumer_scoped_audit.py",
+        "--check",
+        "experimental/data/certificates/f-consumer-scoped-audit/f_consumer_scoped_audit.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.105,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_f-consumer-scoped-audit_README.md__6__exper__39d6bd3679b9.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_f-consumer-scoped-audit_README.md__6__exper__39d6bd3679b9.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\f-consumer-scoped-audit\\f_consumer_scoped_audit.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_f1-extension-import_README.md__2__experimental_scripts_verify_f1_extension_import_lemma.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/f1-extension-import/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f1_extension_import_lemma.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.628,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_f1-extension-import_README.md__2__experimen__5fb532f32fff.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_f1-extension-import_README.md__2__experimen__5fb532f32fff.stderr.txt",
+      "stdout_tail": "==============================================================================\nF1 extension-import lemma\n==============================================================================\n\n[PASS] base-rational pencil confinement\n       checked base-rational vector pencils over F_25: 16275\n       singleton base slopes: 760\n       non-base singleton/exceptional solution sets: 0\n\n[PASS] extension-pole threshold arithmetic\n       toy_quadratic: log2 L_min=1.000000, sample crosses=True\n       toy_no_crossing: crossing impossible\n       koalabear_sextic_slack_two_demo: log2 L_min=57.932108, sample crosses=True\n       near_256_bit_fourth_power_size_arithmetic: log2 L_min=128.000000, sample crosses=True\n\n[PASS] artifact replay\n       artifact path: experimental\\data\\certificates\\f1-extension-import\\f1_extension_import_certificate.json\n       artifact matches deterministic builder: True\n       classification: F1_EXTENSION_IMPORT_ARITHMETIC_AND_BASE_CONFINEMENT_VERIFIED\n\n------------------------------------------------------------------------------\nclassification: F1_EXTENSION_IMPORT_ARITHMETIC_AND_BASE_CONFINEMENT_VERIFIED\nPASS: 3   FAIL: 0\n------------------------------------------------------------------------------\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_fm1-exact-first-moment_README.md__15__experimental_scripts_verify_fm1_exact_aperiodic_first_moment.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/fm1-exact-first-moment/README.md:15",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_fm1_exact_aperiodic_first_moment.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 34.08,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_fm1-exact-first-moment_README.md__15__exper__8fe6f79fc2af.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_fm1-exact-first-moment_README.md__15__exper__8fe6f79fc2af.stderr.txt",
+      "stdout_tail": "2=0.000\n        n=512, j=247, t=9: dependent radius=8, degree log2=97.070, independent neighbors log2=506.718\n\n[PASS] dependency_degree_concentration\n        q=7, n=6, k=2, A=3: D=1, relvar=0.00833333, D/E=0.0583333\n        q=11, n=10, k=3, A=5: D=26, relvar=0.115898, D/E=1.14438\n        q=13, n=12, k=3, A=8: D=495, relvar=263.018, D/E=28561.1\n\n[PASS] exponent_concentration_consumer\n        n=16, t=1, s=2: mean exponent 2 -> relvar <= n^-2\n        n=512, t=9, s=4: mean exponent 20 -> relvar <= n^-4\n        n=1048576, t=4, s=8: mean exponent 14 -> relvar <= n^-8\n\n[PASS] random_pair_phase_criterion\n        q=13, n=12, k=3, A=8: mean=0.0173313, zero_bound=28561.1, phase=low_mean_empty\n        q=7, n=6, k=2, A=3: mean=17.1429, zero_bound=0.0583333, phase=dependency_dominated_nonempty\n        q=11, n=10, k=3, A=5: mean=22.7198, zero_bound=1.14438, phase=borderline_for_this_coarse_consumer\n        n=512, t=9: low <= n^-8, high zero <= 1.4551915228366852e-11\n        n=1048576, t=4: low <= n^-16, high zero <= 6.842277657836021e-49\n\n[PASS] f5_bruteforce\n        F_5: n=4, k=1, A=3, t=2, j=1, locators=4, ranks={2: 4}\n        brute mean = 96/125 = 0.768000000000\n        formula    = 96/125 = 0.768000000000\n        brute second moment = 912/625 = 1.459200000000\n        formula second moment = 912/625 = 1.459200000000\n        actual Pr[N>0] = 332/625 = 0.531200000000\n        Paley-Zygmund lower bound = 192/475 = 0.404210526316\n        total aligned locators over all word pairs = 300000\n\n[PASS] f17_regular_window_markov_tail\n        A=385 log2 expectation upper = -16333.1\n        A=426 log2 expectation upper = -21775.1\n        all A in 385..426 have Markov one-locator probability < 2^-16000: True\n\nwrote experimental\\data\\certificates\\fm1-exact-first-moment\\fm1_exact_first_moment.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_generator-economy-design-search_README.md__2__experimental_scripts_verify_generator_economy_design_search.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/generator-economy-design-search/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_generator_economy_design_search.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 48.601,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_generator-economy-design-search_README.md__fbd3c1c62dc5.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_generator-economy-design-search_README.md__fbd3c1c62dc5.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_graded-collision-radius_README.md__4__experimental_scripts_verify_graded_collision_radius.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/graded-collision-radius/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_graded_collision_radius.py"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 1.417,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_graded-collision-radius_README.md__4__exper__fe4d5a664549.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_graded-collision-radius_README.md__4__exper__fe4d5a664549.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_graded_collision_radius.py\", line 256, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_graded_collision_radius.py\", line 249, in main\n    require(expected == result, \"certificate does not match verifier output; rerun with --emit\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_graded_collision_radius.py\", line 30, in require\n    raise AssertionError(message)\nAssertionError: certificate does not match verifier output; rerun with --emit\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_graded-collision-radius_README.md__6__experimental_scripts_verify_graded_collision_radius.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/graded-collision-radius/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_graded_collision_radius.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.402,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_graded-collision-radius_README.md__6__exper__9a2d88ace26f.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_graded-collision-radius_README.md__6__exper__9a2d88ace26f.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\graded-collision-radius\\graded_collision_radius.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-generic-regular-minor_README.md__7__experimental_scripts_verify_f17_32_m3_generic_regular_minor.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-generic-regular-minor/README.md:7",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f17_32_m3_generic_regular_minor.py",
+        "--check",
+        "experimental/data/certificates/hankel-f17-32-generic-regular-minor/f17_32_n512_k256_m3_generic_all_row_set_regular_minor_certificate.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 11.437,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-generic-regular-minor_README__10ef450a5cc3.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-generic-regular-minor_README__10ef450a5cc3.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_generic_regular_minor.py\", line 323, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_generic_regular_minor.py\", line 315, in main\n    check_certificate(args.check)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_generic_regular_minor.py\", line 271, in check_certificate\n    raise AssertionError(f\"certificate mismatch: {path}\")\nAssertionError: certificate mismatch: experimental\\data\\certificates\\hankel-f17-32-generic-regular-minor\\f17_32_n512_k256_m3_generic_all_row_set_regular_minor_certificate.json\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-high-agreement-tangent-table_README.md__19__experimental_scripts_verify_f17_32_high_agreement_tangent_table.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-high-agreement-tangent-table/README.md:19",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f17_32_high_agreement_tangent_table.py",
+        "--check",
+        "experimental/data/certificates/hankel-f17-32-high-agreement-tangent-table/f17_32_n512_k256_a427_512_high_agreement_tangent_table.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 0.191,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-high-agreement-tangent-table__2c379694f6e7.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-high-agreement-tangent-table__2c379694f6e7.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_high_agreement_tangent_table.py\", line 262, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_high_agreement_tangent_table.py\", line 254, in main\n    check_certificate(args.check)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_high_agreement_tangent_table.py\", line 219, in check_certificate\n    raise AssertionError(f\"high-agreement tangent table mismatch: {path}\")\nAssertionError: high-agreement tangent table mismatch: experimental\\data\\certificates\\hankel-f17-32-high-agreement-tangent-table\\f17_32_n512_k256_a427_512_high_agreement_tangent_table.json\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-m3-endpoint-c2-capacity_README.md__24__experimental_scripts_verify_f17_32_m3_endpoint_c2_capacity.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-endpoint-c2-capacity/README.md:24",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f17_32_m3_endpoint_c2_capacity.py",
+        "--check",
+        "experimental/data/certificates/hankel-f17-32-m3-endpoint-c2-capacity/f17_32_n512_k256_m3_endpoint_c2_capacity.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 0.424,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-endpoint-c2-capacity_READM__568c2da51c84.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-endpoint-c2-capacity_READM__568c2da51c84.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_endpoint_c2_capacity.py\", line 445, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_endpoint_c2_capacity.py\", line 437, in main\n    check_certificate(certificate, args.check)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_endpoint_c2_capacity.py\", line 408, in check_certificate\n    raise AssertionError(f\"endpoint c=2 capacity mismatch: {path}\")\nAssertionError: endpoint c=2 capacity mismatch: experimental\\data\\certificates\\hankel-f17-32-m3-endpoint-c2-capacity\\f17_32_n512_k256_m3_endpoint_c2_capacity.json\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-m3-low-rank-spectral-frontier_README.md__15__experimental_scripts_search_f17_32_m3_low_rank_spectral_target.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/README.md:15",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py",
+        "--agreement-min",
+        "426",
+        "--agreement-max",
+        "426",
+        "--rank-min",
+        "13",
+        "--rank-max",
+        "13",
+        "--shift-mode",
+        "all-contiguous"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 34.697,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank-spectral-frontier__5ef894f4b3f9.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank-spectral-frontier__5ef894f4b3f9.stderr.txt",
+      "stdout_tail": "F_17^32 M3 low-rank spectral target search\nstatus: EXPERIMENTAL / AUDIT\nrecords: 1\ndegree failures: 0\ncoefficient methods: {'newton': 1}\ncommon gcd degree histogram: {'0': 1}\nfirst collision: none\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-m3-low-rank-spectral-frontier_README.md__18__experimental_scripts_search_f17_32_m3_low_rank_spectral_target.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/README.md:18",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py",
+        "--agreement-min",
+        "426",
+        "--agreement-max",
+        "426",
+        "--rank-min",
+        "13",
+        "--rank-max",
+        "20",
+        "--stop-on-collision",
+        "--check",
+        "experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/f17_32_m3_low_rank_spectral_frontier_a426_r13_20.json"
+      ],
+      "classification": "TIMEOUT",
+      "exit_code": null,
+      "runtime_s": 300.018,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank-spectral-frontier__a5f99165aae3.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank-spectral-frontier__a5f99165aae3.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": "process exceeded timeout"
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image_README.md__17__experimental_scripts_verify_f17_32_m3_low_rank2_12_endpoint_quotient_ima",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/README.md:17",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py",
+        "--check",
+        "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_12_endpoint_quotient_image.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 0.148,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-endpoint-quot__39ebba88e296.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-endpoint-quot__39ebba88e296.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py\", line 321, in main\n    check_certificate(certificate, args.check)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py\", line 293, in check_certificate\n    raise AssertionError(f\"endpoint quotient-image mismatch: {path}\")\nAssertionError: endpoint quotient-image mismatch: experimental\\data\\certificates\\hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image\\f17_32_n512_k256_m3_low_rank2_12_endpoint_quotient_image.json\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-paid-residual-ledger_README.md__12__experimental_scripts_verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-paid-residual-ledger/README.md:12",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py",
+        "--check",
+        "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-paid-residual-ledger/f17_32_n512_k256_m3_low_rank2_12_paid_residual_ledger.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 0.095,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-paid-residual__5ed66ca2d091.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-paid-residual__5ed66ca2d091.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 418, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 405, in main\n    certificate = build_certificate()\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 289, in build_certificate\n    validate_source_consistency(affine, endpoint)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 189, in validate_source_consistency\n    affine_sources[\"paper_d_v12\"][\"sha256\"]\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\nKeyError: 'paper_d_v12'\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-v10-affine-gcd_README.md__20__experimental_scripts_verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/README.md:20",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py",
+        "--check",
+        "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/f17_32_n512_k256_m3_low_rank2_12_v10_affine_gcd.json"
+      ],
+      "classification": "TIMEOUT",
+      "exit_code": null,
+      "runtime_s": 300.024,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-v10-affine-gc__646b565b38eb.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m3-low-rank2-12-v10-affine-gc__646b565b38eb.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": "process exceeded timeout"
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-m5-underdetermined-a384_README.md__4__experimental_scripts_verify_f17_32_m5_underdetermined_a384_bucket.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py",
+        "--emit"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 1.483,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m5-underdetermined-a384_READM__58a155754113.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m5-underdetermined-a384_READM__58a155754113.stderr.txt",
+      "stdout_tail": "ntainment certificate\n          symbolic pseudo-remainder over F_97[z][X]: nonzero coefficient degree 19 <= cap 20\n          certificate zero set has 3 slopes; root-table slopes [0, 1] are contained: True\n          top-chart nonroots checked against certificate/table: 93\n          certificate logic: any full-rank top-chart root must vanish on every pseudo-remainder coefficient, hence on this one nonzero coefficient\n\n[PASS   ] toy saturated-gcd root certificate\n          symbolic pseudo-remainder gcd certificate over F_97[Z]: 4 nonzero coefficients, raw degree 7, top-boundary degree 4, saturated degree 2\n          raw gcd roots = [0, 1, 75]; top-boundary roots = [46, 75]; top-saturated gcd roots = [0, 1]\n          enumerated full-rank top-chart root table = [0, 1] (rank_drop=1, low_degree=1, top_nonroots=93)\n          certificate logic: the raw gcd contains every top-chart bad slope; saturating away c_j removes low-degree boundary factors and gives the canonical top-chart eliminant in this toy family\n\n[PASS   ] F17 root table packet or certified residual\n          artifact path: experimental\\data\\certificates\\hankel-f17-32-m5-underdetermined-a384\\f17_32_n512_k256_a384_m5_residual_packet.json\n          packet status: pivot_atlas with rank-drop/low-degree empty and top-chart residual_label=unknown\n          top pseudo-remainder degree cap recorded: 49280\n          artifact matches deterministic builder: True\n\n[FAIL   ] packet emission + v1 schema validation\n          schema checker failed: root_union_table_ref: referenced file does not exist: not_emitted:top_chart_residual_unknown\n\n--------------------------------------------------------------------------\nimplemented PASS: 10   FAIL: 1   PENDING: 0\n--------------------------------------------------------------------------\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-m5-underdetermined-a384_README.md__5__scripts_check_aperiodic_eliminant_packet.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/README.md:5",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_m5_residual_packet.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 1.367,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m5-underdetermined-a384_READM__a44182336cbc.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-m5-underdetermined-a384_READM__a44182336cbc.stderr.txt",
+      "stdout_tail": "FAIL experimental\\data\\certificates\\hankel-f17-32-m5-underdetermined-a384\\f17_32_n512_k256_a384_m5_residual_packet.json: root_union_table_ref: referenced file does not exist: not_emitted:top_chart_residual_unknown\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-f17-32-row-descriptor_README.md__12__experimental_scripts_emit_f17_32_hankel_row_descriptor.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-f17-32-row-descriptor/README.md:12",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/emit_f17_32_hankel_row_descriptor.py",
+        "--check",
+        "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.218,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-row-descriptor_README.md__12__bc77aa0a9864.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-f17-32-row-descriptor_README.md__12__bc77aa0a9864.stderr.txt",
+      "stdout_tail": "F_17^32 Hankel row descriptor\nrow: n=512, k=256, field=F_17^32, domain_hash=35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92\nfield model: p=17, degree=32, modulus_degree=32\ndomain: order=512, generator_encoding=1415472521070614055149723472223960876430, witness=19\nM3 window: A=385..426, degree_sum=4515, budget=6\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-regular-window-f17-385-426_README.md__13__experimental_scripts_plan_f17_regular_hankel_window.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-regular-window-f17-385-426/README.md:13",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/plan_f17_regular_hankel_window.py",
+        "--check",
+        "experimental/data/certificates/hankel-regular-window-f17-385-426/f17_32_n512_k256_regular_window_plan.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.08,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-regular-window-f17-385-426_README.md__820035ea6631.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-regular-window-f17-385-426_README.md__820035ea6631.stderr.txt",
+      "stdout_tail": "F_17^32 regular Hankel-window plan\nrow: F_17^32, n=512, k=256, syndrome_length=256\nwindow: A=385..426 (42 agreements), regular_start=385, tangent_start=427\nminor sizes: 87..128; total interpolation evaluations=4557\nbudget numerator=6; degree-bound sum=4515; degree-only closes=False\nnext: supply F_17^32 row data and compute root/singularity outcomes\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_hankel-smoke-f17-506-507_README.md__19__experimental_scripts_verify_hankel_smoke_f17_506_507.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/hankel-smoke-f17-506-507/README.md:19",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_hankel_smoke_f17_506_507.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.379,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-smoke-f17-506-507_README.md__19__exp__c1e565125c55.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_hankel-smoke-f17-506-507_README.md__19__exp__c1e565125c55.stderr.txt",
+      "stdout_tail": "M2 Hankel smoke packet checks passed\n  row: RS[F_17^32,H,256], n=512, k=256\n  budget: floor(17^32 / 2^128) = 6\n  A=506: LD_sw=7 unsafe\n  A=507: LD_sw=6 safe\n  declared aperiodic numerator after tangent removal: 0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_height-only-impossibility_README.md__4__experimental_scripts_verify_height_only_impossibility.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/height-only-impossibility/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_height_only_impossibility.py"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 0.542,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_height-only-impossibility_README.md__4__exp__16b5a4bcce4b.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_height-only-impossibility_README.md__4__exp__16b5a4bcce4b.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_height_only_impossibility.py\", line 199, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_height_only_impossibility.py\", line 192, in main\n    require(expected == result, \"certificate does not match verifier output; rerun with --emit\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\dev\\research\\RSMCA\\experimental\\scripts\\verify_height_only_impossibility.py\", line 30, in require\n    raise AssertionError(message)\nAssertionError: certificate does not match verifier output; rerun with --emit\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_height-only-impossibility_README.md__6__experimental_scripts_verify_height_only_impossibility.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/height-only-impossibility/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_height_only_impossibility.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.549,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_height-only-impossibility_README.md__6__exp__1ecbb28e6117.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_height-only-impossibility_README.md__6__exp__1ecbb28e6117.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\height-only-impossibility\\height_only_impossibility.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_high-agreement-threshold-package_README.md__7__experimental_scripts_certify_high_agreement_threshold_package.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/high-agreement-threshold-package/README.md:7",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/certify_high_agreement_threshold_package.py",
+        "--check",
+        "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 0.12,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_high-agreement-threshold-package_README.md__88eeecc2052d.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_high-agreement-threshold-package_README.md__88eeecc2052d.stderr.txt",
+      "stdout_tail": "experimental\\data\\certificates\\high-agreement-threshold-package\\f17_512_high_agreement_threshold_certificate.json: FAIL\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_high-agreement-threshold-package_README.md__9__experimental_scripts_certify_high_agreement_threshold_package.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/high-agreement-threshold-package/README.md:9",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/certify_high_agreement_threshold_package.py",
+        "--classify-row",
+        "512",
+        "256",
+        "17^32"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.205,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_high-agreement-threshold-package_README.md__db6399755e91.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_high-agreement-threshold-package_README.md__db6399755e91.stderr.txt",
+      "stdout_tail": "High-agreement single-line compiler classification\n  n=512\n  k=256\n  Q=2367911594760467245844106297320951247361\n  target=2^-128\n  B_Q=floor(Q/2^128)=6\n  exact line radius floor((n-k)/3)=85\n  status=PINNED_THRESHOLD_IN_EXACT_RANGE\n  safe r<=5\n  unsafe r=6\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_high-agreement-threshold-package_README.md__12__experimental_scripts_certify_high_agreement_threshold_package.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/high-agreement-threshold-package/README.md:12",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/certify_high_agreement_threshold_package.py",
+        "--classify-prize-power2",
+        "2",
+        "2^40",
+        "166"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.117,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_high-agreement-threshold-package_README.md__6b25d6ce3b83.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_high-agreement-threshold-package_README.md__6b25d6ce3b83.stderr.txt",
+      "stdout_tail": "High-agreement prize-rate power-of-two boundary\n  rho=1/2\n  k=1099511627776\n  n=2199023255552\n  Q=2^166\n  target=2^-128\n  B_Q=274877906944\n  exact line radius floor((n-k)/3)=366503875925\n  inverse condition: k >= ceil(3*2^(lambda-target_bits)/(d-1))\n  min k to pin this field size=824633720832\n  inverse status=PINNED_BY_HIGH_AGREEMENT_COMPILER\n  classifier status=PINNED_THRESHOLD_IN_EXACT_RANGE\n  safe r<=274877906943\n  unsafe r=274877906944\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_integrality-margin-tables_README.md__4__experimental_scripts_verify_integrality_margin_tables.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/integrality-margin-tables/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_integrality_margin_tables.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.237,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_integrality-margin-tables_README.md__4__exp__6302a4cf890f.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_integrality-margin-tables_README.md__4__exp__6302a4cf890f.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\integrality-margin-tables\\integrality_margin_tables.json\nIntegrality margin tables\nschema: integrality-margin-tables-v1\nrows: 36\nminimum margin bits: 96818231.196289\nworst row: MCA dyadic_A2_crossing rate 1/2 budget_bits 128 N=256\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_integrality-margin-tables_README.md__5__experimental_scripts_verify_integrality_margin_tables.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/integrality-margin-tables/README.md:5",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_integrality_margin_tables.py",
+        "--check",
+        "experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.086,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_integrality-margin-tables_README.md__5__exp__abe391f82af7.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_integrality-margin-tables_README.md__5__exp__abe391f82af7.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\integrality-margin-tables\\integrality_margin_tables.json\nIntegrality margin tables\nschema: integrality-margin-tables-v1\nrows: 36\nminimum margin bits: 96818231.196289\nworst row: MCA dyadic_A2_crossing rate 1/2 budget_bits 128 N=256\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_l1-monomial-dyadic-descent_README.md__23__experimental_scripts_verify_l1_monomial_dyadic_descent_packet.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/l1-monomial-dyadic-descent/README.md:23",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_monomial_dyadic_descent_packet.py",
+        "--check",
+        "experimental/data/certificates/l1-monomial-dyadic-descent/f17_32_n512_deg256_monomial_dyadic_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 23.381,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-monomial-dyadic-descent_README.md__23__e__b0f3dc6304dd.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-monomial-dyadic-descent_README.md__23__e__b0f3dc6304dd.stderr.txt",
+      "stdout_tail": "L1 monomial dyadic descent packet checks passed\n  field: F_17[z]/(z^32 - 3), |<z>|=512\n  degree bound: deg P <= 256\n  candidates after divisibility gate: 21\n  admissible sizes: [258, 259, 260, 262, 264, 268, 272, 280, 288, 304, 320, 352, 384, 512]\n  constructive quotient-complement witnesses: checked\n  quotient support elementary vanishings: checked\n  lifted order-512 elementary vanishings: checked\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_l1-monomial-dyadic-descent_README.md__24__experimental_scripts_verify_l1_monomial_dyadic_descent_local16.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/l1-monomial-dyadic-descent/README.md:24",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_monomial_dyadic_descent_local16.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.047,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-monomial-dyadic-descent_README.md__24__e__852dc702faf2.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-monomial-dyadic-descent_README.md__24__e__852dc702faf2.stderr.txt",
+      "stdout_tail": "local16 imbalance check passed\nsolutions for Delta(3)=Delta(3^3)=0: 17\nweights: [0, 6]\nDelta0 values at 3, 3^3, 3^5: (0, 0, 15)\nsolutions also vanishing at 3^5: 1\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_l1-petal-fixed-excess_README.md__4__experimental_scripts_verify_l1_petal_fixed_excess_compiler.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/l1-petal-fixed-excess/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_petal_fixed_excess_compiler.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.271,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-petal-fixed-excess_README.md__4__experim__47dad9eb4faa.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-petal-fixed-excess_README.md__4__experim__47dad9eb4faa.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\l1-petal-fixed-excess\\l1_petal_fixed_excess_compiler.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_l1-petal-fixed-excess_README.md__6__experimental_scripts_verify_l1_petal_fixed_excess_compiler.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/l1-petal-fixed-excess/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_petal_fixed_excess_compiler.py",
+        "--check",
+        "experimental/data/certificates/l1-petal-fixed-excess/l1_petal_fixed_excess_compiler.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.081,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-petal-fixed-excess_README.md__6__experim__39f584f74d29.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-petal-fixed-excess_README.md__6__experim__39f584f74d29.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\l1-petal-fixed-excess\\l1_petal_fixed_excess_compiler.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_l1-pma-auxiliary-johnson_README.md__4__experimental_scripts_verify_l1_pma_auxiliary_johnson.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/l1-pma-auxiliary-johnson/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_pma_auxiliary_johnson.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.109,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-pma-auxiliary-johnson_README.md__4__expe__55002544772e.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-pma-auxiliary-johnson_README.md__4__expe__55002544772e.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\l1-pma-auxiliary-johnson\\l1_pma_auxiliary_johnson.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_l1-pma-auxiliary-johnson_README.md__6__experimental_scripts_verify_l1_pma_auxiliary_johnson.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/l1-pma-auxiliary-johnson/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_pma_auxiliary_johnson.py",
+        "--check",
+        "experimental/data/certificates/l1-pma-auxiliary-johnson/l1_pma_auxiliary_johnson.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.099,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-pma-auxiliary-johnson_README.md__6__expe__cdf1d7291f81.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_l1-pma-auxiliary-johnson_README.md__6__expe__cdf1d7291f81.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\l1-pma-auxiliary-johnson\\l1_pma_auxiliary_johnson.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_list-planted-arithmetic_README.md__4__experimental_scripts_verify_list_planted_arithmetic_compiler.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/list-planted-arithmetic/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_list_planted_arithmetic_compiler.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.45,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_list-planted-arithmetic_README.md__4__exper__696cf81d0c97.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_list-planted-arithmetic_README.md__4__exper__696cf81d0c97.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\list-planted-arithmetic\\list_planted_arithmetic_compiler.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_list-planted-arithmetic_README.md__6__experimental_scripts_verify_list_planted_arithmetic_compiler.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/list-planted-arithmetic/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_list_planted_arithmetic_compiler.py",
+        "--check",
+        "experimental/data/certificates/list-planted-arithmetic/list_planted_arithmetic_compiler.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.688,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_list-planted-arithmetic_README.md__6__exper__cd69c04b99e1.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_list-planted-arithmetic_README.md__6__exper__cd69c04b99e1.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\list-planted-arithmetic\\list_planted_arithmetic_compiler.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__18__experimental_scripts_search_m1_beta_pushforward_conductor_scan.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-beta-pushforward-conductor/README.md:18",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/search_m1_beta_pushforward_conductor_scan.py",
+        "--selftest"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.417,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__18__73cc4b721a3f.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__18__73cc4b721a3f.stderr.txt",
+      "stdout_tail": "[selftest] (43,6) points=1568 two_sided/p=3.0697674419 beta2/p=3.2558139535 -> OK\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__19__experimental_scripts_search_m1_beta_pushforward_conductor_scan.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-beta-pushforward-conductor/README.md:19",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/search_m1_beta_pushforward_conductor_scan.py",
+        "--check",
+        "experimental/data/certificates/m1-beta-pushforward-conductor/m1_beta_pushforward_conductor_certificate.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 35.867,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__19__c2d9e0c70a8e.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__19__c2d9e0c70a8e.stderr.txt",
+      "stdout_tail": "certificate matches: experimental\\data\\certificates\\m1-beta-pushforward-conductor\\m1_beta_pushforward_conductor_certificate.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__20__experimental_scripts_search_m1_beta_pushforward_conductor_scan.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-beta-pushforward-conductor/README.md:20",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/search_m1_beta_pushforward_conductor_scan.py",
+        "--scan",
+        "--e",
+        "12",
+        "--p-max",
+        "600"
+      ],
+      "classification": "TIMEOUT",
+      "exit_code": null,
+      "runtime_s": 300.01,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__20__d67d4a790aac.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-beta-pushforward-conductor_README.md__20__d67d4a790aac.stderr.txt",
+      "stdout_tail": "e=12 p=   13 beta2/p=2.000000 two_sided/p=1.692308 (peak beta2=2.000000, two_sided=1.692308)\ne=12 p=   37 beta2/p=4.613860 two_sided/p=2.767740 (peak beta2=4.613860, two_sided=2.767740)\ne=12 p=   61 beta2/p=5.016393 two_sided/p=3.770492 (peak beta2=5.016393, two_sided=3.770492)\ne=12 p=   73 beta2/p=5.506849 two_sided/p=3.397260 (peak beta2=5.506849, two_sided=3.770492)\ne=12 p=   97 beta2/p=3.611842 two_sided/p=2.414737 (peak beta2=5.506849, two_sided=3.770492)\ne=12 p=  109 beta2/p=5.671783 two_sided/p=3.981651 (peak beta2=5.671783, two_sided=3.981651)\ne=12 p=  157 beta2/p=5.617834 two_sided/p=3.216561 (peak beta2=5.671783, two_sided=3.981651)\ne=12 p=  181 beta2/p=6.783893 two_sided/p=3.000000 (peak beta2=6.783893, two_sided=3.981651)\ne=12 p=  193 beta2/p=6.427188 two_sided/p=6.427188 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  229 beta2/p=3.903930 two_sided/p=3.799127 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  241 beta2/p=4.960086 two_sided/p=4.960086 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  277 beta2/p=4.093863 two_sided/p=2.754513 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  313 beta2/p=4.658147 two_sided/p=3.562878 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  337 beta2/p=3.459941 two_sided/p=3.124629 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  349 beta2/p=7.503794 two_sided/p=7.503794 (peak beta2=7.503794, two_sided=7.503794)\n",
+      "stderr_tail": "",
+      "note": "process exceeded timeout"
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-deficiency-one-u1-u5-chain_README.md__4__experimental_scripts_verify_m1_deficiency_one_u1_u5_chain.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-deficiency-one-u1-u5-chain/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_deficiency_one_u1_u5_chain.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.715,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-deficiency-one-u1-u5-chain_README.md__4__aceab814eb8a.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-deficiency-one-u1-u5-chain_README.md__4__aceab814eb8a.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\m1-deficiency-one-u1-u5-chain\\m1_deficiency_one_u1_u5_chain.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-deficiency-one-u1-u5-chain_README.md__6__experimental_scripts_verify_m1_deficiency_one_u1_u5_chain.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-deficiency-one-u1-u5-chain/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_deficiency_one_u1_u5_chain.py",
+        "--check",
+        "experimental/data/certificates/m1-deficiency-one-u1-u5-chain/m1_deficiency_one_u1_u5_chain.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.783,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-deficiency-one-u1-u5-chain_README.md__6__183e9cdefb57.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-deficiency-one-u1-u5-chain_README.md__6__183e9cdefb57.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\m1-deficiency-one-u1-u5-chain\\m1_deficiency_one_u1_u5_chain.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-displacement-uniform_README.md__2__experimental_scripts_verify_m1_displacement_uniform.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-displacement-uniform/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_displacement_uniform.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.225,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-displacement-uniform_README.md__2__exper__93afa954f71e.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-displacement-uniform_README.md__2__exper__93afa954f71e.stderr.txt",
+      "stdout_tail": "==============================================================================\nM1 displacement-uniform identities\n==============================================================================\n[PASS] F13_mu4 over F_13 with mu_4\n       alpha=5  m=3  r=1\n       checks=5/5\n       shifts=3\n[PASS] F17_mu16 over F_17 with mu_16\n       alpha=3  m=7  r=4\n       checks=5/5\n       shifts=3\n[PASS] F49_mu16 over F_7^2[u^2=3] with mu_16\n       alpha=[2, 2]  m=6  r=3\n       checks=5/5\n       shifts=3\n[PASS] artifact replay\n       artifact path: experimental\\data\\certificates\\m1-displacement-uniform\\m1_displacement_uniform_certificate.json\n       classification: SUBGROUP_HANKEL_DISPLACEMENT_IDENTITIES_VERIFIED\n       cases: F13_mu4, F17_mu16, F49_mu16\n------------------------------------------------------------------------------\nclassification: SUBGROUP_HANKEL_DISPLACEMENT_IDENTITIES_VERIFIED\n------------------------------------------------------------------------------\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-gap2-seam_README.md__2__experimental_scripts_verify_m1_gap2_seam_lemma.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-gap2-seam/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_gap2_seam_lemma.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.635,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-gap2-seam_README.md__2__experimental_scr__4d66132510ea.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-gap2-seam_README.md__2__experimental_scr__4d66132510ea.stderr.txt",
+      "stdout_tail": "==============================================================================\nM1 GAP-2 quotient-periodic seam arithmetic\n==============================================================================\n\n[PASS] pullback degree divisibility\n       checked pullback degrees E(X)=g(X^M): 8272\n       counterexamples to M | deg(E): 0\n\n[PASS] rate-preserving bucket equivalence\n       checked exact buckets with M | gcd(n,k): 207594\n       counterexamples to M|j iff M|t_win: 0\n       sample quotient descents recorded: 6\n\n[PASS] non-rate-preserving seam classification\n       support-periodic but non-rate-preserving buckets checked: 234\n       classified as seam: 234\n       counterexamples: 0\n\n[PASS] artifact replay\n       artifact path: experimental\\data\\certificates\\m1-gap2-seam\\gap2_seam_certificate.json\n       artifact matches deterministic builder: True\n       classification: GAP2_SEAM_ARITHMETIC_CLOSED_FOR_RATE_PRESERVING_PULLBACKS\n\n------------------------------------------------------------------------------\nclassification: GAP2_SEAM_ARITHMETIC_CLOSED_FOR_RATE_PRESERVING_PULLBACKS\nPASS: 4   FAIL: 0\n------------------------------------------------------------------------------\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-johnson-anticode-toolkit_README.md__4__experimental_scripts_verify_m1_johnson_anticode_toolkit.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-johnson-anticode-toolkit/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_johnson_anticode_toolkit.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.1,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-johnson-anticode-toolkit_README.md__4__e__f1219add1cbe.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-johnson-anticode-toolkit_README.md__4__e__f1219add1cbe.stderr.txt",
+      "stdout_tail": "PROVED_JOHNSON_ANTICODE_TOOLKIT\n  core-disjoint anticode packing: PASS\n  density-loss identity: PASS\n  Johnson one-step mixing scope: PASS\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-johnson-anticode-toolkit_README.md__6__experimental_scripts_verify_m1_johnson_anticode_toolkit.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-johnson-anticode-toolkit/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_johnson_anticode_toolkit.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.114,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-johnson-anticode-toolkit_README.md__6__e__a34548076b7d.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-johnson-anticode-toolkit_README.md__6__e__a34548076b7d.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\m1-johnson-anticode-toolkit\\m1_johnson_anticode_toolkit_certificate.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-johnson-exchange-mixing_README.md__2__experimental_scripts_verify_m1_johnson_exchange_mixing.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-johnson-exchange-mixing/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_johnson_exchange_mixing.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 50.568,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-johnson-exchange-mixing_README.md__2__ex__806902485e28.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-johnson-exchange-mixing_README.md__2__ex__806902485e28.stderr.txt",
+      "stdout_tail": "==============================================================================\nM1 Johnson exchange-mixing lemma\n==============================================================================\nclassification: JOHNSON_EXCHANGE_MIXING_BOUND_VERIFIED\nexhaustive J(6,2) families: 32768\nendpoint inequalities: 163840\npoint_dictator_fixed_root: density=0.333333, E1=0.25, bound=0.25, equality=True\nfixed_two_root_core: density=0.0909091, E1=0.0454545, bound=0.0599174, equality=False\nbalanced_four_blocks: density=0.100699, E1=0.0251748, bound=0.0780596, equality=False\nfrozen_full_blocks: density=7.77001e-05, E1=0, bound=5.82766e-05, equality=False\n[PASS] artifact replay\n       artifact path: experimental\\data\\certificates\\m1-johnson-exchange-mixing\\m1_johnson_exchange_mixing_certificate.json\n       classification: JOHNSON_EXCHANGE_MIXING_BOUND_VERIFIED\n       exhaustive families checked: 32768\n       endpoint inequalities checked: 163840\n       sampled families checked: 48\n------------------------------------------------------------------------------\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-spi-dim1-eliminant-bound_README.md__4__experimental_scripts_verify_m1_spi_dim1_eliminant_bound.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-spi-dim1-eliminant-bound/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_spi_dim1_eliminant_bound.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.165,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-spi-dim1-eliminant-bound_README.md__4__e__c67bbeb115d0.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-spi-dim1-eliminant-bound_README.md__4__e__c67bbeb115d0.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\m1-spi-dim1-eliminant-bound\\m1_spi_dim1_eliminant_bound.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-spi-dim1-eliminant-bound_README.md__6__experimental_scripts_verify_m1_spi_dim1_eliminant_bound.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-spi-dim1-eliminant-bound/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_spi_dim1_eliminant_bound.py",
+        "--check",
+        "experimental/data/certificates/m1-spi-dim1-eliminant-bound/m1_spi_dim1_eliminant_bound.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.128,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-spi-dim1-eliminant-bound_README.md__6__e__72d7cf25d1e2.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-spi-dim1-eliminant-bound_README.md__6__e__72d7cf25d1e2.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\m1-spi-dim1-eliminant-bound\\m1_spi_dim1_eliminant_bound.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-spi-post-strip-genericity_README.md__4__experimental_scripts_verify_m1_spi_post_strip_genericity.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-spi-post-strip-genericity/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_spi_post_strip_genericity.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 18.518,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-spi-post-strip-genericity_README.md__4__79f79af16aff.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-spi-post-strip-genericity_README.md__4__79f79af16aff.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\m1-spi-post-strip-genericity\\m1_spi_post_strip_genericity.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-spi-post-strip-genericity_README.md__6__experimental_scripts_verify_m1_spi_post_strip_genericity.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-spi-post-strip-genericity/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_spi_post_strip_genericity.py",
+        "--check",
+        "experimental/data/certificates/m1-spi-post-strip-genericity/m1_spi_post_strip_genericity.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 17.263,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-spi-post-strip-genericity_README.md__6__83f093fbf4e6.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-spi-post-strip-genericity_README.md__6__83f093fbf4e6.stderr.txt",
+      "stdout_tail": "checked experimental\\data\\certificates\\m1-spi-post-strip-genericity\\m1_spi_post_strip_genericity.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-two-coordinate-wall-stdlib_README.md__12__experimental_scripts_search_m1_two_coordinate_wall_stdlib.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-two-coordinate-wall-stdlib/README.md:12",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/search_m1_two_coordinate_wall_stdlib.py",
+        "--selftest"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.416,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-two-coordinate-wall-stdlib_README.md__12__37515b3f221a.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-two-coordinate-wall-stdlib_README.md__12__37515b3f221a.stderr.txt",
+      "stdout_tail": "[selftest] nonres (197,14) best_ratio=3.2173609608 (expect 3.2173609608) -> OK\n[selftest] direct S(601,20,(4,7,0,1))/p=3.3516589468 (expect 3.3516589468) -> OK\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m1-two-coordinate-wall-stdlib_README.md__13__experimental_scripts_search_m1_two_coordinate_wall_stdlib.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m1-two-coordinate-wall-stdlib/README.md:13",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/search_m1_two_coordinate_wall_stdlib.py",
+        "--check",
+        "experimental/data/certificates/m1-two-coordinate-wall-stdlib/m1_two_coordinate_wall_certificate.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 22.072,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-two-coordinate-wall-stdlib_README.md__13__87a2acea6171.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m1-two-coordinate-wall-stdlib_README.md__13__87a2acea6171.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "certificate mismatch: experimental\\data\\certificates\\m1-two-coordinate-wall-stdlib\\m1_two_coordinate_wall_certificate.json\n",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m5-stratification-partition_README.md__2__experimental_scripts_verify_m5_stratification_partition.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m5-stratification-partition/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m5_stratification_partition.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.199,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m5-stratification-partition_README.md__2__e__28f0caa5f4c2.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m5-stratification-partition_README.md__2__e__28f0caa5f4c2.stderr.txt",
+      "stdout_tail": "==============================================================================\nM5 stratification partition theorem\n==============================================================================\nclassification: PROVED_COMBINATORIAL_WITH_FINITE_REPLAY\nexhaustive masks checked: 128\nrandom root-set partitions: 500\nmixed example naive/first-match: 19 / 8\n[PASS] first-match leaves are total and disjoint\nwrote experimental\\data\\certificates\\m5-stratification-partition\\m5_stratification_partition_certificate.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m5-stratification-partition_README.md__7__scripts_check_aperiodic_eliminant_packet.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m5-stratification-partition/README.md:7",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "experimental/data/certificates/m5-stratification-partition/valid_stratified_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.645,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m5-stratification-partition_README.md__7__s__62217b3fa25e.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m5-stratification-partition_README.md__7__s__62217b3fa25e.stderr.txt",
+      "stdout_tail": "OK experimental\\data\\certificates\\m5-stratification-partition\\valid_stratified_packet.json: schema and arithmetic checks passed\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m5-stratification-partition_README.md__8__scripts_check_aperiodic_eliminant_packet.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m5-stratification-partition/README.md:8",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "--expect-fail",
+        "experimental/data/certificates/m5-stratification-partition/invalid_wrong_leaf_stratified_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.448,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m5-stratification-partition_README.md__8__s__1cf3ee5c6799.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m5-stratification-partition_README.md__8__s__1cf3ee5c6799.stderr.txt",
+      "stdout_tail": "EXPECTED-FAIL experimental\\data\\certificates\\m5-stratification-partition\\invalid_wrong_leaf_stratified_packet.json: stratification candidate 3: leaf_id 'T3' should be 'T2'\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_m5-stratification-partition_README.md__9__scripts_check_aperiodic_eliminant_packet.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/m5-stratification-partition/README.md:9",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "--expect-fail",
+        "experimental/data/certificates/m5-stratification-partition/invalid_missing_removed_ledger_ref_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.653,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m5-stratification-partition_README.md__9__s__8da0365f5525.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_m5-stratification-partition_README.md__9__s__8da0365f5525.stderr.txt",
+      "stdout_tail": "EXPECTED-FAIL experimental\\data\\certificates\\m5-stratification-partition\\invalid_missing_removed_ledger_ref_packet.json: removed_ledgers[0].certificate_ref: referenced file does not exist: experimental/data/certificates/m5-stratification-partition/does-not-exist.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_p257-locator-matrix_README.md__11__experimental_scripts_p257_locator_matrix.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/p257-locator-matrix/README.md:11",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/p257_locator_matrix.py",
+        "--format",
+        "json",
+        "--output",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\generated\\experimental_data_certificates_p257-locator-matrix_README.md__11\\p257_locator_matrix_certificate.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.605,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_p257-locator-matrix_README.md__11__experime__153cef287e13.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_p257-locator-matrix_README.md__11__experime__153cef287e13.stderr.txt",
+      "stdout_tail": "subsets_ok\": true,\n      \"ell\": 6,\n      \"expected_subsets\": 8008,\n      \"feasible\": true,\n      \"fiber_size\": 16,\n      \"k\": 64,\n      \"power_map_a_to_one_ok\": true,\n      \"restricted_sumset_size\": 257,\n      \"rho\": \"1/4\",\n      \"slope_coverage_full\": true,\n      \"slope_dimension\": 2,\n      \"slope_multiplicity_histogram\": {\n        \"20\": 16,\n        \"26\": 16,\n        \"27\": 16,\n        \"29\": 32,\n        \"30\": 16,\n        \"31\": 48,\n        \"32\": 16,\n        \"33\": 32,\n        \"35\": 48,\n        \"40\": 16,\n        \"56\": 1\n      },\n      \"subsets_checked\": 8008,\n      \"subsets_match_expected\": true,\n      \"support_size\": 96,\n      \"t\": 2,\n      \"unique_slope_count\": 257,\n      \"zero_slope_seen\": true\n    }\n  ],\n  \"inputs\": {\n    \"domain\": \"F_257^*\",\n    \"grid_N\": [\n      2,\n      4,\n      8,\n      16\n    ],\n    \"grid_rho\": [\n      \"1/2\",\n      \"1/4\"\n    ],\n    \"grid_t\": [\n      1,\n      2\n    ],\n    \"n\": 256,\n    \"object_checked\": \"whole-fiber locator prod_{b in A}(X^a - b), exact mod-257\",\n    \"p\": 257,\n    \"scope\": \"locator / restricted-sum table only; not MCA bad-slope exhaustion\",\n    \"subgroup_tower\": \"Q_N = unique order-N subgroup of F_257^*, N in {2,4,8,16}\"\n  },\n  \"object\": \"p=257 quotient-periodic locator matrix\",\n  \"status\": \"PROVED\",\n  \"summary\": {\n    \"all_feasible_cells_ok\": true,\n    \"cross_check_p257\": {\n      \"all_ok\": true,\n      \"cell\": \"N=16, rho=1/2, t=1\",\n      \"expected_subsets_11440\": true,\n      \"reproduces_p257_locator_certificate\": true,\n      \"subsets_checked\": 11440,\n      \"support_size_144\": true,\n      \"unique_slopes_256\": true,\n      \"zero_slope_absent\": true\n    },\n    \"feasible_cells\": 13,\n    \"infeasible_cells\": 3,\n    \"total_cells\": 16\n  },\n  \"theorem_id\": \"agents.md L1/L3 toy-case (q=257); tex/RS_disproof_v3.tex V2 (ex:257), lem:locator\"\n}\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_p257-locator-matrix_README.md__12__experimental_scripts_p257_locator_matrix.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/p257-locator-matrix/README.md:12",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/p257_locator_matrix.py",
+        "--check",
+        "experimental/data/certificates/p257-locator-matrix/p257_locator_matrix_certificate.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.6,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_p257-locator-matrix_README.md__12__experime__c0699ea36acd.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_p257-locator-matrix_README.md__12__experime__c0699ea36acd.stderr.txt",
+      "stdout_tail": "certificate matches: experimental\\data\\certificates\\p257-locator-matrix\\p257_locator_matrix_certificate.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_paid-ledger-functions_README.md__4__experimental_scripts_verify_paid_ledger_functions.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/paid-ledger-functions/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_paid_ledger_functions.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.124,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_paid-ledger-functions_README.md__4__experim__f19899c7214d.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_paid-ledger-functions_README.md__4__experim__f19899c7214d.stderr.txt",
+      "stdout_tail": "==========================================================================\nVERIFY: paid ledger functions\n==========================================================================\n\n[PASS] Paid_tan high-agreement partial function\n       F_17^32 budget floor(17^32/2^128) = 6\n       A=506 cell: {'status': 'EXACT_HIGH_AGREEMENT', 'numerator': 7, 'radius': 6, 'radius_cap': 85}\n       A=507 cell: {'status': 'EXACT_HIGH_AGREEMENT', 'numerator': 6, 'radius': 5, 'radius_cap': 85}\n       A=426 cell: {'status': 'UNAVAILABLE_OUTSIDE_HIGH_AGREEMENT', 'radius': 86, 'radius_cap': 85}\n       swept 41648 small (n,k,A) range predicates\n\n[PASS] Paid_quot support function and zone tags\n       toy n=12, A=8, divisors=[2, 3]: exact support union = 182\n       safe support sum = 213\n       safe sum is monotone decreasing in the threshold A\n       rate 1/2, q=2^256: N'=80 -> ZONE_A_NORM_EXACT; N'=82 -> ZONE_B_COLLISION_OPEN_INTERVAL\n       cap-floor override: N'=82 -> ZONE_C_CAP_FLOOR\n\n[PASS] Paid_ext generating guard, pole floor, and chart upper\n       generating F_17^32 cell: {'status': 'ZERO_GENERATING', 'numerator': 0}\n       proper extension field gap example: 2367911594760467245844106297320951247344\n       KoalaBear-style L=ceil(C(256,130)/p) has extension-pole numerator 89236348170651014436365185283577293957513290539195\n       q/2^128 budget floor = 274980728111395087\n       toy chart upper over q_gen=5, charts=[(2, 0), (3, 1), (1, 2)]: 42, normalized=42/125\n\n--------------------------------------------------------------------------\nimplemented PASS: 3   FAIL: 0\nemitted: experimental\\data\\certificates\\paid-ledger-functions\\paid_ledger_functions.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_paid-ledger-functions_README.md__5__experimental_scripts_verify_paid_ledger_functions.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/paid-ledger-functions/README.md:5",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_paid_ledger_functions.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.123,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_paid-ledger-functions_README.md__5__experim__75e821c8281f.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_paid-ledger-functions_README.md__5__experim__75e821c8281f.stderr.txt",
+      "stdout_tail": "==========================================================================\nVERIFY: paid ledger functions\n==========================================================================\n\n[PASS] Paid_tan high-agreement partial function\n       F_17^32 budget floor(17^32/2^128) = 6\n       A=506 cell: {'status': 'EXACT_HIGH_AGREEMENT', 'numerator': 7, 'radius': 6, 'radius_cap': 85}\n       A=507 cell: {'status': 'EXACT_HIGH_AGREEMENT', 'numerator': 6, 'radius': 5, 'radius_cap': 85}\n       A=426 cell: {'status': 'UNAVAILABLE_OUTSIDE_HIGH_AGREEMENT', 'radius': 86, 'radius_cap': 85}\n       swept 41648 small (n,k,A) range predicates\n\n[PASS] Paid_quot support function and zone tags\n       toy n=12, A=8, divisors=[2, 3]: exact support union = 182\n       safe support sum = 213\n       safe sum is monotone decreasing in the threshold A\n       rate 1/2, q=2^256: N'=80 -> ZONE_A_NORM_EXACT; N'=82 -> ZONE_B_COLLISION_OPEN_INTERVAL\n       cap-floor override: N'=82 -> ZONE_C_CAP_FLOOR\n\n[PASS] Paid_ext generating guard, pole floor, and chart upper\n       generating F_17^32 cell: {'status': 'ZERO_GENERATING', 'numerator': 0}\n       proper extension field gap example: 2367911594760467245844106297320951247344\n       KoalaBear-style L=ceil(C(256,130)/p) has extension-pole numerator 89236348170651014436365185283577293957513290539195\n       q/2^128 budget floor = 274980728111395087\n       toy chart upper over q_gen=5, charts=[(2, 0), (3, 1), (1, 2)]: 42, normalized=42/125\n\n--------------------------------------------------------------------------\nimplemented PASS: 3   FAIL: 0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_q17-locator-mca_README.md__15__experimental_scripts_verify_q17_locator_mca.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/q17-locator-mca/README.md:15",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_q17_locator_mca.py",
+        "--check",
+        "experimental/data/certificates/q17-locator-mca/q17_locator_mca_certificate.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 13.295,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_q17-locator-mca_README.md__15__experimental__780609c0b790.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_q17-locator-mca_README.md__15__experimental__780609c0b790.stderr.txt",
+      "stdout_tail": "certificate matches: experimental\\data\\certificates\\q17-locator-mca\\q17_locator_mca_certificate.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_q17-locator-mca_README.md__17__experimental_scripts_verify_q17_locator_mca.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/q17-locator-mca/README.md:17",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_q17_locator_mca.py",
+        "--output",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\generated\\experimental_data_certificates_q17-locator-mca_README.md__17\\q17_locator_mca_certificate.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 16.62,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_q17-locator-mca_README.md__17__experimental__d5ffc32c292f.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_q17-locator-mca_README.md__17__experimental__d5ffc32c292f.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_quotient-census-window_README.md__4__experimental_scripts_verify_quotient_census_window_compiler.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/quotient-census-window/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_quotient_census_window_compiler.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.24,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_quotient-census-window_README.md__4__experi__7f64c2b4d411.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_quotient-census-window_README.md__4__experi__7f64c2b4d411.stderr.txt",
+      "stdout_tail": "1/8: 240->248; 1/16: 368->384\n       dyadic B_max crossings: 1/2: 128->256; 1/4: 128->256; 1/8: 128->256; 1/16: 256->512\n       relaxed first crossings are <=384; dyadic coarsening reaches 512 only at rate 1/16\n\n[PASS] exact budget-window arithmetic\n       A_2(16,9)=K=3280; certified lower L=3264; budget window has 16 integer budget values\n       q interval: [1110681645629943144744454718657291442192384, 1116126163500678160159868712376199733575679]\n       q == 1 mod 512 admissible integers in window: 10633823966279326983230456482242756608\n       L=K gives an empty unresolved window\n       field-range clipping at q<2^256 checked\n\n[PASS] exact dyadic quotient-profile evaluation\n       definition-level dyadic evaluator matches the finite divisor max on n=16,k=8 for all sigma\n       empty boundary checked at sigma >= k for all official rates on n=4096\n       sigma>=n/128 forces active quotient order N<=64 in replay; observed max 64\n       sigma>=n/256 forces active quotient order N<=128 in replay; observed max 128\n       rho=1/2, sigma=n/128: best M=16384, N=64, ell=32, count_bits=60\n       rho=1/2, sigma=n/256: best M=8192, N=128, ell=64, count_bits=124\n       rho=1/4, sigma=n/128: best M=16384, N=64, ell=16, count_bits=49\n       rho=1/4, sigma=n/256: best M=8192, N=128, ell=32, count_bits=100\n       rho=1/8, sigma=n/128: best M=16384, N=64, ell=8, count_bits=32\n       rho=1/8, sigma=n/256: best M=8192, N=128, ell=16, count_bits=67\n       rho=1/16, sigma=n/128: best M=16384, N=64, ell=4, count_bits=20\n       rho=1/16, sigma=n/256: best M=8192, N=128, ell=8, count_bits=41\n\n--------------------------------------------------------------------------\nimplemented PASS: 4   FAIL: 0\nemitted: experimental\\data\\certificates\\quotient-census-window\\quotient_census_window_compiler.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_quotient-census-window_README.md__5__experimental_scripts_verify_quotient_census_window_compiler.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/quotient-census-window/README.md:5",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_quotient_census_window_compiler.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.216,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_quotient-census-window_README.md__5__experi__3672c58ac13a.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_quotient-census-window_README.md__5__experi__3672c58ac13a.stderr.txt",
+      "stdout_tail": " 1/4: 128->132; 1/8: 176->184; 1/16: 272->288\n       budget bits 128: 1/2: 162->164; 1/4: 172->176; 1/8: 240->248; 1/16: 368->384\n       dyadic B_max crossings: 1/2: 128->256; 1/4: 128->256; 1/8: 128->256; 1/16: 256->512\n       relaxed first crossings are <=384; dyadic coarsening reaches 512 only at rate 1/16\n\n[PASS] exact budget-window arithmetic\n       A_2(16,9)=K=3280; certified lower L=3264; budget window has 16 integer budget values\n       q interval: [1110681645629943144744454718657291442192384, 1116126163500678160159868712376199733575679]\n       q == 1 mod 512 admissible integers in window: 10633823966279326983230456482242756608\n       L=K gives an empty unresolved window\n       field-range clipping at q<2^256 checked\n\n[PASS] exact dyadic quotient-profile evaluation\n       definition-level dyadic evaluator matches the finite divisor max on n=16,k=8 for all sigma\n       empty boundary checked at sigma >= k for all official rates on n=4096\n       sigma>=n/128 forces active quotient order N<=64 in replay; observed max 64\n       sigma>=n/256 forces active quotient order N<=128 in replay; observed max 128\n       rho=1/2, sigma=n/128: best M=16384, N=64, ell=32, count_bits=60\n       rho=1/2, sigma=n/256: best M=8192, N=128, ell=64, count_bits=124\n       rho=1/4, sigma=n/128: best M=16384, N=64, ell=16, count_bits=49\n       rho=1/4, sigma=n/256: best M=8192, N=128, ell=32, count_bits=100\n       rho=1/8, sigma=n/128: best M=16384, N=64, ell=8, count_bits=32\n       rho=1/8, sigma=n/256: best M=8192, N=128, ell=16, count_bits=67\n       rho=1/16, sigma=n/128: best M=16384, N=64, ell=4, count_bits=20\n       rho=1/16, sigma=n/256: best M=8192, N=128, ell=8, count_bits=41\n\n--------------------------------------------------------------------------\nimplemented PASS: 4   FAIL: 0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_row-c-e1-sampling_README.md__28__experimental_scripts_verify_row_c_e1_value_set_sampler.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/row-c-e1-sampling/README.md:28",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_row_c_e1_value_set_sampler.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 30.115,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_row-c-e1-sampling_README.md__28__experiment__bcaaa02b7628.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_row-c-e1-sampling_README.md__28__experiment__bcaaa02b7628.stderr.txt",
+      "stdout_tail": "==========================================================================\nE1 / Q3.1 Row-C e1 value-set sampling pilot\n==========================================================================\n[PASS] deterministic pilot\n        Row-C prime: p = 1 mod 1024, log2 p = 250.000\n        requested non-dyadic cells skipped: 96, 192\n        N'= 64, ell'= 33: samples=262144, duplicates=0, log2 A=49.72, E_full[dup]=3.71e-05, P_full[>=dup]=1, zero-collision lower log2=33.42\n        N'=128, ell'= 65: samples=262144, duplicates=0, log2 A=100.44, E_full[dup]=2e-20, P_full[>=dup]=1, zero-collision lower log2=33.42\n        N'=256, ell'=129: samples=262144, duplicates=0, log2 A=201.88, E_full[dup]=5.83e-51, P_full[>=dup]=1, zero-collision lower log2=33.42\n\nwrote experimental\\data\\certificates\\row-c-e1-sampling\\row_c_e1_sampling_pilot.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_row-c-e1-sampling_README.md__29__experimental_scripts_verify_row_c_e1_value_set_sampler.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/row-c-e1-sampling/README.md:29",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_row_c_e1_value_set_sampler.py",
+        "--orders",
+        "64",
+        "--samples",
+        "16777216",
+        "--mode",
+        "exact-set",
+        "--emit",
+        "--output",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\generated\\experimental_data_certificates_row-c-e1-sampling_README.md__29\\row_c_e1_sampling_n64_2pow24_exact.json"
+      ],
+      "classification": "TIMEOUT",
+      "exit_code": null,
+      "runtime_s": 300.479,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_row-c-e1-sampling_README.md__29__experiment__8c7bbd1df3dd.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_row-c-e1-sampling_README.md__29__experiment__8c7bbd1df3dd.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": "process exceeded timeout"
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_row-c-e1-sampling_README.md__30__experimental_scripts_verify_row_c_e1_collision_norm_criterion.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/row-c-e1-sampling/README.md:30",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_row_c_e1_collision_norm_criterion.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 19.122,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_row-c-e1-sampling_README.md__30__experiment__e1e9d9827a9a.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_row-c-e1-sampling_README.md__30__experiment__e1e9d9827a9a.stderr.txt",
+      "stdout_tail": "3, 193, 241, 257, 337, 353, 401, 433, 449, 577, 593, 641, 673, 769, 929, 977, 1009, 1153, 1201, 1217, 1249, 1297, 1361, 1409, 1489, 1553, 1601, 1889, 2081, 2113, 2593, 3121, 4801]\n        large_prime_divisors_seen: [17, 23, 97, 113, 193, 241, 257, 337, 353, 401, 433, 449, 577, 593, 641, 673, 769, 929, 977, 1009, 1153, 1201, 1217, 1249, 1297, 1361, 1409, 1489, 1553, 1601, 1889, 2081, 2113, 2593, 3121, 4801]\n        large_prime_divisor_count: 36\n        large_prime_product_divides_norm_product: True\n        large_prime_product_le_norm_product: True\n        log_prime_count_bound: 36842\n        height_prime_count_bound: 163227\n        log2_norm_product: 150590.93747930657\n        first_norm_hit: {'p': 257, 'pair_sha256': '342c49c6190addf8826617c738a33d303350f2276a4777d3c7a3ee2753262e1e', 'norm_abs': 514, 'fixed_embedding_collision': False, 'some_conjugate_collision': True, 'left_signed_indices': [-1], 'right_signed_indices': [1, -2, -3]}\n[PASS] row_c_graded_collision_radius\n        row_c_prime_sha256: 145c6097e1274715956d653d15550b4697d671742f084c1ea0a00487bed5471b\n        rule: coefficient l1-distance <= 2d and (2d)^phi(N) < p implies no distinct characteristic-zero class collision modulo p\n        N'=64 ell'=33 full_injective=True certified_half_l1_radius=112 full_height_bits=194 next_radius_bits=251\n        N'=128 ell'=65 full_injective=False certified_half_l1_radius=7 full_height_bits=450 next_radius_bits=257\n        N'=256 ell'=129 full_injective=False certified_half_l1_radius=1 full_height_bits=1026 next_radius_bits=257\n[PASS] cluster_certificate_lemmas\n        roadmap_task: QA.14 / cluster_certificates\n        one_check_toy: order=8 p=17 R=2\n        integer_freebie_rows: 3\n\nwrote experimental\\data\\certificates\\row-c-e1-sampling\\row_c_e1_collision_norm_criterion.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_row-c-e1-sampling_README.md__31__experimental_scripts_verify_e1_sharp_norm_height_constants.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/row-c-e1-sampling/README.md:31",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_e1_sharp_norm_height_constants.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.721,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_row-c-e1-sampling_README.md__31__experiment__da779c9abcae.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_row-c-e1-sampling_README.md__31__experiment__da779c9abcae.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\row-c-e1-sampling\\e1_sharp_norm_height_constants.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_sigma-c-sparse-census_README.md__13__experimental_scripts_verify_sigma_c_sparse_census.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/sigma-c-sparse-census/README.md:13",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_sigma_c_sparse_census.py",
+        "--check",
+        "experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_toy_rows.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.37,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_sigma-c-sparse-census_README.md__13__experi__ca0ba4a962c9.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_sigma-c-sparse-census_README.md__13__experi__ca0ba4a962c9.stderr.txt",
+      "stdout_tail": "sigma_C sparse census verifier\n  object: sparse support-wise MCA bad-slope count\n  theorem/problem: towards-prize prob:mutual / thm:sparsify\n  status: EXPERIMENTAL; finite rows PROVED-by-enumeration\n  conventions: finite slopes only; maximal S_z failure check; no Mobius quotient\n  row q=5 n=4 k=2 r=1: sigma_C=1 pairs=97 bad_pairs=80\n  row q=7 n=6 k=3 r=1: sigma_C=1 pairs=289 bad_pairs=252\n  row q=5 n=4 k=2 r=2: sigma_C=4 pairs=3553 bad_pairs=3440\nRESULT: PASS\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_sigma-c-sparse-census_README.md__15__experimental_scripts_verify_sigma_c_sparse_census.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/sigma-c-sparse-census/README.md:15",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_sigma_c_sparse_census.py",
+        "--row",
+        "7,6,3,2,7",
+        "--check",
+        "experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_extended_rows.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 77.053,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_sigma-c-sparse-census_README.md__15__experi__a8fcae550722.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_sigma-c-sparse-census_README.md__15__experi__a8fcae550722.stderr.txt",
+      "stdout_tail": "sigma_C sparse census verifier\n  object: sparse support-wise MCA bad-slope count\n  theorem/problem: towards-prize prob:mutual / thm:sparsify\n  status: EXPERIMENTAL; finite rows PROVED-by-enumeration\n  conventions: finite slopes only; maximal S_z failure check; no Mobius quotient\n  row q=7 n=6 k=3 r=2: sigma_C=7 pairs=34849 bad_pairs=34272\nRESULT: PASS\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_towards-prize-v2-constant-audit_README.md__4__experimental_scripts_verify_towards_prize_v2_constants.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/towards-prize-v2-constant-audit/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_towards_prize_v2_constants.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.116,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_towards-prize-v2-constant-audit_README.md__97ebbe7a103c.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_towards-prize-v2-constant-audit_README.md__97ebbe7a103c.stderr.txt",
+      "stdout_tail": "bits=16391\n\n[PASS] rho=1/4 ordinary locator\n       s=ceil(alpha*n)=99\n       alpha>g checked as 3*512>1*1000\n       rho+alpha+2^-15<1\n       ordinary cap: binom(32768,8291) > q^98(q/k+1), checked as binom*k > q^w(q+k)\n       lhs_bits=26746 rhs_bits=25345 slack_bits=26746\n\n[PASS] rho=1/4 quadratic envelope\n       g*n=64; m=ceil((k+1+g*n)/2)=4129; w=m-ceil((k+1)/2)=32\n       quadratic cap: binom(16384,4129) > q^32(q/k+1), checked as binom*k > q^w(q+k)\n       lhs_bits=13350 rhs_bits=8449 slack_bits=13350\n\n[PASS] rho=1/8 ordinary locator\n       s=ceil(alpha*n)=68\n       alpha>g checked as 41*512>1*20000\n       rho+alpha+2^-15<1\n       ordinary cap: binom(32768,4164) > q^67(q/k+1), checked as binom*k > q^w(q+k)\n       lhs_bits=18007 rhs_bits=17409 slack_bits=18007\n\n[PASS] rho=1/8 quadratic envelope\n       g*n=64; m=ceil((k+1+g*n)/2)=2081; w=m-ceil((k+1)/2)=32\n       quadratic cap: binom(16384,2081) > q^32(q/k+1), checked as binom*k > q^w(q+k)\n       lhs_bits=9004 rhs_bits=8449 slack_bits=9004\n\n[PASS] rho=1/16 ordinary locator\n       s=ceil(alpha*n)=40\n       alpha>g checked as 3*1024>1*2500\n       rho+alpha+2^-15<1\n       ordinary cap: binom(32768,2088) > q^39(q/k+1), checked as binom*k > q^w(q+k)\n       lhs_bits=11213 rhs_bits=10241 slack_bits=11213\n\n[PASS] rho=1/16 quadratic envelope\n       g*n=32; m=ceil((k+1+g*n)/2)=1041; w=m-ceil((k+1)/2)=16\n       quadratic cap: binom(16384,1041) > q^16(q/k+1), checked as binom*k > q^w(q+k)\n       lhs_bits=5598 rhs_bits=4353 slack_bits=5598\n\n[PASS] endpoint error floor\n       worst endpoint k=2^40, n=2^44, q=2^128\n       (1/(2k))*(1-n/q)>2^-128 checked by integer cross-multiplication\n       lhs_bits=256 rhs_bits=170 slack_bits=256\n\n--------------------------------------------------------------------------\nimplemented PASS: 9   FAIL: 0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_x1-e5-multiscale-resonance_README.md__2__experimental_scripts_verify_x1_e5_multiscale_resonance_evidence.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/x1-e5-multiscale-resonance/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_x1_e5_multiscale_resonance_evidence.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 2.28,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_x1-e5-multiscale-resonance_README.md__2__ex__15b93d6fb564.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_x1-e5-multiscale-resonance_README.md__2__ex__15b93d6fb564.stderr.txt",
+      "stdout_tail": "E5 multiscale resonance evidence\n==============================================================================\n\n[PASS] prime and dyadic-row compatibility\n       prime p=12289: True\n       row compatibility: n=1024 divides p-1: True, n=2048 divides p-1: True, n=4096 divides p-1: True\n       extension model: F_p[alpha]/(alpha^32-11)\n       gamma order in F_p^*: 12288\n       binomial irreducible over F_p: True\n\n[PASS] exact small multiscale character rank\n       exact full-character check: n=32, extension degree 8, scales 8/16/32\n       actual combined rank = 6, deduped character-union rank = 6, expected = 6\n       the calculation is linear algebra over the binomial basis 1, alpha, ..., alpha^7\n\n[PASS] phase-locked same-residue families\n       families checked: 192\n       max combined rank: 3\n       max ratio versus one scale: 1.0\n       max hidden excess over deduped union: 0\n\n[PASS] adversarial spread families\n       families checked: 192\n       max combined rank: 24\n       max ratio versus one scale: 8.0\n       max hidden excess over deduped union: 0\n\n[PASS] seeded random families\n       families checked: 3072\n       max combined rank: 23\n       max ratio versus one scale: 8.0\n       max hidden excess over deduped union: 0\n\n[PASS] artifact replay\n       artifact path: experimental\\data\\certificates\\x1-e5-multiscale-resonance\\e5_multiscale_resonance_evidence.json\n       artifact matches deterministic builder: True\n       classification: NO_MULTISCALE_HIDDEN_RANK_SIGNAL_IN_PRE_REGISTERED_LINEAR_PERIODIC_MODEL\n\n------------------------------------------------------------------------------\nclassification: NO_MULTISCALE_HIDDEN_RANK_SIGNAL_IN_PRE_REGISTERED_LINEAR_PERIODIC_MODEL\nPASS: 6   FAIL: 0\n------------------------------------------------------------------------------\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_x1-gap1-nonequivariant-periodic-evidence_README.md__2__experimental_scripts_verify_x1_gap1_nonequivariant_periodic_evidence.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/x1-gap1-nonequivariant-periodic-evidence/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_x1_gap1_nonequivariant_periodic_evidence.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 5.983,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_x1-gap1-nonequivariant-periodic-evidence_RE__f51466f9fa50.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_x1-gap1-nonequivariant-periodic-evidence_RE__f51466f9fa50.stderr.txt",
+      "stdout_tail": "E6 GAP-1 non-equivariant periodic evidence\nclassification: NO_GAP1_AMPLIFICATION_SIGNAL_IN_TESTED_PERIODIC_MODELS\nsummary: 6 cases, extra hits=0, coset hits=0, max rank=16, max compression=0\n\n- exact_F13_n12_period2_all_KM_supports: rows=41, max rank=2 (slopes 13^2), max product rank=2, extra hits=0, coset hits=0\n- exact_F13_n12_period4_all_KM_supports: rows=66, max rank=4 (slopes 13^4), max product rank=4, extra hits=0, coset hits=0\n- exact_F97_n32_period4_all_KM_supports: rows=1012, max rank=4 (slopes 97^4), max product rank=4, extra hits=0, coset hits=0\n- exact_F97_n32_period8_all_KM_supports: rows=850, max rank=8 (slopes 97^8), max product rank=8, extra hits=0, coset hits=0\n- constructive_F257_n64_period8_spaced_supports: rows=765, max rank=8 (slopes 257^8), max product rank=8, extra hits=0, coset hits=0\n- constructive_F257_n256_period16_spaced_supports: rows=50, max rank=16 (slopes 257^16), max product rank=16, extra hits=0, coset hits=0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_xr-e3-calculus_README.md__4__experimental_scripts_verify_xr_e3_calculus.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/xr-e3-calculus/README.md:4",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_xr_e3_calculus.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 21.803,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_xr-e3-calculus_README.md__4__experimental_s__c85f0aff0059.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_xr-e3-calculus_README.md__4__experimental_s__c85f0aff0059.stderr.txt",
+      "stdout_tail": "PROVED_XR_E3_CALCULUS\n  endpoint E2 consistency: PASS\n  fixed-core killed E3: PASS\n  block-profile killed E3: PASS\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_xr-e3-calculus_README.md__6__experimental_scripts_verify_xr_e3_calculus.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/xr-e3-calculus/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_xr_e3_calculus.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 21.758,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_xr-e3-calculus_README.md__6__experimental_s__852fcbcc3dda.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_xr-e3-calculus_README.md__6__experimental_s__852fcbcc3dda.stderr.txt",
+      "stdout_tail": "wrote experimental\\data\\certificates\\xr-e3-calculus\\xr_e3_calculus.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_xr-exchange-energy-scaffold_README.md__5__experimental_scripts_verify_xr_exchange_energy_scaffold.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/xr-exchange-energy-scaffold/README.md:5",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_xr_exchange_energy_scaffold.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 3.734,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_xr-exchange-energy-scaffold_README.md__5__e__372d82ad0097.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_xr-exchange-energy-scaffold_README.md__5__e__372d82ad0097.stderr.txt",
+      "stdout_tail": "XR exchange-energy scaffold checks: PASS\n  dense spectrum case: {'n': 5, 'j': 2, 'observed': {6: 1, 1: 4, -2: 5}, 'expected': {6: 1, 1: 4, -2: 5}}\n  fixed-core E3 / random average: 103.585\n  balanced_four_blocks: E1=0.0251748, E3=0.00157343\n  frozen_full_blocks: E1=0, E3=0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_certificates_xr-stripped-inverse-candidates_README.md__2__experimental_scripts_verify_xr_stripped_inverse_candidates.py",
+      "kind": "readme-command",
+      "source": "experimental/data/certificates/xr-stripped-inverse-candidates/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_xr_stripped_inverse_candidates.py",
+        "--emit"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.1,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_xr-stripped-inverse-candidates_README.md__2__cc9bb73189c8.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_certificates_xr-stripped-inverse-candidates_README.md__2__cc9bb73189c8.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_data_witnesses_f1-extension_README.md__32__experimental_scripts_verify_f1_extension_witness.py",
+      "kind": "readme-command",
+      "source": "experimental/data/witnesses/f1-extension/README.md:32",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f1_extension_witness.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 37.629,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_witnesses_f1-extension_README.md__32__experimental_scrip__bfa80c3d269c.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_data_witnesses_f1-extension_README.md__32__experimental_scrip__bfa80c3d269c.stderr.txt",
+      "stdout_tail": "OK canonical witness\nOK F\\B bad-slope recount: 51\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_notes_certificate_scanner_README.md__35__certificate_scanner.py",
+      "kind": "readme-command",
+      "source": "experimental/notes/certificate_scanner/README.md:35",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "certificate_scanner.py",
+        "examples/f17_512.json",
+        "--json-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\generated\\experimental_notes_certificate_scanner_README.md__35\\f17_512.report.json",
+        "--md-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\generated\\experimental_notes_certificate_scanner_README.md__35\\f17_512.report.md",
+        "--pretty"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.136,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_notes_certificate_scanner_README.md__35__certificate_scanner.py.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_notes_certificate_scanner_README.md__35__certificate_scanner.py.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_notes_certificate_scanner_README.md__36__certificate_scanner.py",
+      "kind": "readme-command",
+      "source": "experimental/notes/certificate_scanner/README.md:36",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "certificate_scanner.py",
+        "examples/prize_rate_half_k2_40.json",
+        "--json-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\generated\\experimental_notes_certificate_scanner_README.md__36\\prize_half.report.json",
+        "--md-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\generated\\experimental_notes_certificate_scanner_README.md__36\\prize_half.report.md",
+        "--pretty"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 8.754,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_notes_certificate_scanner_README.md__36__certificate_scanner.py.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_notes_certificate_scanner_README.md__36__certificate_scanner.py.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_scripts_README.md__2__experimental_scripts_verify_l1_prefix_divisor_count.py",
+      "kind": "readme-command",
+      "source": "experimental/scripts/README.md:2",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_prefix_divisor_count.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.743,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__2__experimental_scripts_verify_l1_prefix_d__8d4061054bd9.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__2__experimental_scripts_verify_l1_prefix_d__8d4061054bd9.stderr.txt",
+      "stdout_tail": "L1 prefix-fiber divisor-coefficient scan  (status EXPERIMENTAL/AUDIT)\n  F_17, n=16, k=6, sigma=4, s=10, m=6  (rho=6/16)\n  degree-m divisors of X^n-1 : 8008\n  distinct top-sigma prefixes: 7968\n  fiber-size histogram       : {1: 7928, 2: 40}\n  max fiber size             : 2\n  entropy margin (bits)      : 3.382625\n  quotient orders d>sigma    : [8, 16]\n  coset-union divisors / ord : {2: 56, 4: 0, 8: 0, 16: 0}\n  ... predicted binom(n/d,m/d): {2: 56, 4: 0, 8: 0, 16: 0}  (identity ok: True)\n  X^d->Y injection ok / ord  : {2: True, 4: True, 8: True, 16: True}\n  quotient-core floor        : 0  (respected: True)\n  active orders (d>sigma)    : []\n  structured count (direct)  : 0  (incl-excl: 0, match: True)\n  dyadic collapse d_min      : None  (ok: True)\n  aperiodic divisors         : 8008  (max aperiodic fiber: 2)\n  random baseline binom/q^s  : 0.0959\n  dilation-equivariant keys  : True\n  stab order == period       : True\n  fiber const on dil. orbits : True\n  per(A) | g_c (all fibers)  : True\n  g_c=1 fibers all aperiodic : True\n  prefix-stab orbit sizes ok : True\n  nonsingleton members       : 80\n  ... of which aperiodic     : 80\n  all nonsingleton aperiodic : True\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_scripts_README.md__3__experimental_scripts_verify_l1_prefix_dual_d3_subgroup_twisted_collision_bound.py",
+      "kind": "readme-command",
+      "source": "experimental/scripts/README.md:3",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_prefix_dual_d3_subgroup_twisted_collision_bound.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 100.766,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__3__experimental_scripts_verify_l1_prefix_d__3f46d5916d78.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__3__experimental_scripts_verify_l1_prefix_d__3f46d5916d78.stderr.txt",
+      "stdout_tail": "L1 d=3 proper-subgroup twisted collision verifier\n  indicator_expansion: ok=True\n  character_expansion: ok=True\n  source_constant_cases: ok=True\n  standard_input_bound_cases: ok=True\n  stratum_count_cases: ok=True\n  stratum_bound_cases: ok=True\n  collision_counts: ok=True summary={'row_count': 42, 'direct_pair_pass': 39, 'direct_pair_skipped_budget': 3, 'full_group_rows': 8, 'proper_subgroup_rows': 34}\n  count_domain_separation: ok=True\n  exponential_decay: ok=True\n  rejection_cases: ok=True\nALL_CHECKS_OK=True\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_scripts_README.md__5__experimental_scripts_verify_f1_arbitrary_anchor_split.py",
+      "kind": "readme-command",
+      "source": "experimental/scripts/README.md:5",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_f1_arbitrary_anchor_split.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 2.77,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__5__experimental_scripts_verify_f1_arbitrar__4640c9dd57b5.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__5__experimental_scripts_verify_f1_arbitrar__4640c9dd57b5.stderr.txt",
+      "stdout_tail": "f1_arbitrary_anchor_split: PASS\ncore floor optimization: max=6 floors={0: 3, 1: 3, 2: 4, 3: 6}\ncore optimization grid checks: 85320\nlocator split: supports=(1, 3, 4, 7, 9) and (1, 2, 11, 12, 16)\nsunflower floor: 6 slopes on core (1, 2, 3)\ndegenerate support floor: 6 slopes, union size 15, overlaps=(0, 3, 3, 3, 3, 3)\nhigh-overlap gate: 4 four-point gates, 264 support pairs, contained supports=0\ngated core floor: 12 slopes on core (1, 6, 11, 16) (free floor 6)\ncompatibility system: gated rank=33 degenerate rank=15 blocked consistent=False\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_scripts_README.md__6__experimental_scripts_verify_m1_tangent_floor_gate_ladder.py",
+      "kind": "readme-command",
+      "source": "experimental/scripts/README.md:6",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_tangent_floor_gate_ladder.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.257,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__6__experimental_scripts_verify_m1_tangent__2b4b1b02a477.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__6__experimental_scripts_verify_m1_tangent__2b4b1b02a477.stderr.txt",
+      "stdout_tail": "cle84 N)     SUBSUMED\n   264     249  True  False     31/64  proved(min>=9)/cand(2187)  SUBSUMED\n   272     241  True  False     15/32  target                     SUBSUMED\n   288     225  True  False      7/16  target                     SUBSUMED\n   313     200  True  False   199/512  target                     SUBSUMED\n   352     161  True  False      5/16  proved(quotient-core)      SUBSUMED\n   506       7  True   True     3/256  proved/exact-gate          SUBSUMED\n   507       6 False   True     5/512  proved/exact-gate          safe\n\n  [OK ] floor(17^32/2^128) = 6 (>=7 is the exact gate bar)\n  [OK ] 6*2^128 < 17^32 < 7*2^128 (gate tight at 7)\n  [OK ] exact-staircase starts at a = ceil((2n+k)/3) = 427\n  [OK ] tangent floor clears gate iff a <= 506 (n-a+1>=7)\n  [OK ] a=262 (cycle116/cycle120 gate): tangent floor 251 clears gate\n  [OK ] a=263 (cycle119 strict263): tangent floor 250 clears gate\n  [OK ] a=264 (strict264 gate): tangent floor 249 clears gate\n  [OK ] a=272 (reserve272): tangent floor 241 clears gate\n  [OK ] a=288 (reserve288): tangent floor 225 clears gate\n  [OK ] a=313 (reserve313): tangent floor 200 clears gate\n  [OK ] a=352 (strict352 deepest rung): tangent floor 161 clears gate\n  [OK ] a=506 (tangent506 last unsafe): tangent floor 7 clears gate\n  [OK ] a=507 (tangent507 first safe): tangent floor 6 does NOT clear (safe)\n  [OK ] tangent floor subsumes strict352 gate range [264,352] (min floor 161>=7)\n\nREADING: every recorded item at a<=506 (cycle120/cycle119 prize gates, strict264 gate,\nreserve272/288/313, and the whole strict352 range) has its >=7 GATE subsumed by the proved\ntangent floor -- UNCONDITIONALLY (no Cycle84 census, no slot model). Exact counts/densities\n(2187, N=5.27e10, ~2^-95) are NOT established by this and remain separate.\n\nRESULT: PASS\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_scripts_README.md__7__experimental_scripts_verify_m1_depth_two_line_conic_resonance_reduction.py",
+      "kind": "readme-command",
+      "source": "experimental/scripts/README.md:7",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_m1_depth_two_line_conic_resonance_reduction.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 128.395,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__7__experimental_scripts_verify_m1_depth_tw__f7b3dd65a88b.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__7__experimental_scripts_verify_m1_depth_tw__f7b3dd65a88b.stderr.txt",
+      "stdout_tail": "jective_decomposition_checked=[(17, 8, 10753, 12580, 1827, 196, (1280, 0, 0, 602, -55, 0, 0), 1280, 1280, (80, 1.0289915109), (-55, 657, (657, 1.2126781252)), (-55, 657, 10753, 0.0206926057), (0.5663407226, 0.2722285381), (740, 1.0485613806, 1.0588235294, 0.7413117999, 3.7647058824, (1, 0, 168, 27, 0))), (17, 16, 49889, 57732, 7843, 196, (3584, 0, 0, 3810, 449, 0, 0), 3584, 3584, (224, 1.4716601632), (449, 3361, (3361, 1.9773365415)), (449, 3361, 49889, 0.0346744583), (0.560850201, 0.2751463216), (3396, 1.0787544079, 1.0, 0.7715870592, 3.8054236055, (1, 0, 168, 27, 0))), (31, 6, 32977, 43276, 10299, 706, (6360, 0, 0, 2400, 1539, 0, 0), 6360, 6360, (212, 1.4368424162), (1539, 861, (861, 1.6164477182)), (1539, 861, 32977, 0.2888227987), (0.5852662259, 0.3879707877), (1396, 1.6754882736, 2.1612903226, 0.8959031779, 4.4838709677, (1, 0, 650, 55, 0))), (31, 10, 67889, 77376, 9487, 706, (7080, 0, 0, 2048, 359, 0, 0), 7080, 7080, (236, 1.5902436578), (359, 1689, (1689, 1.6164477182)), (359, 1689, 67889, 0.0335258593), (0.6660435121, 0.3697496575), (2496, 1.2228997796, 1.4516129032, 0.7315592584, 3.9213647064, (1, 0, 650, 55, 0))), (43, 6, 63817, 69316, 5499, 1918, (4872, 0, 0, 948, -321, 0, 0), 4872, 4872, (116, 1.0674899923), (-321, 1269, (1269, 2.2567727524)), (-321, 1269, 63817, 0.0356702398), (0.7142952105, 0.4879567256), (1612, 1.8642081211, 2.0697674419, 0.6703180771, 4.8139534884, (1, 0, 1838, 79, 0))), (43, 14, 212261, 254732, 42471, 1918, (25704, 0, 0, 11076, 5691, 0, 0), 25704, 25704, (612, 1.7635921051), (5691, 5385, (5385, 1.8624935434)), (5691, 5385, 212261, 0.1683296533), (0.6351491496, 0.3670531612), (5924, 1.2391269472, 1.2325581395, 0.6108849202, 4.7441860465, (1, 0, 1838, 79, 0)))] collapsed_four_p_obstruction_checked=(97, 13, 91, 4.1552812817, 4.1800884464)\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_scripts_README.md__9__experimental_scripts_f1_deep_point_list_to_ca_mca_sanity.py",
+      "kind": "readme-command",
+      "source": "experimental/scripts/README.md:9",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/f1_deep_point_list_to_ca_mca_sanity.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 25.998,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__9__experimental_scripts_f1_deep_point_list__aaa5348802c3.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__9__experimental_scripts_f1_deep_point_list__aaa5348802c3.stderr.txt",
+      "stdout_tail": "toy field: F_17[t]/(t^2-3)\nn=16, k=8, agreement=12, radius=1-12/16\nQ size=8, ell=6\nlargest quotient-locator slope fiber z0=0, size=4\nfull RS[F,D,k+1] list size at agreement 12: 4\ndeep image size at alpha=t: 4\nverified g_alpha is not degree-<k on any support of size > k\nslopes with f_alpha+z g_alpha close to C_k: 4\nverified exact toy equality at delta_a: close slopes = Deep_alpha(U,a)\nRESULT: PASS\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "readme__experimental_scripts_README.md__10__experimental_scripts_verify_l1_fourier_orbit_cancellation.py",
+      "kind": "readme-command",
+      "source": "experimental/scripts/README.md:10",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/scripts/verify_l1_fourier_orbit_cancellation.py"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.475,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__10__experimental_scripts_verify_l1_fourier__1e13fcdfe6d5.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\readmes\\logs\\readme__experimental_scripts_README.md__10__experimental_scripts_verify_l1_fourier__1e13fcdfe6d5.stderr.txt",
+      "stdout_tail": "L1 Fourier orbit-cancellation verifier  (status AUDIT/EXPERIMENTAL)\n  F_17, n=16, k=8, sigma=2, m=6\n  dual orbits: 19 nonzero / 20 total\n  orbit-size distribution       : {1: 1, 8: 2, 16: 17}\n  fibers: 289 keys, max 32, main 27.709343\n  [OK ] S_m_dual_orbit_invariance_ok\n  [OK ] orbit_fourier_reconstruction_ok\n  [OK ] kernel_l2_identity_ok\n  [OK ] orbit_second_moment_identity_ok\n  [OK ] zero_prefix_kernel_saturation_ok\n  [OK ] orthogonal_support_saturation_ok\n  -- numerical residuals --\n     max S_m orbit error        : 5.74e-14\n     max reconstruction error   : 2.39e-14\n     max kernel L2 error        : 9.09e-13\n     second moment error        : 1.82e-12\n     zero-prefix saturation err : 0.00e+00\n     orth-support saturation err: 0.00e+00\n  -- cancellation diagnostics --\n     actual max deviation        : 4.290657\n     generic-prefix max dev      : 3.290657\n     raw frequency L1 bound      : 19.354722\n     max orbit triangle bound    : 19.354722\n     generic-prefix orbit bound  : 5.338402\n     orbit triangle at worst c   : 19.354722\n     orbit triangle at worst gen : 4.526701\n     raw/orbit route-cut ratios  : 4.511 / 4.511\n     generic-prefix route ratio : 1.622\n     L2 rms / L4 root deviation  : 1.679909 / 2.110696\n  -- kernel degeneracy --\n     pairs checked               : 5491\n     constant phase pairs        : 67\n     zero phase pairs            : 67\n     max |K| / orbit size        : 16.000000 / 16\n     generic c1!=0 max |K|/orbit: 8.000000 / 8\nRESULT: PASS\n",
+      "stderr_tail": "",
+      "note": ""
+    }
+  ]
+}

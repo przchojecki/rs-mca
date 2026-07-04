@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Replay bundle regeneration and packaging split
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/scripts/replay_all_verifiers.py`;
+  `experimental/scripts/verify_native_sage_replays.py`;
+  `experimental/scripts/verify_l1_prefix_dual_large_domain_weil_energy_floor.py`;
+  `experimental/data/audits/`;
+  `experimental/notes/audits/independent_replay_2026-07-03.md`;
+  `experimental/notes/audits/independent_replay_2026-07-02.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Regenerates the replay bundle as five fresh
+  harness-native C-drive matrices at
+  `0f45bf377386fe8d7e448df218fab2692e0b216a`, moves the old composite matrices
+  under `experimental/data/audits/historical/`, fixes Windows-safe replay log
+  filenames, and adds a visible stderr warning when the Weil-energy verifier's
+  auto atlas backend downgrades to the stdlib interval path.  The two old
+  `D:\dev\RSMCA` stashes were compared by name-status against the C-drive
+  integration commit; deliverable files are represented in the C tree, the
+  diagnostic `LeanProbe.lean`/`LeanSmoke.lean` files were preserved under the
+  ignored `_migration/lab/old-d-stash-diagnostics/` folder, and both old stashes
+  were dropped.
+- **How it is useful:** Makes the replay deliverable reproducible and honest:
+  matrix JSONs are no longer hand-assembled composites, the old skip classifier
+  false positives are now PASS, and the three new upstream-arriving replay
+  failures are recorded as AUDIT triage without modifying upstream
+  certificates.
+- **What to do next:** Keep this branch local for Ken review.  Do not publish
+  the replay findings until the upstream certificate-drift and a384 residual
+  packet notes are approved for wording.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

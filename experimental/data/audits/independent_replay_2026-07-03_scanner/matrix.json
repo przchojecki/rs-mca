@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "repo": "C:\\dev\\research\\RSMCA",
+    "out": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner",
+    "python": "C:\\Program Files\\Python313\\python.exe",
+    "timeout": 120,
+    "task_count": 4,
+    "include_write": false,
+    "only": "scanner",
+    "sage_mode": "auto",
+    "wsl_distro": "Ubuntu",
+    "wsl_sage": "sage",
+    "cwd_policy": "repo root unless a README command script is local to its README directory",
+    "output_policy": "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory"
+  },
+  "results": [
+    {
+      "task_id": "certificate_scanner__f17_512",
+      "kind": "certificate-scanner",
+      "source": "experimental/notes/certificate_scanner/examples/f17_512.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/notes/certificate_scanner/certificate_scanner.py",
+        "experimental/notes/certificate_scanner/examples/f17_512.json",
+        "--json-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\certificate_scanner\\f17_512.report.json",
+        "--md-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\certificate_scanner\\f17_512.report.md",
+        "--pretty"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.112,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\logs\\certificate_scanner__f17_512.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\logs\\certificate_scanner__f17_512.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "certificate_scanner__f17_512_curve2",
+      "kind": "certificate-scanner",
+      "source": "experimental/notes/certificate_scanner/examples/f17_512_curve2.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/notes/certificate_scanner/certificate_scanner.py",
+        "experimental/notes/certificate_scanner/examples/f17_512_curve2.json",
+        "--json-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\certificate_scanner\\f17_512_curve2.report.json",
+        "--md-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\certificate_scanner\\f17_512_curve2.report.md",
+        "--pretty"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.119,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\logs\\certificate_scanner__f17_512_curve2.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\logs\\certificate_scanner__f17_512_curve2.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "certificate_scanner__f17_512_mca_only",
+      "kind": "certificate-scanner",
+      "source": "experimental/notes/certificate_scanner/examples/f17_512_mca_only.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/notes/certificate_scanner/certificate_scanner.py",
+        "experimental/notes/certificate_scanner/examples/f17_512_mca_only.json",
+        "--json-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\certificate_scanner\\f17_512_mca_only.report.json",
+        "--md-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\certificate_scanner\\f17_512_mca_only.report.md",
+        "--pretty"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 0.121,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\logs\\certificate_scanner__f17_512_mca_only.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\logs\\certificate_scanner__f17_512_mca_only.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "certificate_scanner__prize_rate_half_k2_40",
+      "kind": "certificate-scanner",
+      "source": "experimental/notes/certificate_scanner/examples/prize_rate_half_k2_40.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "experimental/notes/certificate_scanner/certificate_scanner.py",
+        "experimental/notes/certificate_scanner/examples/prize_rate_half_k2_40.json",
+        "--json-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\certificate_scanner\\prize_rate_half_k2_40.report.json",
+        "--md-out",
+        "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\certificate_scanner\\prize_rate_half_k2_40.report.md",
+        "--pretty"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 9.042,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\logs\\certificate_scanner__prize_rate_half_k2_40.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\scanner\\logs\\certificate_scanner__prize_rate_half_k2_40.stderr.txt",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "note": ""
+    }
+  ]
+}

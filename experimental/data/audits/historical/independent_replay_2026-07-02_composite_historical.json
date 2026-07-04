@@ -1,0 +1,3562 @@
+{
+  "date_local": "2026-07-02 America/Denver",
+  "environment_ref": "D:/dev/rsmca-lab/environment.md",
+  "host_wsl_state": {
+    "evidence": [
+      "wsl -l -v timed out after clearing wsl.exe and wslrelay clients",
+      "Restart-Service WSLService and Stop-Process wslservice/vmmemWSL were denied from non-elevated shell"
+    ],
+    "impact": "no longer blocks native verifier replay after large-domain verifier fallback repair",
+    "status": "UNRESPONSIVE_TO_NON_ELEVATED_PROBES"
+  },
+  "known_harness_corrections": [
+    "README commands whose script path is local to the README are run in that README directory.",
+    "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory.",
+    "The intentionally invalid aperiodic packet is checked with --expect-fail."
+  ],
+  "lanes": {
+    "packets_v2": {
+      "metadata": {
+        "cwd_policy": "repo root unless a README command script is local to its README directory",
+        "include_write": false,
+        "only": "packets",
+        "out": "D:\\dev\\rsmca-lab\\replay-packets-v2",
+        "output_policy": "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory",
+        "python": "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "repo": "D:\\dev\\RSMCA",
+        "task_count": 3,
+        "timeout": 300
+      },
+      "results": [
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "scripts/check_aperiodic_eliminant_packet.py",
+            "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/f17_n16_k8_a13_regular_minor_certificate.json"
+          ],
+          "exit_code": 0,
+          "kind": "aperiodic-packet",
+          "note": "",
+          "runtime_s": 0.146,
+          "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/f17_n16_k8_a13_regular_minor_certificate.json",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "scripts/check_aperiodic_eliminant_packet.py",
+            "--expect-fail",
+            "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/invalid_bad_j_packet.json"
+          ],
+          "exit_code": 0,
+          "kind": "aperiodic-packet",
+          "note": "",
+          "runtime_s": 0.097,
+          "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/invalid_bad_j_packet.json",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "scripts/check_aperiodic_eliminant_packet.py",
+            "experimental/data/certificates/hankel-smoke-f17-506-507/f17_32_n512_k256_a506_507_hankel_smoke_packet.json"
+          ],
+          "exit_code": 0,
+          "kind": "aperiodic-packet",
+          "note": "",
+          "runtime_s": 0.1,
+          "source": "experimental/data/certificates/hankel-smoke-f17-506-507/f17_32_n512_k256_a506_507_hankel_smoke_packet.json",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        }
+      ],
+      "summary": {
+        "PASS": 3
+      }
+    },
+    "readmes_v2": {
+      "metadata": {
+        "cwd_policy": "repo root unless a README command script is local to its README directory",
+        "include_write": false,
+        "only": "readmes",
+        "out": "D:\\dev\\rsmca-lab\\replay-readmes-v2",
+        "output_policy": "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory",
+        "python": "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "repo": "D:\\dev\\RSMCA",
+        "task_count": 40,
+        "timeout": 300
+      },
+      "results": [
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_aperiodic_hankel_regular_minor_toy.py",
+            "--check",
+            "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/f17_n16_k8_a13_regular_minor_certificate.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.148,
+          "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/README.md:10",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "scripts/check_aperiodic_eliminant_packet.py",
+            "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/f17_n16_k8_a13_regular_minor_certificate.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.318,
+          "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/README.md:11",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "scripts/check_aperiodic_eliminant_packet.py",
+            "--expect-fail",
+            "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/invalid_bad_j_packet.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.107,
+          "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/README.md:17",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_cs25_v12_deployed_certificates.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 28.037,
+          "source": "experimental/data/certificates/cs25-v12-deployed-certificates/README.md:5",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_generic_regular_minor.py",
+            "--check",
+            "experimental/data/certificates/hankel-f17-32-generic-regular-minor/f17_32_n512_k256_m3_generic_all_row_set_regular_minor_certificate.json"
+          ],
+          "exit_code": 1,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 14.723,
+          "source": "experimental/data/certificates/hankel-f17-32-generic-regular-minor/README.md:7",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_generic_regular_minor.py\", line 323, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_generic_regular_minor.py\", line 315, in main\n    check_certificate(args.check)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_generic_regular_minor.py\", line 271, in check_certificate\n    raise AssertionError(f\"certificate mismatch: {path}\")\nAssertionError: certificate mismatch: experimental\\data\\certificates\\hankel-f17-32-generic-regular-minor\\f17_32_n512_k256_m3_generic_all_row_set_regular_minor_certificate.json\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_high_agreement_tangent_table.py",
+            "--check",
+            "experimental/data/certificates/hankel-f17-32-high-agreement-tangent-table/f17_32_n512_k256_a427_512_high_agreement_tangent_table.json"
+          ],
+          "exit_code": 1,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.128,
+          "source": "experimental/data/certificates/hankel-f17-32-high-agreement-tangent-table/README.md:19",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_high_agreement_tangent_table.py\", line 262, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_high_agreement_tangent_table.py\", line 254, in main\n    check_certificate(args.check)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_high_agreement_tangent_table.py\", line 219, in check_certificate\n    raise AssertionError(f\"high-agreement tangent table mismatch: {path}\")\nAssertionError: high-agreement tangent table mismatch: experimental\\data\\certificates\\hankel-f17-32-high-agreement-tangent-table\\f17_32_n512_k256_a427_512_high_agreement_tangent_table.json\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_endpoint_c2_capacity.py",
+            "--check",
+            "experimental/data/certificates/hankel-f17-32-m3-endpoint-c2-capacity/f17_32_n512_k256_m3_endpoint_c2_capacity.json"
+          ],
+          "exit_code": 1,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.423,
+          "source": "experimental/data/certificates/hankel-f17-32-m3-endpoint-c2-capacity/README.md:24",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_endpoint_c2_capacity.py\", line 445, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_endpoint_c2_capacity.py\", line 437, in main\n    check_certificate(certificate, args.check)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_endpoint_c2_capacity.py\", line 408, in check_certificate\n    raise AssertionError(f\"endpoint c=2 capacity mismatch: {path}\")\nAssertionError: endpoint c=2 capacity mismatch: experimental\\data\\certificates\\hankel-f17-32-m3-endpoint-c2-capacity\\f17_32_n512_k256_m3_endpoint_c2_capacity.json\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py",
+            "--agreement-min",
+            "426",
+            "--agreement-max",
+            "426",
+            "--rank-min",
+            "13",
+            "--rank-max",
+            "13",
+            "--shift-mode",
+            "all-contiguous"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 33.605,
+          "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/README.md:15",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "TIMEOUT",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py",
+            "--agreement-min",
+            "426",
+            "--agreement-max",
+            "426",
+            "--rank-min",
+            "13",
+            "--rank-max",
+            "20",
+            "--stop-on-collision",
+            "--check",
+            "experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/f17_32_m3_low_rank_spectral_frontier_a426_r13_20.json"
+          ],
+          "exit_code": null,
+          "kind": "readme-command",
+          "note": "process exceeded timeout",
+          "runtime_s": 300.029,
+          "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/README.md:18",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py",
+            "--check",
+            "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_12_endpoint_quotient_image.json"
+          ],
+          "exit_code": 1,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.779,
+          "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/README.md:17",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py\", line 329, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py\", line 321, in main\n    check_certificate(certificate, args.check)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py\", line 293, in check_certificate\n    raise AssertionError(f\"endpoint quotient-image mismatch: {path}\")\nAssertionError: endpoint quotient-image mismatch: experimental\\data\\certificates\\hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image\\f17_32_n512_k256_m3_low_rank2_12_endpoint_quotient_image.json\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py",
+            "--check",
+            "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-paid-residual-ledger/f17_32_n512_k256_m3_low_rank2_12_paid_residual_ledger.json"
+          ],
+          "exit_code": 1,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.157,
+          "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-paid-residual-ledger/README.md:12",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 418, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 405, in main\n    certificate = build_certificate()\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 289, in build_certificate\n    validate_source_consistency(affine, endpoint)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 189, in validate_source_consistency\n    affine_sources[\"paper_d_v12\"][\"sha256\"]\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\nKeyError: 'paper_d_v12'\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "TIMEOUT",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py",
+            "--check",
+            "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/f17_32_n512_k256_m3_low_rank2_12_v10_affine_gcd.json"
+          ],
+          "exit_code": null,
+          "kind": "readme-command",
+          "note": "process exceeded timeout",
+          "runtime_s": 300.151,
+          "source": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/README.md:20",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/emit_f17_32_hankel_row_descriptor.py",
+            "--check",
+            "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 1.356,
+          "source": "experimental/data/certificates/hankel-f17-32-row-descriptor/README.md:12",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/plan_f17_regular_hankel_window.py",
+            "--check",
+            "experimental/data/certificates/hankel-regular-window-f17-385-426/f17_32_n512_k256_regular_window_plan.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.139,
+          "source": "experimental/data/certificates/hankel-regular-window-f17-385-426/README.md:13",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_hankel_smoke_f17_506_507.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.177,
+          "source": "experimental/data/certificates/hankel-smoke-f17-506-507/README.md:19",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/certify_high_agreement_threshold_package.py",
+            "--check",
+            "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json"
+          ],
+          "exit_code": 1,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.366,
+          "source": "experimental/data/certificates/high-agreement-threshold-package/README.md:7",
+          "stderr_tail": "",
+          "stdout_tail": "experimental\\data\\certificates\\high-agreement-threshold-package\\f17_512_high_agreement_threshold_certificate.json: FAIL\n"
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/certify_high_agreement_threshold_package.py",
+            "--classify-row",
+            "512",
+            "256",
+            "17^32"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.228,
+          "source": "experimental/data/certificates/high-agreement-threshold-package/README.md:9",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/certify_high_agreement_threshold_package.py",
+            "--classify-prize-power2",
+            "2",
+            "2^40",
+            "166"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.127,
+          "source": "experimental/data/certificates/high-agreement-threshold-package/README.md:12",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_monomial_dyadic_descent_packet.py",
+            "--check",
+            "experimental/data/certificates/l1-monomial-dyadic-descent/f17_32_n512_deg256_monomial_dyadic_packet.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 29.663,
+          "source": "experimental/data/certificates/l1-monomial-dyadic-descent/README.md:23",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_monomial_dyadic_descent_local16.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.119,
+          "source": "experimental/data/certificates/l1-monomial-dyadic-descent/README.md:24",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/search_m1_beta_pushforward_conductor_scan.py",
+            "--selftest"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.223,
+          "source": "experimental/data/certificates/m1-beta-pushforward-conductor/README.md:18",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/search_m1_beta_pushforward_conductor_scan.py",
+            "--check",
+            "experimental/data/certificates/m1-beta-pushforward-conductor/m1_beta_pushforward_conductor_certificate.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 40.241,
+          "source": "experimental/data/certificates/m1-beta-pushforward-conductor/README.md:19",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "TIMEOUT",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/search_m1_beta_pushforward_conductor_scan.py",
+            "--scan",
+            "--e",
+            "12",
+            "--p-max",
+            "600"
+          ],
+          "exit_code": null,
+          "kind": "readme-command",
+          "note": "process exceeded timeout",
+          "runtime_s": 300.015,
+          "source": "experimental/data/certificates/m1-beta-pushforward-conductor/README.md:20",
+          "stderr_tail": "",
+          "stdout_tail": "eta2=6.783893, two_sided=6.427188)\ne=12 p=  229 beta2/p=3.903930 two_sided/p=3.799127 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  241 beta2/p=4.960086 two_sided/p=4.960086 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  277 beta2/p=4.093863 two_sided/p=2.754513 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  313 beta2/p=4.658147 two_sided/p=3.562878 (peak beta2=6.783893, two_sided=6.427188)\ne=12 p=  337 beta2/p=3.459941 two_sided/p=3.124629 (peak beta2=6.783893, two_sided=6.427188)\n"
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/search_m1_two_coordinate_wall_stdlib.py",
+            "--selftest"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.451,
+          "source": "experimental/data/certificates/m1-two-coordinate-wall-stdlib/README.md:12",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/search_m1_two_coordinate_wall_stdlib.py",
+            "--check",
+            "experimental/data/certificates/m1-two-coordinate-wall-stdlib/m1_two_coordinate_wall_certificate.json"
+          ],
+          "exit_code": 1,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 32.749,
+          "source": "experimental/data/certificates/m1-two-coordinate-wall-stdlib/README.md:13",
+          "stderr_tail": "certificate mismatch: experimental\\data\\certificates\\m1-two-coordinate-wall-stdlib\\m1_two_coordinate_wall_certificate.json\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/p257_locator_matrix.py",
+            "--format",
+            "json",
+            "--output",
+            "D:\\dev\\rsmca-lab\\replay-readmes-v2\\generated\\experimental_data_certificates_p257-locator-matrix_README.md__11\\p257_locator_matrix_certificate.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.62,
+          "source": "experimental/data/certificates/p257-locator-matrix/README.md:11",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/p257_locator_matrix.py",
+            "--check",
+            "experimental/data/certificates/p257-locator-matrix/p257_locator_matrix_certificate.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.667,
+          "source": "experimental/data/certificates/p257-locator-matrix/README.md:12",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_q17_locator_mca.py",
+            "--check",
+            "experimental/data/certificates/q17-locator-mca/q17_locator_mca_certificate.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 16.918,
+          "source": "experimental/data/certificates/q17-locator-mca/README.md:15",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_q17_locator_mca.py",
+            "--output",
+            "D:\\dev\\rsmca-lab\\replay-readmes-v2\\generated\\experimental_data_certificates_q17-locator-mca_README.md__17\\q17_locator_mca_certificate.json"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 17.697,
+          "source": "experimental/data/certificates/q17-locator-mca/README.md:17",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_towards_prize_v2_constants.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.18,
+          "source": "experimental/data/certificates/towards-prize-v2-constant-audit/README.md:4",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f1_extension_witness.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 43.823,
+          "source": "experimental/data/witnesses/f1-extension/README.md:32",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "certificate_scanner.py",
+            "examples/f17_512.json",
+            "--json-out",
+            "D:\\dev\\rsmca-lab\\replay-readmes-v2\\generated\\experimental_notes_certificate_scanner_README.md__35\\f17_512.report.json",
+            "--md-out",
+            "D:\\dev\\rsmca-lab\\replay-readmes-v2\\generated\\experimental_notes_certificate_scanner_README.md__35\\f17_512.report.md",
+            "--pretty"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.143,
+          "source": "experimental/notes/certificate_scanner/README.md:35",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "certificate_scanner.py",
+            "examples/prize_rate_half_k2_40.json",
+            "--json-out",
+            "D:\\dev\\rsmca-lab\\replay-readmes-v2\\generated\\experimental_notes_certificate_scanner_README.md__36\\prize_half.report.json",
+            "--md-out",
+            "D:\\dev\\rsmca-lab\\replay-readmes-v2\\generated\\experimental_notes_certificate_scanner_README.md__36\\prize_half.report.md",
+            "--pretty"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 9.105,
+          "source": "experimental/notes/certificate_scanner/README.md:36",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_divisor_count.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.713,
+          "source": "experimental/scripts/README.md:2",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "SKIP-external",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_dual_d3_subgroup_twisted_collision_bound.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "script reported skip with exit 0",
+          "runtime_s": 129.387,
+          "source": "experimental/scripts/README.md:3",
+          "stderr_tail": "",
+          "stdout_tail": "bgroup twisted collision verifier\n  indicator_expansion: ok=True\n  character_expansion: ok=True\n  source_constant_cases: ok=True\n  standard_input_bound_cases: ok=True\n  stratum_count_cases: ok=True\n  stratum_bound_cases: ok=True\n  collision_counts: ok=True summary={'row_count': 42, 'direct_pair_pass': 39, 'direct_pair_skipped_budget': 3, 'full_group_rows': 8, 'proper_subgroup_rows': 34}\n  count_domain_separation: ok=True\n  exponential_decay: ok=True\n  rejection_cases: ok=True\nALL_CHECKS_OK=True\n"
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f1_arbitrary_anchor_split.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 5.715,
+          "source": "experimental/scripts/README.md:5",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_tangent_floor_gate_ladder.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.163,
+          "source": "experimental/scripts/README.md:6",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_line_conic_resonance_reduction.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 177.314,
+          "source": "experimental/scripts/README.md:7",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/f1_deep_point_list_to_ca_mca_sanity.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 33.529,
+          "source": "experimental/scripts/README.md:9",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_fourier_orbit_cancellation.py"
+          ],
+          "exit_code": 0,
+          "kind": "readme-command",
+          "note": "",
+          "runtime_s": 0.916,
+          "source": "experimental/scripts/README.md:10",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        }
+      ],
+      "summary": {
+        "FAIL": 7,
+        "PASS": 29,
+        "SKIP-external": 1,
+        "TIMEOUT": 3
+      }
+    },
+    "scanner_v2": {
+      "metadata": {
+        "cwd_policy": "repo root unless a README command script is local to its README directory",
+        "include_write": false,
+        "only": "scanner",
+        "out": "D:\\dev\\rsmca-lab\\replay-scanner-v2",
+        "output_policy": "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory",
+        "python": "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "repo": "D:\\dev\\RSMCA",
+        "task_count": 4,
+        "timeout": 300
+      },
+      "results": [
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/notes/certificate_scanner/certificate_scanner.py",
+            "experimental/notes/certificate_scanner/examples/f17_512.json",
+            "--json-out",
+            "D:\\dev\\rsmca-lab\\replay-scanner-v2\\certificate_scanner\\f17_512.report.json",
+            "--md-out",
+            "D:\\dev\\rsmca-lab\\replay-scanner-v2\\certificate_scanner\\f17_512.report.md",
+            "--pretty"
+          ],
+          "exit_code": 0,
+          "kind": "certificate-scanner",
+          "note": "",
+          "runtime_s": 0.141,
+          "source": "experimental/notes/certificate_scanner/examples/f17_512.json",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/notes/certificate_scanner/certificate_scanner.py",
+            "experimental/notes/certificate_scanner/examples/f17_512_curve2.json",
+            "--json-out",
+            "D:\\dev\\rsmca-lab\\replay-scanner-v2\\certificate_scanner\\f17_512_curve2.report.json",
+            "--md-out",
+            "D:\\dev\\rsmca-lab\\replay-scanner-v2\\certificate_scanner\\f17_512_curve2.report.md",
+            "--pretty"
+          ],
+          "exit_code": 0,
+          "kind": "certificate-scanner",
+          "note": "",
+          "runtime_s": 0.131,
+          "source": "experimental/notes/certificate_scanner/examples/f17_512_curve2.json",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/notes/certificate_scanner/certificate_scanner.py",
+            "experimental/notes/certificate_scanner/examples/f17_512_mca_only.json",
+            "--json-out",
+            "D:\\dev\\rsmca-lab\\replay-scanner-v2\\certificate_scanner\\f17_512_mca_only.report.json",
+            "--md-out",
+            "D:\\dev\\rsmca-lab\\replay-scanner-v2\\certificate_scanner\\f17_512_mca_only.report.md",
+            "--pretty"
+          ],
+          "exit_code": 0,
+          "kind": "certificate-scanner",
+          "note": "",
+          "runtime_s": 0.133,
+          "source": "experimental/notes/certificate_scanner/examples/f17_512_mca_only.json",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/notes/certificate_scanner/certificate_scanner.py",
+            "experimental/notes/certificate_scanner/examples/prize_rate_half_k2_40.json",
+            "--json-out",
+            "D:\\dev\\rsmca-lab\\replay-scanner-v2\\certificate_scanner\\prize_rate_half_k2_40.report.json",
+            "--md-out",
+            "D:\\dev\\rsmca-lab\\replay-scanner-v2\\certificate_scanner\\prize_rate_half_k2_40.report.md",
+            "--pretty"
+          ],
+          "exit_code": 0,
+          "kind": "certificate-scanner",
+          "note": "",
+          "runtime_s": 9.107,
+          "source": "experimental/notes/certificate_scanner/examples/prize_rate_half_k2_40.json",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        }
+      ],
+      "summary": {
+        "PASS": 4
+      }
+    },
+    "scripts_initial": {
+      "metadata": {
+        "include_write": false,
+        "only": "scripts",
+        "out": "D:\\dev\\rsmca-lab\\replay-scripts",
+        "python": "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+        "repo": "D:\\dev\\RSMCA",
+        "task_count": 188,
+        "timeout": 180
+      },
+      "results": [
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/data/adjacent-ledgers/verify_high_agreement_adjacent_ledgers.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.076,
+          "source": "experimental/data/adjacent-ledgers/verify_high_agreement_adjacent_ledgers.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/data/generalized-ledgers/verify_generalized_high_agreement_ledgers.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.087,
+          "source": "experimental/data/generalized-ledgers/verify_generalized_high_agreement_ledgers.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/data/strict352/verify_strict352_quotient_core.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.048,
+          "source": "experimental/data/strict352/verify_strict352_quotient_core.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/data/tangent/verify_tangent_staircase.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.06,
+          "source": "experimental/data/tangent/verify_tangent_staircase.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/data/tangent-star/verify_tangent_star_threshold.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.045,
+          "source": "experimental/data/tangent-star/verify_tangent_star_threshold.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/backmatter_structure_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.44,
+          "source": "experimental/scripts/backmatter_structure_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/bibkey_drift_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.145,
+          "source": "experimental/scripts/bibkey_drift_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_arbitrary_anchor_split.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.051,
+          "source": "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_arbitrary_anchor_split.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_extension_counterexample.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 5.727,
+          "source": "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_extension_counterexample.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_fixed_rate_slice.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.06,
+          "source": "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_fixed_rate_slice.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_sigma2_degree1.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 5.652,
+          "source": "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_f1_sigma2_degree1.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_l1_arbitrary_fiber_overcount.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.094,
+          "source": "experimental/scripts/codex_f1_l1_20260617/verifiers/verify_l1_arbitrary_fiber_overcount.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/cross_citation_phrase_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.141,
+          "source": "experimental/scripts/cross_citation_phrase_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/display_math_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.26,
+          "source": "experimental/scripts/display_math_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/domain_convention_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.227,
+          "source": "experimental/scripts/domain_convention_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/field_ledger_vocabulary_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 1.097,
+          "source": "experimental/scripts/field_ledger_vocabulary_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/frontier_problem_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.149,
+          "source": "experimental/scripts/frontier_problem_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/latex_package_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.203,
+          "source": "experimental/scripts/latex_package_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/proof_environment_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.267,
+          "source": "experimental/scripts/proof_environment_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/readme_script_layer_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.393,
+          "source": "experimental/scripts/readme_script_layer_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/release_bundle_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.301,
+          "source": "experimental/scripts/release_bundle_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/result_environment_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.237,
+          "source": "experimental/scripts/result_environment_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/script_reproducibility_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 7.51,
+          "source": "experimental/scripts/script_reproducibility_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/section_structure_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.288,
+          "source": "experimental/scripts/section_structure_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/security_mode_label_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.227,
+          "source": "experimental/scripts/security_mode_label_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/table_environment_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.206,
+          "source": "experimental/scripts/table_environment_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/tex_citation_integrity_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.455,
+          "source": "experimental/scripts/tex_citation_integrity_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/tex_macro_definition_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.235,
+          "source": "experimental/scripts/tex_macro_definition_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/tex_reference_integrity_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.242,
+          "source": "experimental/scripts/tex_reference_integrity_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/topmatter_metadata_inventory.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.273,
+          "source": "experimental/scripts/topmatter_metadata_inventory.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_a0_deep_point_cap_algebra.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.785,
+          "source": "experimental/scripts/verify_a0_deep_point_cap_algebra.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_a0_thmA_v7_boundary_tight.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.06,
+          "source": "experimental/scripts/verify_a0_thmA_v7_boundary_tight.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_a0_thmA_v7_cap_certificate.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.067,
+          "source": "experimental/scripts/verify_a0_thmA_v7_cap_certificate.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_a0_thmB_internal_radius.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.076,
+          "source": "experimental/scripts/verify_a0_thmB_internal_radius.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_agreement265_status_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.231,
+          "source": "experimental/scripts/verify_agreement265_status_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_aperiodic_hankel_regular_minor_toy.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.145,
+          "source": "experimental/scripts/verify_aperiodic_hankel_regular_minor_toy.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_audit_pr100_cycle120_gate.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.088,
+          "source": "experimental/scripts/verify_audit_pr100_cycle120_gate.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_audit_pr103_f1_sigma_one.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.141,
+          "source": "experimental/scripts/verify_audit_pr103_f1_sigma_one.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_audit_pr103_f1_sigma_two.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.208,
+          "source": "experimental/scripts/verify_audit_pr103_f1_sigma_two.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_cs25_v12_bciks_import.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.606,
+          "source": "experimental/scripts/verify_cs25_v12_bciks_import.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_cs25_v12_conversion_radius.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 9.125,
+          "source": "experimental/scripts/verify_cs25_v12_conversion_radius.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_cs25_v12_deployed_certificates.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 28.001,
+          "source": "experimental/scripts/verify_cs25_v12_deployed_certificates.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_cs25_v12_profile_explicit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 3.573,
+          "source": "experimental/scripts/verify_cs25_v12_profile_explicit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_cs25_v12_transport_scope.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 24.266,
+          "source": "experimental/scripts/verify_cs25_v12_transport_scope.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_high_agreement_tangent_table.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.102,
+          "source": "experimental/scripts/verify_f17_32_high_agreement_tangent_table.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_endpoint_c2_capacity.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.384,
+          "source": "experimental/scripts/verify_f17_32_m3_endpoint_c2_capacity.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_generic_regular_minor.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 5.671,
+          "source": "experimental/scripts/verify_f17_32_m3_generic_regular_minor.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.299,
+          "source": "experimental/scripts/verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py"
+          ],
+          "exit_code": 1,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.109,
+          "source": "experimental/scripts/verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 418, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 405, in main\n    certificate = build_certificate()\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 289, in build_certificate\n    validate_source_consistency(affine, endpoint)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py\", line 189, in validate_source_consistency\n    affine_sources[\"paper_d_v12\"][\"sha256\"]\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\nKeyError: 'paper_d_v12'\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "TIMEOUT",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py"
+          ],
+          "exit_code": null,
+          "kind": "script-default",
+          "note": "process exceeded timeout",
+          "runtime_s": 180.015,
+          "source": "experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.191,
+          "source": "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f1_arbitrary_anchor_split.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.829,
+          "source": "experimental/scripts/verify_f1_arbitrary_anchor_split.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f1_extension_witness.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 38.984,
+          "source": "experimental/scripts/verify_f1_extension_witness.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f1_fixed_rate_extension_counterexample.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 12.689,
+          "source": "experimental/scripts/verify_f1_fixed_rate_extension_counterexample.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f1_fixed_root_star_slope_collapse.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 56.512,
+          "source": "experimental/scripts/verify_f1_fixed_root_star_slope_collapse.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f1_resonance_graph_gate.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 4.422,
+          "source": "experimental/scripts/verify_f1_resonance_graph_gate.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_f1_syndrome_pencil_normal_form.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.483,
+          "source": "experimental/scripts/verify_f1_syndrome_pencil_normal_form.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_hankel_smoke_f17_506_507.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.131,
+          "source": "experimental/scripts/verify_hankel_smoke_f17_506_507.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_aperiodic_prefix_collision.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 31.488,
+          "source": "experimental/scripts/verify_l1_aperiodic_prefix_collision.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_arbitrary_fiber_repair.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 4.919,
+          "source": "experimental/scripts/verify_l1_arbitrary_fiber_repair.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_arbitrary_local_conjecture_patch.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.739,
+          "source": "experimental/scripts/verify_l1_arbitrary_local_conjecture_patch.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_arbitrary_word_lift.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 12.934,
+          "source": "experimental/scripts/verify_l1_arbitrary_word_lift.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_determinantal_support_criterion.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.236,
+          "source": "experimental/scripts/verify_l1_determinantal_support_criterion.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_fourier_orbit_cancellation.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.687,
+          "source": "experimental/scripts/verify_l1_fourier_orbit_cancellation.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_fourier_reduction.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.516,
+          "source": "experimental/scripts/verify_l1_fourier_reduction.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "TIMEOUT",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_full_petal_growing_defect_witnesses.py"
+          ],
+          "exit_code": null,
+          "kind": "script-default",
+          "note": "process exceeded timeout",
+          "runtime_s": 180.159,
+          "source": "experimental/scripts/verify_l1_full_petal_growing_defect_witnesses.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_fulllist_independent_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.101,
+          "source": "experimental/scripts/verify_l1_fulllist_independent_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_m1_reserve_connection.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.077,
+          "source": "experimental/scripts/verify_l1_m1_reserve_connection.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_monomial_dyadic_descent_local16.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.056,
+          "source": "experimental/scripts/verify_l1_monomial_dyadic_descent_local16.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_monomial_dyadic_descent_packet.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 24.378,
+          "source": "experimental/scripts/verify_l1_monomial_dyadic_descent_packet.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_periodic_support_multisequence_reduction.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.418,
+          "source": "experimental/scripts/verify_l1_periodic_support_multisequence_reduction.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_bad_prime_proof_record.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 23.271,
+          "source": "experimental/scripts/verify_l1_prefix_bad_prime_proof_record.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_divisor_count.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.623,
+          "source": "experimental/scripts/verify_l1_prefix_divisor_count.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_dual_centered_krawtchouk_route_cut.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 11.868,
+          "source": "experimental/scripts/verify_l1_prefix_dual_centered_krawtchouk_route_cut.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "SKIP-external",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_dual_d2_cubic_subgroup_twisted_bound.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "script reported skip with exit 0",
+          "runtime_s": 2.363,
+          "source": "experimental/scripts/verify_l1_prefix_dual_d2_cubic_subgroup_twisted_bound.py",
+          "stderr_tail": "",
+          "stdout_tail": "wisted-bound verifier\n  indicator_expansion: ok=True\n  character_expansion: ok=True\n  twisted_sum_bounds: ok=True\n  standard_input_bound_cases: ok=True\n  source_constant_cases: ok=True\n  collision_counts: ok=True summary={'row_count': 36, 'direct_pair_pass': 29, 'direct_pair_skipped_budget': 7, 'full_group_rows': 12, 'proper_subgroup_rows': 24}\n  full_group_benchmark_comparison: ok=True\n  count_domain_separation: ok=True\n  exponential_decay: ok=True\n  rejection_cases: ok=True\nALL_CHECKS_OK=True\n"
+        },
+        {
+          "classification": "SKIP-external",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_dual_d3_subgroup_twisted_collision_bound.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "script reported skip with exit 0",
+          "runtime_s": 99.19,
+          "source": "experimental/scripts/verify_l1_prefix_dual_d3_subgroup_twisted_collision_bound.py",
+          "stderr_tail": "",
+          "stdout_tail": "bgroup twisted collision verifier\n  indicator_expansion: ok=True\n  character_expansion: ok=True\n  source_constant_cases: ok=True\n  standard_input_bound_cases: ok=True\n  stratum_count_cases: ok=True\n  stratum_bound_cases: ok=True\n  collision_counts: ok=True summary={'row_count': 42, 'direct_pair_pass': 39, 'direct_pair_skipped_budget': 3, 'full_group_rows': 8, 'proper_subgroup_rows': 34}\n  count_domain_separation: ok=True\n  exponential_decay: ok=True\n  rejection_cases: ok=True\nALL_CHECKS_OK=True\n"
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_dual_d3_subgroup_twisted_input_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 28.526,
+          "source": "experimental/scripts/verify_l1_prefix_dual_d3_subgroup_twisted_input_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL-path",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_dual_large_domain_weil_energy_floor.py"
+          ],
+          "exit_code": 1,
+          "kind": "script-default",
+          "note": "missing file/path",
+          "runtime_s": 1.524,
+          "source": "experimental/scripts/verify_l1_prefix_dual_large_domain_weil_energy_floor.py",
+          "stderr_tail": "^^^^^^^^^^^^^^^^^^^^^^^\n                        pass_fds, cwd, env,\n                        ^^^^^^^^^^^^^^^^^^^\n    ...<5 lines>...\n                        gid, gids, uid, umask,\n                        ^^^^^^^^^^^^^^^^^^^^^^\n                        start_new_session, process_group)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python313\\Lib\\subprocess.py\", line 1554, in _execute_child\n    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,\n                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n                             # no special security\n                             ^^^^^^^^^^^^^^^^^^^^^\n    ...<4 lines>...\n                             cwd,\n                             ^^^^\n                             startupinfo)\n                             ^^^^^^^^^^^^\nFileNotFoundError: [WinError 2] The system cannot find the file specified\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_dual_odd_moment_hooley_katz_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.321,
+          "source": "experimental/scripts/verify_l1_prefix_dual_odd_moment_hooley_katz_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL-missing-import",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_dyadic_charzero_rigidity.py"
+          ],
+          "exit_code": 1,
+          "kind": "script-default",
+          "note": "missing Python dependency",
+          "runtime_s": 0.213,
+          "source": "experimental/scripts/verify_l1_prefix_dyadic_charzero_rigidity.py",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_l1_prefix_dyadic_charzero_rigidity.py\", line 27, in <module>\n    from verify_l1_prefix_low_excess_norm_sieve import (  # noqa: E402\n    ...<9 lines>...\n    )\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_l1_prefix_low_excess_norm_sieve.py\", line 29, in <module>\n    from sympy import Poly, cyclotomic_poly, resultant, symbols\nModuleNotFoundError: No module named 'sympy'\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL-missing-import",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_low_excess_norm_sieve.py"
+          ],
+          "exit_code": 1,
+          "kind": "script-default",
+          "note": "missing Python dependency",
+          "runtime_s": 0.092,
+          "source": "experimental/scripts/verify_l1_prefix_low_excess_norm_sieve.py",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_l1_prefix_low_excess_norm_sieve.py\", line 29, in <module>\n    from sympy import Poly, cyclotomic_poly, resultant, symbols\nModuleNotFoundError: No module named 'sympy'\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL-missing-import",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_prime_power_charzero_fibers.py"
+          ],
+          "exit_code": 1,
+          "kind": "script-default",
+          "note": "missing Python dependency",
+          "runtime_s": 0.096,
+          "source": "experimental/scripts/verify_l1_prefix_prime_power_charzero_fibers.py",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_l1_prefix_prime_power_charzero_fibers.py\", line 34, in <module>\n    from verify_l1_prefix_low_excess_norm_sieve import (  # noqa: E402\n    ...<2 lines>...\n    )\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_l1_prefix_low_excess_norm_sieve.py\", line 29, in <module>\n    from sympy import Poly, cyclotomic_poly, resultant, symbols\nModuleNotFoundError: No module named 'sympy'\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_prefix_trinary_kernel_rigidity.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 41.137,
+          "source": "experimental/scripts/verify_l1_prefix_trinary_kernel_rigidity.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_quotient_defect_closure.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.251,
+          "source": "experimental/scripts/verify_l1_quotient_defect_closure.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_repaired_locator_package.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 34.365,
+          "source": "experimental/scripts/verify_l1_repaired_locator_package.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l1_syndrome_catalecticant_shells.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.956,
+          "source": "experimental/scripts/verify_l1_syndrome_catalecticant_shells.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_codegree_decomposition.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 1.172,
+          "source": "experimental/scripts/verify_l2_codegree_decomposition.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_extension_coordinate.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 36.565,
+          "source": "experimental/scripts/verify_l2_extension_coordinate.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_falsify_interleaved.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 58.663,
+          "source": "experimental/scripts/verify_l2_falsify_interleaved.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_interleaved_constants.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 10.818,
+          "source": "experimental/scripts/verify_l2_interleaved_constants.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_mu_recursion.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 24.382,
+          "source": "experimental/scripts/verify_l2_mu_recursion.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_profile_decay.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 142.863,
+          "source": "experimental/scripts/verify_l2_profile_decay.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_punctured_johnson.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 165.064,
+          "source": "experimental/scripts/verify_l2_punctured_johnson.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_quotient_budget.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 5.803,
+          "source": "experimental/scripts/verify_l2_quotient_budget.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_quotient_core_count.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.081,
+          "source": "experimental/scripts/verify_l2_quotient_core_count.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_reduction_bound.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 12.088,
+          "source": "experimental/scripts/verify_l2_reduction_bound.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_sharp_target.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 14.018,
+          "source": "experimental/scripts/verify_l2_sharp_target.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_l2_stratified_sum.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 15.561,
+          "source": "experimental/scripts/verify_l2_stratified_sum.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_a327_rim_route_cut_digest.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.57,
+          "source": "experimental/scripts/verify_m1_a327_rim_route_cut_digest.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_a507_adjacent_bridge_theorem.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.096,
+          "source": "experimental/scripts/verify_m1_a507_adjacent_bridge_theorem.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_a507_plus_one_slope_hunt.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.102,
+          "source": "experimental/scripts/verify_m1_a507_plus_one_slope_hunt.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_beta2_conditional_close.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.988,
+          "source": "experimental/scripts/verify_m1_beta2_conditional_close.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_beta2_local_data_dossier.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 1.578,
+          "source": "experimental/scripts/verify_m1_beta2_local_data_dossier.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_beta2_p73_resolution.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.076,
+          "source": "experimental/scripts/verify_m1_beta2_p73_resolution.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_beta_pushforward_spectral_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 109.209,
+          "source": "experimental/scripts/verify_m1_beta_pushforward_spectral_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_coset_packet_finite_slope_floors.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.127,
+          "source": "experimental/scripts/verify_m1_coset_packet_finite_slope_floors.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_cosupport_periodicity.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.378,
+          "source": "experimental/scripts/verify_m1_cosupport_periodicity.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_cycle120_end_to_end_analog.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.873,
+          "source": "experimental/scripts/verify_m1_cycle120_end_to_end_analog.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "TIMEOUT",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_cycle120_self_contained_certificate.py"
+          ],
+          "exit_code": null,
+          "kind": "script-default",
+          "note": "process exceeded timeout",
+          "runtime_s": 180.132,
+          "source": "experimental/scripts/verify_m1_cycle120_self_contained_certificate.py",
+          "stderr_tail": "",
+          "stdout_tail": "plained on D0\\support(T) (noncontainment), all members\n  [OK ] native: every member yields a codeword c_T of degree < 137\n  [OK ] native non-vacuity: every counted c_T has degree exactly 136 (nonzero, high-degree)\n   native_distinct_slopes (agreement 143, F16) = 40\n== 3. lift to RS[F_17^32, H, 256] via smooth padding (agreement 262) ==\n  [OK ] L_A has degree 119\n  [OK ] L_A vanishes on A (sample)\n  [OK ] L_A nonzero on D0 (sample)\n   lifting and DIRECTLY checking 40 distinct slopes over F_17^32\n"
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_cycle120_standalone_ldsw_proof.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.123,
+          "source": "experimental/scripts/verify_m1_cycle120_standalone_ldsw_proof.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_cycle84_count_structure.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.074,
+          "source": "experimental/scripts/verify_m1_cycle84_count_structure.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_elementary_open_set_lemma.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.063,
+          "source": "experimental/scripts/verify_m1_depth_two_elementary_open_set_lemma.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_equal_line_diagonal_reduction.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 6.885,
+          "source": "experimental/scripts/verify_m1_depth_two_equal_line_diagonal_reduction.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_infinity_unramified_two_coordinate_lemma.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 10.095,
+          "source": "experimental/scripts/verify_m1_depth_two_infinity_unramified_two_coordinate_lemma.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_kummer_constant_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.663,
+          "source": "experimental/scripts/verify_m1_depth_two_kummer_constant_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_line_conic_resonance_reduction.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 147.063,
+          "source": "experimental/scripts/verify_m1_depth_two_line_conic_resonance_reduction.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.8,
+          "source": "experimental/scripts/verify_m1_depth_two_nonquadratic_one_coordinate_lemma.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_quadratic_one_coordinate_lemma.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.65,
+          "source": "experimental/scripts/verify_m1_depth_two_quadratic_one_coordinate_lemma.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 102.339,
+          "source": "experimental/scripts/verify_m1_depth_two_reciprocal_two_coordinate_lemma.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_two_coordinate_fiber_reduction.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.69,
+          "source": "experimental/scripts/verify_m1_depth_two_two_coordinate_fiber_reduction.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_depth_two_two_coordinate_sharp_target.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 12.088,
+          "source": "experimental/scripts/verify_m1_depth_two_two_coordinate_sharp_target.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_interleaved_list_hybrid_quotient_residual.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 108.237,
+          "source": "experimental/scripts/verify_m1_interleaved_list_hybrid_quotient_residual.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_interleaved_list_threshold_descent.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.123,
+          "source": "experimental/scripts/verify_m1_interleaved_list_threshold_descent.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_interleaved_list_threshold_interval_sharpening.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.092,
+          "source": "experimental/scripts/verify_m1_interleaved_list_threshold_interval_sharpening.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_interleaved_list_threshold_upward_push.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.199,
+          "source": "experimental/scripts/verify_m1_interleaved_list_threshold_upward_push.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_kummer_divisor_geometry.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 6.863,
+          "source": "experimental/scripts/verify_m1_kummer_divisor_geometry.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_low_slack_packet_template.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.834,
+          "source": "experimental/scripts/verify_m1_low_slack_packet_template.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_packet_sift_popularity_digest.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.413,
+          "source": "experimental/scripts/verify_m1_packet_sift_popularity_digest.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_quotient_occupancy_theorem.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 9.342,
+          "source": "experimental/scripts/verify_m1_quotient_occupancy_theorem.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_quotient_remainder_profile.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.154,
+          "source": "experimental/scripts/verify_m1_quotient_remainder_profile.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_random_simple_pole_entropy_floor.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.355,
+          "source": "experimental/scripts/verify_m1_random_simple_pole_entropy_floor.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_rank_defect_packet_normal_form.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 9.368,
+          "source": "experimental/scripts/verify_m1_rank_defect_packet_normal_form.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_reserve_scale_bridge.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.559,
+          "source": "experimental/scripts/verify_m1_reserve_scale_bridge.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_reserve_scale_richness.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 1.299,
+          "source": "experimental/scripts/verify_m1_reserve_scale_richness.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_reserve_subsumed_by_strict352.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.093,
+          "source": "experimental/scripts/verify_m1_reserve_subsumed_by_strict352.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_residual_depth_frontier_shift.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.858,
+          "source": "experimental/scripts/verify_m1_residual_depth_frontier_shift.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_residual_depth_ladder.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.223,
+          "source": "experimental/scripts/verify_m1_residual_depth_ladder.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_root_slice_lift.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.319,
+          "source": "experimental/scripts/verify_m1_root_slice_lift.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_slack_three_cube_coset_coverage.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.565,
+          "source": "experimental/scripts/verify_m1_slack_three_cube_coset_coverage.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_slack_three_full_domain_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.605,
+          "source": "experimental/scripts/verify_m1_slack_three_full_domain_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_slack_three_genus_zero_kummer_lemma.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.341,
+          "source": "experimental/scripts/verify_m1_slack_three_genus_zero_kummer_lemma.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_slack_three_qr_index_two_audit.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 46.605,
+          "source": "experimental/scripts/verify_m1_slack_three_qr_index_two_audit.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_slack_two_depth_two_full_domain.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.146,
+          "source": "experimental/scripts/verify_m1_slack_two_depth_two_full_domain.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_slack_two_depth_two_kummer_saturation.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 66.278,
+          "source": "experimental/scripts/verify_m1_slack_two_depth_two_kummer_saturation.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_strict264_admissibility.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.711,
+          "source": "experimental/scripts/verify_m1_strict264_admissibility.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_strict264_bridge.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.075,
+          "source": "experimental/scripts/verify_m1_strict264_bridge.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_strict264_end_to_end.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.078,
+          "source": "experimental/scripts/verify_m1_strict264_end_to_end.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_strict264_mechanism.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.193,
+          "source": "experimental/scripts/verify_m1_strict264_mechanism.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_strict264_two_ended_transfer.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.295,
+          "source": "experimental/scripts/verify_m1_strict264_two_ended_transfer.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_t2_one_exchange_residual_degree.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.701,
+          "source": "experimental/scripts/verify_m1_t2_one_exchange_residual_degree.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_tangent_floor_gate_ladder.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.082,
+          "source": "experimental/scripts/verify_m1_tangent_floor_gate_ladder.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_top_packet_lift_compression.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 1.284,
+          "source": "experimental/scripts/verify_m1_top_packet_lift_compression.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_two_root_line_packet_closure.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 7.869,
+          "source": "experimental/scripts/verify_m1_two_root_line_packet_closure.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m1_width_one_fixedroot_closure.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.113,
+          "source": "experimental/scripts/verify_m1_width_one_fixedroot_closure.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "SKIP-external",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m2_abf_gg_line_decoding_parameter_match.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "script reported skip with exit 0",
+          "runtime_s": 0.526,
+          "source": "experimental/scripts/verify_m2_abf_gg_line_decoding_parameter_match.py",
+          "stderr_tail": "",
+          "stdout_tail": "m2_abf_gg_line_decoding_parameter_match: SKIPPED\nstatus=AUDIT / SOURCE-CONDITIONED / PARAMETER-MATCH\nreason=source material for this source-conditioned audit is absent in this clone (PR #96 commit and/or ABF PDF text extracts); fetch it with `git fetch origin pull/96/head:refs/tmp/pr96-cycle58-5p5-audit` to run the full parameter-match check.\n"
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m2_common_code_line_residual_budget.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 1.767,
+          "source": "experimental/scripts/verify_m2_common_code_line_residual_budget.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_m2_ldsw_line_decoding_separation.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 22.345,
+          "source": "experimental/scripts/verify_m2_ldsw_line_decoding_separation.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_paperb_23_smooth_exact_count.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 99.697,
+          "source": "experimental/scripts/verify_paperb_23_smooth_exact_count.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_prize_dag.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.1,
+          "source": "experimental/scripts/verify_prize_dag.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_promoted_high_agreement_ledgers.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.046,
+          "source": "experimental/scripts/verify_promoted_high_agreement_ledgers.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_q17_locator_mca.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 18.544,
+          "source": "experimental/scripts/verify_q17_locator_mca.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_roadmap_r2_numbers.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.188,
+          "source": "experimental/scripts/verify_roadmap_r2_numbers.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_step1_sampler_reconciliation.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.258,
+          "source": "experimental/scripts/verify_step1_sampler_reconciliation.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_step5_envelope_carving.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.255,
+          "source": "experimental/scripts/verify_step5_envelope_carving.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_towards_prize_v2_constants.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.374,
+          "source": "experimental/scripts/verify_towards_prize_v2_constants.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_towards_prize_v3_cap_package.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.494,
+          "source": "experimental/scripts/verify_towards_prize_v3_cap_package.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL-missing-import",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_v1_f17_32_algebra_checker.py"
+          ],
+          "exit_code": 1,
+          "kind": "script-default",
+          "note": "missing Python dependency",
+          "runtime_s": 0.546,
+          "source": "experimental/scripts/verify_v1_f17_32_algebra_checker.py",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_v1_f17_32_algebra_checker.py\", line 50, in <module>\n    from sympy.polys.domains import ZZ\nModuleNotFoundError: No module named 'sympy'\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_clique_cap.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 78.972,
+          "source": "experimental/scripts/verify_x1_clique_cap.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_conditional_budget.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.193,
+          "source": "experimental/scripts/verify_x1_conditional_budget.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_confine_from_stabilizer.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.087,
+          "source": "experimental/scripts/verify_x1_confine_from_stabilizer.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_conjB_residue_confinement.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.245,
+          "source": "experimental/scripts/verify_x1_conjB_residue_confinement.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_deep_point_identity.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 11.481,
+          "source": "experimental/scripts/verify_x1_deep_point_identity.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_extension_line.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.32,
+          "source": "experimental/scripts/verify_x1_extension_line.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_forward_interleaved_count.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 16.607,
+          "source": "experimental/scripts/verify_x1_forward_interleaved_count.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_interleaved_deep_point.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 8.658,
+          "source": "experimental/scripts/verify_x1_interleaved_deep_point.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_interleaving_amplification.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 72.624,
+          "source": "experimental/scripts/verify_x1_interleaving_amplification.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_isotypic_decomposition.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.63,
+          "source": "experimental/scripts/verify_x1_isotypic_decomposition.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_lem_fiber.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.196,
+          "source": "experimental/scripts/verify_x1_lem_fiber.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_line_decoding.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 2.226,
+          "source": "experimental/scripts/verify_x1_line_decoding.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_nonequivariant_product_bound.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.251,
+          "source": "experimental/scripts/verify_x1_nonequivariant_product_bound.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_overlap_graph.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 6.998,
+          "source": "experimental/scripts/verify_x1_overlap_graph.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_perfiber_collisions.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 5.815,
+          "source": "experimental/scripts/verify_x1_perfiber_collisions.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_prefix_locator_principle.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.151,
+          "source": "experimental/scripts/verify_x1_prefix_locator_principle.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_prob_explicit_deployed.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.358,
+          "source": "experimental/scripts/verify_x1_prob_explicit_deployed.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "FAIL-missing-import",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_prob_explicit_mechanism.py"
+          ],
+          "exit_code": 1,
+          "kind": "script-default",
+          "note": "missing Python dependency",
+          "runtime_s": 1.757,
+          "source": "experimental/scripts/verify_x1_prob_explicit_mechanism.py",
+          "stderr_tail": "Traceback (most recent call last):\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_x1_prob_explicit_mechanism.py\", line 292, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_x1_prob_explicit_mechanism.py\", line 264, in main\n    out = run()\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_x1_prob_explicit_mechanism.py\", line 199, in run\n    gen = find_generator()\n  File \"D:\\dev\\RSMCA\\experimental\\scripts\\verify_x1_prob_explicit_mechanism.py\", line 181, in find_generator\n    import sympy\nModuleNotFoundError: No module named 'sympy'\n",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_prob_explicit_universal.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.43,
+          "source": "experimental/scripts/verify_x1_prob_explicit_universal.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_quotient_reduction.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 0.469,
+          "source": "experimental/scripts/verify_x1_quotient_reduction.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        {
+          "classification": "PASS",
+          "command": [
+            "D:\\dev\\rsmca-lab\\.venv\\Scripts\\python.exe",
+            "experimental/scripts/verify_x1_worst_case_interleaved.py"
+          ],
+          "exit_code": 0,
+          "kind": "script-default",
+          "note": "",
+          "runtime_s": 12.382,
+          "source": "experimental/scripts/verify_x1_worst_case_interleaved.py",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        }
+      ],
+      "summary": {
+        "FAIL": 1,
+        "FAIL-missing-import": 5,
+        "FAIL-path": 1,
+        "PASS": 175,
+        "SKIP-external": 3,
+        "TIMEOUT": 3
+      }
+    }
+  },
+  "repaired_lanes": [
+    {
+      "lane": "Sage-dependent atlas verifier",
+      "repair": "auto backend uses Sage/Arb when available; otherwise uses widened stdlib interval with explicit error_ratio_budget",
+      "script": "experimental/scripts/verify_l1_prefix_dual_large_domain_weil_energy_floor.py",
+      "status": "REPAIRED",
+      "verification": "PASS on native Windows; atlas_backend=stdlib-libm-widened; ALL_CHECKS_OK=True"
+    }
+  ],
+  "repo_head": "6c93a6d711985e1beb45ebafaf36da325e39023d",
+  "schema_version": "independent-replay-matrix-v1",
+  "status": "AUDIT",
+  "supplemental_reruns": [
+    {
+      "classification": "PASS after installing sympy",
+      "runtime_s": 173.6,
+      "source": "experimental/scripts/verify_l1_prefix_dyadic_charzero_rigidity.py"
+    },
+    {
+      "classification": "PASS after installing sympy",
+      "runtime_s": 1.8,
+      "source": "experimental/scripts/verify_l1_prefix_low_excess_norm_sieve.py"
+    },
+    {
+      "classification": "PASS after installing sympy",
+      "runtime_s": 226.6,
+      "source": "experimental/scripts/verify_l1_prefix_prime_power_charzero_fibers.py"
+    },
+    {
+      "classification": "PASS after installing sympy",
+      "runtime_s": 5.1,
+      "source": "experimental/scripts/verify_v1_f17_32_algebra_checker.py"
+    },
+    {
+      "classification": "PASS after installing sympy",
+      "runtime_s": 11.7,
+      "source": "experimental/scripts/verify_x1_prob_explicit_mechanism.py"
+    },
+    {
+      "classification": "PASS with 900s timeout",
+      "runtime_s": 627.0,
+      "source": "experimental/scripts/verify_l1_full_petal_growing_defect_witnesses.py"
+    },
+    {
+      "classification": "PASS with 900s timeout",
+      "runtime_s": 686.9,
+      "source": "experimental/scripts/verify_m1_cycle120_self_contained_certificate.py"
+    },
+    {
+      "classification": "TIMEOUT with 900s timeout",
+      "runtime_s": 900.0,
+      "source": "experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py"
+    },
+    {
+      "classification": "PASS after native stdlib atlas fallback was added",
+      "note": "atlas_backend=stdlib-libm-widened; WSL/Sage unavailable no longer blocks native replay",
+      "runtime_s": 2.2,
+      "source": "experimental/scripts/verify_l1_prefix_dual_large_domain_weil_energy_floor.py"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "repo": "D:\\dev\\RSMCA",
+    "out": "D:\\dev\\rsmca-lab\\replay-sage-wsl",
+    "python": "D:/dev/rsmca-lab/.venv/Scripts/python.exe",
+    "timeout": 180,
+    "task_count": 5,
+    "include_write": false,
+    "only": "sage",
+    "sage_mode": "wsl",
+    "wsl_distro": "Ubuntu",
+    "wsl_sage": "/home/kw/micromamba-root/envs/sage/bin/sage",
+    "cwd_policy": "repo root unless a README command script is local to its README directory",
+    "output_policy": "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory"
+  },
+  "results": [
+    {
+      "task_id": "sage__experimental_scripts_audit_m1_interleaved_list_threshold_descent.sage",
+      "kind": "sage-wsl-script",
+      "source": "experimental/scripts/audit_m1_interleaved_list_threshold_descent.sage (WSL Sage: Ubuntu)",
+      "command": [
+        "C:\\Windows\\system32\\wsl.EXE",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/d/dev/RSMCA",
+        "--exec",
+        "/home/kw/micromamba-root/envs/sage/bin/sage",
+        "/mnt/d/dev/RSMCA/experimental/scripts/audit_m1_interleaved_list_threshold_descent.sage"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 15.142,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_descent.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_descent.sage.stderr.txt",
+      "stdout_tail": "PASS\nSage reconstructed GF(17^32), subgroup order 512, and a=291 witnesses\nLambda_mu(C,291) >= 7 for the standard interleaved-list predicate\nMCA counted: false\nwitness_descriptors_hash: 0503cd1b6e0d914b290ec06acfcc2699f6da589f206639e3c83d4037433aba78\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "sage__experimental_scripts_audit_m1_interleaved_list_threshold_interval_sharpening.sage",
+      "kind": "sage-wsl-script",
+      "source": "experimental/scripts/audit_m1_interleaved_list_threshold_interval_sharpening.sage (WSL Sage: Ubuntu)",
+      "command": [
+        "C:\\Windows\\system32\\wsl.EXE",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/d/dev/RSMCA",
+        "--exec",
+        "/home/kw/micromamba-root/envs/sage/bin/sage",
+        "/mnt/d/dev/RSMCA/experimental/scripts/audit_m1_interleaved_list_threshold_interval_sharpening.sage"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 7.835,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_interval_sharpening.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_interval_sharpening.sage.stderr.txt",
+      "stdout_tail": "PASS\nSage reconstructed GF(17^32), subgroup order 512, and a=292 witnesses\nLambda_mu(C,292) >= 7 for the standard interleaved-list predicate\nMCA counted: false\nwitness_descriptors_hash: 408bfcb1d516345d5140a98b48a09fb0d61cf52635e97c9b18ed9530ce5e07b0\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "sage__experimental_scripts_audit_m1_interleaved_list_threshold_upward_push.sage",
+      "kind": "sage-wsl-script",
+      "source": "experimental/scripts/audit_m1_interleaved_list_threshold_upward_push.sage (WSL Sage: Ubuntu)",
+      "command": [
+        "C:\\Windows\\system32\\wsl.EXE",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/d/dev/RSMCA",
+        "--exec",
+        "/home/kw/micromamba-root/envs/sage/bin/sage",
+        "/mnt/d/dev/RSMCA/experimental/scripts/audit_m1_interleaved_list_threshold_upward_push.sage"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 57.278,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_upward_push.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_threshold_upward_push.sage.stderr.txt",
+      "stdout_tail": "PASS\nSage reconstructed GF(17^32), subgroup order 512, and quotient x -> x^32\nLambda_mu(C,320) >= 28 by quotient-fiber pigeonhole\nVerified 32 explicit witnesses at agreement 320\nMCA counted: false\nwitness_descriptors_hash: cefa2dba271469d366d874cbb7294f255bdd242d56f1afe9ff7de81a4e34b980\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "sage__experimental_scripts_audit_m1_interleaved_list_hybrid_quotient_residual.sage",
+      "kind": "sage-wsl-script",
+      "source": "experimental/scripts/audit_m1_interleaved_list_hybrid_quotient_residual.sage (WSL Sage: Ubuntu)",
+      "command": [
+        "C:\\Windows\\system32\\wsl.EXE",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/d/dev/RSMCA",
+        "--exec",
+        "/home/kw/micromamba-root/envs/sage/bin/sage",
+        "/mnt/d/dev/RSMCA/experimental/scripts/audit_m1_interleaved_list_hybrid_quotient_residual.sage"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 8.235,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_hybrid_quotient_residual.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_audit_m1_interleaved_list_hybrid_quotient_residual.sage.stderr.txt",
+      "stdout_tail": "PASS\nSage reconstructed GF(17^32), H, seven codewords, and the received word\nhybrid quotient-residual row clears at a=326\nagreement_counts: [327, 327, 327, 326, 326, 326, 327]\nwitness_descriptors_hash: 8bc6bb1c9a07c12140abfb8421c2dc312186bd9d0678b96fe4fdc92ce7109f30\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "sage__experimental_scripts_locator_sage_locator_fiber_crosscheck_sage_locator_fiber_crosscheck.sage",
+      "kind": "sage-wsl-script",
+      "source": "experimental/scripts/locator/sage_locator_fiber_crosscheck/sage_locator_fiber_crosscheck.sage (WSL Sage: Ubuntu)",
+      "command": [
+        "C:\\Windows\\system32\\wsl.EXE",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/d/dev/RSMCA",
+        "--exec",
+        "/home/kw/micromamba-root/envs/sage/bin/sage",
+        "-python",
+        "/mnt/d/dev/RSMCA/experimental/scripts/locator/sage_locator_fiber_crosscheck/sage_locator_fiber_crosscheck.sage",
+        "--preset",
+        "selected",
+        "--max-witnesses",
+        "0"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 3.273,
+      "stdout_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_locator_sage_locator_fiber_crosscheck_sage_locator_fiber_crosscheck.sage.stdout.txt",
+      "stderr_path": "D:\\dev\\rsmca-lab\\replay-sage-wsl\\logs\\sage__experimental_scripts_locator_sage_locator_fiber_crosscheck_sage_locator_fiber_crosscheck.sage.stderr.txt",
+      "stdout_tail": "Sage locator-fiber cross-check (EXPERIMENTAL)\npreset=selected cases=3\nclaim: optional Sage finite-field locator-fiber cross-check only; no RS/list-decoding/MCA safety assertion; no theorem status upgrade\ncase: p=5 n=4 k=2 a=3 template=monomial fiber=0/4\ncase: p=5 n=4 k=2 a=3 template=zero fiber=4/4\ncase: p=17 n=16 k=8 a=9 template=monomial fiber=0/11440\n",
+      "stderr_tail": "",
+      "note": ""
+    }
+  ]
+}

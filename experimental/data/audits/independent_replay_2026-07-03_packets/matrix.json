@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "repo": "C:\\dev\\research\\RSMCA",
+    "out": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets",
+    "python": "C:\\Program Files\\Python313\\python.exe",
+    "timeout": 300,
+    "task_count": 7,
+    "include_write": false,
+    "only": "packets",
+    "sage_mode": "auto",
+    "wsl_distro": "Ubuntu",
+    "wsl_sage": "sage",
+    "cwd_policy": "repo root unless a README command script is local to its README directory",
+    "output_policy": "README --write/--output/--json-out/--md-out targets are redirected under the lab output directory"
+  },
+  "results": [
+    {
+      "task_id": "aperiodic_packet__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_f17_n16_k8_a13_regular_minor_certificate.json",
+      "kind": "aperiodic-packet",
+      "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/f17_n16_k8_a13_regular_minor_certificate.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/f17_n16_k8_a13_regular_minor_certificate.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.619,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_aperiodic-hankel-regular-minor-to__fd012df23eec.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_aperiodic-hankel-regular-minor-to__fd012df23eec.stderr.txt",
+      "stdout_tail": "OK experimental\\data\\certificates\\aperiodic-hankel-regular-minor-toy\\f17_n16_k8_a13_regular_minor_certificate.json: schema and arithmetic checks passed\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "aperiodic_packet__experimental_data_certificates_aperiodic-hankel-regular-minor-toy_invalid_bad_j_packet.json",
+      "kind": "aperiodic-packet",
+      "source": "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/invalid_bad_j_packet.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "--expect-fail",
+        "experimental/data/certificates/aperiodic-hankel-regular-minor-toy/invalid_bad_j_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.833,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_aperiodic-hankel-regular-minor-to__80fbb818f88f.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_aperiodic-hankel-regular-minor-to__80fbb818f88f.stderr.txt",
+      "stdout_tail": "EXPECTED-FAIL experimental\\data\\certificates\\aperiodic-hankel-regular-minor-toy\\invalid_bad_j_packet.json: A=13: j=2 but n-A=3\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "aperiodic_packet__experimental_data_certificates_hankel-f17-32-m5-underdetermined-a384_f17_32_n512_k256_a384_m5_residual_packet.json",
+      "kind": "aperiodic-packet",
+      "source": "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_m5_residual_packet.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_m5_residual_packet.json"
+      ],
+      "classification": "FAIL",
+      "exit_code": 1,
+      "runtime_s": 1.648,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_hankel-f17-32-m5-underdetermined__38b8fbb3c305.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_hankel-f17-32-m5-underdetermined__38b8fbb3c305.stderr.txt",
+      "stdout_tail": "FAIL experimental\\data\\certificates\\hankel-f17-32-m5-underdetermined-a384\\f17_32_n512_k256_a384_m5_residual_packet.json: root_union_table_ref: referenced file does not exist: not_emitted:top_chart_residual_unknown\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "aperiodic_packet__experimental_data_certificates_hankel-smoke-f17-506-507_f17_32_n512_k256_a506_507_hankel_smoke_packet.json",
+      "kind": "aperiodic-packet",
+      "source": "experimental/data/certificates/hankel-smoke-f17-506-507/f17_32_n512_k256_a506_507_hankel_smoke_packet.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "experimental/data/certificates/hankel-smoke-f17-506-507/f17_32_n512_k256_a506_507_hankel_smoke_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.945,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_hankel-smoke-f17-506-507_f17_32_n__93b83a776c65.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_hankel-smoke-f17-506-507_f17_32_n__93b83a776c65.stderr.txt",
+      "stdout_tail": "OK experimental\\data\\certificates\\hankel-smoke-f17-506-507\\f17_32_n512_k256_a506_507_hankel_smoke_packet.json: schema and arithmetic checks passed\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "aperiodic_packet__experimental_data_certificates_m5-stratification-partition_invalid_missing_removed_ledger_ref_packet.json",
+      "kind": "aperiodic-packet",
+      "source": "experimental/data/certificates/m5-stratification-partition/invalid_missing_removed_ledger_ref_packet.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "--expect-fail",
+        "experimental/data/certificates/m5-stratification-partition/invalid_missing_removed_ledger_ref_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 2.045,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_m5-stratification-partition_inval__90cc983741d1.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_m5-stratification-partition_inval__90cc983741d1.stderr.txt",
+      "stdout_tail": "EXPECTED-FAIL experimental\\data\\certificates\\m5-stratification-partition\\invalid_missing_removed_ledger_ref_packet.json: removed_ledgers[0].certificate_ref: referenced file does not exist: experimental/data/certificates/m5-stratification-partition/does-not-exist.json\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "aperiodic_packet__experimental_data_certificates_m5-stratification-partition_invalid_wrong_leaf_stratified_packet.json",
+      "kind": "aperiodic-packet",
+      "source": "experimental/data/certificates/m5-stratification-partition/invalid_wrong_leaf_stratified_packet.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "--expect-fail",
+        "experimental/data/certificates/m5-stratification-partition/invalid_wrong_leaf_stratified_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.997,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_m5-stratification-partition_inval__152cac534585.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_m5-stratification-partition_inval__152cac534585.stderr.txt",
+      "stdout_tail": "EXPECTED-FAIL experimental\\data\\certificates\\m5-stratification-partition\\invalid_wrong_leaf_stratified_packet.json: stratification candidate 3: leaf_id 'T3' should be 'T2'\n",
+      "stderr_tail": "",
+      "note": ""
+    },
+    {
+      "task_id": "aperiodic_packet__experimental_data_certificates_m5-stratification-partition_valid_stratified_packet.json",
+      "kind": "aperiodic-packet",
+      "source": "experimental/data/certificates/m5-stratification-partition/valid_stratified_packet.json",
+      "command": [
+        "C:\\Program Files\\Python313\\python.exe",
+        "scripts/check_aperiodic_eliminant_packet.py",
+        "experimental/data/certificates/m5-stratification-partition/valid_stratified_packet.json"
+      ],
+      "classification": "PASS",
+      "exit_code": 0,
+      "runtime_s": 1.927,
+      "stdout_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_m5-stratification-partition_valid__4346ec59b727.stdout.txt",
+      "stderr_path": "C:\\dev\\research\\RSMCA\\_migration\\lab\\replay-20260703-current\\packets\\logs\\aperiodic_packet__experimental_data_certificates_m5-stratification-partition_valid__4346ec59b727.stderr.txt",
+      "stdout_tail": "OK experimental\\data\\certificates\\m5-stratification-partition\\valid_stratified_packet.json: schema and arithmetic checks passed\n",
+      "stderr_tail": "",
+      "note": ""
+    }
+  ]
+}
