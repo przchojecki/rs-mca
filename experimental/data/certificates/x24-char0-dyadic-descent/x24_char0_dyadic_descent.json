@@ -1,0 +1,108 @@
+{
+  "checks": 13,
+  "node": "active_core_count_bound",
+  "rows": [
+    {
+      "bad_examples": [],
+      "classified_count": 6,
+      "expected_trade_count": 6,
+      "h": 2,
+      "n": 8,
+      "subset_count": 28,
+      "trade_count": 6
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 0,
+      "expected_trade_count": 0,
+      "h": 3,
+      "n": 8,
+      "subset_count": 56,
+      "trade_count": 0
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 1,
+      "expected_trade_count": 1,
+      "h": 4,
+      "n": 8,
+      "subset_count": 70,
+      "trade_count": 1
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 28,
+      "expected_trade_count": 28,
+      "h": 2,
+      "n": 16,
+      "subset_count": 120,
+      "trade_count": 28
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 0,
+      "expected_trade_count": 0,
+      "h": 3,
+      "n": 16,
+      "subset_count": 560,
+      "trade_count": 0
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 6,
+      "expected_trade_count": 6,
+      "h": 4,
+      "n": 16,
+      "subset_count": 1820,
+      "trade_count": 6
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 0,
+      "expected_trade_count": 0,
+      "h": 5,
+      "n": 16,
+      "subset_count": 4368,
+      "trade_count": 0
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 1,
+      "expected_trade_count": 1,
+      "h": 8,
+      "n": 16,
+      "subset_count": 12870,
+      "trade_count": 1
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 120,
+      "expected_trade_count": 120,
+      "h": 2,
+      "n": 32,
+      "subset_count": 496,
+      "trade_count": 120
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 0,
+      "expected_trade_count": 0,
+      "h": 3,
+      "n": 32,
+      "subset_count": 4960,
+      "trade_count": 0
+    },
+    {
+      "bad_examples": [],
+      "classified_count": 28,
+      "expected_trade_count": 28,
+      "h": 4,
+      "n": 32,
+      "subset_count": 35960,
+      "trade_count": 28
+    }
+  ],
+  "status": "PROVED over characteristic zero: dyadic trades are exactly full power-of-two fibers",
+  "task": "X24 characteristic-zero dyadic descent",
+  "theorem": "For n=2^s over C, disjoint h-subsets of mu_n with equal first h-1 elementary symmetric sums exist only when h is a power of two; then both supports are full mu_h fibers."
+}

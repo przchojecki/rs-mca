@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - X24 characteristic-zero dyadic descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/x24_char0_dyadic_descent.md`;
+  `experimental/scripts/verify_x24_char0_dyadic_descent.py`;
+  `experimental/data/certificates/x24-char0-dyadic-descent/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A characteristic-zero classification for dyadic
+  trades on `mu_n`, `n=2^s`: disjoint `h`-subsets with matching first
+  `h-1` elementary symmetric sums exist only for power-of-two `h`, and then
+  both supports are full `mu_h` fibers.
+- **How it is useful:** This is a critical-path input to A3 and the
+  conditional `(A)` closure: after good reduction lifts clean finite-row
+  candidates to characteristic zero, X24 classifies them as paid dyadic
+  pullback fibers and leaves zero primitive post-strip residue.
+- **What to do next:** Let the A3 good-reduction packet cite this theorem as
+  the char-zero classification input; finite-characteristic exceptional cells
+  remain handled by A3/C2 certificate and GCD tests.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
