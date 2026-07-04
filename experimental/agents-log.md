@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - W4 direct-column rewiring
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/w4_direct_column_rewiring.md`;
+  `experimental/scripts/verify_w4_direct_column_rewiring.py`;
+  `experimental/data/certificates/w4-direct-column-rewiring/`;
+  `experimental/data/certificates/qa25-boundary-scale-column/`;
+  `experimental/data/certificates/x10-consumer-tolerance-ladder/`;
+  `experimental/data/certificates/b-writeup-band-reduction/`;
+  `experimental/data/certificates/w4-direct-column-rewiring/prize_dag_w4_fixture.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED_WITH_LIMITS.
+- **What is being added:** A consumer-rewiring theorem: if the final
+  fully stripped primitive PTE residue is supplied in row-wise split-pair
+  currency as `R(row) <= n^3`, then U1's primitive star/PTE column and B
+  exit 3 consume the same direct compiler column.
+- **How it is useful:** This is the budget bridge in the conditional prize
+  path.  It lowers the terminal target from a stronger local anchored `n^2`
+  theorem to the row-wise `n^3` residue estimate that A3/C1/C2 and the
+  active-core work are designed to supply.
+- **What to do next:** Keep the limitation explicit: W4 does not prove the
+  terminal residue estimate; it only proves the existing clean-rate compiler
+  has room once that estimate is delivered.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

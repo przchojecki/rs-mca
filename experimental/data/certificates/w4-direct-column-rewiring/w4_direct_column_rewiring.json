@@ -1,0 +1,102 @@
+{
+  "checks": 29,
+  "conditional_theorem": "If the terminal fully stripped primitive PTE residue is supplied in row-wise split-pair currency as R(row) <= n^3, then U1's primitive column and B exit 3 consume R directly as one compiler column.",
+  "consumers": [
+    {
+      "consumer": "U1 primitive star/PTE column",
+      "new_route": "assign every primitive survivor to the direct compiler column",
+      "old_local_budget": "n^2 post-dictionary star trades per row",
+      "residue_column_id": "post_strip_primitive_pte_split_pair_column"
+    },
+    {
+      "consumer": "B exit 3 primitive moment/PTE residue",
+      "new_route": "assign exit-3 survivors to the same direct compiler column",
+      "old_local_budget": "n^2 non-v1 band trades",
+      "residue_column_id": "post_strip_primitive_pte_split_pair_column"
+    }
+  ],
+  "node": "w4_direct_column_rewiring",
+  "not_claimed": [
+    "This packet does not prove active_core_count_bound.",
+    "This packet does not prove anchored_nontoral_pte_bound.",
+    "The n^3 residue must already include the full paid strip or have tails paid separately."
+  ],
+  "residue_column_id": "post_strip_primitive_pte_split_pair_column",
+  "row_room": [
+    {
+      "B_star": 5316911983139663491615228241121378304,
+      "direct_column_n3": 1073741824,
+      "log2_n3": 30.0,
+      "log2_remaining_room": 121.99999969925801,
+      "max_full_n3_columns_in_remaining_room": 4951759124905310911037023571,
+      "n": 1024,
+      "remaining_room": 5316910874784472364903995421664028027,
+      "repaired_budget_total": 1108355191126711232819457350277,
+      "row": "RowC 1/4"
+    },
+    {
+      "B_star": 5316911983139663491615228241121378304,
+      "direct_column_n3": 1073741824,
+      "log2_n3": 30.0,
+      "log2_remaining_room": 122.0,
+      "max_full_n3_columns_in_remaining_room": 4951760157141521023530591898,
+      "n": 1024,
+      "remaining_room": 5316911983139663409940084665091250447,
+      "repaired_budget_total": 81675143576030127857,
+      "row": "RowC 1/8"
+    },
+    {
+      "B_star": 5316911983139663491615228241121378304,
+      "direct_column_n3": 1073741824,
+      "log2_n3": 30.0,
+      "log2_remaining_room": 121.99999999999744,
+      "max_full_n3_columns_in_remaining_room": 4951760157132721191261270664,
+      "n": 1024,
+      "remaining_room": 5316911983130214661988329623990373924,
+      "repaired_budget_total": 9448829626898617131004380,
+      "row": "RowC 1/16"
+    },
+    {
+      "B_star": 317494674775468773183020924238786383963,
+      "direct_column_n3": 10633823966279326983230456482242756608,
+      "log2_n3": 123.0,
+      "log2_remaining_room": 126.79254883818157,
+      "max_full_n3_columns_in_remaining_room": 13,
+      "n": 2199023255552,
+      "remaining_room": 147353490206644350324622386079947290834,
+      "repaired_budget_total": 170141184568824422858398538158839093129,
+      "row": "prize 1/4"
+    },
+    {
+      "B_star": 317494674775468773183020924238786383963,
+      "direct_column_n3": 10633823966279326983230456482242756608,
+      "log2_n3": 123.0,
+      "log2_remaining_room": 126.79254884903315,
+      "max_full_n3_columns_in_remaining_room": 13,
+      "n": 2199023255552,
+      "remaining_room": 147353491314999541369658475048496606438,
+      "repaired_budget_total": 170141183460469231813362449190289777525,
+      "row": "prize 1/8"
+    },
+    {
+      "B_star": 317494674775468773183020924238786383963,
+      "direct_column_n3": 10633823966279326983230456482242756608,
+      "log2_n3": 123.0,
+      "log2_remaining_room": 126.79254884903307,
+      "max_full_n3_columns_in_remaining_room": 13,
+      "n": 2199023255552,
+      "remaining_room": 147353491314990092621706719865661809275,
+      "repaired_budget_total": 170141183460478680561314204373124574688,
+      "row": "prize 1/16"
+    }
+  ],
+  "sources": {
+    "b_writeup": "experimental/data/certificates/b-writeup-band-reduction/b_writeup_band_reduction.json",
+    "dag": "experimental/data/certificates/w4-direct-column-rewiring/prize_dag_w4_fixture.json",
+    "qa25": "experimental/data/certificates/qa25-boundary-scale-column/qa25_boundary_scale_column.json",
+    "x10": "experimental/data/certificates/x10-consumer-tolerance-ladder/x10_consumer_tolerance_ladder.json"
+  },
+  "status": "PROVED: consumer rewiring only; terminal residue estimate remains open",
+  "tail_currency_condition": "A core-only estimate followed by an uncharged polynomial tail multiplier is not accepted by W4; the terminal proof must deliver the final row-wise post-strip split-pair count.",
+  "task": "W4 direct-column rewiring"
+}

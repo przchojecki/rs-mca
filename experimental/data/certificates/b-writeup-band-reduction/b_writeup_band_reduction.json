@@ -1,0 +1,93 @@
+{
+  "checks": 16,
+  "named_residue": "anchored_nontoral_pte_bound with defect/tails wrapper",
+  "node": "u1_beta_band_trade_reduction",
+  "pb_aggregate_exit_counts": {
+    "exit1_minimal_subtrade": 15,
+    "exit2_v1_pullback": 79,
+    "exit3_primitive_moment_pte": 922
+  },
+  "pb_total_canonical_band_trade_orbits": 1016,
+  "row_summaries": [
+    {
+      "canonical_band_trade_orbits": 0,
+      "exit_counts": {},
+      "large_window_moment_residuals_h_gt_2t_plus_4": 0,
+      "row": "F17_mu8_A4_t3"
+    },
+    {
+      "canonical_band_trade_orbits": 1,
+      "exit_counts": {
+        "exit2_v1_pullback": 1
+      },
+      "large_window_moment_residuals_h_gt_2t_plus_4": 0,
+      "row": "F13_mu12_A5_t3"
+    },
+    {
+      "canonical_band_trade_orbits": 1,
+      "exit_counts": {
+        "exit2_v1_pullback": 1
+      },
+      "large_window_moment_residuals_h_gt_2t_plus_4": 0,
+      "row": "F13_mu12_A6_t3"
+    },
+    {
+      "canonical_band_trade_orbits": 28,
+      "exit_counts": {
+        "exit2_v1_pullback": 4,
+        "exit3_primitive_moment_pte": 24
+      },
+      "large_window_moment_residuals_h_gt_2t_plus_4": 0,
+      "row": "F17_mu16_A6_t3"
+    },
+    {
+      "canonical_band_trade_orbits": 28,
+      "exit_counts": {
+        "exit2_v1_pullback": 4,
+        "exit3_primitive_moment_pte": 24
+      },
+      "large_window_moment_residuals_h_gt_2t_plus_4": 0,
+      "row": "F17_mu16_A8_t3"
+    },
+    {
+      "canonical_band_trade_orbits": 2,
+      "exit_counts": {
+        "exit2_v1_pullback": 2
+      },
+      "large_window_moment_residuals_h_gt_2t_plus_4": 0,
+      "row": "F97_mu16_A8_t3"
+    },
+    {
+      "canonical_band_trade_orbits": 146,
+      "exit_counts": {
+        "exit1_minimal_subtrade": 4,
+        "exit2_v1_pullback": 14,
+        "exit3_primitive_moment_pte": 128
+      },
+      "large_window_moment_residuals_h_gt_2t_plus_4": 0,
+      "row": "F41_mu20_A8_t3"
+    },
+    {
+      "canonical_band_trade_orbits": 146,
+      "exit_counts": {
+        "exit1_minimal_subtrade": 4,
+        "exit2_v1_pullback": 14,
+        "exit3_primitive_moment_pte": 128
+      },
+      "large_window_moment_residuals_h_gt_2t_plus_4": 0,
+      "row": "F41_mu20_A10_t3"
+    },
+    {
+      "canonical_band_trade_orbits": 664,
+      "exit_counts": {
+        "exit1_minimal_subtrade": 7,
+        "exit2_v1_pullback": 39,
+        "exit3_primitive_moment_pte": 618
+      },
+      "large_window_moment_residuals_h_gt_2t_plus_4": 2,
+      "row": "F97_mu24_A8_t3"
+    }
+  ],
+  "status": "CONDITIONAL: exits 1/2 reduce formally; exit 3 is the X-10 anchored non-toral PTE defect/tails bound",
+  "task": "B-WRITEUP band-trade reduction"
+}
