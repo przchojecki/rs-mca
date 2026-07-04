@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - W-B Laurent-Ritt toral stabilizer packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/w_b_laurent_ritt_toral_stabilizer.md`;
+  `experimental/scripts/verify_w_b_laurent_ritt_toral_stabilizer.py`;
+  `experimental/data/certificates/w-b-laurent-ritt-toral-stabilizer/w_b_laurent_ritt_toral_stabilizer.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A self-contained proof that tame Laurent
+  polynomial maps with non-diagonal toral fiber-product components are exactly
+  cyclic Laurent pullbacks or dihedral/Chebyshev pullbacks, with the cyclic
+  outer-Laurent and general outer-rational wording corrections recorded.
+- **How it is useful:** This closes the toral stabilizer input used by the U1
+  pullback dictionary and later split-pair classifiers.
+- **What to do next:** Use this theorem as the toral branch only; bounded-tail
+  robustness and non-toral incidence estimates remain separate packets.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

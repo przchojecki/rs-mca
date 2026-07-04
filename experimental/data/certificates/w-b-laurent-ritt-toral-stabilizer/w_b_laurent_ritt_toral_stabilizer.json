@@ -1,0 +1,385 @@
+{
+  "checks": 210,
+  "claim": "A tame Laurent polynomial with a non-diagonal toral fiber-product component is cyclic F(x^m) with F Laurent or dihedral F(x^m+alpha*x^-m) with F polynomial; converses hold.",
+  "identity_checks": {
+    "cyclic": {
+      "failures": [],
+      "field": "F97",
+      "m": 4,
+      "outer": "F(z)=z+z^-2"
+    },
+    "dihedral": {
+      "failures": [],
+      "field": "F97",
+      "m": 4,
+      "outer": "F(z)=z^3+2z+5, z=x^m+x^-m"
+    },
+    "outer_rational_correction": {
+      "checked_points": 100,
+      "denominator_is_not_laurent_monomial": true,
+      "failures": [],
+      "field": "F101",
+      "outer": "R(z)=z+1/(z^2+1)"
+    }
+  },
+  "node": "t_laurent_ritt_toral_stabilizer",
+  "polynomial_toy_rows": [
+    {
+      "dickson_even_line_hits": 9,
+      "dickson_odd_line_hits": 0,
+      "inverse_toral_checks": 34,
+      "max_degree": 20,
+      "n": 32,
+      "orders": [
+        {
+          "affine_symmetries": 97,
+          "degree_hits": [
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "nontrivial_a_values": 1,
+          "normal_form_support_patterns_per_center": 1022,
+          "order": 2
+        },
+        {
+          "affine_symmetries": 194,
+          "degree_hits": [
+            6,
+            9,
+            12,
+            15,
+            18
+          ],
+          "nontrivial_a_values": 2,
+          "normal_form_support_patterns_per_center": 62,
+          "order": 3
+        },
+        {
+          "affine_symmetries": 194,
+          "degree_hits": [
+            4,
+            8,
+            12,
+            16,
+            20
+          ],
+          "nontrivial_a_values": 2,
+          "normal_form_support_patterns_per_center": 31,
+          "order": 4
+        },
+        {
+          "affine_symmetries": 194,
+          "degree_hits": [
+            6,
+            12,
+            18
+          ],
+          "nontrivial_a_values": 2,
+          "normal_form_support_patterns_per_center": 7,
+          "order": 6
+        },
+        {
+          "affine_symmetries": 388,
+          "degree_hits": [
+            8,
+            16
+          ],
+          "nontrivial_a_values": 4,
+          "normal_form_support_patterns_per_center": 3,
+          "order": 8
+        },
+        {
+          "affine_symmetries": 388,
+          "degree_hits": [
+            12
+          ],
+          "nontrivial_a_values": 4,
+          "normal_form_support_patterns_per_center": 1,
+          "order": 12
+        },
+        {
+          "affine_symmetries": 776,
+          "degree_hits": [
+            16
+          ],
+          "nontrivial_a_values": 8,
+          "normal_form_support_patterns_per_center": 1,
+          "order": 16
+        },
+        {
+          "affine_symmetries": 776,
+          "degree_hits": [],
+          "nontrivial_a_values": 8,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 24
+        },
+        {
+          "affine_symmetries": 1552,
+          "degree_hits": [],
+          "nontrivial_a_values": 16,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 32
+        },
+        {
+          "affine_symmetries": 1552,
+          "degree_hits": [],
+          "nontrivial_a_values": 16,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 48
+        },
+        {
+          "affine_symmetries": 3104,
+          "degree_hits": [],
+          "nontrivial_a_values": 32,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 96
+        }
+      ],
+      "p": 97,
+      "row": "F97_mu32_t3",
+      "t": 3,
+      "translation_checks": 17,
+      "unclassified_cases": 0
+    },
+    {
+      "dickson_even_line_hits": 9,
+      "dickson_odd_line_hits": 0,
+      "inverse_toral_checks": 34,
+      "max_degree": 20,
+      "n": 64,
+      "orders": [
+        {
+          "affine_symmetries": 193,
+          "degree_hits": [
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "nontrivial_a_values": 1,
+          "normal_form_support_patterns_per_center": 1022,
+          "order": 2
+        },
+        {
+          "affine_symmetries": 386,
+          "degree_hits": [
+            6,
+            9,
+            12,
+            15,
+            18
+          ],
+          "nontrivial_a_values": 2,
+          "normal_form_support_patterns_per_center": 62,
+          "order": 3
+        },
+        {
+          "affine_symmetries": 386,
+          "degree_hits": [
+            4,
+            8,
+            12,
+            16,
+            20
+          ],
+          "nontrivial_a_values": 2,
+          "normal_form_support_patterns_per_center": 31,
+          "order": 4
+        },
+        {
+          "affine_symmetries": 386,
+          "degree_hits": [
+            6,
+            12,
+            18
+          ],
+          "nontrivial_a_values": 2,
+          "normal_form_support_patterns_per_center": 7,
+          "order": 6
+        },
+        {
+          "affine_symmetries": 772,
+          "degree_hits": [
+            8,
+            16
+          ],
+          "nontrivial_a_values": 4,
+          "normal_form_support_patterns_per_center": 3,
+          "order": 8
+        },
+        {
+          "affine_symmetries": 772,
+          "degree_hits": [
+            12
+          ],
+          "nontrivial_a_values": 4,
+          "normal_form_support_patterns_per_center": 1,
+          "order": 12
+        },
+        {
+          "affine_symmetries": 1544,
+          "degree_hits": [
+            16
+          ],
+          "nontrivial_a_values": 8,
+          "normal_form_support_patterns_per_center": 1,
+          "order": 16
+        },
+        {
+          "affine_symmetries": 1544,
+          "degree_hits": [],
+          "nontrivial_a_values": 8,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 24
+        },
+        {
+          "affine_symmetries": 3088,
+          "degree_hits": [],
+          "nontrivial_a_values": 16,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 32
+        },
+        {
+          "affine_symmetries": 3088,
+          "degree_hits": [],
+          "nontrivial_a_values": 16,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 48
+        },
+        {
+          "affine_symmetries": 6176,
+          "degree_hits": [],
+          "nontrivial_a_values": 32,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 64
+        },
+        {
+          "affine_symmetries": 6176,
+          "degree_hits": [],
+          "nontrivial_a_values": 32,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 96
+        },
+        {
+          "affine_symmetries": 12352,
+          "degree_hits": [],
+          "nontrivial_a_values": 64,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 192
+        }
+      ],
+      "p": 193,
+      "row": "F193_mu64_t3",
+      "t": 3,
+      "translation_checks": 17,
+      "unclassified_cases": 0
+    },
+    {
+      "dickson_even_line_hits": 8,
+      "dickson_odd_line_hits": 0,
+      "inverse_toral_checks": 30,
+      "max_degree": 20,
+      "n": 256,
+      "orders": [
+        {
+          "affine_symmetries": 257,
+          "degree_hits": [
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20
+          ],
+          "nontrivial_a_values": 1,
+          "normal_form_support_patterns_per_center": 1020,
+          "order": 2
+        },
+        {
+          "affine_symmetries": 514,
+          "degree_hits": [
+            8,
+            12,
+            16,
+            20
+          ],
+          "nontrivial_a_values": 2,
+          "normal_form_support_patterns_per_center": 30,
+          "order": 4
+        },
+        {
+          "affine_symmetries": 1028,
+          "degree_hits": [
+            8,
+            16
+          ],
+          "nontrivial_a_values": 4,
+          "normal_form_support_patterns_per_center": 3,
+          "order": 8
+        },
+        {
+          "affine_symmetries": 2056,
+          "degree_hits": [
+            16
+          ],
+          "nontrivial_a_values": 8,
+          "normal_form_support_patterns_per_center": 1,
+          "order": 16
+        },
+        {
+          "affine_symmetries": 4112,
+          "degree_hits": [],
+          "nontrivial_a_values": 16,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 32
+        },
+        {
+          "affine_symmetries": 8224,
+          "degree_hits": [],
+          "nontrivial_a_values": 32,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 64
+        },
+        {
+          "affine_symmetries": 16448,
+          "degree_hits": [],
+          "nontrivial_a_values": 64,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 128
+        },
+        {
+          "affine_symmetries": 32896,
+          "degree_hits": [],
+          "nontrivial_a_values": 128,
+          "normal_form_support_patterns_per_center": 0,
+          "order": 256
+        }
+      ],
+      "p": 257,
+      "row": "F257_mu256_t5",
+      "t": 5,
+      "translation_checks": 15,
+      "unclassified_cases": 0
+    }
+  ],
+  "status": "PROVED",
+  "task": "W-B tame Laurent-Ritt / toral-stabilizer packet",
+  "wording_corrections": {
+    "cyclic_outer_for_laurent": "Laurent, not necessarily polynomial",
+    "outer_for_general_rational": "rational, not necessarily Laurent"
+  }
+}
