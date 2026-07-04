@@ -30,6 +30,74 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+## E16 N_list petal-growth packet (`l1_petal_growth_nlist_e16`)
+
+- **Agent/model:** Drafter-E (Wave 2 packaging pass), acting on the wave_t1
+  `T4`/`D` agent's measurement.
+- **Date:** 2026-07-04.
+- **DAG targets:** `pma_wide_residual` (`L_prim` stratum, axis-orthogonal
+  evidence input), roadmap order `E16` / `Q2.9` (steering evidence only --
+  the order's literal fixed-excess-table ask is fulfilled by the sibling
+  `l1_petal_fixed_excess_compiler` packet, not this one), `l1_petal_fixed_excess_compiler`
+  (companion, literal bounds-half closure).
+- **Status:** NUMERIC measurement + PROVED lemma (orbit correction, and its
+  new exact-orbit-size tightening) + explicit lambda-freeness scope statement.
+  Does not close `pma_wide_residual`; steering evidence only.
+
+**What was done.** Audited the wave_t1 `D` agent's `N_list(7,p)` census
+(`D_nlist_note.md`/`D_nlist.json`/`D_lib3.py`/witness files/capture-rate
+files) against its own stated method and caps; ported a self-contained
+verifier (no dependency on the wave_t1 scratch path) that recomputes
+`N_list(7,p)` from scratch at `p=71,113,127` (full/uncapped 2-seed
+construction, ~20s), reproduces the log-log fit arithmetic (slopes +0.768
+all-6 / `-0.071` excluding `p=71`) against the stored 6-prime table, cheaply
+cross-checks all 6 stored entries against the note's own c-histogram data,
+reruns a reduced/seeded capture-rate replica, re-derives three headline
+narrative figures directly from the table, and — new for this packet —
+from-scratch reconstructs the orbit-correction lemma's counting claim on two
+concrete `p=71` witnesses (one on the unique periodic config, one generic),
+which led to independently proving a tightened, exact (not just "generic")
+version of the orbit-correction weight (confirmed by a direct scan this
+session: 0 of 1092 raw witnesses across the full 6-prime census are the one
+excluded case, monomial `Γ`; the shipped verifier independently reproduces
+0/673 of that scan from scratch, at p=71,113,127 -- the p=197,211,337
+remainder is session-only, flagged as such). Added the PI-mandated
+lambda-freeness scope statement (this packet's `N_list` is a spectrum-side
+`Γ`-count per the P2 frontier-theory note's own "I certify the spectrum
+side; V1 certifies the scalar side" split; promotion to a codeword count is
+conditional and not discharged here -- the 3 `ℓ∈{11,13}` witnesses where it
+*was* discharged live in the sibling `l1_prime_ell_frontier_corrected`
+packet's gate vi, not the wave_t1 routes B/C notes) and the `dim Z`
+cross-packet convention sentence. The verifier includes a tamper self-test
+(deliberately corrupted table/histogram/expected-`c`/headline-number values
+must be, and are, rejected) before any real gate is trusted. **Revision (this
+pass):** fixed a misattributed lambda-freeness citation, softened an
+overclaimed "fulfills E16" framing to "axis-orthogonal steering evidence",
+corrected three drifted narrative numbers (trivial-bound orders of
+magnitude, prime-range ratio, one pairwise exponent), added machine gates for
+all of the above plus the c-histogram cross-check and monomial-scan
+extension, and fixed two mis-cited section pointers -- per an adversarial
+panel review of the prior draft.
+
+**Headline finding carried forward.** `N_list(7,p)` at `(t,ℓ,m)=(4,7,5)`
+(`m=t+1`) is flat/bounded (`O(1)`–`O(p^{0.1})`) across `p=71..337`, ~32
+orders of magnitude below the trivial `O(p^{14})` bound; documented lower
+bound (~1.6–1.7× undercount vs. config-fixed profile-B/C/D search).
+Capture-rate 0/201,600 confirms solve-don't-sample is required, not just
+efficient. Combined with E4's (petal-count-axis) `NO_SUPERPOLY_SIGNAL`
+toy-window result, this is NUMERIC steering (not proof) toward attacking
+`pma_wide_residual`'s `L_prim` stratum via descent/correlated-target rather
+than expecting a genuine amplification mechanism.
+
+**Consumers:** `pma_wide_residual` (`L_prim` stratum — steering evidence, not
+closure), `E16`/`Q2.9` (axis-orthogonal steering evidence; the order's literal
+fixed-excess-table ask is fulfilled by `l1_petal_fixed_excess_compiler`
+alone, not this packet), `l1_petal_fixed_excess_compiler` (sibling packet,
+cited as this note's companion "bounds half").
+
+**Files:** `note_l1_petal_growth_nlist_e16.md`,
+`verify_l1_petal_growth_nlist_e16.py` + `.out`, this log entry, `pr_body.md`.
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.
