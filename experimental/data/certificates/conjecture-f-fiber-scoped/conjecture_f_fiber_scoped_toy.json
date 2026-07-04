@@ -1,0 +1,591 @@
+{
+  "all_pass": true,
+  "cases": [
+    [
+      8,
+      4,
+      1
+    ],
+    [
+      8,
+      4,
+      2
+    ],
+    [
+      12,
+      6,
+      2
+    ],
+    [
+      12,
+      6,
+      4
+    ],
+    [
+      16,
+      8,
+      2
+    ],
+    [
+      16,
+      8,
+      5
+    ],
+    [
+      16,
+      8,
+      6
+    ]
+  ],
+  "checks": [
+    {
+      "name": "A fiber bound  #E_p <= C(n,d)/C(j,d)",
+      "rows": [
+        {
+          "H": "mu",
+          "bound": "14",
+          "d": 3,
+          "j": 4,
+          "max_fiber": 6,
+          "n": 8,
+          "ok": true,
+          "sigma": 1
+        },
+        {
+          "H": "lin",
+          "bound": "14",
+          "d": 3,
+          "j": 4,
+          "max_fiber": 8,
+          "n": 8,
+          "ok": true,
+          "sigma": 1
+        },
+        {
+          "H": "mu",
+          "bound": "14/3",
+          "d": 2,
+          "j": 4,
+          "max_fiber": 2,
+          "n": 8,
+          "ok": true,
+          "sigma": 2
+        },
+        {
+          "H": "lin",
+          "bound": "14/3",
+          "d": 2,
+          "j": 4,
+          "max_fiber": 2,
+          "n": 8,
+          "ok": true,
+          "sigma": 2
+        },
+        {
+          "H": "mu",
+          "bound": "33",
+          "d": 4,
+          "j": 6,
+          "max_fiber": 6,
+          "n": 12,
+          "ok": true,
+          "sigma": 2
+        },
+        {
+          "H": "lin",
+          "bound": "33",
+          "d": 4,
+          "j": 6,
+          "max_fiber": 5,
+          "n": 12,
+          "ok": true,
+          "sigma": 2
+        },
+        {
+          "H": "mu",
+          "bound": "22/5",
+          "d": 2,
+          "j": 6,
+          "max_fiber": 2,
+          "n": 12,
+          "ok": true,
+          "sigma": 4
+        },
+        {
+          "H": "lin",
+          "bound": "22/5",
+          "d": 2,
+          "j": 6,
+          "max_fiber": 1,
+          "n": 12,
+          "ok": true,
+          "sigma": 4
+        },
+        {
+          "H": "mu",
+          "bound": "286",
+          "d": 6,
+          "j": 8,
+          "max_fiber": 8,
+          "n": 16,
+          "ok": true,
+          "sigma": 2
+        },
+        {
+          "H": "lin",
+          "bound": "286",
+          "d": 6,
+          "j": 8,
+          "max_fiber": 22,
+          "n": 16,
+          "ok": true,
+          "sigma": 2
+        },
+        {
+          "H": "mu",
+          "bound": "10",
+          "d": 3,
+          "j": 8,
+          "max_fiber": 2,
+          "n": 16,
+          "ok": true,
+          "sigma": 5
+        },
+        {
+          "H": "lin",
+          "bound": "10",
+          "d": 3,
+          "j": 8,
+          "max_fiber": 1,
+          "n": 16,
+          "ok": true,
+          "sigma": 5
+        },
+        {
+          "H": "mu",
+          "bound": "30/7",
+          "d": 2,
+          "j": 8,
+          "max_fiber": 2,
+          "n": 16,
+          "ok": true,
+          "sigma": 6
+        },
+        {
+          "H": "lin",
+          "bound": "30/7",
+          "d": 2,
+          "j": 8,
+          "max_fiber": 1,
+          "n": 16,
+          "ok": true,
+          "sigma": 6
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "B spacing (MDS): shared roots <= d-1",
+      "rows": [
+        {
+          "H": "mu",
+          "d": 3,
+          "j": 4,
+          "limit": 2,
+          "max_shared_roots": 2,
+          "n": 8,
+          "ok": true
+        },
+        {
+          "H": "lin",
+          "d": 3,
+          "j": 4,
+          "limit": 2,
+          "max_shared_roots": 2,
+          "n": 8,
+          "ok": true
+        },
+        {
+          "H": "mu",
+          "d": 2,
+          "j": 4,
+          "limit": 1,
+          "max_shared_roots": 0,
+          "n": 8,
+          "ok": true
+        },
+        {
+          "H": "lin",
+          "d": 2,
+          "j": 4,
+          "limit": 1,
+          "max_shared_roots": 1,
+          "n": 8,
+          "ok": true
+        },
+        {
+          "H": "mu",
+          "d": 4,
+          "j": 6,
+          "limit": 3,
+          "max_shared_roots": 3,
+          "n": 12,
+          "ok": true
+        },
+        {
+          "H": "lin",
+          "d": 4,
+          "j": 6,
+          "limit": 3,
+          "max_shared_roots": 3,
+          "n": 12,
+          "ok": true
+        },
+        {
+          "H": "mu",
+          "d": 2,
+          "j": 6,
+          "limit": 1,
+          "max_shared_roots": 0,
+          "n": 12,
+          "ok": true
+        },
+        {
+          "H": "lin",
+          "d": 2,
+          "j": 6,
+          "limit": 1,
+          "max_shared_roots": 0,
+          "n": 12,
+          "ok": true
+        },
+        {
+          "H": "mu",
+          "d": 6,
+          "j": 8,
+          "limit": 5,
+          "max_shared_roots": 5,
+          "n": 16,
+          "ok": true
+        },
+        {
+          "H": "lin",
+          "d": 6,
+          "j": 8,
+          "limit": 5,
+          "max_shared_roots": 5,
+          "n": 16,
+          "ok": true
+        },
+        {
+          "H": "mu",
+          "d": 3,
+          "j": 8,
+          "limit": 2,
+          "max_shared_roots": 0,
+          "n": 16,
+          "ok": true
+        },
+        {
+          "H": "lin",
+          "d": 3,
+          "j": 8,
+          "limit": 2,
+          "max_shared_roots": 0,
+          "n": 16,
+          "ok": true
+        },
+        {
+          "H": "mu",
+          "d": 2,
+          "j": 8,
+          "limit": 1,
+          "max_shared_roots": 0,
+          "n": 16,
+          "ok": true
+        },
+        {
+          "H": "lin",
+          "d": 2,
+          "j": 8,
+          "limit": 1,
+          "max_shared_roots": 0,
+          "n": 16,
+          "ok": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "C Vandermonde/Singleton: dual distance > d",
+      "rows": [
+        {
+          "d": 2,
+          "deg<d_roots<=d-1": true,
+          "n": 8,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 3,
+          "deg<d_roots<=d-1": true,
+          "n": 8,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 5,
+          "deg<d_roots<=d-1": true,
+          "n": 8,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 6,
+          "deg<d_roots<=d-1": true,
+          "n": 8,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 2,
+          "deg<d_roots<=d-1": true,
+          "n": 12,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 3,
+          "deg<d_roots<=d-1": true,
+          "n": 12,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 5,
+          "deg<d_roots<=d-1": true,
+          "n": 12,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 6,
+          "deg<d_roots<=d-1": true,
+          "n": 12,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 2,
+          "deg<d_roots<=d-1": true,
+          "n": 16,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 3,
+          "deg<d_roots<=d-1": true,
+          "n": 16,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 5,
+          "deg<d_roots<=d-1": true,
+          "n": 16,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        },
+        {
+          "d": 6,
+          "deg<d_roots<=d-1": true,
+          "n": 16,
+          "ok": true,
+          "vandermonde_nonsingular": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "D r-wise moment: per r-subset <= C(n-r,d-r)",
+      "rows": [
+        {
+          "bound_C(n-r,d-r)": 1,
+          "d": 6,
+          "fiber": 8,
+          "j": 8,
+          "max_per_Tsubset": 1,
+          "n": 16,
+          "ok": true,
+          "r": 6
+        },
+        {
+          "bound_C(n-r,d-r)": 11,
+          "d": 6,
+          "fiber": 8,
+          "j": 8,
+          "max_per_Tsubset": 2,
+          "n": 16,
+          "ok": true,
+          "r": 5
+        },
+        {
+          "bound_C(n-r,d-r)": 66,
+          "d": 6,
+          "fiber": 8,
+          "j": 8,
+          "max_per_Tsubset": 2,
+          "n": 16,
+          "ok": true,
+          "r": 4
+        },
+        {
+          "bound_C(n-r,d-r)": 1,
+          "d": 4,
+          "fiber": 6,
+          "j": 6,
+          "max_per_Tsubset": 1,
+          "n": 12,
+          "ok": true,
+          "r": 4
+        },
+        {
+          "bound_C(n-r,d-r)": 9,
+          "d": 4,
+          "fiber": 6,
+          "j": 6,
+          "max_per_Tsubset": 3,
+          "n": 12,
+          "ok": true,
+          "r": 3
+        },
+        {
+          "bound_C(n-r,d-r)": 45,
+          "d": 4,
+          "fiber": 6,
+          "j": 6,
+          "max_per_Tsubset": 3,
+          "n": 12,
+          "ok": true,
+          "r": 2
+        },
+        {
+          "bound_C(n-r,d-r)": 1,
+          "d": 3,
+          "fiber": 6,
+          "j": 4,
+          "max_per_Tsubset": 1,
+          "n": 8,
+          "ok": true,
+          "r": 3
+        },
+        {
+          "bound_C(n-r,d-r)": 6,
+          "d": 3,
+          "fiber": 6,
+          "j": 4,
+          "max_per_Tsubset": 3,
+          "n": 8,
+          "ok": true,
+          "r": 2
+        },
+        {
+          "bound_C(n-r,d-r)": 21,
+          "d": 3,
+          "fiber": 6,
+          "j": 4,
+          "max_per_Tsubset": 3,
+          "n": 8,
+          "ok": true,
+          "r": 1
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "E corollary B: ratio <= (2/theta)^d (d<=j/2)",
+      "rows": [
+        {
+          "(2n/j)^d": "16",
+          "d": 2,
+          "j": 4,
+          "n": 8,
+          "ok": true,
+          "ratio": "14/3"
+        },
+        {
+          "(2n/j)^d": "16",
+          "d": 2,
+          "j": 6,
+          "n": 12,
+          "ok": true,
+          "ratio": "22/5"
+        },
+        {
+          "(2n/j)^d": "64",
+          "d": 3,
+          "j": 8,
+          "n": 16,
+          "ok": true,
+          "ratio": "10"
+        },
+        {
+          "(2n/j)^d": "16",
+          "d": 2,
+          "j": 8,
+          "n": 16,
+          "ok": true,
+          "ratio": "30/7"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "F scope: hard regime ratio ~ 2^Theta(n) (super-poly)",
+      "rows": [
+        {
+          "bits/n": 0.48,
+          "d": 35,
+          "exceeds_n^10": false,
+          "j": 50,
+          "linear_bitgrowth": true,
+          "n": 100,
+          "ratio_bits": 48,
+          "sigma": 15
+        },
+        {
+          "bits/n": 0.53,
+          "d": 74,
+          "exceeds_n^10": true,
+          "j": 100,
+          "linear_bitgrowth": true,
+          "n": 200,
+          "ratio_bits": 106,
+          "sigma": 26
+        },
+        {
+          "bits/n": 0.57,
+          "d": 154,
+          "exceeds_n^10": true,
+          "j": 200,
+          "linear_bitgrowth": true,
+          "n": 400,
+          "ratio_bits": 228,
+          "sigma": 46
+        },
+        {
+          "bits/n": 0.6,
+          "d": 317,
+          "exceeds_n^10": true,
+          "j": 400,
+          "linear_bitgrowth": true,
+          "n": 800,
+          "ratio_bits": 480,
+          "sigma": 83
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "field": 97
+}

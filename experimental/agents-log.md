@@ -1517,3 +1517,41 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+### 2026-07-04 - Conjecture F fiber-side scoped proof (QF.10, branch a)
+
+- **Agent/model:** Claude Fable 5 (PI) with a Claude Opus 4.8 / Sonnet 5 fan-out
+  panel (prover, math + packaging verifiers); holmbuar.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_fiber_scoped.md`,
+  `experimental/scripts/verify_conjecture_f_fiber_scoped.py`,
+  `experimental/data/certificates/conjecture-f-fiber-scoped/conjecture_f_fiber_scoped_toy.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL (elementary, unconditional) + EXPERIMENTAL verifier.
+- **What is being added:** The branch-(a) instance of Conjecture F identified by
+  the QF.9 consumer-scope audit -- the coordinate/prefix-plane fibers of the
+  elementary-symmetric prefix map `Phi_sigma(S) = (e_1(S),...,e_sigma(S))`. For a
+  fixed prefix `p`, the fiber `E_p` of degree-`j` locators is bounded
+  unconditionally by `#E_p <= binom(n,d)/binom(j,d)`, `d = j - sigma`. The one
+  nontrivial input is that the fiber's degree-`<d` difference code is a
+  Reed-Solomon (hence MDS) code, so by Singleton its dual distance is `d + 1 > d`
+  and no sparse dual word exists -- discharging, for this family, the
+  dual-distance hypothesis that Corollary 6C (QF.6) had to assume. The proof is a
+  one-line packing argument: any `d` distinct roots determine at most one fiber
+  locator (a nonzero degree-`<d` polynomial cannot have `d` roots), so
+  `#E_p * binom(j,d) <= binom(n,d)`. Corollary B gives `#E_p <= (2/theta)^d` at
+  constant rate, hence `n^{O(1)}` for logarithmic reserve `d = O(log n)`.
+- **How it is useful:** Makes the fiber side of Conjecture F unconditional in its
+  honest scope, so it needs no separate twin/sparse-word ledger. It is a complete
+  elementary proof of `prob:perfiber` (Paper B's frozen core) for prefix planes
+  over a fixed field in the large-reserve regime, with the scope boundary printed
+  honestly: at `prob:perfiber`'s critical `sigma ~ n/log n` the reserve is
+  `d ~ n/2`, the field fiber is `2^{Theta(n)}`, and only the char-0 / `Z[zeta]`
+  escape (`thm:no-collision`, the finite-field local-limit gap) saves it -- QF.10
+  makes no claim there. Verifier checks the bound, the `<= d-1` shared-root
+  spacing, Vandermonde/Singleton nonsingularity, the r-wise moment, Corollary B,
+  and the super-polynomial scope boundary, over `F_97` with `H = mu_n` and with
+  `H = {0,...,n-1}` (showing no group structure is used).
+- **What to do next:** Package the branch-(b) counterpart (QF.14,
+  Hankel-pencil kernel planes) via the displacement-kernel identities; that plus
+  this note covers both audited scoped consumers. General Conjecture F remains
+  live only through the escaping list-side PMA-wide sunflower consumer, which is
+  unaffected by either scoped proof.
