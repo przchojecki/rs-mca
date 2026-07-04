@@ -7,6 +7,19 @@
 - **Certificate:**
   `experimental/data/certificates/x82-square-shift-certifier-keys/x82_square_shift_certifier_keys.json`.
 
+## Critical-path role
+
+This is a proof-spine packet for the terminal active-core/PTE route.  Once X81
+puts minimal trades into square-shift support currency, row counts and
+certifier computations use different symmetries.  This theorem separates the
+finite-row scaling key, which may divide row mass, from Galois/unit keys, which
+only compress obstruction computations.
+
+That distinction is load-bearing for the conditional proof path: using unit
+keys as row-count divisors would undercount the terminal residue.  X82 keeps
+the later `active_core_count_bound` certifier honest by preserving row-count
+currency.
+
 ## Statement
 
 Let `R subset mu_n` be a split `2h`-support in the square-shift normal form

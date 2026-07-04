@@ -42,9 +42,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A self-contained upstream packet separating finite
   row scaling keys from Galois/unit certifier keys for X81 square-shift
   supports.
-- **How it is useful:** This fixes the key discipline consumed by the X83
-  obstruction gate and by square-shift certifiers: scaling may divide row
-  mass, while unit relabeling only compresses obstruction computations.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it fixes the row-count versus certifier-key discipline for square-shift
+  supports, preventing unit/Galois compression from being misused as a row
+  mass divisor in the terminal `active_core_count_bound` residue.
 - **What to do next:** Review the fixed-row unit mismatch samples, then use
   this key discipline when importing the uniform obstruction gate.
 
