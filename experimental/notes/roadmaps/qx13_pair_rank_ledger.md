@@ -24,6 +24,18 @@
 - **Certificate:**
   `experimental/data/certificates/qx13-pair-rank-ledger/qx13_pair_rank_ledger.json`.
 
+## Critical-path role
+
+This is a foundation packet for the conditional prize proof spine.  It supplies
+the exact averaged pair-correlation exponent used by the XR coverage ledger:
+same-slope and distinct-slope pair events pay `c(s,t)=min(s,t-1)` in the
+moment calculation.  That is the q-power input used before the proof stack
+passes to fixed-pair/globalness statements.
+
+The packet is intentionally moment-level.  It does not by itself prove the
+post-strip worst-case polynomial residual bound; QX.11 and the later
+small-core/active-core packets provide the deterministic conversion layers.
+
 ## 0. Pinned notation
 
 ### 0.1 Row and support conventions (as in qx14 S0.1 / s2)

@@ -41,8 +41,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** The repo-standard QX.13 proof and verifier for the
   pair-correlation ledger exponent `c(s,t)=min(s,t-1)`, with the scope
   explicitly limited to averaged pair moments.
-- **How it is useful:** This supplies the q-power ledger consumed by the XR
-  coverage and globalness/KLLM assembly packets.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it supplies the exact averaged pair-correlation q-power ledger consumed by
+  XR coverage before the route passes to fixed-pair/globalness conversion.
+  The worst-case polynomial residual bound remains downstream.
 - **What to do next:** Use this only as a moment-level pair-correlation input;
   fixed-line worst-case conversion remains in the separate globalness branch.
 
