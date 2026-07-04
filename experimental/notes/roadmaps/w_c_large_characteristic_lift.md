@@ -8,6 +8,19 @@
 - **Certificate:**
   `experimental/data/certificates/w-c-large-characteristic-lift/w_c_large_characteristic_lift.json`.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route's U2/moment
+residue.  It proves that, above an explicit norm threshold, finite-field
+`t`-null blocks are not primitive: they lift to characteristic zero and descend
+to dyadic coset unions.  Those coset unions are paid quotient structure rather
+than a new post-strip residue.
+
+The official rows still need their own small-characteristic certifier or
+resultant exclusion.  This packet supplies the structural large-characteristic
+branch and keeps the remaining U2 work localized to the stated finite-row
+certifier problem.
+
 ## Statement
 
 Let `n=2^s`, let `H=mu_n`, and let `B` be a `b`-subset of `H` over a field

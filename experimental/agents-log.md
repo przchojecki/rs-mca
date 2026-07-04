@@ -41,9 +41,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A proof that finite-field `t`-null locator blocks
   over `mu_n`, `n` a power of two, lift to characteristic zero above the norm
   threshold and then descend antipodally to full `mu_M`-coset unions.
-- **How it is useful:** This banks the characteristic-zero residue from the
-  U2 lane and separates it from the later per-row small-characteristic
-  certifier.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it shows large-characteristic `t`-null blocks lift and descend to paid
+  dyadic coset unions, leaving the official-row U2 work as a localized
+  small-characteristic certifier rather than a new primitive residue.
 - **What to do next:** Do not use the large norm threshold as an official-row
   certifier; consume it as the structural lift/descent lemma only.
 
