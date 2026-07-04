@@ -1,0 +1,50 @@
+{
+  "checks": 68,
+  "node": "xr_pencil_cascade",
+  "rows": [
+    {
+      "A": 5,
+      "anchored_slopes": 5,
+      "collision_fixture": false,
+      "core_size": 4,
+      "field": "F_17",
+      "k": 3,
+      "largest_off_core_fiber": 1,
+      "n": 9,
+      "off_core": 5,
+      "t": 2
+    },
+    {
+      "A": 5,
+      "anchored_slopes": 4,
+      "collision_fixture": true,
+      "core_size": 4,
+      "field": "F_17",
+      "k": 3,
+      "largest_off_core_fiber": 2,
+      "n": 9,
+      "off_core": 5,
+      "t": 2
+    },
+    {
+      "A": 5,
+      "all_finite_slopes_bad": 17,
+      "core_size": 5,
+      "field": "F_17",
+      "k": 3,
+      "n": 9,
+      "t": 2
+    },
+    {
+      "A": 5,
+      "anchored_slopes": 4,
+      "blocked_points": 1,
+      "core_size": 4,
+      "field": "F_17",
+      "k": 3,
+      "n": 9,
+      "t": 2
+    }
+  ],
+  "task": "W1"
+}

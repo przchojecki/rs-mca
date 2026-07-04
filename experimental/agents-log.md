@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - XR pencil cascade packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/xr_pencil_cascade.md`;
+  `experimental/scripts/verify_xr_pencil_cascade.py`;
+  `experimental/data/certificates/xr-pencil-cascade/toy_pencil_cascade.json`;
+  `experimental/data/certificates/xr-pencil-cascade/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A ready upstream packet proving the face-4
+  pencil-cascade threshold: two distinct aligned slopes with common core
+  `r >= A-1` force a codeword pencil, and the `r=A-1` cascade is exactly the
+  off-core residual-ratio map.
+- **How it is useful:** This removes the `r>=A-1` boundary from the residual
+  small-core spread problem and feeds the face-4 rungs.
+- **What to do next:** Submit as the next Tier 3 PR once the current upstream
+  review queue has capacity.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
