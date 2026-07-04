@@ -1,0 +1,65 @@
+{
+  "checks": 10,
+  "claim": "Same-top locator pairs decompose uniquely into a common core plus a residual PTE trade; conversely residual PTE trades preserve the top coefficients after adding a common core.",
+  "node": "u1_pte_trade_compression",
+  "proof_identities": [
+    "e_r(C union P)-e_r(C union Q)=sum_i e_i(C)(e_{r-i}(P)-e_{r-i}(Q))",
+    "induction uses e_0(C)=1 to force e_r(P)=e_r(Q)"
+  ],
+  "rows": [
+    {
+      "A": 4,
+      "max_residual_trade_size": 4,
+      "max_same_top_family": 2,
+      "n": 8,
+      "p": 17,
+      "residual_failures": [],
+      "row": "F17_mu8_A4_t3",
+      "same_top_classes": 1,
+      "same_top_pairs": 1,
+      "support_count": 70,
+      "t": 3
+    },
+    {
+      "A": 5,
+      "max_residual_trade_size": 4,
+      "max_same_top_family": 2,
+      "n": 12,
+      "p": 13,
+      "residual_failures": [],
+      "row": "F13_mu12_A5_t3",
+      "same_top_classes": 60,
+      "same_top_pairs": 60,
+      "support_count": 792,
+      "t": 3
+    },
+    {
+      "A": 6,
+      "max_residual_trade_size": 6,
+      "max_same_top_family": 5,
+      "n": 16,
+      "p": 17,
+      "residual_failures": [],
+      "row": "F17_mu16_A6_t3",
+      "same_top_classes": 2656,
+      "same_top_pairs": 4480,
+      "support_count": 8008,
+      "t": 3
+    },
+    {
+      "A": 8,
+      "max_residual_trade_size": 8,
+      "max_same_top_family": 6,
+      "n": 16,
+      "p": 97,
+      "residual_failures": [],
+      "row": "F97_mu16_A8_t3",
+      "same_top_classes": 409,
+      "same_top_pairs": 423,
+      "support_count": 12870,
+      "t": 3
+    }
+  ],
+  "status": "PROVED",
+  "task": "W-A star-PTE canonical-trade normal form"
+}

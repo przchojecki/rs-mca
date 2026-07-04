@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - W-A star-PTE canonical-trade normal form
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/w_a_star_pte_lemma.md`;
+  `experimental/scripts/verify_w_a_star_pte_lemma.py`;
+  `experimental/data/certificates/w-a-star-pte-lemma/w_a_star_pte_lemma.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A self-contained proof of the X-5 star-PTE lemma:
+  same-top locator pairs are exactly common-core extensions of canonical
+  residual PTE trades, with uniqueness from the pairwise set decomposition.
+- **How it is useful:** This gives the U1/PTE compression lane a small
+  upstream theorem packet before the later pullback-dictionary and harness
+  packets are reviewed.
+- **What to do next:** Consume this normal form only as the PTE reduction; the
+  stronger compression claim still needs the bounded pullback dictionary
+  arguments.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
