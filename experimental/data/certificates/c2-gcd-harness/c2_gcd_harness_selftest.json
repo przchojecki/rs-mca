@@ -1,0 +1,84 @@
+{
+  "node": "c2_gcd_harness",
+  "partner_cap": {
+    "comb_1024_100_digits": 141,
+    "partner_cap_details": [
+      {
+        "h": 3,
+        "max_partners": 0
+      },
+      {
+        "h": 4,
+        "max_partners": 1
+      }
+    ],
+    "toy_domain_n": 8,
+    "toy_field": "F_17"
+  },
+  "schema": "c2-gcd-harness-selftest/v1",
+  "selftest": {
+    "D_digits": 1686,
+    "offrow_divisors": [
+      3
+    ],
+    "pointwise_exceptional": [
+      7,
+      17,
+      97
+    ],
+    "row_divisors": [
+      7,
+      17,
+      97
+    ],
+    "tested_rows": 17,
+    "toy_exceptional": [
+      7,
+      17,
+      97
+    ]
+  },
+  "status": "HARNESS_SELFTEST_GREEN",
+  "window_audit": {
+    "A_le_grammar_sq": {
+      "RowC 1/16": true,
+      "RowC 1/4": false,
+      "RowC 1/8": false
+    },
+    "caps": {
+      "grammar_sq": 100,
+      "two_log2": 20
+    },
+    "fm_rounded": {
+      "5": 72.818,
+      "7": 0.041,
+      "10": 0.0,
+      "20": 0.0
+    },
+    "prize_log2n_squared": 1681,
+    "prize_window_empty": true,
+    "rowc": [
+      {
+        "A": 261,
+        "k": 256,
+        "label": "RowC 1/4",
+        "rate_den": 4,
+        "t": 5
+      },
+      {
+        "A": 133,
+        "k": 128,
+        "label": "RowC 1/8",
+        "rate_den": 8,
+        "t": 5
+      },
+      {
+        "A": 67,
+        "k": 64,
+        "label": "RowC 1/16",
+        "rate_den": 16,
+        "t": 3
+      }
+    ]
+  }
+}

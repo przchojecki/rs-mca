@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - C2 GCD harness for A3 row certification
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/c2_gcd_harness.md`;
+  `experimental/scripts/verify_c2_gcd_harness.py`;
+  `experimental/data/certificates/c2-gcd-harness/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED_HARNESS.
+- **What is being added:** A reusable C2 harness that consumes per-`(n,h)`
+  exceptional integers `D(n,h)` and row-prime specs, emits row-wise
+  `gcd(p,D(n,h))` PASS/FAIL certificates, and self-tests by reconstructing
+  the toy `(16,3)` exceptional set `{7,17,97}` two independent ways.
+- **How it is useful:** This is the row-certification side of the conditional
+  prize path behind A3: once the C1 pilot emits `D(n,h)` values, C2 certifies
+  clean cells for the A3/X24 zero-residue route and sends bad-prime cells to
+  the explicit recount/charge ladder.
+- **What to do next:** Use this harness with the actual Row-C pilot
+  certificates and row-prime specs; submit after A3/X24 are visible so the
+  purpose of the GCD certificates is clear.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
