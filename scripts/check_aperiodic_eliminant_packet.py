@@ -114,12 +114,16 @@ def ref_path_part(ref: str) -> str:
 
 
 def is_external_or_virtual_ref(ref: str) -> bool:
-    return ref.startswith(("inline:", "none:", "http://", "https://", "doi:"))
+    return ref.startswith(
+        ("inline:", "none:", "not_emitted:", "http://", "https://", "doi:")
+    )
 
 
 def validate_local_ref(ref: str, field: str) -> None:
     if not ref:
         raise PacketError(f"{field}: empty reference")
+    if ref.startswith("not_emitted:"):
+        raise PacketError(f"{field}: not_emitted references need a field-specific guard")
     if is_external_or_virtual_ref(ref):
         return
     path_part = ref_path_part(ref)
@@ -633,6 +637,26 @@ def validate_stratification_leaf_table(packet: dict[str, Any]) -> None:
                 )
 
 
+def packet_has_residual_obstruction(packet: dict[str, Any]) -> bool:
+    for item in packet.get("exact_agreements", []):
+        if item.get("status") == "residual_obstruction":
+            return True
+        for chart in item.get("charts", []):
+            for pivot in chart.get("pivot_records", []):
+                if pivot.get("status") == "residual_obstruction":
+                    return True
+    return False
+
+
+def validate_not_emitted_root_union_ref(packet: dict[str, Any], ref: str) -> None:
+    if ref == "not_emitted:":
+        raise PacketError("root_union_table_ref: empty not_emitted reason")
+    if not packet_has_residual_obstruction(packet):
+        raise PacketError(
+            "root_union_table_ref: not_emitted requires a residual_obstruction branch"
+        )
+
+
 def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
@@ -682,7 +706,11 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     elif packet.get("root_union_table_ref", "").startswith("inline"):
         raise PacketError("inline root_union_table_ref requires an inline root_union")
     elif "root_union_table_ref" in packet:
-        validate_local_ref(packet["root_union_table_ref"], "root_union_table_ref")
+        root_union_ref = packet["root_union_table_ref"]
+        if root_union_ref.startswith("not_emitted:"):
+            validate_not_emitted_root_union_ref(packet, root_union_ref)
+        else:
+            validate_local_ref(root_union_ref, "root_union_table_ref")
 
     bad_union_key = first_matching_key(
         packet, r"enumerated_bad_slope_union_mod_\d+", r"enumerated_bad_slope_union"

@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Aperiodic packet not-emitted sentinel
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/notes/audits/aperiodic_not_emitted_sentinel.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A guarded `not_emitted:` contract for
+  `root_union_table_ref` in v12 aperiodic eliminant packets.  The sentinel is
+  accepted only when the packet carries a residual-obstruction branch.
+- **How it is useful:** Fixes the A=384 M5 residual packet replay without
+  changing the schema or any certificate JSON, and keeps deliberate residual
+  nonclaims distinct from missing local files.
+- **What to do next:** Run the packet-checker regression commands and review
+  whether the sentinel wording should be promoted into future schema docs.
+
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.
