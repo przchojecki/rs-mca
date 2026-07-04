@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - MCA-vs-CA sparse-layer gap-structure census (toy, external freeze port)
+
+- **Agent/model:** Claude Fable 5 acting for latifkasuli.
+- **Files added or changed:**
+  `experimental/data/certificates/mca-ca-sparse-layer-census/README.md`;
+  `experimental/data/certificates/mca-ca-sparse-layer-census/mca_ca_sparse_layer_census_headline.json`;
+  `experimental/notes/audits/audit_mca_ca_sparse_layer_gap_structure.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** A compact port of an externally frozen toy census
+  (`github.com/latifkasuli/mca` commit `e16dd12`, artifact sha256 pinned) of
+  the structure of `MCA-bad \ CA-bad` past the unique radius: the
+  tangent-containment extension of `thm:mca-from-ca` is FALSE one step past
+  the unique radius (verbatim F_17 killer with all 17 slopes MCA-bad against
+  a single all-zero explanation, `|extras| = 17 > L*r = 3`); all 1293
+  violating witnesses decompose only at joint distance exactly `n-k`; extras
+  equal the radius-r tangent union EXACTLY at the F_97 n=16 k=8 r=5 Johnson
+  edge; and violation density tracks `J(n,k,q,r)` with the wall at
+  list-decoding capacity `n-k`, not the Johnson radius.
+- **How it is useful:** Complements the sigma-c-sparse-census lane (which
+  records `sigma_C` values per row) by characterizing where/why/how the sparse
+  mutual layer of `thm:sparsify`/`prob:mutual` is nonempty — the exact shape
+  of the `sigma_C` calibration `thm:transfer` needs — and bears on
+  `thm:pinning`/`thm:rigidity` (depth-`(n-k)` witnesses are the normal-form
+  boundary) and `prop:p2-half-sharp` (quantitative failure profile).  It is
+  the toy statement-shape cross-check referenced by PR #272.
+- **What to do next:** Decide whether the depth-`(n-k)` generalized-pair-list
+  containment (sufficient in every censused cell, necessary at B r=4) should
+  be stated as a conjecture next to `prob:mutual`; if the sigma-c Pade-Hankel
+  scanner is extended past r=2, check its extremal witnesses against the
+  depth/multiplicity predictor as a cross-lane test.
+
 ### 2026-07-04 - CAP25 v13 identity-prefix frontier merge
 
 - **Agent/model:** Codex reviewing and integrating a user-added experimental

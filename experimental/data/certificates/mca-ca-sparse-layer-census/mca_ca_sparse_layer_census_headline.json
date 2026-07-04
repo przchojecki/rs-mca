@@ -1,0 +1,559 @@
+{
+ "conventions": {
+  "ca_bad": "close(gamma) and no size >= n-r subset jointly explains (f1,f2); slope-free joint clause, so CA-bad = close set for pair-far pairs, empty for pair-close pairs",
+  "extras": "MCA-bad \\ CA-bad (the mutual-only / sparse layer, via the thm:sparsify translation bijection)",
+  "field_ledger": "toy prime rows use q_gen=q_line; q_chal=null; no soundness division claimed",
+  "finite_slopes_only": true,
+  "mca_bad": "close(gamma) and some FULL agreement set of a within-r codeword of f1+gamma*f2 is unshared (f1 or f2 does not restrict to deg<k); equals the mca_frontier engine's same_set_failures; equivalent to the sigma-c-sparse-census maximal S_z eps2-only check by lem:line's final equivalence",
+  "radius_convention": "closed radius r = floor(delta*n); agreement A = n-r",
+  "sampler": "finite_affine",
+  "slope_denominator": "q_line",
+  "symmetry_policy": "no symmetry quotient; no Mobius reduction; no point at infinity",
+  "tangents": "{ -e1(j)/e2(j) : e2(j) != 0 }, e_i = f_i - p_i, per pair in L(r)",
+  "violations": "extras outside the tangent union of the exact radius-r interleaved pair list L(r)"
+ },
+ "headline": {
+  "exact_equality_window": {
+   "instances": 9,
+   "pair_close_instances": 5,
+   "per_instance": {
+    "bank_aper_0": {
+     "T_union": [],
+     "extras": [],
+     "mode": "targeted",
+     "pair_close": false
+    },
+    "bank_scaled_0": {
+     "T_union": [],
+     "extras": [],
+     "mode": "targeted",
+     "pair_close": false
+    },
+    "lowweight_w5": {
+     "T_union": [
+      24,
+      48,
+      94,
+      96
+     ],
+     "extras": [
+      24,
+      48,
+      94,
+      96
+     ],
+     "mode": "full",
+     "pair_close": true
+    },
+    "mixed_plant_w3": {
+     "T_union": [
+      0,
+      91
+     ],
+     "extras": [
+      0,
+      91
+     ],
+     "mode": "targeted",
+     "pair_close": true
+    },
+    "mu4": {
+     "T_union": [],
+     "extras": [],
+     "mode": "full",
+     "pair_close": false
+    },
+    "planted_double_nonprop": {
+     "T_union": [
+      0,
+      2,
+      3,
+      11,
+      33,
+      37,
+      41,
+      72,
+      74
+     ],
+     "extras": [
+      0,
+      2,
+      3,
+      11,
+      33,
+      37,
+      41,
+      72,
+      74
+     ],
+     "mode": "targeted",
+     "pair_close": true
+    },
+    "planted_double_prop": {
+     "T_union": [
+      8
+     ],
+     "extras": [
+      8
+     ],
+     "mode": "full",
+     "pair_close": true
+    },
+    "planted_single_w5": {
+     "T_union": [
+      14,
+      53,
+      73,
+      88,
+      93
+     ],
+     "extras": [
+      14,
+      53,
+      73,
+      88,
+      93
+     ],
+     "mode": "full",
+     "pair_close": true
+    },
+    "random": {
+     "T_union": [],
+     "extras": [],
+     "mode": "targeted",
+     "pair_close": false
+    }
+   },
+   "statement": "at F_97 n=16 k=8 r=5 (the integer Johnson / GS-complete radius, J = 0.0046) extras == tangent union of the radius-r pair list EXACTLY, zero exceptions"
+  },
+  "j_density_law": {
+   "cells": {
+    "F17_n8_k2:r3": {
+     "J": 0.009805171349277136,
+     "J_exact": "236673/24137569",
+     "exhaustive_slopes": true,
+     "extras": 30,
+     "instances": 86,
+     "k": 2,
+     "n": 8,
+     "pair_close_instances": 17,
+     "q": 17,
+     "r": 3,
+     "violation_density_per_close_slope": 0.0,
+     "violation_density_per_nontangent_close_slope": 0.0,
+     "violations": 0
+    },
+    "F17_n8_k2:r4": {
+     "J": 0.1998624219365256,
+     "J_exact": "4824193/24137569",
+     "exhaustive_slopes": true,
+     "extras": 139,
+     "instances": 86,
+     "k": 2,
+     "n": 8,
+     "pair_close_instances": 37,
+     "q": 17,
+     "r": 4,
+     "violation_density_per_close_slope": 0.00794912559618442,
+     "violation_density_per_nontangent_close_slope": 0.010101010101010102,
+     "violations": 5
+    },
+    "F17_n8_k2:r5": {
+     "J": 2.632595229453306,
+     "J_exact": "63544449/24137569",
+     "exhaustive_slopes": true,
+     "extras": 702,
+     "instances": 86,
+     "k": 2,
+     "n": 8,
+     "pair_close_instances": 59,
+     "q": 17,
+     "r": 5,
+     "violation_density_per_close_slope": 0.4715852442671984,
+     "violation_density_per_nontangent_close_slope": 0.6111111111111112,
+     "violations": 473
+    },
+    "F17_n8_k2:r6": {
+     "J": 22.094457689587546,
+     "J_exact": "533306497/24137569",
+     "exhaustive_slopes": true,
+     "extras": 1147,
+     "instances": 86,
+     "k": 2,
+     "n": 8,
+     "pair_close_instances": 86,
+     "q": 17,
+     "r": 6,
+     "violation_density_per_close_slope": 0.0,
+     "violation_density_per_nontangent_close_slope": 0.0,
+     "violations": 0
+    },
+    "F17_n8_k4:r2": {
+     "J": 0.08736724895535254,
+     "J_exact": "7297/83521",
+     "exhaustive_slopes": true,
+     "extras": 37,
+     "instances": 176,
+     "k": 4,
+     "n": 8,
+     "pair_close_instances": 29,
+     "q": 17,
+     "r": 2,
+     "violation_density_per_close_slope": 0.0,
+     "violation_density_per_nontangent_close_slope": 0.0,
+     "violations": 0
+    },
+    "F17_n8_k4:r3": {
+     "J": 2.833694519941093,
+     "J_exact": "236673/83521",
+     "exhaustive_slopes": true,
+     "extras": 998,
+     "instances": 176,
+     "k": 4,
+     "n": 8,
+     "pair_close_instances": 82,
+     "q": 17,
+     "r": 3,
+     "violation_density_per_close_slope": 0.5774748923959828,
+     "violation_density_per_nontangent_close_slope": 0.6702747710241466,
+     "violations": 805
+    },
+    "F17_n8_k4:r4": {
+     "J": 57.7602399396559,
+     "J_exact": "4824193/83521",
+     "exhaustive_slopes": true,
+     "extras": 2533,
+     "instances": 176,
+     "k": 4,
+     "n": 8,
+     "pair_close_instances": 176,
+     "q": 17,
+     "r": 4,
+     "violation_density_per_close_slope": 0.0,
+     "violation_density_per_nontangent_close_slope": 0.0,
+     "violations": 0
+    },
+    "F17_n8_k4:r5": {
+     "J": 760.8200213120053,
+     "J_exact": "63544449/83521",
+     "exhaustive_slopes": true,
+     "extras": 2533,
+     "instances": 176,
+     "k": 4,
+     "n": 8,
+     "pair_close_instances": 176,
+     "q": 17,
+     "r": 5,
+     "violation_density_per_close_slope": 0.0,
+     "violation_density_per_nontangent_close_slope": null,
+     "violations": 0
+    },
+    "F97_n16_k8:r5": {
+     "J": 0.004564065090180657,
+     "J_exact": "35770557064705/7837433594376961",
+     "exhaustive_slopes": false,
+     "extras": 21,
+     "instances": 9,
+     "k": 8,
+     "n": 16,
+     "pair_close_instances": 5,
+     "q": 97,
+     "r": 5,
+     "violation_density_per_close_slope": 0.0,
+     "violation_density_per_nontangent_close_slope": 0.0,
+     "violations": 0
+    },
+    "F97_n16_k8:r6": {
+     "J": 0.8043570463516532,
+     "J_exact": "6304094936950273/7837433594376961",
+     "exhaustive_slopes": false,
+     "extras": 15,
+     "instances": 1,
+     "k": 8,
+     "n": 16,
+     "pair_close_instances": 1,
+     "q": 97,
+     "r": 6,
+     "violation_density_per_close_slope": 0.35714285714285715,
+     "violation_density_per_nontangent_close_slope": 0.43478260869565216,
+     "violations": 10
+    }
+   },
+   "heuristic_flood_mass_per_instance": "q*J ~ C(n,r) * q^(1+r-(n-k)); decays in q for r <= n-k-2",
+   "statement": "J(n,k,q,r) = sum_{s>=n-r} C(n,s)(q-1)^(n-s)/q^(n-k) (ball volume x code density) tracks violation density across all censused cells; the wall is at list-decoding CAPACITY (r -> n-k, J ~ 1), not at the Johnson radius"
+  },
+  "killer_counterexample": {
+   "ca_bad_slopes": [],
+   "control_r2": "same pair at the unique radius r=2 is pair-far; extras empty",
+   "domain": [
+    1,
+    2,
+    4,
+    8,
+    9,
+    13,
+    15,
+    16
+   ],
+   "engine_cross_check": "evaluate_mca_instance: 17/17 close, 17/17 same_set_failures",
+   "extras_count": 17,
+   "f1": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    1
+   ],
+   "f2": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1
+   ],
+   "field": 17,
+   "fixture": "fixtures/full-ldsw-toy-candidate-bank.json :: bank_tangent_toy",
+   "k": 4,
+   "mca_bad_slopes": "all 17 finite slopes",
+   "pair_list": [
+    {
+     "joint_error_support_E": [
+      5,
+      6,
+      7
+     ],
+     "p1": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "p2": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "tangents": [
+      0,
+      15,
+      16
+     ]
+    }
+   ],
+   "pair_list_L": 1,
+   "r": 3,
+   "row": "F17_n8_k4",
+   "statement": "the tangent-containment extension of thm:mca-from-ca is FALSE one step past the unique radius; |extras| <= |L(r)|*r is dead (17 > 3)",
+   "tangent_union": [
+    0,
+    15,
+    16
+   ],
+   "violating_slopes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ]
+  },
+  "rplus1_repair_fails": {
+   "cell": "F17_n8_k2:r4",
+   "statement": "extending the pair list to radius r+1 (with >= D-r simultaneous-cancellation tangency) repairs A r=3 and B r=5 but FAILS at B r=4: all 5 violating slopes have witnesses only at depth n-k = r+2, so the repair radius must reach n-k, not r+1."
+  },
+  "sharpest_supported_statement": "for every instance and radius censused: every MCA-bad slope outside CA-bad either lies in the tangent union of the exact radius-r pair list L(r), or carries only witnesses that decompose at joint distance exactly n-k with >= D-r simultaneous cancellations at the slope; m = n-k is sufficient in every censused cell and necessary (B r=4); the deep clause has empirical density <= J per close slope, exactly zero in the Johnson-edge window J << 1",
+  "witness_depth_invariant": {
+   "all_decompose_at_exactly_n_minus_k": true,
+   "per_cell": {
+    "F17_n8_k2:r4": {
+     "all_dmin_equal_n_minus_k": true,
+     "cancels_hist": {
+      "2": 5
+     },
+     "dmin_values": [
+      6
+     ],
+     "n_minus_k": 6,
+     "rplus1_repair": {
+      "checked": 5,
+      "violations": 5
+     },
+     "violating_slopes": 5
+    },
+    "F17_n8_k2:r5": {
+     "all_dmin_equal_n_minus_k": true,
+     "cancels_hist": {
+      "1": 457,
+      "2": 15,
+      "3": 1
+     },
+     "dmin_values": [
+      6
+     ],
+     "n_minus_k": 6,
+     "rplus1_repair": {
+      "checked": 473,
+      "violations": 0
+     },
+     "violating_slopes": 473
+    },
+    "F17_n8_k4:r3": {
+     "all_dmin_equal_n_minus_k": true,
+     "cancels_hist": {
+      "1": 790,
+      "2": 15
+     },
+     "dmin_values": [
+      4
+     ],
+     "n_minus_k": 4,
+     "rplus1_repair": {
+      "checked": 805,
+      "violations": 0
+     },
+     "violating_slopes": 805
+    },
+    "F97_n16_k8:r6": {
+     "all_dmin_equal_n_minus_k": true,
+     "dmin_values": [
+      8
+     ],
+     "n_minus_k": 8,
+     "note": "targeted 28-challenge sample; depths via exact T-restricted interpolation",
+     "violating_slopes": 10
+    }
+   },
+   "statement": "every violating witness decomposes (q = a + z*b, minimized over all q^k decompositions; exact T-restricted interpolation for row C) only at joint distance exactly n-k: no structured explanation shallower than the generic interpolation floor",
+   "total_violating_witnesses": 1293
+  }
+ },
+ "non_claims": [
+  "No statement for general (n,k,q); no bound past the censused radii.",
+  "No deployed-row statement; all oracles exact but exponential.",
+  "The J-law is a measured correlation across 8 cells, not a proved bound.",
+  "Row C r=6 densities are estimates from one targeted 28-challenge sample.",
+  "No GPU search result; no q_chal soundness division."
+ ],
+ "positioning": {
+  "related_pr": "PR #272 (conditional BCHKS25 Thm 4.6 / Hab25 import) cites this census as its toy statement-shape cross-check",
+  "upstream_anchors_at_c87675e": {
+   "prob:mutual": "tex/towards-prize.tex:852",
+   "prop:p2-half-sharp": "tex/towards-prize.tex:522",
+   "thm:mca-from-ca": "tex/cs25_cap_v12.tex:4939",
+   "thm:pinning": "tex/towards-prize.tex:696",
+   "thm:rigidity": "tex/towards-prize.tex:718",
+   "thm:sparse-threshold": "tex/towards-prize.tex:682",
+   "thm:sparsify": "tex/towards-prize.tex:661",
+   "thm:transfer": "tex/towards-prize.tex:780"
+  },
+  "vs_sigma_c_sparse_census": "the sigma-c lane records sigma_C VALUES per row (saturation sigma_C=q_line via extremal S_z witnesses; sigma_C=r in the trivial regime); this packet characterizes the STRUCTURE of the layer (containment shape, witness depth, equality window, J wall). sigma_C is a max over all sparse pairs; our densities are family averages -- the extremal pair can saturate at modest J. toy saturation does not falsify thm:transfer's poly-sigma_C hypothesis because q_line ~ n at toy scale"
+ },
+ "rows": {
+  "A": {
+   "domain": [
+    1,
+    2,
+    4,
+    8,
+    9,
+    13,
+    15,
+    16
+   ],
+   "k": 4,
+   "n": 8,
+   "oracle": "exhaustive: all 17 slopes, all 176 instances",
+   "q": 17,
+   "radii": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "unique_radius": 2
+  },
+  "B": {
+   "k": 2,
+   "n": 8,
+   "oracle": "exhaustive: all 17 slopes, all 86 instances",
+   "q": 17,
+   "radii": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "unique_radius": 3
+  },
+  "C": {
+   "gs_complete_radius": "n - sqrt(n(k-1)) = 5.417",
+   "johnson_real": "n(1-sqrt(rho)) = 4.686",
+   "k": 8,
+   "n": 16,
+   "oracle": "engine-driven; GS exact at r=5; r=6 = exact C(16,8) subset enumeration, ONE targeted 28-challenge instance",
+   "q": 97,
+   "radii": [
+    5,
+    6
+   ],
+   "unique_radius": 4
+  }
+ },
+ "schema": "rs-mca.mca-ca-sparse-layer-census-headline.v1",
+ "source": {
+  "ci_pin": "tests/test_certificates.py::test_mca_ca_sparse_layer_census_quick",
+  "commit": "e16dd12",
+  "full_artifact": "runs/mca_ca_sparse_layer_census.json",
+  "full_artifact_bytes": 671914,
+  "full_artifact_schema": "mca-frontier.mca-ca-sparse-layer-census.v1",
+  "full_artifact_sha256": "e7c559652692fdf4d62a1c2a5cf1c60f6ab6a9b216300b7ab87315b8254dc98b",
+  "oracle_budget": {
+   "row_c_r5": "engine Guruswami-Sudan list decoding (exact at the GS-complete radius 5)",
+   "row_c_r6": "engine exact C(16,8) = 12870-subset enumeration per challenge; one targeted 28-challenge instance only (full r=6 census out of budget)",
+   "rows_ab": "exact enumeration of all q^k codewords (17^4 = 83521 / 17^2 = 289) + C(8, 8-r) subset pair lists; exponential in k, exact"
+  },
+  "record_counts": {
+   "anomalies": [],
+   "engine_cross_check": {
+    "checked": 61,
+    "mismatches": []
+   },
+   "records_ab": 1048,
+   "records_c": 10,
+   "verbatim_counterexamples_ab": 109
+  },
+  "repo": "github.com/latifkasuli/mca",
+  "reproduce_quick": "PYTHONPATH=src python3 scripts/mca_ca_sparse_layer_census.py --quick",
+  "script": "scripts/mca_ca_sparse_layer_census.py",
+  "seeds": {
+   "row_c": 97161604,
+   "rows_ab": 20260704
+  },
+  "writeup": "docs/mca-ca-sparse-layer-census.md"
+ },
+ "status": "AUDIT/EXPERIMENTAL: compact extract of an externally frozen toy census; computational evidence, not a theorem"
+}
