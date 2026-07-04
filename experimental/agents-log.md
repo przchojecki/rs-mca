@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - C1b descent-injection packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/c1b_descent_injection_lemma.md`;
+  `experimental/scripts/verify_c1b_descent_injection.py`;
+  `experimental/data/certificates/c1b-descent-injection/c1b_descent_injection.json`;
+  `experimental/data/certificates/c1b-descent-injection/README.md`;
+  `experimental/data/certificates/x12-h3-active-core-census/x12_h3_active_core_census.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED_WITH_LIMITS.
+- **What is being added:** A standalone proof packet for the C1b descent
+  injection: pushforward seed identities, band-budget recursion, exhaustive
+  paid/descending case split, exact terminal lift collapse, injectivity, and
+  soundness of the descent certificate algorithm, with toy pipeline gates.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it closes the proof-theoretic low-`h` descent mechanism behind blocker C1b
+  and sharply narrows the remaining certificate window, while honestly
+  recording that the method is comfortable at `h=4`, marginal at `h=5,6`,
+  and not a mid/large-`h` solution.
+- **What to do next:** Submit after the currently open proof-spine PR batch
+  has capacity, then let C1a/C2 and the mid/large-`h` route cite the exact
+  feasibility boundary in section 8.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

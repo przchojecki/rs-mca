@@ -1,0 +1,535 @@
+{
+  "checks": 36,
+  "node": "active_core_count_bound",
+  "rows": [
+    {
+      "charged_partner_pairs": 0,
+      "charged_reasons": {},
+      "examples": [],
+      "h": 3,
+      "label": "n32_q_n2_plus",
+      "max_signature_group_size": 1,
+      "n": 32,
+      "nontoral_active_cores": 0,
+      "nontoral_anchored_partner_pairs": 0,
+      "nontoral_partner_multiplicity_histogram": {},
+      "p": 1153,
+      "p_over_n_power": "1153/1024",
+      "raw_active_cores": 0,
+      "raw_anchored_partner_pairs": 0,
+      "scale": "first prime p > n^2, p == 1 mod n",
+      "scale_exponent": 2,
+      "signature_collision_groups": 0,
+      "signature_collision_triples": 0,
+      "signature_group_size_histogram": {},
+      "t": 2,
+      "triple_count": 4960
+    },
+    {
+      "charged_partner_pairs": 0,
+      "charged_reasons": {},
+      "examples": [],
+      "h": 3,
+      "label": "n64_q_n2_plus",
+      "max_signature_group_size": 1,
+      "n": 64,
+      "nontoral_active_cores": 0,
+      "nontoral_anchored_partner_pairs": 0,
+      "nontoral_partner_multiplicity_histogram": {},
+      "p": 4289,
+      "p_over_n_power": "4289/4096",
+      "raw_active_cores": 0,
+      "raw_anchored_partner_pairs": 0,
+      "scale": "first prime p > n^2, p == 1 mod n",
+      "scale_exponent": 2,
+      "signature_collision_groups": 0,
+      "signature_collision_triples": 0,
+      "signature_group_size_histogram": {},
+      "t": 2,
+      "triple_count": 41664
+    },
+    {
+      "charged_partner_pairs": 0,
+      "charged_reasons": {},
+      "examples": [
+        {
+          "P_exponents": [
+            0,
+            96,
+            122
+          ],
+          "Q_exponents": [
+            13,
+            45,
+            58
+          ],
+          "signature_code": 8940188
+        },
+        {
+          "P_exponents": [
+            0,
+            14,
+            110
+          ],
+          "Q_exponents": [
+            44,
+            64,
+            76
+          ],
+          "signature_code": 13981534
+        },
+        {
+          "P_exponents": [
+            0,
+            12,
+            108
+          ],
+          "Q_exponents": [
+            46,
+            64,
+            78
+          ],
+          "signature_code": 13993147
+        },
+        {
+          "P_exponents": [
+            0,
+            96,
+            116
+          ],
+          "Q_exponents": [
+            34,
+            52,
+            66
+          ],
+          "signature_code": 23671116
+        },
+        {
+          "P_exponents": [
+            0,
+            65,
+            107
+          ],
+          "Q_exponents": [
+            10,
+            76,
+            100
+          ],
+          "signature_code": 24594516
+        },
+        {
+          "P_exponents": [
+            0,
+            21,
+            86
+          ],
+          "Q_exponents": [
+            31,
+            97,
+            121
+          ],
+          "signature_code": 37224239
+        },
+        {
+          "P_exponents": [
+            0,
+            13,
+            96
+          ],
+          "Q_exponents": [
+            51,
+            77,
+            83
+          ],
+          "signature_code": 45804963
+        },
+        {
+          "P_exponents": [
+            0,
+            96,
+            114
+          ],
+          "Q_exponents": [
+            30,
+            50,
+            62
+          ],
+          "signature_code": 68380116
+        },
+        {
+          "P_exponents": [
+            0,
+            24,
+            62
+          ],
+          "Q_exponents": [
+            31,
+            52,
+            117
+          ],
+          "signature_code": 140431020
+        },
+        {
+          "P_exponents": [
+            0,
+            66,
+            90
+          ],
+          "Q_exponents": [
+            55,
+            97,
+            118
+          ],
+          "signature_code": 142470082
+        },
+        {
+          "P_exponents": [
+            0,
+            6,
+            102
+          ],
+          "Q_exponents": [
+            19,
+            51,
+            64
+          ],
+          "signature_code": 201688658
+        },
+        {
+          "P_exponents": [
+            0,
+            83,
+            115
+          ],
+          "Q_exponents": [
+            38,
+            64,
+            70
+          ],
+          "signature_code": 201695131
+        }
+      ],
+      "h": 3,
+      "label": "n128_q_n2_plus",
+      "max_signature_group_size": 2,
+      "n": 128,
+      "nontoral_active_cores": 18,
+      "nontoral_anchored_partner_pairs": 18,
+      "nontoral_partner_multiplicity_histogram": {
+        "1": 18
+      },
+      "p": 17921,
+      "p_over_n_power": "17921/16384",
+      "raw_active_cores": 18,
+      "raw_anchored_partner_pairs": 18,
+      "scale": "first prime p > n^2, p == 1 mod n",
+      "scale_exponent": 2,
+      "signature_collision_groups": 384,
+      "signature_collision_triples": 768,
+      "signature_group_size_histogram": {
+        "2": 384
+      },
+      "t": 2,
+      "triple_count": 341376
+    },
+    {
+      "charged_partner_pairs": 0,
+      "charged_reasons": {},
+      "examples": [
+        {
+          "P_exponents": [
+            0,
+            12,
+            204
+          ],
+          "Q_exponents": [
+            128,
+            164,
+            228
+          ],
+          "signature_code": 262151
+        },
+        {
+          "P_exponents": [
+            0,
+            36,
+            100
+          ],
+          "Q_exponents": [
+            76,
+            128,
+            140
+          ],
+          "signature_code": 327682
+        },
+        {
+          "P_exponents": [
+            0,
+            156,
+            192
+          ],
+          "Q_exponents": [
+            28,
+            40,
+            232
+          ],
+          "signature_code": 8405313
+        },
+        {
+          "P_exponents": [
+            0,
+            32,
+            172
+          ],
+          "Q_exponents": [
+            12,
+            192,
+            224
+          ],
+          "signature_code": 15859939
+        },
+        {
+          "P_exponents": [
+            0,
+            6,
+            134
+          ],
+          "Q_exponents": [
+            64,
+            140,
+            216
+          ],
+          "signature_code": 16711936
+        },
+        {
+          "P_exponents": [
+            0,
+            180,
+            192
+          ],
+          "Q_exponents": [
+            52,
+            140,
+            204
+          ],
+          "signature_code": 16745088
+        },
+        {
+          "P_exponents": [
+            0,
+            64,
+            140
+          ],
+          "Q_exponents": [
+            12,
+            128,
+            192
+          ],
+          "signature_code": 16777472
+        },
+        {
+          "P_exponents": [
+            0,
+            52,
+            192
+          ],
+          "Q_exponents": [
+            12,
+            180,
+            204
+          ],
+          "signature_code": 16875907
+        },
+        {
+          "P_exponents": [
+            0,
+            24,
+            140
+          ],
+          "Q_exponents": [
+            38,
+            64,
+            166
+          ],
+          "signature_code": 16908290
+        },
+        {
+          "P_exponents": [
+            0,
+            44,
+            160
+          ],
+          "Q_exponents": [
+            12,
+            96,
+            192
+          ],
+          "signature_code": 17891618
+        },
+        {
+          "P_exponents": [
+            0,
+            140,
+            204
+          ],
+          "Q_exponents": [
+            128,
+            152,
+            216
+          ],
+          "signature_code": 33424383
+        },
+        {
+          "P_exponents": [
+            0,
+            24,
+            88
+          ],
+          "Q_exponents": [
+            12,
+            76,
+            128
+          ],
+          "signature_code": 33488894
+        }
+      ],
+      "h": 3,
+      "label": "n256_q_n2_plus",
+      "max_signature_group_size": 2,
+      "n": 256,
+      "nontoral_active_cores": 129,
+      "nontoral_anchored_partner_pairs": 129,
+      "nontoral_partner_multiplicity_histogram": {
+        "1": 129
+      },
+      "p": 65537,
+      "p_over_n_power": "65537/65536",
+      "raw_active_cores": 129,
+      "raw_anchored_partner_pairs": 129,
+      "scale": "first prime p > n^2, p == 1 mod n",
+      "scale_exponent": 2,
+      "signature_collision_groups": 5504,
+      "signature_collision_triples": 11008,
+      "signature_group_size_histogram": {
+        "2": 5504
+      },
+      "t": 2,
+      "triple_count": 2763520
+    },
+    {
+      "charged_partner_pairs": 0,
+      "charged_reasons": {},
+      "examples": [],
+      "h": 3,
+      "label": "n32_q_n3_plus",
+      "max_signature_group_size": 1,
+      "n": 32,
+      "nontoral_active_cores": 0,
+      "nontoral_anchored_partner_pairs": 0,
+      "nontoral_partner_multiplicity_histogram": {},
+      "p": 32801,
+      "p_over_n_power": "32801/32768",
+      "raw_active_cores": 0,
+      "raw_anchored_partner_pairs": 0,
+      "scale": "first prime p > n^3, p == 1 mod n",
+      "scale_exponent": 3,
+      "signature_collision_groups": 0,
+      "signature_collision_triples": 0,
+      "signature_group_size_histogram": {},
+      "t": 2,
+      "triple_count": 4960
+    },
+    {
+      "charged_partner_pairs": 0,
+      "charged_reasons": {},
+      "examples": [],
+      "h": 3,
+      "label": "n64_q_n3_plus",
+      "max_signature_group_size": 1,
+      "n": 64,
+      "nontoral_active_cores": 0,
+      "nontoral_anchored_partner_pairs": 0,
+      "nontoral_partner_multiplicity_histogram": {},
+      "p": 262337,
+      "p_over_n_power": "262337/262144",
+      "raw_active_cores": 0,
+      "raw_anchored_partner_pairs": 0,
+      "scale": "first prime p > n^3, p == 1 mod n",
+      "scale_exponent": 3,
+      "signature_collision_groups": 0,
+      "signature_collision_triples": 0,
+      "signature_group_size_histogram": {},
+      "t": 2,
+      "triple_count": 41664
+    },
+    {
+      "charged_partner_pairs": 0,
+      "charged_reasons": {},
+      "examples": [],
+      "h": 3,
+      "label": "n128_q_n3_plus",
+      "max_signature_group_size": 1,
+      "n": 128,
+      "nontoral_active_cores": 0,
+      "nontoral_anchored_partner_pairs": 0,
+      "nontoral_partner_multiplicity_histogram": {},
+      "p": 2100097,
+      "p_over_n_power": "2100097/2097152",
+      "raw_active_cores": 0,
+      "raw_anchored_partner_pairs": 0,
+      "scale": "first prime p > n^3, p == 1 mod n",
+      "scale_exponent": 3,
+      "signature_collision_groups": 0,
+      "signature_collision_triples": 0,
+      "signature_group_size_histogram": {},
+      "t": 2,
+      "triple_count": 341376
+    },
+    {
+      "charged_partner_pairs": 0,
+      "charged_reasons": {},
+      "examples": [],
+      "h": 3,
+      "label": "n256_q_n3_plus",
+      "max_signature_group_size": 1,
+      "n": 256,
+      "nontoral_active_cores": 0,
+      "nontoral_anchored_partner_pairs": 0,
+      "nontoral_partner_multiplicity_histogram": {},
+      "p": 16777729,
+      "p_over_n_power": "16777729/16777216",
+      "raw_active_cores": 0,
+      "raw_anchored_partner_pairs": 0,
+      "scale": "first prime p > n^3, p == 1 mod n",
+      "scale_exponent": 3,
+      "signature_collision_groups": 0,
+      "signature_collision_triples": 0,
+      "signature_group_size_histogram": {},
+      "t": 2,
+      "triple_count": 2763520
+    }
+  ],
+  "scope": "anchored h=3 cores P subset mu_n with a disjoint same-(e1,e2) H-split partner Q",
+  "status": "EVIDENCE: h=3 q~n^2 boundary counts reproduced; q~n^3 vanishing verified through n=256",
+  "summary": {
+    "max_q_n2_active_cores": 129,
+    "max_q_n3_active_cores": 0,
+    "q_n2_active_core_counts": {
+      "n128_q_n2_plus": 18,
+      "n256_q_n2_plus": 129,
+      "n32_q_n2_plus": 0,
+      "n64_q_n2_plus": 0
+    },
+    "q_n3_active_core_counts": {
+      "n128_q_n3_plus": 0,
+      "n256_q_n3_plus": 0,
+      "n32_q_n3_plus": 0,
+      "n64_q_n3_plus": 0
+    },
+    "rows_with_active_cores": [
+      "n128_q_n2_plus",
+      "n256_q_n2_plus"
+    ]
+  },
+  "task": "X12-H3 active-core census replication"
+}

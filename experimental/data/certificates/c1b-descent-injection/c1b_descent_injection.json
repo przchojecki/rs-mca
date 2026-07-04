@@ -1,0 +1,84 @@
+{
+  "checks_before_certificate": [
+    {
+      "detail": "all identities vanish",
+      "name": "S1a seed identity + pushforward + band identity (h=3,4,5, symbolic)"
+    },
+    {
+      "detail": "",
+      "name": "S1b band recursion delta' <= floor((h+delta)/2), difference even (symbolic)"
+    },
+    {
+      "detail": "",
+      "name": "S2 delta_k = h - ceil(h/2^k); saturation iff 2^k >= h (h<=300, k<=12)"
+    },
+    {
+      "detail": "got 352 trades, 132 anchored",
+      "name": "S3a direct census (16,3,F17): 352 unordered trades, 132 anchored"
+    },
+    {
+      "detail": "16 diagonal (paid) trades, 336 proper",
+      "name": "S3b exhaustive case split (16,3): diagonal <-> Q=-P <-> mu_2-coset-union; proper: band<=1, mult<=2, gcd = cross pairs"
+    },
+    {
+      "detail": "126 trades at (16,4,F17), 0 diagonal",
+      "name": "S3c h=4 diagonal branch empty (h even => Q=-P impossible)"
+    },
+    {
+      "detail": "704 oriented trades, 704 distinct keys",
+      "name": "S4 injection: (bottom pair, selection data) -> trade roundtrip, globally injective on all oriented (16,3) trades"
+    },
+    {
+      "detail": "218 bottom pairs, max fiber 4",
+      "name": "S5a lift solver == brute-force selection lift (h=3 odd), fiber <= 4"
+    },
+    {
+      "detail": "100 bottom pairs, max fiber 2",
+      "name": "S5b lift solver == brute force (h=4 even), fiber <= 2, c unique"
+    },
+    {
+      "detail": "recovered 352, truth 352",
+      "name": "S8 pipeline (16->8, h=3, F17): recovered == direct census (incl. diagonal paid branch)"
+    },
+    {
+      "detail": "census 28 trades (28 toral, 0 non-toral), recovered 28",
+      "name": "S6 pipeline (32->16, h=4, p=32801): recover == census, toral == pilot char-0, non-toral 0"
+    },
+    {
+      "detail": "28 trades checked",
+      "name": "S9 level-2 no-collision instances (h=4): deg D_1 = h/2 exactly, second pushforwards distinct on all (32,4) trades"
+    },
+    {
+      "detail": "census 120 trades (120 toral, 0 non-toral), recovered 120",
+      "name": "S7 pipeline (64->32, h=4, p=262337): recover == census, toral == pilot char-0, non-toral 0"
+    },
+    {
+      "detail": "h=3: 132 anchored trades, 132 keys, recon ok; h=4: 63 anchored trades, 63 keys, recon ok",
+      "name": "S10 rigidity: anchored trade <-> (a, sigma), injective + reconstructed (16, h=3,4, F17)"
+    },
+    {
+      "detail": "18 active anchored cores, 384 partner pairs, 18 anchored trades, 18 rigidity keys",
+      "name": "S11a recompute (128, 3, p=17921): 18 anchored active cores; rigidity keys distinct on anchored trades"
+    },
+    {
+      "detail": "certificate: n=256 p=65537 nontoral_active_cores=129",
+      "name": "S11b x12 certificate: 129 active cores at (256, 3, p=65537)"
+    },
+    {
+      "detail": "min needed bound over window = 3330 anchored cores/h, vs 18 (n=128) and 129 (n=256) observed at q~n^2",
+      "name": "S11c budget arithmetic: needed active-core bound = budget*h/n (>= 3.3e3 at h=11), observed h=3 calibration 18/129 << needed"
+    },
+    {
+      "detail": "6 trade supports, 6 two-valued supports",
+      "name": "S12a Frobenius/BCH: trade <=> psi two-valued (+-gamma, balanced), exhaustive over all C(16,8) supports at q=31^2, p=-1 mod 16"
+    },
+    {
+      "detail": "56 trade supports; psi-two-valued fails on some support: True",
+      "name": "S12b negative control (16,3,q=49, p=7 of order 2, p != -1): two-valuedness NOT implied (counterexample found or reported)"
+    }
+  ],
+  "node": "c1b_descent_injection",
+  "scope": "Descent/injection/soundness chain proved uniformly; practical certificate feasibility is h=4 now, h=5-6 marginal, h>=7 open without new census engineering.",
+  "status": "PROVED_WITH_LIMITS",
+  "verifier": "experimental/scripts/verify_c1b_descent_injection.py"
+}
