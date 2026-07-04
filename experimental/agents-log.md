@@ -42,8 +42,10 @@ Keep entries concise and link to the relevant files.
   polynomial maps with non-diagonal toral fiber-product components are exactly
   cyclic Laurent pullbacks or dihedral/Chebyshev pullbacks, with the cyclic
   outer-Laurent and general outer-rational wording corrections recorded.
-- **How it is useful:** This closes the toral stabilizer input used by the U1
-  pullback dictionary and later split-pair classifiers.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it classifies toral fiber-product components as paid cyclic Laurent or
+  dihedral pullback families, so the terminal `active_core_count_bound` /
+  post-strip PTE residue can focus on the genuinely non-toral branch.
 - **What to do next:** Use this theorem as the toral branch only; bounded-tail
   robustness and non-toral incidence estimates remain separate packets.
 

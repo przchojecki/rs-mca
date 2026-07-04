@@ -8,6 +8,18 @@
 - **Certificate:**
   `experimental/data/certificates/w-b-laurent-ritt-toral-stabilizer/w_b_laurent_ritt_toral_stabilizer.json`.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route.  In the
+post-strip split-pair/PTE residue, toral fiber-product components are exactly
+the paid cyclic Laurent and dihedral pullback families.  This theorem supplies
+that classification, so the terminal non-toral residue can be stated without
+recounting toral symmetries.
+
+The packet closes only the toral branch.  Bounded-tail robustness and the
+non-toral incidence estimate remain downstream; this result tells the
+`active_core_count_bound` route which rich lines are already paid.
+
 ## Statement
 
 Let `k` be algebraically closed, and let `psi in k[x,x^-1]` be a nonconstant
