@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - QA arithmetic and X-10 tolerance packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/qa22_staircase_budget_column.md`,
+  `experimental/notes/roadmaps/qa25_boundary_scale_column.md`,
+  `experimental/notes/roadmaps/x10_consumer_tolerance_ladder.md`,
+  `experimental/scripts/verify_qa22_staircase_budget.py`,
+  `experimental/scripts/verify_qa25_boundary_scale_column.py`,
+  `experimental/scripts/verify_x10_consumer_tolerance_ladder.py`,
+  `experimental/data/certificates/qa22-staircase-budget/`,
+  `experimental/data/certificates/qa25-boundary-scale-column/`,
+  `experimental/data/certificates/x10-consumer-tolerance-ladder/`.
+- **Status:** AUDIT / arithmetic gate passed / CONDITIONAL consumer ladder.
+- **What is being added:** The exact staircase and boundary-scale budget
+  columns for the six clean-rate candidates, plus the X-10 consumer exponent
+  ladder showing which downstream budgets tolerate weakened
+  `A_h^nt <= h*n^alpha` estimates.
+- **How it is useful:** Packages the budget arithmetic needed by the
+  poly-forcing compiler and names the precise X-10 exponent pressure seen by
+  the remaining active-core and band-trade consumers.
+- **What to do next:** Review alongside the budget/poly-forcing compiler
+  packet; the X-10 consumers remain conditional on the anchored non-toral PTE
+  estimate.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

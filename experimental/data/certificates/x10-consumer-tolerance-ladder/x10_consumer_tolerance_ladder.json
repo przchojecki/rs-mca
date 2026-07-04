@@ -1,0 +1,183 @@
+{
+  "checks": 22,
+  "compiler_room_conclusion": "The exact QA.22/QA.25 row room tolerates the weaker alpha=2 column on all six rows, but alpha=5/2 is rejected by at least one prize row.",
+  "compiler_room_rows": [
+    {
+      "B_star": 5316911983139663491615228241121378304,
+      "candidate_alpha_fits_exact": {
+        "alpha_1": true,
+        "alpha_2": true,
+        "alpha_3_over_2": true,
+        "alpha_5_over_2": true
+      },
+      "compiler_alpha_max_numeric": 11.199999969925802,
+      "log2_remaining_room": 121.99999969925801,
+      "n": 1024,
+      "qa25_repaired_budget_total": 1108355191126711232819457350277,
+      "remaining_room_after_QA22_QA25": 5316910874784472364903995421664028027,
+      "row": "RowC 1/4"
+    },
+    {
+      "B_star": 5316911983139663491615228241121378304,
+      "candidate_alpha_fits_exact": {
+        "alpha_1": true,
+        "alpha_2": true,
+        "alpha_3_over_2": true,
+        "alpha_5_over_2": true
+      },
+      "compiler_alpha_max_numeric": 11.2,
+      "log2_remaining_room": 122.0,
+      "n": 1024,
+      "qa25_repaired_budget_total": 81675143576030127857,
+      "remaining_room_after_QA22_QA25": 5316911983139663409940084665091250447,
+      "row": "RowC 1/8"
+    },
+    {
+      "B_star": 5316911983139663491615228241121378304,
+      "candidate_alpha_fits_exact": {
+        "alpha_1": true,
+        "alpha_2": true,
+        "alpha_3_over_2": true,
+        "alpha_5_over_2": true
+      },
+      "compiler_alpha_max_numeric": 11.199999999999743,
+      "log2_remaining_room": 121.99999999999744,
+      "n": 1024,
+      "qa25_repaired_budget_total": 9448829626898617131004380,
+      "remaining_room_after_QA22_QA25": 5316911983130214661988329623990373924,
+      "row": "RowC 1/16"
+    },
+    {
+      "B_star": 317494674775468773183020924238786383963,
+      "candidate_alpha_fits_exact": {
+        "alpha_1": true,
+        "alpha_2": true,
+        "alpha_3_over_2": true,
+        "alpha_5_over_2": false
+      },
+      "compiler_alpha_max_numeric": 2.0925011911751605,
+      "log2_remaining_room": 126.79254883818157,
+      "n": 2199023255552,
+      "qa25_repaired_budget_total": 170141184568824422858398538158839093129,
+      "remaining_room_after_QA22_QA25": 147353490206644350324622386079947290834,
+      "row": "prize 1/4"
+    },
+    {
+      "B_star": 317494674775468773183020924238786383963,
+      "candidate_alpha_fits_exact": {
+        "alpha_1": true,
+        "alpha_2": true,
+        "alpha_3_over_2": true,
+        "alpha_5_over_2": false
+      },
+      "compiler_alpha_max_numeric": 2.092501191439833,
+      "log2_remaining_room": 126.79254884903315,
+      "n": 2199023255552,
+      "qa25_repaired_budget_total": 170141183460469231813362449190289777525,
+      "remaining_room_after_QA22_QA25": 147353491314999541369658475048496606438,
+      "row": "prize 1/8"
+    },
+    {
+      "B_star": 317494674775468773183020924238786383963,
+      "candidate_alpha_fits_exact": {
+        "alpha_1": true,
+        "alpha_2": true,
+        "alpha_3_over_2": true,
+        "alpha_5_over_2": false
+      },
+      "compiler_alpha_max_numeric": 2.092501191439831,
+      "log2_remaining_room": 126.79254884903307,
+      "n": 2199023255552,
+      "qa25_repaired_budget_total": 170141183460478680561314204373124574688,
+      "remaining_room_after_QA22_QA25": 147353491314990092621706719865661809275,
+      "row": "prize 1/16"
+    }
+  ],
+  "consumers": [
+    {
+      "alpha_max": "1",
+      "budget": "n^2 split-pair budget",
+      "id": "A_to_U1_split_pair_budget",
+      "n_times_polylog_verdict": "only if the polylog factor is absorbed by the h envelope and constants",
+      "n_to_1_5_ok": false,
+      "n_to_2_minus_delta_min_delta": "1",
+      "n_to_2_minus_delta_ok_condition": "delta >= 1",
+      "normalized_model": "A_h^nt <= h*n^alpha",
+      "note": "This is the hard orbit-converted budget.  It is exactly the stated hn target.",
+      "transform": "(n/h)*A_h^nt <= n^(alpha+1)"
+    },
+    {
+      "alpha_max": "2",
+      "budget": "exact QA.22/QA.25 remaining row room, with n^3 checked integrally",
+      "id": "A_to_16n3_compiler_reserve_only",
+      "n_times_polylog_verdict": "yes, at this consumer's exponent scale",
+      "n_to_1_5_ok": true,
+      "n_to_2_minus_delta_min_delta": "0",
+      "n_to_2_minus_delta_ok_condition": "delta >= 0",
+      "normalized_model": "A_h^nt <= h*n^alpha",
+      "note": "The global compiler arithmetic tolerates alpha=2 on all six rows, but this does not preserve the local U1 n^2 split-pair theorem.",
+      "transform": "(n/h)*A_h^nt <= n^(alpha+1), then absorbed directly by row room"
+    },
+    {
+      "alpha_max": "1",
+      "budget": "n^2 non-v1 band-trade budget",
+      "id": "B_exit3_primitive_moment_PTE",
+      "n_times_polylog_verdict": "only if the polylog factor is absorbed by the h envelope and constants",
+      "n_to_1_5_ok": false,
+      "n_to_2_minus_delta_min_delta": "1",
+      "n_to_2_minus_delta_ok_condition": "delta >= 1",
+      "normalized_model": "A_h^nt <= h*n^alpha",
+      "note": "Exit 3 is precisely the X-10 residue plus the same orbit conversion.",
+      "transform": "(n/h)*A_h^nt <= n^(alpha+1)"
+    },
+    {
+      "alpha_max": "2",
+      "budget": "n^2 active-shadow mass budget",
+      "id": "A1_lower_active_shadow_local",
+      "n_times_polylog_verdict": "yes, at this consumer's exponent scale",
+      "n_to_1_5_ok": true,
+      "n_to_2_minus_delta_min_delta": "0",
+      "n_to_2_minus_delta_ok_condition": "delta >= 0",
+      "normalized_model": "A_h^nt <= h*n^alpha",
+      "note": "This is the local active-shadow budget only; downstream split-pair use reverts to the first row.",
+      "transform": "active shadow is counted locally; no extra n/h orbit factor in this local ledger"
+    },
+    {
+      "alpha_max": "2",
+      "budget": "n^2 active-depth mass budget",
+      "id": "A2_depth_cell_active_shadow_local",
+      "n_times_polylog_verdict": "yes, at this consumer's exponent scale",
+      "n_to_1_5_ok": true,
+      "n_to_2_minus_delta_min_delta": "0",
+      "n_to_2_minus_delta_ok_condition": "delta >= 0",
+      "normalized_model": "A_h^nt <= h*n^alpha",
+      "note": "Same tolerance as the A1 local active-shadow ledger.",
+      "transform": "active depth cells are counted locally; no extra n/h orbit factor in this local ledger"
+    },
+    {
+      "alpha_max_when_lambda_0": "1",
+      "budget": "n^2 after orbit conversion",
+      "constraint": "alpha + lambda <= 1",
+      "id": "tails_defect_wrapper",
+      "lambda_max_when_alpha_1": "0",
+      "lambda_max_when_alpha_1_minus_delta": "delta",
+      "n_times_polylog_verdict": "only if the total defect/tail factor remains subpolynomial and fits exact constants",
+      "n_to_1_5_ok": false,
+      "n_to_2_minus_delta_ok_condition": "delta >= 1 + lambda",
+      "normalized_model": "A_{h,B}^nt <= h*n^alpha*n^lambda, where lambda is defect/tail loss",
+      "note": "This is the weakest rung: any polynomial defect loss must be paid by an equal exponent saving in A_h^nt.",
+      "transform": "(n/h)*A_{h,B}^nt <= n^(alpha+lambda+1)"
+    }
+  ],
+  "hard_conclusion": "The consumers that preserve the U1/B n^2 split-pair budgets require alpha <= 1. Thus h*n^(3/2) is not enough there; h*n^(2-delta) works only for delta >= 1.",
+  "min_compiler_alpha_max_numeric": 2.0925011911751605,
+  "node": "anchored_nontoral_pte_bound",
+  "normalization": "A_h^nt <= h*n^alpha",
+  "sources": {
+    "dag": "prize_dag.json",
+    "qa22": "qa22_staircase_budget.json",
+    "qa25": "qa25_boundary_scale_column.json"
+  },
+  "status": "PASS: exact row-room checks and consumer exponent ladder emitted",
+  "task": "X-10 consumer tolerance ladder"
+}
