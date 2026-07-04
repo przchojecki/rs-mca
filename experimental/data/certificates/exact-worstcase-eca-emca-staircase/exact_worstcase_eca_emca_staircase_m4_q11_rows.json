@@ -1,0 +1,481 @@
+{
+  "conventions": {
+    "affine_shear_action": "(f1,f2)->(u*f1+s*f2,t*f2), u,t nonzero",
+    "agreement": "a=n-r",
+    "finite_slopes_only": true,
+    "non_claim": "full GL2 is not used because it can move finite slopes to infinity",
+    "radius": "r=floor(delta*n)"
+  },
+  "object": "worst-case finite-slope CA/MCA numerators over affine-shear orbit representatives",
+  "payload_sha256": "d1088e3b0e8222b873fb1023a6a6352f91ad36fd8ca999e513afb348eda0a2e5",
+  "rows": [
+    {
+      "affine_shear_orbit_reduction_exact": true,
+      "domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "domain_note": "canonical affine domain; staircase numerators are RS-domain invariant for these toy rows",
+      "k": 6,
+      "m": 4,
+      "membership_engine": "nullspace",
+      "n": 10,
+      "offline_provenance": true,
+      "q": 11,
+      "radii": [
+        {
+          "agreement": 10,
+          "argmax_eca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "0/10",
+          "eca_num": 1,
+          "elapsed_seconds": 20.303,
+          "emca_num": 1,
+          "r": 0,
+          "sigma_num": 0,
+          "sparsify_holds": true,
+          "sparsify_rhs": 1
+        },
+        {
+          "agreement": 9,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "1/10",
+          "eca_num": 2,
+          "elapsed_seconds": 94.969,
+          "emca_num": 2,
+          "r": 1,
+          "sigma_num": 1,
+          "sparsify_holds": true,
+          "sparsify_rhs": 2
+        },
+        {
+          "agreement": 8,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              8,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              6
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              4
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              8,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              6
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              4
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ]
+          },
+          "delta": "2/10",
+          "eca_num": 9,
+          "elapsed_seconds": 442.533,
+          "emca_num": 9,
+          "r": 2,
+          "sigma_num": 2,
+          "sparsify_holds": true,
+          "sparsify_rhs": 9
+        },
+        {
+          "agreement": 7,
+          "argmax_eca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              2,
+              4
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          "argmax_emca": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          "argmax_sigma": {
+            "bad_slopes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "eps1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "eps2": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          },
+          "delta": "3/10",
+          "eca_num": 11,
+          "elapsed_seconds": 378.043,
+          "emca_num": 11,
+          "r": 3,
+          "sigma_num": 11,
+          "sparsify_holds": true,
+          "sparsify_rhs": 11
+        }
+      ],
+      "raw_pair_classes_total": 214358881,
+      "representative_mode": "affine-shear",
+      "representatives_total": 197641
+    }
+  ],
+  "schema_version": "exact-worstcase-eca-emca-affine-quotient-v1",
+  "status": "AUDIT / EXPERIMENTAL"
+}

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - m=4 affine-shear eca/emca staircase
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:**
+  `experimental/scripts/verify_exact_worstcase_eca_emca_affine_quotient.py`;
+  `experimental/data/certificates/exact-worstcase-eca-emca-staircase/exact_worstcase_eca_emca_staircase_m4_q11_rows.json`;
+  `experimental/notes/thresholds/m4_affine_eca_emca_staircase_q11.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A stdlib affine-shear quotient verifier and
+  offline certificate for the complete `F_11,n=10,k=6` `m=4` finite-slope
+  `eca_C`/`emca_C` staircase at radii `0,1,2,3`.
+- **How it is useful:** Provides the first `m=4` full-row staircase package
+  while correcting the lab-only full-`GL_2` symmetry idea to the
+  finite-slope-preserving affine-shear subgroup.
+- **What to do next:** Independently review the affine-shear orbit argument,
+  then decide whether later GPU-backed branches should add the specified
+  `q=13` and `q=17` `m=4` rows.
+
 ### 2026-07-04 - CAP25 v13 identity-prefix frontier merge
 
 - **Agent/model:** Codex reviewing and integrating a user-added experimental
