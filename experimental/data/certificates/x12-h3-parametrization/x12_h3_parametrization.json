@@ -1,0 +1,464 @@
+{
+  "active_row_checks": [
+    {
+      "active_core_multiplicity_histogram": {
+        "1": 18
+      },
+      "anchored_active_cores": 18,
+      "anchored_active_pairs": 18,
+      "denominator_zero_on_active_pairs": 0,
+      "examples": [
+        {
+          "P_exponents": [
+            0,
+            96,
+            122
+          ],
+          "Q_exponents": [
+            13,
+            45,
+            58
+          ],
+          "denominator": 11353,
+          "ok": true,
+          "recovered": [
+            498,
+            14252,
+            780
+          ],
+          "same_signature": true,
+          "t": 11823
+        },
+        {
+          "P_exponents": [
+            0,
+            14,
+            110
+          ],
+          "Q_exponents": [
+            44,
+            64,
+            76
+          ],
+          "denominator": 16309,
+          "ok": true,
+          "recovered": [
+            12390,
+            17920,
+            8686
+          ],
+          "same_signature": true,
+          "t": 16309
+        },
+        {
+          "P_exponents": [
+            0,
+            12,
+            108
+          ],
+          "Q_exponents": [
+            46,
+            64,
+            78
+          ],
+          "denominator": 16309,
+          "ok": true,
+          "recovered": [
+            3920,
+            17920,
+            10848
+          ],
+          "same_signature": true,
+          "t": 16309
+        },
+        {
+          "P_exponents": [
+            0,
+            96,
+            116
+          ],
+          "Q_exponents": [
+            34,
+            52,
+            66
+          ],
+          "denominator": 8961,
+          "ok": true,
+          "recovered": [
+            1320,
+            914,
+            13162
+          ],
+          "same_signature": true,
+          "t": 8154
+        },
+        {
+          "P_exponents": [
+            0,
+            65,
+            107
+          ],
+          "Q_exponents": [
+            10,
+            76,
+            100
+          ],
+          "denominator": 5258,
+          "ok": true,
+          "recovered": [
+            7748,
+            8686,
+            8391
+          ],
+          "same_signature": true,
+          "t": 2369
+        },
+        {
+          "P_exponents": [
+            0,
+            21,
+            86
+          ],
+          "Q_exponents": [
+            31,
+            97,
+            121
+          ],
+          "denominator": 13244,
+          "ok": true,
+          "recovered": [
+            9957,
+            15682,
+            12525
+          ],
+          "same_signature": true,
+          "t": 7004
+        },
+        {
+          "P_exponents": [
+            0,
+            13,
+            96
+          ],
+          "Q_exponents": [
+            51,
+            77,
+            83
+          ],
+          "denominator": 4732,
+          "ok": true,
+          "recovered": [
+            2555,
+            17423,
+            14751
+          ],
+          "same_signature": true,
+          "t": 14749
+        },
+        {
+          "P_exponents": [
+            0,
+            96,
+            114
+          ],
+          "Q_exponents": [
+            30,
+            50,
+            62
+          ],
+          "denominator": 8961,
+          "ok": true,
+          "recovered": [
+            3815,
+            4809,
+            2877
+          ],
+          "same_signature": true,
+          "t": 8154
+        }
+      ],
+      "h": 3,
+      "label": "F17921_mu128_h3",
+      "max_signature_group_size": 2,
+      "n": 128,
+      "p": 17921,
+      "recovery_failures": 0,
+      "signature_collision_groups": 384
+    },
+    {
+      "active_core_multiplicity_histogram": {
+        "1": 129
+      },
+      "anchored_active_cores": 129,
+      "anchored_active_pairs": 129,
+      "denominator_zero_on_active_pairs": 0,
+      "examples": [
+        {
+          "P_exponents": [
+            0,
+            12,
+            204
+          ],
+          "Q_exponents": [
+            128,
+            164,
+            228
+          ],
+          "denominator": 32767,
+          "ok": true,
+          "recovered": [
+            65536,
+            514,
+            65027
+          ],
+          "same_signature": true,
+          "t": 32384
+        },
+        {
+          "P_exponents": [
+            0,
+            36,
+            100
+          ],
+          "Q_exponents": [
+            76,
+            128,
+            140
+          ],
+          "denominator": 18443,
+          "ok": true,
+          "recovered": [
+            65280,
+            65536,
+            255
+          ],
+          "same_signature": true,
+          "t": 12953
+        },
+        {
+          "P_exponents": [
+            0,
+            156,
+            192
+          ],
+          "Q_exponents": [
+            28,
+            40,
+            232
+          ],
+          "denominator": 18443,
+          "ok": true,
+          "recovered": [
+            49217,
+            32769,
+            128
+          ],
+          "same_signature": true,
+          "t": 12953
+        },
+        {
+          "P_exponents": [
+            0,
+            32,
+            172
+          ],
+          "Q_exponents": [
+            12,
+            192,
+            224
+          ],
+          "denominator": 241,
+          "ok": true,
+          "recovered": [
+            65282,
+            256,
+            65521
+          ],
+          "same_signature": true,
+          "t": 15
+        },
+        {
+          "P_exponents": [
+            0,
+            6,
+            134
+          ],
+          "Q_exponents": [
+            64,
+            140,
+            216
+          ],
+          "denominator": 41090,
+          "ok": true,
+          "recovered": [
+            65281,
+            255,
+            2
+          ],
+          "same_signature": true,
+          "t": 54106
+        },
+        {
+          "P_exponents": [
+            0,
+            180,
+            192
+          ],
+          "Q_exponents": [
+            52,
+            140,
+            204
+          ],
+          "denominator": 65281,
+          "ok": true,
+          "recovered": [
+            32641,
+            255,
+            257
+          ],
+          "same_signature": true,
+          "t": 65281
+        },
+        {
+          "P_exponents": [
+            0,
+            64,
+            140
+          ],
+          "Q_exponents": [
+            12,
+            128,
+            192
+          ],
+          "denominator": 256,
+          "ok": true,
+          "recovered": [
+            65282,
+            65536,
+            256
+          ],
+          "same_signature": true,
+          "t": 65280
+        },
+        {
+          "P_exponents": [
+            0,
+            52,
+            192
+          ],
+          "Q_exponents": [
+            12,
+            180,
+            204
+          ],
+          "denominator": 256,
+          "ok": true,
+          "recovered": [
+            65282,
+            32896,
+            257
+          ],
+          "same_signature": true,
+          "t": 65280
+        }
+      ],
+      "h": 3,
+      "label": "F65537_mu256_h3",
+      "max_signature_group_size": 2,
+      "n": 256,
+      "p": 65537,
+      "recovery_failures": 0,
+      "signature_collision_groups": 5504
+    }
+  ],
+  "checks": 21,
+  "h3_cubic_cap": {
+    "proof_count": "C(n-1,2) anchored cores times at most 2n slope parameters per core equals n(n-1)(n-2) < n^3.",
+    "rows": [
+      {
+        "anchored_core_count": 21,
+        "n": 8,
+        "n_cubed": 512,
+        "per_core_cap": 16,
+        "strictly_below_n_cubed": true,
+        "total_cap": 336
+      },
+      {
+        "anchored_core_count": 105,
+        "n": 16,
+        "n_cubed": 4096,
+        "per_core_cap": 32,
+        "strictly_below_n_cubed": true,
+        "total_cap": 3360
+      },
+      {
+        "anchored_core_count": 465,
+        "n": 32,
+        "n_cubed": 32768,
+        "per_core_cap": 64,
+        "strictly_below_n_cubed": true,
+        "total_cap": 29760
+      },
+      {
+        "anchored_core_count": 1953,
+        "n": 64,
+        "n_cubed": 262144,
+        "per_core_cap": 128,
+        "strictly_below_n_cubed": true,
+        "total_cap": 249984
+      },
+      {
+        "anchored_core_count": 8001,
+        "n": 128,
+        "n_cubed": 2097152,
+        "per_core_cap": 256,
+        "strictly_below_n_cubed": true,
+        "total_cap": 2048256
+      },
+      {
+        "anchored_core_count": 32385,
+        "n": 256,
+        "n_cubed": 16777216,
+        "per_core_cap": 512,
+        "strictly_below_n_cubed": true,
+        "total_cap": 16581120
+      },
+      {
+        "anchored_core_count": 522753,
+        "n": 1024,
+        "n_cubed": 1073741824,
+        "per_core_cap": 2048,
+        "strictly_below_n_cubed": true,
+        "total_cap": 1070598144
+      }
+    ],
+    "statement": "For h=3, anchored active pairs are < n^3 in odd characteristic with p not dividing n."
+  },
+  "node": "active_core_count_bound",
+  "small_forward_exhaustive": {
+    "anchored_P_choices": 105,
+    "distinct_output_count_failures": 270,
+    "generated_H_triples": 552,
+    "generated_disjoint_partners": 36,
+    "n": 16,
+    "p": 97,
+    "signature_failures": 0,
+    "t_values_per_P": 97
+  },
+  "status": "PROVED: h=3 active partners reduce to a three-rational-function subgroup incidence",
+  "symbolic_formulas": {
+    "D": "t**2 + t + 1",
+    "Nx": "-a*t + b*t + b + t**2 + t",
+    "Nx_minus_D": "-a*t + b*t + b - 1",
+    "Ny": "a*t + a + b*t**2 + b*t - t",
+    "Nz": "a*t**2 + a*t - b*t + t + 1",
+    "line_conic_factorization": "F(x, a+t(x-1)) = (x-1) * ((t^2+t+1)x - Nx)",
+    "nonzero_membership_polynomial": "For valid distinct 1,a,b, Nx^n-D^n is nonzero: if Nx=zeta*D, leading coefficients force zeta=1, then Nx-D=(b-a)t+(b-1), which would force a=b=1.",
+    "pair_sum_identity": "Nx*Ny+Nx*Nz+Ny*Nz = (a+b+ab)(t^2+t+1)^2",
+    "sum_identity": "Nx+Ny+Nz = (1+a+b)(t^2+t+1)",
+    "x_of_t": "(-a*t + b*t + b + t**2 + t)/(t**2 + t + 1)",
+    "y_of_t": "(a*t + a + b*t**2 + b*t - t)/(t**2 + t + 1)",
+    "z_of_t": "(a*t**2 + a*t - b*t + t + 1)/(t**2 + t + 1)"
+  },
+  "task": "X12 h=3 rational parametrization"
+}

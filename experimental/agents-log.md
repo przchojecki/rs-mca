@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - X12 h=3 parametrization and cubic cap
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/x12_h3_parametrization.md`;
+  `experimental/scripts/verify_x12_h3_parametrization.py`;
+  `experimental/data/certificates/x12-h3-parametrization/x12_h3_parametrization.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** The X12 h=3 rational parametrization of active
+  partner triples, together with the cubic cap showing anchored h=3 active
+  pairs are strictly below `n^3`.
+- **How it is useful:** This banks the h=3 base rung used by the terminal
+  active-core/split-pair route and later high-q vanishing probes.
+- **What to do next:** Treat the h=3 bound as a base-case/consumer input;
+  higher h and high-q vanishing remain separate packets.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
