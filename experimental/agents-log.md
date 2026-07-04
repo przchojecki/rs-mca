@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - B1 characteristic-zero giant-coset packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/b1_char0_giant_coset_theorem.md`;
+  `experimental/scripts/verify_b1_giant_coset.py`;
+  `experimental/data/certificates/b1-giant-coset/b1_giant_coset.json`;
+  `experimental/data/certificates/b1-giant-coset/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A standalone proof and exact verifier for the
+  characteristic-zero giant-coset theorem: for `n=2^s`, every 0/1 subset of
+  `mu_n` with vanishing first `t` power sums is a union of `mu_M`-cosets,
+  where `M` is the least 2-power strictly greater than `t`.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it removes the characteristic-zero giant-block branch from the remaining
+  split-pair/PTE obstruction, leaving only the finite-field Frobenius residue
+  and boundary-column packets as the giant-regime work.
+- **What to do next:** Submit as a narrow upstream packet when review capacity
+  opens, then have the finite-field residue and boundary arithmetic cite the
+  `M > t` fence fixed here.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

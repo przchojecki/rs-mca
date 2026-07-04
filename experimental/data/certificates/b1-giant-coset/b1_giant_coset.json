@@ -1,0 +1,63 @@
+{
+  "cases": [
+    {
+      "M": 8,
+      "cosets": 2,
+      "expected_count": 4,
+      "full_brute": true,
+      "full_brute_count": 4,
+      "n": 16,
+      "nullity": 2,
+      "rank": 14,
+      "t": 4
+    },
+    {
+      "M": 8,
+      "cosets": 4,
+      "expected_count": 16,
+      "full_brute": false,
+      "full_brute_count": null,
+      "n": 32,
+      "nullity": 4,
+      "rank": 28,
+      "t": 4
+    },
+    {
+      "M": 16,
+      "cosets": 2,
+      "expected_count": 4,
+      "full_brute": false,
+      "full_brute_count": null,
+      "n": 32,
+      "nullity": 2,
+      "rank": 30,
+      "t": 8
+    }
+  ],
+  "m_formula_cases": [
+    [
+      4,
+      8
+    ],
+    [
+      8,
+      16
+    ],
+    [
+      7,
+      8
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "node": "b1_char0_giant_coset_theorem",
+  "signed_antipodal_zero": true,
+  "status": "PROVED",
+  "theorem": "char-0 0/1 t-null subsets of mu_n, n=2^s, are mu_M-coset unions for M least 2-power > t"
+}
