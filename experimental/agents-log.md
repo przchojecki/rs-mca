@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - X81 minimal-trade square-shift packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/x81_minimal_trade_square_shift.md`;
+  `experimental/scripts/verify_x81_minimal_trade_square_shift.py`;
+  `experimental/data/certificates/x81-minimal-trade-square-shift/x81_minimal_trade_square_shift.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A self-contained upstream packet proving that
+  odd-characteristic minimal h-trades are equivalent to split 2h-supports
+  whose locator has a nonzero-square constant shift to a monic square.
+- **How it is useful:** This is the square-shift normal form consumed by the
+  X82/X83 certifier-key and obstruction-gate packets, and by the active-core
+  count branch.
+- **What to do next:** Review the localized verifier helpers, then use this
+  packet as the base dependency for the next square-shift upstream PRs.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

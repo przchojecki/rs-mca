@@ -1,0 +1,532 @@
+{
+  "algebra_checks": [
+    {
+      "delta": 7,
+      "h": 3,
+      "lambda": 88,
+      "midpoint_coefficients": [
+        30,
+        26,
+        92,
+        1
+      ]
+    },
+    {
+      "delta": 9,
+      "h": 4,
+      "lambda": 96,
+      "midpoint_coefficients": [
+        74,
+        48,
+        71,
+        87,
+        1
+      ]
+    },
+    {
+      "delta": 11,
+      "h": 5,
+      "lambda": 5,
+      "midpoint_coefficients": [
+        43,
+        34,
+        26,
+        54,
+        81,
+        1
+      ]
+    },
+    {
+      "delta": 13,
+      "h": 6,
+      "lambda": 17,
+      "midpoint_coefficients": [
+        47,
+        52,
+        54,
+        52,
+        93,
+        74,
+        1
+      ]
+    },
+    {
+      "delta": 15,
+      "h": 7,
+      "lambda": 31,
+      "midpoint_coefficients": [
+        37,
+        79,
+        24,
+        42,
+        15,
+        6,
+        66,
+        1
+      ]
+    }
+  ],
+  "checks": 38,
+  "dependency_statuses": {
+    "active_core_count_bound": "TARGET",
+    "star_pte_lemma": "PROVED",
+    "x78_h5_square_shift_supports": "PROVED"
+  },
+  "node": "active_core_count_bound",
+  "sanity_rows": [
+    {
+      "h": 3,
+      "h_subset_count": 560,
+      "n": 16,
+      "p": 17,
+      "samples": [
+        {
+          "lambda": 8,
+          "square_root": [
+            4,
+            6,
+            11,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            13
+          ]
+        },
+        {
+          "lambda": 9,
+          "square_root": [
+            6,
+            0,
+            13,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "lambda": 13,
+          "square_root": [
+            10,
+            3,
+            11,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            10,
+            13
+          ]
+        },
+        {
+          "lambda": 15,
+          "square_root": [
+            1,
+            7,
+            1,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            12,
+            14
+          ]
+        },
+        {
+          "lambda": 8,
+          "square_root": [
+            11,
+            8,
+            2,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            9
+          ]
+        }
+      ],
+      "square_lambda_square_shift_supports": 352,
+      "square_shift_supports": 352,
+      "two_h_support_count": 8008,
+      "unordered_trade_pairs": 352
+    },
+    {
+      "h": 4,
+      "h_subset_count": 1820,
+      "n": 16,
+      "p": 17,
+      "samples": [
+        {
+          "lambda": 8,
+          "square_root": [
+            11,
+            2,
+            5,
+            10,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            14
+          ]
+        },
+        {
+          "lambda": 8,
+          "square_root": [
+            15,
+            11,
+            1,
+            1,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "lambda": 2,
+          "square_root": [
+            14,
+            3,
+            12,
+            10,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            11,
+            14
+          ]
+        },
+        {
+          "lambda": 16,
+          "square_root": [
+            16,
+            15,
+            7,
+            8,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "lambda": 9,
+          "square_root": [
+            10,
+            7,
+            10,
+            9,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7,
+            13,
+            15
+          ]
+        }
+      ],
+      "square_lambda_square_shift_supports": 126,
+      "square_shift_supports": 126,
+      "two_h_support_count": 12870,
+      "unordered_trade_pairs": 126
+    },
+    {
+      "h": 5,
+      "h_subset_count": 4368,
+      "n": 16,
+      "p": 17,
+      "samples": [],
+      "square_lambda_square_shift_supports": 0,
+      "square_shift_supports": 0,
+      "two_h_support_count": 8008,
+      "unordered_trade_pairs": 0
+    },
+    {
+      "h": 3,
+      "h_subset_count": 560,
+      "n": 16,
+      "p": 97,
+      "samples": [
+        {
+          "lambda": 94,
+          "square_root": [
+            44,
+            12,
+            66,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "lambda": 53,
+          "square_root": [
+            43,
+            8,
+            24,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            4,
+            6,
+            13,
+            14
+          ]
+        },
+        {
+          "lambda": 95,
+          "square_root": [
+            16,
+            79,
+            81,
+            1
+          ],
+          "support": [
+            0,
+            2,
+            3,
+            6,
+            8,
+            15
+          ]
+        },
+        {
+          "lambda": 44,
+          "square_root": [
+            73,
+            89,
+            54,
+            1
+          ],
+          "support": [
+            0,
+            2,
+            9,
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "lambda": 3,
+          "square_root": [
+            95,
+            85,
+            3,
+            1
+          ],
+          "support": [
+            0,
+            3,
+            5,
+            12,
+            13,
+            15
+          ]
+        }
+      ],
+      "square_lambda_square_shift_supports": 16,
+      "square_shift_supports": 16,
+      "two_h_support_count": 8008,
+      "unordered_trade_pairs": 16
+    },
+    {
+      "h": 4,
+      "h_subset_count": 1820,
+      "n": 16,
+      "p": 97,
+      "samples": [
+        {
+          "lambda": 86,
+          "square_root": [
+            37,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ]
+        },
+        {
+          "lambda": 1,
+          "square_root": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "lambda": 11,
+          "square_root": [
+            59,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ]
+        },
+        {
+          "lambda": 11,
+          "square_root": [
+            38,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            1,
+            2,
+            5,
+            6,
+            9,
+            10,
+            13,
+            14
+          ]
+        },
+        {
+          "lambda": 96,
+          "square_root": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ]
+        }
+      ],
+      "square_lambda_square_shift_supports": 6,
+      "square_shift_supports": 6,
+      "two_h_support_count": 12870,
+      "unordered_trade_pairs": 6
+    },
+    {
+      "h": 5,
+      "h_subset_count": 4368,
+      "n": 16,
+      "p": 97,
+      "samples": [],
+      "square_lambda_square_shift_supports": 0,
+      "square_shift_supports": 0,
+      "two_h_support_count": 8008,
+      "unordered_trade_pairs": 0
+    },
+    {
+      "h": 6,
+      "h_subset_count": 8008,
+      "n": 16,
+      "p": 97,
+      "samples": [],
+      "square_lambda_square_shift_supports": 0,
+      "square_shift_supports": 0,
+      "two_h_support_count": 1820,
+      "unordered_trade_pairs": 0
+    }
+  ],
+  "status": "PROVED UNIFORM NORMAL FORM: MINIMAL TRADES BIJECT WITH SQUARE-SHIFT SPLIT SUPPORTS",
+  "task": "X81 minimal-trade square-shift normal form",
+  "theorem": "Over any odd-characteristic field and for any h, unordered disjoint degree-h minimal trades are in bijection with split 2h-supports R whose locator L_R admits L_R+lambda=S^2 for a monic degree-h S and a nonzero square lambda.  The split is unique up to swapping sides."
+}
