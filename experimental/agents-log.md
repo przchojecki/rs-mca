@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - sigma_C q-split saturation witnesses
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/scripts/verify_sigma_c_sparse_census.py`;
+  `experimental/data/certificates/sigma-c-sparse-census/README.md`;
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_census_schema.json`;
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_hankel_scan_smoke.json`;
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_q11_q13_r2_hankel_scan.json`;
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_q17_r2_hankel_scan.json`;
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_q11_rows.json`;
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_q13_rows.json`;
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_q17_rows.json`;
+  `experimental/notes/m1/sigma_c_sparse_census.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL / AUDIT.
+- **What is being added:** A v2 sigma_C packet format and checker path for
+  sub-capacity Pade-Hankel closed-ball witnesses, no-codeword Hankel scan
+  packets for `(7,6,3,r=2)`, q11/q13 r=2 rows `(11,10,7,r=2)` /
+  `(13,12,9,r=2)`, and q17 r=2 rows `(17,16,12,r=2)` /
+  `(17,16,13,r=2)`, plus exact q=11/13/17 finite-slope saturation rows where
+  one sparse pair has every finite slope bad.  The `(11,10,2,r=5)`,
+  `(13,12,4,r=5)`, and `(17,16,8,r=5)` rows are now also exact by finite-slope
+  saturation.
+- **How it is useful:** Extends the sparse mutual-layer evidence beyond the
+  original q=5/q=7 brute-force packets while preserving honest status labels:
+  saturation rows are exact by the finite-slope upper bound.
+- **What to do next:** Generalize the stdlib/lab witness-shape all-pair engine
+  beyond the committed smoke row before attempting larger non-saturated rows.
+
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.

@@ -1,138 +1,228 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "sigma_C sparse census certificate",
-  "type": "object",
-  "required": [
-    "schema_version",
-    "status",
-    "theorem_or_problem_id",
-    "object",
-    "conventions",
-    "rows",
-    "non_claims"
-  ],
-  "properties": {
-    "schema_version": {
-      "const": "sigma-c-sparse-census-v1"
-    },
-    "status": {
-      "type": "string"
-    },
-    "theorem_or_problem_id": {
-      "type": "string"
-    },
-    "object": {
-      "type": "string"
-    },
-    "conventions": {
+  "oneOf": [
+    {
+      "title": "v1 direct-enumeration certificate",
       "type": "object",
       "required": [
-        "finite_slopes_only",
-        "slope_denominator",
-        "witness_set",
-        "symmetry_policy",
-        "field_ledger"
+        "schema_version",
+        "status",
+        "theorem_or_problem_id",
+        "object",
+        "conventions",
+        "rows",
+        "non_claims"
       ],
       "properties": {
-        "finite_slopes_only": {
-          "type": "boolean"
+        "schema_version": {
+          "const": "sigma-c-sparse-census-v1"
         },
-        "slope_denominator": {
-          "type": "string"
-        },
-        "witness_set": {
-          "type": "string"
-        },
-        "symmetry_policy": {
-          "type": "string"
-        },
-        "field_ledger": {
-          "type": "string"
-        }
-      }
-    },
-    "rows": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "q_line",
-          "q_gen",
-          "q_chal",
-          "n",
-          "k",
-          "rho",
-          "r",
-          "delta_floor_convention",
-          "domain",
-          "codeword_count",
-          "sparse_pair_count",
-          "bad_pair_count",
-          "sigma_c",
-          "expected_sigma_c",
-          "trivial_regime_2r_le_n_minus_k",
-          "max_pairs_sample"
-        ],
-        "properties": {
-          "q_line": {
-            "type": "integer"
-          },
-          "q_gen": {
-            "type": "integer"
-          },
-          "q_chal": {
-            "type": ["integer", "null"]
-          },
-          "n": {
-            "type": "integer"
-          },
-          "k": {
-            "type": "integer"
-          },
-          "rho": {
-            "type": "string"
-          },
-          "r": {
-            "type": "integer"
-          },
-          "delta_floor_convention": {
-            "type": "string"
-          },
-          "domain": {
-            "type": "array",
-            "items": {
-              "type": "integer"
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "q_line",
+              "q_gen",
+              "q_chal",
+              "n",
+              "k",
+              "rho",
+              "r",
+              "delta_floor_convention",
+              "domain",
+              "codeword_count",
+              "sparse_pair_count",
+              "bad_pair_count",
+              "sigma_c",
+              "expected_sigma_c",
+              "trivial_regime_2r_le_n_minus_k",
+              "max_pairs_sample"
+            ],
+            "properties": {
+              "sigma_c": {
+                "type": "integer"
+              }
             }
-          },
-          "codeword_count": {
-            "type": "integer"
-          },
-          "sparse_pair_count": {
-            "type": "integer"
-          },
-          "bad_pair_count": {
-            "type": "integer"
-          },
-          "sigma_c": {
-            "type": "integer"
-          },
-          "expected_sigma_c": {
-            "type": ["integer", "null"]
-          },
-          "trivial_regime_2r_le_n_minus_k": {
-            "type": "boolean"
-          },
-          "max_pairs_sample": {
-            "type": "array"
           }
         }
       }
     },
-    "non_claims": {
-      "type": "array",
-      "items": {
-        "type": "string"
+    {
+      "title": "v2 theorem/witness certificate",
+      "type": "object",
+      "required": [
+        "schema_version",
+        "status",
+        "theorem_or_problem_id",
+        "object",
+        "conventions",
+        "family_signals",
+        "rows",
+        "non_claims"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "sigma-c-sparse-census-v2"
+        },
+        "conventions": {
+          "type": "object",
+          "required": [
+            "finite_slopes_only",
+            "slope_denominator",
+            "delta_floor",
+            "field_ledger",
+            "witness_set",
+            "symmetry_policy"
+          ],
+          "properties": {
+            "finite_slopes_only": {
+              "const": true
+            }
+          }
+        },
+        "family_signals": {
+          "type": "object",
+          "required": [
+            "exact_saturation_rows",
+            "exact_trivial_guard_rows",
+            "partial_lower_bound_rows",
+            "non_claims"
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "q_line",
+              "q_gen",
+              "q_chal",
+              "n",
+              "k",
+              "m",
+              "rho",
+              "r",
+              "delta_floor_convention",
+              "domain",
+              "exact_path",
+              "exact_paths",
+              "single_exact_path",
+              "census_coverage",
+              "pairs_total",
+              "parity_sample",
+              "saturates",
+              "guard_row",
+              "sigma_c",
+              "sigma_c_lower_bound",
+              "status"
+            ],
+            "properties": {
+              "exact_path": {
+                "enum": [
+                  "trivial-regime-theorem",
+                  "pade-hankel-saturation-witness",
+                  "pade-hankel-lower-bound-witness"
+                ]
+              },
+              "sigma_c": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "witness_pair": {
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Pade-Hankel sparse-pair scan certificate",
+      "type": "object",
+      "required": [
+        "schema_version",
+        "status",
+        "theorem_or_problem_id",
+        "object",
+        "conventions",
+        "rows",
+        "non_claims"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "sigma-c-sparse-census-hankel-scan-v1"
+        },
+        "conventions": {
+          "type": "object",
+          "required": [
+            "finite_slopes_only",
+            "slope_denominator",
+            "delta_floor",
+            "field_ledger",
+            "witness_set",
+            "symmetry_policy"
+          ],
+          "properties": {
+            "finite_slopes_only": {
+              "const": true
+            }
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "q_line",
+              "q_gen",
+              "q_chal",
+              "n",
+              "k",
+              "m",
+              "rho",
+              "r",
+              "delta_floor_convention",
+              "domain",
+              "codeword_materialization",
+              "pairs_scanned",
+              "pairs_total",
+              "bad_pair_count",
+              "sigma_c",
+              "sigma_c_lower_bound",
+              "expected_sigma_c",
+              "census_coverage",
+              "early_stop_reason",
+              "elapsed_s",
+              "max_pairs_sample"
+            ],
+            "properties": {
+              "codeword_materialization": {
+                "const": false
+              },
+              "census_coverage": {
+                "enum": [
+                  "full_hankel_scan",
+                  "exact_by_finite_slope_saturation",
+                  "partial_hankel_scan"
+                ]
+              },
+              "sigma_c": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
       }
     }
-  }
+  ]
 }
