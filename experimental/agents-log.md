@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Prize rules provenance pinning
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/notes/audits/prize_rules_pinning.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Records dated provenance for the live prize rules,
+  the ePrint 2026/680 parameter box, and the local reconstruction of
+  `open-proximity.tex`, with explicit discrepancy flags for assumptions not
+  present on the live site.
+- **How it is useful:** Keeps the submission-parameter discussion grounded in
+  dated source evidence rather than inherited assumptions about `k` or field
+  caps.
+- **What to do next:** Re-fetch the live rules page before any public claim or
+  PR text, and keep quotes scoped to their access date.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
