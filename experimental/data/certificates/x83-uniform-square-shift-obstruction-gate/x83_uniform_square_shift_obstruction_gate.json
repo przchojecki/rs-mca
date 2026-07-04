@@ -1,0 +1,852 @@
+{
+  "algebra_checks": [
+    {
+      "delta": 9,
+      "forced_root": [
+        31,
+        26,
+        92,
+        1
+      ],
+      "h": 3,
+      "lambda": 96,
+      "obstructions": [
+        0,
+        0
+      ],
+      "perturbed_obstructions": [
+        100,
+        0
+      ]
+    },
+    {
+      "delta": 11,
+      "forced_root": [
+        75,
+        48,
+        71,
+        87,
+        1
+      ],
+      "h": 4,
+      "lambda": 5,
+      "obstructions": [
+        0,
+        0,
+        0
+      ],
+      "perturbed_obstructions": [
+        100,
+        0,
+        0
+      ]
+    },
+    {
+      "delta": 13,
+      "forced_root": [
+        44,
+        34,
+        26,
+        54,
+        81,
+        1
+      ],
+      "h": 5,
+      "lambda": 17,
+      "obstructions": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "perturbed_obstructions": [
+        100,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "delta": 15,
+      "forced_root": [
+        48,
+        52,
+        54,
+        52,
+        93,
+        74,
+        1
+      ],
+      "h": 6,
+      "lambda": 31,
+      "obstructions": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "perturbed_obstructions": [
+        100,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "delta": 17,
+      "forced_root": [
+        38,
+        79,
+        24,
+        42,
+        15,
+        6,
+        66,
+        1
+      ],
+      "h": 7,
+      "lambda": 47,
+      "obstructions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "perturbed_obstructions": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "delta": 19,
+      "forced_root": [
+        47,
+        76,
+        65,
+        50,
+        8,
+        62,
+        18,
+        57,
+        1
+      ],
+      "h": 8,
+      "lambda": 65,
+      "obstructions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "perturbed_obstructions": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "checks": 99,
+  "denominator_checks": [
+    {
+      "h": 1,
+      "max_root_denominator_exponent": 1,
+      "root_denominator_exponents_low_to_high": [
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 2
+    },
+    {
+      "h": 2,
+      "max_root_denominator_exponent": 3,
+      "root_denominator_exponents_low_to_high": [
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 6
+    },
+    {
+      "h": 3,
+      "max_root_denominator_exponent": 5,
+      "root_denominator_exponents_low_to_high": [
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 10
+    },
+    {
+      "h": 4,
+      "max_root_denominator_exponent": 7,
+      "root_denominator_exponents_low_to_high": [
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 14
+    },
+    {
+      "h": 5,
+      "max_root_denominator_exponent": 9,
+      "root_denominator_exponents_low_to_high": [
+        9,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 18
+    },
+    {
+      "h": 6,
+      "max_root_denominator_exponent": 11,
+      "root_denominator_exponents_low_to_high": [
+        11,
+        9,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 22
+    },
+    {
+      "h": 7,
+      "max_root_denominator_exponent": 13,
+      "root_denominator_exponents_low_to_high": [
+        13,
+        11,
+        9,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 26
+    },
+    {
+      "h": 8,
+      "max_root_denominator_exponent": 15,
+      "root_denominator_exponents_low_to_high": [
+        15,
+        13,
+        11,
+        9,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 30
+    },
+    {
+      "h": 9,
+      "max_root_denominator_exponent": 17,
+      "root_denominator_exponents_low_to_high": [
+        17,
+        15,
+        13,
+        11,
+        9,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 34
+    },
+    {
+      "h": 10,
+      "max_root_denominator_exponent": 19,
+      "root_denominator_exponents_low_to_high": [
+        19,
+        17,
+        15,
+        13,
+        11,
+        9,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 38
+    },
+    {
+      "h": 11,
+      "max_root_denominator_exponent": 21,
+      "root_denominator_exponents_low_to_high": [
+        21,
+        19,
+        17,
+        15,
+        13,
+        11,
+        9,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 42
+    },
+    {
+      "h": 12,
+      "max_root_denominator_exponent": 23,
+      "root_denominator_exponents_low_to_high": [
+        23,
+        21,
+        19,
+        17,
+        15,
+        13,
+        11,
+        9,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      "safe_obstruction_clearing_exponent": 46
+    }
+  ],
+  "dependency_statuses": {
+    "active_core_count_bound": "TARGET",
+    "x24_char0_dyadic_descent": "PROVED",
+    "x81_minimal_trade_square_shift": "PROVED",
+    "x82_square_shift_certifier_keys": "PROVED"
+  },
+  "node": "active_core_count_bound",
+  "sanity_rows": [
+    {
+      "h": 3,
+      "h_is_power_of_two": false,
+      "h_subset_count": 560,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 17,
+      "sample_square_lambda_supports": [
+        {
+          "lambda": 8,
+          "root": [
+            4,
+            6,
+            11,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            13
+          ]
+        },
+        {
+          "lambda": 9,
+          "root": [
+            6,
+            0,
+            13,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "lambda": 13,
+          "root": [
+            10,
+            3,
+            11,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            10,
+            13
+          ]
+        },
+        {
+          "lambda": 15,
+          "root": [
+            1,
+            7,
+            1,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            12,
+            14
+          ]
+        },
+        {
+          "lambda": 8,
+          "root": [
+            11,
+            8,
+            2,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            9
+          ]
+        }
+      ],
+      "square_lambda_supports": 352,
+      "two_h_support_count": 8008,
+      "unordered_trade_pairs": 352,
+      "zero_obstruction_supports": 352
+    },
+    {
+      "h": 4,
+      "h_is_power_of_two": true,
+      "h_subset_count": 1820,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 17,
+      "sample_square_lambda_supports": [
+        {
+          "lambda": 8,
+          "root": [
+            11,
+            2,
+            5,
+            10,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            14
+          ]
+        },
+        {
+          "lambda": 8,
+          "root": [
+            15,
+            11,
+            1,
+            1,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "lambda": 2,
+          "root": [
+            14,
+            3,
+            12,
+            10,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            11,
+            14
+          ]
+        },
+        {
+          "lambda": 16,
+          "root": [
+            16,
+            15,
+            7,
+            8,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "lambda": 9,
+          "root": [
+            10,
+            7,
+            10,
+            9,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7,
+            13,
+            15
+          ]
+        }
+      ],
+      "square_lambda_supports": 126,
+      "two_h_support_count": 12870,
+      "unordered_trade_pairs": 126,
+      "zero_obstruction_supports": 126
+    },
+    {
+      "h": 5,
+      "h_is_power_of_two": false,
+      "h_subset_count": 4368,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 17,
+      "sample_square_lambda_supports": [],
+      "square_lambda_supports": 0,
+      "two_h_support_count": 8008,
+      "unordered_trade_pairs": 0,
+      "zero_obstruction_supports": 0
+    },
+    {
+      "h": 6,
+      "h_is_power_of_two": false,
+      "h_subset_count": 8008,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 17,
+      "sample_square_lambda_supports": [],
+      "square_lambda_supports": 0,
+      "two_h_support_count": 1820,
+      "unordered_trade_pairs": 0,
+      "zero_obstruction_supports": 0
+    },
+    {
+      "h": 7,
+      "h_is_power_of_two": false,
+      "h_subset_count": 11440,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 17,
+      "sample_square_lambda_supports": [],
+      "square_lambda_supports": 0,
+      "two_h_support_count": 120,
+      "unordered_trade_pairs": 0,
+      "zero_obstruction_supports": 0
+    },
+    {
+      "h": 3,
+      "h_is_power_of_two": false,
+      "h_subset_count": 560,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 97,
+      "sample_square_lambda_supports": [
+        {
+          "lambda": 94,
+          "root": [
+            44,
+            12,
+            66,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "lambda": 53,
+          "root": [
+            43,
+            8,
+            24,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            4,
+            6,
+            13,
+            14
+          ]
+        },
+        {
+          "lambda": 95,
+          "root": [
+            16,
+            79,
+            81,
+            1
+          ],
+          "support": [
+            0,
+            2,
+            3,
+            6,
+            8,
+            15
+          ]
+        },
+        {
+          "lambda": 44,
+          "root": [
+            73,
+            89,
+            54,
+            1
+          ],
+          "support": [
+            0,
+            2,
+            9,
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "lambda": 3,
+          "root": [
+            95,
+            85,
+            3,
+            1
+          ],
+          "support": [
+            0,
+            3,
+            5,
+            12,
+            13,
+            15
+          ]
+        }
+      ],
+      "square_lambda_supports": 16,
+      "two_h_support_count": 8008,
+      "unordered_trade_pairs": 16,
+      "zero_obstruction_supports": 16
+    },
+    {
+      "h": 4,
+      "h_is_power_of_two": true,
+      "h_subset_count": 1820,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 97,
+      "sample_square_lambda_supports": [
+        {
+          "lambda": 86,
+          "root": [
+            37,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ]
+        },
+        {
+          "lambda": 1,
+          "root": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "lambda": 11,
+          "root": [
+            59,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ]
+        },
+        {
+          "lambda": 11,
+          "root": [
+            38,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            1,
+            2,
+            5,
+            6,
+            9,
+            10,
+            13,
+            14
+          ]
+        },
+        {
+          "lambda": 96,
+          "root": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "support": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ]
+        }
+      ],
+      "square_lambda_supports": 6,
+      "two_h_support_count": 12870,
+      "unordered_trade_pairs": 6,
+      "zero_obstruction_supports": 6
+    },
+    {
+      "h": 5,
+      "h_is_power_of_two": false,
+      "h_subset_count": 4368,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 97,
+      "sample_square_lambda_supports": [],
+      "square_lambda_supports": 0,
+      "two_h_support_count": 8008,
+      "unordered_trade_pairs": 0,
+      "zero_obstruction_supports": 0
+    },
+    {
+      "h": 6,
+      "h_is_power_of_two": false,
+      "h_subset_count": 8008,
+      "high_coefficient_failures": [],
+      "n": 16,
+      "ok_obstruction_mismatches": [],
+      "p": 97,
+      "sample_square_lambda_supports": [],
+      "square_lambda_supports": 0,
+      "two_h_support_count": 1820,
+      "unordered_trade_pairs": 0,
+      "zero_obstruction_supports": 0
+    }
+  ],
+  "status": "PROVED UNIFORM OBSTRUCTION GATE: MINIMAL TRADES FORCE h-1 LOW COEFFICIENTS TO VANISH",
+  "task": "X83 uniform square-shift obstruction gate",
+  "theorem": "For any h in odd characteristic, the monic degree-h square root candidate for a split 2h-support locator is forced by the high coefficients in degrees 2h down to h.  The support underlies a minimal h-trade exactly when the h-1 low coefficients of S^2-L_R vanish and the constant discrepancy is a nonzero square. Over Q(zeta_n), the forced-root recursion has denominator exponents at most 2q-1 and 2^(4h-2) clears every low obstruction. For non-power-of-two h on 2-power rows, X24 forbids a characteristic-zero trade, so every finite-row trade is p-specific: p divides the norm of at least one nonzero cleared low obstruction, and in fact of every nonzero cleared obstruction."
+}

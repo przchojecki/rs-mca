@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - X83 uniform square-shift obstruction gate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/x83_uniform_square_shift_obstruction_gate.md`;
+  `experimental/scripts/verify_x83_uniform_square_shift_obstruction_gate.py`;
+  `experimental/data/certificates/x83-uniform-square-shift-obstruction-gate/x83_uniform_square_shift_obstruction_gate.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A self-contained upstream packet proving the
+  uniform forced-square-root obstruction gate for split 2h-supports, including
+  denominator exponents and finite-row sanity certificates.
+- **How it is useful:** This converts the X81 normal form into h-1 explicit
+  low-coefficient obstruction equations for square-shift certifiers and the
+  active-core count branch.
+- **What to do next:** Review the p-specific norm-gate clause for
+  non-power-of-two h, then connect the obstruction gate to row-level
+  certifier packets.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
