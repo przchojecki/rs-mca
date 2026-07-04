@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - QX.11 top-core globalness packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/qx11_topcore_globalness.md`;
+  `experimental/scripts/verify_qx11_topcore_globalness.py`;
+  `experimental/data/certificates/qx11-topcore-globalness/qx11_topcore_globalness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED mathematics / AUDIT / INPUT.
+- **What is being added:** The QX.11 double-count theorem showing that a
+  top-core completion cap propagates to every lower link with density
+  `L/(n-j+1)`, plus mixed-restriction and leak-localization corollaries.
+- **How it is useful:** This supplies the polynomial globalness certificate
+  consumed by the XR/KLLM assembly and the link-leak adjudication lane.
+- **What to do next:** Keep the actual post-strip cap hypothesis and
+  `L_tan` convention separate; this packet proves cap-to-globalness only.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

@@ -1,0 +1,10 @@
+{
+  "checks": 37,
+  "claim": "A uniform top-core completion cap L implies every r-core link has density at most L/(n-j+1), with mixed-restriction and leak-localization corollaries.",
+  "failures": 0,
+  "node": "xr_globalness_from_ledger",
+  "passes": 37,
+  "seed": 20260703,
+  "status": "PROVED mathematics / AUDIT for L_tan convention / INPUT for actual cap hypothesis",
+  "task": "QX.11 top-core globalness"
+}
