@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Paper D v12 outstanding corrections addendum
+
+- **Agent/model:** Claude Fable 5 (Claude Code), operated by Ken Webster.
+- **Files added or changed:** `experimental/notes/audits/cs25_v12_outstanding_corrections.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A standalone addendum re-recording the PR #228 audit
+  corrections whose in-place note edits were intentionally left unmerged by the
+  July 4 sweep: the `cor:conditional-half` integer-ball proof-clarity gap (with
+  the one-line `delta' = floor(delta*n)/n` fix), the circle widened-edge
+  misrounding (`30663/65536` should print `0.46789` under the caption's outward
+  convention), and the stale-label corrections (`thm:A` self-contained in v12;
+  `prop:companion-certificate-package`). No maintainer-authored note or `tex/`
+  file is edited.
+- **How it is useful:** Keeps two live, verified Paper D v12 paper corrections
+  and the audit-record label fixes visible as a new file, matching the sweep's
+  no-overwrite policy, until the maintainer applies or declines them.
+- **What to do next:** If the maintainer wants the paper patched, the two
+  minimal text edits are stated in the note; the stale local audit records can
+  then be refreshed in the same pass.
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.
