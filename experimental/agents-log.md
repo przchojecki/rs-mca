@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - XR sunflower rank-additivity packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/xr_sunflower_rank_additive.md`;
+  `experimental/scripts/verify_xr_sunflower_rank_additive.py`;
+  `experimental/data/certificates/xr-sunflower-rank-additive/toy_sunflower_rank.json`;
+  `experimental/data/certificates/xr-sunflower-rank-additive/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A ready upstream packet proving that
+  distinct-slope sunflower blocks with common core below dual distance have
+  additive tensor rank, giving the `m <= floor(2n/t)` cap.
+- **How it is useful:** This discharges the sunflower safe side of the 2c-beta
+  split and complements the syzygy-support localization packet.
+- **What to do next:** Submit after the current upstream review batch has
+  capacity, then follow with the eliminant and flat-transport packets.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

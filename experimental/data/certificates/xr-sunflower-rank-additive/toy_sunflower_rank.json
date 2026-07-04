@@ -1,0 +1,36 @@
+{
+  "checks": 552812,
+  "node": "xr_sunflower_rank_additive",
+  "toy_rows": [
+    {
+      "A": 4,
+      "core_size": 1,
+      "core_subsets_checked": 840,
+      "k": 2,
+      "maximum_common_core_support_weight": 0,
+      "maximum_rank_defect": 0,
+      "minimum_nonzero_dual_weight": 3,
+      "n": 10,
+      "p": 11,
+      "rank_checks": 16800,
+      "sunflower_triples": 16800,
+      "supports": 210,
+      "t": 2
+    },
+    {
+      "A": 5,
+      "core_size": 2,
+      "core_subsets_checked": 4620,
+      "k": 3,
+      "maximum_common_core_support_weight": 0,
+      "maximum_rank_defect": 0,
+      "minimum_nonzero_dual_weight": 4,
+      "n": 11,
+      "p": 13,
+      "rank_checks": 92400,
+      "sunflower_triples": 92400,
+      "supports": 462,
+      "t": 2
+    }
+  ]
+}
