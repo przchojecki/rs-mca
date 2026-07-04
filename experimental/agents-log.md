@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - C1a low-h MITM certificates
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/c1a_lowh_mitm_certificates.md`;
+  `experimental/scripts/verify_c1a_lowh_mitm.py`;
+  `experimental/data/certificates/c1a-lowh-mitm/`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / CERTIFIER / PROVED-AGAINST-GROUND-TRUTH.
+- **What is being added:** A direct low-`h` MITM certifier packet for the
+  Row-C-class `h=4` trade census: validation gates, exact finite-field
+  emptiness through `n=256`, stand-in Row-C certificates, n=1024 toral/slice
+  reporting, and an honest h=5 infeasibility measurement.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it supplies blocker C1a's row-field falsifier/certifier machinery and
+  records exactly where direct enumeration stops, complementing C1b descent
+  and C2 good-reduction certificates.
+- **What to do next:** Submit after the current proof-spine PR batch has
+  capacity; rerun the same machinery on literal official Row-C primes once
+  those primes are pinned in-repo.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

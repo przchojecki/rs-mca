@@ -1,0 +1,114 @@
+{
+  "schema": "c1a-lowh-mitm-certificate/v1",
+  "dag_node": "c1a_lowh_direct_certificates",
+  "parent_node": "c1_scalable_certificate",
+  "h": 4,
+  "domain": "mu_1024 (subset F_q); coset domains per rate reduce to this by the mu_n scaling symmetry (e_j(gamma R)=gamma^j e_j(R))",
+  "claim": "no non-toral (primitive) minimal 4-trade beyond the paid mu_4-coset-union fiber class",
+  "method": "anchored meet-in-the-middle; fingerprint bucketing + exact F_p verification; per-orbit coverage via mu_n scaling",
+  "prime_status": "STAND-IN: literal official ~2^250 primes are NOT in-repo (repo uses idealized q=2^250; see note sec 0). Machinery re-runs on the literal primes by swapping the prime constant; results below are over a labeled stand-in prime p* == 1 mod 1024, ~250 bits.",
+  "standin_prime": "1809251394333065553493296640760748560207343510400633813116524750123642699777",
+  "standin_prime_bits": 251,
+  "standin_prime_minus_1_mod_1024": 0,
+  "toral_fiber_class": "R = alpha.mu_4 u beta.mu_4 (two full mu_4 cosets); signature (e1,e2,e3)=(0,0,0); count C(n/4,2)",
+  "exact_scan_over_finite_fields": {
+    "16": {
+      "n": 16,
+      "h": 4,
+      "complete": true,
+      "anchored_nontoral": 0,
+      "lifted_toral_total": 6,
+      "pred_toral": 6,
+      "n_probe": 1365,
+      "probe_rate_per_s": 653340
+    },
+    "32": {
+      "n": 32,
+      "h": 4,
+      "complete": true,
+      "anchored_nontoral": 0,
+      "lifted_toral_total": 28,
+      "pred_toral": 28,
+      "n_probe": 31465,
+      "probe_rate_per_s": 778794
+    },
+    "64": {
+      "n": 64,
+      "h": 4,
+      "complete": true,
+      "anchored_nontoral": 0,
+      "lifted_toral_total": 120,
+      "pred_toral": 120,
+      "n_probe": 595665,
+      "probe_rate_per_s": 755268
+    },
+    "128": {
+      "n": 128,
+      "h": 4,
+      "complete": true,
+      "anchored_nontoral": 0,
+      "lifted_toral_total": 496,
+      "pred_toral": 496,
+      "n_probe": 10334625,
+      "probe_rate_per_s": 777811
+    },
+    "256": {
+      "n": 256,
+      "h": 4,
+      "complete": true,
+      "anchored_nontoral": 0,
+      "lifted_toral_total": 2016,
+      "pred_toral": 2016,
+      "n_probe": 172061505,
+      "probe_rate_per_s": 668978
+    }
+  },
+  "exact_scan_verdict": "at every n in {16,32,64,128,256}: anchored non-toral = 0 and lifted toral = C(n/4,2); no non-toral 4-trade at any tested scale",
+  "n1024": {
+    "machinery_ok": true,
+    "toral_family_ok": true,
+    "toral_total": 32640,
+    "toral_detected_anchored": 255,
+    "slice_window": 160,
+    "slice_probes": 25637001,
+    "slice_nontoral": 0,
+    "probe_rate_per_s": 696765,
+    "full_probe_count": 45367119105,
+    "full_hash_count": 177910271,
+    "est_full_probe_hours": 18.1,
+    "est_full_hash_mem_gb": 16.01
+  },
+  "n1024_verdict": "machinery validated at n=1024 over the stand-in prime; toral family (32640 trades) certified; spot sub-census clean; the COMPLETE n=1024 census is single-process-infeasible here (see est_full_* and the 2GB ceiling) -- the unconditional 'zero non-toral' at n=1024 is supplied by the banked A3 good-reduction lemma + X24 (a_closure_assembly.md), for which this is a direct corroborating harness and re-runnable check.",
+  "h5_feasibility": {
+    "n_meas": 64,
+    "census_mode": "complete",
+    "census_probes": 7028847,
+    "census_empty": true,
+    "probe_rate_per_s": 131508,
+    "full_probe_count_1024": 9245818873599,
+    "full_hash_count_1024": 45367119105,
+    "est_full_probe_hours_1024": 19529.5,
+    "est_full_probe_years_1024": 2.23,
+    "est_full_hash_mem_gb_1024": 4083.0,
+    "verdict": "INFEASIBLE on this machine (time and 2GB ceiling); not launched"
+  },
+  "harness_compat": "coordinates with verify_c2_gcd_harness.py (c2-gcd-certificate/v1): C1a supplies the DIRECT row-field trade census; C2 supplies the gcd(p,D(n,h)) good-reduction test. Both consume the same Row-C rows.",
+  "verifier": "experimental/scripts/verify_c1a_lowh_mitm.py",
+  "row": {
+    "row_id": "RowC_rate_1_16",
+    "n": 1024,
+    "k": 64,
+    "A": 67,
+    "rate": "1/16",
+    "t": 3
+  },
+  "h4_window_position": "h=4 is the WINDOW BOTTOM for this row (t=3, window [4, H_max])",
+  "result": {
+    "h": 4,
+    "non_toral_primitive_trades": 0,
+    "signature_collisions_beyond_fiber": 0,
+    "toral_fiber_paid_total": 32640,
+    "expected_non_toral": 0,
+    "status": "PASS (per-orbit direct census clean through n=256; n=1024 corroborated + structurally closed by A3+X24)"
+  }
+}
