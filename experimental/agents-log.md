@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - XR eliminant normal form and flat transport
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/xr_triangle_eliminant_form.md`;
+  `experimental/scripts/verify_xr_triangle_eliminant_form.py`;
+  `experimental/data/certificates/xr-triangle-eliminant-form/toy_triangle_eliminant.json`;
+  `experimental/data/certificates/xr-triangle-eliminant-form/README.md`;
+  `experimental/notes/roadmaps/xr_syzygy_flat_transport.md`;
+  `experimental/scripts/verify_xr_syzygy_flat_transport.py`;
+  `experimental/data/certificates/xr-syzygy-flat-transport/toy_flat_transport.json`;
+  `experimental/data/certificates/xr-syzygy-flat-transport/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A ready upstream packet combining the light-triangle
+  eliminant normal form with the scattered-syzygy flat-transport dictionary.
+- **How it is useful:** This supplies the exact rank-drop matrix for the
+  light-triangle residue and transports diffuse syzygy supports into the
+  Conjecture-F/E30 support-lattice language.
+- **What to do next:** Submit after the current upstream review batch has
+  capacity; downstream consumers are the 2c vanishing-class and support-lattice
+  accounting packets.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

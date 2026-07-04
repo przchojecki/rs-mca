@@ -1,0 +1,42 @@
+{
+  "checks": 9461,
+  "domain": "F_17^*",
+  "field": "F_17",
+  "flats": [
+    {
+      "distinct_sparse_closures": 0,
+      "generated_closure_count": 1,
+      "max_nullity": 0,
+      "name": "mds_deg3",
+      "nullity_sum": 0,
+      "rank": 4,
+      "sampled_union_closures": 0,
+      "sparse_supports": 0,
+      "supports_checked": 2516
+    },
+    {
+      "distinct_sparse_closures": 576,
+      "generated_closure_count": 576,
+      "max_nullity": 1,
+      "name": "common_root",
+      "nullity_sum": 576,
+      "rank": 4,
+      "sampled_union_closures": 1600,
+      "sparse_supports": 576,
+      "supports_checked": 2516
+    },
+    {
+      "distinct_sparse_closures": 92,
+      "generated_closure_count": 93,
+      "max_nullity": 2,
+      "name": "even_pullback",
+      "nullity_sum": 848,
+      "rank": 4,
+      "sampled_union_closures": 1600,
+      "sparse_supports": 820,
+      "supports_checked": 2516
+    }
+  ],
+  "max_support": 4,
+  "node": "xr_syzygy_flat_transport"
+}

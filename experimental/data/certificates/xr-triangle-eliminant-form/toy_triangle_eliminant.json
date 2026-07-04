@@ -1,0 +1,40 @@
+{
+  "checks": 270534,
+  "node": "xr_triangle_eliminant_form",
+  "toy_rows": [
+    {
+      "A": 4,
+      "k": 2,
+      "light_rank_defect_triples": 0,
+      "light_triples": 0,
+      "maximum_kernel_dimension": 1,
+      "maximum_light_kernel_dimension": 0,
+      "n": 6,
+      "normal_form_rank_checks": 2730,
+      "ordered_triples": 2730,
+      "p": 7,
+      "rank_defect_triples": 120,
+      "skipped_nonlight_triples": 0,
+      "supports": 15,
+      "t": 2,
+      "twisted_rank_checks": 2730
+    },
+    {
+      "A": 4,
+      "k": 2,
+      "light_rank_defect_triples": 0,
+      "light_triples": 87360,
+      "maximum_kernel_dimension": 0,
+      "maximum_light_kernel_dimension": 0,
+      "n": 8,
+      "normal_form_rank_checks": 87360,
+      "ordered_triples": 87360,
+      "p": 11,
+      "rank_defect_triples": 0,
+      "skipped_nonlight_triples": 241080,
+      "supports": 70,
+      "t": 2,
+      "twisted_rank_checks": 87360
+    }
+  ]
+}
