@@ -4,6 +4,22 @@ DAG node: `xr_pencil_cascade`.
 
 Status: PROVED.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route.  The clean-rate
+compiler now reduces the post-strip face-4 obligation to a polynomial residual
+bound, recorded as `R_post(u,v; A) <= 16 n^3` in
+`xr_clean_poly_forcing_reduction.md`.  This packet removes the largest-core
+boundary of that residual: any distinct-slope pair with common core
+`>= A-1` is not an unstructured residue at all, but a paid tangent-pencil
+cell.
+
+Thus later packets only need to count the small-core spread remainder, plus
+the terminal active-core/PTE residue currently isolated as
+`active_core_count_bound`.  This theorem is unconditional; the conditional
+part of the prize path enters only when the downstream compiler consumes the
+remaining polynomial residue bound.
+
 ## Statement
 
 Let `C = RS[H,k]`, `|H| = n`, and let the agreement threshold be

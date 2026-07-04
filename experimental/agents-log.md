@@ -44,8 +44,11 @@ Keep entries concise and link to the relevant files.
   pencil-cascade threshold: two distinct aligned slopes with common core
   `r >= A-1` force a codeword pencil, and the `r=A-1` cascade is exactly the
   off-core residual-ratio map.
-- **How it is useful:** This removes the `r>=A-1` boundary from the residual
-  small-core spread problem and feeds the face-4 rungs.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it removes the `r>=A-1` boundary from the post-strip face-4 residual used by
+  `xr_clean_poly_forcing_reduction.md`, leaving only the small-core spread
+  remainder and the terminal `active_core_count_bound` / PTE polynomial
+  residue for the downstream compiler.
 - **What to do next:** Submit as the next Tier 3 PR once the current upstream
   review queue has capacity.
 
