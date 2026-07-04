@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - X32 h=4 terminal dichotomy packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/x32_h4_terminal_dichotomy.md`;
+  `experimental/scripts/verify_x32_h4_terminal_dichotomy.py`;
+  `experimental/data/certificates/x32-h4-terminal-dichotomy/x32_h4_terminal_dichotomy.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A self-contained upstream packet reducing h=4
+  terminal trades to the paid antipodal quotient branch or an explicit
+  top-level 8-sparse cyclotomic norm gate.
+- **How it is useful:** This closes the h=4 branch taxonomy up to the named
+  norm-gate residue used by the active-core count program.
+- **What to do next:** Import the underlying h=4 evidence packets separately
+  if the maintainer wants the replay to read X20/X21/X22 certificates directly
+  instead of using their banked zero summaries.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

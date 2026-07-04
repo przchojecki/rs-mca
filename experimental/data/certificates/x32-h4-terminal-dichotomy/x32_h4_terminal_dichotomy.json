@@ -1,0 +1,90 @@
+{
+  "antipodal_quotient_extra_example": {
+    "P": [
+      0,
+      2,
+      32,
+      34
+    ],
+    "Q": [
+      8,
+      21,
+      40,
+      53
+    ],
+    "m": 32,
+    "n": 64,
+    "p": 4993,
+    "quotient_phi_descended": false,
+    "quotient_resultant_mod_p": 0,
+    "quotient_sparse_resultant": 9986,
+    "top_level_phi_descended": true,
+    "top_three_signature": [
+      0,
+      4723,
+      0
+    ]
+  },
+  "checks": 18,
+  "dependency_statuses": {
+    "active_core_count_bound": "TARGET",
+    "x29_h4_quotient_bridge_lemma": "PROVED",
+    "x30_finite_p_norm_gate": "PROVED",
+    "x31_h2_quotient_norm_criterion": "PROVED"
+  },
+  "mu4_baseline_example": {
+    "P": [
+      0,
+      16,
+      32,
+      48
+    ],
+    "Q": [
+      1,
+      17,
+      33,
+      49
+    ],
+    "full_mu4_fibers": true,
+    "n": 64,
+    "p": 4993,
+    "quotient_phi_descended": true,
+    "top_level_phi_descended": true,
+    "top_three_signature": [
+      0,
+      0,
+      0
+    ]
+  },
+  "node": "active_core_count_bound",
+  "open_residue": "Count or certify absence of top-level non-antipodal 8-sparse norm-gated h=4 trades at the rows of interest.  The packet does not prove that this branch is empty.",
+  "prior_h4_evidence_summary": {
+    "x20_other_count": 0,
+    "x21_nonfingerprinted_rows": 0,
+    "x22_nonfingerprinted_rows": 0
+  },
+  "status": "PROVED REDUCTION: every h=4 trade is either in the paid antipodal quotient branch or triggers a top-level 8-sparse cyclotomic norm gate",
+  "task": "X32 h=4 terminal dichotomy",
+  "theorem": "Let n=2^s, H=mu_n in odd characteristic p, and let P,Q be disjoint 4-subsets of H with equal e1,e2,e3.  Encode the first-sum difference as f.  If Phi_n divides f over Z, then P and Q are antipodal unions; by X29 this is exactly a quotient h=2 sum collision, and by X31 it is the paid mu4 baseline or a paid quotient sparse norm gate.  If Phi_n does not divide f, then X30 gives p | Res(Phi_n,f).  Hence the only h=4 residue outside the paid antipodal branch is the explicit top-level 8-sparse norm-gate branch.",
+  "top_level_norm_gate_first_sum_example": {
+    "first_sum_value_mod_p": 0,
+    "n": 32,
+    "negative_exponents": [
+      8,
+      21,
+      3,
+      19
+    ],
+    "p": 4993,
+    "phi_descended": false,
+    "positive_exponents": [
+      0,
+      2,
+      1,
+      17
+    ],
+    "resultant_mod_p": 0,
+    "sparse_resultant_abs_bits": 14,
+    "top_three_trade": false
+  }
+}
