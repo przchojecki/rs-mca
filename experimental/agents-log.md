@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - XR budget audit and clean poly-forcing packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/xr_budget_audit.md`;
+  `experimental/scripts/verify_xr_budget_audit.py`;
+  `experimental/data/certificates/xr-budget-audit/xr_budget_audit_certificate.json`;
+  `experimental/data/certificates/xr-budget-audit/README.md`;
+  `experimental/notes/roadmaps/xr_clean_poly_forcing_reduction.md`;
+  `experimental/scripts/verify_xr_clean_poly_forcing.py`;
+  `experimental/data/certificates/xr-clean-poly-forcing/xr_clean_poly_forcing_certificate.json`;
+  `experimental/data/certificates/xr-clean-poly-forcing/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED COMPILER.
+- **What is being added:** A ready upstream packet combining the exact
+  clean-rate budget audit with the clean-rate polynomial forcing compiler.
+  The budget audit verifier now also checks a pinned JSON certificate.
+- **How it is useful:** This supplies the integer room consumed by the
+  face-4 residual compiler and proves that a `16 n^3` post-strip residual cap
+  fits all six clean-rate decision rows.
+- **What to do next:** Submit after the upstream review queue has capacity,
+  then follow with the QA.22/QA.25/tolerance arithmetic suite.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
