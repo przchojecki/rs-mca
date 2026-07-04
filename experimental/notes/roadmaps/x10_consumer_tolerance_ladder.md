@@ -7,6 +7,22 @@
 - **Certificate:**
   `experimental/data/certificates/x10-consumer-tolerance-ladder/x10_consumer_tolerance_ladder.json`.
 
+## Critical-path role
+
+This packet records the tolerance of the conditional prize proof path to the
+terminal active-core/PTE estimate.  Before W4, local U1/B consumers forced the
+near-linear anchored target `A_h^nt <= h n`.  After W4, the two hard consumers
+share one final post-strip row-wise split-pair column, so the clean-rate
+compiler can consume the weaker but correctly denominated target
+
+```text
+# uncharged split pairs <= n^3 per row.
+```
+
+This ladder is therefore metadata for the terminal conjecture: it says which
+exponent forms are sufficient for which consumers, and it prevents mixing a
+core-only estimate with an unpaid polynomial tail multiplier.
+
 ## Normalization
 
 All exponents in this packet use the normalized form

@@ -47,9 +47,13 @@ Keep entries concise and link to the relevant files.
   columns for the six clean-rate candidates, plus the X-10 consumer exponent
   ladder showing which downstream budgets tolerate weakened
   `A_h^nt <= h*n^alpha` estimates.
-- **How it is useful:** Packages the budget arithmetic needed by the
-  poly-forcing compiler and names the precise X-10 exponent pressure seen by
-  the remaining active-core and band-trade consumers.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  QA.22/QA.25 certify that staircase and boundary-scale columns fit beside
+  the `16 n^3` post-strip reserve, while the X-10 ladder records that after
+  W4 the terminal estimate may be consumed as a final row-wise
+  `# uncharged split pairs <= n^3` column.  The structural active-core/PTE
+  bound remains conditional; this packet closes the arithmetic and exponent
+  bookkeeping around it.
 - **What to do next:** Review alongside the budget/poly-forcing compiler
   packet; the X-10 consumers remain conditional on the anchored non-toral PTE
   estimate.

@@ -7,6 +7,18 @@
 - **Certificate:**
   `experimental/data/certificates/qa25-boundary-scale-column/qa25_boundary_scale_column.json`.
 
+## Critical-path role
+
+This is a budget-column repair packet for the conditional prize proof path.
+It adds the boundary zero-sum column missing from the strict `M > t`
+staircase arithmetic and checks that the repaired total still fits the same
+compiler inequality used by `xr_clean_poly_forcing_reduction.md`.
+
+The packet closes the arithmetic side of the boundary-scale issue only.  It
+does not prove the structural U2-C residual dichotomy; if that dichotomy
+produces a new primitive residue, the budget must be revisited with that extra
+column.
+
 ## Convention
 
 QA.22 prices the strict quotient staircase at dyadic scales `M > t`.  X-8

@@ -4,6 +4,20 @@
 - **Status:** AUDIT / arithmetic gate passed.
 - **Verifier:** `experimental/scripts/verify_qa22_staircase_budget.py`.
 
+## Critical-path role
+
+This is a budget-column packet for the conditional prize proof path.  It
+prices the quotient and dihedral staircase terms that must coexist with the
+`16 n^3` post-strip residual reserve from
+`xr_clean_poly_forcing_reduction.md`.  The exact check shows that these
+staircase columns do not consume the polynomial-residue room at any of the six
+clean-rate rows.
+
+Thus the staircase arithmetic is not the terminal obstruction.  The remaining
+conditional work stays localized in the algebraic post-strip split-pair/PTE
+residue, while this packet certifies that the known staircase columns fit
+inside the compiler budget.
+
 ## Conventions
 
 For each of the six clean-rate candidates from `xr_budget_audit.md`, write
