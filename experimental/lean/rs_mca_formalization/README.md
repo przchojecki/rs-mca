@@ -93,6 +93,15 @@ restriction search showing `eps2|_S` is outside `C|_S`.  Full sigma_C census
 exhaustiveness remains a typed bridge discharged by the Python certificate
 verifier, not a Lean theorem.
 
+`RsMca.EmcaStaircaseLedger` records a stdlib-only finite anchor for the
+committed `(q,n,k)=(7,6,3)` exact `eca_C`/`emca_C` staircase row.  It checks the
+recorded EMCA argmax pairs at radii `r=0,1,2`, the bad-slope numerators
+`1,2,7`, the `r=1` ECA column-far gate by exact restricted-code enumeration,
+and the printed sparsification identities `max(1,0)=1`, `max(2,1)=2`,
+`max(7,7)=7`.  Full worst-case staircase exhaustiveness remains a typed bridge
+discharged by `verify_exact_worstcase_eca_emca_staircase.py`, not a Lean
+theorem.
+
 ## Build
 
 ```sh

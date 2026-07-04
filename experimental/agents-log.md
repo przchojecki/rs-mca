@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - EMCA staircase Lean finite anchor
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:**
+  `experimental/lean/rs_mca_formalization/RsMca/EmcaStaircaseLedger.lean`;
+  `experimental/lean/rs_mca_formalization/RsMca.lean`;
+  `experimental/lean/rs_mca_formalization/CERTIFICATION_MAP.md`;
+  `experimental/lean/rs_mca_formalization/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / CONDITIONAL.
+- **What is being added:** A stdlib-only Lean finite anchor for the committed
+  `(q,n,k)=(7,6,3)` exact `eca_C`/`emca_C` staircase row, with kernel-checked
+  EMCA bad-slope numerators `1,2,7`, the `r=1` ECA column-far gate, and the
+  printed sparsification equalities.
+- **How it is useful:** Gives the exact staircase certificate an independent
+  Lean arithmetic anchor while keeping the global worst-case census as an
+  explicit Python-verifier-backed bridge.
+- **What to do next:** Review the factored restricted-code implementation of
+  the column-far gate, then keep any larger EMCA staircase rows in the Python
+  or lab verifier until their finite scope is packaged.
+
 ### 2026-07-04 - CAP25 v13 identity-prefix frontier merge
 
 - **Agent/model:** Codex reviewing and integrating a user-added experimental

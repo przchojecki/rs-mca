@@ -40,6 +40,11 @@ lake build
 | Projective denominator `17^32 + 1` has the same integer upper gate. | `RsMca.field_count_gate_proj`. | Finite-threshold projective-slope variant. | Lean-certified |
 | The committed `(q,n,k,r)=(7,6,3,2)` sigma_C extremal pair has kernel-checked witnesses for all seven finite slopes. | `RsMca.SigmaC.q763_pair_saturates_finite_slopes`; `RsMca.SigmaC.q763_all_finite_slopes_bad`; `RsMca.SigmaC.q763_gamma0_witness` through `RsMca.SigmaC.q763_gamma6_witness`. | `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_extended_rows.json` from the sigma_C sparse census. | Lean-certified finite anchor; verifier-backed census |
 | The same row has the expected two tangent-ratio lower-bound slopes at `r=2`. | `RsMca.SigmaC.q763_tangent_lower_bound`. | `towards-prize.tex` sparse mutual-layer tangent floor; sigma_C verifier guard. | Lean-certified finite anchor |
+| The committed `(q,n,k)=(7,6,3)` exact EMCA staircase has numerator `1` at radius `r=0`. | `RsMca.EmcaStaircase.q763_emca_r0_bad_slopes`; `RsMca.EmcaStaircase.q763_emca_r0_numerator`. | `experimental/data/certificates/exact-worstcase-eca-emca-staircase/exact_worstcase_eca_emca_staircase_cpu_rows.json`; Python verifier-backed global maximization. | Lean-certified finite anchor; verifier-backed census |
+| The same exact EMCA staircase has numerator `2` at radius `r=1`. | `RsMca.EmcaStaircase.q763_emca_r1_bad_slopes`; `RsMca.EmcaStaircase.q763_emca_r1_numerator`. | Same certificate row; Python verifier-backed global maximization. | Lean-certified finite anchor; verifier-backed census |
+| The same exact EMCA staircase has numerator `7` at radius `r=2`. | `RsMca.EmcaStaircase.q763_emca_r2_bad_slopes`; `RsMca.EmcaStaircase.q763_emca_r2_numerator`. | Same certificate row; Python verifier-backed global maximization. | Lean-certified finite anchor; verifier-backed census |
+| The committed `(q,n,k,r)=(7,6,3,1)` ECA argmax pair is column-far and has two finite CA-bad slopes under the factored restricted-code gate. | `RsMca.EmcaStaircase.q763_eca_r1_column_far`; `RsMca.EmcaStaircase.q763_eca_r1_bad_slopes_when_column_far`; `RsMca.EmcaStaircase.q763_eca_r1_numerator`. | Same certificate row; exact factored column-far gate plus Python verifier-backed global maximization. | Lean-certified finite anchor; verifier-backed census |
+| The printed `(7,6,3)` sparsification numerators satisfy `max(1,0)=1`, `max(2,1)=2`, and `max(7,7)=7`. | `RsMca.EmcaStaircase.q763_sparsify_r0`; `RsMca.EmcaStaircase.q763_sparsify_r1`; `RsMca.EmcaStaircase.q763_sparsify_r2`. | Exact worst-case eca/emca staircase certificate and sigma_C row. | Lean-certified arithmetic |
 
 ## Typed Targets And Non-Claims
 
@@ -49,6 +54,7 @@ lake build
 | A6 quotient-floor semantics are bridged by the Python verifier and the parity-split Lean arithmetic. | `RsMca.QuotientFloorBridge`; `RsMca.qf_half_closed`. | Conditional bridge plus Lean-certified arithmetic. |
 | F1 sigma-one extension-line badness requires polynomial/RS semantics over genuine finite fields. | `RsMca.F1Ext.F1ExtensionSigmaOneBridge`. | Typed target, verifier-backed outside Lean. |
 | Full sigma_C census exhaustiveness and trivial-regime equality require the Python verifier's iteration over sparse pairs and RS/MCA semantics. | `RsMca.SigmaC.SigmaCSparseCensusBridge`; `RsMca.SigmaC.SigmaCTrivialRegimeBridge`. | Typed target, verifier-backed outside Lean. |
+| Full exact EMCA/ECA staircase worst-case statements require the Python verifier's iteration over syndrome-class pair representatives and RS/MCA/CA semantics. | `RsMca.EmcaStaircase.EmcaStaircaseBridge`; `RsMca.EmcaStaircase.EcaStaircaseBridge`. | Typed target, verifier-backed outside Lean. |
 | The BETA_2 analytic conductor bound is an l-adic/cohomological input. | `RsMca.BetaTwo.BetaTwoConductorBound`. | Typed target, not stdlib-certifiable. |
 
 ## Audit Rule
