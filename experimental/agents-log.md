@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - X82 square-shift certifier-key packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/x82_square_shift_certifier_keys.md`;
+  `experimental/scripts/verify_x82_square_shift_certifier_keys.py`;
+  `experimental/data/certificates/x82-square-shift-certifier-keys/x82_square_shift_certifier_keys.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A self-contained upstream packet separating finite
+  row scaling keys from Galois/unit certifier keys for X81 square-shift
+  supports.
+- **How it is useful:** This fixes the key discipline consumed by the X83
+  obstruction gate and by square-shift certifiers: scaling may divide row
+  mass, while unit relabeling only compresses obstruction computations.
+- **What to do next:** Review the fixed-row unit mismatch samples, then use
+  this key discipline when importing the uniform obstruction gate.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

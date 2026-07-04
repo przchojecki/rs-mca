@@ -1,0 +1,1031 @@
+{
+  "algebra_checks": {
+    "field_p": 101,
+    "h": 4,
+    "lambda": 45,
+    "predicted_scaled_lambda": 70,
+    "scale": 7,
+    "scaled_lambda": 70
+  },
+  "checks": 34,
+  "dependency_statuses": {
+    "active_core_count_bound": "TARGET",
+    "x67_h4_galois_norm_gate_compression": "PROVED",
+    "x81_minimal_trade_square_shift": "PROVED"
+  },
+  "node": "active_core_count_bound",
+  "rows": [
+    {
+      "all_certifier_key_count": 84,
+      "all_scaling_key_count": 504,
+      "certifier_key_failures": [],
+      "h": 3,
+      "n": 16,
+      "p": 17,
+      "sample_square_shift_keys": [
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            12
+          ],
+          "lambda": 8,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            13
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            13
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            7
+          ],
+          "lambda": 9,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            7
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            10
+          ],
+          "lambda": 13,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            4,
+            10,
+            13
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            10,
+            13
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            4,
+            6,
+            14
+          ],
+          "lambda": 15,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            4,
+            12,
+            14
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            4,
+            12,
+            14
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            9
+          ],
+          "lambda": 8,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            9
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            9
+          ]
+        }
+      ],
+      "scaling_failures": [],
+      "square_lambda_certifier_key_count": 22,
+      "square_lambda_scaling_key_count": 23,
+      "square_lambda_support_count": 352,
+      "two_h_support_count": 8008,
+      "unit_count": 8,
+      "unit_row_predicate_mismatches": [
+        {
+          "relabeled": [
+            0,
+            4,
+            5,
+            9,
+            10,
+            15
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "unit": 5
+        },
+        {
+          "relabeled": [
+            0,
+            1,
+            6,
+            7,
+            11,
+            12
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "unit": 11
+        },
+        {
+          "relabeled": [
+            0,
+            4,
+            5,
+            10,
+            11,
+            15
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            15
+          ],
+          "unit": 5
+        },
+        {
+          "relabeled": [
+            0,
+            1,
+            5,
+            6,
+            11,
+            12
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            15
+          ],
+          "unit": 11
+        },
+        {
+          "relabeled": [
+            0,
+            3,
+            5,
+            7,
+            8,
+            14
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            8
+          ],
+          "unit": 7
+        }
+      ]
+    },
+    {
+      "all_certifier_key_count": 129,
+      "all_scaling_key_count": 810,
+      "certifier_key_failures": [],
+      "h": 4,
+      "n": 16,
+      "p": 17,
+      "sample_square_shift_keys": [
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            12,
+            13
+          ],
+          "lambda": 8,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            14
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            14
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            9,
+            10
+          ],
+          "lambda": 8,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            8,
+            11
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            12,
+            14
+          ],
+          "lambda": 2,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            11,
+            14
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            11,
+            14
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            9,
+            12
+          ],
+          "lambda": 16,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            10,
+            12,
+            13
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            12,
+            13
+          ],
+          "lambda": 9,
+          "scaling_key": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            14
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7,
+            13,
+            15
+          ]
+        }
+      ],
+      "scaling_failures": [],
+      "square_lambda_certifier_key_count": 10,
+      "square_lambda_scaling_key_count": 10,
+      "square_lambda_support_count": 126,
+      "two_h_support_count": 12870,
+      "unit_count": 8,
+      "unit_row_predicate_mismatches": [
+        {
+          "relabeled": [
+            0,
+            2,
+            4,
+            7,
+            10,
+            11,
+            13,
+            14
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            7,
+            10
+          ],
+          "unit": 13
+        },
+        {
+          "relabeled": [
+            0,
+            4,
+            5,
+            7,
+            8,
+            10,
+            14,
+            15
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            11
+          ],
+          "unit": 5
+        },
+        {
+          "relabeled": [
+            0,
+            3,
+            4,
+            10,
+            12,
+            13,
+            14,
+            15
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            12,
+            13
+          ],
+          "unit": 15
+        },
+        {
+          "relabeled": [
+            0,
+            3,
+            5,
+            6,
+            8,
+            9,
+            10,
+            12
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            14
+          ],
+          "unit": 3
+        },
+        {
+          "relabeled": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            8,
+            10,
+            15
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            14
+          ],
+          "unit": 5
+        }
+      ]
+    },
+    {
+      "all_certifier_key_count": 84,
+      "all_scaling_key_count": 504,
+      "certifier_key_failures": [],
+      "h": 5,
+      "n": 16,
+      "p": 17,
+      "sample_square_shift_keys": [],
+      "scaling_failures": [],
+      "square_lambda_certifier_key_count": 0,
+      "square_lambda_scaling_key_count": 0,
+      "square_lambda_support_count": 0,
+      "two_h_support_count": 8008,
+      "unit_count": 8,
+      "unit_row_predicate_mismatches": []
+    },
+    {
+      "all_certifier_key_count": 84,
+      "all_scaling_key_count": 504,
+      "certifier_key_failures": [],
+      "h": 3,
+      "n": 16,
+      "p": 97,
+      "sample_square_shift_keys": [
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            8
+          ],
+          "lambda": 94,
+          "scaling_key": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ],
+          "support": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            8
+          ],
+          "lambda": 53,
+          "scaling_key": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ],
+          "support": [
+            0,
+            1,
+            4,
+            6,
+            13,
+            14
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            8
+          ],
+          "lambda": 95,
+          "scaling_key": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ],
+          "support": [
+            0,
+            2,
+            3,
+            6,
+            8,
+            15
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            8
+          ],
+          "lambda": 44,
+          "scaling_key": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ],
+          "support": [
+            0,
+            2,
+            9,
+            10,
+            12,
+            13
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            8
+          ],
+          "lambda": 3,
+          "scaling_key": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ],
+          "support": [
+            0,
+            3,
+            5,
+            12,
+            13,
+            15
+          ]
+        }
+      ],
+      "scaling_failures": [],
+      "square_lambda_certifier_key_count": 1,
+      "square_lambda_scaling_key_count": 1,
+      "square_lambda_support_count": 16,
+      "two_h_support_count": 8008,
+      "unit_count": 8,
+      "unit_row_predicate_mismatches": [
+        {
+          "relabeled": [
+            0,
+            2,
+            3,
+            6,
+            8,
+            15
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            8
+          ],
+          "unit": 3
+        },
+        {
+          "relabeled": [
+            0,
+            2,
+            9,
+            10,
+            12,
+            13
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            5,
+            10,
+            12
+          ],
+          "unit": 9
+        },
+        {
+          "relabeled": [
+            0,
+            7,
+            8,
+            10,
+            11,
+            14
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            6,
+            8,
+            13
+          ],
+          "unit": 7
+        },
+        {
+          "relabeled": [
+            0,
+            2,
+            9,
+            10,
+            12,
+            13
+          ],
+          "support": [
+            0,
+            1,
+            2,
+            10,
+            12,
+            13
+          ],
+          "unit": 13
+        },
+        {
+          "relabeled": [
+            0,
+            3,
+            5,
+            9,
+            11,
+            12
+          ],
+          "support": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ],
+          "unit": 3
+        }
+      ]
+    },
+    {
+      "all_certifier_key_count": 129,
+      "all_scaling_key_count": 810,
+      "certifier_key_failures": [],
+      "h": 4,
+      "n": 16,
+      "p": 97,
+      "sample_square_shift_keys": [
+        {
+          "certifier_key": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "lambda": 86,
+          "scaling_key": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "support": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "lambda": 1,
+          "scaling_key": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "support": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "lambda": 11,
+          "scaling_key": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "support": [
+            0,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "lambda": 11,
+          "scaling_key": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "support": [
+            1,
+            2,
+            5,
+            6,
+            9,
+            10,
+            13,
+            14
+          ]
+        },
+        {
+          "certifier_key": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "lambda": 96,
+          "scaling_key": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ],
+          "support": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ]
+        }
+      ],
+      "scaling_failures": [],
+      "square_lambda_certifier_key_count": 2,
+      "square_lambda_scaling_key_count": 2,
+      "square_lambda_support_count": 6,
+      "two_h_support_count": 12870,
+      "unit_count": 8,
+      "unit_row_predicate_mismatches": []
+    },
+    {
+      "all_certifier_key_count": 84,
+      "all_scaling_key_count": 504,
+      "certifier_key_failures": [],
+      "h": 5,
+      "n": 16,
+      "p": 97,
+      "sample_square_shift_keys": [],
+      "scaling_failures": [],
+      "square_lambda_certifier_key_count": 0,
+      "square_lambda_scaling_key_count": 0,
+      "square_lambda_support_count": 0,
+      "two_h_support_count": 8008,
+      "unit_count": 8,
+      "unit_row_predicate_mismatches": []
+    }
+  ],
+  "status": "PROVED KEY DISCIPLINE: SQUARE-SHIFT ROW KEYS AND GALOIS CERTIFIER KEYS ARE SEPARATE",
+  "task": "X82 square-shift certifier keys",
+  "theorem": "For any minimal-trade square-shift support R in mu_n, domain scaling by gamma sends lambda to gamma^(2h) lambda and preserves the finite-row nonzero-square shift predicate.  Unit exponent maps send the square-shift identity through the cyclotomic Galois automorphism and preserve obstruction norm prime sets, but they are certifier compression only, not fixed-generator row-count symmetries.",
+  "warning": "The verifier intentionally records fixed-row unit mismatches.  They are not failures; they prevent using Galois/unit keys to divide finite-row square-shift mass."
+}
