@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Deployed F_17^32 sparse moving-zero witness
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/scripts/verify_deployed_sparse_witness_f17_32.py`;
+  `experimental/data/certificates/deployed-sparse-witness-f17-32/`;
+  `experimental/notes/m1/deployed_row_sparse_witness_f17_32.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A deterministic deployed-shaped instantiation of
+  the moving-zero sparse lower bound over `F_17^32`, certifying one
+  `r=129` sparse pair with `258 = n-k+2` distinct finite MCA-bad slopes.
+- **How it is useful:** Provides first concrete sparse-layer data at the
+  `n=512`, `k=256` deployed row while keeping the result scoped as evidence
+  for `prob:mutual`, not a soundness or upper-bound claim.
+- **What to do next:** Review the certificate format, non-claims, and the
+  `2,117,771`-byte certificate size disclosure before deciding whether to
+  publish this as a standalone experimental witness packet or request a slimmer
+  sampled-record variant.
+
 ### 2026-07-04 - CAP25 v13 identity-prefix frontier merge
 
 - **Agent/model:** Codex reviewing and integrating a user-added experimental
