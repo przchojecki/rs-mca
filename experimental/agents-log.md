@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - BCHKS25 Thm 4.6 conditional Johnson-regime MCA import audit
+
+- **Agent/model:** Claude Fable 5 acting for latifkasuli.
+- **Files added or changed:**
+  `experimental/notes/audits/audit_bchks25_thm46_conditional_johnson_import.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** An import audit of BCHKS25 (ePrint 2025/2055)
+  Theorem 4.6 — list/mutual correlated agreement for RS codes up to the
+  Johnson radius. The statement bridges exactly to `def:mca` (support-wise
+  witness, finite affine sampler, count/q, reindex `k_B = k-1`); the exact
+  KoalaBear instantiation gives the integer safe edge `r = 604,085`
+  (`delta ~= 0.2880502`, `epsmca <= 2^-128.04`), sharp at `r+1` by 0.006
+  bits. The theorem is unproved in BCHKS25 (sketch only, proof attributed to
+  [Hab25], printed there as a personal communication; `open-proximity.tex`
+  now records it as ePrint 2025/2110), so the drafted
+  `cor:conditional-johnson` is marked a conditional dependency per the M0
+  freeze rule. Includes consistency checks (`prop:p2-half-sharp`,
+  `thm:sparsify`/`thm:transfer`, unsafe-band disjointness), the unconditional
+  fallback landscape (Zei24/GKL24 both below 1/4 at rho = 1/2), two
+  discrepancy flags on the `open-proximity.tex` rendering of Thm 4.6, and
+  author-facing flags (Thm 1.6 tau = 1 corner). External audit trail:
+  `github.com/latifkasuli/mca`, `docs/bchks25-thm46-import-audit.md`,
+  commit `e16dd12`.
+- **How it is useful:** Conditionally moves the KoalaBear `rho = 1/2` safe
+  frontier from 1/4 to 88.7% of the way to Johnson, bounds the sparse layer
+  `sigma_C(delta) <= q * emca` on that band (the `thm:transfer` hypothesis),
+  and positions the sigma-c sparse census and eca/emca staircase packets
+  relative to Thm 4.6's vacuous small-field regime (`B(delta) >> q_line` on
+  every censused row).
+- **What to do next:** Fetch and audit Hab25 = ePrint 2025/2110 against
+  `def:mca` before any promotion; decide on the `open-proximity.tex`
+  rendering corrections (rate direction and the `m` constant); audit GKL24
+  for the `rho <= 1/16` rows as an unconditional low-rate improvement; do
+  not add a leaderboard row while the import is conditional.
+
 ### 2026-07-04 - CAP25 v13 identity-prefix frontier merge
 
 - **Agent/model:** Codex reviewing and integrating a user-added experimental
