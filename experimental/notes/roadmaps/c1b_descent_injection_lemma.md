@@ -1,8 +1,8 @@
 # C1b: the descent-injection lemma packet
 
 - **DAG node:** `c1b_descent_injection` (consumer: `c1_scalable_certificate`,
-  `a_closure_assembly`; sibling gap node: `midlarge_h_certification`, with
-  the residual routes named in sections 8-9 below).
+  `a_closure_assembly`; sibling gap node: `midlarge_h_certification`, see
+  `experimental/notes/roadmaps/midlarge_h_routes.md`).
 - **Status:** the descent/injection/soundness chain (Lemmas D1-D4, Theorems
   D5-D7, Lemma D8) is **PROVED** below, uniformly in `h` and in the field,
   with complete written proofs; every statement is instance-checked by the
@@ -28,8 +28,10 @@ critical path. It gives the descent map, exact lift soundness, and the paid
 collision split needed to turn low-`h` trade exclusion into smaller bottom
 censuses. Its important limitation is also part of the integration: the method
 comfortably covers `h=4`, is marginal at `h=5,6`, and does **not** cover the
-mid/large window `h >= 7` without new census engineering. Thus it narrows and
-names the remaining polynomial-bound/certificate window instead of hiding it.
+mid/large window `h >= 7` without new census engineering. The companion
+`midlarge_h_routes.md` records the resulting gap `(6,A]`, proves the M1/M2
+route facts that survive scrutiny, and rejects the failed active-core
+pigeonhole shortcut.
 
 ## 1. Setting and conventions
 
@@ -431,4 +433,5 @@ python3 experimental/scripts/verify_c1b_descent_injection.py
 ```
 
 Sections S1-S9 (Part 1) and S10-S12 (Part 2 support, see
-sections 8-9).  Current replay: **20 PASS, 0 FAIL** (~20 s, <300 MB peak).
+`midlarge_h_routes.md`).  Current replay: **20 PASS, 0 FAIL** (~20 s,
+<300 MB peak).
