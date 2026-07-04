@@ -1517,3 +1517,39 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+### 2026-07-04 - L1 stabilizer descent (composite-ell mixed sets are quotient-pullbacks)
+
+- **Agent/model:** Claude Fable 5 (PI) with a Claude Opus 4.8 / Sonnet 5 fan-out
+  panel (draft, math + packaging verifiers, independent recount); holmbuar.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_stabilizer_descent.md`,
+  `experimental/scripts/verify_l1_stabilizer_descent.py`.
+- **Status:** PROVED-LOCAL (Theorem D2: the power map `x -> x^e` bijects
+  `K`-invariant kernel sets with kernel sets of the induced `(t, ell/e, m)`
+  coset sunflower, same scalars, degrees divided by `e`; Theorem D3:
+  minimality descends as an iff, via the PR #219 collapse forcing the minimal
+  subset to be `K`-invariant; Theorem D4: classification by exact stabilizer +
+  the divisor-sum recursion `#MinMix(t,ell,m) = sum_{d|ell, d>=2}
+  #PrimMinMix(t,d,m)`; unconditional corollary: Theorem A re-derived at every
+  divisor level). CONDITIONAL (on the OPEN primitive vacancy `PV`): the
+  "every `m<ell` mixed set is imprimitive" reading. EXPERIMENTAL/CERTIFICATE:
+  73-witness stabilizer census (0 primitive at `m<ell`), exact divisor-sum
+  calibrations, the prime-dependent `(3,3)` onset, the top-defect-law
+  refutation.
+- **What is being added:** The structural explanation of the composite-`ell`
+  counterexamples in the companion threshold note: every imprimitive mixed
+  minimal kernel set is the `pi^{-1}`-lift of a PRIMITIVE one at a proper
+  divisor level, with the full kernel-set / missed-core / codeword structure
+  descending. This is the full-reconstruction lift of v13's
+  `lem:v13-quot-pullback` and charges the imprimitive mass to `Q_e` exactly as
+  `prob:v13-primitive-image-fiber` asks.
+- **How it is useful:** Reduces the coset full-petal residual to bounding
+  `#PrimMinMix(t,d,m)` at each divisor level (`PV`, the single named open
+  target), Möbius-invertibly; records that the primitive-onset frontier is
+  arithmetic in `p` (not a function of `(t,ell)` alone) and that mixed
+  minimals do NOT all sit at top defect — both directly steer what theorem
+  can be true.
+- **What to do next:** Prove `PV(t,d,m)` for `|S| >= 2` (prime-level rigidity
+  hierarchy; the `t=3, m=t+1` slice is PR #223); map the composite primitive
+  onsets under the declared caps. No paper text changes; material stays in
+  `experimental/`.
