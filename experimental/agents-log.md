@@ -42,9 +42,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A self-contained upstream packet proving that
   odd-characteristic minimal h-trades are equivalent to split 2h-supports
   whose locator has a nonzero-square constant shift to a monic square.
-- **How it is useful:** This is the square-shift normal form consumed by the
-  X82/X83 certifier-key and obstruction-gate packets, and by the active-core
-  count branch.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it converts canonical minimal PTE trades into square-shift support currency,
+  the explicit support form consumed by X82/X83 and by the terminal
+  `active_core_count_bound` certifier route.
 - **What to do next:** Review the localized verifier helpers, then use this
   packet as the base dependency for the next square-shift upstream PRs.
 

@@ -7,6 +7,17 @@
 - **Certificate:**
   `experimental/data/certificates/x81-minimal-trade-square-shift/x81_minimal_trade_square_shift.json`.
 
+## Critical-path role
+
+This is a proof-spine packet for the terminal active-core/PTE route.  After
+W-A converts same-top families into minimal PTE trades, this theorem converts
+each minimal trade into square-shift support currency.  That is the currency
+used by X82/X83 and by the finite-row obstruction certifiers.
+
+The packet is a normal-form theorem, not a row-count bound.  Its purpose is to
+make the remaining `active_core_count_bound` residue certifiable by explicit
+support equations instead of by arbitrary PTE trade enumeration.
+
 ## Statement
 
 Let `F` be a field of odd characteristic.  For any `h >= 1`, unordered
