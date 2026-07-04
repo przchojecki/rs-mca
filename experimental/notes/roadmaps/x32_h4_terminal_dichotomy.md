@@ -8,6 +8,17 @@
 - **Certificate:**
   `experimental/data/certificates/x32-h4-terminal-dichotomy/x32_h4_terminal_dichotomy.json`.
 
+## Critical-path role
+
+This is a proof-spine packet for the terminal active-core/PTE route.  It closes
+the first square-shift trade size beyond the `h=3` base case up to one explicit
+certifier residue: every `h=4` trade is either paid by the antipodal quotient
+ledger or lands in a top-level 8-sparse cyclotomic norm gate.
+
+The packet does not prove the norm-gate branch empty.  Its value is that the
+remaining `h=4` contribution to `active_core_count_bound` is no longer a
+taxonomy problem; it is a named row-level norm/resultant certification problem.
+
 ## Statement
 
 Let `n = 2^s`, let `H = mu_n` in a field of odd characteristic `p`, and let

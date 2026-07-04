@@ -42,8 +42,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A self-contained upstream packet reducing h=4
   terminal trades to the paid antipodal quotient branch or an explicit
   top-level 8-sparse cyclotomic norm gate.
-- **How it is useful:** This closes the h=4 branch taxonomy up to the named
-  norm-gate residue used by the active-core count program.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it reduces the `h=4` terminal branch to paid antipodal quotient structure
+  plus one explicit 8-sparse norm-gate residue, so the remaining work is a
+  row-level certifier problem rather than a taxonomy gap.
 - **What to do next:** Import the underlying h=4 evidence packets separately
   if the maintainer wants the replay to read X20/X21/X22 certificates directly
   instead of using their banked zero summaries.
