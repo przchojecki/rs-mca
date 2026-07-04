@@ -7,6 +7,11 @@
   the source statements.  Labels are local to a single `.tex` file; for example
   `thm:main` appears in more than one paper and must be read with its filename.
 
+> 2026-07-03 Codex/Ken addendum: the Paper D v12 entries below were refreshed
+> after local replay to mark `thm:A` as the self-contained conversion lane and
+> to isolate the optional imported lanes.  This is attribution for the in-place
+> audit update, not a change to source paper status.
+
 ## Status Key
 
 - **PROVED:** The paper presents the statement as proved, possibly using named
@@ -26,8 +31,9 @@
    digit checks, and the cyclotomic sieve.
 2. `tex/slackMCA_v4.tex` separates the corrected list and MCA ledgers and
    promotes the high-agreement line/list/curve boundary layer into Paper B.
-3. `tex/cs25_cap_v6.tex` proves the universal MCA cap through a self-contained
-   deep-point conversion and records the prize-facing completion program.
+3. `tex/cs25_cap_v12.tex` proves the universal MCA cap through a
+   self-contained deep-point conversion, isolates the optional BCIKS
+   half-distance import, and records the finite certificate grammar.
 4. `tex/snarks_v5.tex` consumes the previous papers as protocol ledger inputs:
    entropy reserve, quotient profile, list/interleaving, MCA or line-decoding,
    field separation, and failure-ladder audits.
@@ -230,14 +236,17 @@
 ## Paper D: Universal Cap
 
 - `tex/cs25_cap_v12.tex` `thm:A`
-  - Kind/status: imported theorem; CONDITIONAL.
-  - Role: Crites--Stewart list-to-agreement conversion.
+  - Kind/status: theorem; PROVED.
+  - Role: self-contained deep-point list-to-correlated-agreement conversion,
+    with explicit integer-radius condition `floor(delta*n) <= n-k-1`.
 - `tex/cs25_cap_v12.tex` `thm:B`
   - Kind/status: imported theorem; CONDITIONAL.
-  - Role: independent slacked conversion route.
+  - Role: independent slacked BCHKS/ABF fallback route; not used by the main
+    field-size-universal MCA cap.
 - `tex/cs25_cap_v12.tex` `rem:import`
   - Kind/status: remark; AUDIT.
-  - Role: due-diligence checklist for the imported conversions.
+  - Role: radius-convention checklist and import isolation: `thm:A` is now
+    proved directly, while `thm:B` remains a separate imported fallback.
 - `tex/cs25_cap_v12.tex` `lem:fiber`
   - Kind/status: lemma; PROVED.
   - Role: locator fibers produce list lower bounds over the field of definition.
@@ -245,20 +254,44 @@
   - Kind/status: lemma; PROVED.
   - Role: interleaving transfer for CA and MCA errors.
 - `tex/cs25_cap_v12.tex` `thm:main`
-  - Kind/status: theorem; CONDITIONAL.
-  - Role: universal cap using the imported Crites--Stewart conversion.
+  - Kind/status: theorem; PROVED.
+  - Role: universal field-size MCA cap using the self-contained conversion,
+    locator-fiber pigeonhole, and support-wise MCA monotonicity.
 - `tex/cs25_cap_v12.tex` `cor:grand`
-  - Kind/status: corollary; CONDITIONAL.
+  - Kind/status: corollary; PROVED.
   - Role: field-size cap for the challenge envelope.
 - `tex/cs25_cap_v12.tex` `cor:deployed`
-  - Kind/status: corollary; CONDITIONAL.
+  - Kind/status: corollary; PROVED.
   - Role: KoalaBear sextic deployed-parameter consequence.
 - `tex/cs25_cap_v12.tex` `cor:rows`
-  - Kind/status: corollary; CONDITIONAL.
+  - Kind/status: corollary; PROVED.
   - Role: applies the cap to interleaved rows from the survey tables.
 - `tex/cs25_cap_v12.tex` `prop:slacked`
   - Kind/status: proposition; CONDITIONAL.
   - Role: independent slacked variant via the second imported theorem.
+- `tex/cs25_cap_v12.tex` `thm:deep-mca`
+  - Kind/status: theorem; PROVED.
+  - Role: self-contained deep-regime MCA safe side below one third of the
+    minimum distance.
+- `tex/cs25_cap_v12.tex` `thm:mca-from-ca`
+  - Kind/status: theorem; PROVED.
+  - Role: pincer from correlated agreement to MCA up to half the distance,
+    with the tangent numerator kept explicit.
+- `tex/cs25_cap_v12.tex` `thm:elementary-ca`
+  - Kind/status: theorem; PROVED.
+  - Role: self-contained half-Johnson correlated-agreement safe handle.
+- `tex/cs25_cap_v12.tex` `cor:conditional-half`
+  - Kind/status: corollary; CONDITIONAL.
+  - Role: optional safe frontier at half distance using the single BCIKS20
+    imported proximity-gap theorem.
+- `tex/cs25_cap_v12.tex` `thm:sandwich2`
+  - Kind/status: theorem; PROVED / CONDITIONAL by clause.
+  - Role: narrowed two-sided deployed sandwich; self-contained clauses use
+    the deep/HJ/pincer machinery, while the half-distance clause is conditional
+    on the BCIKS import.
+- `tex/cs25_cap_v12.tex` `def:certificate-v2`
+  - Kind/status: definition; AUDIT.
+  - Role: second-edition finite certificate grammar for deployed verdicts.
 - `tex/cs25_cap_v12.tex` `lem:confine`
   - Kind/status: lemma; PROVED.
   - Role: subfield confinement for base-valued line witnesses.
@@ -321,8 +354,9 @@
 - Use Paper C's `def:cert`, `rule:reserve`, and `thm:ledger` when adding a
   script or certificate field, and cite the exact upstream theorem or
   assumption that pays for each ledger entry.
-- Treat Paper D's `thm:A`, `thm:B`, `thm:main`, and `cor:grand` as conditional
-  on the imported conversion until the import is separately audited.
+- Treat Paper D v12's `thm:A`, `thm:main`, and `cor:grand` as
+  self-contained in the current paper.  The optional imported lanes are
+  `thm:B` and the CH/BCIKS half-distance handle in `cor:conditional-half`.
 - Treat extension-line work as a separate lane: Paper C's
   `ass:extension-mca-lift` is conjectural, while Paper D's `cor:Fvalued`
   says the missing witnesses, if made explicit, must be genuinely

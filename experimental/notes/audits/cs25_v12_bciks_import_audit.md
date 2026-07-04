@@ -107,3 +107,28 @@ implemented PASS: 5   FAIL: 0
 
 No normalization, endpoint, or deployed-integer discrepancy was found in the
 BCIKS half-distance import as used by Paper D v12 and `towards-prize.tex`.
+
+## Adversarial Follow-Up
+
+A 2026-07-03 adversarial pass rechecked `cor:conditional-half`,
+`thm:mca-from-ca`, and `thm:sandwich2`.  The import still matches the local
+`eca` normalization and denominator convention, but two presentation follow-ups
+should be carried forward before editing Paper D:
+
+1. `tex/cs25_cap_v12.tex:5055` imports BCIKS for
+   `delta <= (1-rho)/2`, while the corollary states the equivalent integer-ball
+   range `2*floor(delta*n) <= n-k`.  The proof at
+   `tex/cs25_cap_v12.tex:5063` should explicitly insert
+   `delta' = floor(delta*n)/n <= (1-rho)/2` and note that the close-ball event
+   for `delta` is the same as the close-ball event for `delta'`.  This is a
+   proof-clarity correction, not a normalization failure.
+2. In `tex/cs25_cap_v12.tex:5191`, the circle widened unsafe edge is printed
+   as `0.46788`, while the exact edge in the caption is
+   `30663/65536 = 0.467880249...`.  Since the caption says the unsafe edges are
+   rounded outward to five digits, the conservative five-decimal lower edge for
+   the unsafe interval is `0.46789`, or the table should use the exact fraction.
+   The KoalaBear edge `15331/32768 = 0.467864990...` is consistent with the
+   printed outward value `0.46787`.
+
+These follow-ups do not change the verifier result above and do not promote the
+BCIKS import beyond CONDITIONAL/AUDIT status.

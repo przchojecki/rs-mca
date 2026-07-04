@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Paper D v12 adversarial audit addendum
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/notes/audits/cs25_v12_bciks_import_audit.md`;
+  `experimental/notes/audits/cs25_v12_consolidated_audit_2026-07-02.md`;
+  `experimental/notes/audits/theorem_label_map.md`;
+  `experimental/notes/audits/towards_prize_v3_cap_package_audit.md`;
+  `experimental/scripts/verify_towards_prize_v3_cap_package.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / CONDITIONAL for the external BCIKS import.
+- **What is being added:** Records the adversarial Paper D v12/towards-prize
+  audit follow-up: the BCIKS import normalization still matches, while the note
+  carries a proof-clarity follow-up for the integer-ball radius reduction and a
+  table-rounding follow-up for the circle widened unsafe edge.  The
+  towards-prize verifier also gains machine-readable JSON output.
+- **How it is useful:** Packages the v12 audit findings under `experimental/`
+  without editing Papers A-D or `tex/`, and separates self-contained Paper D
+  theorem labels from optional imported lanes.
+- **What to do next:** If Ken approves publication, propose only the minimal
+  paper-facing wording changes: insert the
+  `delta' = floor(delta*n)/n` reduction and fix the circle table decimal or use
+  the exact fraction.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.

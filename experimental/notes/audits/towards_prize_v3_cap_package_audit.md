@@ -1,13 +1,20 @@
-# Towards-Prize v3 Cap-Paper Package Constant Audit
+# Towards-Prize Companion Certificate Package Constant Audit
 
 - **Status:** AUDIT / exact integer and constant check.
-- **Source:** `tex/towards-prize.tex`, Theorem `cap-paper-package`;
+- **Source:** `tex/towards-prize.tex`, Proposition
+  `prop:companion-certificate-package`;
   `tex/cs25_cap_v12.tex`, Corollary `self-contained-safe` and certificate
   table `certs`.
 - **Verifier:** `experimental/scripts/verify_towards_prize_v3_cap_package.py`.
 
-This audit checks the constants newly exposed by the `towards-prize v3`
-cap-paper package.  It is deliberately narrower than a transport audit: it
+> 2026-07-03 Codex/Ken addendum: this note was refreshed after local replay to
+> use the current `tex/towards-prize.tex` label
+> `prop:companion-certificate-package` and to separate companion-package
+> constants from the transport-scope audit.
+
+This audit checks the constants exposed by the compact
+`towards-prize.tex` companion certificate package.  It is deliberately
+narrower than a transport audit: it
 checks interval endpoints, half-Johnson arithmetic, and rate-comparison
 constants, but it does not check the circle/stereographic or genus-one
 transport hypotheses.
@@ -35,8 +42,8 @@ KoalaBear: 1 - 16*69748 / 2^21 = 15331/32768.
 Circle:    1 - 32*34873 / 2^21 = 30663/65536.
 ```
 
-Thus the interval endpoints in Theorem `cap-paper-package` match the exact
-certificate arithmetic.
+Thus the interval endpoints in Proposition
+`prop:companion-certificate-package` match the exact certificate arithmetic.
 
 ## Safe Error Gates
 
@@ -101,7 +108,7 @@ The current verifier reports:
 implemented PASS: 4   FAIL: 0
 ```
 
-No constant or endpoint discrepancy was found in the `towards-prize v3`
-cap-paper package constants checked here.  The remaining high-priority audit
-item in the same package is the circle/genus-one transport scope against the
-actual deployed code models.
+No constant or endpoint discrepancy was found in the
+`towards-prize.tex` companion certificate package constants checked here.  The
+remaining high-priority audit item in the same package is the
+circle/genus-one transport scope against the actual deployed code models.

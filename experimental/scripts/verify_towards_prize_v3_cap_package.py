@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit constants in the towards-prize v3 cap-paper package.
+"""Audit constants in the towards-prize companion certificate package.
 
 This verifier checks the compact row-determination constants imported into
 ``tex/towards-prize.tex`` from Paper D v12:
@@ -12,11 +12,16 @@ This verifier checks the compact row-determination constants imported into
 
 from __future__ import annotations
 
+import argparse
+import json
 from decimal import Decimal, getcontext
 from fractions import Fraction
 
 
 getcontext().prec = 80
+
+PROOF_STATUS = "AUDIT"
+THEOREM_PROBLEM_ID = "towards-prize companion certificate package constants"
 
 
 def check_deployed_interval_endpoints() -> list[str]:
@@ -155,29 +160,47 @@ def check_rate_comparison() -> list[str]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true")
+    args = parser.parse_args()
+
     checks = [
         ("deployed interval endpoints", check_deployed_interval_endpoints),
         ("deployed safe error gates", check_deployed_safe_error_gates),
         ("KoalaBear half-Johnson certificate", check_koalabear_half_johnson_certificate),
         ("rate comparison", check_rate_comparison),
     ]
-    print("=" * 74)
-    print("AUDIT: towards-prize v3 cap-paper package constants")
-    print("=" * 74)
     failed = 0
+    results = []
     for title, fn in checks:
         try:
             details = fn()
         except AssertionError as exc:
             failed += 1
-            print(f"\n[FAIL] {title}")
-            print(f"       {exc}")
+            results.append({"title": title, "status": "FAIL", "details": [str(exc)]})
             continue
-        print(f"\n[PASS] {title}")
-        for line in details:
-            print(f"       {line}")
-    print("\n" + "-" * 74)
-    print(f"implemented PASS: {len(checks) - failed}   FAIL: {failed}")
+        results.append({"title": title, "status": "PASS", "details": details})
+
+    report = {
+        "proof_status": PROOF_STATUS,
+        "theorem_problem_id": THEOREM_PROBLEM_ID,
+        "result": "PASS" if failed == 0 else "FAIL",
+        "implemented_pass": len(checks) - failed,
+        "implemented_fail": failed,
+        "checks": results,
+    }
+    if args.json:
+        print(json.dumps(report, indent=2, sort_keys=True))
+    else:
+        print("=" * 74)
+        print("AUDIT: towards-prize companion certificate package constants")
+        print("=" * 74)
+        for result in results:
+            print(f"\n[{result['status']}] {result['title']}")
+            for line in result["details"]:
+                print(f"       {line}")
+        print("\n" + "-" * 74)
+        print(f"implemented PASS: {len(checks) - failed}   FAIL: {failed}")
     if failed:
         raise SystemExit(1)
 
