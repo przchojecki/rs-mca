@@ -1,0 +1,36 @@
+{
+  "checks": 164,
+  "claim": "The pair-correlation ledger exponent is c(s,t)=min(s,t-1).",
+  "failures": 0,
+  "field_tables": [
+    "F5",
+    "F7",
+    "F11",
+    "GF4",
+    "GF8",
+    "GF9"
+  ],
+  "flagship": {
+    "P_both": "36/625",
+    "q": 5
+  },
+  "node": "xr_ledger_qpower",
+  "packaging_q_values": [
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    11,
+    13,
+    16,
+    27,
+    64,
+    101,
+    2147483648
+  ],
+  "status": "PROVED / MOMENT-LEVEL",
+  "task": "QX.13 pair-rank ledger"
+}

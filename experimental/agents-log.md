@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - QX.13 pair-rank ledger packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/qx13_pair_rank_ledger.md`;
+  `experimental/scripts/verify_qx13_pair_rank_ledger.py`;
+  `experimental/data/certificates/qx13-pair-rank-ledger/qx13_pair_rank_ledger.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / MOMENT-LEVEL.
+- **What is being added:** The repo-standard QX.13 proof and verifier for the
+  pair-correlation ledger exponent `c(s,t)=min(s,t-1)`, with the scope
+  explicitly limited to averaged pair moments.
+- **How it is useful:** This supplies the q-power ledger consumed by the XR
+  coverage and globalness/KLLM assembly packets.
+- **What to do next:** Use this only as a moment-level pair-correlation input;
+  fixed-line worst-case conversion remains in the separate globalness branch.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
