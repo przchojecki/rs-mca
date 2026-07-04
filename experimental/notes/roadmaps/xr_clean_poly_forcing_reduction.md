@@ -9,6 +9,25 @@
 - **Parents:** `xr_target_budget_audit`, `dihedral_staircase` (QA21-G1), and
   the face-4 instance of `rigidity_kernel`.
 
+## Critical-path role
+
+This is the compiler step in the conditional prize proof path.  It does not
+prove the algebraic residual bound; instead it proves the exact integer fact
+that the clean-rate rows only need a polynomial post-strip cap.  In particular,
+once the proof spine supplies
+
+```text
+R_post(u,v; A) <= 16 n^3,
+```
+
+the quotient and tangent ledgers plus this compiler put every clean-rate row
+below `B*`.
+
+This is why the remaining terminal node can be stated as the localized
+`active_core_count_bound` / PTE polynomial residue rather than as a global
+emptiness theorem.  The packet is unconditional arithmetic; the conditional
+status enters only through the downstream algebraic input `R_post <= 16 n^3`.
+
 ## 1. Claim
 
 For each of the six clean-rate decision candidates from the XR audit

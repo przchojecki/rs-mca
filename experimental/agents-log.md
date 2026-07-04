@@ -47,9 +47,13 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A ready upstream packet combining the exact
   clean-rate budget audit with the clean-rate polynomial forcing compiler.
   The budget audit verifier now also checks a pinned JSON certificate.
-- **How it is useful:** This supplies the integer room consumed by the
-  face-4 residual compiler and proves that a `16 n^3` post-strip residual cap
-  fits all six clean-rate decision rows.
+- **How it is useful:** This is the arithmetic hinge of the conditional prize
+  proof spine: it proves the clean-rate rows do not require post-strip
+  emptiness, only a polynomial cap, and verifies that
+  `R_post(u,v; A) <= 16 n^3` fits all six clean-rate decision rows after the
+  quotient and tangent ledgers.  The remaining conditional input is the
+  algebraic `active_core_count_bound` / PTE residual, not this integer
+  composition.
 - **What to do next:** Submit after the upstream review queue has capacity,
   then follow with the QA.22/QA.25/tolerance arithmetic suite.
 

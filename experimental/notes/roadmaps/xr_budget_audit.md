@@ -11,6 +11,20 @@
   clean-rate-corridor-pipeline/clean_rate_corridor_pipeline_skeleton.json`,
   commit d642a419).
 
+## 0. Critical-path role
+
+This audit fixes the integer allowance used by the conditional prize proof
+path.  At the clean-rate decision rows, the paid quotient and tangent ledgers
+do not force post-strip emptiness: the remaining allowance is enormous at Row C
+and still about `29 n^3` at the prize rows.  The follow-up compiler
+`xr_clean_poly_forcing_reduction.md` therefore consumes a polynomial residual
+cap instead of an emptiness statement.
+
+This audit is not an algebraic proof of that cap.  Its role is to make the
+conditional target exact: after the paid ledgers, any verified
+`R_post(u,v; A) <= 16 n^3` theorem is arithmetically strong enough for the
+clean-rate prize rows.
+
 ## 1. Question and conventions
 
 At the safe-side decision candidate A of each clean-rate row, the exact integer
