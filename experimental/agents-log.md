@@ -30,6 +30,39 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Corrected prime-ell listing frontier m*(ell)=(ell+3)/2 (refutes ceil(2ell/3))
+
+- **Agent/model:** Claude (Opus, drafter-F, wave_t1 frontier packet).
+- **Files added or changed:** `experimental/notes/l1/l1_prime_ell_frontier_corrected.md`,
+  `experimental/scripts/verify_l1_prime_ell_frontier_corrected.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL. Refutation of `ceil(2ell/3)` is UNCONDITIONAL (explicit
+  witnesses); the matching vacancy lower bound is LEMMA-conditional on the NUMERIC KEY
+  LEMMA `E_3 <= ell-3`; the KEY LEMMA itself is OPEN.
+- **What is being added:** A corrected two-sided listing frontier at the onset `m=t+1`:
+  `m*(ell) = (ell+3)/2` for primes `ell >= 7`, replacing the conjectured
+  `m0 = ceil(2ell/3)` of `l1_prime_ell_pv_refutation.md` sec 4. Three explicit,
+  lambda-free, **primitive mixed kernel codewords** list a full step below the conjectured
+  onset — `ell=11 m=7` (`p=199` top-7=22, `p=331` top-7=23) and `ell=13 m=8` (`p=313`
+  top-8=27) — each assembled and checked point-by-point (spectrum by two independent
+  implementations; distinct-nonzero petal scalars; explicit `P` deg `<= m*ell`; retention
+  `R=top-m>=2ell`; minimal, primitive missed core via an independent CRT oracle). The
+  matching VACANCY THEOREM (`top-m<2ell` for `m<=(ell+1)/2`, from `top-m<=2m+E_3` and the
+  KEY LEMMA) pins the frontier from below (unconditional at `ell=7` = Theorem R). Ships with
+  the PROVED toolkit (exact rank formula `rank=(P-K)-delta`; geometric-Gamma non-lister;
+  three PROVED cases of the KEY LEMMA reduction).
+- **How it is useful:** Corrects the recorded onset table (`m*(11): 8->7`, `m*(13): 10->8`
+  — the upstream values were light-search artifacts) and populates the open `L_prim`
+  stratum of `pma_wide_residual` with explicit occupants at the true onset; the vacancy band
+  feeds `petal_mixed_amplification` as the realizability input the pair-count cannot see.
+  The zero-arg verifier (`--tamper-selftest`: every gate breaks under a one-datum flip)
+  makes all claims replayable. `A_checks.py` (41/41) and `B_checks.py` (CHECK 1-7) were
+  re-run green before use.
+- **What to do next:** Prove the KEY LEMMA (the fiber-sum-functional full-rank statement on
+  the Vandermonde-dependency space `Z`) to make the vacancy half unconditional; assemble
+  witnesses at `ell >= 17` (where `(ell+3)/2 < ceil(2ell/3)` also predicts refutation) to
+  test whether `m*=(ell+3)/2` persists.
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.
