@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - sigma_C Lean finite anchor
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/lean/rs_mca_formalization/RsMca/SigmaCSparseLedger.lean`;
+  `experimental/lean/rs_mca_formalization/RsMca.lean`;
+  `experimental/lean/rs_mca_formalization/CERTIFICATION_MAP.md`;
+  `experimental/lean/rs_mca_formalization/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / CONDITIONAL.
+- **What is being added:** A stdlib-only Lean ledger for the committed
+  `(q,n,k,r)=(7,6,3,2)` sigma_C sparse-census extremal pair.  The Lean kernel
+  checks the seven finite-slope witness sets, the two tangent-ratio lower-bound
+  slopes, and the `7^3` degree-`<3` restriction search used to reject
+  `eps2|_S`.
+- **How it is useful:** Gives the sigma_C sparse-census certificate a small
+  independent Lean arithmetic anchor while keeping full RS/MCA census
+  exhaustiveness as an explicit Python-verifier-backed bridge.
+- **What to do next:** Build the Lean package, print axioms for the new
+  certificates, and keep any larger-row sigma_C claims in the Python/GPU
+  verifier until their exhaustive finite scope is available.
+
+
 ### 2026-07-04 - L1 coset-chart residue-line bridge normal form
 
 - **Agent/model:** Vadim Avdeev, integrated by Codex.

@@ -38,6 +38,8 @@ lake build
 | General high-agreement numerator monotonicity in the radius. | `RsMca.lineNumerator_mono`; `RsMca.curveNumerator_mono_radius`; `RsMca.totalNumerator_mono_radius`. | High-agreement ledger arithmetic. | Lean-certified |
 | Line plus one interleaved-list numerator is `r + 2`. | `RsMca.totalNumerator_line_plus_list`; `RsMca.lineListSafe_iff`. | WP-1.2 common-denominator ledger arithmetic. | Lean-certified |
 | Projective denominator `17^32 + 1` has the same integer upper gate. | `RsMca.field_count_gate_proj`. | Finite-threshold projective-slope variant. | Lean-certified |
+| The committed `(q,n,k,r)=(7,6,3,2)` sigma_C extremal pair has kernel-checked witnesses for all seven finite slopes. | `RsMca.SigmaC.q763_pair_saturates_finite_slopes`; `RsMca.SigmaC.q763_all_finite_slopes_bad`; `RsMca.SigmaC.q763_gamma0_witness` through `RsMca.SigmaC.q763_gamma6_witness`. | `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_extended_rows.json` from the sigma_C sparse census. | Lean-certified finite anchor; verifier-backed census |
+| The same row has the expected two tangent-ratio lower-bound slopes at `r=2`. | `RsMca.SigmaC.q763_tangent_lower_bound`. | `towards-prize.tex` sparse mutual-layer tangent floor; sigma_C verifier guard. | Lean-certified finite anchor |
 
 ## Typed Targets And Non-Claims
 
@@ -46,6 +48,7 @@ lake build
 | Deep-point identity and a-regular collapse require finite-set and finite-field infrastructure. | `RsMca.DeepPointIdentity`; `RsMca.ARegularCollapse`. | Typed target, not proved here. |
 | A6 quotient-floor semantics are bridged by the Python verifier and the parity-split Lean arithmetic. | `RsMca.QuotientFloorBridge`; `RsMca.qf_half_closed`. | Conditional bridge plus Lean-certified arithmetic. |
 | F1 sigma-one extension-line badness requires polynomial/RS semantics over genuine finite fields. | `RsMca.F1Ext.F1ExtensionSigmaOneBridge`. | Typed target, verifier-backed outside Lean. |
+| Full sigma_C census exhaustiveness and trivial-regime equality require the Python verifier's iteration over sparse pairs and RS/MCA semantics. | `RsMca.SigmaC.SigmaCSparseCensusBridge`; `RsMca.SigmaC.SigmaCTrivialRegimeBridge`. | Typed target, verifier-backed outside Lean. |
 | The BETA_2 analytic conductor bound is an l-adic/cohomological input. | `RsMca.BetaTwo.BetaTwoConductorBound`. | Typed target, not stdlib-certifiable. |
 
 ## Audit Rule

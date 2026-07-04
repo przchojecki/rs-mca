@@ -85,6 +85,14 @@ is axiom-free). The binomial COUNT identities (`|A_QP| = C(N,L)`, the Johnson
 exchange profile) are the note's combinatorial content and need `Mathlib`; only
 the size/threshold arithmetic the M1 reduction consumes is certified here.
 
+`RsMca.SigmaCSparseLedger` records a stdlib-only finite anchor for the
+`(q,n,k,r)=(7,6,3,2)` sigma_C sparse-census row.  It checks the committed
+extremal pair over `F_7`, the seven finite-slope maximal witness sets, the
+degree-`<3` codeword agreement at radius `r=2`, and the exhaustive `7^3`
+restriction search showing `eps2|_S` is outside `C|_S`.  Full sigma_C census
+exhaustiveness remains a typed bridge discharged by the Python certificate
+verifier, not a Lean theorem.
+
 ## Build
 
 ```sh
