@@ -50,9 +50,34 @@ bridge audit to `def:mca`, the exact-integer deployed-row instantiation and its
 sharpness, the conditionality classification and packaging, the consistency
 analysis against the repository's own sharpness/limit results, and two
 discrepancy flags on the survey's rendering (below). The proof-status
-condition is *changed in kind* by the ePrint discovery — from "cannot be
-consulted" to "not yet audited" — but the import remains conditional until
-ePrint 2025/2110 is fetched and its proof audited against `def:mca`.
+condition is *changed in kind* by the ePrint discovery — and has now been
+resolved one level further: ePrint 2025/2110 was **independently proof-audited
+on 2026-07-04** (line-by-line, all deferrals checked against BCIKS20 ECCC
+TR20-083; full audit in the external repository, `docs/
+bchks25-thm46-import-audit.md`, section "Hab25 proof audit"). Outcome:
+
+- **The Johnson-radius mutual MECHANISM is PROVED.** Hab25 Theorem 2
+  establishes exactly the `def:mca` event (same-support quantifier, `M = 1`
+  line) up to `1 - sqrt(rho_B)`, with error `(l^7/3)(rho_B n)^2`,
+  `l = (m + 1/2)/sqrt(rho_B)` — quadratic in `n`. The same-support crux
+  (per-class collapse to a unique affine proximate + a fully-written AHIV17
+  count) is rigorous; three bookkeeping gaps were closed in the audit, and
+  the note's `[BCI+20, Claim 5.7]` should read Claim 5.6/(5.10) in the ECCC
+  version.
+- **The printed LINEAR-in-n bound of BCHKS25 Thm 4.6 is NOT yet proved**: it
+  exists only as the BCHKS25 p. 29 sketch, with the verbose update announced
+  in Hab25's own remark. This is the sole remaining condition (`M > 1`
+  batching is likewise asserted-only but irrelevant to `def:mca`).
+- **Deployed-row consequence, exact integers:** under the PROVED quadratic
+  bound the certified safe radius is only `r = 428,878`
+  (`delta ~ 0.20450`) — *below* the existing `1/4` edge, hence currently
+  dominated by `cor:conditional-half` (it becomes the correct citation for
+  rows with `q >~ 2^220` or laxer budgets). The full imported band
+  `delta in (1/4, 604085/2^21]` therefore rests exactly on the unproved
+  linear bound and **remains conditional** — retagged from "proof
+  unavailable" to "mechanism proof-audited; printed constant pending
+  Haböck's announced update or a revised BCHKS25 §4.3", which is also the
+  re-audit trigger that would let the band shed the conditional tag.
 
 ## Item 1 — Statement match: Thm 4.6 vs `def:mca` (MATCH, with a k-reindex)
 
