@@ -1,0 +1,81 @@
+{
+  "correct_gap": {
+    "1/4": [
+      100,
+      261
+    ],
+    "1/8": [
+      100,
+      133
+    ]
+  },
+  "endpoint_fixture": {
+    "A": 6,
+    "field": "F_101",
+    "k": 4,
+    "r_k_minus_1_half_size": 3,
+    "r_k_minus_1_overlap": 3,
+    "r_zero_half_size": 6,
+    "r_zero_support": 12,
+    "t": 2
+  },
+  "grammar_cap": 100,
+  "log2n": 10,
+  "n": 1024,
+  "node": "h_window_derivation",
+  "packet": "star_pte_support_bound",
+  "rows": {
+    "1/16": {
+      "A": 67,
+      "H_max": 67,
+      "h_range": [
+        4,
+        67
+      ],
+      "k": 64,
+      "support_range": [
+        8,
+        134
+      ],
+      "t": 3,
+      "wrong_two_h_cap": 33
+    },
+    "1/4": {
+      "A": 261,
+      "H_max": 261,
+      "h_range": [
+        6,
+        261
+      ],
+      "k": 256,
+      "support_range": [
+        12,
+        522
+      ],
+      "t": 5,
+      "wrong_two_h_cap": 130
+    },
+    "1/8": {
+      "A": 133,
+      "H_max": 133,
+      "h_range": [
+        6,
+        133
+      ],
+      "k": 128,
+      "support_range": [
+        12,
+        266
+      ],
+      "t": 5,
+      "wrong_two_h_cap": 66
+    }
+  },
+  "status": "PROVED",
+  "wrong_gap": {
+    "1/4": [
+      100,
+      130
+    ]
+  }
+}

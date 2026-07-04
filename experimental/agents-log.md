@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Star-PTE support bound packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/star_pte_support_bound.md`;
+  `experimental/scripts/verify_star_pte_support_bound.py`;
+  `experimental/data/certificates/star-pte-support-bound/star_pte_support_bound.json`;
+  `experimental/data/certificates/star-pte-support-bound/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A standalone proof and verifier for the
+  star-PTE support micro-lemma: the canonical trade half-size satisfies
+  `t < h <= A`, while the full support is `2h <= 2A`; the old `2h <= A`
+  reading is explicitly ruled out.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it fixes the exact split-pair/PTE window that the remaining polynomial
+  bound must control, so the compiler and budget audit use the honest
+  `H_max = A` envelope rather than an artificially smaller one.
+- **What to do next:** Submit as a narrow upstream packet when the current
+  proof-spine PR queue has capacity, then let the split-pair bound and
+  certificate-window packets cite this convention.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
