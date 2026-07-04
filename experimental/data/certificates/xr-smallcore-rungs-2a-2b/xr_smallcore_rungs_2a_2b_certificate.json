@@ -1,0 +1,381 @@
+{
+  "dag_node": "xr_smallcore_spread_count",
+  "non_claim": "This packet proves the list bridge and tangent-forcing bridge. It does not prove the list grand challenge or the graded tangent ledger.",
+  "rung_arithmetic": [
+    {
+      "partial_band_nonempty": false,
+      "partial_depths": [],
+      "r_equals_k_boundary_depth": 0,
+      "t": 1
+    },
+    {
+      "partial_band_nonempty": false,
+      "partial_depths": [],
+      "r_equals_k_boundary_depth": 0,
+      "t": 2
+    },
+    {
+      "partial_band_nonempty": true,
+      "partial_depths": [
+        {
+          "depth_d": 1,
+          "exchange_s": 2,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 2
+        }
+      ],
+      "r_equals_k_boundary_depth": 0,
+      "t": 3
+    },
+    {
+      "partial_band_nonempty": true,
+      "partial_depths": [
+        {
+          "depth_d": 1,
+          "exchange_s": 3,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 3
+        },
+        {
+          "depth_d": 2,
+          "exchange_s": 2,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 2
+        }
+      ],
+      "r_equals_k_boundary_depth": 0,
+      "t": 4
+    },
+    {
+      "partial_band_nonempty": true,
+      "partial_depths": [
+        {
+          "depth_d": 1,
+          "exchange_s": 4,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 4
+        },
+        {
+          "depth_d": 2,
+          "exchange_s": 3,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 3
+        },
+        {
+          "depth_d": 3,
+          "exchange_s": 2,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 2
+        }
+      ],
+      "r_equals_k_boundary_depth": 0,
+      "t": 5
+    },
+    {
+      "partial_band_nonempty": true,
+      "partial_depths": [
+        {
+          "depth_d": 1,
+          "exchange_s": 5,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 5
+        },
+        {
+          "depth_d": 2,
+          "exchange_s": 4,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 4
+        },
+        {
+          "depth_d": 3,
+          "exchange_s": 3,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 3
+        },
+        {
+          "depth_d": 4,
+          "exchange_s": 2,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 2
+        }
+      ],
+      "r_equals_k_boundary_depth": 0,
+      "t": 6
+    },
+    {
+      "partial_band_nonempty": true,
+      "partial_depths": [
+        {
+          "depth_d": 1,
+          "exchange_s": 6,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 6
+        },
+        {
+          "depth_d": 2,
+          "exchange_s": 5,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 5
+        },
+        {
+          "depth_d": 3,
+          "exchange_s": 4,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 4
+        },
+        {
+          "depth_d": 4,
+          "exchange_s": 3,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 3
+        },
+        {
+          "depth_d": 5,
+          "exchange_s": 2,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 2
+        }
+      ],
+      "r_equals_k_boundary_depth": 0,
+      "t": 7
+    },
+    {
+      "partial_band_nonempty": true,
+      "partial_depths": [
+        {
+          "depth_d": 1,
+          "exchange_s": 7,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 7
+        },
+        {
+          "depth_d": 2,
+          "exchange_s": 6,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 6
+        },
+        {
+          "depth_d": 3,
+          "exchange_s": 5,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 5
+        },
+        {
+          "depth_d": 4,
+          "exchange_s": 4,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 4
+        },
+        {
+          "depth_d": 5,
+          "exchange_s": 3,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 3
+        },
+        {
+          "depth_d": 6,
+          "exchange_s": 2,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 2
+        }
+      ],
+      "r_equals_k_boundary_depth": 0,
+      "t": 8
+    },
+    {
+      "partial_band_nonempty": true,
+      "partial_depths": [
+        {
+          "depth_d": 1,
+          "exchange_s": 8,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 8
+        },
+        {
+          "depth_d": 2,
+          "exchange_s": 7,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 7
+        },
+        {
+          "depth_d": 3,
+          "exchange_s": 6,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 6
+        },
+        {
+          "depth_d": 4,
+          "exchange_s": 5,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 5
+        },
+        {
+          "depth_d": 5,
+          "exchange_s": 4,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 4
+        },
+        {
+          "depth_d": 6,
+          "exchange_s": 3,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 3
+        },
+        {
+          "depth_d": 7,
+          "exchange_s": 2,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 2
+        }
+      ],
+      "r_equals_k_boundary_depth": 0,
+      "t": 9
+    },
+    {
+      "partial_band_nonempty": true,
+      "partial_depths": [
+        {
+          "depth_d": 1,
+          "exchange_s": 9,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 9
+        },
+        {
+          "depth_d": 2,
+          "exchange_s": 8,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 8
+        },
+        {
+          "depth_d": 3,
+          "exchange_s": 7,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 7
+        },
+        {
+          "depth_d": 4,
+          "exchange_s": 6,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 6
+        },
+        {
+          "depth_d": 5,
+          "exchange_s": 5,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 5
+        },
+        {
+          "depth_d": 6,
+          "exchange_s": 4,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 4
+        },
+        {
+          "depth_d": 7,
+          "exchange_s": 3,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 3
+        },
+        {
+          "depth_d": 8,
+          "exchange_s": 2,
+          "identity_d_plus_s_equals_t": true,
+          "ledger_c_s_t": 2
+        }
+      ],
+      "r_equals_k_boundary_depth": 0,
+      "t": 10
+    }
+  ],
+  "same_slope_toy": {
+    "agreement": 3,
+    "codewords": 25,
+    "field": 5,
+    "k": 2,
+    "max_exact_list": 2,
+    "max_pairwise_intersection": 1,
+    "n": 5,
+    "ok": true,
+    "words_examined": 3125,
+    "words_with_exact_list": 2500
+  },
+  "status": "PROVED reductions for rungs 2a and 2b; residual 2c remains",
+  "tangent_depth_rank_rows": [
+    {
+      "codimension_in_core_word_space": 0,
+      "core_size": 1,
+      "expected_depth_max_0_r_minus_k": 0,
+      "ok": true,
+      "rank": 1
+    },
+    {
+      "codimension_in_core_word_space": 0,
+      "core_size": 2,
+      "expected_depth_max_0_r_minus_k": 0,
+      "ok": true,
+      "rank": 2
+    },
+    {
+      "codimension_in_core_word_space": 0,
+      "core_size": 3,
+      "expected_depth_max_0_r_minus_k": 0,
+      "ok": true,
+      "rank": 3
+    },
+    {
+      "codimension_in_core_word_space": 1,
+      "core_size": 4,
+      "expected_depth_max_0_r_minus_k": 1,
+      "ok": true,
+      "rank": 3
+    },
+    {
+      "codimension_in_core_word_space": 2,
+      "core_size": 5,
+      "expected_depth_max_0_r_minus_k": 2,
+      "ok": true,
+      "rank": 3
+    },
+    {
+      "codimension_in_core_word_space": 3,
+      "core_size": 6,
+      "expected_depth_max_0_r_minus_k": 3,
+      "ok": true,
+      "rank": 3
+    },
+    {
+      "codimension_in_core_word_space": 4,
+      "core_size": 7,
+      "expected_depth_max_0_r_minus_k": 4,
+      "ok": true,
+      "rank": 3
+    }
+  ],
+  "two_slope_identity_toy": {
+    "core_size": 5,
+    "depth": 2,
+    "depth_constraints_ok": true,
+    "field": 17,
+    "interpolated_v_from_first_k": [
+      1,
+      5,
+      5
+    ],
+    "k": 3,
+    "slopes": [
+      4,
+      9
+    ],
+    "two_slope_identity_ok": true,
+    "u_line_coeffs": [
+      15,
+      0,
+      2
+    ],
+    "v_line_coeffs": [
+      1,
+      5,
+      5
+    ]
+  }
+}

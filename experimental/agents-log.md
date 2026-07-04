@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - XR small-core rungs 2a/2b packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/xr_smallcore_rungs_2a_2b.md`;
+  `experimental/scripts/verify_xr_smallcore_rungs_2a_2b.py`;
+  `experimental/data/certificates/xr-smallcore-rungs-2a-2b/xr_smallcore_rungs_2a_2b_certificate.json`;
+  `experimental/data/certificates/xr-smallcore-rungs-2a-2b/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A ready upstream packet proving the same-slope
+  list bridge and the distinct-slope partial-forcing bridge for small-core
+  rungs 2a/2b.
+- **How it is useful:** This removes the same-slope and partial tangent-depth
+  bands from the irreducible small-core residue, leaving the genuine 2c
+  rank/spread shell.
+- **What to do next:** Submit after the current upstream review batch has
+  capacity, then follow with the syzygy/support and eliminant packets.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
