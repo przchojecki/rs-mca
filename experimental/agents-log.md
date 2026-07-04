@@ -41,9 +41,11 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A self-contained proof of the X-5 star-PTE lemma:
   same-top locator pairs are exactly common-core extensions of canonical
   residual PTE trades, with uniqueness from the pairwise set decomposition.
-- **How it is useful:** This gives the U1/PTE compression lane a small
-  upstream theorem packet before the later pullback-dictionary and harness
-  packets are reviewed.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it converts same-top locator families into canonical common-core PTE trades,
+  which is the trade currency consumed by the terminal
+  `active_core_count_bound` / post-strip PTE residue.  The bounded pullback
+  compression theorem remains downstream.
 - **What to do next:** Consume this normal form only as the PTE reduction; the
   stronger compression claim still needs the bounded pullback dictionary
   arguments.

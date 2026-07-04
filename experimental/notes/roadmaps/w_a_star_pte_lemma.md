@@ -8,6 +8,19 @@
 - **Certificate:**
   `experimental/data/certificates/w-a-star-pte-lemma/w_a_star_pte_lemma.json`.
 
+## Critical-path role
+
+This is a proof-spine packet for the conditional prize route.  The terminal
+post-strip residue is expressed in same-top locator families before it is
+charged by the pullback/PTE dictionary.  This lemma proves that those families
+have no hidden cancellation: relative to a fixed base, every target support is
+a unique common-core extension of a residual PTE trade.
+
+The packet does not prove the bounded pullback compression theorem.  Its role
+is to reduce the terminal `active_core_count_bound` / PTE residue to canonical
+trade currency, so the later dictionary and compiler packets count the right
+object.
+
 ## Statement
 
 Let `S0` and `S1` be two locator supports of the same size `A`, and suppose
