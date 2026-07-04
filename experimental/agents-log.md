@@ -41,8 +41,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** The QX.11 double-count theorem showing that a
   top-core completion cap propagates to every lower link with density
   `L/(n-j+1)`, plus mixed-restriction and leak-localization corollaries.
-- **How it is useful:** This supplies the polynomial globalness certificate
-  consumed by the XR/KLLM assembly and the link-leak adjudication lane.
+- **How it is useful:** This is part of the conditional prize proof spine:
+  it is the deterministic fixed-pair bridge after the averaged QX.13 ledger,
+  showing that a top-core cap propagates to all lower links.  The actual
+  post-strip cap remains a separate active-core/small-core input.
 - **What to do next:** Keep the actual post-strip cap hypothesis and
   `L_tan` convention separate; this packet proves cap-to-globalness only.
 

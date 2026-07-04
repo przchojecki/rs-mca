@@ -29,6 +29,18 @@
 - **Certificate:**
   `experimental/data/certificates/qx11-topcore-globalness/qx11_topcore_globalness.json`.
 
+## Critical-path role
+
+This is a foundation packet for the conditional prize proof spine.  QX.13 is
+an averaged pair ledger; this packet is the deterministic bridge needed by the
+worst-case route.  It proves that a top-core completion cap for one fixed
+post-strip family propagates to all lower links with density `L/(n-j+1)`.
+
+The packet does not prove the actual post-strip cap.  Its role is to make the
+later `active_core_count_bound` / small-core cap usable globally once that cap
+is supplied, while preserving the `L_tan` convention and leak-localization
+issues as explicit separate inputs.
+
 ## 0. Pinned notation
 
 ```text
