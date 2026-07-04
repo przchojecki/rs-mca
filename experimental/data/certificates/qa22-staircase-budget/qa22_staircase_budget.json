@@ -1,0 +1,1207 @@
+{
+  "checks": 25,
+  "formula": {
+    "budget_check": "quotient + dihedral_fixed_tail + B_tan_max + 16*n^3 <= B*",
+    "dihedral_fixed_tail": "inversion-closed h-subsets on the quotient row, with no tail if b=0 and one fixed tail removed if b>0",
+    "quotient": "sum_{M|n, M>t} C(n/M - 1, floor(A/M)) with fixed tail B"
+  },
+  "node": "x4_exactlist_staircase_split",
+  "rows": [
+    {
+      "A": 261,
+      "B_star": 5316911983139663491615228241121378304,
+      "B_tan_max": 764,
+      "budget_ok": true,
+      "budget_total": 1108355191126711232819457350276,
+      "dihedral_fixed_tail_max": 366395202809685,
+      "dihedral_fixed_tail_sum": 366395210699802,
+      "k": 256,
+      "label": "RowC",
+      "margin_total_bits": 22.193736861920286,
+      "n": 1024,
+      "poly_16n3": 17179869184,
+      "quotient_staircase_max": 1108355191126710500011856080725,
+      "quotient_staircase_sum": 1108355191126710866407066780526,
+      "rate": "1/4",
+      "staircase_room_after_poly_tan_bits": 22.193736861920286,
+      "staircase_total": 1108355191126711232802277480328,
+      "t": 5,
+      "terms": [
+        {
+          "M": 8,
+          "dihedral_fixed_tail_log2": 48.38039394286234,
+          "dihedral_fixed_tail_term": 366395202809685,
+          "form": "b>0",
+          "h_floor_A_over_M": 32,
+          "log2_term": 99.80626313807971,
+          "quotient_n": 128,
+          "quotient_term_log2": 99.80626313807971,
+          "tail_b": 5,
+          "term": 1108355191126710500011856080725
+        },
+        {
+          "M": 16,
+          "dihedral_fixed_tail_log2": 22.911360715593734,
+          "dihedral_fixed_tail_term": 7888725,
+          "form": "b>0",
+          "h_floor_A_over_M": 16,
+          "log2_term": 48.38039394286234,
+          "quotient_n": 64,
+          "quotient_term_log2": 48.38039394286234,
+          "tail_b": 5,
+          "term": 366395202809685
+        },
+        {
+          "M": 32,
+          "dihedral_fixed_tail_log2": 10.414685235807214,
+          "dihedral_fixed_tail_term": 1365,
+          "form": "b>0",
+          "h_floor_A_over_M": 8,
+          "log2_term": 22.911360715593734,
+          "quotient_n": 32,
+          "quotient_term_log2": 22.911360715593734,
+          "tail_b": 5,
+          "term": 7888725
+        },
+        {
+          "M": 64,
+          "dihedral_fixed_tail_log2": 4.392317422778761,
+          "dihedral_fixed_tail_term": 21,
+          "form": "b>0",
+          "h_floor_A_over_M": 4,
+          "log2_term": 10.414685235807214,
+          "quotient_n": 16,
+          "quotient_term_log2": 10.414685235807214,
+          "tail_b": 5,
+          "term": 1365
+        },
+        {
+          "M": 128,
+          "dihedral_fixed_tail_log2": 1.584962500721156,
+          "dihedral_fixed_tail_term": 3,
+          "form": "b>0",
+          "h_floor_A_over_M": 2,
+          "log2_term": 4.392317422778761,
+          "quotient_n": 8,
+          "quotient_term_log2": 4.392317422778761,
+          "tail_b": 5,
+          "term": 21
+        },
+        {
+          "M": 256,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 1,
+          "log2_term": 1.584962500721156,
+          "quotient_n": 4,
+          "quotient_term_log2": 1.584962500721156,
+          "tail_b": 5,
+          "term": 3
+        },
+        {
+          "M": 512,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 2,
+          "quotient_term_log2": 0.0,
+          "tail_b": 261,
+          "term": 1
+        },
+        {
+          "M": 1024,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 1,
+          "quotient_term_log2": 0.0,
+          "tail_b": 261,
+          "term": 1
+        }
+      ],
+      "transported_quotient_row_table": [
+        {
+          "M": 8,
+          "dihedral_fixed_tail_term": 366395202809685,
+          "quotient_A_floor": 32,
+          "quotient_k_floor": 32,
+          "scale_n_over_M": 128,
+          "tail_b": 5,
+          "term": 1108355191126710500011856080725
+        },
+        {
+          "M": 16,
+          "dihedral_fixed_tail_term": 7888725,
+          "quotient_A_floor": 16,
+          "quotient_k_floor": 16,
+          "scale_n_over_M": 64,
+          "tail_b": 5,
+          "term": 366395202809685
+        },
+        {
+          "M": 32,
+          "dihedral_fixed_tail_term": 1365,
+          "quotient_A_floor": 8,
+          "quotient_k_floor": 8,
+          "scale_n_over_M": 32,
+          "tail_b": 5,
+          "term": 7888725
+        },
+        {
+          "M": 64,
+          "dihedral_fixed_tail_term": 21,
+          "quotient_A_floor": 4,
+          "quotient_k_floor": 4,
+          "scale_n_over_M": 16,
+          "tail_b": 5,
+          "term": 1365
+        },
+        {
+          "M": 128,
+          "dihedral_fixed_tail_term": 3,
+          "quotient_A_floor": 2,
+          "quotient_k_floor": 2,
+          "scale_n_over_M": 8,
+          "tail_b": 5,
+          "term": 21
+        },
+        {
+          "M": 256,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 1,
+          "quotient_k_floor": 1,
+          "scale_n_over_M": 4,
+          "tail_b": 5,
+          "term": 3
+        },
+        {
+          "M": 512,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 2,
+          "tail_b": 261,
+          "term": 1
+        },
+        {
+          "M": 1024,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 1,
+          "tail_b": 261,
+          "term": 1
+        }
+      ]
+    },
+    {
+      "A": 133,
+      "B_star": 5316911983139663491615228241121378304,
+      "B_tan_max": 892,
+      "budget_ok": true,
+      "budget_total": 81675143576030127856,
+      "dihedral_fixed_tail_max": 3872894697,
+      "dihedral_fixed_tail_sum": 3872926278,
+      "k": 128,
+      "label": "RowC",
+      "margin_total_bits": 55.853469111373386,
+      "n": 1024,
+      "poly_16n3": 17179869184,
+      "quotient_staircase_max": 81675143551104405225,
+      "quotient_staircase_sum": 81675143554977331502,
+      "rate": "1/8",
+      "staircase_room_after_poly_tan_bits": 55.853469111676844,
+      "staircase_total": 81675143558850257780,
+      "t": 5,
+      "terms": [
+        {
+          "M": 8,
+          "dihedral_fixed_tail_log2": 31.850765129382676,
+          "dihedral_fixed_tail_term": 3872894697,
+          "form": "b>0",
+          "h_floor_A_over_M": 16,
+          "log2_term": 66.14653088818633,
+          "quotient_n": 128,
+          "quotient_term_log2": 66.14653088818633,
+          "tail_b": 5,
+          "term": 81675143551104405225
+        },
+        {
+          "M": 16,
+          "dihedral_fixed_tail_log2": 14.941460322459413,
+          "dihedral_fixed_tail_term": 31465,
+          "form": "b>0",
+          "h_floor_A_over_M": 8,
+          "log2_term": 31.850765129382676,
+          "quotient_n": 64,
+          "quotient_term_log2": 31.850765129382676,
+          "tail_b": 5,
+          "term": 3872894697
+        },
+        {
+          "M": 32,
+          "dihedral_fixed_tail_log2": 6.714245517666122,
+          "dihedral_fixed_tail_term": 105,
+          "form": "b>0",
+          "h_floor_A_over_M": 4,
+          "log2_term": 14.941460322459413,
+          "quotient_n": 32,
+          "quotient_term_log2": 14.941460322459413,
+          "tail_b": 5,
+          "term": 31465
+        },
+        {
+          "M": 64,
+          "dihedral_fixed_tail_log2": 2.807354922057604,
+          "dihedral_fixed_tail_term": 7,
+          "form": "b>0",
+          "h_floor_A_over_M": 2,
+          "log2_term": 6.714245517666122,
+          "quotient_n": 16,
+          "quotient_term_log2": 6.714245517666122,
+          "tail_b": 5,
+          "term": 105
+        },
+        {
+          "M": 128,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 1,
+          "log2_term": 2.807354922057604,
+          "quotient_n": 8,
+          "quotient_term_log2": 2.807354922057604,
+          "tail_b": 5,
+          "term": 7
+        },
+        {
+          "M": 256,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 4,
+          "quotient_term_log2": 0.0,
+          "tail_b": 133,
+          "term": 1
+        },
+        {
+          "M": 512,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 2,
+          "quotient_term_log2": 0.0,
+          "tail_b": 133,
+          "term": 1
+        },
+        {
+          "M": 1024,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 1,
+          "quotient_term_log2": 0.0,
+          "tail_b": 133,
+          "term": 1
+        }
+      ],
+      "transported_quotient_row_table": [
+        {
+          "M": 8,
+          "dihedral_fixed_tail_term": 3872894697,
+          "quotient_A_floor": 16,
+          "quotient_k_floor": 16,
+          "scale_n_over_M": 128,
+          "tail_b": 5,
+          "term": 81675143551104405225
+        },
+        {
+          "M": 16,
+          "dihedral_fixed_tail_term": 31465,
+          "quotient_A_floor": 8,
+          "quotient_k_floor": 8,
+          "scale_n_over_M": 64,
+          "tail_b": 5,
+          "term": 3872894697
+        },
+        {
+          "M": 32,
+          "dihedral_fixed_tail_term": 105,
+          "quotient_A_floor": 4,
+          "quotient_k_floor": 4,
+          "scale_n_over_M": 32,
+          "tail_b": 5,
+          "term": 31465
+        },
+        {
+          "M": 64,
+          "dihedral_fixed_tail_term": 7,
+          "quotient_A_floor": 2,
+          "quotient_k_floor": 2,
+          "scale_n_over_M": 16,
+          "tail_b": 5,
+          "term": 105
+        },
+        {
+          "M": 128,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 1,
+          "quotient_k_floor": 1,
+          "scale_n_over_M": 8,
+          "tail_b": 5,
+          "term": 7
+        },
+        {
+          "M": 256,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 4,
+          "tail_b": 133,
+          "term": 1
+        },
+        {
+          "M": 512,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 2,
+          "tail_b": 133,
+          "term": 1
+        },
+        {
+          "M": 1024,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 1,
+          "tail_b": 133,
+          "term": 1
+        }
+      ]
+    },
+    {
+      "A": 67,
+      "B_star": 5316911983139663491615228241121378304,
+      "B_tan_max": 958,
+      "budget_ok": true,
+      "budget_total": 9448829626898617131004316,
+      "dihedral_fixed_tail_max": 1340346236625,
+      "dihedral_fixed_tail_sum": 1340346832775,
+      "k": 64,
+      "label": "RowC",
+      "margin_total_bits": 39.03359008078091,
+      "n": 1024,
+      "poly_16n3": 17179869184,
+      "quotient_staircase_max": 9448829626895919257468625,
+      "quotient_staircase_sum": 9448829626897259604301399,
+      "rate": "1/16",
+      "staircase_room_after_poly_tan_bits": 39.033590080780925,
+      "staircase_total": 9448829626898599951134174,
+      "t": 3,
+      "terms": [
+        {
+          "M": 4,
+          "dihedral_fixed_tail_log2": 40.285742862719005,
+          "dihedral_fixed_tail_term": 1340346236625,
+          "form": "b>0",
+          "h_floor_A_over_M": 16,
+          "log2_term": 82.96640991921868,
+          "quotient_n": 256,
+          "quotient_term_log2": 82.96640991921868,
+          "tail_b": 3,
+          "term": 9448829626895919257468625
+        },
+        {
+          "M": 8,
+          "dihedral_fixed_tail_log2": 19.18414166633704,
+          "dihedral_fixed_tail_term": 595665,
+          "form": "b>0",
+          "h_floor_A_over_M": 8,
+          "log2_term": 40.285742862719005,
+          "quotient_n": 128,
+          "quotient_term_log2": 40.285742862719005,
+          "tail_b": 3,
+          "term": 1340346236625
+        },
+        {
+          "M": 16,
+          "dihedral_fixed_tail_log2": 8.861086905995395,
+          "dihedral_fixed_tail_term": 465,
+          "form": "b>0",
+          "h_floor_A_over_M": 4,
+          "log2_term": 19.18414166633704,
+          "quotient_n": 64,
+          "quotient_term_log2": 19.18414166633704,
+          "tail_b": 3,
+          "term": 595665
+        },
+        {
+          "M": 32,
+          "dihedral_fixed_tail_log2": 3.9068905956085187,
+          "dihedral_fixed_tail_term": 15,
+          "form": "b>0",
+          "h_floor_A_over_M": 2,
+          "log2_term": 8.861086905995395,
+          "quotient_n": 32,
+          "quotient_term_log2": 8.861086905995395,
+          "tail_b": 3,
+          "term": 465
+        },
+        {
+          "M": 64,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 1,
+          "log2_term": 3.9068905956085187,
+          "quotient_n": 16,
+          "quotient_term_log2": 3.9068905956085187,
+          "tail_b": 3,
+          "term": 15
+        },
+        {
+          "M": 128,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 8,
+          "quotient_term_log2": 0.0,
+          "tail_b": 67,
+          "term": 1
+        },
+        {
+          "M": 256,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 4,
+          "quotient_term_log2": 0.0,
+          "tail_b": 67,
+          "term": 1
+        },
+        {
+          "M": 512,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 2,
+          "quotient_term_log2": 0.0,
+          "tail_b": 67,
+          "term": 1
+        },
+        {
+          "M": 1024,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 1,
+          "quotient_term_log2": 0.0,
+          "tail_b": 67,
+          "term": 1
+        }
+      ],
+      "transported_quotient_row_table": [
+        {
+          "M": 4,
+          "dihedral_fixed_tail_term": 1340346236625,
+          "quotient_A_floor": 16,
+          "quotient_k_floor": 16,
+          "scale_n_over_M": 256,
+          "tail_b": 3,
+          "term": 9448829626895919257468625
+        },
+        {
+          "M": 8,
+          "dihedral_fixed_tail_term": 595665,
+          "quotient_A_floor": 8,
+          "quotient_k_floor": 8,
+          "scale_n_over_M": 128,
+          "tail_b": 3,
+          "term": 1340346236625
+        },
+        {
+          "M": 16,
+          "dihedral_fixed_tail_term": 465,
+          "quotient_A_floor": 4,
+          "quotient_k_floor": 4,
+          "scale_n_over_M": 64,
+          "tail_b": 3,
+          "term": 595665
+        },
+        {
+          "M": 32,
+          "dihedral_fixed_tail_term": 15,
+          "quotient_A_floor": 2,
+          "quotient_k_floor": 2,
+          "scale_n_over_M": 32,
+          "tail_b": 3,
+          "term": 465
+        },
+        {
+          "M": 64,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 1,
+          "quotient_k_floor": 1,
+          "scale_n_over_M": 16,
+          "tail_b": 3,
+          "term": 15
+        },
+        {
+          "M": 128,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 8,
+          "tail_b": 67,
+          "term": 1
+        },
+        {
+          "M": 256,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 4,
+          "tail_b": 67,
+          "term": 1
+        },
+        {
+          "M": 512,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 2,
+          "tail_b": 67,
+          "term": 1
+        },
+        {
+          "M": 1024,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 1,
+          "tail_b": 67,
+          "term": 1
+        }
+      ]
+    },
+    {
+      "A": 558345748481,
+      "B_star": 317494674775468773183020924238786383963,
+      "B_tan_max": 1640677507072,
+      "budget_ok": true,
+      "budget_total": 170141184568824422858398538158839093128,
+      "dihedral_fixed_tail_max": 366395202809685,
+      "dihedral_fixed_tail_sum": 366395210699802,
+      "k": 549755813888,
+      "label": "prize",
+      "margin_total_bits": 0.8999999906018274,
+      "n": 2199023255552,
+      "poly_16n3": 170141183460469231731687303715884105728,
+      "quotient_staircase_max": 1108355191126710500011856080725,
+      "quotient_staircase_sum": 1108355191126710866407066780526,
+      "rate": "1/4",
+      "staircase_room_after_poly_tan_bits": 26.98628571095344,
+      "staircase_total": 1108355191126711232802277480328,
+      "t": 8589934593,
+      "terms": [
+        {
+          "M": 17179869184,
+          "dihedral_fixed_tail_log2": 48.38039394286234,
+          "dihedral_fixed_tail_term": 366395202809685,
+          "form": "b>0",
+          "h_floor_A_over_M": 32,
+          "log2_term": 99.80626313807971,
+          "quotient_n": 128,
+          "quotient_term_log2": 99.80626313807971,
+          "tail_b": 8589934593,
+          "term": 1108355191126710500011856080725
+        },
+        {
+          "M": 34359738368,
+          "dihedral_fixed_tail_log2": 22.911360715593734,
+          "dihedral_fixed_tail_term": 7888725,
+          "form": "b>0",
+          "h_floor_A_over_M": 16,
+          "log2_term": 48.38039394286234,
+          "quotient_n": 64,
+          "quotient_term_log2": 48.38039394286234,
+          "tail_b": 8589934593,
+          "term": 366395202809685
+        },
+        {
+          "M": 68719476736,
+          "dihedral_fixed_tail_log2": 10.414685235807214,
+          "dihedral_fixed_tail_term": 1365,
+          "form": "b>0",
+          "h_floor_A_over_M": 8,
+          "log2_term": 22.911360715593734,
+          "quotient_n": 32,
+          "quotient_term_log2": 22.911360715593734,
+          "tail_b": 8589934593,
+          "term": 7888725
+        },
+        {
+          "M": 137438953472,
+          "dihedral_fixed_tail_log2": 4.392317422778761,
+          "dihedral_fixed_tail_term": 21,
+          "form": "b>0",
+          "h_floor_A_over_M": 4,
+          "log2_term": 10.414685235807214,
+          "quotient_n": 16,
+          "quotient_term_log2": 10.414685235807214,
+          "tail_b": 8589934593,
+          "term": 1365
+        },
+        {
+          "M": 274877906944,
+          "dihedral_fixed_tail_log2": 1.584962500721156,
+          "dihedral_fixed_tail_term": 3,
+          "form": "b>0",
+          "h_floor_A_over_M": 2,
+          "log2_term": 4.392317422778761,
+          "quotient_n": 8,
+          "quotient_term_log2": 4.392317422778761,
+          "tail_b": 8589934593,
+          "term": 21
+        },
+        {
+          "M": 549755813888,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 1,
+          "log2_term": 1.584962500721156,
+          "quotient_n": 4,
+          "quotient_term_log2": 1.584962500721156,
+          "tail_b": 8589934593,
+          "term": 3
+        },
+        {
+          "M": 1099511627776,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 2,
+          "quotient_term_log2": 0.0,
+          "tail_b": 558345748481,
+          "term": 1
+        },
+        {
+          "M": 2199023255552,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 1,
+          "quotient_term_log2": 0.0,
+          "tail_b": 558345748481,
+          "term": 1
+        }
+      ],
+      "transported_quotient_row_table": [
+        {
+          "M": 17179869184,
+          "dihedral_fixed_tail_term": 366395202809685,
+          "quotient_A_floor": 32,
+          "quotient_k_floor": 32,
+          "scale_n_over_M": 128,
+          "tail_b": 8589934593,
+          "term": 1108355191126710500011856080725
+        },
+        {
+          "M": 34359738368,
+          "dihedral_fixed_tail_term": 7888725,
+          "quotient_A_floor": 16,
+          "quotient_k_floor": 16,
+          "scale_n_over_M": 64,
+          "tail_b": 8589934593,
+          "term": 366395202809685
+        },
+        {
+          "M": 68719476736,
+          "dihedral_fixed_tail_term": 1365,
+          "quotient_A_floor": 8,
+          "quotient_k_floor": 8,
+          "scale_n_over_M": 32,
+          "tail_b": 8589934593,
+          "term": 7888725
+        },
+        {
+          "M": 137438953472,
+          "dihedral_fixed_tail_term": 21,
+          "quotient_A_floor": 4,
+          "quotient_k_floor": 4,
+          "scale_n_over_M": 16,
+          "tail_b": 8589934593,
+          "term": 1365
+        },
+        {
+          "M": 274877906944,
+          "dihedral_fixed_tail_term": 3,
+          "quotient_A_floor": 2,
+          "quotient_k_floor": 2,
+          "scale_n_over_M": 8,
+          "tail_b": 8589934593,
+          "term": 21
+        },
+        {
+          "M": 549755813888,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 1,
+          "quotient_k_floor": 1,
+          "scale_n_over_M": 4,
+          "tail_b": 8589934593,
+          "term": 3
+        },
+        {
+          "M": 1099511627776,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 2,
+          "tail_b": 558345748481,
+          "term": 1
+        },
+        {
+          "M": 2199023255552,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 1,
+          "tail_b": 558345748481,
+          "term": 1
+        }
+      ]
+    },
+    {
+      "A": 283467841537,
+      "B_star": 317494674775468773183020924238786383963,
+      "B_tan_max": 1915555414016,
+      "budget_ok": true,
+      "budget_total": 170141183460469231813362449190289777524,
+      "dihedral_fixed_tail_max": 3872894697,
+      "dihedral_fixed_tail_sum": 3872926278,
+      "k": 274877906944,
+      "label": "prize",
+      "margin_total_bits": 0.9000000000000057,
+      "n": 2199023255552,
+      "poly_16n3": 170141183460469231731687303715884105728,
+      "quotient_staircase_max": 81675143551104405225,
+      "quotient_staircase_sum": 81675143554977331502,
+      "rate": "1/8",
+      "staircase_room_after_poly_tan_bits": 60.64601796071,
+      "staircase_total": 81675143558850257780,
+      "t": 8589934593,
+      "terms": [
+        {
+          "M": 17179869184,
+          "dihedral_fixed_tail_log2": 31.850765129382676,
+          "dihedral_fixed_tail_term": 3872894697,
+          "form": "b>0",
+          "h_floor_A_over_M": 16,
+          "log2_term": 66.14653088818633,
+          "quotient_n": 128,
+          "quotient_term_log2": 66.14653088818633,
+          "tail_b": 8589934593,
+          "term": 81675143551104405225
+        },
+        {
+          "M": 34359738368,
+          "dihedral_fixed_tail_log2": 14.941460322459413,
+          "dihedral_fixed_tail_term": 31465,
+          "form": "b>0",
+          "h_floor_A_over_M": 8,
+          "log2_term": 31.850765129382676,
+          "quotient_n": 64,
+          "quotient_term_log2": 31.850765129382676,
+          "tail_b": 8589934593,
+          "term": 3872894697
+        },
+        {
+          "M": 68719476736,
+          "dihedral_fixed_tail_log2": 6.714245517666122,
+          "dihedral_fixed_tail_term": 105,
+          "form": "b>0",
+          "h_floor_A_over_M": 4,
+          "log2_term": 14.941460322459413,
+          "quotient_n": 32,
+          "quotient_term_log2": 14.941460322459413,
+          "tail_b": 8589934593,
+          "term": 31465
+        },
+        {
+          "M": 137438953472,
+          "dihedral_fixed_tail_log2": 2.807354922057604,
+          "dihedral_fixed_tail_term": 7,
+          "form": "b>0",
+          "h_floor_A_over_M": 2,
+          "log2_term": 6.714245517666122,
+          "quotient_n": 16,
+          "quotient_term_log2": 6.714245517666122,
+          "tail_b": 8589934593,
+          "term": 105
+        },
+        {
+          "M": 274877906944,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 1,
+          "log2_term": 2.807354922057604,
+          "quotient_n": 8,
+          "quotient_term_log2": 2.807354922057604,
+          "tail_b": 8589934593,
+          "term": 7
+        },
+        {
+          "M": 549755813888,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 4,
+          "quotient_term_log2": 0.0,
+          "tail_b": 283467841537,
+          "term": 1
+        },
+        {
+          "M": 1099511627776,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 2,
+          "quotient_term_log2": 0.0,
+          "tail_b": 283467841537,
+          "term": 1
+        },
+        {
+          "M": 2199023255552,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 1,
+          "quotient_term_log2": 0.0,
+          "tail_b": 283467841537,
+          "term": 1
+        }
+      ],
+      "transported_quotient_row_table": [
+        {
+          "M": 17179869184,
+          "dihedral_fixed_tail_term": 3872894697,
+          "quotient_A_floor": 16,
+          "quotient_k_floor": 16,
+          "scale_n_over_M": 128,
+          "tail_b": 8589934593,
+          "term": 81675143551104405225
+        },
+        {
+          "M": 34359738368,
+          "dihedral_fixed_tail_term": 31465,
+          "quotient_A_floor": 8,
+          "quotient_k_floor": 8,
+          "scale_n_over_M": 64,
+          "tail_b": 8589934593,
+          "term": 3872894697
+        },
+        {
+          "M": 68719476736,
+          "dihedral_fixed_tail_term": 105,
+          "quotient_A_floor": 4,
+          "quotient_k_floor": 4,
+          "scale_n_over_M": 32,
+          "tail_b": 8589934593,
+          "term": 31465
+        },
+        {
+          "M": 137438953472,
+          "dihedral_fixed_tail_term": 7,
+          "quotient_A_floor": 2,
+          "quotient_k_floor": 2,
+          "scale_n_over_M": 16,
+          "tail_b": 8589934593,
+          "term": 105
+        },
+        {
+          "M": 274877906944,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 1,
+          "quotient_k_floor": 1,
+          "scale_n_over_M": 8,
+          "tail_b": 8589934593,
+          "term": 7
+        },
+        {
+          "M": 549755813888,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 4,
+          "tail_b": 283467841537,
+          "term": 1
+        },
+        {
+          "M": 1099511627776,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 2,
+          "tail_b": 283467841537,
+          "term": 1
+        },
+        {
+          "M": 2199023255552,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 1,
+          "tail_b": 283467841537,
+          "term": 1
+        }
+      ]
+    },
+    {
+      "A": 141733920769,
+      "B_star": 317494674775468773183020924238786383963,
+      "B_tan_max": 2057289334784,
+      "budget_ok": true,
+      "budget_total": 170141183460478680561314204373124574686,
+      "dihedral_fixed_tail_max": 1340346236625,
+      "dihedral_fixed_tail_sum": 1340346832775,
+      "k": 137438953472,
+      "label": "prize",
+      "margin_total_bits": 0.8999999999999204,
+      "n": 2199023255552,
+      "poly_16n3": 170141183460469231731687303715884105728,
+      "quotient_staircase_max": 9448829626895919257468625,
+      "quotient_staircase_sum": 9448829626897259604301399,
+      "rate": "1/16",
+      "staircase_room_after_poly_tan_bits": 43.82613892981408,
+      "staircase_total": 9448829626898599951134174,
+      "t": 4294967297,
+      "terms": [
+        {
+          "M": 8589934592,
+          "dihedral_fixed_tail_log2": 40.285742862719005,
+          "dihedral_fixed_tail_term": 1340346236625,
+          "form": "b>0",
+          "h_floor_A_over_M": 16,
+          "log2_term": 82.96640991921868,
+          "quotient_n": 256,
+          "quotient_term_log2": 82.96640991921868,
+          "tail_b": 4294967297,
+          "term": 9448829626895919257468625
+        },
+        {
+          "M": 17179869184,
+          "dihedral_fixed_tail_log2": 19.18414166633704,
+          "dihedral_fixed_tail_term": 595665,
+          "form": "b>0",
+          "h_floor_A_over_M": 8,
+          "log2_term": 40.285742862719005,
+          "quotient_n": 128,
+          "quotient_term_log2": 40.285742862719005,
+          "tail_b": 4294967297,
+          "term": 1340346236625
+        },
+        {
+          "M": 34359738368,
+          "dihedral_fixed_tail_log2": 8.861086905995395,
+          "dihedral_fixed_tail_term": 465,
+          "form": "b>0",
+          "h_floor_A_over_M": 4,
+          "log2_term": 19.18414166633704,
+          "quotient_n": 64,
+          "quotient_term_log2": 19.18414166633704,
+          "tail_b": 4294967297,
+          "term": 595665
+        },
+        {
+          "M": 68719476736,
+          "dihedral_fixed_tail_log2": 3.9068905956085187,
+          "dihedral_fixed_tail_term": 15,
+          "form": "b>0",
+          "h_floor_A_over_M": 2,
+          "log2_term": 8.861086905995395,
+          "quotient_n": 32,
+          "quotient_term_log2": 8.861086905995395,
+          "tail_b": 4294967297,
+          "term": 465
+        },
+        {
+          "M": 137438953472,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 1,
+          "log2_term": 3.9068905956085187,
+          "quotient_n": 16,
+          "quotient_term_log2": 3.9068905956085187,
+          "tail_b": 4294967297,
+          "term": 15
+        },
+        {
+          "M": 274877906944,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 8,
+          "quotient_term_log2": 0.0,
+          "tail_b": 141733920769,
+          "term": 1
+        },
+        {
+          "M": 549755813888,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 4,
+          "quotient_term_log2": 0.0,
+          "tail_b": 141733920769,
+          "term": 1
+        },
+        {
+          "M": 1099511627776,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 2,
+          "quotient_term_log2": 0.0,
+          "tail_b": 141733920769,
+          "term": 1
+        },
+        {
+          "M": 2199023255552,
+          "dihedral_fixed_tail_log2": 0.0,
+          "dihedral_fixed_tail_term": 1,
+          "form": "b>0",
+          "h_floor_A_over_M": 0,
+          "log2_term": 0.0,
+          "quotient_n": 1,
+          "quotient_term_log2": 0.0,
+          "tail_b": 141733920769,
+          "term": 1
+        }
+      ],
+      "transported_quotient_row_table": [
+        {
+          "M": 8589934592,
+          "dihedral_fixed_tail_term": 1340346236625,
+          "quotient_A_floor": 16,
+          "quotient_k_floor": 16,
+          "scale_n_over_M": 256,
+          "tail_b": 4294967297,
+          "term": 9448829626895919257468625
+        },
+        {
+          "M": 17179869184,
+          "dihedral_fixed_tail_term": 595665,
+          "quotient_A_floor": 8,
+          "quotient_k_floor": 8,
+          "scale_n_over_M": 128,
+          "tail_b": 4294967297,
+          "term": 1340346236625
+        },
+        {
+          "M": 34359738368,
+          "dihedral_fixed_tail_term": 465,
+          "quotient_A_floor": 4,
+          "quotient_k_floor": 4,
+          "scale_n_over_M": 64,
+          "tail_b": 4294967297,
+          "term": 595665
+        },
+        {
+          "M": 68719476736,
+          "dihedral_fixed_tail_term": 15,
+          "quotient_A_floor": 2,
+          "quotient_k_floor": 2,
+          "scale_n_over_M": 32,
+          "tail_b": 4294967297,
+          "term": 465
+        },
+        {
+          "M": 137438953472,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 1,
+          "quotient_k_floor": 1,
+          "scale_n_over_M": 16,
+          "tail_b": 4294967297,
+          "term": 15
+        },
+        {
+          "M": 274877906944,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 8,
+          "tail_b": 141733920769,
+          "term": 1
+        },
+        {
+          "M": 549755813888,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 4,
+          "tail_b": 141733920769,
+          "term": 1
+        },
+        {
+          "M": 1099511627776,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 2,
+          "tail_b": 141733920769,
+          "term": 1
+        },
+        {
+          "M": 2199023255552,
+          "dihedral_fixed_tail_term": 1,
+          "quotient_A_floor": 0,
+          "quotient_k_floor": 0,
+          "scale_n_over_M": 1,
+          "tail_b": 141733920769,
+          "term": 1
+        }
+      ]
+    }
+  ],
+  "status": "PASS: staircase budget column fits all six clean-rate candidates",
+  "task": "QA.22"
+}

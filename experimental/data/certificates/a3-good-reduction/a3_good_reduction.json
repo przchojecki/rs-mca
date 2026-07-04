@@ -1,0 +1,48 @@
+{
+  "budget": {
+    "prize_log2n_squared": 1681,
+    "prize_min_t_plus_1": 4294967298,
+    "qa22_row_count": 6,
+    "rowc_min_spare_n3_columns": 4951759124905310911037023571,
+    "tolerance": {
+      "t=3,hmax=100": 312630,
+      "t=3,hmax=20": 594293,
+      "t=5,hmax=100": 361074,
+      "t=5,hmax=20": 797756
+    }
+  },
+  "consumer": "a_closure_assembly",
+  "node": "a3_good_reduction_lemma",
+  "status": "PROVED_WITH_CONDITIONAL_CONSUMER",
+  "theorem": "fixed-(n,h) good reduction of anchored square-shift candidates away from the certified exceptional divisor D(n,h)",
+  "toy": {
+    "anchored_supports": 3003,
+    "char0_candidates": 0,
+    "extension_rows": [
+      {
+        "exceptional": true,
+        "p": 7,
+        "unordered_trades": 56
+      },
+      {
+        "exceptional": false,
+        "p": 23,
+        "unordered_trades": 0
+      }
+    ],
+    "n": 16,
+    "h": 3,
+    "prime_trade_rows": [
+      {
+        "anchored_trades": 132,
+        "p": 17,
+        "unordered_trades": 352
+      },
+      {
+        "anchored_trades": 6,
+        "p": 97,
+        "unordered_trades": 16
+      }
+    ]
+  }
+}

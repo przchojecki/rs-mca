@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - A3 good-reduction bridge and conditional A-closure
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/roadmaps/a3_good_reduction_lemma.md`;
+  `experimental/notes/roadmaps/a_closure_assembly.md`;
+  `experimental/scripts/verify_a3_good_reduction.py`;
+  `experimental/data/certificates/a3-good-reduction/`;
+  `experimental/data/certificates/qa22-staircase-budget/`;
+  `experimental/data/certificates/w4-direct-column-rewiring/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED_WITH_CONDITIONAL_CONSUMER.
+- **What is being added:** The fixed-`(n,h)` A3 good-reduction theorem:
+  away from a certified exceptional divisor `D(n,h)`, anchored square-shift
+  candidates reduce bijectively between characteristic zero and row fields,
+  preserving primitive/coset-union status.  The companion assembly records
+  the conditional small-`h` closure once the finite certificates and row GCDs
+  are supplied.
+- **How it is useful:** This is a critical-path bridge for the prize proof:
+  it is the structural theorem cited by the low-`h` MITM and descent-injection
+  packets, converting their finite certificate obligations into zero
+  post-strip primitive residue at clean cells and an explicit `n^3` fallback
+  for bad-prime exceptions.
+- **What to do next:** Submit after the earlier square-shift and budget
+  packets are reviewable, then let C1a/C1b cite this branch as the A3 bridge;
+  the remaining work is the finite per-window certificate/GCD production, not
+  another good-reduction proof.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
