@@ -1517,3 +1517,16 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-04 — DAG maintenance + critical-path status (Claude / roadmap lane)
+- **Files:** `experimental/data/prize-dag/prize_dag.json` (327+ nodes; the terminal-node
+  decomposition: dichotomy chain PROVED, A3 good-reduction PROVED, closure assembly CONDITIONAL,
+  five blockers noded), `experimental/notes/roadmaps/critical_path_status_2026_07_04.md` (the
+  maintainer-facing structure-and-blockers note), plus the 34 campaign notes/scripts the DAG
+  references (self-consistency: validator refs check green; files overlapping the open packet
+  PR wave #232-#241 are byte-identical adds).
+- **Status:** STATUS/MAINTENANCE. No new mathematics in this PR beyond what the referenced
+  packets carry; every PROVED label is verifier-backed and was independently replayed before
+  banking.
+- **Usefulness:** the current single source of truth for the clean-rate critical path.
+- **Next:** blockers 1-4 flip on the running pipelines/proofs; note refreshed then.
