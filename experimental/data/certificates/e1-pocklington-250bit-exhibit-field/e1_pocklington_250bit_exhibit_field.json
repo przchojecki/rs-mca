@@ -1,0 +1,54 @@
+{
+  "consumers": [
+    "e1_folded_certificate_cell_128_payload",
+    "e1_folded_certificate_cell_256_payload"
+  ],
+  "field": {
+    "bit_length": 250,
+    "label": "F_p",
+    "less_than_2_256": true,
+    "p": "904625697166646869347790708689937759412227977745095982970820953353127723009",
+    "p_mod_256": 1
+  },
+  "non_claims": [
+    "not a uniform-in-field theorem",
+    "does not by itself close either E1 folded no-vector payload",
+    "does not assert a fixed list of official row primes"
+  ],
+  "object": "E1 named exhibit field",
+  "pocklington": {
+    "base": 3,
+    "base_power_half_minus_one_gcd_p": "1",
+    "base_power_p_minus_1_mod_p": "1",
+    "c": "562949953421383",
+    "cofactor": "562949953421383",
+    "criterion": "Pocklington with known factor 2^200 > sqrt(p)",
+    "factor_square_exceeds_p": true,
+    "known_factor": "2^200",
+    "known_factor_prime_divisors": [
+      2
+    ],
+    "known_factor_value": "1606938044258990275541962092341162602522202993782792835301376"
+  },
+  "roots": [
+    {
+      "exact_order": 128,
+      "formula": "3^((p-1)/128) mod p",
+      "order": 128,
+      "pow_half_order_mod_p": "904625697166646869347790708689937759412227977745095982970820953353127723008",
+      "pow_order_mod_p": "1",
+      "rho": "440266185830122294862552098878717819794821358702875176198798016633729926114"
+    },
+    {
+      "exact_order": 256,
+      "formula": "3^((p-1)/256) mod p",
+      "order": 256,
+      "pow_half_order_mod_p": "904625697166646869347790708689937759412227977745095982970820953353127723008",
+      "pow_order_mod_p": "1",
+      "rho": "368095729527972287347366462180303065908636718991804826343652948937354262881"
+    }
+  ],
+  "schema": "rs-mca.experimental.e1_pocklington_250bit_exhibit_field.v1",
+  "source_dag_node": "e1_pocklington_250bit_exhibit_field",
+  "status": "PROVED"
+}

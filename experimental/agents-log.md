@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E1 Pocklington exhibit field packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/e1_pocklington_250bit_exhibit_field.md`;
+  `experimental/scripts/verify_e1_pocklington_250bit_exhibit_field.py`;
+  `experimental/data/certificates/e1-pocklington-250bit-exhibit-field/e1_pocklington_250bit_exhibit_field.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An exact Pocklington certificate for the 250-bit
+  prime `p = 562949953421383 * 2^200 + 1`, together with exact order-128 and
+  order-256 roots generated from base `3`.
+- **How it is useful:** Supplies a named admissible exhibit field and roots of
+  unity for the two E1 folded-certificate cells, without claiming a
+  uniform-in-field theorem.
+- **What to do next:** Downstream E1 packets may cite the certificate directly;
+  the remaining folded no-vector payloads still need their own closure
+  arguments.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
