@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI Artin-Schreier conductor criterion
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_artin_schreier_conductor_criterion.md`;
+  `experimental/scripts/verify_dli_artin_schreier_conductor_criterion.py`;
+  `experimental/data/certificates/dli-artin-schreier-conductor-criterion/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A local proof packet for the Artin-Schreier
+  triviality criterion and reduced-polar-divisor conductor bound used by the
+  DLI odd-phase ledgers.
+- **How it is useful:** Supplies the local sheaf/conductor criterion consumed
+  by Paper-D audit packets for reduced-phase and odd-evaluation certificates.
+- **What to do next:** Use this packet only as certificate semantics; the
+  actual reduced-phase manifest and harmonic conductor ledger remain separate
+  obligations.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

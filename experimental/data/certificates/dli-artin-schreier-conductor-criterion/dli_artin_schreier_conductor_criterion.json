@@ -1,0 +1,26 @@
+{
+  "anchor_checks": {
+    "coboundary_form": true,
+    "conductor_control": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not construct a DLI reduced-phase manifest",
+    "does not verify a deployed row",
+    "does not prove the remaining harmonic conductor ledger"
+  ],
+  "note": "experimental/notes/dli/dli_artin_schreier_conductor_criterion.md",
+  "schema": "dli-artin-schreier-conductor-criterion-v1",
+  "source_dag_node": "dli_artin_schreier_conductor_criterion",
+  "status": "PROVED_CRITERION_REPLAY",
+  "toy_check": {
+    "constant": 3,
+    "constant_trace": true,
+    "equals_constant_phase": true,
+    "field": "F_5",
+    "points_checked": 5
+  }
+}
