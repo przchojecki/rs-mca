@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - m=4 affine-shear eca/emca q13 q17 rows
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:**
+  `experimental/data/certificates/exact-worstcase-eca-emca-staircase/exact_worstcase_eca_emca_staircase_m4_q13_q17_gpu_rows.json`;
+  `experimental/scripts/verify_exact_worstcase_eca_emca_affine_gpu_packet.py`;
+  `experimental/notes/thresholds/m4_affine_eca_emca_q13_q17_rows.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** Offline exact `m=4` affine-shear staircase packet
+  outputs for `(13,12,8)` and `(17,16,12)`, plus a stdlib checker that enforces
+  the packet row set, replays every recorded argmax slope list, and verifies
+  the packet invariants.
+- **How it is useful:** Completes the q13/q17 part of the finite `m=4`
+  staircase pattern and confirms sparsify equality on both rows.
+- **What to do next:** Independently replay the packet and compare with the
+  q11 row once the adjacent affine-quotient contribution is integrated.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
