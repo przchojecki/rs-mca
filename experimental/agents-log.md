@@ -30,6 +30,60 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - L1 KEY LEMMA `E_3 <= ell-2` refuted; frontier vacancy refuted at `ell in {11,13,17,23}`
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** `experimental/notes/l1/l1_prime_ell_key_lemma_refuted.md`;
+  `experimental/scripts/verify_l1_key_lemma_refuted.py`;
+  `experimental/scripts/l1_bigfiber_e3_search.py`; `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT.
+- **What is being added:** A self-correction of the integrated
+  `experimental/notes/l1/l1_prime_ell_frontier_corrected.md`. Its KEY LEMMA
+  `E_3 <= ell-2` is refuted by six explicit, independently-verified mixed
+  `Gamma` on the non-collinear `K >= 3` chart (`ell in {11,13,17,23}`;
+  observed max `E_3 = ell-1` at `ell in {11,13,17}`, `E_3 = ell` at
+  `ell = 23`). Its VACANCY half (`top-m < 2ell` for `m <= (ell+1)/2`) is now
+  refuted at **every tested `ell >= 11`** by an explicit full listing at
+  `m = (ell+1)/2`, each passing all 16 gates of the integrated note's own
+  `run_witness_chain`: `ell=13 p=313 m=7`; `ell=11 p=331 m=6` (replicated
+  across 11 distinct `Gamma` at `p in {199,331}`); `ell=17 p=409 m=9` (a
+  higher-`E_3` config at the note's own witness prime); and `ell=23 m=12`
+  cross-prime replicated at `p=599` and `p=691` (large `n`; the expensive
+  `L5_minimal` gate confirmed offline this session, the other 15 live).
+  Hence `m*(ell) <= (ell+1)/2` at `ell in {11,13,17,23}`, below the claimed
+  `(ell+3)/2` onset; `ell = 7` unaffected (Theorem R keeps `m*(7)=5`).
+  **New KEY LEMMA CANDIDATE** replacing the refuted `ell-2`: **`E_3 <= ell`**
+  (tight -- `E_3 = ell` reached at `ell=23`). Since the surviving bound
+  `top-m <= 2m + E_3` gives, under `E_3 <= ell`, no listing at
+  `m <= (ell-1)/2` (`2m+E_3 <= 2ell-1 < 2ell`), it forces
+  `m*(ell) = (ell+1)/2` exactly for `ell >= 11` (attained). Labeled
+  CONJECTURAL_WITH_FALSIFIER (falsifier: any config with `E_3 >= ell+1`; the
+  big-fiber constructor is the search tool). Root cause of the original
+  miss: the KEY LEMMA's "0 violations" search only ever planted small
+  (`K<=3`, size-3) fibers and never the big fibers that carry the excess.
+  The reduction-chain identities, pairwise cap, collinear/`det-M`/L9 no-gos,
+  Theorem R (`ell=7`), the upper-half listing witnesses, and the
+  `ceil(2ell/3)` refutation all SURVIVE unchanged (verified). The integrated
+  note and its verifier
+  `experimental/scripts/verify_l1_prime_ell_frontier_corrected.py` are left
+  unedited (ground rule) and independently re-confirmed still green.
+- **How it is useful:** Corrects the team's own integrated frontier note
+  before external discovery, and converts the claimed-vacant residual cells
+  (`prob:v13-l1-residuals`, `m <= (ell+1)/2` at every tested `ell >= 11`)
+  into named `COUNTEREXAMPLE_NEW_FLOOR` occupants that any adjacent upper
+  ledger must now budget, per the `agents.md` residual-branch taxonomy.
+  Replaces the refuted `E_3 <= ell-2` with a clean, falsifiable ceiling
+  `E_3 <= ell` that pins the onset `m*(ell) = (ell+1)/2` for all `ell >= 11`.
+- **What to do next:** Attack the new candidate `E_3 <= ell` directly --
+  either a realizability proof (the big-fiber rank budget `(mu-1)`-sum
+  `<= ell-2` caps `E_3` structurally) or its falsifier, an explicit
+  `E_3 >= ell+1` config (the constructor `l1_bigfiber_e3_search.py` is the
+  search tool; ~130k seeds at `ell=23` large-`n` topped out at `E_3=ell-1`,
+  with the lone `E_3=ell` at `n=6`). Extend the `m=(ell+1)/2` listing census
+  to `ell = 19` (untested) to check the pattern holds there too; and settle
+  whether the `ell=23`, `n=6`, `E_3=ell` anomaly is a genuine small-`n`
+  effect or the tip of an `E_3 > ell` regime that would break the law.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
