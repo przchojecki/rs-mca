@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - L1 petal residue-kernel reduction packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/l1/l1_petal_residue_kernel_reduction.md`;
+  `experimental/scripts/verify_l1_petal_residue_kernel_reduction.py`;
+  `experimental/data/certificates/l1-petal-residue-kernel-reduction/`;
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL, with local implication steps marked PROVED in the
+  packet.
+- **What is being added:** A dependency certificate for the full-petal
+  growing-defect residue: Lemma-13 linear kernel control, realizable-extra
+  injection, finite classification counting, and ledger soundness reduce the
+  mixed-amplification step to one named payload, the actual squarefree
+  classification ledger.
+- **How it is useful:** This supports the `agents.md` L1 priority on
+  mixed-petal/growing-defect residuals while keeping the live mathematical
+  obligation explicit.  It does not claim the primitive image-fiber theorem or
+  the missing classification ledger.
+- **What to do next:** Construct or falsify
+  `petal_squarefree_classification_ledger_payload`; until then, treat this as
+  conditional infrastructure only.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

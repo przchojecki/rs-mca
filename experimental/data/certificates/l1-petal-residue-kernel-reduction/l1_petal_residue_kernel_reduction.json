@@ -1,0 +1,112 @@
+{
+  "agents_md_priority": "Highest-value item 4: primitive L1 image-fiber theorem and mixed-petal/growing-defect residuals.",
+  "edges": [
+    [
+      "petal_squarefree_classification_ledger_payload",
+      "petal_squarefree_kernel_classification_payload"
+    ],
+    [
+      "petal_squarefree_classification_ledger_soundness",
+      "petal_squarefree_kernel_classification_payload"
+    ],
+    [
+      "petal_squarefree_kernel_classification_payload",
+      "petal_kernel_realizable_sparsity"
+    ],
+    [
+      "petal_squarefree_classification_counting_soundness",
+      "petal_kernel_realizable_sparsity"
+    ],
+    [
+      "petal_kernel_realizable_sparsity",
+      "petal_realizable_extra_uniformity"
+    ],
+    [
+      "petal_realizable_kernel_injection",
+      "petal_realizable_extra_uniformity"
+    ],
+    [
+      "petal_realizable_extra_uniformity",
+      "petal_residue_line_uniformity"
+    ],
+    [
+      "petal_residue_kernel_linear_bound",
+      "petal_residue_line_uniformity"
+    ],
+    [
+      "petal_residue_line_uniformity",
+      "petal_mixed_amplification_step"
+    ]
+  ],
+  "live_payload_assumptions": [
+    "petal_squarefree_classification_ledger_payload"
+  ],
+  "nodes": {
+    "petal_kernel_realizable_sparsity": {
+      "claim": "Squarefree realizable locator points in K_{I,d} are uniformly polynomial in the growing-excess corridor.",
+      "status": "CONDITIONAL_ON_LEDGER"
+    },
+    "petal_mixed_amplification_step": {
+      "claim": "Residue-line uniformity gives the c -> c+1 mixed-amplification transition with c-independent polynomial exponents.",
+      "status": "CONDITIONAL_ON_LEDGER"
+    },
+    "petal_realizable_extra_uniformity": {
+      "claim": "Exact realizable full-petal extras are uniformly polynomial through the injection into squarefree kernel points.",
+      "status": "CONDITIONAL_ON_LEDGER"
+    },
+    "petal_realizable_kernel_injection": {
+      "claim": "Exact realizable full-petal extras inject into squarefree locator points in K_{I,d}.",
+      "source": "Lemma 8 plus l1_coset_chart_residue_bridge_v1.md",
+      "status": "PROVED"
+    },
+    "petal_residue_kernel_linear_bound": {
+      "claim": "Lemma 13 supplies dim K_{I,d} <= c + 1.",
+      "source": "l1_full_list_quotient_proof_program.md Lemma 13",
+      "status": "PROVED"
+    },
+    "petal_residue_line_uniformity": {
+      "claim": "The residue-line contribution is uniformly bounded using the linear ambient ceiling and realizable-extra uniformity.",
+      "status": "CONDITIONAL_ON_LEDGER"
+    },
+    "petal_squarefree_classification_counting_soundness": {
+      "claim": "A finite charged/uncharged classification with c-independent exponents gives a c-independent polynomial bound.",
+      "source": "finite union counting",
+      "status": "PROVED"
+    },
+    "petal_squarefree_classification_ledger_payload": {
+      "claim": "Construct the actual classification ledger for squarefree realizable locator points in residue-line kernels.",
+      "source": "remaining L1 residual task",
+      "status": "TARGET_PAYLOAD"
+    },
+    "petal_squarefree_classification_ledger_soundness": {
+      "claim": "A complete ledger with paid charged records and bounded uncharged records implies the squarefree classification payload.",
+      "source": "ledger semantics",
+      "status": "PROVED"
+    },
+    "petal_squarefree_kernel_classification_payload": {
+      "claim": "The charged/uncharged squarefree-kernel classification holds.",
+      "status": "CONDITIONAL_ON_LEDGER"
+    }
+  },
+  "non_claims": [
+    "does not construct the squarefree classification ledger",
+    "does not close the primitive image-fiber theorem",
+    "does not claim ambient residue-kernel flatness",
+    "does not replace the fixed-excess compiler"
+  ],
+  "note": "experimental/notes/l1/l1_petal_residue_kernel_reduction.md",
+  "schema": "l1-petal-residue-kernel-reduction-v1",
+  "status": "CONDITIONAL_ON_SQUAREFREE_CLASSIFICATION_LEDGER",
+  "topological_order": [
+    "petal_realizable_kernel_injection",
+    "petal_residue_kernel_linear_bound",
+    "petal_squarefree_classification_counting_soundness",
+    "petal_squarefree_classification_ledger_payload",
+    "petal_squarefree_classification_ledger_soundness",
+    "petal_squarefree_kernel_classification_payload",
+    "petal_kernel_realizable_sparsity",
+    "petal_realizable_extra_uniformity",
+    "petal_residue_line_uniformity",
+    "petal_mixed_amplification_step"
+  ]
+}
