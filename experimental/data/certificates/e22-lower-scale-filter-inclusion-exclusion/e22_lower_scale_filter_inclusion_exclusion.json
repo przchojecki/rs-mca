@@ -1,0 +1,28 @@
+{
+  "schema": "e22-lower-scale-filter-inclusion-exclusion-v1",
+  "dag_node": "e22_lower_scale_filter_inclusion_exclusion",
+  "status": "PROVED",
+  "claim": "For a finite residual-profile universe, imposing failure of all smaller dyadic admissibility events is exactly weighted inclusion-exclusion over their intersections.",
+  "dependencies": [
+    "e22_residual_profile_generating_function"
+  ],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_lower_scale_filter_inclusion_exclusion/statement.md",
+      "nodes/e22_lower_scale_filter_inclusion_exclusion/proof.md",
+      "nodes/e22_lower_scale_filter_inclusion_exclusion/verify.py"
+    ]
+  },
+  "local_dependency_certificates": [
+    "experimental/data/certificates/e22-residual-profile-generating-function/e22_residual_profile_generating_function.json"
+  ],
+  "finite_checks": [
+    {
+      "universe_size": 9,
+      "event_family_count": 2
+    }
+  ],
+  "expected_result": "PASS"
+}
+

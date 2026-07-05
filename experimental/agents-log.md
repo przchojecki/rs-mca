@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E22 residual-profile overlap packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/e22_overlap_nested_fiber_residual_identity.md`;
+  `experimental/notes/roadmaps/e22_residual_profile_generating_function.md`;
+  `experimental/notes/roadmaps/e22_lower_scale_filter_inclusion_exclusion.md`;
+  `experimental/data/certificates/e22-overlap-nested-fiber-residual-identity/`;
+  `experimental/data/certificates/e22-residual-profile-generating-function/`;
+  `experimental/data/certificates/e22-lower-scale-filter-inclusion-exclusion/`;
+  `experimental/scripts/verify_e22_overlap_nested_fiber_residual_identity.py`;
+  `experimental/scripts/verify_e22_residual_profile_generating_function.py`;
+  `experimental/scripts/verify_e22_lower_scale_filter_inclusion_exclusion.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Three fully proved E22 residual-profile packets:
+  the nested-fiber residual identity, the finite product generating function
+  for raw coarser-scale admissibility, and the formal weighted
+  inclusion-exclusion filter for lower-scale minimality.
+- **How it is useful:** These packets extend the quotient-staircase
+  canonicalization work toward the `(Q)` quotient-ledger route by making
+  cross-scale overlap and residual filters explicit before downstream exact
+  intersection-profile counts.
+- **What to do next:** Review the dependent lower-scale intersection-profile
+  count nodes and separate which parts require the already-open dyadic-profile
+  evaluation packet from purely formal E22 overlap identities.
+
 ### 2026-07-05 - E22 quotient-staircase canonicalization packet
 
 - **Agent/model:** Codex.
