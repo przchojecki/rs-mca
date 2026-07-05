@@ -1,0 +1,42 @@
+{
+  "anchor_checks": {
+    "accepted": true,
+    "non_claim": true,
+    "note_exists": true,
+    "payload": true,
+    "source_node": true,
+    "status": true,
+    "triangular": true
+  },
+  "non_claims": [
+    "does not construct the XR profile inventory",
+    "does not prove the actual profile-minor payload by itself"
+  ],
+  "note": "experimental/notes/m1/xr_profile_minor_record_inventory_soundness.md",
+  "sample_inventory": {
+    "accepted_record_types": [
+      "monomial",
+      "remote_table",
+      "triangular"
+    ],
+    "checks": {
+      "accepted_record_types": true,
+      "covers_required_profiles": true,
+      "single_record_per_profile": true
+    },
+    "passes": true,
+    "records": {
+      "profile_A": "triangular",
+      "profile_B": "monomial",
+      "profile_C": "remote_table"
+    },
+    "required_profiles": [
+      "profile_A",
+      "profile_B",
+      "profile_C"
+    ]
+  },
+  "schema": "xr-profile-minor-record-inventory-soundness-v1",
+  "source_dag_node": "xr_profile_minor_record_inventory_soundness",
+  "status": "PROVED_INVENTORY_SOUNDNESS_REPLAY"
+}

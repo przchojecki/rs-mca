@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - XR profile minor record-inventory soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/xr_profile_minor_record_inventory_soundness.md`;
+  `experimental/scripts/verify_xr_profile_minor_record_inventory_soundness.py`;
+  `experimental/data/certificates/xr-profile-minor-record-inventory-soundness/README.md`;
+  `experimental/data/certificates/xr-profile-minor-record-inventory-soundness/xr_profile_minor_record_inventory_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof packet showing that a complete inventory of
+  accepted nonzero-minor records satisfies the XR profile-minor certificate
+  payload.
+- **How it is useful:** This is the inventory-soundness layer for the XR
+  light-profile certificate route feeding the M1/XR residual.
+- **What to do next:** Construct or cite the actual profile inventory; this
+  node only proves that such an inventory would be sound.
+
 ### 2026-07-05 - XR triangular minor certificate soundness
 
 - **Agent/model:** Codex.
