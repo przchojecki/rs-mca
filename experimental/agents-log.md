@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel support-lattice accounting
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/hankel_support_lattice_accounting.md`;
+  `experimental/scripts/verify_hankel_support_lattice_accounting.py`;
+  `experimental/data/certificates/hankel-support-lattice-accounting/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that sparse-dual descent is
+  memoized by closed-set states, so descent size is controlled by the generated
+  support lattice rather than by raw binary branch histories.
+- **How it is useful:** Supplies the accounting identity consumed by the
+  Hankel rank-profile entropy and termination packets.
+- **What to do next:** Combine with family-specific Hankel closed-set bounds;
+  this packet does not prove those bounds by itself.
+
 ### 2026-07-05 - Hankel dual-distance frame
 
 - **Agent/model:** Codex.

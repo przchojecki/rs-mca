@@ -1,0 +1,108 @@
+{
+  "anchor_checks": {
+    "closed_sets": true,
+    "dependency": true,
+    "memoization": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    {
+      "accepted": true,
+      "path": "experimental/data/certificates/hankel-dual-distance-frame/hankel_dual_distance_frame.json",
+      "schema": "hankel-dual-distance-frame-v1",
+      "source_dag_node": "f_dual_distance_frame",
+      "status": "PROVED"
+    }
+  ],
+  "non_claims": [
+    "does not prove a uniform polynomial closed-set bound",
+    "does not classify Hankel sparse-dual supports"
+  ],
+  "note": "experimental/notes/m1/hankel_support_lattice_accounting.md",
+  "schema": "hankel-support-lattice-accounting-v1",
+  "source_dag_node": "f_support_lattice",
+  "status": "PROVED",
+  "toy_check": {
+    "binary_histories": [
+      [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "b",
+          "c"
+        ]
+      ],
+      [
+        [
+          "b",
+          "c"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ]
+    ],
+    "chain_bound_holds": true,
+    "chain_budget": 3,
+    "closed_set_count": 2,
+    "closed_sets": [
+      [],
+      [
+        "a",
+        "b",
+        "c"
+      ]
+    ],
+    "history_endpoints": [
+      [
+        "a",
+        "b",
+        "c"
+      ],
+      [
+        "a",
+        "b",
+        "c"
+      ],
+      [
+        "a",
+        "b",
+        "c"
+      ]
+    ],
+    "opposite_histories_memoize_together": true,
+    "repeated_branch_memoizes": true,
+    "strict_chain_length": 2,
+    "supports": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "b",
+        "c"
+      ]
+    ],
+    "universe": [
+      "a",
+      "b",
+      "c"
+    ]
+  }
+}
