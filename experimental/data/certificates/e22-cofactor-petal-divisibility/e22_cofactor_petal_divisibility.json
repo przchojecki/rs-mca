@@ -1,0 +1,33 @@
+{
+  "schema": "e22-cofactor-petal-divisibility-v1",
+  "dag_node": "e22_cofactor_petal_divisibility",
+  "status": "PROVED",
+  "claim": "For each touched petal, the pointwise cofactor equation on T_i is equivalent to divisibility of H_i(X)=U(X)L_{Z\\C}(X)-a_iL_{C\\Z}(X) by the touched-petal locator L_{T_i}(X).",
+  "dependencies": [
+    "e22_agreement_cofactor_equations"
+  ],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_cofactor_petal_divisibility/statement.md",
+      "nodes/e22_cofactor_petal_divisibility/proof.md",
+      "nodes/e22_cofactor_petal_divisibility/verify.py"
+    ]
+  },
+  "local_dependency_certificates": [
+    "experimental/data/certificates/e22-agreement-cofactor-equations/e22_agreement_cofactor_equations.json"
+  ],
+  "finite_checks": [
+    {
+      "p": 101,
+      "touched": [
+        3,
+        8,
+        19,
+        42
+      ]
+    }
+  ],
+  "expected_result": "PASS"
+}
+

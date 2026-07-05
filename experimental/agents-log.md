@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E22 cofactor-equation packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/e22_agreement_cofactor_equations.md`;
+  `experimental/notes/roadmaps/e22_cofactor_petal_divisibility.md`;
+  `experimental/data/certificates/e22-agreement-cofactor-equations/`;
+  `experimental/data/certificates/e22-cofactor-petal-divisibility/`;
+  `experimental/scripts/verify_e22_agreement_cofactor_equations.py`;
+  `experimental/scripts/verify_e22_cofactor_petal_divisibility.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Two connected E22 cofactor packets: petal
+  agreements become cofactor equations after cancelling the shared core
+  factor, and the pointwise equations are equivalent to touched-petal locator
+  divisibility.
+- **How it is useful:** This supplies the algebraic entry point for the `(Q)`
+  quotient/tail support-forcing branch, upstream of the conditional common
+  tail and quotient-saturation nodes.
+- **What to do next:** Combine this with the tail/fiber soundness packets and
+  the remaining E22 support-forcing theorem before promoting any staircase
+  parametrization or pricing claim.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
