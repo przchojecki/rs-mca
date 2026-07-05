@@ -30,6 +30,41 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - L1 sigma calculus for petal syzygy spaces
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** `experimental/notes/l1/l1_sigma_calculus.md`,
+  `experimental/scripts/verify_l1_sigma_calculus.py`.
+- **Status:** PROVED (five lemmas + master identity) / CONJECTURAL_WITH_FALSIFIER
+  (the law's `sigma`-form) / COUNTEREXAMPLE (prediction P2).
+- **What is being added:** A structural toolkit for the co-fiber petal syzygy
+  space `sigma` of the `#330` (`l1_prime_ell_key_lemma_refuted.md`) reduction
+  chain: five PROVED lemmas (moment bridge `sigma=delta`; locator duality
+  `dim(Vsum)=ell-dimU`; pairwise `V_i cap V_j=0` hence `K=2=>sigma=0`; the
+  recursion `sigma=sum t_m` with its unconditional bound; the `K=3` bound
+  `sigma<=min(mu)-1`), collapsing to the master identity
+  `sigma=delta=E_3+K-ell+dimU`. This pins the exact `sigma`-form of the
+  post-`#330` candidate law `E_3<=ell`, namely `sigma<=K+dimU`
+  (`=sigma<=K+2` on the observed `dimU=2` chart) — one frontier `m`-step
+  weaker than the refuted `sigma<=K`. Along the way the note's own verifier
+  finds and files a new COUNTEREXAMPLE: prediction P2 (`K=3=>sigma<=1`) is
+  refuted by an explicit realizable `[6,6,6]` config at `ell=13,p=79`
+  (`sigma=4`). Two additional session-only falsifier hunts (an `E_3>=ell+1`
+  law-falsifier search and a second-attempt `ell=19,m=10` listing hunt for
+  `#330`'s companion open question) both found nothing; neither changes the
+  shipped object set, and both are recorded as supporting evidence only.
+- **How it is useful:** Supplies the written proofs `#330` uses but only
+  states numerically, so its reduction chain is now PROVED end-to-end except
+  its (deliberately reframed) endpoint; states the still-open core as a
+  single sub-config transversality inequality; and raises the residual floor
+  a second time (P2's refutation) for any `L1` cell budgeting of `K=3`
+  primitive listings.
+- **What to do next:** Attack `dim((V_1+V_2) cap V_3) <= 3` on the `K>=3`
+  non-collinear affinely-independent chart (the `(w,c)`-Veronese
+  transversality barrier `#330`/D1 both name); or search directly for a
+  realizable `E_3>=ell+1` config (the law's falsifier) beyond the coverage of
+  this session's hunts.
+
 ### 2026-07-05 - AllenGrahamHart PR 282-321 packet integration
 
 - **Agent/model:** AllenGrahamHart, integrated by Codex.
