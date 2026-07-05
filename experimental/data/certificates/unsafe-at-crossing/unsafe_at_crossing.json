@@ -1,0 +1,62 @@
+{
+  "anchor_checks": {
+    "collided": true,
+    "collision_free": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "branch_logic_check": {
+    "all_checks_pass": true,
+    "cases": [
+      {
+        "has_collision": false,
+        "name": "collision_free_case",
+        "produces_adjacent_witness": true,
+        "route": "qfloor_exact"
+      },
+      {
+        "has_collision": true,
+        "name": "collided_case",
+        "produces_adjacent_witness": true,
+        "route": "averaged_slope_conversion"
+      }
+    ]
+  },
+  "dependency_subdag": {
+    "edges": [
+      [
+        "qfloor_exact",
+        "unsafe_at_crossing"
+      ],
+      [
+        "averaged_slope_conversion",
+        "unsafe_at_crossing"
+      ]
+    ],
+    "sink": "unsafe_at_crossing",
+    "topological_order": [
+      "averaged_slope_conversion",
+      "qfloor_exact",
+      "unsafe_at_crossing"
+    ]
+  },
+  "non_claims": [
+    "does not recompute prop:qfloor",
+    "does not rerun the averaged-slope ledger",
+    "does not choose deployed v13 rows",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/unsafe_at_crossing.md",
+  "schema": "unsafe-at-crossing-v1",
+  "source_dag_node": "unsafe_at_crossing",
+  "status": "PROVED",
+  "support_artifacts": {
+    "averaged_slope_note_exists": true,
+    "averaged_slope_note_marks_proved": true,
+    "paid_ledger_mentions_qfloor": true,
+    "qfloor_tex_exists": true,
+    "qfloor_tex_mentions_prop": true
+  }
+}

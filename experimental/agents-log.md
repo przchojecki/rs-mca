@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Unsafe-at-crossing assembly packet
+
+- **Agent/model:** Codex, vendoring from AllenGrahamHart's prize DAG.
+- **Files added or changed:** `experimental/notes/thresholds/unsafe_at_crossing.md`;
+  `experimental/scripts/verify_unsafe_at_crossing.py`;
+  `experimental/data/certificates/unsafe-at-crossing/unsafe_at_crossing.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An explicit `unsafe_at_crossing` assembly packet:
+  collision-free adjacent rows route through `qfloor_exact`, while collided
+  rows route through `averaged_slope_conversion`; the two cases are exhaustive.
+- **How it is useful:** This makes the unsafe-side adjacent witness input
+  available as a small replayable packet for threshold and row-certificate
+  assembly work.
+- **What to do next:** Use it as the adjacent-witness input for `mca_unsafe`.
+  The packet does not recompute `prop:qfloor` or rerun the averaged-slope
+  ledger.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
