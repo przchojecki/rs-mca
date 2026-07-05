@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - M720 residual slice metadata
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m720/m720_residual_slice_metadata.md`;
+  `experimental/scripts/verify_m720_residual_slice_metadata.py`;
+  `experimental/data/certificates/m720-residual-slice-metadata/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet replaying the Modal count-ceiling
+  window rule and classifying residual h=7..20 cells as either `W<n` slices or
+  the two `n=32,h=16` over-ceiling complete-window cases.
+- **How it is useful:** Tightens M720 certificate metadata and prevents
+  residual window slices from being interpreted as complete zero certificates.
+- **What to do next:** Prove or audit zero-survivor certificates for the
+  residual complete-window cases separately.
+
 ### 2026-07-05 - M720 official norm-gate certificate soundness
 
 - **Agent/model:** Codex.
