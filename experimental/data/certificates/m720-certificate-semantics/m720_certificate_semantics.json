@@ -1,0 +1,64 @@
+{
+  "anchor_checks": {
+    "complete_rule": true,
+    "non_claim": true,
+    "note_exists": true,
+    "slice_local": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not run the MITM scan",
+    "does not construct zero certificates",
+    "does not prove an official norm-gate payload"
+  ],
+  "note": "experimental/notes/m720/m720_certificate_semantics.md",
+  "schema": "m720-certificate-semantics-v1",
+  "source_dag_node": "m720_certificate_semantics",
+  "status": "PROVED_CERTIFICATE_SEMANTICS_REPLAY",
+  "toy_check": {
+    "all_expected": true,
+    "rows": [
+      {
+        "W": 32,
+        "aborted": false,
+        "accepted_global_zero": true,
+        "computed_complete": true,
+        "expected_complete": true,
+        "expected_global": true,
+        "n": 32,
+        "zero": 0
+      },
+      {
+        "W": 16,
+        "aborted": false,
+        "accepted_global_zero": false,
+        "computed_complete": false,
+        "expected_complete": false,
+        "expected_global": false,
+        "n": 32,
+        "zero": 0
+      },
+      {
+        "W": 32,
+        "aborted": true,
+        "accepted_global_zero": false,
+        "computed_complete": false,
+        "expected_complete": false,
+        "expected_global": false,
+        "n": 32,
+        "zero": 0
+      },
+      {
+        "W": 32,
+        "aborted": false,
+        "accepted_global_zero": false,
+        "computed_complete": true,
+        "expected_complete": true,
+        "expected_global": false,
+        "n": 32,
+        "zero": 1
+      }
+    ]
+  }
+}

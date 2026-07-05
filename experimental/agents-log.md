@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - M720 certificate semantics
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m720/m720_certificate_semantics.md`;
+  `experimental/scripts/verify_m720_certificate_semantics.py`;
+  `experimental/data/certificates/m720-certificate-semantics/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the M720 rule that zero MITM
+  counts are complete calibration-cell certificates only when `complete=true`,
+  equivalently `W=n` and the run did not abort.
+- **How it is useful:** Prevents slice-local or aborted M720 evidence from
+  being promoted into official zero certificates in exact certificate ledgers.
+- **What to do next:** Use this only as certificate semantics; actual
+  norm-gate payloads and zero-certificate construction remain separate.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
