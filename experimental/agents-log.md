@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel dual-distance frame
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/hankel_dual_distance_frame.md`;
+  `experimental/scripts/verify_hankel_dual_distance_frame.py`;
+  `experimental/data/certificates/hankel-dual-distance-frame/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet identifying dependent evaluation
+  traces on a locator flat with low-weight words in the dual evaluation code,
+  including the minimal-support closure rule.
+- **How it is useful:** Supplies the linear-algebra dictionary used by the
+  Hankel support-lattice and sparse-dual descent packets.
+- **What to do next:** Use this as a frame only; classification and
+  termination are separate packets.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

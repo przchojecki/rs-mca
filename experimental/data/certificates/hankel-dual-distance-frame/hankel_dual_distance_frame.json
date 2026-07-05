@@ -1,0 +1,86 @@
+{
+  "anchor_checks": {
+    "dual_equivalence": true,
+    "minimal_support": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not classify Hankel sparse-dual supports",
+    "does not prove descent termination"
+  ],
+  "note": "experimental/notes/m1/hankel_dual_distance_frame.md",
+  "schema": "hankel-dual-distance-frame-v1",
+  "source_dag_node": "f_dual_distance_frame",
+  "status": "PROVED",
+  "toy_check": {
+    "all_subsets_match": true,
+    "checked_subsets": [
+      {
+        "dual_word": false,
+        "subset": [
+          0
+        ],
+        "trace_dependent": false
+      },
+      {
+        "dual_word": false,
+        "subset": [
+          1
+        ],
+        "trace_dependent": false
+      },
+      {
+        "dual_word": false,
+        "subset": [
+          2
+        ],
+        "trace_dependent": false
+      },
+      {
+        "dual_word": false,
+        "subset": [
+          0,
+          1
+        ],
+        "trace_dependent": false
+      },
+      {
+        "dual_word": false,
+        "subset": [
+          0,
+          2
+        ],
+        "trace_dependent": false
+      },
+      {
+        "dual_word": false,
+        "subset": [
+          1,
+          2
+        ],
+        "trace_dependent": false
+      },
+      {
+        "dual_word": true,
+        "subset": [
+          0,
+          1,
+          2
+        ],
+        "trace_dependent": true
+      }
+    ],
+    "domain": [
+      0,
+      1,
+      2
+    ],
+    "field": "F_5",
+    "flat": "span(1,X)",
+    "three_point_subset_dependent": true,
+    "two_point_subsets_independent": true
+  }
+}
