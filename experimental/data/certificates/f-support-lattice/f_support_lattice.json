@@ -1,0 +1,42 @@
+{
+  "claim": {
+    "state_key": [
+      "generated closed support set",
+      "residual flat data",
+      "residual locator-degree data"
+    ],
+    "strict_chain_measure": "flat dimension plus locator degree-drop budget",
+    "tree_size_bound": "closed_set_count * (1 + W_max)"
+  },
+  "consumers": [
+    "hankel_rank_profile_entropy",
+    "f_termination_hankel"
+  ],
+  "non_claims": [
+    "does not prove a uniform polynomial closed-set bound",
+    "does not classify sparse supports for a specific family",
+    "does not close the Hankel termination theorem by itself",
+    "does not edit Papers A-D"
+  ],
+  "schema": "rs-mca.experimental.f_support_lattice.v1",
+  "source_dag_node": "f_support_lattice",
+  "status": "PROVED",
+  "toy_lattice": {
+    "closed_set_count": 8,
+    "max_chain_length": 3,
+    "supports": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        3
+      ]
+    ]
+  },
+  "verdict": "descent_tree_memoizes_to_sparse_support_closed_sets"
+}

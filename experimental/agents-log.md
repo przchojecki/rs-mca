@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Support-lattice descent accounting
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/f_support_lattice_packet.md`;
+  `experimental/scripts/verify_f_support_lattice_packet.py`;
+  `experimental/data/certificates/f-support-lattice/f_support_lattice.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `f_support_lattice`, the accounting
+  identity that memoizes sparse-dual descent by generated closed support sets.
+- **How it is useful:** This is the required bookkeeping input for the Hankel
+  rank-profile entropy route: it replaces raw binary branch growth by counting
+  reachable closed-set states.
+- **What to do next:** Consume this packet in the Hankel rank-profile entropy
+  packet and keep the family-specific closed-set count separate from the
+  accounting identity.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
