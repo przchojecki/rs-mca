@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Sigma_C histogram and k=2 boundary census
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:**
+  `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_gpu_histograms_k2_rows.json`;
+  `experimental/scripts/verify_sigma_c_histogram_packet.py`;
+  `experimental/notes/m1/sigma_c_prime_field_histogram_k2_boundary.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** Full sparse-pair scan packets for two saturation
+  histogram rows and four prime-field `k=2` boundary rows, including the
+  intermediate rows `(11,5,2,r=2) -> sigma_C=5` and
+  `(17,8,2,r=4) -> sigma_C=9`.
+- **How it is useful:** Replaces single-witness saturation evidence with
+  full histograms on two rows and falsifies the simple empirical refinement
+  that all sub-capacity rows with `k>=2` immediately saturate.
+- **What to do next:** Independently replay the packet, then use the
+  intermediate `k=2` rows to refine the finite-row search boundary before
+  proposing any family-level conjecture.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
