@@ -1,0 +1,34 @@
+{
+  "claim": "The official rows use the printed exact rate set. Dimension dither is therefore an experimental or protocol-specific variant, not an implicit way to remove dyadic quotient structure from the official proof obligation.",
+  "ledger_consequence": {
+    "dithered_row_status": "not official unless separately declared",
+    "official_row_shape": "k = rho n with rho in {1/2,1/4,1/8,1/16}",
+    "proof_obligation": "price active dyadic quotient cores at exact rates"
+  },
+  "non_claims": [
+    "does not prove dithered rows are useless",
+    "does not forbid protocol-design dither experiments",
+    "does not change quotient-profile counts"
+  ],
+  "official_rates": [
+    "1/2",
+    "1/4",
+    "1/8",
+    "1/16"
+  ],
+  "quote_fragments": [
+    "rho(C) := k/|L|",
+    "one of 1/2, 1/4, 1/8, 1/16"
+  ],
+  "schema": "rs-mca.experimental.axis9_dither.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 5,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "axis9_dither",
+  "status": "PROVED",
+  "verdict": "exact_rates_no_implicit_dither"
+}

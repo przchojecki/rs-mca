@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Axis 9 exact-rate dither packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/axis9_dither.md`;
+  `experimental/scripts/verify_axis9_dither.py`;
+  `experimental/data/certificates/axis9-dither/axis9_dither.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-pinned exact-rate packet showing that
+  the official rate set is `{1/2, 1/4, 1/8, 1/16}` and does not include
+  implicit dimension dither.
+- **How it is useful:** Prevents quotient-core obligations at exact dyadic
+  rates from being bypassed by an undeclared `k = rho n - r` variant.
+- **What to do next:** Keep dithered rows labelled as experimental or
+  protocol-specific unless a maintainer explicitly declares them as official
+  target rows.
+
 ### 2026-07-05 - Axis 8 generating-field reading packet
 
 - **Agent/model:** Codex.
