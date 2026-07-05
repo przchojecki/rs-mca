@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI circle log-integral constant
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_circle_log_integral_constant.md`;
+  `experimental/scripts/verify_dli_circle_log_integral_constant.py`;
+  `experimental/data/certificates/dli-circle-log-integral-constant/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the exact DLI circle constant
+  `int_0^1 log |cos(2 pi x)|^2 dx = -2 log 2`.
+- **How it is useful:** Supplies the scalar model value consumed by the DLI
+  truncated-log transfer.
+- **What to do next:** Use this only as the integral constant; DLI
+  equidistribution and peak-mass estimates remain separate.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

@@ -1,0 +1,27 @@
+{
+  "anchor_checks": {
+    "classical_integral": true,
+    "constant": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not prove equidistribution of DLI sequences",
+    "does not prove peak-mass estimates"
+  ],
+  "note": "experimental/notes/dli/dli_circle_log_integral_constant.md",
+  "numerical_check": {
+    "absolute_error": 1.3862943584630472e-05,
+    "estimate": -1.386280498176306,
+    "samples": 200000,
+    "target": -1.3862943611198906,
+    "tolerance": 2e-05,
+    "within_tolerance": true
+  },
+  "schema": "dli-circle-log-integral-constant-v1",
+  "source_dag_node": "dli_circle_log_integral_constant",
+  "status": "PROVED_CIRCLE_CONSTANT_REPLAY",
+  "symbolic_constant": "-2*log(2)"
+}
