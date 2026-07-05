@@ -1,0 +1,250 @@
+{
+  "anchor_checks": {
+    "max_exponent": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "sum_constant": true,
+    "union_bound": true
+  },
+  "dependencies": [
+    "finite-union polynomial counting"
+  ],
+  "non_claims": [
+    "does not construct the squarefree classification ledger",
+    "does not prove that every kernel locator is covered by a ledger",
+    "does not close the L1 mixed/growing residual by itself"
+  ],
+  "note": "experimental/notes/l1/l1_petal_squarefree_classification_counting_soundness.md",
+  "sample_checks": [
+    {
+      "class_sum": 14,
+      "classes": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "combined_bound": 14,
+      "n": 1,
+      "passes": true
+    },
+    {
+      "class_sum": 82,
+      "classes": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "combined_bound": 112,
+      "n": 2,
+      "passes": true
+    },
+    {
+      "class_sum": 44302,
+      "classes": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "combined_bound": 68782,
+      "n": 17,
+      "passes": true
+    },
+    {
+      "class_sum": 9273214,
+      "classes": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "combined_bound": 14424214,
+      "n": 101,
+      "passes": true
+    },
+    {
+      "class_sum": 17,
+      "classes": [
+        [
+          1,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "combined_bound": 17,
+      "n": 1,
+      "passes": true
+    },
+    {
+      "class_sum": 83,
+      "classes": [
+        [
+          1,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "combined_bound": 272,
+      "n": 2,
+      "passes": true
+    },
+    {
+      "class_sum": 251873,
+      "classes": [
+        [
+          1,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "combined_bound": 1419857,
+      "n": 17,
+      "passes": true
+    },
+    {
+      "class_sum": 312222917,
+      "classes": [
+        [
+          1,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "combined_bound": 1769026817,
+      "n": 101,
+      "passes": true
+    },
+    {
+      "class_sum": 11,
+      "classes": [
+        [
+          11,
+          0
+        ]
+      ],
+      "combined_bound": 11,
+      "n": 1,
+      "passes": true
+    },
+    {
+      "class_sum": 11,
+      "classes": [
+        [
+          11,
+          0
+        ]
+      ],
+      "combined_bound": 11,
+      "n": 2,
+      "passes": true
+    },
+    {
+      "class_sum": 11,
+      "classes": [
+        [
+          11,
+          0
+        ]
+      ],
+      "combined_bound": 11,
+      "n": 17,
+      "passes": true
+    },
+    {
+      "class_sum": 11,
+      "classes": [
+        [
+          11,
+          0
+        ]
+      ],
+      "combined_bound": 11,
+      "n": 101,
+      "passes": true
+    }
+  ],
+  "schema": "l1-petal-squarefree-classification-counting-soundness-v1",
+  "source_dag_node": "petal_squarefree_classification_counting_soundness",
+  "statement": "a finite uncharged squarefree classification with c-independent class exponents has a c-independent polynomial union bound",
+  "status": "PROVED_FINITE_UNION_COUNTING"
+}

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - L1 petal squarefree classification counting soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/l1/l1_petal_squarefree_classification_counting_soundness.md`;
+  `experimental/scripts/verify_l1_petal_squarefree_classification_counting_soundness.py`;
+  `experimental/data/certificates/l1-petal-squarefree-classification-counting-soundness/README.md`;
+  `experimental/data/certificates/l1-petal-squarefree-classification-counting-soundness/l1_petal_squarefree_classification_counting_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A finite-union counting proof packet: finitely many
+  uncharged squarefree classes with `c`-independent exponents have a union
+  bound with `c`-independent exponent.
+- **How it is useful:** This is a proved L1 squarefree-kernel input for the
+  mixed/growing residual, separating counting soundness from the missing
+  structural classification ledger.
+- **What to do next:** Use only after a ledger actually supplies the finite
+  squarefree classification; this packet does not construct that ledger.
+
 ### 2026-07-05 - L1 petal realizable-kernel injection
 
 - **Agent/model:** Codex.
