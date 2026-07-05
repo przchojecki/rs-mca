@@ -1,0 +1,39 @@
+{
+  "conclusion": "Inside any light profile chart with a nonzero cleared maximal minor Delta, the coordinate-special rank-stagnation locus is contained in the proper hypersurface Delta=0.",
+  "degree_bound": "degree(Delta) after clearing chart denominators; fixed by the printed chart and chosen maximal minor",
+  "depends_on": [
+    "xr_triangle_eliminant_form",
+    "xr_profile_eliminant_nonvanishing"
+  ],
+  "implications": [
+    {
+      "claim": "The light-triangle normal-form matrix E exists, and rank stagnation is the vanishing of all 3t x 3t maximal minors.",
+      "input": "xr_triangle_eliminant_form",
+      "status": "PROVED"
+    },
+    {
+      "claim": "For the profile, at least one cleared maximal minor Delta is not the zero polynomial.",
+      "input": "xr_profile_eliminant_nonvanishing",
+      "status": "PROVED_OR_SUPPLIED_BY_PROFILE_CERTIFICATE"
+    },
+    {
+      "claim": "The common zero set of all maximal minors is contained in the zero set of any chosen maximal minor.",
+      "input": "determinantal_locus_logic",
+      "status": "PROVED_FORMALITY"
+    },
+    {
+      "claim": "The zero set of a nonzero polynomial on the profile chart is a proper hypersurface; after denominator clearing, the degree is bounded by the cleared determinant degree.",
+      "input": "nonzero_polynomial_geometry",
+      "status": "PROVED_FORMALITY"
+    }
+  ],
+  "non_claims": [
+    "does not count points on the hypersurface",
+    "does not produce an adjacent deployed upper certificate",
+    "does not replace the staircase/SPI/XR rationing input"
+  ],
+  "note": "experimental/notes/m1/xr_coordinate_hypersurface_reduction.md",
+  "schema": "xr-coordinate-hypersurface-reduction-v1",
+  "source_dag_node": "xr_coordinate_hypersurface_reduction",
+  "status": "PROVED_REDUCTION"
+}

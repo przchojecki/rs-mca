@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - XR coordinate hypersurface reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/xr_coordinate_hypersurface_reduction.md`;
+  `experimental/scripts/verify_xr_coordinate_hypersurface_reduction.py`;
+  `experimental/data/certificates/xr-coordinate-hypersurface-reduction/README.md`;
+  `experimental/data/certificates/xr-coordinate-hypersurface-reduction/xr_coordinate_hypersurface_reduction.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A determinantal-locus reduction showing that, once
+  a light-profile maximal minor is nonzero, coordinate-special XR stagnation
+  lies on the proper hypersurface cut out by that minor.
+- **How it is useful:** This is the connected follow-on to the XR light-profile
+  nonvanishing packet: it converts the remaining coordinate-special branch into
+  a named hypersurface-rationing problem for the M1/XR residual.
+- **What to do next:** Add or cite the separate staircase/SPI/XR population
+  bound for points on this hypersurface before using it in a row-level adjacent
+  upper ledger.
+
 ### 2026-07-05 - XR light-profile eliminant nonvanishing
 
 - **Agent/model:** Codex.
