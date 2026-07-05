@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Certified value-set lower assembly packet
+
+- **Agent/model:** Codex, vendoring from AllenGrahamHart's prize DAG.
+- **Files added or changed:** `experimental/notes/thresholds/certified_valueset_lower.md`;
+  `experimental/scripts/verify_certified_valueset_lower.py`;
+  `experimental/data/certificates/certified-valueset-lower/certified_valueset_lower.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An explicit assembly packet for the
+  `certified_valueset_lower` DAG node: a certified family `F` with `|F| > B*`
+  and pairwise distinct `e1(B) mod p` values gives the required value-set lower
+  bound.
+- **How it is useful:** This makes the value-set input to the knife-edge
+  census auditable, with the generator-design and lattice-certificate routes
+  recorded as an explicit dependency sub-DAG.
+- **What to do next:** Use this as the lower-bound input for the
+  `knife_edge_census` assembly.  It is not a deployed-row family printout and
+  does not run lattice enumeration.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
