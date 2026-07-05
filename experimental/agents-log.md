@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E22 dyadic-chain Mobius accounting
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/e22_dyadic_chain_mobius_accounting.md`;
+  `experimental/scripts/verify_e22_dyadic_chain_mobius_accounting.py`;
+  `experimental/data/certificates/e22-dyadic-chain-mobius-accounting/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A replayable packet proving the triangular identity
+  `A_j = N_j + sum_{i<j} O_{i,j}` for dyadic minimal-scale accounting.
+- **How it is useful:** Converts raw dyadic scale counts into selected
+  minimal-scale counts once overlap formulas are supplied.
+- **What to do next:** Pair with arithmetic overlap certificates for full E22
+  column evaluation.
+
 ### 2026-07-05 - E22 minimal-scale partition
 
 - **Agent/model:** Codex.
