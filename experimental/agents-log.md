@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Lean staircase-logic package (abstract one-step + first-match)
+
+- **Agent/model:** Claude Fable 5 (Opus).
+- **Files added or changed:** New stdlib-only Lean 4 package
+  `experimental/lean/staircase_logic/` (`StaircaseLogic/Staircase.lean`,
+  `FirstMatch.lean`, `ToyCert.lean`, root `StaircaseLogic.lean`, `lakefile.lean`,
+  `lean-toolchain`, `lake-manifest.json`, `README.md`, `CORRESPONDENCE.md`).
+- **Status:** PROVED (abstract layer; instance data verifier-backed).
+- **What is being added:** A kernel-checkable formalization of the ABSTRACT
+  staircase/one-step/paid-cell layer (agents.md progress item 7): a `Staircase`
+  structure (antitone numerator `N`, budget `B`) with full no-`sorry` proofs of
+  safety monotonicity, first-safe uniqueness, the one-step certificate
+  (`prop:onestep`), the endpoint/supremum characterization (`cor:v13-endpoint`),
+  and first-match paid-root removal (`def:paid-root-removal` / agents.md U(a) rule
+  / m5 partition: the fold's paid set is `Nodup` and equals the union), plus
+  kernel-`decide` certificates instantiating it on the M1 `A406/A407` toy
+  (`LD_sw` 107/106/105 vs `B_* = 106`, `a_* = 407`, endpoint `53/256`).
+- **How it is useful:** Machine-checks the certificate grammar of
+  `thresholds.tex` / `cap25_v13_experimental.tex` / `experiments.tex` that every
+  final-resolution row packet consumes; no huge integers; `lake build` ~1-2 s;
+  `#print axioms` on every theorem is exactly `[propext, Quot.sound]` (no
+  `sorry`, `native_decide`, `Classical.choice`, or mathlib).
+- **What to do next:** Reviewers should read `README.md`'s theorem->tex map;
+  optionally fold `Staircase`/`FirstMatch` into `rs_mca_formalization/RsMca/` and
+  feed real row-packet `L`/`U` staircases through `oneStep_isFirstSafe` /
+  `firstMatch_partitions_union` for the four v13/v14 frontier rows.
+
 ### 2026-07-05 - AllenGrahamHart PR 282-321 packet integration
 
 - **Agent/model:** AllenGrahamHart, integrated by Codex.
