@@ -1,0 +1,65 @@
+{
+  "claim": {
+    "diagonal": "D_u[x,x] = lambda_x u_x",
+    "entry_check": "sum_x x^i lambda_x u_x x^c = S_{i+c}",
+    "factorization": "M_u = V_t^T D_u V_{j+1}",
+    "hankel_block": "M_u[i,c] = S_{i+c}",
+    "moments": "S_m = sum_{x in H} lambda_x u_x x^m"
+  },
+  "consumers": [
+    "fm1",
+    "counting_frame",
+    "displacement_uniform",
+    "f1_pencil_nf",
+    "u1_cramer"
+  ],
+  "non_claims": [
+    "does not classify bad slopes",
+    "does not count locator fibers",
+    "does not prove displacement-uniformity by itself",
+    "does not edit Papers A-D"
+  ],
+  "samples": [
+    {
+      "field": "F_17",
+      "first_row": [
+        0,
+        4,
+        6,
+        9,
+        8
+      ],
+      "j": 4,
+      "point_count": 4,
+      "t": 3
+    },
+    {
+      "field": "F_9",
+      "first_row": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "j": 3,
+      "point_count": 4,
+      "t": 3
+    }
+  ],
+  "schema": "rs-mca.experimental.vtdv.v1",
+  "source_dag_node": "vtdv",
+  "status": "PROVED",
+  "verdict": "weighted_hankel_moment_matrix_factors_as_V_transpose_Du_V"
+}

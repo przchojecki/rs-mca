@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Subgroup Hankel VTDV factorization
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/vtdv_subgroup_hankel.md`;
+  `experimental/scripts/verify_vtdv_packet.py`;
+  `experimental/data/certificates/vtdv/vtdv.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `vtdv`, the weighted Hankel moment
+  factorization `M_u = V_t^T D_u V_{j+1}`.
+- **How it is useful:** This is a common input to the first-moment,
+  counting-frame, displacement, F1, and U1 Hankel lanes.
+- **What to do next:** Consume the certificate in the exact FM1 packet and
+  keep later displacement claims separate.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
