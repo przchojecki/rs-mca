@@ -1,0 +1,70 @@
+{
+  "anchor_checks": {
+    "affine_map": true,
+    "exceptional_bound": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "zero_sum": true
+  },
+  "cancellation_check": {
+    "max_abs_rounded": 1e-12,
+    "rows": [
+      {
+        "checks": 12,
+        "dim": 1,
+        "p": 3
+      },
+      {
+        "checks": 48,
+        "dim": 2,
+        "p": 3
+      },
+      {
+        "checks": 156,
+        "dim": 3,
+        "p": 3
+      },
+      {
+        "checks": 80,
+        "dim": 1,
+        "p": 5
+      },
+      {
+        "checks": 480,
+        "dim": 2,
+        "p": 5
+      },
+      {
+        "checks": 2480,
+        "dim": 3,
+        "p": 5
+      },
+      {
+        "checks": 252,
+        "dim": 1,
+        "p": 7
+      },
+      {
+        "checks": 2016,
+        "dim": 2,
+        "p": 7
+      },
+      {
+        "checks": 14364,
+        "dim": 3,
+        "p": 7
+      }
+    ],
+    "total_checks": 19888
+  },
+  "non_claims": [
+    "does not construct affine-piece partitions for actual anchored-core cells",
+    "does not prove the SOV h-minus-1 character-sum bound"
+  ],
+  "note": "experimental/notes/sov/sov_nonconstant_affine_character_cancellation.md",
+  "schema": "sov-nonconstant-affine-character-cancellation-v1",
+  "source_dag_node": "sov_nonconstant_affine_character_cancellation",
+  "status": "PROVED_AFFINE_CANCELLATION_REPLAY"
+}

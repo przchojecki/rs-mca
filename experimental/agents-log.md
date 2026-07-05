@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - SOV nonconstant affine character cancellation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/sov/sov_nonconstant_affine_character_cancellation.md`;
+  `experimental/scripts/verify_sov_nonconstant_affine_character_cancellation.py`;
+  `experimental/data/certificates/sov-nonconstant-affine-character-cancellation/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the finite-field cancellation
+  of nontrivial additive characters along nonconstant affine maps.
+- **How it is useful:** Supplies the cancellation lemma consumed by
+  affine-piece partition certificates in the SOV route.
+- **What to do next:** Construct or audit the actual affine-piece partitions
+  separately; this packet proves only the cancellation lemma.
+
 ### 2026-07-05 - SOV h-minus-1 fiber Fourier duality
 
 - **Agent/model:** Codex.
