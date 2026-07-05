@@ -1,0 +1,58 @@
+{
+  "anchor_checks": {
+    "charged_records": true,
+    "counting_dependency": true,
+    "disjoint_cover": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "uncharged_records": true
+  },
+  "dependencies": [
+    "definition of petal_squarefree_kernel_classification_payload",
+    "petal_squarefree_classification_counting_soundness for aggregate counts"
+  ],
+  "non_claims": [
+    "does not construct the squarefree classification ledger",
+    "does not certify a proposed ledger payload",
+    "does not close the L1 mixed/growing residual by itself"
+  ],
+  "note": "experimental/notes/l1/l1_petal_squarefree_classification_ledger_soundness.md",
+  "sample_ledger": {
+    "charged": {
+      "k0": "paid_tail_family",
+      "k1": "paid_norm_family"
+    },
+    "checks": {
+      "charged_citations_nonempty": true,
+      "covers_universe": true,
+      "records_disjoint": true,
+      "uncharged_coefficients_positive": true,
+      "uncharged_exponents_nonnegative": true,
+      "uncharged_record_count_bounded": true
+    },
+    "max_uncharged_records": 2,
+    "passes": true,
+    "uncharged": {
+      "k2": {
+        "coefficient": 5,
+        "exponent": 3
+      },
+      "k3": {
+        "coefficient": 7,
+        "exponent": 4
+      }
+    },
+    "universe": [
+      "k0",
+      "k1",
+      "k2",
+      "k3"
+    ]
+  },
+  "schema": "l1-petal-squarefree-classification-ledger-soundness-v1",
+  "source_dag_node": "petal_squarefree_classification_ledger_soundness",
+  "statement": "a complete disjoint charged/uncharged squarefree ledger with paid citations and c-independent uncharged bounds satisfies the squarefree-kernel classification payload",
+  "status": "PROVED_LEDGER_SEMANTICS"
+}

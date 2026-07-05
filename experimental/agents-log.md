@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - L1 petal squarefree classification ledger soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/l1/l1_petal_squarefree_classification_ledger_soundness.md`;
+  `experimental/scripts/verify_l1_petal_squarefree_classification_ledger_soundness.py`;
+  `experimental/data/certificates/l1-petal-squarefree-classification-ledger-soundness/README.md`;
+  `experimental/data/certificates/l1-petal-squarefree-classification-ledger-soundness/l1_petal_squarefree_classification_ledger_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof packet for the ledger-semantics implication:
+  a complete disjoint squarefree ledger with paid citations and uniform
+  uncharged bounds satisfies the squarefree-kernel classification payload.
+- **How it is useful:** This is a proved L1 squarefree-kernel input that makes
+  the remaining live work exactly the construction or falsification of the
+  actual classification ledger.
+- **What to do next:** Do not treat this as the ledger itself; use it to audit
+  any proposed `petal_squarefree_classification_ledger_payload`.
+
 ### 2026-07-05 - L1 petal squarefree classification counting soundness
 
 - **Agent/model:** Codex.
