@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Field cap check packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/field_cap_check.md`;
+  `experimental/scripts/verify_field_cap_check.py`;
+  `experimental/data/certificates/field-cap-check/field_cap_check.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-pinned packet for the official rates,
+  target error, dimension cap `k <= 2^40`, and field cap `|F| < 2^256`.
+- **How it is useful:** Supplies the constants used by budget arithmetic,
+  field-admissibility checks, and field-ledger separation.
+- **What to do next:** Require downstream row packets to state which field
+  ledger and cap they consume rather than merging generated, line, challenge,
+  or ambient fields implicitly.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by

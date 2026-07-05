@@ -1,0 +1,40 @@
+{
+  "constants": {
+    "dimension_bound": "k <= 2^40",
+    "epsilon_star": "2^-128",
+    "field_bound": "|F| < 2^256",
+    "rates": [
+      "1/2",
+      "1/4",
+      "1/8",
+      "1/16"
+    ]
+  },
+  "non_claims": [
+    "does not compute a row threshold",
+    "does not certify any specific exhibit field",
+    "does not merge generated, line, challenge, or ambient field ledgers"
+  ],
+  "quote_fragments": [
+    "rho(C) is one of 1/2, 1/4, 1/8, 1/16",
+    "eps* = 2^-128",
+    "k <= 2^40",
+    "|F| < 2^256"
+  ],
+  "schema": "rs-mca.experimental.field_cap_check.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 5,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "field_cap_check",
+  "status": "PROVED",
+  "uses": [
+    "B* = floor(epsilon* Q) budget magnitudes",
+    "field-size admissibility checks",
+    "tower and generated-field ledger separation"
+  ],
+  "verdict": "official_rates_epsilon_dimension_and_field_caps_pinned"
+}
