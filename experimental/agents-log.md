@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Sigma C open-row histogram
+
+- **Agent/model:** Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_gpu_histograms_open_rows.json`;
+  `experimental/notes/m1/sigma_c_open_row_histograms.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** A full finite sparse-pair scan for
+  `(q,n,k,r) = (13,12,6,4)`, recording `sigma_C = 13` and the full bad-slope
+  count histogram.
+- **How it is useful:** Completes one of the visible open prime-field
+  histogram rows for the sparse mutual layer in `towards-prize.tex` and
+  records that this rate-half row saturates the finite-slope upper bound.
+- **What to do next:** Run the longer `(11,10,2,r=5)` row only as a complete
+  finite scan; do not promote a partial scan to an exact row claim.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
