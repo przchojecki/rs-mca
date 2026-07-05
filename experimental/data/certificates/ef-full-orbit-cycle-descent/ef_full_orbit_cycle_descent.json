@@ -1,0 +1,77 @@
+{
+  "anchor_checks": {
+    "descent": true,
+    "non_claim": true,
+    "note_exists": true,
+    "orbit": true,
+    "pole_divisor": true,
+    "source_node": true,
+    "stable_union": true,
+    "status": true
+  },
+  "dependencies": [
+    "finite Galois descent for stable radical ideals",
+    "B-defined pole divisor is Galois-invariant"
+  ],
+  "non_claims": [
+    "does not exclude descended pole-free cycles",
+    "does not prove ef_pole_free_cycle_exclusion",
+    "does not close ef_ru by itself"
+  ],
+  "note": "experimental/notes/ef/ef_full_orbit_cycle_descent.md",
+  "orbit_checks": [
+    {
+      "galois_order": 1,
+      "orbit_size": 1,
+      "passes": true,
+      "pole_free_union": true,
+      "stable_under_all_translates": true
+    },
+    {
+      "galois_order": 2,
+      "orbit_size": 2,
+      "passes": true,
+      "pole_free_union": true,
+      "stable_under_all_translates": true
+    },
+    {
+      "galois_order": 3,
+      "orbit_size": 3,
+      "passes": true,
+      "pole_free_union": true,
+      "stable_under_all_translates": true
+    },
+    {
+      "galois_order": 4,
+      "orbit_size": 4,
+      "passes": true,
+      "pole_free_union": true,
+      "stable_under_all_translates": true
+    },
+    {
+      "galois_order": 6,
+      "orbit_size": 6,
+      "passes": true,
+      "pole_free_union": true,
+      "stable_under_all_translates": true
+    },
+    {
+      "galois_order": 8,
+      "orbit_size": 8,
+      "passes": true,
+      "pole_free_union": true,
+      "stable_under_all_translates": true
+    },
+    {
+      "galois_order": 12,
+      "orbit_size": 12,
+      "passes": true,
+      "pole_free_union": true,
+      "stable_under_all_translates": true
+    }
+  ],
+  "schema": "ef-full-orbit-cycle-descent-v1",
+  "source_dag_node": "ef_full_orbit_cycle_descent",
+  "statement": "a full Galois orbit of pole-free horizontal components has a B-defined reduced union still disjoint from the pole divisor",
+  "status": "PROVED_GALOIS_ORBIT_UNION_DESCENT"
+}

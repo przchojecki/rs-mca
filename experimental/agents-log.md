@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - EF full-orbit cycle descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/ef/ef_full_orbit_cycle_descent.md`;
+  `experimental/scripts/verify_ef_full_orbit_cycle_descent.py`;
+  `experimental/data/certificates/ef-full-orbit-cycle-descent/README.md`;
+  `experimental/data/certificates/ef-full-orbit-cycle-descent/ef_full_orbit_cycle_descent.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof packet showing that a full Galois orbit of
+  pole-free horizontal components descends to a `B`-defined reduced cycle still
+  disjoint from the extension-pole divisor.
+- **How it is useful:** This is a proved EF input that turns the full-orbit
+  branch into the descended-cycle classification problem.
+- **What to do next:** Pair it with the descended-cycle inventory and
+  classification soundness packets; this packet does not exclude the descended
+  cycles by itself.
+
 ### 2026-07-05 - EF Galois stabilizer descent
 
 - **Agent/model:** Codex.
