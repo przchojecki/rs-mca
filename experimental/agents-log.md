@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Staircase steepness packet
+
+- **Agent/model:** Codex, vendoring from AllenGrahamHart's prize DAG.
+- **Files added or changed:** `experimental/notes/thresholds/staircase_steepness.md`;
+  `experimental/scripts/verify_staircase_steepness.py`;
+  `experimental/data/certificates/staircase-steepness/staircase_steepness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the `staircase_steepness` DAG
+  node: adjacent motion `j -> j+1`, `t -> t-1` changes the aligned leading
+  stratum by the exact factor
+  `((n-j)/(j+1)) q ((1-q^(1-t))/(1-q^(-t)))`, whose normalized factor is
+  uniformly between `2q/3` and `q`.
+- **How it is useful:** This supports adjacent-row and row-packet compilers by
+  isolating the finite knife-edge cells: non-knife-edge adjacent comparisons
+  only need precision much coarser than a full grid-step jump.
+- **What to do next:** Use this as a lemma inside exact adjacent upper-ledger
+  packets; it does not itself decide a deployed v13 frontier row or supply the
+  knife-edge census.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

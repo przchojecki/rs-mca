@@ -1,0 +1,43 @@
+{
+  "anchor_checks": {
+    "lower_bound": true,
+    "non_claim": true,
+    "note_exists": true,
+    "ratio_identity": true,
+    "source_node": true,
+    "status": true,
+    "upper_bound": true
+  },
+  "non_claims": [
+    "does not decide any deployed v13 frontier row",
+    "does not supply the knife-edge census",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/staircase_steepness.md",
+  "ratio_checks": {
+    "all_checks_pass": true,
+    "checked_adjacent_cells": 1360,
+    "j_range": "0..11, truncated by n-1",
+    "max_last_factor_seen": "4910110524318957448457/4910110524318957448458",
+    "min_last_factor_seen": "2/3",
+    "n_values": [
+      8,
+      16,
+      64
+    ],
+    "normalized_jump_bounds": "[2q/3, q)",
+    "q_values": [
+      2,
+      3,
+      5,
+      17,
+      257
+    ],
+    "t_range": "2..10, truncated by n",
+    "uniform_lower_bound": "q/(q+1)",
+    "uniform_upper_bound": "1"
+  },
+  "schema": "staircase-steepness-v1",
+  "source_dag_node": "staircase_steepness",
+  "status": "PROVED"
+}
