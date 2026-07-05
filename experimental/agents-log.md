@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - FM1 exact first moment
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/fm1_exact_first_moment.md`;
+  `experimental/scripts/verify_fm1_packet.py`;
+  `experimental/data/certificates/fm1/fm1.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `fm1`, proving
+  `E[#aligned] = binom(n,j)(1-q^(-t))q^(1-t)` by exact finite-slope syndrome
+  counting.
+- **How it is useful:** This feeds the MCA safe-side first-moment ledger and
+  downstream spread/integrality bookkeeping.
+- **What to do next:** Keep higher-moment, concentration, and paid/unpaid
+  classification statements in their separate packets.
+
 ### 2026-07-05 - Subgroup Hankel VTDV factorization
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

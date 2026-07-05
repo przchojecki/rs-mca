@@ -1,0 +1,84 @@
+{
+  "claim": {
+    "excluded_degeneracy": "V = 0 all-slope/paid-fiber case",
+    "expectation": "binom(n,j) (1 - q^(-t)) q^(1-t)",
+    "finite_slope_pair_count": "q(q^t - 1)",
+    "fixed_support_probability": "(1 - q^(-t)) q^(1-t)",
+    "total_syndrome_pair_count": "q^(2t)"
+  },
+  "consumers": [
+    "mca_safe",
+    "spread_regime_bound",
+    "averaged_slope_conversion",
+    "aperiodic_zero_at_crossing"
+  ],
+  "non_claims": [
+    "does not count the all-slope degeneracy V=0",
+    "does not classify aligned supports as paid or unpaid",
+    "does not prove a higher-moment or concentration bound",
+    "does not edit Papers A-D"
+  ],
+  "sample_arithmetic": [
+    {
+      "enumerated_finite_slope_pairs": 6,
+      "expected_aligned": [
+        20,
+        3
+      ],
+      "finite_slope_pairs": 6,
+      "j": 2,
+      "n": 5,
+      "probability": [
+        2,
+        3
+      ],
+      "q": 3,
+      "support_count": 10,
+      "t": 1,
+      "total_pairs": 9
+    },
+    {
+      "enumerated_finite_slope_pairs": 120,
+      "expected_aligned": [
+        1344,
+        125
+      ],
+      "finite_slope_pairs": 120,
+      "j": 3,
+      "n": 8,
+      "probability": [
+        24,
+        125
+      ],
+      "q": 5,
+      "support_count": 56,
+      "t": 2,
+      "total_pairs": 625
+    },
+    {
+      "enumerated_finite_slope_pairs": 2394,
+      "expected_aligned": [
+        10260,
+        2401
+      ],
+      "finite_slope_pairs": 2394,
+      "j": 4,
+      "n": 10,
+      "probability": [
+        342,
+        16807
+      ],
+      "q": 7,
+      "support_count": 210,
+      "t": 3,
+      "total_pairs": 117649
+    }
+  ],
+  "schema": "rs-mca.experimental.fm1.v1",
+  "source_dag_dependencies": [
+    "vtdv"
+  ],
+  "source_dag_node": "fm1",
+  "status": "PROVED",
+  "verdict": "exact_first_moment_for_finite_slope_aligned_supports"
+}
