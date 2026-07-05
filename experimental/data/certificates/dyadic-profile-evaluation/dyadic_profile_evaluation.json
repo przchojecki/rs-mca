@@ -1,0 +1,218 @@
+{
+  "anchor_checks": {
+    "first_scale": true,
+    "non_claim": true,
+    "note_exists": true,
+    "profile": true,
+    "source_node": true,
+    "status": true,
+    "uniformity": true
+  },
+  "n_uniformity_checks": {
+    "1/16": {
+      "accepted": true,
+      "prize": {
+        "N_star": 256,
+        "h": 16,
+        "log2_D_top": 40.285743,
+        "log2_Q_top": 82.96641
+      },
+      "rowc": {
+        "N_star": 256,
+        "h": 16,
+        "log2_D_top": 40.285743,
+        "log2_Q_top": 82.96641
+      }
+    },
+    "1/4": {
+      "accepted": true,
+      "prize": {
+        "N_star": 128,
+        "h": 32,
+        "log2_D_top": 48.380394,
+        "log2_Q_top": 99.806263
+      },
+      "rowc": {
+        "N_star": 128,
+        "h": 32,
+        "log2_D_top": 48.380394,
+        "log2_Q_top": 99.806263
+      }
+    },
+    "1/8": {
+      "accepted": true,
+      "prize": {
+        "N_star": 128,
+        "h": 16,
+        "log2_D_top": 31.850765,
+        "log2_Q_top": 66.146531
+      },
+      "rowc": {
+        "N_star": 128,
+        "h": 16,
+        "log2_D_top": 31.850765,
+        "log2_Q_top": 66.146531
+      }
+    }
+  },
+  "non_claims": [
+    "does not close a deployed adjacent row theorem by itself",
+    "does not prove non-dyadic profile statements",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/dyadic_profile_evaluation.md",
+  "profile_formula": "Q_H = sum_{M | n, M > t} binom(n/M - 1, floor(A/M))",
+  "rows": [
+    {
+      "A": 507,
+      "k": 256,
+      "n": 512,
+      "profile": "trivial",
+      "rate": "1/2",
+      "reason": "parity-killed dyadic quotient mass",
+      "row": "pinned 1/2",
+      "t": 251
+    },
+    {
+      "A": 261,
+      "D_top": 366395202809685,
+      "M_star": 8,
+      "N_star": 128,
+      "Q_sum": 1108355191126710866407066780526,
+      "Q_top": 1108355191126710500011856080725,
+      "first_scale_dominance": true,
+      "h": 32,
+      "k": 256,
+      "log2_D_top": 48.380394,
+      "log2_Q_sum": 99.806263,
+      "log2_Q_top": 99.806263,
+      "n": 1024,
+      "qa22_D_check": true,
+      "qa22_D_target": 48.3804,
+      "qa22_Q_check": true,
+      "qa22_Q_target": 99.8063,
+      "rate": "1/4",
+      "row": "RowC 1/4",
+      "t": 5,
+      "tail_size": 5
+    },
+    {
+      "A": 133,
+      "D_top": 3872894697,
+      "M_star": 8,
+      "N_star": 128,
+      "Q_sum": 81675143554977331502,
+      "Q_top": 81675143551104405225,
+      "first_scale_dominance": true,
+      "h": 16,
+      "k": 128,
+      "log2_D_top": 31.850765,
+      "log2_Q_sum": 66.146531,
+      "log2_Q_top": 66.146531,
+      "n": 1024,
+      "qa22_D_check": true,
+      "qa22_D_target": 31.8508,
+      "qa22_Q_check": true,
+      "qa22_Q_target": 66.1465,
+      "rate": "1/8",
+      "row": "RowC 1/8",
+      "t": 5,
+      "tail_size": 5
+    },
+    {
+      "A": 67,
+      "D_top": 1340346236625,
+      "M_star": 4,
+      "N_star": 256,
+      "Q_sum": 9448829626897259604301399,
+      "Q_top": 9448829626895919257468625,
+      "first_scale_dominance": true,
+      "h": 16,
+      "k": 64,
+      "log2_D_top": 40.285743,
+      "log2_Q_sum": 82.96641,
+      "log2_Q_top": 82.96641,
+      "n": 1024,
+      "qa22_D_check": true,
+      "qa22_D_target": 40.2857,
+      "qa22_Q_check": true,
+      "qa22_Q_target": 82.9664,
+      "rate": "1/16",
+      "row": "RowC 1/16",
+      "t": 3,
+      "tail_size": 3
+    },
+    {
+      "A": 558345748481,
+      "D_top": 366395202809685,
+      "M_star": 17179869184,
+      "N_star": 128,
+      "Q_sum": 1108355191126710866407066780526,
+      "Q_top": 1108355191126710500011856080725,
+      "first_scale_dominance": true,
+      "h": 32,
+      "k": 549755813888,
+      "log2_D_top": 48.380394,
+      "log2_Q_sum": 99.806263,
+      "log2_Q_top": 99.806263,
+      "n": 2199023255552,
+      "qa22_D_check": true,
+      "qa22_D_target": 48.3804,
+      "qa22_Q_check": true,
+      "qa22_Q_target": 99.8063,
+      "rate": "1/4",
+      "row": "prize 1/4",
+      "t": 8589934593,
+      "tail_size": 8589934593
+    },
+    {
+      "A": 283467841537,
+      "D_top": 3872894697,
+      "M_star": 17179869184,
+      "N_star": 128,
+      "Q_sum": 81675143554977331502,
+      "Q_top": 81675143551104405225,
+      "first_scale_dominance": true,
+      "h": 16,
+      "k": 274877906944,
+      "log2_D_top": 31.850765,
+      "log2_Q_sum": 66.146531,
+      "log2_Q_top": 66.146531,
+      "n": 2199023255552,
+      "qa22_D_check": true,
+      "qa22_D_target": 31.8508,
+      "qa22_Q_check": true,
+      "qa22_Q_target": 66.1465,
+      "rate": "1/8",
+      "row": "prize 1/8",
+      "t": 8589934593,
+      "tail_size": 8589934593
+    },
+    {
+      "A": 141733920769,
+      "D_top": 1340346236625,
+      "M_star": 8589934592,
+      "N_star": 256,
+      "Q_sum": 9448829626897259604301399,
+      "Q_top": 9448829626895919257468625,
+      "first_scale_dominance": true,
+      "h": 16,
+      "k": 137438953472,
+      "log2_D_top": 40.285743,
+      "log2_Q_sum": 82.96641,
+      "log2_Q_top": 82.96641,
+      "n": 2199023255552,
+      "qa22_D_check": true,
+      "qa22_D_target": 40.2857,
+      "qa22_Q_check": true,
+      "qa22_Q_target": 82.9664,
+      "rate": "1/16",
+      "row": "prize 1/16",
+      "t": 4294967297,
+      "tail_size": 4294967297
+    }
+  ],
+  "schema": "dyadic-profile-evaluation-v1",
+  "source_dag_node": "dyadic_profile_evaluation",
+  "status": "PROVED"
+}

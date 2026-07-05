@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Dyadic profile evaluation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/dyadic_profile_evaluation.md`;
+  `experimental/scripts/verify_dyadic_profile_evaluation.py`;
+  `experimental/data/certificates/dyadic-profile-evaluation/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A replayable exact dyadic quotient-profile
+  evaluation for Row-C and prize-scale rows at the clean rates.
+- **How it is useful:** Supplies n-uniform profile masses for row-packet
+  pricing, E22 minimal-scale accounting, and list/profile ledgers.
+- **What to do next:** Use as an exact profile input; this packet does not
+  close an adjacent row theorem by itself.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
