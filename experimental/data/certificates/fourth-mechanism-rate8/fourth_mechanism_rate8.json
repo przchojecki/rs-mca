@@ -1,0 +1,40 @@
+{
+  "anchor_checks": {
+    "dependency": true,
+    "gain": true,
+    "inequality": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    {
+      "accepted": true,
+      "gain_fraction": "1/16",
+      "path": "experimental/data/certificates/cap-end-sharpening/cap_end_sharpening.json",
+      "schema": "cap-end-sharpening-v1",
+      "source_dag_node": "cap_end_sharpening",
+      "status": "PROVED"
+    }
+  ],
+  "non_claims": [
+    "does not assemble the full clean-rate corridor ledger",
+    "does not treat the rate-1/2 band",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/fourth_mechanism_rate8.md",
+  "schema": "fourth-mechanism-rate8-v1",
+  "source_dag_node": "fourth_mechanism_rate8",
+  "status": "PROVED",
+  "wedge_check": {
+    "cap_end_gain": "0.0625",
+    "cap_end_gain_fraction": "1/16",
+    "gain_to_requirement_ratio": "8.840170",
+    "margin": "0.05543",
+    "rate": "1/8",
+    "required_wedge": "0.00707",
+    "route": "cap_end_sharpening",
+    "verdict": "PASS"
+  }
+}

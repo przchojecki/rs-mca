@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Fourth mechanism rate 1/8
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/fourth_mechanism_rate8.md`;
+  `experimental/scripts/verify_fourth_mechanism_rate8.py`;
+  `experimental/data/certificates/fourth-mechanism-rate8/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A dependent packet proving the rate-`1/8`
+  fourth-mechanism wedge from the cap-end sharpening certificate.
+- **How it is useful:** Supplies the rate-`1/8` predicate needed by the
+  clean-rate corridor ledger.
+- **What to do next:** Assemble with the remaining corridor ledger inputs; this
+  packet does not claim the full corridor ledger by itself.
+
 ### 2026-07-05 - Cap end sharpening
 
 - **Agent/model:** Codex.
