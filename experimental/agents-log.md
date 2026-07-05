@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Rules m-reading packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/rules_m_reading.md`;
+  `experimental/scripts/verify_rules_m_reading.py`;
+  `experimental/data/certificates/rules-m-reading/rules_m_reading.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-pinned quantifier packet for the grand
+  list decoding challenge: determinations are indexed by a declared constant
+  `m`.
+- **How it is useful:** Makes fixed-`m` list-side packets creditable partials
+  while preserving the need for a uniform-in-`m` or large-`m` route for the
+  full arbitrary-constant family.
+- **What to do next:** Require future list-side certificates to state whether
+  they are fixed-`m`, small-`m` batch, or uniform-in-`m` results.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

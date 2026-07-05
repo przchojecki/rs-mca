@@ -1,0 +1,29 @@
+{
+  "claim": "The list grand challenge is indexed by a declared constant m. A determination for a fixed constant m is a valid per-instance prize object; the full arbitrary-constant family requires a uniform-in-m theorem or equivalent large-m route.",
+  "interpretation": {
+    "fixed_m_packets": "valid determinations for the declared constant m",
+    "full_family": "requires uniform-in-m coverage or a separate large-m route",
+    "large_m_dependency": "a_regularity_forcing or equivalent",
+    "small_m_batches": "creditable partial coverage for listed constants"
+  },
+  "non_claims": [
+    "does not prove all constant m cases at once",
+    "does not provide the large-m regularity theorem",
+    "does not edit or promote Papers A-D"
+  ],
+  "quote_fragments": [
+    "and a constant m",
+    "for a code C, an m, and an eps*"
+  ],
+  "schema": "rs-mca.experimental.rules_m_reading.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 5,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "rules_m_reading",
+  "status": "PROVED",
+  "verdict": "family_per_constant_m"
+}
