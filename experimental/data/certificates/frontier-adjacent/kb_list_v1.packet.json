@@ -1,0 +1,2286 @@
+{
+ "schema_source": "agents.md L135-152 (row-packet schema for final-resolution work)",
+ "row": {
+  "F": "F_{p^6}, p = 2^31-2^24+1 = 2130706433 (KoalaBear prime), sextic extension",
+  "D": "order-2097152 (=2^21) multiplicative subgroup of F_p^x",
+  "k": 1048576,
+  "n": 2097152,
+  "rho": "1/2",
+  "kind": "list (interleaved/base-code list size)"
+ },
+ "denominators": {
+  "q_gen": {
+   "value": 2130706433,
+   "desc": "|B|, the base field (pigeonhole cost base for the identity-prefix construction)"
+  },
+  "q_line": {
+   "value": "93571093019388561295270373781649880353786165192103559169",
+   "bits": 186,
+   "desc": "|F|, the line/sampling field; also Q for B*=floor(eps* Q)"
+  },
+  "q_chal": {
+   "value": "= q_line",
+   "desc": "no distinct challenge field pinned anywhere in the repo for this certificate family; site/data/rate-leaderboards.json prints \"protocol-dependent\" for every row"
+  },
+  "q_list": {
+   "value": "93571093019388561295270373781649880353786165192103559169",
+   "note": "for the list row this IS the row's own list-size budget denominator."
+  }
+ },
+ "target": {
+  "epsilon_star": "2^-128",
+  "B_star": {
+   "value": 274980728111395087,
+   "bits": 58,
+   "formula": "floor(epsilon* * q_line) = floor(q_line / 2^128)"
+  },
+  "important_note_deep_point_threshold": {
+   "Theta_num": "93571093019388561295270373781649880353786165192103559169",
+   "Theta_den": "340282366920938463463374607431768211456",
+   "desc": "The list row's threshold IS literally B* (Theta_list = eps* * q_line = B* up to the floor); no deep-point conversion is needed. Fail-margin denominator equals B*/F(a) directly (AUDIT-2)."
+  }
+ },
+ "agreement_interval": {
+  "one_step_target": {
+   "a0": 1116046,
+   "a0_plus_1": 1116047,
+   "desc": "the immediate adjacent pair this packet's staircase aims to pin (agents.md 'finite deployed one-step resolution')"
+  },
+  "full_open_band_nearest_conditional_safe": {
+   "interval": [
+    1116047,
+    1493067
+   ],
+   "source": "PR271-280 batch, koalabear-bchks25-jmca-safe-edge-v1/certificate.json, CONDITIONAL_ON_BCHKS25_THEOREM_4_6_AS_STATED"
+  },
+  "full_open_band_nearest_unconditional_safe": {
+   "interval": [
+    1116047,
+    1572864
+   ],
+   "source": "cor:conditional-half, imports BCIKS20 Thm 4.1 (single named import, PROVED external)"
+  },
+  "full_open_band_self_contained_safe": {
+   "interval": [
+    1116047,
+    1747627
+   ],
+   "source": "thm:deep-mca, self-contained, no imports"
+  }
+ },
+ "unsafe_certificates": {
+  "statement": "L(a0) > Theta_list = B*  (list floor directly exceeds budget)",
+  "a0": 1116046,
+  "w0": 67470,
+  "K": 1048576,
+  "reference": "tex lem:v13f1-identity-prefix-floor / prop:v13f1-identity-frontier",
+  "status": "PAID_BY_EXACT_CERTIFICATE (exact integer certificate; reproduced this session via experimental/scripts/towards v13/cap25_v13_frontier_identity_exact_checks.py, 12/12 PASS, and independently by this packet family's own verifier)"
+ },
+ "safe_certificates": {
+  "statement": "U(a0+1) <= B*",
+  "status": "OPEN",
+  "detail": "NOT ESTABLISHED for this or any of the 4 v13 frontier rows anywhere in the repo. Taxonomy-accurate label: CONJECTURAL_WITH_FALSIFIER (prob:v13f1-frontier is an open problem, tex L1448-1464, not a theorem). This packet's contribution (rung_margin_audit) closes the periodic/quotient veto (Audit 1) but leaves the aperiodic (prob:band), L1 (prob:v13-l1-residuals, prob:v13-primitive-image-fiber), and sparse (prob:mutual/prob:sparse-mutual) cells fully open."
+ },
+ "paid_cells_summary": {
+  "tangent": {
+   "lower_floor": 981106,
+   "upper_bound": "not licensed",
+   "status": "PAID_BY_THEOREM (lower) / CONDITIONAL_ON_NAMED_INPUT (upper)"
+  },
+  "quotient": {
+   "value": "TBD",
+   "status": "CONDITIONAL_ON_NAMED_INPUT",
+   "rung_margin_audit_verdict": "GREEN (no inversion, no frontier-tight rung; Audit 1 executed in full)"
+  },
+  "extension": {
+   "value": "TBD",
+   "status": "CONDITIONAL_ON_NAMED_INPUT"
+  },
+  "sparse_or_M1": {
+   "plain_CA_or_sparse_layer": {
+    "exact_target": 274980728111395087,
+    "status": "CONDITIONAL_ON_NAMED_INPUT"
+   },
+   "M1_aperiodic_or_SPI_layer": {
+    "value": "TBD",
+    "status": "CONJECTURAL_WITH_FALSIFIER"
+   }
+  },
+  "L1_list": {
+   "value": "TBD",
+   "status": "CONDITIONAL_ON_NAMED_INPUT"
+  },
+  "note": "See safe_cell_table for the full per-cell breakdown with the 5-status labels and references."
+ },
+ "safe_cell_table": [
+  {
+   "cell": "paid_tangent",
+   "formula": "B_tan(a) via moving-root tangent construction",
+   "lower_floor_value": 981106,
+   "lower_floor_status": "PAID_BY_THEOREM",
+   "lower_floor_reference": "Paper-B prop:floor (emca >= floor(delta n)/q); prop:v13-tangent",
+   "upper_bound_value": "NOT LICENSED at this row (see note)",
+   "upper_bound_status": "CONDITIONAL_ON_NAMED_INPUT",
+   "note": "thm:deep-mca eq(b) certifies B_tan(a)<=r+1 only if 3r<=n-k (r<=349525); here r=981105 >> 349525, so the upper bound does not apply as a certified upper cell -- only the unconditional lower floor 981106 is available."
+  },
+  {
+   "cell": "paid_quotient (B_Q^all, union over dyadic scales c=2^0..2^20, three slack profiles Gfloor/Gceil/Rem/Plant, descending priority)",
+   "formula": "graded-prefix family (prop:graded-prefix-floor) + remainder floor (lem:quotient-remainder-prefix) + planted core (thm:v13-planted)",
+   "value_at_a0_plus_1": "TBD (no upper-bound derivation exists; this packet's rung_margin_audit block certifies NO scale/profile fires or is tight at a0+1 -- Audit 1 of the strategy note, executed exactly)",
+   "rung_margin_audit_headline": {
+    "any_frontier_inverted": false,
+    "any_frontier_tight": false,
+    "max_frontier_floor": {
+     "margin_bits": -22.0109,
+     "label": "Gfloor c=1",
+     "bracket": "[2^35.9, 2^36.0)"
+    },
+    "subfrontier_tightest": null,
+    "verdict": "GREEN"
+   },
+   "status": "CONDITIONAL_ON_NAMED_INPUT",
+   "note": "Audit 1 (this packet's rung_margin_audit block) upgrades the earlier 'c in {2,4,8,16,32} does not fire' spot-check to a FULL exact-integer scan: all 21 dyadic scales x 3 slack profiles (Gfloor/Gceil/Rem, plus Plant where defined), at both a0 and a0+1. Verdict: no inversion, no frontier-tight rung (GREEN). 'Does not fire / not tight' is still NOT the same as 'has a certified small upper bound' -- no B_Q^all(a0+1) upper-bound computation exists; the periodic-side cheap refutation is merely excluded, per Audit 1's own scope (strategy note sec 2.1)."
+  },
+  {
+   "cell": "paid_extension",
+   "formula": "B_ext(a), prop:v13-extension",
+   "value": "TBD",
+   "status": "CONDITIONAL_ON_NAMED_INPUT",
+   "note": "No computation of any kind attempted anywhere in the repo for this cell at this row; not even a named-input target has been derived yet."
+  },
+  {
+   "cell": "paid_plain_CA_or_sparse_layer (eca / sigma_C via thm:sparsify)",
+   "formula": "emca(C,delta') = max(eca(C,delta'), sigma_C(delta')/q); delta' > 1/4 => sparse layer dominates (rem:sparsify-recover)",
+   "exact_target_if_provable": 274980728111395087,
+   "status": "CONDITIONAL_ON_NAMED_INPUT",
+   "note": "Open problem prob:mutual/prob:sparse-mutual (towards-prize.tex L852-861) bounds sigma_C(delta) for (1-rho)/2 < delta < 1-rho-s_rho/n, which covers this row's delta'=981105/2097152. If sigma_C <= 274980728111395087 were proved, this cell alone would pay the row (modulo all others also clearing); not proved."
+  },
+  {
+   "cell": "paid_L1/interleaved_list_layer (thm:johnson-list + sunflower charts)",
+   "formula": "pma_wide_residual = pma_pullback_lists (PROVABLE, exponential, budgeted) UNION primitive residual (open)",
+   "value": "TBD",
+   "max_affordable_ceiling_n_pow_C": 2,
+   "status": "CONDITIONAL_ON_NAMED_INPUT",
+   "note": "DAG nodes pma_wide_residual (TARGET) / pma_pullback_lists (PROVABLE) in experimental/data/prize-dag/prize_dag.json; tex open problems prob:v13-l1-residuals (mixed-petal/growing-defect residuals) and prob:v13-primitive-image-fiber (stabilizer-primitive image-fiber bound). pma_pullback_lists itself is a PROVED counterexample to an unqualified correlated-target hope, not a closure; the primitive residual pma_wide_residual remains open."
+  },
+  {
+   "cell": "paid_M1_aperiodic_or_SPI_layer (B_ap, prob:band)",
+   "formula": "B_ap(a) <= P(n), P polynomial (asymptotic route) or exact SPI/eliminant closure (finite route)",
+   "value": "TBD",
+   "max_affordable_ceiling_n_pow_C": 2,
+   "max_affordable_ceiling_after_tangent_n_pow_C": 2,
+   "status": "CONJECTURAL_WITH_FALSIFIER",
+   "note": "prob:band (cs25_cap_v12.tex L4590-4596) is the repo's central open problem: no polynomial P is proved for the aperiodic residual kernel anywhere in the open band; experimental/cap25_v13_missing_inputs_strategy.md sec 1 (Route alpha/beta/gamma) is the current attack map, still open. Falsifier: exhibit, at a0+1=1116047, more than 274980728111395087 MCA-bad finite slopes (or list codewords) whose witness supports are all aperiodic (periodicity-scale def), OR a polynomial P(n) certificate for the whole band."
+  },
+  {
+   "cell": "explicitly_named_residuals",
+   "value": "N/A (structural placeholder; see prob:v13-l1-residuals, prob:v13-primitive-image-fiber, prob:band)",
+   "status": "CONJECTURAL_WITH_FALSIFIER",
+   "note": "No COUNTEREXAMPLE_NEW_FLOOR has been triggered for this row; if one of the open cells above is ever refuted with an explicit larger witness, it converts to this label and becomes a new obstruction floor."
+  }
+ ],
+ "rung_margin_audit": {
+  "reference": "experimental/cap25_v13_missing_inputs_strategy.md sec 2.1 Audit 1 (rung margins); executed in full here",
+  "conventions": {
+   "Gfloor": "prop:graded-prefix-floor, m=floor(a/c); covers agreement mc<=a (A1 convention)",
+   "Gceil": "graded floor with m=ceil(a/c); covers agreement mc>=a (>=frontier)",
+   "Rem": "lem:quotient-remainder-prefix, s=a-mc; covers agreement EXACTLY a",
+   "Plant": "thm:v13-planted, M=c; P=C(n/c-1,k/c) at agreement k+sigma, 1<=sigma<c",
+   "Theta_mca": "(q+k)/k (deep-point threshold, thm:A)",
+   "Theta_list": "q/2^lam (= B* target)"
+  },
+  "Theta_bracket": "[2^57.9, 2^58.0)",
+  "per_agreement": {
+   "a0": {
+    "sigma": 67470,
+    "rungs": [
+     {
+      "j": 0,
+      "c": 1,
+      "N": 2097152,
+      "Gfloor": {
+       "m": 1116046,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 67470,
+       "F_bracket": "[2^67.0, 2^67.1)",
+       "margin_bits": 9.1637,
+       "margin_bracket": "[2^9.1, 2^9.2)",
+       "fires": true,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 1116046,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 67470,
+       "F_bracket": "[2^67.0, 2^67.1)",
+       "margin_bits": 9.1637,
+       "fires": true,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 0,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 67470,
+       "F_bracket": "[2^67.0, 2^67.1)",
+       "margin_bits": 9.1637,
+       "fires": true,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048576,
+       "P_count_approx": "~2^2097140.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 1,
+      "c": 2,
+      "N": 1048576,
+      "Gfloor": {
+       "m": 558023,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 33735,
+       "F_bracket": "[2^28.6, 2^28.7)",
+       "margin_bits": -29.2956,
+       "margin_bracket": "[2^-29.3, 2^-29.2)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 558023,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 33735,
+       "F_bracket": "[2^28.6, 2^28.7)",
+       "margin_bits": -29.2956,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 0,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 33735,
+       "F_bracket": "[2^28.6, 2^28.7)",
+       "margin_bits": -29.2956,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048577,
+       "P_count_approx": "~2^1048564.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 2,
+      "c": 4,
+      "N": 524288,
+      "Gfloor": {
+       "m": 279011,
+       "covered": 1116044,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 16867,
+       "F_bracket": "[2^25.2, 2^25.3)",
+       "margin_bits": -32.6879,
+       "margin_bracket": "[2^-32.7, 2^-32.6)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 279012,
+       "covered": 1116048,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 16868,
+       "F_bracket": "[2^-6.0, 2^-5.9)",
+       "margin_bits": -63.8625,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 2,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 50603,
+       "F_bracket": "[2^-1045371, 2^-1045369) (coarse)",
+       "margin_bits": -1045428.1,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048579,
+       "P_count_approx": "~2^524277.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 3,
+      "c": 8,
+      "N": 262144,
+      "Gfloor": {
+       "m": 139505,
+       "covered": 1116040,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 8433,
+       "F_bracket": "[2^23.7, 2^23.8)",
+       "margin_bits": -34.1341,
+       "margin_bracket": "[2^-34.2, 2^-34.1)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 139506,
+       "covered": 1116048,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 8434,
+       "F_bracket": "[2^-7.4, 2^-7.3)",
+       "margin_bits": -65.3087,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 6,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 59037,
+       "F_bracket": "[2^-1568018, 2^-1568016) (coarse)",
+       "margin_bits": -1568075.6,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048583,
+       "P_count_approx": "~2^262133.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 4,
+      "c": 16,
+      "N": 131072,
+      "Gfloor": {
+       "m": 69752,
+       "covered": 1116032,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 4216,
+       "F_bracket": "[2^23.3, 2^23.4)",
+       "margin_bits": -34.6072,
+       "margin_bracket": "[2^-34.7, 2^-34.6)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 69753,
+       "covered": 1116048,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 4217,
+       "F_bracket": "[2^-7.9, 2^-7.8)",
+       "margin_bits": -65.7818,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 14,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 63254,
+       "F_bracket": "[2^-1829246, 2^-1829244) (coarse)",
+       "margin_bits": -1829302.3,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048591,
+       "P_count_approx": "~2^131062.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 5,
+      "c": 32,
+      "N": 65536,
+      "Gfloor": {
+       "m": 34876,
+       "covered": 1116032,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 2108,
+       "F_bracket": "[2^7.7, 2^7.8)",
+       "margin_bits": -50.181,
+       "margin_bracket": "[2^-50.2, 2^-50.1)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 34877,
+       "covered": 1116064,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 2109,
+       "F_bracket": "[2^-23.5, 2^-23.4)",
+       "margin_bits": -81.3556,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 14,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 31634,
+       "F_bracket": "[2^-914723, 2^-914721) (coarse)",
+       "margin_bits": -914779.7715,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048607,
+       "P_count_approx": "~2^65526.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 6,
+      "c": 64,
+      "N": 32768,
+      "Gfloor": {
+       "m": 17438,
+       "covered": 1116032,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 1054,
+       "F_bracket": "[2^0.2, 2^0.3)",
+       "margin_bits": -57.718,
+       "margin_bracket": "[2^-57.8, 2^-57.7)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 17439,
+       "covered": 1116096,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1055,
+       "F_bracket": "[2^-31.0, 2^-30.9)",
+       "margin_bits": -88.8926,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 14,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 15824,
+       "F_bracket": "[2^-457461, 2^-457459) (coarse)",
+       "margin_bits": -457518.2772,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048639,
+       "P_count_approx": "~2^32759.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 7,
+      "c": 128,
+      "N": 16384,
+      "Gfloor": {
+       "m": 8719,
+       "covered": 1116032,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 527,
+       "F_bracket": "[2^-3.4, 2^-3.3)",
+       "margin_bits": -61.2364,
+       "margin_bracket": "[2^-61.3, 2^-61.2)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 8720,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 528,
+       "F_bracket": "[2^-34.5, 2^-34.4)",
+       "margin_bits": -92.4112,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 14,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 7919,
+       "F_bracket": "[2^-228830, 2^-228828) (coarse)",
+       "margin_bits": -228887.28,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048703,
+       "P_count_approx": "~2^16375.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 8,
+      "c": 256,
+      "N": 8192,
+      "Gfloor": {
+       "m": 4359,
+       "covered": 1115904,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 263,
+       "F_bracket": "[2^10.7, 2^10.8)",
+       "margin_bits": -47.1585,
+       "margin_bracket": "[2^-47.2, 2^-47.1)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 4360,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 264,
+       "F_bracket": "[2^-20.5, 2^-20.4)",
+       "margin_bits": -78.333,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 142,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 37751,
+       "F_bracket": "[2^-1159683, 2^-1159681) (coarse)",
+       "margin_bits": -1159739.9,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048831,
+       "P_count_approx": "~2^8184.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 9,
+      "c": 512,
+      "N": 4096,
+      "Gfloor": {
+       "m": 2179,
+       "covered": 1115648,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 131,
+       "F_bracket": "[2^18.0, 2^18.1)",
+       "margin_bits": -39.8698,
+       "margin_bracket": "[2^-39.9, 2^-39.8)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 2180,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 132,
+       "F_bracket": "[2^-13.2, 2^-13.1)",
+       "margin_bits": -71.044,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 398,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 52667,
+       "F_bracket": "[2^-1622952, 2^-1622950) (coarse)",
+       "margin_bits": -1623008.3,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1049087,
+       "P_count_approx": "~2^4088.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 10,
+      "c": 1024,
+      "N": 2048,
+      "Gfloor": {
+       "m": 1089,
+       "covered": 1115136,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 65,
+       "F_bracket": "[2^21.9, 2^22.0)",
+       "margin_bits": -35.9762,
+       "margin_bracket": "[2^-36.0, 2^-35.9)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 1090,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 66,
+       "F_bracket": "[2^-9.3, 2^-9.2)",
+       "margin_bits": -67.1496,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 910,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 60125,
+       "F_bracket": "[2^-1850684, 2^-1850682) (coarse)",
+       "margin_bits": -1850741.5,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1049599,
+       "P_count_approx": "~2^2041.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 11,
+      "c": 2048,
+      "N": 1024,
+      "Gfloor": {
+       "m": 544,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 32,
+       "F_bracket": "[2^24.1, 2^24.2)",
+       "margin_bits": -33.7806,
+       "margin_bracket": "[2^-33.8, 2^-33.7)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 545,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 33,
+       "F_bracket": "[2^-7.1, 2^-7.0)",
+       "margin_bits": -64.9525,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1934,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 63854,
+       "F_bracket": "[2^-1957570, 2^-1957568) (coarse)",
+       "margin_bits": -1957627.2,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1050623,
+       "P_count_approx": "~2^1017.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 12,
+      "c": 4096,
+      "N": 512,
+      "Gfloor": {
+       "m": 272,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 16,
+       "F_bracket": "[2^9.9, 2^10.0)",
+       "margin_bits": -48.0183,
+       "margin_bracket": "[2^-48.1, 2^-48.0)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 273,
+       "covered": 1118208,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 17,
+       "F_bracket": "[2^-21.3, 2^-21.2)",
+       "margin_bits": -79.1929,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1934,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 32894,
+       "F_bracket": "[2^-998670, 2^-998668) (coarse)",
+       "margin_bits": -998727.622,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1052671,
+       "P_count_approx": "~2^506.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 13,
+      "c": 8192,
+      "N": 256,
+      "Gfloor": {
+       "m": 136,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 8,
+       "F_bracket": "[2^3.0, 2^3.1)",
+       "margin_bits": -54.8877,
+       "margin_bracket": "[2^-54.9, 2^-54.8)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 137,
+       "covered": 1122304,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 9,
+       "F_bracket": "[2^-28.2, 2^-28.1)",
+       "margin_bits": -86.0676,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1934,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 17414,
+       "F_bracket": "[2^-519220, 2^-519218) (coarse)",
+       "margin_bits": -519277.5619,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1056767,
+       "P_count_approx": "~2^250.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 14,
+      "c": 16384,
+      "N": 128,
+      "Gfloor": {
+       "m": 68,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 4,
+       "F_bracket": "[2^-0.2, 2^-0.1)",
+       "margin_bits": -58.0735,
+       "margin_bracket": "[2^-58.1, 2^-58.0)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 69,
+       "covered": 1130496,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 5,
+       "F_bracket": "[2^-31.4, 2^-31.3)",
+       "margin_bits": -89.2638,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1934,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 9674,
+       "F_bracket": "[2^-279495, 2^-279493) (coarse)",
+       "margin_bits": -279552.2829,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1064959,
+       "P_count_approx": "~2^123.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 15,
+      "c": 32768,
+      "N": 64,
+      "Gfloor": {
+       "m": 34,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 2,
+       "F_bracket": "[2^-1.5, 2^-1.4)",
+       "margin_bits": -59.4185,
+       "margin_bracket": "[2^-59.5, 2^-59.4)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 35,
+       "covered": 1146880,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 3,
+       "F_bracket": "[2^-32.7, 2^-32.6)",
+       "margin_bits": -90.6296,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1934,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 5804,
+       "F_bracket": "[2^-159633, 2^-159631) (coarse)",
+       "margin_bits": -159689.3956,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1081343,
+       "P_count_approx": "~2^59.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 16,
+      "c": 65536,
+      "N": 32,
+      "Gfloor": {
+       "m": 17,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-2.0, 2^-1.9)",
+       "margin_bits": -59.8453,
+       "margin_bracket": "[2^-59.9, 2^-59.8)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 18,
+       "covered": 1179648,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 2,
+       "F_bracket": "[2^-33.2, 2^-33.1)",
+       "margin_bits": -91.097,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1934,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 3869,
+       "F_bracket": "[2^-99701, 2^-99699) (coarse)",
+       "margin_bits": -99757.7061,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": false,
+       "max_covered_agreement": 1114111,
+       "P_count_approx": "~2^28.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 17,
+      "c": 131072,
+      "N": 16,
+      "Gfloor": {
+       "m": 8,
+       "covered": 1048576,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 0,
+       "F_bracket": "[2^13.6, 2^13.7)",
+       "margin_bits": -44.2804,
+       "margin_bracket": "[2^-44.3, 2^-44.2)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 9,
+       "covered": 1179648,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-17.6, 2^-17.5)",
+       "margin_bits": -75.439,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 67470,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 67470,
+       "F_bracket": "[2^-1729616, 2^-1729614) (coarse)",
+       "margin_bits": -1729673.5,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": true,
+       "max_covered_agreement": 1179647,
+       "P_count": "6435",
+       "P_bits": 13,
+       "P_bracket": "[2^12.6, 2^12.7)",
+       "fires_vs_Bstar": false,
+       "margin_vs_Bstar_bits": -45.2804,
+       "TIGHT_vs_Bstar": false
+      }
+     },
+     {
+      "j": 18,
+      "c": 262144,
+      "N": 8,
+      "Gfloor": {
+       "m": 4,
+       "covered": 1048576,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 0,
+       "F_bracket": "[2^6.1, 2^6.2)",
+       "margin_bits": -51.8028,
+       "margin_bracket": "[2^-51.9, 2^-51.8)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 5,
+       "covered": 1310720,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-25.2, 2^-25.1)",
+       "margin_bits": -83.1134,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 67470,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 67470,
+       "F_bracket": "[2^-1729624, 2^-1729622) (coarse)",
+       "margin_bits": -1729681.0,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": true,
+       "max_covered_agreement": 1310719,
+       "P_count": "35",
+       "P_bits": 6,
+       "P_bracket": "[2^5.1, 2^5.2)",
+       "fires_vs_Bstar": false,
+       "margin_vs_Bstar_bits": -52.8028,
+       "TIGHT_vs_Bstar": false
+      }
+     },
+     {
+      "j": 19,
+      "c": 524288,
+      "N": 4,
+      "Gfloor": {
+       "m": 2,
+       "covered": 1048576,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 0,
+       "F_bracket": "[2^2.5, 2^2.6)",
+       "margin_bits": -55.3471,
+       "margin_bracket": "[2^-55.4, 2^-55.3)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 3,
+       "covered": 1572864,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-29.0, 2^-28.9)",
+       "margin_bits": -86.9208,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 67470,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 67470,
+       "F_bracket": "[2^-1729628, 2^-1729626) (coarse)",
+       "margin_bits": -1729684.5,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": true,
+       "max_covered_agreement": 1572863,
+       "P_count": "3",
+       "P_bits": 2,
+       "P_bracket": "[2^1.5, 2^1.6)",
+       "fires_vs_Bstar": false,
+       "margin_vs_Bstar_bits": -56.3471,
+       "TIGHT_vs_Bstar": false
+      }
+     },
+     {
+      "j": 20,
+      "c": 1048576,
+      "N": 2,
+      "Gfloor": {
+       "m": 1,
+       "covered": 1048576,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 0,
+       "F_bracket": "[2^1.0, 2^1.1)",
+       "margin_bits": -56.9321,
+       "margin_bracket": "[2^-57.0, 2^-56.9)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 2,
+       "covered": 2097152,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-31.0, 2^-30.9)",
+       "margin_bits": -88.9208,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 67470,
+       "covered": 1116046,
+       "covers_frontier": true,
+       "w_rem": 67470,
+       "F_bracket": "[2^-1729629, 2^-1729627) (coarse)",
+       "margin_bits": -1729686.1,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67470,
+       "covers_frontier": true,
+       "max_covered_agreement": 2097151,
+       "P_count": "1",
+       "P_bits": 1,
+       "P_bracket": "[2^0.0, 2^0.1)",
+       "fires_vs_Bstar": false,
+       "margin_vs_Bstar_bits": -57.9321,
+       "TIGHT_vs_Bstar": false
+      }
+     }
+    ],
+    "max_frontier_floor": {
+     "margin_bits": 9.1637,
+     "label": "Gfloor c=1",
+     "bracket": "[2^67.0, 2^67.1)"
+    },
+    "subfrontier_tightest": null
+   },
+   "a0+1": {
+    "sigma": 67471,
+    "rungs": [
+     {
+      "j": 0,
+      "c": 1,
+      "N": 2097152,
+      "Gfloor": {
+       "m": 1116047,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 67471,
+       "F_bracket": "[2^35.9, 2^36.0)",
+       "margin_bits": -22.0109,
+       "margin_bracket": "[2^-22.1, 2^-22.0)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 1116047,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 67471,
+       "F_bracket": "[2^35.9, 2^36.0)",
+       "margin_bits": -22.0109,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 0,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^35.9, 2^36.0)",
+       "margin_bits": -22.0109,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048576,
+       "P_count_approx": "~2^2097140.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 1,
+      "c": 2,
+      "N": 1048576,
+      "Gfloor": {
+       "m": 558023,
+       "covered": 1116046,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 33735,
+       "F_bracket": "[2^28.6, 2^28.7)",
+       "margin_bits": -29.2956,
+       "margin_bracket": "[2^-29.3, 2^-29.2)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 558024,
+       "covered": 1116048,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 33736,
+       "F_bracket": "[2^-2.6, 2^-2.5)",
+       "margin_bits": -60.4702,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^-1045387, 2^-1045385) (coarse)",
+       "margin_bits": -1045443.7,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048577,
+       "P_count_approx": "~2^1048564.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 2,
+      "c": 4,
+      "N": 524288,
+      "Gfloor": {
+       "m": 279011,
+       "covered": 1116044,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 16867,
+       "F_bracket": "[2^25.2, 2^25.3)",
+       "margin_bits": -32.6879,
+       "margin_bracket": "[2^-32.7, 2^-32.6)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 279012,
+       "covered": 1116048,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 16868,
+       "F_bracket": "[2^-6.0, 2^-5.9)",
+       "margin_bits": -63.8625,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 3,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^-1568070, 2^-1568068) (coarse)",
+       "margin_bits": -1568127.0,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048579,
+       "P_count_approx": "~2^524277.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 3,
+      "c": 8,
+      "N": 262144,
+      "Gfloor": {
+       "m": 139505,
+       "covered": 1116040,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 8433,
+       "F_bracket": "[2^23.7, 2^23.8)",
+       "margin_bits": -34.1341,
+       "margin_bracket": "[2^-34.2, 2^-34.1)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 139506,
+       "covered": 1116048,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 8434,
+       "F_bracket": "[2^-7.4, 2^-7.3)",
+       "margin_bits": -65.3087,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 7,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^-1829360, 2^-1829358) (coarse)",
+       "margin_bits": -1829417.1,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048583,
+       "P_count_approx": "~2^262133.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 4,
+      "c": 16,
+      "N": 131072,
+      "Gfloor": {
+       "m": 69752,
+       "covered": 1116032,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 4216,
+       "F_bracket": "[2^23.3, 2^23.4)",
+       "margin_bits": -34.6072,
+       "margin_bracket": "[2^-34.7, 2^-34.6)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 69753,
+       "covered": 1116048,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 4217,
+       "F_bracket": "[2^-7.9, 2^-7.8)",
+       "margin_bits": -65.7818,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 15,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^-1959909, 2^-1959907) (coarse)",
+       "margin_bits": -1959965.5,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048591,
+       "P_count_approx": "~2^131062.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 5,
+      "c": 32,
+      "N": 65536,
+      "Gfloor": {
+       "m": 34876,
+       "covered": 1116032,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 2108,
+       "F_bracket": "[2^7.7, 2^7.8)",
+       "margin_bits": -50.181,
+       "margin_bracket": "[2^-50.2, 2^-50.1)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 34877,
+       "covered": 1116064,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 2109,
+       "F_bracket": "[2^-23.5, 2^-23.4)",
+       "margin_bits": -81.3556,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 15,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 33743,
+       "F_bracket": "[2^-980062, 2^-980060) (coarse)",
+       "margin_bits": -980118.9104,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048607,
+       "P_count_approx": "~2^65526.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 6,
+      "c": 64,
+      "N": 32768,
+      "Gfloor": {
+       "m": 17438,
+       "covered": 1116032,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 1054,
+       "F_bracket": "[2^0.2, 2^0.3)",
+       "margin_bits": -57.718,
+       "margin_bracket": "[2^-57.8, 2^-57.7)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 17439,
+       "covered": 1116096,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1055,
+       "F_bracket": "[2^-31.0, 2^-30.9)",
+       "margin_bits": -88.8926,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 15,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 16879,
+       "F_bracket": "[2^-490139, 2^-490137) (coarse)",
+       "margin_bits": -490195.3424,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048639,
+       "P_count_approx": "~2^32759.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 7,
+      "c": 128,
+      "N": 16384,
+      "Gfloor": {
+       "m": 8719,
+       "covered": 1116032,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 527,
+       "F_bracket": "[2^-3.4, 2^-3.3)",
+       "margin_bits": -61.2364,
+       "margin_bracket": "[2^-61.3, 2^-61.2)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 8720,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 528,
+       "F_bracket": "[2^-34.5, 2^-34.4)",
+       "margin_bits": -92.4112,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 15,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 8447,
+       "F_bracket": "[2^-245176, 2^-245174) (coarse)",
+       "margin_bits": -245233.3084,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048703,
+       "P_count_approx": "~2^16375.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 8,
+      "c": 256,
+      "N": 8192,
+      "Gfloor": {
+       "m": 4359,
+       "covered": 1115904,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 263,
+       "F_bracket": "[2^10.7, 2^10.8)",
+       "margin_bits": -47.1585,
+       "margin_bracket": "[2^-47.2, 2^-47.1)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 4360,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 264,
+       "F_bracket": "[2^-20.5, 2^-20.4)",
+       "margin_bits": -78.333,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 143,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 38015,
+       "F_bracket": "[2^-1167851, 2^-1167849) (coarse)",
+       "margin_bits": -1167908.2,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1048831,
+       "P_count_approx": "~2^8184.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 9,
+      "c": 512,
+      "N": 4096,
+      "Gfloor": {
+       "m": 2179,
+       "covered": 1115648,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 131,
+       "F_bracket": "[2^18.0, 2^18.1)",
+       "margin_bits": -39.8698,
+       "margin_bracket": "[2^-39.9, 2^-39.8)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 2180,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 132,
+       "F_bracket": "[2^-13.2, 2^-13.1)",
+       "margin_bits": -71.044,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 399,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 52799,
+       "F_bracket": "[2^-1627031, 2^-1627029) (coarse)",
+       "margin_bits": -1627087.6,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1049087,
+       "P_count_approx": "~2^4088.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 10,
+      "c": 1024,
+      "N": 2048,
+      "Gfloor": {
+       "m": 1089,
+       "covered": 1115136,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 65,
+       "F_bracket": "[2^21.9, 2^22.0)",
+       "margin_bits": -35.9762,
+       "margin_bracket": "[2^-36.0, 2^-35.9)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 1090,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 66,
+       "F_bracket": "[2^-9.3, 2^-9.2)",
+       "margin_bits": -67.1496,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 911,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 60191,
+       "F_bracket": "[2^-1852719, 2^-1852717) (coarse)",
+       "margin_bits": -1852776.7,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1049599,
+       "P_count_approx": "~2^2041.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 11,
+      "c": 2048,
+      "N": 1024,
+      "Gfloor": {
+       "m": 544,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 32,
+       "F_bracket": "[2^24.1, 2^24.2)",
+       "margin_bits": -33.7806,
+       "margin_bracket": "[2^-33.8, 2^-33.7)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 545,
+       "covered": 1116160,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 33,
+       "F_bracket": "[2^-7.1, 2^-7.0)",
+       "margin_bits": -64.9525,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1935,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 63887,
+       "F_bracket": "[2^-1958584, 2^-1958582) (coarse)",
+       "margin_bits": -1958640.9,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1050623,
+       "P_count_approx": "~2^1017.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 12,
+      "c": 4096,
+      "N": 512,
+      "Gfloor": {
+       "m": 272,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 16,
+       "F_bracket": "[2^9.9, 2^10.0)",
+       "margin_bits": -48.0183,
+       "margin_bracket": "[2^-48.1, 2^-48.0)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 273,
+       "covered": 1118208,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 17,
+       "F_bracket": "[2^-21.3, 2^-21.2)",
+       "margin_bits": -79.1929,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1935,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 32911,
+       "F_bracket": "[2^-999188, 2^-999186) (coarse)",
+       "margin_bits": -999245.4437,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1052671,
+       "P_count_approx": "~2^506.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 13,
+      "c": 8192,
+      "N": 256,
+      "Gfloor": {
+       "m": 136,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 8,
+       "F_bracket": "[2^3.0, 2^3.1)",
+       "margin_bits": -54.8877,
+       "margin_bracket": "[2^-54.9, 2^-54.8)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 137,
+       "covered": 1122304,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 9,
+       "F_bracket": "[2^-28.2, 2^-28.1)",
+       "margin_bits": -86.0676,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1935,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 17423,
+       "F_bracket": "[2^-519490, 2^-519488) (coarse)",
+       "margin_bits": -519547.4741,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1056767,
+       "P_count_approx": "~2^250.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 14,
+      "c": 16384,
+      "N": 128,
+      "Gfloor": {
+       "m": 68,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 4,
+       "F_bracket": "[2^-0.2, 2^-0.1)",
+       "margin_bits": -58.0735,
+       "margin_bracket": "[2^-58.1, 2^-58.0)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 69,
+       "covered": 1130496,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 5,
+       "F_bracket": "[2^-31.4, 2^-31.3)",
+       "margin_bits": -89.2638,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1935,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 9679,
+       "F_bracket": "[2^-279641, 2^-279639) (coarse)",
+       "margin_bits": -279698.2404,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1064959,
+       "P_count_approx": "~2^123.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 15,
+      "c": 32768,
+      "N": 64,
+      "Gfloor": {
+       "m": 34,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 2,
+       "F_bracket": "[2^-1.5, 2^-1.4)",
+       "margin_bits": -59.4185,
+       "margin_bracket": "[2^-59.5, 2^-59.4)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 35,
+       "covered": 1146880,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 3,
+       "F_bracket": "[2^-32.7, 2^-32.6)",
+       "margin_bits": -90.6296,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1935,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 5807,
+       "F_bracket": "[2^-159717, 2^-159715) (coarse)",
+       "margin_bits": -159773.3757,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1081343,
+       "P_count_approx": "~2^59.7",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 16,
+      "c": 65536,
+      "N": 32,
+      "Gfloor": {
+       "m": 17,
+       "covered": 1114112,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-2.0, 2^-1.9)",
+       "margin_bits": -59.8453,
+       "margin_bracket": "[2^-59.9, 2^-59.8)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 18,
+       "covered": 1179648,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 2,
+       "F_bracket": "[2^-33.2, 2^-33.1)",
+       "margin_bits": -91.097,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 1935,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 3871,
+       "F_bracket": "[2^-99754, 2^-99752) (coarse)",
+       "margin_bits": -99810.6976,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": false,
+       "max_covered_agreement": 1114111,
+       "P_count_approx": "~2^28.2",
+       "note": "covers only agreement<=k+c-1<a; not an a0+1 witness"
+      }
+     },
+     {
+      "j": 17,
+      "c": 131072,
+      "N": 16,
+      "Gfloor": {
+       "m": 8,
+       "covered": 1048576,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 0,
+       "F_bracket": "[2^13.6, 2^13.7)",
+       "margin_bits": -44.2804,
+       "margin_bracket": "[2^-44.3, 2^-44.2)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 9,
+       "covered": 1179648,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-17.6, 2^-17.5)",
+       "margin_bits": -75.439,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 67471,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^-1729644, 2^-1729642) (coarse)",
+       "margin_bits": -1729700.6,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": true,
+       "max_covered_agreement": 1179647,
+       "P_count": "6435",
+       "P_bits": 13,
+       "P_bracket": "[2^12.6, 2^12.7)",
+       "fires_vs_Bstar": false,
+       "margin_vs_Bstar_bits": -45.2804,
+       "TIGHT_vs_Bstar": false
+      }
+     },
+     {
+      "j": 18,
+      "c": 262144,
+      "N": 8,
+      "Gfloor": {
+       "m": 4,
+       "covered": 1048576,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 0,
+       "F_bracket": "[2^6.1, 2^6.2)",
+       "margin_bits": -51.8028,
+       "margin_bracket": "[2^-51.9, 2^-51.8)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 5,
+       "covered": 1310720,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-25.2, 2^-25.1)",
+       "margin_bits": -83.1134,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 67471,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^-1729651, 2^-1729649) (coarse)",
+       "margin_bits": -1729708.1,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": true,
+       "max_covered_agreement": 1310719,
+       "P_count": "35",
+       "P_bits": 6,
+       "P_bracket": "[2^5.1, 2^5.2)",
+       "fires_vs_Bstar": false,
+       "margin_vs_Bstar_bits": -52.8028,
+       "TIGHT_vs_Bstar": false
+      }
+     },
+     {
+      "j": 19,
+      "c": 524288,
+      "N": 4,
+      "Gfloor": {
+       "m": 2,
+       "covered": 1048576,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 0,
+       "F_bracket": "[2^2.5, 2^2.6)",
+       "margin_bits": -55.3471,
+       "margin_bracket": "[2^-55.4, 2^-55.3)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 3,
+       "covered": 1572864,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-29.0, 2^-28.9)",
+       "margin_bits": -86.9208,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 67471,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^-1729655, 2^-1729653) (coarse)",
+       "margin_bits": -1729711.7,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": true,
+       "max_covered_agreement": 1572863,
+       "P_count": "3",
+       "P_bits": 2,
+       "P_bracket": "[2^1.5, 2^1.6)",
+       "fires_vs_Bstar": false,
+       "margin_vs_Bstar_bits": -56.3471,
+       "TIGHT_vs_Bstar": false
+      }
+     },
+     {
+      "j": 20,
+      "c": 1048576,
+      "N": 2,
+      "Gfloor": {
+       "m": 1,
+       "covered": 1048576,
+       "covers_frontier": false,
+       "degenerate": false,
+       "w": 0,
+       "F_bracket": "[2^1.0, 2^1.1)",
+       "margin_bits": -56.9321,
+       "margin_bracket": "[2^-57.0, 2^-56.9)",
+       "fires": false,
+       "TIGHT": false
+      },
+      "Gceil": {
+       "m": 2,
+       "covered": 2097152,
+       "covers_frontier": true,
+       "degenerate": false,
+       "w": 1,
+       "F_bracket": "[2^-31.0, 2^-30.9)",
+       "margin_bits": -88.9208,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Rem": {
+       "s": 67471,
+       "covered": 1116047,
+       "covers_frontier": true,
+       "w_rem": 67471,
+       "F_bracket": "[2^-1729656, 2^-1729654) (coarse)",
+       "margin_bits": -1729713.2,
+       "fires": false,
+       "TIGHT": false
+      },
+      "Plant": {
+       "defined": true,
+       "sigma_needed": 67471,
+       "covers_frontier": true,
+       "max_covered_agreement": 2097151,
+       "P_count": "1",
+       "P_bits": 1,
+       "P_bracket": "[2^0.0, 2^0.1)",
+       "fires_vs_Bstar": false,
+       "margin_vs_Bstar_bits": -57.9321,
+       "TIGHT_vs_Bstar": false
+      }
+     }
+    ],
+    "max_frontier_floor": {
+     "margin_bits": -22.0109,
+     "label": "Gfloor c=1",
+     "bracket": "[2^35.9, 2^36.0)"
+    },
+    "subfrontier_tightest": null
+   }
+  },
+  "audit2_descent_loss": {
+   "margin_bits": 22.0109,
+   "R_descent_depth_log2n": 21,
+   "max_geomean_perrung_loss_at_R21": 2.0679,
+   "nondegenerate_graded_rungs": 21,
+   "max_geomean_perrung_loss_at_Rndg": 2.0679
+  },
+  "cross_check_c1_identity_margins": {
+   "c1_pass_margin_a0": 9.1637,
+   "c1_fail_margin_a0p1": -22.0109
+  },
+  "headline": {
+   "any_frontier_inverted": false,
+   "any_frontier_tight": false,
+   "max_frontier_floor": {
+    "margin_bits": -22.0109,
+    "label": "Gfloor c=1",
+    "bracket": "[2^35.9, 2^36.0)"
+   },
+   "subfrontier_tightest": null,
+   "verdict": "GREEN"
+  }
+ },
+ "residual_cells": {
+  "aperiodic_M1_or_SPI": {
+   "reference": "prob:band (cs25_cap_v12.tex L4590-4596); experimental/cap25_v13_missing_inputs_strategy.md sec 1 (Route alpha/beta/gamma)",
+   "status": "CONJECTURAL_WITH_FALSIFIER",
+   "max_affordable_ceiling_n_pow_C": 2
+  },
+  "extension_line": {
+   "reference": "prop:v13-extension (experimental/cap25_v13_experimental.tex)",
+   "status": "CONDITIONAL_ON_NAMED_INPUT"
+  },
+  "L1_list_residual": {
+   "reference": "prob:v13-l1-residuals, prob:v13-primitive-image-fiber; DAG pma_wide_residual (TARGET) / pma_pullback_lists (PROVABLE)",
+   "status": "CONDITIONAL_ON_NAMED_INPUT"
+  },
+  "SPI_wall": {
+   "reference": "experimental/notes/m1/cap25_v13_spi_identically_split_repair.md, wall CAP25-V13-M1-UNIFORM-SPLIT-LOCATOR-DETERMINANT-COMPRESSION (toy scale only, not wired to this deployed row)",
+   "status": "CONJECTURAL_WITH_FALSIFIER"
+  },
+  "protocol_branch": {
+   "reference": "agents.md 'Protocol resolution' level (3 of 3); not engaged at this finite one-step level",
+   "status": "N/A_AT_THIS_LEVEL"
+  }
+ },
+ "deduplication_rule": {
+  "reference": "def:paid-root-removal-regular-branch (cs25_cap_v12.tex L2290-2302) + root_union_table_ref (scripts/aperiodic_eliminant_schema.json)",
+  "rule": "first-match by descending priority in cell_order; a bad parameter already charged to an earlier cell (its root divides P_paid,F(Z)) is removed by gcd before the next cell counts, so B_Q^all counts the UNION across divisor scales not the max (thm:conditional-mca (i)); duplicate slopes coalesced across scales via the root-union table."
+ },
+ "endpoint_convention": {
+  "reference": "def:v13-staircase (experimental/cap25_v13_experimental.tex L52-64), cor:v13-endpoint (L85-99), prop:onestep (cs25_cap_v12.tex L4182-4195)",
+  "statement": "Closed integer Hamming radius r=n-a grid; N(a) nonincreasing in a; a is safe iff N(a)<=B*, unsafe iff N(a)>B*. First safe a* satisfies N(a*-1)>B*>=N(a*). The real closed-ball supremum of safe radii is (n-a*+1)/n, and this endpoint is NOT attained when N(a*-1)>B* (cor:v13-endpoint)."
+ },
+ "replay": {
+  "script": "experimental/scripts/verify_frontier_adjacent_v13_rows.py",
+  "command": "python3 experimental/scripts/verify_frontier_adjacent_v13_rows.py",
+  "expected_exit_code_now": 0,
+  "expected_exit_code_meaning": "0 = all gates (G1-G6) pass: B* recompute, unsafe-side replay, adjacent bracket, safe-theorem gap table, packet-consistency, and the FULL rung-margin table all independently reproduced. This does NOT mean a0+1 is certified safe -- the master safe-side claim is not gated (see safe_certificates.status=OPEN); the verifier prints the open-cell targets as INFO, never as a passing gate.",
+  "json_certificates_consumed": [
+   "packet.json (this file)"
+  ],
+  "seed_or_hash": "none (integrity is exact byte-for-byte re-derivability from stdlib-only scripts)"
+ },
+ "status": "EXPERIMENTAL",
+ "status_note": "Per-component status varies: the unsafe half is effectively exact (PAID_BY_EXACT_CERTIFICATE); the periodic/quotient veto is now closed exactly (this packet's rung_margin_audit, GREEN); the remaining safe half is CONJECTURAL_WITH_FALSIFIER (aperiodic/L1/sparse cells are open research problems, not bookkeeping gaps -- see safe_cell_table). EXPERIMENTAL is correct at the packet level because the packet as a whole cannot yet certify a safe agreement, matching agents.md's own instruction: 'Do not call these Paper-D theorem rows until the exact adjacent upper ledger is printed and replayed... call them EXPERIMENTAL, CONDITIONAL, or AUDIT.'",
+ "applicability_audit_gap_table": [
+  {
+   "theorem": "thm:deep-mca (self-contained, 3r<=n-k)",
+   "a_min_safe": 1747627,
+   "gap_a1_minus_a_min": -631580
+  },
+  {
+   "theorem": "cor:conditional-half (BCIKS20 import, 2r<=n-k)",
+   "a_min_safe": 1572864,
+   "gap_a1_minus_a_min": -456817
+  },
+  {
+   "theorem": "thm:elementary-ca (half-Johnson, (n-2r)^2>(k-1)n)",
+   "a_min_safe": 1790031,
+   "gap_a1_minus_a_min": -673984
+  },
+  {
+   "theorem": "PR271-280 BCHKS25 Thm4.6 (conditional; koalabear-bchks25-jmca-safe-edge-v1/certificate.json)",
+   "a_min_safe": 1493067,
+   "gap_a1_minus_a_min": -377020
+  }
+ ],
+ "audit_findings": [
+  "AUDIT-1 (eps* carve-out): for KB rows eps*=2^-128 as agents.md states.",
+  "AUDIT-2 (fail-margin denominator): B* = floor(eps* q)  (Theta_list = eps* q; B*=floor). fail_margin_equals_Bstar_over_F=True.",
+  "AUDIT-3 (tangent upper bound not licensed): B_tan(a)<=r+1 requires 3r<=n-k (r<=349525); here r=981105 >> 349525, so only the unconditional LOWER floor is usable, not an upper cell.",
+  "AUDIT-4 (no theorem pays the row): every known safe theorem's minimum safe agreement exceeds a0+1 by >= 377020 agreement points (see applicability_audit_gap_table); the row sits deep inside the still-open v12 band, glued to the unsafe edge.",
+  "AUDIT-5 (6 of 7 U(a) cells are open research, not bookkeeping): only paid_tangent (lower floor) is a clean PAID_BY_THEOREM cell; every other cell is CONDITIONAL_ON_NAMED_INPUT or CONJECTURAL_WITH_FALSIFIER against a genuinely unsolved problem (prob:band, prob:v13-l1-residuals, prob:v13-primitive-image-fiber, prob:mutual/prob:sparse-mutual).",
+  "FIND-1 (Audit-1 headline, PROVED): no inversion and no frontier-tight rung at a0+1 for this row, over 21 dyadic scales x 3 slack profiles (Gfloor/Gceil/Rem, plus Plant where defined). Tightest frontier-bearing comparison = identity c=1 (-22.0109 bits). Periodic-side refutation excluded; verdict GREEN.",
+  "FIND-2 (PROVED): identity c=1 is the sole periodic certifier of unsafety at a0; every c>=2 graded/remainder/planted floor is below Theta; nothing certifies at a0+1. Strengthens rem:v13f1-closure from 'c=2 dominated' to 'all c>=2 dominated'.",
+  "FIND-3 (PROVED): remainder floors covering exactly a0+1 are ~1e6 bits below Theta for every c>=2 (prefix weight w_c blow-up); planted cores reaching a0+1 peak at 6435 (well below B*).",
+  "FIND-4 (Audit-2, PROVED): descent per-rung-loss ceiling at R=log2(n)=21: 2.0679. Strategy note's qualitative '~1.2 / lesssim 2' claim verified quantitatively."
+ ],
+ "cross_checks_performed": {
+  "against_A1_ledger_numbers_json": "Bstar, tangent floor, max_C values, graded-scale fires_unsafe flags, applicability-audit thresholds, delta_prime, sigma_C target -- all sourced from A1_ledger_numbers.json and asserted internally consistent with A1b_rung_numbers.json here (see generator script asserts).",
+  "against_A1b_rung_numbers_json": "the entire rung_margin_audit block; c1_identity_margins cross-checked against A1's own Fc_vs_Theta_bits at c in {2,4,8,16,32} (A1b's own cross_checks.A1_graded_scales, ALL MATCH true).",
+  "against_pr271_certificate": "1493067 cross-read from experimental/data/certificates/koalabear-bchks25-jmca-safe-edge-v1/certificate.json (safe_A field), not merely trusted from recon prose.",
+  "independent_recompute": "experimental/scripts/verify_frontier_adjacent_v13_rows.py reimplements (does not import) every number in this packet from n,k,p_kb,p_m31 alone, including a full independent pass over all 21 dyadic rungs (gate G6)."
+ }
+}

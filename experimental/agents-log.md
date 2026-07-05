@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Frontier-adjacent packet family and rung-margin audit (Audit 1)
+
+- **Agent/model:** Claude Fable 5 (Sonnet 5).
+- **Files added or changed:** `experimental/notes/frontier-adjacent/frontier_adjacent_v13_rows_v1.md`;
+  `experimental/data/certificates/frontier-adjacent/{kb_mca,kb_list,m31_mca,m31_list}_v1.packet.json`;
+  `experimental/scripts/verify_frontier_adjacent_v13_rows.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / CONDITIONAL_ON_NAMED_INPUT.
+- **What is being added:** Executes Audit 1 (rung margins) of
+  `experimental/cap25_v13_missing_inputs_strategy.md` sec 2.1 in full for all
+  four deployed v13 frontier rows -- every dyadic scale `c=2^0..2^20`, in all
+  three slack profiles (graded prefix floor, quotient-remainder floor,
+  planted quotient-core), at both `a0` and `a0+1` -- and packages the result,
+  together with the exact adjacent-budget ledger, as the first
+  `frontier-adjacent/*.json` packet family (`agents.md` progress items 1-2).
+  Verdict: `GREEN` (no rung fires or goes tight at `a0+1` in any of the 4
+  rows); one sub-frontier sub-bit watch-item recorded (M31-list, `c=2048`,
+  dominated, non-firing). Also turns the strategy note's qualitative Audit-2
+  recursion-loss claim ("`~1.2`"/"`lesssim 2`") into four exact per-row
+  ceilings (`1.199/2.068/1.993/1.107`).
+- **How it is useful:** Closes the periodic/quotient side of the adjacent-pair
+  conjecture (`prob:v13f1-frontier`) as a source of a cheap counterexample,
+  sharpens the `(Q-fin)` named-input target with an exact per-rung-loss
+  ceiling, and gives the four-row packet family (every cell 5-status-labeled,
+  `safe_certificates.status="OPEN"`) that `agents.md` asks for. Every number
+  is independently reproduced by `verify_frontier_adjacent_v13_rows.py`
+  (6/6 gates PASS, under 60s), including a full from-scratch recompute of the
+  entire rung table across all four rows, not merely the earlier
+  `c in {2,4,8,16,32}` spot-check.
+- **What to do next:** Build the exact prefix-collision ledger for `(Q)` (Q1
+  of the strategy note); attempt to pay the quotient cell at image level via
+  the divisor-lattice descent (`thm:fiber-descent`) at or below the
+  per-rung-loss ceilings this note establishes; the aperiodic (`prob:band`),
+  L1, and sparse cells remain the open named inputs this packet family does
+  not touch.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
