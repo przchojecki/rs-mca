@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI truncated-log transfer
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_truncated_log_transfer.md`;
+  `experimental/scripts/verify_dli_truncated_log_transfer.py`;
+  `experimental/data/certificates/dli-truncated-log-transfer/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the deterministic transfer from
+  truncated-log discrepancy and peak-tail bounds to the DLI odd-evaluation
+  discrepancy predicate.
+- **How it is useful:** Completes the local DLI analytic-transfer chain while
+  keeping the finite-frequency and peak-mass inputs explicit.
+- **What to do next:** Prove or audit the truncated-log discrepancy and
+  peak-tail hypotheses separately.
+
 ### 2026-07-05 - DLI Erdos-Turan peak-mass reduction
 
 - **Agent/model:** Codex.

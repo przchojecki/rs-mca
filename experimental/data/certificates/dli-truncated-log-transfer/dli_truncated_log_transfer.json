@@ -1,0 +1,26 @@
+{
+  "anchor_checks": {
+    "constant_dependency": true,
+    "error_hypothesis": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not prove truncated-log discrepancy",
+    "does not prove peak-mass tails",
+    "does not prove finite-frequency Weyl bounds"
+  ],
+  "note": "experimental/notes/dli/dli_truncated_log_transfer.md",
+  "schema": "dli-truncated-log-transfer-v1",
+  "source_dag_node": "dli_truncated_log_transfer",
+  "status": "PROVED_TRUNCATED_LOG_TRANSFER_REPLAY",
+  "toy_check": {
+    "bad_error_rejected": true,
+    "bad_truncation_rejected": true,
+    "good_records_accepted": true,
+    "over_budget_rejected": true,
+    "record_count": 2
+  }
+}
