@@ -1925,3 +1925,22 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-05 - Prefix-collision second-moment ledger
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/gpu/q1_prefix_collision_ledger.py`,
+  `experimental/scripts/verify_q1_prefix_collision_ledger.py`,
+  `experimental/data/certificates/q1-prefix-collision/`,
+  `experimental/notes/m1/q1_prefix_collision_ledger.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact prefix-fiber histograms and second moments for
+  fixed-size split-locator subsets over `F_5`, `F_7`, `F_11`, `F_17`, and
+  `F_41`, including direct ordered-pair strata for the small rows.
+- **How it is useful:** Supplies finite L2 flatness constants for the `(Q)`
+  prefix map and records how measured occupancy compares with the density
+  heuristic across the tested prime fields.
+- **What to do next:** Use the exact second-moment packet as an input to
+  average-case equidistribution arguments, without promoting it to a
+  worst-case flatness theorem.

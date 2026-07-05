@@ -1,0 +1,436 @@
+{
+  "claim": "exact prefix-fiber second moments for recorded finite rows",
+  "non_claims": [
+    "No worst-case flatness theorem is claimed.",
+    "Histogram-only rows do not include direct ordered-pair strata."
+  ],
+  "payload_sha256": "654831c145d82d5ada58b35da1910a8e1eed4bea73e7abeed425ffcf9c8a6d44",
+  "proof_status": "EXPERIMENTAL with AUDIT replay",
+  "rows": [
+    {
+      "density_heuristic": {
+        "average_fiber": "6/5",
+        "denominator": 5,
+        "max_over_average": "5/3"
+      },
+      "distinct_prefix_values": 5,
+      "fiber_size_histogram": {
+        "1": 4,
+        "2": 1
+      },
+      "m": 2,
+      "max_fiber": 2,
+      "max_prefixes": [
+        [
+          0
+        ]
+      ],
+      "n": 4,
+      "object": "Phi_w prefix fibers on m-subsets without replacement",
+      "p": 5,
+      "pair_strata": {
+        "coverage": "full-ordered-pair-enumeration",
+        "examples": [
+          {
+            "difference_scale": 4,
+            "exchange_size": 2,
+            "left": [
+              0,
+              2
+            ],
+            "right": [
+              1,
+              3
+            ]
+          },
+          {
+            "difference_scale": 4,
+            "exchange_size": 2,
+            "left": [
+              1,
+              3
+            ],
+            "right": [
+              0,
+              2
+            ]
+          }
+        ],
+        "minimum_nontrivial_exchange_size": 2,
+        "ordered_pairs_examined": 36,
+        "rigidity_e_ge_w_plus_1_for_nontrivial_pairs": true,
+        "same_prefix_ordered_pairs": 8,
+        "strata": {
+          "e=0,scale=4": 6,
+          "e=2,scale=4": 2
+        },
+        "stratified_sum_equals_second_moment": true,
+        "w_plus_1_divides_n": true
+      },
+      "q_chal": 5,
+      "q_gen": 5,
+      "q_line": 5,
+      "second_moment": 8,
+      "total_subsets": 6,
+      "w": 1
+    },
+    {
+      "density_heuristic": {
+        "average_fiber": "20/49",
+        "denominator": 49,
+        "max_over_average": "49/10"
+      },
+      "distinct_prefix_values": 19,
+      "fiber_size_histogram": {
+        "1": 18,
+        "2": 1
+      },
+      "m": 3,
+      "max_fiber": 2,
+      "max_prefixes": [
+        [
+          0,
+          0
+        ]
+      ],
+      "n": 6,
+      "object": "Phi_w prefix fibers on m-subsets without replacement",
+      "p": 7,
+      "pair_strata": {
+        "coverage": "full-ordered-pair-enumeration",
+        "examples": [
+          {
+            "difference_scale": 6,
+            "exchange_size": 3,
+            "left": [
+              0,
+              2,
+              4
+            ],
+            "right": [
+              1,
+              3,
+              5
+            ]
+          },
+          {
+            "difference_scale": 6,
+            "exchange_size": 3,
+            "left": [
+              1,
+              3,
+              5
+            ],
+            "right": [
+              0,
+              2,
+              4
+            ]
+          }
+        ],
+        "minimum_nontrivial_exchange_size": 3,
+        "ordered_pairs_examined": 400,
+        "rigidity_e_ge_w_plus_1_for_nontrivial_pairs": true,
+        "same_prefix_ordered_pairs": 22,
+        "strata": {
+          "e=0,scale=6": 20,
+          "e=3,scale=6": 2
+        },
+        "stratified_sum_equals_second_moment": true,
+        "w_plus_1_divides_n": true
+      },
+      "q_chal": 7,
+      "q_gen": 7,
+      "q_line": 7,
+      "second_moment": 22,
+      "total_subsets": 20,
+      "w": 2
+    },
+    {
+      "density_heuristic": {
+        "average_fiber": "210/121",
+        "denominator": 121,
+        "max_over_average": "121/70"
+      },
+      "distinct_prefix_values": 110,
+      "fiber_size_histogram": {
+        "1": 25,
+        "2": 70,
+        "3": 15
+      },
+      "m": 4,
+      "max_fiber": 3,
+      "max_prefixes": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "n": 10,
+      "object": "Phi_w prefix fibers on m-subsets without replacement",
+      "p": 11,
+      "pair_strata": {
+        "coverage": "full-ordered-pair-enumeration",
+        "examples": [
+          {
+            "difference_scale": 2,
+            "exchange_size": 3,
+            "left": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "right": [
+              2,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "difference_scale": 2,
+            "exchange_size": 3,
+            "left": [
+              0,
+              1,
+              2,
+              4
+            ],
+            "right": [
+              0,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "difference_scale": 1,
+            "exchange_size": 3,
+            "left": [
+              0,
+              1,
+              2,
+              5
+            ],
+            "right": [
+              0,
+              3,
+              4,
+              8
+            ]
+          },
+          {
+            "difference_scale": 1,
+            "exchange_size": 3,
+            "left": [
+              0,
+              1,
+              2,
+              6
+            ],
+            "right": [
+              2,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "difference_scale": 1,
+            "exchange_size": 3,
+            "left": [
+              0,
+              1,
+              2,
+              8
+            ],
+            "right": [
+              1,
+              3,
+              4,
+              9
+            ]
+          },
+          {
+            "difference_scale": 2,
+            "exchange_size": 3,
+            "left": [
+              0,
+              1,
+              2,
+              9
+            ],
+            "right": [
+              1,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "difference_scale": 2,
+            "exchange_size": 3,
+            "left": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "right": [
+              4,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "difference_scale": 1,
+            "exchange_size": 3,
+            "left": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "right": [
+              0,
+              2,
+              6,
+              7
+            ]
+          }
+        ],
+        "minimum_nontrivial_exchange_size": 3,
+        "ordered_pairs_examined": 44100,
+        "rigidity_e_ge_w_plus_1_for_nontrivial_pairs": true,
+        "same_prefix_ordered_pairs": 440,
+        "strata": {
+          "e=0,scale=10": 210,
+          "e=3,scale=1": 160,
+          "e=3,scale=2": 40,
+          "e=4,scale=1": 20,
+          "e=4,scale=2": 10
+        },
+        "stratified_sum_equals_second_moment": true,
+        "w_plus_1_divides_n": false
+      },
+      "q_chal": 11,
+      "q_gen": 11,
+      "q_line": 11,
+      "second_moment": 440,
+      "total_subsets": 210,
+      "w": 2
+    },
+    {
+      "density_heuristic": {
+        "average_fiber": "8008/83521",
+        "denominator": 83521,
+        "max_over_average": "83521/4004"
+      },
+      "distinct_prefix_values": 7968,
+      "fiber_size_histogram": {
+        "1": 7928,
+        "2": 40
+      },
+      "m": 6,
+      "max_fiber": 2,
+      "max_prefixes": [
+        [
+          0,
+          3,
+          0,
+          1
+        ],
+        [
+          0,
+          5,
+          0,
+          16
+        ],
+        [
+          0,
+          6,
+          0,
+          4
+        ],
+        [
+          0,
+          7,
+          0,
+          13
+        ],
+        [
+          0,
+          10,
+          0,
+          13
+        ],
+        [
+          0,
+          11,
+          0,
+          4
+        ],
+        [
+          0,
+          12,
+          0,
+          16
+        ],
+        [
+          0,
+          14,
+          0,
+          1
+        ]
+      ],
+      "n": 16,
+      "object": "Phi_w prefix fibers on m-subsets without replacement",
+      "p": 17,
+      "pair_strata": {
+        "coverage": "histogram-only",
+        "ordered_pairs_examined": null,
+        "rigidity_e_ge_w_plus_1_for_nontrivial_pairs": null,
+        "same_prefix_ordered_pairs": 8088
+      },
+      "q_chal": 17,
+      "q_gen": 17,
+      "q_line": 17,
+      "second_moment": 8088,
+      "total_subsets": 8008,
+      "w": 4
+    }
+  ],
+  "schema_version": "q1-prefix-collision-ledger-v1",
+  "status": "EXPERIMENTAL",
+  "theorem_problem_id": "Q-prefix-collision-flatness"
+}
