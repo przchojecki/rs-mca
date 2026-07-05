@@ -1,0 +1,38 @@
+{
+  "anchor_checks": {
+    "det_formula": true,
+    "non_claim": true,
+    "nonzero_diag": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "matrix_checks": [
+    {
+      "determinant": -66,
+      "diagonal_product": -66,
+      "matches": true,
+      "name": "upper",
+      "nonzero": true
+    },
+    {
+      "determinant": 70,
+      "diagonal_product": 70,
+      "matches": true,
+      "name": "lower",
+      "nonzero": true
+    }
+  ],
+  "non_claims": [
+    "does not construct the profile inventory",
+    "does not claim every profile has a triangular certificate"
+  ],
+  "note": "experimental/notes/m1/xr_triangular_minor_certificate_soundness.md",
+  "schema": "xr-triangular-minor-certificate-soundness-v1",
+  "source_dag_node": "xr_triangular_minor_certificate_soundness",
+  "status": "PROVED_TRIANGULAR_MINOR_SOUNDNESS_REPLAY",
+  "zero_diagonal_control": {
+    "determinant": 0,
+    "passes": true
+  }
+}

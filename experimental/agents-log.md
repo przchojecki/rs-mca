@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - XR triangular minor certificate soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/xr_triangular_minor_certificate_soundness.md`;
+  `experimental/scripts/verify_xr_triangular_minor_certificate_soundness.py`;
+  `experimental/data/certificates/xr-triangular-minor-certificate-soundness/README.md`;
+  `experimental/data/certificates/xr-triangular-minor-certificate-soundness/xr_triangular_minor_certificate_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof packet for the triangular maximal-minor
+  certificate format: triangular specialized matrix plus nonzero diagonal
+  gives a nonzero determinant.
+- **How it is useful:** This is an accepted local certificate format for the
+  XR profile-minor inventory route.
+- **What to do next:** Use this only as one certificate format; it does not
+  construct the inventory or prove coverage.
+
 ### 2026-07-05 - XR minor-specialization certificate semantics
 
 - **Agent/model:** Codex.
