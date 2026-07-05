@@ -1,0 +1,40 @@
+{
+  "anchor_checks": {
+    "antipodal": true,
+    "folded_box": true,
+    "non_claim": true,
+    "note_exists": true,
+    "opposite_pairing": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    "kernel_lattice_reframing",
+    "2-power antipodal folding"
+  ],
+  "non_claims": [
+    "does not run the N'=128 or N'=256 no-vector searches",
+    "does not certify an E1 open-cell payload by itself"
+  ],
+  "note": "experimental/notes/e1/e1_folded_certificate_soundness.md",
+  "schema": "e1-folded-certificate-soundness-v1",
+  "source_dag_node": "e1_folded_certificate_soundness",
+  "statement": "a complete zero folded-kernel search over {-2,-1,0,1,2}^{N'/2} excludes non-quotient E1 collisions at 2-power N'",
+  "status": "PROVED_FOLDED_KERNEL_SOUNDNESS",
+  "toy_checks": [
+    {
+      "expected": 0,
+      "n": 16,
+      "nonzero_folded_zero_count": 0,
+      "p": 60161,
+      "passes": true
+    },
+    {
+      "expected": 48,
+      "n": 16,
+      "nonzero_folded_zero_count": 48,
+      "p": 10177,
+      "passes": true
+    }
+  ]
+}

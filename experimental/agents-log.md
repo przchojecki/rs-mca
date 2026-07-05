@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E1 folded certificate soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/e1/e1_folded_certificate_soundness.md`;
+  `experimental/scripts/verify_e1_folded_certificate_soundness.py`;
+  `experimental/data/certificates/e1-folded-certificate-soundness/README.md`;
+  `experimental/data/certificates/e1-folded-certificate-soundness/e1_folded_certificate_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof packet showing that a complete zero folded
+  kernel search excludes non-quotient E1 collisions at 2-power `N'`.
+- **How it is useful:** This supplies the soundness layer consumed by the E1
+  open-cell folded-certificate route.
+- **What to do next:** Supply actual no-vector certificate payloads separately;
+  this packet only proves their implication.
+
 ### 2026-07-05 - E1 Pocklington 250-bit exhibit field
 
 - **Agent/model:** Codex.
