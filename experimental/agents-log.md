@@ -1944,3 +1944,20 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-05 - Exchange-compression extremality check
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/gpu/exchange_compression_search.py`,
+  `experimental/scripts/verify_exchange_compression.py`,
+  `experimental/data/certificates/exchange-compression/`,
+  `experimental/notes/m1/exchange_compression_extremality.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact finite Johnson-exchange and anticode checks
+  for algebraically aligned split-locator support families.
+- **How it is useful:** Provides CPU-replayable evidence that the tested
+  aligned families do not beat the point-dictator exchange RHS or the recorded
+  anticode inequality.
+- **What to do next:** Extend the same exact rational checker to larger
+  aligned-family searches and record any violating family as a named witness.
