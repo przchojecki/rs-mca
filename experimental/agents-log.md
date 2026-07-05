@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - EF descended-cycle inventory soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/ef/ef_descended_cycle_inventory_soundness.md`;
+  `experimental/scripts/verify_ef_descended_cycle_inventory_soundness.py`;
+  `experimental/data/certificates/ef-descended-cycle-inventory-soundness/README.md`;
+  `experimental/data/certificates/ef-descended-cycle-inventory-soundness/ef_descended_cycle_inventory_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof packet for the inventory-semantics
+  implication: a complete descended-cycle inventory with verified
+  base/tower/noncontainment labels satisfies the EF classification payload.
+- **How it is useful:** This makes the remaining EF payload obligation precise:
+  construct or falsify the actual descended-cycle inventory.
+- **What to do next:** Do not treat this as the inventory itself; use it to
+  audit any proposed `ef_descended_cycle_classification_payload`.
+
 ### 2026-07-05 - EF full-orbit cycle descent
 
 - **Agent/model:** Codex.

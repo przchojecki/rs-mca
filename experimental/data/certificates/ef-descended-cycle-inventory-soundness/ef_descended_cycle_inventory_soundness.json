@@ -1,0 +1,47 @@
+{
+  "anchor_checks": {
+    "accepted_labels": true,
+    "covers": true,
+    "non_claim": true,
+    "note_exists": true,
+    "payload": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    "definition of ef_descended_cycle_classification_payload"
+  ],
+  "non_claims": [
+    "does not construct the descended-cycle inventory",
+    "does not certify a proposed inventory payload",
+    "does not close ef_ru by itself"
+  ],
+  "note": "experimental/notes/ef/ef_descended_cycle_inventory_soundness.md",
+  "sample_inventory": {
+    "allowed_labels": [
+      "base_descended",
+      "noncontainment_degenerate",
+      "tower_confined"
+    ],
+    "checks": {
+      "covers_all_cycles": true,
+      "entries_disjoint": true,
+      "labels_allowed": true
+    },
+    "cycles": [
+      "C0",
+      "C1",
+      "C2"
+    ],
+    "labels": {
+      "C0": "base_descended",
+      "C1": "tower_confined",
+      "C2": "noncontainment_degenerate"
+    },
+    "passes": true
+  },
+  "schema": "ef-descended-cycle-inventory-soundness-v1",
+  "source_dag_node": "ef_descended_cycle_inventory_soundness",
+  "statement": "a complete disjoint descended-cycle inventory with verified base/tower/noncontainment labels satisfies the EF classification payload",
+  "status": "PROVED_INVENTORY_SEMANTICS"
+}
