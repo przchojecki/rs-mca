@@ -1,0 +1,33 @@
+{
+  "schema": "e22-cross-scale-rootset-recovery-v1",
+  "dag_node": "e22_cross_scale_rootset_recovery",
+  "status": "PROVED",
+  "claim": "Equal E22 staircase locators at possibly different quotient moduli have the same support root set; fixed-scale recovery at each modulus recovers that scale's tail and selected fibers.",
+  "dependencies": [
+    "e22_fixed_scale_staircase_injectivity"
+  ],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_cross_scale_rootset_recovery/statement.md",
+      "nodes/e22_cross_scale_rootset_recovery/proof.md"
+    ]
+  },
+  "local_dependency_certificates": [
+    "experimental/data/certificates/e22-fixed-scale-staircase-injectivity/e22_fixed_scale_staircase_injectivity.json"
+  ],
+  "finite_checks": [
+    {
+      "p": 193,
+      "n": 64,
+      "moduli": [
+        2,
+        4,
+        8,
+        16
+      ]
+    }
+  ],
+  "expected_result": "PASS"
+}
+
