@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Q2 heavy-fiber fewness ledger
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_q2_heavy_fiber_fewness.py`;
+  `experimental/scripts/verify_q2_heavy_fiber_fewness_check.py`;
+  `experimental/data/certificates/q2-heavy-fiber-fewness/q2_heavy_fiber_fewness.json`;
+  `experimental/notes/m1/q2_heavy_fiber_fewness.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact finite r=3 and r=4 heavy-tail tables for
+  top-prefix locator fibers over the recorded `mu_16` toy rows.
+- **How it is useful:** Supplies a replayable Q2 heavy-fiber fewness ledger
+  beyond the r=2 prefix-collision packet, with exact common-core and
+  pairwise-intersection profiles.
+- **What to do next:** Review whether the same direct-support checker should
+  be extended to wider prefix keys or larger domains before using the packet as
+  a Q2 descent input.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by

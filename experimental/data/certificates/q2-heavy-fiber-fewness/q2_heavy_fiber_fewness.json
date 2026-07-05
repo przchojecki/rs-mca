@@ -1,0 +1,1348 @@
+{
+  "claim": "finite exact r=3,4 heavy-fiber tail ledger for top-prefix locator fibers",
+  "named_over_bound_findings": [],
+  "non_claims": [
+    "No worst-case quotient-fiber equidistribution theorem is claimed.",
+    "No deployed-size tail bound is claimed.",
+    "The packet is distinct from the r=2 prefix-collision ledger and aggregate Gamma_r moments."
+  ],
+  "payload_sha256": "d4945fbb4cd430e1eb172efb918d2dfdf0ebf7737d5103730df4366918f73a6d",
+  "proof_status": "EXPERIMENTAL",
+  "rows": [
+    {
+      "average_fiber_size": "12870/9409",
+      "collision_ledgers": {
+        "3": {
+          "common_core_histogram": {
+            "0": 352,
+            "1": 2032,
+            "2": 3448,
+            "3": 2336,
+            "4": 12
+          },
+          "normalized_excess": "4633823263420027/88822787625",
+          "pairwise_intersection_profile_histogram": {
+            "0,4,4": 12,
+            "1,3,4": 48,
+            "1,3,5": 96,
+            "2,2,4": 16,
+            "2,2,5": 32,
+            "2,3,3": 64,
+            "2,3,4": 32,
+            "2,4,4": 96,
+            "2,4,5": 192,
+            "3,3,3": 64,
+            "3,3,4": 976,
+            "3,3,5": 576,
+            "3,4,4": 768,
+            "3,4,5": 2240,
+            "3,5,5": 320,
+            "4,4,4": 408,
+            "4,4,5": 640,
+            "4,5,5": 1600
+          },
+          "power_moment_sum": 133512,
+          "tail_bounds": [
+            {
+              "T": 1,
+              "excess_over_T_power": "4633823263420027/88822787625",
+              "tail_count": 3337,
+              "tail_within_bound": true
+            },
+            {
+              "T": 2,
+              "excess_over_T_power": "4633823263420027/710582301000",
+              "tail_count": 2001,
+              "tail_within_bound": true
+            },
+            {
+              "T": 4,
+              "excess_over_T_power": "4633823263420027/5684658408000",
+              "tail_count": 113,
+              "tail_within_bound": true
+            },
+            {
+              "T": 8,
+              "excess_over_T_power": "4633823263420027/45477267264000",
+              "tail_count": 0,
+              "tail_within_bound": true
+            }
+          ],
+          "tuple_count_replayed": 8180,
+          "unordered_collision_count": 8180
+        },
+        "4": {
+          "common_core_histogram": {
+            "0": 1455,
+            "1": 2048,
+            "2": 640,
+            "3": 16
+          },
+          "normalized_excess": "281238467100622868524/1714723915100625",
+          "pairwise_intersection_profile_histogram": {
+            "0,0,4,4,4,4": 3,
+            "0,4,4,4,4,4": 12,
+            "1,3,3,4,4,5": 64,
+            "1,3,3,4,5,5": 80,
+            "2,2,2,4,5,5": 16,
+            "2,2,3,3,3,4": 16,
+            "2,2,3,3,3,5": 32,
+            "2,2,3,4,4,5": 64,
+            "2,2,4,4,4,4": 8,
+            "2,2,4,4,5,5": 80,
+            "2,3,3,3,4,4": 80,
+            "2,3,3,3,4,5": 32,
+            "2,3,3,4,4,4": 32,
+            "2,3,3,4,4,5": 64,
+            "2,3,4,4,4,4": 32,
+            "2,3,4,4,4,5": 32,
+            "2,3,4,4,5,5": 32,
+            "2,4,4,4,4,4": 16,
+            "2,4,4,5,5,5": 64,
+            "3,3,3,3,4,4": 136,
+            "3,3,3,3,4,5": 128,
+            "3,3,3,4,4,4": 176,
+            "3,3,3,4,4,5": 192,
+            "3,3,3,4,5,5": 272,
+            "3,3,4,4,4,4": 160,
+            "3,3,4,4,4,5": 256,
+            "3,3,4,4,5,5": 768,
+            "3,3,4,5,5,5": 96,
+            "3,4,4,4,4,4": 32,
+            "3,4,4,4,5,5": 480,
+            "3,4,4,5,5,5": 352,
+            "4,4,4,4,4,4": 16,
+            "4,4,4,4,4,5": 64,
+            "4,4,4,4,5,5": 128,
+            "4,4,5,5,5,5": 144
+          },
+          "power_moment_sum": 574144,
+          "tail_bounds": [
+            {
+              "T": 1,
+              "excess_over_T_power": "281238467100622868524/1714723915100625",
+              "tail_count": 3337,
+              "tail_within_bound": true
+            },
+            {
+              "T": 2,
+              "excess_over_T_power": "70309616775155717131/6858895660402500",
+              "tail_count": 2001,
+              "tail_within_bound": true
+            },
+            {
+              "T": 4,
+              "excess_over_T_power": "70309616775155717131/109742330566440000",
+              "tail_count": 113,
+              "tail_within_bound": true
+            },
+            {
+              "T": 8,
+              "excess_over_T_power": "70309616775155717131/1755877289063040000",
+              "tail_count": 0,
+              "tail_within_bound": true
+            }
+          ],
+          "tuple_count_replayed": 4159,
+          "unordered_collision_count": 4159
+        }
+      },
+      "empty_parameter_count": 3184,
+      "fiber_size_histogram": {
+        "1": 2888,
+        "2": 1336,
+        "3": 1168,
+        "4": 504,
+        "5": 216,
+        "6": 97,
+        "8": 16
+      },
+      "label": "f97_mu16_m8_w2",
+      "largest_fibers": [
+        {
+          "key": [
+            4,
+            8
+          ],
+          "size": 8,
+          "supports": [
+            [
+              0,
+              1,
+              2,
+              5,
+              6,
+              9,
+              12,
+              13
+            ],
+            [
+              0,
+              1,
+              4,
+              6,
+              10,
+              11,
+              13,
+              15
+            ],
+            [
+              0,
+              2,
+              3,
+              6,
+              7,
+              11,
+              12,
+              15
+            ],
+            [
+              0,
+              2,
+              4,
+              5,
+              7,
+              9,
+              11,
+              14
+            ],
+            [
+              0,
+              4,
+              6,
+              8,
+              9,
+              10,
+              12,
+              13
+            ],
+            [
+              1,
+              2,
+              3,
+              5,
+              8,
+              12,
+              14,
+              15
+            ],
+            [
+              3,
+              4,
+              5,
+              6,
+              8,
+              9,
+              10,
+              15
+            ],
+            [
+              3,
+              6,
+              7,
+              9,
+              10,
+              11,
+              13,
+              15
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            6,
+            18
+          ],
+          "size": 8,
+          "supports": [
+            [
+              0,
+              1,
+              3,
+              5,
+              6,
+              7,
+              10,
+              12
+            ],
+            [
+              0,
+              1,
+              3,
+              5,
+              9,
+              12,
+              13,
+              15
+            ],
+            [
+              0,
+              2,
+              3,
+              6,
+              10,
+              12,
+              14,
+              15
+            ],
+            [
+              0,
+              5,
+              9,
+              10,
+              11,
+              12,
+              14,
+              15
+            ],
+            [
+              1,
+              2,
+              5,
+              6,
+              8,
+              9,
+              12,
+              13
+            ],
+            [
+              1,
+              4,
+              6,
+              8,
+              10,
+              11,
+              13,
+              15
+            ],
+            [
+              2,
+              3,
+              6,
+              7,
+              8,
+              11,
+              12,
+              15
+            ],
+            [
+              2,
+              4,
+              5,
+              7,
+              8,
+              9,
+              11,
+              14
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            9,
+            89
+          ],
+          "size": 8,
+          "supports": [
+            [
+              0,
+              1,
+              2,
+              4,
+              5,
+              6,
+              11,
+              15
+            ],
+            [
+              0,
+              1,
+              3,
+              5,
+              7,
+              10,
+              12,
+              14
+            ],
+            [
+              0,
+              2,
+              4,
+              5,
+              6,
+              8,
+              9,
+              12
+            ],
+            [
+              0,
+              2,
+              6,
+              7,
+              9,
+              11,
+              12,
+              13
+            ],
+            [
+              1,
+              2,
+              5,
+              8,
+              9,
+              12,
+              13,
+              14
+            ],
+            [
+              1,
+              4,
+              8,
+              10,
+              11,
+              13,
+              14,
+              15
+            ],
+            [
+              2,
+              3,
+              5,
+              6,
+              7,
+              9,
+              11,
+              15
+            ],
+            [
+              2,
+              3,
+              7,
+              8,
+              11,
+              12,
+              14,
+              15
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            11,
+            12
+          ],
+          "size": 8,
+          "supports": [
+            [
+              0,
+              2,
+              3,
+              4,
+              7,
+              9,
+              13,
+              14
+            ],
+            [
+              0,
+              2,
+              6,
+              9,
+              10,
+              12,
+              13,
+              14
+            ],
+            [
+              0,
+              3,
+              4,
+              5,
+              8,
+              9,
+              12,
+              15
+            ],
+            [
+              0,
+              3,
+              7,
+              9,
+              11,
+              12,
+              13,
+              15
+            ],
+            [
+              1,
+              2,
+              4,
+              5,
+              6,
+              8,
+              11,
+              15
+            ],
+            [
+              1,
+              3,
+              5,
+              7,
+              8,
+              10,
+              12,
+              14
+            ],
+            [
+              2,
+              3,
+              5,
+              6,
+              9,
+              10,
+              14,
+              15
+            ],
+            [
+              2,
+              6,
+              7,
+              8,
+              9,
+              11,
+              12,
+              13
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            25,
+            70
+          ],
+          "size": 8,
+          "supports": [
+            [
+              0,
+              1,
+              4,
+              5,
+              7,
+              8,
+              11,
+              12
+            ],
+            [
+              0,
+              2,
+              4,
+              5,
+              6,
+              9,
+              11,
+              15
+            ],
+            [
+              0,
+              2,
+              4,
+              8,
+              11,
+              12,
+              14,
+              15
+            ],
+            [
+              0,
+              3,
+              5,
+              7,
+              9,
+              10,
+              12,
+              14
+            ],
+            [
+              1,
+              2,
+              5,
+              6,
+              7,
+              10,
+              11,
+              14
+            ],
+            [
+              1,
+              2,
+              5,
+              9,
+              11,
+              13,
+              14,
+              15
+            ],
+            [
+              1,
+              3,
+              4,
+              6,
+              7,
+              8,
+              10,
+              13
+            ],
+            [
+              4,
+              8,
+              9,
+              10,
+              11,
+              13,
+              14,
+              15
+            ]
+          ],
+          "truncated": false
+        }
+      ],
+      "max_fiber_size": 8,
+      "n": 16,
+      "observed_fiber_count": 6225,
+      "p": 97,
+      "parameter_count": 9409,
+      "prefix_width": 2,
+      "q_chal": 97,
+      "q_gen": 97,
+      "q_line": 97,
+      "support_count": 12870,
+      "support_size": 8
+    },
+    {
+      "average_fiber_size": "12870/912673",
+      "collision_ledgers": {
+        "3": {
+          "common_core_histogram": {
+            "0": 16,
+            "4": 4
+          },
+          "normalized_excess": "491869494949503695399/88822787625",
+          "pairwise_intersection_profile_histogram": {
+            "0,4,4": 12,
+            "4,4,4": 8
+          },
+          "power_moment_sum": 15528,
+          "tail_bounds": [
+            {
+              "T": 1,
+              "excess_over_T_power": "491869494949503695399/88822787625",
+              "tail_count": 12457,
+              "tail_within_bound": true
+            },
+            {
+              "T": 2,
+              "excess_over_T_power": "491869494949503695399/710582301000",
+              "tail_count": 12457,
+              "tail_within_bound": true
+            },
+            {
+              "T": 4,
+              "excess_over_T_power": "491869494949503695399/5684658408000",
+              "tail_count": 12457,
+              "tail_within_bound": true
+            },
+            {
+              "T": 8,
+              "excess_over_T_power": "491869494949503695399/45477267264000",
+              "tail_count": 12457,
+              "tail_within_bound": true
+            }
+          ],
+          "tuple_count_replayed": 20,
+          "unordered_collision_count": 20
+        },
+        "4": {
+          "common_core_histogram": {
+            "0": 15
+          },
+          "normalized_excess": "31916748605790148013571886/63508293151875",
+          "pairwise_intersection_profile_histogram": {
+            "0,0,4,4,4,4": 3,
+            "0,4,4,4,4,4": 12
+          },
+          "power_moment_sum": 19872,
+          "tail_bounds": [
+            {
+              "T": 1,
+              "excess_over_T_power": "31916748605790148013571886/63508293151875",
+              "tail_count": 12457,
+              "tail_within_bound": true
+            },
+            {
+              "T": 2,
+              "excess_over_T_power": "15958374302895074006785943/508066345215000",
+              "tail_count": 12457,
+              "tail_within_bound": true
+            },
+            {
+              "T": 4,
+              "excess_over_T_power": "15958374302895074006785943/8129061523440000",
+              "tail_count": 12457,
+              "tail_within_bound": true
+            },
+            {
+              "T": 8,
+              "excess_over_T_power": "15958374302895074006785943/130064984375040000",
+              "tail_count": 12457,
+              "tail_within_bound": true
+            }
+          ],
+          "tuple_count_replayed": 15,
+          "unordered_collision_count": 15
+        }
+      },
+      "empty_parameter_count": 900216,
+      "fiber_size_histogram": {
+        "1": 12048,
+        "2": 408,
+        "6": 1
+      },
+      "label": "f97_mu16_m8_w3",
+      "largest_fibers": [
+        {
+          "key": [
+            0,
+            0,
+            0
+          ],
+          "size": 6,
+          "supports": [
+            [
+              0,
+              1,
+              4,
+              5,
+              8,
+              9,
+              12,
+              13
+            ],
+            [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14
+            ],
+            [
+              0,
+              3,
+              4,
+              7,
+              8,
+              11,
+              12,
+              15
+            ],
+            [
+              1,
+              2,
+              5,
+              6,
+              9,
+              10,
+              13,
+              14
+            ],
+            [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11,
+              13,
+              15
+            ],
+            [
+              2,
+              3,
+              6,
+              7,
+              10,
+              11,
+              14,
+              15
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            0,
+            11,
+            0
+          ],
+          "size": 2,
+          "supports": [
+            [
+              0,
+              1,
+              2,
+              4,
+              8,
+              9,
+              10,
+              12
+            ],
+            [
+              1,
+              2,
+              3,
+              7,
+              9,
+              10,
+              11,
+              15
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            0,
+            14,
+            0
+          ],
+          "size": 2,
+          "supports": [
+            [
+              0,
+              3,
+              4,
+              5,
+              8,
+              11,
+              12,
+              13
+            ],
+            [
+              2,
+              3,
+              5,
+              6,
+              10,
+              11,
+              13,
+              14
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            0,
+            17,
+            0
+          ],
+          "size": 2,
+          "supports": [
+            [
+              0,
+              4,
+              5,
+              7,
+              8,
+              12,
+              13,
+              15
+            ],
+            [
+              2,
+              5,
+              6,
+              7,
+              10,
+              13,
+              14,
+              15
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            0,
+            21,
+            0
+          ],
+          "size": 2,
+          "supports": [
+            [
+              0,
+              1,
+              5,
+              6,
+              8,
+              9,
+              13,
+              14
+            ],
+            [
+              0,
+              3,
+              6,
+              7,
+              8,
+              11,
+              14,
+              15
+            ]
+          ],
+          "truncated": false
+        }
+      ],
+      "max_fiber_size": 6,
+      "n": 16,
+      "observed_fiber_count": 12457,
+      "p": 97,
+      "parameter_count": 912673,
+      "prefix_width": 3,
+      "q_chal": 97,
+      "q_gen": 97,
+      "q_line": 97,
+      "support_count": 12870,
+      "support_size": 8
+    },
+    {
+      "average_fiber_size": "12870/66049",
+      "collision_ledgers": {
+        "3": {
+          "common_core_histogram": {
+            "0": 128,
+            "2": 144,
+            "4": 4
+          },
+          "normalized_excess": "306289426389134887/88822787625",
+          "pairwise_intersection_profile_histogram": {
+            "0,4,4": 12,
+            "2,2,4": 64,
+            "2,4,4": 96,
+            "4,4,4": 104
+          },
+          "power_moment_sum": 25512,
+          "tail_bounds": [
+            {
+              "T": 1,
+              "excess_over_T_power": "306289426389134887/88822787625",
+              "tail_count": 11241,
+              "tail_within_bound": true
+            },
+            {
+              "T": 2,
+              "excess_over_T_power": "306289426389134887/710582301000",
+              "tail_count": 11241,
+              "tail_within_bound": true
+            },
+            {
+              "T": 4,
+              "excess_over_T_power": "306289426389134887/5684658408000",
+              "tail_count": 11241,
+              "tail_within_bound": true
+            },
+            {
+              "T": 8,
+              "excess_over_T_power": "306289426389134887/45477267264000",
+              "tail_count": 1481,
+              "tail_within_bound": true
+            }
+          ],
+          "tuple_count_replayed": 276,
+          "unordered_collision_count": 276
+        },
+        "4": {
+          "common_core_histogram": {
+            "0": 95
+          },
+          "normalized_excess": "12065747831747097907834/342944783020125",
+          "pairwise_intersection_profile_histogram": {
+            "0,0,4,4,4,4": 3,
+            "0,4,4,4,4,4": 12,
+            "2,2,2,4,4,4": 32,
+            "2,2,4,4,4,4": 48
+          },
+          "power_moment_sum": 50720,
+          "tail_bounds": [
+            {
+              "T": 1,
+              "excess_over_T_power": "12065747831747097907834/342944783020125",
+              "tail_count": 11241,
+              "tail_within_bound": true
+            },
+            {
+              "T": 2,
+              "excess_over_T_power": "6032873915873548953917/2743558264161000",
+              "tail_count": 11241,
+              "tail_within_bound": true
+            },
+            {
+              "T": 4,
+              "excess_over_T_power": "6032873915873548953917/43896932226576000",
+              "tail_count": 11241,
+              "tail_within_bound": true
+            },
+            {
+              "T": 8,
+              "excess_over_T_power": "6032873915873548953917/702350915625216000",
+              "tail_count": 1481,
+              "tail_within_bound": true
+            }
+          ],
+          "tuple_count_replayed": 95,
+          "unordered_collision_count": 95
+        }
+      },
+      "empty_parameter_count": 54808,
+      "fiber_size_histogram": {
+        "1": 9760,
+        "2": 1368,
+        "3": 96,
+        "5": 16,
+        "6": 1
+      },
+      "label": "f257_mu16_m8_w2",
+      "largest_fibers": [
+        {
+          "key": [
+            0,
+            0
+          ],
+          "size": 6,
+          "supports": [
+            [
+              0,
+              1,
+              4,
+              5,
+              8,
+              9,
+              12,
+              13
+            ],
+            [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14
+            ],
+            [
+              0,
+              3,
+              4,
+              7,
+              8,
+              11,
+              12,
+              15
+            ],
+            [
+              1,
+              2,
+              5,
+              6,
+              9,
+              10,
+              13,
+              14
+            ],
+            [
+              1,
+              3,
+              5,
+              7,
+              9,
+              11,
+              13,
+              15
+            ],
+            [
+              2,
+              3,
+              6,
+              7,
+              10,
+              11,
+              14,
+              15
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            45,
+            113
+          ],
+          "size": 5,
+          "supports": [
+            [
+              0,
+              1,
+              3,
+              4,
+              5,
+              7,
+              9,
+              13
+            ],
+            [
+              0,
+              2,
+              3,
+              4,
+              6,
+              7,
+              10,
+              14
+            ],
+            [
+              0,
+              2,
+              4,
+              9,
+              11,
+              13,
+              14,
+              15
+            ],
+            [
+              1,
+              5,
+              6,
+              8,
+              9,
+              10,
+              12,
+              13
+            ],
+            [
+              3,
+              6,
+              7,
+              8,
+              10,
+              11,
+              12,
+              15
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            51,
+            144
+          ],
+          "size": 5,
+          "supports": [
+            [
+              0,
+              1,
+              5,
+              9,
+              10,
+              12,
+              13,
+              14
+            ],
+            [
+              0,
+              3,
+              7,
+              10,
+              11,
+              12,
+              14,
+              15
+            ],
+            [
+              1,
+              2,
+              3,
+              4,
+              6,
+              8,
+              13,
+              15
+            ],
+            [
+              1,
+              4,
+              5,
+              7,
+              8,
+              9,
+              11,
+              13
+            ],
+            [
+              2,
+              4,
+              6,
+              7,
+              8,
+              10,
+              11,
+              14
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            53,
+            248
+          ],
+          "size": 5,
+          "supports": [
+            [
+              0,
+              1,
+              2,
+              4,
+              6,
+              11,
+              13,
+              15
+            ],
+            [
+              0,
+              2,
+              4,
+              5,
+              6,
+              8,
+              9,
+              12
+            ],
+            [
+              1,
+              5,
+              8,
+              9,
+              10,
+              12,
+              13,
+              14
+            ],
+            [
+              2,
+              3,
+              5,
+              6,
+              7,
+              9,
+              11,
+              15
+            ],
+            [
+              3,
+              7,
+              8,
+              10,
+              11,
+              12,
+              14,
+              15
+            ]
+          ],
+          "truncated": false
+        },
+        {
+          "key": [
+            77,
+            9
+          ],
+          "size": 5,
+          "supports": [
+            [
+              0,
+              1,
+              2,
+              4,
+              5,
+              8,
+              12,
+              14
+            ],
+            [
+              0,
+              2,
+              7,
+              9,
+              11,
+              12,
+              13,
+              14
+            ],
+            [
+              1,
+              2,
+              3,
+              5,
+              7,
+              11,
+              14,
+              15
+            ],
+            [
+              1,
+              4,
+              5,
+              6,
+              8,
+              9,
+              10,
+              13
+            ],
+            [
+              3,
+              4,
+              6,
+              7,
+              8,
+              10,
+              11,
+              15
+            ]
+          ],
+          "truncated": false
+        }
+      ],
+      "max_fiber_size": 6,
+      "n": 16,
+      "observed_fiber_count": 11241,
+      "p": 257,
+      "parameter_count": 66049,
+      "prefix_width": 2,
+      "q_chal": 257,
+      "q_gen": 257,
+      "q_line": 257,
+      "support_count": 12870,
+      "support_size": 8
+    }
+  ],
+  "schema_version": "q2-heavy-fiber-fewness-v1",
+  "theorem_problem_id": "Q2 heavy-fiber fewness; cor:periodic-support-count"
+}
