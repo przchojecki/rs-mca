@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - SPI component control
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/spi_component_control.md`;
+  `experimental/scripts/verify_spi_component_control_packet.py`;
+  `experimental/data/certificates/spi-component-control/spi_component_control.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `spi_component_control`, the scroll
+  argument bounding the alignment incidence by one horizontal component plus
+  at most `t` vertical rank-drop fibres.
+- **How it is useful:** This is the component inventory consumed by the SPI
+  exceptional-class route, without doing any support enumeration or generic
+  horizontal `D_j` point counting.
+- **What to do next:** Combine this with the Hankel rank-profile entropy packet
+  when packaging `spi_exceptional_class`.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by

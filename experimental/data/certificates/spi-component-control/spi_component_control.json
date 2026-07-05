@@ -1,0 +1,54 @@
+{
+  "claim": {
+    "component_bound": "#Irr(I_{u,v}) <= t + 1",
+    "degree_bound": "Segre degree <= j + t + 1",
+    "generic_rank": "r over K(Z), with r <= t",
+    "horizontal_component": "one projective-bundle scroll, Segre degree <= j+1",
+    "incidence": "I_{u,v} = {(Z,[l]) in P^1 x P^j : M(Z)l = 0}",
+    "minor_degree": "deg Delta(Z) <= r <= t",
+    "pencil": "M(Z) = Z0 M_u + Z1 M_v",
+    "vertical_components": "at most r <= t rank-drop fibres, each a single linear space"
+  },
+  "consumers": [
+    "spi_exceptional_class",
+    "ef_component_control_alignment"
+  ],
+  "non_claims": [
+    "does not count D_j points on the generic horizontal scroll",
+    "does not classify exceptional components as paid or empty",
+    "does not enumerate supports",
+    "does not edit Papers A-D"
+  ],
+  "sample_arithmetic": [
+    {
+      "j": 4,
+      "r": 3,
+      "rank_drop_slopes": 1,
+      "t": 3
+    },
+    {
+      "j": 7,
+      "r": 4,
+      "rank_drop_slopes": 4,
+      "t": 5
+    },
+    {
+      "j": 11,
+      "r": 6,
+      "rank_drop_slopes": 5,
+      "t": 8
+    }
+  ],
+  "schema": "rs-mca.experimental.spi_component_control.v1",
+  "source_dag_node": "spi_component_control",
+  "status": "PROVED",
+  "verdict": "alignment_incidence_has_one_horizontal_scroll_and_at_most_t_vertical_fibres",
+  "verified_random_pencils": {
+    "field": "F_17",
+    "j": 4,
+    "rank_bound": 3,
+    "t": 3,
+    "trials": 2500,
+    "worst_rank_drop_slopes": 1
+  }
+}
