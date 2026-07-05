@@ -1,0 +1,57 @@
+{
+  "claim": {
+    "gate": {
+      "epsilon_star": "2^-128",
+      "list_budget": "epsilon_star * |F|"
+    },
+    "list_arity": "per declared constant m",
+    "official_rates": [
+      "1/2",
+      "1/4",
+      "1/8",
+      "1/16"
+    ],
+    "smooth_domain": "multiplicative subgroup of F of power-of-two size",
+    "target_range": {
+      "field_size_lt": "2^256",
+      "k_max": "2^40"
+    }
+  },
+  "interpretation": {
+    "axis9_dither": "official rows have exact listed rates; no implicit dither",
+    "coset_language": "Coset-form analysis is a conservative superset of the subgroup wording unless a packet explicitly uses subgroup-only normalization.",
+    "m_handling": "fixed constant-m determinations are valid per-instance packets",
+    "s0_zero_open": "rules layer contributes no remaining open convention axis"
+  },
+  "non_claims": [
+    "does not prove a safe or unsafe threshold",
+    "does not promote v13 experimental rows into Paper D",
+    "does not edit Papers A-D",
+    "does not decide future external prize-page drift"
+  ],
+  "quote_fragments": [
+    "multiplicative subgroup of F whose size is a power of two",
+    "rho(C) := k/|L|",
+    "one of 1/2, 1/4, 1/8, 1/16",
+    "k <= 2^40",
+    "|F| < 2^256",
+    "and a constant m",
+    "for a code C, an m, and an eps*",
+    "2^-128"
+  ],
+  "schema": "rs-mca.experimental.rules_freeze.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 5,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_dependencies": [
+    "field_cap_check",
+    "rules_m_reading"
+  ],
+  "source_dag_node": "rules_freeze",
+  "status": "PROVED",
+  "verdict": "official_prize_box_pinned_by_abf26_page5"
+}

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Rules freeze citation packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/rules_freeze.md`,
+  `experimental/scripts/verify_rules_freeze.py`,
+  `experimental/data/certificates/rules-freeze/rules_freeze.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CITATION.
+- **What is being added:** A deterministic citation packet for the
+  `rules_freeze` DAG node, pinning the ABF26 page-5 prize-box conventions:
+  power-of-two smooth domains, `k <= 2^40`, `|F| < 2^256`, exact rates in
+  `{1/2,1/4,1/8,1/16}`, fixed constant-`m` list determinations, and
+  `eps* = 2^-128`.
+- **How it is useful:** Gives downstream S0, axis-9, and list-side packets a
+  reproducible rules-layer baseline with a PDF SHA-256 drift check.
+- **What to do next:** Re-run the verifier when the pinned ABF26 PDF or the
+  external prize page is refreshed, and keep downstream packets explicit about
+  which rules-layer component they consume.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
