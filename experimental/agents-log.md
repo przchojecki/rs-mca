@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel termination assembly
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/f_termination_hankel_packet.md`;
+  `experimental/scripts/verify_f_termination_hankel_packet.py`;
+  `experimental/data/certificates/f-termination-hankel/f_termination_hankel.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `f_termination_hankel`, assembling the
+  rank-profile state-count input with the pinned moment-clean terminal leaf
+  input.
+- **How it is useful:** This gives Przemek's v10 Hankel safe-side program a
+  named termination packet for the Hankel-kernel descent family, while keeping
+  row-specific M3/M4 root-table work separate.
+- **What to do next:** Review the packet boundary against the v10 Hankel
+  certificate format and decide whether it should be referenced by future
+  M3/M4 chart certificates.
+
 ### 2026-07-05 - Hankel rank-profile entropy
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

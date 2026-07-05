@@ -1,0 +1,39 @@
+{
+  "claim": {
+    "leaf_count": "terminal leaves satisfy the pinned affine moment/member-count bound",
+    "object": "rate-1/2 Hankel-kernel instances over mu_n",
+    "paid_routes": [
+      "tangent/common-divisor",
+      "quotient/pullback",
+      "dihedral/Chebyshev quotient",
+      "extension or already-paid ledgers where applicable"
+    ],
+    "state_count": "reachable unpaid primitive saturated states <= n^{O(W^2)} for fixed W",
+    "state_model": "saturated root-closure states, not raw support branches"
+  },
+  "consumers": [
+    "f_descent_termination"
+  ],
+  "non_claims": [
+    "does not bound raw sparse-support branch counts",
+    "does not remove the fixed-W hypothesis",
+    "does not produce the F17^32 M3/M4 root tables",
+    "does not edit Papers A-D"
+  ],
+  "proof_inputs": {
+    "leaf_member_input": "hankel_moment_clean_leaves",
+    "state_count_input": "hankel_rank_profile_entropy",
+    "subinputs_inside_rank_profile": [
+      "f_support_lattice",
+      "hankel_sparse_atoms_as_rational_defects"
+    ]
+  },
+  "schema": "rs-mca.experimental.f_termination_hankel.v1",
+  "source_dag_dependencies": [
+    "hankel_rank_profile_entropy",
+    "hankel_moment_clean_leaves"
+  ],
+  "source_dag_node": "f_termination_hankel",
+  "status": "PROVED",
+  "verdict": "hankel_family_termination_follows_from_rank_profile_and_pinned_leaf_bounds"
+}
