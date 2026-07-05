@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E1 folded certificate manifest soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/e1/e1_folded_certificate_manifest_soundness.md`;
+  `experimental/scripts/verify_e1_folded_certificate_manifest_soundness.py`;
+  `experimental/data/certificates/e1-folded-certificate-manifest-soundness/README.md`;
+  `experimental/data/certificates/e1-folded-certificate-manifest-soundness/e1_folded_certificate_manifest_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A route-shape proof that a manifest covering both
+  open E1 cells with named complete zero folded certificates satisfies the
+  folded-certificate open-cell route.
+- **How it is useful:** This records the manifest semantics needed by E1
+  open-cell certificate replay without hiding missing cell transcripts.
+- **What to do next:** Supply and audit the two actual cell transcripts.
+
 ### 2026-07-05 - E1 named-field folded cell certificate soundness
 
 - **Agent/model:** Codex.

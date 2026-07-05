@@ -1,0 +1,36 @@
+{
+  "anchor_checks": {
+    "control_payload": true,
+    "folded_route": true,
+    "non_claim": true,
+    "note_exists": true,
+    "open_cells": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    "definition of e1_open_cell_control_payload folded-certificate route"
+  ],
+  "non_claims": [
+    "does not provide the actual two-cell certificate transcripts",
+    "does not certify either no-vector payload"
+  ],
+  "note": "experimental/notes/e1/e1_folded_certificate_manifest_soundness.md",
+  "sample_manifest": {
+    "cells": [
+      128,
+      256
+    ],
+    "checks": {
+      "covers_open_cells": true,
+      "fields_named": true,
+      "searches_complete": true,
+      "zero_noncyclotomic": true
+    },
+    "passes": true
+  },
+  "schema": "e1-folded-certificate-manifest-soundness-v1",
+  "source_dag_node": "e1_folded_certificate_manifest_soundness",
+  "statement": "a manifest covering N'=128 and N'=256 with named complete zero folded certificates satisfies the E1 open-cell folded route",
+  "status": "PROVED_MANIFEST_ROUTE_SOUNDNESS"
+}
