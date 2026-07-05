@@ -1,0 +1,55 @@
+{
+  "anchor_checks": {
+    "criterion_dependency": true,
+    "non_claim": true,
+    "note_exists": true,
+    "reduced_pole_predicate": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not construct the reduced-phase manifest",
+    "does not enumerate the DLI tuple universe",
+    "does not prove the harmonic conductor budget"
+  ],
+  "note": "experimental/notes/dli/dli_odd_phase_polar_obstruction_soundness.md",
+  "schema": "dli-odd-phase-polar-obstruction-soundness-v1",
+  "source_dag_node": "dli_odd_phase_polar_obstruction_soundness",
+  "status": "PROVED_POLAR_OBSTRUCTION_REPLAY",
+  "toy_check": {
+    "all_expected": true,
+    "cases": [
+      {
+        "accepted": true,
+        "expected": true,
+        "order": 3,
+        "p": 5
+      },
+      {
+        "accepted": true,
+        "expected": true,
+        "order": 1,
+        "p": 5
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "order": 10,
+        "p": 5
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "order": 0,
+        "p": 5
+      },
+      {
+        "accepted": false,
+        "expected": false,
+        "order": -2,
+        "p": 5
+      }
+    ],
+    "field_characteristic": 5
+  }
+}

@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI odd-phase polar obstruction soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_odd_phase_polar_obstruction_soundness.md`;
+  `experimental/scripts/verify_dli_odd_phase_polar_obstruction_soundness.py`;
+  `experimental/data/certificates/dli-odd-phase-polar-obstruction-soundness/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A certificate-soundness packet proving that a
+  positive Artin-Schreier-reduced pole order prime to `p` rules out the
+  trivial `g^p - g + c` phase class.
+- **How it is useful:** Supplies the nontriviality check consumed by DLI
+  odd-phase ledger certificates in the Paper-D audit chain.
+- **What to do next:** Pair this with explicit tuple coverage and polar
+  divisor majorants; this packet alone does not build the reduced-phase
+  manifest.
+
 ### 2026-07-05 - DLI Artin-Schreier conductor criterion
 
 - **Agent/model:** Codex.
