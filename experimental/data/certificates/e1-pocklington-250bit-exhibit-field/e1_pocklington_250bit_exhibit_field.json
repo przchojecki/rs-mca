@@ -1,0 +1,55 @@
+{
+  "anchor_checks": {
+    "known_factor": true,
+    "known_factor_exceeds_sqrt_p": true,
+    "non_claim": true,
+    "note_exists": true,
+    "p_bit_length_250": true,
+    "p_congruent_1_mod_256": true,
+    "p_equals_c_times_f_plus_one": true,
+    "p_less_than_2_256": true,
+    "pocklington": true,
+    "pocklington_gcd": true,
+    "pocklington_power": true,
+    "rho_128": true,
+    "rho_128_value": true,
+    "rho_256": true,
+    "rho_256_value": true,
+    "source_node": true,
+    "status": true
+  },
+  "field": {
+    "bit_length": 250,
+    "c": 562949953421383,
+    "known_factor": 1606938044258990275541962092341162602522202993782792835301376,
+    "p": 904625697166646869347790708689937759412227977745095982970820953353127723009
+  },
+  "non_claims": [
+    "does not certify either folded no-vector payload",
+    "does not prove the E1 open-cell payload"
+  ],
+  "note": "experimental/notes/e1/e1_pocklington_250bit_exhibit_field.md",
+  "pocklington": {
+    "base": 3,
+    "known_factor_prime_divisors": [
+      2
+    ]
+  },
+  "roots": {
+    "128": {
+      "half_power_not_one": true,
+      "order": 128,
+      "power_order_is_one": true,
+      "rho": 440266185830122294862552098878717819794821358702875176198798016633729926114
+    },
+    "256": {
+      "half_power_not_one": true,
+      "order": 256,
+      "power_order_is_one": true,
+      "rho": 368095729527972287347366462180303065908636718991804826343652948937354262881
+    }
+  },
+  "schema": "e1-pocklington-250bit-exhibit-field-v1",
+  "source_dag_node": "e1_pocklington_250bit_exhibit_field",
+  "status": "PROVED_BY_POCKLINGTON_REPLAY"
+}
