@@ -1,0 +1,3511 @@
+{
+  "claim": "finite exact incidence counts for recorded d=2 and d=3 aperiodic Conjecture-F candidate flats",
+  "directed_normal_samples_per_row": 60000,
+  "evaluation_hyperplane_identity": "C(15,3) - 7 = 448 aperiodic locators in each excluded evaluation hyperplane",
+  "named_over_envelope_findings": [],
+  "non_claims": [
+    "No growing-dimensional incidence theorem is claimed.",
+    "No proof or refutation of Conjecture-F is claimed.",
+    "The max values are over the recorded candidate flats, not the full Grassmannian."
+  ],
+  "payload_sha256": "8dbb5654e36bdee95ff2216e1a19de36dc5efe0e97b73de5ec9231390451adcd",
+  "proof_status": "EXPERIMENTAL",
+  "row_rule": "mu_16, j=4, projective dimensions 2 and 3, structured flats plus 60k directed common-normal samples per row",
+  "rows": [
+    {
+      "aperiodic_Dloc_j": 1792,
+      "dimension_rows": {
+        "2": {
+          "candidates_checked": 58,
+          "dim2_comparison_binom_j_2": 6,
+          "dim3_envelope_binom_n_3": null,
+          "exceeds_dim2_comparison": false,
+          "exceeds_dim3_envelope": false,
+          "max_aperiodic_incidence": 1,
+          "max_periodic_hits_in_candidate": 28,
+          "max_witnesses": [
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    2,
+                    5,
+                    6,
+                    8
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  21,
+                  88
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  23,
+                  5
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  26,
+                  77
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_2"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    9,
+                    11
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  89,
+                  44
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  8,
+                  37
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  56,
+                  76
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_3"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    9,
+                    11,
+                    13,
+                    14
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  87,
+                  43
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  50,
+                  83
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  62,
+                  88
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_6"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    12,
+                    14
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  48,
+                  35
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  79,
+                  53
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  28,
+                  57
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_12"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    7,
+                    9
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  88,
+                  48
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  45,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  51,
+                  9
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_32"
+            }
+          ],
+          "projective_dimension": 2,
+          "structured_candidates_checked": 58,
+          "structured_max_aperiodic_incidence": 1
+        },
+        "3": {
+          "candidates_checked": 55991,
+          "dim2_comparison_binom_j_2": null,
+          "dim3_envelope_binom_n_3": 560,
+          "directed_search": {
+            "accepted_gcd_trivial_normals": 55938,
+            "dependent_samples": 136,
+            "duplicate_normals": 3910,
+            "last_improvement_sample": 3872,
+            "max_aperiodic_incidence": 116,
+            "max_periodic_hits_in_candidate": 4,
+            "max_to_envelope": "29/140",
+            "max_witness": {
+              "aperiodic_hit_count": 116,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    2,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    3,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    4,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    5,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    6,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    10
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    7,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    11,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    6,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    5,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    10,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    7,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    9,
+                    10,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    9,
+                    11,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    9,
+                    12,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    3,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    4,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    5,
+                    8
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  47
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  0,
+                  71
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  1,
+                  83
+                ]
+              ],
+              "family": "directed_common_normal",
+              "hits_truncated": true,
+              "normal": [
+                1,
+                82,
+                0,
+                74,
+                33
+              ],
+              "periodic_hit_count": 4,
+              "periodic_hits": [
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    2,
+                    7,
+                    10,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    3,
+                    6,
+                    11,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    4,
+                    5,
+                    12,
+                    13
+                  ]
+                }
+              ],
+              "sample_supports": [
+                [
+                  0,
+                  1,
+                  6,
+                  8
+                ],
+                [
+                  0,
+                  1,
+                  3,
+                  8
+                ],
+                [
+                  3,
+                  7,
+                  12,
+                  15
+                ],
+                [
+                  3,
+                  6,
+                  12,
+                  13
+                ]
+              ],
+              "tag": "sample_3872"
+            },
+            "method": "common normal of random 4-subsets of aperiodic locators",
+            "over_envelope_count": 0,
+            "sampled_locator_class": "aperiodic Dloc_4 only",
+            "samples_after_last_improvement": 56127,
+            "samples_requested": 60000,
+            "skipped_evaluation_hyperplanes": 16,
+            "unique_normals_seen": 55954
+          },
+          "exceeds_dim2_comparison": false,
+          "exceeds_dim3_envelope": false,
+          "max_aperiodic_incidence": 116,
+          "max_periodic_hits_in_candidate": 28,
+          "max_witnesses": [
+            {
+              "aperiodic_hit_count": 116,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    2,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    3,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    4,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    5,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    6,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    10
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    7,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    11,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    6,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    5,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    10,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    7,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    9,
+                    10,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    9,
+                    11,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    9,
+                    12,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    3,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    4,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    5,
+                    8
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  47
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  0,
+                  71
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  1,
+                  83
+                ]
+              ],
+              "family": "directed_common_normal",
+              "hits_truncated": true,
+              "normal": [
+                1,
+                82,
+                0,
+                74,
+                33
+              ],
+              "periodic_hit_count": 4,
+              "periodic_hits": [
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    0,
+                    1,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    2,
+                    7,
+                    10,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    3,
+                    6,
+                    11,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    4,
+                    5,
+                    12,
+                    13
+                  ]
+                }
+              ],
+              "sample_supports": [
+                [
+                  0,
+                  1,
+                  6,
+                  8
+                ],
+                [
+                  0,
+                  1,
+                  3,
+                  8
+                ],
+                [
+                  3,
+                  7,
+                  12,
+                  15
+                ],
+                [
+                  3,
+                  6,
+                  12,
+                  13
+                ]
+              ],
+              "tag": "sample_3872"
+            }
+          ],
+          "projective_dimension": 3,
+          "structured_candidates_checked": 53,
+          "structured_max_aperiodic_incidence": 48
+        }
+      },
+      "domain": [
+        1,
+        8,
+        64,
+        27,
+        22,
+        79,
+        50,
+        12,
+        96,
+        89,
+        33,
+        70,
+        75,
+        18,
+        47,
+        85
+      ],
+      "evaluation_hyperplane_calibration": {
+        "aperiodic_through_point": 448,
+        "aperiodic_to_envelope": "4/5",
+        "dim3_envelope_binom_n_3": 560,
+        "identity": "C(15,3) - 7 = 448",
+        "object": "excluded evaluation hyperplanes normal to (1,a,a^2,a^3,a^4)",
+        "periodic_through_point": 7,
+        "point_count": 16,
+        "point_rows": [
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 1,
+            "point_index": 0,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              8,
+              64,
+              27,
+              22
+            ],
+            "periodic_through_point": 7,
+            "point": 8,
+            "point_index": 1,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              64,
+              22,
+              50,
+              96
+            ],
+            "periodic_through_point": 7,
+            "point": 64,
+            "point_index": 2,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              27,
+              50,
+              89,
+              75
+            ],
+            "periodic_through_point": 7,
+            "point": 27,
+            "point_index": 3,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              22,
+              96,
+              75,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 22,
+            "point_index": 4,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              79,
+              33,
+              85,
+              22
+            ],
+            "periodic_through_point": 7,
+            "point": 79,
+            "point_index": 5,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              50,
+              75,
+              64,
+              96
+            ],
+            "periodic_through_point": 7,
+            "point": 50,
+            "point_index": 6,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              12,
+              47,
+              79,
+              75
+            ],
+            "periodic_through_point": 7,
+            "point": 12,
+            "point_index": 7,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              96,
+              1,
+              96,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 96,
+            "point_index": 8,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              89,
+              64,
+              70,
+              22
+            ],
+            "periodic_through_point": 7,
+            "point": 89,
+            "point_index": 9,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              33,
+              22,
+              47,
+              96
+            ],
+            "periodic_through_point": 7,
+            "point": 33,
+            "point_index": 10,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              70,
+              50,
+              8,
+              75
+            ],
+            "periodic_through_point": 7,
+            "point": 70,
+            "point_index": 11,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              75,
+              96,
+              22,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 75,
+            "point_index": 12,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              18,
+              33,
+              12,
+              22
+            ],
+            "periodic_through_point": 7,
+            "point": 18,
+            "point_index": 13,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              47,
+              75,
+              33,
+              96
+            ],
+            "periodic_through_point": 7,
+            "point": 47,
+            "point_index": 14,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              85,
+              47,
+              18,
+              75
+            ],
+            "periodic_through_point": 7,
+            "point": 85,
+            "point_index": 15,
+            "total_through_point": 455
+          }
+        ],
+        "total_through_point": 455
+      },
+      "j": 4,
+      "label": "f97_mu16_j4",
+      "n": 16,
+      "p": 97,
+      "periodic_Dloc_j": 28,
+      "q_chal": 97,
+      "q_gen": 97,
+      "q_line": 97,
+      "total_Dloc_j": 1820
+    },
+    {
+      "aperiodic_Dloc_j": 1792,
+      "dimension_rows": {
+        "2": {
+          "candidates_checked": 58,
+          "dim2_comparison_binom_j_2": 6,
+          "dim3_envelope_binom_n_3": null,
+          "exceeds_dim2_comparison": false,
+          "exceeds_dim3_envelope": false,
+          "max_aperiodic_incidence": 1,
+          "max_periodic_hits_in_candidate": 28,
+          "max_witnesses": [
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    3,
+                    11,
+                    13,
+                    15
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  78,
+                  30
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  58,
+                  51
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_0"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    5,
+                    6,
+                    7,
+                    12
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  52,
+                  55
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  70,
+                  98
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  14,
+                  39
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_1"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    4,
+                    6,
+                    7,
+                    11
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  81,
+                  31
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  75,
+                  4
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  59,
+                  19
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_3"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    5,
+                    10,
+                    11,
+                    12
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  67,
+                  1
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  23,
+                  74
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  75,
+                  71
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_6"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    7,
+                    13
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  46,
+                  78
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  91,
+                  9
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  10,
+                  50
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_7"
+            }
+          ],
+          "projective_dimension": 2,
+          "structured_candidates_checked": 58,
+          "structured_max_aperiodic_incidence": 1
+        },
+        "3": {
+          "candidates_checked": 56091,
+          "dim2_comparison_binom_j_2": null,
+          "dim3_envelope_binom_n_3": 560,
+          "directed_search": {
+            "accepted_gcd_trivial_normals": 56038,
+            "dependent_samples": 101,
+            "duplicate_normals": 3845,
+            "last_improvement_sample": 2965,
+            "max_aperiodic_incidence": 114,
+            "max_periodic_hits_in_candidate": 4,
+            "max_to_envelope": "57/280",
+            "max_witness": {
+              "aperiodic_hit_count": 114,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    3,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    14,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    9,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    13,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    12,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    11,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    10,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    6,
+                    9,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    10
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    13,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    12,
+                    14
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  18
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  0,
+                  85
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  1,
+                  12
+                ]
+              ],
+              "family": "directed_common_normal",
+              "hits_truncated": true,
+              "normal": [
+                1,
+                11,
+                0,
+                76,
+                69
+              ],
+              "periodic_hit_count": 4,
+              "periodic_hits": [
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    1,
+                    6,
+                    9,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    2,
+                    5,
+                    10,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    3,
+                    4,
+                    11,
+                    12
+                  ]
+                }
+              ],
+              "sample_supports": [
+                [
+                  7,
+                  8,
+                  11,
+                  14
+                ],
+                [
+                  0,
+                  2,
+                  13,
+                  15
+                ],
+                [
+                  1,
+                  7,
+                  8,
+                  9
+                ],
+                [
+                  4,
+                  7,
+                  8,
+                  14
+                ]
+              ],
+              "tag": "sample_2965"
+            },
+            "method": "common normal of random 4-subsets of aperiodic locators",
+            "over_envelope_count": 0,
+            "sampled_locator_class": "aperiodic Dloc_4 only",
+            "samples_after_last_improvement": 57034,
+            "samples_requested": 60000,
+            "skipped_evaluation_hyperplanes": 16,
+            "unique_normals_seen": 56054
+          },
+          "exceeds_dim2_comparison": false,
+          "exceeds_dim3_envelope": false,
+          "max_aperiodic_incidence": 114,
+          "max_periodic_hits_in_candidate": 28,
+          "max_witnesses": [
+            {
+              "aperiodic_hit_count": 114,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    3,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    14,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    9,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    13,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    12,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    11,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    10,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    6,
+                    9,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    10
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    13,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    7,
+                    8
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    12,
+                    14
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  18
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  0,
+                  85
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  1,
+                  12
+                ]
+              ],
+              "family": "directed_common_normal",
+              "hits_truncated": true,
+              "normal": [
+                1,
+                11,
+                0,
+                76,
+                69
+              ],
+              "periodic_hit_count": 4,
+              "periodic_hits": [
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    1,
+                    6,
+                    9,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    2,
+                    5,
+                    10,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    3,
+                    4,
+                    11,
+                    12
+                  ]
+                }
+              ],
+              "sample_supports": [
+                [
+                  7,
+                  8,
+                  11,
+                  14
+                ],
+                [
+                  0,
+                  2,
+                  13,
+                  15
+                ],
+                [
+                  1,
+                  7,
+                  8,
+                  9
+                ],
+                [
+                  4,
+                  7,
+                  8,
+                  14
+                ]
+              ],
+              "tag": "sample_2965"
+            }
+          ],
+          "projective_dimension": 3,
+          "structured_candidates_checked": 53,
+          "structured_max_aperiodic_incidence": 48
+        }
+      },
+      "domain": [
+        1,
+        40,
+        18,
+        42,
+        98,
+        78,
+        69,
+        48,
+        112,
+        73,
+        95,
+        71,
+        15,
+        35,
+        44,
+        65
+      ],
+      "evaluation_hyperplane_calibration": {
+        "aperiodic_through_point": 448,
+        "aperiodic_to_envelope": "4/5",
+        "dim3_envelope_binom_n_3": 560,
+        "identity": "C(15,3) - 7 = 448",
+        "object": "excluded evaluation hyperplanes normal to (1,a,a^2,a^3,a^4)",
+        "periodic_through_point": 7,
+        "point_count": 16,
+        "point_rows": [
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 1,
+            "point_index": 0,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              40,
+              18,
+              42,
+              98
+            ],
+            "periodic_through_point": 7,
+            "point": 40,
+            "point_index": 1,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              18,
+              98,
+              69,
+              112
+            ],
+            "periodic_through_point": 7,
+            "point": 18,
+            "point_index": 2,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              42,
+              69,
+              73,
+              15
+            ],
+            "periodic_through_point": 7,
+            "point": 42,
+            "point_index": 3,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              98,
+              112,
+              15,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 98,
+            "point_index": 4,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              78,
+              95,
+              65,
+              98
+            ],
+            "periodic_through_point": 7,
+            "point": 78,
+            "point_index": 5,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              69,
+              15,
+              18,
+              112
+            ],
+            "periodic_through_point": 7,
+            "point": 69,
+            "point_index": 6,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              48,
+              44,
+              78,
+              15
+            ],
+            "periodic_through_point": 7,
+            "point": 48,
+            "point_index": 7,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              112,
+              1,
+              112,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 112,
+            "point_index": 8,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              73,
+              18,
+              71,
+              98
+            ],
+            "periodic_through_point": 7,
+            "point": 73,
+            "point_index": 9,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              95,
+              98,
+              44,
+              112
+            ],
+            "periodic_through_point": 7,
+            "point": 95,
+            "point_index": 10,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              71,
+              69,
+              40,
+              15
+            ],
+            "periodic_through_point": 7,
+            "point": 71,
+            "point_index": 11,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              15,
+              112,
+              98,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 15,
+            "point_index": 12,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              35,
+              95,
+              48,
+              98
+            ],
+            "periodic_through_point": 7,
+            "point": 35,
+            "point_index": 13,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              44,
+              15,
+              95,
+              112
+            ],
+            "periodic_through_point": 7,
+            "point": 44,
+            "point_index": 14,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              65,
+              44,
+              35,
+              15
+            ],
+            "periodic_through_point": 7,
+            "point": 65,
+            "point_index": 15,
+            "total_through_point": 455
+          }
+        ],
+        "total_through_point": 455
+      },
+      "j": 4,
+      "label": "f113_mu16_j4",
+      "n": 16,
+      "p": 113,
+      "periodic_Dloc_j": 28,
+      "q_chal": 113,
+      "q_gen": 113,
+      "q_line": 113,
+      "total_Dloc_j": 1820
+    },
+    {
+      "aperiodic_Dloc_j": 1792,
+      "dimension_rows": {
+        "2": {
+          "candidates_checked": 58,
+          "dim2_comparison_binom_j_2": 6,
+          "dim3_envelope_binom_n_3": null,
+          "exceeds_dim2_comparison": false,
+          "exceeds_dim3_envelope": false,
+          "max_aperiodic_incidence": 1,
+          "max_periodic_hits_in_candidate": 28,
+          "max_witnesses": [
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    3,
+                    7,
+                    11,
+                    14
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  3,
+                  124
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  67,
+                  15
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  220,
+                  3
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_3"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    5,
+                    10,
+                    12,
+                    13
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  150,
+                  28
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  106,
+                  93
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  210,
+                  30
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_9"
+            },
+            {
+              "aperiodic_hit_count": 1,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    6,
+                    8,
+                    12
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  18,
+                  180
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  61,
+                  125
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  143,
+                  168
+                ]
+              ],
+              "family": "seeded_random",
+              "hits_truncated": false,
+              "periodic_hit_count": 0,
+              "periodic_hits": [],
+              "tag": "seed_31"
+            }
+          ],
+          "projective_dimension": 2,
+          "structured_candidates_checked": 58,
+          "structured_max_aperiodic_incidence": 1
+        },
+        "3": {
+          "candidates_checked": 56251,
+          "dim2_comparison_binom_j_2": null,
+          "dim3_envelope_binom_n_3": 560,
+          "directed_search": {
+            "accepted_gcd_trivial_normals": 56198,
+            "dependent_samples": 91,
+            "duplicate_normals": 3695,
+            "last_improvement_sample": 28111,
+            "max_aperiodic_incidence": 114,
+            "max_periodic_hits_in_candidate": 7,
+            "max_to_envelope": "57/280",
+            "max_witness": {
+              "aperiodic_hit_count": 114,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    2,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    3,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    4,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    6,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    7,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    8,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    8,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    6,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    7,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    9,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    10,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    11,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    12,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    13,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    13,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    6,
+                    8,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    9,
+                    15
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  177
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  0,
+                  233
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "family": "directed_common_normal",
+              "hits_truncated": true,
+              "normal": [
+                1,
+                0,
+                211,
+                0,
+                177
+              ],
+              "periodic_hit_count": 7,
+              "periodic_hits": [
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    0,
+                    5,
+                    8,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 4,
+                  "support": [
+                    1,
+                    5,
+                    9,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    2,
+                    5,
+                    10,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    3,
+                    5,
+                    11,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    4,
+                    5,
+                    12,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    5,
+                    6,
+                    13,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    5,
+                    7,
+                    13,
+                    15
+                  ]
+                }
+              ],
+              "sample_supports": [
+                [
+                  0,
+                  2,
+                  4,
+                  12
+                ],
+                [
+                  4,
+                  5,
+                  10,
+                  13
+                ],
+                [
+                  5,
+                  9,
+                  12,
+                  13
+                ],
+                [
+                  1,
+                  5,
+                  7,
+                  13
+                ]
+              ],
+              "tag": "sample_28111"
+            },
+            "method": "common normal of random 4-subsets of aperiodic locators",
+            "over_envelope_count": 0,
+            "sampled_locator_class": "aperiodic Dloc_4 only",
+            "samples_after_last_improvement": 31888,
+            "samples_requested": 60000,
+            "skipped_evaluation_hyperplanes": 16,
+            "unique_normals_seen": 56214
+          },
+          "exceeds_dim2_comparison": false,
+          "exceeds_dim3_envelope": false,
+          "max_aperiodic_incidence": 114,
+          "max_periodic_hits_in_candidate": 28,
+          "max_witnesses": [
+            {
+              "aperiodic_hit_count": 114,
+              "aperiodic_hits": [
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    2,
+                    9
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    1,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    3,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    4,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    6,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    2,
+                    7,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    3,
+                    8,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    4,
+                    8,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    6,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    7,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    9,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    10,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    11,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    12,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    13,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    5,
+                    13,
+                    15
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    6,
+                    8,
+                    12
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    0,
+                    7,
+                    8,
+                    11
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    2,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    5,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 1,
+                  "support": [
+                    1,
+                    3,
+                    9,
+                    15
+                  ]
+                }
+              ],
+              "basis": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  177
+                ],
+                [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  0,
+                  233
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0
+                ]
+              ],
+              "family": "directed_common_normal",
+              "hits_truncated": true,
+              "normal": [
+                1,
+                0,
+                211,
+                0,
+                177
+              ],
+              "periodic_hit_count": 7,
+              "periodic_hits": [
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    0,
+                    5,
+                    8,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 4,
+                  "support": [
+                    1,
+                    5,
+                    9,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    2,
+                    5,
+                    10,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    3,
+                    5,
+                    11,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    4,
+                    5,
+                    12,
+                    13
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    5,
+                    6,
+                    13,
+                    14
+                  ]
+                },
+                {
+                  "periodicity_scale": 2,
+                  "support": [
+                    5,
+                    7,
+                    13,
+                    15
+                  ]
+                }
+              ],
+              "sample_supports": [
+                [
+                  0,
+                  2,
+                  4,
+                  12
+                ],
+                [
+                  4,
+                  5,
+                  10,
+                  13
+                ],
+                [
+                  5,
+                  9,
+                  12,
+                  13
+                ],
+                [
+                  1,
+                  5,
+                  7,
+                  13
+                ]
+              ],
+              "tag": "sample_28111"
+            }
+          ],
+          "projective_dimension": 3,
+          "structured_candidates_checked": 53,
+          "structured_max_aperiodic_incidence": 48
+        }
+      },
+      "domain": [
+        1,
+        111,
+        30,
+        197,
+        177,
+        126,
+        8,
+        165,
+        240,
+        130,
+        211,
+        44,
+        64,
+        115,
+        233,
+        76
+      ],
+      "evaluation_hyperplane_calibration": {
+        "aperiodic_through_point": 448,
+        "aperiodic_to_envelope": "4/5",
+        "dim3_envelope_binom_n_3": 560,
+        "identity": "C(15,3) - 7 = 448",
+        "object": "excluded evaluation hyperplanes normal to (1,a,a^2,a^3,a^4)",
+        "periodic_through_point": 7,
+        "point_count": 16,
+        "point_rows": [
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 1,
+            "point_index": 0,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              111,
+              30,
+              197,
+              177
+            ],
+            "periodic_through_point": 7,
+            "point": 111,
+            "point_index": 1,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              30,
+              177,
+              8,
+              240
+            ],
+            "periodic_through_point": 7,
+            "point": 30,
+            "point_index": 2,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              197,
+              8,
+              130,
+              64
+            ],
+            "periodic_through_point": 7,
+            "point": 197,
+            "point_index": 3,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              177,
+              240,
+              64,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 177,
+            "point_index": 4,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              126,
+              211,
+              76,
+              177
+            ],
+            "periodic_through_point": 7,
+            "point": 126,
+            "point_index": 5,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              8,
+              64,
+              30,
+              240
+            ],
+            "periodic_through_point": 7,
+            "point": 8,
+            "point_index": 6,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              165,
+              233,
+              126,
+              64
+            ],
+            "periodic_through_point": 7,
+            "point": 165,
+            "point_index": 7,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              240,
+              1,
+              240,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 240,
+            "point_index": 8,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              130,
+              30,
+              44,
+              177
+            ],
+            "periodic_through_point": 7,
+            "point": 130,
+            "point_index": 9,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              211,
+              177,
+              233,
+              240
+            ],
+            "periodic_through_point": 7,
+            "point": 211,
+            "point_index": 10,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              44,
+              8,
+              111,
+              64
+            ],
+            "periodic_through_point": 7,
+            "point": 44,
+            "point_index": 11,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              64,
+              240,
+              177,
+              1
+            ],
+            "periodic_through_point": 7,
+            "point": 64,
+            "point_index": 12,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              115,
+              211,
+              165,
+              177
+            ],
+            "periodic_through_point": 7,
+            "point": 115,
+            "point_index": 13,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              233,
+              64,
+              211,
+              240
+            ],
+            "periodic_through_point": 7,
+            "point": 233,
+            "point_index": 14,
+            "total_through_point": 455
+          },
+          {
+            "aperiodic_through_point": 448,
+            "normal": [
+              1,
+              76,
+              233,
+              115,
+              64
+            ],
+            "periodic_through_point": 7,
+            "point": 76,
+            "point_index": 15,
+            "total_through_point": 455
+          }
+        ],
+        "total_through_point": 455
+      },
+      "j": 4,
+      "label": "f241_mu16_j4",
+      "n": 16,
+      "p": 241,
+      "periodic_Dloc_j": 28,
+      "q_chal": 241,
+      "q_gen": 241,
+      "q_line": 241,
+      "total_Dloc_j": 1820
+    }
+  ],
+  "schema_version": "growing-dim-conjf-d3-v2",
+  "seed": 2026070509,
+  "theorem_problem_id": "rem:v13-conjf-open; prob:band; thm:v13-dim2"
+}

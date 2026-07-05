@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Growing-dimensional Conjecture-F d3 census
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_growing_dim_conjf_d3.py`;
+  `experimental/scripts/verify_growing_dim_conjf_d3_check.py`;
+  `experimental/data/certificates/growing-dim-conjf-d3/growing_dim_conjf_d3.json`;
+  `experimental/notes/m1/growing_dim_conjf_d3_census.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact incidence counts for recorded gcd-trivial
+  aperiodic projective flats of dimensions `2` and `3` over three `mu_16`
+  toy rows, strengthened with 60000 directed common-normal samples per row and
+  the excluded evaluation-hyperplane identity `C(15,3) - 7 = 448`.
+- **How it is useful:** Provides a finite d=2 to d=3 crossover census for
+  the `rem:v13-conjf-open` aperiodic Conjecture-F object, with a separate
+  replay checker for the max witnesses.
+- **What to do next:** Review whether the directed search should be extended
+  toward a full hyperplane census before treating the observed maxima as
+  evidence for a broader incidence pattern.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by
