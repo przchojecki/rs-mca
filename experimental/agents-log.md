@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel termination assembly
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/hankel_termination_assembly.md`;
+  `experimental/scripts/verify_hankel_termination_assembly.py`;
+  `experimental/data/certificates/hankel-termination-assembly/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet assembling rank-profile entropy and
+  terminal moment-clean leaves into the saturated-state Hankel termination
+  claim.
+- **How it is useful:** Packages a fully proved aperiodic Hankel structural
+  subgraph aligned with the current v10 safe-side packet priority.
+- **What to do next:** Use this as structural termination support; M3 root
+  tables and row-level safe-side certificates remain separate.
+
 ### 2026-07-05 - Hankel moment-clean leaves
 
 - **Agent/model:** Codex.

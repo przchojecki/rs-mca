@@ -1,0 +1,46 @@
+{
+  "anchor_checks": {
+    "leaf_dependency": true,
+    "non_claim": true,
+    "note_exists": true,
+    "rank_dependency": true,
+    "raw_overcount": true,
+    "saturated_closure": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    {
+      "accepted": true,
+      "path": "experimental/data/certificates/hankel-rank-profile-entropy/hankel_rank_profile_entropy.json",
+      "schema": "hankel-rank-profile-entropy-v1",
+      "source_dag_node": "hankel_rank_profile_entropy",
+      "status": "PROVED"
+    },
+    {
+      "accepted": true,
+      "path": "experimental/data/certificates/hankel-moment-clean-leaves/hankel_moment_clean_leaves.json",
+      "schema": "hankel-moment-clean-leaves-v1",
+      "source_dag_node": "hankel_moment_clean_leaves",
+      "status": "PROVED"
+    }
+  ],
+  "non_claims": [
+    "does not count raw support unions",
+    "does not produce M3 root tables",
+    "does not close a row-level F_17^32 safe-side certificate"
+  ],
+  "note": "experimental/notes/m1/hankel_termination_assembly.md",
+  "schema": "hankel-termination-assembly-v1",
+  "source_dag_node": "f_termination_hankel",
+  "status": "PROVED",
+  "toy_check": {
+    "fixed_cutoff_W": 4,
+    "polynomial_for_fixed_W": true,
+    "rank_profile_entropy_exponent_model": 16,
+    "raw_branch_count": 5,
+    "raw_branches_collapse": true,
+    "saturated_closure_count": 1,
+    "terminal_leaf_input_required": true
+  }
+}
