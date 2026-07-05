@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Optional GPU engine provenance
+
+- **Agent/model:** Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/scripts/gpu/README.md`;
+  `experimental/scripts/gpu/sigmac_gpu.py`;
+  `experimental/scripts/gpu/staircase_gpu.py`;
+  `experimental/scripts/verify_gpu_engine_provenance.py`;
+  `experimental/notes/audits/gpu_engine_provenance.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Optional CUDA accelerator source files and a
+  stdlib provenance checker that parses their `RAWKERNEL_SOURCE` strings and
+  compares them to any certificate `gpu_run` kernel hashes.
+- **How it is useful:** Keeps GPU-produced packet provenance inspectable while
+  preserving CPU/stdlib certificate verification as the mathematical checking
+  path.
+- **What to do next:** Use the provenance checker whenever a certificate
+  records `kernel_source_sha256`, and keep GPU kernels optional rather than a
+  dependency for replay.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
