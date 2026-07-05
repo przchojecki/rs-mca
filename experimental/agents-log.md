@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Axis 2 pair-versus-tuple packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/axis2_ell.md`;
+  `experimental/scripts/verify_axis2_ell.py`;
+  `experimental/data/certificates/axis2-ell/axis2_ell.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-pinned S0 axis packet showing that the
+  official MCA object is pair/line based rather than an arbitrary `ell`-tuple
+  sampler.
+- **How it is useful:** Keeps MCA row packets aligned with the two-word
+  same-support predicate while separating interleaved-code stability and
+  list-side constant-`m` questions.
+- **What to do next:** Label any higher-arity generator or interleaving packet
+  by the theorem or protocol convention it consumes.
+
 ### 2026-07-05 - Axis 1 batching shape packet
 
 - **Agent/model:** Codex.

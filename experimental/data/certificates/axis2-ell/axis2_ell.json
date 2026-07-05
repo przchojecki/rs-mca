@@ -1,0 +1,30 @@
+{
+  "interleaving_note": "ABF26 records MCA interleaving stability separately; this is not a change of the primitive MCA sampler.",
+  "non_claims": [
+    "does not prove interleaving stability",
+    "does not resolve list-side constant-m thresholds",
+    "does not forbid protocol-specific higher-arity generators"
+  ],
+  "official_object": {
+    "not_primitive_object": "arbitrary ell-tuples",
+    "sampler": "f1 + gamma f2",
+    "support_predicate": "same-support pair condition against C^{==2}"
+  },
+  "quote_fragments": [
+    "Let f1, f2",
+    "line L := {f1 + gamma f2}",
+    "Delta_S((f1, f2), C^{==2})",
+    "epsilon_mca(C^{==t}, delta) = epsilon_mca(C, delta)"
+  ],
+  "schema": "rs-mca.experimental.axis2_ell.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 17,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "axis2_ell",
+  "status": "PROVED",
+  "verdict": "official_mca_object_is_pair_line_based"
+}
