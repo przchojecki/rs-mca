@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - M-sweep packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/m_sweep.md`,
+  `experimental/scripts/verify_m_sweep.py`,
+  `experimental/data/certificates/m-sweep/m_sweep.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / DAG ASSEMBLY.
+- **What is being added:** A packet for the `m_sweep` DAG node, deriving
+  `m <= floor(sqrt((n-k)/t))` from `clique_cap` after writing `t = a-k`.
+- **How it is useful:** Supplies the finite affordable interleaving-arity
+  range consumed by `m_handling` while keeping arbitrary constant-`m`
+  coverage routed to the large-`m` branch.
+- **What to do next:** Use this packet as the finite-sweep dependency in
+  list-side row packets, and require a separate uniform-in-`m` input when a row
+  claims coverage beyond the finite sweep.
+
 ### 2026-07-05 - Clique-cap packet
 
 - **Agent/model:** Codex.

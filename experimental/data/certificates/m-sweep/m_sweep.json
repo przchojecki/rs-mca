@@ -1,0 +1,39 @@
+{
+  "consumers": [
+    "m_handling",
+    "list_safe"
+  ],
+  "derivation": {
+    "parent_cap": "n >= k + m^2(a-k)",
+    "recorded_near_corridor_range": "approximately 16..31",
+    "slack_variable": "t = a-k",
+    "sweep_bound": "m <= floor(sqrt((n-k)/t))"
+  },
+  "non_claims": [
+    "does not cover arbitrary constant m uniformly",
+    "does not prove list_safe",
+    "does not provide the large-m regularity branch"
+  ],
+  "normalized_examples": [
+    {
+      "m_max": 16,
+      "ratio": 256
+    },
+    {
+      "m_max": 31,
+      "ratio": 961
+    }
+  ],
+  "schema": "rs-mca.experimental.m_sweep.v1",
+  "source_dag_dependencies": [
+    "clique_cap"
+  ],
+  "source_dag_node": "m_sweep",
+  "status": "PROVED",
+  "upstream_evidence": [
+    "experimental/data/certificates/clique-cap/clique_cap.json",
+    "experimental/scripts/verify_x1_clique_cap.py",
+    "experimental/notes/roadmaps/wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md"
+  ],
+  "verdict": "finite_affordable_m_sweep_from_clique_cap"
+}
