@@ -150,7 +150,14 @@
    "formula": "B_ext(a), prop:v13-extension",
    "value": "TBD",
    "status": "CONDITIONAL_ON_NAMED_INPUT",
-   "note": "No computation of any kind attempted anywhere in the repo for this cell at this row; not even a named-input target has been derived yet."
+   "note": "No computation of any kind attempted anywhere in the repo for this cell at this row; not even a named-input target has been derived yet.",
+   "named_input": "certified descended-cycle classification inventory (ef_* soundness lemmas) or zero-dimensional Weil-restricted eliminant; K=B and B<K<F branches PAID_BY_THEOREM (routed to lower-arity base cells)",
+   "target": {
+    "e_Y": 0,
+    "Delta_ext_ceiling_int": 4226236,
+    "note": "e_Y=0 forced: any positive-dimensional chart contributes >= q_gen ~ 2^31"
+   },
+   "ref": "experimental/notes/frontier-adjacent/frontier_extension_cell_targets_v1.md (PR #343)"
   },
   {
    "cell": "paid_plain_CA_or_sparse_layer (eca / sigma_C via thm:sparsify)",
