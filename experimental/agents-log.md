@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Cap end sharpening
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/cap_end_sharpening.md`;
+  `experimental/scripts/verify_cap_end_sharpening.py`;
+  `experimental/data/certificates/cap-end-sharpening/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A rate-`1/8` exact cap-end sharpening packet showing
+  the quotient-remainder floor moves the unsafe boundary by `1/8192`.
+- **How it is useful:** Supplies route (a) for the fourth-mechanism wedge in
+  the clean-rate corridor program.
+- **What to do next:** Feed this packet into `fourth_mechanism_rate8`; it is
+  not a full corridor ledger by itself.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
