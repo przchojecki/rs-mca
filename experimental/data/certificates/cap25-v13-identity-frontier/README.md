@@ -9,6 +9,28 @@
   `experimental/data/certificates/`. It was the one exception found by
   Wave-1 recon: a bare script with no committed certificate trail.
 
+## V14 update (2026-07-05)
+
+The four printed `c=1` identity certificates above and in `certificate.json`
+remain **exact as printed** — every `a0`, `a0+1`, `w`, `K`, edge fraction, and
+margin bracket in this packet is unchanged, and `replay.sh` still replays it
+untouched. What changes: the two **MCA** rows' "conjectured first safe"
+reading of `a0+1` (KB MCA `1,116,044`; M31 MCA `1,116,022`) is **superseded by
+the v14 moved frontier** — upstream PR #310, commit `f049b91` ("Material
+correction: quantitative-deep-list-floor flips 1116044–1116047"), composes
+`lem:v13f1-identity-prefix-floor` with `prop:quantitative-deep-list-floor`
+and moves the two MCA rows' frontier pairs forward to `(1,116,047,
+1,116,048)` (KB) and `(1,116,023, 1,116,024)` (M31); cross-validated against
+the maintainer's v14 auxiliary script at commit `2b5b7ce`
+(`python3 "experimental/scripts/towards v13/cap25_v14_moved_frontier_checks.py"`,
+re-run this session, exit 0, margins `8.978`/`−22.197` bits KB-MCA,
+`27.927`/`−3.259` bits M31-MCA). The two **list**-row certificates (KB list,
+M31 list) are untouched by this correction. See the companion
+`experimental/data/certificates/frontier-adjacent/{kb_mca,m31_mca}_v1.packet.json`
+`v14_moved_pair` blocks and `experimental/notes/frontier-adjacent/frontier_adjacent_v13_rows_v1.md`'s
+"V14 moved-frontier addendum (2026-07-05)" section for the full re-audit at
+the moved pairs.
+
 ## What this certifies (and what it does not)
 
 This packet certifies **only the lower (unsafe) staircase**:
