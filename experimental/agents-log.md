@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Crossing localization
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/crossing_localization.md`;
+  `experimental/scripts/verify_crossing_localization.py`;
+  `experimental/data/certificates/crossing-localization/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that the MCA unsafe-count
+  staircase has a unique adjacent crossing inside any verified bracket and
+  that a corridor of width `w` has at most `ceil(w)+1` integer candidates.
+- **How it is useful:** Supports the deployed adjacent-threshold strategy in
+  `agents.md` by reducing the final row decision to finitely many pointwise
+  integer certificates.
+- **What to do next:** Supply the pointwise safe/unsafe certificates for the
+  remaining candidate agreements; this packet only localizes the crossing.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

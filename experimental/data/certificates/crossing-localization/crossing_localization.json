@@ -1,0 +1,47 @@
+{
+  "anchor_checks": {
+    "adjacent_crossing": true,
+    "candidate_bound": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "staircase": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not prove the pointwise safe upper certificate",
+    "does not prove the unsafe lower certificate",
+    "does not prove a row-level adjacent theorem"
+  ],
+  "note": "experimental/notes/thresholds/crossing_localization.md",
+  "schema": "crossing-localization-v1",
+  "source_dag_node": "crossing_localization",
+  "status": "PROVED",
+  "toy_check": {
+    "adjacent_crossing_holds": true,
+    "bracket": {
+      "a_hi": 14,
+      "a_lo": 11,
+      "safe_at_hi": true,
+      "unsafe_before_lo": true
+    },
+    "first_safe": 12,
+    "nonincreasing": true,
+    "real_corridor": {
+      "ceil_width_plus_one": 3,
+      "count_bound_holds": true,
+      "integer_count": 2,
+      "left": 11.3,
+      "right": 13.1,
+      "width": 1.799999999999999
+    },
+    "staircase": {
+      "10": 14,
+      "11": 11,
+      "12": 7,
+      "13": 7,
+      "14": 4
+    },
+    "threshold": 7
+  }
+}
