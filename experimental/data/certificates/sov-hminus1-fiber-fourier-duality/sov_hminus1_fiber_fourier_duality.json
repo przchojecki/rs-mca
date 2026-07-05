@@ -1,0 +1,69 @@
+{
+  "anchor_checks": {
+    "coefficient_map": true,
+    "non_claim": true,
+    "note_exists": true,
+    "orthogonality": true,
+    "source_node": true,
+    "status": true
+  },
+  "fourier_check": {
+    "bound_passed": true,
+    "field_size": 7,
+    "fourier_bound_rounded": 14.28530818,
+    "max_fiber": 9,
+    "reconstruction_passed": true,
+    "rows": [
+      {
+        "a": 0,
+        "count": 0,
+        "imag_abs": 2.5376526277146434e-16,
+        "reconstructed": 0
+      },
+      {
+        "a": 1,
+        "count": 9,
+        "imag_abs": 7.61295788314393e-16,
+        "reconstructed": 9
+      },
+      {
+        "a": 2,
+        "count": 0,
+        "imag_abs": 8.881784197001252e-16,
+        "reconstructed": 0
+      },
+      {
+        "a": 3,
+        "count": 0,
+        "imag_abs": 1.2688263138573218e-15,
+        "reconstructed": 0
+      },
+      {
+        "a": 4,
+        "count": 5,
+        "imag_abs": 5.075305255429287e-16,
+        "reconstructed": 5
+      },
+      {
+        "a": 5,
+        "count": 9,
+        "imag_abs": 7.61295788314393e-16,
+        "reconstructed": 9
+      },
+      {
+        "a": 6,
+        "count": 8,
+        "imag_abs": 1.3322676295501878e-15,
+        "reconstructed": 8
+      }
+    ],
+    "sample_size": 31
+  },
+  "non_claims": [
+    "does not bound the actual SOV anchored-core character sums"
+  ],
+  "note": "experimental/notes/sov/sov_hminus1_fiber_fourier_duality.md",
+  "schema": "sov-hminus1-fiber-fourier-duality-v1",
+  "source_dag_node": "sov_hminus1_fiber_fourier_duality",
+  "status": "PROVED_FOURIER_DUALITY_REPLAY"
+}

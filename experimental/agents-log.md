@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - SOV h-minus-1 fiber Fourier duality
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/sov/sov_hminus1_fiber_fourier_duality.md`;
+  `experimental/scripts/verify_sov_hminus1_fiber_fourier_duality.py`;
+  `experimental/data/certificates/sov-hminus1-fiber-fourier-duality/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the finite Fourier inversion
+  reduction from nontrivial character sums to uniform fibers of
+  `[X^{h-1}]L`.
+- **How it is useful:** Bridges the SOV coefficient value-set problem to the
+  character-sum cancellation and affine-piece certificates.
+- **What to do next:** Prove or audit the actual nontrivial character-sum
+  bounds for anchored-core families separately.
+
 ### 2026-07-05 - SOV first-obstruction sensitivity
 
 - **Agent/model:** Codex.
