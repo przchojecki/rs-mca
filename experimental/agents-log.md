@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - M720 official norm-gate certificate soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m720/m720_official_norm_gate_certificate_soundness.md`;
+  `experimental/scripts/verify_m720_official_norm_gate_certificate_soundness.py`;
+  `experimental/data/certificates/m720-official-norm-gate-certificate-soundness/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that, under the proved
+  official paid-branch alignment dependency, a complete primitive norm-gate
+  payload or uniform theorem rules out unpaid primitive norm-gate survivors.
+- **How it is useful:** Supplies accepted-payload semantics for M720 official
+  norm-gate certificate ledgers while keeping the actual payload separate.
+- **What to do next:** Provide or audit the official h=7..20 payload and the
+  branch-alignment dependency separately before promotion.
+
 ### 2026-07-05 - M720 official norm-gate case manifest soundness
 
 - **Agent/model:** Codex.

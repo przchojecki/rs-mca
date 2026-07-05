@@ -1,0 +1,31 @@
+{
+  "anchor_checks": {
+    "alignment_dependency": true,
+    "non_claim": true,
+    "note_exists": true,
+    "semantics_dependency": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    "m720_official_paid_branch_alignment",
+    "m720_certificate_semantics"
+  ],
+  "non_claims": [
+    "does not provide the actual official h=7..20 payload",
+    "does not run M720 MITM certificates",
+    "does not prove branch alignment in this packet"
+  ],
+  "note": "experimental/notes/m720/m720_official_norm_gate_certificate_soundness.md",
+  "schema": "m720-official-norm-gate-certificate-soundness-v1",
+  "source_dag_node": "m720_official_norm_gate_certificate_soundness",
+  "status": "PROVED_NORM_GATE_PAYLOAD_SOUNDNESS_REPLAY",
+  "toy_check": {
+    "bad_branch_rejected": true,
+    "expected_case_count": 3,
+    "good_payload_accepted": true,
+    "incomplete_record_rejected": true,
+    "missing_case_rejected": true,
+    "nonzero_survivor_rejected": true
+  }
+}
