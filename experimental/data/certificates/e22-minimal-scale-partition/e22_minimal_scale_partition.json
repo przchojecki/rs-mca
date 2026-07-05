@@ -1,0 +1,152 @@
+{
+  "anchor_checks": {
+    "dependency": true,
+    "non_claim": true,
+    "note_exists": true,
+    "partition": true,
+    "predicate": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    {
+      "accepted": true,
+      "path": "experimental/data/certificates/e22-dyadic-minimal-scale-selector/e22_dyadic_minimal_scale_selector.json",
+      "schema": "e22-dyadic-minimal-scale-selector-v1",
+      "source_dag_node": "e22_dyadic_minimal_scale_selector",
+      "status": "PROVED"
+    }
+  ],
+  "non_claims": [
+    "does not compute cross-scale overlap counts",
+    "does not evaluate a pricing column",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/e22_minimal_scale_partition.md",
+  "partition_check": {
+    "all_checks_pass": true,
+    "checked_chain_lengths": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "summaries": [
+      {
+        "chain_length": 2,
+        "covered_sets": 3,
+        "moduli": [
+          2,
+          4
+        ],
+        "nonempty_admissible_sets": 3,
+        "occupied_cells": 2
+      },
+      {
+        "chain_length": 3,
+        "covered_sets": 7,
+        "moduli": [
+          2,
+          4,
+          8
+        ],
+        "nonempty_admissible_sets": 7,
+        "occupied_cells": 3
+      },
+      {
+        "chain_length": 4,
+        "covered_sets": 15,
+        "moduli": [
+          2,
+          4,
+          8,
+          16
+        ],
+        "nonempty_admissible_sets": 15,
+        "occupied_cells": 4
+      },
+      {
+        "chain_length": 5,
+        "covered_sets": 31,
+        "moduli": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "nonempty_admissible_sets": 31,
+        "occupied_cells": 5
+      },
+      {
+        "chain_length": 6,
+        "covered_sets": 63,
+        "moduli": [
+          2,
+          4,
+          8,
+          16,
+          32,
+          64
+        ],
+        "nonempty_admissible_sets": 63,
+        "occupied_cells": 6
+      },
+      {
+        "chain_length": 7,
+        "covered_sets": 127,
+        "moduli": [
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128
+        ],
+        "nonempty_admissible_sets": 127,
+        "occupied_cells": 7
+      },
+      {
+        "chain_length": 8,
+        "covered_sets": 255,
+        "moduli": [
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "nonempty_admissible_sets": 255,
+        "occupied_cells": 8
+      },
+      {
+        "chain_length": 9,
+        "covered_sets": 511,
+        "moduli": [
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512
+        ],
+        "nonempty_admissible_sets": 511,
+        "occupied_cells": 9
+      }
+    ]
+  },
+  "schema": "e22-minimal-scale-partition-v1",
+  "source_dag_node": "e22_minimal_scale_partition",
+  "status": "PROVED"
+}

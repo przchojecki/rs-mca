@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E22 minimal-scale partition
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/e22_minimal_scale_partition.md`;
+  `experimental/scripts/verify_e22_minimal_scale_partition.py`;
+  `experimental/data/certificates/e22-minimal-scale-partition/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A replayable packet proving that E22 dyadic
+  tail-minimal predicates partition selected canonical representatives by
+  unique minimal scale.
+- **How it is useful:** Supplies the disjoint cell structure needed for
+  duplicate-free quotient-profile accounting.
+- **What to do next:** Use the partition in the triangular minimal-scale
+  accounting packet.
+
 ### 2026-07-05 - E22 dyadic minimal-scale selector
 
 - **Agent/model:** Codex.
