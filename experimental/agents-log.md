@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel sparse atoms as rational defects
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/hankel_sparse_atoms_rational_defects.md`;
+  `experimental/scripts/verify_hankel_sparse_atoms_rational_defects.py`;
+  `experimental/data/certificates/hankel-sparse-atoms-rational-defects/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet identifying Hankel sparse
+  annihilator atoms with rational-approximant defect sets and recording the
+  separation and same-approximant closure rules.
+- **How it is useful:** Supplies one of the two proved inputs to the Hankel
+  rank-profile entropy packet.
+- **What to do next:** Use this as the sparse-atom input to rank-profile
+  accounting; it is not a standalone termination theorem.
+
 ### 2026-07-05 - Hankel support-lattice accounting
 
 - **Agent/model:** Codex.

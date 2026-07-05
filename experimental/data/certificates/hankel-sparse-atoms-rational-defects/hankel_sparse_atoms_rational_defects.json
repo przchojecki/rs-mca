@@ -1,0 +1,39 @@
+{
+  "anchor_checks": {
+    "defect_bound": true,
+    "non_claim": true,
+    "normal_form": true,
+    "note_exists": true,
+    "same_approximant": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not prove the rank-profile dichotomy",
+    "does not prove Hankel descent termination"
+  ],
+  "note": "experimental/notes/m1/hankel_sparse_atoms_rational_defects.md",
+  "schema": "hankel-sparse-atoms-rational-defects-v1",
+  "source_dag_node": "hankel_sparse_atoms_as_rational_defects",
+  "status": "PROVED",
+  "toy_check": {
+    "degree_separation_good_case": {
+      "degree_bound": 3,
+      "j": 7,
+      "n_E": 11,
+      "nonzero_polynomial_possible": true,
+      "outside_size": 3,
+      "required_union_bound": 7,
+      "stated_bound_holds": true,
+      "t": 2,
+      "union_size": 8
+    },
+    "same_approximant_closure": {
+      "all_same_closure": true,
+      "closure_count": 1,
+      "scalar_multiple_count": 3
+    },
+    "small_union_rejected_by_degree": true,
+    "small_union_would_violate_stated_bound": true
+  }
+}
