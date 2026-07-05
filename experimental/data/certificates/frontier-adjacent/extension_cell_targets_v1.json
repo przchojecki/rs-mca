@@ -1,0 +1,311 @@
+{
+ "meta": {
+  "artifact": "frontier_extension_cell_targets_v1",
+  "source_draft": "wave9_extension_targets.md / wave9_extension_numbers.json (session draft, 2026-07-05)",
+  "companion_note": "experimental/notes/frontier-adjacent/frontier_extension_cell_targets_v1.md",
+  "companion_verifier": "experimental/scripts/verify_frontier_extension_cell_targets.py",
+  "topic": "paid_extension cell targets for the U(a0+1) ledger, four deployed v14 rows",
+  "date": "2026-07-05",
+  "repo_head": "5e50037",
+  "status": "CONDITIONAL / AUDIT-derived (exact integer margins; open-part target is a named-input specification, not a proof)",
+  "n": 2097152,
+  "k": 1048576,
+  "rate": "1/2",
+  "cell_definition": "paid_extension(a) upper-bounds the MCA/CA-bad slopes gamma in F of a fixed received F-valued line that are genuinely extension-line (minimal field B(gamma)=F), after the base/tower slope-strata are routed to lower-arity base cells.",
+  "scanner_api": "extension_chart_upper(q_gen, charts=[(Delta,e),...]) = sum Delta*q_gen^e  (experimental/scripts/verify_paid_ledger_functions.py L122)",
+  "extends_packet_family": "experimental/data/certificates/frontier-adjacent/ -- introduced by PR #329 (frontier-adjacent-v13-rows, an OPEN sibling PR at the time this branch was cut). This file is new (the directory does not exist on this branch's base commit) and uses a filename distinct from all four of #329's packet JSONs, so the two branches merge with no path collisions -- see the companion note's Merge hygiene section.",
+  "does_not_pay_the_cell": "This artifact and its companion note record TARGETS and a per-branch PAID/OPEN ledger for paid_extension. They do not certify U(a0+1) <= B_star and do not close the K=F (full-orbit) cell; that cell remains OPEN / CONDITIONAL_ON_NAMED_INPUT."
+ },
+ "fields": {
+  "KB": {
+   "prime_p": 2130706433,
+   "prime_form": "2^31 - 2^24 + 1 (KoalaBear)",
+   "log2_p": 30.988685,
+   "ext_degree_e": 6,
+   "q_line": "p^6",
+   "log2_q_line": 185.9321,
+   "eps_star": "2^-128",
+   "B_star_budget": 274980728111395087,
+   "log2_B_star": 57.9321,
+   "subfield_divisors": [
+    1,
+    2,
+    3,
+    6
+   ],
+   "lattice_shape": "diamond (2 and 3 incomparable): F_p < F_p2 < F_p6 and F_p < F_p3 < F_p6, F_p2 cap F_p3 = F_p, F_p2.F_p3 = F_p6",
+   "galois_group": "Z/6 (Frobenius)",
+   "confinement_density_by_subfield": {
+    "F_p1_base": {
+     "density": "p^-5",
+     "log2": -154.943
+    },
+    "F_p2_tower": {
+     "density": "p^-4",
+     "log2": -123.955
+    },
+    "F_p3_tower": {
+     "density": "p^-3",
+     "log2": -92.966
+    },
+    "F_p6_full": {
+     "density": "p^0",
+     "log2": 0.0
+    }
+   },
+   "one_pos_dim_chart_cost": {
+    "e_Y=1": "p = 2^30.989",
+    "verdict_vs_B_star": "fits absolute budget (2^30.99 < 2^57.93) but busts every fail-margin",
+    "e_Y=2": "p^2 = 2^61.977 EXCEEDS absolute budget"
+   },
+   "full_stratum_KeqF": {
+    "deg_exactly_6_count": "93571093019388561295270373771976665112346553114349797376",
+    "orbit_size": 6,
+    "num_frobenius_orbits": "15595182169898093549211728961996110852057758852391632896"
+   },
+   "proper_subfield_ambient_count": {
+    "value": "p^3+p^2+p = 9673215241439612082015174659",
+    "log2": 92.966
+   }
+  },
+  "M31": {
+   "prime_p": 2147483647,
+   "prime_form": "2^31 - 1 (Mersenne-31)",
+   "log2_p": 31.0,
+   "ext_degree_e": 4,
+   "q_line": "p^4",
+   "log2_q_line": 124.0,
+   "eps_star": "2^-100",
+   "B_star_budget": 16777215,
+   "log2_B_star": 24.0,
+   "subfield_divisors": [
+    1,
+    2,
+    4
+   ],
+   "lattice_shape": "chain: F_p < F_p2 < F_p4",
+   "galois_group": "Z/4 (Frobenius)",
+   "confinement_density_by_subfield": {
+    "F_p1_base": {
+     "density": "p^-3",
+     "log2": -93.0
+    },
+    "F_p2_tower": {
+     "density": "p^-2",
+     "log2": -62.0
+    },
+    "F_p4_full": {
+     "density": "p^0",
+     "log2": 0.0
+    }
+   },
+   "one_pos_dim_chart_cost": {
+    "e_Y=1": "p = 2^31.0",
+    "verdict_vs_B_star": "EXCEEDS absolute budget (2^31 > B*=2^24) outright",
+    "e_Y=2": "p^2 = 2^62 EXCEEDS absolute budget"
+   },
+   "full_stratum_KeqF": {
+    "deg_exactly_4_count": "21267647892944572732387174255555510272",
+    "orbit_size": 4,
+    "num_frobenius_orbits": "5316911973236143183096793563888877568"
+   },
+   "proper_subfield_ambient_count": {
+    "value": "p^2+p = 4611686016279904256",
+    "log2": 62.0
+   }
+  }
+ },
+ "rows": [
+  {
+   "row": "KB-MCA",
+   "field": "KB",
+   "kind": "mca",
+   "a0": 1116047,
+   "a0_plus_1": 1116048,
+   "line_pair_v14": [
+    1116047,
+    1116048
+   ],
+   "w_at_a0": 67470,
+   "frontier": "v14-moved (was a0=1116043 in v13)",
+   "fail_margin_bits": 22.197,
+   "unsafe_a0_exact": true,
+   "safe_a0p1_exact": true,
+   "ext_target": {
+    "e_Y_forced": 0,
+    "Delta_ext_ceiling_pow2": 22.197,
+    "Delta_ext_ceiling_int": 4807520,
+    "design_target": "O(1) field-size-independent constant"
+   },
+   "binding_constraint": "fail-margin (absolute budget would tolerate e_Y=1)"
+  },
+  {
+   "row": "KB-list",
+   "field": "KB",
+   "kind": "list",
+   "a0": 1116046,
+   "a0_plus_1": 1116047,
+   "line_pair_v14": [
+    1116046,
+    1116047
+   ],
+   "w_at_a0": 67470,
+   "frontier": "unchanged v13/v14",
+   "fail_margin_bits": 22.011,
+   "unsafe_a0_exact": true,
+   "safe_a0p1_exact": true,
+   "ext_target": {
+    "e_Y_forced": 0,
+    "Delta_ext_ceiling_pow2": 22.011,
+    "Delta_ext_ceiling_int": 4226236,
+    "design_target": "O(1) field-size-independent constant"
+   },
+   "binding_constraint": "fail-margin"
+  },
+  {
+   "row": "M31-MCA",
+   "field": "M31",
+   "kind": "mca",
+   "a0": 1116023,
+   "a0_plus_1": 1116024,
+   "line_pair_v14": [
+    1116023,
+    1116024
+   ],
+   "w_at_a0": 67446,
+   "frontier": "v14-moved (was a0=1116021 in v13)",
+   "fail_margin_bits": 3.259,
+   "unsafe_a0_exact": true,
+   "safe_a0p1_exact": true,
+   "ext_target": {
+    "e_Y_forced": 0,
+    "Delta_ext_ceiling_pow2": 3.259,
+    "Delta_ext_ceiling_int": 9,
+    "design_target": "O(1) field-size-independent constant"
+   },
+   "binding_constraint": "ABSOLUTE budget (q_gen=p'=2^31 > B*=2^24; e_Y>=1 impossible even before margins) AND tightest fail-margin"
+  },
+  {
+   "row": "M31-list",
+   "field": "M31",
+   "kind": "list",
+   "a0": 1116022,
+   "a0_plus_1": 1116023,
+   "line_pair_v14": [
+    1116022,
+    1116023
+   ],
+   "w_at_a0": 67446,
+   "frontier": "unchanged v13/v14",
+   "fail_margin_bits": 3.073,
+   "unsafe_a0_exact": true,
+   "safe_a0p1_exact": true,
+   "ext_target": {
+    "e_Y_forced": 0,
+    "Delta_ext_ceiling_pow2": 3.073,
+    "Delta_ext_ceiling_int": 8,
+    "design_target": "O(1) field-size-independent constant"
+   },
+   "binding_constraint": "ABSOLUTE budget AND tightest fail-margin (binding row for the whole extension cell)"
+  }
+ ],
+ "branch_ledger": {
+  "note": "EF Galois-stabilizer trichotomy for the bad-slope minimal field K=B(gamma), applied to a fixed genuinely-F-valued received line.",
+  "K_eq_B_base_descended": {
+   "stabilizer": "full Gal(F/B)",
+   "status": "PAID_BY_THEOREM",
+   "paid_by": [
+    "lem:confine",
+    "thm:weil-lines(iii) diagonal",
+    "cor:base-rational-line-inertness-chart",
+    "f1_extension_import (part 1, isolated base slope)"
+   ],
+   "charged_to": "arity-1 base cells (paid_tangent/paid_quotient/paid_M1_aperiodic)",
+   "new_paid_extension_contribution": 0
+  },
+  "B_lt_K_lt_F_tower_confined": {
+   "stabilizer": "proper nontrivial Gal(F/K)",
+   "status": "PAID_BY_THEOREM (confined / routed)",
+   "paid_by": [
+    "ef_galois_stabilizer_descent",
+    "f1_minimal_field_descent",
+    "thm:weil-lines (tower F/K)",
+    "lem:confine (at K)"
+   ],
+   "charged_to": "arity-[F:K] intermediate base cells (strictly lower arity than e)",
+   "KB_strata": [
+    "F_p2 (stab Z/3, arity [F:F_p2]=3)",
+    "F_p3 (stab Z/2, arity [F:F_p3]=2)"
+   ],
+   "M31_strata": [
+    "F_p2 (stab Z/2, arity [F:F_p2]=2)"
+   ]
+  },
+  "K_eq_F_full_orbit": {
+   "stabilizer": "trivial",
+   "status": "OPEN -> CONDITIONAL_ON_NAMED_INPUT",
+   "partial_inputs": [
+    "ef_full_orbit_cycle_descent (descends pole-free orbit to B-cycle)",
+    "ef_descended_cycle_inventory_soundness (conditional)",
+    "ef_descended_cycle_classification_soundness (conditional)"
+   ],
+   "named_input_needed": "a certified descended-cycle classification inventory (base/tower/noncontainment-degenerate) OR a direct full-orbit pole-forcing theorem OR an exact zero-dimensional Weil-restricted eliminant (thm:extension-line-dimension-degree-ledger)",
+   "target": "e_Y = 0 and Delta_ext <= 2^{fail_margin}; the genuinely-F-valued MCA-bad-slope locus is a finite union of size-e Frobenius orbits of bounded total degree"
+  }
+ },
+ "falsifiable_prediction": {
+  "P": "For each deployed row and its toy tower analogue, the genuinely-F-valued (K=F) MCA-bad slopes of any band-regime received line form a FINITE set: a union of complete Frobenius orbits of size e (6 KB / 4 M31) whose total size is a field-size-independent constant Delta_ext, NOT growing with q_gen.",
+  "falsifier": "a band-regime F-valued pair over a toy tower whose K=F bad-slope count grows with the base prime p0 (e.g. proportional to p0), i.e. a positive-dimensional (e_Y>=1) extension chart -> paid_extension unpayable at deployed margins -> COUNTEREXAMPLE_NEW_FLOOR refuting the adjacent-pair frontier on the extension side.",
+  "toy_search": {
+   "KB_analogue": {
+    "tower": "F_{p0^6}/F_{p0}",
+    "p0": [
+     2,
+     3,
+     5
+    ],
+    "lattice": "diamond {1,2,3,6}",
+    "orbit_size": 6
+   },
+   "M31_analogue": {
+    "tower": "F_{p0^4}/F_{p0}",
+    "p0": [
+     2,
+     3,
+     5,
+     7
+    ],
+    "lattice": "chain {1,2,4}",
+    "orbit_size": 4
+   },
+   "params": {
+    "rho": "1/2",
+    "slack_t": [
+     1,
+     2
+    ],
+    "D": "multiplicative coset in F_{p0}",
+    "agreement": "band edge (toy analogue of a0+1)"
+   },
+   "procedure": "enumerate/sample F_{p0^e}-valued pairs (f,g); brute-force all support-wise MCA-bad slopes gamma in F_{p0^e}; classify each by deg(F_{p0}(gamma)/F_{p0}); tabulate #{K=F} vs p0; fit growth (constant=target holds, linear=falsifier).",
+   "matches": "agents.md F1 toy menu (extensions of small fields, rho=1/2, t=1,2); f1_extension_coordinate_transfer 'Next Step' (classify multiplication-slice supports of {M_z} in Mat_e(B))."
+  }
+ },
+ "audit_corrections": [
+  {
+   "field": "rows[KB-MCA].ext_target.Delta_ext_ceiling_int",
+   "source_draft_value": 4807521,
+   "corrected_value": 4807520,
+   "method": "exact integer recompute: floor((p_KB^(w+1) * B_star_KB) / comb(2**21, a0+1)) using cached math.comb via a ratio-walk from one base call, no floats",
+   "root_cause": "the source draft's compute_ext.py printed the ceiling with Python's ':,.0f' format, which ROUNDS to nearest; the true design semantics (Delta_ext <= 2^fail_margin, Delta_ext an integer) require FLOOR. 2^22.19686... = 4807520.9378, which rounds to 4807521 but floors to 4807520."
+  },
+  {
+   "field": "rows[KB-list].ext_target.Delta_ext_ceiling_int",
+   "source_draft_value": 4226237,
+   "corrected_value": 4226236,
+   "method": "same exact integer recompute as above, KB-list row",
+   "root_cause": "same round-vs-floor artifact: 2^22.010942... = 4226236.5385, rounds to 4226237 but floors to 4226236."
+  }
+ ],
+ "audit_corrections_note": "The two M31 rows' Delta_ext_ceiling_int values (9, 8) were independently re-derived exactly and were already the correct floors (2^3.2589=9.572 -> floor 9; 2^3.0730=8.415 -> floor 8) -- the draft's stored M31 integers needed no correction. Note that round-to-nearest would nonetheless misprint M31-MCA (9.572 -> 10) as well as both KB rows (.938/.539 -> +1); only M31-list (8.415) has floor==round. See verify_frontier_extension_cell_targets.py gate G7 for the exact-integer re-derivation (no floating point in the corrected values; float log2 only in informational display fields, cross-checked at loose tolerance)."
+}

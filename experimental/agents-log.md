@@ -30,6 +30,48 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Frontier-extension-cell targets for the four v14 rows
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** `experimental/notes/frontier-adjacent/frontier_extension_cell_targets_v1.md`;
+  `experimental/data/certificates/frontier-adjacent/extension_cell_targets_v1.json`;
+  `experimental/scripts/verify_frontier_extension_cell_targets.py`;
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / AUDIT (exact integer margins and Galois
+  stratification) / CONJECTURAL_WITH_FALSIFIER (the open-cell target itself).
+  Does **not** pay `paid_extension` and does not certify `U(a0+1)<=B*`.
+- **What is being added:** A per-row, per-branch paid/open ledger for the
+  `paid_extension` cell of the four deployed v14 frontier rows (KoalaBear
+  MCA/list, Mersenne-31 MCA/list): the `K=B` and `B<K<F` bad-slope
+  minimal-field strata are `PAID_BY_THEOREM` (routed to strictly-lower-arity
+  base cells via `ef_galois_stabilizer_descent` + `thm:weil-lines`); the
+  `K=F` full-orbit stratum is named as the sole open cell, with an exact
+  integer target (`e_Y=0` forced by the bit budget; `Delta_ext` must be a
+  field-size-independent constant `<=` the row's fail-margin, binding at
+  `Delta_ext<=8` for M31-list) and a falsifier (a toy-tower `K=F` count
+  growing with the base prime `p0`). This turns `#329`'s bare
+  `paid_extension: TBD` into a named-input specification, without taking a
+  dependency on `#329`'s merge order (no shared file paths; see the note's
+  "Merge hygiene" section).
+- **How it is useful:** Sharpens the open half of the v13/v14 adjacent-pair
+  ledger (`agents.md` progress items 1-2, the `prob:v13f1-frontier` safe
+  side) into a concrete, falsifiable, exact-integer target instead of a bare
+  `TBD`, and gives a stdlib toy-search recipe (`agents.md` F1 toy menu) that
+  would either confirm the target or produce a `COUNTEREXAMPLE_NEW_FLOOR`.
+- **What to do next:** Run the recommended toy scan
+  (`F_{p0^4}/F_{p0}`, `p0` in `{2,3,5,7}`, M31-list analogue first since it is
+  the binding row) to test the falsifiable prediction; if constant, this is
+  evidence (not proof) toward the named-input target; if growing with `p0`,
+  it is a `COUNTEREXAMPLE_NEW_FLOOR` against the extension side of the
+  adjacent-pair frontier. Independently: produce the actual descended-cycle
+  classification inventory (`ef_descended_cycle_inventory_soundness` /
+  `ef_descended_cycle_classification_soundness`) that would close the `K=F`
+  cell for real. Audit note: this note's own verifier caught and corrected a
+  round-vs-floor arithmetic slip in the session draft's `Delta_ext_ceiling_int`
+  for the two KoalaBear rows (4,807,521->4,807,520; 4,226,237->4,226,236); see
+  the note's "Independent audit" section and the JSON's `audit_corrections`
+  block.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by
