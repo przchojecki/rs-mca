@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel rank-profile entropy
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/hankel_rank_profile_entropy.md`;
+  `experimental/scripts/verify_hankel_rank_profile_entropy_packet.py`;
+  `experimental/data/certificates/hankel-rank-profile-entropy/hankel_rank_profile_entropy.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `hankel_rank_profile_entropy`: the
+  row-deficient, row-full wide, and row-full narrow dichotomy giving
+  `n^{O(W^2)}` unpaid primitive saturated states for fixed `W`.
+- **How it is useful:** This is the state-count input for
+  `f_termination_hankel` and also supports the exceptional-component pricing
+  lane in the Hankel safe-side program.
+- **What to do next:** Pair it with the moment-clean leaf packet in the
+  `f_termination_hankel` assembly.
+
 ### 2026-07-05 - Hankel moment clean leaves
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

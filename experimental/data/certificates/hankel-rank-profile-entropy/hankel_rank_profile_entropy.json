@@ -1,0 +1,62 @@
+{
+  "consumers": [
+    "f_termination_hankel",
+    "spi_exceptional_class"
+  ],
+  "non_claims": [
+    "does not give a uniform bound when W grows with n",
+    "does not supply the terminal moment/member count",
+    "does not assemble f_termination_hankel by itself",
+    "does not edit Papers A-D"
+  ],
+  "row_deficient": {
+    "boundary_cases": 2966,
+    "claim": "corrected binary-apolarity gives a principal GRS segment after root-at-infinity strip",
+    "consequence": "MDS zero-support matroid, no unpaid closure entropy",
+    "seed_row_deficient_cases": 4000,
+    "torus_verified_cases": 5086
+  },
+  "row_full_narrow": {
+    "condition": "j - t + 3 <= 2W",
+    "dimension_bound": "dim P = j + 1 - t <= 2W - 2",
+    "sample_arithmetic": [
+      {
+        "W": 3,
+        "dim_p": 3,
+        "j": 5,
+        "t": 3
+      },
+      {
+        "W": 4,
+        "dim_p": 5,
+        "j": 10,
+        "t": 6
+      }
+    ]
+  },
+  "row_full_wide": {
+    "condition": "j - t + 3 > 2W",
+    "consequence": "all weight-<=W atoms lie in one saturated rational class, so Delta_u <= 1",
+    "sample_arithmetic": [
+      {
+        "W": 3,
+        "j": 8,
+        "t": 3
+      },
+      {
+        "W": 5,
+        "j": 16,
+        "t": 8
+      }
+    ]
+  },
+  "schema": "rs-mca.experimental.hankel_rank_profile_entropy.v1",
+  "source_dag_dependencies": [
+    "f_support_lattice",
+    "hankel_sparse_atoms_as_rational_defects"
+  ],
+  "source_dag_node": "hankel_rank_profile_entropy",
+  "status": "PROVED",
+  "total_bound": "unpaid primitive saturated states <= n^{O(W^2)} for fixed W",
+  "verdict": "fixed_cutoff_hankel_unpaid_states_are_n_to_O_W_squared"
+}
