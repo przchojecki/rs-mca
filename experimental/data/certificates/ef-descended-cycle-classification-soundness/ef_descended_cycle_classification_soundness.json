@@ -1,0 +1,54 @@
+{
+  "anchor_checks": {
+    "base_case": true,
+    "descent_dependency": true,
+    "exclusion": true,
+    "non_claim": true,
+    "noncontainment_case": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "tower_case": true
+  },
+  "dependencies": [
+    "ef_full_orbit_cycle_descent",
+    "base/tower/noncontainment removal semantics"
+  ],
+  "non_claims": [
+    "does not construct the descended-cycle classification certificate",
+    "does not certify a proposed classification payload",
+    "does not close ef_ru by itself"
+  ],
+  "note": "experimental/notes/ef/ef_descended_cycle_classification_soundness.md",
+  "sample_classification": {
+    "allowed_labels": [
+      "base_descended",
+      "noncontainment_degenerate",
+      "tower_confined"
+    ],
+    "checks": {
+      "complete_classification_has_no_leakage": true,
+      "labels_allowed": true,
+      "missing_cycle_is_detected": true
+    },
+    "classification": {
+      "C0": "base_descended",
+      "C1": "tower_confined",
+      "C2": "noncontainment_degenerate"
+    },
+    "complete_leakage": [],
+    "cycles": [
+      "C0",
+      "C1",
+      "C2"
+    ],
+    "incomplete_leakage": [
+      "C3"
+    ],
+    "passes": true
+  },
+  "schema": "ef-descended-cycle-classification-soundness-v1",
+  "source_dag_node": "ef_descended_cycle_classification_soundness",
+  "statement": "a complete base/tower/noncontainment classification of descended pole-free cycles proves ef_pole_free_cycle_exclusion",
+  "status": "PROVED_CLASSIFICATION_EXCLUSION_SEMANTICS"
+}

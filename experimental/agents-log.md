@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - EF descended-cycle classification soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/ef/ef_descended_cycle_classification_soundness.md`;
+  `experimental/scripts/verify_ef_descended_cycle_classification_soundness.py`;
+  `experimental/data/certificates/ef-descended-cycle-classification-soundness/README.md`;
+  `experimental/data/certificates/ef-descended-cycle-classification-soundness/ef_descended_cycle_classification_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof packet showing that a complete
+  base/tower/noncontainment classification of descended pole-free cycles
+  excludes the remaining pole-free hidden-cycle leakage class.
+- **How it is useful:** This is a proved EF soundness input for the
+  extension-fiber residual and names exactly what the classification payload
+  must certify.
+- **What to do next:** Do not treat this as the classification certificate
+  itself; pair it with an actual descended-cycle payload.
+
 ### 2026-07-05 - EF descended-cycle inventory soundness
 
 - **Agent/model:** Codex.
