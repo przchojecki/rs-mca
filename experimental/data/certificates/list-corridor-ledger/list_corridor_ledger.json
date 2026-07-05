@@ -1,0 +1,148 @@
+{
+  "anchor_checks": {
+    "dependency": true,
+    "inequality": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "trigger": true
+  },
+  "claim": "For every clean rate, scale-free floor gain >= W_list - 1.",
+  "dependencies": [
+    {
+      "accepted": true,
+      "path": "experimental/data/certificates/list-corridor-widths/list_corridor_widths.json",
+      "rates": [
+        "1/4",
+        "1/8",
+        "1/16"
+      ],
+      "schema": "list-corridor-widths-v1",
+      "source_dag_node": "list_corridor_widths",
+      "status": "PROVED"
+    }
+  ],
+  "non_claims": [
+    "does not treat the rate-1/2 band",
+    "does not prove missing list-safe or list-unsafe endpoint formulas",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/list_corridor_ledger.md",
+  "rows": [
+    {
+      "W_list": 1.612526496982,
+      "margin": 0.020286003018,
+      "rate": "1/4",
+      "required_gain_W_list_minus_1": 0.612526496982,
+      "sweep_gain": 0.6328125,
+      "sweep_gain_fraction": "81/128",
+      "verdict": "PASS"
+    },
+    {
+      "W_list": 1.075136156735,
+      "margin": 0.023984937015,
+      "rate": "1/8",
+      "required_gain_W_list_minus_1": 0.075136156735,
+      "sweep_gain": 0.09912109375,
+      "sweep_gain_fraction": "203/2048",
+      "verdict": "PASS"
+    },
+    {
+      "W_list": 1.328340157828,
+      "margin": 0.046659842172,
+      "rate": "1/16",
+      "required_gain_W_list_minus_1": 0.328340157828,
+      "sweep_gain": 0.375,
+      "sweep_gain_fraction": "3/8",
+      "verdict": "PASS"
+    }
+  ],
+  "scale_free_floor_checks": [
+    {
+      "N": "2^16",
+      "all_checks_pass": true,
+      "c": "2^25",
+      "d": 209,
+      "e_log2_k": 39,
+      "expected_gain_fraction": "81/128",
+      "gain": 0.6328125,
+      "gain_fraction": "81/128",
+      "hypotheses": {
+        "A0_gt_k": true,
+        "A0_le_n": true,
+        "K_less_than_n": true,
+        "c_divides_k": true,
+        "c_divides_n": true,
+        "full_fiber_side_condition": true,
+        "m_in_range": true,
+        "w_equals_d_minus_1": true
+      },
+      "log2_L": 240.499012,
+      "m": 16593,
+      "margin_bits": 23.499012,
+      "maximal_d": true,
+      "rate": "1/4",
+      "trigger": true,
+      "w": 208
+    },
+    {
+      "N": "2^20",
+      "all_checks_pass": true,
+      "c": "2^21",
+      "d": 2251,
+      "e_log2_k": 38,
+      "expected_gain_fraction": "203/2048",
+      "gain": 0.09912109375,
+      "gain_fraction": "203/2048",
+      "hypotheses": {
+        "A0_gt_k": true,
+        "A0_le_n": true,
+        "K_less_than_n": true,
+        "c_divides_k": true,
+        "c_divides_n": true,
+        "full_fiber_side_condition": true,
+        "m_in_range": true,
+        "w_equals_d_minus_1": true
+      },
+      "log2_L": 246.530932,
+      "m": 133323,
+      "margin_bits": 28.530932,
+      "maximal_d": true,
+      "rate": "1/8",
+      "trigger": true,
+      "w": 2250
+    },
+    {
+      "N": "2^13",
+      "all_checks_pass": true,
+      "c": "2^28",
+      "d": 11,
+      "e_log2_k": 37,
+      "expected_gain_fraction": "3/8",
+      "gain": 0.375,
+      "gain_fraction": "3/8",
+      "hypotheses": {
+        "A0_gt_k": true,
+        "A0_le_n": true,
+        "K_less_than_n": true,
+        "c_divides_k": true,
+        "c_divides_n": true,
+        "full_fiber_side_condition": true,
+        "m_in_range": true,
+        "w_equals_d_minus_1": true
+      },
+      "log2_L": 240.081661,
+      "m": 523,
+      "margin_bits": 21.081661,
+      "maximal_d": true,
+      "rate": "1/16",
+      "trigger": true,
+      "w": 10
+    }
+  ],
+  "schema": "list-corridor-ledger-v1",
+  "source_dag_node": "list_corridor_ledger",
+  "status": "PROVED",
+  "units": "cap-grid steps eta"
+}

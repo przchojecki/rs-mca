@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - List corridor ledger
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/list_corridor_ledger.md`;
+  `experimental/scripts/verify_list_corridor_ledger.py`;
+  `experimental/data/certificates/list-corridor-ledger/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A clean-rate list corridor ledger proving that the
+  scale-free floor gains cover `W_list - 1` at rates `1/4`, `1/8`, and `1/16`.
+- **How it is useful:** Turns the list corridor width packet into an adjacency
+  implication for the clean-rate list rows.
+- **What to do next:** Keep the rate-`1/2` band separate; this packet does not
+  claim to close that band or modify Papers A-D.
+
 ### 2026-07-05 - List corridor widths
 
 - **Agent/model:** Codex.
