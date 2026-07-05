@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Deep-point identity packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/deep_point.md`,
+  `experimental/scripts/verify_deep_point_packet.py`,
+  `experimental/data/certificates/deep-point/deep_point.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / IDENTITY BRIDGE.
+- **What is being added:** A named packet for the `deep_point` DAG node,
+  recording the base and interleaved simple-pole deep-point identities used by
+  the list/L2 ledger.
+- **How it is useful:** Supplies the parent identity bridge for `codegree` and
+  keeps the list object, bad-slope object, and column-distance convention tied
+  to explicit replay scripts.
+- **What to do next:** Use this packet as a parent for codegree/list-side
+  reductions; do not treat it as a deployed adjacent certificate by itself.
+
 ### 2026-07-05 - L2 codegree reduction packet
 
 - **Agent/model:** Codex.

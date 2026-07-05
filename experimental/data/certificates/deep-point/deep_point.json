@@ -1,0 +1,30 @@
+{
+  "bridge_scope": {
+    "deep_point_condition": "alpha notin D",
+    "direction": "forward list-to-bad-slope bridge",
+    "line_shape": "f_alpha(x)=U(x)/(x-alpha), g_alpha(x)=-1/(x-alpha)",
+    "object": "support/column-distance agreement"
+  },
+  "consumers": [
+    "codegree"
+  ],
+  "identities": {
+    "base": "Bad_CA(f_alpha,g_alpha;delta_a) = Bad_MCA(f_alpha,g_alpha;delta_a) = {P(alpha): deg(P)<k+1 and P agrees with U on >=a points}",
+    "interleaved": "BadVec(alpha;a) = {(P_1(alpha),...,P_mu(alpha)): each deg(P_i)<k+1 and all P_i agree with U_i on a common >=a support}"
+  },
+  "non_claims": [
+    "does not prove list_safe",
+    "does not prove a deployed adjacent upper certificate",
+    "does not prove full list-to-MCA equivalence outside the simple-pole bridge",
+    "does not edit Papers A-D"
+  ],
+  "schema": "rs-mca.experimental.deep_point.v1",
+  "source_dag_node": "deep_point",
+  "status": "PROVED",
+  "upstream_evidence": [
+    "experimental/notes/x1/x1_deep_point_interleaved_bridge.md",
+    "experimental/scripts/verify_x1_deep_point_identity.py",
+    "experimental/scripts/verify_x1_interleaved_deep_point.py"
+  ],
+  "verdict": "bad_slope_vectors_equal_deep_point_images_for_simple_pole_lines"
+}
