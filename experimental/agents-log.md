@@ -1944,3 +1944,20 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-05 - Corank-stratified SPI eliminant ledger
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/gpu/corank_stratified_spi_eliminant.py`,
+  `experimental/scripts/verify_corank_spi_eliminant.py`,
+  `experimental/data/certificates/corank-spi-eliminant/`,
+  `experimental/notes/m1/corank_stratified_spi_eliminant_ledger.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A finite corank-at-least-two eliminant ledger with
+  nonzero `Q(Z)` records, exact finite-slope contributions, and named
+  aperiodic occupant templates.
+- **How it is useful:** Provides CPU-replayable obstruction-template data for
+  the residual SPI chart family that is not covered by the corank-one ledger.
+- **What to do next:** Extend the ledger to additional pivot charts and decide
+  which aperiodic templates are artifacts of the finite construction.

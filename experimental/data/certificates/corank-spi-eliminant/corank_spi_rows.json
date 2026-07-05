@@ -1,0 +1,2217 @@
+{
+  "claim": "finite corank>=2 strata with nonzero eliminants and recorded split-locator occupancy",
+  "named_obstruction_templates": [
+    {
+      "aperiodic_occupants": 4,
+      "row": "f7_n6_j2",
+      "z": 3
+    },
+    {
+      "aperiodic_occupants": 8,
+      "row": "f11_n10_j2",
+      "z": 4
+    },
+    {
+      "aperiodic_occupants": 10,
+      "row": "f13_n12_j2",
+      "z": 5
+    },
+    {
+      "aperiodic_occupants": 105,
+      "row": "f17_n16_j3_oracle",
+      "z": 6
+    }
+  ],
+  "non_claims": [
+    "No full corank>=2 classification is claimed.",
+    "No asymptotic incidence theorem is claimed.",
+    "No resolution of prob:band is claimed."
+  ],
+  "payload_sha256": "9ebcc623648eac9383034a07ab041e2e02c3c18359a608d2502877f813a172d3",
+  "proof_status": "AUDIT replay of finite corank>=2 eliminant rows",
+  "rows": [
+    {
+      "base_sequence": [
+        0,
+        3,
+        1,
+        2,
+        1
+      ],
+      "corank_ge_2_slope_count": 1,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          2,
+          6,
+          4,
+          5
+        ]
+      },
+      "eliminant_identically_zero": false,
+      "eliminant_polynomial": [
+        4,
+        1
+      ],
+      "gcd_degree_with_zq_minus_z": 1,
+      "geom_ratio": 2,
+      "hankel_base": [
+        [
+          0,
+          3,
+          1
+        ],
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "hankel_moving": [
+        [
+          5,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          5
+        ]
+      ],
+      "has_aperiodic_obstruction_template": true,
+      "j": 2,
+      "label": "f7_n6_j2",
+      "locators_total": 15,
+      "moving_sequence": [
+        5,
+        2,
+        1,
+        2,
+        5
+      ],
+      "n": 6,
+      "oracle_gate": false,
+      "p": 7,
+      "q_chal": 7,
+      "q_gen": 7,
+      "q_line": 7,
+      "strata": [
+        {
+          "aperiodic_occupants": 4,
+          "corank": 2,
+          "occupants": [
+            {
+              "coefficients": [
+                1,
+                2,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                5
+              ],
+              "periodicity_scale": 2,
+              "support": [
+                1,
+                4
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                4
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                4
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                5
+              ]
+            }
+          ],
+          "occupants_total": 5,
+          "periodic_occupants": 1,
+          "rank": 1,
+          "z": 3
+        }
+      ],
+      "z0": 3
+    },
+    {
+      "base_sequence": [
+        3,
+        0,
+        4,
+        1,
+        4
+      ],
+      "corank_ge_2_slope_count": 1,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          2,
+          4,
+          8,
+          5,
+          10,
+          9,
+          7,
+          3,
+          6
+        ]
+      },
+      "eliminant_identically_zero": false,
+      "eliminant_polynomial": [
+        7,
+        1
+      ],
+      "gcd_degree_with_zq_minus_z": 1,
+      "geom_ratio": 3,
+      "hankel_base": [
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          0,
+          4,
+          1
+        ],
+        [
+          4,
+          1,
+          4
+        ]
+      ],
+      "hankel_moving": [
+        [
+          5,
+          9,
+          4
+        ],
+        [
+          9,
+          4,
+          1
+        ],
+        [
+          4,
+          1,
+          0
+        ]
+      ],
+      "has_aperiodic_obstruction_template": true,
+      "j": 2,
+      "label": "f11_n10_j2",
+      "locators_total": 45,
+      "moving_sequence": [
+        5,
+        9,
+        4,
+        1,
+        0
+      ],
+      "n": 10,
+      "oracle_gate": false,
+      "p": 11,
+      "q_chal": 11,
+      "q_gen": 11,
+      "q_line": 11,
+      "strata": [
+        {
+          "aperiodic_occupants": 8,
+          "corank": 2,
+          "occupants": [
+            {
+              "coefficients": [
+                1,
+                6,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                2
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                10,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                3
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                2,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                4
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                8,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                5
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                9,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                6
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                6
+              ],
+              "periodicity_scale": 2,
+              "support": [
+                2,
+                7
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                8
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                9
+              ]
+            }
+          ],
+          "occupants_total": 9,
+          "periodic_occupants": 1,
+          "rank": 1,
+          "z": 4
+        }
+      ],
+      "z0": 4
+    },
+    {
+      "base_sequence": [
+        2,
+        9,
+        7,
+        10,
+        7
+      ],
+      "corank_ge_2_slope_count": 1,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          2,
+          4,
+          8,
+          3,
+          6,
+          12,
+          11,
+          9,
+          5,
+          10,
+          7
+        ]
+      },
+      "eliminant_identically_zero": false,
+      "eliminant_polynomial": [
+        8,
+        1
+      ],
+      "gcd_degree_with_zq_minus_z": 1,
+      "geom_ratio": 2,
+      "hankel_base": [
+        [
+          2,
+          9,
+          7
+        ],
+        [
+          9,
+          7,
+          10
+        ],
+        [
+          7,
+          10,
+          7
+        ]
+      ],
+      "hankel_moving": [
+        [
+          5,
+          9,
+          2
+        ],
+        [
+          9,
+          2,
+          10
+        ],
+        [
+          2,
+          10,
+          7
+        ]
+      ],
+      "has_aperiodic_obstruction_template": true,
+      "j": 2,
+      "label": "f13_n12_j2",
+      "locators_total": 66,
+      "moving_sequence": [
+        5,
+        9,
+        2,
+        10,
+        7
+      ],
+      "n": 12,
+      "oracle_gate": false,
+      "p": 13,
+      "q_chal": 13,
+      "q_gen": 13,
+      "q_line": 13,
+      "strata": [
+        {
+          "aperiodic_occupants": 10,
+          "corank": 2,
+          "occupants": [
+            {
+              "coefficients": [
+                1,
+                5,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                2,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                11,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                3,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                3
+              ],
+              "periodicity_scale": 2,
+              "support": [
+                5,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                7,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                8,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                10,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                8,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                9,
+                11
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                9,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                10,
+                11
+              ]
+            }
+          ],
+          "occupants_total": 11,
+          "periodic_occupants": 1,
+          "rank": 1,
+          "z": 5
+        }
+      ],
+      "z0": 5
+    },
+    {
+      "base_sequence": [
+        5,
+        0,
+        4,
+        8,
+        2,
+        7,
+        1
+      ],
+      "corank_ge_2_slope_count": 1,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ]
+      },
+      "eliminant_identically_zero": false,
+      "eliminant_polynomial": [
+        11,
+        1
+      ],
+      "gcd_degree_with_zq_minus_z": 1,
+      "geom_ratio": 3,
+      "hankel_base": [
+        [
+          5,
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          4,
+          8,
+          2
+        ],
+        [
+          4,
+          8,
+          2,
+          7
+        ],
+        [
+          8,
+          2,
+          7,
+          1
+        ]
+      ],
+      "hankel_moving": [
+        [
+          5,
+          9,
+          15,
+          6
+        ],
+        [
+          9,
+          15,
+          6,
+          16
+        ],
+        [
+          15,
+          6,
+          16,
+          11
+        ],
+        [
+          6,
+          16,
+          11,
+          8
+        ]
+      ],
+      "has_aperiodic_obstruction_template": true,
+      "j": 3,
+      "label": "f17_n16_j3_oracle",
+      "locators_total": 560,
+      "moving_sequence": [
+        5,
+        9,
+        15,
+        6,
+        16,
+        11,
+        8
+      ],
+      "n": 16,
+      "oracle_gate": true,
+      "p": 17,
+      "q_chal": 17,
+      "q_gen": 17,
+      "q_line": 17,
+      "strata": [
+        {
+          "aperiodic_occupants": 105,
+          "corank": 3,
+          "occupants": [
+            {
+              "coefficients": [
+                1,
+                7,
+                10,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                1,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                8,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                3,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                14,
+                12,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                7,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                5,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                12,
+                9,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                6,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                16,
+                15,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                7,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                11,
+                16,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                8,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                13,
+                2,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                2,
+                11,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                3,
+                4,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                6,
+                0,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                15,
+                5,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                8,
+                3,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                16,
+                14,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                2,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                15,
+                6,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                3,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                12,
+                16,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                4,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                3,
+                12,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                5,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                10,
+                0,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                6,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                14,
+                15,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                7,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                9,
+                9,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                8,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                11,
+                8,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                5,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                13,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                3,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                13,
+                7,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                6,
+                2,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                9,
+                0,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                3,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                6,
+                11,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                4,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                14,
+                10,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                5,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                7,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                6,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                8,
+                15,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                7,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                3,
+                5,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                8,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                9,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                11,
+                4,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                12,
+                6,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                15,
+                12,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                7,
+                13,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                16,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                13,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                4,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                13,
+                4,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                5,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                3,
+                11,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                6,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                7,
+                15,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                7,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                2,
+                10,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                8,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                12,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                10,
+                1,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                11,
+                2,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                14,
+                5,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                6,
+                14,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                16,
+                7,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                10,
+                3,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                5,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                6,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                6,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                15,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                7,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                16,
+                8,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                8,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                4,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                7,
+                9,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                8,
+                7,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                11,
+                1,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                3,
+                0,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                13,
+                14,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                8,
+                8,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                6,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                12,
+                15,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                7,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                7,
+                2,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                8,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                9,
+                14,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                15,
+                16,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                16,
+                5,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                2,
+                6,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                11,
+                9,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                1,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                2,
+                15,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                7,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                14,
+                1,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                8,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                16,
+                10,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                3,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                6,
+                16,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                9,
+                4,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                2,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                11,
+                13,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                15,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                8,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                3,
+                15,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                9,
+                15,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                10,
+                15,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                13,
+                15,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                15,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                15,
+                15,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                15,
+                13,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                8,
+                9,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                4,
+                0,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                8,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                12,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                8,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                8,
+                14,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                8,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                3,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                8,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                10,
+                4,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                8,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                6,
+                6,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                9,
+                10,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                7,
+                3,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                9,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                10,
+                11,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                9,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                2,
+                1,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                9,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                12,
+                5,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                9,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                13,
+                10,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                10,
+                11,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                16,
+                2,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                10,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                8,
+                12,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                10,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                1,
+                8,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                10,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                0,
+                9,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                11,
+                12,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                9,
+                11,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                11,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                2,
+                0,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                11,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                12,
+                8,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                12,
+                13,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                5,
+                10,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                12,
+                14,
+                15
+              ]
+            },
+            {
+              "coefficients": [
+                1,
+                14,
+                6,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                13,
+                14,
+                15
+              ]
+            }
+          ],
+          "occupants_total": 105,
+          "periodic_occupants": 0,
+          "rank": 1,
+          "z": 6
+        }
+      ],
+      "z0": 6
+    }
+  ],
+  "schema_version": "corank-spi-eliminant-ledger-v1",
+  "status": "EXPERIMENTAL",
+  "theorem_problem_id": "Lemma-A2-corank-spi-eliminant"
+}
