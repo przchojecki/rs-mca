@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Census bounded scales
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/census_bounded_scales.md`;
+  `experimental/scripts/verify_census_bounded_scales.py`;
+  `experimental/data/certificates/census-bounded-scales/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the bounded-scale census
+  reduction: quotient class ratio is forced, dyadic counts grow with large
+  gaps, and clean-rate deciding scales are row-length uniform.
+- **How it is useful:** Supports the exact finite row-packet strategy in
+  `agents.md` by reducing deployed threshold census work to bounded scales.
+- **What to do next:** Use exact bignum counts at the deciding scale; this
+  packet only pins the scale window.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

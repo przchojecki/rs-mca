@@ -1,0 +1,332 @@
+{
+  "anchor_checks": {
+    "exact_binomial": true,
+    "forced_ratio": true,
+    "non_claim": true,
+    "note_exists": true,
+    "row_uniform": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not decide pointwise safe inequalities",
+    "does not decide pointwise unsafe inequalities",
+    "does not replace exact counting at the deciding scale"
+  ],
+  "note": "experimental/notes/thresholds/census_bounded_scales.md",
+  "schema": "census-bounded-scales-v1",
+  "source_dag_node": "census_bounded_scales",
+  "status": "PROVED",
+  "toy_check": {
+    "all_invariance_checks_hold": true,
+    "all_rows_large_top_gap": true,
+    "all_rows_strictly_increasing": true,
+    "entropy_H_0_40": 0.97095059,
+    "entropy_bound_holds": true,
+    "row_length_invariance": {
+      "1/16": {
+        "same_deciding_scale": true,
+        "same_log2_count": true,
+        "same_selected_count": true
+      },
+      "1/4": {
+        "same_deciding_scale": true,
+        "same_log2_count": true,
+        "same_selected_count": true
+      },
+      "1/8": {
+        "same_deciding_scale": true,
+        "same_log2_count": true,
+        "same_selected_count": true
+      }
+    },
+    "rows": {
+      "RowC 1/16": {
+        "agreement": 67,
+        "deciding_log2_count": 86.878947,
+        "deciding_scale": 256,
+        "deciding_selected": 239,
+        "j": 957,
+        "k": 64,
+        "n": 1024,
+        "ratio": "957/1024",
+        "strictly_increasing": true,
+        "substantive_scales": [
+          {
+            "Nprime": 8,
+            "log2_count": 3.0,
+            "selected": 7
+          },
+          {
+            "Nprime": 16,
+            "log2_count": 4.0,
+            "selected": 15
+          },
+          {
+            "Nprime": 32,
+            "log2_count": 8.954196,
+            "selected": 30
+          },
+          {
+            "Nprime": 64,
+            "log2_count": 19.277251,
+            "selected": 60
+          },
+          {
+            "Nprime": 128,
+            "log2_count": 40.378852,
+            "selected": 120
+          },
+          {
+            "Nprime": 256,
+            "log2_count": 86.878947,
+            "selected": 239
+          }
+        ],
+        "t": 3,
+        "top_gap_bits": 46.500095,
+        "top_gap_large": true
+      },
+      "RowC 1/4": {
+        "agreement": 261,
+        "deciding_log2_count": 101.761869,
+        "deciding_scale": 128,
+        "deciding_selected": 95,
+        "j": 763,
+        "k": 256,
+        "n": 1024,
+        "ratio": "763/1024",
+        "strictly_increasing": true,
+        "substantive_scales": [
+          {
+            "Nprime": 2,
+            "log2_count": 1.0,
+            "selected": 1
+          },
+          {
+            "Nprime": 4,
+            "log2_count": 2.0,
+            "selected": 3
+          },
+          {
+            "Nprime": 8,
+            "log2_count": 4.807355,
+            "selected": 6
+          },
+          {
+            "Nprime": 16,
+            "log2_count": 10.829723,
+            "selected": 12
+          },
+          {
+            "Nprime": 32,
+            "log2_count": 23.326398,
+            "selected": 24
+          },
+          {
+            "Nprime": 64,
+            "log2_count": 48.795431,
+            "selected": 48
+          },
+          {
+            "Nprime": 128,
+            "log2_count": 101.761869,
+            "selected": 95
+          }
+        ],
+        "t": 5,
+        "top_gap_bits": 52.966438,
+        "top_gap_large": true
+      },
+      "RowC 1/8": {
+        "agreement": 133,
+        "deciding_log2_count": 69.059068,
+        "deciding_scale": 128,
+        "deciding_selected": 111,
+        "j": 891,
+        "k": 128,
+        "n": 1024,
+        "ratio": "891/1024",
+        "strictly_increasing": true,
+        "substantive_scales": [
+          {
+            "Nprime": 4,
+            "log2_count": 2.0,
+            "selected": 3
+          },
+          {
+            "Nprime": 8,
+            "log2_count": 3.0,
+            "selected": 7
+          },
+          {
+            "Nprime": 16,
+            "log2_count": 6.906891,
+            "selected": 14
+          },
+          {
+            "Nprime": 32,
+            "log2_count": 15.134105,
+            "selected": 28
+          },
+          {
+            "Nprime": 64,
+            "log2_count": 32.04341,
+            "selected": 56
+          },
+          {
+            "Nprime": 128,
+            "log2_count": 69.059068,
+            "selected": 111
+          }
+        ],
+        "t": 5,
+        "top_gap_bits": 37.015658,
+        "top_gap_large": true
+      },
+      "prize 1/16": {
+        "agreement": 141733920769,
+        "deciding_log2_count": 86.878947,
+        "deciding_scale": 256,
+        "deciding_selected": 239,
+        "j": 2057289334783,
+        "k": 137438953472,
+        "n": 2199023255552,
+        "ratio": "2057289334783/2199023255552",
+        "strictly_increasing": true,
+        "substantive_scales": [
+          {
+            "Nprime": 8,
+            "log2_count": 3.0,
+            "selected": 7
+          },
+          {
+            "Nprime": 16,
+            "log2_count": 4.0,
+            "selected": 15
+          },
+          {
+            "Nprime": 32,
+            "log2_count": 8.954196,
+            "selected": 30
+          },
+          {
+            "Nprime": 64,
+            "log2_count": 19.277251,
+            "selected": 60
+          },
+          {
+            "Nprime": 128,
+            "log2_count": 40.378852,
+            "selected": 120
+          },
+          {
+            "Nprime": 256,
+            "log2_count": 86.878947,
+            "selected": 239
+          }
+        ],
+        "t": 4294967297,
+        "top_gap_bits": 46.500095,
+        "top_gap_large": true
+      },
+      "prize 1/4": {
+        "agreement": 558345748481,
+        "deciding_log2_count": 101.761869,
+        "deciding_scale": 128,
+        "deciding_selected": 95,
+        "j": 1640677507071,
+        "k": 549755813888,
+        "n": 2199023255552,
+        "ratio": "1640677507071/2199023255552",
+        "strictly_increasing": true,
+        "substantive_scales": [
+          {
+            "Nprime": 2,
+            "log2_count": 1.0,
+            "selected": 1
+          },
+          {
+            "Nprime": 4,
+            "log2_count": 2.0,
+            "selected": 3
+          },
+          {
+            "Nprime": 8,
+            "log2_count": 4.807355,
+            "selected": 6
+          },
+          {
+            "Nprime": 16,
+            "log2_count": 10.829723,
+            "selected": 12
+          },
+          {
+            "Nprime": 32,
+            "log2_count": 23.326398,
+            "selected": 24
+          },
+          {
+            "Nprime": 64,
+            "log2_count": 48.795431,
+            "selected": 48
+          },
+          {
+            "Nprime": 128,
+            "log2_count": 101.761869,
+            "selected": 95
+          }
+        ],
+        "t": 8589934593,
+        "top_gap_bits": 52.966438,
+        "top_gap_large": true
+      },
+      "prize 1/8": {
+        "agreement": 283467841537,
+        "deciding_log2_count": 69.059068,
+        "deciding_scale": 128,
+        "deciding_selected": 111,
+        "j": 1915555414015,
+        "k": 274877906944,
+        "n": 2199023255552,
+        "ratio": "1915555414015/2199023255552",
+        "strictly_increasing": true,
+        "substantive_scales": [
+          {
+            "Nprime": 4,
+            "log2_count": 2.0,
+            "selected": 3
+          },
+          {
+            "Nprime": 8,
+            "log2_count": 3.0,
+            "selected": 7
+          },
+          {
+            "Nprime": 16,
+            "log2_count": 6.906891,
+            "selected": 14
+          },
+          {
+            "Nprime": 32,
+            "log2_count": 15.134105,
+            "selected": 28
+          },
+          {
+            "Nprime": 64,
+            "log2_count": 32.04341,
+            "selected": 56
+          },
+          {
+            "Nprime": 128,
+            "log2_count": 69.059068,
+            "selected": 111
+          }
+        ],
+        "t": 8589934593,
+        "top_gap_bits": 37.015658,
+        "top_gap_large": true
+      }
+    }
+  }
+}
