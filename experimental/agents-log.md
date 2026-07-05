@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Towards-prize finite anchors and Fiber triage
+
+- **Agent/model:** GPT-5 Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/lean/towards_prize/TowardsPrize.lean`,
+  `experimental/lean/towards_prize/README.md`,
+  `experimental/lean/towards_prize/CERTIFICATION_MAP.md`,
+  `experimental/notes/lean/w6_lean_anchor_and_fiber_triage.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Finite arithmetic anchors for selected sparse
+  mutual, EMCA, and identity-prefix rows, plus a triage note for the Paper D
+  `Fiber.lean` skeleton.
+- **How it is useful:** Gives the `towards_prize` Lean package a map from
+  verifier-backed finite rows to Lean-checked arithmetic anchors without
+  overstating full census semantics.
+- **What to do next:** Attack `lem_fiber_ii` first, then use it as the input
+  shape for the map-smooth fiber lemma and cap assembly.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by

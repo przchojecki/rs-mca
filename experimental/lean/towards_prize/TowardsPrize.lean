@@ -966,4 +966,65 @@ theorem safe_half_distance {ev : ι → F} {k r : ℕ}
       refine' h_half.trans ( max_le hca _ );
       gcongr ; omega
 
+/-! ## Finite certificate anchors
+
+These anchors record small, verifier-backed numerical rows now used by the
+experimental certificate ledger.  They deliberately check only finite arithmetic
+printed by the certificates; the exhaustive Reed-Solomon semantics remain in the
+Python verifiers listed in `CERTIFICATION_MAP.md`.
+-/
+
+namespace FiniteAnchors
+
+structure SigmaCRow where
+  q : ℕ
+  n : ℕ
+  k : ℕ
+  r : ℕ
+  sigma : ℕ
+deriving DecidableEq, Repr
+
+structure EmcaRow where
+  q : ℕ
+  n : ℕ
+  k : ℕ
+  r : ℕ
+  eca : ℕ
+  sigma : ℕ
+  emca : ℕ
+deriving DecidableEq, Repr
+
+def sigma_q763_r2 : SigmaCRow :=
+  { q := 7, n := 6, k := 3, r := 2, sigma := 7 }
+
+def sigma_q541_r2 : SigmaCRow :=
+  { q := 5, n := 4, k := 1, r := 2, sigma := 3 }
+
+theorem sigma_q763_r2_value : sigma_q763_r2.sigma = 7 := by decide
+
+theorem sigma_q541_r2_value : sigma_q541_r2.sigma = 3 := by decide
+
+def emca_q763_r0 : EmcaRow :=
+  { q := 7, n := 6, k := 3, r := 0, eca := 1, sigma := 0, emca := 1 }
+
+def emca_q763_r1 : EmcaRow :=
+  { q := 7, n := 6, k := 3, r := 1, eca := 2, sigma := 1, emca := 2 }
+
+def emca_q763_r2 : EmcaRow :=
+  { q := 7, n := 6, k := 3, r := 2, eca := 7, sigma := 7, emca := 7 }
+
+theorem emca_q763_sparsify_r0 :
+    max emca_q763_r0.eca emca_q763_r0.sigma = emca_q763_r0.emca := by decide
+
+theorem emca_q763_sparsify_r1 :
+    max emca_q763_r1.eca emca_q763_r1.sigma = emca_q763_r1.emca := by decide
+
+theorem emca_q763_sparsify_r2 :
+    max emca_q763_r2.eca emca_q763_r2.sigma = emca_q763_r2.emca := by decide
+
+theorem identity_prefix_floor_q17_n16_k8 :
+    Nat.choose 16 9 = 11440 := by decide
+
+end FiniteAnchors
+
 end TowardsPrize

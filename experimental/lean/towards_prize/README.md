@@ -45,6 +45,8 @@ results from the note, including:
 - the sparse-layer theorem `sparsify`;
 - the identity-prefix floor `prefix_floor`;
 - the deep-point conversion `deep_point_conversion`.
+- finite certificate anchors under `TowardsPrize.FiniteAnchors`, mapped in
+  `CERTIFICATION_MAP.md`.
 
 This is not a complete formalization of Paper D v12 or of every numerical
 certificate in `towards-prize.tex`.  In particular, the cap criterion and the
@@ -60,3 +62,10 @@ Mathlib-enabled Lean 4.28 environment and add a theorem-by-theorem map.  Claims
 that depend on Python certificate replay, external imports, or Paper D should
 remain labelled as verifier-backed or conditional unless their Lean theorem
 name is explicitly listed.
+
+## Finite Anchor Map
+
+`CERTIFICATION_MAP.md` lists the new finite arithmetic anchors for selected
+`sigma_C`, `eca_C`/`emca_C`, and identity-prefix rows. These are Lean-checked
+arithmetic records, not replacements for the Python verifier-backed census
+claims.
