@@ -1,0 +1,55 @@
+{
+  "claim": {
+    "degenerate_removal": "A = B = 0 is removed by noncontain_degeneracy",
+    "finite_locator_set": "binom(n,j) squarefree degree-j divisors/support complements",
+    "fixed_locator_pencil": "A + z B = 0",
+    "frame_consequence": "finite noncontained slope events inject into the finite locator set",
+    "one_slope_rule": "after degenerate removal, v8_ledger gives <=1 finite slope per locator"
+  },
+  "consumers": [
+    "mca_safe"
+  ],
+  "non_claims": [
+    "does not count root tables for the F_17^32 M3/M4 window",
+    "does not classify locators as tangent, quotient, extension, or aperiodic",
+    "depends on the VTDV factorization packet in PR #317",
+    "does not edit Papers A-D"
+  ],
+  "sample_arithmetic": [
+    {
+      "j": 3,
+      "locator_count": 56,
+      "n": 8
+    },
+    {
+      "j": 4,
+      "locator_count": 1820,
+      "n": 16
+    },
+    {
+      "j": 5,
+      "locator_count": 201376,
+      "n": 32
+    }
+  ],
+  "schema": "rs-mca.experimental.counting_frame.v1",
+  "source_dag_dependencies": {
+    "external_prs": [
+      {
+        "branch": "codex/vendor-vtdv-fm1",
+        "node": "vtdv",
+        "pr": 317
+      }
+    ],
+    "local": [
+      "v8_ledger",
+      "noncontain_degeneracy"
+    ],
+    "upstream_existing": [
+      "f1_pencil_nf"
+    ]
+  },
+  "source_dag_node": "counting_frame",
+  "status": "PROVED",
+  "verdict": "finite_noncontained_slope_events_inject_into_the_locator_divisor_set"
+}

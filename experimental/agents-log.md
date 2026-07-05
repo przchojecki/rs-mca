@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Exact counting frame
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/counting_frame.md`;
+  `experimental/scripts/verify_counting_frame_packet.py`;
+  `experimental/data/certificates/counting-frame/counting_frame.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `counting_frame`, assembling the finite
+  divisor set, linear slope pencil, noncontainment degeneracy removal, and
+  one-support-one-slope ledger.
+- **How it is useful:** This is the exact finite locator-slope bookkeeping
+  layer consumed by `mca_safe` and by v10 Hankel safe-side certificates before
+  paid-ledger and residual classifications are applied.
+- **What to do next:** Rebase or merge after the VTDV/FM1 packet PR #317 lands,
+  then use this frame in later M3/M4 row-certificate packets.
+
 ### 2026-07-05 - Noncontainment degeneracy
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
