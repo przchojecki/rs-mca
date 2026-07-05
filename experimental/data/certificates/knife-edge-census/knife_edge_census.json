@@ -1,0 +1,82 @@
+{
+  "anchor_checks": {
+    "dependency": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "window": true
+  },
+  "dependency_subdag": {
+    "edges": [
+      [
+        "census_bounded_scales",
+        "census_exact_counts"
+      ],
+      [
+        "census_exact_counts",
+        "census_window_arithmetic"
+      ],
+      [
+        "census_window_arithmetic",
+        "knife_edge_census"
+      ],
+      [
+        "certified_valueset_lower",
+        "knife_edge_census"
+      ]
+    ],
+    "sink": "knife_edge_census",
+    "topological_order": [
+      "census_bounded_scales",
+      "certified_valueset_lower",
+      "census_exact_counts",
+      "census_window_arithmetic",
+      "knife_edge_census"
+    ]
+  },
+  "non_claims": [
+    "does not count primes inside residual windows",
+    "does not choose deployed v13 row primes",
+    "does not replace row-specific certificates",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/knife_edge_census.md",
+  "schema": "knife-edge-census-v1",
+  "source_dag_node": "knife_edge_census",
+  "status": "PROVED",
+  "support_certificates": {
+    "certified_valueset_lower_exists": true,
+    "certified_valueset_lower_status": "PROVED",
+    "quotient_window_exists": true,
+    "quotient_window_has_census_window_arithmetic": true,
+    "quotient_window_status": "PROVED-COMPILER-ARITHMETIC / 2-POWER QUOTIENT COUNT"
+  },
+  "window_logic_check": {
+    "all_checks_pass": true,
+    "monotone_window_sizes": [
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+    ],
+    "q_interval_formula": "[L 2^128, K 2^128 - 1]",
+    "sample_classification": {
+      "10": "DECIDED_BY_EXACT_UPPER",
+      "11": "DECIDED_BY_EXACT_UPPER",
+      "6": "CERTIFIED_BY_LOWER",
+      "7": "UNRESOLVED_WINDOW",
+      "8": "UNRESOLVED_WINDOW",
+      "9": "UNRESOLVED_WINDOW"
+    },
+    "sample_lower": 7,
+    "sample_upper": 10
+  }
+}

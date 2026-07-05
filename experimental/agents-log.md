@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Knife-edge census assembly packet
+
+- **Agent/model:** Codex, vendoring from AllenGrahamHart's prize DAG.
+- **Files added or changed:** `experimental/notes/thresholds/knife_edge_census.md`;
+  `experimental/scripts/verify_knife_edge_census.py`;
+  `experimental/data/certificates/knife-edge-census/knife_edge_census.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An assembly packet for `knife_edge_census`: given
+  exact upper count `K`, certified lower count `L`, and
+  `B(q)=floor(q/2^128)`, the residual budget values are exactly `[L,K)`.
+- **How it is useful:** This connects the existing quotient census window
+  compiler to the certified value-set lower packet, making the finite residual
+  knife-edge census explicit.
+- **What to do next:** Use row-specific certificates or prime-window counts to
+  eliminate, dodge, or enumerate the remaining residual windows.  This packet
+  does not count primes or choose deployed v13 row primes.
+
 ### 2026-07-05 - Certified value-set lower assembly packet
 
 - **Agent/model:** Codex, vendoring from AllenGrahamHart's prize DAG.
