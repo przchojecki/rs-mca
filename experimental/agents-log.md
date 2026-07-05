@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Direct mode-at-null near-mode prefix-fiber test
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_mode_at_null_direct.py`;
+  `experimental/scripts/verify_mode_at_null_direct_check.py`;
+  `experimental/data/certificates/mode-at-null-direct/mode_at_null_direct.json`;
+  `experimental/notes/m1/mode_at_null_direct.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A finite exact test of the literal `N_w(z) <= N_w(0)`
+  prefix-fiber mode-at-null statement on small multiplicative subgroup rows,
+  with exact `kappa_null`, `kappa_max`, zero-prefix-realization, and strict-margin
+  constants.
+- **How it is useful:** Separates the direct mode-at-null/Q3 object from the
+  earlier proxy and second-moment packets. It records that three rows are
+  vacuous because the zero prefix is unrealized, while on the nine realized-null
+  rows `N_w(0)` is the exact mode on six and one below the mode on three.
+- **What to do next:** Test larger realized-null rows and decide whether the
+  observed `N_w(0) >= max_z N_w(z) - 1` near-mode behavior persists beyond the
+  toy range.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by
