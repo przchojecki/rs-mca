@@ -1,0 +1,746 @@
+{
+  "agreement_interval": {
+    "a_max": 1116044,
+    "a_min": 1116043
+  },
+  "agreements": {
+    "1116043": {
+      "A": 1116043,
+      "B_ap": {
+        "B_ap_pivot": {
+          "reason": "the M5/WP-2.6 pivot-chart program is developed only at deficiency 1 on the toy F_17^32 row; nothing is instantiable at deficiency ~9.1e5.",
+          "status_label": "CONJECTURAL_WITH_FALSIFIER",
+          "value": "OPEN"
+        },
+        "B_ap_regular": {
+          "deficiency": 913643,
+          "j_plus_1": 981110,
+          "reason": "the regular overdetermined Hankel branch exists only when t >= j+1 (towards-prize.md section 3); here t = 67467 << j+1 = 981110 (deficiency 913643), the deep underdetermined regime.  No proved formula for B_ap_regular or B_ap_pivot exists at this row.",
+          "status_label": "CONJECTURAL_WITH_FALSIFIER",
+          "t": 67467,
+          "value": "NONEXISTENT_BUCKET"
+        },
+        "falsifier": "per the task's own wording, 'audit the aperiodic-band input separately': a staircase/SPI/XR population bound at this deficiency bounding the aperiodic band above, or an explicit aperiodic family whose exact mass exceeds the deficit (which would instead be COUNTEREXAMPLE_NEW_FLOOR).",
+        "named_future_input": "PR #282 (XR eliminant packets: light-profile eliminant nonvanishing, coordinate hypersurface reduction, eliminant vanishing class) \u2014 cited as partial structural progress on this residual; its own text disclaims row-level adjacent upper-ledger status and defers to a separate staircase/SPI/XR rationing input."
+      },
+      "B_ext": {
+        "ext_pole_arithmetic": {
+          "L": "the c=1 list floor at a0+1 (see conversion_gap_target)",
+          "excess_over_budget_bits_if_certified": 102.47,
+          "formula": "ExtPole(q_line, q_gen, kappa, L) = ceil(L (q_line - q_gen) / (q_line - q_gen + kappa (L-1))), kappa = k (prop:v13-extension official compiler denominator)",
+          "hypothetical_only": "arithmetic instantiation only.  A valid ExtPole floor additionally requires the pole-conversion certificate conditions (i)/(ii) of prop:v13-extension; condition (i) (distinct pole values give distinct extension-only bad line parameters for THIS row) is not certified here, and upstream does not claim it.  This is therefore NOT an unsafe floor at this row; it documents what the formula would give if the certificate existed, i.e. the missing input is exactly condition (i).",
+          "kappa": 1048576,
+          "value_bit_length": 161,
+          "value_log2": 160.4021
+        },
+        "named_input": "PR #284 (F1 minimal-field-descent packet): unique minimal field of definition B <= K <= F makes the S6/F1 chart split {K=B, B<K<F, K=F} exhaustive and mutually exclusive; cited as a structural input, not consumed as a bound.",
+        "row_type": "proper extension row: q_gen = p < q_line = p^6, so Paid_ext^only = 0 does NOT apply (paid_ledger_functions.md section 3)",
+        "safe_side": "the safe-side chart classification (S6) of every extension-valued residual chart is explicitly undischarged (paid_ledger_functions.md DAG Discharge); no finite chart-family exhaustion theorem exists at this row, so the extension upper cell is OPEN pending the named input.",
+        "status_label": "CONDITIONAL_ON_NAMED_INPUT"
+      },
+      "B_quot_image": {
+        "reason": "no image-lcm certificate (thm:exact-quotient-image-lcm-ledger) is supplied at this row; the cell stays at the SAFE_SUM grade above.",
+        "status_label": "OPEN",
+        "value": "NO_CERTIFICATE"
+      },
+      "B_quot_support": {
+        "coverage": "prop:v13-quotient-safe-sum: valid conservative upper numerator for the union of the DECLARED dyadic quotient cells only (declared-coverage hypothesis); it is not global quotient exhaustion and bounds no other cell.",
+        "declared_family": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "excess_over_budget_bits": 1045397.306,
+        "formula": "U_sum(n,A,C) = sum_{c in C} sum_{B=A}^{n} C(n/c, floor(B/c)) C(n - c floor(B/c), B - c floor(B/c))",
+        "grade": "SAFE_SUM (no image-lcm or exact block-profile certificate is supplied at this row, so the EXACT_IMAGE / EXACT_SUPPORT grades of def:v13-quotient-status are not available)",
+        "note": "astronomically above B*, as expected for a support-count union bound at delta ~ 0.4678; the upper ledger documents it honestly rather than consuming it.",
+        "per_divisor_log2": {
+          "16": 130932.9736,
+          "2": 1045455.2381,
+          "32": 65839.2935,
+          "4": 522771.7493,
+          "8": 261481.4514
+        },
+        "status_label": "PAID_BY_THEOREM",
+        "value_fingerprint": {
+          "bit_length": 1045456,
+          "log2": 1045455.2381,
+          "mod_2_64": 7474161590660898801,
+          "mod_m31": 1738421357,
+          "mod_m61": 323047427917829666,
+          "sha256_bigendian_bytes": "6cd330d6c5f188dc1cd421790fd8635811665945e7f99838890753bb3def7d16"
+        }
+      },
+      "B_tan": {
+        "lower_floor": {
+          "statement": "LD_sw(C,1116043) >= n - a + 1 = 981110: the moving-root witness half of prop:v13-tangent needs only n - r - 1 >= k, i.e. a >= k+1, which holds here; this is a LOWER floor (unsafe mass), not an upper cell.",
+          "status_label": "PAID_BY_THEOREM",
+          "value": 981110,
+          "value_log2": 19.9041
+        },
+        "upper_exact_cell": {
+          "reason": "r = 981109 > R_tan = 349525 = floor((n-k)/3): Paid_tan^hi is UNAVAILABLE outside the high-agreement range by its own type (def:v13-tangent-cell, paid_ledger_functions.md section 1); a packet must use a different tangent/common-line theorem or leave the cell open.  No silent n - A + 1 upper value is printed.",
+          "status_label": "OPEN",
+          "value": "UNAVAILABLE"
+        }
+      },
+      "budget": 274980728111395087,
+      "deduped_total_upper_bound": "NOT_FINITE_OPEN_CELLS: no finite U(a) exists because the tangent-upper, aperiodic, sparse/CA and extension-chart cells are OPEN; per agents.md no residual may be hidden in a point estimate, so no total is printed.",
+      "delta_exact": "981109/2097152",
+      "delta_float": 0.4678292,
+      "j": 981109,
+      "mu4_family_cell": {
+        "count_if_transfers": 4,
+        "evidence": "u - v = +/- n/4 monomial-line family with stable count |mu_4| = 4, engine-exact on toy rows (F_97: n=16 a=12; n=32 a=24, exhaustive 240-pair grid); external empirical evidence, and the tested agreements sit at a/n = 3/4, not at this step's a/n ~ 0.5322",
+        "falsifier": "an exhaustive or theorem-backed count of the u - v = +/- n/4 monomial family at a deployed-shaped row contradicting +4",
+        "grade": "EMPIRICAL_NOT_A_THEOREM_AT_THIS_ROW",
+        "note": "one-sided codeword lines contribute exactly 0 (forced-vacuous).  The +4 is never added to any theorem-backed total in this packet.",
+        "precondition": "4 | p - 1 holds (p - 1 = 2^24 * 127), so the slope set mu_4 (4th roots of unity) exists in F_p",
+        "status_label": "CONJECTURAL_WITH_FALSIFIER"
+      },
+      "quotient_zone_gate": {
+        "active_order_cutoff": {
+          "active_dyadic_orders": [
+            2,
+            4,
+            8,
+            16
+          ],
+          "convention": "N' <= n/t (proof_sketch/s2_paid_ledger.md section 5)",
+          "floor_n_over_t": 31,
+          "n_over_t": 31.0841,
+          "note": "N'=32 exceeds the s2 active cutoff and is included conservatively in the declared coverage family; a superset family only enlarges the safe sum (prop:v13-quotient-safe-sum union bound).",
+          "t": 67467
+        },
+        "conclusion": "every declared order sits in ZONE_A_NORM_EXACT; the zone-(b) collision conjecture is vacuous at this step (no zone-(b) interval cell is consumed by this packet).",
+        "definition": "(2 ell')^{N'} <= q_line^2 with ell' = rho N' + 1 = N'/2 + 1 (paid_ledger_functions.md Zone Tags)",
+        "gate_boundary": {
+          "first_even_order_failing": 62,
+          "last_even_order_passing": 60
+        },
+        "per_declared_order": [
+          {
+            "N_prime": 2,
+            "ell_prime": 2,
+            "gate": "4^2 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 4.0,
+            "zone": "ZONE_A_NORM_EXACT"
+          },
+          {
+            "N_prime": 4,
+            "ell_prime": 3,
+            "gate": "6^4 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 10.3399,
+            "zone": "ZONE_A_NORM_EXACT"
+          },
+          {
+            "N_prime": 8,
+            "ell_prime": 5,
+            "gate": "10^8 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 26.5754,
+            "zone": "ZONE_A_NORM_EXACT"
+          },
+          {
+            "N_prime": 16,
+            "ell_prime": 9,
+            "gate": "18^16 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 66.7188,
+            "zone": "ZONE_A_NORM_EXACT"
+          },
+          {
+            "N_prime": 32,
+            "ell_prime": 17,
+            "gate": "34^32 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 162.7988,
+            "zone": "ZONE_A_NORM_EXACT"
+          }
+        ],
+        "q_line_squared_log2": 371.8642
+      },
+      "r": 981109,
+      "sparse_plain_ca_cell": {
+        "reason": "same landmark geometry as at 1116044 (one step away); see the a=1116044 block.",
+        "status_label": "OPEN"
+      },
+      "t": 67467,
+      "verdict_block": {
+        "explicit_structured_floor": 981110,
+        "mechanism": "c=1 identity-prefix MCA floor (PAID_BY_EXACT_CERTIFICATE, margin +25.6761 bits, exact integer comparison c1_mca_m1116043): N(1116043) > B*, i.e. N(1116043) >= B* + 1 = 274980728111395088",
+        "verdict": "UNSAFE_BY_PROVED_LOWER_BOUND"
+      }
+    },
+    "1116044": {
+      "A": 1116044,
+      "B_ap": {
+        "B_ap_pivot": {
+          "reason": "the M5/WP-2.6 pivot-chart program is developed only at deficiency 1 on the toy F_17^32 row; nothing is instantiable at deficiency ~9.1e5.",
+          "status_label": "CONJECTURAL_WITH_FALSIFIER",
+          "value": "OPEN"
+        },
+        "B_ap_regular": {
+          "deficiency": 913641,
+          "j_plus_1": 981109,
+          "reason": "the regular overdetermined Hankel branch exists only when t >= j+1 (towards-prize.md section 3); here t = 67468 << j+1 = 981109 (deficiency 913641), the deep underdetermined regime.  No proved formula for B_ap_regular or B_ap_pivot exists at this row.",
+          "status_label": "CONJECTURAL_WITH_FALSIFIER",
+          "t": 67468,
+          "value": "NONEXISTENT_BUCKET"
+        },
+        "falsifier": "per the task's own wording, 'audit the aperiodic-band input separately': a staircase/SPI/XR population bound at this deficiency bounding the aperiodic band above, or an explicit aperiodic family whose exact mass exceeds the deficit (which would instead be COUNTEREXAMPLE_NEW_FLOOR).",
+        "named_future_input": "PR #282 (XR eliminant packets: light-profile eliminant nonvanishing, coordinate hypersurface reduction, eliminant vanishing class) \u2014 cited as partial structural progress on this residual; its own text disclaims row-level adjacent upper-ledger status and defers to a separate staircase/SPI/XR rationing input."
+      },
+      "B_ext": {
+        "ext_pole_arithmetic": {
+          "L": "the c=1 list floor at a0+1 (see conversion_gap_target)",
+          "excess_over_budget_bits_if_certified": 102.47,
+          "formula": "ExtPole(q_line, q_gen, kappa, L) = ceil(L (q_line - q_gen) / (q_line - q_gen + kappa (L-1))), kappa = k (prop:v13-extension official compiler denominator)",
+          "hypothetical_only": "arithmetic instantiation only.  A valid ExtPole floor additionally requires the pole-conversion certificate conditions (i)/(ii) of prop:v13-extension; condition (i) (distinct pole values give distinct extension-only bad line parameters for THIS row) is not certified here, and upstream does not claim it.  This is therefore NOT an unsafe floor at this row; it documents what the formula would give if the certificate existed, i.e. the missing input is exactly condition (i).",
+          "kappa": 1048576,
+          "value_bit_length": 161,
+          "value_log2": 160.4021
+        },
+        "named_input": "PR #284 (F1 minimal-field-descent packet): unique minimal field of definition B <= K <= F makes the S6/F1 chart split {K=B, B<K<F, K=F} exhaustive and mutually exclusive; cited as a structural input, not consumed as a bound.",
+        "row_type": "proper extension row: q_gen = p < q_line = p^6, so Paid_ext^only = 0 does NOT apply (paid_ledger_functions.md section 3)",
+        "safe_side": "the safe-side chart classification (S6) of every extension-valued residual chart is explicitly undischarged (paid_ledger_functions.md DAG Discharge); no finite chart-family exhaustion theorem exists at this row, so the extension upper cell is OPEN pending the named input.",
+        "status_label": "CONDITIONAL_ON_NAMED_INPUT"
+      },
+      "B_quot_image": {
+        "reason": "no image-lcm certificate (thm:exact-quotient-image-lcm-ledger) is supplied at this row; the cell stays at the SAFE_SUM grade above.",
+        "status_label": "OPEN",
+        "value": "NO_CERTIFICATE"
+      },
+      "B_quot_support": {
+        "coverage": "prop:v13-quotient-safe-sum: valid conservative upper numerator for the union of the DECLARED dyadic quotient cells only (declared-coverage hypothesis); it is not global quotient exhaustion and bounds no other cell.",
+        "declared_family": [
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "excess_over_budget_bits": 1045397.12,
+        "formula": "U_sum(n,A,C) = sum_{c in C} sum_{B=A}^{n} C(n/c, floor(B/c)) C(n - c floor(B/c), B - c floor(B/c))",
+        "grade": "SAFE_SUM (no image-lcm or exact block-profile certificate is supplied at this row, so the EXACT_IMAGE / EXACT_SUPPORT grades of def:v13-quotient-status are not available)",
+        "note": "astronomically above B*, as expected for a support-count union bound at delta ~ 0.4678; the upper ledger documents it honestly rather than consuming it.",
+        "per_divisor_log2": {
+          "16": 130932.9736,
+          "2": 1045455.0521,
+          "32": 65839.2935,
+          "4": 522771.5633,
+          "8": 261481.4514
+        },
+        "status_label": "PAID_BY_THEOREM",
+        "value_fingerprint": {
+          "bit_length": 1045456,
+          "log2": 1045455.0521,
+          "mod_2_64": 7855705625153904625,
+          "mod_m31": 1189045459,
+          "mod_m61": 1790788107070749744,
+          "sha256_bigendian_bytes": "5d5e54ef8aa01b7c5cf77d3c85e58e3c04e3a43705a3c188b4ca83a510cfcaf7"
+        }
+      },
+      "B_tan": {
+        "lower_floor": {
+          "statement": "LD_sw(C,1116044) >= n - a + 1 = 981109: the moving-root witness half of prop:v13-tangent needs only n - r - 1 >= k, i.e. a >= k+1, which holds here; this is a LOWER floor (unsafe mass), not an upper cell.",
+          "status_label": "PAID_BY_THEOREM",
+          "value": 981109,
+          "value_log2": 19.9041
+        },
+        "upper_exact_cell": {
+          "reason": "r = 981108 > R_tan = 349525 = floor((n-k)/3): Paid_tan^hi is UNAVAILABLE outside the high-agreement range by its own type (def:v13-tangent-cell, paid_ledger_functions.md section 1); a packet must use a different tangent/common-line theorem or leave the cell open.  No silent n - A + 1 upper value is printed.",
+          "status_label": "OPEN",
+          "value": "UNAVAILABLE"
+        }
+      },
+      "budget": 274980728111395087,
+      "deduped_total_upper_bound": "NOT_FINITE_OPEN_CELLS: no finite U(a) exists because the tangent-upper, aperiodic, sparse/CA and extension-chart cells are OPEN; per agents.md no residual may be hidden in a point estimate, so no total is printed.",
+      "delta_exact": "245277/524288",
+      "delta_float": 0.4678288,
+      "j": 981108,
+      "mu4_family_cell": {
+        "count_if_transfers": 4,
+        "evidence": "u - v = +/- n/4 monomial-line family with stable count |mu_4| = 4, engine-exact on toy rows (F_97: n=16 a=12; n=32 a=24, exhaustive 240-pair grid); external empirical evidence, and the tested agreements sit at a/n = 3/4, not at this step's a/n ~ 0.5322",
+        "falsifier": "an exhaustive or theorem-backed count of the u - v = +/- n/4 monomial family at a deployed-shaped row contradicting +4",
+        "grade": "EMPIRICAL_NOT_A_THEOREM_AT_THIS_ROW",
+        "note": "one-sided codeword lines contribute exactly 0 (forced-vacuous).  The +4 is never added to any theorem-backed total in this packet.",
+        "precondition": "4 | p - 1 holds (p - 1 = 2^24 * 127), so the slope set mu_4 (4th roots of unity) exists in F_p",
+        "status_label": "CONJECTURAL_WITH_FALSIFIER"
+      },
+      "quotient_zone_gate": {
+        "active_order_cutoff": {
+          "active_dyadic_orders": [
+            2,
+            4,
+            8,
+            16
+          ],
+          "convention": "N' <= n/t (proof_sketch/s2_paid_ledger.md section 5)",
+          "floor_n_over_t": 31,
+          "n_over_t": 31.0837,
+          "note": "N'=32 exceeds the s2 active cutoff and is included conservatively in the declared coverage family; a superset family only enlarges the safe sum (prop:v13-quotient-safe-sum union bound).",
+          "t": 67468
+        },
+        "conclusion": "every declared order sits in ZONE_A_NORM_EXACT; the zone-(b) collision conjecture is vacuous at this step (no zone-(b) interval cell is consumed by this packet).",
+        "definition": "(2 ell')^{N'} <= q_line^2 with ell' = rho N' + 1 = N'/2 + 1 (paid_ledger_functions.md Zone Tags)",
+        "gate_boundary": {
+          "first_even_order_failing": 62,
+          "last_even_order_passing": 60
+        },
+        "per_declared_order": [
+          {
+            "N_prime": 2,
+            "ell_prime": 2,
+            "gate": "4^2 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 4.0,
+            "zone": "ZONE_A_NORM_EXACT"
+          },
+          {
+            "N_prime": 4,
+            "ell_prime": 3,
+            "gate": "6^4 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 10.3399,
+            "zone": "ZONE_A_NORM_EXACT"
+          },
+          {
+            "N_prime": 8,
+            "ell_prime": 5,
+            "gate": "10^8 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 26.5754,
+            "zone": "ZONE_A_NORM_EXACT"
+          },
+          {
+            "N_prime": 16,
+            "ell_prime": 9,
+            "gate": "18^16 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 66.7188,
+            "zone": "ZONE_A_NORM_EXACT"
+          },
+          {
+            "N_prime": 32,
+            "ell_prime": 17,
+            "gate": "34^32 <= q_line^2",
+            "holds": true,
+            "lhs_log2": 162.7988,
+            "zone": "ZONE_A_NORM_EXACT"
+          }
+        ],
+        "q_line_squared_log2": 371.8642
+      },
+      "r": 981108,
+      "sparse_plain_ca_cell": {
+        "delta_gap_to_conditional_radius": {
+          "exact": "377023/2097152",
+          "float": 0.1797786
+        },
+        "delta_gap_to_johnson": {
+          "exact": "366866/2097152",
+          "float": 0.1749353
+        },
+        "delta_gap_to_unconditional_zone": {
+          "exact": "631583/2097152",
+          "float": 0.3011622
+        },
+        "landmarks": [
+          {
+            "a_steps_from_1116044": -67468,
+            "agreement_a": 1048576,
+            "delta_exact": "1/2",
+            "delta_float": 0.5,
+            "name": "capacity agreement a = k (delta = 1 - rho = 1/2)",
+            "source": "row parameters",
+            "status": "reference point"
+          },
+          {
+            "a_steps_from_1116044": -6,
+            "agreement_a": 1116038,
+            "delta_exact": "490557/1048576",
+            "delta_float": 0.4678316,
+            "name": "c=2 MCA prefix-floor edge (verified above, adjacent-tight)",
+            "source": "c2_mca_m558019 / c2_mca_m558020",
+            "status": "PROVED (recomputed here)"
+          },
+          {
+            "a_steps_from_1116044": -1,
+            "agreement_a": 1116043,
+            "delta_exact": "981109/2097152",
+            "delta_float": 0.4678292,
+            "name": "c=1 identity-prefix MCA unsafe edge a0 (verified above)",
+            "source": "c1_mca_m1116043 / c1_mca_m1116044; prop:v13f1-identity-frontier",
+            "status": "PROVED (recomputed here)"
+          },
+          {
+            "a_steps_from_1116044": 0,
+            "agreement_a": 1116044,
+            "delta_exact": "245277/524288",
+            "delta_float": 0.4678288,
+            "name": "the adjacent safe-side step under audit",
+            "source": "prob:v13f1-frontier",
+            "status": "UNDECIDED (this packet)"
+          },
+          {
+            "a_steps_from_1116044": 2,
+            "agreement_a": 1116046,
+            "delta_exact": "490553/1048576",
+            "delta_float": 0.4678278,
+            "name": "c=1 identity-prefix LIST unsafe edge (verified above)",
+            "source": "c1_list_m1116046 / c1_list_m1116047",
+            "status": "PROVED (recomputed here)"
+          },
+          {
+            "a_steps_from_1116044": 366866,
+            "agreement_a": 1482910,
+            "delta_exact": "307121/1048576",
+            "delta_float": 0.2928934,
+            "name": "Johnson agreement floor(n/sqrt(2)) (1 - sqrt(rho) radius)",
+            "source": "exact isqrt(n^2/2)",
+            "status": "reference point (no MCA theorem at this row)"
+          },
+          {
+            "a_steps_from_1116044": 377023,
+            "agreement_a": 1493067,
+            "delta_exact": "604085/2097152",
+            "delta_float": 0.2880502,
+            "name": "conditional BCHKS25/Hab25 JMCA safe edge (gap G4: unproved linear-in-n Hab25 constant)",
+            "source": "experimental/notes/audits/koalabear_bchks25_jmca_safe_edge_v1.md",
+            "status": "CONDITIONAL_ON_NAMED_INPUT (not usable here)"
+          },
+          {
+            "a_steps_from_1116044": 456820,
+            "agreement_a": 1572864,
+            "delta_exact": "1/4",
+            "delta_float": 0.25,
+            "name": "half-distance / unique-decoding agreement (delta = 1/4)",
+            "source": "row parameters",
+            "status": "reference point"
+          },
+          {
+            "a_steps_from_1116044": 552230,
+            "agreement_a": 1668274,
+            "delta_exact": "214439/1048576",
+            "delta_float": 0.204505,
+            "name": "proved Hab25-quadratic safe edge on this row",
+            "source": "experimental/data/certificates/corridor-unconditional-safe-edges/corridor_unconditional_safe_edges.json",
+            "status": "PROVED (imported; far below this step)"
+          },
+          {
+            "a_steps_from_1116044": 631583,
+            "agreement_a": 1747627,
+            "delta_exact": "349525/2097152",
+            "delta_float": 0.1666665,
+            "name": "unconditional LD_sw-exactness zone start a = ceil((2n+k)/3) (equivalently r <= R_tan)",
+            "source": "def:v13-tangent-cell / prop:v13-tangent",
+            "status": "PROVED zone boundary"
+          }
+        ],
+        "reason": "no MCA/CA soundness theorem reaches delta = 245277/524288 ~ 0.4678288 on this row: the proved Hab25-quadratic import certifies only delta <= 428878/2^21 ~ 0.2045 (below the 1/4 edge); the 604085/2^21 ~ 0.2880502 edge is conditional on the unproved Hab25 linear-in-n constant (gap G4, integrated #272 audit); Johnson sits 366866 agreement steps above this step.  Any safety proof here must also be list-size-independent, since the list at this radius is certified ~2^71.5 over the list budget (c1_list_m1116044).",
+        "status_label": "OPEN"
+      },
+      "t": 67468,
+      "verdict_block": {
+        "budget": 274980728111395087,
+        "budget_log2": 57.9321,
+        "deficit_to_unsafety": 274980728110413979,
+        "known_lower_mass": 981109,
+        "known_lower_mass_log2": 19.9041,
+        "list_object_at_this_agreement": "certified list-unsafe by two independent exact certificates (c1_list_m1116044 at +71.5129 bits and the adjacent-tight c=2 edge c2_list_m558022 at +1.8790 bits); this does not decide the MCA verdict.",
+        "mechanism": "thm:v13-windows with L = 981109 <= B* and no finite upper certificate K (the upper ledger has OPEN cells: tangent-upper, aperiodic, sparse/CA, extension-chart); the budget sits in the unresolved window L <= B(q) < K.",
+        "no_safety_theorem_in_range": "see sparse_plain_ca_cell landmarks",
+        "verdict": "UNDECIDED_WINDOW_OPEN"
+      }
+    }
+  },
+  "certificate_sensitivity": {
+    "note": "one a-step multiplies RHS/LHS of the c=1 predicate by p (m+1)/(n-m) (~31.17 bits at the edge): the 1116043/1116044 flip is generic threshold-crossing, not arithmetic structure.  The single structural coincidence: a = 1116044 is exactly the adjacent-tight c=2 LIST-route edge (m = 558022), giving a second independent list-unsafety certificate at precisely this agreement; it changes no MCA verdict.",
+    "per_a_step_bits_at_edge": 31.1746
+  },
+  "conversion_gap_target": {
+    "certified_list_floor_at_a1116044": {
+      "code": "RS[F_p^6, D, k+1]",
+      "construction": "lem:v13f1-identity-prefix-floor at c=1, m=1116044, w=67467; L = ceil(C(n,m)/p^w), exact integer",
+      "log2": 160.4336,
+      "value": 1973967916468083369044358670918132115633867608112
+    },
+    "deep_point_conversion_threshold": {
+      "formula": "(q_line + k)/k  (prop:v13f1-identity-frontier proof: list > q/k + 1 with m >= k+1 admissibility, via thm:A)",
+      "log2": 165.9321
+    },
+    "falsifier_next_target": "a >= 5.4985-bit sharpening of the deep-point list-to-MCA conversion constant at K = k+1 on this row; equivalently, certify a list floor at m = 1116044 exceeding (q+k)/k.  The alternative mass route must instead supply B*+1 - 981109 = 274980728110413979 (~2^57.93) new bad-slope mass, ~38.03 bits above every known structured family.",
+    "gap_bits": 5.4985,
+    "gap_factor": 45.21,
+    "statement": "At a0+1 = 1116044 the c=1 identity-prefix floor certifies a list of size 2^160.4336 in RS[F,D,k+1] while the deep-point list-to-MCA conversion threshold (q+k)/k sits at 2^165.9321: the conversion is missed by exactly 5.4985 bits (a factor of ~45.21).  Any sharpening of the thm:A list-to-MCA conversion (or of the pigeonhole floor) worth >= 5.4985 bits at this radius flips a = 1116044 MCA-unsafe and pins the staircase adjacently.",
+    "status_label": "CONJECTURAL_WITH_FALSIFIER"
+  },
+  "corridor_statement": "per thm:v13-corridor the certified corridor is 1 + max A_unsafe = 1116044 <= a* <= min A_safe (A_safe empty in this packet -> convention a_max); the packet narrows nothing on the safe side and treats a* = 1116044 only as the conjectural adjacent value (prob:v13f1-frontier).",
+  "deduplication_rule": {
+    "application_here": "no cross-cell total is formed: the only finite theorem-backed upper cell (quotient SAFE_SUM) is never added to any other cell because the tangent-upper, aperiodic, sparse/CA and extension-chart cells are OPEN.  Internal dedup of the SAFE_SUM is the declared-family union bound of prop:v13-quotient-safe-sum plus lem:one-support-one-line (each fixed support pays at most one finite bad slope).",
+    "convention": "WP-2.3 first-match stratification tree T0-T7, evaluated first-match-wins; that order IS the dedup convention (wp2_3_stratification_case_tree.md).  Tangent filter: per-slope syndrome criterion u + z v = 0 (PR #171) as primary."
+  },
+  "deficit_ledger": {
+    "budget_log2": 57.9321,
+    "deficit": 274980728110413979,
+    "deficit_log2": 57.9321,
+    "deficit_with_empirical_mu4": 274980728110413975,
+    "known_over_budget_ratio": 3.5679191292363998e-12,
+    "proved_lower_mass": 981109,
+    "proved_lower_mass_log2": 19.9041,
+    "reading": "unknown families must carry 99.9999999996% of the budget: known mass 2^19.90 vs B* ~ 2^57.93, a ~38.03-bit shortfall.",
+    "structured_family_shortfall_bits": 38.0281,
+    "unsafety_gate": "LD_sw(C,1116044) >= B* + 1 = 274980728111395088"
+  },
+  "denominators": {
+    "q_chal": 93571093019388561295270373781649880353786165192103559169,
+    "q_gen": 2130706433,
+    "q_line": 93571093019388561295270373781649880353786165192103559169,
+    "q_list": 93571093019388561295270373781649880353786165192103559169,
+    "sampler": "finite_affine (slopes z in F; the projective variant shifts numerator/denominator by 1 \u2014 immaterial at these margins)"
+  },
+  "endpoint_convention": "closed integer ball r = n - a; if an interior first safe agreement a* exists, the largest safe closed integer radius is n - a* and the real supremum (n - a* + 1)/n is not attained (cor:v13-endpoint)",
+  "nonclaims": [
+    "no adjacent pin is claimed: a* = 1116044 remains conjectural (prob:v13f1-frontier); the window at 1116044 stays open per thm:v13-windows",
+    "no finite U(1116044) <= B* statement exists or is claimed: the upper ledger has OPEN cells (tangent-upper, aperiodic, sparse/CA, extension-chart), so no deduped finite total is printed",
+    "the LIST-route certificates at 1116044 concern the companion list object, not the MCA verdict",
+    "the ExtPole value is hypothetical arithmetic: condition (i) of prop:v13-extension is not certified at this row, so it is NOT an unsafe floor here",
+    "U_sum covers only the declared dyadic quotient cells {2,4,8,16,32}; it is not global quotient exhaustion",
+    "the mu4 +4 is empirical toy-row evidence and is never added to a theorem-backed total",
+    "no external safety import applies at delta ~ 0.4678: the proved Hab25-quadratic import reaches only ~0.2045, and the ~0.2881 edge is conditional (gap G4)",
+    "PRs #282 and #284 are cited as named future inputs only; this packet does not audit or consume them",
+    "polynomial-loss quotient equidistribution is kept out of every finite claim, per the task instruction (a factor n^C costs 21C bits at n = 2^21 against a 5.4985-bit margin)"
+  ],
+  "object": "exact upper-ledger row packet for the adjacent safe-side step on the KoalaBear MCA row (support-wise MCA finite-slope numerator vs the 2^-128 budget)",
+  "replay": {
+    "big_integer_commitments": "values above ~2^200 are stored as fingerprints (bit_length, log2, sha256 of big-endian bytes, residues mod 2^64 / M61 / M31); the verifier recomputes the exact integers and re-derives every fingerprint; U_sum is additionally recomputed modulo M61 = 2^61-1 through an independent factorial-table path",
+    "command": "python3 experimental/scripts/verify_koalabear_frontier_adjacent.py --check",
+    "determinism": "no randomness; exact integer arithmetic only; --check rebuilds the JSON and byte-compares",
+    "script": "experimental/scripts/verify_koalabear_frontier_adjacent.py"
+  },
+  "row": {
+    "code": "RS[F_p^6, D, 2^20]",
+    "domain": "multiplicative subgroup D of F_p^x of order 2^21",
+    "field_line": "F_{p^6}, p = 2^31 - 2^24 + 1 (KoalaBear)",
+    "generated_field": "F_p (received words and domain are F_p-valued; lines sampled from F_{p^6})",
+    "k": 1048576,
+    "mca_route_dimension": "floors built at K = k+1 then converted by the thm:A deep-point conversion, exactly as in prop:v13f1-identity-frontier",
+    "n": 2097152,
+    "p": 2130706433,
+    "rho": "1/2"
+  },
+  "schema_version": "koalabear-frontier-adjacent-ledger-v1",
+  "source_artifacts": {
+    "bchks25_conditional_edge_note": {
+      "ref": "experimental/notes/audits/koalabear_bchks25_jmca_safe_edge_v1.md",
+      "sha256": "03ccda2aaf8b7369e45d8754fdcad8383a8436a62468d6c2a498ba76cf2e29d3"
+    },
+    "corridor_unconditional_safe_edges": {
+      "ref": "experimental/data/certificates/corridor-unconditional-safe-edges/corridor_unconditional_safe_edges.json",
+      "sha256": "6d9ca10573377d5378f73e68b0c60353f491ca64e0bb6323f05e1595e987f3c8"
+    },
+    "paid_ledger_functions": {
+      "ref": "experimental/data/certificates/paid-ledger-functions/paid_ledger_functions.json",
+      "sha256": "954739f67b91d5c60352b29fa070d00dad0cd8f7326bc8b57eeafcb330e84d8d"
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "target": {
+    "budget": 274980728111395087,
+    "budget_formula": "B* = floor(q_line / 2^128)",
+    "budget_log2": 57.9321,
+    "epsilon": "2^-128",
+    "q_line_log2": 185.9321
+  },
+  "task_provenance": {
+    "declared_task": "Before promotion to Paper D, build the exact upper ledger for the adjacent safe-side step, keep polynomial-loss quotient equidistribution out of finite one-step claims unless constants fit inside the printed bit margin, and audit the aperiodic-band input separately.",
+    "source": "experimental/agents-log.md, 2026-07-04 entry 'CAP25 v13 identity-prefix frontier merge'; canonical spec: agents.md section 'The complete upper ledger to build at a0 + 1'"
+  },
+  "unsafe_certificates": [
+    {
+      "agreement_a": 1116043,
+      "binomial_bits": 2090875,
+      "binomial_sha256": "12309cc20ec2a0b172ff58cf96f91a419ca36cc0a4d6ffc3605b919bbdcd87d6",
+      "holds": true,
+      "id": "c1_mca_m1116043",
+      "m": 1116043,
+      "margin_bits": 25.6761,
+      "predicate": "C(2097152,1116043) * k > p^67466 * (q_line + k)",
+      "route": "mca",
+      "scale_c": 1,
+      "upstream_printed_margin_bits": "+25.7",
+      "w": 67466
+    },
+    {
+      "agreement_a": 1116044,
+      "binomial_bits": 2090875,
+      "binomial_sha256": "cd25e0d5a551161ad467c9be8e33d26b560eaf292fcc74c4ecff35cc24a1586a",
+      "holds": false,
+      "id": "c1_mca_m1116044",
+      "m": 1116044,
+      "margin_bits": -5.4985,
+      "predicate": "C(2097152,1116044) * k > p^67467 * (q_line + k)",
+      "route": "mca",
+      "scale_c": 1,
+      "upstream_printed_margin_bits": "-5.5",
+      "w": 67467
+    },
+    {
+      "agreement_a": 1116044,
+      "binomial_bits": 2090875,
+      "binomial_sha256": "cd25e0d5a551161ad467c9be8e33d26b560eaf292fcc74c4ecff35cc24a1586a",
+      "holds": true,
+      "id": "c1_list_m1116044",
+      "m": 1116044,
+      "margin_bits": 71.5129,
+      "predicate": "C(2097152,1116044) * 2^128 > p^67468 * q_line",
+      "route": "list",
+      "scale_c": 1,
+      "scan_form_agrees": true,
+      "w": 67468
+    },
+    {
+      "agreement_a": 1116045,
+      "binomial_bits": 2090874,
+      "binomial_sha256": "43e11221c1bef2fae86729baad07b7a2ea901ba9c7587e13639e2cf5e5512b14",
+      "holds": true,
+      "id": "c1_list_m1116045",
+      "m": 1116045,
+      "margin_bits": 40.3383,
+      "predicate": "C(2097152,1116045) * 2^128 > p^67469 * q_line",
+      "route": "list",
+      "scale_c": 1,
+      "scan_form_agrees": true,
+      "w": 67469
+    },
+    {
+      "agreement_a": 1116046,
+      "binomial_bits": 2090874,
+      "binomial_sha256": "0f186335d37317f83965d6a14e788f00dc1158271d4f4d5b905441a008dc7c07",
+      "holds": true,
+      "id": "c1_list_m1116046",
+      "m": 1116046,
+      "margin_bits": 9.1637,
+      "predicate": "C(2097152,1116046) * 2^128 > p^67470 * q_line",
+      "route": "list",
+      "scale_c": 1,
+      "scan_form_agrees": true,
+      "upstream_printed_margin_bits": "+9.2",
+      "w": 67470
+    },
+    {
+      "agreement_a": 1116047,
+      "binomial_bits": 2090874,
+      "binomial_sha256": "dcc00b0e8391eafb1ee7e0e01f6e974f55a0cf6349dcd1e262122d03fe98078c",
+      "holds": false,
+      "id": "c1_list_m1116047",
+      "m": 1116047,
+      "margin_bits": -22.0109,
+      "predicate": "C(2097152,1116047) * 2^128 > p^67471 * q_line",
+      "route": "list",
+      "scale_c": 1,
+      "scan_form_agrees": true,
+      "upstream_printed_margin_bits": "-22.0",
+      "w": 67471
+    },
+    {
+      "agreement_a": 1116038,
+      "binomial_bits": 1045433,
+      "binomial_sha256": "749ba6bf478c4c543b552d4bd8e5a6186e83e130b422e5fc736b184169eaf408",
+      "holds": true,
+      "id": "c2_mca_m558019",
+      "m": 558019,
+      "margin_bits": 18.3914,
+      "predicate": "C(1048576,558019) * k > p^33730 * (q_line + k)",
+      "route": "mca",
+      "scale_c": 2,
+      "w": 33730
+    },
+    {
+      "agreement_a": 1116040,
+      "binomial_bits": 1045433,
+      "binomial_sha256": "b3be03dee1062b2489573c93c8208e0149eb64648b98cc3b077f1164d047aa76",
+      "holds": false,
+      "id": "c2_mca_m558020",
+      "m": 558020,
+      "margin_bits": -12.7831,
+      "predicate": "C(1048576,558020) * k > p^33731 * (q_line + k)",
+      "route": "mca",
+      "scale_c": 2,
+      "w": 33731
+    },
+    {
+      "agreement_a": 1116044,
+      "binomial_bits": 1045433,
+      "binomial_sha256": "e0101bb221bc1692e80a831e88e215713934c4921654397876988149b01a1a5f",
+      "holds": false,
+      "id": "c2_mca_m558022",
+      "m": 558022,
+      "margin_bits": -75.1323,
+      "predicate": "C(1048576,558022) * k > p^33733 * (q_line + k)",
+      "route": "mca",
+      "scale_c": 2,
+      "w": 33733
+    },
+    {
+      "agreement_a": 1116044,
+      "binomial_bits": 1045433,
+      "binomial_sha256": "e0101bb221bc1692e80a831e88e215713934c4921654397876988149b01a1a5f",
+      "holds": true,
+      "id": "c2_list_m558022",
+      "m": 558022,
+      "margin_bits": 1.879,
+      "predicate": "C(1048576,558022) * 2^128 > p^33734 * q_line",
+      "route": "list",
+      "scale_c": 2,
+      "scan_form_agrees": true,
+      "w": 33734
+    },
+    {
+      "agreement_a": 1116046,
+      "binomial_bits": 1045432,
+      "binomial_sha256": "d3e09bd1f9c15c2e97a7d130cf950ec66f472b1c285fd2acffb3e3050edc5701",
+      "holds": false,
+      "id": "c2_list_m558023",
+      "m": 558023,
+      "margin_bits": -29.2956,
+      "predicate": "C(1048576,558023) * 2^128 > p^33735 * q_line",
+      "route": "list",
+      "scale_c": 2,
+      "scan_form_agrees": true,
+      "w": 33735
+    },
+    {
+      "agreement_a": 1116044,
+      "binomial_bits": 522712,
+      "binomial_sha256": "9952b26e99d7f0ec46d0937fedbe89b94186e270208c3f023f82467fa1deab92",
+      "holds": false,
+      "id": "c4_mca_m279011",
+      "m": 279011,
+      "margin_bits": -109.6993,
+      "predicate": "C(524288,279011) * k > p^16866 * (q_line + k)",
+      "route": "mca",
+      "scale_c": 4,
+      "w": 16866
+    },
+    {
+      "agreement_a": 1116044,
+      "binomial_bits": 522712,
+      "binomial_sha256": "9952b26e99d7f0ec46d0937fedbe89b94186e270208c3f023f82467fa1deab92",
+      "holds": false,
+      "id": "c4_list_m279011",
+      "m": 279011,
+      "margin_bits": -32.6879,
+      "predicate": "C(524288,279011) * 2^128 > p^16867 * q_line",
+      "route": "list",
+      "scale_c": 4,
+      "scan_form_agrees": true,
+      "w": 16867
+    }
+  ]
+}

@@ -110,6 +110,50 @@ Keep entries concise and link to the relevant files.
   before being cited as a verifier.  The v14 moved-frontier checker confirms the
   lower-floor cutoff, not a complete adjacent safe upper ledger.
 
+### 2026-07-05 - First frontier-adjacent row packet: KoalaBear MCA upper ledger at {1116043, 1116044}
+
+- **Agent/model:** Claude Fable 5 acting for latifkasuli.
+- **Files added or changed:**
+  `experimental/data/certificates/frontier-adjacent/README.md`;
+  `experimental/data/certificates/frontier-adjacent/koalabear_frontier_adjacent_a1116043_a1116044.json`;
+  `experimental/scripts/verify_koalabear_frontier_adjacent.py`;
+  `experimental/notes/audits/audit_koalabear_frontier_adjacent_ledger.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** The first `frontier-adjacent/*.json` packet
+  (agents.md highest-value item 2), instantiating the declared threshold task
+  "build the exact upper ledger for the adjacent safe-side step" at agreement
+  `1116044` on the KoalaBear MCA row as an honest status-labelled ledger:
+  exact recomputation of every prefix-floor certificate (c=1 MCA edge
+  +25.6761 / -5.4985 bits, reproducing upstream's `+25.7 / -5.5`; c=1 list
+  +71.5129 through 1116046, failing 1116047 at -22.0109; the adjacent-tight
+  c=2 list edge m=558022 at +1.8790; c=2/c=4 MCA controls all fail at
+  1116044), the exact five-divisor quotient SAFE_SUM at both agreements with
+  zone-(a) gate arithmetic (zone-(b) vacuous), the theorem-backed tangent
+  LOWER floor 981109 with the upper cell honestly UNAVAILABLE
+  (r >> R_tan), the nonexistent regular aperiodic bucket (t=67468 <<
+  j+1=981109, deficiency 913641; falsifier named, PR #282 cited as future
+  input), the undischarged extension chart cell (PR #284 cited; ExtPole
+  arithmetic printed as hypothetical only), the OPEN sparse/CA cell with an
+  exact landmark table, and the empirical mu4 +4.
+- **How it is useful:** Verdicts: `1116043` certified MCA-unsafe;
+  `1116044` UNDECIDED_WINDOW_OPEN per thm:v13-windows (known mass 981109 ~
+  2^19.90 vs B* ~ 2^57.93, deficit 274980728110413979).  The packet's
+  discovery: at 1116044 the certified 2^160.4336 list in RS[F,D,k+1] misses
+  the deep-point conversion threshold (q+k)/k = 2^165.9321 by exactly
+  5.4985 bits (factor ~45.21) — a >= 5.4985-bit sharpening of the thm:A
+  list-to-MCA conversion at this radius flips 1116044 MCA-unsafe and pins
+  the staircase adjacently; the alternative mass route needs ~38.03 more
+  bits than every known structured family.  No adjacent pin is claimed; no
+  finite U(a) <= B* exists (open cells are printed, never point-estimated).
+- **What to do next:** Attack the 5.4985-bit conversion sharpening (route 1)
+  before hunting new mass families (route 2, 38 bits); audit the
+  aperiodic-band input separately per the standing order, consuming PR #282's
+  XR packets once a staircase/SPI/XR population bound exists; discharge the
+  S6/F1 extension chart classification via PR #284; replay with
+  `python3 experimental/scripts/verify_koalabear_frontier_adjacent.py --check`
+  (~3-4 min, exact integers only).
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
