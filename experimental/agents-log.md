@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - List crossing localization
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/list_crossing_localization.md`;
+  `experimental/scripts/verify_list_crossing_localization.py`;
+  `experimental/data/certificates/list-crossing-localization/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that the list-size supremum
+  over received words is an integer monotone staircase in the agreement-index
+  convention, so any bracket has a unique adjacent crossing.
+- **How it is useful:** Supports the list side of the deployed adjacent
+  threshold strategy in `agents.md`.
+- **What to do next:** Supply pointwise list upper and unsafe lower
+  certificates for the remaining candidate agreements.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

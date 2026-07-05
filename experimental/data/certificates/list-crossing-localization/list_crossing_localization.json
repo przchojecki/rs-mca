@@ -1,0 +1,41 @@
+{
+  "anchor_checks": {
+    "adjacent": true,
+    "convention": true,
+    "nested": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "supremum": true
+  },
+  "non_claims": [
+    "does not prove the pointwise list upper certificate",
+    "does not prove the unsafe lower certificate",
+    "does not prove a deployed row theorem"
+  ],
+  "note": "experimental/notes/thresholds/list_crossing_localization.md",
+  "schema": "list-crossing-localization-v1",
+  "source_dag_node": "list_crossing_localization",
+  "status": "PROVED",
+  "toy_check": {
+    "adjacent_crossing_holds": true,
+    "bracket": {
+      "delta_hi": 6,
+      "delta_lo": 4,
+      "safe_at_hi": true,
+      "unsafe_at_lo": true
+    },
+    "first_safe": 5,
+    "integer_valued": true,
+    "nested_by_received_word": true,
+    "nonincreasing": true,
+    "supremum_staircase": {
+      "3": 5,
+      "4": 3,
+      "5": 2,
+      "6": 1
+    },
+    "threshold": 2
+  }
+}
