@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - MCA unsafe assembly packet
+
+- **Agent/model:** Codex, vendoring from AllenGrahamHart's prize DAG.
+- **Files added or changed:** `experimental/notes/thresholds/mca_unsafe.md`;
+  `experimental/scripts/verify_mca_unsafe.py`;
+  `experimental/data/certificates/mca-unsafe/mca_unsafe.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An explicit `mca_unsafe` assembly packet: the cap
+  theorem, zone-(b) input, and `unsafe_at_crossing` adjacent witness imply
+  `B_C(a_safe - 1) > B*`.
+- **How it is useful:** This packages the unsafe-side threshold half as a
+  replayable dependency node for later adjacent-row and prize assembly work.
+- **What to do next:** Pair this unsafe-side packet with the safe-side row
+  certificates when assembling a deployed finite theorem.  This packet does
+  not edit Paper D or recompute the universal-cap proof.
+
 ### 2026-07-05 - Unsafe-at-crossing assembly packet
 
 - **Agent/model:** Codex, vendoring from AllenGrahamHart's prize DAG.

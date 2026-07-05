@@ -1,0 +1,80 @@
+{
+  "anchor_checks": {
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "statement": true,
+    "status": true,
+    "unsafe_input": true
+  },
+  "assembly_logic_check": {
+    "all_checks_pass": true,
+    "cases": [
+      {
+        "cap_theorem": true,
+        "expect_mca_unsafe": true,
+        "mca_unsafe": true,
+        "name": "all_inputs_green",
+        "unsafe_at_crossing": true,
+        "zone_b": true
+      },
+      {
+        "cap_theorem": true,
+        "expect_mca_unsafe": false,
+        "mca_unsafe": false,
+        "name": "missing_adjacent_witness",
+        "unsafe_at_crossing": false,
+        "zone_b": true
+      },
+      {
+        "cap_theorem": false,
+        "expect_mca_unsafe": false,
+        "mca_unsafe": false,
+        "name": "missing_cap_location",
+        "unsafe_at_crossing": true,
+        "zone_b": true
+      }
+    ]
+  },
+  "dependency_subdag": {
+    "edges": [
+      [
+        "cap_theorem",
+        "mca_unsafe"
+      ],
+      [
+        "zone_b",
+        "mca_unsafe"
+      ],
+      [
+        "unsafe_at_crossing",
+        "mca_unsafe"
+      ]
+    ],
+    "sink": "mca_unsafe",
+    "topological_order": [
+      "cap_theorem",
+      "unsafe_at_crossing",
+      "zone_b",
+      "mca_unsafe"
+    ]
+  },
+  "non_claims": [
+    "does not edit Paper D",
+    "does not recompute the universal-cap proof",
+    "does not rerun zone-b collision checks",
+    "does not choose deployed v13 row primes"
+  ],
+  "note": "experimental/notes/thresholds/mca_unsafe.md",
+  "schema": "mca-unsafe-v1",
+  "source_dag_node": "mca_unsafe",
+  "status": "PROVED",
+  "support_artifacts": {
+    "cap_v12_exists": true,
+    "cap_v12_mentions_universal_cap": true,
+    "slack_v4_mentions_prop_prize": true,
+    "unsafe_at_crossing_source": "unsafe_at_crossing",
+    "unsafe_at_crossing_status": "PROVED",
+    "zone_roadmap_mentions_zone_b": true
+  }
+}
