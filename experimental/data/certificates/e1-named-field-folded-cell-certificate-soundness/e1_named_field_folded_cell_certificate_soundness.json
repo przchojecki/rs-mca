@@ -1,0 +1,48 @@
+{
+  "anchor_checks": {
+    "cell_schema": true,
+    "field_dependency": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "zero_certificate": true
+  },
+  "dependencies": [
+    "e1_pocklington_250bit_exhibit_field",
+    "cell-specific folded no-vector payload"
+  ],
+  "non_claims": [
+    "does not supply either no-vector payload",
+    "does not certify the two-cell manifest by itself"
+  ],
+  "note": "experimental/notes/e1/e1_named_field_folded_cell_certificate_soundness.md",
+  "sample_cells": [
+    {
+      "cell": 128,
+      "complete": true,
+      "field_matches": true,
+      "p_congruent_1_mod_cell": true,
+      "passes": true,
+      "root_half_order_not_one": true,
+      "root_matches": true,
+      "root_order": true,
+      "zero_noncyclotomic": true
+    },
+    {
+      "cell": 256,
+      "complete": true,
+      "field_matches": true,
+      "p_congruent_1_mod_cell": true,
+      "passes": true,
+      "root_half_order_not_one": true,
+      "root_matches": true,
+      "root_order": true,
+      "zero_noncyclotomic": true
+    }
+  ],
+  "schema": "e1-named-field-folded-cell-certificate-soundness-v1",
+  "source_dag_node": "e1_named_field_folded_cell_certificate_soundness",
+  "statement": "a named prime field/root plus a complete zero folded no-vector record satisfies the E1 folded cell payload schema",
+  "status": "PROVED_NAMED_FIELD_CELL_SCHEMA"
+}

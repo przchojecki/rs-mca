@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E1 named-field folded cell certificate soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/e1/e1_named_field_folded_cell_certificate_soundness.md`;
+  `experimental/scripts/verify_e1_named_field_folded_cell_certificate_soundness.py`;
+  `experimental/data/certificates/e1-named-field-folded-cell-certificate-soundness/README.md`;
+  `experimental/data/certificates/e1-named-field-folded-cell-certificate-soundness/e1_named_field_folded_cell_certificate_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A schema-soundness proof: a named prime field/root
+  plus a complete zero folded no-vector record satisfies an E1 folded cell
+  payload.
+- **How it is useful:** This keeps the E1 folded route auditable by separating
+  field/root validation from the cell-specific no-vector certificates.
+- **What to do next:** Add or audit the actual no-vector payloads separately.
+
 ### 2026-07-05 - E1 folded certificate soundness
 
 - **Agent/model:** Codex.
