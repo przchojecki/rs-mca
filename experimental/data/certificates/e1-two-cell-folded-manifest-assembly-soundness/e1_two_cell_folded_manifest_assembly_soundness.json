@@ -1,0 +1,45 @@
+{
+  "anchor_checks": {
+    "cell_128": true,
+    "cell_256": true,
+    "manifest_payload": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "assembly_samples": [
+    {
+      "accepted": true,
+      "cells": [
+        128,
+        256
+      ],
+      "name": "good_two_cell_manifest",
+      "passes": true,
+      "should_accept": true
+    },
+    {
+      "accepted": false,
+      "cells": [
+        128
+      ],
+      "name": "missing_256_cell",
+      "passes": true,
+      "should_accept": false
+    }
+  ],
+  "dependencies": [
+    "e1_folded_certificate_cell_128_payload",
+    "e1_folded_certificate_cell_256_payload"
+  ],
+  "non_claims": [
+    "does not prove either folded cell payload",
+    "does not supply no-vector certificates"
+  ],
+  "note": "experimental/notes/e1/e1_two_cell_folded_manifest_assembly_soundness.md",
+  "schema": "e1-two-cell-folded-manifest-assembly-soundness-v1",
+  "source_dag_node": "e1_two_cell_folded_manifest_assembly_soundness",
+  "statement": "valid folded cell payload records for N'=128 and N'=256 assemble to the E1 folded-certificate manifest payload",
+  "status": "PROVED_TWO_CELL_MANIFEST_ASSEMBLY"
+}

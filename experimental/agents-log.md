@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E1 two-cell folded manifest assembly soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/e1/e1_two_cell_folded_manifest_assembly_soundness.md`;
+  `experimental/scripts/verify_e1_two_cell_folded_manifest_assembly_soundness.py`;
+  `experimental/data/certificates/e1-two-cell-folded-manifest-assembly-soundness/README.md`;
+  `experimental/data/certificates/e1-two-cell-folded-manifest-assembly-soundness/e1_two_cell_folded_manifest_assembly_soundness.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A proof packet showing that valid folded cell
+  payload records for `N'=128` and `N'=256` assemble to the E1 folded manifest
+  payload.
+- **How it is useful:** This isolates manifest assembly from the actual
+  no-vector certificate payloads.
+- **What to do next:** Provide or audit the two cell payloads before claiming
+  open-cell closure.
+
 ### 2026-07-05 - E1 folded certificate manifest soundness
 
 - **Agent/model:** Codex.
