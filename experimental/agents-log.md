@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel moment-clean leaves
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/hankel_moment_clean_leaves.md`;
+  `experimental/scripts/verify_hankel_moment_clean_leaves.py`;
+  `experimental/data/certificates/hankel-moment-clean-leaves/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the terminal leaf pinned-value
+  moment-count lemma, showing pinned affine constraints can remove all-zero
+  assignments but cannot add members beyond the clean bound.
+- **How it is useful:** Supplies the terminal member-count input for the
+  Hankel termination packet.
+- **What to do next:** Combine with the rank-profile entropy packet in the
+  final Hankel termination assembly.
+
 ### 2026-07-05 - Hankel rank-profile entropy
 
 - **Agent/model:** Codex.

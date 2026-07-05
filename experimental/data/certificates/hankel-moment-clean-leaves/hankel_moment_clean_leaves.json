@@ -1,0 +1,61 @@
+{
+  "anchor_checks": {
+    "moment_bound": true,
+    "non_claim": true,
+    "note_exists": true,
+    "pinned_variant": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not prove rank-profile entropy",
+    "does not prove full Hankel termination"
+  ],
+  "note": "experimental/notes/m1/hankel_moment_clean_leaves.md",
+  "schema": "hankel-moment-clean-leaves-v1",
+  "source_dag_node": "hankel_moment_clean_leaves",
+  "status": "PROVED",
+  "toy_check": {
+    "clean_case": {
+      "bound_is_sharp": true,
+      "dimension": 2,
+      "moment_bound": 10,
+      "point_count": 25,
+      "projection_fiber_counts": {
+        "0": 5,
+        "1": 5,
+        "2": 5,
+        "3": 5,
+        "4": 5
+      },
+      "projection_onto": true,
+      "s": 1,
+      "zero_moment": 10
+    },
+    "field": "F_5",
+    "pinned_case": {
+      "all_zero_missing": true,
+      "bound_holds": true,
+      "dimension": 1,
+      "moment_bound": 2,
+      "pinned_coordinate_fiber_counts": {
+        "0": 0,
+        "1": 5,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      },
+      "point_count": 5,
+      "s": 1,
+      "zero_moment": 1
+    },
+    "subsets_checked": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ]
+  }
+}
