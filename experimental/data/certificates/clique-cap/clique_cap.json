@@ -1,0 +1,48 @@
+{
+  "consumers": [
+    "m_sweep",
+    "m_handling"
+  ],
+  "formula": {
+    "cap": "n >= k + m^2(a-k)",
+    "cell_disjointness": "the m^2 cross cells are disjoint outside the common k-set",
+    "equivalent": "m^2 <= (n-k)/(a-k)"
+  },
+  "non_claims": [
+    "does not prove list_safe",
+    "does not prove an L1 image-fiber bound",
+    "does not rule out all non-clique interleaved amplification mechanisms"
+  ],
+  "sample_designs": [
+    {
+      "a": 8,
+      "edges": 4,
+      "k": 4,
+      "m": 2,
+      "n_min": 20
+    },
+    {
+      "a": 8,
+      "edges": 9,
+      "k": 4,
+      "m": 3,
+      "n_min": 40
+    },
+    {
+      "a": 8,
+      "edges": 16,
+      "k": 4,
+      "m": 4,
+      "n_min": 68
+    }
+  ],
+  "schema": "rs-mca.experimental.clique_cap.v1",
+  "source_dag_node": "clique_cap",
+  "status": "PROVED",
+  "upstream_evidence": [
+    "experimental/scripts/verify_x1_clique_cap.py",
+    "experimental/notes/x1/x1_deep_point_interleaved_bridge.md",
+    "experimental/notes/roadmaps/proof_sketch/s7_list_side.md"
+  ],
+  "verdict": "kmm_clique_amplification_requires_n_ge_k_plus_m2_slack"
+}

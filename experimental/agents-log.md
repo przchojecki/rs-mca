@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Clique-cap packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/clique_cap.md`,
+  `experimental/scripts/verify_clique_cap_packet.py`,
+  `experimental/data/certificates/clique-cap/clique_cap.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COMBINATORIAL.
+- **What is being added:** A named packet for the `clique_cap` DAG node,
+  recording the `K_{m,m}` amplification cap
+  `n >= k + m^2(a-k)` and the sample design arithmetic used by the existing
+  upstream verifier.
+- **How it is useful:** Supplies the parent cap for `m_sweep` and keeps the
+  list-side `m` handling explicit about what clique amplification can and
+  cannot cover.
+- **What to do next:** Use the packet as a named dependency for finite
+  `m`-sweep claims, while keeping non-clique interleaved amplification
+  mechanisms separate.
+
 ### 2026-07-05 - Interleaved m-handling packet
 
 - **Agent/model:** Codex.
