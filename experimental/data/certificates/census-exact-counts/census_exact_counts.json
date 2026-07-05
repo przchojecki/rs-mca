@@ -1,0 +1,94 @@
+{
+  "anchor_checks": {
+    "dependency": true,
+    "diophantine": true,
+    "exact_count": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "dependencies": [
+    {
+      "accepted": true,
+      "path": "experimental/data/certificates/census-bounded-scales/census_bounded_scales.json",
+      "schema": "census-bounded-scales-v1",
+      "source_dag_node": "census_bounded_scales",
+      "status": "PROVED"
+    }
+  ],
+  "exact_table": {
+    "all_checks_pass": true,
+    "rows": {
+      "1/16": {
+        "Nprime": 512,
+        "bit_length": 177,
+        "exact_count": 144020546524575148570541634743568538277307487441862400,
+        "forced_ratio_check": true,
+        "forced_selected_float": 479.314738,
+        "j": 2058641124280,
+        "k": 137438953472,
+        "log2_count": 176.588464,
+        "log_check": true,
+        "n": 2199023255552,
+        "pinned_log2": 176.588,
+        "selected": 478,
+        "t": 2943177800
+      },
+      "1/2": {
+        "Nprime": 128,
+        "bit_length": 125,
+        "exact_count": 23951146041928082866135587776380551750,
+        "forced_ratio_check": true,
+        "forced_selected_float": 63.499827,
+        "j": 1090918715037,
+        "k": 1099511627776,
+        "log2_count": 124.171434,
+        "log_check": true,
+        "n": 2199023255552,
+        "pinned_log2": 124.171,
+        "selected": 64,
+        "t": 8592912739
+      },
+      "1/4": {
+        "Nprime": 128,
+        "bit_length": 104,
+        "exact_count": 12012120431462388306723859128000,
+        "forced_ratio_check": true,
+        "forced_selected_float": 95.591693,
+        "j": 1642252781274,
+        "k": 549755813888,
+        "log2_count": 103.244262,
+        "log_check": true,
+        "n": 2199023255552,
+        "pinned_log2": 103.244,
+        "selected": 94,
+        "t": 7014660390
+      },
+      "1/8": {
+        "Nprime": 256,
+        "bit_length": 141,
+        "exact_count": 2593078396566965027656543246413275324208000,
+        "forced_ratio_check": true,
+        "forced_selected_float": 223.450222,
+        "j": 1919422792216,
+        "k": 274877906944,
+        "log2_count": 140.895646,
+        "log_check": true,
+        "n": 2199023255552,
+        "pinned_log2": 140.896,
+        "selected": 222,
+        "t": 4722556392
+      }
+    }
+  },
+  "non_claims": [
+    "does not supply the certified lower-bound strength L",
+    "does not prove the residual window is empty",
+    "does not close a deployed adjacent theorem"
+  ],
+  "note": "experimental/notes/thresholds/census_exact_counts.md",
+  "schema": "census-exact-counts-v1",
+  "source_dag_node": "census_exact_counts",
+  "status": "PROVED"
+}

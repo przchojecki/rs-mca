@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Census exact counts
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/census_exact_counts.md`;
+  `experimental/scripts/verify_census_exact_counts.py`;
+  `experimental/data/certificates/census-exact-counts/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet recomputing exact bounded-scale
+  binomial counts for the clean-rate census table.
+- **How it is useful:** Replaces asymptotic estimates with exact integer
+  arithmetic at the finite candidate points in the deployed row-packet program.
+- **What to do next:** Pair these exact `K` values with certified lower-bound
+  strengths `L`; this packet does not close the residual windows by itself.
+
 ### 2026-07-05 - Census bounded scales
 
 - **Agent/model:** Codex.
