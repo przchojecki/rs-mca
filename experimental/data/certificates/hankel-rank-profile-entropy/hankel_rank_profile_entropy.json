@@ -1,0 +1,68 @@
+{
+  "anchor_checks": {
+    "defect_dependency": true,
+    "entropy_bound": true,
+    "non_claim": true,
+    "note_exists": true,
+    "principal_kernel": true,
+    "source_node": true,
+    "status": true,
+    "support_dependency": true
+  },
+  "dependencies": [
+    {
+      "accepted": true,
+      "path": "experimental/data/certificates/hankel-sparse-atoms-rational-defects/hankel_sparse_atoms_rational_defects.json",
+      "schema": "hankel-sparse-atoms-rational-defects-v1",
+      "source_dag_node": "hankel_sparse_atoms_as_rational_defects",
+      "status": "PROVED"
+    },
+    {
+      "accepted": true,
+      "path": "experimental/data/certificates/hankel-support-lattice-accounting/hankel_support_lattice_accounting.json",
+      "schema": "hankel-support-lattice-accounting-v1",
+      "source_dag_node": "f_support_lattice",
+      "status": "PROVED"
+    }
+  ],
+  "non_claims": [
+    "does not produce M3 root tables",
+    "does not close a row-level F_17^32 safe-side certificate",
+    "does not prove terminal moment-count leaves"
+  ],
+  "note": "experimental/notes/m1/hankel_rank_profile_entropy.md",
+  "schema": "hankel-rank-profile-entropy-v1",
+  "source_dag_node": "hankel_rank_profile_entropy",
+  "status": "PROVED",
+  "toy_check": {
+    "entropy_budget": {
+      "branch_levels": 4,
+      "exponent": 16,
+      "fixed_W": 4,
+      "is_O_W_squared": true,
+      "level_width_exponent": 4
+    },
+    "narrow_case": {
+      "W": 4,
+      "condition_holds": true,
+      "dimension_bound": 6,
+      "dimension_bound_holds": true,
+      "residual_dimension": 6
+    },
+    "principal_kernel": {
+      "D": 4,
+      "alpha": 2,
+      "degree_bookkeeping_ok": true,
+      "degree_q": 3,
+      "degree_qtilde": 5,
+      "j": 8,
+      "t": 3
+    },
+    "wide_case": {
+      "W": 2,
+      "atom_closure_bound": 1,
+      "condition_holds": true,
+      "j_minus_t_plus_3": 8
+    }
+  }
+}

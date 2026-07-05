@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel rank-profile entropy
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/hankel_rank_profile_entropy.md`;
+  `experimental/scripts/verify_hankel_rank_profile_entropy.py`;
+  `experimental/data/certificates/hankel-rank-profile-entropy/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the Hankel rank-profile
+  dichotomy giving `n^{O(W^2)}` unpaid primitive saturated states for fixed
+  cutoff `W`.
+- **How it is useful:** Supplies the main state-count input to the Hankel
+  termination packet and aligns with the current v10 aperiodic Hankel priority.
+- **What to do next:** Combine with the terminal moment-clean leaf packet;
+  per-agreement M3 root tables remain separate work.
+
 ### 2026-07-05 - Hankel sparse atoms as rational defects
 
 - **Agent/model:** Codex.
