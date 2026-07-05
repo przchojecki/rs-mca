@@ -395,15 +395,31 @@ a would-be zeroed cell to a named obstruction floor. The integrated note's ledge
   **affected-downstream** — any `U(a0+1)` L1 cell must not assume sub-`(ell+3)/2`
   vacancy (Sec 2 of this note); both packets already carry the L1 cell as
   OPEN/CONDITIONAL, so no correction is needed, only the fatter-floor awareness.
-- **In-flight PR #283** (AllenGrahamHart, `experimental/notes/l1/l1_petal_residue_kernel_reduction.md`
+- **PR #283 (now integrated at upstream 5dbb7e5)** (AllenGrahamHart, `experimental/notes/l1/l1_petal_residue_kernel_reduction.md`
   + four sibling `l1_petal_*` soundness notes): **unaffected-and-awaits** — its lemmas are
   conditional-on-ledger; this note changes the ledger side they await (any
   `petal_squarefree_classification_ledger_payload` must now count the `m=(ell+1)/2` listings).
-- **In-flight PR #282** (`experimental/notes/m1/xr_*.md`): **unaffected** (M1-aperiodic lane,
-  no shared object).
+- **PR #282 (now integrated at upstream 5dbb7e5)** (`experimental/notes/m1/xr_*.md`): **unaffected**
+  (M1-aperiodic lane, no shared object).
 - **Integrated** `experimental/notes/l1/l1_coset_chart_residue_bridge_v1.md`: **consistent** —
   the Sec 1 counterexamples are new extremal inhabitants of its residue-line branch; its
   classification is untouched.
+
+### Post-filing evidence addendum (2026-07-05, session hunts; AUDIT)
+
+- **`ell = 19` listing question**: a second dedicated hunt (two-fiber-seed
+  recipe per the mechanism note, ~944,000 candidate `Gamma` across the 9
+  eligible primes with `n >= 19`) found **no** `m = 10` listing and no
+  `E_3 >= 18` at any `n >= 19` prime — the question REMAINS OPEN; this is
+  a bounded-search null result, not a vacancy proof.
+- **New-law falsifier hunt**: a dedicated `E_3 >= ell+1` sweep
+  (`ell in {11,13,17,19,23,29}`, ~10,600 exact-solved configs, incl. a
+  deep-dive at the `E_3 = ell` record `(23,139)`) found **no**
+  counterexample — the Sec 5 candidate law `E_3 <= ell` survives its first
+  targeted falsifier pass (evidence, not proof).
+- Companion structural note: PR #335 (`experimental/notes/l1/l1_sigma_calculus.md`)
+  proves the sigma-calculus lemmas behind Sec 4's identities and pins the
+  law's exact sigma-form (`sigma <= K + dimU`).
 
 Refs: `experimental/notes/l1/l1_prime_ell_frontier_corrected.md` (superseded vacancy half;
 its verifier and `run_witness_chain` reused unmodified) |
