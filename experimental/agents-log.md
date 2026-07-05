@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Wild row audit packet
+
+- **Agent/model:** Codex, vendoring from AllenGrahamHart's prize DAG.
+- **Files added or changed:** `experimental/notes/thresholds/wild_row_audit.md`;
+  `experimental/scripts/verify_wild_row_audit.py`;
+  `experimental/data/certificates/wild-row-audit/wild_row_audit.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A QA.23 `wild_row_audit` packet: it enumerates the
+  26 admissible Mersenne wild rows below `2^256`, records coset inheritance by
+  dilation conjugacy, and verifies the `F_49 / mu_8` Dickson-toy taxonomy.
+- **How it is useful:** This prevents the tame dihedral quotient taxonomy from
+  being silently applied to wild rows; future wild-row certificates need a
+  separate Dickson-window census column.
+- **What to do next:** Use the packet as row-family hygiene in exact adjacent
+  row work.  It does not price prize-scale Dickson windows or close a wild-row
+  adjacent upper certificate.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

@@ -1,0 +1,524 @@
+{
+  "admissible_wild_rows": [
+    {
+      "extension_degree": 2,
+      "log2_q_upper": 26,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "67092481",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 4,
+      "log2_q_upper": 52,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "4501401006735361",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 6,
+      "log2_q_upper": 78,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "302010161517773079920641",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 8,
+      "log2_q_upper": 104,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "20262611023438121526887087800321",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 10,
+      "log2_q_upper": 130,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "1359468845100412723218362927388368486401",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 12,
+      "log2_q_upper": 156,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "91210137659991383724686273556908492294857850881",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 14,
+      "log2_q_upper": 182,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "6119514427960356372712223039577685438031396757934325761",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 16,
+      "log2_q_upper": 208,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "410573405487156078689423742750628108275098164385170350367703041",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 18,
+      "log2_q_upper": 234,
+      "mersenne_p": 8191,
+      "n": 8192,
+      "q": "27546388406752314953504667361445404092512966367146918413808459291934721",
+      "r": 13,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 2,
+      "log2_q_upper": 34,
+      "mersenne_p": 131071,
+      "n": 131072,
+      "q": "17179607041",
+      "r": 17,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 4,
+      "log2_q_upper": 68,
+      "mersenne_p": 131071,
+      "n": 131072,
+      "q": "295138898083176775681",
+      "r": 17,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 6,
+      "log2_q_upper": 102,
+      "mersenne_p": 131071,
+      "n": 131072,
+      "q": "5070370291582725139136985169921",
+      "r": 17,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 8,
+      "log2_q_upper": 136,
+      "mersenne_p": 131071,
+      "n": 131072,
+      "q": "87106969161751807834285455088687393013761",
+      "r": 17,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 10,
+      "log2_q_upper": 170,
+      "mersenne_p": 131071,
+      "n": 131072,
+      "q": "1496463500731401225764369365445503216467142685491201",
+      "r": 17,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 12,
+      "log2_q_upper": 204,
+      "mersenne_p": 131071,
+      "n": 131072,
+      "q": "25708654893764689147937590557532269159407071624816285243146241",
+      "r": 17,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 14,
+      "log2_q_upper": 238,
+      "mersenne_p": 131071,
+      "n": 131072,
+      "q": "441664588627558960683084921370756486835656879070885164294619558876282881",
+      "r": 17,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 2,
+      "log2_q_upper": 38,
+      "mersenne_p": 524287,
+      "n": 524288,
+      "q": "274876858369",
+      "r": 19,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 4,
+      "log2_q_upper": 76,
+      "mersenne_p": 524287,
+      "n": 524288,
+      "q": "75557287266811285340161",
+      "r": 19,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 6,
+      "log2_q_upper": 114,
+      "mersenne_p": 524287,
+      "n": 524288,
+      "q": "20768949750785132794698281184657409",
+      "r": 19,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 8,
+      "log2_q_upper": 152,
+      "mersenne_p": 524287,
+      "n": 524288,
+      "q": "5708903659119442793759136591282812149479505921",
+      "r": 19,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 10,
+      "log2_q_upper": 190,
+      "mersenne_p": 524287,
+      "n": 524288,
+      "q": "1569245502550040932074327865901770995236510606114813902849",
+      "r": 19,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 12,
+      "log2_q_upper": 228,
+      "mersenne_p": 524287,
+      "n": 524288,
+      "q": "431349273750637829620947770176351130323898499534788046526216698593281",
+      "r": 19,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 2,
+      "log2_q_upper": 62,
+      "mersenne_p": 2147483647,
+      "n": 2147483648,
+      "q": "4611686014132420609",
+      "r": 31,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 4,
+      "log2_q_upper": 124,
+      "mersenne_p": 2147483647,
+      "n": 2147483648,
+      "q": "21267647892944572736998860269687930881",
+      "r": 31,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 6,
+      "log2_q_upper": 186,
+      "mersenne_p": 2147483647,
+      "n": 2147483648,
+      "q": "98079714341385330254404631364738284897724378381211926529",
+      "r": 31,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    },
+    {
+      "extension_degree": 8,
+      "log2_q_upper": 248,
+      "mersenne_p": 2147483647,
+      "n": 2147483648,
+      "q": "452312846898269724422641179697543667450922081019251166843171382875033436161",
+      "r": 31,
+      "wild_reason": "mu_n is the norm-one/subfield circle over F_p inside F_{p^2}; cosets are dilation-conjugate"
+    }
+  ],
+  "anchor_checks": {
+    "dickson": true,
+    "non_claim": true,
+    "note_exists": true,
+    "row_count": true,
+    "source_node": true,
+    "status": true
+  },
+  "checks": {
+    "invariant_subsets_are_orbit_unions": true,
+    "pgl2_order": true,
+    "pgl2_sharp_3_transitive_count": true,
+    "subgroup_count_413": true,
+    "wild_has_extra_partitions": true
+  },
+  "coset_inheritance": "Every alpha*mu_n is dilation-conjugate to mu_n, so the PGL2 stabilizer is conjugate and wildness is inherited by every coset.",
+  "expected_counts_by_r": {
+    "13": 9,
+    "17": 7,
+    "19": 6,
+    "31": 4
+  },
+  "node": "wild_row_audit",
+  "non_claims": [
+    "does not price every prize-scale Dickson window family",
+    "does not close a wild-row adjacent upper certificate",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/wild_row_audit.md",
+  "pgl2_f7": {
+    "dihedral_sylow2_subgroup_count": 19,
+    "group_order": 336,
+    "interpretation": "At the F49/mu8 toy, enlarged Dickson symmetry gives invariant window strata not present in a tame dihedral subgroup lattice.",
+    "new_wild_orbit_partitions": [
+      [
+        1,
+        1,
+        3,
+        3
+      ],
+      [
+        1,
+        1,
+        6
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        3,
+        3
+      ],
+      [
+        2,
+        6
+      ]
+    ],
+    "subgroup_count": 413,
+    "tame_dihedral_window_summary": {
+      "distinct_invariant_subsets_by_size": {
+        "0": 1,
+        "1": 8,
+        "2": 28,
+        "3": 56,
+        "4": 70,
+        "5": 56,
+        "6": 28,
+        "7": 8,
+        "8": 1
+      },
+      "orbit_partitions": [
+        {
+          "partition": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "subgroup_orders": [
+            1
+          ]
+        },
+        {
+          "partition": [
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "subgroup_orders": [
+            2
+          ]
+        },
+        {
+          "partition": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "subgroup_orders": [
+            2
+          ]
+        },
+        {
+          "partition": [
+            2,
+            2,
+            4
+          ],
+          "subgroup_orders": [
+            4
+          ]
+        },
+        {
+          "partition": [
+            4,
+            4
+          ],
+          "subgroup_orders": [
+            4,
+            8
+          ]
+        },
+        {
+          "partition": [
+            8
+          ],
+          "subgroup_orders": [
+            8,
+            16
+          ]
+        }
+      ]
+    },
+    "wild_window_summary": {
+      "distinct_invariant_subsets_by_size": {
+        "0": 1,
+        "1": 8,
+        "2": 28,
+        "3": 56,
+        "4": 70,
+        "5": 56,
+        "6": 28,
+        "7": 8,
+        "8": 1
+      },
+      "orbit_partitions": [
+        {
+          "partition": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "subgroup_orders": [
+            1
+          ]
+        },
+        {
+          "partition": [
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "subgroup_orders": [
+            2
+          ]
+        },
+        {
+          "partition": [
+            1,
+            1,
+            3,
+            3
+          ],
+          "subgroup_orders": [
+            3
+          ]
+        },
+        {
+          "partition": [
+            1,
+            1,
+            6
+          ],
+          "subgroup_orders": [
+            6
+          ]
+        },
+        {
+          "partition": [
+            1,
+            7
+          ],
+          "subgroup_orders": [
+            7,
+            14,
+            21,
+            42
+          ]
+        },
+        {
+          "partition": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "subgroup_orders": [
+            2
+          ]
+        },
+        {
+          "partition": [
+            2,
+            2,
+            4
+          ],
+          "subgroup_orders": [
+            4
+          ]
+        },
+        {
+          "partition": [
+            2,
+            3,
+            3
+          ],
+          "subgroup_orders": [
+            6
+          ]
+        },
+        {
+          "partition": [
+            2,
+            6
+          ],
+          "subgroup_orders": [
+            6,
+            12
+          ]
+        },
+        {
+          "partition": [
+            4,
+            4
+          ],
+          "subgroup_orders": [
+            4,
+            8,
+            12
+          ]
+        },
+        {
+          "partition": [
+            8
+          ],
+          "subgroup_orders": [
+            8,
+            16,
+            24,
+            168,
+            336
+          ]
+        }
+      ]
+    }
+  },
+  "schema": "wild-row-audit-v1",
+  "status": "PROVED_AUDIT",
+  "task": "QA.23",
+  "total_wild_rows": 26
+}
