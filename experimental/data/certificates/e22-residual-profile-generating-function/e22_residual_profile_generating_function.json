@@ -1,0 +1,37 @@
+{
+  "schema": "e22-residual-profile-generating-function-v1",
+  "dag_node": "e22_residual_profile_generating_function",
+  "status": "PROVED",
+  "claim": "The product G_q(u,z)^P H_i(x)^(Pq-cq-r) exactly counts canonical scale-M_i data raw-admissible at scale M_j before lower-scale filters.",
+  "dependencies": [
+    "e22_overlap_nested_fiber_residual_identity"
+  ],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_residual_profile_generating_function/statement.md",
+      "nodes/e22_residual_profile_generating_function/proof.md",
+      "nodes/e22_residual_profile_generating_function/verify.py"
+    ]
+  },
+  "local_dependency_certificates": [
+    "experimental/data/certificates/e22-overlap-nested-fiber-residual-identity/e22_overlap_nested_fiber_residual_identity.json"
+  ],
+  "finite_checks": [
+    {
+      "n": 8,
+      "fine_sizes": [
+        1,
+        2,
+        4
+      ],
+      "coarse_sizes": [
+        2,
+        4,
+        8
+      ]
+    }
+  ],
+  "expected_result": "PASS"
+}
+
