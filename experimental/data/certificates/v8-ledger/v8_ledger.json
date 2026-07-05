@@ -1,0 +1,92 @@
+{
+  "claim": {
+    "degenerate_case": "A = B = 0 gives all slopes and is handled by noncontainment",
+    "fixed_locator_equation": "A + z B = 0",
+    "nondegenerate_case": "B != 0 gives at most one finite slope",
+    "zero_direction_case": "B = 0, A != 0 gives no finite slopes"
+  },
+  "consumers": [
+    "counting_frame",
+    "xr_expansion",
+    "xr_junta_to_paid",
+    "xr_globalness_from_ledger"
+  ],
+  "non_claims": [
+    "does not count how many locators occur",
+    "does not remove the all-slope degeneracy",
+    "does not classify the locator as paid or unpaid",
+    "does not edit Papers A-D"
+  ],
+  "sample_arithmetic": [
+    {
+      "A": [
+        1,
+        2
+      ],
+      "B": [
+        2,
+        4
+      ],
+      "case": "one",
+      "finite_slopes": [
+        2
+      ],
+      "q": 5
+    },
+    {
+      "A": [
+        1,
+        0
+      ],
+      "B": [
+        0,
+        1
+      ],
+      "case": "none",
+      "finite_slopes": [],
+      "q": 5
+    },
+    {
+      "A": [
+        0,
+        0,
+        0
+      ],
+      "B": [
+        0,
+        0,
+        0
+      ],
+      "case": "all",
+      "finite_slopes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "q": 7
+    },
+    {
+      "A": [
+        3,
+        1,
+        4
+      ],
+      "B": [
+        0,
+        0,
+        0
+      ],
+      "case": "none",
+      "finite_slopes": [],
+      "q": 7
+    }
+  ],
+  "schema": "rs-mca.experimental.v8_ledger.v1",
+  "source_dag_node": "v8_ledger",
+  "status": "PROVED",
+  "verdict": "fixed_noncontained_locator_has_at_most_one_finite_slope"
+}

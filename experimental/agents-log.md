@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - V8 one-support-one-slope ledger
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/v8_one_support_one_slope.md`;
+  `experimental/scripts/verify_v8_ledger_packet.py`;
+  `experimental/data/certificates/v8-ledger/v8_ledger.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `v8_ledger`, the rule that a fixed
+  nondegenerate locator contributes at most one finite slope.
+- **How it is useful:** This is one of the local ledgers consumed by the exact
+  MCA counting frame and the v10 Hankel certificate discipline.
+- **What to do next:** Pair it with the noncontainment-degeneracy packet before
+  assembling `counting_frame`.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
