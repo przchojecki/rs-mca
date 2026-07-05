@@ -1,0 +1,34 @@
+{
+  "conditional_boundary": {
+    "needed_input": "polynomial L1-family tail/profile control at agreement 2a-k after quotient-periodic mass is budgeted",
+    "not_claimed": "unconditional exponent saving",
+    "saving_corollary": "CONDITIONAL"
+  },
+  "consumers": [
+    "list_safe"
+  ],
+  "non_claims": [
+    "does not prove the L1 image-fiber theorem",
+    "does not prove the exponent-saving corollary unconditionally",
+    "does not close list_safe",
+    "does not edit Papers A-D"
+  ],
+  "proved_reductions": {
+    "theorem_a_decomposition": "Lambda_2^{(a)} equals a sum over row-1 fibers of punctured-RS lists on A_{U_1}(c_1).",
+    "theorem_b_two_regime_mu2": "Lambda_2^{(a)} <= |Fib_2| + M_2(2a-k) |Fib_1|, symmetrically.",
+    "theorem_c_mu_recursion": "Lambda_mu^{(a)} <= Lambda_{mu-1}^{(a)} + Lambda_{mu-1}^{(2a-k)} |Fib_1|."
+  },
+  "schema": "rs-mca.experimental.codegree.v1",
+  "source_dag_dependencies": [
+    "deep_point"
+  ],
+  "source_dag_node": "codegree",
+  "status": "PROVED",
+  "upstream_evidence": [
+    "experimental/notes/l2/l2_codegree_reduction_theorem.md",
+    "experimental/scripts/verify_l2_codegree_decomposition.py",
+    "experimental/scripts/verify_l2_reduction_bound.py",
+    "experimental/scripts/verify_l2_mu_recursion.py"
+  ],
+  "verdict": "l2_interleaved_list_reduces_to_base_and_higher_agreement_lists"
+}

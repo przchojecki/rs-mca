@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - L2 codegree reduction packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/codegree.md`,
+  `experimental/scripts/verify_codegree_packet.py`,
+  `experimental/data/certificates/codegree/codegree.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL REDUCTION.
+- **What is being added:** A named packet for the `codegree` DAG node, recording
+  the L2 codegree decomposition, the two-regime `mu=2` reduction, and the
+  fixed-arity recursion while preserving the conditional boundary for exponent
+  saving.
+- **How it is useful:** Supplies `list_safe` with its proved interleaved-list
+  conversion input and prevents the L1-family tail/profile input from being
+  hidden inside the word "codegree".
+- **What to do next:** Pair this packet with a proved `imgfib`/tail-profile
+  input before claiming the list-safe bound.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
