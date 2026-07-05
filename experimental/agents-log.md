@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - SOV forced-root recursion algebra
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/sov/sov_forced_root_recursion_algebra.md`;
+  `experimental/scripts/verify_sov_forced_root_recursion_algebra.py`;
+  `experimental/data/certificates/sov-forced-root-recursion-algebra/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the triangular forced-root
+  recursion, obstruction coordinates, and shifted-constant midpoint gate.
+- **How it is useful:** Supplies the algebraic base used by the SOV
+  first-obstruction/value-set packets on the M1/R2 residual path.
+- **What to do next:** Use this only as recursion algebra; the actual SOV
+  value-set bound for anchored-core families remains separate.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

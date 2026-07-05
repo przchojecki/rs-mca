@@ -1,0 +1,54 @@
+{
+  "anchor_checks": {
+    "non_claim": true,
+    "note_exists": true,
+    "obstruction_coordinates": true,
+    "source_node": true,
+    "status": true,
+    "triangular_step": true
+  },
+  "non_claims": [
+    "does not prove the SOV value-set bound for actual anchored-core families"
+  ],
+  "note": "experimental/notes/sov/sov_forced_root_recursion_algebra.md",
+  "recursion_check": {
+    "midpoint_checks": [
+      {
+        "delta": 18,
+        "h": 5,
+        "ok": true,
+        "p": 101
+      },
+      {
+        "delta": 19,
+        "h": 6,
+        "ok": true,
+        "p": 65537
+      },
+      {
+        "delta": 23,
+        "h": 10,
+        "ok": true,
+        "p": 65537
+      },
+      {
+        "delta": 34,
+        "h": 21,
+        "ok": true,
+        "p": 65537
+      },
+      {
+        "delta": 53,
+        "h": 40,
+        "ok": true,
+        "p": 65537
+      }
+    ],
+    "midpoint_checks_passed": true,
+    "sensitivity_gate_passed": true,
+    "total_checks": 6
+  },
+  "schema": "sov-forced-root-recursion-algebra-v1",
+  "source_dag_node": "sov_forced_root_recursion_algebra",
+  "status": "PROVED_FORCED_ROOT_REPLAY"
+}
