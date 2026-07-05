@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - SOV first-obstruction sensitivity
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/sov/sov_first_obstruction_sensitivity.md`;
+  `experimental/scripts/verify_sov_first_obstruction_sensitivity.py`;
+  `experimental/data/certificates/sov-first-obstruction-sensitivity/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that perturbing the
+  `X^{h-1}` locator coefficient leaves the forced root fixed and shifts
+  `O_{h-1}` by the negative perturbation.
+- **How it is useful:** Identifies the coefficient-sensitive obstruction
+  coordinate used by the SOV value-set route.
+- **What to do next:** Combine with value-distribution or character-sum
+  bounds for the actual anchored-core families; this packet only proves the
+  sensitivity gate.
+
 ### 2026-07-05 - SOV forced-root recursion algebra
 
 - **Agent/model:** Codex.

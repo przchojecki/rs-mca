@@ -1,0 +1,50 @@
+{
+  "anchor_checks": {
+    "first_obstruction": true,
+    "negative_shift": true,
+    "non_claim": true,
+    "note_exists": true,
+    "recursion_dependency": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not prove small value sets",
+    "does not prove the SOV character-sum bound"
+  ],
+  "note": "experimental/notes/sov/sov_first_obstruction_sensitivity.md",
+  "schema": "sov-first-obstruction-sensitivity-v1",
+  "sensitivity_check": {
+    "all_passed": true,
+    "cases": [
+      {
+        "constant_unchanged": true,
+        "delta": 1,
+        "expected_shift": 65536,
+        "first_obstruction_shift": 65536,
+        "lower_obstructions_unchanged": true,
+        "root_unchanged": true
+      },
+      {
+        "constant_unchanged": true,
+        "delta": 7,
+        "expected_shift": 65530,
+        "first_obstruction_shift": 65530,
+        "lower_obstructions_unchanged": true,
+        "root_unchanged": true
+      },
+      {
+        "constant_unchanged": true,
+        "delta": 65534,
+        "expected_shift": 3,
+        "first_obstruction_shift": 3,
+        "lower_obstructions_unchanged": true,
+        "root_unchanged": true
+      }
+    ],
+    "h": 10,
+    "p": 65537
+  },
+  "source_dag_node": "sov_first_obstruction_sensitivity",
+  "status": "PROVED_SENSITIVITY_REPLAY"
+}
