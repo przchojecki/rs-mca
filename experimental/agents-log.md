@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - M1 half-turn pair-core coefficient-window compression
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_half_turn_pair_core_13_v1.md`;
+  `experimental/scripts/verify_m1_half_turn_pair_core_13_v1.py`;
+  `experimental/data/certificates/m1-half-turn-pair-core-13-v1/`;
+  `experimental/notes/certificate_scanner/outputs/m1_half_turn_pair_core_13_v1.report.md`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-LEDGER / EXPERIMENTAL-EVIDENCE.
+- **What is being added:** A proof that the honest `2`-power cyclotomic
+  `{1,3}` coefficient-window branch has half-turn residual size at most `1`,
+  plus an exact `{1,4}` residual-core equation
+  `e_2(U)-alpha_R e_1(U)+beta_R=0`, and a `{1,4}` residual-image ledger
+  decomposition with primitive remainder `<=n+1` after lower-domain shadow and
+  half-turn-balance branches are charged. The verifier checks small exact
+  cyclotomic enumerations, small residual parity obstructions, deployed
+  KoalaBear honest-branch budget arithmetic, and a finite-field guardrail
+  counterexample to naive `{1,3}` transfer.
+- **How it is useful:** Localizes one half-turn coefficient-shadow subbranch of
+  the v13 M1 uniform split-locator determinant compression wall: large
+  `{1,3}` pair-core support mass is slope-small over the honest model, finite
+  `{1,3}` failures are generated-collision reductions of
+  `F_3(R)=e_1(R)e_2(R)-e_3(R)`, and `{1,4}` mass is decomposed into named
+  ledgers plus the pair-small `n+1` remainder.
+- **What to do next:** Prove the valid-range imbalance nonvanishing statements
+  for half-turn-balance, prove or refute fixed-size imbalance-profile rigidity
+  modulo `R -> -R` for residual sizes `s>=3`, classify sparse Hankel
+  row-slices, and charge finite-field generated-collision amplification.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by

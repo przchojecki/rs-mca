@@ -1,0 +1,1698 @@
+{
+  "claim": "For D=mu_{2^m}, the {1,3} coefficient-window branch has half-turn residual size at most 1 over the honest characteristic-zero 2-power cyclotomic model. The {1,4} branch residualizes to the exact equation e_2(U)-alpha_R e_1(U)+beta_R=0 and admits a ledger decomposition into pair-small, recursive lower-domain, and half-turn-balance branches. After those ledgers are charged, the {1,4} primitive residual image is bounded by n+1. In finite-field {1,3} rows, any survivor with half-turn residual size greater than 1 is classified as a generated-field collision of the residual defect F3(R)=e1(R)e2(R)-e3(R).",
+  "deployed_rows": [
+    {
+      "A": 1116044,
+      "below_budget": true,
+      "bit_margin_log2_budget_over_bound": 57.932108124695574,
+      "budget_minus_slope_bound": 274980728111395086,
+      "j": 981108,
+      "j_parity": "even",
+      "slope_bound_explanation": "1 if j even, n if j odd",
+      "slope_image_bound": 1
+    },
+    {
+      "A": 1116045,
+      "below_budget": true,
+      "bit_margin_log2_budget_over_bound": 36.932108124695574,
+      "budget_minus_slope_bound": 274980728109297935,
+      "j": 981107,
+      "j_parity": "odd",
+      "slope_bound_explanation": "1 if j even, n if j odd",
+      "slope_image_bound": 2097152
+    },
+    {
+      "A": 1116046,
+      "below_budget": true,
+      "bit_margin_log2_budget_over_bound": 57.932108124695574,
+      "budget_minus_slope_bound": 274980728111395086,
+      "j": 981106,
+      "j_parity": "even",
+      "slope_bound_explanation": "1 if j even, n if j odd",
+      "slope_image_bound": 1
+    },
+    {
+      "A": 1116047,
+      "below_budget": true,
+      "bit_margin_log2_budget_over_bound": 36.932108124695574,
+      "budget_minus_slope_bound": 274980728109297935,
+      "j": 981105,
+      "j_parity": "odd",
+      "slope_bound_explanation": "1 if j even, n if j odd",
+      "slope_image_bound": 2097152
+    }
+  ],
+  "external_experiment_evidence_v3_not_replayed": {
+    "fixed_size_ab_fibers": {
+      "all_twofold_fibers_antipodal": true,
+      "max_residuals_per_fiber": 2,
+      "max_slopes_per_fiber": 2,
+      "rows": [
+        {
+          "examined": 480,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 2
+        },
+        {
+          "examined": 4480,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 3
+        },
+        {
+          "examined": 29120,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 4
+        },
+        {
+          "examined": 139776,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 5
+        },
+        {
+          "examined": 512512,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 6
+        },
+        {
+          "examined": 1464320,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 7
+        },
+        {
+          "examined": 3294720,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 8
+        },
+        {
+          "examined": 1000000,
+          "mode": "prefix_exhaustive_1000000",
+          "n": 32,
+          "s": 9
+        },
+        {
+          "examined": 1000000,
+          "mode": "prefix_exhaustive_1000000",
+          "n": 32,
+          "s": 10
+        },
+        {
+          "examined": 575360,
+          "mode": "exhaustive",
+          "n": 64,
+          "s": 4
+        },
+        {
+          "examined": 6444032,
+          "mode": "exhaustive",
+          "n": 64,
+          "s": 5
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 6
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 7
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 8
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 9
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 10
+        }
+      ],
+      "statement": "Every observed fixed-size (A_R,B_R) fiber has size at most 2, and every twofold fiber is exactly antipodal."
+    },
+    "half_turn_balance": {
+      "q0_hits": 0,
+      "q1_hits": 0,
+      "rows": [
+        {
+          "examined": 1464320,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 7
+        },
+        {
+          "examined": 3294720,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 8
+        },
+        {
+          "examined": 5857280,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 9
+        },
+        {
+          "examined": 8200192,
+          "mode": "exhaustive",
+          "n": 32,
+          "s": 10
+        },
+        {
+          "examined": 575360,
+          "mode": "exhaustive",
+          "n": 64,
+          "s": 4
+        },
+        {
+          "examined": 6444032,
+          "mode": "exhaustive",
+          "n": 64,
+          "s": 5
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 6
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 7
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 8
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 9
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 10
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 11
+        },
+        {
+          "examined": 500000,
+          "mode": "prefix_exhaustive_500000",
+          "n": 64,
+          "s": 12
+        }
+      ],
+      "statement": "No q=0 or q=1 half-turn-balance hits found."
+    },
+    "q1_arithmetic": "corrected root multiplication with wraparound sign",
+    "recommended_next_targets": [
+      "valid-range half-turn-balance emptiness",
+      "fixed-size imbalance-profile rigidity modulo antipodal symmetry for residual sizes >=3",
+      "sparse/nonconsecutive row-slice inverse classification",
+      "finite-field generated-collision accounting"
+    ],
+    "source_folder": "m1_14_ledger_experiments_v3",
+    "status": "EXPERIMENTAL_EVIDENCE_NOT_A_PROOF"
+  },
+  "finite_field_transfer_guardrails": [
+    {
+      "F3_exact_key": "1,3,3,1,2,0,0,-2",
+      "F3_exact_nonzero": true,
+      "F3_mod_17": 0,
+      "F3_mod_17_zero": true,
+      "coefficients_c0_to_cj": [
+        9,
+        3,
+        3,
+        1,
+        1
+      ],
+      "field": "F_17",
+      "generated_collision_certificate": true,
+      "generator": 3,
+      "half_turn_residual_size": 4,
+      "meaning": "The characteristic-zero {1,3} half-turn classification needs a finite-field generated-collision ledger before deployed finite-field use. Here the residual defect is nonzero over Q(zeta_16) but reduces to zero mod 17.",
+      "n": 16,
+      "residual_defect": "F3(R)=e1(R)*e2(R)-e3(R)",
+      "residual_exponents": [
+        0,
+        1,
+        3,
+        14
+      ],
+      "row1_zero": true,
+      "row3_zero": true,
+      "slope_z": 16,
+      "status": "COUNTEREXAMPLE_TO_NAIVE_FINITE_FIELD_TRANSFER",
+      "support_exponents": [
+        0,
+        1,
+        3,
+        14
+      ],
+      "support_values": [
+        1,
+        3,
+        10,
+        2
+      ]
+    }
+  ],
+  "fixed_size_AB_rigidity_s2_checks": [
+    {
+      "AB_fibers": 12,
+      "all_fibers_antipodal_twofold": true,
+      "max_residuals_per_AB": 2,
+      "n": 8,
+      "residual_size": 2,
+      "residuals_checked": 24,
+      "status": "CONSISTENT_WITH_PROVED_S2_BASE_CASE"
+    },
+    {
+      "AB_fibers": 56,
+      "all_fibers_antipodal_twofold": true,
+      "max_residuals_per_AB": 2,
+      "n": 16,
+      "residual_size": 2,
+      "residuals_checked": 112,
+      "status": "CONSISTENT_WITH_PROVED_S2_BASE_CASE"
+    },
+    {
+      "AB_fibers": 240,
+      "all_fibers_antipodal_twofold": true,
+      "max_residuals_per_AB": 2,
+      "n": 32,
+      "residual_size": 2,
+      "residuals_checked": 480,
+      "status": "CONSISTENT_WITH_PROVED_S2_BASE_CASE"
+    },
+    {
+      "AB_fibers": 992,
+      "all_fibers_antipodal_twofold": true,
+      "max_residuals_per_AB": 2,
+      "n": 64,
+      "residual_size": 2,
+      "residuals_checked": 1984,
+      "status": "CONSISTENT_WITH_PROVED_S2_BASE_CASE"
+    }
+  ],
+  "half_turn_balance_range_caveat": {
+    "B_R_is_zero": true,
+    "B_R_key": "0,0,0,0,0,0,0,0",
+    "half_turn_free": true,
+    "n": 16,
+    "outside_valid_q0_range": true,
+    "reason": "For every two-point residual, e_3=e_4=0, so B_R=0. The q=0 {1,4} branch has j=s>=4, so the corrected emptiness target must include the valid range restriction.",
+    "residual_R": [
+      0,
+      2
+    ],
+    "size": 2
+  },
+  "imbalance_reduction_targets_14": {
+    "fixed_size_AB_rigidity": {
+      "known_false_unrestricted_case": "cross-size collision R={y}, R'={1,i} with y^2=i",
+      "proved_base_case": "|R|=|R'|=2",
+      "target": "For |R|=|R'|>=3, equality of Delta(Acal_R),Delta(Bcal_R) with Delta(Acal_R'),Delta(Bcal_R') forces R'=R or R'=-R."
+    },
+    "half_turn_balance_emptiness": {
+      "open_congruence_classes": {
+        "q0_s_mod_8": [
+          0,
+          1,
+          2,
+          7
+        ],
+        "q1_s_mod_8": [
+          0,
+          5,
+          6,
+          7
+        ]
+      },
+      "proved_subcases": [
+        "q=0 parity-empty for s mod 8 in {3,4,5,6}",
+        "q=1 parity-empty for s mod 8 in {1,2,3,4}"
+      ],
+      "q0_target": "Delta(Bcal_R) is not identically zero",
+      "q0_valid_range": "s>=4, R half-turn-free",
+      "q1_target": "Delta(Bcal_R disjoint_union (-u*Acal_R)) is not identically zero",
+      "q1_valid_range": "s>=2, R half-turn-free, u in mu_{2^{m-1}} \\ R^2"
+    },
+    "imbalance_definition": "For a positive multiset M of 2^m-th roots, Delta_M(xi) is mult_M(xi)-mult_M(-xi).  Over Q(zeta_{2^m}), sum(M)=0 iff Delta_M is identically zero.",
+    "status": "REDUCTION_TARGETS_NOT_PROVED_HERE"
+  },
+  "parameters": {
+    "budget_floor_q_line_minus_1_over_2^128": 274980728111395087,
+    "budget_floor_q_line_over_2^128": 274980728111395087,
+    "budget_values_equal_for_this_row": true,
+    "deployed_k": 1048576,
+    "deployed_n": 2097152,
+    "koalabear_p": 2130706433,
+    "q_line": "93571093019388561295270373781649880353786165192103559169"
+  },
+  "parity_empty_classes_14": {
+    "checked_s_range": "0..31",
+    "method": "parity of 3*C(s+1,4) and 3*C(s+1,4)+C(s+1,2)",
+    "q0_empty_when_s_mod_8_in": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "q1_empty_when_s_mod_8_in": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "residual_image_ledger_bound_14": {
+    "below_budget": true,
+    "bit_margin_log2_budget_over_bound": 36.932107436765136,
+    "branch": "{1,4}",
+    "budget_minus_bound": 274980728109297934,
+    "condition": "after charging lower-domain shadow and higher-pair balanced residual ledgers",
+    "primitive_residual_image_bound": 2097153
+  },
+  "schema": "m1_half_turn_pair_core_13_v1",
+  "scope": {
+    "covers": [
+      "{1,3} coefficient-window branch over honest 2-power cyclotomic domains",
+      "{1,4} residual-core equation over honest 2-power cyclotomic domains",
+      "{1,4} residual-image ledger decomposition into pair-small, recursive lower, and half-turn-balance branches",
+      "{1,4} half-turn-balance parity-empty classes",
+      "valid-range caveat for half-turn-balance emptiness",
+      "finite-field guardrail counterexample for naive {1,3} transfer",
+      "{1,3} finite-field generated-collision classification via the residual defect F3(R)",
+      "counterexample to unrestricted twofold lower-fiber rigidity",
+      "fixed-size AB-rigidity base case for residual size 2",
+      "imbalance-vector reductions for the two next inverse targets",
+      "external non-replayed experimental evidence for the next two {1,4} inverse targets",
+      "half-turn pair-core slope compression",
+      "deployed KoalaBear parity and budget arithmetic for the honest characteristic-zero branch"
+    ],
+    "does_not_cover": [
+      "finite-field generated-collision amplification",
+      "finite-field {1,3} generated-collision emptiness or budget-smallness",
+      "deployed KoalaBear finite-field {1,3} slope image",
+      "a standalone numerical cost theorem for the recursive lower-domain ledger",
+      "a standalone numerical cost theorem for the half-turn-balance ledger",
+      "full valid-range half-turn-balance emptiness",
+      "fixed-size imbalance-profile rigidity modulo antipodal symmetry for residual sizes >=3",
+      "arbitrary nonconsecutive coefficient windows",
+      "sparse Hankel-proxy row slices",
+      "full M1 closure or deployed safe-side certificate"
+    ]
+  },
+  "small_exact_enumerations_13": [
+    {
+      "classification_exact": true,
+      "distinct_slopes": 8,
+      "j": 3,
+      "n": 8,
+      "parity": "odd",
+      "predicted_slope_bound": 8,
+      "predicted_supports": 24,
+      "sample_supports": [
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          6
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          3,
+          7
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          0,
+          4,
+          6
+        ]
+      ],
+      "survivor_supports": 24,
+      "total_subsets": 56,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 1,
+      "j": 4,
+      "n": 8,
+      "parity": "even",
+      "predicted_slope_bound": 1,
+      "predicted_supports": 6,
+      "sample_supports": [
+        [
+          0,
+          1,
+          4,
+          5
+        ],
+        [
+          0,
+          2,
+          4,
+          6
+        ],
+        [
+          0,
+          3,
+          4,
+          7
+        ],
+        [
+          1,
+          2,
+          5,
+          6
+        ],
+        [
+          1,
+          3,
+          5,
+          7
+        ],
+        [
+          2,
+          3,
+          6,
+          7
+        ]
+      ],
+      "survivor_supports": 6,
+      "total_subsets": 70,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 8,
+      "j": 5,
+      "n": 8,
+      "parity": "odd",
+      "predicted_slope_bound": 8,
+      "predicted_supports": 24,
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          6
+        ],
+        [
+          0,
+          1,
+          2,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          5
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          7
+        ],
+        [
+          0,
+          1,
+          3,
+          5,
+          7
+        ],
+        [
+          0,
+          1,
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          4,
+          5,
+          7
+        ]
+      ],
+      "survivor_supports": 24,
+      "total_subsets": 56,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 1,
+      "j": 6,
+      "n": 8,
+      "parity": "even",
+      "predicted_slope_bound": 1,
+      "predicted_supports": 4,
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          5,
+          7
+        ],
+        [
+          0,
+          2,
+          3,
+          4,
+          6,
+          7
+        ],
+        [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7
+        ]
+      ],
+      "survivor_supports": 4,
+      "total_subsets": 28,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 8,
+      "j": 7,
+      "n": 8,
+      "parity": "odd",
+      "predicted_slope_bound": 8,
+      "predicted_supports": 8,
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "survivor_supports": 8,
+      "total_subsets": 8,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 1,
+      "j": 8,
+      "n": 8,
+      "parity": "even",
+      "predicted_slope_bound": 1,
+      "predicted_supports": 1,
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "survivor_supports": 1,
+      "total_subsets": 1,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 16,
+      "j": 3,
+      "n": 16,
+      "parity": "odd",
+      "predicted_slope_bound": 16,
+      "predicted_supports": 112,
+      "sample_supports": [
+        [
+          0,
+          1,
+          8
+        ],
+        [
+          0,
+          1,
+          9
+        ],
+        [
+          0,
+          2,
+          8
+        ],
+        [
+          0,
+          2,
+          10
+        ],
+        [
+          0,
+          3,
+          8
+        ],
+        [
+          0,
+          3,
+          11
+        ],
+        [
+          0,
+          4,
+          8
+        ],
+        [
+          0,
+          4,
+          12
+        ]
+      ],
+      "survivor_supports": 112,
+      "total_subsets": 560,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 1,
+      "j": 4,
+      "n": 16,
+      "parity": "even",
+      "predicted_slope_bound": 1,
+      "predicted_supports": 28,
+      "sample_supports": [
+        [
+          0,
+          1,
+          8,
+          9
+        ],
+        [
+          0,
+          2,
+          8,
+          10
+        ],
+        [
+          0,
+          3,
+          8,
+          11
+        ],
+        [
+          0,
+          4,
+          8,
+          12
+        ],
+        [
+          0,
+          5,
+          8,
+          13
+        ],
+        [
+          0,
+          6,
+          8,
+          14
+        ],
+        [
+          0,
+          7,
+          8,
+          15
+        ],
+        [
+          1,
+          2,
+          9,
+          10
+        ]
+      ],
+      "survivor_supports": 28,
+      "total_subsets": 1820,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 16,
+      "j": 5,
+      "n": 16,
+      "parity": "odd",
+      "predicted_slope_bound": 16,
+      "predicted_supports": 336,
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          8,
+          9
+        ],
+        [
+          0,
+          1,
+          2,
+          8,
+          10
+        ],
+        [
+          0,
+          1,
+          2,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          3,
+          8,
+          9
+        ],
+        [
+          0,
+          1,
+          3,
+          8,
+          11
+        ],
+        [
+          0,
+          1,
+          3,
+          9,
+          11
+        ],
+        [
+          0,
+          1,
+          4,
+          8,
+          9
+        ],
+        [
+          0,
+          1,
+          4,
+          8,
+          12
+        ]
+      ],
+      "survivor_supports": 336,
+      "total_subsets": 4368,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 1,
+      "j": 6,
+      "n": 16,
+      "parity": "even",
+      "predicted_slope_bound": 1,
+      "predicted_supports": 56,
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          3,
+          8,
+          9,
+          11
+        ],
+        [
+          0,
+          1,
+          4,
+          8,
+          9,
+          12
+        ],
+        [
+          0,
+          1,
+          5,
+          8,
+          9,
+          13
+        ],
+        [
+          0,
+          1,
+          6,
+          8,
+          9,
+          14
+        ],
+        [
+          0,
+          1,
+          7,
+          8,
+          9,
+          15
+        ],
+        [
+          0,
+          2,
+          3,
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          2,
+          4,
+          8,
+          10,
+          12
+        ]
+      ],
+      "survivor_supports": 56,
+      "total_subsets": 8008,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 16,
+      "j": 7,
+      "n": 16,
+      "parity": "odd",
+      "predicted_slope_bound": 16,
+      "predicted_supports": 560,
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          3,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          8,
+          9,
+          11
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          9,
+          10,
+          11
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          8,
+          9,
+          12
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          8,
+          10,
+          12
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          9,
+          10,
+          12
+        ]
+      ],
+      "survivor_supports": 560,
+      "total_subsets": 11440,
+      "window": "{1,3}"
+    },
+    {
+      "classification_exact": true,
+      "distinct_slopes": 1,
+      "j": 8,
+      "n": 16,
+      "parity": "even",
+      "predicted_slope_bound": 1,
+      "predicted_supports": 70,
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          3,
+          8,
+          9,
+          10,
+          11
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          8,
+          9,
+          10,
+          12
+        ],
+        [
+          0,
+          1,
+          2,
+          5,
+          8,
+          9,
+          10,
+          13
+        ],
+        [
+          0,
+          1,
+          2,
+          6,
+          8,
+          9,
+          10,
+          14
+        ],
+        [
+          0,
+          1,
+          2,
+          7,
+          8,
+          9,
+          10,
+          15
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          8,
+          9,
+          11,
+          12
+        ],
+        [
+          0,
+          1,
+          3,
+          5,
+          8,
+          9,
+          11,
+          13
+        ],
+        [
+          0,
+          1,
+          3,
+          6,
+          8,
+          9,
+          11,
+          14
+        ]
+      ],
+      "survivor_supports": 70,
+      "total_subsets": 12870,
+      "window": "{1,3}"
+    }
+  ],
+  "small_exact_enumerations_14": [
+    {
+      "distinct_slopes": 0,
+      "j": 4,
+      "n": 8,
+      "residual_choice_bound": 41,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {},
+      "sample_supports": [],
+      "survivor_supports": 0,
+      "total_subsets": 70,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 0,
+      "j": 5,
+      "n": 8,
+      "residual_choice_bound": 40,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {},
+      "sample_supports": [],
+      "survivor_supports": 0,
+      "total_subsets": 56,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 0,
+      "j": 6,
+      "n": 8,
+      "residual_choice_bound": 25,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {},
+      "sample_supports": [],
+      "survivor_supports": 0,
+      "total_subsets": 28,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 8,
+      "j": 7,
+      "n": 8,
+      "residual_choice_bound": 8,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {
+        "1": 8
+      },
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "survivor_supports": 8,
+      "total_subsets": 8,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 1,
+      "j": 8,
+      "n": 8,
+      "residual_choice_bound": 1,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {
+        "0": 1
+      },
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "survivor_supports": 1,
+      "total_subsets": 1,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 0,
+      "j": 4,
+      "n": 16,
+      "residual_choice_bound": 1233,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {},
+      "sample_supports": [],
+      "survivor_supports": 0,
+      "total_subsets": 1820,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 0,
+      "j": 5,
+      "n": 16,
+      "residual_choice_bound": 2256,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {},
+      "sample_supports": [],
+      "survivor_supports": 0,
+      "total_subsets": 4368,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 0,
+      "j": 6,
+      "n": 16,
+      "residual_choice_bound": 3025,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {},
+      "sample_supports": [],
+      "survivor_supports": 0,
+      "total_subsets": 8008,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 16,
+      "j": 7,
+      "n": 16,
+      "residual_choice_bound": 3280,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {
+        "1": 80
+      },
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          5,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          2,
+          5,
+          8,
+          9,
+          13
+        ],
+        [
+          0,
+          1,
+          2,
+          5,
+          8,
+          10,
+          13
+        ],
+        [
+          0,
+          1,
+          2,
+          5,
+          9,
+          10,
+          13
+        ],
+        [
+          0,
+          1,
+          2,
+          8,
+          9,
+          10,
+          13
+        ],
+        [
+          0,
+          1,
+          4,
+          7,
+          8,
+          9,
+          12
+        ],
+        [
+          0,
+          1,
+          4,
+          7,
+          8,
+          9,
+          15
+        ],
+        [
+          0,
+          1,
+          4,
+          7,
+          8,
+          12,
+          15
+        ]
+      ],
+      "survivor_supports": 80,
+      "total_subsets": 11440,
+      "window": "{1,4}"
+    },
+    {
+      "distinct_slopes": 17,
+      "j": 8,
+      "n": 16,
+      "residual_choice_bound": 3281,
+      "residual_core_equation_exact": true,
+      "residual_determines_slope": true,
+      "residual_histogram": {
+        "0": 10,
+        "2": 32
+      },
+      "sample_supports": [
+        [
+          0,
+          1,
+          2,
+          3,
+          7,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          9,
+          10,
+          11,
+          12
+        ],
+        [
+          0,
+          1,
+          2,
+          5,
+          8,
+          9,
+          10,
+          13
+        ],
+        [
+          0,
+          1,
+          2,
+          6,
+          7,
+          8,
+          9,
+          15
+        ],
+        [
+          0,
+          1,
+          2,
+          8,
+          9,
+          10,
+          11,
+          15
+        ],
+        [
+          0,
+          1,
+          3,
+          4,
+          6,
+          9,
+          11,
+          14
+        ],
+        [
+          0,
+          1,
+          3,
+          6,
+          8,
+          11,
+          13,
+          14
+        ],
+        [
+          0,
+          1,
+          4,
+          7,
+          8,
+          9,
+          12,
+          15
+        ]
+      ],
+      "survivor_supports": 42,
+      "total_subsets": 12870,
+      "window": "{1,4}"
+    }
+  ],
+  "small_residual_parity_checks_14": [
+    {
+      "Acal_length": 3,
+      "Bcal_length": 0,
+      "half_turn_balance_possible": false,
+      "q": 1,
+      "reason": "odd length cannot be half-turn-balanced",
+      "s": 2,
+      "total_zero_sum_length": 3,
+      "zero_sum": "Bcal_R disjoint_union (-u*Acal_R)"
+    },
+    {
+      "Acal_length": 6,
+      "Bcal_length": 3,
+      "half_turn_balance_possible": false,
+      "q": 1,
+      "reason": "odd length cannot be half-turn-balanced",
+      "s": 3,
+      "total_zero_sum_length": 9,
+      "zero_sum": "Bcal_R disjoint_union (-u*Acal_R)"
+    },
+    {
+      "Acal_length": 10,
+      "Bcal_length": 15,
+      "half_turn_balance_possible": false,
+      "q": 1,
+      "reason": "odd length cannot be half-turn-balanced",
+      "s": 4,
+      "total_zero_sum_length": 25,
+      "zero_sum": "Bcal_R disjoint_union (-u*Acal_R)"
+    },
+    {
+      "Acal_length": 10,
+      "Bcal_length": 15,
+      "half_turn_balance_possible": false,
+      "q": 0,
+      "reason": "odd length cannot be half-turn-balanced",
+      "s": 4,
+      "total_zero_sum_length": 15,
+      "zero_sum": "Bcal_R"
+    },
+    {
+      "Acal_length": 15,
+      "Bcal_length": 45,
+      "half_turn_balance_possible": false,
+      "q": 0,
+      "reason": "odd length cannot be half-turn-balanced",
+      "s": 5,
+      "total_zero_sum_length": 45,
+      "zero_sum": "Bcal_R"
+    },
+    {
+      "Acal_length": 21,
+      "Bcal_length": 105,
+      "half_turn_balance_possible": false,
+      "q": 0,
+      "reason": "odd length cannot be half-turn-balanced",
+      "s": 6,
+      "total_zero_sum_length": 105,
+      "zero_sum": "Bcal_R"
+    }
+  ],
+  "status": "PROVED_LOCAL_BRANCH_ALGEBRA_WITH_CONDITIONAL_LEDGER_DECOMPOSITION",
+  "status_breakdown": {
+    "case_13_characteristic_zero": "PROVED_LOCAL",
+    "case_13_finite_field_collision_classification": "PROVED_LOCAL_REDUCTION",
+    "case_14_primitive_bound_after_named_ledgers": "CONDITIONAL_LEDGER_DECOMPOSITION",
+    "case_14_residual_core_equation": "PROVED_LOCAL",
+    "finite_field_generated_collision_accounting": "NOT_COVERED",
+    "koalabear_deployed_finite_field_slope_image": "NOT_CERTIFIED",
+    "v3_experiment_evidence": "EXTERNAL_EXPERIMENTAL_EVIDENCE_NOT_REPLAYED"
+  },
+  "summary": {
+    "all_14_residual_core_checks_match_theorem": true,
+    "all_14_residuals_determine_slope": true,
+    "all_14_small_residual_parity_obstructions_hold": true,
+    "all_deployed_slope_bounds_below_budget": true,
+    "all_small_enumerations_match_theorem": true,
+    "bare_half_turn_balance_emptiness_requires_valid_range": true,
+    "external_experiment_evidence_recorded_not_replayed": true,
+    "finite_field_13_transfer_guardrail_checked": true,
+    "fixed_size_AB_rigidity_s2_base_case_checked": true,
+    "imbalance_reduction_targets_recorded": true,
+    "max_deployed_slope_bound": 2097152,
+    "parity_empty_classes_checked": true,
+    "residual_image_ledger_bound_14_below_budget": true,
+    "unrestricted_twofold_rigidity_counterexample_checked": true
+  },
+  "twofold_rigidity_counterexample": {
+    "A_R_key": "0,0,0,0,1,0,0,0",
+    "B_R_key": "0,0,0,0,0,0,0,0",
+    "antipodal_residual": false,
+    "explanation": "R={zeta^2}, R'={1,zeta^4}; both have (A_R,B_R)=(zeta^4,0) but have different sizes, so unrestricted twofold fiber rigidity is false.",
+    "n": 16,
+    "negative_R": [
+      10
+    ],
+    "residual_R": [
+      2
+    ],
+    "residual_R_prime": [
+      0,
+      4
+    ],
+    "same_A_B": true,
+    "same_residual": false
+  }
+}
