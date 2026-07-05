@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Quotient-core list lower-bound packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/qcore.md`,
+  `experimental/scripts/verify_qcore_packet.py`,
+  `experimental/data/certificates/qcore/qcore.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COUNTING.
+- **What is being added:** A named packet for the `qcore` DAG node, recording
+  the q-independent quotient-core lower count
+  `binom(n/M - 1, k/M)` at agreement `k + sigma` for `M | k` and
+  `0 <= sigma < M`.
+- **How it is useful:** Supplies the counting input for `list_unsafe` while
+  keeping endpoint conventions and the S0 object audit as separate dependencies.
+- **What to do next:** Assemble `list_unsafe` only after the S0 convention
+  packets are accepted or explicitly consumed as dependencies.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by

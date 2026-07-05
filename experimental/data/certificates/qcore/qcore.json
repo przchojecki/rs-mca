@@ -1,0 +1,51 @@
+{
+  "claim": {
+    "agreement": "k + sigma",
+    "conditions": [
+      "M divides k",
+      "0 <= sigma < M"
+    ],
+    "field_dependence": "none",
+    "lower_bound": "binom(n/M - 1, k/M)"
+  },
+  "consumers": [
+    "list_unsafe"
+  ],
+  "non_claims": [
+    "does not close list_unsafe",
+    "does not decide endpoint conventions",
+    "does not provide the S0 object/rules audit",
+    "does not prove the list-safe upper bound",
+    "does not edit Papers A-D"
+  ],
+  "sample_arithmetic": [
+    {
+      "M": 2,
+      "count": 35,
+      "k": 8,
+      "n": 16,
+      "sigma": 1
+    },
+    {
+      "M": 4,
+      "count": 35,
+      "k": 16,
+      "n": 32,
+      "sigma": 3
+    },
+    {
+      "M": 8,
+      "count": 21,
+      "k": 16,
+      "n": 64,
+      "sigma": 7
+    }
+  ],
+  "schema": "rs-mca.experimental.qcore.v1",
+  "source_dag_node": "qcore",
+  "status": "PROVED",
+  "upstream_evidence": [
+    "experimental/notes/roadmaps/proof_sketch/s7_list_side.md"
+  ],
+  "verdict": "quotient_core_count_is_q_independent"
+}
