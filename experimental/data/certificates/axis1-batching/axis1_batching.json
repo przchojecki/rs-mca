@@ -1,0 +1,33 @@
+{
+  "claim": "The official MCA object uses affine lines in two words. Nonlinear power-curve or polynomial-generator samplers are separate variants, not the default MCA batching shape.",
+  "non_claims": [
+    "does not analyze polynomial-generator MCA",
+    "does not prove a proximity bound",
+    "does not decide CA or list objects"
+  ],
+  "official_sampler": {
+    "formula": "{f1 + gamma f2}_{gamma in F}",
+    "repo_form": "u + z v",
+    "shape": "affine line"
+  },
+  "quote_fragments": [
+    "Lines",
+    "{f1 + gamma f2}_{gamma in F}",
+    "family Flines",
+    "only consider MCA with respect to the family of lines"
+  ],
+  "schema": "rs-mca.experimental.axis1_batching.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "pages": [
+      3,
+      17
+    ],
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "axis1_batching",
+  "status": "PROVED",
+  "verdict": "official_mca_sampler_is_affine_line"
+}

@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Axis 1 batching shape packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/axis1_batching.md`;
+  `experimental/scripts/verify_axis1_batching.py`;
+  `experimental/data/certificates/axis1-batching/axis1_batching.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-pinned S0 axis packet showing that the
+  official MCA sampler is the affine line family `{f1 + gamma f2}`.
+- **How it is useful:** Aligns the repo's `u + z v` MCA convention with the
+  ABF challenge and separates it from protocol-specific generator variants.
+- **What to do next:** Keep any non-affine-line sampler labelled as a separate
+  protocol or polynomial-generator MCA object.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
