@@ -1,0 +1,80 @@
+{
+  "anchor_checks": {
+    "basis": true,
+    "closed_count": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "taxonomy": true
+  },
+  "non_claims": [
+    "does not prove the many-sparse classification theorem",
+    "does not close a row-level Hankel safe-side certificate"
+  ],
+  "note": "experimental/notes/m1/dihedral_quotient_stratum.md",
+  "schema": "dihedral-quotient-stratum-v1",
+  "source_dag_node": "dihedral_quotient_stratum",
+  "status": "PROVED",
+  "toy_check": {
+    "all_trace_dependencies_hold": true,
+    "basis_rank": 4,
+    "chebyshev_y_values_distinct": true,
+    "closed_set_lower_bound": 64,
+    "dimension_check": true,
+    "domain_order": 16,
+    "expected_dimension": 4,
+    "expected_inverse_pair_count": 7,
+    "field": "F_17",
+    "has_adjacent_exponents": true,
+    "inverse_pair_count": 7,
+    "m": 3,
+    "nontrivial_pullback_excluded_by_adjacent_exponents": true,
+    "support_union": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "trace_checks": [
+      {
+        "a": 3,
+        "a_inverse": 6,
+        "trace_dependence": true
+      },
+      {
+        "a": 9,
+        "a_inverse": 2,
+        "trace_dependence": true
+      },
+      {
+        "a": 10,
+        "a_inverse": 12,
+        "trace_dependence": true
+      },
+      {
+        "a": 13,
+        "a_inverse": 4,
+        "trace_dependence": true
+      },
+      {
+        "a": 5,
+        "a_inverse": 7,
+        "trace_dependence": true
+      },
+      {
+        "a": 15,
+        "a_inverse": 8,
+        "trace_dependence": true
+      },
+      {
+        "a": 11,
+        "a_inverse": 14,
+        "trace_dependence": true
+      }
+    ]
+  }
+}

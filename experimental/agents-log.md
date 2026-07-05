@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Dihedral quotient stratum
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/dihedral_quotient_stratum.md`;
+  `experimental/scripts/verify_dihedral_quotient_stratum.py`;
+  `experimental/data/certificates/dihedral-quotient-stratum/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the dihedral/Chebyshev quotient
+  stratum `X^e g(X^M + X^{-M})`, including dimension, trace-dependence,
+  non-pullback, and closed-set lower-count checks.
+- **How it is useful:** Records the explicit quotient-taxonomy refinement used
+  by Hankel and sparse-dual paid-ledger accounting.
+- **What to do next:** Use this as a standalone proved stratum; the broader
+  many-sparse classification theorem remains separate.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
