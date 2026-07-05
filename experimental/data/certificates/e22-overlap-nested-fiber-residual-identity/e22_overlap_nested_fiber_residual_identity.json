@@ -1,0 +1,37 @@
+{
+  "schema": "e22-overlap-nested-fiber-residual-identity-v1",
+  "dag_node": "e22_overlap_nested_fiber_residual_identity",
+  "status": "PROVED",
+  "claim": "For nested dyadic scales M_i < M_j, the canonical M_j-tail size is |B_i| plus M_i times the number of selected M_i-fibers in incomplete M_j-parents.",
+  "dependencies": [
+    "e22_cross_scale_support_canonical_form"
+  ],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_overlap_nested_fiber_residual_identity/statement.md",
+      "nodes/e22_overlap_nested_fiber_residual_identity/proof.md",
+      "nodes/e22_overlap_nested_fiber_residual_identity/verify.py"
+    ]
+  },
+  "local_dependency_certificates": [
+    "experimental/data/certificates/e22-cross-scale-support-canonical-form/e22_cross_scale_support_canonical_form.json"
+  ],
+  "finite_checks": [
+    {
+      "n": 8,
+      "fine_sizes": [
+        1,
+        2,
+        4
+      ],
+      "coarse_sizes": [
+        2,
+        4,
+        8
+      ]
+    }
+  ],
+  "expected_result": "PASS"
+}
+
