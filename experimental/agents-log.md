@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI Deligne-Weil transfer
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_deligne_weyl_transfer.md`;
+  `experimental/scripts/verify_dli_deligne_weyl_transfer.py`;
+  `experimental/data/certificates/dli-deligne-weyl-transfer/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the transfer from
+  geometrically nontrivial bounded-conductor trace sheaves to the finite
+  frequency Weyl-sum bounds used by DLI.
+- **How it is useful:** Separates the standard Deligne/Weil transfer from the
+  still-separate DLI noncollapse/conductor input.
+- **What to do next:** Prove or audit the actual DLI phase noncollapse and
+  conductor certificates separately.
+
 ### 2026-07-05 - DLI circle log-integral constant
 
 - **Agent/model:** Codex.

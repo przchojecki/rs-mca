@@ -1,0 +1,26 @@
+{
+  "anchor_checks": {
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "square_root": true,
+    "status": true,
+    "target": true
+  },
+  "non_claims": [
+    "does not prove DLI odd-phase noncollapse",
+    "does not construct conductor certificates"
+  ],
+  "note": "experimental/notes/dli/dli_deligne_weyl_transfer.md",
+  "schema": "dli-deligne-weyl-transfer-v1",
+  "source_dag_node": "dli_deligne_weyl_transfer",
+  "status": "PROVED_DELIGNE_WEYL_TRANSFER_REPLAY",
+  "toy_check": {
+    "bad_conductor_rejected": true,
+    "duplicate_record_rejected": true,
+    "good_records_accepted": true,
+    "over_budget_rejected": true,
+    "record_count": 3,
+    "trivial_record_rejected": true
+  }
+}
