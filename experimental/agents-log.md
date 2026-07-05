@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E22 quotient-staircase canonicalization packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/e22_quotient_fiber_locator_saturation.md`;
+  `experimental/notes/roadmaps/e22_fixed_scale_staircase_injectivity.md`;
+  `experimental/notes/roadmaps/e22_cross_scale_rootset_recovery.md`;
+  `experimental/notes/roadmaps/e22_cross_scale_support_canonical_form.md`;
+  `experimental/data/certificates/e22-quotient-fiber-locator-saturation/`;
+  `experimental/data/certificates/e22-fixed-scale-staircase-injectivity/`;
+  `experimental/data/certificates/e22-cross-scale-rootset-recovery/`;
+  `experimental/data/certificates/e22-cross-scale-support-canonical-form/`;
+  `experimental/scripts/verify_e22_quotient_fiber_locator_saturation.py`;
+  `experimental/scripts/verify_e22_fixed_scale_staircase_injectivity.py`;
+  `experimental/scripts/verify_e22_cross_scale_rootset_recovery.py`;
+  `experimental/scripts/verify_e22_cross_scale_support_canonical_form.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** Four fully proved E22 quotient-staircase
+  canonicalization packets: quotient-fiber locator saturation, fixed-scale
+  staircase injectivity, cross-scale root-set recovery, and support-only
+  canonical scale recovery.
+- **How it is useful:** These packets support the current `(Q)` missing-input
+  route by replacing raw quotient-staircase parameterizations with exact
+  support/fiber canonical data before the later minimal-scale, overlap, and
+  pricing ledgers.
+- **What to do next:** Continue with the dependent E22 minimal-scale and
+  overlap-count nodes, or connect these canonical support-scale objects to the
+  exact prefix-collision ledger requested by `agents.md`.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by

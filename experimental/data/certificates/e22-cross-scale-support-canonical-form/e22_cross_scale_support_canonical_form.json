@@ -1,0 +1,44 @@
+{
+  "schema": "e22-cross-scale-support-canonical-form-v1",
+  "dag_node": "e22_cross_scale_support_canonical_form",
+  "status": "PROVED",
+  "claim": "For any E22 staircase support R, all quotient moduli with a tail-plus-full-fibers representation and their recovered tails/fibers are determined canonically from R by the full-fiber rule.",
+  "dependencies": [
+    "e22_cross_scale_rootset_recovery"
+  ],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_cross_scale_support_canonical_form/statement.md",
+      "nodes/e22_cross_scale_support_canonical_form/proof.md",
+      "nodes/e22_cross_scale_support_canonical_form/verify.py"
+    ]
+  },
+  "local_dependency_certificates": [
+    "experimental/data/certificates/e22-cross-scale-rootset-recovery/e22_cross_scale_rootset_recovery.json"
+  ],
+  "finite_checks": [
+    {
+      "n": 24,
+      "moduli": [
+        2,
+        3,
+        4,
+        6,
+        8,
+        12
+      ]
+    },
+    {
+      "n": 32,
+      "moduli": [
+        2,
+        4,
+        8,
+        16
+      ]
+    }
+  ],
+  "expected_result": "PASS"
+}
+
