@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI Erdos-Turan peak-mass reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_et_peak_mass_reduction.md`;
+  `experimental/scripts/verify_dli_et_peak_mass_reduction.py`;
+  `experimental/data/certificates/dli-et-peak-mass-reduction/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet for the deterministic transfer from
+  finite-frequency Weyl bounds to DLI peak-mass and truncated-log discrepancy
+  bounds using Erdos-Turan and dyadic annuli.
+- **How it is useful:** Separates the analytic bookkeeping step from the
+  upstream Weyl-sum input.
+- **What to do next:** Prove or audit the finite-frequency Weyl-sum bounds
+  separately.
+
 ### 2026-07-05 - DLI Deligne-Weil transfer
 
 - **Agent/model:** Codex.

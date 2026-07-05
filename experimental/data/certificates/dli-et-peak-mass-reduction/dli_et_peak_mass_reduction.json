@@ -1,0 +1,25 @@
+{
+  "anchor_checks": {
+    "erdos_turan": true,
+    "layer_cake": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "target": true
+  },
+  "non_claims": [
+    "does not prove finite-frequency Weyl-sum bounds"
+  ],
+  "note": "experimental/notes/dli/dli_et_peak_mass_reduction.md",
+  "schema": "dli-et-peak-mass-reduction-v1",
+  "source_dag_node": "dli_et_peak_mass_reduction",
+  "status": "PROVED_ET_PEAK_TRANSFER_REPLAY",
+  "toy_check": {
+    "bad_discrepancy_rejected": true,
+    "bad_interval_count_rejected": true,
+    "good_budget_accepted": true,
+    "over_budget_rejected": true,
+    "record_count": 3
+  }
+}
