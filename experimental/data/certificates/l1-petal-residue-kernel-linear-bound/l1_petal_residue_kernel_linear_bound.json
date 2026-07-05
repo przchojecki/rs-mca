@@ -1,0 +1,24 @@
+{
+  "anchor_checks": {
+    "bridge_claim": true,
+    "kernel_definition": true,
+    "lemma_13_bound": true,
+    "lemma_13_heading": true,
+    "proof_program_exists": true,
+    "residue_bridge_exists": true
+  },
+  "dependencies": [
+    "l1_coset_chart_residue_bridge_v1",
+    "l1_full_list_quotient_proof_program Lemma 13"
+  ],
+  "non_claims": [
+    "does not prove ambient-kernel flatness",
+    "does not count squarefree realizable locator points",
+    "does not close the L1 mixed/growing residual"
+  ],
+  "note": "experimental/notes/l1/l1_petal_residue_kernel_linear_bound.md",
+  "schema": "l1-petal-residue-kernel-linear-bound-v1",
+  "source_dag_node": "petal_residue_kernel_linear_bound",
+  "statement": "dim K_{I,d} <= c + 1, where c = d - ell",
+  "status": "PROVED_BY_LEMMA_13_REPLAY"
+}

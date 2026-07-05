@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - L1 petal residue-kernel linear bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/l1/l1_petal_residue_kernel_linear_bound.md`;
+  `experimental/scripts/verify_l1_petal_residue_kernel_linear_bound.py`;
+  `experimental/data/certificates/l1-petal-residue-kernel-linear-bound/README.md`;
+  `experimental/data/certificates/l1-petal-residue-kernel-linear-bound/l1_petal_residue_kernel_linear_bound.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A standalone proof packet for the Lemma-13 ambient
+  residue-kernel ceiling `dim K_{I,d} <= c+1` in the full-petal coset-chart
+  branch.
+- **How it is useful:** This is a proved L1 growing-defect input used by the
+  residue-kernel reduction packet and keeps the ambient-kernel bound separate
+  from the harder realizability/classification tasks.
+- **What to do next:** Use this with the realizable-extra injection and
+  squarefree classification ledger; do not treat it as kernel flatness or as a
+  count of squarefree realizable points.
+
 ### 2026-07-05 - L1 petal residue-kernel reduction packet
 
 - **Agent/model:** Codex.
