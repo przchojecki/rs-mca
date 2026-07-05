@@ -35,6 +35,18 @@ Gates:
       c=1 fail-margin M, which G5 does cross-check (see
       cross_check_c1_identity_margins below) -- the derived ceilings
       themselves are hand-confirmed correct but not separately gated here.
+  G7  v14 moved-frontier recompute (added 2026-07-05, upstream #310 commit
+      f049b91): independently recomputes, from n/k/p alone via the
+      identity-prefix-floor -> deep-point-count route
+      (L=ceil(C(n,m)/p^w), M=ceil(L(q-n)/(q-n+k(L-1))), margin=log2(M/B*)),
+      every field of the kb_mca_v1/m31_mca_v1 packets' v14_moved_pair block
+      (the moved pair, L, M, pass/fail margins, deficit-to-cross-B*, and the
+      M31-MCA Gceil c=2048 tight-rung finding), and cross-checks the
+      recomputed margins against the maintainer's
+      "experimental/scripts/towards v13/cap25_v14_moved_frontier_checks.py"
+      (commit 2b5b7ce) printed margins to within 0.1 bit. The KB-list and
+      M31-list packets' v14_status block (unchanged_in_v14=true) is not a
+      numeric claim and is not separately gated.
 
 There is deliberately no "NEEDS_A1" master gate: this script either passes
 every gate (exit 0) or reports a genuine mismatch (exit 1). It does NOT
@@ -90,6 +102,25 @@ ROWS = [
 ]
 for _r in ROWS:
     _r["a1"] = _r["a0"] + 1
+
+# ---------------------------------------------------------------------------
+# v14 moved-frontier pairs (G7): upstream #310 commit f049b91 composes
+# lem:v13f1-identity-prefix-floor with prop:quantitative-deep-list-floor and
+# moves the two MCA rows' frontier pairs forward. Only the MCA rows move
+# (K=k+1); the two list rows (K=k) compare their list floor directly against
+# B* with no deep-point conversion, so their edges are untouched -- see
+# experimental/notes/frontier-adjacent/frontier_adjacent_v13_rows_v1.md sec
+# "V14 moved-frontier addendum (2026-07-05)".
+# ---------------------------------------------------------------------------
+MOVED_PAIRS = [
+    dict(name="KB MCA", slug="kb_mca", base=p_kb, q=q_kb, K=k + 1, a0p=1116047, tight_rung=None),
+    dict(
+        name="M31 MCA", slug="m31_mca", base=p_m31, q=q_m31, K=k + 1, a0p=1116023,
+        tight_rung=dict(c=2048, expect_L=12769758, expect_margin=-0.3938),
+    ),
+]
+for _m in MOVED_PAIRS:
+    _m["a1p"] = _m["a0p"] + 1
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
@@ -269,6 +300,14 @@ def build_identity_binomials() -> dict:
     needed = []
     for row in ROWS:
         needed += [row["a0"], row["a1"]]
+    # v14 (G7): a0p for each moved row is already an existing row's a1 (KB
+    # MCA a0p=1116047=KB list a1; M31 MCA a0p=1116023=M31 list a1); only
+    # a1p=a0p+1 is genuinely new. Folding it into this ONE shared batch call
+    # keeps G7's marginal cost to a handful of cheap O(size) ratio-update
+    # steps beyond what G2/G3/G6 already pay for, not a second fresh
+    # math.comb() call (see comb_batch's docstring for why that matters).
+    for mp in MOVED_PAIRS:
+        needed += [mp["a1p"]]
     return comb_batch(n, needed)
 
 
@@ -692,6 +731,131 @@ def run_gate_rung_table(packets: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# G7: v14 moved-frontier recompute (upstream #310 commit f049b91)
+# ---------------------------------------------------------------------------
+# Literal margins printed by the maintainer's
+# "experimental/scripts/towards v13/cap25_v14_moved_frontier_checks.py"
+# (commit 2b5b7ce), re-run this session; cited here (not imported/executed,
+# since that script lives at a commit this branch does not merge) purely as
+# a cross-check reference for the 0.1-bit tolerance below.
+V14_SCRIPT_MARGINS = {
+    "KB MCA": (8.978, -22.197),
+    "M31 MCA": (27.927, -3.259),
+}
+
+
+def deep_point_M(L: int, q: int, n_: int, k_: int) -> int:
+    """prop:quantitative-deep-list-floor's L->M conversion: the deep-point
+    count implied by an identity-prefix list floor L (ceil division, exact)."""
+    num = L * (q - n_)
+    den = (q - n_) + k_ * (L - 1)
+    return -(-num // den)
+
+
+def run_gate_v14_moved_frontier(packets: dict, Bstars: dict, C_n: dict) -> None:
+    g = gate("G7_v14_moved_frontier_recompute")
+    mism: list[str] = []
+    lines: list[str] = []
+    for spec in MOVED_PAIRS:
+        name = spec["name"]
+        a0p, a1p, K, base, q = spec["a0p"], spec["a1p"], spec["K"], spec["base"], spec["q"]
+        Bstar = Bstars["KB"] if "KB" in name else Bstars["M31"]
+
+        w0p, w1p = a0p - K, a1p - K
+        L0 = -(-C_n[a0p] // base_pow(base, w0p))
+        L1 = -(-C_n[a1p] // base_pow(base, w1p))
+        M0 = deep_point_M(L0, q, n, k)
+        M1 = deep_point_M(L1, q, n, k)
+        fires0, _ = fires_tight(M0, 1, Bstar, 1)
+        fires1, _ = fires_tight(M1, 1, Bstar, 1)
+        margin0 = flog2(M0, Bstar)
+        margin1 = flog2(M1, Bstar)
+
+        if not fires0 or fires1:
+            mism.append(f"{name}: moved-pair fire pattern wrong (fires@a0'={fires0}, fires@a0'+1={fires1})")
+            continue
+
+        pk = packets[name]
+        vmp = pk.get("v14_moved_pair")
+        if vmp is None:
+            mism.append(f"{name}: packet missing v14_moved_pair block")
+            continue
+
+        def check(label: str, got, want, tol: float | None = None) -> None:
+            if tol is None:
+                if got != want:
+                    mism.append(f"{name}.v14_moved_pair.{label}: got {got!r} want {want!r}")
+            elif abs(got - want) > tol:
+                mism.append(f"{name}.v14_moved_pair.{label}: got {got!r} want {want!r} (tol {tol})")
+
+        check("new_pair.a0_prime", vmp["new_pair"]["a0_prime"], a0p)
+        check("new_pair.a0_prime_plus_1", vmp["new_pair"]["a0_prime_plus_1"], a1p)
+        check("w0_prime", vmp["w0_prime"], w0p)
+        check("w1_prime", vmp["w1_prime"], w1p)
+        check("identity_floor_L_a0p", vmp["identity_floor_L_a0p"], L0)
+        check("deep_point_M_a0p", vmp["deep_point_M_a0p"], M0)
+        check("identity_floor_L_a1p", vmp["identity_floor_L_a1p"], L1)
+        check("deep_point_M_a1p", vmp["deep_point_M_a1p"], M1)
+        check("pass_margin_bits_a0p", vmp["pass_margin_bits_a0p"], round(margin0, 4), tol=5e-4)
+        check("fail_margin_bits_a1p", vmp["fail_margin_bits_a1p"], round(margin1, 4), tol=5e-4)
+        check("fires_at_a0p", vmp["fires_at_a0p"], fires0)
+        check("fires_at_a1p", vmp["fires_at_a1p"], fires1)
+
+        deficit_cross = (Bstar + 1) - M1
+        check("deficit_to_cross_Bstar_a1p", vmp["deficit_to_cross_Bstar_a1p"], deficit_cross)
+
+        v14_pass, v14_fail = V14_SCRIPT_MARGINS[name]
+        if abs(margin0 - v14_pass) > 0.1:
+            mism.append(f"{name}: recomputed pass margin {margin0:.4f} vs v14 script {v14_pass} exceeds 0.1 bit")
+        if abs(margin1 - v14_fail) > 0.1:
+            mism.append(f"{name}: recomputed fail margin {margin1:.4f} vs v14 script {v14_fail} exceeds 0.1 bit")
+
+        tr_spec = spec["tight_rung"]
+        if tr_spec is None:
+            if vmp.get("tight_rung_at_a1p") is not None:
+                mism.append(f"{name}: expected tight_rung_at_a1p=null (GREEN row), packet has one")
+        else:
+            c = tr_spec["c"]
+            N = n // c
+            m = -(-a1p // c)
+            covered = m * c
+            w = m - (-(-K // c))
+            Cb2 = comb_batch(N, [m])
+            Lr = -(-Cb2[m] // base_pow(base, w))
+            Mr = deep_point_M(Lr, q, n, k)
+            fires_r, tight_r = fires_tight(Mr, 1, Bstar, 1)
+            margin_r = flog2(Mr, Bstar)
+            if fires_r or not tight_r:
+                mism.append(f"{name}: tight rung c={c} unexpected fires={fires_r} tight={tight_r}")
+            if Lr != tr_spec["expect_L"]:
+                mism.append(f"{name}: tight rung c={c} L={Lr} != expected {tr_spec['expect_L']}")
+            if abs(margin_r - tr_spec["expect_margin"]) > 5e-4:
+                mism.append(f"{name}: tight rung c={c} margin {margin_r:.4f} != expected {tr_spec['expect_margin']}")
+            vmp_tr = vmp.get("tight_rung_at_a1p")
+            if vmp_tr is None:
+                mism.append(f"{name}: packet missing tight_rung_at_a1p")
+            else:
+                check("tight_rung_at_a1p.c", vmp_tr["c"], c)
+                check("tight_rung_at_a1p.m", vmp_tr["m"], m)
+                check("tight_rung_at_a1p.covered", vmp_tr["covered"], covered)
+                check("tight_rung_at_a1p.w", vmp_tr["w"], w)
+                check("tight_rung_at_a1p.L", vmp_tr["L"], Lr)
+                check("tight_rung_at_a1p.M", vmp_tr["M"], Mr)
+                check("tight_rung_at_a1p.margin_bits", vmp_tr["margin_bits"], round(margin_r, 4), tol=5e-4)
+                check("tight_rung_at_a1p.fires", vmp_tr["fires"], fires_r)
+
+        lines.append(
+            f"{name}: a0'={a0p} pass={margin0:.4f}b (fires); a0'+1={a1p} fail={margin1:.4f}b (quiet); "
+            f"within 0.1b of v14 script {V14_SCRIPT_MARGINS[name]}"
+        )
+
+    if mism:
+        g.failed("; ".join(mism[:20]))
+        return
+    g.passed("; ".join(lines))
+
+
+# ---------------------------------------------------------------------------
 # INFO: open-cell named-input targets (not a gate; printed for visibility)
 # ---------------------------------------------------------------------------
 def print_info_open_cells(packets: dict) -> None:
@@ -727,11 +891,13 @@ def main() -> int:
     except Exception as exc:  # noqa: BLE001 -- surface as a failed gate, not a crash
         gate("G5_packet_consistency_scalar_fields").failed(f"could not load packets: {exc}")
         gate("G6_full_rung_table_recompute").failed("skipped: packets did not load")
+        gate("G7_v14_moved_frontier_recompute").failed("skipped: packets did not load")
         packets = None
 
     if packets is not None:
         run_gate_packet_consistency(packets, gap_tables, Bstars, C_n)
         run_gate_rung_table(packets)
+        run_gate_v14_moved_frontier(packets, Bstars, C_n)
         print_info_open_cells(packets)
 
     print()

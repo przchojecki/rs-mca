@@ -68,6 +68,42 @@
    "source": "thm:deep-mca, self-contained, no imports"
   }
  },
+ "v14_moved_pair": {
+  "status": "MOVED",
+  "source": "upstream #310 commit f049b91 (composes lem:v13f1-identity-prefix-floor with prop:quantitative-deep-list-floor); maintainer v14 scripts experimental/scripts/towards v13/{cap25_v14_moved_frontier_checks,collision_margins}.py @ commit 2b5b7ce",
+  "route": "v13f1-windows: L=ceil(C(n,m)/p^w) --prop:quantitative-deep-list-floor--> M=ceil(L(q-n)/(q-n+k(L-1))) vs B*",
+  "old_v13_pair": {
+   "a0": 1116043,
+   "a0_plus_1": 1116044
+  },
+  "new_pair": {
+   "a0_prime": 1116047,
+   "a0_prime_plus_1": 1116048
+  },
+  "w0_prime": 67470,
+  "w1_prime": 67471,
+  "identity_floor_L_a0p": 138634741058327852652,
+  "deep_point_M_a0p": 138634741058327852652,
+  "M_equals_L_a0p": true,
+  "identity_floor_L_a1p": 57198030366,
+  "deep_point_M_a1p": 57198030366,
+  "M_equals_L_a1p": true,
+  "pass_margin_bits_a0p": 8.9777,
+  "fail_margin_bits_a1p": -22.1969,
+  "fires_at_a0p": true,
+  "fires_at_a1p": false,
+  "deficit_to_cross_Bstar_a1p": 274980670913364722,
+  "tight_rung_at_a1p": null,
+  "rung_audit_verdict": "GREEN (no inversion, no frontier-tight rung at a0'+1; tightest frontier rung = identity c=1, -22.1969 b)",
+  "cross_check_vs_v14_script": {
+   "v14_pass_margin_bits": 8.978,
+   "v14_fail_margin_bits": -22.197,
+   "recomputed_pass_margin_bits": 8.9777,
+   "recomputed_fail_margin_bits": -22.1969,
+   "max_abs_diff_bits": 0.0003
+  },
+  "reference": "experimental/notes/frontier-adjacent/frontier_adjacent_v13_rows_v1.md sec 'V14 moved-frontier addendum (2026-07-05)'"
+ },
  "unsafe_certificates": {
   "statement": "L(a0) > Theta_mca  ==>  (via thm:A deep-point conversion) row error exceeds B*",
   "a0": 1116043,

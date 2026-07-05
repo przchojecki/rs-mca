@@ -1,19 +1,40 @@
 # Frontier-adjacent packet family: exact adjacent-budget ledgers and the complete rung-margin audit for the four deployed v13 rows
 
+> **v14 status note (2026-07-05).** The KB-MCA and M31-MCA `(a0, a0+1)` pairs
+> analyzed throughout this note's original content below are **(v13 identity
+> pairs -- superseded for the two MCA rows by the v14 composition; retained
+> as the strategy-note Audit-1 record)**. Upstream PR #310, commit
+> `f049b91`, composes `lem:v13f1-identity-prefix-floor` with
+> `prop:quantitative-deep-list-floor` to move the two MCA rows' frontier
+> pairs to `(1116047, 1116048)` (KB) and `(1116023, 1116024)` (M31); the two
+> **list** rows (KB list, M31 list) are unchanged. Nothing in the original
+> v13-pair content below is altered by this note -- see "V14 moved-frontier
+> addendum (2026-07-05)" at the end of this file for the full re-audit at
+> the moved pairs.
+
 **This note executes Audit 1 (rung margins) of
 `experimental/cap25_v13_missing_inputs_strategy.md` sec 2.1 for all four
 deployed v13 adjacent rows, and packages the result as a complete four-row
 frontier-adjacent packet family (agents.md progress items 1-2).**
 
-Concurrent work: in-flight upstream PR #310 (latifkasuli) independently
-packages a KoalaBear-MCA-row adjacent window (status
-`UNDECIDED_WINDOW_OPEN`); where the two overlap (KB MCA at $a_0+1$), its
-reported conversion-route margin 5.4985 bits is consistent with this note's
-exact bracket $[2^{5.4}, 2^{5.5})$ — an independent cross-validation. This
-family additionally covers the KB-list and both Mersenne-31 rows, the
+**Concurrent-tracks status: supersedes-its-original-framing (2026-07-05).**
+Upstream PR #310 (latifkasuli) originally packaged a KoalaBear-MCA-row
+adjacent window at $(1{,}116{,}043, 1{,}116{,}044)$ (status
+`UNDECIDED_WINDOW_OPEN`); where the two overlapped (KB MCA at $a_0+1$), its
+reported conversion-route margin 5.4985 bits was consistent with this note's
+exact bracket $[2^{5.4}, 2^{5.5})$ — an independent cross-validation
+**against #310's original v13-pair framing**. PR #310's own commit
+`f049b91` ("Material correction: quantitative-deep-list-floor flips
+1116044–1116047") later composed `lem:v13f1-identity-prefix-floor` with
+`prop:quantitative-deep-list-floor` and moved both MCA rows' frontier pairs
+forward; #310's original framing is superseded by its own v14 correction
+(see "V14 moved-frontier addendum (2026-07-05)" at the end of this file).
+This family additionally covers the KB-list and both Mersenne-31 rows, the
 complete 21-scale x 3-profile rung-margin audit at both $a_0$ and $a_0+1$,
 the applicability-gap tables, and the named-input targets; no dependency on
-#310 is taken.
+#310 is taken for any of that, and the v14 addendum below independently
+re-derives the moved-pair numbers from $n,k,p$ alone rather than from
+#310's PR text.
 
 ## Claim
 
@@ -656,3 +677,388 @@ certificates this note's ledger section is built on).
   the same numbers from scratch rather than depending on that branch's
   artifact, since the two submissions are not guaranteed to land in the same
   order.
+- **Maintainer v14 auxiliary scripts** (commit `2b5b7ce`, "Add v13 v14
+  auxiliary frontier scripts"): `experimental/scripts/towards v13/cap25_v14_moved_frontier_checks.py`
+  and `.../collision_margins.py` -- both re-run in this session (exit 0).
+  The former's printed margins (`8.978`/`-22.197` bits KB-MCA,
+  `27.927`/`-3.259` bits M31-MCA) are **cross-validated to <0.05 bit** by
+  this note's own independent recompute (see "V14 moved-frontier addendum"
+  below and verifier gate `G7`); the latter is confirmed `EXPERIMENTAL`
+  (its own header) and not updated to v14 m-values, as expected (it checks a
+  different, calibration-only quantity).
+
+## V14 moved-frontier addendum (2026-07-05)
+
+**This section is the packet family's own v14 successor chapter**: it
+documents the two MCA frontier pairs that moved between v13 and v14
+(upstream #310, commit `f049b91`), recomputes their full adjacent-budget
+ledgers and the complete 21-scale x 3-profile rung-margin audit at the moved
+pairs from `n, k, p` alone, and states the updated named-input targets. The
+two *list* rows (KB list, M31 list) are unchanged and are not re-derived
+here; their content earlier in this file stands untouched.
+
+**Provenance of the move.**
+- Upstream **PR #310, commit `f049b91`** ("Material correction: quantitative
+  deep-list floor flips 1116044–1116047; corrected pair {1116047, 1116048}").
+- The maintainer's v14 auxiliary scripts at **commit `2b5b7ce`**:
+  `experimental/scripts/towards v13/cap25_v14_moved_frontier_checks.py` and
+  `.../collision_margins.py` (both re-run here; outputs reproduced exactly).
+- Recompute machinery: `experimental/scripts/verify_frontier_adjacent_v13_rows.py`
+  (#329), **imported, not re-derived**; its pre-existing `G1`-`G6` replay is
+  green (6/6) on the four deployed v13 rows before its exact-integer
+  routines are reused here at the moved values -- this same script's new
+  `G7` (added by this commit) is what gates the moved-pair recompute below.
+
+**Status labels.** Every arithmetic/verification claim below is **`AUDIT`**
+(pure integer comparison, independently recomputed, cross-checked to the v14
+script within `0.0003` bit). The "`a0'+1` is the first MCA-safe agreement"
+statements stay **`CONJECTURAL_WITH_FALSIFIER`** (`prob:v13f1-frontier`). No
+`COUNTEREXAMPLE_NEW_FLOOR` beyond the ones #310 already establishes at
+`1116044…1116047`.
+
+---
+
+### Headline
+
+| moved MCA row | moved pair `(a0', a0'+1)` | pass @ `a0'` | fail @ `a0'+1` | rung audit at `a0'+1` |
+|---|---|---:|---:|---|
+| **KoalaBear MCA** | `(1116047, 1116048)` | **+8.9777** b | **−22.1969** b | **GREEN** (tightest frontier rung = identity `c=1`, −22.20 b) |
+| **Mersenne-31 MCA** | `(1116023, 1116024)` | **+27.927** b | **−3.2589** b | **TIGHT** — one frontier-covering rung within 1 bit |
+
+**Tight/inverted flag (the answer to "any tight/inverted rung at the new
+`a0'+1`?"):**
+
+- **No inversion anywhere.** No floor covering an agreement `≥ a0'+1` fires at
+  either moved open step; the adjacent-pair conjecture is not refuted from the
+  periodic side for either row.
+- **One frontier-tight rung, on the M31-MCA row:** the graded-ceil floor at
+  scale `c = 2048` covers agreement `1116160 ≥ a0'+1` with mass
+  `L = M = 12{,}769{,}758` against `B*_M31 = 16{,}777{,}215`, i.e. **−0.3938
+  bit** — non-firing (quiet), but inside the one-bit band. It is a documented
+  **watch-item**, not a falsifier (it does not fire; the conjecture survives).
+  This tightness is a *new* consequence of #310's correction: it appears only
+  because the corrected route compares against `B* ≈ 2^24` instead of the
+  retired `(q+k)/k ≈ 2^104` deep-point threshold, and the M31 row carries the
+  smallest budget.
+- **KB-MCA is comfortably green:** its tightest frontier-bearing rung is the
+  identity scale itself at −22.20 bit; every coarse graded/remainder/planted
+  floor covering `a0'+1` sits −29 … −58 bits below `B*_KB ≈ 2^58`.
+
+---
+
+### 1. What moved, and why
+
+#### 1.1 The composition (three lines, zero new mathematics — #310)
+
+The v13 packet's `UNDECIDED_WINDOW_OPEN` verdict at `a = 1116044` was too
+conservative. Composing two statements **already merged upstream** when the v13
+packet shipped:
+
+1. **`lem:v13f1-identity-prefix-floor`** at `K = k+1`, exponent `w = m-k-1`:
+   some received word `U` has
+   `L(m) = ceil( C(n,m) / p^{w} ) ≥ 1` distinct `RS[F,D,k+1]` codewords in the
+   closed `(1-m/n)`-ball around it (varying per-codeword supports, each
+   agreeing on `≥ m > k` points).
+2. **`prop:quantitative-deep-list-floor`** (`tex/cs25_cap_v12.tex` L317–342,
+   merged 2026-07-02; the sharp internal denominator `q-n+k(L-1)` is the
+   conclusion of `thm:quant-deep-point` in the strict352 section, stated for
+   `LD_sw` verbatim; the printed `q-n+kL` form is L383–386). This has **no
+   density trigger** — any `L ≥ 1` qualifies — and yields a single received
+   line with at least
+   ```
+   M(m) = ceil( L(q-n) / (q-n + k(L-1)) )
+   ```
+   support-wise MCA-bad finite slopes in the line field (a max-over-lines lower
+   bound on the `def:mca` numerator, never a family sum).
+3. Compare `M(m)` to `B* = floor(q / 2^{lam})` (`thm:v13-windows`:
+   `M > B*  ⟹  certified MCA-unsafe`).
+
+The old v13 MCA route measured `L(a)` against the **deep-point contrapositive
+trigger** `(q+k)/k ≈ 2^{166}` (KB) / `2^{104}` (M31) — a much higher bar than
+`B*`. `rem:quantitative-floor-vs-contrapositive` (v12 L426–436) prescribes the
+quantitative form "when a quotient fiber is too small to cross the `1/(2k)`
+trigger but still contributes a nonzero explicit bad-slope numerator" — exactly
+this case. The `L → M` conversion is **lossless here** (`k(L-1) ≪ q-n` for
+every `L ≤ 2^{67}` in range, so `M = L` to `< 1` unit), so the corrected
+comparison is simply the identity-prefix list floor `L` against `B*`.
+
+#### 1.2 The exact KB five-point sweep (AUDIT — anchors reproduce #310 exactly)
+
+All five points recomputed here from `n, k, p_KB` alone (exact `L` and `M`
+integers); every margin **matches `f049b91`**, and the boundary anchors
+`L(1116044), M(1116044), M=L(1116047), M=L(1116048)` byte-match #310. The
+conversion carries a `< 0.03`-bit loss (`M < L`) at `m ≤ 1116046` and is exactly
+lossless (`M = L`) at the two boundary points:
+
+```
+m         w      L (identity-prefix list floor)                       M = deep-point count                                  margin/B*   verdict
+1116044   67467  1973967916468083369044358670918132115633867608112    1931247427137429416005585529088676636591240959005    +102.4700   MCA-UNSAFE (was the v13 open step)
+1116045   67468  814425913096566971889355562271699499566              814425913089134019045423823800425467007              +71.3269    MCA-UNSAFE
+1116046   67469  336017770100260521299356569240                       336017770100260521298091300724                       +40.1523    MCA-UNSAFE
+1116047   67470  138634741058327852652                                138634741058327852652  (= L, lossless)               +8.9777     MCA-UNSAFE — new edge a0'
+1116048   67471  57198030366                                          57198030366            (= L, lossless)               −22.1969    new open step a0'+1
+```
+
+The certified MCA-unsafe interval widens from `[981109/2097152, 1/2)` to
+`[981105/2097152, 1/2) = [0.4678273…, 1/2)`; the corridor becomes
+`1116048 ≤ a*`. `prob:v13f1-frontier`'s finite prediction `a* = 1116044` is
+refuted; no proved-*safe* statement is contradicted (nearest unconditional safe
+radius `δ ≈ 0.2045`; Johnson at `a = 1482910`; exactness zone at `a ≥ 1747627`).
+
+#### 1.3 The v14 four-row adjacent map
+
+| row-object | pair `(a0, a0+1)` | status vs v13 |
+|---|---|---|
+| KB **MCA** (K=k+1) | `(1116047, 1116048)` | **MOVED** (was `(1116043, 1116044)`) |
+| KB **list** (K=k) | `(1116046, 1116047)` | unchanged |
+| M31 **MCA** (K=k+1) | `(1116023, 1116024)` | **MOVED** (was `(1116021, 1116022)`) |
+| M31 **list** (K=k) | `(1116022, 1116023)` | unchanged |
+
+Only the two MCA rows move: the correction is about the MCA-bad-slope count
+crossing `B*`, and the K=k list rows already compare their list floor against
+`B*` directly (no deep-point conversion), so their edges are untouched.
+
+#### 1.4 Maintainer-script reproduction (AUDIT)
+
+`cap25_v14_moved_frontier_checks.py` re-run from repo root — all exact checks
+pass:
+
+```
+KoalaBear MCA:  m=1116047, w=67470, edge=981105/2097152
+  pass/fail margins: 8.978 / 22.197 bits ;  safe adjacent=1116048 ;  finite moment order ≈ 94196
+Mersenne-31 MCA: m=1116023, w=67446, edge=981129/2097152
+  pass/fail margins: 27.927 / 3.259 bits ;  safe adjacent=1116024 ;  finite moment order ≈ 641593
+All exact v14 moved-frontier checks passed.
+```
+
+The v14 script checks only the identity-scale (`c=1`) edge/open orientation
+(fires at `a0'`, quiet at `a0'+1`); the full 21-scale × 3-profile rung audit of
+§3 is **additive** to it and is where the M31 sub-bit rung surfaces.
+
+`collision_margins.py` re-run (exit 0): entropy-sandwich `w0`-crossover
+calibration; it is an **`EXPERIMENTAL` calibration cross-check only** (its own
+header) and still evaluates the *old* frontier `m` values (KB MCA `1116043`,
+`w0 = 21`; M31 line-round `1116021`, `w0 = 10`) — a different quantity from the
+`B*` edge, not updated to v14 (expected).
+
+---
+
+### 2. The moved-pair adjacent-budget ledger (AUDIT)
+
+All integers recomputed from `n=2^{21}, k=2^{20}, p` via #329's imported exact
+routines; margins cross-checked to the v14 script within `0.0003` bit.
+
+| ledger cell | KoalaBear MCA `(1116047, 1116048)` | Mersenne-31 MCA `(1116023, 1116024)` |
+|---|---:|---:|
+| `p` | `2^{31}-2^{24}+1 = 2130706433` | `2^{31}-1 = 2147483647` |
+| `q = p^{ext}` | `p^6` (186-bit) | `p^4` (124-bit) |
+| `ε*` | `2^{-128}` | `2^{-100}` |
+| **`B* = ⌊ε* q⌋`** | **`274980728111395087`** (58-bit, `2^{57.9321}`) | **`16777215 = 2^{24}-1`** (24-bit) |
+| `K = k+1` | `1048577` | `1048577` |
+| `w0 = a0'-K`, `w1 = a0'+1-K` | `67470`, `67471` | `67446`, `67447` |
+| identity floor `L(a0')` `= M(a0')` | `138634741058327852652` | `4281388998575706` |
+| **pass margin `log2(M/B*)` @ `a0'`** | **`+8.9777`** b (fires ✔, MCA-unsafe) | **`+27.9270`** b (fires ✔) |
+| identity floor `L(a0'+1)` `= M(a0'+1)` | `57198030366` | `1752700` |
+| **fail margin `log2(M/B*)` @ `a0'+1`** | **`−22.1969`** b (quiet) | **`−3.2589`** b (quiet) |
+| lossless `M = L`? | yes (both points) | yes (both points) |
+| adjacent-stratum 1-bit bracket @ `a0'+1` | `[2^{-23}, 2^{-22})` | `[2^{-4}, 2^{-3})` |
+| errors at open step `r = n-(a0'+1)` | `981104` | `981128` |
+| **tangent lower floor** `= n-a0' = r+1` | `981105` | `981129` |
+| tangent *upper* bound licensed? | **no** (needs `3r ≤ n-k`; `r ≫ 349525`) | **no** |
+| lower mass at open step `= max(M, tangent)` | `57198030366` (quantitative dominates) | `1752700` (quantitative dominates) |
+| budget after tangent `B*-(r+1)` | `274980728110413982` | `15796086` (`≈ 2^{23.913}`) |
+| **deficit to *reach* `B*`** `= B*-max-lower` | `274980670913364721` | `15024515` |
+| **deficit to *cross* `B*`** `= (B*+1)-max-lower` | **`274980670913364722`** (= #310) | `15024516` |
+| closest safe-theorem gap | `−377019` | `−377043` |
+
+**Deficit convention.** MCA-unsafe requires the bad-slope count to *exceed*
+`B*` (i.e. reach `B*+1`); `deficit_to_cross = (B*+1) − M(a0'+1)`. For KB this is
+`274980670913364722`, matching `f049b91` exactly. Lower certificates are
+combined by **max, never sum**, so the tangent floor (981105 / 981129) is
+dominated by the quantitative floor at both open steps and contributes nothing
+extra.
+
+**Applicability audit (every gap negative — no existing theorem pays either
+row):**
+
+| safe-side theorem | `a_min-safe` | KB-MCA `a0'+1 − a_min` | M31-MCA `a0'+1 − a_min` |
+|---|---:|---:|---:|
+| `thm:deep-mca` (self-contained, `3r ≤ n-k`) | `1747627` | `−631579` | `−631603` |
+| `cor:conditional-half` (BCIKS20, `2r ≤ n-k`) | `1572864` | `−456816` | `−456840` |
+| `thm:elementary-ca` (half-Johnson) | `1790031` | `−673983` | `−674007` |
+| PR271-280 BCHKS25 Thm 4.6 (conditional) | `1493067` | `−377019` | `−377043` |
+
+Closest miss `377019`/`377043` agreement points; the moved rows sit deep inside
+the still-open v12 band `≈ (1/4, 0.4679)`, glued to their new unsafe edge.
+
+---
+
+### 3. The complete 21-scale × 3-profile rung-margin audit at the moved pairs (AUDIT)
+
+**Question (Audit 1 of `cap25_v13_missing_inputs_strategy.md` §2.1, re-posed at
+the moved pairs):** does any dyadic rung `c = 2^j` (`j = 0…20`) in any of the
+three slack profiles the v13 tex defines — graded prefix floor (`Gfloor`
+`m=⌊a/c⌋` / `Gceil` `m=⌈a/c⌉`), quotient-remainder floor (`Rem`, covers exactly
+`a`), planted quotient-core (`Plant`) — come out **inverted** (fires) or
+**tight** (within 1 bit of `B*`) at `a0'+1`, now that the comparison is against
+`B*` via the lossless `L → M` conversion? Every verdict below is an exact integer
+comparison `M > B*` / `B*/2 < M < 2 B*`.
+
+#### 3.1 Verdict table (exact integer)
+
+| | KoalaBear MCA | Mersenne-31 MCA |
+|---|---|---|
+| any frontier-covering floor **fires** (inverted) at `a0'+1`? | **No** | **No** |
+| any frontier-covering floor **within 1 bit** (tight) at `a0'+1`? | **No** | **Yes — `Gceil c=2048`, −0.3938 b** |
+| tightest frontier-covering floor @ `a0'+1` | `c=1` identity, **−22.1969 b** | `c=2048` `Gceil`, **−0.3938 b** |
+| its exact mass / bracket | `M = 57198030366`, `[2^{-23},2^{-22})` vs `B*` | `M = 12769758`, `[2^{-1},2^{0})` vs `B*` |
+| overall | **GREEN** | **TIGHT** (non-firing watch-item) |
+
+#### 3.2 Graded-ceil margin profile `log2(M_c/B*)` at `a0'+1` (frontier-bearing at every `c`)
+
+`Gceil` (`m=⌈a/c⌉`, covers `mc ≥ a`) is the pure-scale floor that bears on the
+frontier at every scale. Margins (bits), all `< 0` (quiet):
+
+| row | `c=1` | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512 | 1024 | **2048** | 4096 | 8192 | 2^14 | 2^15–2^16 | 2^17 | 2^18 | 2^19 | 2^20 |
+|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| **KB MCA** | −22.20 | −29.48 | −32.87 | −34.32 | −34.79 | −50.36 | −56.93 | −57.93 | −47.34 | −40.06 | −36.16 | −33.96 | −48.20 | −54.93 | −57.93 | −57.93 | −44.45 | −52.12 | −55.93 | −57.93 |
+| **M31 MCA** | −3.26 | −3.04 | −2.68 | −2.25 | −17.37 | −9.10 | −4.71 | −2.27 | −16.39 | −7.61 | −2.96 | **−0.39** | −14.45 | −21.19 | −24.00 | −24.00 | −10.52 | −18.19 | −22.00 | −24.00 |
+
+`Gceil` never degenerates for the MCA rows (unlike `Gfloor`, which degenerates
+at `c ≥ 2^{17}` because `K = k+1` is not a power of two). For **KB-MCA** the
+identity scale `c=1` is terminal (−22.20 b) and every coarse rung is tens of
+bits below `B*`. For **M31-MCA** the small budget (`2^24`) lets several coarse
+graded rungs graze the budget: `c ∈ {8, 128, 1024}` land at ≈ −2 to −3 b and
+**`c = 2048` lands at −0.3938 b** — the single sub-bit frontier-covering
+comparison in the entire moved audit.
+
+#### 3.3 Dissection of the M31-MCA `Gceil c=2048` tight rung (the watch-item)
+
+- `c = 2048`, `N = n/c = 1024`, `m = ⌈1116024/2048⌉ = 545`, covered agreement
+  `mc = 545·2048 = 1116160 ≥ a0'+1 = 1116024` (frontier-covering), exponent
+  `w = m − ⌈K/c⌉ = 545 − 513 = 32`.
+- Mass `L = ⌈C(1024,545)/p'^{32}⌉ = 12{,}769{,}758`; deep-point count
+  `M = 12{,}769{,}758` (lossless). Exact verdict `M · 1 ≤ B*_M31 · 1`, i.e.
+  `12769758 ≤ 16777215` is **True** → **QUIET (does not fire)**; `2M > B*` and
+  `M < 2 B*` → **TIGHT**. Margin `log2(M/B*) = −0.3938` b.
+- **Why it is not a falsifier:** it does not fire (`M < B*`), so it certifies
+  nothing unsafe at `1116160 ≥ a0'+1`; the open step `1116024` therefore stays
+  conjecturally MCA-safe. Were this rung ever to *fire* (e.g. a fiber-imbalance
+  giving `> B*` planted codewords at agreement `1116160`), unsafety would
+  propagate down to `1116024` and refute `prob:v13f1-frontier` — hence it is
+  the row's binding periodic watch-item, with essentially zero slack.
+- **Companion non-threat, for completeness:** the `Gfloor c=2048` cell (`m=544`,
+  covered `1114112 < a0'+1`) *does* fire (+30.79 b), but it is **sub-frontier**
+  — it certifies unsafety at the already-unsafe agreement `1114112 ≤ a*`, not at
+  `a0'+1`, and is correctly excluded from the inversion test.
+
+#### 3.4 Remainder and planted profiles at `a0'+1` (AUDIT — dominated)
+
+- **`Rem`** (covers exactly `a0'+1`): the residual `s = (a0'+1) mod c` forces a
+  prefix weight `w_c(s,σ)` that explodes for every `c ≥ 2` (e.g. M31 `c=2048`:
+  `s=1912`, `w_c = 63127`, mass `M = 1`, margin `−24.0` b). No remainder floor
+  fires or is tight at either moved open step.
+- **`Plant`** (`P_c = C(n/c-1, k/c)` vs `B*`): covers `a0'+1 = k+σ` only for
+  `c > σ = a0'+1-k ≈ 67472`, i.e. `c ≥ 2^{17}`, where `P_c` shrinks
+  (`C(15,8)=6435` at `c=2^{17}` → `1` at `c=2^{20}`); `−44.3…−57.9` b (KB) /
+  `−11.4…−24.0` b (M31) below `B*`. No planted core fires or is tight.
+
+---
+
+### 4. Updated named-input targets (`CONDITIONAL_ON_NAMED_INPUT`)
+
+A factor `n^C` costs `21C` bits. The `B*` budgets are unchanged by the move, so
+the **aperiodic / sparse / L1 ceilings are unchanged**; the **descent per-rung
+loss ceiling is re-based** on the new open-step fail margin (the old
+`(q+k)/k`-gap descent numbers are RETIRED with the `(q+k)/k` framing).
+
+| named input | KoalaBear MCA | Mersenne-31 MCA |
+|---|---|---|
+| sparse `σ_C(δ') ≤ B*` (`thm:sparsify`, `δ' = r(a0'+1)/n`: `981104/2097152` KB / `981128/2097152` M31) | `≤ 274980728111395087` | `≤ 16777215` |
+| aperiodic `B_ap ≤ n^C` — max integer `C` | `C = 2` (`n^2 = 4398046511104`) | `C = 1` (`n^1 = 2097152`) |
+| …after paying the tangent floor | still `C = 2` | still `C = 1` (`B*-(r+1)=2^{23.913}`) |
+| list max-fiber `≤ B*` | `≤ 274980728111395087` | `≤ 16777215` |
+| **descent fail margin `M`** (new open step, vs `B*`) | **`22.1969` b** | **`3.2589` b** |
+| max geomean per-rung loss `2^{M/21}` (divisor-lattice depth `R=21`) | **`2.0806`** | **`1.1136`** |
+| ref. only: `2^{M/17}` (Gfloor-nondeg count = 17, MCA degenerates at `c≥2^{17}`) | `2.472` | `1.1421` |
+
+**KB affords `n^2`; M31 affords only `n^1`** — the M31 aperiodic cell must be
+*linear* in `n` (`B*_M31/n ≈ 8`, so the whole M31 budget is ≈ 8 linear-sized
+cells). The **binding descent tolerance is now M31-MCA's `2^{M/21} = 1.1136`**
+(only `3.26` bits of headroom at the new open step), consistent with §3's
+finding that the M31 row is the tight one; the recursion must be near-lossless
+(geometric-mean per-rung loss below `1.11`). *Subtlety preserved from v13:* the
+descent depth is the divisor-lattice depth `R = log2 n = 21`, **not** the
+Gfloor-nondegenerate rung count (17 for MCA); the two must not be conflated.
+
+---
+
+### 5. Row-object clarifying remark — list vs MCA at agreement 1116047 (and 1116023)
+
+The moved MCA edges land on agreements that are *also* named in the unchanged
+list rows. This is **not** a contradiction — they are different row-objects with
+different theta-thresholds:
+
+- **`1116047`** is simultaneously (a) the KB-**list** row's conjectured-safe
+  open step — the `a0+1` of the unchanged list pair `(1116046, 1116047)`, a
+  statement about the **list-decoding object** `K = k` compared against
+  `Θ_list = q/2^{128} = B*`; and (b) the KB-**MCA** row's new unsafe edge `a0'`
+  — a statement about the **MCA object** `K = k+1` whose bad-slope count crosses
+  `B*`. A word can be list-decoding-safe at `1116047` (`≤ B*` list codewords in
+  dimension `k`) while the dimension-`k+1` deep-list construction plants a
+  received line with `> B*` MCA-bad slopes: the MCA edge sits **exactly one
+  agreement past the list edge**, which is precisely the `K = k+1` vs `K = k`
+  offset (the new MCA edge `1116047` = list edge `1116046` + 1).
+- Identically, **`1116023`** is the M31-**list** open step (`a0+1` of the
+  unchanged `(1116022, 1116023)`) *and* the M31-**MCA** new unsafe edge `a0'`.
+
+So "KB list conjectured-safe at `1116047`" (a LIST statement) and "KB MCA
+unsafe at `1116047`" (an MCA statement) coexist without conflict; the packet
+should carry this remark so the shared agreement number is never read as an
+inconsistency.
+
+---
+
+### 6. Consistency, status, reproducibility
+
+- **No proved-safe statement is contradicted.** Only the finite adjacent-pair
+  *prediction* of `prob:v13f1-frontier` (an open Problem, route-relative) moves;
+  the asymptotic ceiling `1 - ρ - g* = 0.4678266` (`def:v13f1-gstar`) survives,
+  with the quantitative route realizing all but ≈ 1.5 steps of it.
+- **Per-claim status:** §1–§4 ledger/rung arithmetic = **`AUDIT`**; named-input
+  targets = **`CONDITIONAL_ON_NAMED_INPUT`**; "`a0'+1` first MCA-safe" =
+  **`CONJECTURAL_WITH_FALSIFIER`** for both moved rows. **Explicit falsifier
+  now on record for M31-MCA:** the `Gceil c=2048` rung firing (any construction
+  yielding `> 16777215` planted codewords at agreement `1116160`) refutes the
+  M31-MCA adjacent pair; it currently misses by `0.3938` bit
+  (`16777215 − 12769758 = 4007457` codewords of headroom).
+- **Reproducibility:**
+  `python3 "experimental/scripts/towards v13/cap25_v14_moved_frontier_checks.py"`
+  (maintainer script, commit `2b5b7ce`; edge/open orientation, exact) and
+  `python3 experimental/scripts/verify_frontier_adjacent_v13_rows.py` --
+  now **7/7 gates green** (`G1`-`G6` on the four deployed v13 rows,
+  unchanged; the new `G7` independently recomputes every field of this
+  section's moved-pair ledger and the M31 tight-rung finding from `n, k, p`
+  alone, and cross-checks the maintainer script's margins to <0.1 bit). The
+  moved-pair ledger fields are committed in the `v14_moved_pair` block of
+  `kb_mca_v1.packet.json` / `m31_mca_v1.packet.json` (this note's own
+  companion packets, superseding the scratch-only `wave7_v14_numbers.json`
+  this addendum was originally drafted against); the KB anchors
+  `L(1116044), M(1116044), M=L(1116047), M=L(1116048)` byte-match `f049b91`.
+
+### Constants (v14 addendum)
+
+| constant | value |
+|---|---|
+| `n = 2^{21}` | `2097152` |
+| `k = 2^{20}` | `1048576` |
+| `p_KB = 2^{31}-2^{24}+1` | `2130706433` |
+| `p_M31 = 2^{31}-1` | `2147483647` |
+| `q_KB = p_KB^6` | 186-bit |
+| `q_M31 = p_M31^4` | 124-bit |
+| `B*_KB = ⌊2^{-128} q_KB⌋` | `274980728111395087` (58-bit) |
+| `B*_M31 = ⌊2^{-100} q_M31⌋` | `16777215` (24-bit) |
+| moved KB-MCA pair | `(1116047, 1116048)`; margins `+8.9777 / −22.1969` b |
+| moved M31-MCA pair | `(1116023, 1116024)`; margins `+27.9270 / −3.2589` b |
+| M31-MCA tight rung | `Gceil c=2048`, `M=12769758` vs `B*=16777215`, `−0.3938` b |
+| descent depth `R` | `log2 n = 21` |

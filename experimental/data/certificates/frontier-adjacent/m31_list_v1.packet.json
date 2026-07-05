@@ -68,6 +68,10 @@
    "source": "thm:deep-mca, self-contained, no imports"
   }
  },
+ "v14_status": {
+  "unchanged_in_v14": true,
+  "remark": "The M31-list row's own pair (1116022, 1116023) is untouched by the v14 correction (#310 commit f049b91): list rows compare their list floor directly against B*, with no deep-point conversion, so their edge is unaffected by the conversion-route correction that moved the MCA rows. NOTE: 1116023 is simultaneously this row's conjectured-safe open step (a0+1, a LIST statement) and the moved M31-MCA row's new unsafe edge a0' (an MCA statement about a different object, K=k+1 vs K=k) -- see m31_mca_v1.packet.json's v14_moved_pair block and experimental/notes/frontier-adjacent/frontier_adjacent_v13_rows_v1.md sec 'V14 moved-frontier addendum (2026-07-05)' sec 5 for why these coexist without contradiction."
+ },
  "unsafe_certificates": {
   "statement": "L(a0) > Theta_list = B*  (list floor directly exceeds budget)",
   "a0": 1116022,

@@ -30,6 +30,49 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Align frontier-adjacent packets with v14 moved frontier
+
+- **Agent/model:** Claude Fable 5 (Sonnet 5).
+- **Files added or changed:** `experimental/notes/frontier-adjacent/frontier_adjacent_v13_rows_v1.md`;
+  `experimental/data/certificates/frontier-adjacent/{kb_mca,m31_mca,kb_list,m31_list}_v1.packet.json`;
+  `experimental/scripts/verify_frontier_adjacent_v13_rows.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Aligns this packet family with the v14 moved
+  frontier (upstream #310, commit `f049b91`, composing
+  `lem:v13f1-identity-prefix-floor` with `prop:quantitative-deep-list-floor`;
+  cross-validated against the maintainer's v14 auxiliary scripts at commit
+  `2b5b7ce`). The note gains a clearly-marked "V14 moved-frontier addendum
+  (2026-07-05)" section re-auditing the two moved MCA pairs -- KB-MCA
+  `(1116047, 1116048)` and M31-MCA `(1116023, 1116024)` -- from `n, k, p`
+  alone (full adjacent-budget ledger + the complete 21-scale x 3-profile
+  rung-margin audit at the moved pairs; verdict `GREEN` for KB-MCA, `TIGHT`
+  for M31-MCA with one non-firing sub-bit watch-item, `Gceil c=2048` at
+  `-0.3938` bit). The Concurrent-tracks entry for #310 is relabeled
+  `supersedes-its-original-framing` and its cross-validation sentence is
+  scoped to "against #310's original v13-pair framing"; the two MCA packet
+  JSONs gain a `v14_moved_pair` block, the two list packet JSONs gain a
+  `v14_status` block (`unchanged_in_v14: true` + the list-vs-MCA
+  clarifying remark); the verifier gains gate `G7`
+  (`G7_v14_moved_frontier_recompute`), independently recomputing every
+  `v14_moved_pair` field and cross-checking the maintainer script's printed
+  margins to <0.1 bit (measured <0.001 bit). All pre-existing v13-pair
+  content is retained unchanged and explicitly labeled superseded-for-MCA /
+  retained-as-Audit-1-record.
+- **How it is useful:** Keeps the packet family's frontier pairs consistent
+  with the now-corrected upstream MCA edge, without discarding the original
+  v13 rung-margin audit (still the Audit-1 record for the unmoved list rows
+  and for historical reproducibility). `G7`'s cross-check gives the moved
+  pairs the same independent-recompute guarantee (`G1`-`G6`) already held by
+  the four original rows.
+- **What to do next:** `verify_frontier_adjacent_v13_rows.py` is now
+  7/7 `PASS` (`G1`-`G7`, ~51s, budget <240s; `G7` mutation-spot-checked on a
+  throwaway copy, confirmed it catches an injected field mismatch). The
+  M31-MCA `Gceil c=2048` tight rung (`-0.3938` bit, non-firing) is the
+  binding watch-item: any future construction reaching `>16777215` planted
+  codewords at agreement `1116160` would refute the M31-MCA adjacent pair
+  and should be checked against this rung first.
+
 ### 2026-07-05 - Frontier-adjacent packet family and rung-margin audit (Audit 1)
 
 - **Agent/model:** Claude Fable 5 (Sonnet 5).

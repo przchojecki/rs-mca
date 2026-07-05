@@ -68,6 +68,54 @@
    "source": "thm:deep-mca, self-contained, no imports"
   }
  },
+ "v14_moved_pair": {
+  "status": "MOVED",
+  "source": "upstream #310 commit f049b91 (composes lem:v13f1-identity-prefix-floor with prop:quantitative-deep-list-floor); maintainer v14 scripts experimental/scripts/towards v13/{cap25_v14_moved_frontier_checks,collision_margins}.py @ commit 2b5b7ce",
+  "route": "v13f1-windows: L=ceil(C(n,m)/p^w) --prop:quantitative-deep-list-floor--> M=ceil(L(q-n)/(q-n+k(L-1))) vs B*",
+  "old_v13_pair": {
+   "a0": 1116021,
+   "a0_plus_1": 1116022
+  },
+  "new_pair": {
+   "a0_prime": 1116023,
+   "a0_prime_plus_1": 1116024
+  },
+  "w0_prime": 67446,
+  "w1_prime": 67447,
+  "identity_floor_L_a0p": 4281388998575706,
+  "deep_point_M_a0p": 4281388998575706,
+  "M_equals_L_a0p": true,
+  "identity_floor_L_a1p": 1752700,
+  "deep_point_M_a1p": 1752700,
+  "M_equals_L_a1p": true,
+  "pass_margin_bits_a0p": 27.927,
+  "fail_margin_bits_a1p": -3.2589,
+  "fires_at_a0p": true,
+  "fires_at_a1p": false,
+  "deficit_to_cross_Bstar_a1p": 15024516,
+  "tight_rung_at_a1p": {
+   "profile": "Gceil",
+   "c": 2048,
+   "m": 545,
+   "covered": 1116160,
+   "w": 32,
+   "L": 12769758,
+   "M": 12769758,
+   "margin_bits": -0.3938,
+   "fires": false,
+   "TIGHT": true,
+   "note": "watch-item: non-firing (quiet), sub-1-bit vs B*_M31=16777215; the only frontier-covering rung within 1 bit anywhere in the v14 moved-pair audit. Would refute the M31-MCA adjacent pair if a construction ever pushed it to fire (needs 4007457 more codewords at agreement 1116160)."
+  },
+  "rung_audit_verdict": "TIGHT (Gceil c=2048 at -0.3938 b; no inversion anywhere)",
+  "cross_check_vs_v14_script": {
+   "v14_pass_margin_bits": 27.927,
+   "v14_fail_margin_bits": -3.259,
+   "recomputed_pass_margin_bits": 27.927,
+   "recomputed_fail_margin_bits": -3.2589,
+   "max_abs_diff_bits": 0.0001
+  },
+  "reference": "experimental/notes/frontier-adjacent/frontier_adjacent_v13_rows_v1.md sec 'V14 moved-frontier addendum (2026-07-05)'"
+ },
  "unsafe_certificates": {
   "statement": "L(a0) > Theta_mca  ==>  (via thm:A deep-point conversion) row error exceeds B*",
   "a0": 1116021,
