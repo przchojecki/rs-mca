@@ -1,0 +1,4790 @@
+{
+  "conventions": {
+    "delta_floor": "r=floor(delta*n)",
+    "field_ledger": "toy prime-field rows use q_gen=q_line; no q_chal soundness division is claimed",
+    "finite_slopes_only": true,
+    "slope_denominator": "q_line",
+    "symmetry_policy": "no Mobius/projective quotient",
+    "witness_set": "Pade-Hankel closed-ball shape T, followed by exact maximal S_z reconstruction"
+  },
+  "family_signals": [
+    {
+      "rows": [
+        {
+          "classification": "intermediate",
+          "k": 2,
+          "n": 6,
+          "q": 19,
+          "q_line": 19,
+          "r": 3,
+          "sigma_c": 13
+        }
+      ],
+      "signal": "k2_boundary_intermediate_new_row"
+    },
+    {
+      "rows": [
+        {
+          "k": 2,
+          "n": 6,
+          "q": 19,
+          "r": 3,
+          "sigma_c": 13,
+          "two_r_plus_one": 7
+        }
+      ],
+      "signal": "non_saturated_not_always_2r_plus_1"
+    }
+  ],
+  "gpu_run": {
+    "cupy_version": "14.1.1",
+    "device": "NVIDIA GeForce RTX 3090",
+    "integer_arithmetic": "int32 modular Pade-Hankel dot products; no cuBLAS",
+    "kernel_source_sha256": "e0f55cfeaa5527ab9204dbe6de2ce019bc3535f29284deaa5b6775b4cb20be33",
+    "row_elapsed_seconds": {
+      "q13_n6_k2_r3": 0.071747,
+      "q17_n8_k2_r4": 856.382583,
+      "q19_n6_k2_r3": 0.507153,
+      "q7_n6_k2_r3": 0.547094
+    }
+  },
+  "non_claims": [
+    "No deployed/prize-band row is claimed.",
+    "This is a finite prime-field enumeration, not an asymptotic theorem.",
+    "The listed rows do not use q_chal and make no protocol soundness claim.",
+    "The (11,5,2,r=2) CPU consistency anchor is intentionally not duplicated in this packet."
+  ],
+  "object": "sigma_C(r)=max sparse-pair count of finite MCA-bad slopes",
+  "payload_sha256": "a80e339f9933cb035c51efdd1762babc3ca15b3d5bfa815955792defea4ceb0b",
+  "rows": [
+    {
+      "bad_pair_count": 2241792,
+      "bad_slope_count_histogram": {
+        "0": 4897,
+        "1": 34272,
+        "4": 15120,
+        "5": 234360,
+        "6": 773640,
+        "7": 1184400
+      },
+      "census_coverage": "full_hankel_scan",
+      "codeword_materialization": false,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        3,
+        2,
+        6,
+        4,
+        5
+      ],
+      "early_stop_reason": null,
+      "elapsed_s": 0.547094,
+      "k": 2,
+      "m": 4,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 7,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                1,
+                4
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 0,
+              "locator_coefficients": [
+                5,
+                5,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 1,
+              "locator_coefficients": [
+                2,
+                6,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 2,
+              "locator_coefficients": [
+                6,
+                1,
+                3,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                1,
+                4
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 3,
+              "locator_coefficients": [
+                4,
+                6,
+                3,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "codeword_coefficients": [
+                2
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 4,
+              "locator_coefficients": [
+                6,
+                4,
+                6,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                3,
+                3
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                1,
+                1,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                6
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                4,
+                6
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                5,
+                6,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                4
+              ]
+            }
+          ],
+          "eps1": [
+            5,
+            4,
+            2,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 7,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                1,
+                4
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 0,
+              "locator_coefficients": [
+                5,
+                5,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 1,
+              "locator_coefficients": [
+                2,
+                6,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                3,
+                3
+              ],
+              "disagreement_set": [
+                1,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 2,
+              "locator_coefficients": [
+                3,
+                5,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                1,
+                4
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 3,
+              "locator_coefficients": [
+                4,
+                6,
+                3,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 4,
+              "locator_coefficients": [
+                6,
+                1,
+                3,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                3,
+                3
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                1,
+                1,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                6
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                4,
+                6
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                5,
+                6,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                4
+              ]
+            }
+          ],
+          "eps1": [
+            5,
+            4,
+            2,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            4,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 7,
+          "bad_slopes": [
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                1,
+                4
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 0,
+              "locator_coefficients": [
+                5,
+                5,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 1,
+              "locator_coefficients": [
+                2,
+                6,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "codeword_coefficients": [
+                0,
+                1
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 2,
+              "locator_coefficients": [
+                6,
+                4,
+                6,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "noncontainment_vector": [
+                4
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                1,
+                4
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 3,
+              "locator_coefficients": [
+                4,
+                6,
+                3,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "codeword_coefficients": [
+                5,
+                6
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 4,
+              "locator_coefficients": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "noncontainment_vector": [
+                6
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                3,
+                3
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                1,
+                1,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                6
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                4,
+                6
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                5,
+                6,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                4
+              ]
+            }
+          ],
+          "eps1": [
+            5,
+            4,
+            2,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            5,
+            3,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 6,
+      "pairs_scanned": 2246689,
+      "pairs_total": 2246689,
+      "q_chal": null,
+      "q_gen": 7,
+      "q_line": 7,
+      "r": 3,
+      "rho": "2/6",
+      "sigma_c": 7,
+      "sigma_c_lower_bound": 7
+    },
+    {
+      "bad_pair_count": 95220216,
+      "bad_slope_count_histogram": {
+        "0": 36793,
+        "1": 478296,
+        "10": 23736960,
+        "11": 11007360,
+        "12": 1392768,
+        "13": 22464,
+        "4": 112320,
+        "5": 1404000,
+        "6": 4118400,
+        "7": 8985600,
+        "8": 17791488,
+        "9": 26170560
+      },
+      "census_coverage": "full_hankel_scan",
+      "codeword_materialization": false,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        4,
+        3,
+        12,
+        9,
+        10
+      ],
+      "early_stop_reason": null,
+      "elapsed_s": 0.071747,
+      "k": 2,
+      "m": 4,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 13,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                3,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                2
+              ],
+              "distance": 2,
+              "gamma": 0,
+              "locator_coefficients": [
+                1,
+                6,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                11
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "codeword_coefficients": [
+                11,
+                10
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 1,
+              "locator_coefficients": [
+                3,
+                4,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "noncontainment_vector": [
+                7
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                3,
+                4
+              ],
+              "codeword_coefficients": [
+                7,
+                5
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                5
+              ],
+              "distance": 3,
+              "gamma": 2,
+              "locator_coefficients": [
+                9,
+                4,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4
+              ],
+              "noncontainment_vector": [
+                8
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "codeword_coefficients": [
+                8,
+                2
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 3,
+              "locator_coefficients": [
+                4,
+                4,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                3,
+                4
+              ],
+              "codeword_coefficients": [
+                1,
+                10
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                5
+              ],
+              "distance": 3,
+              "gamma": 4,
+              "locator_coefficients": [
+                10,
+                4,
+                9,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                4
+              ],
+              "noncontainment_vector": [
+                6
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "codeword_coefficients": [
+                5,
+                7
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                12,
+                6,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 6,
+              "locator_coefficients": [
+                12,
+                5,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                3,
+                5
+              ],
+              "codeword_coefficients": [
+                4,
+                10
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 7,
+              "locator_coefficients": [
+                9,
+                10,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                5
+              ],
+              "noncontainment_vector": [
+                8
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 8,
+              "locator_coefficients": [
+                3,
+                12,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                7
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "codeword_coefficients": [
+                12,
+                4
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 9,
+              "locator_coefficients": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "noncontainment_vector": [
+                11
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                1,
+                4
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 10,
+              "locator_coefficients": [
+                1,
+                5,
+                6,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                3,
+                5
+              ],
+              "codeword_coefficients": [
+                10,
+                12
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 11,
+              "locator_coefficients": [
+                12,
+                0,
+                0,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                9,
+                10
+              ],
+              "disagreement_set": [
+                1,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 12,
+              "locator_coefficients": [
+                4,
+                10,
+                3,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                8
+              ]
+            }
+          ],
+          "eps1": [
+            7,
+            10,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 13,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                3,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                2
+              ],
+              "distance": 2,
+              "gamma": 0,
+              "locator_coefficients": [
+                1,
+                6,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                9
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                3,
+                5
+              ],
+              "codeword_coefficients": [
+                3,
+                1
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 1,
+              "locator_coefficients": [
+                9,
+                10,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                5
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "codeword_coefficients": [
+                5,
+                1
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 2,
+              "locator_coefficients": [
+                3,
+                4,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 3,
+              "locator_coefficients": [
+                3,
+                12,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                3,
+                4
+              ],
+              "codeword_coefficients": [
+                2,
+                7
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                5
+              ],
+              "distance": 3,
+              "gamma": 4,
+              "locator_coefficients": [
+                9,
+                4,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "codeword_coefficients": [
+                9,
+                3
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "noncontainment_vector": [
+                9
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "codeword_coefficients": [
+                6,
+                8
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                4,
+                4,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "noncontainment_vector": [
+                10
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                4,
+                3
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 7,
+              "locator_coefficients": [
+                1,
+                5,
+                6,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                10
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                3,
+                4
+              ],
+              "codeword_coefficients": [
+                4,
+                1
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                5
+              ],
+              "distance": 3,
+              "gamma": 8,
+              "locator_coefficients": [
+                10,
+                4,
+                9,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                4
+              ],
+              "noncontainment_vector": [
+                12
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                3,
+                5
+              ],
+              "codeword_coefficients": [
+                1,
+                9
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 9,
+              "locator_coefficients": [
+                12,
+                0,
+                0,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                5
+              ],
+              "noncontainment_vector": [
+                4
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "codeword_coefficients": [
+                7,
+                2
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 10,
+              "locator_coefficients": [
+                12,
+                6,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "noncontainment_vector": [
+                6
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                10,
+                1
+              ],
+              "disagreement_set": [
+                1,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 11,
+              "locator_coefficients": [
+                4,
+                10,
+                3,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 12,
+              "locator_coefficients": [
+                12,
+                5,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                4
+              ]
+            }
+          ],
+          "eps1": [
+            2,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            2,
+            4,
+            0,
+            2,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 13,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                3,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                2
+              ],
+              "distance": 2,
+              "gamma": 0,
+              "locator_coefficients": [
+                1,
+                6,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                11
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                3,
+                5
+              ],
+              "codeword_coefficients": [
+                8,
+                7
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 1,
+              "locator_coefficients": [
+                9,
+                10,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                5
+              ],
+              "noncontainment_vector": [
+                8
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "codeword_coefficients": [
+                9,
+                7
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 2,
+              "locator_coefficients": [
+                3,
+                4,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "noncontainment_vector": [
+                7
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 3,
+              "locator_coefficients": [
+                3,
+                12,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                7
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                3,
+                4
+              ],
+              "codeword_coefficients": [
+                1,
+                10
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                5
+              ],
+              "distance": 3,
+              "gamma": 4,
+              "locator_coefficients": [
+                9,
+                4,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4
+              ],
+              "noncontainment_vector": [
+                8
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "codeword_coefficients": [
+                11,
+                8
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "noncontainment_vector": [
+                11
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "codeword_coefficients": [
+                3,
+                4
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                4,
+                4,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                2,
+                8
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 7,
+              "locator_coefficients": [
+                1,
+                5,
+                6,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                3,
+                4
+              ],
+              "codeword_coefficients": [
+                2,
+                7
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                5
+              ],
+              "distance": 3,
+              "gamma": 8,
+              "locator_coefficients": [
+                10,
+                4,
+                9,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                4
+              ],
+              "noncontainment_vector": [
+                6
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                3,
+                5
+              ],
+              "codeword_coefficients": [
+                7,
+                11
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 9,
+              "locator_coefficients": [
+                12,
+                0,
+                0,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "codeword_coefficients": [
+                10,
+                1
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 10,
+              "locator_coefficients": [
+                12,
+                6,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                5,
+                7
+              ],
+              "disagreement_set": [
+                1,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 11,
+              "locator_coefficients": [
+                4,
+                10,
+                3,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                8
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 12,
+              "locator_coefficients": [
+                12,
+                5,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            }
+          ],
+          "eps1": [
+            1,
+            7,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            1,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 6,
+      "pairs_scanned": 95257009,
+      "pairs_total": 95257009,
+      "q_chal": null,
+      "q_gen": 13,
+      "q_line": 13,
+      "r": 3,
+      "rho": "2/6",
+      "sigma_c": 13,
+      "sigma_c_lower_bound": 13
+    },
+    {
+      "bad_pair_count": 482914720896,
+      "bad_slope_count_histogram": {
+        "0": 4824193,
+        "1": 576537728,
+        "2": 13940448256,
+        "3": 86854378496,
+        "4": 180310009856,
+        "5": 151827301376,
+        "6": 40431333376,
+        "7": 5036064768,
+        "8": 2951613440,
+        "9": 987033600
+      },
+      "census_coverage": "full_hankel_scan",
+      "codeword_materialization": false,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        9,
+        13,
+        15,
+        16,
+        8,
+        4,
+        2
+      ],
+      "early_stop_reason": null,
+      "elapsed_s": 856.382583,
+      "k": 2,
+      "m": 6,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 9,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                3,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 0,
+              "locator_coefficients": [
+                2,
+                5,
+                14,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                8,
+                1
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                4,
+                4
+              ],
+              "disagreement_set": [
+                3,
+                5,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 4,
+              "locator_coefficients": [
+                8,
+                14,
+                11,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                9,
+                8
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                1,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                9,
+                11,
+                7,
+                6,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                14,
+                7
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                7,
+                8
+              ],
+              "disagreement_set": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 8,
+              "locator_coefficients": [
+                4,
+                9,
+                8,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                1,
+                15
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                7
+              ],
+              "codeword_coefficients": [
+                10,
+                12
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5,
+                6
+              ],
+              "distance": 4,
+              "gamma": 12,
+              "locator_coefficients": [
+                13,
+                4,
+                15,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                7
+              ],
+              "noncontainment_vector": [
+                3,
+                6
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                15,
+                13
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 13,
+              "locator_coefficients": [
+                16,
+                12,
+                9,
+                14,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                4,
+                15
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                0,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 14,
+              "locator_coefficients": [
+                13,
+                1,
+                2,
+                15,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                7,
+                7
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                6
+              ],
+              "codeword_coefficients": [
+                8,
+                15
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5,
+                7
+              ],
+              "distance": 4,
+              "gamma": 15,
+              "locator_coefficients": [
+                15,
+                11,
+                5,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                6
+              ],
+              "noncontainment_vector": [
+                9,
+                2
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                2,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 16,
+              "locator_coefficients": [
+                1,
+                7,
+                15,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                9,
+                15
+              ]
+            }
+          ],
+          "eps1": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            6,
+            14,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 9,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                3,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 0,
+              "locator_coefficients": [
+                2,
+                5,
+                14,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                8,
+                1
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3,
+                4
+              ],
+              "codeword_coefficients": [
+                15,
+                15
+              ],
+              "disagreement_set": [
+                2,
+                5,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 2,
+              "locator_coefficients": [
+                16,
+                7,
+                0,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3,
+                4
+              ],
+              "noncontainment_vector": [
+                16,
+                1
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                0,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                13,
+                1,
+                2,
+                15,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                11,
+                11
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                6,
+                8
+              ],
+              "disagreement_set": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 7,
+              "locator_coefficients": [
+                4,
+                9,
+                8,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                12,
+                3
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3,
+                6
+              ],
+              "codeword_coefficients": [
+                11,
+                10
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                5,
+                7
+              ],
+              "distance": 4,
+              "gamma": 8,
+              "locator_coefficients": [
+                13,
+                6,
+                4,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3,
+                6
+              ],
+              "noncontainment_vector": [
+                6,
+                7
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                1,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 11,
+              "locator_coefficients": [
+                9,
+                11,
+                7,
+                6,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                6,
+                3
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3,
+                7
+              ],
+              "codeword_coefficients": [
+                7,
+                5
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                5,
+                6
+              ],
+              "distance": 4,
+              "gamma": 14,
+              "locator_coefficients": [
+                9,
+                10,
+                10,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3,
+                7
+              ],
+              "noncontainment_vector": [
+                7,
+                14
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3,
+                5
+              ],
+              "codeword_coefficients": [
+                12,
+                7
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 15,
+              "locator_coefficients": [
+                15,
+                16,
+                16,
+                16,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3,
+                5
+              ],
+              "noncontainment_vector": [
+                2,
+                16
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                2,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 16,
+              "locator_coefficients": [
+                1,
+                7,
+                15,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                9,
+                15
+              ]
+            }
+          ],
+          "eps1": [
+            16,
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            7,
+            6,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 9,
+          "bad_slopes": [
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                3,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "distance": 3,
+              "gamma": 0,
+              "locator_coefficients": [
+                2,
+                5,
+                14,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                8,
+                1
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                16,
+                16
+              ],
+              "disagreement_set": [
+                3,
+                5,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 2,
+              "locator_coefficients": [
+                8,
+                14,
+                11,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                13,
+                4
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                7
+              ],
+              "codeword_coefficients": [
+                7,
+                5
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5,
+                6
+              ],
+              "distance": 4,
+              "gamma": 3,
+              "locator_coefficients": [
+                13,
+                4,
+                15,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                7
+              ],
+              "noncontainment_vector": [
+                11,
+                5
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                1,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                9,
+                11,
+                7,
+                6,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                11,
+                14
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                0,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 7,
+              "locator_coefficients": [
+                13,
+                1,
+                2,
+                15,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                5,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                6
+              ],
+              "codeword_coefficients": [
+                13,
+                1
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5,
+                7
+              ],
+              "distance": 4,
+              "gamma": 8,
+              "locator_coefficients": [
+                15,
+                11,
+                5,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                6
+              ],
+              "noncontainment_vector": [
+                15,
+                9
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                11,
+                8
+              ],
+              "disagreement_set": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 12,
+              "locator_coefficients": [
+                4,
+                9,
+                8,
+                4,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                6,
+                5
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                10,
+                3
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                6,
+                7
+              ],
+              "distance": 4,
+              "gamma": 14,
+              "locator_coefficients": [
+                16,
+                12,
+                9,
+                14,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                12,
+                11
+              ]
+            },
+            {
+              "agreement": 5,
+              "closed_ball_witness_set": [
+                2,
+                5,
+                6,
+                7
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 16,
+              "locator_coefficients": [
+                1,
+                7,
+                15,
+                10,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                4,
+                5,
+                6,
+                7
+              ],
+              "noncontainment_vector": [
+                9,
+                15
+              ]
+            }
+          ],
+          "eps1": [
+            4,
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            14,
+            11,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 8,
+      "pairs_scanned": 482919545089,
+      "pairs_total": 482919545089,
+      "q_chal": null,
+      "q_gen": 17,
+      "q_line": 17,
+      "r": 4,
+      "rho": "2/8",
+      "sigma_c": 9,
+      "sigma_c_lower_bound": 9
+    },
+    {
+      "bad_pair_count": 934944552,
+      "bad_slope_count_histogram": {
+        "0": 121609,
+        "1": 2310552,
+        "10": 203197248,
+        "11": 269706672,
+        "12": 143385552,
+        "13": 19132848,
+        "4": 369360,
+        "5": 5060232,
+        "6": 16978248,
+        "7": 35680176,
+        "8": 93078720,
+        "9": 146044944
+      },
+      "census_coverage": "full_hankel_scan",
+      "codeword_materialization": false,
+      "delta_floor_convention": "r=floor(delta*n)",
+      "domain": [
+        1,
+        8,
+        7,
+        18,
+        11,
+        12
+      ],
+      "early_stop_reason": null,
+      "elapsed_s": 0.507153,
+      "k": 2,
+      "m": 4,
+      "max_pairs_sample": [
+        {
+          "bad_slope_count": 13,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                2,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                3
+              ],
+              "distance": 2,
+              "gamma": 0,
+              "locator_coefficients": [
+                8,
+                18,
+                11,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "codeword_coefficients": [
+                13,
+                1
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 1,
+              "locator_coefficients": [
+                18,
+                14,
+                16,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "noncontainment_vector": [
+                12
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                13,
+                4
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 3,
+              "locator_coefficients": [
+                1,
+                0,
+                0,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                6
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "codeword_coefficients": [
+                15,
+                13
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 4,
+              "locator_coefficients": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "noncontainment_vector": [
+                13
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "codeword_coefficients": [
+                3,
+                17
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                8,
+                8,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "noncontainment_vector": [
+                4
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                13,
+                10
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 7,
+              "locator_coefficients": [
+                12,
+                12,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                9
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                1,
+                1
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 8,
+              "locator_coefficients": [
+                1,
+                3,
+                14,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                13,
+                13
+              ],
+              "disagreement_set": [
+                1,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 9,
+              "locator_coefficients": [
+                8,
+                12,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                9
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                7,
+                1
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 14,
+              "locator_coefficients": [
+                11,
+                18,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                18
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                8,
+                1
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 15,
+              "locator_coefficients": [
+                12,
+                18,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                11
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "codeword_coefficients": [
+                4,
+                4
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 16,
+              "locator_coefficients": [
+                7,
+                8,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 17,
+              "locator_coefficients": [
+                18,
+                3,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 18,
+              "locator_coefficients": [
+                7,
+                18,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                8
+              ]
+            }
+          ],
+          "eps1": [
+            3,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            11,
+            1,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 13,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                2,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                3
+              ],
+              "distance": 2,
+              "gamma": 0,
+              "locator_coefficients": [
+                8,
+                18,
+                11,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                17,
+                14
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 1,
+              "locator_coefficients": [
+                1,
+                0,
+                0,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                8
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                5,
+                5
+              ],
+              "disagreement_set": [
+                1,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 2,
+              "locator_coefficients": [
+                8,
+                12,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                18
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                3,
+                3
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                1,
+                3,
+                14,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                3,
+                14
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                11,
+                18,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 7,
+              "locator_coefficients": [
+                18,
+                3,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                10
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                3,
+                17
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 8,
+              "locator_coefficients": [
+                12,
+                18,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "codeword_coefficients": [
+                16,
+                16
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 10,
+              "locator_coefficients": [
+                7,
+                8,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "noncontainment_vector": [
+                13
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "codeword_coefficients": [
+                12,
+                18
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 11,
+              "locator_coefficients": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "noncontainment_vector": [
+                3
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "codeword_coefficients": [
+                8,
+                1
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 12,
+              "locator_coefficients": [
+                8,
+                8,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "noncontainment_vector": [
+                7
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                8,
+                12
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 16,
+              "locator_coefficients": [
+                12,
+                12,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                16
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 17,
+              "locator_coefficients": [
+                7,
+                18,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "codeword_coefficients": [
+                3,
+                13
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 18,
+              "locator_coefficients": [
+                18,
+                14,
+                16,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "noncontainment_vector": [
+                11
+              ]
+            }
+          ],
+          "eps1": [
+            14,
+            5,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            17,
+            12,
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "bad_slope_count": 13,
+          "bad_slopes": [
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                2,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                1,
+                3
+              ],
+              "distance": 2,
+              "gamma": 0,
+              "locator_coefficients": [
+                8,
+                18,
+                11,
+                1
+              ],
+              "maximal_witness_set": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                1,
+                11
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 2,
+              "locator_coefficients": [
+                12,
+                12,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                14
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                11,
+                18
+              ],
+              "disagreement_set": [
+                1,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 4,
+              "locator_coefficients": [
+                1,
+                0,
+                0,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                3,
+                3
+              ],
+              "disagreement_set": [
+                0,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 5,
+              "locator_coefficients": [
+                1,
+                3,
+                14,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                2
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "codeword_coefficients": [
+                3,
+                14
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 6,
+              "locator_coefficients": [
+                11,
+                18,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "codeword_coefficients": [
+                3,
+                17
+              ],
+              "disagreement_set": [
+                0,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 8,
+              "locator_coefficients": [
+                12,
+                18,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                2,
+                4
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "codeword_coefficients": [
+                3,
+                1
+              ],
+              "disagreement_set": [
+                3,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 10,
+              "locator_coefficients": [
+                18,
+                14,
+                16,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                2
+              ],
+              "noncontainment_vector": [
+                16
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "codeword_coefficients": [
+                11,
+                11
+              ],
+              "disagreement_set": [
+                2,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 11,
+              "locator_coefficients": [
+                7,
+                8,
+                8,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                3
+              ],
+              "noncontainment_vector": [
+                17
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "codeword_coefficients": [
+                8,
+                12
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                4
+              ],
+              "distance": 3,
+              "gamma": 13,
+              "locator_coefficients": [
+                1,
+                2,
+                2,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                5
+              ],
+              "noncontainment_vector": [
+                4
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                0,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                1,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 14,
+              "locator_coefficients": [
+                18,
+                3,
+                5,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                5
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "codeword_coefficients": [
+                9,
+                9
+              ],
+              "disagreement_set": [
+                1,
+                4,
+                5
+              ],
+              "distance": 3,
+              "gamma": 15,
+              "locator_coefficients": [
+                8,
+                12,
+                7,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                2,
+                3
+              ],
+              "noncontainment_vector": [
+                10
+              ]
+            },
+            {
+              "agreement": 3,
+              "closed_ball_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "codeword_coefficients": [
+                13,
+                4
+              ],
+              "disagreement_set": [
+                2,
+                3,
+                5
+              ],
+              "distance": 3,
+              "gamma": 16,
+              "locator_coefficients": [
+                8,
+                8,
+                1,
+                1
+              ],
+              "maximal_witness_set": [
+                0,
+                1,
+                4
+              ],
+              "noncontainment_vector": [
+                10
+              ]
+            },
+            {
+              "agreement": 4,
+              "closed_ball_witness_set": [
+                1,
+                4,
+                5
+              ],
+              "codeword_coefficients": [
+                0
+              ],
+              "disagreement_set": [
+                0,
+                2,
+                3
+              ],
+              "distance": 2,
+              "gamma": 17,
+              "locator_coefficients": [
+                7,
+                18,
+                12,
+                1
+              ],
+              "maximal_witness_set": [
+                1,
+                3,
+                4,
+                5
+              ],
+              "noncontainment_vector": [
+                1
+              ]
+            }
+          ],
+          "eps1": [
+            14,
+            5,
+            0,
+            0,
+            0,
+            0
+          ],
+          "eps2": [
+            18,
+            12,
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "n": 6,
+      "pairs_scanned": 935066161,
+      "pairs_total": 935066161,
+      "q_chal": null,
+      "q_gen": 19,
+      "q_line": 19,
+      "r": 3,
+      "rho": "2/6",
+      "sigma_c": 13,
+      "sigma_c_lower_bound": 13
+    }
+  ],
+  "schema_version": "sigma-c-sparse-census-hankel-scan-v1",
+  "status": "AUDIT / Pade-Hankel sparse-pair scan certificate",
+  "theorem_or_problem_id": "towards-prize prob:mutual; thm:sparsify sparse mutual layer"
+}

@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - Sigma C k=2 boundary map
+
+- **Agent/model:** Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/data/certificates/sigma-c-sparse-census/sigma_c_sparse_census_gpu_k2_boundary_map.json`;
+  `experimental/notes/m1/sigma_c_k2_boundary_map.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** A finite k=2 boundary scan including the new
+  `(q,n,k,r) = (19,6,2,3)` row, which records `sigma_C = 13`.
+- **How it is useful:** Shows that the small k=2 intermediate-row pattern
+  `sigma_C = 2r+1` is false, while preserving exact finite-row certificates
+  for the sparse mutual layer.
+- **What to do next:** Treat the family behavior as experimental and leave
+  larger rows open until they can be scanned completely.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
