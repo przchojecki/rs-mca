@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - XR light-profile eliminant nonvanishing
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/xr_light_profile_eliminant_nonvanishing.md`;
+  `experimental/scripts/verify_xr_light_profile_eliminant_nonvanishing.py`;
+  `experimental/data/certificates/xr-light-profile-eliminant-nonvanishing/README.md`;
+  `experimental/data/certificates/xr-light-profile-eliminant-nonvanishing/xr_light_profile_eliminant_nonvanishing.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A parametric proof that every light-triangle support
+  profile has nonzero XR eliminant: the normal-form map is injective because
+  any kernel vector is forced onto the triple intersection, whose Vandermonde
+  columns have full rank under the light inequality.
+- **How it is useful:** Removes the identically-vanishing light-profile branch
+  from the XR aperiodic residual route named in the v13 final-resolution
+  spine.  Remaining coordinate-special failures live on proper hypersurfaces
+  and must be charged by the separate staircase/SPI/XR counting machinery.
+- **What to do next:** Connect this note to the row-packet paid-cell compiler
+  or add the downstream profile-inventory wrapper as a separate connected
+  commit.  Do not treat this local XR input alone as an adjacent deployed upper
+  certificate.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

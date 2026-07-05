@@ -1,0 +1,52 @@
+{
+  "checks": [
+    "pair_sum_minus_triple >= 2 * triple_intersection",
+    "light condition implies triple_intersection <= k",
+    "rank(Phi_z) == 3t for every enumerated profile"
+  ],
+  "field": "F_1000003",
+  "max_k": 6,
+  "max_t": 5,
+  "max_union_size": 33,
+  "note": "Finite replay of the normal-form schema; the proof note supplies the parametric theorem.",
+  "profiles_by_k_t": {
+    "k=1,t=1": 11,
+    "k=1,t=2": 11,
+    "k=1,t=3": 11,
+    "k=1,t=4": 11,
+    "k=1,t=5": 11,
+    "k=2,t=1": 34,
+    "k=2,t=2": 46,
+    "k=2,t=3": 46,
+    "k=2,t=4": 46,
+    "k=2,t=5": 46,
+    "k=3,t=1": 76,
+    "k=3,t=2": 112,
+    "k=3,t=3": 130,
+    "k=3,t=4": 130,
+    "k=3,t=5": 130,
+    "k=4,t=1": 145,
+    "k=4,t=2": 217,
+    "k=4,t=3": 271,
+    "k=4,t=4": 295,
+    "k=4,t=5": 295,
+    "k=5,t=1": 251,
+    "k=5,t=2": 371,
+    "k=5,t=3": 479,
+    "k=5,t=4": 551,
+    "k=5,t=5": 581,
+    "k=6,t=1": 405,
+    "k=6,t=2": 586,
+    "k=6,t=3": 766,
+    "k=6,t=4": 910,
+    "k=6,t=5": 1000
+  },
+  "profiles_checked": 7974,
+  "schema": "xr-light-profile-eliminant-nonvanishing-v1",
+  "slopes": [
+    2,
+    3,
+    5
+  ],
+  "status": "PROVED_SCHEMA_REPLAY"
+}
