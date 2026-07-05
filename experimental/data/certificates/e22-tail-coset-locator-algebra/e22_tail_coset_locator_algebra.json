@@ -1,0 +1,28 @@
+{
+  "schema": "e22-tail-coset-locator-algebra-v1",
+  "dag_node": "e22_tail_coset_locator_algebra",
+  "status": "PROVED",
+  "claim": "For a tail B of size < M plus selected full quotient fibers of x -> x^M, the support locator is L_B(X)G(X^M), and if M>t its top t subleading coefficients depend only on B and the number of selected fibers.",
+  "dependencies": [],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_tail_coset_locator_algebra/statement.md",
+      "nodes/e22_tail_coset_locator_algebra/proof.md",
+      "nodes/e22_tail_coset_locator_algebra/verify.py"
+    ]
+  },
+  "finite_checks": [
+    {
+      "p": 193,
+      "n_values": [
+        16,
+        32
+      ],
+      "max_tail_size": 3,
+      "max_selected_fibers": 2
+    }
+  ],
+  "expected_result": "PASS"
+}
+

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E22 tail-coset locator algebra packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/e22_tail_coset_locator_algebra.md`;
+  `experimental/data/certificates/e22-tail-coset-locator-algebra/`;
+  `experimental/scripts/verify_e22_tail_coset_locator_algebra.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A standalone E22 tail-coset locator algebra
+  packet: a tail plus full quotient fibers has locator `L_B(X)G(X^M)`, and
+  when `M>t` the top `t` subleading coefficients are independent of which
+  quotient fibers were selected.
+- **How it is useful:** This supplies a formal locator-shape input for the
+  `(Q)` quotient-staircase route without adding numerical deployed-row claims
+  or modifying Papers A-D.
+- **What to do next:** Combine this leaf with the E22 cofactor support-forcing
+  nodes before attempting the conditional staircase-parametrization theorem.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
