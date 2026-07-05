@@ -1,0 +1,31 @@
+{
+  "schema": "e22-quotient-fiber-locator-saturation-v1",
+  "dag_node": "e22_fiber_locator_saturation",
+  "status": "PROVED",
+  "claim": "For a cyclic multiplicative subgroup D and M dividing |D|, each quotient fiber of x -> x^M has locator X^M-z; squarefree support-locator divisibility by this factor is equivalent to containing the full fiber.",
+  "dependencies": [],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_fiber_locator_saturation/statement.md",
+      "nodes/e22_fiber_locator_saturation/proof.md",
+      "nodes/e22_fiber_locator_saturation/verify.py"
+    ]
+  },
+  "finite_checks": [
+    {
+      "p": 17,
+      "n": 16
+    },
+    {
+      "p": 97,
+      "n": 32
+    },
+    {
+      "p": 193,
+      "n": 64
+    }
+  ],
+  "expected_result": "PASS"
+}
+
