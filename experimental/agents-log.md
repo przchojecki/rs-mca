@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Gamma dyadic rung-transfer constants
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_gamma_dyadic_rung_transfer.py`;
+  `experimental/scripts/verify_gamma_dyadic_rung_transfer_check.py`;
+  `experimental/data/certificates/gamma-dyadic-rung-transfer/gamma_dyadic_rung_transfer.json`;
+  `experimental/notes/m1/gamma_dyadic_rung_transfer.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact dyadic toy-row constants for the Route-gamma
+  transfer object, with an independent support-enumeration replay of the
+  recorded `kappa_c` values and sampler-adjusted products.
+- **How it is useful:** Supplies finite exact constants for the
+  `prob:band` periodic-transfer ledger while keeping the fold constant
+  distinct from the rung-margin ceiling calculation.
+- **What to do next:** Review the sampler-adjusted over-ceiling findings for
+  `m=4` and `m=5` before deciding whether they should drive a deeper transfer
+  scan or a refined sampler-normalization note.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by

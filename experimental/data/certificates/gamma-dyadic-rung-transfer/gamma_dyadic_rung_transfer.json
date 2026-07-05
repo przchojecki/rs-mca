@@ -1,0 +1,445 @@
+{
+  "claim": "finite exact dyadic transfer constants for Route-gamma toy rows",
+  "field": {
+    "q_chal": 97,
+    "q_gen": 97,
+    "q_line": 97
+  },
+  "ladder_products": [
+    {
+      "acceptance_ceiling_millibits": 1199,
+      "active_scales": [
+        2
+      ],
+      "identity_exceeds_acceptance_ceiling": false,
+      "identity_log2_millibits": 0,
+      "identity_transfer_product": "1/1",
+      "m": 2,
+      "n": 4,
+      "sampler_adjusted_products": {
+        "1": {
+          "acceptance_ceiling_millibits": 1199,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 0,
+          "product": "1/1"
+        },
+        "2": {
+          "acceptance_ceiling_millibits": 1199,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 1000,
+          "product": "2/1"
+        },
+        "3": {
+          "acceptance_ceiling_millibits": 1199,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 0,
+          "product": "1/1"
+        }
+      }
+    },
+    {
+      "acceptance_ceiling_millibits": 2068,
+      "active_scales": [
+        2,
+        4
+      ],
+      "identity_exceeds_acceptance_ceiling": false,
+      "identity_log2_millibits": 0,
+      "identity_transfer_product": "1/1",
+      "m": 3,
+      "n": 8,
+      "sampler_adjusted_products": {
+        "1": {
+          "acceptance_ceiling_millibits": 2068,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 0,
+          "product": "1/1"
+        },
+        "2": {
+          "acceptance_ceiling_millibits": 2068,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 2000,
+          "product": "4/1"
+        },
+        "3": {
+          "acceptance_ceiling_millibits": 2068,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 0,
+          "product": "1/1"
+        }
+      }
+    },
+    {
+      "acceptance_ceiling_millibits": 1993,
+      "active_scales": [
+        2,
+        4,
+        8
+      ],
+      "identity_exceeds_acceptance_ceiling": false,
+      "identity_log2_millibits": 0,
+      "identity_transfer_product": "1/1",
+      "m": 4,
+      "n": 16,
+      "sampler_adjusted_products": {
+        "1": {
+          "acceptance_ceiling_millibits": 1993,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 0,
+          "product": "1/1"
+        },
+        "2": {
+          "acceptance_ceiling_millibits": 1993,
+          "exceeds_acceptance_ceiling": true,
+          "log2_millibits": 3000,
+          "product": "8/1"
+        },
+        "3": {
+          "acceptance_ceiling_millibits": 1993,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 0,
+          "product": "1/1"
+        }
+      }
+    },
+    {
+      "acceptance_ceiling_millibits": 1107,
+      "active_scales": [
+        2,
+        4,
+        8
+      ],
+      "identity_exceeds_acceptance_ceiling": false,
+      "identity_log2_millibits": 0,
+      "identity_transfer_product": "1/1",
+      "m": 5,
+      "n": 32,
+      "sampler_adjusted_products": {
+        "1": {
+          "acceptance_ceiling_millibits": 1107,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 0,
+          "product": "1/1"
+        },
+        "2": {
+          "acceptance_ceiling_millibits": 1107,
+          "exceeds_acceptance_ceiling": true,
+          "log2_millibits": 3000,
+          "product": "8/1"
+        },
+        "3": {
+          "acceptance_ceiling_millibits": 1107,
+          "exceeds_acceptance_ceiling": false,
+          "log2_millibits": 0,
+          "product": "1/1"
+        }
+      }
+    }
+  ],
+  "named_over_ceiling_findings": [
+    {
+      "acceptance_ceiling_millibits": 1993,
+      "log2_millibits": 3000,
+      "m": 4,
+      "n": 16,
+      "product": "8/1",
+      "sampler_degree": 2
+    },
+    {
+      "acceptance_ceiling_millibits": 1107,
+      "log2_millibits": 3000,
+      "m": 5,
+      "n": 32,
+      "product": "8/1",
+      "sampler_degree": 2
+    }
+  ],
+  "non_claims": [
+    "No asymptotic tower-transfer theorem is claimed.",
+    "No resolution of prob:band is claimed.",
+    "The rung-transfer constants are distinct from the rung-margin calculation in PR #329."
+  ],
+  "payload_sha256": "b7a8792d1c89fd78ba9bab80709a1844312b97efbaa88be3ae8e174dfb288048",
+  "proof_status": "EXPERIMENTAL",
+  "row_rule": "n=2^m, j=n/2, scale c in {2,4,8}",
+  "rows": [
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 2,
+      "j": 2,
+      "kappa_c": "1/1",
+      "m": 2,
+      "n": 4,
+      "parent_at_least_scale_count": 2,
+      "parent_exact_scale_count": 2,
+      "pullback_image_count": 2,
+      "quotient_exact_aperiodic_count": 2,
+      "quotient_total_count": 2,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 2
+    },
+    {
+      "applicable": false,
+      "j": 2,
+      "m": 2,
+      "n": 4,
+      "reason": "scale does not divide both n and j",
+      "scale_c": 4
+    },
+    {
+      "applicable": false,
+      "j": 2,
+      "m": 2,
+      "n": 4,
+      "reason": "scale does not divide both n and j",
+      "scale_c": 8
+    },
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 4,
+      "j": 4,
+      "kappa_c": "1/1",
+      "m": 3,
+      "n": 8,
+      "parent_at_least_scale_count": 6,
+      "parent_exact_scale_count": 4,
+      "pullback_image_count": 6,
+      "quotient_exact_aperiodic_count": 4,
+      "quotient_total_count": 6,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 2
+    },
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 2,
+      "j": 4,
+      "kappa_c": "1/1",
+      "m": 3,
+      "n": 8,
+      "parent_at_least_scale_count": 2,
+      "parent_exact_scale_count": 2,
+      "pullback_image_count": 2,
+      "quotient_exact_aperiodic_count": 2,
+      "quotient_total_count": 2,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 4
+    },
+    {
+      "applicable": false,
+      "j": 4,
+      "m": 3,
+      "n": 8,
+      "reason": "scale does not divide both n and j",
+      "scale_c": 8
+    },
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 64,
+      "j": 8,
+      "kappa_c": "1/1",
+      "m": 4,
+      "n": 16,
+      "parent_at_least_scale_count": 70,
+      "parent_exact_scale_count": 64,
+      "pullback_image_count": 70,
+      "quotient_exact_aperiodic_count": 64,
+      "quotient_total_count": 70,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 2
+    },
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 4,
+      "j": 8,
+      "kappa_c": "1/1",
+      "m": 4,
+      "n": 16,
+      "parent_at_least_scale_count": 6,
+      "parent_exact_scale_count": 4,
+      "pullback_image_count": 6,
+      "quotient_exact_aperiodic_count": 4,
+      "quotient_total_count": 6,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 4
+    },
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 2,
+      "j": 8,
+      "kappa_c": "1/1",
+      "m": 4,
+      "n": 16,
+      "parent_at_least_scale_count": 2,
+      "parent_exact_scale_count": 2,
+      "pullback_image_count": 2,
+      "quotient_exact_aperiodic_count": 2,
+      "quotient_total_count": 2,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 8
+    },
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 12800,
+      "j": 16,
+      "kappa_c": "1/1",
+      "m": 5,
+      "n": 32,
+      "parent_at_least_scale_count": 12870,
+      "parent_exact_scale_count": 12800,
+      "pullback_image_count": 12870,
+      "quotient_exact_aperiodic_count": 12800,
+      "quotient_total_count": 12870,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 2
+    },
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 64,
+      "j": 16,
+      "kappa_c": "1/1",
+      "m": 5,
+      "n": 32,
+      "parent_at_least_scale_count": 70,
+      "parent_exact_scale_count": 64,
+      "pullback_image_count": 70,
+      "quotient_exact_aperiodic_count": 64,
+      "quotient_total_count": 70,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 4
+    },
+    {
+      "applicable": true,
+      "closed_periodic_support_count": 4,
+      "j": 16,
+      "kappa_c": "1/1",
+      "m": 5,
+      "n": 32,
+      "parent_at_least_scale_count": 6,
+      "parent_exact_scale_count": 4,
+      "pullback_image_count": 6,
+      "quotient_exact_aperiodic_count": 4,
+      "quotient_total_count": 6,
+      "sampler_degrees": {
+        "1": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        },
+        "2": {
+          "power_curve_multiplicity": 2,
+          "sampler_adjusted_kappa": "2/1"
+        },
+        "3": {
+          "power_curve_multiplicity": 1,
+          "sampler_adjusted_kappa": "1/1"
+        }
+      },
+      "scale_c": 8
+    }
+  ],
+  "schema_version": "gamma-dyadic-rung-transfer-v1",
+  "theorem_problem_id": "Route-gamma; prob:band; cor:periodic-support-count"
+}
