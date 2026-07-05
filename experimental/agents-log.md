@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Official row primes reframe packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/official_row_primes_reframe.md`;
+  `experimental/scripts/verify_official_row_primes_reframe.py`;
+  `experimental/data/certificates/official-row-primes-reframe/official_row_primes_reframe.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-pinned reframe of the old missing
+  official-primes ask: the ABF grand challenge quantifies over admissible
+  fields and does not publish a finite list of row-prime constants.
+- **How it is useful:** Clarifies certificate semantics for stand-in-prime,
+  named-exhibit-field, and uniform-in-field packets, including C1a/C2-style
+  harnesses and E1 exhibit certificates.
+- **What to do next:** Use this as an audit reference when promoting
+  experimental certificates; do not treat stand-in computations as official-row
+  claims without a transfer theorem or an exact named exhibit field.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

@@ -1,0 +1,41 @@
+{
+  "admissibility_data": {
+    "dimension_bound": "k <= 2^40",
+    "field_bound": "|F| < 2^256",
+    "rates": [
+      "1/2",
+      "1/4",
+      "1/8",
+      "1/16"
+    ],
+    "smooth_domain": "L is a multiplicative subgroup of F whose size is a power of two"
+  },
+  "claim": "The challenge quantifies over admissible Reed-Solomon codes over fields F; it does not publish a finite list of official row primes. Certification is therefore either family-uniform or exhibit-specific.",
+  "consequence": {
+    "certificate_obligation": "state either a uniform-in-F theorem/certificate or the exact exhibit field being certified",
+    "official_rows": "no literal official prime constants need to be pinned from the prize statement",
+    "stand_in_primes": "valid only as exhibit or calibration rows unless accompanied by a family-uniform transfer certificate"
+  },
+  "non_claims": [
+    "does not certify any stand-in prime as official",
+    "does not supply a stand-in-to-uniform transfer theorem",
+    "does not edit or promote Papers A-D"
+  ],
+  "quote_fragments": [
+    "assuming |F| is sufficiently large",
+    "for every choice of F, L, and k",
+    "k <= 2^40",
+    "|F| < 2^256"
+  ],
+  "schema": "rs-mca.experimental.official_row_primes_reframe.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 5,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "official_row_primes_pinning",
+  "status": "PROVED",
+  "verdict": "no_fixed_official_primes"
+}
