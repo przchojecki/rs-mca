@@ -1,0 +1,31 @@
+{
+  "claim": "The official list challenge is handled per declared constant m. Fixed-m packets and small-m batches are valid per-instance or partial determinations. The campaign's finite affordable sweep uses the clique cap n >= k + m^2(a-k), equivalently m <= sqrt((n-k)/(a-k)); larger constants still require a uniform-in-m or large-m regularity route.",
+  "consumers": [
+    "list_safe"
+  ],
+  "non_claims": [
+    "does not prove list_safe",
+    "does not prove the L1 image-fiber theorem",
+    "does not prove the codegree conversion",
+    "does not cover every constant m by finite sweep"
+  ],
+  "schema": "rs-mca.experimental.m_handling.v1",
+  "scope": {
+    "affordable_sweep": "m <= sqrt((n-k)/t) near the row corridors",
+    "fixed_m": "valid per-instance determination when other row inputs close",
+    "large_m": "requires uniform-in-m or large-m regularity input",
+    "small_m_batch": "creditable partial coverage over listed constants"
+  },
+  "source_dag_dependencies": [
+    "rules_freeze",
+    "rules_m_reading",
+    "m_sweep"
+  ],
+  "source_dag_node": "m_handling",
+  "status": "PROVED",
+  "upstream_evidence": [
+    "experimental/scripts/verify_x1_clique_cap.py",
+    "experimental/notes/roadmaps/wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md"
+  ],
+  "verdict": "per_constant_m_with_finite_affordable_sweep"
+}

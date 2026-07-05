@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Interleaved m-handling packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/m_handling.md`,
+  `experimental/scripts/verify_m_handling.py`,
+  `experimental/data/certificates/m-handling/m_handling.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / DAG ASSEMBLY.
+- **What is being added:** A packet for the `m_handling` DAG node, recording
+  that list-side determinations are per declared constant `m`, with the
+  affordable finite sweep supplied by the clique-cap bound
+  `n >= k + m^2(a-k)`.
+- **How it is useful:** Gives `list_safe` a precise `m`-scope input while
+  preserving the large-`m` caveat and keeping L1 image-fiber/codegree inputs
+  separate.
+- **What to do next:** When list-side row packets are written, state whether
+  they are fixed-`m`, small-`m` batches, or uniform-in-`m` packets, and cite the
+  large-`m` branch explicitly when the finite sweep no longer applies.
+
 ### 2026-07-05 - Rules freeze citation packet
 
 - **Agent/model:** Codex.
