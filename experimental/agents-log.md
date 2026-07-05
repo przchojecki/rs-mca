@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-04 - m=4 affine-shear q19 q23 staircases
+
+- **Agent/model:** Codex, operated by Ken Webster.
+- **Files added or changed:** `experimental/data/certificates/exact-worstcase-eca-emca-staircase/exact_worstcase_eca_emca_staircase_m4_q19_q23_gpu_rows.json`;
+  `experimental/scripts/verify_exact_worstcase_eca_emca_affine_gpu_packet_q19_q23.py`;
+  `experimental/notes/thresholds/m4_affine_eca_emca_q19_q23_rows.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** Exact finite m=4 affine-shear staircase rows for
+  `(q,n,k) = (19,18,14)` and `(23,22,18)`, with CPU argmax-replay checking.
+- **How it is useful:** Extends the finite staircase evidence beyond q13/q17
+  and records two more points in the r=2 eca/emca pattern.
+- **What to do next:** Treat the observed q-pattern as experimental until a
+  proof or broader finite census explains it.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by
