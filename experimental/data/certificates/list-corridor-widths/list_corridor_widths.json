@@ -1,0 +1,72 @@
+{
+  "anchor_checks": {
+    "non_claim": true,
+    "note_exists": true,
+    "safe_endpoint": true,
+    "source_node": true,
+    "status": true,
+    "unsafe_endpoint": true,
+    "width_formula": true
+  },
+  "endpoint_convention": {
+    "grid_step": "eta = 2^-9 for rates 1/4 and 1/8; eta = 2^-10 for rate 1/16",
+    "safe_reserve": "tau_star(rho, log2_q=256)",
+    "unsafe_reserve": "H(rho) / 128",
+    "width_formula": "W_list = (unsafe_reserve - safe_reserve) / eta"
+  },
+  "log2_q": 256,
+  "non_claims": [
+    "does not treat the rate-1/2 band",
+    "does not by itself prove a list adjacent threshold row",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/list_corridor_widths.md",
+  "rows": [
+    {
+      "H_rho": 0.8112781244591328,
+      "W_list": 1.612526496981852,
+      "dyadic_hi_delta": 0.746830944826331,
+      "dyadic_hi_reserve_H_over_256": 0.003169055173668,
+      "dyadic_window_width": 1.622556248918266,
+      "eta": 0.001953125,
+      "rate": "1/4",
+      "safe_delta": 0.746811355467081,
+      "safe_reserve_tau_star": 0.003188644532919,
+      "tau_star_minus_H_over_256_in_grid_steps": 0.010029751936414,
+      "unsafe_delta": 0.743661889652663,
+      "unsafe_reserve_H_over_128": 0.006338110347337
+    },
+    {
+      "H_rho": 0.5435644431995964,
+      "W_list": 1.075136156734564,
+      "dyadic_hi_delta": 0.872876701393752,
+      "dyadic_hi_reserve_H_over_256": 0.002123298606248,
+      "dyadic_window_width": 1.087128886399193,
+      "eta": 0.001953125,
+      "rate": "1/8",
+      "safe_delta": 0.872853278093625,
+      "safe_reserve_tau_star": 0.002146721906375,
+      "tau_star_minus_H_over_256_in_grid_steps": 0.011992729664629,
+      "unsafe_delta": 0.870753402787503,
+      "unsafe_reserve_H_over_128": 0.004246597212497
+    },
+    {
+      "H_rho": 0.3372900666170139,
+      "W_list": 1.328340157828273,
+      "dyadic_hi_delta": 0.936182460677277,
+      "dyadic_hi_reserve_H_over_256": 0.001317539322723,
+      "dyadic_window_width": 1.349160266468056,
+      "eta": 0.0009765625,
+      "rate": "1/16",
+      "safe_delta": 0.936162128539934,
+      "safe_reserve_tau_star": 0.001337871460066,
+      "tau_star_minus_H_over_256_in_grid_steps": 0.020820108639782,
+      "unsafe_delta": 0.934864921354555,
+      "unsafe_reserve_H_over_128": 0.002635078645445
+    }
+  ],
+  "schema": "list-corridor-widths-v1",
+  "source_dag_node": "list_corridor_widths",
+  "status": "PROVED",
+  "units": "cap-grid steps eta"
+}

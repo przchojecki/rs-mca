@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - List corridor widths
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/list_corridor_widths.md`;
+  `experimental/scripts/verify_list_corridor_widths.py`;
+  `experimental/data/certificates/list-corridor-widths/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A replayable entropy-table packet computing the
+  list-side clean-rate corridor widths in cap-grid units.
+- **How it is useful:** Gives the finite width input for the list adjacency
+  corridor ledger at rates `1/4`, `1/8`, and `1/16`.
+- **What to do next:** Combine with an independently replayed eater ledger;
+  this packet does not prove list adjacency by itself.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
