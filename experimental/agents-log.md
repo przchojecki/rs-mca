@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel sparse atoms as rational defects
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/hankel_sparse_atoms_rational_defects.md`;
+  `experimental/scripts/verify_hankel_sparse_atoms_packet.py`;
+  `experimental/data/certificates/hankel-sparse-atoms/hankel_sparse_atoms.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for
+  `hankel_sparse_atoms_as_rational_defects`: sparse annihilator atoms of a
+  Hankel state are defect sets of rational approximants, with the recorded
+  separation and same-class collapse rules.
+- **How it is useful:** This is the local input used by
+  `hankel_rank_profile_entropy` to bound low-weight atom closures in row-full
+  wide Hankel states.
+- **What to do next:** Compose this packet with support-lattice accounting in
+  the rank-profile entropy packet.
+
 ### 2026-07-05 - Support-lattice descent accounting
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -1,0 +1,52 @@
+{
+  "consumers": [
+    "hankel_rank_profile_entropy"
+  ],
+  "heredity": "child descent multiplies omega by the child locator factor",
+  "non_claims": [
+    "does not prove the rank-profile entropy theorem by itself",
+    "does not count row-deficient Hankel states",
+    "does not provide support-lattice accounting",
+    "does not edit Papers A-D"
+  ],
+  "normal_form": {
+    "annihilator": "GRS_{n_E-j-1}(E,lambda) + omega RS_t(E)",
+    "coordinate_word": "u_x = omega_x h(x) + lambda_x g(x)",
+    "degree_bounds": [
+      "deg h < t",
+      "deg g <= n_E - j - 2"
+    ]
+  },
+  "same_class_collapse": {
+    "reason": "punctured-GRS/MDS on the defect block",
+    "saturated_closure_count": 1
+  },
+  "schema": "rs-mca.experimental.hankel_sparse_atoms.v1",
+  "separation": {
+    "degree_bound": "deg F <= n_E - j + t - 3",
+    "distinct_class_polynomial": "F = g_1 h_2 - g_2 h_1",
+    "sample_arithmetic": [
+      {
+        "j": 5,
+        "t": 3,
+        "union_size": 4
+      },
+      {
+        "j": 8,
+        "t": 4,
+        "union_size": 6
+      },
+      {
+        "j": 12,
+        "t": 7,
+        "union_size": 7
+      }
+    ],
+    "union_lower_bound": "|T_1 union T_2| >= j - t + 2",
+    "verified_pairs": 233130,
+    "violations": 0
+  },
+  "source_dag_node": "hankel_sparse_atoms_as_rational_defects",
+  "status": "PROVED",
+  "verdict": "sparse_annihilator_atoms_are_rational_defect_sets"
+}
