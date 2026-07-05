@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Hankel moment clean leaves
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/hankel_moment_clean_leaves.md`;
+  `experimental/scripts/verify_hankel_moment_clean_leaves_packet.py`;
+  `experimental/data/certificates/hankel-moment-clean-leaves/hankel_moment_clean_leaves.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `hankel_moment_clean_leaves`, using the
+  pinned-value affine lemma rather than the false unpinned cleanliness claim.
+- **How it is useful:** This supplies the terminal member-count bound consumed
+  by `f_termination_hankel` after the rank-profile argument bounds the number
+  of terminal states.
+- **What to do next:** Consume this packet together with rank-profile entropy
+  in the Hankel termination assembly.
+
 ### 2026-07-05 - Hankel sparse atoms as rational defects
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

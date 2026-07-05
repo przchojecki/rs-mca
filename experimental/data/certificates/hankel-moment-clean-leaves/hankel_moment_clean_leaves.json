@@ -1,0 +1,57 @@
+{
+  "claim": {
+    "alternatives": [
+      "ev_T(A) misses 0",
+      "ev_T(A) is onto"
+    ],
+    "count_values": [
+      "0",
+      "q^(dim A - s)"
+    ],
+    "for_each_T": "|T| = s <= r",
+    "hypothesis": "affine annihilator has no nonzero word of weight <= r",
+    "moment_bound": "sum_f binom(rho(f),s) <= binom(|E|,s) q^(dim A-s)"
+  },
+  "consumers": [
+    "f_termination_hankel"
+  ],
+  "correction": {
+    "packaged_variant": "pinned-value affine lemma",
+    "reason": "monic/affine slices can have low-weight direction-dual words with nonzero affine constant",
+    "unpinned_cleanliness": "false in general"
+  },
+  "non_claims": [
+    "does not assert unpinned direction-dual cleanliness",
+    "does not count reachable terminal states",
+    "does not prove rank-profile entropy",
+    "does not edit Papers A-D"
+  ],
+  "sample_arithmetic": [
+    {
+      "dim_a": 4,
+      "domain_size": 8,
+      "moment_bound": 700,
+      "q": 5,
+      "s": 2
+    },
+    {
+      "dim_a": 5,
+      "domain_size": 10,
+      "moment_bound": 5880,
+      "q": 7,
+      "s": 3
+    },
+    {
+      "dim_a": 6,
+      "domain_size": 9,
+      "moment_bound": 2187,
+      "q": 3,
+      "s": 1
+    }
+  ],
+  "schema": "rs-mca.experimental.hankel_moment_clean_leaves.v1",
+  "source_dag_node": "hankel_moment_clean_leaves",
+  "status": "PROVED",
+  "verdict": "pinned_affine_terminal_leaves_have_clean_moment_bound",
+  "verified_clean_flats": 279
+}
