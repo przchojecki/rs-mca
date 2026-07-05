@@ -1,0 +1,29 @@
+{
+  "schema": "e22-fixed-scale-staircase-injectivity-v1",
+  "dag_node": "e22_fixed_scale_staircase_injectivity",
+  "status": "PROVED",
+  "claim": "For fixed quotient modulus M, a tail of size < M plus selected full M-fibers is recovered uniquely from its squarefree support locator.",
+  "dependencies": [],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_fixed_scale_staircase_injectivity/statement.md",
+      "nodes/e22_fixed_scale_staircase_injectivity/proof.md",
+      "nodes/e22_fixed_scale_staircase_injectivity/verify.py"
+    ]
+  },
+  "finite_checks": [
+    {
+      "p": 97,
+      "n": 32
+    },
+    {
+      "p": 193,
+      "n": 64
+    }
+  ],
+  "max_selected_fibers": 2,
+  "max_tail_size": 2,
+  "expected_result": "PASS"
+}
+
