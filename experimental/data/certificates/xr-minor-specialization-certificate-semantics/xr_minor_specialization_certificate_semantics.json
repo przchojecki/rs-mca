@@ -1,0 +1,30 @@
+{
+  "anchor_checks": {
+    "evaluation_map": true,
+    "non_claim": true,
+    "nonzero_minor": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not produce profile-by-profile minor certificates",
+    "does not count hypersurface points"
+  ],
+  "note": "experimental/notes/m1/xr_minor_specialization_certificate_semantics.md",
+  "schema": "xr-minor-specialization-certificate-semantics-v1",
+  "source_dag_node": "xr_minor_specialization_certificate_semantics",
+  "status": "PROVED_SPECIALIZATION_SEMANTICS_REPLAY",
+  "toy_check": {
+    "det_from_matrix": 92,
+    "det_from_polynomial": 92,
+    "evaluation_agrees": true,
+    "field": "F_101",
+    "point": [
+      3,
+      5
+    ],
+    "polynomial_nonzero": true,
+    "specialized_nonzero": true
+  }
+}

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - XR minor-specialization certificate semantics
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/xr_minor_specialization_certificate_semantics.md`;
+  `experimental/scripts/verify_xr_minor_specialization_certificate_semantics.py`;
+  `experimental/data/certificates/xr-minor-specialization-certificate-semantics/README.md`;
+  `experimental/data/certificates/xr-minor-specialization-certificate-semantics/xr_minor_specialization_certificate_semantics.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A certificate-semantics proof showing that a
+  nonzero admissible specialization of a maximal minor proves the corresponding
+  XR profile eliminant is not identically zero.
+- **How it is useful:** This supplies a proved soundness layer for the XR
+  light-profile nonvanishing branch already in this PR.
+- **What to do next:** Pair with actual profile certificate coverage or
+  inventory packets; this node does not count the remaining hypersurface
+  exceptional set.
+
 ### 2026-07-05 - XR eliminant vanishing class reduction
 
 - **Agent/model:** Codex.
