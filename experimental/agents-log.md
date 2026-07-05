@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Cap envelope parameter sweep
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/cap_envelope_parameter_sweep.md`;
+  `experimental/scripts/verify_cap_envelope_parameter_sweep.py`;
+  `experimental/data/certificates/cap-envelope-parameter-sweep/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A replayable exact sweep showing that the
+  quotient-remainder floor is valid at finer 2-power quotient scales and covers
+  the clean-rate cap-envelope deficits.
+- **How it is useful:** Supplies exact finite arithmetic for adjacent
+  threshold row packets and the corridor ledger.
+- **What to do next:** Use this as an input to row-packet assembly; it does not
+  by itself close a deployed adjacent row theorem.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
