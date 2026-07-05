@@ -1,0 +1,208 @@
+{
+  "anchor_checks": {
+    "full_stabilizer": true,
+    "galois_correspondence": true,
+    "non_claim": true,
+    "note_exists": true,
+    "proper_stabilizer": true,
+    "source_node": true,
+    "status": true,
+    "trivial_stabilizer": true
+  },
+  "dependencies": [
+    "finite-field Galois correspondence",
+    "Galois descent for stable ideals"
+  ],
+  "non_claims": [
+    "does not exclude full-orbit components",
+    "does not prove EF pole-free cycle exclusion",
+    "does not close ef_ru by itself"
+  ],
+  "note": "experimental/notes/ef/ef_galois_stabilizer_descent.md",
+  "schema": "ef-galois-stabilizer-descent-v1",
+  "source_dag_node": "ef_galois_stabilizer_descent",
+  "statement": "horizontal EF components split by Galois stabilizer into base-descended, tower-confined, or full-orbit cases",
+  "status": "PROVED_CYCLIC_GALOIS_STABILIZER_TRICHOTOMY",
+  "trichotomy_checks": [
+    {
+      "degenerate_base_equals_top": true,
+      "group_order": 1,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "base_descended"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 0
+      },
+      "exhaustive_partition": true,
+      "group_order": 2,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "2": "base_descended"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 0
+      },
+      "exhaustive_partition": true,
+      "group_order": 3,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "3": "base_descended"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 1
+      },
+      "exhaustive_partition": true,
+      "group_order": 4,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "2": "tower_confined",
+        "4": "base_descended"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 2
+      },
+      "exhaustive_partition": true,
+      "group_order": 6,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "2": "tower_confined",
+        "3": "tower_confined",
+        "6": "base_descended"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 2
+      },
+      "exhaustive_partition": true,
+      "group_order": 8,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "2": "tower_confined",
+        "4": "tower_confined",
+        "8": "base_descended"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 4
+      },
+      "exhaustive_partition": true,
+      "group_order": 12,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "12": "base_descended",
+        "2": "tower_confined",
+        "3": "tower_confined",
+        "4": "tower_confined",
+        "6": "tower_confined"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 3
+      },
+      "exhaustive_partition": true,
+      "group_order": 16,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "16": "base_descended",
+        "2": "tower_confined",
+        "4": "tower_confined",
+        "8": "tower_confined"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 6
+      },
+      "exhaustive_partition": true,
+      "group_order": 24,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "12": "tower_confined",
+        "2": "tower_confined",
+        "24": "base_descended",
+        "3": "tower_confined",
+        "4": "tower_confined",
+        "6": "tower_confined",
+        "8": "tower_confined"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 4
+      },
+      "exhaustive_partition": true,
+      "group_order": 32,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "16": "tower_confined",
+        "2": "tower_confined",
+        "32": "base_descended",
+        "4": "tower_confined",
+        "8": "tower_confined"
+      }
+    },
+    {
+      "class_counts": {
+        "base_descended": 1,
+        "full_orbit": 1,
+        "tower_confined": 10
+      },
+      "exhaustive_partition": true,
+      "group_order": 60,
+      "passes": true,
+      "stabilizer_classifications": {
+        "1": "full_orbit",
+        "10": "tower_confined",
+        "12": "tower_confined",
+        "15": "tower_confined",
+        "2": "tower_confined",
+        "20": "tower_confined",
+        "3": "tower_confined",
+        "30": "tower_confined",
+        "4": "tower_confined",
+        "5": "tower_confined",
+        "6": "tower_confined",
+        "60": "base_descended"
+      }
+    }
+  ]
+}

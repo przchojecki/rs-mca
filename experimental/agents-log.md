@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - EF Galois stabilizer descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/ef/ef_galois_stabilizer_descent.md`;
+  `experimental/scripts/verify_ef_galois_stabilizer_descent.py`;
+  `experimental/data/certificates/ef-galois-stabilizer-descent/README.md`;
+  `experimental/data/certificates/ef-galois-stabilizer-descent/ef_galois_stabilizer_descent.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A Galois-stabilizer trichotomy for extension-fiber
+  horizontal components: base-descended, intermediate/tower-confined, or
+  genuinely full-orbit.
+- **How it is useful:** This is a proved EF input for the extension-fiber
+  residual named in the v13 frontier, separating descent bookkeeping from the
+  later pole-free full-orbit exclusion.
+- **What to do next:** Use it as routing only; the full-orbit branch still
+  needs the separate pole-free cycle descent and classification/exclusion
+  payloads.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev
