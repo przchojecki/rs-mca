@@ -1,0 +1,29 @@
+{
+  "anchor_checks": {
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "target": true,
+    "tuple_universe": true
+  },
+  "non_claims": [
+    "does not construct the odd-phase ledger",
+    "does not prove the individual nontriviality certificates",
+    "does not prove the remaining DLI equidistribution theorem"
+  ],
+  "note": "experimental/notes/dli/dli_odd_phase_budget_ledger_soundness.md",
+  "schema": "dli-odd-phase-budget-ledger-soundness-v1",
+  "source_dag_node": "dli_odd_phase_budget_ledger_soundness",
+  "status": "PROVED_BUDGET_LEDGER_REPLAY",
+  "toy_check": {
+    "budget": 6,
+    "good_ledger_accepted": true,
+    "good_total": 6,
+    "malformed_bound_rejected": true,
+    "missing_row_rejected": true,
+    "over_budget_rejected": true,
+    "required_rows": 3,
+    "trivial_phase_rejected": true
+  }
+}

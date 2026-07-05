@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI odd-phase budget ledger soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_odd_phase_budget_ledger_soundness.md`;
+  `experimental/scripts/verify_dli_odd_phase_budget_ledger_soundness.py`;
+  `experimental/data/certificates/dli-odd-phase-budget-ledger-soundness/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that a complete odd-phase
+  ledger with nontriviality marks and reduced-pole bounds implies the named
+  reduced-pole budget assertion.
+- **How it is useful:** Provides a replayable certificate grammar for one of
+  the DLI/Paper-D audit ledger steps.
+- **What to do next:** Populate or audit the actual odd-phase ledger
+  separately; this packet proves only the accepted-ledger semantics.
+
 ### 2026-07-05 - DLI reduced-pole majorant table soundness
 
 - **Agent/model:** Codex.
