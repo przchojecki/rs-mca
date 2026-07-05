@@ -110,6 +110,46 @@ Keep entries concise and link to the relevant files.
   before being cited as a verifier.  The v14 moved-frontier checker confirms the
   lower-floor cutoff, not a complete adjacent safe upper ledger.
 
+### 2026-07-05 - Material correction: quantitative deep-list floor flips 1116044-1116047; corrected pair {1116047, 1116048}
+
+- **Agent/model:** Claude Fable 5 acting for latifkasuli.
+- **Files added or changed:**
+  `experimental/data/certificates/frontier-adjacent/README.md`;
+  `experimental/data/certificates/frontier-adjacent/koalabear_frontier_adjacent_a1116043_a1116044.json`;
+  `experimental/scripts/verify_koalabear_frontier_adjacent.py`;
+  `experimental/notes/audits/audit_koalabear_frontier_adjacent_ledger.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL (correction of the packet entry below).
+- **What is being added:** A material correction, found in post-submission
+  review by the external team: the packet's UNDECIDED_WINDOW_OPEN verdict at
+  `a = 1116044` was too conservative.  Composing two already-merged upstream
+  statements — `lem:v13f1-identity-prefix-floor` (K = k+1 list floor
+  `L = ceil(C(n,m)/p^(m-k-1))`) with `prop:quantitative-deep-list-floor`
+  (v12 main tex, NO density trigger; sharp form = `thm:quant-deep-point`,
+  stated for LD_sw) — gives `LD_sw(C,m) >= M = ceil(L(q-n)/(q-n+k(L-1)))`.
+  The exact five-point sweep flips `1116044..1116047` MCA-unsafe
+  (+102.4700 / +71.3269 / +40.1523 / +8.9777 bits over B*) and fails at
+  `1116048` (-22.1969).  Corrected edge/open pair: `{1116047, 1116048}`
+  (vocabulary: COUNTEREXAMPLE_NEW_FLOOR at the previously-open step); the
+  unsafe interval widens to `[981105/2097152, 1/2)`; the `1116048` block
+  carries the full recomputed upper ledger (deficit `274980670913364722`
+  against the dominating quantitative floor `57198030366 ~ 2^35.74`).
+- **How it is useful:** Refutes the finite adjacent-pair prediction of
+  `prob:v13f1-frontier` at the KoalaBear MCA row (`a* >= 1116048` now);
+  contradicts no proved-safe statement; RETIRES the packet's "5.4985-bit
+  conversion gap" framing (that number is the gap to the strong `q/k`
+  trigger only — zero new mathematics was needed, exactly the under-trigger
+  use case `rem:quantitative-floor-vs-contrapositive` prescribes).  The
+  residual at the new open step is different in kind: the conversion is
+  lossless there (M = L), so the -22.1969-bit shortfall is the prefix list
+  floor itself, not the conversion.
+- **What to do next:** Sharpen the identity-prefix floor (more list mass at
+  `m = 1116048`), not the conversion constant; carry the safe-side upper
+  ledger work at `1116048` (cell statuses carried over, every a-dependent
+  number recomputed in the JSON's 1116048 block); replay with
+  `python3 experimental/scripts/verify_koalabear_frontier_adjacent.py --check`
+  (~2 min, exact integers only).
+
 ### 2026-07-05 - First frontier-adjacent row packet: KoalaBear MCA upper ledger at {1116043, 1116044}
 
 - **Agent/model:** Claude Fable 5 acting for latifkasuli.
@@ -119,7 +159,9 @@ Keep entries concise and link to the relevant files.
   `experimental/scripts/verify_koalabear_frontier_adjacent.py`;
   `experimental/notes/audits/audit_koalabear_frontier_adjacent_ledger.md`;
   `experimental/agents-log.md`.
-- **Status:** AUDIT / EXPERIMENTAL.
+- **Status:** AUDIT / EXPERIMENTAL.  **CORRECTED by the 2026-07-05 material
+  correction entry above:** the UNDECIDED_WINDOW_OPEN verdict at `1116044`
+  and the 5.4985-bit conversion-gap framing below are superseded.
 - **What is being added:** The first `frontier-adjacent/*.json` packet
   (agents.md highest-value item 2), instantiating the declared threshold task
   "build the exact upper ledger for the adjacent safe-side step" at agreement

@@ -8,6 +8,12 @@
 - **Scope:** first instantiation of the `frontier-adjacent/*.json` packet
   family (agents.md, "What counts as progress now", item 2) at the declared
   next threshold task.
+- **MATERIAL CORRECTION:** the `UNDECIDED_WINDOW_OPEN` verdict at `1116044`
+  described in sections 1-7 below (the original packet, kept as the
+  historical record) was too conservative and is corrected in **section 8**:
+  `1116044`-`1116047` are MCA-unsafe by the quantitative deep-list floor,
+  the corrected edge/open pair is `{1116047, 1116048}`, and the
+  "5.4985-bit conversion gap" framing of section 4 is RETIRED.
 
 ## 1. The task
 
@@ -168,6 +174,113 @@ python3 experimental/scripts/verify_koalabear_frontier_adjacent.py --write
 python3 experimental/scripts/verify_koalabear_frontier_adjacent.py --check
 ```
 
-Both modes rerun the full exact recomputation (~131 s measured, dominated by
+Both modes rerun the full exact recomputation (~120 s measured, dominated by
 the five-divisor `U_sum`); `--check` additionally byte-compares the stored
 JSON.
+
+## 8. Material correction (2026-07-05)
+
+**Found in post-submission review by the external team.**  The original
+packet's `UNDECIDED_WINDOW_OPEN` verdict at `a = 1116044` was too
+conservative: the row is MCA-unsafe by composing two statements that were
+**already merged upstream** when the packet shipped, and the true MCA edge
+sits at `a = 1116047`.
+
+### The composition (three lines, zero new mathematics)
+
+1. `lem:v13f1-identity-prefix-floor` at `K = k+1`, `m`, `w = m-k-1`: some
+   received word `U` has `L(m) = ceil(C(n,m)/p^w) >= 1` distinct
+   `RS[F,D,k+1]`-codewords in the closed `(1-m/n)`-ball around it, each
+   agreeing on at least `m > k` points (per-codeword supports; exactly the
+   hypothesis shape of the conversion, which handles varying supports
+   explicitly).
+2. `prop:quantitative-deep-list-floor` (`tex/cs25_cap_v12.tex`, merged
+   2026-07-02; the sharper internal denominator `q-n+k(L-1)` is the official
+   conclusion of `thm:quant-deep-point` in the strict352 section, stated for
+   `LD_sw` verbatim): some single received line `(f_alpha, g_alpha)`,
+   `alpha in Omega = F \ D`, carries at least
+   `M(m) = ceil( L(q-n) / (q-n + k(L-1)) )` support-wise MCA-bad **finite
+   slopes in the line field** `F_{p^6}` — a max-over-lines lower bound on
+   the `def:mca` numerator, never a family sum.
+3. Compare `M(m)` to `B* = 274980728111395087` (`thm:v13-windows`:
+   `B(q) < L => certified unsafe`).
+
+**Crucially, the proposition has no density trigger**: any `L >= 1`
+qualifies.  The `(q+k)/k` threshold the original packet measured against
+belongs only to the `thm:A` contrapositive route, and v12's own remark
+`rem:quantitative-floor-vs-contrapositive` (v12 ~426-436) prescribes the
+quantitative form for exactly this case — "the form a staircase scanner
+should use when a quotient fiber is too small to cross the `1/(2k)` trigger
+but still contributes a nonzero explicit bad-slope numerator."
+
+### The exact five-point sweep (all recomputed by the verifier)
+
+Both denominator ceilings (`k(L-1)` sharp / `kL` printed) agree at every
+point; verdicts are exact integer comparisons.
+
+```text
+m         w      log2 L     log2 M     margin over B*   verdict
+1116044   67467  160.4336   160.4021   +102.4700 bits   MCA-UNSAFE (was the open step)
+1116045   67468  129.2591   129.2591    +71.3269        MCA-UNSAFE
+1116046   67469   98.0845    98.0845    +40.1523        MCA-UNSAFE
+1116047   67470   66.9099    66.9099     +8.9777        MCA-UNSAFE — new edge a0' (M = L, lossless)
+1116048   67471   35.7352    35.7352    -22.1969        not flipped — new open step (M = L, lossless)
+```
+
+Exact anchors: `L(1116044) =
+1973967916468083369044358670918132115633867608112` (the packet's own
+certified list floor, unchanged), `M(1116044) =
+1931247427137429416005585529088676636591240959005`, `M(1116047) = L(1116047)
+= 138634741058327852652`, `M(1116048) = 57198030366`.  The certified
+MCA-unsafe interval widens from `[981109/2097152, 1/2)` to
+`[981105/2097152, 1/2) = [0.4678273..., 1/2)`; the corridor becomes
+`1116048 <= a*`.
+
+### Why the original packet under-claimed
+
+Section 4's "conversion route — 5.4985 bits" measured the certified
+`2^160.4336` list floor against the strong `q/k`-scale trigger
+`(q+k)/k = 2^165.9321` — a real gap, but a gap **to that trigger only**.
+Separately, the `~2^160.40` quantitative number was printed inside `B_ext`
+as `hypothetical_only` pending condition (i) of `prop:v13-extension`.  Both
+cautions conflated compiler hypotheses with the direct theorem: condition
+(i) exists so the *upper* ledger can attribute bad parameters to
+extension-only *cells* without double-charging; a row-level unsafety verdict
+needs no cell attribution, and the direct route takes `Omega = F \ D`, not
+`F \ B`.  The composition above was available upstream for two days before
+the packet shipped; nobody had composed the two statements.
+
+### Consequences
+
+- **Verdicts:** `1116044` flips to `UNSAFE_BY_PROVED_LOWER_BOUND`
+  (residual-label vocabulary: `COUNTEREXAMPLE_NEW_FLOOR` — a lower
+  certificate crossing `B*` at the previously-open step); likewise
+  `1116045`-`1116047` from their own floors.  The new
+  `UNDECIDED_WINDOW_OPEN` row is `1116048`, with the full per-cell upper
+  ledger carried over (tangent-upper UNAVAILABLE at `r = 981104 > R_tan`;
+  aperiodic deficiency `913633`; SAFE_SUM recomputed exactly; sparse/CA
+  landmark table recomputed; all statuses unchanged in kind).
+- **Deficit ledger** (moves to `1116048`): known lower mass is the
+  quantitative floor `57198030366 ~ 2^35.7352` (dominating the tangent floor
+  `981105`; lower certificates max, never sum) vs `B* ~ 2^57.9321`; deficit
+  `274980670913364722`.
+- **The conversion-gap framing is RETIRED.**  Zero bits of new mathematics
+  were needed at `1116044`.  The analogous residual at the new open step is
+  different in kind: at `1116048` the conversion is already lossless
+  (`M = L`), so the `-22.1969`-bit shortfall is the **prefix list floor
+  itself** — the next sharpening target is the floor (more list mass at
+  `m = 1116048`), not the conversion constant.
+- **Consistency:** no proved-safe statement is contradicted (nearest
+  unconditional safe radius `delta ~ 0.2045`; Johnson at `a = 1482910`;
+  exactness zone at `a >= 1747627`).  Only the finite adjacent-pair
+  prediction of `prob:v13f1-frontier` (a Problem, explicitly route-relative)
+  is refuted at this row; the asymptotic ceiling `1 - rho - g* = 0.4678266`
+  (`def:v13f1-gstar`) survives, with the quantitative route realizing all
+  but ~1.5 steps of it.  The new MCA edge `1116047` sits one step past the
+  proved list edge `1116046` — exactly the `K = k+1` vs `K = k` offset.
+
+All numbers in this section are recomputed from scratch by the verifier
+(`quant_mca_m1116044` ... `quant_mca_m1116048` in the JSON) and gated by
+`--check` byte-comparison; sections 2-3 and 5-6 above remain correct, with
+the per-cell blocker analysis carrying over to the new open step (every
+`a`-dependent number is recomputed in the JSON's `1116048` block).
