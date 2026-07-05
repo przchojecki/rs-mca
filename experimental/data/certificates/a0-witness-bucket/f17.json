@@ -1,0 +1,271 @@
+{
+  "claim": "exact periodicity bucket counts for one recorded pole-line-style slope",
+  "payload_sha256": "67f17e7b444e412deb1151c5b25b36885f00b2859b468bd1d7bd48b5b2f991ac",
+  "proof_status": "AUDIT replay of a recorded finite sweep",
+  "rows": [
+    {
+      "a": 7,
+      "agreement_supports_total": 699,
+      "all_recorded_supports_exact": true,
+      "aperiodic_witness_supports": 699,
+      "base_support": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "base_support_is_parallel": true,
+      "candidate_supports_examined": 50643,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ]
+      },
+      "examples": [
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "degree": 5,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            14,
+            15
+          ]
+        },
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "degree": 5,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "degree": 5,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            9,
+            12
+          ]
+        },
+        {
+          "degree": 5,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            9,
+            15
+          ]
+        },
+        {
+          "degree": 5,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            12,
+            15
+          ]
+        },
+        {
+          "degree": 5,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7,
+            11
+          ]
+        },
+        {
+          "degree": 5,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7,
+            15
+          ]
+        },
+        {
+          "degree": 5,
+          "periodicity_scale": 1,
+          "size": 7,
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            10,
+            12
+          ]
+        }
+      ],
+      "k": 6,
+      "line": {
+        "f_values": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ],
+        "g_values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "n": 16,
+      "p": 17,
+      "periodic_witness_supports": 0,
+      "periodicity_scale_histogram": {
+        "1": 699
+      },
+      "q_chal": 17,
+      "q_gen": 17,
+      "q_line": 17,
+      "slope": 1
+    }
+  ],
+  "schema_version": "a0-witness-bucket-v1",
+  "scope": [
+    "The row enumerates every agreement support of size at least a for the recorded slope.",
+    "The row is not a full identity-prefix-floor conversion theorem."
+  ],
+  "status": "EXPERIMENTAL",
+  "theorem_problem_id": "A0-witness-bucket-periodicity"
+}

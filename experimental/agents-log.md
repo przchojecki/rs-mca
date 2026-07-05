@@ -1925,3 +1925,20 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-05 - A0 witness-bucket periodicity check
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/gpu/a0_witness_bucket_sweep.py`,
+  `experimental/scripts/verify_a0_witness_bucket.py`,
+  `experimental/data/certificates/a0-witness-bucket/`,
+  `experimental/notes/m1/a0_witness_bucket_periodicity_audit.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact support-periodicity bucket counts for one
+  recorded pole-line-style slope in each of four small prime-field rows,
+  including a guard row where the periodic detector finds a periodic support.
+- **How it is useful:** Gives a CPU-replayable finite check for the
+  aperiodic-support routing step while keeping the tested scope explicit.
+- **What to do next:** Extend the same verifier to a full identity-prefix-floor
+  conversion packet before using it as evidence for a global A0 statement.

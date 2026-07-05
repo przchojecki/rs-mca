@@ -1,0 +1,130 @@
+{
+  "claim": "exact periodicity bucket counts for one recorded pole-line-style slope",
+  "payload_sha256": "4157f79e4cbad50f165bcb5eeb1370d5d51ff39f291a509c0853cddeaa1f357e",
+  "proof_status": "AUDIT replay of a recorded finite sweep",
+  "rows": [
+    {
+      "a": 3,
+      "agreement_supports_total": 6,
+      "all_recorded_supports_exact": true,
+      "aperiodic_witness_supports": 6,
+      "base_support": [
+        0,
+        1,
+        2
+      ],
+      "base_support_is_parallel": true,
+      "candidate_supports_examined": 42,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          2,
+          6,
+          4,
+          5
+        ]
+      },
+      "examples": [
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 3,
+          "support": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 3,
+          "support": [
+            0,
+            1,
+            3
+          ]
+        },
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 3,
+          "support": [
+            0,
+            2,
+            3
+          ]
+        },
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 3,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "degree": 1,
+          "periodicity_scale": 1,
+          "size": 3,
+          "support": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "degree": -1,
+          "periodicity_scale": 1,
+          "size": 4,
+          "support": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "k": 2,
+      "line": {
+        "f_values": [
+          6,
+          6,
+          6,
+          6,
+          4,
+          5
+        ],
+        "g_values": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "n": 6,
+      "p": 7,
+      "periodic_witness_supports": 0,
+      "periodicity_scale_histogram": {
+        "1": 6
+      },
+      "q_chal": 7,
+      "q_gen": 7,
+      "q_line": 7,
+      "slope": 1
+    }
+  ],
+  "schema_version": "a0-witness-bucket-v1",
+  "scope": [
+    "The row enumerates every agreement support of size at least a for the recorded slope.",
+    "The row is not a full identity-prefix-floor conversion theorem."
+  ],
+  "status": "EXPERIMENTAL",
+  "theorem_problem_id": "A0-witness-bucket-periodicity"
+}
