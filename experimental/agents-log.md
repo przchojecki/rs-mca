@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Mu2 complete fold-defect injection ledger
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_gamma_fold_defect_injection.py`;
+  `experimental/scripts/verify_gamma_fold_defect_injection_check.py`;
+  `experimental/data/certificates/gamma-fold-defect/gamma_fold_defect_injection.json`;
+  `experimental/notes/m1/gamma_fold_defect_injection.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / LEDGER / AUDIT.
+- **What is being added:** A finite exact census of destroyed aperiodic
+  parent supports under the `mu_2` fold, grouped by doubleton child support
+  plus a signed singleton defect certificate, with exact injection-multiplicity,
+  defect-complexity, child-wellformedness sanity, and count-only diagnostic
+  tables.
+- **How it is useful:** Measures the destroyed-support half of Route-gamma
+  separately from the surviving image-level transfer constant. The complete
+  defect key is injective on the recorded rows, while the old count-only
+  multiplicities are retained only as singleton-sign degeneracy diagnostics.
+- **What to do next:** Test the fixed-rung child split-witness validity
+  statement directly; the current child wellformedness check is only a
+  structural sanity check on distinct in-range folded indices.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by

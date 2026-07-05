@@ -1,0 +1,4440 @@
+{
+  "claim": "finite support-level complete-defect injection multiplicity census for mu_2 folding",
+  "complete_defect_injective_on_recorded_rows": true,
+  "max_complete_defect_multiplicity_sequence": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "non_claims": [
+    "No asymptotic bounded-multiplicity theorem is claimed.",
+    "No Route-gamma transfer theorem is claimed.",
+    "The support-level child wellformedness check is not a rung-(n/2) split-witness validity claim."
+  ],
+  "payload_sha256": "1c9af2ed8cb18a5c420af304f9b2a3a4b5620637f34952059fe03e92369d4125",
+  "proof_status": "EXPERIMENTAL",
+  "row_rule": "dyadic mu_n toy rows, aperiodic j-subsets only, destroyed by x -> x^2 folding",
+  "rows": [
+    {
+      "aperiodic_j_subsets": 4,
+      "child_periodicity_histogram": [
+        {
+          "parent_count": 4,
+          "periodicity_scale": 0
+        }
+      ],
+      "child_rung": {
+        "j_varies_by_doubleton_count": true,
+        "n": 2
+      },
+      "child_size_histogram": [
+        {
+          "child_size": 0,
+          "parent_count": 4
+        }
+      ],
+      "child_wellformedness": {
+        "description": "structural sanity check that the doubleton child is a set of distinct in-range indices; NOT a rung-(n/2) split-witness validity claim",
+        "malformed_support_count": 0,
+        "wellformed_support_count": 4,
+        "wellformed_support_fraction": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1/1"
+        }
+      },
+      "complete_defect_bucket_count": 4,
+      "complete_defect_multiplicity_histogram": [
+        {
+          "bucket_count": 4,
+          "multiplicity": 1
+        }
+      ],
+      "count_only_key_diagnostic": {
+        "description": "folded count vector without singleton signs; records sign-choice degeneracy only",
+        "max_multiplicity": 4,
+        "multiplicity_histogram": [
+          {
+            "bucket_count": 1,
+            "multiplicity": 4
+          }
+        ]
+      },
+      "defect_complexity_histogram": [
+        {
+          "parent_count": 4,
+          "singleton_count": 2
+        }
+      ],
+      "destroyed_aperiodic_count": 4,
+      "domain": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "examples": [
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 2
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 2
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 2
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 2
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              3
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 2
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 2
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              1,
+              2
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 2
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 2
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              2,
+              3
+            ]
+          }
+        }
+      ],
+      "fold_map": "index i maps to i mod n/2, equivalent to x -> x^2",
+      "folded_domain": [
+        1,
+        4
+      ],
+      "j": 2,
+      "label": "f5_mu4_j2",
+      "max_complete_defect_multiplicity": 1,
+      "n": 4,
+      "p": 5,
+      "parent_rung": {
+        "j": 2,
+        "n": 4
+      },
+      "periodic_j_subsets": 2,
+      "q_chal": 5,
+      "q_gen": 5,
+      "q_line": 5,
+      "surviving_aperiodic_count": 0,
+      "total_j_subsets": 6
+    },
+    {
+      "aperiodic_j_subsets": 56,
+      "child_periodicity_histogram": [
+        {
+          "parent_count": 32,
+          "periodicity_scale": 0
+        },
+        {
+          "parent_count": 24,
+          "periodicity_scale": 1
+        }
+      ],
+      "child_rung": {
+        "j_varies_by_doubleton_count": true,
+        "n": 4
+      },
+      "child_size_histogram": [
+        {
+          "child_size": 0,
+          "parent_count": 32
+        },
+        {
+          "child_size": 1,
+          "parent_count": 24
+        }
+      ],
+      "child_wellformedness": {
+        "description": "structural sanity check that the doubleton child is a set of distinct in-range indices; NOT a rung-(n/2) split-witness validity claim",
+        "malformed_support_count": 0,
+        "wellformed_support_count": 56,
+        "wellformed_support_fraction": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1/1"
+        }
+      },
+      "complete_defect_bucket_count": 56,
+      "complete_defect_multiplicity_histogram": [
+        {
+          "bucket_count": 56,
+          "multiplicity": 1
+        }
+      ],
+      "count_only_key_diagnostic": {
+        "description": "folded count vector without singleton signs; records sign-choice degeneracy only",
+        "max_multiplicity": 8,
+        "multiplicity_histogram": [
+          {
+            "bucket_count": 12,
+            "multiplicity": 2
+          },
+          {
+            "bucket_count": 4,
+            "multiplicity": 8
+          }
+        ]
+      },
+      "defect_complexity_histogram": [
+        {
+          "parent_count": 24,
+          "singleton_count": 1
+        },
+        {
+          "parent_count": 32,
+          "singleton_count": 3
+        }
+      ],
+      "destroyed_aperiodic_count": 56,
+      "domain": [
+        1,
+        9,
+        13,
+        15,
+        16,
+        8,
+        4,
+        2
+      ],
+      "examples": [
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              6
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              3
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              7
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              2,
+              5
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              5,
+              6
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              3,
+              5
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              5,
+              7
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              2,
+              7
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              3,
+              6
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 3
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 3
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              6,
+              7
+            ]
+          }
+        }
+      ],
+      "fold_map": "index i maps to i mod n/2, equivalent to x -> x^2",
+      "folded_domain": [
+        1,
+        13,
+        16,
+        4
+      ],
+      "j": 3,
+      "label": "f17_mu8_j3",
+      "max_complete_defect_multiplicity": 1,
+      "n": 8,
+      "p": 17,
+      "parent_rung": {
+        "j": 3,
+        "n": 8
+      },
+      "periodic_j_subsets": 0,
+      "q_chal": 17,
+      "q_gen": 17,
+      "q_line": 17,
+      "surviving_aperiodic_count": 0,
+      "total_j_subsets": 56
+    },
+    {
+      "aperiodic_j_subsets": 1792,
+      "child_periodicity_histogram": [
+        {
+          "parent_count": 1120,
+          "periodicity_scale": 0
+        },
+        {
+          "parent_count": 672,
+          "periodicity_scale": 1
+        }
+      ],
+      "child_rung": {
+        "j_varies_by_doubleton_count": true,
+        "n": 8
+      },
+      "child_size_histogram": [
+        {
+          "child_size": 0,
+          "parent_count": 1120
+        },
+        {
+          "child_size": 1,
+          "parent_count": 672
+        }
+      ],
+      "child_wellformedness": {
+        "description": "structural sanity check that the doubleton child is a set of distinct in-range indices; NOT a rung-(n/2) split-witness validity claim",
+        "malformed_support_count": 0,
+        "wellformed_support_count": 1792,
+        "wellformed_support_fraction": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1/1"
+        }
+      },
+      "complete_defect_bucket_count": 1792,
+      "complete_defect_multiplicity_histogram": [
+        {
+          "bucket_count": 1792,
+          "multiplicity": 1
+        }
+      ],
+      "count_only_key_diagnostic": {
+        "description": "folded count vector without singleton signs; records sign-choice degeneracy only",
+        "max_multiplicity": 16,
+        "multiplicity_histogram": [
+          {
+            "bucket_count": 168,
+            "multiplicity": 4
+          },
+          {
+            "bucket_count": 70,
+            "multiplicity": 16
+          }
+        ]
+      },
+      "defect_complexity_histogram": [
+        {
+          "parent_count": 672,
+          "singleton_count": 2
+        },
+        {
+          "parent_count": 1120,
+          "singleton_count": 4
+        }
+      ],
+      "destroyed_aperiodic_count": 1792,
+      "domain": [
+        1,
+        3,
+        9,
+        10,
+        13,
+        5,
+        15,
+        11,
+        16,
+        14,
+        8,
+        7,
+        4,
+        12,
+        2,
+        6
+      ],
+      "examples": [
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              11
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 4,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 4,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 4,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 4,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              4
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 4,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 4,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              12
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 5,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 5,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 5,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 5,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              5
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 5,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 5,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              13
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 6,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 6,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 6,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 6,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              6
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 6,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 6,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              14
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 7,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 7,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 7,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 7,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              7
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 7,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 7,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              15
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              3,
+              10
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 4
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 4
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              10,
+              11
+            ]
+          }
+        }
+      ],
+      "fold_map": "index i maps to i mod n/2, equivalent to x -> x^2",
+      "folded_domain": [
+        1,
+        9,
+        13,
+        15,
+        16,
+        8,
+        4,
+        2
+      ],
+      "j": 4,
+      "label": "f17_mu16_j4",
+      "max_complete_defect_multiplicity": 1,
+      "n": 16,
+      "p": 17,
+      "parent_rung": {
+        "j": 4,
+        "n": 16
+      },
+      "periodic_j_subsets": 28,
+      "q_chal": 17,
+      "q_gen": 17,
+      "q_line": 17,
+      "surviving_aperiodic_count": 0,
+      "total_j_subsets": 1820
+    },
+    {
+      "aperiodic_j_subsets": 201376,
+      "child_periodicity_histogram": [
+        {
+          "parent_count": 139776,
+          "periodicity_scale": 0
+        },
+        {
+          "parent_count": 61376,
+          "periodicity_scale": 1
+        },
+        {
+          "parent_count": 224,
+          "periodicity_scale": 2
+        }
+      ],
+      "child_rung": {
+        "j_varies_by_doubleton_count": true,
+        "n": 16
+      },
+      "child_size_histogram": [
+        {
+          "child_size": 0,
+          "parent_count": 139776
+        },
+        {
+          "child_size": 1,
+          "parent_count": 58240
+        },
+        {
+          "child_size": 2,
+          "parent_count": 3360
+        }
+      ],
+      "child_wellformedness": {
+        "description": "structural sanity check that the doubleton child is a set of distinct in-range indices; NOT a rung-(n/2) split-witness validity claim",
+        "malformed_support_count": 0,
+        "wellformed_support_count": 201376,
+        "wellformed_support_fraction": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1/1"
+        }
+      },
+      "complete_defect_bucket_count": 201376,
+      "complete_defect_multiplicity_histogram": [
+        {
+          "bucket_count": 201376,
+          "multiplicity": 1
+        }
+      ],
+      "count_only_key_diagnostic": {
+        "description": "folded count vector without singleton signs; records sign-choice degeneracy only",
+        "max_multiplicity": 32,
+        "multiplicity_histogram": [
+          {
+            "bucket_count": 1680,
+            "multiplicity": 2
+          },
+          {
+            "bucket_count": 7280,
+            "multiplicity": 8
+          },
+          {
+            "bucket_count": 4368,
+            "multiplicity": 32
+          }
+        ]
+      },
+      "defect_complexity_histogram": [
+        {
+          "parent_count": 3360,
+          "singleton_count": 1
+        },
+        {
+          "parent_count": 58240,
+          "singleton_count": 3
+        },
+        {
+          "parent_count": 139776,
+          "singleton_count": 5
+        }
+      ],
+      "destroyed_aperiodic_count": 201376,
+      "domain": [
+        1,
+        28,
+        8,
+        30,
+        64,
+        46,
+        27,
+        77,
+        22,
+        34,
+        79,
+        78,
+        50,
+        42,
+        12,
+        45,
+        96,
+        69,
+        89,
+        67,
+        33,
+        51,
+        70,
+        20,
+        75,
+        63,
+        18,
+        19,
+        47,
+        55,
+        85,
+        52
+      ],
+      "examples": [
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 4,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 4,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 4,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 4,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 4,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 4,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              20
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 5,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 5,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 5,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 5,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              5
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 5,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 5,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              21
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 6,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 6,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 6,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 6,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              6
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 6,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 6,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              22
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 7,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 7,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 7,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 7,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              7
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 7,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 7,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              23
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 8,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 8,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 8,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 8,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              8
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 8,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 8,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              24
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 9,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 9,
+                "sign": 0
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 9,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 9,
+                  "sign": 0
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              9
+            ]
+          }
+        },
+        {
+          "child": {
+            "locator_coefficients": [
+              1
+            ],
+            "locator_roots": [],
+            "periodicity_scale": 0,
+            "size": 0,
+            "support": [],
+            "wellformed_support": true
+          },
+          "complete_defect": {
+            "signed_singletons": [
+              {
+                "folded_index": 0,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 0,
+                "sign": 0
+              },
+              {
+                "folded_index": 1,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 1,
+                "sign": 0
+              },
+              {
+                "folded_index": 2,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 2,
+                "sign": 0
+              },
+              {
+                "folded_index": 3,
+                "opposite_parent_index_offset": 0,
+                "parent_index": 3,
+                "sign": 0
+              },
+              {
+                "folded_index": 9,
+                "opposite_parent_index_offset": 1,
+                "parent_index": null,
+                "sign": 1
+              }
+            ],
+            "singleton_count": 5
+          },
+          "multiplicity": 1,
+          "representative_parent": {
+            "child": {
+              "locator_coefficients": [
+                1
+              ],
+              "locator_roots": [],
+              "periodicity_scale": 0,
+              "size": 0,
+              "support": [],
+              "wellformed_support": true
+            },
+            "complete_defect": {
+              "signed_singletons": [
+                {
+                  "folded_index": 0,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 0,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 1,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 1,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 2,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 2,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 3,
+                  "opposite_parent_index_offset": 0,
+                  "parent_index": 3,
+                  "sign": 0
+                },
+                {
+                  "folded_index": 9,
+                  "opposite_parent_index_offset": 1,
+                  "parent_index": null,
+                  "sign": 1
+                }
+              ],
+              "singleton_count": 5
+            },
+            "destroyed": true,
+            "folded_counts": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "periodicity_scale": 1,
+            "support": [
+              0,
+              1,
+              2,
+              3,
+              25
+            ]
+          }
+        }
+      ],
+      "fold_map": "index i maps to i mod n/2, equivalent to x -> x^2",
+      "folded_domain": [
+        1,
+        8,
+        64,
+        27,
+        22,
+        79,
+        50,
+        12,
+        96,
+        89,
+        33,
+        70,
+        75,
+        18,
+        47,
+        85
+      ],
+      "j": 5,
+      "label": "f97_mu32_j5",
+      "max_complete_defect_multiplicity": 1,
+      "n": 32,
+      "p": 97,
+      "parent_rung": {
+        "j": 5,
+        "n": 32
+      },
+      "periodic_j_subsets": 0,
+      "q_chal": 97,
+      "q_gen": 97,
+      "q_line": 97,
+      "surviving_aperiodic_count": 0,
+      "total_j_subsets": 201376
+    }
+  ],
+  "schema_version": "gamma-fold-defect-injection-v2",
+  "source_quotes": [
+    "witnesses destroyed by folding must be shown to inject, with controlled multiplicity, into a rung-below problem via their folded multiset plus a defect certificate",
+    "A stabilized heavy fiber is an almost-periodic moment fiber ... stratify by folding defect"
+  ],
+  "theorem_problem_id": "thm:fiber-descent; lem:v13-quot-pullback; Route-gamma fold-defect injection"
+}
