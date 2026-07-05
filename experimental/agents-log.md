@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - XR eliminant vanishing class reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/xr_eliminant_vanishing_class.md`;
+  `experimental/scripts/verify_xr_eliminant_vanishing_class.py`;
+  `experimental/data/certificates/xr-eliminant-vanishing-class/README.md`;
+  `experimental/data/certificates/xr-eliminant-vanishing-class/xr_eliminant_vanishing_class.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A connected XR reduction showing that profile
+  nonvanishing plus the coordinate-hypersurface reduction removes the old
+  identically vanishing light-profile branch.
+- **How it is useful:** The XR light-triangle residual is reduced to the named
+  hypersurface population/rationing input, rather than a structural
+  eliminant-vanishing classification.
+- **What to do next:** Supply or cite the staircase/SPI/XR hypersurface
+  rationing bound before promoting this branch into a row-level safe ledger.
+
 ### 2026-07-05 - XR coordinate hypersurface reduction
 
 - **Agent/model:** Codex.

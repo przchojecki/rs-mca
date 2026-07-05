@@ -1,0 +1,27 @@
+{
+  "conclusion": "The identically vanishing light-profile class is removed; the remaining branch is hypersurface population/rationing.",
+  "depends_on": [
+    "xr_profile_eliminant_nonvanishing",
+    "xr_coordinate_hypersurface_reduction"
+  ],
+  "implication": [
+    {
+      "from": "xr_profile_eliminant_nonvanishing",
+      "to": "no unpaid light profile has identically vanishing eliminant"
+    },
+    {
+      "from": "xr_coordinate_hypersurface_reduction",
+      "to": "coordinate-special stagnation in a nonzero profile lies on a proper bounded-degree hypersurface"
+    }
+  ],
+  "non_claims": [
+    "does not count points on the hypersurface",
+    "does not prove the full XR light-triangle residual",
+    "does not produce an adjacent deployed upper certificate"
+  ],
+  "note": "experimental/notes/m1/xr_eliminant_vanishing_class.md",
+  "remaining_named_input": "staircase/SPI/XR hypersurface rationing",
+  "schema": "xr-eliminant-vanishing-class-v1",
+  "source_dag_node": "xr_eliminant_vanishing_class",
+  "status": "PROVED_REDUCTION"
+}
