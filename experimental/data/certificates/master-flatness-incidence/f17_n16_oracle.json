@@ -1,0 +1,169 @@
+{
+  "coverage": "full-enumeration",
+  "domain": {
+    "elements": [
+      1,
+      3,
+      9,
+      10,
+      13,
+      5,
+      15,
+      11,
+      16,
+      14,
+      8,
+      7,
+      4,
+      12,
+      2,
+      6
+    ],
+    "order": 16
+  },
+  "j_summaries": [
+    {
+      "j": 0,
+      "scale_histogram": {
+        "16": 1
+      },
+      "total_locators": 1
+    },
+    {
+      "j": 1,
+      "scale_histogram": {
+        "1": 16
+      },
+      "total_locators": 16
+    },
+    {
+      "j": 2,
+      "scale_histogram": {
+        "1": 112,
+        "2": 8
+      },
+      "total_locators": 120
+    },
+    {
+      "j": 3,
+      "scale_histogram": {
+        "1": 560
+      },
+      "total_locators": 560
+    },
+    {
+      "j": 4,
+      "scale_histogram": {
+        "1": 1792,
+        "2": 24,
+        "4": 4
+      },
+      "total_locators": 1820
+    },
+    {
+      "j": 5,
+      "scale_histogram": {
+        "1": 4368
+      },
+      "total_locators": 4368
+    },
+    {
+      "j": 6,
+      "scale_histogram": {
+        "1": 7952,
+        "2": 56
+      },
+      "total_locators": 8008
+    },
+    {
+      "j": 7,
+      "scale_histogram": {
+        "1": 11440
+      },
+      "total_locators": 11440
+    },
+    {
+      "j": 8,
+      "scale_histogram": {
+        "1": 12800,
+        "2": 64,
+        "4": 4,
+        "8": 2
+      },
+      "total_locators": 12870
+    },
+    {
+      "j": 9,
+      "scale_histogram": {
+        "1": 11440
+      },
+      "total_locators": 11440
+    },
+    {
+      "j": 10,
+      "scale_histogram": {
+        "1": 7952,
+        "2": 56
+      },
+      "total_locators": 8008
+    },
+    {
+      "j": 11,
+      "scale_histogram": {
+        "1": 4368
+      },
+      "total_locators": 4368
+    },
+    {
+      "j": 12,
+      "scale_histogram": {
+        "1": 1792,
+        "2": 24,
+        "4": 4
+      },
+      "total_locators": 1820
+    },
+    {
+      "j": 13,
+      "scale_histogram": {
+        "1": 560
+      },
+      "total_locators": 560
+    },
+    {
+      "j": 14,
+      "scale_histogram": {
+        "1": 112,
+        "2": 8
+      },
+      "total_locators": 120
+    },
+    {
+      "j": 15,
+      "scale_histogram": {
+        "1": 16
+      },
+      "total_locators": 16
+    },
+    {
+      "j": 16,
+      "scale_histogram": {
+        "16": 1
+      },
+      "total_locators": 1
+    }
+  ],
+  "non_claims": [
+    "This is a counting oracle, not an incidence bound."
+  ],
+  "object": "Dloc_j(mu_n) all-degree locator count and periodicity oracle",
+  "parameters": {
+    "n": 16,
+    "p": 17
+  },
+  "payload_sha256": "fa89261a3697e97934722a058ecf02e8fefb177e0106df3323c4559d984052ba",
+  "rawkernel_source_sha256": "06a5ec7913aee7bf85998bff266b98224219afda255abfbfda05985f2acf6e53",
+  "schema_version": "master-flatness-incidence-v1",
+  "status": "EXPERIMENTAL",
+  "theorem_problem_id": "Conjecture-F-master-flatness"
+}

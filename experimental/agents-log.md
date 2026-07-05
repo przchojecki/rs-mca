@@ -1925,3 +1925,22 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-05 - Master-flatness incidence engine
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/gpu/master_flatness_incidence_engine.py`,
+  `experimental/scripts/verify_master_flatness_incidence.py`,
+  `experimental/data/certificates/master-flatness-incidence/`,
+  `experimental/notes/m1/master_flatness_incidence_engine.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A reusable split-locator incidence enumerator for
+  prefix-affine flat counts, with CPU-verifiable packets for `F_17`, `F_31`,
+  and `F_97` rows plus a disclosed witness-only `F_41,n=40,j=10` row.
+- **How it is useful:** Provides a common exact measurement interface for the
+  Conjecture-F master-flatness program while keeping periodic and aperiodic
+  strata visibly separated.
+- **What to do next:** Attach full accelerator-produced maxima for the large
+  rows, then plug the same packet format into the `W_z` syndrome-annihilator
+  family.

@@ -1,0 +1,619 @@
+{
+  "argmax_witnesses": [
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        1,
+        3,
+        13,
+        28
+      ],
+      "locator_coefficients_low_to_high": [
+        1,
+        17,
+        12,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        3,
+        27,
+        24,
+        7
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        12,
+        17,
+        1
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        1,
+        10,
+        17,
+        23
+      ],
+      "locator_coefficients_low_to_high": [
+        16,
+        28,
+        17,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        3,
+        25,
+        22,
+        11
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        17,
+        28,
+        16
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        1,
+        11,
+        12,
+        25
+      ],
+      "locator_coefficients_low_to_high": [
+        19,
+        24,
+        18,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        3,
+        13,
+        8,
+        6
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        18,
+        24,
+        19
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        1,
+        14,
+        19,
+        20
+      ],
+      "locator_coefficients_low_to_high": [
+        29,
+        21,
+        11,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        3,
+        10,
+        12,
+        5
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        11,
+        21,
+        29
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        2,
+        3,
+        5,
+        15
+      ],
+      "locator_coefficients_low_to_high": [
+        25,
+        30,
+        6,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        9,
+        27,
+        26,
+        30
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        6,
+        30,
+        25
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        2,
+        4,
+        21,
+        26
+      ],
+      "locator_coefficients_low_to_high": [
+        20,
+        8,
+        2,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        9,
+        19,
+        15,
+        18
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        2,
+        8,
+        20
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        2,
+        12,
+        27,
+        29
+      ],
+      "locator_coefficients_low_to_high": [
+        6,
+        27,
+        28,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        9,
+        8,
+        23,
+        21
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        28,
+        27,
+        6
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        2,
+        13,
+        17,
+        25
+      ],
+      "locator_coefficients_low_to_high": [
+        8,
+        11,
+        11,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        9,
+        24,
+        22,
+        6
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        11,
+        11,
+        8
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        2,
+        19,
+        24,
+        28
+      ],
+      "locator_coefficients_low_to_high": [
+        7,
+        19,
+        4,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        9,
+        12,
+        2,
+        7
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        4,
+        19,
+        7
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        4,
+        6,
+        8,
+        25
+      ],
+      "locator_coefficients_low_to_high": [
+        7,
+        7,
+        16,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        19,
+        16,
+        20,
+        6
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        16,
+        7,
+        7
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        4,
+        12,
+        17,
+        19
+      ],
+      "locator_coefficients_low_to_high": [
+        17,
+        3,
+        10,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        19,
+        8,
+        22,
+        12
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        10,
+        3,
+        17
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        5,
+        6,
+        16,
+        17
+      ],
+      "locator_coefficients_low_to_high": [
+        21,
+        27,
+        13,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        26,
+        16,
+        28,
+        22
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        13,
+        27,
+        21
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        5,
+        7,
+        18,
+        22
+      ],
+      "locator_coefficients_low_to_high": [
+        17,
+        24,
+        20,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        26,
+        17,
+        4,
+        14
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        20,
+        24,
+        17
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        5,
+        9,
+        11,
+        13
+      ],
+      "locator_coefficients_low_to_high": [
+        11,
+        4,
+        15,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        26,
+        29,
+        13,
+        24
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        15,
+        4,
+        11
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        6,
+        12,
+        18,
+        24
+      ],
+      "locator_coefficients_low_to_high": [
+        30,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        16,
+        8,
+        4,
+        2
+      ],
+      "scale": 5,
+      "signed_coefficients": [
+        0,
+        0,
+        0,
+        0,
+        30
+      ]
+    },
+    {
+      "flat_accepts": true,
+      "indices": [
+        0,
+        6,
+        13,
+        14,
+        23
+      ],
+      "locator_coefficients_low_to_high": [
+        13,
+        20,
+        28,
+        0,
+        0,
+        1
+      ],
+      "roots": [
+        1,
+        16,
+        24,
+        10,
+        11
+      ],
+      "scale": 1,
+      "signed_coefficients": [
+        0,
+        0,
+        28,
+        20,
+        13
+      ]
+    }
+  ],
+  "counts": {
+    "density_floor": 148,
+    "distinct_flats_hit": 961,
+    "max_flat_count": 31,
+    "max_occupancy": 156,
+    "occupancy_histogram": {
+      "143": 30,
+      "144": 135,
+      "145": 60,
+      "146": 90,
+      "147": 60,
+      "148": 120,
+      "149": 180,
+      "150": 30,
+      "151": 30,
+      "152": 165,
+      "153": 30,
+      "156": 31
+    },
+    "scale_histogram": {
+      "1": 142500,
+      "5": 6
+    },
+    "total_locators": 142506
+  },
+  "coverage": "full-enumeration",
+  "domain": {
+    "elements": [
+      1,
+      3,
+      9,
+      27,
+      19,
+      26,
+      16,
+      17,
+      20,
+      29,
+      25,
+      13,
+      8,
+      24,
+      10,
+      30,
+      28,
+      22,
+      4,
+      12,
+      5,
+      15,
+      14,
+      11,
+      2,
+      6,
+      18,
+      23,
+      7,
+      21
+    ],
+    "order": 30
+  },
+  "extremal_flat": {
+    "codim": 2,
+    "kind": "prefix_affine",
+    "target": [
+      0,
+      0
+    ]
+  },
+  "non_claims": [
+    "No growing-dimensional incidence theorem is claimed.",
+    "No resolution of Conjecture-F or prob:band is claimed."
+  ],
+  "object": "Dloc_j(mu_n) signed coefficient incidence against prefix-affine flats",
+  "oracle_regression": null,
+  "parameters": {
+    "codim": 2,
+    "flat_family": "prefix_affine",
+    "j": 5,
+    "n": 30,
+    "p": 31
+  },
+  "payload_sha256": "ab1139437fb8159d2334c99bb5509561923136df5055346be32e08d8ddafa3fe",
+  "rawkernel_source_sha256": "06a5ec7913aee7bf85998bff266b98224219afda255abfbfda05985f2acf6e53",
+  "schema_version": "master-flatness-incidence-v1",
+  "status": "EXPERIMENTAL",
+  "theorem_problem_id": "Conjecture-F-master-flatness"
+}
