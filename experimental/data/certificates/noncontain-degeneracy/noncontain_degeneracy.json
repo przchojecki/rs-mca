@@ -1,0 +1,80 @@
+{
+  "claim": {
+    "all_slope_condition": "A = 0 and B = 0",
+    "counting_boundary": "remove before finite-slope counting",
+    "fixed_locator_equation": "A + z B = 0",
+    "interpretation": "containment / degenerate pencil / def:residue degeneracy"
+  },
+  "consumers": [
+    "counting_frame",
+    "ef_full_orbit_pole_forcing"
+  ],
+  "non_claims": [
+    "does not count noncontained finite slopes",
+    "does not classify paid quotient, tangent, or extension strata",
+    "does not prove the Paper B normal form",
+    "does not edit Papers A-D"
+  ],
+  "sample_arithmetic": [
+    {
+      "A": [
+        0,
+        0
+      ],
+      "B": [
+        0,
+        0
+      ],
+      "all_slopes": true,
+      "degenerate": true,
+      "q": 5
+    },
+    {
+      "A": [
+        1,
+        2
+      ],
+      "B": [
+        2,
+        4
+      ],
+      "all_slopes": false,
+      "degenerate": false,
+      "q": 5
+    },
+    {
+      "A": [
+        3,
+        0,
+        1
+      ],
+      "B": [
+        0,
+        0,
+        0
+      ],
+      "all_slopes": false,
+      "degenerate": false,
+      "q": 7
+    },
+    {
+      "A": [
+        0,
+        0,
+        0
+      ],
+      "B": [
+        0,
+        1,
+        0
+      ],
+      "all_slopes": false,
+      "degenerate": false,
+      "q": 7
+    }
+  ],
+  "schema": "rs-mca.experimental.noncontain_degeneracy.v1",
+  "source_dag_node": "noncontain_degeneracy",
+  "status": "PROVED",
+  "verdict": "all_slope_containment_is_exactly_the_zero_endpoint_pencil"
+}

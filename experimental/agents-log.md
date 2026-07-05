@@ -30,6 +30,21 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Noncontainment degeneracy
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:** `experimental/notes/m1/noncontain_degeneracy.md`;
+  `experimental/scripts/verify_noncontain_degeneracy_packet.py`;
+  `experimental/data/certificates/noncontain-degeneracy/noncontain_degeneracy.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A packet for `noncontain_degeneracy`, identifying
+  the all-slope fixed-locator case with the zero endpoint pencil `A=B=0`.
+- **How it is useful:** This removes contained pencils before the finite-slope
+  counting frame applies the one-support-one-slope ledger.
+- **What to do next:** Assemble `counting_frame` over this packet, V8, and the
+  VTDV factorization packet.
+
 ### 2026-07-05 - V8 one-support-one-slope ledger
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
