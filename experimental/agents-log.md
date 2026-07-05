@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Mixed-radix frontier reframe packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/mixed_radix_frontier_reframe.md`;
+  `experimental/scripts/verify_mixed_radix_frontier_reframe.py`;
+  `experimental/data/certificates/mixed-radix-frontier/mixed_radix_frontier_reframe.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-pinned reframe of
+  `mixed_radix_frontier`: the official ABF smooth multiplicative prize box is
+  2-power, so mixed-radix domains are generalizations or stress tests rather
+  than required frontier inputs.
+- **How it is useful:** Prevents mixed-radix uniformity questions from blocking
+  official 2-power smooth-domain proof packets while preserving the value of
+  mixed-radix experiments as broader-domain audits.
+- **What to do next:** Keep future mixed-radix notes explicitly labelled as
+  generalization, toy/falsifier, or conservative audit material.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by

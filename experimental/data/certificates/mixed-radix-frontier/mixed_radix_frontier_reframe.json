@@ -1,0 +1,34 @@
+{
+  "claim": "The official smooth multiplicative prize family uses evaluation domains whose size is a power of two. Mixed-radix domains are therefore generalizations or stress tests, not required frontier inputs for the official 2-power box.",
+  "classification_for_mixed_radix_notes": [
+    "GENERALIZATION",
+    "TOY/FALSIFIER",
+    "CONSERVATIVE_AUDIT"
+  ],
+  "domain_family": {
+    "mixed_radix_status": "outside the official box unless the domain family is broadened",
+    "official": "multiplicative subgroup of power-of-two order",
+    "repo_coset_convention": "multiplicative cosets of 2-power subgroups are coordinate changes of the same 2-power-order structure"
+  },
+  "non_claims": [
+    "does not prove a mixed-radix theorem",
+    "does not invalidate mixed-radix experiments",
+    "does not broaden the official prize family"
+  ],
+  "quote_fragments": [
+    "smooth evaluation domain",
+    "multiplicative subgroup",
+    "size is a power of two"
+  ],
+  "schema": "rs-mca.experimental.mixed_radix_frontier_reframe.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 5,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "mixed_radix_frontier",
+  "status": "PROVED",
+  "verdict": "official_smooth_domain_family_is_2_power"
+}
