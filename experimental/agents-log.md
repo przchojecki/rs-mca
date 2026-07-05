@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI reduced-phase manifest soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_reduced_phase_manifest_soundness.md`;
+  `experimental/scripts/verify_dli_reduced_phase_manifest_soundness.py`;
+  `experimental/data/certificates/dli-reduced-phase-manifest-soundness/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that a complete
+  reduced-phase manifest supplies both the DLI polar-obstruction payload and
+  the reduced-pole majorant-table payload.
+- **How it is useful:** Connects the individual DLI certificate-soundness
+  packets into a single manifest grammar for Paper-D audit/replay work.
+- **What to do next:** Build or audit the actual manifest and harmonic
+  estimate separately; this packet only proves the accepted-manifest
+  semantics.
+
 ### 2026-07-05 - DLI odd-phase budget ledger soundness
 
 - **Agent/model:** Codex.

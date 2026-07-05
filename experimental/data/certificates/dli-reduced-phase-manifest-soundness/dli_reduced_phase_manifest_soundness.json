@@ -1,0 +1,36 @@
+{
+  "anchor_checks": {
+    "majorant_payload": true,
+    "majorant_soundness": true,
+    "non_claim": true,
+    "note_exists": true,
+    "polar_payload": true,
+    "polar_soundness": true,
+    "source_node": true,
+    "status": true
+  },
+  "non_claims": [
+    "does not construct the actual manifest",
+    "does not prove the harmonic o(t) estimate independently",
+    "does not close the remaining DLI analytic gap"
+  ],
+  "note": "experimental/notes/dli/dli_reduced_phase_manifest_soundness.md",
+  "payloads_supplied": [
+    "dli_odd_phase_polar_obstruction_payload",
+    "dli_reduced_pole_majorant_table_payload"
+  ],
+  "schema": "dli-reduced-phase-manifest-soundness-v1",
+  "source_dag_node": "dli_reduced_phase_manifest_soundness",
+  "status": "PROVED_MANIFEST_SOUNDNESS_REPLAY",
+  "toy_check": {
+    "bad_reduced_pole_rejected": true,
+    "budget": 8,
+    "field_characteristic": 5,
+    "good_manifest_accepted": true,
+    "majorant_total": 7,
+    "missing_tuple_rejected": true,
+    "over_budget_rejected": true,
+    "underbound_rejected": true,
+    "universe_size": 3
+  }
+}
