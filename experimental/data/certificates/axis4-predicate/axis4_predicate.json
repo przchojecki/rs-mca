@@ -1,0 +1,32 @@
+{
+  "claim": "The ABF support-wise MCA bad event and the repo same-support degenerate-pencil noncontainment predicate are the same object under the noncontain_degeneracy identification.",
+  "non_claims": [
+    "does not prove the full residue dictionary",
+    "does not count bad slopes",
+    "does not change CA or list-decoding predicates"
+  ],
+  "predicate_alignment": {
+    "abf_line_point_condition": "Delta_S(f1 + gamma f2, C) = 0",
+    "abf_pair_noncontainment": "Delta_S((f1, f2), C^{==2}) > 0",
+    "repo_name": "same-support degenerate-pencil residue predicate",
+    "support_must_match": true
+  },
+  "quote_fragments": [
+    "Definition 4.3",
+    "exists S = S_gamma",
+    "Delta_S(f1 + gamma f2, C) = 0",
+    "Delta_S((f1, f2), C^{==2}) > 0"
+  ],
+  "schema": "rs-mca.experimental.axis4_predicate.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 17,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "axis4_predicate",
+  "status": "PROVED",
+  "support_node": "noncontain_degeneracy",
+  "verdict": "abf_same_support_noncontainment_matches_degenerate_pencil_predicate"
+}

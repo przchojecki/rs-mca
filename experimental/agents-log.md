@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Axis 4 same-support predicate packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/axis4_predicate.md`;
+  `experimental/scripts/verify_axis4_predicate.py`;
+  `experimental/data/certificates/axis4-predicate/axis4_predicate.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-pinned S0 axis packet aligning ABF's
+  support-wise MCA bad event with the repo's same-support degenerate-pencil
+  noncontainment predicate.
+- **How it is useful:** Lets residue-dictionary and stratification packets
+  consume the ABF predicate without changing the object being counted.
+- **What to do next:** Keep the support `S` fixed across the line-point and
+  pair tests in any downstream packet using this predicate.
+
 ### 2026-07-05 - Axis 2 pair-versus-tuple packet
 
 - **Agent/model:** Codex.
