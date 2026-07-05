@@ -1,0 +1,572 @@
+{
+  "claim": "finite singular pencils with periodic-only split-locator occupants in the recorded range",
+  "non_claims": [
+    "No asymptotic singular-pencil theorem is claimed.",
+    "No resolution of prob:band is claimed.",
+    "The packet records a finite pass-on-range only."
+  ],
+  "payload_sha256": "9c26bec08954e55a6fca88ff69d6133bd4a78ee8a6a9ebe360aa40aaf168a172",
+  "proof_status": "AUDIT replay of finite singular-bucket rows",
+  "rows": [
+    {
+      "aperiodic_occupants": 0,
+      "determinant_identically_zero": true,
+      "determinant_polynomial": [
+        0
+      ],
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          2,
+          6,
+          4,
+          5
+        ]
+      },
+      "hankel_u": [
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "hankel_v": [
+        [
+          2,
+          5,
+          2
+        ],
+        [
+          5,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          2
+        ]
+      ],
+      "j": 2,
+      "kernel_chain": {
+        "degree": 0,
+        "lambda_polynomial": [
+          6
+        ],
+        "vectors": [
+          [
+            1,
+            0,
+            6
+          ]
+        ]
+      },
+      "kernel_support": [
+        0,
+        3
+      ],
+      "kernel_vector": [
+        1,
+        0,
+        6
+      ],
+      "label": "f7_n6_j2",
+      "locators_total": 15,
+      "n": 6,
+      "occupants": [
+        {
+          "coefficients": [
+            1,
+            0,
+            6
+          ],
+          "periodicity_scale": 2,
+          "support": [
+            0,
+            3
+          ]
+        }
+      ],
+      "occupants_total": 1,
+      "oracle_gate": false,
+      "p": 7,
+      "periodic_occupants": 1,
+      "q_chal": 7,
+      "q_gen": 7,
+      "q_line": 7,
+      "u_sequence": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      "v_sequence": [
+        2,
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    {
+      "aperiodic_occupants": 0,
+      "determinant_identically_zero": true,
+      "determinant_polynomial": [
+        0
+      ],
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          2,
+          4,
+          8,
+          5,
+          10,
+          9,
+          7,
+          3,
+          6
+        ]
+      },
+      "hankel_u": [
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "hankel_v": [
+        [
+          2,
+          5,
+          2
+        ],
+        [
+          5,
+          2,
+          5
+        ],
+        [
+          2,
+          5,
+          2
+        ]
+      ],
+      "j": 2,
+      "kernel_chain": {
+        "degree": 0,
+        "lambda_polynomial": [
+          10
+        ],
+        "vectors": [
+          [
+            1,
+            0,
+            10
+          ]
+        ]
+      },
+      "kernel_support": [
+        0,
+        5
+      ],
+      "kernel_vector": [
+        1,
+        0,
+        10
+      ],
+      "label": "f11_n10_j2",
+      "locators_total": 45,
+      "n": 10,
+      "occupants": [
+        {
+          "coefficients": [
+            1,
+            0,
+            10
+          ],
+          "periodicity_scale": 2,
+          "support": [
+            0,
+            5
+          ]
+        }
+      ],
+      "occupants_total": 1,
+      "oracle_gate": false,
+      "p": 11,
+      "periodic_occupants": 1,
+      "q_chal": 11,
+      "q_gen": 11,
+      "q_line": 11,
+      "u_sequence": [
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      "v_sequence": [
+        2,
+        5,
+        2,
+        5,
+        2
+      ]
+    },
+    {
+      "aperiodic_occupants": 0,
+      "determinant_identically_zero": true,
+      "determinant_polynomial": [
+        0
+      ],
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          2,
+          4,
+          8,
+          3,
+          6,
+          12,
+          11,
+          9,
+          5,
+          10,
+          7
+        ]
+      },
+      "hankel_u": [
+        [
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          2,
+          3,
+          1,
+          2
+        ],
+        [
+          3,
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          3,
+          1
+        ]
+      ],
+      "hankel_v": [
+        [
+          2,
+          5,
+          7,
+          2
+        ],
+        [
+          5,
+          7,
+          2,
+          5
+        ],
+        [
+          7,
+          2,
+          5,
+          7
+        ],
+        [
+          2,
+          5,
+          7,
+          2
+        ]
+      ],
+      "j": 3,
+      "kernel_chain": {
+        "degree": 0,
+        "lambda_polynomial": [
+          12
+        ],
+        "vectors": [
+          [
+            1,
+            0,
+            0,
+            12
+          ]
+        ]
+      },
+      "kernel_support": [
+        0,
+        4,
+        8
+      ],
+      "kernel_vector": [
+        1,
+        0,
+        0,
+        12
+      ],
+      "label": "f13_n12_j3",
+      "locators_total": 220,
+      "n": 12,
+      "occupants": [
+        {
+          "coefficients": [
+            1,
+            0,
+            0,
+            12
+          ],
+          "periodicity_scale": 3,
+          "support": [
+            0,
+            4,
+            8
+          ]
+        }
+      ],
+      "occupants_total": 1,
+      "oracle_gate": false,
+      "p": 13,
+      "periodic_occupants": 1,
+      "q_chal": 13,
+      "q_gen": 13,
+      "q_line": 13,
+      "u_sequence": [
+        1,
+        2,
+        3,
+        1,
+        2,
+        3,
+        1
+      ],
+      "v_sequence": [
+        2,
+        5,
+        7,
+        2,
+        5,
+        7,
+        2
+      ]
+    },
+    {
+      "aperiodic_occupants": 0,
+      "determinant_identically_zero": true,
+      "determinant_polynomial": [
+        0
+      ],
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ]
+      },
+      "hankel_u": [
+        [
+          1,
+          2,
+          3,
+          4,
+          1
+        ],
+        [
+          2,
+          3,
+          4,
+          1,
+          2
+        ],
+        [
+          3,
+          4,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          3,
+          4,
+          1
+        ]
+      ],
+      "hankel_v": [
+        [
+          2,
+          5,
+          7,
+          11,
+          2
+        ],
+        [
+          5,
+          7,
+          11,
+          2,
+          5
+        ],
+        [
+          7,
+          11,
+          2,
+          5,
+          7
+        ],
+        [
+          11,
+          2,
+          5,
+          7,
+          11
+        ],
+        [
+          2,
+          5,
+          7,
+          11,
+          2
+        ]
+      ],
+      "j": 4,
+      "kernel_chain": {
+        "degree": 0,
+        "lambda_polynomial": [
+          16
+        ],
+        "vectors": [
+          [
+            1,
+            0,
+            0,
+            0,
+            16
+          ]
+        ]
+      },
+      "kernel_support": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "kernel_vector": [
+        1,
+        0,
+        0,
+        0,
+        16
+      ],
+      "label": "f17_n16_j4_oracle",
+      "locators_total": 1820,
+      "n": 16,
+      "occupants": [
+        {
+          "coefficients": [
+            1,
+            0,
+            0,
+            0,
+            16
+          ],
+          "periodicity_scale": 4,
+          "support": [
+            0,
+            4,
+            8,
+            12
+          ]
+        }
+      ],
+      "occupants_total": 1,
+      "oracle_gate": true,
+      "p": 17,
+      "periodic_occupants": 1,
+      "q_chal": 17,
+      "q_gen": 17,
+      "q_line": 17,
+      "u_sequence": [
+        1,
+        2,
+        3,
+        4,
+        1,
+        2,
+        3,
+        4,
+        1
+      ],
+      "v_sequence": [
+        2,
+        5,
+        7,
+        11,
+        2,
+        5,
+        7,
+        11,
+        2
+      ]
+    }
+  ],
+  "schema_version": "kronecker-bm-singular-bucket-v1",
+  "status": "EXPERIMENTAL",
+  "theorem_problem_id": "T1-kronecker-bm-singular-bucket"
+}
