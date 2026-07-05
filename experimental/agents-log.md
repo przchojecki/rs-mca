@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - E22 dyadic minimal-scale selector
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/e22_dyadic_minimal_scale_selector.md`;
+  `experimental/scripts/verify_e22_dyadic_minimal_scale_selector.py`;
+  `experimental/data/certificates/e22-dyadic-minimal-scale-selector/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A replayable packet proving that dyadic E22 support
+  classes with at least one admissible scale have a unique minimal admissible
+  quotient modulus.
+- **How it is useful:** Provides the canonical selector used by minimal-scale
+  quotient-profile accounting.
+- **What to do next:** Use it to build the partition and triangular accounting
+  packets; it does not compute overlaps by itself.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

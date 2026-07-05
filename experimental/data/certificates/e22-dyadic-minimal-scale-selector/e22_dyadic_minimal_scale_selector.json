@@ -1,0 +1,38 @@
+{
+  "anchor_checks": {
+    "admissible_set": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "unique_minimum": true
+  },
+  "non_claims": [
+    "does not compute cross-scale overlaps",
+    "does not assemble a pricing column",
+    "does not alter Papers A-D"
+  ],
+  "note": "experimental/notes/thresholds/e22_dyadic_minimal_scale_selector.md",
+  "schema": "e22-dyadic-minimal-scale-selector-v1",
+  "selector_check": {
+    "all_checks_pass": true,
+    "sample_moduli": [
+      8,
+      16
+    ],
+    "sample_selected": 8,
+    "sample_support": [
+      0,
+      1,
+      4,
+      5,
+      8
+    ],
+    "selected_count": 65536,
+    "supports_with_selector": 65536,
+    "toy_n": 16,
+    "toy_t": 2
+  },
+  "source_dag_node": "e22_dyadic_minimal_scale_selector",
+  "status": "PROVED"
+}
