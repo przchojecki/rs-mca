@@ -1944,3 +1944,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-05 - Finite mode-at-null proxy-occupancy inversion
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/gpu/mode_at_null_extremality.py`,
+  `experimental/scripts/verify_mode_at_null.py`,
+  `experimental/data/certificates/mode-at-null/`,
+  `experimental/notes/m1/mode_at_null_extremality.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A finite split-locator alignment packet recording, on
+  toy rows, a within-bucket occupancy proxy (aperiodic-aligned total-count vs the
+  best per-point subcount) that inverts on some non-null slopes. The inversion is
+  of that NON-CANONICAL proxy only; it is not a counterexample to
+  `prop:v13-johnson-exchange` (separately PASS-on-range in the exchange-compression
+  packet) nor to the `N_w(z) <= N_w(0)` mode-at-null statement.
+- **How it is useful:** Gives an exact-CPU-replayable finite check of the
+  point-dictator occupancy proxy with visible flagged examples, clarifying that
+  the proxy is not a faithful stand-in for the mode-at-null functional.
+- **What to do next:** Determine which additional hypotheses or comparison
+  functional are needed before using point-dictator occupancy as a
+  worst-case proxy for the mode-at-null statement.

@@ -1,0 +1,5120 @@
+{
+  "claim": "finite rows where non-null aperiodic alignment occupancy can exceed the best point-dictator occupancy",
+  "non_claims": [
+    "No asymptotic worst-case bound is claimed.",
+    "No resolution of prob:band is claimed.",
+    "The packet tests a concrete finite alignment family only."
+  ],
+  "payload_sha256": "ecac9a6e10de92e972dfce990d7c5a7e5eccb8c13d01c1a77234d02001c1eec0",
+  "proof_status": "AUDIT replay of finite proxy-occupancy-inversion rows",
+  "rows": [
+    {
+      "aligned_total": 5,
+      "codim": 1,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "flagged_slope_count": 0,
+      "flagged_slopes": [],
+      "j": 2,
+      "label": "f5_n4_j2",
+      "locators_total": 6,
+      "n": 4,
+      "oracle_gate": false,
+      "oracle_gate_statement": null,
+      "p": 5,
+      "proxy_inversion_flagged": false,
+      "q_chal": 5,
+      "q_gen": 5,
+      "q_line": 5,
+      "slope_summary": [
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            2
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            3
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 1,
+          "z": 4
+        }
+      ],
+      "slopes_total": 5,
+      "source": {
+        "u_values": [
+          0,
+          0,
+          2,
+          1
+        ],
+        "v_values": [
+          3,
+          2,
+          0,
+          3
+        ]
+      },
+      "u_syndrome": [
+        3,
+        1,
+        1
+      ],
+      "v_syndrome": [
+        3,
+        1,
+        3
+      ]
+    },
+    {
+      "aligned_total": 15,
+      "codim": 1,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          2,
+          6,
+          4,
+          5
+        ]
+      },
+      "flagged_slope_count": 6,
+      "flagged_slopes": [
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                1
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                6,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                5
+              ]
+            },
+            {
+              "a_vector": [
+                1
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                1,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                4
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            2,
+            3,
+            5
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                2
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                4,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2
+              ]
+            },
+            {
+              "a_vector": [
+                2
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                3,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                5
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                3
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                3,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1
+              ]
+            },
+            {
+              "a_vector": [
+                3
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                4,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                4
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 1,
+          "z": 3
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            3,
+            4
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                4
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                2,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4
+              ]
+            },
+            {
+              "a_vector": [
+                4
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                5,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                3
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 4
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                5
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                1,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                5
+              ]
+            },
+            {
+              "a_vector": [
+                5
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                6,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                3
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 1,
+          "z": 5
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                6
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                2,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                2
+              ]
+            },
+            {
+              "a_vector": [
+                6
+              ],
+              "b_vector": [
+                1
+              ],
+              "coefficients": [
+                1,
+                5,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                5
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 1,
+          "z": 6
+        }
+      ],
+      "j": 2,
+      "label": "f7_n6_j2",
+      "locators_total": 15,
+      "n": 6,
+      "oracle_gate": false,
+      "oracle_gate_statement": null,
+      "p": 7,
+      "proxy_inversion_flagged": true,
+      "q_chal": 7,
+      "q_gen": 7,
+      "q_line": 7,
+      "slope_summary": [
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            2,
+            3,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 1,
+          "z": 3
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            3,
+            4
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 4
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 1,
+          "z": 5
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 1,
+          "z": 6
+        }
+      ],
+      "slopes_total": 7,
+      "source": {
+        "u_values": [
+          3,
+          1,
+          1,
+          3,
+          0,
+          6
+        ],
+        "v_values": [
+          3,
+          0,
+          3,
+          4,
+          2,
+          3
+        ]
+      },
+      "u_syndrome": [
+        0,
+        0,
+        1
+      ],
+      "v_syndrome": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "aligned_total": 16,
+      "codim": 1,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          2,
+          6,
+          4,
+          5
+        ]
+      },
+      "flagged_slope_count": 0,
+      "flagged_slopes": [],
+      "j": 3,
+      "label": "f7_n6_j3",
+      "locators_total": 20,
+      "n": 6,
+      "oracle_gate": false,
+      "oracle_gate_statement": null,
+      "p": 7,
+      "proxy_inversion_flagged": false,
+      "q_chal": 7,
+      "q_gen": 7,
+      "q_line": 7,
+      "slope_summary": [
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            4,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            4
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            3,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            1,
+            3
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 1,
+          "z": 4
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            2,
+            3
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 5
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            1,
+            2
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 6
+        }
+      ],
+      "slopes_total": 7,
+      "source": {
+        "u_values": [
+          3,
+          1,
+          1,
+          3,
+          0,
+          6
+        ],
+        "v_values": [
+          3,
+          0,
+          3,
+          4,
+          2,
+          3
+        ]
+      },
+      "u_syndrome": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "v_syndrome": [
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "aligned_total": 10,
+      "codim": 2,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          2,
+          4,
+          8,
+          5,
+          10,
+          9,
+          7,
+          3,
+          6
+        ]
+      },
+      "flagged_slope_count": 3,
+      "flagged_slopes": [
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                0,
+                0
+              ],
+              "b_vector": [
+                3,
+                10
+              ],
+              "coefficients": [
+                1,
+                9,
+                3,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4,
+                7
+              ]
+            },
+            {
+              "a_vector": [
+                0,
+                0
+              ],
+              "b_vector": [
+                5,
+                5
+              ],
+              "coefficients": [
+                1,
+                7,
+                1,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                5,
+                8
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            9
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                7,
+                1
+              ],
+              "b_vector": [
+                6,
+                4
+              ],
+              "coefficients": [
+                1,
+                8,
+                9,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                3,
+                4
+              ]
+            },
+            {
+              "a_vector": [
+                5,
+                6
+              ],
+              "b_vector": [
+                9,
+                2
+              ],
+              "coefficients": [
+                1,
+                8,
+                6,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                6,
+                9
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            2,
+            5,
+            6,
+            7,
+            8
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                3,
+                7
+              ],
+              "b_vector": [
+                9,
+                10
+              ],
+              "coefficients": [
+                1,
+                8,
+                10,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                5,
+                8
+              ]
+            },
+            {
+              "a_vector": [
+                8,
+                0
+              ],
+              "b_vector": [
+                2,
+                0
+              ],
+              "coefficients": [
+                1,
+                2,
+                6,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                6,
+                7
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 4
+        }
+      ],
+      "j": 3,
+      "label": "f11_n10_j3",
+      "locators_total": 120,
+      "n": 10,
+      "oracle_gate": false,
+      "oracle_gate_statement": null,
+      "p": 11,
+      "proxy_inversion_flagged": true,
+      "q_chal": 11,
+      "q_gen": 11,
+      "q_line": 11,
+      "slope_summary": [
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            3,
+            7
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            9
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            2,
+            5,
+            6,
+            7,
+            8
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 4
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 5
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            2,
+            3,
+            9
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 6
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 7
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            5
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 8
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 9
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            3,
+            4,
+            7
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 10
+        }
+      ],
+      "slopes_total": 11,
+      "source": {
+        "u_values": [
+          10,
+          4,
+          0,
+          9,
+          9,
+          0,
+          4,
+          10,
+          7,
+          6
+        ],
+        "v_values": [
+          7,
+          4,
+          2,
+          7,
+          3,
+          7,
+          3,
+          8,
+          6,
+          3
+        ]
+      },
+      "u_syndrome": [
+        4,
+        1,
+        6,
+        10,
+        4
+      ],
+      "v_syndrome": [
+        6,
+        8,
+        7,
+        4,
+        9
+      ]
+    },
+    {
+      "aligned_total": 12,
+      "codim": 2,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          2,
+          4,
+          8,
+          3,
+          6,
+          12,
+          11,
+          9,
+          5,
+          10,
+          7
+        ]
+      },
+      "flagged_slope_count": 2,
+      "flagged_slopes": [
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            5,
+            6,
+            8,
+            10,
+            11
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                11,
+                12
+              ],
+              "b_vector": [
+                9,
+                11
+              ],
+              "coefficients": [
+                1,
+                11,
+                3,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                5,
+                11
+              ]
+            },
+            {
+              "a_vector": [
+                3,
+                0
+              ],
+              "b_vector": [
+                6,
+                0
+              ],
+              "coefficients": [
+                1,
+                8,
+                6,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                8,
+                10
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 7
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            3,
+            4,
+            7,
+            9,
+            10
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                4,
+                3
+              ],
+              "b_vector": [
+                9,
+                10
+              ],
+              "coefficients": [
+                1,
+                6,
+                12,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                3,
+                10
+              ]
+            },
+            {
+              "a_vector": [
+                1,
+                0
+              ],
+              "b_vector": [
+                12,
+                0
+              ],
+              "coefficients": [
+                1,
+                7,
+                12,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                7,
+                9
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 12
+        }
+      ],
+      "j": 3,
+      "label": "f13_n12_j3",
+      "locators_total": 220,
+      "n": 12,
+      "oracle_gate": false,
+      "oracle_gate_statement": null,
+      "p": 13,
+      "proxy_inversion_flagged": true,
+      "q_chal": 13,
+      "q_gen": 13,
+      "q_line": 13,
+      "slope_summary": [
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            5,
+            6
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            2,
+            5,
+            10
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            2,
+            6,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 4
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            2,
+            4,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 5
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 6
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            5,
+            6,
+            8,
+            10,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 7
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            2,
+            4,
+            6
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 8
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            3,
+            7,
+            8
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 9
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            4,
+            6,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 10
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            10,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 11
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            3,
+            4,
+            7,
+            9,
+            10
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 12
+        }
+      ],
+      "slopes_total": 13,
+      "source": {
+        "u_values": [
+          10,
+          2,
+          9,
+          5,
+          3,
+          3,
+          5,
+          9,
+          2,
+          10,
+          7,
+          6
+        ],
+        "v_values": [
+          8,
+          4,
+          8,
+          0,
+          12,
+          11,
+          3,
+          7,
+          3,
+          10,
+          8,
+          3
+        ]
+      },
+      "u_syndrome": [
+        6,
+        1,
+        10,
+        6,
+        0
+      ],
+      "v_syndrome": [
+        12,
+        12,
+        8,
+        7,
+        1
+      ]
+    },
+    {
+      "aligned_total": 26,
+      "codim": 2,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ]
+      },
+      "flagged_slope_count": 8,
+      "flagged_slopes": [
+        {
+          "aligned_total": 3,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            2,
+            3,
+            5,
+            7,
+            8,
+            12,
+            13,
+            15
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                0,
+                0
+              ],
+              "b_vector": [
+                7,
+                1
+              ],
+              "coefficients": [
+                1,
+                10,
+                7,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                5,
+                8
+              ]
+            },
+            {
+              "a_vector": [
+                0,
+                0
+              ],
+              "b_vector": [
+                0,
+                3
+              ],
+              "coefficients": [
+                1,
+                9,
+                0,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                3,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                0,
+                0
+              ],
+              "b_vector": [
+                3,
+                7
+              ],
+              "coefficients": [
+                1,
+                7,
+                3,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                12,
+                13
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            4,
+            6,
+            8,
+            9,
+            10
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                1,
+                11
+              ],
+              "b_vector": [
+                1,
+                11
+              ],
+              "coefficients": [
+                1,
+                4,
+                1,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                6,
+                9
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                15
+              ],
+              "b_vector": [
+                2,
+                15
+              ],
+              "coefficients": [
+                1,
+                14,
+                15,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                8,
+                10
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            3,
+            5,
+            11,
+            12
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                4,
+                3
+              ],
+              "b_vector": [
+                7,
+                1
+              ],
+              "coefficients": [
+                1,
+                2,
+                3,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                3,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                5,
+                12
+              ],
+              "b_vector": [
+                13,
+                4
+              ],
+              "coefficients": [
+                1,
+                2,
+                3,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                5,
+                11
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            3,
+            6,
+            7,
+            11,
+            12
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                1,
+                13
+              ],
+              "b_vector": [
+                13,
+                16
+              ],
+              "coefficients": [
+                1,
+                16,
+                2,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                3,
+                11
+              ]
+            },
+            {
+              "a_vector": [
+                15,
+                14
+              ],
+              "b_vector": [
+                8,
+                12
+              ],
+              "coefficients": [
+                1,
+                4,
+                14,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                7,
+                12
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 4
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            8,
+            10,
+            11,
+            13,
+            15
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                8,
+                5
+              ],
+              "b_vector": [
+                5,
+                1
+              ],
+              "coefficients": [
+                1,
+                8,
+                11,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                8,
+                11
+              ]
+            },
+            {
+              "a_vector": [
+                6,
+                5
+              ],
+              "b_vector": [
+                8,
+                1
+              ],
+              "coefficients": [
+                1,
+                8,
+                12,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                10,
+                13,
+                15
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 5
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            5,
+            7,
+            8,
+            10,
+            11
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                8,
+                8
+              ],
+              "b_vector": [
+                7,
+                7
+              ],
+              "coefficients": [
+                1,
+                14,
+                5,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                7,
+                10
+              ]
+            },
+            {
+              "a_vector": [
+                8,
+                14
+              ],
+              "b_vector": [
+                7,
+                8
+              ],
+              "coefficients": [
+                1,
+                6,
+                6,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                8,
+                11
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 6
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            12,
+            13
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                3,
+                9
+              ],
+              "b_vector": [
+                8,
+                7
+              ],
+              "coefficients": [
+                1,
+                0,
+                4,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1,
+                4
+              ]
+            },
+            {
+              "a_vector": [
+                8,
+                5
+              ],
+              "b_vector": [
+                10,
+                2
+              ],
+              "coefficients": [
+                1,
+                16,
+                16,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                5,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                6,
+                10
+              ],
+              "b_vector": [
+                16,
+                4
+              ],
+              "coefficients": [
+                1,
+                13,
+                1,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                7,
+                13
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 11
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            3,
+            4,
+            13,
+            15
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                2,
+                12
+              ],
+              "b_vector": [
+                8,
+                14
+              ],
+              "coefficients": [
+                1,
+                14,
+                12,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                16,
+                7
+              ],
+              "b_vector": [
+                13,
+                11
+              ],
+              "coefficients": [
+                1,
+                9,
+                16,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                3,
+                13
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 13
+        }
+      ],
+      "j": 3,
+      "label": "f17_n16_j3_oracle",
+      "locators_total": 560,
+      "n": 16,
+      "oracle_gate": true,
+      "oracle_gate_statement": "F_17 split-locator enumeration is included and replayed exactly",
+      "p": 17,
+      "proxy_inversion_flagged": true,
+      "q_chal": 17,
+      "q_gen": 17,
+      "q_line": 17,
+      "slope_summary": [
+        {
+          "aligned_total": 3,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            2,
+            3,
+            5,
+            7,
+            8,
+            12,
+            13,
+            15
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            4,
+            6,
+            8,
+            9,
+            10
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            15
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            3,
+            5,
+            11,
+            12
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            3,
+            6,
+            7,
+            11,
+            12
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 4
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            8,
+            10,
+            11,
+            13,
+            15
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 5
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            5,
+            7,
+            8,
+            10,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 6
+        },
+        {
+          "aligned_total": 0,
+          "aperiodic": 0,
+          "best_point_dictator_occupancy": 0,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 7
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            2,
+            6,
+            10
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 8
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            9,
+            12
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 9
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            2,
+            4,
+            13
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 10
+        },
+        {
+          "aligned_total": 3,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            12,
+            13
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 11
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            3,
+            4,
+            6
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 12
+        },
+        {
+          "aligned_total": 2,
+          "aperiodic": 2,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            1,
+            3,
+            4,
+            13,
+            15
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 13
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            3,
+            11,
+            12
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 14
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            1,
+            4,
+            15
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 15
+        },
+        {
+          "aligned_total": 1,
+          "aperiodic": 1,
+          "best_point_dictator_occupancy": 1,
+          "best_point_dictator_points": [
+            0,
+            11,
+            12
+          ],
+          "non_null_aperiodic_exceeds_dictator": false,
+          "periodic": 0,
+          "z": 16
+        }
+      ],
+      "slopes_total": 17,
+      "source": {
+        "u_values": [
+          10,
+          15,
+          5,
+          14,
+          8,
+          4,
+          2,
+          2,
+          4,
+          8,
+          14,
+          5,
+          15,
+          10,
+          7,
+          6
+        ],
+        "v_values": [
+          5,
+          11,
+          0,
+          12,
+          2,
+          10,
+          8,
+          2,
+          15,
+          2,
+          3,
+          7,
+          3,
+          14,
+          12,
+          3
+        ]
+      },
+      "u_syndrome": [
+        10,
+        0,
+        10,
+        6,
+        3
+      ],
+      "v_syndrome": [
+        7,
+        4,
+        7,
+        2,
+        1
+      ]
+    },
+    {
+      "aligned_total": 107,
+      "codim": 2,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ]
+      },
+      "flagged_slope_count": 17,
+      "flagged_slopes": [
+        {
+          "aligned_total": 3,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0,
+            7,
+            10
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                0,
+                0
+              ],
+              "b_vector": [
+                14,
+                12
+              ],
+              "coefficients": [
+                1,
+                12,
+                16,
+                12,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1,
+                7,
+                11
+              ]
+            },
+            {
+              "a_vector": [
+                0,
+                0
+              ],
+              "b_vector": [
+                10,
+                8
+              ],
+              "coefficients": [
+                1,
+                3,
+                0,
+                12,
+                1
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                4,
+                10
+              ]
+            },
+            {
+              "a_vector": [
+                0,
+                0
+              ],
+              "b_vector": [
+                1,
+                3
+              ],
+              "coefficients": [
+                1,
+                3,
+                13,
+                9,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                7,
+                10,
+                14
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 6,
+          "aperiodic": 6,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            3
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                5,
+                2
+              ],
+              "b_vector": [
+                5,
+                2
+              ],
+              "coefficients": [
+                1,
+                11,
+                8,
+                3,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                7,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                6,
+                1
+              ],
+              "b_vector": [
+                6,
+                1
+              ],
+              "coefficients": [
+                1,
+                11,
+                2,
+                3,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                3,
+                4,
+                9
+              ]
+            },
+            {
+              "a_vector": [
+                0,
+                3
+              ],
+              "b_vector": [
+                0,
+                3
+              ],
+              "coefficients": [
+                1,
+                3,
+                5,
+                0,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                5,
+                8,
+                11
+              ]
+            },
+            {
+              "a_vector": [
+                3,
+                13
+              ],
+              "b_vector": [
+                3,
+                13
+              ],
+              "coefficients": [
+                1,
+                12,
+                5,
+                14,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                3,
+                10,
+                13
+              ]
+            },
+            {
+              "a_vector": [
+                9,
+                6
+              ],
+              "b_vector": [
+                9,
+                6
+              ],
+              "coefficients": [
+                1,
+                10,
+                16,
+                9,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                7,
+                8,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                3,
+                3
+              ],
+              "b_vector": [
+                3,
+                3
+              ],
+              "coefficients": [
+                1,
+                9,
+                16,
+                15,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                6,
+                13,
+                14
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            5,
+            6,
+            8,
+            10
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                8,
+                8
+              ],
+              "b_vector": [
+                4,
+                4
+              ],
+              "coefficients": [
+                1,
+                3,
+                10,
+                14,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                5,
+                8
+              ]
+            },
+            {
+              "a_vector": [
+                7,
+                3
+              ],
+              "b_vector": [
+                12,
+                10
+              ],
+              "coefficients": [
+                1,
+                15,
+                10,
+                8,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                6,
+                8,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                11,
+                9
+              ],
+              "b_vector": [
+                14,
+                13
+              ],
+              "coefficients": [
+                1,
+                1,
+                10,
+                12,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                9,
+                10,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                4,
+                4
+              ],
+              "b_vector": [
+                2,
+                2
+              ],
+              "coefficients": [
+                1,
+                0,
+                10,
+                8,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                10,
+                11,
+                12
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 8,
+          "aperiodic": 8,
+          "best_point_dictator_occupancy": 4,
+          "best_point_dictator_points": [
+            6
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                14,
+                7
+              ],
+              "b_vector": [
+                16,
+                8
+              ],
+              "coefficients": [
+                1,
+                14,
+                10,
+                10,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1,
+                9,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                9
+              ],
+              "b_vector": [
+                12,
+                3
+              ],
+              "coefficients": [
+                1,
+                3,
+                5,
+                1,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                6,
+                10,
+                11
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                8
+              ],
+              "b_vector": [
+                12,
+                14
+              ],
+              "coefficients": [
+                1,
+                15,
+                12,
+                4,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                7,
+                8,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                14,
+                1
+              ],
+              "b_vector": [
+                16,
+                6
+              ],
+              "coefficients": [
+                1,
+                1,
+                1,
+                11,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                3,
+                6,
+                8
+              ]
+            },
+            {
+              "a_vector": [
+                12,
+                15
+              ],
+              "b_vector": [
+                4,
+                5
+              ],
+              "coefficients": [
+                1,
+                8,
+                15,
+                11,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                10,
+                14,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                16,
+                11
+              ],
+              "b_vector": [
+                11,
+                15
+              ],
+              "coefficients": [
+                1,
+                12,
+                6,
+                7,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                5,
+                6,
+                15
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            9
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                12,
+                10
+              ],
+              "b_vector": [
+                3,
+                11
+              ],
+              "coefficients": [
+                1,
+                14,
+                2,
+                11,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                4,
+                9
+              ]
+            },
+            {
+              "a_vector": [
+                10,
+                15
+              ],
+              "b_vector": [
+                11,
+                8
+              ],
+              "coefficients": [
+                1,
+                13,
+                7,
+                14,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                9,
+                13,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                9,
+                9
+              ],
+              "b_vector": [
+                15,
+                15
+              ],
+              "coefficients": [
+                1,
+                4,
+                1,
+                7,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                9,
+                11,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                3,
+                12
+              ],
+              "b_vector": [
+                5,
+                3
+              ],
+              "coefficients": [
+                1,
+                13,
+                6,
+                13,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                10,
+                11,
+                13
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 4
+        },
+        {
+          "aligned_total": 6,
+          "aperiodic": 6,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            1
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                14,
+                2
+              ],
+              "b_vector": [
+                13,
+                14
+              ],
+              "coefficients": [
+                1,
+                15,
+                5,
+                0,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1,
+                7,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                15,
+                1
+              ],
+              "b_vector": [
+                3,
+                7
+              ],
+              "coefficients": [
+                1,
+                6,
+                12,
+                9,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4,
+                13,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                8
+              ],
+              "b_vector": [
+                14,
+                5
+              ],
+              "coefficients": [
+                1,
+                1,
+                0,
+                8,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                3,
+                9,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                16,
+                1
+              ],
+              "b_vector": [
+                10,
+                7
+              ],
+              "coefficients": [
+                1,
+                6,
+                3,
+                10,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                6,
+                10,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                3
+              ],
+              "b_vector": [
+                14,
+                4
+              ],
+              "coefficients": [
+                1,
+                7,
+                12,
+                14,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                6,
+                11,
+                13
+              ]
+            },
+            {
+              "a_vector": [
+                14,
+                16
+              ],
+              "b_vector": [
+                13,
+                10
+              ],
+              "coefficients": [
+                1,
+                5,
+                2,
+                7,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                7,
+                8,
+                15
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 5
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            4,
+            9,
+            11,
+            13
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                5,
+                16
+              ],
+              "b_vector": [
+                15,
+                14
+              ],
+              "coefficients": [
+                1,
+                5,
+                8,
+                14,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                3,
+                13,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                5
+              ],
+              "b_vector": [
+                6,
+                15
+              ],
+              "coefficients": [
+                1,
+                10,
+                5,
+                7,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                7,
+                9,
+                11
+              ]
+            },
+            {
+              "a_vector": [
+                15,
+                14
+              ],
+              "b_vector": [
+                11,
+                8
+              ],
+              "coefficients": [
+                1,
+                4,
+                4,
+                4,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                8,
+                9,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                9,
+                7
+              ],
+              "b_vector": [
+                10,
+                4
+              ],
+              "coefficients": [
+                1,
+                11,
+                9,
+                0,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                10,
+                11,
+                13
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 6
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0,
+            2,
+            4,
+            10,
+            14
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                8,
+                6
+              ],
+              "b_vector": [
+                6,
+                13
+              ],
+              "coefficients": [
+                1,
+                14,
+                14,
+                10,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                12,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                8,
+                12
+              ],
+              "b_vector": [
+                6,
+                9
+              ],
+              "coefficients": [
+                1,
+                3,
+                9,
+                5,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4,
+                6,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                14,
+                10
+              ],
+              "b_vector": [
+                2,
+                16
+              ],
+              "coefficients": [
+                1,
+                5,
+                16,
+                15,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                8,
+                10,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                6,
+                6
+              ],
+              "b_vector": [
+                13,
+                13
+              ],
+              "coefficients": [
+                1,
+                7,
+                16,
+                11,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                4,
+                9,
+                10
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 7
+        },
+        {
+          "aligned_total": 5,
+          "aperiodic": 5,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0,
+            4,
+            7,
+            9,
+            12,
+            13
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                2,
+                1
+              ],
+              "b_vector": [
+                13,
+                15
+              ],
+              "coefficients": [
+                1,
+                10,
+                10,
+                2,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4,
+                6,
+                13
+              ]
+            },
+            {
+              "a_vector": [
+                3,
+                5
+              ],
+              "b_vector": [
+                11,
+                7
+              ],
+              "coefficients": [
+                1,
+                7,
+                8,
+                4,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                5,
+                9,
+                11
+              ]
+            },
+            {
+              "a_vector": [
+                14,
+                11
+              ],
+              "b_vector": [
+                6,
+                12
+              ],
+              "coefficients": [
+                1,
+                14,
+                15,
+                14,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                4,
+                7,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                16,
+                8
+              ],
+              "b_vector": [
+                2,
+                1
+              ],
+              "coefficients": [
+                1,
+                16,
+                10,
+                2,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                7,
+                10,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                3,
+                12
+              ],
+              "b_vector": [
+                11,
+                10
+              ],
+              "coefficients": [
+                1,
+                5,
+                4,
+                8,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                8,
+                9,
+                12,
+                13
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 8
+        },
+        {
+          "aligned_total": 6,
+          "aperiodic": 6,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            2,
+            4,
+            11
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                15,
+                13
+              ],
+              "b_vector": [
+                13,
+                9
+              ],
+              "coefficients": [
+                1,
+                15,
+                8,
+                16,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4,
+                9,
+                10
+              ]
+            },
+            {
+              "a_vector": [
+                16,
+                4
+              ],
+              "b_vector": [
+                15,
+                8
+              ],
+              "coefficients": [
+                1,
+                8,
+                13,
+                9,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                8,
+                11,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                8,
+                7
+              ],
+              "b_vector": [
+                16,
+                14
+              ],
+              "coefficients": [
+                1,
+                7,
+                12,
+                14,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                2,
+                4,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                16,
+                5
+              ],
+              "b_vector": [
+                15,
+                10
+              ],
+              "coefficients": [
+                1,
+                14,
+                8,
+                9,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                6,
+                8,
+                9
+              ]
+            },
+            {
+              "a_vector": [
+                14,
+                14
+              ],
+              "b_vector": [
+                11,
+                11
+              ],
+              "coefficients": [
+                1,
+                8,
+                9,
+                6,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                11,
+                12,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                11,
+                12
+              ],
+              "b_vector": [
+                5,
+                7
+              ],
+              "coefficients": [
+                1,
+                8,
+                3,
+                10,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                7,
+                11,
+                13
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 9
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            1,
+            5,
+            9
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                1,
+                5
+              ],
+              "b_vector": [
+                12,
+                9
+              ],
+              "coefficients": [
+                1,
+                10,
+                16,
+                16,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                5,
+                9,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                16,
+                14
+              ],
+              "b_vector": [
+                5,
+                15
+              ],
+              "coefficients": [
+                1,
+                8,
+                1,
+                7,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                4,
+                7,
+                8
+              ]
+            },
+            {
+              "a_vector": [
+                14,
+                1
+              ],
+              "b_vector": [
+                15,
+                12
+              ],
+              "coefficients": [
+                1,
+                14,
+                2,
+                10,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                9,
+                10,
+                13
+              ]
+            },
+            {
+              "a_vector": [
+                1,
+                2
+              ],
+              "b_vector": [
+                12,
+                7
+              ],
+              "coefficients": [
+                1,
+                8,
+                12,
+                13,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                3,
+                5,
+                14
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 10
+        },
+        {
+          "aligned_total": 5,
+          "aperiodic": 5,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            6
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                11,
+                4
+              ],
+              "b_vector": [
+                1,
+                5
+              ],
+              "coefficients": [
+                1,
+                6,
+                1,
+                5,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                6,
+                10,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                8
+              ],
+              "b_vector": [
+                11,
+                10
+              ],
+              "coefficients": [
+                1,
+                5,
+                1,
+                2,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                5,
+                6,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                1,
+                16
+              ],
+              "b_vector": [
+                14,
+                3
+              ],
+              "coefficients": [
+                1,
+                3,
+                1,
+                13,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                3,
+                6,
+                9
+              ]
+            },
+            {
+              "a_vector": [
+                13,
+                11
+              ],
+              "b_vector": [
+                12,
+                1
+              ],
+              "coefficients": [
+                1,
+                11,
+                3,
+                14,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                4,
+                5,
+                13
+              ]
+            },
+            {
+              "a_vector": [
+                4,
+                14
+              ],
+              "b_vector": [
+                5,
+                9
+              ],
+              "coefficients": [
+                1,
+                7,
+                14,
+                3,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                7,
+                10,
+                14,
+                15
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 11
+        },
+        {
+          "aligned_total": 5,
+          "aperiodic": 5,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            14
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                2,
+                0
+              ],
+              "b_vector": [
+                3,
+                0
+              ],
+              "coefficients": [
+                1,
+                12,
+                2,
+                0,
+                2
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1,
+                3,
+                10
+              ]
+            },
+            {
+              "a_vector": [
+                7,
+                1
+              ],
+              "b_vector": [
+                2,
+                10
+              ],
+              "coefficients": [
+                1,
+                11,
+                7,
+                6,
+                9
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                8,
+                12,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                4,
+                7
+              ],
+              "b_vector": [
+                6,
+                2
+              ],
+              "coefficients": [
+                1,
+                4,
+                16,
+                7,
+                10
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                4,
+                14,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                8,
+                9
+              ],
+              "b_vector": [
+                12,
+                5
+              ],
+              "coefficients": [
+                1,
+                8,
+                16,
+                8,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                9,
+                12,
+                13
+              ]
+            },
+            {
+              "a_vector": [
+                13,
+                6
+              ],
+              "b_vector": [
+                11,
+                9
+              ],
+              "coefficients": [
+                1,
+                8,
+                6,
+                4,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                5,
+                11,
+                13,
+                14
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 12
+        },
+        {
+          "aligned_total": 7,
+          "aperiodic": 7,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            6,
+            10
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                15,
+                9
+              ],
+              "b_vector": [
+                9,
+                2
+              ],
+              "coefficients": [
+                1,
+                2,
+                1,
+                8,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                9,
+                10
+              ]
+            },
+            {
+              "a_vector": [
+                10,
+                5
+              ],
+              "b_vector": [
+                6,
+                3
+              ],
+              "coefficients": [
+                1,
+                9,
+                10,
+                16,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                6,
+                8,
+                10
+              ]
+            },
+            {
+              "a_vector": [
+                11,
+                11
+              ],
+              "b_vector": [
+                10,
+                10
+              ],
+              "coefficients": [
+                1,
+                9,
+                11,
+                10,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                7,
+                11,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                7,
+                1
+              ],
+              "b_vector": [
+                11,
+                4
+              ],
+              "coefficients": [
+                1,
+                1,
+                8,
+                13,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                2,
+                6,
+                11,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                0
+              ],
+              "b_vector": [
+                8,
+                0
+              ],
+              "coefficients": [
+                1,
+                16,
+                16,
+                8,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                6,
+                12,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                1,
+                0
+              ],
+              "b_vector": [
+                4,
+                0
+              ],
+              "coefficients": [
+                1,
+                15,
+                13,
+                5,
+                6
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                5,
+                8,
+                14
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 13
+        },
+        {
+          "aligned_total": 5,
+          "aperiodic": 5,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0,
+            6,
+            7,
+            13,
+            14,
+            15
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                4,
+                1
+              ],
+              "b_vector": [
+                10,
+                11
+              ],
+              "coefficients": [
+                1,
+                11,
+                11,
+                7,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                11,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                3,
+                12
+              ],
+              "b_vector": [
+                16,
+                13
+              ],
+              "coefficients": [
+                1,
+                4,
+                8,
+                1,
+                3
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                6,
+                13,
+                14
+              ]
+            },
+            {
+              "a_vector": [
+                15,
+                6
+              ],
+              "b_vector": [
+                12,
+                15
+              ],
+              "coefficients": [
+                1,
+                8,
+                3,
+                13,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                6,
+                7,
+                9
+              ]
+            },
+            {
+              "a_vector": [
+                10,
+                14
+              ],
+              "b_vector": [
+                8,
+                1
+              ],
+              "coefficients": [
+                1,
+                5,
+                1,
+                7,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                3,
+                7,
+                14,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                2,
+                5
+              ],
+              "b_vector": [
+                5,
+                4
+              ],
+              "coefficients": [
+                1,
+                6,
+                6,
+                6,
+                5
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                4,
+                8,
+                12,
+                13
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 14
+        },
+        {
+          "aligned_total": 15,
+          "aperiodic": 15,
+          "best_point_dictator_occupancy": 13,
+          "best_point_dictator_points": [
+            1,
+            4,
+            15
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                0,
+                5
+              ],
+              "b_vector": [
+                0,
+                6
+              ],
+              "coefficients": [
+                1,
+                11,
+                4,
+                5,
+                13
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1,
+                4,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                12,
+                6
+              ],
+              "b_vector": [
+                11,
+                14
+              ],
+              "coefficients": [
+                1,
+                3,
+                10,
+                13,
+                15
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                2,
+                4,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                5,
+                4
+              ],
+              "b_vector": [
+                6,
+                15
+              ],
+              "coefficients": [
+                1,
+                2,
+                15,
+                14,
+                11
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                3,
+                4,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                6,
+                14
+              ],
+              "b_vector": [
+                14,
+                10
+              ],
+              "coefficients": [
+                1,
+                7,
+                7,
+                9,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                4,
+                5,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                4,
+                11
+              ],
+              "b_vector": [
+                15,
+                3
+              ],
+              "coefficients": [
+                1,
+                14,
+                6,
+                2,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                4,
+                6,
+                15
+              ]
+            },
+            {
+              "a_vector": [
+                15,
+                2
+              ],
+              "b_vector": [
+                1,
+                16
+              ],
+              "coefficients": [
+                1,
+                1,
+                3,
+                15,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                1,
+                4,
+                7,
+                15
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 15
+        },
+        {
+          "aligned_total": 16,
+          "aperiodic": 16,
+          "best_point_dictator_occupancy": 13,
+          "best_point_dictator_points": [
+            0,
+            11,
+            12
+          ],
+          "examples": [
+            {
+              "a_vector": [
+                6,
+                16
+              ],
+              "b_vector": [
+                11,
+                1
+              ],
+              "coefficients": [
+                1,
+                2,
+                7,
+                8,
+                16
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                1,
+                11,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                13,
+                5
+              ],
+              "b_vector": [
+                4,
+                12
+              ],
+              "coefficients": [
+                1,
+                13,
+                11,
+                12,
+                14
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                2,
+                11,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                0,
+                6
+              ],
+              "b_vector": [
+                0,
+                11
+              ],
+              "coefficients": [
+                1,
+                12,
+                6,
+                7,
+                8
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                3,
+                11,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                12,
+                9
+              ],
+              "b_vector": [
+                5,
+                8
+              ],
+              "coefficients": [
+                1,
+                9,
+                8,
+                9,
+                7
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                4,
+                11,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                14,
+                1
+              ],
+              "b_vector": [
+                3,
+                16
+              ],
+              "coefficients": [
+                1,
+                0,
+                14,
+                15,
+                4
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                5,
+                11,
+                12
+              ]
+            },
+            {
+              "a_vector": [
+                3,
+                11
+              ],
+              "b_vector": [
+                14,
+                6
+              ],
+              "coefficients": [
+                1,
+                7,
+                15,
+                16,
+                12
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                0,
+                6,
+                11,
+                12
+              ]
+            }
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 16
+        }
+      ],
+      "j": 4,
+      "label": "f17_n16_j4_oracle",
+      "locators_total": 1820,
+      "n": 16,
+      "oracle_gate": true,
+      "oracle_gate_statement": "F_17 split-locator enumeration is included and replayed exactly",
+      "p": 17,
+      "proxy_inversion_flagged": true,
+      "q_chal": 17,
+      "q_gen": 17,
+      "q_line": 17,
+      "slope_summary": [
+        {
+          "aligned_total": 3,
+          "aperiodic": 3,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0,
+            7,
+            10
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 0
+        },
+        {
+          "aligned_total": 6,
+          "aperiodic": 6,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            3
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 1
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            5,
+            6,
+            8,
+            10
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 2
+        },
+        {
+          "aligned_total": 8,
+          "aperiodic": 8,
+          "best_point_dictator_occupancy": 4,
+          "best_point_dictator_points": [
+            6
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 3
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            9
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 4
+        },
+        {
+          "aligned_total": 6,
+          "aperiodic": 6,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            1
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 5
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            4,
+            9,
+            11,
+            13
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 6
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0,
+            2,
+            4,
+            10,
+            14
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 7
+        },
+        {
+          "aligned_total": 5,
+          "aperiodic": 5,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0,
+            4,
+            7,
+            9,
+            12,
+            13
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 8
+        },
+        {
+          "aligned_total": 6,
+          "aperiodic": 6,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            2,
+            4,
+            11
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 9
+        },
+        {
+          "aligned_total": 4,
+          "aperiodic": 4,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            1,
+            5,
+            9
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 10
+        },
+        {
+          "aligned_total": 5,
+          "aperiodic": 5,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            6
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 11
+        },
+        {
+          "aligned_total": 5,
+          "aperiodic": 5,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            14
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 12
+        },
+        {
+          "aligned_total": 7,
+          "aperiodic": 7,
+          "best_point_dictator_occupancy": 3,
+          "best_point_dictator_points": [
+            6,
+            10
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 13
+        },
+        {
+          "aligned_total": 5,
+          "aperiodic": 5,
+          "best_point_dictator_occupancy": 2,
+          "best_point_dictator_points": [
+            0,
+            6,
+            7,
+            13,
+            14,
+            15
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 14
+        },
+        {
+          "aligned_total": 15,
+          "aperiodic": 15,
+          "best_point_dictator_occupancy": 13,
+          "best_point_dictator_points": [
+            1,
+            4,
+            15
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 15
+        },
+        {
+          "aligned_total": 16,
+          "aperiodic": 16,
+          "best_point_dictator_occupancy": 13,
+          "best_point_dictator_points": [
+            0,
+            11,
+            12
+          ],
+          "non_null_aperiodic_exceeds_dictator": true,
+          "periodic": 0,
+          "z": 16
+        }
+      ],
+      "slopes_total": 17,
+      "source": {
+        "u_values": [
+          10,
+          15,
+          5,
+          14,
+          8,
+          4,
+          2,
+          2,
+          4,
+          8,
+          14,
+          5,
+          15,
+          10,
+          7,
+          6
+        ],
+        "v_values": [
+          5,
+          11,
+          0,
+          12,
+          2,
+          10,
+          8,
+          2,
+          15,
+          2,
+          3,
+          7,
+          3,
+          14,
+          12,
+          3
+        ]
+      },
+      "u_syndrome": [
+        10,
+        0,
+        10,
+        6,
+        3,
+        2
+      ],
+      "v_syndrome": [
+        7,
+        4,
+        7,
+        2,
+        1,
+        5
+      ]
+    }
+  ],
+  "schema_version": "mode-at-null-extremality-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "theorem_problem_id": "T2-mode-at-null-extremality"
+}
