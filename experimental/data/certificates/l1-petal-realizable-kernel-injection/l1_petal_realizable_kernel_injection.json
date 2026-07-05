@@ -1,0 +1,24 @@
+{
+  "anchor_checks": {
+    "bridge_claim": true,
+    "kernel_definition": true,
+    "lemma_8_heading": true,
+    "locator_intersection": true,
+    "proof_program_exists": true,
+    "residue_bridge_exists": true
+  },
+  "dependencies": [
+    "l1_coset_chart_residue_bridge_v1",
+    "l1_full_list_quotient_proof_program Lemma 8"
+  ],
+  "non_claims": [
+    "does not count squarefree locator points in K_{I,d}",
+    "does not prove the squarefree classification ledger",
+    "does not close the L1 mixed/growing residual"
+  ],
+  "note": "experimental/notes/l1/l1_petal_realizable_kernel_injection.md",
+  "schema": "l1-petal-realizable-kernel-injection-v1",
+  "source_dag_node": "petal_realizable_kernel_injection",
+  "statement": "exact realizable full-petal extras inject into squarefree locator points in K_{I,d}",
+  "status": "PROVED_BY_LEMMA_8_REPLAY"
+}

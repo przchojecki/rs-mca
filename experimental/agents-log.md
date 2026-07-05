@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - L1 petal realizable-kernel injection
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/l1/l1_petal_realizable_kernel_injection.md`;
+  `experimental/scripts/verify_l1_petal_realizable_kernel_injection.py`;
+  `experimental/data/certificates/l1-petal-realizable-kernel-injection/README.md`;
+  `experimental/data/certificates/l1-petal-realizable-kernel-injection/l1_petal_realizable_kernel_injection.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A standalone proof packet for the Lemma-8 injection
+  from exact realizable full-petal extras to squarefree locator points in the
+  residue-line kernel.
+- **How it is useful:** This is a proved L1 growing-defect input that reduces
+  realizable extras to the squarefree-kernel counting/classification task.
+- **What to do next:** Pair this with the residue-kernel linear bound and a
+  squarefree classification ledger; do not treat the injection as a count.
+
 ### 2026-07-05 - L1 petal residue-kernel linear bound
 
 - **Agent/model:** Codex.
