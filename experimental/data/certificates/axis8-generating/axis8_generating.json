@@ -1,0 +1,34 @@
+{
+  "depends_on": [
+    "field_cap_check"
+  ],
+  "inference": "The source constrains the ambient field F and smooth subgroup L but does not require L to generate F. A subgroup contained in a proper subfield of an admissible ambient F is therefore not excluded by the official family definition.",
+  "ledger_consequence": {
+    "forbidden_shortcut": "do not merge generated-field entropy with ambient-field budget without a transfer theorem",
+    "non_generating_case": "live/admissible",
+    "required_response": "price by extension-lift, F1 descent, or another named tower-case theorem"
+  },
+  "non_claims": [
+    "does not prove an extension-line MCA theorem",
+    "does not assert every tower case creates an obstruction",
+    "does not merge generated-field and ambient-field ledgers"
+  ],
+  "quote_fragments": [
+    "C := RS[F, L, k]",
+    "L subset F",
+    "smooth evaluation domain",
+    "multiplicative subgroup",
+    "|F| < 2^256"
+  ],
+  "schema": "rs-mca.experimental.axis8_generating.v1",
+  "source": {
+    "artifact": "abf26.pdf",
+    "description": "Arnon-Boneh-Fenzi, Open Problems in List Decoding and Correlated Agreement",
+    "page": 5,
+    "sha256": "426a979c13cc61db0f2cdb909067ef4c9f24438859fe0a7a337d2b19b07fcaa5",
+    "source_id": "IACR ePrint 2026/680"
+  },
+  "source_dag_node": "axis8_generating",
+  "status": "PROVED",
+  "verdict": "non_generating_rows_are_admissible_and_must_be_priced"
+}

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Axis 8 generating-field reading packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/axis8_generating.md`;
+  `experimental/scripts/verify_axis8_generating.py`;
+  `experimental/data/certificates/axis8-generating/axis8_generating.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A citation-and-inference packet showing that the
+  official ABF family does not require the smooth domain `L` to generate the
+  ambient field `F`.
+- **How it is useful:** Keeps non-generating/tower rows live in the proof
+  program and forces extension/tower obligations to be priced by named
+  theorems rather than dropped.
+- **What to do next:** Use this packet when auditing extension-line MCA,
+  F1 descent, and any argument that separates generated-field and ambient-field
+  ledgers.
+
 ### 2026-07-05 - Field cap check packet
 
 - **Agent/model:** Codex.
