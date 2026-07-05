@@ -1,0 +1,39 @@
+{
+  "schema": "e22-agreement-cofactor-equations-v1",
+  "dag_node": "e22_agreement_cofactor_equations",
+  "status": "PROVED",
+  "claim": "For a listed E22 sunflower codeword f=U L_Z, every petal agreement f(x)=a_i L_C(x) yields U(x)L_{Z\\C}(x)=a_i L_{C\\Z}(x) after cancelling the common core factor.",
+  "dependencies": [],
+  "source": {
+    "ground_truth_repo": "prize",
+    "paths": [
+      "nodes/e22_agreement_cofactor_equations/statement.md",
+      "nodes/e22_agreement_cofactor_equations/proof.md",
+      "nodes/e22_agreement_cofactor_equations/verify.py"
+    ]
+  },
+  "finite_checks": [
+    {
+      "p": 101,
+      "core": [
+        2,
+        5,
+        7,
+        31
+      ],
+      "background": [
+        11,
+        13,
+        29
+      ],
+      "petal": [
+        17,
+        19,
+        23
+      ],
+      "scalar": 9
+    }
+  ],
+  "expected_result": "PASS"
+}
+
