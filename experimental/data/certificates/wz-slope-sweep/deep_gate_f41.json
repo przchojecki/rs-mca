@@ -1,0 +1,532 @@
+{
+  "claim": "deep-gate row where max aperiodic W_z occupancy is bounded by n-a+1",
+  "payload_sha256": "82f66fd0bcff0f932a637edfe226f74c68def51a25dba0823aedb725d7070f40",
+  "proof_status": "AUDIT replay of exact finite sweep",
+  "rows": [
+    {
+      "a": 40,
+      "codim": 3,
+      "deep_gate_pass": true,
+      "deep_gate_rhs": 1,
+      "density_predictor_ceiling": 1,
+      "domain": {
+        "type": "multiplicative_subgroup",
+        "values": [
+          1,
+          6,
+          36,
+          11,
+          25,
+          27,
+          39,
+          29,
+          10,
+          19,
+          32,
+          28,
+          4,
+          24,
+          21,
+          3,
+          18,
+          26,
+          33,
+          34,
+          40,
+          35,
+          5,
+          30,
+          16,
+          14,
+          2,
+          12,
+          31,
+          22,
+          9,
+          13,
+          37,
+          17,
+          20,
+          38,
+          23,
+          15,
+          8,
+          7
+        ]
+      },
+      "flagged_over_density_slopes": [],
+      "incidence_tests": 405080,
+      "j": 3,
+      "k": 10,
+      "label": "deep_gate_f41",
+      "locators_total": 9880,
+      "max_aperiodic": 1,
+      "max_slopes": [
+        9,
+        14,
+        27,
+        38,
+        39
+      ],
+      "n": 40,
+      "p": 41,
+      "q_chal": 41,
+      "q_gen": 41,
+      "q_line": 41,
+      "slope_summary": [
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 0
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 1
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 2
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 3
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 4
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 5
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 6
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 7
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 8
+        },
+        {
+          "aperiodic": 1,
+          "periodic": 0,
+          "total": 1,
+          "z": 9
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 10
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 11
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 12
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 13
+        },
+        {
+          "aperiodic": 1,
+          "periodic": 0,
+          "total": 1,
+          "z": 14
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 15
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 16
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 17
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 18
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 19
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 20
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 21
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 22
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 23
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 24
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 25
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 26
+        },
+        {
+          "aperiodic": 1,
+          "periodic": 0,
+          "total": 1,
+          "z": 27
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 28
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 29
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 30
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 31
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 32
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 33
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 34
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 35
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 36
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 37
+        },
+        {
+          "aperiodic": 1,
+          "periodic": 0,
+          "total": 1,
+          "z": 38
+        },
+        {
+          "aperiodic": 1,
+          "periodic": 0,
+          "total": 1,
+          "z": 39
+        },
+        {
+          "aperiodic": 0,
+          "periodic": 0,
+          "total": 0,
+          "z": 40
+        }
+      ],
+      "slopes_total": 41,
+      "source": {
+        "f_values": [
+          10,
+          15,
+          22,
+          31,
+          1,
+          14,
+          29,
+          5,
+          24,
+          4,
+          27,
+          11,
+          38,
+          26,
+          16,
+          8,
+          2,
+          39,
+          37,
+          37,
+          39,
+          2,
+          8,
+          16,
+          26,
+          38,
+          11,
+          27,
+          4,
+          24,
+          5,
+          29,
+          14,
+          1,
+          31,
+          22,
+          15,
+          10,
+          7,
+          6
+        ],
+        "g_values": [
+          32,
+          24,
+          9,
+          34,
+          23,
+          23,
+          40,
+          39,
+          26,
+          7,
+          29,
+          16,
+          15,
+          32,
+          32,
+          21,
+          5,
+          31,
+          23,
+          28,
+          11,
+          19,
+          17,
+          11,
+          7,
+          11,
+          29,
+          26,
+          8,
+          22,
+          33,
+          6,
+          29,
+          26,
+          3,
+          7,
+          3,
+          38,
+          36,
+          3
+        ]
+      },
+      "u_syndrome": [
+        34,
+        13,
+        23,
+        36,
+        30,
+        7
+      ],
+      "v_syndrome": [
+        14,
+        24,
+        17,
+        39,
+        12,
+        18
+      ],
+      "witnesses": [
+        {
+          "examples": [
+            {
+              "coefficients": [
+                1,
+                23,
+                23,
+                18
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                21,
+                26,
+                29
+              ]
+            }
+          ],
+          "z": 9
+        },
+        {
+          "examples": [
+            {
+              "coefficients": [
+                1,
+                16,
+                20,
+                25
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                23,
+                35
+              ]
+            }
+          ],
+          "z": 14
+        },
+        {
+          "examples": [
+            {
+              "coefficients": [
+                1,
+                20,
+                29,
+                26
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                10,
+                29,
+                38
+              ]
+            }
+          ],
+          "z": 27
+        },
+        {
+          "examples": [
+            {
+              "coefficients": [
+                1,
+                16,
+                18,
+                21
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                6,
+                13,
+                15
+              ]
+            }
+          ],
+          "z": 38
+        },
+        {
+          "examples": [
+            {
+              "coefficients": [
+                1,
+                2,
+                13,
+                39
+              ],
+              "periodicity_scale": 1,
+              "support": [
+                14,
+                15,
+                37
+              ]
+            }
+          ],
+          "z": 39
+        }
+      ]
+    }
+  ],
+  "schema_version": "wz-slope-sweep-v1",
+  "scope": [
+    "Finite Hankel-pencil incidence row; not a global line-decoding theorem."
+  ],
+  "status": "EXPERIMENTAL",
+  "theorem_problem_id": "A-side-Wz-syndrome-annihilator"
+}

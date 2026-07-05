@@ -1925,3 +1925,21 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-05 - W_z slope-sweep incidence check
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/gpu/wz_slope_sweep.py`,
+  `experimental/scripts/verify_wz_slope_sweep.py`,
+  `experimental/data/certificates/wz-slope-sweep/`,
+  `experimental/notes/m1/wz_slope_sweep_aperiodic_band.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact small-row slope sweeps for the `W_z`
+  Hankel-pencil split-locator incidence object, including a deep-gate row and
+  finite over-density flags against the naive density ceiling.
+- **How it is useful:** Gives a CPU-replayable stress test for the `(A)` side
+  incidence object while separating aperiodic and periodic locator supports.
+- **What to do next:** Replace the small exact rows with a full large-row
+  accelerator packet once the incidence engine is attached to the same
+  verifier format.
