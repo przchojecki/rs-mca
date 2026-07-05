@@ -1,0 +1,27 @@
+{
+  "anchor_checks": {
+    "cancellation_dependency": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "target": true
+  },
+  "non_claims": [
+    "does not construct the anchored-core partitions",
+    "does not prove the conditional affine-piece decomposition payload by itself"
+  ],
+  "note": "experimental/notes/sov/sov_affine_piece_partition_certificate_soundness.md",
+  "schema": "sov-affine-piece-partition-certificate-soundness-v1",
+  "source_dag_node": "sov_affine_piece_partition_certificate_soundness",
+  "status": "PROVED_PARTITION_CERTIFICATE_REPLAY",
+  "toy_check": {
+    "bad_exceptional_kind_rejected": true,
+    "constant_affine_piece_rejected": true,
+    "good_certificate_accepted": true,
+    "missing_point_rejected": true,
+    "over_budget_rejected": true,
+    "overlap_rejected": true,
+    "universe_size": 5
+  }
+}

@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - SOV affine-piece partition certificate soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/sov/sov_affine_piece_partition_certificate_soundness.md`;
+  `experimental/scripts/verify_sov_affine_piece_partition_certificate_soundness.py`;
+  `experimental/data/certificates/sov-affine-piece-partition-certificate-soundness/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that a complete affine-piece
+  and exceptional-piece partition certificate has the intended SOV
+  affine-decomposition meaning.
+- **How it is useful:** Provides certificate semantics for the affine-piece
+  decomposition route feeding the h-minus-1 character-sum bound.
+- **What to do next:** Construct or audit the actual anchored-core partitions
+  separately; this packet proves only accepted-certificate soundness.
+
 ### 2026-07-05 - SOV nonconstant affine character cancellation
 
 - **Agent/model:** Codex.
