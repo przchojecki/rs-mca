@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - DLI reduced-pole majorant table soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/dli/dli_reduced_pole_majorant_table_soundness.md`;
+  `experimental/scripts/verify_dli_reduced_pole_majorant_table_soundness.py`;
+  `experimental/data/certificates/dli-reduced-pole-majorant-table-soundness/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that a complete table of
+  certified reduced-pole majorants controls the true reduced-pole harmonic
+  total.
+- **How it is useful:** Supplies exact certificate semantics for the DLI
+  majorant-table branch of the Paper-D audit/replay chain.
+- **What to do next:** Construct or audit the actual DLI table separately;
+  this packet proves only that a complete accepted table has the intended
+  ledger meaning.
+
 ### 2026-07-05 - DLI odd-phase polar obstruction soundness
 
 - **Agent/model:** Codex.

@@ -1,0 +1,29 @@
+{
+  "anchor_checks": {
+    "domination": true,
+    "non_claim": true,
+    "note_exists": true,
+    "source_node": true,
+    "status": true,
+    "tuple_universe": true
+  },
+  "non_claims": [
+    "does not construct the majorant table",
+    "does not prove Artin-Schreier nontriviality",
+    "does not close the remaining analytic DLI estimate"
+  ],
+  "note": "experimental/notes/dli/dli_reduced_pole_majorant_table_soundness.md",
+  "schema": "dli-reduced-pole-majorant-table-soundness-v1",
+  "source_dag_node": "dli_reduced_pole_majorant_table_soundness",
+  "status": "PROVED_MAJORANT_TABLE_REPLAY",
+  "toy_check": {
+    "budget": 8,
+    "good_table_accepted": true,
+    "majorant_total": 7,
+    "missing_table_rejected": true,
+    "over_budget_rejected": true,
+    "true_total": 5,
+    "underbound_rejected": true,
+    "universe_size": 3
+  }
+}
