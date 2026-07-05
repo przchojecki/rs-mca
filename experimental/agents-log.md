@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - CAP25 v13 identity-frontier certificate packet
+
+- **Agent/model:** Claude Fable 5 PI + Opus/Sonnet fleet (holmbuar).
+- **Files added or changed:** `experimental/data/certificates/cap25-v13-identity-frontier/certificate.json`;
+  `experimental/data/certificates/cap25-v13-identity-frontier/README.md`;
+  `experimental/data/certificates/cap25-v13-identity-frontier/replay.sh`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PACKAGING.
+- **What is being added:** A committed JSON certificate, README, and
+  zero-arg replay script for the existing, unmodified
+  `experimental/scripts/towards v13/cap25_v13_frontier_identity_exact_checks.py`
+  checker, covering all 12 exact-integer checks (the four deployed
+  identity-scale `c=1` rows, `lem:v13f1-identity-prefix-floor` and
+  `prop:v13f1-identity-frontier`, plus the superseded `c=2` and old
+  `c=16/32` rows as cross-checks). It certifies only the lower (unsafe)
+  staircase `L(a0) > threshold`; it does not certify the safe side (the
+  first safe agreement `a0+1` remains open, `prob:v13f1-frontier`).
+- **How it is useful:** Gives the v13 identity-scale frontier checker its
+  missing committed certificate packet per repo convention — this was the
+  one exception found in a recon pass: a bare script under
+  `experimental/scripts/towards v13/` with no committed certificate trail
+  under `experimental/data/certificates/`, unlike its sibling 2026-07-04/05
+  packets.
+- **What to do next:** Consume this packet in the frontier-adjacent packet
+  family (the companion, currently incomplete, safe-side ledger scaffold).
+  Do not cite this packet as evidence for the safe side, and do not treat
+  `experimental/cap25_v13_experimental.tex` as promoted into Paper D on the
+  strength of this certificate alone.
+
 ### 2026-07-05 - CAP25 v13 missing-inputs proof strategy
 
 - **Agent/model:** Maintainer-added strategy note reviewed and integrated by

@@ -1,0 +1,615 @@
+{
+ "schema": "cap25-v13-identity-frontier-v1 (ad hoc; no repo-wide schema exists for this packet family)",
+ "object": "Exact-integer certificate for the v13 identity-scale (c=1) prefix-floor UNSAFE lower staircase L(a0) > threshold, for the four deployed n=2^21, k=2^20 rows (KoalaBear MCA/list, Mersenne-31 line-round MCA/list), plus the superseded c=2 and old c=16/32 rows as cross-checks. Certifies ONLY that the identity-prefix pigeonhole construction produces more than the row's threshold-many bad witnesses at a0, and strictly fewer at a0+1. Does NOT certify the safe side; a0+1 being the first safe agreement remains an open problem (prob:v13f1-frontier).",
+ "source": {
+  "script": "experimental/scripts/towards v13/cap25_v13_frontier_identity_exact_checks.py",
+  "tex_labels": [
+   "lem:v13f1-identity-prefix-floor (experimental/cap25_v13_experimental.tex L1341-1369)",
+   "prop:v13f1-identity-frontier (experimental/cap25_v13_experimental.tex L1373-1397)",
+   "rem:v13f1-closure (experimental/cap25_v13_experimental.tex L1466-1468)"
+  ],
+  "replay_command": "python3 \"experimental/scripts/towards v13/cap25_v13_frontier_identity_exact_checks.py\"",
+  "rerun_stdout_matches_12_of_12": true,
+  "rerun_runtime_seconds": 4.33,
+  "rerun_exit_code": 0
+ },
+ "method": {
+  "binomial_construction": "binom_prime(N,m): exact C(N,m) built as a product of prime powers p^e, e = v_p(N!) - v_p(m!) - v_p((N-m)!) via Legendre's formula (vp_factorial), for every prime p<=N (Kummer/Legendre exact method, no math.comb, no floats). Reimplemented independently in the generator for this certificate (attribution above); binom_table reuses one binom_prime call per scale group plus O(1) exact ratio updates for adjacent m, exactly as the source script does.",
+  "bit_bracket": "bit_bracket(num,den): integers (L,U=L+1) with 2^L <= num/den < 2^U, found by bit_length-seeded search and VERIFIED by exact integer comparison (num >= den*2^j, or equivalently num<<(-j) >= den for negative j) -- no floats in the verdict. Applied to the LHS/RHS of each checked inequality at m (must be > 0, i.e. unsafe fires) and at m+1 (must be <= 0, i.e. construction stops firing) as the 'orientation margin'.",
+  "note_on_integer_sizes": "C(N,m) itself is NOT recorded (it runs to ~2 million bits for the c=1 rows: n*H2(m/n) with n=2^21, m/n~0.532 gives ~2.09M bits). Only bit_length()s of the composite LHS/RHS products and the resulting small (tens-of-bits) orientation-margin brackets are recorded, per task instruction."
+ },
+ "checks": [
+  {
+   "name": "KB MCA identity",
+   "row_family": "KB MCA",
+   "kind": "mca",
+   "scale_c": 1,
+   "m": 1116043,
+   "K": 1048577,
+   "K_desc": "k+1 (deep-point/MCA auxiliary dimension, thm:A)",
+   "w": 67466,
+   "N": 2097152,
+   "Delta_mc_minus_k": 67467,
+   "pbase": 2130706433,
+   "pbase_desc": "KoalaBear prime p = 2^31 - 2^24 + 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_kb + k",
+    "den_desc": "k",
+    "num_bits": 186,
+    "den_bits": 21
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 2090895,
+    "rhs_bit_length": 2090869,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 2090895,
+    "rhs_bit_length": 2090900,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "981109/2097152",
+   "edge_float_approx": 0.46782922744750977,
+   "orientation_margin_bracket_at_m": {
+    "L": 25,
+    "U": 26,
+    "display": "[2^25, 2^26)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -6,
+    "U": -5,
+    "display": "[2^-6, 2^-5)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "KB list identity",
+   "row_family": "KB list",
+   "kind": "list",
+   "scale_c": 1,
+   "m": 1116046,
+   "K": 1048576,
+   "K_desc": "k (list dimension, no deep-point shift)",
+   "w": 67470,
+   "N": 2097152,
+   "Delta_mc_minus_k": 67470,
+   "pbase": 2130706433,
+   "pbase_desc": "KoalaBear prime p = 2^31 - 2^24 + 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_kb",
+    "den_desc": "2^128",
+    "num_bits": 186,
+    "den_bits": 129
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 2091002,
+    "rhs_bit_length": 2090993,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 2091002,
+    "rhs_bit_length": 2091024,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "490553/1048576",
+   "edge_float_approx": 0.46782779693603516,
+   "orientation_margin_bracket_at_m": {
+    "L": 9,
+    "U": 10,
+    "display": "[2^9, 2^10)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -23,
+    "U": -22,
+    "display": "[2^-23, 2^-22)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "M31 MCA identity",
+   "row_family": "M31 MCA",
+   "kind": "mca",
+   "scale_c": 1,
+   "m": 1116021,
+   "K": 1048577,
+   "K_desc": "k+1 (deep-point/MCA auxiliary dimension, thm:A)",
+   "w": 67444,
+   "N": 2097152,
+   "Delta_mc_minus_k": 67445,
+   "pbase": 2147483647,
+   "pbase_desc": "Mersenne prime p' = 2^31 - 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_m31 + k",
+    "den_desc": "k",
+    "num_bits": 124,
+    "den_bits": 21
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 2090899,
+    "rhs_bit_length": 2090888,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 2090899,
+    "rhs_bit_length": 2090919,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "981131/2097152",
+   "edge_float_approx": 0.46783971786499023,
+   "orientation_margin_bracket_at_m": {
+    "L": 10,
+    "U": 11,
+    "display": "[2^10, 2^11)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -21,
+    "U": -20,
+    "display": "[2^-21, 2^-20)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "M31 list identity",
+   "row_family": "M31 list",
+   "kind": "list",
+   "scale_c": 1,
+   "m": 1116022,
+   "K": 1048576,
+   "K_desc": "k (list dimension, no deep-point shift)",
+   "w": 67446,
+   "N": 2097152,
+   "Delta_mc_minus_k": 67446,
+   "pbase": 2147483647,
+   "pbase_desc": "Mersenne prime p' = 2^31 - 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_m31",
+    "den_desc": "2^100",
+    "num_bits": 124,
+    "den_bits": 101
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 2090979,
+    "rhs_bit_length": 2090950,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 2090978,
+    "rhs_bit_length": 2090981,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "490565/1048576",
+   "edge_float_approx": 0.46783924102783203,
+   "orientation_margin_bracket_at_m": {
+    "L": 28,
+    "U": 29,
+    "display": "[2^28, 2^29)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -4,
+    "U": -3,
+    "display": "[2^-4, 2^-3)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "KB MCA c=2",
+   "row_family": "KB MCA",
+   "kind": "mca",
+   "scale_c": 2,
+   "m": 558019,
+   "K": 1048577,
+   "K_desc": "k+1 (deep-point/MCA auxiliary dimension, thm:A)",
+   "w": 33730,
+   "N": 1048576,
+   "Delta_mc_minus_k": 67462,
+   "pbase": 2130706433,
+   "pbase_desc": "KoalaBear prime p = 2^31 - 2^24 + 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_kb + k",
+    "den_desc": "k",
+    "num_bits": 186,
+    "den_bits": 21
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 1045453,
+    "rhs_bit_length": 1045435,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 1045453,
+    "rhs_bit_length": 1045466,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "490557/1048576",
+   "edge_float_approx": 0.4678316116333008,
+   "orientation_margin_bracket_at_m": {
+    "L": 18,
+    "U": 19,
+    "display": "[2^18, 2^19)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -13,
+    "U": -12,
+    "display": "[2^-13, 2^-12)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "KB list c=2",
+   "row_family": "KB list",
+   "kind": "list",
+   "scale_c": 2,
+   "m": 558022,
+   "K": 1048576,
+   "K_desc": "k (list dimension, no deep-point shift)",
+   "w": 33734,
+   "N": 1048576,
+   "Delta_mc_minus_k": 67468,
+   "pbase": 2130706433,
+   "pbase_desc": "KoalaBear prime p = 2^31 - 2^24 + 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_kb",
+    "den_desc": "2^128",
+    "num_bits": 186,
+    "den_bits": 129
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 1045561,
+    "rhs_bit_length": 1045559,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 1045560,
+    "rhs_bit_length": 1045590,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "245277/524288",
+   "edge_float_approx": 0.46782875061035156,
+   "orientation_margin_bracket_at_m": {
+    "L": 1,
+    "U": 2,
+    "display": "[2^1, 2^2)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -30,
+    "U": -29,
+    "display": "[2^-30, 2^-29)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "M31 MCA c=2",
+   "row_family": "M31 MCA",
+   "kind": "mca",
+   "scale_c": 2,
+   "m": 558009,
+   "K": 1048577,
+   "K_desc": "k+1 (deep-point/MCA auxiliary dimension, thm:A)",
+   "w": 33720,
+   "N": 1048576,
+   "Delta_mc_minus_k": 67442,
+   "pbase": 2147483647,
+   "pbase_desc": "Mersenne prime p' = 2^31 - 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_m31 + k",
+    "den_desc": "k",
+    "num_bits": 124,
+    "den_bits": 21
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 1045455,
+    "rhs_bit_length": 1045444,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 1045455,
+    "rhs_bit_length": 1045475,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "490567/1048576",
+   "edge_float_approx": 0.46784114837646484,
+   "orientation_margin_bracket_at_m": {
+    "L": 10,
+    "U": 11,
+    "display": "[2^10, 2^11)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -21,
+    "U": -20,
+    "display": "[2^-21, 2^-20)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "M31 list c=2",
+   "row_family": "M31 list",
+   "kind": "list",
+   "scale_c": 2,
+   "m": 558010,
+   "K": 1048576,
+   "K_desc": "k (list dimension, no deep-point shift)",
+   "w": 33722,
+   "N": 1048576,
+   "Delta_mc_minus_k": 67444,
+   "pbase": 2147483647,
+   "pbase_desc": "Mersenne prime p' = 2^31 - 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_m31",
+    "den_desc": "2^100",
+    "num_bits": 124,
+    "den_bits": 101
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 1045535,
+    "rhs_bit_length": 1045506,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 1045535,
+    "rhs_bit_length": 1045537,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "245283/524288",
+   "edge_float_approx": 0.46784019470214844,
+   "orientation_margin_bracket_at_m": {
+    "L": 28,
+    "U": 29,
+    "display": "[2^28, 2^29)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -3,
+    "U": -2,
+    "display": "[2^-3, 2^-2)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "KB MCA old c=16",
+   "row_family": "KB MCA",
+   "kind": "mca",
+   "scale_c": 16,
+   "m": 69748,
+   "K": 1048577,
+   "K_desc": "k+1 (deep-point/MCA auxiliary dimension, thm:A)",
+   "w": 4211,
+   "N": 131072,
+   "Delta_mc_minus_k": 67392,
+   "pbase": 2130706433,
+   "pbase_desc": "KoalaBear prime p = 2^31 - 2^24 + 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_kb + k",
+    "den_desc": "k",
+    "num_bits": 186,
+    "den_bits": 21
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 130693,
+    "rhs_bit_length": 130680,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 130693,
+    "rhs_bit_length": 130711,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "15331/32768",
+   "edge_float_approx": 0.467864990234375,
+   "orientation_margin_bracket_at_m": {
+    "L": 13,
+    "U": 14,
+    "display": "[2^13, 2^14)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -19,
+    "U": -18,
+    "display": "[2^-19, 2^-18)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "KB list old c=32",
+   "row_family": "KB list",
+   "kind": "list",
+   "scale_c": 32,
+   "m": 34874,
+   "K": 1048576,
+   "K_desc": "k (list dimension, no deep-point shift)",
+   "w": 2106,
+   "N": 65536,
+   "Delta_mc_minus_k": 67392,
+   "pbase": 2130706433,
+   "pbase_desc": "KoalaBear prime p = 2^31 - 2^24 + 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_kb",
+    "den_desc": "2^128",
+    "num_bits": 186,
+    "den_bits": 129
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 65461,
+    "rhs_bit_length": 65449,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 65461,
+    "rhs_bit_length": 65480,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "15331/32768",
+   "edge_float_approx": 0.467864990234375,
+   "orientation_margin_bracket_at_m": {
+    "L": 12,
+    "U": 13,
+    "display": "[2^12, 2^13)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -20,
+    "U": -19,
+    "display": "[2^-20, 2^-19)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "M31 MCA old c=32",
+   "row_family": "M31 MCA",
+   "kind": "mca",
+   "scale_c": 32,
+   "m": 34873,
+   "K": 1048577,
+   "K_desc": "k+1 (deep-point/MCA auxiliary dimension, thm:A)",
+   "w": 2104,
+   "N": 65536,
+   "Delta_mc_minus_k": 67360,
+   "pbase": 2147483647,
+   "pbase_desc": "Mersenne prime p' = 2^31 - 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_m31 + k",
+    "den_desc": "k",
+    "num_bits": 124,
+    "den_bits": 21
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 65353,
+    "rhs_bit_length": 65348,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 65353,
+    "rhs_bit_length": 65379,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "30663/65536",
+   "edge_float_approx": 0.4678802490234375,
+   "orientation_margin_bracket_at_m": {
+    "L": 4,
+    "U": 5,
+    "display": "[2^4, 2^5)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -27,
+    "U": -26,
+    "display": "[2^-27, 2^-26)"
+   },
+   "status": "PASS"
+  },
+  {
+   "name": "M31 list old c=32",
+   "row_family": "M31 list",
+   "kind": "list",
+   "scale_c": 32,
+   "m": 34874,
+   "K": 1048576,
+   "K_desc": "k (list dimension, no deep-point shift)",
+   "w": 2106,
+   "N": 65536,
+   "Delta_mc_minus_k": 67392,
+   "pbase": 2147483647,
+   "pbase_desc": "Mersenne prime p' = 2^31 - 1",
+   "pbase_bits": 31,
+   "threshold": {
+    "num_desc": "q_m31",
+    "den_desc": "2^100",
+    "num_bits": 124,
+    "den_bits": 101
+   },
+   "inequality_at_m": {
+    "formula": "C(N,m)*threshold_den > pbase^w * threshold_num",
+    "lhs_desc": "C(N,m) * threshold_den",
+    "rhs_desc": "pbase^w * threshold_num",
+    "lhs_bit_length": 65433,
+    "rhs_bit_length": 65410,
+    "verdict": "PASS"
+   },
+   "inequality_at_m_plus_1": {
+    "formula": "C(N,m+1)*threshold_den <= pbase^(w+1) * threshold_num",
+    "lhs_bit_length": 65433,
+    "rhs_bit_length": 65441,
+    "verdict": "PASS (adjacent-fail correctly holds)"
+   },
+   "edge_fraction": "15331/32768",
+   "edge_float_approx": 0.467864990234375,
+   "orientation_margin_bracket_at_m": {
+    "L": 22,
+    "U": 23,
+    "display": "[2^22, 2^23)"
+   },
+   "orientation_margin_bracket_at_m_plus_1": {
+    "L": -9,
+    "U": -8,
+    "display": "[2^-9, 2^-8)"
+   },
+   "status": "PASS"
+  }
+ ],
+ "summary": {
+  "total_checks": 12,
+  "passed": 12,
+  "failed": 0,
+  "groups": {
+   "identity_c1": 4,
+   "proposed_c2": 4,
+   "old_c16_c32": 4
+  }
+ },
+ "nonclaims": [
+  "This certificate proves L(a0) > threshold (unsafe) only. It does not prove or bound U(a0+1) (the safe side); 'a0+1 is the first safe agreement' remains an open problem (prob:v13f1-frontier), with no upper-ledger work anywhere in the repo for any of the four rows (confirmed by exhaustive grep, Wave-1 recon R6).",
+  "For the two MCA rows, the checked threshold is the deep-point conversion threshold (q+k)/k (thm:A), which is a SUFFICIENT proxy for unsafety, not a literal comparison against B*=floor(eps* q_line); see the packet README for the exact relationship.",
+  "The M31 rows use target epsilon*=2^-100, not 2^-128 (q_m31=p'^4<2^124 makes 2^-128 degenerate per prop:small-field).",
+  "Status is EXPERIMENTAL / CONDITIONAL / AUDIT throughout the source material (agents.md, agents-log.md, site data); this packaging does not change that status, only gives it a committed, replayable JSON form matching the convention of every other 2026-07-04/05 packet."
+ ]
+}
