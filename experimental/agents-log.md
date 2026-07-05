@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - M720 official norm-gate case manifest soundness
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m720/m720_official_norm_gate_case_manifest_soundness.md`;
+  `experimental/scripts/verify_m720_official_norm_gate_case_manifest_soundness.py`;
+  `experimental/data/certificates/m720-official-norm-gate-case-manifest-soundness/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof packet showing that a complete official
+  primitive norm-gate manifest with accepted discharge types supplies the
+  named M720 h=7..20 norm-gate payload.
+- **How it is useful:** Provides manifest grammar for exact certificate
+  ledgers without constructing or promoting the payload itself.
+- **What to do next:** Build or audit the actual official case manifest and
+  any uniform theorem citations separately.
+
 ### 2026-07-05 - M720 certificate semantics
 
 - **Agent/model:** Codex.

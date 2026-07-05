@@ -1,0 +1,28 @@
+{
+  "anchor_checks": {
+    "non_claim": true,
+    "note_exists": true,
+    "semantics_dependency": true,
+    "source_node": true,
+    "status": true,
+    "target": true
+  },
+  "non_claims": [
+    "does not construct the official case manifest",
+    "does not prove a uniform nonvanishing theorem",
+    "does not run an M720 MITM payload scan"
+  ],
+  "note": "experimental/notes/m720/m720_official_norm_gate_case_manifest_soundness.md",
+  "schema": "m720-official-norm-gate-case-manifest-soundness-v1",
+  "source_dag_node": "m720_official_norm_gate_case_manifest_soundness",
+  "status": "PROVED_CASE_MANIFEST_SOUNDNESS_REPLAY",
+  "toy_check": {
+    "bad_kind_rejected": true,
+    "case_count": 3,
+    "good_manifest_accepted": true,
+    "incomplete_certificate_rejected": true,
+    "missing_case_rejected": true,
+    "missing_citation_rejected": true,
+    "nonzero_survivor_rejected": true
+  }
+}
