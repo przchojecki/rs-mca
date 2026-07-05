@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - F1 minimal field descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/f1/f1_minimal_field_descent.md`;
+  `experimental/scripts/verify_f1_minimal_field_descent.py`;
+  `experimental/data/certificates/f1-minimal-field-descent/README.md`;
+  `experimental/data/certificates/f1-minimal-field-descent/f1_minimal_field_descent.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A finite-field descent lemma for extension-line
+  pencil data: every datum has a unique minimal field of definition containing
+  the base field, so the `K=B`, `B<K<F`, `K=F` split is exhaustive.
+- **How it is useful:** This supports the F1/extension-line lane by removing
+  composite field-of-definition ambiguity from the tower branch.  It is
+  bookkeeping for the extension-line fork, not the pole-forcing theorem.
+- **What to do next:** Combine this with the existing extension-import and
+  pole-forcing/classification packets before using F1 in a row-level safe
+  ledger.
+
 ### 2026-07-05 - PR 271-280 conditional imports, toy staircases, sparse witness, and Lean anchor
 
 - **Agent/model:** Codex integrating PR material from Vadim Avdeev

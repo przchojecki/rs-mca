@@ -1,0 +1,111 @@
+{
+  "agents_md_priority": "Highest-value item 5: extension-line MCA theorem or explicit corrected-reserve counterexample.",
+  "conclusion": "Every finite-field pencil datum has a unique minimal field of definition K containing B, giving the exhaustive split K=B, B<K<F, or K=F.",
+  "concrete_frobenius_checks": [
+    {
+      "base_degree_b": 2,
+      "case_counts": {
+        "B<K<F": 0,
+        "K=B": 4,
+        "K=F": 60
+      },
+      "degree_N": 6,
+      "irreducible_modulus_coefficients_low_to_high": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "p": 2,
+      "status": "PASS",
+      "total_elements": 64
+    },
+    {
+      "base_degree_b": 3,
+      "case_counts": {
+        "B<K<F": 56,
+        "K=B": 8,
+        "K=F": 4032
+      },
+      "degree_N": 12,
+      "irreducible_modulus_coefficients_low_to_high": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "p": 2,
+      "status": "PASS",
+      "total_elements": 4096
+    },
+    {
+      "base_degree_b": 2,
+      "case_counts": {
+        "B<K<F": 0,
+        "K=B": 9,
+        "K=F": 72
+      },
+      "degree_N": 4,
+      "irreducible_modulus_coefficients_low_to_high": [
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "p": 3,
+      "status": "PASS",
+      "total_elements": 81
+    },
+    {
+      "base_degree_b": 1,
+      "case_counts": {
+        "B<K<F": 20,
+        "K=B": 5,
+        "K=F": 600
+      },
+      "degree_N": 4,
+      "irreducible_modulus_coefficients_low_to_high": [
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "p": 5,
+      "status": "PASS",
+      "total_elements": 625
+    }
+  ],
+  "lattice_check": {
+    "cases_checked": 2934,
+    "checks": [
+      "subfield intersection degree is gcd",
+      "subfield compositum degree is lcm",
+      "minimal field containing base b and datum degree d_x is lcm(b,d_x)"
+    ],
+    "max_N": 60,
+    "status": "PASS"
+  },
+  "non_claims": [
+    "does not prove the full F1 pole-forcing/classification theorem",
+    "does not provide a row-level adjacent upper certificate",
+    "does not replace extension-pole/list threshold accounting"
+  ],
+  "note": "experimental/notes/f1/f1_minimal_field_descent.md",
+  "schema": "f1-minimal-field-descent-v1",
+  "source_dag_node": "f1_minimal_field_descent",
+  "status": "PROVED_BY_FIELD_THEORY_WITH_STDLIB_REPLAY"
+}
