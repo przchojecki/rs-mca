@@ -1,0 +1,211 @@
+{
+  "beats_trivial_baseline": false,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": false,
+    "certifies_safe_side": false,
+    "claims_no_method_can_reach": false,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": true,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "proves_prob_band_undecidable": false,
+    "resolves_or_advances_prob_band": false,
+    "verifies_current_printed_adjacent_pair_arithmetic": true
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "object": "cor:capg-adjacent-pairs exact fail-margin recomputation",
+  "oracle_gate": {
+    "B_star": 12,
+    "expected_exact_margin_bits": "2.000",
+    "fail_margin_interval_bits": [
+      "2.000",
+      "2.001"
+    ],
+    "fail_margin_scaled_bits_floor": 2000,
+    "lower_a0": 20,
+    "lower_a0_exceeds": true,
+    "lower_a1": 3,
+    "lower_a1_exceeds": false,
+    "passed": true,
+    "row": "hand_list_n6_K3_p7_q49_lambda2"
+  },
+  "regen_command": "py -3.13 experimental/scripts/verify_capg_adjacent_pair_margins.py --emit-defaults --check",
+  "rows": [
+    {
+      "B_star_threshold": 274980728111395087,
+      "a0": 1116047,
+      "a1": 1116048,
+      "base_prime": 2130706433,
+      "deficit_to_exceed_threshold_at_a1": 274980670913364722,
+      "exact_margin_rounds_to_printed_tenth": true,
+      "extension_degree": 6,
+      "fail_margin_interval_bits": [
+        "22.196",
+        "22.197"
+      ],
+      "fail_margin_scaled_bits_floor": 22196,
+      "k": 1048576,
+      "kind": "mca",
+      "lambda_bits": 128,
+      "lower_a0_exceeds_threshold": true,
+      "lower_a1_exceeds_threshold": false,
+      "lower_floor_at_a0": 138634741058327852652,
+      "lower_floor_at_a1": 57198030366,
+      "n": 2097152,
+      "pass_margin_interval_bits": [
+        "8.977",
+        "8.978"
+      ],
+      "pass_margin_scaled_bits_floor": 8977,
+      "printed_fail_margin_tenths": 222,
+      "row": "KoalaBear MCA",
+      "row_id": "kb_mca"
+    },
+    {
+      "B_star_threshold": 274980728111395087,
+      "a0": 1116046,
+      "a1": 1116047,
+      "base_prime": 2130706433,
+      "deficit_to_exceed_threshold_at_a1": 274980663046241620,
+      "exact_margin_rounds_to_printed_tenth": true,
+      "extension_degree": 6,
+      "fail_margin_interval_bits": [
+        "22.010",
+        "22.011"
+      ],
+      "fail_margin_scaled_bits_floor": 22010,
+      "k": 1048576,
+      "kind": "list",
+      "lambda_bits": 128,
+      "lower_a0_exceeds_threshold": true,
+      "lower_a1_exceeds_threshold": false,
+      "lower_floor_at_a0": 157702518233425975347,
+      "lower_floor_at_a1": 65065153468,
+      "n": 2097152,
+      "pass_margin_interval_bits": [
+        "9.163",
+        "9.164"
+      ],
+      "pass_margin_scaled_bits_floor": 9163,
+      "printed_fail_margin_tenths": 220,
+      "row": "KoalaBear list",
+      "row_id": "kb_list"
+    },
+    {
+      "B_star_threshold": 16777215,
+      "a0": 1116023,
+      "a1": 1116024,
+      "base_prime": 2147483647,
+      "deficit_to_exceed_threshold_at_a1": 15024516,
+      "exact_margin_rounds_to_printed_tenth": true,
+      "extension_degree": 4,
+      "fail_margin_interval_bits": [
+        "3.258",
+        "3.259"
+      ],
+      "fail_margin_scaled_bits_floor": 3258,
+      "k": 1048576,
+      "kind": "mca",
+      "lambda_bits": 100,
+      "lower_a0_exceeds_threshold": true,
+      "lower_a1_exceeds_threshold": false,
+      "lower_floor_at_a0": 4281388998575706,
+      "lower_floor_at_a1": 1752700,
+      "n": 2097152,
+      "pass_margin_interval_bits": [
+        "27.927",
+        "27.928"
+      ],
+      "pass_margin_scaled_bits_floor": 27927,
+      "printed_fail_margin_tenths": 33,
+      "row": "Mersenne-31 MCA",
+      "row_id": "m31_mca"
+    },
+    {
+      "B_star_threshold": 16777215,
+      "a0": 1116022,
+      "a1": 1116023,
+      "base_prime": 2147483647,
+      "deficit_to_exceed_threshold_at_a1": 14783538,
+      "exact_margin_rounds_to_printed_tenth": true,
+      "extension_degree": 4,
+      "fail_margin_interval_bits": [
+        "3.072",
+        "3.073"
+      ],
+      "fail_margin_scaled_bits_floor": 3072,
+      "k": 1048576,
+      "kind": "list",
+      "lambda_bits": 100,
+      "lower_a0_exceeds_threshold": true,
+      "lower_a1_exceeds_threshold": false,
+      "lower_floor_at_a0": 4870025984688527,
+      "lower_floor_at_a1": 1993678,
+      "n": 2097152,
+      "pass_margin_interval_bits": [
+        "28.112",
+        "28.113"
+      ],
+      "pass_margin_scaled_bits_floor": 28112,
+      "printed_fail_margin_tenths": 31,
+      "row": "Mersenne-31 list",
+      "row_id": "m31_list"
+    }
+  ],
+  "schema": "capg-adjacent-pair-margins.v1",
+  "statement_blocks": [
+    {
+      "excerpt": [
+        "\\begin{proposition}[moved MCA frontier, exact]\\label{prop:capg-moved-frontier}",
+        "With $n=2^{21}$, $k=2^{20}$, and the deployed rows of",
+        "\\cref{prop:capff1-identity-frontier}:",
+        "\\begin{center}\\footnotesize",
+        "\\begin{tabular}{@{}llllll@{}}",
+        "\\toprule",
+        "row / challenge & $m_1$ & $w=m_1-k-1$ & certified unsafe range &",
+        "margins (bits) \\\\",
+        "\\midrule",
+        "KoalaBear, MCA, $\\varepsilon^{*}=2^{-128}$ & $1116047$ & $67470$ &"
+      ],
+      "label": "prop:capg-moved-frontier",
+      "line_end": 8633,
+      "line_start": 8616,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "c3b3ef0904790ac6be726ce4bbbae11094136a626f7e6603f51e60c8dd6c8da3"
+    },
+    {
+      "excerpt": [
+        "\\begin{corollary}[updated adjacent pairs]\\label{cor:capg-adjacent-pairs}",
+        "In \\cref{prob:capff1-frontier} and \\cref{prob:capfp-F}, the predicted",
+        "adjacent pairs become",
+        "\\[",
+        "\\begin{array}{c|cc|c}",
+        "\\text{row} & \\text{proved unsafe }a_0 & \\text{conjectured first safe }a_0+1",
+        "& \\text{fail margin (bits)}\\\\ \\hline",
+        "\\text{KoalaBear MCA} & 1116047 & 1116048 & 22.2\\\\",
+        "\\text{KoalaBear list} & 1116046 & 1116047 & 22.0\\\\",
+        "\\text{Mersenne-31 MCA} & 1116023 & 1116024 & 3.3\\\\"
+      ],
+      "label": "cor:capg-adjacent-pairs",
+      "line_end": 8691,
+      "line_start": 8680,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "94547d5b3c74e5ac5d63b5b45a13b1b0ea01caaf7e21e35a5e92e94be76531f5"
+    }
+  ],
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "all_a0_lower_floors_exceed_threshold": true,
+    "all_a1_lower_floors_quiet": true,
+    "all_printed_fail_margins_round_from_exact_millibits": true,
+    "rows_checked": 4,
+    "tightest_fail_margin_row": "m31_list"
+  },
+  "theorem_problem_ids": [
+    "cor:capg-adjacent-pairs",
+    "prop:capg-moved-frontier"
+  ]
+}

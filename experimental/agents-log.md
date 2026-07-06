@@ -2265,3 +2265,22 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-06 - Adjacent-pair margin audit
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_capg_adjacent_pair_margins.py`;
+  `experimental/scripts/verify_capg_adjacent_pair_margins_check.py`;
+  `experimental/data/certificates/capg-adjacent-pairs/capg_adjacent_pair_margins.json`;
+  `experimental/notes/m1/capg_adjacent_pair_margins.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact integer recomputation of the four printed
+  `cor:capg-adjacent-pairs` fail margins, using millibit brackets rather than
+  floating-point logs.
+- **How it is useful:** Confirms the current adjacent-pair arithmetic while
+  preserving the distinction between a quiet lower floor and a safe-side upper
+  certificate.
+- **What to do next:** Supply the missing safe-side inputs separately; this
+  packet only verifies the printed margin arithmetic.
