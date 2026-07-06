@@ -1,0 +1,114 @@
+{
+  "non_claims": [
+    "does not prove paid_extension(a) is safe",
+    "does not classify all genuinely F-valued pairs",
+    "does not rule out other extension-cell counterexamples",
+    "does not promote the toy scanner to a deployed theorem",
+    "does not consume or resolve the open M1/L1/sparse residual cells"
+  ],
+  "rows": [
+    {
+      "adjacent_open_a": 1116048,
+      "adjacent_open_j_equals_n_minus_a": 981104,
+      "adjacent_open_t_equals_a_minus_k": 67472,
+      "effective_slack_bucket": "t>=2",
+      "k": 1048576,
+      "n": 2097152,
+      "packet": "kb_mca_v1.packet.json",
+      "pair_source": "v14_moved_pair.new_pair",
+      "row": "KoalaBear MCA",
+      "unsafe_a": 1116047,
+      "unsafe_j_equals_n_minus_a": 981105,
+      "unsafe_t_equals_a_minus_k": 67471
+    },
+    {
+      "adjacent_open_a": 1116047,
+      "adjacent_open_j_equals_n_minus_a": 981105,
+      "adjacent_open_t_equals_a_minus_k": 67471,
+      "effective_slack_bucket": "t>=2",
+      "k": 1048576,
+      "n": 2097152,
+      "packet": "kb_list_v1.packet.json",
+      "pair_source": "agreement_interval.one_step_target",
+      "row": "KoalaBear list",
+      "unsafe_a": 1116046,
+      "unsafe_j_equals_n_minus_a": 981106,
+      "unsafe_t_equals_a_minus_k": 67470
+    },
+    {
+      "adjacent_open_a": 1116024,
+      "adjacent_open_j_equals_n_minus_a": 981128,
+      "adjacent_open_t_equals_a_minus_k": 67448,
+      "effective_slack_bucket": "t>=2",
+      "k": 1048576,
+      "n": 2097152,
+      "packet": "m31_mca_v1.packet.json",
+      "pair_source": "v14_moved_pair.new_pair",
+      "row": "M31 MCA",
+      "unsafe_a": 1116023,
+      "unsafe_j_equals_n_minus_a": 981129,
+      "unsafe_t_equals_a_minus_k": 67447
+    },
+    {
+      "adjacent_open_a": 1116023,
+      "adjacent_open_j_equals_n_minus_a": 981129,
+      "adjacent_open_t_equals_a_minus_k": 67447,
+      "effective_slack_bucket": "t>=2",
+      "k": 1048576,
+      "n": 2097152,
+      "packet": "m31_list_v1.packet.json",
+      "pair_source": "agreement_interval.one_step_target",
+      "row": "M31 list",
+      "unsafe_a": 1116022,
+      "unsafe_j_equals_n_minus_a": 981130,
+      "unsafe_t_equals_a_minus_k": 67446
+    }
+  ],
+  "schema": "f1-effective-slack-translation-v1",
+  "status": "EXPERIMENTAL_AUDIT",
+  "summary": {
+    "adjacent_open_t_values": {
+      "KoalaBear MCA": 67472,
+      "KoalaBear list": 67471,
+      "M31 MCA": 67448,
+      "M31 list": 67447
+    },
+    "all_adjacent_open_rows_have_t_at_least_2": true,
+    "interpretation": "The current deployed adjacent rows are not toy-slack t=1 rows. Under the direct variable translation t=a-k, they lie deep in the t>=2 bucket where the upstream simple-pole pencil scan vanishes on the tested menu.  This does not prove paid_extension safe; it scopes the t=1 growth falsifier as a corrected-reserve warning rather than deployed-shape evidence."
+  },
+  "target": "Translate deployed frontier-adjacent rows into the F1 toy scanner's slack variable t=a-k, to identify whether the toy t=1 growth branch or the toy t>=2 vanishing branch is the direct analogy.",
+  "toy_split": {
+    "chain_t1_points": [
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        7,
+        15
+      ]
+    ],
+    "chain_t1_verdict": "GROWING -> FALSIFIER SIGNAL (full_count scales roughly with p0; COUNTEREXAMPLE_NEW_FLOOR candidate)",
+    "chain_t2_points": [
+      [
+        5,
+        0
+      ],
+      [
+        7,
+        0
+      ]
+    ],
+    "chain_t2_verdict": "CONSTANT_ZERO (target holds trivially: no K=F bad slope found at any p0)",
+    "overall_verdict_excerpt": "SLACK-DEPENDENT SPLIT (flag loudly, scoped to this toy pencil): at slack t=1 (minimal agreement beyond k) full_count == supports_scanned = C(n,k+1) essentially exactly at every p0 tested (verified to p0=13 in follow-up spot checks beyond the requested menu, negligible collapsing) -- a COUNTEREXAMPLE_NEW_FLOOR-grade growing count for the f_beta=1/(x-beta), g=x^k pencil at t=1. At slack t>=2 the SAME pencil gives full_count=0 (in fact aggregate_full_count=0, i.e. NO bad slope of any field at all) at every p0 tested, matching Prediction P (e_Y=0) with room to spare. Mechanism (explains, does not explain away, the split): g=x^k is a single monomial, so a support of size k+t supplies t linear constraints in the one unknown gamma but g's own interpolation coefficients can only ever cancel ONE of them; the other t-1 constraints are then gamma-free conditions purely on f_beta and the support, and for the simple-pole family f_beta=1/(x-beta) those extra conditions are classically nonvanishing divided differences (t=1: no extra condition, so a solution always exists; t>=2: an extra nonvanishing condition kills every candidate). SCOPE CAVEAT: this is a toy pencil (the pre-existing audited f1_extension_slope_sweep.py shape, generalized), not the deployed witness; whether the deployed regime's effective slack sits at this toy family's t=1 or t>=2 analogue is not established here.",
+    "source": "frontier-adjacent/f1_full_orbit_scan_v1.json"
+  }
+}

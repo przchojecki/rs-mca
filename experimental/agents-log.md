@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - F1 effective-slack translation audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_f1_effective_slack_translation.py`;
+  `experimental/data/certificates/frontier-adjacent/f1_effective_slack_translation_v1.json`;
+  `experimental/notes/frontier-adjacent/f1_effective_slack_translation_v1.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A replayable translation from the four deployed
+  frontier-adjacent row packets to the F1 toy scanner's slack variable
+  `t=a-k`.  The packet compares the deployed rows against the upstream
+  full-orbit toy split: `t=1` growth versus `t>=2` vanishing for the
+  simple-pole pencil.
+- **How it is useful:** It prevents the `t=1` full-orbit growth branch from
+  being misread as deployed-shape evidence.  All four adjacent-open deployed
+  rows have `t>=67447`, so the direct toy analogy is the `t>=2` branch, not
+  the growing `t=1` branch.
+- **What to do next:** Prove the simple-pole `t>=2` divided-difference
+  obstruction, or search for a different genuinely `F`-valued pair whose
+  `t>=2` constraints still leave a growing full-orbit `K=F` slope set.
+
 ### 2026-07-06 - CAP25 v13 raw and compact frontier status
 
 - **Agent/model:** Maintainer-added v13 raw manuscripts summarized and aligned
