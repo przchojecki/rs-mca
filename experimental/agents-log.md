@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - L1 sigma calculus: covered-chart Theorem 1 + residual-tight witnesses
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** `experimental/notes/l1/l1_sigma_calculus.md` (§2.2 one-line
+  fix; new Addendum §2A; §0/§4/§5 consistency), `experimental/scripts/verify_l1_sigma_calculus.py`
+  (2 residual-tight objects added, new gate (ix), extended tamper-selftest).
+- **Status:** PROVED (Theorem 1: `E_3 <= ell` on the covered chart `T <= 4`) / CONJECTURAL
+  (Residual Conjecture RC, `T >= 5`, now known TIGHT) / AUDIT (§2.2 `dim(Vsum) >= E_3-dimU` fix).
+- **What is being added:** Theorem 1 proves the law `E_3 <= ell` (`sigma <= K+dimU`)
+  unconditionally on the covered chart `T := sum_{k>=3}(mu_k-2) <= 4`, using only L3 + the master
+  identity (no recursion). The residual chart `T >= 5` (Conjecture RC) is shown TIGHT by two
+  re-verified realizable residual witnesses attaining `E_3 = ell` (`[11,10,5,4,3,2]` @ `ell=23,p=139`
+  and `[14,13,5,5,2,2,2,2]` @ `ell=29,p=233`), so RC admits no margin proof. Fixes a §2.2 copy-over
+  (`dim(Vsum) >= E_3` -> `E_3-dimU`, 13/13). A mid-session over-claim (prediction P-B, "extremal =>
+  covered") was caught by the mandated numeric closure and retracted honestly.
+- **How it is useful:** Advances the prize-DAG L1 residual (`E_3 <= ell` = corrected onset
+  `m* = (ell+1)/2`): the covered chart is now PROVED, isolating the sharp residual core; NO-GO
+  diagnostics (N1 LA-circularity, N2 `Theta(ell^2)`/vacuity, N3 realizability-cap) close the dead
+  linear-algebra / degree / moment routes.
+- **What to do next:** Attack RC *sharply* (`sigma <= K+2` for `T >= 5`, `dimU=2`) — the localized
+  `(W,lambda)`-Veronese transversality; keep the `E_3 >= ell+1` falsifier search to the residual
+  `[~ell/2, ~ell/2, medium-tail]` regime only. Verifier: 9 gates PASS, 9 tampers caught (exit 0).
+
 ### 2026-07-05 - L1 sigma calculus for petal syzygy spaces
 
 - **Agent/model:** Claude Fable 5.

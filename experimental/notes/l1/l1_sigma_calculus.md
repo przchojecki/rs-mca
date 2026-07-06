@@ -82,16 +82,30 @@ the `P-K` coincidence rows `{v(x)-v(anchor_k)}`, `v(x) = (x, ..., x^{ell-1})`.
    `E_3 >= ell+1` (the direct falsifier of the law in item 2) across `ell in {11,...,29}`
    (~10,600 configs) found **no counterexample**. A second-attempt `ell=19, m=10` listing hunt
    (`#330`'s companion open question, not this note's own claim) also found **nothing**. Neither
-   changes the 13-object table; both are recorded as additional (non-exhaustive) supporting
+   changed the (then) 13-object table; both are recorded as additional (non-exhaustive) supporting
    evidence.
+
+6. **ADDENDUM (Wave 11) — the law is PROVED on the covered chart; the residual is a sharp, TIGHT
+   conjecture (§2A).** **Theorem 1:** if `T := sum_{k>=3}(mu_k-2) <= 4` then
+   `E_3 <= mu_1+mu_2 <= ell` (`sigma <= K+dimU`) — i.e. the law `E_3 <= ell` **unconditionally on the
+   covered chart**, from L3 + the master identity alone (no recursion). The residual chart `T >= 5`
+   is the **Residual Conjecture RC**, the sole remaining piece, and it is **TIGHT**: two realizable
+   residual configs attain `E_3 = ell` (`[11,10,5,4,3,2]` @ `(23,139)`,
+   `[14,13,5,5,2,2,2,2]` @ `(29,233)`; re-verified from scratch), so RC admits **no** margin proof.
+   A mid-session over-claim that the residual carried a 2-unit margin (prediction P-B) was caught by
+   the mandated numeric closure and **retracted**; the law itself survives (0 falsifiers `E_3>=ell+1`
+   across ~10,200 new configs). NO-GO diagnostics (§2A.3) rule out the linear-algebra / degree /
+   moment routes. Verifier upgraded to **15 objects + gate (ix)** (both new witnesses gated).
 
 ---
 
 ## 1. The five PROVED lemmas (with proofs; verified on witnesses AND counterexamples)
 
 Aggregate verification (`experimental/scripts/verify_l1_sigma_calculus.py`, exact `F_p`): every
-check below is `PASS` on all 13 objects. Per-object invariants (`sigma`, `delta`, `dimU`,
-`dimVsum`, `rho`) and the identity web are tabulated in §1.6.
+check below is `PASS` on all 13 objects of §1.6 (and — added in the Wave-11 Addendum §2A.2 — on the
+**2 residual-tight witnesses**, so the shipped verifier's five-lemma gates run on **15** objects).
+Per-object invariants (`sigma`, `delta`, `dimU`, `dimVsum`, `rho`) and the identity web are
+tabulated in §1.6.
 
 ### Lemma 1 (MOMENT BRIDGE `=> sigma = delta`). PROVED.
 
@@ -229,13 +243,18 @@ specialized to `dimU = 2`). Reading off the three relevant constants:
 |:-------------|:-------------------|:----------------------|:-------|
 | `E_3 <= ell-2` (OLD, refuted `#330`) | `sigma <= K + dimU - 2` | `sigma <= K` | **REFUTED** (every CE: `sigma = K+1` or `K+2`) |
 | `E_3 <= ell-1` ("one unit weaker") | `sigma <= K + dimU - 1` | `sigma <= K+1` | **REFUTED** at `ell=23 p=139` (`sigma = K+2`) |
-| **`E_3 <= ell` (NEW law)** | **`sigma <= K + dimU`** | **`sigma <= K + 2`** | **CONJECTURAL_WITH_FALSIFIER** (holds on all 13; tight at `ell=23 p=139`) |
+| **`E_3 <= ell` (NEW law)** | **`sigma <= K + dimU`** | **`sigma <= K + 2`** | **PROVED on covered chart `T<=4`** (Thm 1, §2A.1); residual `T>=5` = RC, now TIGHT (§2A.2); holds on all 15 |
 
 ### 2.2 Precise statement and the "one unit" reconciliation
 
 > **The exact `sigma`-form of `E_3 <= ell` is `sigma <= K + dimU`** (an *equivalence*, by ★),
-> equivalently `delta <= K + dimU`, equivalently `dim(Vsum) >= E_3` still (the middle links of
-> `#330`'s chain are unchanged). On the extremal chart `dimU = 2` — where **every** observed
+> equivalently `delta <= K + dimU`, equivalently **`dim(Vsum) >= E_3 - dimU`** (the corrected middle
+> link: `sigma <= K+dimU  <=>  (P-K)-dim(Vsum) <= K+dimU  <=>  dim(Vsum) >= P-2K-dimU = E_3-dimU`).
+> The bare `dim(Vsum) >= E_3` printed in an earlier draft here was a **copy-over from `#330`'s
+> *refuted* `c=-2` chain** (correct there only at `dimU=2`); it holds on merely **2/13** objects,
+> whereas `dim(Vsum) >= E_3 - dimU` holds **13/13** (equality iff `E_3 = ell`, i.e. only at the
+> tight `CE ell=23 p=139`). [Wave-11 audit; re-verified from scratch — see Addendum §2A.] On the
+> extremal chart `dimU = 2` — where **every** observed
 > max-`E_3` config sits (all 13 rows of §1.6; a *property of the full max-fiber configs*, since
 > `dimU = 2 <=> rho = ell-2 <=>` rank-maximal realizable) — it reads **`sigma <= K + 2`**.
 
@@ -314,8 +333,10 @@ CONJECTURAL_WITH_FALSIFIER, holds on all tested.** Every one of the 13 max-fiber
 `sigma = K` witnesses and all 11 `sigma > K` counterexamples — has **`dimU = 2`** (§1.6). So the
 saturation of the `sigma`-form `sigma <= K + dimU` occurs only at `dimU = 2` (rank-maximal
 realizable), i.e. `sigma > K => dimU = 2` empirically, which is exactly why `sigma <= K+2` is the
-operative frontier bound. The global maximum `sigma = K+2` (`E_3 = ell`) occurs only at
-`ell=23, p=139` with `n = 6`; the large-`n` `ell=23` configs (`p=599, n=26`; `p=691, n=30`)
+operative frontier bound. In the original 13-object set the maximum `sigma = K+2` (`E_3 = ell`)
+occurs only at `ell=23, p=139` (`n = 6`) — the Addendum §2A.2 adds two residual-tight `E_3 = ell`
+configs (at `(23,139)` and `(29,233)`), both also `dimU = 2` (P3 further confirmed, not challenged);
+the large-`n` `ell=23` configs (`p=599, n=26`; `p=691, n=30`)
 saturate at `sigma = K+1` (`E_3 = ell-1`), matching `#330` §5's `~130k`-seed observation that
 `max E_3 = ell-1` at large `n`.
 > **STATUS: CONJECTURAL_WITH_FALSIFIER.** FALSIFIER: a realizable config with `sigma > K` **and**
@@ -357,6 +378,140 @@ and refuter in this note.
   table); it is recorded here for cross-reference since it reused this note's counterexample-hunt
   infrastructure. **Status: unaffected** — `#330`'s `ell=19` frontier question remains OPEN
   (neither confirmed nor refuted by this session's hunt).
+
+---
+
+## 2A. ADDENDUM (Wave 11) — covered-chart Theorem 1, residual-tight witnesses, NO-GO diagnostics
+
+This addendum (a) upgrades §2.3's `B_rec` criterion to a clean **unconditional theorem on the
+covered chart** that proves the law `E_3 <= ell` (`sigma <= K + dimU`) outright when `T <= 4`,
+using **only** `L3 + the master identity` (no recursion `L4`); (b) isolates the residual chart
+`T >= 5` as a single sharp conjecture **RC** and proves it **TIGHT** by exhibiting *two* realizable
+residual configs with `E_3 = ell` (so RC admits **no** margin-based proof); (c) records the NO-GO
+diagnostics that kill the linear-algebra / degree / moment routes; (d) issues corrected predictions.
+All numbers below were re-derived from the raw `gamma` from scratch (independent spectrum) as part
+of the mandated witness-vs-lemma closure.
+
+> **One honest self-correction (process note).** A mid-session read of a profile-incomplete search
+> over-claimed that the residual chart carries a **2-unit margin** (`E_3 <= ell-2`, "no tight case"),
+> and issued prediction **P-B** ("extremal => covered", i.e. every `E_3 >= ell-1` config has
+> `T <= 4`). The mandated numeric closure **refuted**
+> this: a targeted realizability hunt *constructed* a realizable **residual** config with
+> `E_3 = ell` (§2A.2). **P-B and the margin claim are RETRACTED.** The law `E_3 <= ell` itself
+> **survives** (0 falsifiers `E_3 >= ell+1` across ~10,200 new configs + the prior ~150k); what dies
+> is only the false claim that the residual is *slack*.
+
+### 2A.1 Theorem 1 (covered chart) — unconditional, needs only `L3` + master
+
+Sort `mu_1 >= mu_2 >= ... >= mu_K` and set the **tail excess** `T := sum_{k>=3}(mu_k - 2) >= 0`.
+Since `E_3 = (mu_1-2)+(mu_2-2)+T`, one has `T <= 4  <=>  E_3 <= mu_1+mu_2`; call the config
+**covered** if `T <= 4`, **residual** if `T >= 5` (this is exactly §2.3's `B_rec <= K+2` dichotomy,
+recast on the invariant `E_3`).
+
+> **Theorem 1 (covered chart).** For every realizable config with `T <= 4`,
+> **`E_3 <= mu_1 + mu_2 <= ell`**, hence by the master identity ★ **`sigma <= K + dimU`**
+> (`= K + 2` on the `dimU = 2` chart). The law `E_3 <= ell` is therefore **PROVED, unconditionally,
+> on the entire covered chart** `T <= 4`.
+
+*Proof.* `E_3 = (mu_1-2) + (mu_2-2) + T <= (mu_1-2) + (mu_2-2) + 4 = mu_1 + mu_2` by `T <= 4`. The
+pairwise cap `mu_1 + mu_2 <= ell` is Lemma L3 (PROVED: the pencil member
+`alpha X^ell + beta Gamma + gamma` through `(W_1,lambda_1),(W_2,lambda_2)` vanishes on `F_1 cup F_2`,
+has degree `<= ell`, so `mu_1+mu_2 <= ell`; this is the only realizability input). Hence
+`E_3 <= ell`. The master identity `sigma = E_3 + K - ell + dimU` (★, PROVED §2.1) then gives
+`sigma = E_3 + K - ell + dimU <= ell + K - ell + dimU = K + dimU`. ∎
+
+**Remark (what it does *not* use).** Theorem 1 needs **only** `L3` (pairwise cap) and the master
+identity — **not** the recursion `L4`, and **not** any `dimU = 2` restriction: it delivers the
+invariant `E_3 <= ell` for arbitrary `dimU`. This is strictly more elementary than the §2.3 route
+`sigma <= B_rec <= K+2`. On the canonical 13-object set, **12/13 are covered** (`T <= 4`); the sole
+residual object is the D3 witness `[8,8,6,4,4,3]` (`T = 9`). All 12 covered objects satisfy
+`E_3 <= mu_1+mu_2 <= ell` (re-verified 13/13; new gate (ix)).
+
+### 2A.2 Residual Conjecture RC — the whole remaining problem, and it is TIGHT
+
+> **Residual Conjecture (RC).** Every realizable config with `T >= 5` satisfies `E_3 <= ell`
+> (equivalently `sigma <= K + dimU`). **RC + Theorem 1 = the full law.**
+
+Unlike the covered chart, RC is **not** reducible to the pairwise cap and — the key correction of
+this wave — is **saturated**: two realizable residual configs attain `E_3 = ell`. Both were
+re-derived from scratch (independent spectrum recomputation matches the `Config` spectrum; master
+identity and realizability `rho = ell-2` re-checked):
+
+> **Residual-tight witness 1** (`ell = 23`, `p = 139`).
+> `gamma = [95,37,137,97,52,126,56,52,73,43,44,84,22,120,67,123,98,128,33,62,37,1]`.
+> Spectrum **`[11,10,5,4,3,2]`** (`K = 6`); `E_3 = 23 = ell`; `mu_1+mu_2 = 21 < 23` so **`T = 6`
+> (residual)**; `rho = 21 = ell-2` (**realizable**); `dimU = 2`; `sigma = delta = 8 = K + dimU`
+> (**tight**); master ✓ (`8 = 23 + 6 - 23 + 2`).
+>
+> **Residual-tight witness 2** (`ell = 29`, `p = 233`).
+> `gamma = [203,187,107,98,59,120,193,102,190,101,206,153,193,196,119,185,120,153,188,140,192,218,113,205,228,206,224,1]`.
+> Spectrum **`[14,13,5,5,2,2,2,2]`** (`K = 8`); `E_3 = 29 = ell`; `mu_1+mu_2 = 27 < 29` so **`T = 6`
+> (residual)**; `rho = 27 = ell-2` (**realizable**); `dimU = 2`; `sigma = delta = 10 = K + dimU`
+> (**tight**); master ✓ (`10 = 29 + 8 - 29 + 2`). *(A companion residual `E_3 = ell-1` config
+> `[11,10,5,3,3,2]` at `(23,139)`, `sigma = 7`, was also found.)*
+
+**Neither witness is in the original 13-object canonical set** — which contained **no**
+residual-tight object, and that blind spot is exactly what produced the retracted margin claim. Both
+are now **added to the canonical set** (verifier objects, `kind = "RES"`) and gated (§5, gate (ix)).
+
+> **Consequence (no margin).** `E_3 = ell` is *attained* in the residual, at two distinct primes.
+> Therefore **any proof of RC must be SHARP** — a slack/margin argument is provably insufficient.
+> The covered/residual split's value is precisely that it **isolates** this sharp core (`T >= 5`) and
+> proves everything else unconditionally (Theorem 1), *without softening the core*. RC on the
+> `dimU = 2` residual chart is `sigma <= K + 2` with `T >= 5`: the localized `(W,lambda)`-Veronese /
+> split-pencil transversality in `R_K = F_p[X]/h_K` that D1 / `#330` name, with `>= 3` big fibers.
+
+### 2A.3 NO-GO diagnostics — why the standard routes are provably dead (verified 13/13)
+
+**(N1) Linear algebra on `(D, Z, U)` is circular.** Sublemma S3 (`lambda in D => sum_i lambda_i
+Gamma(x_i)^j = 0` for all `j`; verified 13/13) gives `D + Z = eval(U)^perp` **as an equality**,
+whence `sigma = dim(D cap Z) = dim D + dim Z - dim(D+Z) = (P-K) + (P-ell) - (P-dimU) =
+E_3 + K - ell + dimU` — the master identity, an **identity, not an inequality**. Any bound obtained
+purely by dimension-counting on these spaces therefore re-expresses `E_3 <= ell` as *itself*. The
+best pure-LA upper bounds are `sigma <= dim Z = P - ell` (`<=> dimU <= K`) and, using `x^ell` constant
+on fibers, `sigma <= P - (ell+1)` (`<=> dimU <= K-1`) — both far above `K + dimU`. *The content must
+come from **which point sets can be fibers** (realizability), not from `(D,Z,U)` dimensions.*
+
+**(N2) Single-polynomial / degree methods are `Theta(ell^2)` or vacuous on the extremal chart.**
+- *Uncertainty.* Per coset `mu_c <= wt(Gamma) =: w` (13/13), but on the extremal chart **`w = ell-1`**
+  (12/13; D3 has `w = ell-2`) — so it yields only `mu_c <= ell-1`, useless for `sum_c(mu_c-2)`. High
+  `E_3` *forces* high `w`, precisely into the vacuous regime.
+- *`Psi = X^ell - Gamma` level sets (S2).* The `eta_c := W_c - lambda_c` are **all distinct**
+  (`J = K`, 12/13), so the grouped cap degenerates to the trivial per-coset `mu_c <= ell`.
+- *Resultant / plane-curve genus / moments (S4, S5).* All count `Gamma`-collisions, whose total
+  `sum_c binom(mu_c,2) <= binom(ell-1,2)` is `Theta(ell^2)` while `E_3 = O(ell)`; the ratio
+  `E_3 / sum_c binom(mu_c,2)` runs **0.15–0.28** on the objects (S5 collision identity exact,
+  13/13). This is *why* "resultant / moments / uncertainty are DEAD" — not merely weak but off by a
+  factor `Theta(ell)`.
+
+**(N3) The real obstruction: realizability caps balanced large-fiber mass.** Pairwise-legal
+*balanced* profiles have huge naive `E_3` yet the plant-then-solve constructor cannot realize them:
+in a `K = 3` sweep at `ell = 23`, no balanced `[x,x,x]` with `x >= 9` (e.g. `[11,11,11]`,
+`[10,10,10]`, `[9,9,9]`) is realized as the top-3 spectrum — the achieved shapes collapse to
+two-big-plus-tail (max realized top-3 `[11,10,6]`). This "one degree-`<=ell-1` `Gamma` cannot carry
+`>= 3` half-size level sets" phenomenon is exactly what caps `E_3` at `ell`, and it is invisible to
+every degree/dimension count in (N1)–(N2). *(Evidence, not a non-realizability proof: whether a
+special-position balanced config exists is itself an instance of the open transversality question —
+which is why RC is genuinely open, not merely unproven.)*
+
+### 2A.4 Corrected falsifiable predictions (P-A / ~~P-B~~ / P-C / P-D)
+
+- **P-A (law).** No realizable config has `E_3 >= ell+1` (`sigma >= K + dimU + 1`). **0 across
+  ~10,200 new configs** (residual sweeps + targeted hunts) and 0 in the prior ~150k-seed sweeps. The
+  law is now known **TIGHT in the residual** — `E_3 = ell` attained at *two* primes (§2A.2) — so a
+  falsifier, if any, is a residual `[~ell/2, ~ell/2, medium-tail]` config; that is the sharpest place
+  to keep searching. Falsifier: any `E_3 = ell+1` (would drop `m*` below `(ell+1)/2`).
+- **~~P-B (extremal `=> covered`)~~ — RETRACTED / REFUTED this wave.** `[11,10,5,4,3,2]` at
+  `(23,139)` is realizable, residual (`T = 6`), and tight (`E_3 = ell`). The extremal locus is **not**
+  contained in the covered chart. *(This is the over-claim caught by the mandated numeric closure.)*
+- **P-C (residual reaches the ceiling).** The residual chart attains `E_3 = ell` (`sigma = K+dimU`),
+  witnessed by both §2A.2 configs; it does **not** stop at `ell-2`. A covered tight witness
+  (`[13,10,4,3,3,2]`, `T = 4`) and a residual tight witness (`[11,10,5,4,3,2]`, `T = 6`) coexist at
+  the *same* `(23,139)`. Falsifier: a residual `E_3 = ell+1` (= P-A).
+- **P-D (small-`K` slack).** For fixed small `K` the law is far from tight: at `ell = 23` the max
+  realized `K = 3` spectrum is `~[8,8,7]` (`E_3 ~ ell-6`); tight cases (`E_3 = ell`) need `K >= 5`
+  (witnesses have `K = 6, 8`). So any `K`-bounded proof carries `Omega(K)` slack — the difficulty is
+  intrinsically large-`K` + spread.
 
 ---
 
@@ -428,14 +583,23 @@ certificate), stacking on `#330`'s vacancy-cell floor; the law's `sigma`-form is
 - L5 `K=3` bound `sigma <= min_k mu_k - 1` (§1).
 - Master identity `sigma = delta = E_3 + K - ell + dimU` and its consequence
   `E_3 <= ell + c <=> sigma <= K + dimU + c` (§2.1).
-All verified `PASS` on the 2 witnesses and all 11 `#330` counterexamples (§1.6), with `dimU`
-ranging over `{2,4,7}` across configs and sub-configs.
+- **Theorem 1 (covered chart, Addendum §2A.1):** for `T := sum_{k>=3}(mu_k-2) <= 4`,
+  `E_3 <= mu_1+mu_2 <= ell`, hence `sigma <= K + dimU` — i.e. **the law `E_3 <= ell` holds
+  unconditionally on the entire covered chart**, using only L3 + the master identity (no recursion).
+  12/13 canonical objects are covered.
+All verified `PASS` on the 2 witnesses, all 11 `#330` counterexamples, **and the 2 residual-tight
+witnesses** (§2A.2) — **15 objects** (§1.6, §2A; verifier gates i–ix), with `dimU` ranging over
+`{2,4,7}` across configs and sub-configs.
 
-**CONJECTURAL_WITH_FALSIFIER.**
+**PARTIALLY PROVED + CONJECTURAL_WITH_FALSIFIER (the law, split by Addendum §2A).**
 - The new law's `sigma`-form `E_3 <= ell <=> sigma <= K + dimU` (`= sigma <= K+2` on the observed
-  `dimU=2` chart). FALSIFIER: realizable `E_3 >= ell+1` (`sigma >= K+3` at `dimU=2`). Holds on all
-  13; tight at `ell=23 p=139`. Now also survived by a dedicated session-only falsifier hunt across
-  `ell in {11,...,29}` (~10,600 configs, no counterexample; §2.5) — evidence, not proof.
+  `dimU=2` chart) is now **split**: **PROVED unconditionally on the covered chart `T <= 4`**
+  (Theorem 1, §2A.1); the residual chart `T >= 5` is the **Residual Conjecture RC**, the sole open
+  piece. RC is now known **TIGHT** — `E_3 = ell` is *attained* by two realizable residual witnesses
+  (`[11,10,5,4,3,2]` @ `(23,139)`, `[14,13,5,5,2,2,2,2]` @ `(29,233)`; §2A.2), so any RC proof must
+  be sharp (no margin). FALSIFIER of the full law: realizable `E_3 >= ell+1` (`sigma >= K+3` at
+  `dimU=2`); **0 found across ~10,200 new configs + prior ~150k** (§2.5, §2A.4 P-A) — evidence, not
+  proof. Holds on all 15 canonical objects.
 - P3 (`sigma > K => dimU = 2`; `sigma = K+2` only at small `n`). FALSIFIER: `sigma > K` with
   `dimU > 2`, or large-`n` `sigma = K+2`.
 
@@ -465,8 +629,10 @@ anticipated.)*
 Ships as a zero-arg, stdlib-only, deterministic `experimental/scripts/verify_l1_sigma_calculus.py`
 (exit 0 iff all gates pass; `--tamper-selftest` flips one datum per gate class and confirms each
 then fails). It reconstructs each object from its `gamma` (group `F_p^*` by `x^ell`, take the
-max-fiber per coset with `mu >= 2`; independent of any inherited reconstruction). **Object set:**
-the 2 witnesses + 11 `#330` counterexample Gammas listed in the header (the `ell=23` `p in {599,691}`
+max-fiber per coset with `mu >= 2`; independent of any inherited reconstruction). **Object set (15):**
+the 2 witnesses + 11 `#330` counterexample Gammas + **2 residual-tight witnesses** (`[11,10,5,4,3,2]`
+at `ell=23,p=139` and `[14,13,5,5,2,2,2,2]` at `ell=29,p=233`; Addendum §2A.2 — added this wave to
+close the no-residual-tight-object blind spot) listed in the header (the `ell=23` `p in {599,691}`
 `sigma`/`delta` solves are the heaviest; they finish in seconds — no offline gate needed). Gates:
 
 - **Gate i — moment bridge / `sigma = delta` (L1).** For each object: 25 random `(a_k)`,
@@ -492,11 +658,19 @@ the 2 witnesses + 11 `#330` counterexample Gammas listed in the header (the `ell
   small-fiber undershoot).
 - **Gate viii — OLD/NEW stratification.** Assert on the 2 witnesses `E_3 <= ell-2` and `sigma <= K`;
   on all 11 counterexamples `E_3 > ell-2` and `sigma > K` (OLD refuted) but `E_3 <= ell` and
-  `sigma <= K+2` (NEW holds); and `dimU == 2` on all 13.
+  `sigma <= K+2` (NEW holds); on the 2 residual-tight witnesses `E_3 == ell`, `sigma == K+2`, `T >= 5`
+  (residual & tight); and `dimU == 2` on all 15.
+- **Gate ix — Theorem 1 covered chart + residual-tight witnesses (Addendum §2A).** For every object,
+  compute `T = sum_{k>=3}(mu_k-2)`; on the covered chart (`T <= 4`, 12 objects) assert
+  `E_3 <= mu_1+mu_2 <= ell` (Theorem 1) and its master-image `sigma <= K+dimU`; on the residual chart
+  (`T >= 5`, 3 objects) assert `E_3 <= ell`, and on the 2 residual-tight witnesses additionally assert
+  `E_3 == ell`, `sigma == K+dimU`, `rho == ell-2` (realizable). Structural check: `covered == 12`,
+  `residual == 3`, `residual_tight == 2` (the two new witnesses are present and tight).
 
 `--tamper-selftest`: perturb one `gamma` coefficient (breaks i/ii/vi via changed spectrum), zero a
-`t_m` (breaks iv), inflate a claimed `sigma` (breaks i/vii), and flip the `[6,6,6]` `sigma` to `1`
-(breaks vii) — assert each targeted gate then FAILS. The verifier is self-contained: it does not
-import from, edit, or depend on any other script's claims being true; every number in §1.6-§2.4 is
-reproduced here from the raw `gamma` coefficients, independent of the session prototypes that first
-produced them.
+`t_m` (breaks iv), inflate a claimed `sigma` (breaks i/vii), flip the `[6,6,6]` `sigma` to `1`
+(breaks vii), plus falsely tighten the Theorem-1 covered bound by 1 (breaks ix, caught by a
+tight-covered object with `E_3 == mu_1+mu_2`) — assert each targeted gate then FAILS. The verifier is self-contained: it does not
+import from, edit, or depend on any other script's claims being true; every number in §1.6-§2A is
+reproduced here from the raw `gamma` coefficients (the two residual-tight witnesses of §2A.2 among
+them), independent of the session prototypes that first produced them.

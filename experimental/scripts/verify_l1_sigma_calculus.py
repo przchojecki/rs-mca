@@ -9,12 +9,12 @@ post-#330 candidate law `E_3 <= ell <=> sigma <= K + dimU`.
 
 Ground rule: self-contained. This script does NOT import from, edit, or
 depend on any other script's claims being true. Every object (2 witnesses +
-11 `#330` counterexamples) is reconstructed here from its raw `gamma` alone,
-via two independent spectrum sub-implementations, and every invariant
-(`sigma`, `delta`, `dimU`, `dim(Vsum)`, `rho`, `E_3`) is computed here from
-scratch by exact `F_p` linear algebra.
+11 `#330` counterexamples + 2 residual-tight witnesses = 15) is reconstructed
+here from its raw `gamma` alone, via two independent spectrum sub-implementations,
+and every invariant (`sigma`, `delta`, `dimU`, `dim(Vsum)`, `rho`, `E_3`) is
+computed here from scratch by exact `F_p` linear algebra.
 
-Eight gate classes; exit 0 iff ALL pass, nonzero on ANY failure:
+Nine gate classes; exit 0 iff ALL pass, nonzero on ANY failure:
 
   (i)    moment bridge / sigma == delta                       (Lemma 1)
   (ii)   locator duality dim(Vsum) == rho == ell - dimU        (Lemma 2)
@@ -23,7 +23,9 @@ Eight gate classes; exit 0 iff ALL pass, nonzero on ANY failure:
   (v)    K=3 bound sigma <= min(mu)-1                           (Lemma 5)
   (vi)   master identity sigma == E_3+K-ell+dimU + sigma-form equivalences
   (vii)  P2 falsifier: [6,6,6] at ell=13,p=79 has sigma==4 > 1
-  (viii) OLD/NEW stratification across the 13 objects
+  (viii) OLD/NEW stratification across the objects
+  (ix)   Theorem 1 (covered chart T<=4 => E_3<=mu1+mu2<=ell => sigma<=K+dimU)
+         on every object + the 2 residual-tight (T>=5, E_3=ell) witnesses    (Addendum 2A)
 
 Hidden self-test:  python3 verify_l1_sigma_calculus.py --tamper-selftest
     flips one datum per gate class and asserts each gate then FAILS (proves
@@ -487,6 +489,16 @@ OBJECTS = [
     {"label": "CE ell=23 p=691", "ell": 23, "p": 691, "kind": "CE",
      "gamma": [524, 614, 310, 539, 294, 303, 425, 653, 551, 564, 145, 271, 332, 503, 117, 545, 122, 226, 30, 443, 430, 1],
      "expect": {"K": 17, "E3": 22, "sigma": 18, "delta": 18, "dimU": 2, "dimVsum": 21, "rho": 21, "P": 56}},
+    # --- residual-tight witnesses (Addendum 2A.2): T>=5 (residual) AND E_3=ell (tight).
+    # These fill the no-residual-tight-object blind spot that produced the retracted
+    # "residual carries a 2-unit margin" claim. Both reconstructed from raw gamma here;
+    # spectrum, sigma=delta=K+dimU, rho=ell-2 (realizable), master identity all re-verified.
+    {"label": "RES ell=23 p=139 [11,10,5,4,3,2]", "ell": 23, "p": 139, "kind": "RES",
+     "gamma": [95, 37, 137, 97, 52, 126, 56, 52, 73, 43, 44, 84, 22, 120, 67, 123, 98, 128, 33, 62, 37, 1],
+     "expect": {"K": 6, "E3": 23, "sigma": 8, "delta": 8, "dimU": 2, "dimVsum": 21, "rho": 21, "P": 35}},
+    {"label": "RES ell=29 p=233 [14,13,5,5,2,2,2,2]", "ell": 29, "p": 233, "kind": "RES",
+     "gamma": [203, 187, 107, 98, 59, 120, 193, 102, 190, 101, 206, 153, 193, 196, 119, 185, 120, 153, 188, 140, 192, 218, 113, 205, 228, 206, 224, 1],
+     "expect": {"K": 8, "E3": 29, "sigma": 10, "delta": 10, "dimU": 2, "dimVsum": 27, "rho": 27, "P": 45}},
 ]
 
 def make_config(obj, tamper=False, tamper_idx=None):
@@ -737,12 +749,63 @@ def gate_viii_stratification(tamper=False):
                      and sig == obj["expect"]["sigma"] and dU == obj["expect"]["dimU"])
         if obj["kind"] == "WIT":
             strat_ok = (cfg.E3 <= cfg.ell - 2) and (sig <= cfg.K)
+        elif obj["kind"] == "RES":
+            # residual-tight: E_3 = ell (tight) with T>=5 (residual), sigma = K+2
+            T = sum(m - 2 for m in cfg.mus[2:])
+            strat_ok = (cfg.E3 == cfg.ell) and (sig == cfg.K + 2) and (T >= 5)
         else:
             strat_ok = (cfg.E3 > cfg.ell - 2) and (sig > cfg.K) and (cfg.E3 <= cfg.ell) and (sig <= cfg.K + 2)
         good = expect_ok and strat_ok and (dU == 2)
         ok = ok and good
         lines.append("%s: kind=%s expect_match=%s stratification_ok=%s dimU==2:%s"
                       % (obj["label"], obj["kind"], expect_ok, strat_ok, dU == 2))
+    return ok, " | ".join(lines)
+
+def gate_ix_theorem1(tamper=False):
+    """Addendum 2A: Theorem 1 covered-chart recheck + residual-tight witnesses.
+
+    covered  (T = sum_{k>=3}(mu_k-2) <= 4): assert E_3 <= mu1+mu2 <= ell (Theorem 1,
+             pairwise cap + tail bound) AND sigma <= K+dimU (its master-identity image).
+    residual (T >= 5): assert E_3 <= ell (the law / RC target); the 2 RES witnesses are
+             additionally checked TIGHT: E_3==ell, sigma==K+dimU, rho==ell-2 (realizable).
+    tamper:  falsely tighten the Theorem-1 bound by 1; a tight-covered object with
+             E_3 == mu1+mu2 (e.g. CE ell=23 p=139, or CE ell=13 p=79) then FAILS.
+    """
+    ok = True
+    lines = []
+    n_cov = n_res = n_res_tight = 0
+    for obj in OBJECTS:
+        cfg = make_config(obj)
+        mus = cfg.mus  # largest-first (Config sorts fibers descending)
+        ell = cfg.ell
+        E3 = cfg.E3
+        m1m2 = mus[0] + mus[1]
+        T = sum(m - 2 for m in mus[2:])
+        sig = sigma_via_syzygy(cfg)
+        dU = dimU_dim(cfg)
+        if T <= 4:  # covered chart -- Theorem 1 applies unconditionally
+            n_cov += 1
+            bound = m1m2 - (1 if tamper else 0)
+            good = (E3 <= bound <= ell) and (sig <= cfg.K + dU)
+            tag = "COV(T=%d) E3=%d<=m1m2=%d<=ell=%d sig<=K+dU:%s" % (
+                T, E3, m1m2, ell, sig <= cfg.K + dU)
+        else:  # residual chart -- RC target (law); RES witnesses are tight
+            n_res += 1
+            good = (E3 <= ell)
+            tag = "RESID(T=%d) E3=%d<=ell=%d" % (T, E3, ell)
+            if obj["kind"] == "RES":
+                n_res_tight += 1
+                rho = rho_dim(cfg)
+                tight = (E3 == ell) and (sig == cfg.K + dU) and (rho == ell - 2) and (T >= 5)
+                good = good and tight
+                tag = "RESID-TIGHT(T=%d) E3==ell:%s sig==K+dU:%s rho==ell-2:%s" % (
+                    T, E3 == ell, sig == cfg.K + dU, rho == ell - 2)
+        ok = ok and good
+        lines.append("%s: %s" % (obj["label"], tag))
+    struct_ok = (n_cov >= 12) and (n_res >= 3) and (n_res_tight == 2)
+    ok = ok and struct_ok
+    lines.append("[structure] covered=%d residual=%d residual_tight=%d (want cov>=12,res>=3,rt==2):%s"
+                 % (n_cov, n_res, n_res_tight, struct_ok))
     return ok, " | ".join(lines)
 
 GATES = [
@@ -754,6 +817,7 @@ GATES = [
     ("(vi)   master identity + sigma-form       ", gate_vi_master_identity),
     ("(vii)  P2 falsifier [6,6,6] ell=13 p=79   ", gate_vii_p2_falsifier),
     ("(viii) OLD/NEW stratification             ", gate_viii_stratification),
+    ("(ix)   Theorem 1 covered + residual-tight ", gate_ix_theorem1),
 ]
 
 def main():
