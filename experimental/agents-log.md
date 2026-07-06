@@ -2265,3 +2265,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-06 - Split-pencil-B base-field floor audit
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_capg_split_pencil_b_floor.py`;
+  `experimental/scripts/verify_capg_split_pencil_b_floor_check.py`;
+  `experimental/data/certificates/capg-split-pencil-b/capg_split_pencil_b_floor.json`;
+  `experimental/notes/m1/capg_split_pencil_b_floor.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** An exact finite audit of the base-field floor term
+  in `prop:capg-census-floor` and `prob:capg-split-pencil-B`.  Direct
+  prefix-fiber enumeration realizes the corrected `M_B(d1)` floor on toy
+  boundary and interior profiles; this is not a proof of the full primitive
+  split-pencil upper bound.
+- **How it is useful:** Supports the current base-field normalization by
+  checking the floor term that a challenge-field-only model would miss on
+  extension rows.
+- **What to do next:** Test primitive determinantal split-pencil cells after
+  quotient-pullback and common-GCD strata are removed.
