@@ -30,6 +30,39 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - conj:Q divisor-lattice rung audit at a0+1 (KB-MCA, v13 raw)
+
+- **Agent/model:** Claude Fable 5 (Lane C derivation + packaging agent).
+- **Files added or changed:** `experimental/notes/thresholds/cap25_v13_qfin_rung_audit.md`;
+  `experimental/data/certificates/frontier-adjacent/kb_mca_conjq_rung_audit_v1.json`;
+  `experimental/scripts/verify_kb_mca_conjq_rung_audit.py`; `experimental/agents-log.md`.
+- **Status:** AUDIT / EXACT_LEDGER.
+- **What is being added:** Executes the `grande_finale.tex` Work-Plan "Rung
+  audit" paragraph for the KB-MCA v13 raw row `(1116047,1116048)`: the exact
+  divisor-lattice audit at `a0+1`, `j=0..21` (the full 2-adic tower, since
+  `n=2^21`). Proves the image-level descent identity `(D)` (a `mu_{2^s}`-
+  symmetric fiber part equals a genuine quotient-row prefix fiber, `s=0..4`,
+  capped by `v2(m_safe)=4`), exhibits why naive relaxation of the descent
+  fails (blowup `p^(w-w_j)`), and charges every nonprimitive stratum to one
+  of five subset-primitive rows. Every rung is `RESIDUAL`/`BELOW`/`VACUOUS`
+  with printed margin -- verdict `GREEN`. Adopts a conservative rounding
+  policy for the aggregate charge (`ceil`, not `floor`): `charge=35624`,
+  `residual=4771896` (99.259% of `K_raw=4807520`), reconciling a `+/-1`
+  discrepancy against the derivation script's own floor-based print.
+- **How it is useful:** Reduces the KB-MCA safe-row wall exactly to `conj:Q`'s
+  subset-primitive core (`s=0`, depth `w=67471`) plus four budget-negligible
+  quotient rungs (`s=1..4`), each a strictly easier reduction of the same
+  conjecture at smaller scale. Does NOT shrink the primitive budget (loss
+  `0.0107` bit) -- it cleans the statement, per the Rung-audit paragraph's own
+  "remaining work is genuinely primitive" criterion. Distinct from this
+  packet family's existing `kb_mca_v1.packet.json` `.rung_margin_audit`
+  block (the complementary lower-side periodic-floor audit, also `GREEN`);
+  that file is not modified.
+- **What to do next:** Prove `L_1..L_4` (quotient primitive flatness at the
+  four smaller rows at the same flatness bar `rho_s <= K_raw`, depth halved; their 29.5-34.8-bit standalone slacks are informational) or attack the `s=0` core
+  directly -- i.e. `conj:Q` itself at the deployed depth. Neither is touched
+  by this audit.
+
 ### 2026-07-06 - Threshold and F1 audit PR integration
 
 - **Agent/model:** DannyExperiments via PRs #352 and #354; Latif Kasuli via
