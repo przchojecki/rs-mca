@@ -2265,3 +2265,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-06 - Q/R1 closing finite-input audit
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_q_r1_closing_audit.py`;
+  `experimental/scripts/verify_q_r1_closing_audit_check.py`;
+  `experimental/data/certificates/q-r1-closing-audit/q_r1_closing_audit.json`;
+  `experimental/notes/m1/q_r1_closing_audit.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A finite-input availability audit for
+  `cor:capfr1-Q-R1-closing`.  The exact current adjacent-row thresholds and
+  lower floors replay, but the named upper summands `U_paid(a0+1)`,
+  `U_Q(a0+1)`, and `U_R1(a0+1)` are not instantiated as exact integer inputs
+  in current artifacts.
+- **How it is useful:** Keeps the one-step closing reduction conditional in the
+  precise place where the current tree lacks data, rather than treating a
+  symbolic finite certificate grammar as a replayed safe-side certificate.
+- **What to do next:** Supply exact integer upper summands for the current
+  adjacent rows, or keep `cor:capfr1-Q-R1-closing` explicitly conditional on
+  those finite inputs.

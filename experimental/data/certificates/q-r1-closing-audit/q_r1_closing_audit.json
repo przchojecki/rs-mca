@@ -1,0 +1,375 @@
+{
+  "beats_trivial_baseline": false,
+  "claim_boundaries": {
+    "audits_canonical_statement_inputs": true,
+    "beats_or_narrows_trivial_baseline": false,
+    "claims_no_method_can_reach": false,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "proves_prob_band_undecidable": false,
+    "resolves_or_advances_prob_band": false,
+    "verifies_one_step_inequality": false
+  },
+  "component_availability": {
+    "B_star_threshold": "present_exact_recomputed",
+    "L_a0_lower_side": "present_exact_recomputed",
+    "U_Q_a1": "not_instantiated_as_finite_Q_integer_certificate",
+    "U_R1_a1": "not_instantiated_as_finite_R1_integer_certificate",
+    "U_paid_a1": "not_instantiated_as_one_step_integer_total",
+    "koalabear_current_open_packet_declares_no_finite_upper_total": true,
+    "legacy_frontier_packets_state_safe_side_open": true,
+    "one_step_lower_floor_quiet_at_a1": true,
+    "one_step_replay_possible_from_current_tree": false,
+    "reason": "The exact threshold and lower-side rows replay, but the named upper summands required by cor:capfr1-Q-R1-closing are present only as symbolic or future certificate inputs in current sources."
+  },
+  "current_open_packet_status": {
+    "koalabear_corrected_open_step": 1116048,
+    "markers_present": {
+      "OPEN cells": true,
+      "deduped finite total is printed": true,
+      "no finite U(1116048) <= B* statement exists or is claimed": true
+    },
+    "path": "experimental/data/certificates/frontier-adjacent/koalabear_frontier_adjacent_a1116043_a1116044.json"
+  },
+  "evidence_type": "FULL_FINITE_CENSUS",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "object": "cor:capfr1-Q-R1-closing finite one-step input replay audit",
+  "packet_open_status": [
+    {
+      "detail_digest": "fd75d270eed4fe93246e5bdec6555087b5ff7473ddfefda36af560986011dd8f",
+      "path": "experimental/data/certificates/frontier-adjacent/kb_mca_v1.packet.json",
+      "statement": "U(a0+1) <= B*",
+      "states_open": true,
+      "status": "OPEN"
+    },
+    {
+      "detail_digest": "fd75d270eed4fe93246e5bdec6555087b5ff7473ddfefda36af560986011dd8f",
+      "path": "experimental/data/certificates/frontier-adjacent/kb_list_v1.packet.json",
+      "statement": "U(a0+1) <= B*",
+      "states_open": true,
+      "status": "OPEN"
+    },
+    {
+      "detail_digest": "fd75d270eed4fe93246e5bdec6555087b5ff7473ddfefda36af560986011dd8f",
+      "path": "experimental/data/certificates/frontier-adjacent/m31_mca_v1.packet.json",
+      "statement": "U(a0+1) <= B*",
+      "states_open": true,
+      "status": "OPEN"
+    },
+    {
+      "detail_digest": "fd75d270eed4fe93246e5bdec6555087b5ff7473ddfefda36af560986011dd8f",
+      "path": "experimental/data/certificates/frontier-adjacent/m31_list_v1.packet.json",
+      "statement": "U(a0+1) <= B*",
+      "states_open": true,
+      "status": "OPEN"
+    }
+  ],
+  "regen_command": "py -3.13 experimental/scripts/verify_q_r1_closing_audit.py --emit-defaults --check",
+  "row_table": [
+    {
+      "B_star_threshold": 274980728111395087,
+      "a0": 1116047,
+      "a1": 1116048,
+      "base_prime": 2130706433,
+      "deficit_to_exceed_threshold_at_a1": 274980670913364722,
+      "extension_degree": 6,
+      "k": 1048576,
+      "kind": "mca",
+      "lambda_bits": 128,
+      "lower_a0_exceeds_threshold": true,
+      "lower_a1_exceeds_threshold": false,
+      "lower_floor_at_a0": 138634741058327852652,
+      "lower_floor_at_a1": 57198030366,
+      "n": 2097152,
+      "row": "KoalaBear MCA",
+      "row_id": "kb_mca"
+    },
+    {
+      "B_star_threshold": 274980728111395087,
+      "a0": 1116046,
+      "a1": 1116047,
+      "base_prime": 2130706433,
+      "deficit_to_exceed_threshold_at_a1": 274980663046241620,
+      "extension_degree": 6,
+      "k": 1048576,
+      "kind": "list",
+      "lambda_bits": 128,
+      "lower_a0_exceeds_threshold": true,
+      "lower_a1_exceeds_threshold": false,
+      "lower_floor_at_a0": 157702518233425975347,
+      "lower_floor_at_a1": 65065153468,
+      "n": 2097152,
+      "row": "KoalaBear list",
+      "row_id": "kb_list"
+    },
+    {
+      "B_star_threshold": 16777215,
+      "a0": 1116023,
+      "a1": 1116024,
+      "base_prime": 2147483647,
+      "deficit_to_exceed_threshold_at_a1": 15024516,
+      "extension_degree": 4,
+      "k": 1048576,
+      "kind": "mca",
+      "lambda_bits": 100,
+      "lower_a0_exceeds_threshold": true,
+      "lower_a1_exceeds_threshold": false,
+      "lower_floor_at_a0": 4281388998575706,
+      "lower_floor_at_a1": 1752700,
+      "n": 2097152,
+      "row": "Mersenne-31 MCA",
+      "row_id": "m31_mca"
+    },
+    {
+      "B_star_threshold": 16777215,
+      "a0": 1116022,
+      "a1": 1116023,
+      "base_prime": 2147483647,
+      "deficit_to_exceed_threshold_at_a1": 14783538,
+      "extension_degree": 4,
+      "k": 1048576,
+      "kind": "list",
+      "lambda_bits": 100,
+      "lower_a0_exceeds_threshold": true,
+      "lower_a1_exceeds_threshold": false,
+      "lower_floor_at_a0": 4870025984688527,
+      "lower_floor_at_a1": 1993678,
+      "n": 2097152,
+      "row": "Mersenne-31 list",
+      "row_id": "m31_list"
+    }
+  ],
+  "schema": "q-r1-closing-audit.v1",
+  "source_context": [
+    {
+      "excerpt": [
+        "For each row, let \\(a_0\\) be the proved unsafe agreement and \\(a_1=a_0+1\\) the conjectured first safe agreement.  Let \\(Q_{",
+        "m slope}=q\\) for MCA rows and \\(Q_{",
+        "m list}=q\\) for list rows, and let",
+        "\\[",
+        "        B_* = \\floor{\\varepsilon^* q}.",
+        "\\]",
+        "A finite safe certificate at \\(a_1\\) consists of an explicit partition of all possible numerator contributions into paid cells and primitive cells,",
+        "\\[",
+        "        N(a_1)\\le",
+        "        N_{\\rm deep}+N_{\\rm tan}+N_{\\rm quot}+N_Q+N_{BC}+N_{SP},",
+        "\\]",
+        "with each summand an integer and with total at most \\(B_*\\).  The deployed margins in \\cref{tab:cert-margins} are not margins for the entire theorem; they are the remaining room after the identity-prefix lower floor fails at \\(a_1\\).  In particular the Mersenne-31 rows leave only about three bits, so the finite proof must be close to exact."
+      ],
+      "line_end": 1619,
+      "line_start": 1608,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "sha256": "7310a2c3ac816c82e859af6608532fe52cc7a97e6d47998322b6c75a18e8d9f6"
+    },
+    {
+      "excerpt": [
+        "\\begin{theorem}[finite adjacent-pair compiler]\\label[theorem]{thm:finite-adjacent-compiler}",
+        "Fix one of the four deployed rows in \\cref{conj:finite-frontier}.  Suppose:",
+        "\\begin{enumerate}[label=\\textup{(\\roman*)}]",
+        "\\item the exact unsafe inequality of \\cref{thm:exact-unsafe} holds at \\(a_0\\);",
+        "\\item the finite Q, BC, and SP certificates at \\(a_1=a_0+1\\), together with the tangent/deep and quotient paid cells, give an integer upper bound \\(U(a_1)\\le B_*\\);",
+        "\\item the cell partition is disjoint or is accompanied by an inclusion-exclusion convention that only overcounts downward."
+      ],
+      "line_end": 1642,
+      "line_start": 1637,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "sha256": "cd19440c5c6e1230a6d93f7add9bca102b2f98b3cbb21d29d346c108156bc6e7"
+    },
+    {
+      "excerpt": [
+        "A safe record at agreement \\(a\\) has the schematic form",
+        "\\[",
+        "\\begin{array}{rcl}",
+        "\\mathsf{safe\\_upper}(a)&=&",
+        "U_{\\rm tangent}(a)+U_{\\rm deep}(a)+U_{\\rm quotient}(a)\\\\",
+        "&&{}+U_Q(a)+U_{BC}(a)+U_{SP}(a).",
+        "\\end{array}",
+        "\\]",
+        "The first two summands are explicit from \\cref{thm:deep-mca,thm:mca-from-ca}.  The quotient term is a finite recursion over complete scale maps.  The Q term is a list of maximum prefix-fiber bounds.  The BC term is a list of primitive split-pencil profile bounds.  The SP term is a primitive shift-pair bound.  The record is accepted if the sum is at most \\(B_*\\).",
+        "",
+        "\\begin{remark}[machine-checkable but not machine-proved]",
+        "The grammar does not require a computer to prove Q, BC, or SP.  It only requires that once a mathematical proof supplies their finite constants, the final assembly contains no informal judgement.  Every row then reduces to exact integer arithmetic and a finite list of tagged dependencies."
+      ],
+      "line_end": 2164,
+      "line_start": 2153,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "sha256": "99c83a10e64833c1d30c67866a61eb18bf4a59e06e34efed9e1613b44ebdf9bd"
+    }
+  ],
+  "statement_blocks": [
+    {
+      "excerpt": [
+        "\\begin{proposition}[slope elimination]\\label{prop:capfr1-slope-elimination}",
+        "Fix \\((u,v)\\) and a support \\(T\\) of size \\(m\\).  A finite slope \\(z\\) has \\((u+zv)|_T\\) extending to a degree-\\(<K\\) polynomial if and only if",
+        "\\[",
+        "        \\alpha(T)+z\\beta(T)=0.",
+        "\\]",
+        "If \\(T\\) is not common, then it determines at most one such slope.  Consequently, after common-support/tangent cells are paid, the number of bad finite slopes is bounded by the number of non-common rank-one supports.",
+        "\\end{proposition}"
+      ],
+      "label": "prop:capfr1-slope-elimination",
+      "line_end": 7807,
+      "line_start": 7801,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "dc9cc79358e1c9f5cbf04c500f67c8569d705f7fa01371cc83cba7cfeb9eaf33"
+    },
+    {
+      "excerpt": [
+        "\\begin{corollary}[intermediate rank-one closing reduction]\\label{cor:capfr1-Q-R1-closing}",
+        "The asymptotic frontier of \\cref{prob:capfpr-frontier-prize} follows from the asymptotic form of \\textup{(Q)} and the asymptotic form of \\(\\Rone\\), together with the paid capf compilers.  The finite adjacent deployed theorem follows from finite \\textup{(Q)} and finite \\(\\Rone\\) numerators satisfying the one-step inequality",
+        "\\[",
+        "        U_{\\rm paid}(a_0+1)+U_Q(a_0+1)+U_{\\Rone}(a_0+1)",
+        "        \\le B_*<L(a_0).",
+        "\\]",
+        "\\end{corollary}"
+      ],
+      "label": "cor:capfr1-Q-R1-closing",
+      "line_end": 7835,
+      "line_start": 7829,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "2f9a31493bd510809e421be7ca6e158ba0665ab26fbefe292dd551d1b6e00dc9"
+    },
+    {
+      "excerpt": [
+        "\\begin{corollary}[updated adjacent pairs]\\label{cor:capg-adjacent-pairs}",
+        "In \\cref{prob:capff1-frontier} and \\cref{prob:capfp-F}, the predicted",
+        "adjacent pairs become",
+        "\\[",
+        "\\begin{array}{c|cc|c}",
+        "\\text{row} & \\text{proved unsafe }a_0 & \\text{conjectured first safe }a_0+1",
+        "& \\text{fail margin (bits)}\\\\ \\hline",
+        "\\text{KoalaBear MCA} & 1116047 & 1116048 & 22.2\\\\"
+      ],
+      "label": "cor:capg-adjacent-pairs",
+      "line_end": 8691,
+      "line_start": 8680,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "94547d5b3c74e5ac5d63b5b45a13b1b0ea01caaf7e21e35a5e92e94be76531f5"
+    },
+    {
+      "excerpt": [
+        "\\begin{proposition}[subfield census floors at every balanced profile]",
+        "\\label{prop:capg-census-floor}",
+        "Let $C=\\RS[\\F,D,K]$, $D\\subseteq\\B$, $|D|=n$, $q=|\\F|$, $p=|\\B|$, and",
+        "fix an agreement $m$ with $K\\le m$ and $2(m-K)\\le n-K$; write $w'=m-K$.",
+        "For a profile parameter $d_1$ with $w'+1\\le d_1\\le\\floor{(n-K+1)/2}$ put",
+        "$m':=K-1+d_1$ and assume $m'+d_1\\le n$.  Then:",
+        "\\begin{enumerate}[label=\\textup{(\\alph*)}]",
+        "\\item \\textup{(Boundary profile, $d_1=w'+1$.)}  For every $z\\in\\B^{w'}$"
+      ],
+      "label": "prop:capg-census-floor",
+      "line_end": 9767,
+      "line_start": 9727,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "90085a8c48ab73b5ce10373bf310a5cec2de68e59383c4aa61a76609d0163a4a"
+    }
+  ],
+  "status": "EXPERIMENTAL / AUDIT",
+  "symbolic_occurrences_sample": [
+    {
+      "line": 7277,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "text": "U_{\\rm paid}(a_0+1)+U_Q(a_0+1)+U_A(a_0+1)\\le B_*<L(a_0),"
+    },
+    {
+      "line": 7423,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "text": "U_{\\rm paid}(a_0+1)+U_Q(a_0+1)+U_A(a_0+1)\\le B_* ."
+    },
+    {
+      "line": 7595,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "text": "\\item the resulting quotient numerator $U_Q(a_0+1)$ after parameter-image coalescing;"
+    },
+    {
+      "line": 7598,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "text": "U_{\\rm paid}(a_0+1)+U_Q(a_0+1)+U_A(a_0+1)\\le B_* ."
+    },
+    {
+      "line": 7832,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "text": "U_{\\rm paid}(a_0+1)+U_Q(a_0+1)+U_{\\Rone}(a_0+1)"
+    },
+    {
+      "line": 1621,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "\\begin{definition}[finite Q certificate]\\label[definition]{def:finite-Q-cert}"
+    },
+    {
+      "line": 1622,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "At a row \\((D,\\BB,\\F,k,n)\\) and agreement \\(a\\), a finite Q certificate is a list of quotient scales \\(\\varphi_i:D\\to Q_i\\), prefix depths \\(w_i\\), and integers \\(U_{Q,i}\\) such that every prefix or quotient-pullback cel"
+    },
+    {
+      "line": 1630,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "A finite BC certificate at agreement \\(a\\) is a list of balanced split-pencil profiles \\((d_1,d_2,\\omega)\\), together with explicit integers \\(U_{BC}(d_1,d_2,\\omega)\\), such that every primitive balanced aperiodic witnes"
+    },
+    {
+      "line": 1634,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "A finite SP certificate is an explicit bound \\(U_{SP}\\) for the primitive shift-pair contribution after all quotient-pullback and common-divisor shift pairs have been deleted from the collision ledger.  It must specify t"
+    },
+    {
+      "line": 2095,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "(\\mathsf{unsafe\\_lower},\\mathsf{safe\\_upper},\\mathsf{cells},\\mathsf{dependencies})."
+    },
+    {
+      "line": 2097,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "The lower field is an integer lower bound for the numerator at agreement \\(a\\).  The upper field is an integer upper bound.  A verdict is unsafe if \\(\\mathsf{unsafe\\_lower}>B_*\\), safe if \\(\\mathsf{safe\\_upper}\\le B_*\\),"
+    },
+    {
+      "line": 2156,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "\\mathsf{safe\\_upper}(a)&=&"
+    },
+    {
+      "line": 2158,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "&&{}+U_Q(a)+U_{BC}(a)+U_{SP}(a)."
+    },
+    {
+      "line": 2297,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "U(a)=U_{\\rm tan}(a)+U_{\\rm quo}(a)+U_Q(a)+U_{SP}(a)+U_{BC}(a)."
+    },
+    {
+      "line": 2303,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "\\item[\\(U_Q\\)] primitive identity-prefix and quotient-prefix boundary fibers;"
+    },
+    {
+      "line": 2304,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "\\item[\\(U_{SP}\\)] primitive shift-pair second-moment residue;"
+    },
+    {
+      "line": 2305,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "\\item[\\(U_{BC}\\)] primitive balanced split-pencil supports."
+    },
+    {
+      "line": 2315,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "A finite Q certificate should list every scale \\(\\varphi:D\\to Q\\) used by the row, the active support size at that scale, and an upper bound for the largest prefix fiber.  At identity scale this is a bound of the form"
+    },
+    {
+      "line": 2337,
+      "path": "experimental/cap25_cap_v13_raw_compact.tex",
+      "text": "SP is the seam between Q and BC.  In the second-moment expansion of prefix fibers, one encounters ordered pairs of disjoint sets with equal initial moments.  Some equalities come from quotient pullback; others come from "
+    }
+  ],
+  "theorem_problem_ids": [
+    "cor:capfr1-Q-R1-closing",
+    "prop:capfr1-slope-elimination",
+    "cor:capg-adjacent-pairs",
+    "prop:capg-census-floor"
+  ]
+}
