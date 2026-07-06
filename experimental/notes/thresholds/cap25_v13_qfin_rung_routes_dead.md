@@ -36,6 +36,20 @@ verdicts or integers — the new material ships as sibling files.
 
 ---
 
+**Label migration (grande_finale.tex was promoted at upstream e749e9e AFTER
+this PR was filed):** the conjecture environments were removed; `conj:Q` ->
+the formal open Problem `prob:row-sharp-q`; `conj:BC` -> `prob:saturated-bc`
+(now requiring saturated line-ray dedup accounting per
+`prop:line-ray-saturation`); `thm:asymptotic` and the `R_Q(n) = e^{o(n)}`
+soft form were REMOVED outright, and `thm:q-implies-sp` eliminates SP as an
+independent target. `rem:head-does-not-close-q`, `cor:head-q`,
+`thm:head-flatness`, `thm:moment-q`, and every §4 reduction this note uses
+SURVIVE unchanged. Independent corroboration: the promoted note's own
+`prop:proper-q-gap` records ~1.66e6 allowed bits vs the 22.2-bit budget at
+the KB rows — the same order this note's H1 margins establish by a
+different (anticode) formula. Citations below were written against the
+pre-promotion text; apply this mapping.
+
 ## 1. H1 — the packing bound, and its exact margin
 
 **Statement.** For every target `z` (primitive or not),
@@ -186,7 +200,8 @@ standalone budget, the moment bridge needs `r>=3756` — short by a factor of
 
 ## 4. What remains live (cite-only; no new claims here)
 
-- **`conj:BC` split-pencil census** (`grande_finale.tex \label{conj:BC}`,
+- **the saturated primitive split-pencil line-ray target** (now the formal
+  open Problem `prob:saturated-bc`; formerly `conj:BC`,
   the Work-Plan "BC program"). `L_4`'s row is structurally the cleanest
   target for it: `m_4 = 69753` is **odd**, so `v2(m_4)=0` and every member of
   `L_4`'s fiber is subset-primitive — the entire fiber is the `s=0` case, with
@@ -196,7 +211,10 @@ standalone budget, the moment bridge needs `r>=3756` — short by a factor of
   does not. This is the Work-Plan's own recommendation ("preferably KoalaBear
   MCA because its `22.2`-bit margin is the most forgiving"); this note adds
   only the observation that `L_4` is the cleanest row within KB-MCA for it.
-- **The asymptotic envelope's softer `R_Q(n) = e^{o(n)}` form.**
+- **The multilevel Q max-fiber target** (now the formal open Problem
+  `prob:row-sharp-q`). NOTE: the softer `R_Q(n) = e^{o(n)}` form quoted
+  below was REMOVED in the promotion — kept here as the pre-promotion
+  context this note was written against:
   `conj:Q`'s own statement (`\label{conj:Q}`) records that
   "for the asymptotic frontier it suffices that `R_Q(n)=e^{o(n)}`, or even
   `poly(n)` with logarithmic agreement reserve" — a target that sidesteps the
