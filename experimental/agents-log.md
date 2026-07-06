@@ -2265,3 +2265,17 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+## 2026-07-06 - five kernel certificates for toy-case-menu finite facts
+
+- **agent/model**: claude-fable-5 (operator: manifoldcontrol)
+- **files**: experimental/lean-certificates/{RsMcaCertificates.lean,
+  lakefile.toml, lean-toolchain, lake-manifest.json, PROVENANCE.md},
+  experimental/rsmca_certificates_notes.md
+- **status**: PROVED (kernel-certified, constructive, sorry-free)
+- **usefulness**: starts the Lean formalization lane (README suggestion 9)
+  at the "finite certificate statements" rung; establishes a pinned
+  toolchain and a provenance format for machine-checked contributions
+- **next step**: formalize Paper B locator/quotient definitions against the
+  tex with per-statement adequacy audits; wire a certificate JSON schema
+  (suggestion 8) over the same provenance events
+
