@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - L1 bounded-excess structure on `E_3<=ell+C'` (`C'` localized to `+2`)
+
+- **Agent/model:** Claude Sonnet 5, packaging a Lane G investigation.
+- **Files added or changed:** `experimental/notes/l1/l1_bounded_excess_structure.md`;
+  `experimental/data/certificates/l1-e3-law/l1_bounded_excess_ledger.json`;
+  `experimental/scripts/verify_l1_bounded_excess_structure.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED-LOCAL / EXPERIMENTAL / ROUTE-CUT.
+- **What is being added:** The first structural work on the post-refutation open target
+  `E_3 <= ell+C'` (`l1_e3_law_refuted.md` Sec 0 item 6; independently named the same way
+  by the concurrent PR #365). Three exact pieces of structure that narrate, but do not
+  close, the observed ceiling `C'=2`: (1) an identity `excess = T-4-capslack` reducing
+  "`excess>=3`" to a realizable tail-excess `T>=7`, verified on all six residual-chart
+  witnesses; (2) a proof that the canonical shape `[ell-3,3^k]`'s excess is bounded by
+  `floor((2*ell-20)/3)` from the pairwise cap + Lemma R alone
+  (`l1_e3_charsum_paircap.md`) — proving `excess<=2` at `ell<=13` but permitting `+4` at
+  `ell=17` (the record witness W3 attains only `+2`); (3) a `q`-plane concurrency
+  reformulation of realizability for that shape, concretely verified on W3 (7
+  independently-solved tail 3-fibers all recover the identical point of a fixed
+  `P^2(F_p)`), plus a dedicated hunt (425 plants, full projective sweeps per plant,
+  `ell in {17,19}`) finding concurrency counts that DROP (not rise) with more cosets —
+  explaining why the Lemma-R headroom is not reached.
+- **How it is useful:** Gives the open `C'` question its first proof-shaped handles (an
+  exact identity, a per-shape sub-ceiling, a concrete geometric obstruction) instead of
+  leaving it a bare empirical observation. Corrects two claims found by independent
+  recompute in the source hunt's own coverage ledger (a mislabeled "exhaustive" dropset
+  count at `(ell=19,p=229,n=12)` — `C(19,3)=969`, only 130 sampled — and a claimed `+1`
+  max excess there that recomputes to `+0`), with no silent fixes.
+- **What to do next:** The open core is unchanged: no realizable configuration is known to
+  carry a tail-excess `T>=7` (equivalently, `>=8` concurrent points of the `q`-plane over a
+  fixed size-`(ell-3)` locator), and neither proving nor refuting this at `ell>=19` (where
+  Lemma R permits far more headroom, up to `+6`/`+8`/`+12`) is attempted here.
+  `ell in {23,29}` were not run at all (budget, not proof). Concurrent, not depended on:
+  PR #364 (`l1_ell19_band_refuted.md`) and PR #365 (`l1_e3_dim_syz_crux_refuted.md`), both
+  cited by path and number in the note.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via

@@ -1,0 +1,88 @@
+{
+ "schema": "l1-bounded-excess-structure-v1",
+ "note": "experimental/notes/l1/l1_bounded_excess_structure.md",
+ "verifier": "experimental/scripts/verify_l1_bounded_excess_structure.py",
+ "source": "internal hunt (not shipped as repo files); every number in this ledger was independently re-derived from experimental/data/certificates/l1-e3-law/l1_e3_law_refutation.json (the six witnesses) or re-run from scratch (the toy sweep), not merely copied",
+ "target": "the post-refutation open ceiling E_3 <= ell + C' (experimental/notes/l1/l1_e3_law_refuted.md Sec 0 item 6; experimental/notes/l1/l1_e3_dim_syz_crux_refuted.md Sec 6, PR #365, concurrent)",
+ "verdict": "C' observed as +2 (W3, ell=17, p=137), NOT proved extremal. Three exact pieces of structure (identity, Lemma-R sub-ceiling, q-plane concurrency reformulation) narrate but do not close the gap. 0 configs with excess>=3 found across 425 swept plants (ell in {17,19}).",
+ "excess_identity": {
+  "formula": "excess := E_3 - ell = T - 4 - capslack, where capslack := ell - (mu_1+mu_2) >= 0 (the PROVED pairwise cap)",
+  "derivation": "E_3 = (mu_1-2)+(mu_2-2)+T (definition, after min-mu>=3 normalization) = (mu_1+mu_2)-4+T = (ell-capslack)-4+T",
+  "consequence": "excess >= 3  iff  a realizable config carries T >= 7+capslack (T >= 7 at a cap-tight top pair, capslack=0)",
+  "canonical_shape_consequence": "for [ell-3,3^k]: T=k-1, capslack=0, excess=k-5; excess=+3 needs exactly k>=8 concurrent size-3 fibers",
+  "identity_table": [
+   {"id": "W3", "ell": 17, "p": 137, "spectrum": [14,3,3,3,3,3,3,3], "E3": 19, "T": 6, "mu1_plus_mu2": 17, "capslack": 0, "excess": 2, "identity_rhs_T_minus_4_minus_capslack": 2, "identity_holds": true},
+   {"id": "W1", "ell": 29, "p": 233, "spectrum": [15,14,4,3,3,3,2,2], "E3": 30, "T": 5, "mu1_plus_mu2": 29, "capslack": 0, "excess": 1, "identity_rhs_T_minus_4_minus_capslack": 1, "identity_holds": true},
+   {"id": "W2", "ell": 23, "p": 139, "spectrum": [14,9,4,4,3,2], "E3": 24, "T": 5, "mu1_plus_mu2": 23, "capslack": 0, "excess": 1, "identity_rhs_T_minus_4_minus_capslack": 1, "identity_holds": true},
+   {"id": "EXTRA1_ell29_p233_a", "ell": 29, "p": 233, "spectrum": [20,9,4,3,3,3,2,2], "E3": 30, "T": 5, "mu1_plus_mu2": 29, "capslack": 0, "excess": 1, "identity_rhs_T_minus_4_minus_capslack": 1, "identity_holds": true},
+   {"id": "EXTRA2_ell29_p233_b", "ell": 29, "p": 233, "spectrum": [16,13,4,3,3,3,2,2], "E3": 30, "T": 5, "mu1_plus_mu2": 29, "capslack": 0, "excess": 1, "identity_rhs_T_minus_4_minus_capslack": 1, "identity_holds": true},
+   {"id": "EXTRA3_ell17_p103", "ell": 17, "p": 103, "spectrum": [11,5,5,4,3,2], "E3": 18, "T": 6, "mu1_plus_mu2": 16, "capslack": 1, "excess": 1, "identity_rhs_T_minus_4_minus_capslack": 1, "identity_holds": true, "note": "the one non-cap-tight witness (capslack=1); sharpest sanity check of the identity"}
+  ]
+ },
+ "lemma_r_subceiling": {
+  "lemma_r_source": "experimental/notes/l1/l1_e3_charsum_paircap.md, Proposition (pair-cap), PROVED: sum_b mu_b(mu_b-1) <= (ell-1)(ell-2) (consistent with the same-named citations in l1_prime_ell_onset.md and l1_prime_ell_pv_refutation.md)",
+  "shape": "[ell-3, 3^k]: one fiber of size ell-3, k fibers of size 3 (forced by the pairwise cap once mu_1=ell-3 is planted, since mu_2 <= ell-mu_1 = 3, and min-mu>=3 normalization removes anything smaller)",
+  "derivation": "(ell-3)(ell-4) + 6k <= (ell-1)(ell-2)  =>  6k <= 4*ell-10  =>  k <= (2*ell-5)/3; excess=k-5 => excess <= floor((2*ell-20)/3)",
+  "table": [
+   {"ell": 11, "k_max": 5, "excess_ceiling": 0, "status": "Lemma R alone proves excess<=0 here (a fortiori <=2)"},
+   {"ell": 13, "k_max": 7, "excess_ceiling": 2, "status": "Lemma R alone proves excess<=2 here (tight to the stated consequence)"},
+   {"ell": 17, "k_max": 9, "excess_ceiling": 4, "status": "realizability-limited: Lemma R permits +4, observed max is +2 (W3) -- gap of 2"},
+   {"ell": 19, "k_max": 11, "excess_ceiling": 6, "status": "realizability-limited"},
+   {"ell": 23, "k_max": 13, "excess_ceiling": 8, "status": "realizability-limited"},
+   {"ell": 29, "k_max": 17, "excess_ceiling": 12, "status": "realizability-limited"}
+  ],
+  "consequence": "ell<=13 => excess<=2 PROVED for this shape (the only two odd primes <=13 with ell-3>=3); NOT proved at ell=17 (permits +4)",
+  "w3_gap": {"ell": 17, "lemma_r_permits": 4, "observed_attained": 2, "gap": 2},
+  "w3_shape_check": {"mu1": 14, "ell_minus_3": 14, "cap_forces_mu2_leq": 3, "actual_mu2": 3}
+ },
+ "qplane_spotcheck_w3": {
+  "setup": "F0 = the known size-14 planted fiber of W3 (ell=17,p=137); g0 = monic degree-14 locator vanishing on F0; Gamma = g0*q + lambda0 forces q of degree exactly 2 (the P^2(F_p) 'q-plane')",
+  "lambda0": 124,
+  "deg_g0": 14,
+  "global_q_raw": [26, 0, 1],
+  "global_q_normalized": [1, 0, 58],
+  "reconstruction_check": "g0*q + lambda0 reproduces the shipped W3 gamma exactly: PASS",
+  "tail_fibers": [
+   {"fiber": [38, 72, 133], "independently_recovered_q_normalized": [1, 0, 58]},
+   {"fiber": [13, 83, 114], "independently_recovered_q_normalized": [1, 0, 58]},
+   {"fiber": [7, 101, 120], "independently_recovered_q_normalized": [1, 0, 58]},
+   {"fiber": [5, 27, 29], "independently_recovered_q_normalized": [1, 0, 58]},
+   {"fiber": [4, 65, 99], "independently_recovered_q_normalized": [1, 0, 58]},
+   {"fiber": [17, 36, 130], "independently_recovered_q_normalized": [1, 0, 58]},
+   {"fiber": [108, 110, 132], "independently_recovered_q_normalized": [1, 0, 58]}
+  ],
+  "concurrency_verdict": "all 7 tail 3-fibers, solved INDEPENDENTLY of each other and without using the global Gamma, recover the identical q-plane point (1,0,58) -- concurrency demonstrated by direct computation, not asserted"
+ },
+ "coverage_ledger": {
+  "description": "425 plants swept total; P^2(F_p) sweep exhaustive per plant (no member skipped); dropset (plant) selection is a deterministic sample, not exhaustive, except where the possible-dropset count is small enough to state exactly",
+  "rows": [
+   {"family": "[ell-3,3^k] (calibration)", "ell": 17, "p": 137, "n": 8, "plants_swept": 40, "of_possible_dropsets": 680, "max_E3": 19, "max_excess": 2, "best_spectrum": [14,3,3,3,3,3,3,3], "k3_concurrent_threes": 7, "secs": 36.0, "note": "rediscovers the already-shipped W3 witness's exact invariants from the hunt's own combinatorial generation; validates the method against a known answer"},
+   {"family": "[ell-3,3^k]", "ell": 17, "p": 239, "n": 14, "plants_swept": 101, "of_requested": 300, "of_possible_dropsets": 680, "max_E3": 17, "max_excess": 0, "best_spectrum": [14,3,3,3,3,3,2,2], "k3_concurrent_threes": 5, "secs": 569.1},
+   {"family": "[ell-3,3^k]", "ell": 17, "p": 307, "n": 18, "plants_swept": 51, "of_requested": 55, "of_possible_dropsets": 680, "max_E3": 17, "max_excess": 0, "best_spectrum": [14,3,3,3,3,3,2,2], "k3_concurrent_threes": 5, "secs": 677.3},
+   {"family": "[ell-3,3^k]", "ell": 17, "p": 409, "n": 24, "plants_swept": 1, "of_requested": 18, "of_possible_dropsets": 680, "max_E3": 15, "max_excess": -2, "best_spectrum": [14,3,3,3,2,2], "k3_concurrent_threes": 3, "secs": 29.2, "note": "under-covered: slowest prime here (|P^2(F_409)|=167691 members/plant), only 1 of 18 requested plants completed"},
+   {"family": "[ell-3,3^k]", "ell": 19, "p": 229, "n": 12, "plants_swept": 130, "of_requested": 130, "of_possible_dropsets": 969, "max_E3": 19, "max_excess": 0, "best_spectrum": [16,3,3,3,3,3,2,2,2,2,2,2], "k3_concurrent_threes": 5, "secs": 661.8, "best_excl": [0,2,15], "correction_1": "source hunt labeled this row '130/130 (exhaustive triples)'; C(19,3)=969, so 130 is a ~13.4%-coverage deterministic sample of dropsets, NOT exhaustive over them -- corrected. The per-plant P^2 sweep IS exhaustive (52671 points checked), and all 130 requested plants completed (no time-cutoff).", "correction_2": "max excess at this row is +0 (E_3=19=ell exactly), not +1 -- confirmed both by the source hunt's own JSON and by an independent from-scratch resweep of the reported best dropset (4.14s, reproducing the spectrum exactly)."},
+   {"family": "[ell-4,4,3^k]", "ell": 17, "p": 239, "n": 14, "plants_swept": 41, "of_requested": 150, "of_possible_dropsets": "not computed exactly (>=1e5)", "max_E3": 17, "max_excess": 0, "best_spectrum": [14,3,3,3,3,3,2,2], "k3_concurrent_threes": 5, "secs": 313.9},
+   {"family": "[ell-4,4,3^k]", "ell": 19, "p": 229, "n": 12, "plants_swept": 61, "of_requested": 120, "of_possible_dropsets": "not computed exactly (>=1e5)", "max_E3": 19, "max_excess": 0, "best_spectrum": [16,3,3,3,3,3,2,2,2,2,2,2], "k3_concurrent_threes": 5, "secs": 380.8}
+  ],
+  "totals": {"plants_swept": 425, "secs": 2668.1, "configs_with_excess_ge_3": 0},
+  "undercovered": ["ell=17,p=409,n=24 (1 of 680 possible dropsets tried)", "ell in {23,29}: not run at all"],
+  "undercovered_justification": "the ell=17 n=14/18 trend (concurrency count FALLING to 5 as n grows from 8) already refutes the hope that larger n helps; Lemma R permits strictly MORE excess at ell in {23,29} (+8,+12) than at ell=17 (+4), so by the q-plane mechanism (Sec 3 of the note) these are expected to be at least as capped, not less -- left unrun by budget, not by proof"
+ },
+ "corrections_from_source_hunt": [
+  {
+   "claim": "(ell=19,p=229,n=12) row labeled '130/130 (exhaustive triples)'",
+   "correction": "C(19,3)=969; 130 is a deterministic spread sample (~13.4% of possible dropsets), not exhaustive over the dropset space. The per-plant P^2(F_229) sweep (52671 points) IS exhaustive, and all 130 requested plants completed with no time-cutoff.",
+   "impact": "none on the qualitative finding (max excess=0, no win); corrects only the word 'exhaustive' as applied to dropset coverage"
+  },
+  {
+   "claim": "max excess at the (ell=19,p=229,n=12) row is +1",
+   "correction": "the correct value is +0 (E_3=19=ell exactly), confirmed both by the source hunt's own JSON (max_excess: 0) and by an independent from-scratch resweep of the reported best dropset (4.14s, spectrum [16,3,3,3,3,3,2,2,2,2,2,2] reproduced exactly).",
+   "impact": "this row contributes no T>=5 excess evidence either way; it is a correctly-null result for the excess>=3 hunt, not a T=5-adjacent near miss"
+  }
+ ],
+ "concurrent_open_prs": [
+  {"pr": 364, "branch": "l1-ell19-band-refuted", "path": "experimental/notes/l1/l1_ell19_band_refuted.md", "relationship": "concurrent, not integrated, not depended on; independently concludes m*(19) stays {8,9}, consistent with this note's own no-m=8-crossing observation"},
+  {"pr": 365, "branch": "l1-dim-syz-crux", "path": "experimental/notes/l1/l1_e3_dim_syz_crux_refuted.md", "relationship": "concurrent, not integrated, not depended on; independently names the identical bounded-excess target E_3<=ell+C' and the same (W,lambda)-Veronese transversality as the open core; this ledger supplies one shape's worth of concrete structure toward that same target"}
+ ],
+ "non_claims": "C'<=2 is NOT proved -- it is a localized, three-times-corroborated observation, not a theorem. The open core (no realizable T>=7 tail) is unchanged and open. ell in {23,29} not run. The [ell-4,4,3^k] shape was swept but not analyzed geometrically here."
+}
