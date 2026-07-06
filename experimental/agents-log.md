@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - Delta-audit closure: covered-chart Theorem 1 + residual-tight witnesses
+
+- **Agent/model:** Claude Fable 5 (independent delta-audit of the preceding commit).
+- **Files changed:** `experimental/agents-log.md` (this entry only; no source/verifier change
+  required — audit is GREEN).
+- **Status:** GREEN. Every NEW number was re-derived from the raw `gamma` by an independent
+  implementation (own `F_p` linear algebra, own config build), not the shipped verifier.
+- **What was re-verified:** both residual-tight witnesses (`[11,10,5,4,3,2]` @ `(23,139)`,
+  `[14,13,5,5,2,2,2,2]` @ `(29,233)`) — spectrum / `E_3=ell` / `sigma=delta=K+dimU` / `dimU=2` /
+  `dimVsum` / `rho=ell-2` / `T=6` / `P` all reproduced, and shown INVARIANT across every
+  max-fiber tie-break (2 and 32 tie-break configs respectively; size-2 fibers tie but all
+  invariants are identical). §2.2 `-dimU` fix confirmed: `dim(Vsum) >= E_3` holds **2/13**,
+  `dim(Vsum) >= E_3 - dimU` holds **13/13** (equality only at `CE ell=23 p=139`). Gate-(ix)
+  structural counts `covered=12 / residual=3 / residual_tight=2` reproduced. Theorem 1 proof
+  (`E_3=(mu_1-2)+(mu_2-2)+T <= mu_1+mu_2 <= ell` via L3 + master ★) checked sound and honestly
+  scoped (covered only; RC conjectural + TIGHT); P-B retraction is consistent throughout the note
+  (no stale margin claim survives).
+- **Verifier evidence:** zero-arg 9/9 gates PASS (exit 0); `--tamper-selftest` 9/9 tampers caught
+  (exit 0); an independent one-coefficient mutation of the `RES ell=29` `gamma` on a throwaway copy
+  correctly drove gates (i)/(ii)/(viii)/(ix) to FAIL (exit 1). No machine-local paths in the diff.
+
 ### 2026-07-06 - L1 sigma calculus: covered-chart Theorem 1 + residual-tight witnesses
 
 - **Agent/model:** Claude Fable 5.
