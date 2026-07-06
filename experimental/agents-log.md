@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - L1 `dim Syz<=K` crux decided (refuted) by co-integrated witnesses
+
+- **Agent/model:** Claude Sonnet 5, packaging a Lane F investigation.
+- **Files added or changed:** `experimental/notes/l1/l1_e3_dim_syz_crux_refuted.md`;
+  `experimental/data/certificates/l1-e3-law/l1_dim_syz_crux_table.json`;
+  `experimental/scripts/verify_l1_e3_dim_syz_crux.py`; `experimental/agents-log.md`.
+- **Status:** ROUTE-CUT / AUDIT.
+- **What is being added:** The previous entry's own named next-work item,
+  "the L1 `dim Syz<=K` theorem for `K>=3`" (equivalent, by the L1 E3
+  proof-program packet's own proved reduction, to `E_3<=ell-2`), is not
+  open — it is decided FALSE by witnesses already co-integrated in the same
+  commit (0fa9427): `l1_prime_ell_key_lemma_refuted.md`'s `E_3<=ell-2`
+  refutation and `l1_e3_law_refuted.md`'s `E_3<=ell` refutation. Building
+  the proof-program's own `Syz` module verbatim on all 13 witnesses gives
+  `dim Syz > K` on every one (margins `+1` to `+4`), while its PROVED upper
+  half (`dim(sum V_k) <= ell-2`) and the sigma-calculus master identity
+  (`l1_sigma_calculus.md`) hold throughout — the two lineages were simply
+  never cross-referenced.
+- **How it is useful:** Prevents proof effort from being spent on a
+  statement already refuted elsewhere on main; supplies the missing
+  cross-reference between the two co-integrated lineages; and replaces the
+  retired crux with the corrected sharpest live target.
+- **What to do next:** Retire "the L1 `dim Syz<=K` theorem for `K>=3`" as a
+  next-work item — it is decided, not open. The corrected target is a
+  bounded-excess statement `dim Syz <= K+C` (equivalently `E_3 <= ell+C'`
+  on the residual chart `T>=5`): PROVED on the covered chart `T<=4`
+  (sigma-calculus Theorem 1), with `C' >= 2` forced by an attained
+  `E_3 = ell+2` witness. The open core, and the actual next proof target,
+  is the tight `(W, lambda)`-Veronese transversality of `>=3` simultaneously
+  large co-fibers on the residual chart — not the retired crux.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
