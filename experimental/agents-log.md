@@ -30,6 +30,55 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - L1 E_3<=ell law refuted at T>=5 (max E_3=ell+2)
+
+- **Agent/model:** Claude Fable 5 (PI) + Opus falsify/prove lane agents.
+- **Files added or changed:** `experimental/notes/l1/l1_e3_law_refuted.md`;
+  `experimental/scripts/verify_l1_e3_law_refuted.py`;
+  `experimental/scripts/l1_pencil_family_sweep.py`;
+  `experimental/data/certificates/l1-e3-law/l1_e3_law_refutation.json`;
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT / PROVED-LOCAL.
+- **What is being added:** Six explicit, realizable, four-way cross-verified
+  `Gamma` at `ell in {17, 23, 29}` refute both the NEW KEY LEMMA CANDIDATE
+  `E_3 <= ell` of `l1_prime_ell_key_lemma_refuted.md` Sec 5 and the
+  sigma-calculus note's Residual Conjecture RC (`T >= 5 => E_3 <= ell`,
+  `l1_sigma_calculus.md` Sec 2A.2), with observed maximum `E_3 = ell + 2` at
+  `ell = 17, p = 137`. All six live on the `T >= 5` residual chart; Theorem 1
+  (`T <= 4 => E_3 <= ell`), the pairwise cap `mu_1+mu_2 <= ell`, and the
+  master identity `sigma = E_3+K-ell+dimU` all SURVIVE, re-verified on the
+  counterexamples themselves. Two proved-local reductions frame the
+  refutation: the master identity is realizability-free (demoed on a
+  non-realizable `[6,6]` profile at `ell=7`), and `min-mu>=3` peeling
+  preserves `E_3`/`T` exactly. The companion constructor
+  `l1_pencil_family_sweep.py` deterministically re-derives two of the six
+  witnesses from scratch (no seed): `W3` by an exhaustive 138-member `d=2`
+  pencil sweep, `W1` by an exhaustive 54523-member `d=3` sweep seeded on a
+  pre-existing residual-tight witness's top-2 fibers -- concretely
+  demonstrating the AUDIT mechanism (under-plant a big-fiber pair, then sweep
+  the *entire* resulting nullspace family) that the prior ~166k-config
+  law-evidence sweeps and >700k-config census missed by reading only one
+  nullspace vector or random-sampling the family.
+- **How it is useful:** Closes the sigma-calculus note's "open core" as FALSE
+  (not merely unresolved) and removes the `E_3 <= ell` candidate as a path to
+  the frontier vacancy `m*(ell) = (ell+1)/2`; the vacancy half returns fully
+  OPEN (the attainment half is untouched -- see the concurrent `ell=19`
+  companion note, whose two witnesses this note's own verifier gate vii
+  checks land on the disjoint `T <= 4` covered chart). Reframes the residual
+  program's target: the observed excess is `E_3 - ell in {1, 2}`; no wired
+  DAG node depends on the exact constant, only on some `E_3 <= ell + O(1)`.
+- **What to do next:** Per the note's headline item 6 (the new open target
+  replacing the dead law): (a) determine whether a uniform ceiling
+  `E_3 <= ell + C` holds (falsifier: any realizable excess `>= 3` --
+  push the under-plant-then-exhaustively-sweep method to `pairgap = 2/3` or
+  larger seeded families as the natural next search); (b) determine whether
+  the excess grows with `ell` or with `n`. Note on shallow coverage: the
+  note's Sec 0.5 attributes boundary hits precisely (per-prime hit/miss:
+  `ell=19` at `p=191` only, deeper rerun; `ell=13` at `p in {53,79}` only),
+  matching the certificate JSON's per-prime table -- deeper reruns at the
+  miss primes (`p=229`, `p in {131,157}`) are the cheap way to extend the
+  boundary map before any downstream note relies on it.
+
 ### 2026-07-06 - Threshold and F1 audit PR integration
 
 - **Agent/model:** DannyExperiments via PRs #352 and #354; Latif Kasuli via
