@@ -1,0 +1,169 @@
+{
+  "schema_source": "grande_finale.tex \\label{prob:saturated-bc} (\"saturated primitive split-pencil line-ray target\"); the first data/derivation packet on this promoted problem -- the exact margin identity, the budget-fit of the paid fixed-deficiency Conjecture-F strata, an exhaustive toy census of the dedup identity, and the reduction of the open core to prob:capg-split-pencil-B / prob:capfp-R1",
+  "wall_id": "CAP25-V13-SATURATED-BC-BUDGET-FIT",
+  "deliverable_name": "Saturated line-rays: the rank-one budget fit and the growing-dimension gap",
+  "companion_note": "experimental/notes/thresholds/cap25_v13_saturated_bc_budget_fit.md",
+  "companion_verifier": "experimental/scripts/verify_saturated_bc_budget_fit.py",
+  "cross_refs": {
+    "prob:saturated-bc": "grande_finale.tex L1768 -- the promoted target this packet is the first data/derivation packet on",
+    "def:saturated-rays": "L1490 -- Cen(U;m), the support-locator census",
+    "thm:saturation": "L1509 -- exact identity Cen(U;m) = sum_c C(s_c(U),m)",
+    "cor:raw-bc-fails": "L1541 -- a raw support census can overcount a single MCA ray by C(n-d,m)",
+    "def:line-rays": "L1555",
+    "prop:line-ray-saturation": "L1565 -- the two exact dedup losses this packet measures",
+    "thm:bc-proper": "L1463 -- unconditional split-pencil dimension bound min(C(n,omega), |F|^{r1+r2})",
+    "prop:base-field-floor": "L1261 -- interior base-field split-pencil floor B_B(a+)",
+    "prop:rank-one-floor": "L1290",
+    "prop:rank-one-distinct-slope-floor": "L1313 -- P1's two-sided extremal pin",
+    "prop:slope-elimination": "L1087",
+    "prop:split-chart-tangent": "L1219",
+    "thm:near-rational": "L1117",
+    "cor:near-rational-line": "L1148",
+    "raw:lem:capf-dim1": "cap25_cap_v13_raw.tex L6696 -- P2 deficiency-1 bound floor(|H|/j)",
+    "raw:thm:capf-dim2": "L6719 -- P2 deficiency-2 bound C(|H|,2)/(j-1)",
+    "raw:thm:capf-fixeddim": "L6735 -- fixed-dimensional Conjecture-F bound C(|H|,d)",
+    "raw:rem:capf-conjf-open": "L6758 -- names the growing-dimensional incidence as unsettled, filed under prob:band (NOTE: laneM_analysis.md's Sec 6 cites this remark at 'raw L8225'; L8225 is actually inside rem:capfp-band-obstruction, a different remark -- see found_vs_claimed_corrections)",
+    "raw:prop:capfr1-detrep": "L7992 -- determinantal representation of the adversary",
+    "raw:cor:capfp-packing": "L8194 -- the ~213500-bit rigidity shave",
+    "raw:lem:capfp-pair-descent": "L8209",
+    "raw:rem:capfp-band-obstruction": "L8220",
+    "raw:rem:capfp-gamma-measured": "L8228 -- measured Gamma_r = 1+o(1) in the dense bulk",
+    "raw:prop:capfp-kernel": "L8173 -- moment-kernel dictionary, the route-1 candidate closing Q and BC together",
+    "raw:lem:capfp-functionals": "L8246 -- the S_r(f,T) criterion this packet's verifier uses independently",
+    "raw:thm:capfp-slope-elim": "L8258",
+    "raw:prob:capfp-R1": "L8278 -- slope-form of the missing lemma",
+    "raw:prob:capg-split-pencil-B": "L9842 -- support-form of the missing lemma (task brief cites ~L9841; off-by-one, same remark)",
+    "raw:prop:capg-census-floor": "L9728",
+    "raw:prob:band": "L4624 -- the named open umbrella problem",
+    "#369": "Latif Kasuli, OPEN -- KB-MCA L4 base-field floor ladder fixture; cited for the L4 cross-check only, not duplicated",
+    "#378": "Holm Buar, OPEN -- Lean BC interior census floor (lower side only); sibling result, not duplicated"
+  },
+  "margins_table": [
+    {
+      "row": "KoalaBear MCA", "w": 67471, "a_plus": 1116048,
+      "log2_C_n_aplus": 2090873.2798, "log2_Bstar": 57.9321, "log2_floor": 35.7352,
+      "margin_bits": 22.1969
+    },
+    {
+      "row": "KoalaBear list", "w": 67471, "a_plus": 1116047,
+      "log2_C_n_aplus": 2090873.4657, "log2_Bstar": 57.9321, "log2_floor": 35.9212,
+      "margin_bits": 22.0109
+    },
+    {
+      "row": "Mersenne-31 MCA", "w": 67447, "a_plus": 1116024,
+      "log2_C_n_aplus": 2090877.7411, "log2_Bstar": 24.0000, "log2_floor": 20.7411,
+      "margin_bits": 3.2589
+    },
+    {
+      "row": "Mersenne-31 list", "w": 67447, "a_plus": 1116023,
+      "log2_C_n_aplus": 2090877.9270, "log2_Bstar": 24.0000, "log2_floor": 20.9270,
+      "margin_bits": 3.0730
+    },
+    {
+      "row": "L4 testbed", "w": 4216, "n": 131072, "K": 65537, "m": 69753,
+      "log2_C_n_m": 130671.4337, "log2_Bstar": null, "log2_floor": 23.1390,
+      "margin_bits": null, "note": "flatness rung, no deployed B*; see l4_consistency block"
+    }
+  ],
+  "margin_identity": "margin = log2(B*) - log2(C(n,a+) * p^-w); B* = floor(p^spow / 2^lam); confirmed to reproduce grande_finale.tex's own printed table (the 'adjacent agreement / spare margin' table) to all 4 printed decimals",
+  "P1_extremal_pin": {
+    "statement": "prop:rank-one-distinct-slope-floor's constructed non-B-rational pole line realizes >= N - C(N,2)(K-1)/(q-|B|) distinct MCA-bad slopes, N = ceil(C(n,a+)|B|^-w) = B_B(a+); at the frontier N~2^35.7 << (q-|B|)/(K-1) ~ 2^166, so the count is >= B_B(a+)*(1-o(1)); combined with the trivial image<=domain bound N_slopes<=N, the constructed extremal class is two-sidedly pinned at B_B(a+) = B* * 2^-Delta, Delta in {22.1969, 22.0109, 3.2589, 3.0730}",
+    "cite": ["prop:rank-one-distinct-slope-floor (L1313)", "prop:rank-one-floor (L1290)", "prop:base-field-floor (L1261)"],
+    "status": "PROVED-LOCAL(corollary of cited unconditional propositions) -- fixes the TARGET CONSTANT for a general upper bound; is NOT itself a general upper bound"
+  },
+  "P2_fixed_deficiency_ledger": [
+    {
+      "deficiency": 1, "bound_formula": "floor(n/omega)", "cite": "lem:capf-dim1 (raw L6696)",
+      "KoalaBear_MCA_value": 2, "Mersenne31_MCA_value": 2,
+      "log2_KoalaBear_Bstar": 57.9321, "log2_Mersenne31_Bstar": 24.0000,
+      "fits_budget": true
+    },
+    {
+      "deficiency": 2, "bound_formula": "C(n,2)/(omega-1)", "cite": "thm:capf-dim2 (raw L6719)",
+      "log2_value_approx": 21.10,
+      "fits_budget_KoalaBear": true, "fits_budget_Mersenne31": true
+    },
+    {
+      "deficiency": "growing: omega-w (the interior BC cell)",
+      "bound_formulas": {
+        "thm:capf-fixeddim (raw L6735)": "C(n, omega-w)",
+        "thm:bc-proper (grande_finale L1463)": "|F|^{omega-w+1}"
+      },
+      "KoalaBear_MCA": {
+        "dim_W": 913634, "log2_fixeddim_bound": 2072017.7, "miss_fixeddim_bits": 2072018,
+        "log2_bcproper_bound": 169873895.7, "miss_bcproper_bits": 169873896
+      },
+      "Mersenne31_MCA": {
+        "dim_W": 913682, "log2_fixeddim_bound": 2072035.6, "miss_fixeddim_bits": 2072036,
+        "log2_bcproper_bound": 113296568.0, "miss_bcproper_bits": 113296568
+      },
+      "fits_budget": false,
+      "note": "against a ~22-bit margin, the two proved bounds are 10^5x-10^7x too weak in the exponent; this IS the open core"
+    }
+  ],
+  "toy_census": {
+    "protocol": "exhaustive line-ray census over F_{p^2} >= B=F_p >= D, all q slopes, 3 line families (random_base, pole [adversarial/extension-valued], random_ext) x 5 (p,K,m) configs x 3 seeds = 45 instances",
+    "source_script": "laneM_compute.py PART B (packaging input, output.txt); independently re-implemented in verify_saturated_bc_budget_fit.py gate iii via the S_r(f,T) functional criterion of lem:capfp-functionals (a different algorithm from laneM_compute.py's Newton-divided-difference approach)",
+    "instances": 45,
+    "thm_saturation_identity_verified_all_45": true,
+    "headline_adversarial_witness": {
+      "p": 13, "K": 5, "m": 7, "w": 2, "mode": "pole", "seed": 0,
+      "nbad": 71, "base_valued": 7, "extension_valued": 64,
+      "lineray": 79, "Cen": 135, "dedup_loss1": 8, "dedup_loss2": 56,
+      "note": "64 of 71 bad slopes are extension-valued -- the prop:rank-one-distinct-slope-floor signature in miniature; adversarial pole lines maximize N_slopes and skew it extension-valued"
+    },
+    "generic_witness": {
+      "p": 13, "mode": "random_ext", "seed": 0,
+      "nbad": 10, "base_valued": 0, "extension_valued": 10,
+      "lineray": 10, "Cen": 10, "dedup_loss1": 0, "dedup_loss2": 0,
+      "note": "generic F-valued lines are clean: loss1=loss2=0, each bad slope has exactly one saturated ray at exactly agreement m"
+    },
+    "census_overcount_factor_observed": "~2-9x already at n=13 (e.g. random_base p=13: Cen=119 vs nbad=13; pole p=13: Cen=135 vs nbad=71)",
+    "pre_asymptotic_caveat": "at these toy sizes q=p^2 is small, so the collision term C(N,2)(K-1)/(q-b) is NOT negligible and the pole line's nbad (71) can exceed the base-field floor M_B (11) -- the complement of the frontier pin (Sec 2.2 of laneM_analysis.md). At the deployed rows q=p^6 >> N*K, so the pin holds and N_slopes ~ M_B(a+). The toy demonstrates the MECHANISM, not the frontier constant."
+  },
+  "open_lemma": {
+    "support_form": {
+      "label": "prob:capg-split-pencil-B", "location": "cap25_cap_v13_raw.tex L9842",
+      "statement": "#{(A,B): deg A<=omega-d1, deg B<=omega-d2, A*W1+B*W2 | Lambda_D, deg(A*W1+B*W2)=omega} <= e^{o(n)} * max(1, M_B(d1), C(n,omega)*q^{1-w}), counting monic normalizations, with M_B(d1) = C(K-1+d1,m) * C(n,K-1+d1) * p^{-(d1-1)} the subfield floor of prop:capg-census-floor, achieved there"
+    },
+    "slope_form": {
+      "label": "prob:capfp-R1", "location": "cap25_cap_v13_raw.tex L8278; corrected base-field model at L9860-9861 (inside prob:capg-split-pencil-B's own remark)",
+      "statement": "N_slopes <= #R1(u,v;m) <= e^{o(n)} * max(1, C(n,m)*p^{-w}, C(n,m)*q^{-(w-1)}), the middle term achieved by the non-B-rational pole lines of prop:capg-census-floor(c)"
+    },
+    "finite_deployed_instance": {
+      "name": "(BC-fin)",
+      "statement": "R_BC <= 2^Delta with Delta = 22.1969 (KB-MCA) / 3.2589 (M31-MCA), i.e. N_slopes <= 2^Delta * B_B(a+) <= B* after the first-match ledger subtracts the already-paid cells",
+      "cite": "thm:finite (grande_finale L1720)"
+    },
+    "moment_kernel_route": {
+      "cite": "prop:capfp-kernel (raw L8173)",
+      "assessment_label": "SPECULATIVE / ROUTE-ASSESSMENT -- not a claim",
+      "text": "if Gamma_r = e^{o(n)} persists to r ~ 10^5 (prob:capfp-gamma, raw L8135), the split-pencil census inherits the |B|^{-w} normalization by the moment method -- this is the one object that would close Q and BC on the same {0,+-1}-configuration count Gamma_r"
+    }
+  },
+  "l4_consistency": {
+    "row": {"n": 131072, "K": 65537, "m": 69753, "w": 4216, "scale": "2^4 (scale-16 quotient rung)"},
+    "log2_base_field_floor": 23.1390,
+    "cross_checks": [
+      {"source": "this packet's own from-scratch recompute (verify_saturated_bc_budget_fit.py gate iv)", "value": 23.1390},
+      {"source": "kb_mca_conjq_rung_audit_v1.json (already integrated on main), rung j=4, field log2_quotient_avg_a_j -- a DIFFERENT computational route (quotient-average pigeonhole of the conj:Q rung audit, not the direct base-field-floor formula used here)", "value": 23.139009074},
+      {"source": "PR #369 (Latif Kasuli, open), verify_bc_l4_base_floor_ladder.py diff, base_field_floor_log2_approx at d1=4217 (prop:capg-census-floor's direct route) -- confirmed via `gh pr diff 369` during packaging, not fetched live by the verifier", "value": 23.139009}
+    ],
+    "agreement": "all three agree to six decimal places (23.139009...); a three-route cross-validation of one exact rational, not a proof about prob:saturated-bc"
+  },
+  "found_vs_claimed_corrections": [
+    {
+      "item": "dim W (Conjecture-F incidence dimension) at the current moved adjacent pair",
+      "claimed_in": "laneM_analysis.md Sec 2.3 and Sec 3, quoting raw prob:capfp-balanced (cap25_cap_v13_raw.tex L8386): 'dimension ... (913642 at the KoalaBear adjacent pair, 913686 at Mersenne-31)'",
+      "found": "recomputing dim W = omega - w + 1 at the CURRENT active moved-pair a_plus values (1116048 KB-MCA / 1116024 M31-MCA, per rem:packet-convention) gives 913634 (KB) / 913682 (M31), matching output.txt's own d=omega-w (913633/913681) plus one. No integer m within +/-3 of either current a_0/a_plus reproduces 913642/913686 under either K choice; raw prob:capfp-balanced's printed figure appears to be a leftover from a historical (pre-move) adjacent-pair numbering elsewhere in the same v13 raw manuscript -- exactly the phenomenon rem:packet-convention documents for other tables in the same packet family. This packet and its note use 913634/913682 throughout, not 913642/913686.",
+      "action": "not silently fixed in laneM_analysis.md (a Lane M working file, not part of this PR); flagged here and in the companion note instead"
+    },
+    {
+      "item": "line-number self-citation for rem:capf-conjf-open",
+      "claimed_in": "laneM_analysis.md Sec 6: 'the manuscript itself files under prob:band (rem:capf-conjf-open, raw L8225)'",
+      "found": "rem:capf-conjf-open's actual \\label line is cap25_cap_v13_raw.tex L6758 (confirmed by direct grep and by reading its content, which matches the Sec 2/Sec 3 citation of the same label elsewhere in laneM_analysis.md). Raw L8225 is mid-paragraph inside rem:capfp-band-obstruction (a different remark, starting at L8220), not rem:capf-conjf-open.",
+      "action": "this packet cites rem:capf-conjf-open at L6758 only"
+    }
+  ],
+  "status": "AUDIT / EXACT_ARITHMETIC(margins, PART A) / PROVED-LOCAL(P1, P2 as corollaries of cited unconditional lemmas) / MEASURED(toy census, PART B, 45 instances) / OPEN(the growing-dimension core = prob:capg-split-pencil-B / prob:capfp-R1 / prob:band). This packet does not prove prob:saturated-bc, does not certify U(a0+1)<=B* for the growing-deficiency interior cell, and does not supersede PR #369's L4 fixture or PR #378's Lean BC lower-side floors."
+}

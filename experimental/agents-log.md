@@ -30,7 +30,47 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
-### 2026-07-06 - PRs #356-#361 experimental integration
+### 2026-07-06 - Saturated-BC budget fit + margin identity (prob:saturated-bc, first packet)
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** `experimental/notes/thresholds/cap25_v13_saturated_bc_budget_fit.md`;
+  `experimental/scripts/verify_saturated_bc_budget_fit.py`;
+  `experimental/data/certificates/frontier-adjacent/saturated_bc_budget_fit_v1.json`;
+  `experimental/agents-log.md`.
+- **Status:** `AUDIT` / `EXACT_ARITHMETIC` / `PROVED-LOCAL(P1,P2 as corollaries of
+  cited lemmas)` / `MEASURED(toy census)` / `OPEN(the growing-dimension core)`.
+- **What is being added:** The first data/derivation packet on the promoted
+  target `prob:saturated-bc`. Identifies the maintainer's printed adjacent
+  margins (22.1969/22.0109/3.2589/3.0730 bits) exactly as
+  `log2 B* - log2 B_B(a_0+1)` (the base-field split-pencil floor gap, exact
+  big-int, cross-checked two independent numerical ways and against
+  `grande_finale.tex`'s own printed table); quantifies that the two proved
+  fixed-deficiency Conjecture-F bounds (deficiency 1, 2) fit the budget while
+  the growing-deficiency interior cell (`dim W = 913634`/`913682`) misses by
+  `2.07M` / `170M`(KB) and `113M`(M31) bits against a `22`/`3`-bit margin;
+  ships an exhaustive 45-instance toy census of `thm:saturation`'s identity
+  and `prop:line-ray-saturation`'s two dedup losses (headline witness: pole
+  line, 71 bad slopes, 64 extension-valued); and restates the verbatim
+  missing lemma (`prob:capg-split-pencil-B` / `prob:capfp-R1`) the open core
+  reduces to. While cross-checking every cited number, found and corrected
+  two provenance issues in the Lane M working analysis this note was built
+  from (a stale `dim W` figure quoting a non-current adjacent-pair numbering
+  from raw `prob:capfp-balanced`, and a mislabeled line-number self-citation
+  for `rem:capf-conjf-open`) -- recorded in the shipped JSON's
+  `found_vs_claimed_corrections` block, not silently fixed upstream.
+- **How it is useful:** First concrete data on `prob:saturated-bc` since its
+  promotion; gives the exact target constant (P1), the exact fit/gap ledger
+  (P2 + growing-deficiency), and a reproducible toy census, all feeding the
+  verbatim open-lemma reduction. Cross-references PR #369 (Latif Kasuli,
+  open, L4 floor fixture -- cited for an independent 3-route L4 cross-check,
+  not duplicated) and PR #378 (Holm Buar, open, Lean BC lower-side floor --
+  explicit sibling, this note supplies the missing upper-side narrative).
+- **What to do next:** The named open core is `prob:capg-split-pencil-B` /
+  `prob:capfp-R1`, itself filed under `prob:band`. The ranked next step is
+  the `Gamma_r` moment-kernel hierarchy (`prop:capfp-kernel`) on the joint
+  Q/BC object -- SPECULATIVE, not yet attempted here. The growing-dimension
+  incidence count itself remains the named core; no attempt to prove it is
+  made in this packet.
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
   PRs #356 and #357; Scott Hughes via PR #360; Codex for static review,
