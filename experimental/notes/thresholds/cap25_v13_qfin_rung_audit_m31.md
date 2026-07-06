@@ -7,6 +7,16 @@ Status: `AUDIT` / `EXACT_LEDGER` / `PROVED-LOCAL(identity D)` / `OPEN(reductions
 **Verifier:** `experimental/scripts/verify_m31_mca_conjq_rung_audit.py` (zero-arg,
 `--tamper-selftest` supported).
 
+**Label migration (grande_finale.tex was promoted at upstream e749e9e AFTER
+this PR was filed):** the conjecture environments were removed from the
+promoted note; `conj:Q` is superseded by the formal open Problem
+`prob:row-sharp-q` (the plain name "Q" is retained there for the residual
+safe-side mechanism, so this note's usage remains readable); `conj:BC` ->
+`prob:saturated-bc`; `thm:q-implies-sp` eliminates SP as an independent
+target. Citations below were written against the pre-promotion text; apply
+this mapping when reading them. No number or verdict in this audit is
+affected by the promotion.
+
 **Sibling of the KB-MCA rung audit (PR #361, integrated at 0fa9427 as `experimental/notes/thresholds/cap25_v13_qfin_rung_audit.md`); same compiler, M31 constants
 (`v2(m_safe)=3 => 3-rung ladder`).** This note executes the same
 `grande_finale.tex` Work-Plan paragraph "Rung audit" as the integrated KB audit, for the
