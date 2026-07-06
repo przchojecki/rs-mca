@@ -1,0 +1,1673 @@
+{
+  "annulus_rows": [
+    {
+      "all_cluster_johnson_checks_hold": true,
+      "all_shape_checks_hold": true,
+      "domain": [
+        1,
+        2,
+        4,
+        8,
+        5,
+        10,
+        9,
+        7,
+        3,
+        6
+      ],
+      "pairs": [
+        {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "cluster_le_johnson": true,
+          "construction": "two planted incomparable explanations with overlap k-1",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 1,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 6,
+              "agreement_support": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "p1_coefficients": [
+                0,
+                0,
+                0
+              ],
+              "p2_coefficients": [
+                0,
+                0,
+                0
+              ],
+              "support_count_at_threshold": 1
+            },
+            {
+              "agreement_size": 6,
+              "agreement_support": [
+                0,
+                1,
+                6,
+                7,
+                8,
+                9
+              ],
+              "p1_coefficients": [
+                2,
+                8,
+                1
+              ],
+              "p2_coefficients": [
+                4,
+                5,
+                2
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 2,
+          "f1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            8,
+            2,
+            9
+          ],
+          "f2": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            5,
+            4,
+            7
+          ],
+          "johnson_agreement": 6,
+          "johnson_bound": {
+            "denominator": 2,
+            "numerator": 5,
+            "text": "5/2"
+          },
+          "mca_bad_slopes": [
+            5
+          ],
+          "pair_id": "cluster_two_explanations",
+          "shape_holds": true,
+          "shape_lhs_count": 1,
+          "shape_rhs_count": 8
+        },
+        {
+          "ca_bad_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "cluster_le_johnson": true,
+          "construction": "tangent-cell construction outside deep range",
+          "epsilon_ca_times_q": 5,
+          "epsilon_mca_times_q": 5,
+          "explanation_cluster_examples": [],
+          "explanation_cluster_size": 0,
+          "f1": [
+            0,
+            10,
+            9,
+            8,
+            7,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "f2": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "johnson_agreement": 6,
+          "johnson_bound": {
+            "denominator": 2,
+            "numerator": 5,
+            "text": "5/2"
+          },
+          "mca_bad_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pair_id": "annulus_tangent_like",
+          "shape_holds": true,
+          "shape_lhs_count": 5,
+          "shape_rhs_count": 5
+        },
+        {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "cluster_le_johnson": true,
+          "construction": "deterministic seeded close sample",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 4,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 6,
+              "agreement_support": [
+                0,
+                3,
+                4,
+                5,
+                8,
+                9
+              ],
+              "p1_coefficients": [
+                0,
+                8,
+                2
+              ],
+              "p2_coefficients": [
+                1,
+                6,
+                9
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 1,
+          "f1": [
+            10,
+            10,
+            6,
+            5,
+            2,
+            5,
+            1,
+            8,
+            9,
+            10
+          ],
+          "f2": [
+            5,
+            6,
+            0,
+            9,
+            3,
+            4,
+            9,
+            3,
+            1,
+            9
+          ],
+          "johnson_agreement": 6,
+          "johnson_bound": {
+            "denominator": 2,
+            "numerator": 5,
+            "text": "5/2"
+          },
+          "mca_bad_slopes": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pair_id": "seeded_close_sample",
+          "shape_holds": true,
+          "shape_lhs_count": 4,
+          "shape_rhs_count": 4
+        }
+      ],
+      "row": {
+        "agreement_a": 6,
+        "agreement_above_sqrt_kn": true,
+        "agreement_below_half_distance_boundary": true,
+        "annulus_below_half_distance": true,
+        "difference_agreement_n_minus_2r": 2,
+        "half_distance_condition": false,
+        "johnson_for_explanation_agreement": true,
+        "k": 3,
+        "n": 10,
+        "q": 11,
+        "r": 4,
+        "rs_minimum_weight": 8,
+        "strategy_difference_condition_impossible_in_strict_annulus": true,
+        "strategy_difference_impossibility_reason": "If 2r > n-k, then n-2r <= k-1, while sqrt((k-1)n) > k-1 for every k<n. Thus n-2r > sqrt((k-1)n) cannot hold in the strict annulus.",
+        "strategy_difference_johnson_condition": false
+      },
+      "support_counts": {
+        "supports_at_agreement": 210,
+        "supports_at_or_above_agreement": 386
+      }
+    },
+    {
+      "all_cluster_johnson_checks_hold": true,
+      "all_shape_checks_hold": false,
+      "domain": [
+        1,
+        2,
+        4,
+        8,
+        3,
+        6,
+        12,
+        11,
+        9,
+        5,
+        10,
+        7
+      ],
+      "pairs": [
+        {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "cluster_le_johnson": true,
+          "construction": "two planted incomparable explanations with overlap k-1",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 1,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 8,
+              "agreement_support": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "p1_coefficients": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "p2_coefficients": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "support_count_at_threshold": 1
+            },
+            {
+              "agreement_size": 8,
+              "agreement_support": [
+                0,
+                1,
+                2,
+                3,
+                8,
+                9,
+                10,
+                11
+              ],
+              "p1_coefficients": [
+                12,
+                10,
+                5,
+                11,
+                1
+              ],
+              "p2_coefficients": [
+                11,
+                7,
+                10,
+                9,
+                2
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 2,
+          "f1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            3,
+            6,
+            1
+          ],
+          "f2": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            6,
+            12,
+            2
+          ],
+          "johnson_agreement": 8,
+          "johnson_bound": {
+            "denominator": 1,
+            "numerator": 3,
+            "text": "3/1"
+          },
+          "mca_bad_slopes": [
+            6
+          ],
+          "pair_id": "cluster_two_explanations",
+          "shape_holds": true,
+          "shape_lhs_count": 1,
+          "shape_rhs_count": 8
+        },
+        {
+          "ca_bad_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "cluster_le_johnson": true,
+          "construction": "tangent-cell construction outside deep range",
+          "epsilon_ca_times_q": 5,
+          "epsilon_mca_times_q": 5,
+          "explanation_cluster_examples": [],
+          "explanation_cluster_size": 0,
+          "f1": [
+            0,
+            12,
+            11,
+            10,
+            9,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "f2": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "johnson_agreement": 8,
+          "johnson_bound": {
+            "denominator": 1,
+            "numerator": 3,
+            "text": "3/1"
+          },
+          "mca_bad_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pair_id": "annulus_tangent_like",
+          "shape_holds": true,
+          "shape_lhs_count": 5,
+          "shape_rhs_count": 5
+        },
+        {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "cluster_le_johnson": true,
+          "construction": "deterministic seeded close sample",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 5,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 8,
+              "agreement_support": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                6,
+                8,
+                11
+              ],
+              "p1_coefficients": [
+                9,
+                7,
+                4,
+                9,
+                6
+              ],
+              "p2_coefficients": [
+                0,
+                7,
+                9,
+                11,
+                0
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 1,
+          "f1": [
+            9,
+            10,
+            3,
+            8,
+            2,
+            9,
+            3,
+            0,
+            4,
+            1,
+            8,
+            2
+          ],
+          "f2": [
+            1,
+            6,
+            5,
+            11,
+            9,
+            12,
+            4,
+            10,
+            10,
+            7,
+            12,
+            12
+          ],
+          "johnson_agreement": 8,
+          "johnson_bound": {
+            "denominator": 1,
+            "numerator": 3,
+            "text": "3/1"
+          },
+          "mca_bad_slopes": [
+            0,
+            2,
+            6,
+            11,
+            12
+          ],
+          "pair_id": "seeded_close_sample",
+          "shape_holds": false,
+          "shape_lhs_count": 5,
+          "shape_rhs_count": 4
+        }
+      ],
+      "row": {
+        "agreement_a": 8,
+        "agreement_above_sqrt_kn": true,
+        "agreement_below_half_distance_boundary": true,
+        "annulus_below_half_distance": true,
+        "difference_agreement_n_minus_2r": 4,
+        "half_distance_condition": false,
+        "johnson_for_explanation_agreement": true,
+        "k": 5,
+        "n": 12,
+        "q": 13,
+        "r": 4,
+        "rs_minimum_weight": 8,
+        "strategy_difference_condition_impossible_in_strict_annulus": true,
+        "strategy_difference_impossibility_reason": "If 2r > n-k, then n-2r <= k-1, while sqrt((k-1)n) > k-1 for every k<n. Thus n-2r > sqrt((k-1)n) cannot hold in the strict annulus.",
+        "strategy_difference_johnson_condition": false
+      },
+      "support_counts": {
+        "supports_at_agreement": 495,
+        "supports_at_or_above_agreement": 794
+      }
+    },
+    {
+      "all_cluster_johnson_checks_hold": true,
+      "all_shape_checks_hold": true,
+      "domain": [
+        1,
+        3,
+        9,
+        10,
+        13,
+        5,
+        15,
+        11,
+        16,
+        14,
+        8,
+        7,
+        4,
+        12,
+        2,
+        6
+      ],
+      "pairs": [
+        {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "cluster_le_johnson": true,
+          "construction": "two planted incomparable explanations with overlap k-1",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 1,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 11,
+              "agreement_support": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "p1_coefficients": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "p2_coefficients": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "support_count_at_threshold": 1
+            },
+            {
+              "agreement_size": 11,
+              "agreement_support": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11,
+                12,
+                13,
+                14,
+                15
+              ],
+              "p1_coefficients": [
+                6,
+                12,
+                10,
+                10,
+                2,
+                10,
+                1
+              ],
+              "p2_coefficients": [
+                12,
+                7,
+                3,
+                3,
+                4,
+                3,
+                2
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 2,
+          "f1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            11,
+            7,
+            5,
+            15
+          ],
+          "f2": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            12,
+            5,
+            14,
+            10,
+            13
+          ],
+          "johnson_agreement": 11,
+          "johnson_bound": {
+            "denominator": 5,
+            "numerator": 16,
+            "text": "16/5"
+          },
+          "mca_bad_slopes": [
+            8
+          ],
+          "pair_id": "cluster_two_explanations",
+          "shape_holds": true,
+          "shape_lhs_count": 1,
+          "shape_rhs_count": 10
+        },
+        {
+          "ca_bad_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "cluster_le_johnson": true,
+          "construction": "tangent-cell construction outside deep range",
+          "epsilon_ca_times_q": 6,
+          "epsilon_mca_times_q": 6,
+          "explanation_cluster_examples": [],
+          "explanation_cluster_size": 0,
+          "f1": [
+            0,
+            16,
+            15,
+            14,
+            13,
+            12,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "f2": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "johnson_agreement": 11,
+          "johnson_bound": {
+            "denominator": 5,
+            "numerator": 16,
+            "text": "16/5"
+          },
+          "mca_bad_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "pair_id": "annulus_tangent_like",
+          "shape_holds": true,
+          "shape_lhs_count": 6,
+          "shape_rhs_count": 6
+        },
+        {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "cluster_le_johnson": true,
+          "construction": "deterministic seeded close sample",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 4,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 11,
+              "agreement_support": [
+                0,
+                1,
+                3,
+                5,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14
+              ],
+              "p1_coefficients": [
+                7,
+                14,
+                11,
+                13,
+                0,
+                2,
+                9
+              ],
+              "p2_coefficients": [
+                13,
+                13,
+                0,
+                15,
+                14,
+                16,
+                11
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 1,
+          "f1": [
+            5,
+            15,
+            0,
+            9,
+            14,
+            0,
+            11,
+            1,
+            15,
+            8,
+            2,
+            4,
+            16,
+            5,
+            7,
+            6
+          ],
+          "f2": [
+            14,
+            0,
+            11,
+            9,
+            4,
+            1,
+            14,
+            2,
+            11,
+            6,
+            15,
+            4,
+            4,
+            8,
+            1,
+            8
+          ],
+          "johnson_agreement": 11,
+          "johnson_bound": {
+            "denominator": 5,
+            "numerator": 16,
+            "text": "16/5"
+          },
+          "mca_bad_slopes": [
+            3,
+            4,
+            8,
+            16
+          ],
+          "pair_id": "seeded_close_sample",
+          "shape_holds": true,
+          "shape_lhs_count": 4,
+          "shape_rhs_count": 5
+        }
+      ],
+      "row": {
+        "agreement_a": 11,
+        "agreement_above_sqrt_kn": true,
+        "agreement_below_half_distance_boundary": true,
+        "annulus_below_half_distance": true,
+        "difference_agreement_n_minus_2r": 6,
+        "half_distance_condition": false,
+        "johnson_for_explanation_agreement": true,
+        "k": 7,
+        "n": 16,
+        "q": 17,
+        "r": 5,
+        "rs_minimum_weight": 10,
+        "strategy_difference_condition_impossible_in_strict_annulus": true,
+        "strategy_difference_impossibility_reason": "If 2r > n-k, then n-2r <= k-1, while sqrt((k-1)n) > k-1 for every k<n. Thus n-2r > sqrt((k-1)n) cannot hold in the strict annulus.",
+        "strategy_difference_johnson_condition": false
+      },
+      "support_counts": {
+        "supports_at_agreement": 4368,
+        "supports_at_or_above_agreement": 6885
+      }
+    },
+    {
+      "all_cluster_johnson_checks_hold": true,
+      "all_shape_checks_hold": true,
+      "domain": [
+        1,
+        27,
+        16,
+        29,
+        8,
+        30,
+        4,
+        15,
+        2,
+        23
+      ],
+      "pairs": [
+        {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "cluster_le_johnson": true,
+          "construction": "two planted incomparable explanations with overlap k-1",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 1,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 6,
+              "agreement_support": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "p1_coefficients": [
+                0,
+                0,
+                0
+              ],
+              "p2_coefficients": [
+                0,
+                0,
+                0
+              ],
+              "support_count_at_threshold": 1
+            },
+            {
+              "agreement_size": 6,
+              "agreement_support": [
+                0,
+                1,
+                6,
+                7,
+                8,
+                9
+              ],
+              "p1_coefficients": [
+                27,
+                3,
+                1
+              ],
+              "p2_coefficients": [
+                23,
+                6,
+                2
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 2,
+          "f1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            24,
+            18,
+            6,
+            5
+          ],
+          "f2": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            17,
+            5,
+            12,
+            10
+          ],
+          "johnson_agreement": 6,
+          "johnson_bound": {
+            "denominator": 2,
+            "numerator": 5,
+            "text": "5/2"
+          },
+          "mca_bad_slopes": [
+            15
+          ],
+          "pair_id": "cluster_two_explanations",
+          "shape_holds": true,
+          "shape_lhs_count": 1,
+          "shape_rhs_count": 8
+        },
+        {
+          "ca_bad_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "cluster_le_johnson": true,
+          "construction": "tangent-cell construction outside deep range",
+          "epsilon_ca_times_q": 5,
+          "epsilon_mca_times_q": 5,
+          "explanation_cluster_examples": [],
+          "explanation_cluster_size": 0,
+          "f1": [
+            0,
+            30,
+            29,
+            28,
+            27,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "f2": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "johnson_agreement": 6,
+          "johnson_bound": {
+            "denominator": 2,
+            "numerator": 5,
+            "text": "5/2"
+          },
+          "mca_bad_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "pair_id": "annulus_tangent_like",
+          "shape_holds": true,
+          "shape_lhs_count": 5,
+          "shape_rhs_count": 5
+        },
+        {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "cluster_le_johnson": true,
+          "construction": "deterministic seeded close sample",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 4,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 6,
+              "agreement_support": [
+                1,
+                3,
+                6,
+                7,
+                8,
+                9
+              ],
+              "p1_coefficients": [
+                3,
+                2,
+                15
+              ],
+              "p2_coefficients": [
+                16,
+                30,
+                26
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 1,
+          "f1": [
+            3,
+            18,
+            17,
+            28,
+            0,
+            7,
+            3,
+            29,
+            5,
+            17
+          ],
+          "f2": [
+            1,
+            2,
+            11,
+            29,
+            21,
+            26,
+            25,
+            23,
+            25,
+            14
+          ],
+          "johnson_agreement": 6,
+          "johnson_bound": {
+            "denominator": 2,
+            "numerator": 5,
+            "text": "5/2"
+          },
+          "mca_bad_slopes": [
+            5,
+            10,
+            21,
+            25
+          ],
+          "pair_id": "seeded_close_sample",
+          "shape_holds": true,
+          "shape_lhs_count": 4,
+          "shape_rhs_count": 4
+        }
+      ],
+      "row": {
+        "agreement_a": 6,
+        "agreement_above_sqrt_kn": true,
+        "agreement_below_half_distance_boundary": true,
+        "annulus_below_half_distance": true,
+        "difference_agreement_n_minus_2r": 2,
+        "half_distance_condition": false,
+        "johnson_for_explanation_agreement": true,
+        "k": 3,
+        "n": 10,
+        "q": 31,
+        "r": 4,
+        "rs_minimum_weight": 8,
+        "strategy_difference_condition_impossible_in_strict_annulus": true,
+        "strategy_difference_impossibility_reason": "If 2r > n-k, then n-2r <= k-1, while sqrt((k-1)n) > k-1 for every k<n. Thus n-2r > sqrt((k-1)n) cannot hold in the strict annulus.",
+        "strategy_difference_johnson_condition": false
+      },
+      "support_counts": {
+        "supports_at_agreement": 210,
+        "supports_at_or_above_agreement": 386
+      }
+    }
+  ],
+  "claim": "Finite oracle-gated study of the annulus MCA-from-CA shape: the A.3 cluster condition n-2r>sqrt((k-1)n) is unsatisfiable in the annulus; under the natural a=n-r reading, the pair-explanation cluster does not bound MCA-bad slopes on all recorded rows.",
+  "definition_sources": {
+    "experimental/cap25_v13_experimental.tex:171": "prop:v13-tangent gives the exact r+1 tangent cell used as an oracle witness.",
+    "tex/cs25_cap_v12.tex:131": "def:ca defines CA-bad slopes and eca normalization.",
+    "tex/cs25_cap_v12.tex:139": "def:mca defines support-wise MCA-bad slopes and emca normalization.",
+    "tex/cs25_cap_v12.tex:4504": "thm:deep-mca gives the r+1 oracle upper bound in 3r<=n-k.",
+    "tex/cs25_cap_v12.tex:4627": "thm:johnson-list gives the interleaved Johnson list bound.",
+    "tex/cs25_cap_v12.tex:4939": "thm:mca-from-ca gives the half-distance MCA-from-CA reduction.",
+    "tex/cs25_cap_v12.tex:4970": "rem:half-scope identifies multiple explanations below half distance.",
+    "tex/cs25_cap_v12.tex:4974": "cor:band-reduction records the support-mismatch reduction below half distance."
+  },
+  "non_claims": [
+    "This is not a proof of the annulus MCA-from-CA theorem.",
+    "This is not a prob:band resolution.",
+    "The strict-annulus condition 2r>n-k is incompatible with n-2r>sqrt((k-1)n); the packet records the A=n-r Johnson check instead."
+  ],
+  "oracle_gate": {
+    "exhaustive_deep_row": {
+      "all_pairs_examined": 390625,
+      "domain": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "expected_r_plus_1": 2,
+      "max_ca_attains_r_plus_1": true,
+      "max_ca_bad_slopes": 2,
+      "max_ca_example": {
+        "ca_bad_slopes": [
+          0,
+          4
+        ],
+        "f1": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "f2": [
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      "max_ca_le_r_plus_1": true,
+      "max_mca_attains_r_plus_1": true,
+      "max_mca_bad_slopes": 2,
+      "max_mca_example": {
+        "f1": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "f2": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "mca_bad_slopes": [
+          0,
+          4
+        ]
+      },
+      "max_mca_le_r_plus_1": true,
+      "row": {
+        "agreement_a": 3,
+        "agreement_above_sqrt_kn": true,
+        "agreement_below_half_distance_boundary": false,
+        "annulus_below_half_distance": false,
+        "difference_agreement_n_minus_2r": 2,
+        "half_distance_condition": true,
+        "johnson_for_explanation_agreement": true,
+        "k": 1,
+        "n": 4,
+        "q": 5,
+        "r": 1,
+        "rs_minimum_weight": 4,
+        "strategy_difference_condition_impossible_in_strict_annulus": true,
+        "strategy_difference_impossibility_reason": "If 2r > n-k, then n-2r <= k-1, while sqrt((k-1)n) > k-1 for every k<n. Thus n-2r > sqrt((k-1)n) cannot hold in the strict annulus.",
+        "strategy_difference_johnson_condition": true
+      }
+    },
+    "f13_tangent_cell": {
+      "ca_attains_r_plus_1": true,
+      "domain": [
+        1,
+        2,
+        4,
+        8,
+        3,
+        6,
+        12,
+        11,
+        9,
+        5,
+        10,
+        7
+      ],
+      "expected_r_plus_1": 3,
+      "mca_attains_r_plus_1": true,
+      "pair": {
+        "ca_bad_slopes": [
+          0,
+          1,
+          2
+        ],
+        "close_slopes": [
+          0,
+          1,
+          2
+        ],
+        "cluster_le_johnson": true,
+        "construction": "prop:v13-tangent construction",
+        "epsilon_ca_times_q": 3,
+        "epsilon_mca_times_q": 3,
+        "explanation_cluster_examples": [],
+        "explanation_cluster_size": 0,
+        "f1": [
+          0,
+          12,
+          11,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "f2": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "johnson_agreement": 10,
+        "johnson_bound": {
+          "denominator": 2,
+          "numerator": 3,
+          "text": "3/2"
+        },
+        "mca_bad_slopes": [
+          0,
+          1,
+          2
+        ],
+        "pair_id": "f13_tangent_cell",
+        "shape_holds": true,
+        "shape_lhs_count": 3,
+        "shape_rhs_count": 3
+      },
+      "row": {
+        "agreement_a": 10,
+        "agreement_above_sqrt_kn": true,
+        "agreement_below_half_distance_boundary": false,
+        "annulus_below_half_distance": false,
+        "difference_agreement_n_minus_2r": 8,
+        "half_distance_condition": true,
+        "johnson_for_explanation_agreement": true,
+        "k": 6,
+        "n": 12,
+        "q": 13,
+        "r": 2,
+        "rs_minimum_weight": 7,
+        "strategy_difference_condition_impossible_in_strict_annulus": true,
+        "strategy_difference_impossibility_reason": "If 2r > n-k, then n-2r <= k-1, while sqrt((k-1)n) > k-1 for every k<n. Thus n-2r > sqrt((k-1)n) cannot hold in the strict annulus.",
+        "strategy_difference_johnson_condition": true
+      }
+    }
+  },
+  "overall": {
+    "all_annulus_cluster_johnson_checks_hold": true,
+    "all_annulus_shape_checks_hold": false,
+    "oracle_gate_passed": true,
+    "violations": [
+      {
+        "pair": {
+          "ca_bad_slopes": [],
+          "close_slopes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "cluster_le_johnson": true,
+          "construction": "deterministic seeded close sample",
+          "epsilon_ca_times_q": 0,
+          "epsilon_mca_times_q": 5,
+          "explanation_cluster_examples": [
+            {
+              "agreement_size": 8,
+              "agreement_support": [
+                0,
+                2,
+                3,
+                4,
+                5,
+                6,
+                8,
+                11
+              ],
+              "p1_coefficients": [
+                9,
+                7,
+                4,
+                9,
+                6
+              ],
+              "p2_coefficients": [
+                0,
+                7,
+                9,
+                11,
+                0
+              ],
+              "support_count_at_threshold": 1
+            }
+          ],
+          "explanation_cluster_size": 1,
+          "f1": [
+            9,
+            10,
+            3,
+            8,
+            2,
+            9,
+            3,
+            0,
+            4,
+            1,
+            8,
+            2
+          ],
+          "f2": [
+            1,
+            6,
+            5,
+            11,
+            9,
+            12,
+            4,
+            10,
+            10,
+            7,
+            12,
+            12
+          ],
+          "johnson_agreement": 8,
+          "johnson_bound": {
+            "denominator": 1,
+            "numerator": 3,
+            "text": "3/1"
+          },
+          "mca_bad_slopes": [
+            0,
+            2,
+            6,
+            11,
+            12
+          ],
+          "pair_id": "seeded_close_sample",
+          "shape_holds": false,
+          "shape_lhs_count": 5,
+          "shape_rhs_count": 4
+        },
+        "row": {
+          "agreement_a": 8,
+          "agreement_above_sqrt_kn": true,
+          "agreement_below_half_distance_boundary": true,
+          "annulus_below_half_distance": true,
+          "difference_agreement_n_minus_2r": 4,
+          "half_distance_condition": false,
+          "johnson_for_explanation_agreement": true,
+          "k": 5,
+          "n": 12,
+          "q": 13,
+          "r": 4,
+          "rs_minimum_weight": 8,
+          "strategy_difference_condition_impossible_in_strict_annulus": true,
+          "strategy_difference_impossibility_reason": "If 2r > n-k, then n-2r <= k-1, while sqrt((k-1)n) > k-1 for every k<n. Thus n-2r > sqrt((k-1)n) cannot hold in the strict annulus.",
+          "strategy_difference_johnson_condition": false
+        }
+      }
+    ]
+  },
+  "payload_sha256": "2f0f1263f9a55e87cb516fe101cbd11e5fb2471d514fb568d3de3133dac878fd",
+  "proof_status": "EXPERIMENTAL",
+  "recorded_findings": [
+    {
+      "finding": "a3_cluster_condition_unsatisfiable_in_strict_annulus",
+      "proof": "If 2r>n-k then n-2r<=k-1, while sqrt((k-1)n)>k-1 for k<n; therefore n-2r>sqrt((k-1)n) has no strict-annulus instance.",
+      "status": "EXPERIMENTAL / AUDIT"
+    },
+    {
+      "finding": "naive_cluster_correction_insufficient_under_a_equals_n_minus_r_reading",
+      "status": "EXPERIMENTAL",
+      "summary": "MCA count 5, CA count 0, cluster size 1, right side 4.",
+      "witness_pair_id": "seeded_close_sample",
+      "witness_row": {
+        "a": 8,
+        "k": 5,
+        "n": 12,
+        "q": 13,
+        "r": 4
+      }
+    }
+  ],
+  "schema_version": "annulus-mca-from-ca-v1",
+  "theorem_problem_id": "Task A.3 annulus MCA-from-CA finite verification"
+}

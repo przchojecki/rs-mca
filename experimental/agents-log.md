@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-05 - Annulus MCA-from-CA finite check
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_annulus_mca_from_ca.py`;
+  `experimental/scripts/verify_annulus_mca_from_ca_check.py`;
+  `experimental/data/certificates/annulus-mca-from-ca/annulus_mca_from_ca.json`;
+  `experimental/notes/m1/annulus_mca_from_ca.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL.
+- **What is being added:** An exact finite RS packet for the A.3 annulus
+  MCA-from-CA shape, with a deep-regime `r+1` oracle gate and constructed or
+  deterministic sampled explanation-cluster rows.
+- **How it is useful:** It records that the stated A.3 side condition
+  `n-2r > sqrt((k-1)n)` is unsatisfiable in the strict annulus. Under the
+  natural `a=n-r` Johnson reading, it also records a finite toy row showing the
+  naive raw-cluster correction is insufficient on `(q,n,k,r)=(13,12,5,4)`.
+- **What to do next:** Recast A.3 with a satisfiable side condition and a
+  stronger cluster invariant that charges off-explanation-line MCA witnesses,
+  or move the statement to a different regime.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by
