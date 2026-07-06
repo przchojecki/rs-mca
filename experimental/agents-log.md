@@ -30,6 +30,58 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - L1 min-j frontier frozen (unique-Gamma pencil reduction)
+
+- **Agent/model:** Claude Sonnet 5, packaging a Lane L investigation.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_minj_pencil_freeze.md`;
+  `experimental/scripts/l1_minj_pencil_kit.py`;
+  `experimental/scripts/verify_l1_minj_pencil_freeze.py`;
+  `experimental/data/certificates/l1-e3-law/l1_minj_freeze_ledger.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL (two theorems) / AUDIT (sweep + mechanism) /
+  EXPERIMENTAL (freeze law) / OPEN (the root-non-concentration core).
+- **What is being added:** Converts the minimal-`j` excess=3 frontier
+  `[a,ell-a,9]` named by `l1_t7_atlas_concurrency.md` (PR #379) as
+  "analytically un-obstructed AND computationally out of exhaustive reach"
+  into a deterministic per-plant check, via two proved theorems: (1) a
+  cap-tight pair-plant's fiber-coincidence nullspace is ALWAYS exactly
+  dimension 1 (the "crack"), with two independent closed forms for the
+  resulting unique `Gamma` (a Lagrange indicator interpolant and a
+  Bezout/extended-gcd construction, cross-checked); (2) the emergent
+  third-fiber question reduces to root-concentration of an explicit,
+  low-degree (`ell-a`) polynomial pencil in one coset (self-containing the
+  pairwise cap via an independent, lower-degree route). Sweeping the
+  resulting check across 2,775,275 evaluations (`ell in {17,19,23,29,31}`, 8
+  primes) finds a decisive freeze: on the true frontier (`ell-a>=9`) the
+  third fiber never exceeds `mu_3=5` and excess never exceeds `+1` — far
+  short of the `mu_3=9` / excess `+3` a refutation would need. Zero
+  witnesses. A pseudorandom-ceiling model explains the freeze quantitatively
+  (AUDIT, not proof) and pins `P(mu_3>=9)~10^-8` per plant. The residual open
+  core is named precisely: `mu_3<=8` for the explicit pencil family, a
+  Weil-type root-non-concentration / cyclotomic-transversality statement.
+  Reproduces (via a different, cap-tight-pair-plant construction) the
+  already-integrated W3 witness (`ell=17,p=137`, spectrum `[14,3^7]`,
+  `l1_e3_law_refuted.md`). Three found-vs-claimed corrections made during
+  packaging (a Bezout-identity sign slip, a mode-mislabeled top-level field
+  in two raw scratch climb JSONs — harmless, already worked around by the
+  source aggregator — and a non-reproducible verification-count figure in
+  the packaging brief), documented in the note's own ledger, not silently.
+- **How it is useful:** Directly answers the open core named by PR #379
+  (concurrent, cited by path and number, not depended on): supplies the
+  method its own Sec 4 says does not exist for this family. Consistent with
+  PR #368's excess identity and `l1_sigma_calculus.md`'s pairwise cap
+  (independently re-derived here via a lower-degree route); shares a prime
+  (`ell=19,p=571`) with PR #364's own coverage table via a different
+  construction, no conflict. Ships nothing to the prize DAG.
+- **What to do next:** The named open core — `mu_3<=8` (or the empirically
+  suggested, much tighter `~5`-`6`) for the degree-`(ell-a)` pencil in one
+  coset — needs a genuine Weil/root-non-concentration argument; this is the
+  cleanest tractable form of the cyclotomic transversality the whole L1
+  program keeps circling. Deeper `a`-asymmetric sweeps (this note's coverage
+  samples as little as `~6x10^-14` of the largest swept dropset space) and
+  `ell>=37` are optional next steps, not required for the core question.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
