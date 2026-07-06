@@ -1,0 +1,1180 @@
+{
+  "determinism": "deterministic exhaustive finite-field sweep; no random seed; stdlib only",
+  "growth_tables": {
+    "chain_t1": {
+      "e": 4,
+      "fit": {
+        "all_zero": false,
+        "max": 15,
+        "min": 1,
+        "nondecreasing": true,
+        "p0_growth_ratio": 3.5,
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            7,
+            15
+          ]
+        ],
+        "verdict": "GROWING -> FALSIFIER SIGNAL (full_count scales roughly with p0; COUNTEREXAMPLE_NEW_FLOOR candidate)"
+      },
+      "rows": [
+        {
+          "full_count": 1,
+          "full_count_equals_supports_scanned": true,
+          "p0": 2,
+          "supports_scanned": 1
+        },
+        {
+          "full_count": 1,
+          "full_count_equals_supports_scanned": true,
+          "p0": 3,
+          "supports_scanned": 1
+        },
+        {
+          "full_count": 4,
+          "full_count_equals_supports_scanned": true,
+          "p0": 5,
+          "supports_scanned": 4
+        },
+        {
+          "full_count": 15,
+          "full_count_equals_supports_scanned": true,
+          "p0": 7,
+          "supports_scanned": 15
+        }
+      ],
+      "shape": "chain",
+      "t": 1
+    },
+    "chain_t2": {
+      "e": 4,
+      "fit": {
+        "all_zero": true,
+        "max": 0,
+        "min": 0,
+        "nondecreasing": true,
+        "p0_growth_ratio": 1.4,
+        "points": [
+          [
+            5,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "verdict": "CONSTANT_ZERO (target holds trivially: no K=F bad slope found at any p0)"
+      },
+      "rows": [
+        {
+          "full_count": null,
+          "p0": 2,
+          "supports_scanned": null
+        },
+        {
+          "full_count": null,
+          "p0": 3,
+          "supports_scanned": null
+        },
+        {
+          "full_count": 0,
+          "full_count_equals_supports_scanned": false,
+          "p0": 5,
+          "supports_scanned": 1
+        },
+        {
+          "full_count": 0,
+          "full_count_equals_supports_scanned": false,
+          "p0": 7,
+          "supports_scanned": 6
+        }
+      ],
+      "shape": "chain",
+      "t": 2
+    },
+    "diamond_t1": {
+      "e": 6,
+      "fit": {
+        "all_zero": false,
+        "max": 4,
+        "min": 1,
+        "nondecreasing": true,
+        "p0_growth_ratio": 2.5,
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "verdict": "GROWING -> FALSIFIER SIGNAL (full_count scales roughly with p0; COUNTEREXAMPLE_NEW_FLOOR candidate)"
+      },
+      "rows": [
+        {
+          "full_count": 1,
+          "full_count_equals_supports_scanned": true,
+          "p0": 2,
+          "supports_scanned": 1
+        },
+        {
+          "full_count": 1,
+          "full_count_equals_supports_scanned": true,
+          "p0": 3,
+          "supports_scanned": 1
+        },
+        {
+          "full_count": 4,
+          "full_count_equals_supports_scanned": true,
+          "p0": 5,
+          "supports_scanned": 4
+        }
+      ],
+      "shape": "diamond",
+      "t": 1
+    },
+    "diamond_t2": {
+      "e": 6,
+      "fit": {
+        "points": [
+          [
+            5,
+            0
+          ]
+        ],
+        "verdict": "INSUFFICIENT_DATA"
+      },
+      "rows": [
+        {
+          "full_count": null,
+          "p0": 2,
+          "supports_scanned": null
+        },
+        {
+          "full_count": null,
+          "p0": 3,
+          "supports_scanned": null
+        },
+        {
+          "full_count": 0,
+          "full_count_equals_supports_scanned": false,
+          "p0": 5,
+          "supports_scanned": 1
+        }
+      ],
+      "shape": "diamond",
+      "t": 2
+    }
+  },
+  "overall_verdict": "SLACK-DEPENDENT SPLIT (flag loudly, scoped to this toy pencil): at slack t=1 (minimal agreement beyond k) full_count == supports_scanned = C(n,k+1) essentially exactly at every p0 tested (verified to p0=13 in follow-up spot checks beyond the requested menu, negligible collapsing) -- a COUNTEREXAMPLE_NEW_FLOOR-grade growing count for the f_beta=1/(x-beta), g=x^k pencil at t=1. At slack t>=2 the SAME pencil gives full_count=0 (in fact aggregate_full_count=0, i.e. NO bad slope of any field at all) at every p0 tested, matching Prediction P (e_Y=0) with room to spare. Mechanism (explains, does not explain away, the split): g=x^k is a single monomial, so a support of size k+t supplies t linear constraints in the one unknown gamma but g's own interpolation coefficients can only ever cancel ONE of them; the other t-1 constraints are then gamma-free conditions purely on f_beta and the support, and for the simple-pole family f_beta=1/(x-beta) those extra conditions are classically nonvanishing divided differences (t=1: no extra condition, so a solution always exists; t>=2: an extra nonvanishing condition kills every candidate). SCOPE CAVEAT: this is a toy pencil (the pre-existing audited f1_extension_slope_sweep.py shape, generalized), not the deployed witness; whether the deployed regime's effective slack sits at this toy family's t=1 or t>=2 analogue is not established here.",
+  "proof_status": "EXPERIMENTAL / falsifier hunt (CONJECTURAL_WITH_FALSIFIER test)",
+  "script": "f1_extension_full_orbit_scan.py",
+  "selftests": {
+    "direct_solve_vs_bruteforce": {
+      "checked_pairs": 14,
+      "mismatches": [],
+      "pass": true
+    },
+    "irreducibility_spotchecks": [
+      {
+        "e": 4,
+        "irreducible": true,
+        "modulus": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "p0": 2
+      },
+      {
+        "e": 4,
+        "irreducible": true,
+        "modulus": [
+          2,
+          1,
+          0,
+          0,
+          1
+        ],
+        "p0": 3
+      },
+      {
+        "e": 4,
+        "irreducible": true,
+        "modulus": [
+          2,
+          0,
+          0,
+          0,
+          1
+        ],
+        "p0": 5
+      },
+      {
+        "e": 4,
+        "irreducible": true,
+        "modulus": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "p0": 7
+      },
+      {
+        "e": 6,
+        "irreducible": true,
+        "modulus": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "p0": 2
+      },
+      {
+        "e": 6,
+        "irreducible": true,
+        "modulus": [
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "p0": 3
+      },
+      {
+        "e": 6,
+        "irreducible": true,
+        "modulus": [
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "p0": 5
+      }
+    ]
+  },
+  "theorem_problem_id": "F1 extension-line MCA lift or counterexample (agents.md F1); paid_extension K=F cell (PR #343 frontier_extension_cell_targets_v1.md S:5 Q4)",
+  "towers": [
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 14,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 1,
+        "aggregate_full_count": 4,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 2
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        0,
+        1
+      ],
+      "domain_note": "p0=2: F_2^* is trivial; domain is the full affine line F_2 (even size 2)",
+      "e": 4,
+      "feasible": true,
+      "field_size": 16,
+      "k": 1,
+      "modulus_poly": [
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "n": 2,
+      "p0": 2,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "1 + u^2 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "1 + u^2 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "1 + u^2 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 1,
+          "mean": 0.6666666666666666,
+          "min": 0,
+          "num_full_orbit_beta": 12
+        }
+      },
+      "shape": "chain",
+      "support_size": 2,
+      "supports_scanned": 1,
+      "t": 1
+    },
+    {
+      "domain": [
+        0,
+        1
+      ],
+      "domain_note": "p0=2: F_2^* is trivial; domain is the full affine line F_2 (even size 2)",
+      "e": 4,
+      "feasible": false,
+      "infeasible_reason": "support_size k+t=3 exceeds domain size n=2",
+      "k": 1,
+      "n": 2,
+      "p0": 2,
+      "shape": "chain",
+      "support_size": 3,
+      "t": 2
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 79,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 2,
+        "aggregate_full_count": 32,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 6
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        1,
+        2
+      ],
+      "domain_note": "domain is the full multiplicative group F_3^* (order 2)",
+      "e": 4,
+      "feasible": true,
+      "field_size": 81,
+      "k": 1,
+      "modulus_poly": [
+        2,
+        1,
+        0,
+        0,
+        1
+      ],
+      "n": 2,
+      "p0": 3,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "2 + 2*u + 2*u^2 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "2 + 2*u + 2*u^2 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "2 + 2*u + 2*u^2 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 1,
+          "mean": 0.8888888888888888,
+          "min": 0,
+          "num_full_orbit_beta": 72
+        }
+      },
+      "shape": "chain",
+      "support_size": 2,
+      "supports_scanned": 1,
+      "t": 1
+    },
+    {
+      "domain": [
+        1,
+        2
+      ],
+      "domain_note": "domain is the full multiplicative group F_3^* (order 2)",
+      "e": 4,
+      "feasible": false,
+      "infeasible_reason": "support_size k+t=3 exceeds domain size n=2",
+      "k": 1,
+      "n": 2,
+      "p0": 3,
+      "shape": "chain",
+      "support_size": 3,
+      "t": 2
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 621,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 4,
+        "aggregate_full_count": 532,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 20
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "domain_note": "domain is the full multiplicative group F_5^* (order 4)",
+      "e": 4,
+      "feasible": true,
+      "field_size": 625,
+      "k": 2,
+      "modulus_poly": [
+        2,
+        0,
+        0,
+        0,
+        1
+      ],
+      "n": 4,
+      "p0": 5,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 4,
+          "full_count": 4,
+          "full_slopes_sample": [
+            "1 + u^3",
+            "2 + u^3",
+            "3 + u^3",
+            "4 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 4,
+          "full_count": 4,
+          "full_slopes_sample": [
+            "1 + u^3",
+            "2 + u^3",
+            "3 + u^3",
+            "4 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 4,
+          "full_count": 4,
+          "full_slopes_sample": [
+            "1 + u^3",
+            "2 + u^3",
+            "3 + u^3",
+            "4 + u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 4,
+          "mean": 3.84,
+          "min": 3,
+          "num_full_orbit_beta": 600
+        }
+      },
+      "shape": "chain",
+      "support_size": 3,
+      "supports_scanned": 4,
+      "t": 1
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 621,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 0,
+        "aggregate_full_count": 0,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 0
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "domain_note": "domain is the full multiplicative group F_5^* (order 4)",
+      "e": 4,
+      "feasible": true,
+      "field_size": 625,
+      "k": 2,
+      "modulus_poly": [
+        2,
+        0,
+        0,
+        0,
+        1
+      ],
+      "n": 4,
+      "p0": 5,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "0",
+          "beta_minimal_field_degree": 1,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 0,
+          "mean": 0.0,
+          "min": 0,
+          "num_full_orbit_beta": 600
+        }
+      },
+      "shape": "chain",
+      "support_size": 4,
+      "supports_scanned": 1,
+      "t": 2
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 2395,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 6,
+        "aggregate_full_count": 2124,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 42
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "domain_note": "domain is the full multiplicative group F_7^* (order 6)",
+      "e": 4,
+      "feasible": true,
+      "field_size": 2401,
+      "k": 3,
+      "modulus_poly": [
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "n": 6,
+      "p0": 7,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 15,
+          "full_count": 15,
+          "full_slopes_sample": [
+            "5 + 3*u + 3*u^2 + 2*u^3",
+            "2*u + 6*u^2 + 2*u^3",
+            "2 + 4*u + 4*u^2 + 3*u^3",
+            "2 + u + 2*u^2 + 2*u^3",
+            "4 + u + u^2",
+            "6 + u + 5*u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 15,
+          "full_count": 15,
+          "full_slopes_sample": [
+            "5 + 3*u + 3*u^2 + 2*u^3",
+            "2*u + 6*u^2 + 2*u^3",
+            "2 + 4*u + 4*u^2 + 3*u^3",
+            "2 + u + 2*u^2 + 2*u^3",
+            "4 + u + u^2",
+            "6 + u + 5*u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 15,
+          "full_count": 15,
+          "full_slopes_sample": [
+            "5 + 3*u + 3*u^2 + 2*u^3",
+            "2*u + 6*u^2 + 2*u^3",
+            "2 + 4*u + 4*u^2 + 3*u^3",
+            "2 + u + 2*u^2 + 2*u^3",
+            "4 + u + u^2",
+            "6 + u + 5*u^3"
+          ],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 15,
+          "mean": 14.479591836734693,
+          "min": 12,
+          "num_full_orbit_beta": 2352
+        }
+      },
+      "shape": "chain",
+      "support_size": 4,
+      "supports_scanned": 15,
+      "t": 1
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 2395,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 0,
+        "aggregate_full_count": 0,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 0
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "domain_note": "domain is the full multiplicative group F_7^* (order 6)",
+      "e": 4,
+      "feasible": true,
+      "field_size": 2401,
+      "k": 3,
+      "modulus_poly": [
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "n": 6,
+      "p0": 7,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "0",
+          "beta_minimal_field_degree": 1,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^3",
+          "beta_minimal_field_degree": 4,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 0,
+          "mean": 0.0,
+          "min": 0,
+          "num_full_orbit_beta": 2352
+        }
+      },
+      "shape": "chain",
+      "support_size": 5,
+      "supports_scanned": 6,
+      "t": 2
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 62,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 1,
+        "aggregate_full_count": 24,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 0,
+          "3": 6
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        0,
+        1
+      ],
+      "domain_note": "p0=2: F_2^* is trivial; domain is the full affine line F_2 (even size 2)",
+      "e": 6,
+      "feasible": true,
+      "field_size": 64,
+      "k": 1,
+      "modulus_poly": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "n": 2,
+      "p0": 2,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "1 + u^2 + u^3 + u^4 + u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "1 + u^2 + u^3 + u^4 + u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "1 + u^2 + u^3 + u^4 + u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 1,
+          "mean": 0.8888888888888888,
+          "min": 0,
+          "num_full_orbit_beta": 54
+        }
+      },
+      "shape": "diamond",
+      "support_size": 2,
+      "supports_scanned": 1,
+      "t": 1
+    },
+    {
+      "domain": [
+        0,
+        1
+      ],
+      "domain_note": "p0=2: F_2^* is trivial; domain is the full affine line F_2 (even size 2)",
+      "e": 6,
+      "feasible": false,
+      "infeasible_reason": "support_size k+t=3 exceeds domain size n=2",
+      "k": 1,
+      "n": 2,
+      "p0": 2,
+      "shape": "diamond",
+      "support_size": 3,
+      "t": 2
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 727,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 2,
+        "aggregate_full_count": 336,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 2,
+          "3": 24
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        1,
+        2
+      ],
+      "domain_note": "domain is the full multiplicative group F_3^* (order 2)",
+      "e": 6,
+      "feasible": true,
+      "field_size": 729,
+      "k": 1,
+      "modulus_poly": [
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "n": 2,
+      "p0": 3,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "2 + 2*u + 2*u^2 + u^3 + 2*u^4 + u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "2 + 2*u + 2*u^2 + u^3 + 2*u^4 + u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 1,
+          "full_count": 1,
+          "full_slopes_sample": [
+            "2 + 2*u + 2*u^2 + u^3 + 2*u^4 + u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 1,
+          "mean": 0.9655172413793104,
+          "min": 0,
+          "num_full_orbit_beta": 696
+        }
+      },
+      "shape": "diamond",
+      "support_size": 2,
+      "supports_scanned": 1,
+      "t": 1
+    },
+    {
+      "domain": [
+        1,
+        2
+      ],
+      "domain_note": "domain is the full multiplicative group F_3^* (order 2)",
+      "e": 6,
+      "feasible": false,
+      "infeasible_reason": "support_size k+t=3 exceeds domain size n=2",
+      "k": 1,
+      "n": 2,
+      "p0": 3,
+      "shape": "diamond",
+      "support_size": 3,
+      "t": 2
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 15621,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 4,
+        "aggregate_full_count": 13764,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 20,
+          "3": 96
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "domain_note": "domain is the full multiplicative group F_5^* (order 4)",
+      "e": 6,
+      "feasible": true,
+      "field_size": 15625,
+      "k": 2,
+      "modulus_poly": [
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "n": 4,
+      "p0": 5,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 4,
+          "full_count": 4,
+          "full_slopes_sample": [
+            "4 + 3*u + 3*u^2 + 2*u^3 + 3*u^5",
+            "2 + 4*u^2 + 3*u^3 + 4*u^4 + 3*u^5",
+            "2*u + 4*u^3 + 3*u^4 + 3*u^5",
+            "3 + 4*u + u^2 + 2*u^4 + 3*u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 4,
+          "full_count": 4,
+          "full_slopes_sample": [
+            "4 + 3*u + 3*u^2 + 2*u^3 + 3*u^5",
+            "2 + 4*u^2 + 3*u^3 + 4*u^4 + 3*u^5",
+            "2*u + 4*u^3 + 3*u^4 + 3*u^5",
+            "3 + 4*u + u^2 + 2*u^4 + 3*u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 4,
+          "full_count": 4,
+          "full_slopes_sample": [
+            "4 + 3*u + 3*u^2 + 2*u^3 + 3*u^5",
+            "2 + 4*u^2 + 3*u^3 + 4*u^4 + 3*u^5",
+            "2*u + 4*u^3 + 3*u^4 + 3*u^5",
+            "3 + 4*u + u^2 + 2*u^4 + 3*u^5"
+          ],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 4,
+          "mean": 3.9643410852713177,
+          "min": 3,
+          "num_full_orbit_beta": 15480
+        }
+      },
+      "shape": "diamond",
+      "support_size": 3,
+      "supports_scanned": 4,
+      "t": 1
+    },
+    {
+      "any_gamma_degenerate_events": 0,
+      "beta_scanned": 15621,
+      "diagnostic_aggregate_statistic": {
+        "aggregate_base_count": 0,
+        "aggregate_full_count": 0,
+        "aggregate_full_frobenius_closed": true,
+        "aggregate_full_mod_e_zero": true,
+        "aggregate_intermediate_counts": {
+          "2": 0,
+          "3": 0
+        },
+        "description": "UNION across ALL scanned beta of every slope found -- a pair-field sanity/consistency statistic ONLY, NOT the growth-verdict input (see module docstring)"
+      },
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "domain_note": "domain is the full multiplicative group F_5^* (order 4)",
+      "e": 6,
+      "feasible": true,
+      "field_size": 15625,
+      "k": 2,
+      "modulus_poly": [
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "n": 4,
+      "p0": 5,
+      "primary_slope_field_statistic": {
+        "best_over_all_beta": {
+          "base_count": 0,
+          "beta": "0",
+          "beta_minimal_field_degree": 1,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "best_over_full_orbit_beta_only": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "canonical_beta_first_full_orbit": {
+          "base_count": 0,
+          "beta": "u^5",
+          "beta_minimal_field_degree": 6,
+          "distinct_slopes": 0,
+          "full_count": 0,
+          "full_slopes_sample": [],
+          "intermediate_count": 0
+        },
+        "description": "for a SINGLE fixed genuinely-F-valued beta, #distinct K=F slopes across all size-(k+t) supports -- this is the Delta_ext growth quantity",
+        "full_count_distribution_over_full_orbit_betas": {
+          "max": 0,
+          "mean": 0.0,
+          "min": 0,
+          "num_full_orbit_beta": 15480
+        }
+      },
+      "shape": "diamond",
+      "support_size": 4,
+      "supports_scanned": 1,
+      "t": 2
+    }
+  ]
+}

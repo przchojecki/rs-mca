@@ -206,13 +206,21 @@ band-regime received line form a **finite** set: a union of complete Frobenius
 orbits of size `e` (6 KB / 4 M31) whose total size is a **field-size-independent
 constant** `Δ_ext`, not growing with `q_gen`. Equivalently: the `{M_γ}`-slice
 [G5] admits no positive-dimensional genuinely-`F`-valued bad locus.
+**Scope (slack qualifier, see §5.1):** Prediction P is about the *band regime* —
+the toy slack `t≥2` analogue of agreement strictly inside the band, which is
+where `paid_extension` is charged. The minimal-slack `t=1` boundary (agreement
+only just exceeding the code dimension `k`) is a **degenerate regime explicitly
+outside** P's scope; the shipped scanner shows the two regimes behave oppositely.
 
 **Falsifier (`COUNTEREXAMPLE_NEW_FLOOR`).** A band-regime `F`-valued pair over a
 toy tower whose `K=F` bad-slope count **grows with the base prime** `p_0`
 (e.g. `∝ p_0`, i.e. a positive-dimensional `e_Y≥1` chart). By §3 this makes
 `paid_extension` unpayable at the deployed margins (already at `e_Y=1`), so it
 would refute the adjacent-pair frontier `prob:v13f1-frontier` on the extension
-side — the exact `F1` "lift or counterexample" fork (`agents.md` L453).
+side — the exact `F1` "lift or counterexample" fork (`agents.md` L453). The
+shipped scan's `t=1` combinatorial growth is **not** this falsifier: `t=1` is the
+degenerate minimal-slack boundary, not a band-regime pair — it is labeled `AUDIT`
+in §5.1, and the band regime (`t≥2`) is where the scan is *consistent* with P.
 
 **Search shape (`agents.md` F1 toy menu L466-473; `f1_extension_coordinate_transfer` "Next Step").**
 
@@ -231,11 +239,55 @@ side — the exact `F1` "lift or counterexample" fork (`agents.md` L453).
   `p_0` ⇒ falsifier** (`e_Y=1`). Cross-check `#{K=F} ≡ 0 (mod e)` and the
   Frobenius-orbit structure at every field.
 
-This is a stdlib-only scanner (env: no numpy/sympy). Recommended new script
-`experimental/scripts/f1_extension_full_orbit_scan.py` emitting a certificate
-`.../f1-extension-full-orbit-scan/…json` with the `(p_0, #{K=F}, orbit_check)`
-table and a fitted growth verdict. Not attempted by this note; recorded as the
-natural next constructive step.
+This is a stdlib-only scanner (env: no numpy/sympy). **Shipped in this branch:**
+`experimental/scripts/f1_extension_full_orbit_scan.py` (zero-arg, deterministic,
+`--tamper-selftest`) emits
+`experimental/data/certificates/frontier-adjacent/f1_full_orbit_scan_v1.json`
+with the per-tower `(p_0, #{K=F}, orbit_check)` table and a fitted growth verdict
+for the whole menu (chain `p_0∈{2,3,5,7}`, diamond `p_0∈{2,3,5}`, `t∈{1,2}`). Its
+result is a **slack-dependent split**, which sharpens Q4 with the qualifier below.
+
+### 5.1 Slack-scope qualifier (scanner result)
+
+The scan does **not** return a single growth verdict; it splits on the toy slack
+`t` (support-wise agreement size `= k+t`):
+
+| toy slack | `K=F` count (fixed genuinely-`F` `β`) | reading |
+|---|---|---|
+| **`t=1`** (minimal, degenerate boundary) | `= C(n,k+1)` exactly: `1, 1, 4, 15` at `p_0=2,3,5,7` | grows with `p_0` — **`AUDIT` (boundary characterization), NOT a falsifier** |
+| **`t≥2`** (band regime, the charged cell) | `0` at every feasible `p_0` (chain `p_0=5,7`; diamond `p_0=5`; `p_0=2,3` infeasible, `k+t>n`); in fact `0` bad slopes of *any* field | matches **Prediction P** (`e_Y=0`) with room to spare |
+
+**Why `t=1` is a degenerate boundary (divided-difference mechanism, 3 sentences).**
+At minimal slack `t=1` each size-`k+1` support `S={x_0,…,x_k}` has a
+one-dimensional degree-`<k` parity space — a single divided-difference weight `c`
+(the unique up-to-scale null vector of the `k×(k+1)` Vandermonde, normalized to
+`c_i = 1/∏_{j≠i}(x_i−x_j)`) — so the bad-slope condition collapses to the one
+scalar equation `A+γB=0` with `A=Σ_i c_i f_β(x_i)` and `B=Σ_i c_i x_i^{k}`.
+Because `B` is the `k`-th divided difference `[x_0,…,x_k]\,x^{k}`, which equals
+the leading coefficient `1` of `x^{k}` and so never vanishes, every one of the
+`C(n,k+1)` supports yields exactly one slope `γ=−A/B`, and since
+`A=[x_0,…,x_k]\,(x−β)^{-1}=(−1)^{k}/∏_i(x_i−β)` is a nonzero genuinely-`F`-valued
+quantity (it carries `β∈F∖B`), each such `γ` is `K=F`. Hence the `t=1` count is
+exactly `C(n,k+1)` — `1,1,4,15` at `p_0=2,3,5,7`, independently re-verified here
+at `p_0=2,3,5` by from-scratch brute force — whereas at `t≥2` the size-`k+2`
+support carries **two** checks, the single monomial `g=x^{k}` can cancel only
+one, and the residual `γ`-free divided-difference condition on `f_β` is
+generically nonvanishing, collapsing the count to identically `0` (consistent
+with the forced `e_Y=0`).
+
+**Consequence for Q4.** Prediction P and its `COUNTEREXAMPLE_NEW_FLOOR` falsifier
+concern the **band regime** (toy `t≥2`), where the scan found the `K=F` locus
+*empty* at every feasible `p_0` — evidence for, not proof of, `e_Y=0`. The `t=1`
+growth is the minimal-slack degeneracy (agreement barely exceeding the code
+dimension `k`); it is labeled **`AUDIT`**, a boundary characterization **outside
+the prediction's scope**, and is *not* the falsifier of §5. **Anyone attacking
+Prediction P should attack the `t≥2` / band regime**, not `t=1`: the `t=1`
+combinatorial count `C(n,k+1)` does not bear on the extension cell. The
+toy-fidelity caveat still stands (and is carried in the scanner's own emitted
+verdict): this is the audited `f1_extension_slope_sweep.py` pencil
+(`f_β=1/(x−β)`, `g=x^k`) generalized to towers of degree `e∈{4,6}` and slack
+`t∈{1,2}`, not the deployed witness, and the correspondence between the toy `t`
+and the deployed `(a_0,a_0+1)` fail-margin is not established here.
 
 ---
 
@@ -353,3 +405,7 @@ dependency either direction:
 - **N** numbers + exact replay: `experimental/data/certificates/frontier-adjacent/extension_cell_targets_v1.json`,
   `experimental/scripts/verify_frontier_extension_cell_targets.py`,
   `experimental/scripts/towards v13/cap25_v14_moved_frontier_checks.py`.
+- **F1S** F1 full-orbit toy scanner (shipped, §5.1): `experimental/scripts/f1_extension_full_orbit_scan.py`
+  (zero-arg, deterministic, `--tamper-selftest`); certificate
+  `experimental/data/certificates/frontier-adjacent/f1_full_orbit_scan_v1.json`.
+  Cross-executed by `verify_frontier_extension_cell_targets.py` gate G10.

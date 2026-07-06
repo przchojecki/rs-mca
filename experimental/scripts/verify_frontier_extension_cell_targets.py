@@ -14,7 +14,7 @@ recompute every numeric field in the packet from n, k, and the two field
 primes alone -- not to trust the packet's own arithmetic -- and to confirm
 every cited tex/markdown label and source script actually exists.
 
-Nine gate classes; exit 0 iff ALL pass, nonzero on ANY failure:
+Ten gate classes; exit 0 iff ALL pass, nonzero on ANY failure:
 
   G1  Field primes: exact value + prime_form identity (2^31-2^24+1 KoalaBear,
       2^31-1 Mersenne-31) + primality (trial division, both ~2^31 so cheap).
@@ -73,6 +73,17 @@ Nine gate classes; exit 0 iff ALL pass, nonzero on ANY failure:
       (kb_list_v1.packet.json, kb_mca_v1.packet.json, m31_list_v1.packet.json,
       m31_mca_v1.packet.json), and the companion note file exists on disk and
       contains its required non-claim / merge-hygiene language.
+  G10 Scanner cross-execution (added for the shipped F1 toy scanner). Imports
+      experimental/scripts/f1_extension_full_orbit_scan.py and RE-RUNS a fast
+      subset of its menu inside this verifier -- trusting the scanner's code,
+      not its emitted JSON: (a) the slack-t=1 divided-difference growth
+      full_count == C(n_toy, k_toy+1) == supports_scanned at p0 in {2,3}
+      (chain e=4); (b) the slack-t>=2 zero-count -- p0 in {2,3} at t=2 are
+      INFEASIBLE (k+t>n, so vacuously no K=F bad slope), and the smallest
+      feasible t=2 tower (p0=5 chain) has full_count == 0 and
+      aggregate_full_count == 0. ~2-3s added (all fields <=625). This makes
+      the note's Q4 slack-scope qualifier executable. (Numbered G10 because
+      G8/G9 above were already taken by the reference/hygiene gates.)
 
 Hidden self-test:  python3 verify_frontier_extension_cell_targets.py --tamper-selftest
     Each gate function takes a tamper=False parameter; in self-test mode it is
@@ -595,6 +606,58 @@ def gate_G9_hygiene(packet, tamper=False):
 
 
 # ---------------------------------------------------------------------------
+# G10 -- scanner cross-execution (re-run the shipped F1 toy scanner, fast subset)
+# ---------------------------------------------------------------------------
+def gate_G10_scanner_crosscheck(tamper=False):
+    """Import the shipped f1_extension_full_orbit_scan.py and re-execute a fast
+    subset of its menu here, trusting the scanner's code (not its emitted JSON).
+    (a) slack t=1: full_count == C(n_toy,k_toy+1) == supports_scanned at p0 in
+        {2,3}, chain e=4 (the divided-difference growth boundary);
+    (b) slack t>=2: p0 in {2,3} at t=2 are INFEASIBLE (k+t>n -> vacuously zero),
+        and the smallest feasible t=2 tower (p0=5 chain) has full_count == 0 and
+        aggregate_full_count == 0."""
+    import importlib
+    scripts_dir = os.path.join(REPO_ROOT, "experimental", "scripts")
+    if scripts_dir not in sys.path:
+        sys.path.insert(0, scripts_dir)
+    try:
+        scanner = importlib.import_module("f1_extension_full_orbit_scan")
+    except Exception as exc:  # noqa: BLE001 -- surface as a failed gate, not a crash
+        return False, f"could not import f1_extension_full_orbit_scan: {exc}"
+
+    ok = True
+    msgs = []
+    first = True
+    # (a) t=1 divided-difference growth: full_count == C(n,k+1) == supports
+    for p0 in (2, 3):
+        res = scanner.scan_tower(p0, 4, 1, "chain")
+        n_toy, k_toy = res["n"], res["k"]
+        expected = math.comb(n_toy, k_toy + 1)
+        fc = res["primary_slope_field_statistic"]["best_over_full_orbit_beta_only"]["full_count"]
+        supports = res["supports_scanned"]
+        ok_eq = check(fc, expected, tamper=(tamper and first))  # tamper: the one guarded datum
+        ok_sup = check(supports, expected)
+        ok = ok and ok_eq and ok_sup
+        msgs.append(f"t=1 p0={p0}: full_count={fc} C({n_toy},{k_toy + 1})={expected} "
+                    f"supports={supports} ok={ok_eq and ok_sup}")
+        first = False
+    # (b) t>=2 zero-count: p0=2,3 infeasible at t=2; p0=5 chain genuine zero
+    for p0 in (2, 3):
+        r = scanner.scan_tower(p0, 4, 2, "chain")
+        infeasible = (r.get("feasible") is False)
+        ok = ok and infeasible
+        msgs.append(f"t=2 p0={p0}: feasible={r.get('feasible')} (expect False->vacuous 0) ok={infeasible}")
+    r5 = scanner.scan_tower(5, 4, 2, "chain")
+    fc5 = r5["primary_slope_field_statistic"]["best_over_full_orbit_beta_only"]["full_count"]
+    agg5 = r5["diagnostic_aggregate_statistic"]["aggregate_full_count"]
+    ok_zero = check(fc5, 0) and check(agg5, 0)
+    ok = ok and ok_zero
+    msgs.append(f"t=2 p0=5 (smallest feasible): full_count={fc5} aggregate_full={agg5} "
+                f"(expect 0/0) ok={ok_zero}")
+    return ok, "; ".join(msgs)
+
+
+# ---------------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------------
 GATE_SPECS = [
@@ -607,6 +670,7 @@ GATE_SPECS = [
     ("G7 exact unsafe/safe + Delta_ext ceiling ", lambda packet, t: gate_G7_exact_ledger(packet, t)),
     ("G8 tex/md/script reference existence     ", lambda packet, t: gate_G8_refs_exist(t)),
     ("G9 packet/note hygiene                   ", lambda packet, t: gate_G9_hygiene(packet, t)),
+    ("G10 scanner cross-exec (t=1 C(n,k+1)/t>=2 0)", lambda packet, t: gate_G10_scanner_crosscheck(t)),
 ]
 
 

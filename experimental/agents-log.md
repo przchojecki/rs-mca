@@ -30,6 +30,41 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - F1 extension full-orbit toy scanner + slack-scope qualifier
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** `experimental/scripts/f1_extension_full_orbit_scan.py`
+  (new); `experimental/data/certificates/frontier-adjacent/f1_full_orbit_scan_v1.json`
+  (new); `experimental/notes/frontier-adjacent/frontier_extension_cell_targets_v1.md`
+  (§5 Q4 slack-scope qualifier, new §5.1); `experimental/scripts/verify_frontier_extension_cell_targets.py`
+  (new cross-execution gate G10); `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL (falsifier hunt) / AUDIT (the `t=1` boundary
+  characterization). Does **not** pay `paid_extension` or certify `U(a0+1)<=B*`.
+- **What is being added:** The stdlib toy scanner named as Q4's next step: a
+  zero-arg, deterministic, `--tamper-selftest` sweep of the `K=F` (full Galois
+  orbit) MCA-bad-slope count for the pencil `f_β=1/(x−β)`, `g=x^k` over towers
+  `F_{p0^e}/F_{p0}` (chain `e=4`, `p0∈{2,3,5,7}`; diamond `e=6`, `p0∈{2,3,5}`;
+  slack `t∈{1,2}`). The result is a **slack-dependent split**: at minimal slack
+  `t=1` the count is exactly `C(n,k+1)` (`1,1,4,15`; a divided-difference
+  boundary effect, independently re-verified at `p0=2,3,5`), a DEGENERATE regime
+  outside Prediction P's scope, labeled `AUDIT` and **not** a falsifier; at
+  `t≥2` (the band regime where the cell is charged) the count is identically `0`
+  (no `K=F` bad slope, in fact none of any field), consistent with the forced
+  `e_Y=0`.
+- **How it is useful:** Makes the note's Q4 falsifiable prediction executable and
+  adds the slack-scope qualifier that keeps the scan's `t=1` growth from being
+  misread as a `COUNTEREXAMPLE_NEW_FLOOR`; the prediction is restated for the
+  `t≥2`/band regime, where the toy scan is currently consistent with the target.
+  The scanner is cross-executed on a fast subset (~2-3s) by the companion
+  verifier's new gate G10; the full verifier still passes zero-arg (10/10 gates)
+  and catches every tamper.
+- **What to do next:** (i) establish the correspondence between the toy slack `t`
+  and the deployed `(a0,a0+1)` fail-margin at `n=2^21` (which toy regime the KB /
+  M31 rows sit in); (ii) test whether the sharp `t=1`-vs-`t≥2` dichotomy is
+  intrinsic or an artifact of the single monomial `g=x^k` (try `g=x^{k+t-1}` or a
+  non-monomial `g`); (iii) if the deployed regime maps to `t≥2`, feed the
+  empty-`K=F` evidence into the §3 `Δ_ext` target.
+
 ### 2026-07-05 - Frontier-extension-cell targets for the four v14 rows
 
 - **Agent/model:** Claude Fable 5.
