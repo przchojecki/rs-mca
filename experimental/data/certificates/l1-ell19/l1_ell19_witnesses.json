@@ -1,0 +1,1927 @@
+{
+ "$schema_note": "Companion data for experimental/notes/l1/l1_ell19_attainment.md; verified by experimental/scripts/verify_l1_ell19_attainment.py",
+ "ell": 19,
+ "law": "L1 prime-ell frontier attainment half: m*(ell) = (ell+1)/2",
+ "headline_prime": 647,
+ "m_star_19_upper_bound": 10,
+ "definitions": {
+  "gamma": "constant-free mixed poly Gamma(X) = sum_{r=1}^{ell-1} gamma_r X^r over F_p; gamma_X1_to_Xell_minus_1 lists coefficients of X^1..X^(ell-1) in order",
+  "spectrum": "per-coset max fiber (level-set) size of Gamma restricted to each of the n=(p-1)/ell cosets of the order-ell subgroup, sorted descending",
+  "E3": "sum_b max(mu_b - 2, 0) over the spectrum (aggregate excess above pairwise-legal size 2)",
+  "T_third_onward_excess": "sum_{k>=3} max(mu_k - 2, 0) computed on the descending spectrum starting from the THIRD-largest entry onward (sigma-calculus Theorem 1 quantity; T<=4 is the proved-covered chart; not a gated quantity in this note's own verifier, recorded for cross-reference to experimental/notes/l1/l1_sigma_calculus.md)",
+  "top_m": "sum of the m largest spectrum entries",
+  "listing_threshold": "top_m >= 2*ell (the L1 listing gate)"
+ },
+ "witnesses": {
+  "m10_p647": {
+   "label": "m=10=(ell+1)/2 attainment witness (headline)",
+   "ell": 19,
+   "m": 10,
+   "p": 647,
+   "n_cosets": 34,
+   "gamma_X1_to_Xell_minus_1": [
+    298,
+    638,
+    143,
+    294,
+    14,
+    111,
+    237,
+    78,
+    464,
+    166,
+    355,
+    385,
+    207,
+    68,
+    465,
+    369,
+    316,
+    1
+   ],
+   "spectrum": [
+    12,
+    7,
+    4,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "spectrum_B_independent_check": [
+    12,
+    7,
+    4,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "spectra_agree": true,
+   "E3": 18,
+   "T_third_onward_excess": 3,
+   "top_m_values": {
+    "top9": 36,
+    "top10": 38,
+    "top11": 40
+   },
+   "target_2ell": 38,
+   "gates": {
+    "L1_topm>=2ell": true,
+    "cosets_distinct": true,
+    "LF_map_zeroconst": true,
+    "LF_rank_m_surjective": true,
+    "LF_c_distinct_nonzero": true,
+    "L3_degP<=m*ell": true,
+    "L3_mixed": true,
+    "L3_petal_full": true,
+    "L4_R>=2ell": true,
+    "L4_agreements>=s": true,
+    "L4_retained==maxfiber": true,
+    "dom_distinct_pts": true,
+    "L5_M_kernel": true,
+    "L5_identity": true,
+    "L5_minimal": true,
+    "L6_primitive_mixed": true
+   },
+   "n_gates": 16,
+   "n_gates_true": 16,
+   "lambda_free": true,
+   "full": true,
+   "provenance": {
+    "engine": "bigfiber-v2 (l1_ell19_bigfiber_v2.py)",
+    "seed_base": 314159265,
+    "trial": 2240,
+    "trials_total": 2240,
+    "tested_gammas_total": 3005,
+    "bigsize": 12,
+    "n_planted_fibers": 2,
+    "planted_sizes": [
+     12,
+     7
+    ],
+    "emergent_sizes": [
+     4,
+     3
+    ],
+    "e3_histogram_over_3005_plants": {
+     "12": 74,
+     "13": 398,
+     "14": 1057,
+     "15": 1373,
+     "16": 99,
+     "17": 3,
+     "18": 1
+    },
+    "elapsed_s_at_discovery": 93.3,
+    "note": "gamma discovered this session (laneA) via ell19_bigfiber_hunt_v2.py construct_one/hunt_prime, seed_base=314159265, p=647 trial=2240 bigsize=12 (run_deeper_close.py / ell19_bigfiber_v2b_close_results.json); this script independently recomputes spectrum+chain from the raw gamma only."
+   }
+  },
+  "m11_p647": {
+   "label": "m=11=(ell+3)/2 companion witness (same prime)",
+   "ell": 19,
+   "m": 11,
+   "p": 647,
+   "n_cosets": 34,
+   "gamma_X1_to_Xell_minus_1": [
+    318,
+    474,
+    374,
+    319,
+    297,
+    217,
+    24,
+    346,
+    0,
+    609,
+    514,
+    362,
+    499,
+    309,
+    174,
+    383,
+    93,
+    1
+   ],
+   "spectrum": [
+    12,
+    7,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "spectrum_B_independent_check": [
+    12,
+    7,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "spectra_agree": true,
+   "E3": 17,
+   "T_third_onward_excess": 2,
+   "top_m_values": {
+    "top10": 37,
+    "top11": 38
+   },
+   "target_2ell": 38,
+   "gates": {
+    "L1_topm>=2ell": true,
+    "cosets_distinct": true,
+    "LF_map_zeroconst": true,
+    "LF_rank_m_surjective": true,
+    "LF_c_distinct_nonzero": true,
+    "L3_degP<=m*ell": true,
+    "L3_mixed": true,
+    "L3_petal_full": true,
+    "L4_R>=2ell": true,
+    "L4_agreements>=s": true,
+    "L4_retained==maxfiber": true,
+    "dom_distinct_pts": true,
+    "L5_M_kernel": true,
+    "L5_identity": true,
+    "L5_minimal": true,
+    "L6_primitive_mixed": true
+   },
+   "n_gates": 16,
+   "n_gates_true": 16,
+   "lambda_free": true,
+   "full": true,
+   "provenance": {
+    "note": "gamma recovered from ell19_bigfiber_results_FINAL.json['647']['best_record'] (m=10 hunt, best-E3 trial); never previously checked at m=11.",
+    "elapsed_s_at_discovery": 136.6
+   }
+  }
+ },
+ "concentrated_floor": {
+  "description": "PROVED-LOCAL structural floor (note sec 4a): the unique K=1 rank-cap-saturating single-fiber design, up to the X->cX rescale; gamma_r=1 for every r=1..ell-1, at EVERY admissible prime p===1 mod ell. Mobius-map argument: Gamma(x)=(x^ell-x)/(x-1) is injective on every coset except the one containing the pole x=1.",
+  "gamma_X1_to_Xell_minus_1": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "spectrum_shape": "[ell-1, 1, 1, ..., 1] (n-1 ones)",
+  "E3": 16,
+  "verified_zero_variance_at_n_primes": 36
+ },
+ "coverage_rows": [
+  {
+   "p": 191,
+   "n_cosets": 10,
+   "eligible_m10_listing": false,
+   "claimed_max_E3": 18,
+   "source": "bigfiber_v1_weekend",
+   "trials": 358,
+   "gamma_X1_to_Xell_minus_1": [
+    16,
+    44,
+    177,
+    106,
+    79,
+    157,
+    14,
+    155,
+    11,
+    181,
+    151,
+    28,
+    126,
+    22,
+    142,
+    23,
+    1,
+    1
+   ],
+   "gamma_provenance": "best_record gamma from session file ell19_bigfiber_results_FINAL.json",
+   "recomputed_E3": 18,
+   "recomputed_top10": 34,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 18,
+     "trials": 358,
+     "tested_gammas": 533
+    }
+   }
+  },
+  {
+   "p": 229,
+   "n_cosets": 12,
+   "eligible_m10_listing": false,
+   "claimed_max_E3": 17,
+   "source": "bigfiber_v1_weekend",
+   "trials": 380,
+   "gamma_X1_to_Xell_minus_1": [
+    193,
+    5,
+    182,
+    154,
+    30,
+    105,
+    75,
+    113,
+    191,
+    104,
+    136,
+    35,
+    59,
+    149,
+    54,
+    61,
+    114,
+    1
+   ],
+   "gamma_provenance": "best_record gamma from session file ell19_bigfiber_results_FINAL.json",
+   "recomputed_E3": 17,
+   "recomputed_top10": 35,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 17,
+     "trials": 380,
+     "tested_gammas": 580
+    }
+   }
+  },
+  {
+   "p": 419,
+   "n_cosets": 22,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 16,
+     "trials": 389,
+     "tested_gammas": 594
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 11950,
+     "tested_gammas": 191201,
+     "max_E3_seen": 15
+    }
+   }
+  },
+  {
+   "p": 457,
+   "n_cosets": 24,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 17,
+   "source": "bigfiber_v1_weekend",
+   "trials": 247,
+   "gamma_X1_to_Xell_minus_1": [
+    428,
+    67,
+    224,
+    380,
+    300,
+    30,
+    336,
+    172,
+    114,
+    39,
+    71,
+    453,
+    111,
+    250,
+    255,
+    143,
+    36,
+    1
+   ],
+   "gamma_provenance": "best_record gamma from session file ell19_bigfiber_results_FINAL.json",
+   "recomputed_E3": 17,
+   "recomputed_top10": 37,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 17,
+     "trials": 247,
+     "tested_gammas": 362
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 10444,
+     "tested_gammas": 167104,
+     "max_E3_seen": 14
+    }
+   }
+  },
+  {
+   "p": 571,
+   "n_cosets": 30,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 17,
+   "source": "bigfiber_v2_session",
+   "trials": 1644,
+   "gamma_X1_to_Xell_minus_1": [
+    409,
+    527,
+    148,
+    268,
+    42,
+    354,
+    135,
+    509,
+    65,
+    253,
+    500,
+    69,
+    501,
+    246,
+    507,
+    430,
+    255,
+    1
+   ],
+   "gamma_provenance": "best_record gamma from session file ell19_bigfiber_v2_results.json",
+   "recomputed_E3": 17,
+   "recomputed_top10": 37,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 16,
+     "trials": 235,
+     "tested_gammas": 335
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 8146,
+     "tested_gammas": 130337,
+     "max_E3_seen": 14
+    },
+    "deeper_designedK_weekend": {
+     "E3": 16,
+     "designed_K": 4
+    },
+    "bigfiber_v2_session": {
+     "E3": 17,
+     "trials": 1644,
+     "tested_gammas": 2304
+    }
+   }
+  },
+  {
+   "p": 647,
+   "n_cosets": 34,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 18,
+   "source": "bigfiber_v2b_close_session",
+   "trials": 2240,
+   "gamma_X1_to_Xell_minus_1": [
+    298,
+    638,
+    143,
+    294,
+    14,
+    111,
+    237,
+    78,
+    464,
+    166,
+    355,
+    385,
+    207,
+    68,
+    465,
+    369,
+    316,
+    1
+   ],
+   "gamma_provenance": "best_record gamma from session file ell19_bigfiber_v2b_close_results.json",
+   "recomputed_E3": 18,
+   "recomputed_top10": 38,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 17,
+     "trials": 216,
+     "tested_gammas": 316
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 7213,
+     "tested_gammas": 115409,
+     "max_E3_seen": 14
+    },
+    "deeper_designedK_weekend": {
+     "E3": 15,
+     "designed_K": 3
+    },
+    "bigfiber_v2b_close_session": {
+     "E3": 18,
+     "trials": 2240,
+     "tested_gammas": 3005
+    }
+   }
+  },
+  {
+   "p": 761,
+   "n_cosets": 40,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 17,
+   "source": "bigfiber_v2_session",
+   "trials": 1206,
+   "gamma_X1_to_Xell_minus_1": [
+    490,
+    630,
+    250,
+    632,
+    591,
+    630,
+    745,
+    232,
+    250,
+    660,
+    418,
+    569,
+    59,
+    311,
+    729,
+    110,
+    322,
+    1
+   ],
+   "gamma_provenance": "best_record gamma from session file ell19_bigfiber_v2_results.json",
+   "recomputed_E3": 17,
+   "recomputed_top10": 37,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 16,
+     "trials": 212,
+     "tested_gammas": 342
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 6047,
+     "tested_gammas": 96753,
+     "max_E3_seen": 14
+    },
+    "deeper_designedK_weekend": {
+     "E3": 15,
+     "designed_K": 4
+    },
+    "bigfiber_v2_session": {
+     "E3": 17,
+     "trials": 1206,
+     "tested_gammas": 1691
+    }
+   }
+  },
+  {
+   "p": 1103,
+   "n_cosets": 58,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 17,
+   "source": "bigfiber_v1_weekend",
+   "trials": 248,
+   "gamma_X1_to_Xell_minus_1": [
+    79,
+    202,
+    7,
+    464,
+    170,
+    500,
+    227,
+    736,
+    65,
+    468,
+    927,
+    885,
+    709,
+    870,
+    296,
+    109,
+    433,
+    1
+   ],
+   "gamma_provenance": "best_record gamma from session file ell19_bigfiber_results_FINAL.json",
+   "recomputed_E3": 17,
+   "recomputed_top10": 37,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 17,
+     "trials": 248,
+     "tested_gammas": 398
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 4592,
+     "tested_gammas": 73472,
+     "max_E3_seen": 14
+    },
+    "bigfiber_v2b_close_session": {
+     "E3": 17,
+     "trials": 1670,
+     "tested_gammas": 2355
+    }
+   }
+  },
+  {
+   "p": 1217,
+   "n_cosets": 64,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v1_weekend": {
+     "E3": 16,
+     "trials": 245,
+     "tested_gammas": 335
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 4154,
+     "tested_gammas": 66465,
+     "max_E3_seen": 14
+    }
+   }
+  },
+  {
+   "p": 1483,
+   "n_cosets": 78,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 3357,
+     "tested_gammas": 53713,
+     "max_E3_seen": 13
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 322,
+     "tested_gammas": 442
+    }
+   }
+  },
+  {
+   "p": 1559,
+   "n_cosets": 82,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "twofiber_weekend": {
+     "E3": null,
+     "trials": 3115,
+     "tested_gammas": 49841,
+     "max_E3_seen": 13
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 391,
+     "tested_gammas": 516
+    }
+   }
+  },
+  {
+   "p": 1597,
+   "n_cosets": 84,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 410,
+     "tested_gammas": 540
+    }
+   }
+  },
+  {
+   "p": 1787,
+   "n_cosets": 94,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 270,
+     "tested_gammas": 370
+    }
+   }
+  },
+  {
+   "p": 1901,
+   "n_cosets": 100,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 175,
+     "tested_gammas": 275
+    }
+   }
+  },
+  {
+   "p": 2053,
+   "n_cosets": 108,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 203,
+     "tested_gammas": 288
+    }
+   }
+  },
+  {
+   "p": 2129,
+   "n_cosets": 112,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 214,
+     "tested_gammas": 304
+    }
+   }
+  },
+  {
+   "p": 2243,
+   "n_cosets": 118,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 184,
+     "tested_gammas": 234
+    }
+   }
+  },
+  {
+   "p": 2281,
+   "n_cosets": 120,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 131,
+     "tested_gammas": 211
+    }
+   }
+  },
+  {
+   "p": 2357,
+   "n_cosets": 124,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    },
+    "bigfiber_v2_session": {
+     "E3": 16,
+     "trials": 204,
+     "tested_gammas": 269
+    }
+   }
+  },
+  {
+   "p": 2699,
+   "n_cosets": 142,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 2851,
+   "n_cosets": 150,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 2927,
+   "n_cosets": 154,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 3041,
+   "n_cosets": 160,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 3079,
+   "n_cosets": 162,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 3307,
+   "n_cosets": 174,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 3877,
+   "n_cosets": 204,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4219,
+   "n_cosets": 222,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4409,
+   "n_cosets": 232,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4447,
+   "n_cosets": 234,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4523,
+   "n_cosets": 238,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4561,
+   "n_cosets": 240,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4637,
+   "n_cosets": 244,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4751,
+   "n_cosets": 250,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4789,
+   "n_cosets": 252,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 4903,
+   "n_cosets": 258,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  },
+  {
+   "p": 5701,
+   "n_cosets": 300,
+   "eligible_m10_listing": true,
+   "claimed_max_E3": 16,
+   "source": "concentrated_gamma_closedform",
+   "trials": 1,
+   "gamma_X1_to_Xell_minus_1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "gamma_provenance": "universal concentrated-floor gamma_r=1 for all r (proof: note sec 4a)",
+   "recomputed_E3": 16,
+   "recomputed_top10": 27,
+   "self_check_E3_matches_claim": true,
+   "search_methods": {
+    "concentrated_gamma_closedform": {
+     "E3": 16,
+     "trials": 1,
+     "note": "closed-form, zero variance"
+    }
+   }
+  }
+ ],
+ "coverage_rows_summary": {
+  "n_primes_total": 36,
+  "n_eligible_m10_listing": 34,
+  "all_rows_have_stored_gamma": true,
+  "all_rows_self_check_E3_matches_claim": true
+ }
+}

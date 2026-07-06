@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - L1 ell=19 attainment: m*(19)=10 at p=647
+
+- **Agent/model:** Claude Fable 5 (PI) + Sonnet/Opus lane agents.
+- **Files added or changed:** `experimental/notes/l1/l1_ell19_attainment.md`;
+  `experimental/data/certificates/l1-ell19/l1_ell19_witnesses.json`;
+  `experimental/scripts/verify_l1_ell19_attainment.py`;
+  `experimental/scripts/l1_ell19_bigfiber_v2.py`; `experimental/agents-log.md`.
+- **Status:** WITNESS / AUDIT / PROVED-LOCAL.
+- **What is being added:** Two full 16-gate `run_witness_chain` listings at
+  `ell=19, p=647`: the headline `m=10=(ell+1)/2` witness (`E_3=18`) and a
+  companion `m=11=(ell+3)/2` witness (`E_3=17`) at the same prime, resolving
+  the integrated note's last open `ell=19` attainment row ("`m=10` listing
+  OPEN") positively. Also two PROVED-LOCAL structural floors of the plant
+  family (concentrated `K=1`, `gamma_r=1`, gives `E_3=16` at every
+  admissible prime with zero variance; rank-cap-saturating `K=2` plants give
+  `E_3=15` identically, independent of the split) explaining why shallow
+  passes plateau below the new witness, plus an AUDIT of the prior nulls as
+  a search-depth artifact (deepened constructor's `E_3` histogram over 3005
+  exact-solved plants at `p=647`: `E_3=18` at ~1/3000 per trial).
+- **How it is useful:** Completes the attainment half of
+  `m*(ell)=(ell+1)/2` at every tested `ell in {11,13,17,19,23}` (previously
+  four of five), with no exceptional prime. The companion verifier is
+  self-contained (fresh spectrum computation in two independent
+  implementations, plus a fresh port of the 16-gate `run_witness_chain`
+  logic -- no runtime import of any sibling verifier) and the companion
+  engine deterministically re-derives the `p=647` discovery from the
+  shipped seed (`seed_base=314159265`, trials `1..2240`), not a replay of
+  stored coefficients.
+- **What to do next:** The vacancy half (equality `m*(19)=10`, not just
+  `<=10`) remains exactly as conditional as at every other attained `ell`:
+  on the sigma-calculus covered chart (`T<=4`) it is theorem-backed, but a
+  concurrent companion PR refutes the broader `E_3<=ell` law at `T>=5`
+  (RC), so no unconditional vacancy claim is made here. Deeper coverage at
+  the 25 shallow primes of this note's sec 3 (currently closed-form-plus-
+  shallow-pass only) is optional and not required for the shipped claims.
+
 ### 2026-07-06 - Threshold and F1 audit PR integration
 
 - **Agent/model:** DannyExperiments via PRs #352 and #354; Latif Kasuli via
