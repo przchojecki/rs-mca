@@ -1,0 +1,778 @@
+{
+  "base_commit": "d254f80d22a707863715668b0700776996a455e5",
+  "beats_trivial_baseline": false,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": false,
+    "claims_no_method_can_reach": false,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": false,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "proves_prob_band_undecidable": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "determinism": "deterministic exhaustive finite rows; no random seed",
+  "evidence_type": "FULL_FINITE_CENSUS",
+  "incidence_rows": [
+    {
+      "basis_locators": [
+        [
+          15,
+          8,
+          16,
+          11,
+          1
+        ],
+        [
+          15,
+          15,
+          1,
+          7,
+          1
+        ]
+      ],
+      "census_value": 2,
+      "common_root_count": 0,
+      "common_roots": [],
+      "dim2_bound": null,
+      "domain": {
+        "elements": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ],
+        "n": 16,
+        "type": "mu_n"
+      },
+      "examples": [
+        {
+          "locator": [
+            15,
+            8,
+            16,
+            11,
+            1
+          ],
+          "roots": [
+            1,
+            3,
+            9,
+            10
+          ]
+        },
+        {
+          "locator": [
+            15,
+            15,
+            1,
+            7,
+            1
+          ],
+          "roots": [
+            13,
+            5,
+            15,
+            11
+          ]
+        }
+      ],
+      "field": "F_17",
+      "fixed_dim_bound": 16,
+      "fixed_dim_theorem": "thm:v13-fixeddim",
+      "j": 4,
+      "name": "F17_mu16_j4_d1",
+      "projective_dimension_d": 1,
+      "respects_dim2_bound": null,
+      "respects_fixed_dim_bound": true,
+      "type": "fixed_dimension_locator_incidence"
+    },
+    {
+      "basis_locators": [
+        [
+          15,
+          8,
+          16,
+          11,
+          1
+        ],
+        [
+          15,
+          15,
+          1,
+          7,
+          1
+        ],
+        [
+          11,
+          10,
+          4,
+          8,
+          1
+        ]
+      ],
+      "census_value": 15,
+      "common_root_count": 0,
+      "common_roots": [],
+      "dim2_bound": {
+        "denominator": 3,
+        "floor": 40,
+        "numerator": 120,
+        "statement": "thm:v13-dim2 general projective-plane pair bound"
+      },
+      "domain": {
+        "elements": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ],
+        "n": 16,
+        "type": "mu_n"
+      },
+      "examples": [
+        {
+          "locator": [
+            15,
+            8,
+            16,
+            11,
+            1
+          ],
+          "roots": [
+            1,
+            3,
+            9,
+            10
+          ]
+        },
+        {
+          "locator": [
+            11,
+            10,
+            4,
+            8,
+            1
+          ],
+          "roots": [
+            1,
+            3,
+            9,
+            13
+          ]
+        }
+      ],
+      "field": "F_17",
+      "fixed_dim_bound": 120,
+      "fixed_dim_theorem": "thm:v13-fixeddim",
+      "j": 4,
+      "name": "F17_mu16_j4_d2",
+      "projective_dimension_d": 2,
+      "respects_dim2_bound": true,
+      "respects_fixed_dim_bound": true,
+      "type": "fixed_dimension_locator_incidence"
+    },
+    {
+      "basis_locators": [
+        [
+          15,
+          8,
+          16,
+          11,
+          1
+        ],
+        [
+          15,
+          15,
+          1,
+          7,
+          1
+        ],
+        [
+          11,
+          10,
+          4,
+          8,
+          1
+        ],
+        [
+          16,
+          6,
+          4,
+          7,
+          1
+        ]
+      ],
+      "census_value": 153,
+      "common_root_count": 0,
+      "common_roots": [],
+      "dim2_bound": null,
+      "domain": {
+        "elements": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ],
+        "n": 16,
+        "type": "mu_n"
+      },
+      "examples": [
+        {
+          "locator": [
+            15,
+            8,
+            16,
+            11,
+            1
+          ],
+          "roots": [
+            1,
+            3,
+            9,
+            10
+          ]
+        },
+        {
+          "locator": [
+            11,
+            10,
+            4,
+            8,
+            1
+          ],
+          "roots": [
+            1,
+            3,
+            9,
+            13
+          ]
+        }
+      ],
+      "field": "F_17",
+      "fixed_dim_bound": 560,
+      "fixed_dim_theorem": "thm:v13-fixeddim",
+      "j": 4,
+      "name": "F17_mu16_j4_d3",
+      "projective_dimension_d": 3,
+      "respects_dim2_bound": null,
+      "respects_fixed_dim_bound": true,
+      "type": "fixed_dimension_locator_incidence"
+    },
+    {
+      "basis_locators": [
+        [
+          64,
+          86,
+          66,
+          2,
+          72,
+          1
+        ],
+        [
+          70,
+          49,
+          81,
+          66,
+          62,
+          1
+        ],
+        [
+          27,
+          47,
+          28,
+          76,
+          15,
+          1
+        ],
+        [
+          22,
+          92,
+          64,
+          92,
+          20,
+          1
+        ],
+        [
+          79,
+          20,
+          38,
+          96,
+          57,
+          1
+        ]
+      ],
+      "census_value": 390,
+      "common_root_count": 0,
+      "common_roots": [],
+      "dim2_bound": null,
+      "domain": {
+        "elements": [
+          1,
+          8,
+          64,
+          27,
+          22,
+          79,
+          50,
+          12,
+          96,
+          89,
+          33,
+          70,
+          75,
+          18,
+          47,
+          85
+        ],
+        "n": 16,
+        "type": "mu_n"
+      },
+      "examples": [
+        {
+          "locator": [
+            64,
+            86,
+            66,
+            2,
+            72,
+            1
+          ],
+          "roots": [
+            1,
+            8,
+            64,
+            27,
+            22
+          ]
+        },
+        {
+          "locator": [
+            27,
+            47,
+            28,
+            76,
+            15,
+            1
+          ],
+          "roots": [
+            1,
+            8,
+            64,
+            27,
+            79
+          ]
+        }
+      ],
+      "field": "F_97",
+      "fixed_dim_bound": 1820,
+      "fixed_dim_theorem": "thm:v13-fixeddim",
+      "j": 5,
+      "name": "F97_mu16_j5_d4",
+      "projective_dimension_d": 4,
+      "respects_dim2_bound": null,
+      "respects_fixed_dim_bound": true,
+      "type": "fixed_dimension_locator_incidence"
+    },
+    {
+      "basis_locators": [
+        [
+          12,
+          10,
+          5,
+          11,
+          1
+        ],
+        [
+          10,
+          10,
+          6,
+          7,
+          1
+        ],
+        [
+          11,
+          2,
+          9,
+          3,
+          1
+        ]
+      ],
+      "census_value": 10,
+      "common_root_count": 0,
+      "common_roots": [],
+      "dim2_bound": {
+        "denominator": 3,
+        "floor": 22,
+        "numerator": 66,
+        "statement": "thm:v13-dim2 general projective-plane pair bound"
+      },
+      "domain": {
+        "elements": [
+          1,
+          2,
+          4,
+          8,
+          3,
+          6,
+          12,
+          11,
+          9,
+          5,
+          10,
+          7
+        ],
+        "n": 12,
+        "type": "mu_n"
+      },
+      "examples": [
+        {
+          "locator": [
+            12,
+            10,
+            5,
+            11,
+            1
+          ],
+          "roots": [
+            1,
+            2,
+            4,
+            8
+          ]
+        },
+        {
+          "locator": [
+            11,
+            2,
+            9,
+            3,
+            1
+          ],
+          "roots": [
+            1,
+            2,
+            4,
+            3
+          ]
+        }
+      ],
+      "field": "F_13",
+      "fixed_dim_bound": 66,
+      "fixed_dim_theorem": "thm:v13-fixeddim",
+      "j": 4,
+      "name": "F13_mu12_j4_d2",
+      "projective_dimension_d": 2,
+      "respects_dim2_bound": true,
+      "respects_fixed_dim_bound": true,
+      "type": "fixed_dimension_locator_incidence"
+    },
+    {
+      "basis_locators": [
+        [
+          9,
+          13,
+          4,
+          9,
+          15,
+          1
+        ],
+        [
+          7,
+          3,
+          10,
+          14,
+          16,
+          1
+        ],
+        [
+          10,
+          9,
+          13,
+          12,
+          6,
+          1
+        ]
+      ],
+      "census_value": 24,
+      "common_root_count": 2,
+      "common_roots": [
+        1,
+        3
+      ],
+      "domain": {
+        "elements": [
+          1,
+          3,
+          9,
+          10,
+          13,
+          5,
+          15,
+          11,
+          16,
+          14,
+          8,
+          7,
+          4,
+          12,
+          2,
+          6
+        ],
+        "n": 16,
+        "type": "mu_n"
+      },
+      "examples": [
+        {
+          "locator": [
+            9,
+            13,
+            4,
+            9,
+            15,
+            1
+          ],
+          "roots": [
+            1,
+            3,
+            9,
+            10,
+            13
+          ]
+        },
+        {
+          "locator": [
+            10,
+            9,
+            13,
+            12,
+            6,
+            1
+          ],
+          "roots": [
+            1,
+            3,
+            9,
+            10,
+            5
+          ]
+        }
+      ],
+      "field": "F_17",
+      "fixed_dim_theorem": "thm:v13-fixeddim common-root refinement",
+      "j": 5,
+      "name": "F17_mu16_j5_d2_common_root_refinement",
+      "projective_dimension_d": 2,
+      "refined_fixed_dim_bound": 91,
+      "respects_refined_bound": true,
+      "type": "common_root_fixed_dimension_refinement"
+    }
+  ],
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": true,
+  "moment_rows": [
+    {
+      "domain": {
+        "elements": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "n": 4,
+        "type": "mu_n"
+      },
+      "field": "F_5",
+      "histogram_N_A": {
+        "0": 3125,
+        "3": 50000,
+        "4": 37500,
+        "5": 225000,
+        "6": 75000
+      },
+      "j": 2,
+      "locator_count": 6,
+      "matches_first_moment": true,
+      "matches_second_moment": true,
+      "name": "F5_mu4_j2_t1",
+      "observed_first_moment": {
+        "decimal": "4.8",
+        "denominator": 5,
+        "numerator": 24
+      },
+      "observed_second_moment": {
+        "decimal": "24",
+        "denominator": 1,
+        "numerator": 24
+      },
+      "scope_label": "rem:v13-moment-scope",
+      "t": 1,
+      "theorem_first_moment": {
+        "decimal": "4.8",
+        "denominator": 5,
+        "numerator": 24
+      },
+      "theorem_labels": [
+        "thm:v13-first-moment",
+        "thm:v13-second-moment"
+      ],
+      "theorem_second_moment": {
+        "decimal": "24",
+        "denominator": 1,
+        "numerator": 24
+      },
+      "type": "random_pair_alignment_moment",
+      "word_count": 625,
+      "word_pair_count": 390625
+    },
+    {
+      "domain": {
+        "elements": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "n": 4,
+        "type": "mu_n"
+      },
+      "field": "F_5",
+      "histogram_N_A": {
+        "0": 128625,
+        "1": 165120,
+        "2": 31680,
+        "3": 44880,
+        "4": 17280,
+        "5": 480,
+        "6": 2560
+      },
+      "j": 2,
+      "locator_count": 6,
+      "matches_first_moment": true,
+      "matches_second_moment": true,
+      "name": "F5_mu4_j2_t2",
+      "observed_first_moment": {
+        "decimal": "1.152",
+        "denominator": 125,
+        "numerator": 144
+      },
+      "observed_second_moment": {
+        "decimal": "2.755584",
+        "denominator": 15625,
+        "numerator": 43056
+      },
+      "scope_label": "rem:v13-moment-scope",
+      "t": 2,
+      "theorem_first_moment": {
+        "decimal": "1.152",
+        "denominator": 125,
+        "numerator": 144
+      },
+      "theorem_labels": [
+        "thm:v13-first-moment",
+        "thm:v13-second-moment"
+      ],
+      "theorem_second_moment": {
+        "decimal": "2.755584",
+        "denominator": 15625,
+        "numerator": 43056
+      },
+      "type": "random_pair_alignment_moment",
+      "word_count": 625,
+      "word_pair_count": 390625
+    }
+  ],
+  "proof_status": "EXPERIMENTAL / SCOPE-MAP",
+  "reproduction_commands": [
+    "py -3.13 experimental/scripts/verify_finite_reachability_map.py --emit-defaults",
+    "py -3.13 experimental/scripts/verify_finite_reachability_map.py --check experimental/data/certificates/finite-reachability-map/finite_reachability_map.json",
+    "py -3.13 experimental/scripts/verify_finite_reachability_map_check.py --check experimental/data/certificates/finite-reachability-map/finite_reachability_map.json"
+  ],
+  "schema": "finite_reachability_map_v1",
+  "scope_boundary": {
+    "asymptotically_open_layer": "The residual problem named by rem:v13-conjf-open and prob:band is the growing-dimensional, worst-case aperiodic band regime.",
+    "collapse_statement": "A fixed-parameter finite census can confirm the cited proved bounds or expose a finite mismatch in its own row; the rows below demonstrate the confirmation ceiling and do not reach the growing-dimensional open layer.",
+    "fixed_parameter_layer": "The incidence and moment rows here have fixed n, j, d, t, or common-root data and therefore only test quantities already governed by the cited fixed-parameter theorems."
+  },
+  "script_sha256": "5b431aeaf4e6d887e5bc003456e85647309ed92cb5dfade2e590dca85ca0d13f",
+  "statement_pins": [
+    {
+      "label": "thm:v13-fixeddim",
+      "proof_lemma_labels": [
+        "lem:v13-gcd",
+        "lem:v13-quot-pullback",
+        "lem:v13-dim1",
+        "thm:v13-dim2"
+      ],
+      "source": "experimental/cap25_v13_experimental.tex",
+      "statement": "For W <= K[X]_{<=j} of vector-space dimension d+1, gcd-trivial on H and 0 <= d <= j, |PP(W) cap Dloc_j(H)| <= binom(|H|, d); with common root set C0 the bound refines to binom(|H|-|C0|, d)."
+    },
+    {
+      "label": "thm:v13-dim2",
+      "proof_lemma_labels": [
+        "lem:v13-concurrency"
+      ],
+      "source": "experimental/cap25_v13_experimental.tex",
+      "statement": "Under hyperplane concurrency, projective planes obey |PP(W) cap Dloc_j(H)| <= binom(|H|,2)/(j-1), with a sharper denominator binom(j,2) when evaluation lines are pairwise distinct."
+    },
+    {
+      "label": "thm:v13-first-moment",
+      "source": "experimental/cap25_v13_experimental.tex",
+      "statement": "For random independent words, E N_A = binom(n,j) (1-q^{-t}) q^{1-t}."
+    },
+    {
+      "label": "thm:v13-second-moment",
+      "source": "experimental/cap25_v13_experimental.tex",
+      "statement": "For ordered locator pairs grouped by overlap c, E N_A^2 is the displayed sum with h(c)=max(0,t-j+c) and probability P_h."
+    },
+    {
+      "label": "rem:v13-conjf-open",
+      "source": "experimental/cap25_v13_experimental.tex",
+      "statement": "The primitive Conjecture-F core is dimension-growing; fixed-dimensional strata are paid by thm:v13-fixeddim, while the growing-dimensional incidence theorem needed for the aperiodic band remains open."
+    },
+    {
+      "label": "prob:band",
+      "source": "tex/cs25_cap_v12.tex",
+      "statement": "In the open band, bound the number of MCA-bad finite slopes whose witness supports are aperiodic by a polynomial P independent of q, or refute that statement."
+    }
+  ],
+  "status": "PASS",
+  "theorem_problem_id": "prob:band fixed-parameter reachability map"
+}

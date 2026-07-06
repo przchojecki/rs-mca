@@ -58,6 +58,26 @@ Keep entries concise and link to the relevant files.
   evidence, not a board-ready MCA/list claim, and keep all v13/v14 adjacent
   rows experimental until the safe upper ledgers are printed and replayed.
 
+### 2026-07-06 - Finite reachability map for prob:band
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_finite_reachability_map.py`,
+  `experimental/scripts/verify_finite_reachability_map_check.py`,
+  `experimental/data/certificates/finite-reachability-map/finite_reachability_map.json`,
+  `experimental/notes/m1/finite_reachability_map.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / SCOPE-MAP.
+- **What is being added:** A fixed-parameter reachability map for the
+  finite-census method: the script exhausts small locator-incidence and
+  random-pair moment rows and checks that each sits under the cited proved
+  v13 fixed-parameter theorem.
+- **How it is useful:** It records this method boundary in a reproducible packet: fixed-dimension
+  and fixed-row censuses confirm proved bounds, while the named open layer of
+  `prob:band` is the growing-dimensional, worst-case aperiodic regime.
+- **What to do next:** Use this scope check before adding more fixed-dimension
+  censuses; new finite packets should either test a canonical finite claim or
+  change the object to the growing-dimensional regime.
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by
