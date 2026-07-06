@@ -1,0 +1,142 @@
+{
+  "deployed_translation": {
+    "adjacent_open_t_values": {
+      "KoalaBear MCA": 67472,
+      "KoalaBear list": 67471,
+      "M31 MCA": 67448,
+      "M31 list": 67447
+    },
+    "all_adjacent_open_rows_have_t_at_least_2": true,
+    "source": "frontier-adjacent/f1_effective_slack_translation_v1.json"
+  },
+  "interpretation": "The simple-pole pencil's t>=2 branch is explained by a degree/root obstruction, not by a finite-field accident.  The t=1 branch is sharp because the same root-count argument is exactly one root short of contradiction.",
+  "non_claims": [
+    "does not prove paid_extension(a) is safe",
+    "does not classify all genuinely F-valued received pairs",
+    "does not rule out t>=2 growth for a different F-valued pencil",
+    "does not close the frontier-adjacent extension cell",
+    "does not resolve Q/BC/SP residuals in CAP25 v13"
+  ],
+  "proof_steps": [
+    {
+      "claim": "If such P and gamma exist, then R(X)=(X-beta)P(X) - gamma*(X-beta)*X^k - 1 vanishes on S.",
+      "id": "multiply_out_denominator",
+      "status": "PROVED"
+    },
+    {
+      "claim": "Since deg(P)<k, deg R <= k+1 unless R is zero; the highest possible term is -gamma*X^(k+1).",
+      "id": "degree_bound",
+      "status": "PROVED"
+    },
+    {
+      "claim": "|S|=k+t>=k+2, so R has more roots than its degree bound; therefore R is the zero polynomial.",
+      "id": "root_count",
+      "status": "PROVED"
+    },
+    {
+      "claim": "The X^(k+1) coefficient of R is -gamma, so R=0 forces gamma=0.",
+      "id": "top_coefficient_forces_gamma_zero",
+      "status": "PROVED"
+    },
+    {
+      "claim": "With gamma=0, R=(X-beta)P(X)-1. Evaluating the polynomial identity R=0 at X=beta gives -1=0, impossible in a field.",
+      "id": "evaluate_at_pole_contradiction",
+      "status": "PROVED"
+    }
+  ],
+  "scanner_cross_checks": {
+    "source": "frontier-adjacent/f1_full_orbit_scan_v1.json",
+    "t_eq_1_growth_rows": [
+      {
+        "has_nonzero_full_count": true,
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            7,
+            15
+          ]
+        ],
+        "shape": "chain",
+        "t": 1,
+        "table": "chain_t1",
+        "verdict": "GROWING -> FALSIFIER SIGNAL (full_count scales roughly with p0; COUNTEREXAMPLE_NEW_FLOOR candidate)"
+      },
+      {
+        "has_nonzero_full_count": true,
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "shape": "diamond",
+        "t": 1,
+        "table": "diamond_t1",
+        "verdict": "GROWING -> FALSIFIER SIGNAL (full_count scales roughly with p0; COUNTEREXAMPLE_NEW_FLOOR candidate)"
+      }
+    ],
+    "t_ge_2_zero_rows": [
+      {
+        "all_feasible_full_counts_zero": true,
+        "feasible_points": [
+          [
+            5,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "shape": "chain",
+        "t": 2,
+        "table": "chain_t2"
+      },
+      {
+        "all_feasible_full_counts_zero": true,
+        "feasible_points": [
+          [
+            5,
+            0
+          ]
+        ],
+        "shape": "diamond",
+        "t": 2,
+        "table": "diamond_t2"
+      }
+    ]
+  },
+  "schema": "f1-simple-pole-tge2-obstruction-v1",
+  "statement": {
+    "assumptions": [
+      "F is any field containing the domain values",
+      "S is a support with beta not in S",
+      "k >= 1",
+      "t >= 2",
+      "|S| = k + t",
+      "P is required to have degree < k"
+    ],
+    "conclusion": "There is no slope gamma and no degree-<k polynomial P with P(x)=1/(x-beta)+gamma*x^k for every x in S.",
+    "pencil": "f_beta(x)=1/(x-beta), g(x)=x^k"
+  },
+  "status": "PROVED_FOR_SIMPLE_POLE_PENCIL__AUDIT"
+}

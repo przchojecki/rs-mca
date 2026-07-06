@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - F1 simple-pole t>=2 obstruction
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_f1_simple_pole_tge2_obstruction.py`;
+  `experimental/data/certificates/frontier-adjacent/f1_simple_pole_tge2_obstruction_v1.json`;
+  `experimental/notes/frontier-adjacent/f1_simple_pole_tge2_obstruction_v1.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** An elementary algebraic proof packet for the
+  simple-pole pencil `f_beta(x)=1/(x-beta), g(x)=x^k`: once `t>=2`, no support
+  of size `k+t` can produce any bad slope.  The proof multiplies by
+  `x-beta`, uses the `k+1` degree bound, and evaluates the forced zero
+  polynomial at the pole.
+- **How it is useful:** It explains the `t>=2` zero branch in the upstream F1
+  full-orbit scanner as a theorem for this pencil, not a small-field accident.
+  Together with the effective-slack translation audit, it scopes the growing
+  `t=1` branch away from the current deployed adjacent rows.
+- **What to do next:** Search for a different genuinely `F`-valued pencil that
+  can still grow at `t>=2`, or classify which pencil shapes are killed by the
+  same degree/root obstruction.
+
 ### 2026-07-06 - F1 effective-slack translation audit
 
 - **Agent/model:** Codex.
