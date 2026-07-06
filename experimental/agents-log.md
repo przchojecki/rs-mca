@@ -30,6 +30,59 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - L1 vacancy band refuted at ell=19 (m*(19)<=9, p=571)
+
+- **Agent/model:** Claude Fable 5 (PI) + Sonnet/Opus lane agents.
+- **Files added or changed:** `experimental/notes/l1/l1_ell19_band_refuted.md`;
+  `experimental/data/certificates/l1-ell19/l1_ell19_band_witness.json`;
+  `experimental/scripts/verify_l1_ell19_band_refuted.py`;
+  `experimental/scripts/l1_ell19_triple_tally.py`; `experimental/agents-log.md`.
+- **Status:** WITNESS / COUNTEREXAMPLE / AUDIT / EXPERIMENTAL.
+- **What is being added:** A new, standalone note superseding two claims of
+  already-integrated L1 notes, via one explicit, listing-eligible, full
+  16-gate witness (`ell=19, p=571, m=9=(ell-1)/2`, spectrum
+  `[16,3^6,2^6,1^17]`, `E_3=20=ell+1`, `top-9=38=2*ell`): (1) the
+  `m*(19)=10` / "vacancy half stands" framing of
+  `experimental/notes/l1/l1_ell19_attainment.md` (its own `m=10`/`m=11`
+  witnesses SURVIVE unchanged as earlier attainment-ladder rungs); (2) the
+  named falsifier of `experimental/notes/l1/l1_e3_law_refuted.md` sec 4
+  ("a listing-eligible witness with `E_3=ell+2` ... would refute the
+  vacancy band outright") -- attained, and REFINED: `top-m>=2ell` is the
+  true requirement, `E_3=ell+1` (not `ell+2`) suffices given two extra
+  size-2 fibers. Also includes the general key-reduction formula behind
+  the discovery (`top-m=2*ell-6+a` at `m=(ell-1)/2` for a planted
+  size-`(ell-3)` fiber; crossing iff `a>=6`), with honest EXPERIMENTAL
+  coverage across `ell in {17,19,23}` (max `a` observed: 5, 6, 5
+  respectively -- only `ell=19` crosses, uniquely at `p=571`).
+- **How it is useful:** Tightens the `ell=19` frontier bound from
+  `m*(19)<=10` to `m*(19)<=9` and, for the first time in this program,
+  refutes (rather than merely questions) the vacancy half of
+  `m*(ell)=(ell+1)/2` at a specific `ell`. Ground rule strictly honored:
+  neither integrated note nor its verifier is edited or imported; both
+  were manually re-run unmodified at packaging time and confirmed to
+  still exit 0 (see this PR's shipping commit message for the exact
+  output). The new verifier is fully self-contained (fresh spectrum
+  computation in two independent implementations, a fresh port of the
+  16-gate `run_witness_chain`, and an independent reduction-formula
+  recompute) and the companion engine deterministically and exhaustively
+  (no seed) re-derives the `p=571` hit from the plant alone, confirming
+  it is the UNIQUE maximum among 26,874 distinct family members tallied.
+- **What to do next:** `m*(19)` itself remains open in `{8,9}` (`top-8=36`
+  for this `gamma` only, not a proof of vacancy at `m=8` for every
+  `gamma`); the vacancy band at `ell in {17,23}` remains open too (deepest
+  triple-tally coverage there caps at `top-m=2ell-1`, one below crossing,
+  over 24+1(exhaustive) and 6 primes respectively -- far from exhaustive
+  over all admissible primes, so a crossing at an untested prime is not
+  excluded). Also flagged for a human triager, not resolved here: a
+  separate, concurrently-integrated contribution
+  (`experimental/notes/l1/l1_e3_status_and_paper_connection.md` and its
+  `l1_e3_*` siblings, same integration commit `0fa9427`) frames the OLDER
+  `E_3<=ell-2` ceiling as OPEN, in apparent tension with
+  `l1_prime_ell_key_lemma_refuted.md`'s own COUNTEREXAMPLE-status claim
+  that `E_3<=ell-2` is FALSE with explicit witnesses -- worth a
+  reconciliation pass since both are now sitting in the integrated tree
+  side by side.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
