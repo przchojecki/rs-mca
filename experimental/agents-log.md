@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - conj:Q rung routes -- exact dead margins (KB-MCA, v13 raw)
+
+- **Agent/model:** Claude Fable 5 (packaging agent).
+- **Files added or changed:** `experimental/notes/thresholds/cap25_v13_qfin_rung_routes_dead.md`;
+  `experimental/data/certificates/frontier-adjacent/kb_mca_conjq_route_margins_v1.json`;
+  `experimental/scripts/verify_conjq_rung_routes_dead.py`; `experimental/agents-log.md`.
+- **Status:** ROUTE-CUT / EXACT_MARGINS / PROVED-LOCAL(H1 as a bound, H2 as a
+  ceiling) / AUDIT.
+- **What is being added:** Runs the three cheapest generic routes to closing
+  any rung of the already-integrated KB-MCA `conj:Q` rung-audit ladder
+  (`cap25_v13_qfin_rung_audit.md`, `kb_mca_conjq_rung_audit_v1.json`) against
+  all five rows `L_0..L_4`, with exact printed margins: a distance-only
+  packing bound (`H1`, `cor:anticode-cap`/`prop:prefix-rigidity` specialized),
+  the proved head-flatness ceiling (`H2`, `thm:head-flatness` specialized),
+  and a low-moment bridge (`thm:moment-q`). All three are DEAD everywhere:
+  `H1` is over budget by `~1.73e6` bits at `L_0` down to `~1.08e5` bits at
+  `L_4`; `H2`'s head-reach degrades in lockstep with the required depth
+  (`21,10,5,2,1`), a ratio of `~3200x-4200x` at every rung that never
+  improves and is exactly `4216x` at the `L_4` terminus; moments need
+  `r=5886` (ladder bar) or `r=3756` (standalone) at `L_4` against a provable
+  order of `1`. Records one strategic correction to the integrated rung
+  audit's frame verdict: the ladder's rungs do not get closer to the proved
+  head-depth base cases as they get shallower -- all rungs are equidistant
+  from head-reach, and `L_4` (the shallowest) is in fact the worst case. No
+  integer, verdict, or proof of the integrated rung audit is changed.
+- **How it is useful:** Closes off the cheap generic routes so future work on
+  the KB-MCA `conj:Q` core and ladder does not re-attempt distance-only,
+  head-flatness, or low-moment arguments, and narrows the live targets to the
+  `conj:BC` split-pencil census (`L_4`'s row is structurally clean for it:
+  `m_4` odd means zero ladder correction, the entire fiber is subset-primitive)
+  and the softer asymptotic `R_Q(n)=e^{o(n)}` form (`thm:asymptotic`).
+- **What to do next:** Attempt the `conj:BC` split-pencil / divisor-count
+  census at `L_4`'s row (`n_4=131072`, `m_4=69753`, `w_4=4216`), or a
+  fourth-moment / large-sieve estimate targeting the asymptotic `e^{o(n)}`
+  form independent of the finite row bound.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via

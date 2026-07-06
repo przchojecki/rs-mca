@@ -1,0 +1,356 @@
+{
+ "schema_source": "grande_finale.tex \\label{conj:Q} (+ cor:anticode-cap, prop:prefix-rigidity, thm:head-flatness, cor:head-q, rem:head-does-not-close-q, thm:moment-q); packet-extension for experimental/data/certificates/frontier-adjacent/kb_mca_conjq_rung_audit_v1.json (adds a NEW sibling file; that JSON is NOT modified)",
+ "wall_id": "CAP25-V13-QFIN-PRIMITIVE-MAX-ORBIT-FLATNESS-KB-MCA-1116048",
+ "deliverable_name": "conj:Q rung routes -- exact dead margins for the three cheap closure routes at the KB-MCA v13 raw row (1116047,1116048)",
+ "companion_note": "experimental/notes/thresholds/cap25_v13_qfin_rung_routes_dead.md",
+ "companion_verifier": "experimental/scripts/verify_conjq_rung_routes_dead.py",
+ "status": "ROUTE-CUT / EXACT_MARGINS / PROVED-LOCAL(H1 as a bound, H2 as a ceiling) / AUDIT. Does NOT prove or refute conj:Q; does NOT move the frontier edge; does NOT alter any verdict of kb_mca_conjq_rung_audit_v1.json.",
+ "cross_refs": {
+  "conj:Q": "prefix flatness (grande_finale.tex \\label{conj:Q}); this packet shows three cheap routes to it are all dead with exact margins, at the same 5-rung ladder kb_mca_conjq_rung_audit_v1.json already charges",
+  "cor:anticode-cap": "the packing bound |Fib_w(z)| <= C(n,m-w)/C(m,w) (PROVED in grande_finale.tex, itself a corollary of prop:prefix-rigidity); H1 below is this bound specialized to the 5-rung ladder plus its exact margin computation -- not a new theorem",
+  "prop:prefix-rigidity": "distinct fiber members have |M\\M'| >= w+1 (PROVED); the source rigidity fact behind cor:anticode-cap",
+  "thm:head-flatness": "proved head-depth prefix flatness at the Weil sqrt(p) scale (PROVED); H2 below is this theorem specialized (ell=0) and solved exactly for w_head per rung -- not a new theorem",
+  "cor:head-q": "the solved head of Q, w<=21 at the deployed row (PROVED); H2's w_head(L_0)=21 matches this to the integer",
+  "rem:head-does-not-close-q": "why Q remains open: one sqrt(p) loss per active power-sum direction, reaching only w=21-22 while the frontier needs w~67466 -- this packet's H2 ladder table is the per-rung quantification of exactly this remark",
+  "thm:moment-q": "moment criterion R<=exp((A+B)/r); the moment-route section's r=ceil(w log2 p / Delta) is thm:moment-q specialized to the optimistic case log2(Gamma_r)~0",
+  "conj:BC": "split-pencil census (\\label{conj:BC}); the only live lever identified here (Sec 4 / live_targets below); not touched, not advanced",
+  "thm:asymptotic": "asymptotic closure from Q, BC, SP in their e^{o(n)} forms (\\label{thm:asymptotic}); conj:Q's own text states R_Q(n)=e^{o(n)} suffices asymptotically -- the softer target noted as still live (Sec 4 / live_targets below)",
+  "kb_mca_conjq_rung_audit_v1.json": "the 5-rung ladder (n_s,m_s,w_s), the descent identity (D), and K_raw=4807520 are REUSED verbatim from this already-integrated, already-verified sibling packet; not recomputed independently for the ladder shape, only for the route margins below"
+ },
+ "row": {
+  "F": "F_{p^6}, p = 2^31-2^24+1 = 2130706433 (KoalaBear prime), sextic extension",
+  "D": "order-2097152 (=2^21) multiplicative subgroup of F_p^x",
+  "k": 1048576,
+  "n": 2097152,
+  "rho": "1/2",
+  "kind": "MCA (mutual correlated agreement)",
+  "frontier": "v13 raw"
+ },
+ "target": {
+  "epsilon_star": "2^-128",
+  "B_star": 274980728111395087,
+  "log2_B_star": 57.932108125,
+  "a0_prime": 1116047,
+  "a0_prime_plus_1": 1116048,
+  "m_safe": 1116048,
+  "w_safe": 67471,
+  "K_raw": 4807520,
+  "K_raw_note": "floor(B* p^w / binom(n,m)); reproduced here by independent big-int recompute (verifier gate i) and matching kb_mca_conjq_rung_audit_v1.json's target.K_raw to the integer",
+  "log2_K_raw_bar": 22.196861429,
+  "bar_note": "the SAME ladder bar rho_s <= K_raw used at every rung (kb_mca_conjq_rung_audit_v1.json Sec 6); all margins below are measured against log2(K_raw), not the (numerically indistinguishable) budget_bits=22.196861708"
+ },
+ "ladder_rows": [
+  {
+   "s": 0,
+   "rung": "L_0",
+   "n": 2097152,
+   "m": 1116048,
+   "w": 67471,
+   "k_minus_1": 1048575
+  },
+  {
+   "s": 1,
+   "rung": "L_1",
+   "n": 1048576,
+   "m": 558024,
+   "w": 33735,
+   "k_minus_1": 524287
+  },
+  {
+   "s": 2,
+   "rung": "L_2",
+   "n": 524288,
+   "m": 279012,
+   "w": 16867,
+   "k_minus_1": 262143
+  },
+  {
+   "s": 3,
+   "rung": "L_3",
+   "n": 262144,
+   "m": 139506,
+   "w": 8433,
+   "k_minus_1": 131071
+  },
+  {
+   "s": 4,
+   "rung": "L_4",
+   "n": 131072,
+   "m": 69753,
+   "w": 4216,
+   "k_minus_1": 65535
+  }
+ ],
+ "conjQ_route_margins": {
+  "h1_packing_bound": {
+   "theorem": "cor:anticode-cap (PROVED): |Fib_w(z)| <= C(n,m-w)/C(m,w) for every z, primitive or not; for the n=2k ladder rows this collapses exactly to rho(z) <= p^w / C(k-1,w)",
+   "proof_sketch": "prop:prefix-rigidity gives |M\\M'|>=w+1 for distinct fiber members, i.e. |M cap M'| <= k=m-w-1; no (k+1)-subset lies in two fiber members (Johnson/Fisher/Deza-Frankl packing), giving |Fib_w(z)| <= C(n,k+1)/C(m,k+1) = C(n,m-w)/C(m,w); the n=2k algebra collapses this to p^w/C(k-1,w). Toy-verified exactly (verifier gate ii): rigidity holds, packing holds, and the n=2k clean-form identity C(k-1,w)*C(n,m-w) == C(n,m)*C(m,w) holds EXACTLY (Fraction/big-int, not approximately) on a toy row.",
+   "rows": [
+    {
+     "rung": "L_0",
+     "w": 67471,
+     "k_minus_1": 1048575,
+     "log2_pw": 2090837.544547,
+     "log2_C_k_minus1_w": 361181.145643,
+     "log2_rho_bound": 1729656.398904,
+     "margin_over_bar_bits": 1729634.202042
+    },
+    {
+     "rung": "L_1",
+     "w": 33735,
+     "k_minus_1": 524287,
+     "log2_pw": 1045403.277931,
+     "log2_C_k_minus1_w": 180584.444433,
+     "log2_rho_bound": 864818.833498,
+     "margin_over_bar_bits": 864796.636636
+    },
+    {
+     "rung": "L_2",
+     "w": 16867,
+     "k_minus_1": 262143,
+     "log2_pw": 522686.144623,
+     "log2_C_k_minus1_w": 90286.343826,
+     "log2_rho_bound": 432399.800797,
+     "margin_over_bar_bits": 432377.603936
+    },
+    {
+     "rung": "L_3",
+     "w": 8433,
+     "k_minus_1": 131071,
+     "log2_pw": 261327.577969,
+     "log2_C_k_minus1_w": 45137.543517,
+     "log2_rho_bound": 216190.034452,
+     "margin_over_bar_bits": 216167.837591
+    },
+    {
+     "rung": "L_4",
+     "w": 4216,
+     "k_minus_1": 65535,
+     "log2_pw": 130648.294642,
+     "log2_C_k_minus1_w": 22563.393352,
+     "log2_rho_bound": 108084.901291,
+     "margin_over_bar_bits": 108062.704429
+    }
+   ],
+   "bits_per_depth": {
+    "log2_p": 30.988684687,
+    "combinatorial_yield_range_bits_per_depth": [
+     5.351849,
+     5.353132
+    ],
+    "deficit_range_bits_per_depth": [
+     25.635553,
+     25.636836
+    ],
+    "reading": "packing sees only ~5.35 bits/depth of combinatorial (Hamming-distance) entropy (= (k/w)H(w/k), H(w/k)~0.344); the budget needs the full log2(p)=30.99 bits/depth; the ~25.64 bits/depth deficit is structural (Hamming geometry cannot see the field size p), not a slackness gap"
+   },
+   "consequences": [
+    "Singleton / Johnson / RCW / Delsarte-with-distance-only bounds are all <= H1, hence all DEAD",
+    "Plotkin is inapplicable: needs d/n ~ 1/2, here d/n = 2(w+1)/n ~ 0.064 at every rung",
+    "primitivity gives no rescue: cor:anticode-cap already holds for every z (primitive or not), and the ~1e5-1e6 bit gap dwarfs any conceivable primitive discount"
+   ],
+   "verdict": "DEAD at every rung: over budget by 1.73e6 bits (L_0) down to 1.08e5 bits (L_4)"
+  },
+  "h2_head_flatness_ceiling": {
+   "theorem": "thm:head-flatness at ell=0 (PROVED): nonvacuous exactly for w <= w_head(n,m) := floor((n-m)/ceil(sqrt p))",
+   "ceil_sqrt_p": 46160,
+   "rows": [
+    {
+     "rung": "L_0",
+     "n": 2097152,
+     "m": 1116048,
+     "w_needed": 67471,
+     "w_head_exact_search": 21,
+     "w_head_closed_form": 21,
+     "match": true,
+     "gap_ratio": 3212.9
+    },
+    {
+     "rung": "L_1",
+     "n": 1048576,
+     "m": 558024,
+     "w_needed": 33735,
+     "w_head_exact_search": 10,
+     "w_head_closed_form": 10,
+     "match": true,
+     "gap_ratio": 3373.5
+    },
+    {
+     "rung": "L_2",
+     "n": 524288,
+     "m": 279012,
+     "w_needed": 16867,
+     "w_head_exact_search": 5,
+     "w_head_closed_form": 5,
+     "match": true,
+     "gap_ratio": 3373.4
+    },
+    {
+     "rung": "L_3",
+     "n": 262144,
+     "m": 139506,
+     "w_needed": 8433,
+     "w_head_exact_search": 2,
+     "w_head_closed_form": 2,
+     "match": true,
+     "gap_ratio": 4216.5
+    },
+    {
+     "rung": "L_4",
+     "n": 131072,
+     "m": 69753,
+     "w_needed": 4216,
+     "w_head_exact_search": 1,
+     "w_head_closed_form": 1,
+     "match": true,
+     "gap_ratio": 4216.0
+    }
+   ],
+   "deployed_matches_cor_head_q": true,
+   "deployed_note": "w_head(L_0) = 21 EXACTLY, matching cor:head-q's proved 'w<=21' at the deployed row to the integer",
+   "degradation_table_w_head_by_rung": [
+    21,
+    10,
+    5,
+    2,
+    1
+   ],
+   "degradation_reading": "n halves each rung but ceil(sqrt p) is fixed, so w_head halves in lockstep with w_needed; the ratio (gap_ratio) stays 3200x-4200x and never improves -- the shallowest rung (L_4) is in fact the WORST for head-flatness (w_head=1)",
+   "terminus_reading": "the 2-adic symmetric descent hard-caps at s=4 (v2(m_safe)=4; L_4's m_4=69753 is ODD so it admits no further descent), where head-reach is w_head=1 against the needed w=4216 -- a gap that is EXACTLY 4216x at the terminus (not merely 'about'), and never improving at any rung",
+   "strategic_correction": "this corrects the aspirational reading of cap25_v13_qfin_rung_audit.md Sec 6 ('halving TOWARD the proved head-depth base cases, rem:proved-q-part') and Sec 7 ('rungs step the depth w down by factors of two TOWARD the proved head-depth base cases'): the ladder's rungs are all equidistant (~3200x-4200x) from head-reach, not converging toward it; descending the ladder does not bring the primitive-flatness problem closer to the proved head-depth cases",
+   "verdict": "DEAD at every rung: the required depth exceeds the head-flatness ceiling by 3200x-4200x, worst (4216x) at the terminus L_4"
+  },
+  "moment_route": {
+   "theorem": "thm:moment-q (PROVED): R <= exp((A+B)/r) where Gamma_r<=exp(A), w log|B|<=B; specialized here at the optimistic log2(Gamma_r)~0, giving r = ceil(w log2(p) / Delta) for a target budget Delta bits",
+   "rows": [
+    {
+     "rung": "L_0",
+     "w": 67471,
+     "r_at_bar": 94196,
+     "r_at_standalone": 94196,
+     "provable_head_w": 21
+    },
+    {
+     "rung": "L_1",
+     "w": 33735,
+     "r_at_bar": 47097,
+     "r_at_standalone": 35460,
+     "provable_head_w": 10
+    },
+    {
+     "rung": "L_2",
+     "w": 16867,
+     "r_at_bar": 23548,
+     "r_at_standalone": 15900,
+     "provable_head_w": 5
+    },
+    {
+     "rung": "L_3",
+     "w": 8433,
+     "r_at_bar": 11774,
+     "r_at_standalone": 7615,
+     "provable_head_w": 2
+    },
+    {
+     "rung": "L_4",
+     "w": 4216,
+     "r_at_bar": 5886,
+     "r_at_standalone": 3756,
+     "provable_head_w": 1
+    }
+   ],
+   "L_4_highlight": "even at the most generous 34.793-bit standalone budget, the moment bridge needs r>=3756; at the shared ladder bar (22.197 bits), r>=5886. Head-flatness (H2) supplies only w<=1 there -- short by a factor of ~3750-5900 at the terminus",
+   "verdict": "DEAD at every rung: required moment order exceeds the provable head-depth order by 3 to 4 orders of magnitude"
+  },
+  "toy_validation": {
+   "method": "exhaustive fiber enumeration, independent reimplementation (not imported from any prior lane's script)",
+   "rows_checked": [
+    {
+     "label": "F17_n16_m9_w1",
+     "p": 17,
+     "n": 16,
+     "m": 9,
+     "w": 1,
+     "maxfib": 673,
+     "rigidity_min_diff": 2,
+     "rigidity_needed": 2,
+     "rigidity_ok": true,
+     "packing_bound_indep": 1430.0,
+     "packing_holds": true
+    },
+    {
+     "label": "F17_n16_m8_w2",
+     "p": 17,
+     "n": 16,
+     "m": 8,
+     "w": 2,
+     "maxfib": 54,
+     "rigidity_min_diff": 3,
+     "rigidity_needed": 3,
+     "rigidity_ok": true,
+     "packing_bound_indep": 286.0,
+     "packing_holds": true
+    },
+    {
+     "label": "F17_n16_m10_w3",
+     "p": 17,
+     "n": 16,
+     "m": 10,
+     "w": 3,
+     "maxfib": 5,
+     "rigidity_min_diff": 4,
+     "rigidity_needed": 4,
+     "rigidity_ok": true,
+     "packing_bound_indep": 95.333333,
+     "packing_holds": true
+    },
+    {
+     "label": "F41_mu8_m5_w2",
+     "p": 41,
+     "n": 8,
+     "m": 5,
+     "w": 2,
+     "maxfib": 1,
+     "rigidity_min_diff": null,
+     "rigidity_needed": 3,
+     "rigidity_ok": true,
+     "packing_bound_indep": 5.6,
+     "packing_holds": true
+    },
+    {
+     "label": "F17_mu16_n2k_m11_w2",
+     "p": 17,
+     "n": 16,
+     "m": 11,
+     "w": 2,
+     "maxfib": 17,
+     "rigidity_min_diff": 3,
+     "rigidity_needed": 3,
+     "rigidity_ok": true,
+     "packing_bound_indep": 208.0,
+     "packing_holds": true
+    }
+   ],
+   "clean_form_identity_check": {
+    "row": "F17_mu16_n2k_m11_w2 (n=2k, k=8)",
+    "identity": "C(k-1,w) * C(n,m-w) == C(n,m) * C(m,w)  (exact integer identity underlying rho<=p^w/C(k-1,w) at n=2k rows)",
+    "PB_over_avg": 13.761904761904763,
+    "pw_over_Ckm1w": 13.761904761904763,
+    "equal_exactly": true
+   }
+  },
+  "strategic_correction_summary": "cap25_v13_qfin_rung_audit.md Sec 6 and Sec 7 read the ladder as stepping/halving depth 'toward the proved head-depth base cases'; H2 shows this is not so -- w_head shrinks in lockstep with w_needed down the ladder (21,10,5,2,1 against needed 67471,33735,16867,8433,4216), so every rung is equally (~3200x-4200x) far from head-reach, and L_4 (the shallowest, cheapest-looking rung) is in fact the worst case (w_head=1). The base does not scale with the rungs. This is a correction to how the existing ladder should be read, not a change to any of its proved facts, verdicts, or integers.",
+  "live_targets": {
+   "conj_BC_split_pencil": "L_4's row (n_4=131072, m_4=69753 ODD, w_4=4216) is structurally the cleanest primitive-flatness target for the conj:BC split-pencil / divisor-count route: m_4 odd means v2(m_4)=0, so every m_4-subset has subset-symmetry s=0 -- the ENTIRE fiber at L_4 is subset-primitive (no ladder/quotient correction term at all). Counting locator factorizations Lambda_M = G*A with fixed top-w coefficients via divisor bounds sees p directly, where Weil/Parseval cancellation (H2's barrier) does not.",
+   "asymptotic_envelope": "conj:Q's own statement records that R_Q(n)=e^{o(n)} (or even poly(n) with log agreement reserve) suffices for the asymptotic frontier (thm:asymptotic then closes the RS-MCA threshold from Q, BC, SP in their e^{o(n)} forms). This softer asymptotic target sidesteps the finite 2^22.197 bar entirely and is a live, different-in-kind target from the finite KB-MCA row bound this packet closes off."
+  },
+  "non_claims": [
+   "does not prove conj:Q",
+   "does not prove U(1116048) <= B*",
+   "does not move the frontier edge (1116047,1116048)",
+   "does not alter any verdict, integer, or margin printed in kb_mca_conjq_rung_audit_v1.json or its companion note",
+   "does not touch conj:BC or conj:SP",
+   "the strategic correction concerns proof-ROUTE selection (which cheap bounds can close a rung) and how the existing ladder's rungs relate to head-reach, not the ledgers or verdicts themselves"
+  ]
+ }
+}
