@@ -1,0 +1,975 @@
+{
+ "schema_source": "grande_finale.tex \\label{prop:moment-sandwich} (L692-706, defines Gamma_r and the moment sandwich) + \\label{thm:moment-q} (L708-727, the finite moment criterion) + cap25_cap_v13_raw.tex \\label{prob:capfp-gamma} (L8135-8145, the fixed-moment collision hierarchy) + \\label{prop:capfp-kernel} (L8173-8192, the moment-kernel dictionary) + \\label{rem:capfp-gamma-measured} (L8228-8240, prior calibration values reproduced here and extended). First data/derivation packet measuring Gamma_r raw-vs-twist-primitive-removed on 5 toy rows, r=2..8, exact Fraction/big-int arithmetic; proves two exact structural bricks (unconditional order floor; monotone certificate) that upgrade PR #366's route-cut moment orders from Gamma_r-trivial estimates to unconditional lower bounds.",
+ "wall_id": "CAP25-V13-GAMMA-R-ORDER-FLOOR",
+ "deliverable_name": "The moment constant Gamma_r on the removed prefix object: benign growth, an exact order floor, and why removal does not help",
+ "companion_note": "experimental/notes/thresholds/cap25_v13_gammar_order_floor.md",
+ "companion_verifier": "experimental/scripts/verify_gammar_order_floor.py",
+ "status": "PROVED-LOCAL(Brick 1: unconditional order floor; Brick 2: monotone certificate) / MEASURED(Gamma_r raw-vs-removed, 5 rows, r=2..8, exact Fraction arithmetic) / AUDIT(removal-does-not-help finding; Poisson closed-form model) / OPEN(dense-bulk law persistence at the deployed w = prob:row-sharp-q itself). Does not evaluate Gamma_r at any deployed w (astronomically out of reach); does not prove or refute prob:row-sharp-q; does not move the frontier edge; does not alter any verdict or integer of PR #366 (upgrades its orders to proved floors, does not touch its ladder margins).",
+ "cross_refs": {
+  "prop:moment-sandwich": "grande_finale.tex L692 (\\label line), defining formula Gamma_r=|B|^{w(r-1)} sum_z mu(z)^r at L695",
+  "thm:moment-q": "grande_finale.tex L708 -- the finite moment criterion log2 Gamma_r + w log2|B| <= r Delta",
+  "rem:finite-moment-order": "grande_finale.tex L739 -- 'why finite adjacent Q needs high order'; this packet's Brick 1 strengthens this remark to an unconditional floor",
+  "prop:mode-null-false": "grande_finale.tex L759",
+  "prop:twist-orbit": "grande_finale.tex L743 -- twist-orbit constancy, underlies the primitive/quotient split",
+  "prop:q-orbit-moment": "grande_finale.tex L797 -- twist-orbit moment amplification, defines twist stabilizer s(z)=gcd(n,{j:z_j!=0})",
+  "prop:gamma2-ledger": "grande_finale.tex L1071 -- exact primitive L^2 ledger, the promoted-note counterpart made numerical in Sec 5 of the companion note",
+  "thm:coeff-quotient-extract": "grande_finale.tex L1002 -- maximal quotient extraction for shift pairs",
+  "thm:q-implies-sp": "grande_finale.tex L1587 -- Q discharges the shift-pair ledger; ties this packet's object to Lane M's prob:saturated-bc object",
+  "prob:row-sharp-q": "grande_finale.tex L1754 -- row-sharp multilevel Q target (post-promotion name; formerly conj:Q)",
+  "raw:prob:capfp-gamma": "cap25_cap_v13_raw.tex L8135 (\\label line; NOT 'prop:capfp-gamma' -- the source environment is \\begin{remark}, labeled prob: not prop:, see found_vs_claimed_corrections), defining formula Gamma_r(m,w) at L8138",
+  "raw:prob:capfp-A": "cap25_cap_v13_raw.tex L8147",
+  "raw:prop:capfp-anchors": "cap25_cap_v13_raw.tex L8157 (\\label line); the printed bound 1<=Gamma_r<=(1+2^-margin)^{r-1} at L8160; base-case w0<=21-22 KoalaBear, 10-11 Mersenne-31",
+  "raw:prop:capfp-kernel": "cap25_cap_v13_raw.tex L8173 -- moment-kernel dictionary K_w(D), the balanced-ternary weight-enumerator identity",
+  "raw:subsec:capfr1-Q-kernel": "cap25_cap_v13_raw.tex L7661 (section header; \\label line), the power-sum prefix kernel discussion runs to ~L7663+",
+  "raw:prop:capfr1-collision-ledger": "cap25_cap_v13_raw.tex L7696 -- balanced-ternary collision ledger",
+  "raw:rem:capff1-calibration": "cap25_cap_v13_raw.tex L7118 -- computational calibration remark; referenced again at L7108, L7367, L8229, L8239",
+  "raw:rem:capfp-gamma-measured": "cap25_cap_v13_raw.tex L8228 (\\label line); the printed Gamma_2/3/4 table at L8231-8237, the specific Gamma_2 row at L8234",
+  "raw:prob:capfp-R1": "cap25_cap_v13_raw.tex L8278 (\\label line); 'tying (R1) and (Q) to the same object' at L8283",
+  "#366": "przchojecki/rs-mca PR #366 (Holm Buar, OPEN, v13-raw-conjq-rung-routes-dead) -- moment_route in kb_mca_conjq_route_margins_v1.json gives r_at_bar=94196 (L_0/KB-MCA) and r_at_bar=5886, r_at_standalone=3756 (L_4); this packet's Brick 1 independently reproduces 94196 and 5886 to the digit from raw constants and upgrades both from 'estimates assuming Gamma_r trivial' to unconditional floors (Gamma_r>=1 always)",
+  "#368": "przchojecki/rs-mca PR #368 (L1: bounded-excess structure, C' localized) -- L1 track, disjoint object (elliptic/local-field E_3<=ell+C' program), no dependence either direction",
+  "#364": "przchojecki/rs-mca PR #364 (L1: m*(19)<=9, vacancy band refuted at p=571) -- L1 track, disjoint object, no dependence either direction",
+  "lane-m-in-flight": "concurrent same-session work at experimental/notes/thresholds/cap25_v13_saturated_bc_budget_fit.md + experimental/data/certificates/frontier-adjacent/saturated_bc_budget_fit_v1.json (branch thresholds-saturated-bc-budget-fit, uncommitted at packaging time) -- the joint-closer object on prob:saturated-bc; its margins_table independently cross-checks this packet's frontier mean-fiber lambda values to 4 decimals (see frontier_lambda_crosscheck below)",
+  "prob:saturated-bc": "grande_finale.tex L1768 -- saturated primitive split-pencil line-ray target (Lane M's concurrent object)"
+ },
+ "measured_curves": {
+  "method": "exact Fraction arithmetic throughout the histogram and Gamma_r sums; float only in final log2 reports. Rows 1-3 by exhaustive itertools.combinations enumeration (C(n,m) work); row 4 (mu64_F257_34) by subset-size DP over the prefix ring B^w (avoids enumerating C(64,34)~2^60 subsets). Independently reproduced bit-for-bit in this packaging session against laneN_outputs.json on every (row,w,r) checked -- see the companion verifier's gate ii output.",
+  "rows": [
+   {
+    "label": "F17x_16_8",
+    "p": 17,
+    "n": 16,
+    "m": 8,
+    "Cnm": 12870,
+    "w_values": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "highlight_w2": {
+     "meanfiber": 44.53287197231834,
+     "regime": "dense",
+     "log2_Gamma2_raw": 0.002218294866486006,
+     "log2_Gamma8_raw": 0.06728668146908855,
+     "R_raw": 1.2125874125874125,
+     "R_prim": 1.1003108003108004
+    }
+   },
+   {
+    "label": "mu20_F41_10",
+    "p": 41,
+    "n": 20,
+    "m": 10,
+    "Cnm": 184756,
+    "w_values": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "highlight_w2": {
+     "meanfiber": 109.90838786436645,
+     "regime": "dense",
+     "log2_Gamma2_raw": 0.005955056405515477,
+     "log2_Gamma8_raw": 0.16570917499467755,
+     "R_raw": 1.2100987248046071,
+     "R_prim": 1.2100987248046071
+    }
+   },
+   {
+    "label": "mu24_F97_12",
+    "p": 97,
+    "n": 24,
+    "m": 12,
+    "Cnm": 2704156,
+    "w_values": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "highlight_w2": {
+     "meanfiber": 287.400999043469,
+     "regime": "dense",
+     "log2_Gamma2_raw": 0.0019319222059264837,
+     "log2_Gamma8_raw": 0.054956800801574904,
+     "R_raw": 1.2247695769031077,
+     "R_prim": 1.1586598554225422
+    },
+    "note": "this row's w=2 is the packet's headline dense-bulk exhibit: log2(Gamma_8)=0.0550 < 0.17"
+   },
+   {
+    "label": "mu64_F257_34",
+    "p": 257,
+    "n": 64,
+    "m": 34,
+    "Cnm": 1620288010530347424,
+    "w_values": [
+     1,
+     2
+    ],
+    "highlight_w1": {
+     "meanfiber": 6304622609067500.0,
+     "regime": "ultra-dense",
+     "log2_Gamma2_raw": 0.0,
+     "log2_Gamma8_raw": 0.0,
+     "Gamma_r_raw": "1.000000 to machine precision, r=2..8",
+     "R_raw": 1.0000000000025258
+    }
+   }
+  ],
+  "regime_law": "log2(Gamma_r) < 0.17 whenever mean fiber lambda >~ 100 (dense bulk); grows as a Bell/Touchard-polynomial law (log-log slope of log2 Gamma_r vs r measured ~2.4) only at the Poisson boundary lambda=O(1); blows up as lambda^{1-r} (exponential in r) only in the over-saturated lambda<1 regime. None of these toy w values reach the deployed w; the dense-bulk law's persistence to deployed w is EXPERIMENTAL extrapolation, not measured (see extrapolation block).",
+  "full_grid": {
+   "F17x_16_8": {
+    "p": 17,
+    "n": 16,
+    "m": 8,
+    "Cnm": 12870,
+    "rows": {
+     "1": {
+      "w": 1,
+      "meanfiber": 757.0588235294117,
+      "gamma": {
+       "2": {
+        "raw": 1.0000000965968332,
+        "prim": 0.9410302173006135
+       },
+       "3": {
+        "raw": 1.0000002899030833,
+        "prim": 0.9409570991796112
+       },
+       "4": {
+        "raw": 1.0000005800314746,
+        "prim": 0.9408839867398925
+       },
+       "5": {
+        "raw": 1.000000967094872,
+        "prim": 0.9408108799810161
+       },
+       "6": {
+        "raw": 1.0000014512062816,
+        "prim": 0.9407377789025404
+       },
+       "7": {
+        "raw": 1.0000020324788501,
+        "prim": 0.9406646835040243
+       },
+       "8": {
+        "raw": 1.000002711025866,
+        "prim": 0.9405915937850263
+       }
+      },
+      "R_raw": 1.0012432012432013,
+      "R_prim": 0.9999222999223,
+      "cells_hit": 17,
+      "prim_cells": 16,
+      "Cnm": 12870,
+      "Bw": 17
+     },
+     "2": {
+      "w": 2,
+      "meanfiber": 44.53287197231834,
+      "gamma": {
+       "2": {
+        "raw": 1.0015387875527735,
+        "prim": 0.942376777155332
+       },
+       "3": {
+        "raw": 1.0046794571653705,
+        "prim": 0.9450277261174471
+       },
+       "4": {
+        "raw": 1.0094994207034584,
+        "prim": 0.9490943462465901
+       },
+       "5": {
+        "raw": 1.0160923985109336,
+        "prim": 0.9546224967220799
+       },
+       "6": {
+        "raw": 1.024570790632808,
+        "prim": 0.9616662883470962
+       },
+       "7": {
+        "raw": 1.0350685014757353,
+        "prim": 0.9702887003495235
+       },
+       "8": {
+        "raw": 1.0477443062554006,
+        "prim": 0.980562269299164
+       }
+      },
+      "R_raw": 1.2125874125874125,
+      "R_prim": 1.1003108003108004,
+      "cells_hit": 289,
+      "prim_cells": 272,
+      "Cnm": 12870,
+      "Bw": 289
+     },
+     "3": {
+      "w": 3,
+      "meanfiber": 2.61958070425402,
+      "gamma": {
+       "2": {
+        "raw": 1.13768748388795,
+        "prim": 1.1190602094098598
+       },
+       "3": {
+        "raw": 1.419892365430588,
+        "prim": 1.3750536591538325
+       },
+       "4": {
+        "raw": 1.9148628508259027,
+        "prim": 1.8046240692520625
+       },
+       "5": {
+        "raw": 2.774442296658195,
+        "prim": 2.4985029029511683
+       },
+       "6": {
+        "raw": 4.319018206082056,
+        "prim": 3.618049888921146
+       },
+       "7": {
+        "raw": 7.246377839729944,
+        "prim": 5.444593874770334
+       },
+       "8": {
+        "raw": 13.1448820759936,
+        "prim": 8.470618915342838
+       }
+      },
+      "R_raw": 2.672183372183372,
+      "R_prim": 1.9087024087024087,
+      "cells_hit": 4881,
+      "prim_cells": 4864,
+      "Cnm": 12870,
+      "Bw": 4913
+     },
+     "4": {
+      "w": 4,
+      "meanfiber": 0.15409298260317764,
+      "gamma": {
+       "2": {
+        "raw": 6.732632595756139,
+        "prim": 6.6640557508622775
+       },
+       "3": {
+        "raw": 46.846529193881516,
+        "prim": 46.178975969827874
+       },
+       "4": {
+        "raw": 344.9577049333936,
+        "prim": 337.7374624021603
+       },
+       "5": {
+        "raw": 2770.040156466898,
+        "prim": 2685.698635284921
+       },
+       "6": {
+        "raw": 24873.64128439719,
+        "prim": 23839.77355374987
+       },
+       "7": {
+        "raw": 250939.9417920603,
+        "prim": 237915.8593288032
+       },
+       "8": {
+        "raw": 2790396.0367936934,
+        "prim": 2623915.413681711
+       }
+      },
+      "R_raw": 12.97917637917638,
+      "R_prim": 12.97917637917638,
+      "cells_hit": 12629,
+      "prim_cells": 12544,
+      "Cnm": 12870,
+      "Bw": 83521
+     }
+    }
+   },
+   "mu20_F41_10": {
+    "p": 41,
+    "n": 20,
+    "m": 10,
+    "Cnm": 184756,
+    "rows": {
+     "1": {
+      "w": 1,
+      "meanfiber": 4506.243902439024,
+      "gamma": {
+       "2": {
+        "raw": 1.0000005495860895,
+        "prim": 0.9755045807424019
+       },
+       "3": {
+        "raw": 1.000001648935416,
+        "prim": 0.9754526458869531
+       },
+       "4": {
+        "raw": 1.0000032982258624,
+        "prim": 0.975401146152635
+       },
+       "5": {
+        "raw": 1.0000054976360475,
+        "prim": 0.9753500814694791
+       },
+       "6": {
+        "raw": 1.0000082473453276,
+        "prim": 0.9752994517677165
+       },
+       "7": {
+        "raw": 1.0000115475337976,
+        "prim": 0.9752492569777769
+       },
+       "8": {
+        "raw": 1.000015398382292,
+        "prim": 0.9751994970302893
+       }
+      },
+      "R_raw": 1.0021650176448937,
+      "R_prim": 1.0006116174846824,
+      "cells_hit": 41,
+      "prim_cells": 40,
+      "Cnm": 184756,
+      "Bw": 41
+     },
+     "2": {
+      "w": 2,
+      "meanfiber": 109.90838786436645,
+      "gamma": {
+       "2": {
+        "raw": 1.0041362613709308,
+        "prim": 0.9794469961272171
+       },
+       "3": {
+        "raw": 1.012428521911792,
+        "prim": 0.9873387166634937
+       },
+       "4": {
+        "raw": 1.024964928917736,
+        "prim": 0.9993435942286795
+       },
+       "5": {
+        "raw": 1.0419003624536904,
+        "prim": 1.0156301669491719
+       },
+       "6": {
+        "raw": 1.063458599111606,
+        "prim": 1.0364298462727033
+       },
+       "7": {
+        "raw": 1.0899375615707556,
+        "prim": 1.062044363714406
+       },
+       "8": {
+        "raw": 1.1217173368727953,
+        "prim": 1.0928551106169264
+       }
+      },
+      "R_raw": 1.2100987248046071,
+      "R_prim": 1.2100987248046071,
+      "cells_hit": 1681,
+      "prim_cells": 1640,
+      "Cnm": 184756,
+      "Bw": 1681
+     },
+     "3": {
+      "w": 3,
+      "meanfiber": 2.680692386935767,
+      "gamma": {
+       "2": {
+        "raw": 1.5025339428927256,
+        "prim": 1.4991701483242297
+       },
+       "3": {
+        "raw": 2.755824884860278,
+        "prim": 2.7473393888451856
+       },
+       "4": {
+        "raw": 5.86578052948413,
+        "prim": 5.843649618207249
+       },
+       "5": {
+        "raw": 14.04794216523254,
+        "prim": 13.988615504309466
+       },
+       "6": {
+        "raw": 36.9981768727279,
+        "prim": 36.83563863260009
+       },
+       "7": {
+        "raw": 105.13244414627303,
+        "prim": 104.67957516049538
+       },
+       "8": {
+        "raw": 317.15155998089836,
+        "prim": 315.8734203142137
+       }
+      },
+      "R_raw": 4.103417480352465,
+      "R_prim": 4.103417480352465,
+      "cells_hit": 60781,
+      "prim_cells": 60740,
+      "Cnm": 184756,
+      "Bw": 68921
+     },
+     "4": {
+      "w": 4,
+      "meanfiber": 0.06538274114477481,
+      "gamma": {
+       "2": {
+        "raw": 16.46592786319966,
+        "prim": 16.4422520798202
+       },
+       "3": {
+        "raw": 287.822214684912,
+        "prim": 287.2322023148216
+       },
+       "4": {
+        "raw": 5516.748474663707,
+        "prim": 5486.810558648775
+       },
+       "5": {
+        "raw": 119751.40602010489,
+        "prim": 117374.30243359953
+       },
+       "6": {
+        "raw": 3031054.414864891,
+        "prim": 2818576.289095376
+       },
+       "7": {
+        "raw": 93825365.50090092,
+        "prim": 74413416.81636693
+       },
+       "8": {
+        "raw": 3875756644.946003,
+        "prim": 2095698374.0117192
+       }
+      },
+      "R_raw": 91.76733637879148,
+      "R_prim": 30.589112126263828,
+      "cells_hit": 177691,
+      "prim_cells": 177440,
+      "Cnm": 184756,
+      "Bw": 2825761
+     }
+    }
+   },
+   "mu24_F97_12": {
+    "p": 97,
+    "n": 24,
+    "m": 12,
+    "Cnm": 2704156,
+    "rows": {
+     "1": {
+      "w": 1,
+      "meanfiber": 27877.896907216495,
+      "gamma": {
+       "2": {
+        "raw": 1.000000169725654,
+        "prim": 0.989644908624322
+       },
+       "3": {
+        "raw": 1.0000005092428113,
+        "prim": 0.9896221799113643
+       },
+       "4": {
+        "raw": 1.00000101861761,
+        "prim": 0.9895995696673643
+       },
+       "5": {
+        "raw": 1.0000016979164785,
+        "prim": 0.9895770778442723
+       },
+       "6": {
+        "raw": 1.0000025472061351,
+        "prim": 0.9895547043940741
+       },
+       "7": {
+        "raw": 1.0000035665535894,
+        "prim": 0.9895324492687907
+       },
+       "8": {
+        "raw": 1.0000047560261411,
+        "prim": 0.9895103124204782
+       }
+      },
+      "R_raw": 1.0022276821307647,
+      "R_prim": 1.000290663704313,
+      "cells_hit": 97,
+      "prim_cells": 96,
+      "Cnm": 2704156,
+      "Bw": 97
+     },
+     "2": {
+      "w": 2,
+      "meanfiber": 287.400999043469,
+      "gamma": {
+       "2": {
+        "raw": 1.0013400034334643,
+        "prim": 0.9909355748601585
+       },
+       "3": {
+        "raw": 1.0040341162103175,
+        "prim": 0.9935111328019481
+       },
+       "4": {
+        "raw": 1.0081035380582322,
+        "prim": 0.9974175051596359
+       },
+       "5": {
+        "raw": 1.013576893109304,
+        "prim": 1.0026842576152801
+       },
+       "6": {
+        "raw": 1.0204906610192426,
+        "prim": 1.0093478864993017
+       },
+       "7": {
+        "raw": 1.0288897176569558,
+        "prim": 1.017452339064235
+       },
+       "8": {
+        "raw": 1.0388279967870189,
+        "prim": 1.0270496231712678
+       }
+      },
+      "R_raw": 1.2247695769031077,
+      "R_prim": 1.1586598554225422,
+      "cells_hit": 9409,
+      "prim_cells": 9312,
+      "Cnm": 2704156,
+      "Bw": 9409
+     },
+     "3": {
+      "w": 3,
+      "meanfiber": 2.9628968973553507,
+      "gamma": {
+       "2": {
+        "raw": 1.4188042763566686,
+        "prim": 1.4165362168391926
+       },
+       "3": {
+        "raw": 2.455146464627071,
+        "prim": 2.4450212415034533
+       },
+       "4": {
+        "raw": 4.935931239548624,
+        "prim": 4.887416695333268
+       },
+       "5": {
+        "raw": 11.2152652824564,
+        "prim": 10.96917335226489
+       },
+       "6": {
+        "raw": 28.382476362217094,
+        "prim": 27.063762186524944
+       },
+       "7": {
+        "raw": 79.72956482112495,
+        "prim": 72.24323212332727
+       },
+       "8": {
+        "raw": 251.16188934146518,
+        "prim": 205.98543233823494
+       }
+      },
+      "R_raw": 8.100180610881917,
+      "R_prim": 4.050090305440959,
+      "cells_hit": 848137,
+      "prim_cells": 847968,
+      "Cnm": 2704156,
+      "Bw": 912673
+     },
+     "4": {
+      "w": 4,
+      "meanfiber": 0.030545328838714955,
+      "gamma": {
+       "2": {
+        "raw": 34.106110243371795,
+        "prim": 34.08230859874811
+       },
+       "3": {
+        "raw": 1209.172092583018,
+        "prim": 1207.7983441611793
+       },
+       "4": {
+        "raw": 45966.81762318477,
+        "prim": 45871.70507484245
+       },
+       "5": {
+        "raw": 1956728.2236500692,
+        "prim": 1948312.847868347
+       },
+       "6": {
+        "raw": 97428768.77300738,
+        "prim": 96427634.62432756
+       },
+       "7": {
+        "raw": 5815047113.037077,
+        "prim": 5662181333.37213
+       },
+       "8": {
+        "raw": 416892317159.1798,
+        "prim": 389941926815.13873
+       }
+      },
+      "R_raw": 196.42937981388647,
+      "R_prim": 130.95291987592432,
+      "cells_hit": 2648881,
+      "prim_cells": 2647896,
+      "Cnm": 2704156,
+      "Bw": 88529281
+     }
+    }
+   },
+   "mu64_F257_34": {
+    "p": 257,
+    "n": 64,
+    "m": 34,
+    "Cnm": 1620288010530347424,
+    "rows": {
+     "1": {
+      "w": 1,
+      "meanfiber": 6304622609067500.0,
+      "gamma": {
+       "2": {
+        "raw": 1.0,
+        "prim": 0.9961089494163228
+       },
+       "3": {
+        "raw": 1.0,
+        "prim": 0.9961089494163129
+       },
+       "4": {
+        "raw": 1.0,
+        "prim": 0.9961089494163031
+       },
+       "5": {
+        "raw": 1.0,
+        "prim": 0.9961089494162932
+       },
+       "6": {
+        "raw": 1.0,
+        "prim": 0.9961089494162835
+       },
+       "7": {
+        "raw": 1.0,
+        "prim": 0.9961089494162736
+       },
+       "8": {
+        "raw": 1.0,
+        "prim": 0.9961089494162638
+       }
+      },
+      "R_raw": 1.0000000000025258,
+      "R_prim": 1.0000000000003564,
+      "cells_hit": 257,
+      "prim_cells": 256,
+      "Cnm": 1620288010530347424,
+      "Bw": 257
+     },
+     "2": {
+      "w": 2,
+      "meanfiber": 24531605482752.918,
+      "gamma": {
+       "2": {
+        "raw": 1.0,
+        "prim": 0.9961089494163228
+       },
+       "3": {
+        "raw": 1.0,
+        "prim": 0.9961089494163129
+       },
+       "4": {
+        "raw": 1.0,
+        "prim": 0.9961089494163031
+       },
+       "5": {
+        "raw": 1.0,
+        "prim": 0.9961089494162932
+       },
+       "6": {
+        "raw": 1.0,
+        "prim": 0.9961089494162835
+       },
+       "7": {
+        "raw": 1.0,
+        "prim": 0.9961089494162736
+       },
+       "8": {
+        "raw": 1.0,
+        "prim": 0.9961089494162638
+       }
+      },
+      "R_raw": 1.0000000068639243,
+      "R_prim": 1.0000000045377415,
+      "cells_hit": 66049,
+      "prim_cells": 65792,
+      "Cnm": 1620288010530347424,
+      "Bw": 66049
+     }
+    }
+   }
+  },
+  "full_grid_note": "Complete Gamma_r (raw + twist-primitive) grid, r=2..8, for all 4 rows across every measured w (F17x_16_8 w=1..4, mu20_F41_10 w=1..4, mu24_F97_12 w=1..4, mu64_F257_34 w=1..2) -- 14 (row,w) pairs, independently recomputed bit-for-bit against laneN_outputs.json in this packaging session (0 mismatches across all cells_hit, prim_cells, R_raw, R_prim, and all 14 Gamma_r raw/prim values per pair). This is the companion verifier's ground truth for gate ii/iii/iv/v."
+ },
+ "brick1_order_floor": {
+  "statement": "Because Gamma_r>=1 for all r (prop:moment-sandwich / raw prob:capfp-gamma, power-mean fact, distribution-free), the finite moment criterion log2 Gamma_r + w log2|B| <= r Delta (thm:moment-q) forces r >= r0 := ceil(w log2|B| / Delta) unconditionally, achieved iff Gamma_r=1 (perfect prefix flatness) at that order, and lowerable by no removal, cancellation, or twist-orbit argument (the Gamma_r>=1 fact is distribution-free).",
+  "proof": "Set log2 Gamma_r = 0 (its infimum) in thm:moment-q's inequality log2 Gamma_r + w log2|B| <= r Delta; solving for r gives r >= w log2|B| / Delta, and since r is an integer, r >= ceil(w log2|B| / Delta). No assumption on the distribution of the prefix fiber is used beyond Gamma_r>=1, which holds unconditionally (power means / prop:moment-sandwich).",
+  "exact_integer_recompute": {
+   "method": "p (the field size) taken as the exact integer (P_KB=2^31-2^24+1=2130706433, P_M31=2^31-1=2147483647); w taken as the exact deployed integer; Delta taken as the 4-decimal value printed in grande_finale.tex's adjacent-margin table (L183-186); r0=ceil(w*log2(p)/Delta) computed in float64 (log2 of a ~31-bit integer has ~15-16 significant digits of headroom, no precision loss at this scale).",
+   "rows": [
+    {
+     "row": "KB-MCA",
+     "w": 67471,
+     "p": 2130706433,
+     "Delta_bits": 22.1969,
+     "r0_raw": 94195.0247,
+     "r0_floor": 94196
+    },
+    {
+     "row": "KB-list",
+     "w": 67471,
+     "p": 2130706433,
+     "Delta_bits": 22.0109,
+     "r0_raw": 94991.0065,
+     "r0_floor": 94992
+    },
+    {
+     "row": "M31-MCA",
+     "w": 67447,
+     "p": 2147483647,
+     "Delta_bits": 3.2589,
+     "r0_raw": 641583.6632,
+     "r0_floor": 641584
+    },
+    {
+     "row": "M31-list",
+     "w": 67447,
+     "p": 2147483647,
+     "Delta_bits": 3.073,
+     "r0_raw": 680396.0299,
+     "r0_floor": 680397
+    },
+    {
+     "row": "L4-rung",
+     "w": 4216,
+     "p": 2130706433,
+     "Delta_bits": 22.1969,
+     "r0_raw": 5885.8802,
+     "r0_floor": 5886
+    }
+   ]
+  },
+  "cross_check_vs_PR366": {
+   "KB-MCA_L0": {
+    "this_packet": 94196,
+    "PR366_moment_route_r_at_bar": 94196,
+    "match": true
+   },
+   "L4": {
+    "this_packet": 5886,
+    "PR366_moment_route_r_at_bar": 5886,
+    "match": true
+   },
+   "reading": "PR #366's kb_mca_conjq_route_margins_v1.json computed r=ceil(w log2(p)/Delta) at L_0 and L_4 as heuristic route-cut estimates ('optimistic case log2(Gamma_r)~0'); this packet independently reproduces both integers exactly from raw constants AND proves the r>=r0 direction is unconditional (Gamma_r>=1 always, not merely 'optimistic'/assumed) -- upgrading #366's orders from assumed-trivial estimates to proved floors."
+  },
+  "laneN_rounded_variant": {
+   "method": "laneN_compute.py's hardcoded 'deployed' table rounds log2|B| to 2 decimals (30.99 for KoalaBear, 31.00 for Mersenne-31) instead of using the exact integer field size; this is the source of the small discrepancy documented in found_vs_claimed_corrections below.",
+   "rows": {
+    "KB-MCA": 94200,
+    "KB-list": 94996,
+    "M31-MCA": 641584,
+    "M31-list": 680397,
+    "L4-rung": 5889
+   }
+  }
+ },
+ "brick2_monotonicity": {
+  "statement": "r |-> R_eff(r) := Gamma_r^{1/(r-1)} is non-decreasing and increases to R = |B|^w max_z mu(z) as r->infinity (ell^p-norm monotonicity). Combined with the proved upper bound Gamma_r <= R^{r-1} (raw prop:capfp-anchors, L8160), this pins the exact minimal order at which the moment criterion (MC) CAN hold given the true R:",
+  "r_min_formula": "r_min(R) = ceil( (w log2|B| - log2 R) / (Delta - log2 R) ), finite iff R < 2^Delta, -> r0 (Brick 1) as R->1, -> infinity as R up-arrow 2^Delta",
+  "monotonicity_verification": "checked non-decreasing across r=2..8 on all 14 measured (row,w) pairs in laneN_outputs.json (100% pass); re-verified live on the subset recomputed by the companion verifier (gate iii)",
+  "reading": "the moment method certifies R<=2^Delta at order r_min(R) IFF Q is true (R<2^Delta); it is a high-moment certificate FOR Q, not a route around it.",
+  "r_insensitivity_table": {
+   "row": "KB-MCA",
+   "w": 67471,
+   "Delta_bits": 22.1969,
+   "columns": [
+    {
+     "R": "2^0 (=1, Brick 1 floor)",
+     "log2R": 0.0,
+     "r_min": 94196
+    },
+    {
+     "R": "2^0.001",
+     "log2R": 0.001,
+     "r_min": 94200
+    },
+    {
+     "R": "2^0.01",
+     "log2R": 0.01,
+     "r_min": 94238
+    },
+    {
+     "R": "2^0.1",
+     "log2R": 0.1,
+     "r_min": 94622
+    },
+    {
+     "R": "2^1 (full doubling)",
+     "log2R": 1.0,
+     "r_min": 98639
+    }
+   ],
+   "headline": "doubling R (log2R: 0 -> 1) inflates KB-MCA's order from 94196 to 98639: a 4.718% increase. r_min is near-insensitive to R across 3 orders of magnitude of R-1; the moment order is robustly ~w log2|B| / Delta regardless of the (measured, benign, ~1) value of Gamma_r/R in the dense bulk."
+  }
+ },
+ "removal_ledger": {
+  "definition": "the twist group H (order n) acts on prefix space (z_j)->(zeta^j z_j); a prefix value z is PRIMITIVE iff its twist stabilizer s(z):=gcd(n,{j:z_j!=0}) equals 1, quotient/periodic iff s(z)>1 (z=0 has s=n, the fully-periodic/planted fiber). Gamma_r splits additively into primitive-part + periodic-part; the primitive part is the 'removed' (quotient/planted-pruned) object.",
+  "dense_bulk_removal_effect": {
+   "row": "mu24_F97_12",
+   "w": 2,
+   "meanfiber": 287.400999043469,
+   "log2_R_raw": 0.29251035206191867,
+   "log2_R_prim": 0.2124571004958835,
+   "delta_R_bits": 0.08005,
+   "log2_Gamma8_raw": 0.054956800801574904,
+   "log2_Gamma8_prim": 0.038505888933193816,
+   "delta_Gamma8_bits": 0.016451,
+   "reading": "in the dense bulk (the frontier's regime), quotient/planted removal shaves <0.08 bit off R and <0.04 bit off Gamma_8 -- negligible; the constants are already ~1 and need no taming."
+  },
+  "poisson_boundary_removal_effect": {
+   "row": "mu20_F41_10",
+   "w": 4,
+   "meanfiber": 0.06538274114477481,
+   "log2_R_raw": 6.519908827721177,
+   "log2_R_prim": 4.93494632700002,
+   "delta_R_bits": 1.585,
+   "reading": "removal bites hard (up to 1.6 bits) only at the Poisson/over-saturated boundary, far from the frontier's dense-bulk regime; even there it is inconsistent (delta_R=0 at some dense rows where the heaviest fiber is itself already primitive, e.g. mu20_F41_10 w=2,3)."
+  },
+  "exact_gamma2_kernel_ledger": {
+   "row": "F17x_16_8",
+   "w": 2,
+   "identity": "sum_z N_w(z)^2 = C(n,m) + sum_{ell>=delta} C(n-2 ell, m-ell) T_w(ell)  (raw prop:capfp-kernel(c), L8173-8192)",
+   "G2_full": 1.0015387875527735,
+   "G2_diag": 0.022455322455322457,
+   "G2_prim_off": 0.9753182292110031,
+   "G2_quot_off": 0.0037652358864480075,
+   "quot_fraction_of_G2": 0.00376,
+   "matches_hist": true,
+   "Tw": {
+    "3": 704,
+    "4": 2988,
+    "5": 6720,
+    "6": 6240,
+    "7": 1344,
+    "8": 54
+   },
+   "Twp": {
+    "3": 704,
+    "4": 2960,
+    "5": 6720,
+    "6": 6208,
+    "7": 1344,
+    "8": 48
+   },
+   "reading": "the quotient (removable) off-diagonal is a small fraction of Gamma_2 (0.015%-5.6% across w=1..4 on this row, per laneN Sec 2.D); the primitive/aperiodic part carries the mass. Independently reproduced bit-for-bit by this packaging session's own reimplementation (see companion verifier gate iv)."
+  }
+ },
+ "poisson_model": {
+  "form": "Gamma_r ~ E_{N~Poisson(lambda)}[(N/lambda)^r] = B_r(lambda)/lambda^r, B_r the Bell/Touchard polynomial, lambda=C(n,m)|B|^-w the mean fiber",
+  "status": "heuristic brick, labeled; captures the regime and growth EXPONENT (matched by data) but not the exact constant (real tail measured 10-40% heavier than Poisson at the boundary; the full-multiplicative-group rows are sub-Poisson/flatter by twist-orbit symmetry, measured Gamma_8 0.09x the Poisson value at one row)",
+  "predictions_matched_by_data": [
+   "lambda>>1 (dense/frontier): Gamma_r -> 1 (matches Gamma_r=1.000000 to machine precision at the ultra-dense toy row)",
+   "lambda=O(1) (Poisson boundary): log2 Gamma_r ~ r log r (Bell growth) -- matches measured log-log slope ~2.4",
+   "lambda<1 (over-saturated): Gamma_r ~ lambda^{1-r} -- matches measured linear-in-r log2 slopes of 3-5.6"
+  ]
+ },
+ "frontier_lambda_crosscheck": {
+  "definition": "log2(lambda) = log2 C(n,m) - w log2(p), independently recomputed here via math.lgamma (no huge exact integers needed)",
+  "rows": [
+   {
+    "row": "KB-MCA",
+    "n": 2097152,
+    "m": 1116048,
+    "w": 67471,
+    "log2_C_n_m": 2090873.2798,
+    "w_log2p": 2090837.5445,
+    "log2_lambda_this_packet": 35.7352,
+    "log2_floor_lane_m_json": 35.7352,
+    "match": true
+   },
+   {
+    "row": "KB-list",
+    "n": 2097152,
+    "m": 1116047,
+    "w": 67471,
+    "log2_C_n_m": 2090873.4657,
+    "w_log2p": 2090837.5445,
+    "log2_lambda_this_packet": 35.9212,
+    "log2_floor_lane_m_json": 35.9212,
+    "match": true
+   },
+   {
+    "row": "M31-MCA",
+    "n": 2097152,
+    "m": 1116024,
+    "w": 67447,
+    "log2_C_n_m": 2090877.7411,
+    "w_log2p": 2090857.0,
+    "log2_lambda_this_packet": 20.7411,
+    "log2_floor_lane_m_json": 20.7411,
+    "match": true
+   },
+   {
+    "row": "M31-list",
+    "n": 2097152,
+    "m": 1116023,
+    "w": 67447,
+    "log2_C_n_m": 2090877.927,
+    "w_log2p": 2090857.0,
+    "log2_lambda_this_packet": 20.927,
+    "log2_floor_lane_m_json": 20.927,
+    "match": true
+   },
+   {
+    "row": "L4-testbed(scale-16)",
+    "n": 131072,
+    "m": 69753,
+    "w": 4216,
+    "log2_C_n_m": 130671.4337,
+    "w_log2p": 130648.2946,
+    "log2_lambda_this_packet": 23.139,
+    "log2_floor_lane_m_json": 23.139,
+    "match": true
+   }
+  ],
+  "reading": "laneN_analysis.md asserts 'the frontier's lambda=2^{35.7}' in prose without an accompanying JSON computation (out of toy-row reach); this packet independently recomputes it from raw N=2^21, K=2^20, M_SAFE=1116048, W_SAFE=67471 (the same constants verify_conjq_rung_routes_dead.py uses) and finds log2(lambda)=35.7352, matching Lane N's claim to the printed digit. It ALSO matches, independently, Lane M's concurrent in-flight cross-check (margins_table[0].log2_floor=35.7352 in the uncommitted saturated_bc_budget_fit_v1.json, derived from the DIFFERENT margin_identity route margin=log2(B*)-log2(C(n,a+)*p^-w)) -- a three-way cross-validation (Lane N prose, Lane M's independent JSON, this packet's from-scratch recompute) across two concurrent, mutually-uninformed lanes. All five deployed rows land at log2(lambda) in [20.7,36] -- solidly >100 in linear terms (2^20.7 ~ 1.7e6), i.e. deep in the measured 'dense bulk' regime where the toy data shows Gamma_r=1+o(1)."
+ },
+ "found_vs_claimed_corrections": [
+  {
+   "item": "Brick 1 floor for M31-list",
+   "claimed_in": "laneN_analysis.md Sec 3 (Brick 1): 'r0 = ... 680396 (M31-list) ...'",
+   "found": "the underlying raw value is 680396.0299381712 (laneN_outputs.json _extrapolation, M31-list row, 'R=1(flat,#366)'); ceil(680396.0299...) = 680397, not 680396. This is a rounding/truncation slip in laneN_analysis.md's prose (off by 1 in ~680397, ~0.00015% relative), not a computation error in laneN_outputs.json itself (whose stored float is correct).",
+   "action": "this packet's note and JSON use 680397 for M31-list throughout; not silently fixed in laneN_analysis.md (a Lane N working file, not part of this PR) -- flagged here instead."
+  },
+  {
+   "item": "Brick 1 floors for KB-MCA, KB-list, L4-rung: two valid figures differing by rounding precision, not by error",
+   "claimed_in": "laneN_analysis.md Sec 3 / Sec 5 and laneN_outputs.json's _extrapolation table: r0 = 94200 (KB-MCA), 94996 (KB-list), 5889 (L4), computed via w*log2B/Delta with log2B hardcoded to 2 decimals (30.99 KoalaBear, 31.00 Mersenne-31) in laneN_compute.py's 'deployed' list",
+   "found": "recomputing with the EXACT integer field size (P_KB=2^31-2^24+1, log2=30.98868468744926) instead of the rounded 30.99 gives 94196 (KB-MCA), 94992 (KB-list), 5886 (L4) -- differences of -4, -4, -3 respectively, fully explained by the 2-decimal log2(p) rounding (a ~0.0013% relative difference in log2(p), amplified by w~67471 or w~4216). Mersenne-31 rows are essentially unaffected (log2(p_M31)=30.999999999328193 rounds to 31.00 with negligible error), matching exactly either way (641584, 680397).",
+   "action": "this packet ships the exact-integer figures (94196/94992/641584/680397/5886) as primary, since they (a) use genuinely exact arithmetic from raw constants and (b) independently reproduce PR #366's own shipped values (94196 at L_0, 5886 at L_4) to the digit -- a stronger form of the 'upgrades #366' claim. laneN's rounded-log2B variant is recorded alongside (brick1_order_floor.laneN_rounded_variant) as a documented, explained near-miss, not a contradiction."
+  }
+ ],
+ "non_claims": [
+  "does not evaluate Gamma_r at any deployed w (67471, 67447, or any full-scale row) -- astronomically out of computational reach; all measured Gamma_r data is on toy rows w<=4",
+  "the dense-bulk law 'lambda>>1 implies Gamma_r=1+o(1)' is measured only at w<=4 (ultra-dense only to w=2); its persistence to deployed w (67471/67447) is UNMEASURED EXTRAPOLATION and is exactly prob:row-sharp-q itself -- labeled EXPERIMENTAL throughout",
+  "does not prove or refute prob:row-sharp-q, prob:saturated-bc, or any promoted theorem/problem",
+  "does not move the frontier edge (1116047,1116048) or any adjacent agreement",
+  "does not alter any verdict, integer, or margin of PR #366 (upgrades its route-cut orders to proved unconditional floors; does not touch its ladder shapes, H1/H2 margins, or verdicts)",
+  "the Poisson closed-form model (Sec 6 of the companion note) is a heuristic curve-fit, not a theorem; its constant is measurably off (10-40%) at the Poisson boundary",
+  "Brick 1 and Brick 2 are one-line consequences of already-proved facts (Gamma_r>=1 power means; Gamma_r<=R^{r-1} anchors) -- they carry no new proof risk, but also settle nothing new about R itself",
+  "the frontier mean-fiber lambda values (frontier_lambda_crosscheck) are independent recomputations for cross-validation, not new measurements of Gamma_r at those rows"
+ ]
+}

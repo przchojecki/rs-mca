@@ -30,6 +30,48 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - Gamma_r measured + exact order floor (thresholds)
+
+- **Agent/model:** Holm Buar via Claude Fable 5 (packaging session; branch
+  `thresholds-gammar-order-floor`, not yet opened as a PR at logging time).
+- **Files added or changed:**
+  `experimental/notes/thresholds/cap25_v13_gammar_order_floor.md`;
+  `experimental/scripts/verify_gammar_order_floor.py`;
+  `experimental/data/certificates/frontier-adjacent/gammar_order_floor_v1.json`.
+- **Status:** PROVED-LOCAL(Brick 1: unconditional order floor; Brick 2: monotone
+  certificate) / MEASURED(Gamma_r raw-vs-removed, 5 rows, r=2..8, exact Fraction
+  arithmetic) / AUDIT(removal-does-not-help finding; Poisson closed-form model) /
+  OPEN(dense-bulk law persistence at the deployed w = `prob:row-sharp-q` itself).
+- **What is being added:** The first `Gamma_r` (fixed-moment collision hierarchy,
+  `grande_finale.tex \label{prop:moment-sandwich}` / raw `\label{prob:capfp-gamma}`)
+  data on the paid quotient/planted-pruned prefix object, raw vs twist-primitive,
+  `r=2..8`, exact arithmetic. Proves two one-line exact bricks -- an unconditional
+  order floor `r>=ceil(w log2|B|/Delta)` (forced purely by `Gamma_r>=1`) and a
+  monotone certificate pinning the exact closing order `r_min(R)` -- and measures
+  that quotient/planted removal does not tame the moment constants in the dense
+  bulk where the deployed frontier lives (the collision mass there is provably
+  primitive). Independently reproduces PR #366's own shipped moment-route numbers
+  (`94196` at KB-MCA, `5886` at L4) to the digit from raw constants, and
+  cross-validates a frontier mean-fiber placement figure (`lambda=2^{35.7}` at
+  KB-MCA) against Lane M's concurrent, independently derived value to 4 decimals.
+- **How it is useful:** Upgrades PR #366's route-cut moment orders from
+  Gamma_r-assumed-trivial estimates to unconditional proved floors, without
+  touching that PR's verdicts or ladder margins. Clarifies the moment route's
+  status for the `prob:row-sharp-q` program: not dead by `Gamma_r` growth (measured
+  benign in every accessible regime), but non-circumventing (the order floor is
+  intrinsic and closing it at deployed `w` is content-equivalent to Q itself).
+  Ties to Lane M's concurrent `prob:saturated-bc` work via the shared moment-kernel
+  object (`thm:q-implies-sp`); no dependence on the L1-track PRs #368/#364.
+- **What to do next:** The weight-enumerator evaluation route at order `~1e5` is
+  now well-posed -- a feasibility study of the balanced-ternary weight enumerator
+  structure of `K_w(D)` at deployed `w` (not an attempt to actually evaluate it)
+  would clarify whether the certificate format in Sec 7 of the note is worth
+  pursuing further. The load-bearing open item is `prob:row-sharp-q` itself: does
+  the dense-bulk law `lambda>>1 => Gamma_r=1+o(1)`, measured here only at toy
+  `w<=4`, persist to the deployed `w=67471/67447/4216`? That persistence question
+  is the proper open problem, not a byproduct of this packet. Independent replay
+  of the verifier (`--full`, `--tamper-selftest`) before any promotion.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
