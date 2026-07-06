@@ -140,4 +140,84 @@ theorem bc_boundary_census_floor (D : Finset B) (K m : ℕ) (hKm : K ≤ m) (hmn
   refine ⟨Ub, ?_⟩
   simpa [Nat.choose_self] using hUb
 
+/-- **Interior base-field census floor — pigeonhole (`⌈·⌉ ≥ 1`) form.** For `K ≤ m' ≤ n = |D|`
+there is a `𝔹`-valued received word whose level-`m` binomial-moment census is at least
+`binom(m', m)`.
+
+This is the *non-vacuous* strengthening of `bc_census_floor` on the interior side.  The floor
+in `bc_census_floor` is `⌊binom(n,m') / |𝔹|^{m'-K}⌋ · binom(m',m)`, and Lean's `Nat` division is
+a genuine floor: in the interior *below-one* regime `binom(n,m') < |𝔹|^{m'-K}` (which already
+holds at the first interior profile `d₁ = w + 2`, since `m' - K = d₁ - 1`) that floor collapses
+to `0`, so `bc_census_floor` degenerates to `0 ≤ census`.  The paper's floor `M_𝔹(d₁;m)` is the
+*ceiling* `⌈binom(n,m') / |𝔹|^{m'-K}⌉ · binom(m',m)`, and `⌈binom(n,m') / |𝔹|^{m'-K}⌉ ≥ 1`
+whenever `binom(n,m') ≥ 1` (i.e. `m' ≤ n`); its non-trivial content in the below-one regime is
+exactly `binom(m',m) ≤ census`.  This theorem supplies that content by an elementary
+max-fiber `≥ 1` pigeonhole: a single `m'`-subset `M ⊆ D` (which exists because `m' ≤ n`) sits in
+the prefix fiber of its own locator prefix `pre K m' M`, producing one degree-`< K` codeword
+(`code_mem_RS`) that agrees with the associated identity-prefix witness on all of `M`
+(`code_agrees`), hence on `≥ m'` positions, contributing `binom(m',m)` size-`m` supports to the
+census.  This is `prop:subfield-census-floor` (b) in its ceiling form. -/
+theorem bc_census_floor_pigeonhole (D : Finset B) (K m m' : ℕ) (hKm' : K ≤ m')
+    (hm'n : m' ≤ D.card) :
+    ∃ Ub : D → B,
+      m'.choose m ≤ census D K m (fun x => algebraMap B F (Ub x)) := by
+  have hpos : 0 < (D.powersetCard m').card := by
+    rw [Finset.card_powersetCard]; exact Nat.choose_pos hm'n
+  obtain ⟨M, hMmem⟩ := Finset.card_pos.mp hpos
+  set z : Fin (m' - K) → B := pre K m' M with hz
+  have hMfib : M ∈ fiber D K m' z := Finset.mem_filter.mpr ⟨hMmem, hz.symm⟩
+  refine ⟨fun x => (Pz K m' z).eval (x : B), ?_⟩
+  show m'.choose m ≤ census D K m (recv (F := F) D K m' z)
+  have hc_agree : m' ≤ agreeCard (recv (F := F) D K m' z) (code (F := F) D K m' z M) :=
+    code_agrees (F := F) D z hMfib
+  have hc0_mem : code (F := F) D K m' z M ∈ RSFinset D K :=
+    Finset.mem_filter.mpr ⟨Finset.mem_univ _, code_mem_RS (F := F) hKm' D z hMfib⟩
+  calc m'.choose m
+      ≤ (agreeCard (recv (F := F) D K m' z) (code (F := F) D K m' z M)).choose m :=
+        Nat.choose_le_choose m hc_agree
+    _ ≤ ∑ c ∈ RSFinset D K, (agreeCard (recv (F := F) D K m' z) c).choose m :=
+        Finset.single_le_sum (f := fun c => (agreeCard (recv (F := F) D K m' z) c).choose m)
+          (fun c _ => Nat.zero_le _) hc0_mem
+    _ = census D K m (recv (F := F) D K m' z) := rfl
+
+/-- **Interior base-field census floor — explicit ceiling form (below-one regime).** In the
+interior below-one regime `binom(n,m') ≤ |𝔹|^{m'-K}` (with `K ≤ m' ≤ n`), the ceiling
+`⌈binom(n,m') / |𝔹|^{m'-K}⌉`, written as the `Nat` ceil-division
+`(binom(n,m') + |𝔹|^{m'-K} - 1) / |𝔹|^{m'-K}`, equals `1`, so the paper's floor
+`⌈binom(n,m') / |𝔹|^{m'-K}⌉ · binom(m',m)` is `binom(m',m)` and is attained by a `𝔹`-valued
+received word.  This makes the match to the manuscript's ceiling semantics
+(`prop:base-field-floor`, `M_𝔹(d₁)`) syntactic in Lean, and is non-vacuous exactly where the
+`⌊·⌋` form of `bc_census_floor` reads `0`. -/
+theorem bc_census_floor_ceil_below_one (D : Finset B) (K m m' : ℕ) (hKm' : K ≤ m')
+    (hm'n : m' ≤ D.card)
+    (hbelow : (D.card).choose m' ≤ (Fintype.card B) ^ (m' - K)) :
+    ∃ Ub : D → B,
+      (((D.card).choose m' + (Fintype.card B) ^ (m' - K) - 1) / (Fintype.card B) ^ (m' - K))
+          * (m'.choose m)
+        ≤ census D K m (fun x => algebraMap B F (Ub x)) := by
+  obtain ⟨Ub, hUb⟩ := bc_census_floor_pigeonhole (F := F) D K m m' hKm' hm'n
+  refine ⟨Ub, ?_⟩
+  have ha : 0 < (D.card).choose m' := Nat.choose_pos hm'n
+  have hbpos : 0 < (Fintype.card B) ^ (m' - K) := by omega
+  have hceil : ((D.card).choose m' + (Fintype.card B) ^ (m' - K) - 1)
+      / (Fintype.card B) ^ (m' - K) = 1 := by
+    have hsplit : (D.card).choose m' + (Fintype.card B) ^ (m' - K) - 1
+        = ((D.card).choose m' - 1) + (Fintype.card B) ^ (m' - K) := by omega
+    have hlt : (D.card).choose m' - 1 < (Fintype.card B) ^ (m' - K) := by omega
+    rw [hsplit, Nat.add_div_right _ hbpos, Nat.div_eq_of_lt hlt]
+  rw [hceil, one_mul]
+  exact hUb
+
+/-- **Boundary base-field census floor — positivity (`⌈·⌉ ≥ 1`) form.** The `m' = m` case of
+`bc_census_floor_pigeonhole`: for `K ≤ m ≤ n = |D|` there is a `𝔹`-valued received word whose
+`m`-th binomial-moment census is at least `1`.  This is the non-vacuous strengthening of
+`bc_boundary_census_floor`, whose `⌊binom(n,m) / |𝔹|^{m-K}⌋` form collapses to `0` in the
+below-one regime; here `binom(m,m) = 1 ≤ census`, i.e. the decoding list is nonempty
+(`prop:subfield-census-floor` (a), ceiling form). -/
+theorem bc_boundary_census_floor_pos (D : Finset B) (K m : ℕ) (hKm : K ≤ m)
+    (hmn : m ≤ D.card) :
+    ∃ Ub : D → B, 1 ≤ census D K m (fun x => algebraMap B F (Ub x)) := by
+  obtain ⟨Ub, hUb⟩ := bc_census_floor_pigeonhole (F := F) D K m m hKm hmn
+  exact ⟨Ub, by simpa [Nat.choose_self] using hUb⟩
+
 end RSMCA

@@ -2265,3 +2265,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-06 - BC.lean interior census floor made non-vacuous (Lean)
+
+- **Agent/model:** Claude (Fable/Opus), Lane K.
+- **Files added or changed:**
+  `experimental/lean/cap25_cap_v13_raw_compact/cap25_cap_v13_raw_compact/BC.lean`
+  (three new theorems, additive, `+80` lines, no existing decl touched);
+  `experimental/notes/thresholds/cap25_v13_bc_lean_floor_upgrade.md` (new).
+- **Status:** FORMALIZATION / PROVED-IN-LEAN (zero `sorry`/`admit`/`native_decide`;
+  `lake build` green; Lean/mathlib `v4.28.0`).
+- **What is being added:** Upgrade of the maintainer's `bc_census_floor` from the
+  vacuous `Nat`-division `⌊·⌋` form (which reads `0` in the interior below-one
+  regime `binom(n,m') < |𝔹|^{m'-K}`) to the non-trivial pigeonhole **ceiling** form
+  matching the manuscript's `M_𝔹(d₁)`: `bc_census_floor_pigeonhole`
+  (`binom(m',m) ≤ census`), `bc_census_floor_ceil_below_one` (explicit
+  ceil-division `= 1` in the below-one regime), `bc_boundary_census_floor_pos`
+  (`1 ≤ census`). One elementary max-fiber `≥ 1` pigeonhole on the existing
+  `Floor.lean` `code_agrees`/`code_mem_RS` machinery.
+- **How it is useful:** Closes the acknowledged BC.lean seam on the **lower** side,
+  making Lean match #369's L4 below-one fixture (`d₁=4218`, prefix average `< 1`)
+  and consolidating the base-field-normalization obstruction the floor expresses.
+- **What to do next:** (optional) upgrade the high-density case to the full `⌈·⌉`
+  via a ceiling/strict pigeonhole. The **upper** `conj:BC` bound stays open
+  (candidates [A]/[B]); no claim on `conj:BC`, `conj:Q`, `conj:SP`, or the edge.
