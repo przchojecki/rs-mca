@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - KB-MCA L4 BC base-field floor ladder
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_bc_l4_base_floor_ladder.py`;
+  `experimental/data/certificates/frontier-adjacent/kb_mca_bc_l4_base_floor_ladder_v1.json`;
+  `experimental/notes/thresholds/cap25_v13_bc_l4_base_floor_ladder.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXACT_ARITHMETIC.
+- **What is being added:** Exact arithmetic for the KoalaBear-MCA `L_4`
+  quotient row from the integrated `conj:Q` rung audit, read through
+  `agents.md`'s finite BC split-pencil certificate target.  The packet pins
+  `K=ceil((2^20+1)/16)=65537`, `m=69753`, `w=4216`, the Q boundary profile
+  `d1=4217`, and the first BC interior profile `d1=4218`, then computes the
+  base-field floor for the boundary and first eight interior profiles.
+- **How it is useful:** Prevents Q/BC boundary double-counting and records the
+  integer-ceiling regime that any finite BC upper census must include at the
+  clean odd `L_4` row.  It supports `conj:BC` target normalization; it is not
+  a safe certificate and not a bad-slope lower bound.
+- **What to do next:** Use this as the row-convention fixture for a genuine
+  primitive split-pencil upper-census attempt at `L_4`, after the base-field
+  floor and Q/tangent/quotient/extension/common-GCD cells are separated.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
