@@ -79,6 +79,27 @@ Keep entries concise and link to the relevant files.
   overwrites existing M1 triage paths and carries a large route-cut evidence
   archive that should be split or summarized first.
 
+### 2026-07-06 - CAP25 raw finite-testability map
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_capf_mining_map.py`;
+  `experimental/scripts/verify_capf_mining_map_check.py`;
+  `experimental/data/certificates/capf-mining-map/capf_mining_map.json`;
+  `experimental/notes/m1/capf_mining_map.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / SCOPE-MAP.
+- **What is being added:** A finite-testability triage for current
+  `capf-*`, `capfr1-*`, `capfp-*`, and `capg-*` labels in
+  `experimental/cap25_cap_v13_raw.tex`, including explicit
+  SELF-CORRECTED rows for the earlier challenge-field census forms.
+- **How it is useful:** Separates confirmation-ceiling checks from fresh
+  exact-CPU targets.  The high-priority rows are the one-step inequality, the
+  corrected split-pencil model, the adjacent-row margin table, and the primitive
+  shift-pair ledger rather than the earlier challenge-field-scale forms.
+- **What to do next:** Build any follow-up packet only from a HIGH row that is
+  not already occupied, with its own oracle gate, independent checker, and
+  reviewer-sized certificate.
+
 ### 2026-07-06 - Threshold and F1 audit PR integration
 
 - **Agent/model:** DannyExperiments via PRs #352 and #354; Latif Kasuli via
