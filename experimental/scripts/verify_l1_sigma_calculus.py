@@ -499,6 +499,12 @@ OBJECTS = [
     {"label": "RES ell=29 p=233 [14,13,5,5,2,2,2,2]", "ell": 29, "p": 233, "kind": "RES",
      "gamma": [203, 187, 107, 98, 59, 120, 193, 102, 190, 101, 206, 153, 193, 196, 119, 185, 120, 153, 188, 140, 192, 218, 113, 205, 228, 206, 224, 1],
      "expect": {"K": 8, "E3": 29, "sigma": 10, "delta": 10, "dimU": 2, "dimVsum": 27, "rho": 27, "P": 45}},
+    # SAT3 (wave-13): first T>=7 residual-tight object (T=9); refutes the
+    # "mu_1+mu_2 = ell-2 at residual tightness" heuristic (here mu_1+mu_2 = ell-5
+    # = ell+4-T) and exercises deep-residual tightness the two T=6 objects miss.
+    {"label": "RES ell=29 p=233 [12,12,8,3,3,3,2,2] (T=9)", "ell": 29, "p": 233, "kind": "RES",
+     "gamma": [117, 162, 58, 221, 3, 169, 112, 22, 48, 175, 127, 164, 4, 228, 76, 195, 151, 177, 116, 146, 56, 105, 217, 28, 114, 88, 89, 1],
+     "expect": {"K": 8, "E3": 29, "sigma": 10, "delta": 10, "dimU": 2, "dimVsum": 27, "rho": 27, "P": 45}},
 ]
 
 def make_config(obj, tamper=False, tamper_idx=None):
@@ -802,9 +808,9 @@ def gate_ix_theorem1(tamper=False):
                     T, E3 == ell, sig == cfg.K + dU, rho == ell - 2)
         ok = ok and good
         lines.append("%s: %s" % (obj["label"], tag))
-    struct_ok = (n_cov >= 12) and (n_res >= 3) and (n_res_tight == 2)
+    struct_ok = (n_cov >= 12) and (n_res >= 3) and (n_res_tight == 3)
     ok = ok and struct_ok
-    lines.append("[structure] covered=%d residual=%d residual_tight=%d (want cov>=12,res>=3,rt==2):%s"
+    lines.append("[structure] covered=%d residual=%d residual_tight=%d (want cov>=12,res>=3,rt==3):%s"
                  % (n_cov, n_res, n_res_tight, struct_ok))
     return ok, " | ".join(lines)
 
