@@ -30,6 +30,40 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - conj:Q divisor-lattice rung audit at a0+1 (M31-MCA, v13 raw)
+
+- **Agent/model:** Claude Fable 5 (Lane E derivation + packaging agent).
+- **Files added or changed:** `experimental/notes/thresholds/cap25_v13_qfin_rung_audit_m31.md`;
+  `experimental/data/certificates/frontier-adjacent/m31_mca_conjq_rung_audit_v1.json`;
+  `experimental/scripts/verify_m31_mca_conjq_rung_audit.py`; `experimental/agents-log.md`.
+- **Status:** AUDIT / EXACT_LEDGER.
+- **What is being added:** Sibling of the KB-MCA `conj:Q` rung audit (PR #361)
+  for the Mersenne-31 MCA v13 raw row `(1116023,1116024)`: the same compiler
+  (identity `(D)`, the domain-2-power-generic image-level 2-adic descent),
+  M31 constants. `v2(m_safe)=3` here (vs KB's `4`), so the ladder has three
+  nonprimitive rungs (`s=1,2,3`) plus the `s=0` primitive core, one rung
+  short of KB's reach. **Unlike KB, this row's own arithmetic does NOT come
+  out `GREEN`:** the pessimistic same-bar ladder (`rho_s <= K_raw` at every
+  rung) `EXCEEDS` the row's tiny budget (`K_raw=9`) by `~4.66x`
+  (`charge=42`, nominal `residual=-33`). This is **not** a refutation of
+  `conj:Q` and does **not** move the frontier edge -- no rung bound has
+  actually been proven, `L_1, L_2, L_3` remain fully `OPEN` -- it is a
+  quantified confirmation that "the Mersenne-31 rows, at ~3 bits, demand
+  exact extremality" (`rs_mca_proximity_prize_status.md`). Identity `(D)`
+  itself is toy-validated fresh on the same 4 rows the KB audit used
+  (`F_17` witness, genuine coset, both gates iii/iv `PASS`).
+- **How it is useful:** Precisely localizes where the M31 row's difficulty
+  lives (jointly across `s=0..3`, not cleanly isolated to the primitive core
+  the way KB's is), and gives an exact, toy-validated, tamper-tested ledger
+  for anyone attacking `L_1`, `L_2`, `L_3`, or the primitive core directly.
+  Distinct from this packet family's existing `m31_mca_v1.packet.json`
+  `.rung_margin_audit` block (a different, older-pair, lower-side audit);
+  that file is not modified.
+- **What to do next:** Establish `L_1`, `L_2`, or `L_3` at bounds
+  meaningfully tighter than the generic `K_raw` bar (not merely "as flat as
+  the primitive row"), or find a non-decomposed argument for the row as a
+  whole; neither is touched by this audit.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
