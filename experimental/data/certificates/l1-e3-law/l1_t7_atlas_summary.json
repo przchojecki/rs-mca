@@ -1,0 +1,113 @@
+{
+ "note": "experimental/notes/l1/l1_t7_atlas_concurrency.md",
+ "generated_by": "experimental/scripts/l1_t7_atlas.py (atlas) + experimental/scripts/verify_l1_t7_atlas.py (concurrency law / witness cross-checks, independent reimplementation)",
+ "description": "Compact certificate for the T=7 candidate atlas and the fat-tail concurrency law. Does NOT include the full 23314-shape atlas enumeration (regenerate with experimental/scripts/l1_t7_atlas.py); carries per-ell counts, the empirical concurrency-law table, the ell=31 witness in full, and the coverage ledger.",
+
+ "atlas": {
+  "17": {"ell": 17, "total": 447, "cap_tight_T7": 51, "min_j": 4, "min_j_overdet": 9,
+         "min_j_count": 14, "min_j_cap_tight_count": 6, "min_j_example": "[11,6^2,5]",
+         "fat_tail_shape": "[14,3^8]", "fat_tail_j": 9, "fat_tail_overdet": 14,
+         "fat_tail_min_p": 239, "fat_tail_min_n": 14},
+  "19": {"ell": 19, "total": 792, "cap_tight_T7": 66, "min_j": 3, "min_j_overdet": 8,
+         "min_j_count": 1, "min_j_cap_tight_count": 1, "min_j_example": "[10,9^2]",
+         "fat_tail_shape": "[16,3^8]", "fat_tail_j": 9, "fat_tail_overdet": 14,
+         "fat_tail_min_p": 191, "fat_tail_min_n": 10},
+  "23": {"ell": 23, "total": 2166, "cap_tight_T7": 96, "min_j": 3, "min_j_overdet": 8,
+         "min_j_count": 5, "min_j_cap_tight_count": 3, "min_j_example": "[14,9^2]",
+         "fat_tail_shape": "[20,3^8]", "fat_tail_j": 9, "fat_tail_overdet": 14,
+         "fat_tail_min_p": 277, "fat_tail_min_n": 12},
+  "29": {"ell": 29, "total": 7989, "cap_tight_T7": 141, "min_j": 3, "min_j_overdet": 8,
+         "min_j_count": 16, "min_j_cap_tight_count": 6, "min_j_example": "[20,9^2]",
+         "fat_tail_shape": "[26,3^8]", "fat_tail_j": 9, "fat_tail_overdet": 14,
+         "fat_tail_min_p": 349, "fat_tail_min_n": 12},
+  "31": {"ell": 31, "total": 11920, "cap_tight_T7": 156, "min_j": 3, "min_j_overdet": 8,
+         "min_j_count": 21, "min_j_cap_tight_count": 7, "min_j_example": "[22,9^2]",
+         "fat_tail_shape": "[28,3^8]", "fat_tail_j": 9, "fat_tail_overdet": 14,
+         "fat_tail_min_p": 311, "fat_tail_min_n": 10}
+ },
+ "atlas_notes": {
+  "j_plus_5_theorem": "over-determination := sum_k(mu_k-1) - (ell-2) = j+5 identically on every excess=3 shape (0 violations across all 23314 shapes, all five ell); see note Sec 1 for the proof.",
+  "min_j_family": "[a, ell-a, 9] for ceil(ell/2) <= a <= ell-9 realizes the cap-tight (capslack=0) min-j shapes for ell>=19; ell=17 has no j=3 solution (ell-9=8 < 9) so min_j=4 there. min_j_cap_tight_count equals the width of that a-range exactly (1,3,6,7 for ell=19,23,29,31)."
+ },
+
+ "concurrency_law": {
+  "source": "internal 'Lane I' hunt (tally.py/sweep_tally*.json/sweep_deep.json; not shipped verbatim -- see verify_l1_t7_atlas.py gate v for an independent live reproduction of the ell=17,p=137 row (full 680/680) and a bounded 40-dropset subsample at ell=31,p=373)",
+  "columns": ["ell", "p", "n", "dropsets_swept", "max_k3", "excess=max_k3-5"],
+  "rows": [
+   [17, 137, 8, 680, 7, 2],
+   [17, 239, 14, 300, 5, 0],
+   [17, 307, 18, 200, 5, 0],
+   [17, 409, 24, 150, 5, 0],
+   [17, 613, 36, 80, 5, 0],
+   [19, 229, 12, 300, 5, 0],
+   [19, 419, 22, 150, 5, 0],
+   [19, 571, 30, 100, 6, 1],
+   [23, 277, 12, 900, 5, 0],
+   [23, 461, 20, 120, 5, 0],
+   [23, 599, 26, 80, 5, 0],
+   [29, 233, 8, 900, 7, 2],
+   [29, 349, 12, 900, 5, 0],
+   [29, 523, 18, 60, 5, 0],
+   [31, 311, 10, 1200, 7, 2],
+   [31, 373, 12, 900, 7, 2],
+   [31, 683, 22, 40, 7, 2]
+  ],
+  "overall_max_k3": 7,
+  "k3_ge_8_found": false,
+  "by_ell": {
+   "17": {"max_k3": 7, "at_n": [8], "n_range": [8, 36]},
+   "19": {"max_k3": 6, "at_n": [30], "n_range": [12, 30]},
+   "23": {"max_k3": 5, "at_n": [12, 20, 26], "n_range": [12, 26]},
+   "29": {"max_k3": 7, "at_n": [8], "n_range": [8, 18]},
+   "31": {"max_k3": 7, "at_n": [10, 12, 22], "n_range": [10, 22]}
+  },
+  "excess_plus2_attained_at": [17, 29, 31],
+  "cross_reference_pr364": {
+   "pr": 364, "branch": "l1-ell19-band-refuted",
+   "file": "experimental/notes/l1/l1_ell19_band_refuted.md",
+   "note": "PR #364's own m*(19)<=9 listing witness (ell=19,p=571) is independently an instance of the SAME [ell-3,3^k] fat-tail family this note studies (its spectrum [16,3^6,2^6,1^17] has mu_1=16=ell-3 and six size-3 fibers): k3=6, matching this table's (ell=19,p=571) row exactly. Two unrelated methods (PR #364's listing search; this note's Lane I concurrency tally, at a DIFFERENT dropset) converge on the identical extremal k3=6 at that prime. Cited by path+number, not depended on -- re-verified from PR #364's own embedded gamma in verify_l1_t7_atlas.py gate v.",
+   "pr364_gamma_ell19_p571": [545, 15, 163, 341, 470, 274, 474, 224, 174, 556, 179, 28, 321, 233, 543, 54, 203, 1],
+   "pr364_dropset": [0, 1, 6],
+   "this_note_dropset_same_row": [0, 1, 11]
+  }
+ },
+
+ "pairplant_balanced_shape_coverage": {
+  "source": "internal 'Lane I' hunt (pairplant.py/pairplant_sweep.json); balanced two-big-fiber plants, d=ell+1-b1-b2 in {2,3}",
+  "runs": 10,
+  "ell_covered": [17, 19, 23],
+  "max_emergent_E3_excess": 0,
+  "best_spectra": {
+   "17_p239_b9_6": {"spec": "[9,6,3^6,2^3]", "E3": 17},
+   "19_p229_b9_8": {"spec": "[10,9,3^4,2^4]", "E3": 19},
+   "23_p277_b12_9": {"spec": "[12,9,5,4,3,2^3]", "E3": 23}
+  },
+  "note": "no run realized a size-9 third fiber; the minimal-j frontier [a,ell-a,9] was not reached by any tractable plant of this kind (its cap-tight regime has zero spare nullspace dimension to sweep)."
+ },
+
+ "ell31_witness": {
+  "id": "new fat-tail witness (this note), excess+2",
+  "ell": 31, "p": 373, "n": 12,
+  "shape": "[28,3^7]",
+  "plant": {"dropset_indices_into_coset0": [5, 16, 24], "planted_fiber_size": 28},
+  "q_projective_normalized": [1, 0, 2],
+  "q_polynomial": "1 + 2*X^2",
+  "lambda0": 298,
+  "gamma_ascending_1_to_30": [301, 278, 116, 20, 233, 290, 308, 247, 173, 45, 8, 255, 354, 153, 202, 328, 148, 163, 186, 47, 36, 289, 296, 316, 11, 192, 308, 205, 10, 2],
+  "spectrum": [28, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1],
+  "E3": 33,
+  "mu1": 28,
+  "k3": 7,
+  "concurrent_cosets": [2, 3, 5, 6, 8, 9, 11],
+  "excess": 2,
+  "identity_check": "excess = k3-5 = 2 = E3-ell = 33-31",
+  "independent_rederivation": "verify_l1_t7_atlas.py gate iii reconstructs gamma from (ell,p,dropset,q) alone by exact polynomial division/multiplication, then recomputes spectrum by brute-force evaluation AND concurrency by an exhaustive triple-tally that is not given q -- both reproduce every field above exactly."
+ },
+
+ "coverage_ledger": {
+  "fat_tail_family": "[ell-3,3^k]: exhaustive-per-dropset triple tally (every triple in every non-planted coset solved), dropsets themselves sampled (deterministic spread, exhaustive only at ell=17,p=137 with 680/680 = C(17,3)). 17 (ell,p) points across ell in {17,19,23,29,31}, up to 1200 dropsets/prime.",
+  "balanced_dlt3_family": "pairplant.py: d=ell+1-b1-b2 in {2,3} (pencil/plane, exhaustively swept once planted), ell in {17,19,23}, 10 plant configurations -- thin coverage, no size-9 third fiber ever emerged.",
+  "minimal_j_frontier_NOT_covered": "the [a,ell-a,9] family (capslack=0, j=3) has ZERO spare nullspace dimension once both top fibers are planted cap-tight; the alternative (plant only the size-9 third fiber) leaves an (ell-9)-dimensional projective family, intractable to sweep exhaustively for ell>=19. No tractable method exists yet -- this is the open frontier the note names, not a gap in effort.",
+  "not_claimed": "C'<=2 is not proved; k3<=7 is not proved (EXPERIMENTAL, finite but real coverage); the atlas is complete only under the two named combinatorial caps (pairwise + Lemma R), not a completeness statement about realizability."
+ }
+}

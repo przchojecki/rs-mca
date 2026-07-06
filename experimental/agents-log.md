@@ -30,6 +30,59 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - L1 T=7 atlas + fat-tail concurrency law
+
+- **Agent/model:** Claude Sonnet 5, packaging a Lane I investigation.
+- **Files added or changed:** `experimental/notes/l1/l1_t7_atlas_concurrency.md`;
+  `experimental/scripts/l1_t7_atlas.py`;
+  `experimental/scripts/verify_l1_t7_atlas.py`;
+  `experimental/data/certificates/l1-e3-law/l1_t7_atlas_summary.json`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED-LOCAL / ROUTE-CUT / EXPERIMENTAL.
+- **What is being added:** The exact finite **excess=3 candidate atlas**
+  (`T=7` boundary of the open `C'<=2` ceiling) for `ell in {17,19,23,29,31}`
+  (447/792/2166/7989/11920 shapes; 51/66/96/141/156 cap-tight `T=7` slices),
+  with a PROVED structural ordering — the `j+5` over-determination identity,
+  with a full written proof (exact per-fiber codimension via a Lagrange +
+  correction-polynomial argument, summed and projectivized) — that identifies
+  the minimal-`j` shapes `[a,ell-a,9]` as the least-obstructed, least-huntable
+  true frontier. Extends `l1_bounded_excess_structure.md` (PR #368,
+  concurrent, cited not depended on)'s `q`-plane concurrency reformulation
+  from `ell=17` alone to all five `ell`, with a sharpened ROUTE-CUT (Bezout
+  and dimension both bottom out at `Theta(ell^2)`, for an explicit reason) and
+  an extended empirical concurrency law (17 `(ell,p)` points, exhaustive per
+  dropset): max fat-tail concurrency `k3=7` everywhere, never `8`, not growing
+  with `n`. Ships a NEW `ell=31,p=373` witness (`[28,3^7]`, excess `+2`) in
+  full, independently reconstructed from its plant alone (dropset + `q`, no
+  `gamma` taken on faith) by two methods (brute-force spectrum; a from-scratch
+  concurrency tally that is not given `q`). Cross-checked against `l1_ell19_
+  band_refuted.md` (PR #364, concurrent, cited not depended on): its own
+  `m*(19)<=9` witness at `ell=19,p=571` is independently recomputed here and
+  found to be a `k3=6` instance of this note's own fat-tail family — two
+  unrelated methods, two different dropsets, the same prime, the same
+  extremal `k3`. One arithmetic slip in the source draft (a quotient-degree
+  remark, off by one against the general formula) and one mis-cited
+  over-determination value for the already-integrated W3 witness (source
+  draft said `11`; the correct value, matching `l1_e3_law_refuted.md`'s own
+  stated `sigma=12` for W3 via the sigma-calculus master identity, is `12`)
+  were both caught by independent recomputation and corrected, not silently.
+- **How it is useful:** Turns the open `C'<=2` question (is there any
+  realizable tail-excess `>=7`?) into a named, finite, exactly-characterized
+  search space with a proved ordering by how over-determined each candidate
+  shape is, and supplies the strongest evidence yet (five `ell` values, up to
+  1200 dropsets/prime, exhaustive per dropset) that the fat-tail sub-family
+  caps out at excess `+2`. The minimal-`j` frontier `[a,ell-a,9]` is named as
+  the honest open target: least obstructed by every available route, but not
+  exhaustively huntable by any method tried so far.
+- **What to do next:** The `[a,ell-a,9]` realizability question (the relocated
+  `C'<=2` core) — plant only the size-9 third fiber (leaving an
+  `(ell-9)`-dimensional family) and look for a smarter-than-exhaustive method
+  to search it, since brute enumeration is out of reach for `ell>=19`. A
+  human `(W,lambda)`-Veronese transversality argument (the repeatedly-named
+  open core across this whole note lineage) would settle the fat-tail
+  sub-question outright. Not attempted here: `ell>=37`, and any non-fat-tail,
+  non-balanced-pair shape family.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
