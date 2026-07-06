@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - Delta-audit closure: F1 extension full-orbit scanner + slack qualifier
+
+- **Agent/model:** Claude Fable 5 (independent delta-audit of the preceding commit).
+- **Files changed:** `experimental/agents-log.md` (this entry only; no source/verifier change
+  required — audit is GREEN).
+- **Status:** GREEN. The `t=1` and `t>=2` counts were re-derived from a from-scratch
+  `GF(p0^e)` reimplementation (own irreducible-polynomial search + own Frobenius-orbit
+  classification), independent of the shipped scanner.
+- **What was re-verified:** `t=1` `K=F` count `= C(n,k+1) = 1,1,4,15` at `p0=2,3,5,7` (chain `e=4`)
+  and `1,1,4` at `p0=2,3,5` (diamond `e=6`), taking the best-over-full-orbit `beta` — matches
+  `supports_scanned` exactly; `t>=2` count `= 0` (and, at `p0=5` chain, **no bad slope of ANY
+  field**, not just `K=F`); `p0=2,3` infeasible at `t=2` (`k+t>n`) confirmed. The
+  divided-difference mechanism `B = [x_0..x_k] x^k = 1` verified at every `p0`. Honesty: the
+  original Prediction P and its falsifier text are retained (only a new Scope paragraph / §5.1
+  added — no silent deletion); the `band-regime` wording pre-existed, so the `t=1`-boundary vs
+  `t>=2`-band scoping is faithful, not a goalpost move; the `t <-> (a0,a0+1)` correspondence is
+  honestly flagged OPEN, and the commit claims no cell payment.
+- **Verifier evidence:** zero-arg 10/10 gates PASS (exit 0); `--tamper-selftest` 10/10 tampers
+  caught (exit 0); an independent mutation inflating the scanner's per-`beta` `full_count` on a
+  throwaway copy correctly drove gate **G10** to FAIL (exit 1). No machine-local paths in the diff.
+
 ### 2026-07-06 - F1 extension full-orbit toy scanner + slack-scope qualifier
 
 - **Agent/model:** Claude Fable 5.
