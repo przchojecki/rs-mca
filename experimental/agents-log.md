@@ -2265,3 +2265,20 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-06 - Primitive shift-pair toy ledger
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:** `experimental/scripts/verify_capg_shiftpairs_primitive_ledger.py`;
+  `experimental/scripts/verify_capg_shiftpairs_primitive_ledger_check.py`;
+  `experimental/data/certificates/capg-shiftpairs/capg_shiftpairs_primitive_ledger.json`;
+  `experimental/notes/m1/capg_shiftpairs_primitive_ledger.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact toy-row enumeration of `sp_w(e;D')` with a
+  common quotient-pullback classifier for `prob:capg-shiftpairs`.
+- **How it is useful:** Confirms the quotient prototype on applicable toy rows
+  and records the remaining primitive residue without claiming an asymptotic
+  bound.
+- **What to do next:** Use the table as input for a separate primitive
+  shift-pair bound or a broader finite constant search.

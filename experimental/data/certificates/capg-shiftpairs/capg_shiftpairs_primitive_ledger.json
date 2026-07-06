@@ -1,0 +1,1740 @@
+{
+  "base_sha": "0fa9427044fcd0a9e2fffade54dcb0c3f08253ca",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "audits_canonical_shiftpair_object": true,
+    "certifies_adjacent_row_constants": false,
+    "claims_no_method_can_reach": false,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "proves_prob_band_undecidable": false,
+    "resolves_or_advances_prob_band": false,
+    "verifies_asymptotic_shiftpair_bound": false
+  },
+  "degeneracy_notes": [
+    "The prototype rows are intentionally quotient-pullback explained and serve as an oracle.",
+    "The non-oracle rows include cases with primitive residue; these are counts, not an upper-bound theorem."
+  ],
+  "determinism": "deterministic exhaustive toy-row enumeration",
+  "evidence_type": "FULL_FINITE_CENSUS",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "object": "primitive part of sp_w(e;D') after common quotient-pullback deletion on toy rows",
+  "oracle_gate": {
+    "expected": {
+      "primitive_pairs": 0,
+      "prototype_expected_pairs": 2,
+      "pullback_pairs": 2,
+      "sp_ordered_pairs": 2
+    },
+    "observed": {
+      "primitive_pairs": 0,
+      "prototype_expected_pairs": 2,
+      "pullback_pairs": 2,
+      "sp_ordered_pairs": 2
+    },
+    "passed": true,
+    "row_id": "oracle_f5_mu4_w1_e2"
+  },
+  "regen_command": "py -3.13 experimental/scripts/verify_capg_shiftpairs_primitive_ledger.py --emit-defaults --check",
+  "rows": [
+    {
+      "available_size": 4,
+      "bucket_count": 5,
+      "domain": "mu_n",
+      "e": 2,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 0,
+          "signature": [
+            0
+          ],
+          "support_count": 2
+        }
+      ],
+      "n": 4,
+      "nonzero_pair_bucket_count": 1,
+      "p": 5,
+      "primitive_examples": [],
+      "primitive_fraction_den": 2,
+      "primitive_fraction_num": 0,
+      "primitive_pairs": 0,
+      "prototype_expected_pairs": 2,
+      "prototype_lower_bound_met": true,
+      "prototype_mass_seen_as_pullback": true,
+      "prototype_pairs_seen_by_scale_e": 2,
+      "pullback_examples": [
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              0,
+              2
+            ],
+            "values": [
+              1,
+              4
+            ]
+          },
+          "right": {
+            "indices": [
+              1,
+              3
+            ],
+            "values": [
+              2,
+              3
+            ]
+          },
+          "signature": [
+            0
+          ]
+        },
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              1,
+              3
+            ],
+            "values": [
+              2,
+              3
+            ]
+          },
+          "right": {
+            "indices": [
+              0,
+              2
+            ],
+            "values": [
+              1,
+              4
+            ]
+          },
+          "signature": [
+            0
+          ]
+        }
+      ],
+      "pullback_pairs": 2,
+      "removed_indices": [],
+      "row_id": "oracle_f5_mu4_w1_e2",
+      "sp_ordered_pairs": 2,
+      "support_count": 6,
+      "w": 1
+    },
+    {
+      "available_size": 16,
+      "bucket_count": 17,
+      "domain": "mu_n",
+      "e": 2,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 56,
+          "primitive_pairs": 0,
+          "signature": [
+            0
+          ],
+          "support_count": 8
+        },
+        {
+          "ordered_disjoint_pairs": 42,
+          "primitive_pairs": 42,
+          "signature": [
+            1
+          ],
+          "support_count": 7
+        },
+        {
+          "ordered_disjoint_pairs": 42,
+          "primitive_pairs": 42,
+          "signature": [
+            2
+          ],
+          "support_count": 7
+        },
+        {
+          "ordered_disjoint_pairs": 42,
+          "primitive_pairs": 42,
+          "signature": [
+            3
+          ],
+          "support_count": 7
+        },
+        {
+          "ordered_disjoint_pairs": 42,
+          "primitive_pairs": 42,
+          "signature": [
+            4
+          ],
+          "support_count": 7
+        }
+      ],
+      "n": 16,
+      "nonzero_pair_bucket_count": 17,
+      "p": 17,
+      "primitive_examples": [
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1
+            ],
+            "values": [
+              1,
+              3
+            ]
+          },
+          "right": {
+            "indices": [
+              2,
+              13
+            ],
+            "values": [
+              9,
+              12
+            ]
+          },
+          "signature": [
+            13
+          ]
+        },
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1
+            ],
+            "values": [
+              1,
+              3
+            ]
+          },
+          "right": {
+            "indices": [
+              3,
+              7
+            ],
+            "values": [
+              10,
+              11
+            ]
+          },
+          "signature": [
+            13
+          ]
+        }
+      ],
+      "primitive_fraction_den": 728,
+      "primitive_fraction_num": 672,
+      "primitive_pairs": 672,
+      "prototype_expected_pairs": 56,
+      "prototype_lower_bound_met": true,
+      "prototype_mass_seen_as_pullback": true,
+      "prototype_pairs_seen_by_scale_e": 56,
+      "pullback_examples": [
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              0,
+              8
+            ],
+            "values": [
+              1,
+              16
+            ]
+          },
+          "right": {
+            "indices": [
+              1,
+              9
+            ],
+            "values": [
+              3,
+              14
+            ]
+          },
+          "signature": [
+            0
+          ]
+        },
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              0,
+              8
+            ],
+            "values": [
+              1,
+              16
+            ]
+          },
+          "right": {
+            "indices": [
+              2,
+              10
+            ],
+            "values": [
+              9,
+              8
+            ]
+          },
+          "signature": [
+            0
+          ]
+        }
+      ],
+      "pullback_pairs": 56,
+      "removed_indices": [],
+      "row_id": "f17_mu16_w1_e2",
+      "sp_ordered_pairs": 728,
+      "support_count": 120,
+      "w": 1
+    },
+    {
+      "available_size": 16,
+      "bucket_count": 272,
+      "domain": "mu_n",
+      "e": 3,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            1,
+            2
+          ],
+          "support_count": 3
+        },
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            1,
+            7
+          ],
+          "support_count": 3
+        },
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            1,
+            8
+          ],
+          "support_count": 3
+        },
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            1,
+            10
+          ],
+          "support_count": 3
+        },
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            2,
+            6
+          ],
+          "support_count": 3
+        }
+      ],
+      "n": 16,
+      "nonzero_pair_bucket_count": 224,
+      "p": 17,
+      "primitive_examples": [
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1,
+              3
+            ],
+            "values": [
+              1,
+              3,
+              10
+            ]
+          },
+          "right": {
+            "indices": [
+              5,
+              9,
+              13
+            ],
+            "values": [
+              5,
+              14,
+              12
+            ]
+          },
+          "signature": [
+            3,
+            9
+          ]
+        },
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              5,
+              9,
+              13
+            ],
+            "values": [
+              5,
+              14,
+              12
+            ]
+          },
+          "right": {
+            "indices": [
+              0,
+              1,
+              3
+            ],
+            "values": [
+              1,
+              3,
+              10
+            ]
+          },
+          "signature": [
+            3,
+            9
+          ]
+        }
+      ],
+      "primitive_fraction_den": 704,
+      "primitive_fraction_num": 704,
+      "primitive_pairs": 704,
+      "prototype_expected_pairs": null,
+      "prototype_lower_bound_met": null,
+      "prototype_mass_seen_as_pullback": null,
+      "prototype_pairs_seen_by_scale_e": null,
+      "pullback_examples": [],
+      "pullback_pairs": 0,
+      "removed_indices": [],
+      "row_id": "f17_mu16_w2_e3",
+      "sp_ordered_pairs": 704,
+      "support_count": 560,
+      "w": 2
+    },
+    {
+      "available_size": 16,
+      "bucket_count": 1713,
+      "domain": "mu_n",
+      "e": 4,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 12,
+          "primitive_pairs": 0,
+          "signature": [
+            0,
+            0,
+            0
+          ],
+          "support_count": 4
+        },
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            1,
+            11,
+            16
+          ],
+          "support_count": 3
+        },
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            2,
+            10,
+            9
+          ],
+          "support_count": 3
+        },
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            3,
+            14,
+            7
+          ],
+          "support_count": 3
+        },
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 6,
+          "signature": [
+            4,
+            6,
+            4
+          ],
+          "support_count": 3
+        }
+      ],
+      "n": 16,
+      "nonzero_pair_bucket_count": 89,
+      "p": 17,
+      "primitive_examples": [
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1,
+              2,
+              7
+            ],
+            "values": [
+              1,
+              3,
+              9,
+              11
+            ]
+          },
+          "right": {
+            "indices": [
+              3,
+              5,
+              11,
+              14
+            ],
+            "values": [
+              10,
+              5,
+              7,
+              2
+            ]
+          },
+          "signature": [
+            10,
+            12,
+            3
+          ]
+        },
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1,
+              2,
+              7
+            ],
+            "values": [
+              1,
+              3,
+              9,
+              11
+            ]
+          },
+          "right": {
+            "indices": [
+              6,
+              9,
+              10,
+              12
+            ],
+            "values": [
+              15,
+              14,
+              8,
+              4
+            ]
+          },
+          "signature": [
+            10,
+            12,
+            3
+          ]
+        }
+      ],
+      "primitive_fraction_den": 252,
+      "primitive_fraction_num": 224,
+      "primitive_pairs": 224,
+      "prototype_expected_pairs": 12,
+      "prototype_lower_bound_met": true,
+      "prototype_mass_seen_as_pullback": true,
+      "prototype_pairs_seen_by_scale_e": 12,
+      "pullback_examples": [
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              0,
+              1,
+              8,
+              9
+            ],
+            "values": [
+              1,
+              3,
+              16,
+              14
+            ]
+          },
+          "right": {
+            "indices": [
+              5,
+              7,
+              13,
+              15
+            ],
+            "values": [
+              5,
+              11,
+              12,
+              6
+            ]
+          },
+          "signature": [
+            0,
+            7,
+            0
+          ]
+        },
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              5,
+              7,
+              13,
+              15
+            ],
+            "values": [
+              5,
+              11,
+              12,
+              6
+            ]
+          },
+          "right": {
+            "indices": [
+              0,
+              1,
+              8,
+              9
+            ],
+            "values": [
+              1,
+              3,
+              16,
+              14
+            ]
+          },
+          "signature": [
+            0,
+            7,
+            0
+          ]
+        }
+      ],
+      "pullback_pairs": 28,
+      "removed_indices": [],
+      "row_id": "f17_mu16_w3_e4",
+      "sp_ordered_pairs": 252,
+      "support_count": 1820,
+      "w": 3
+    },
+    {
+      "available_size": 16,
+      "bucket_count": 289,
+      "domain": "mu_n",
+      "e": 4,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 18,
+          "primitive_pairs": 18,
+          "signature": [
+            1,
+            6
+          ],
+          "support_count": 8
+        },
+        {
+          "ordered_disjoint_pairs": 18,
+          "primitive_pairs": 18,
+          "signature": [
+            1,
+            12
+          ],
+          "support_count": 8
+        },
+        {
+          "ordered_disjoint_pairs": 18,
+          "primitive_pairs": 18,
+          "signature": [
+            2,
+            7
+          ],
+          "support_count": 8
+        },
+        {
+          "ordered_disjoint_pairs": 18,
+          "primitive_pairs": 18,
+          "signature": [
+            2,
+            14
+          ],
+          "support_count": 8
+        },
+        {
+          "ordered_disjoint_pairs": 18,
+          "primitive_pairs": 18,
+          "signature": [
+            3,
+            3
+          ],
+          "support_count": 8
+        }
+      ],
+      "n": 16,
+      "nonzero_pair_bucket_count": 289,
+      "p": 17,
+      "primitive_examples": [
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "values": [
+              1,
+              3,
+              9,
+              10
+            ]
+          },
+          "right": {
+            "indices": [
+              6,
+              7,
+              10,
+              15
+            ],
+            "values": [
+              15,
+              11,
+              8,
+              6
+            ]
+          },
+          "signature": [
+            11,
+            16
+          ]
+        },
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "values": [
+              1,
+              3,
+              9,
+              10
+            ]
+          },
+          "right": {
+            "indices": [
+              8,
+              10,
+              12,
+              13
+            ],
+            "values": [
+              16,
+              8,
+              4,
+              12
+            ]
+          },
+          "signature": [
+            11,
+            16
+          ]
+        }
+      ],
+      "primitive_fraction_den": 2988,
+      "primitive_fraction_num": 2960,
+      "primitive_pairs": 2960,
+      "prototype_expected_pairs": null,
+      "prototype_lower_bound_met": null,
+      "prototype_mass_seen_as_pullback": null,
+      "prototype_pairs_seen_by_scale_e": null,
+      "pullback_examples": [
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              1,
+              7,
+              9,
+              15
+            ],
+            "values": [
+              3,
+              11,
+              14,
+              6
+            ]
+          },
+          "right": {
+            "indices": [
+              2,
+              3,
+              10,
+              11
+            ],
+            "values": [
+              9,
+              10,
+              8,
+              7
+            ]
+          },
+          "signature": [
+            0,
+            6
+          ]
+        },
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              2,
+              3,
+              10,
+              11
+            ],
+            "values": [
+              9,
+              10,
+              8,
+              7
+            ]
+          },
+          "right": {
+            "indices": [
+              1,
+              7,
+              9,
+              15
+            ],
+            "values": [
+              3,
+              11,
+              14,
+              6
+            ]
+          },
+          "signature": [
+            0,
+            6
+          ]
+        }
+      ],
+      "pullback_pairs": 28,
+      "removed_indices": [],
+      "row_id": "f17_mu16_w2_e4",
+      "sp_ordered_pairs": 2988,
+      "support_count": 1820,
+      "w": 2
+    },
+    {
+      "available_size": 15,
+      "bucket_count": 17,
+      "domain": "mu_n",
+      "e": 2,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 42,
+          "primitive_pairs": 0,
+          "signature": [
+            0
+          ],
+          "support_count": 7
+        },
+        {
+          "ordered_disjoint_pairs": 42,
+          "primitive_pairs": 42,
+          "signature": [
+            15
+          ],
+          "support_count": 7
+        },
+        {
+          "ordered_disjoint_pairs": 42,
+          "primitive_pairs": 42,
+          "signature": [
+            16
+          ],
+          "support_count": 7
+        },
+        {
+          "ordered_disjoint_pairs": 30,
+          "primitive_pairs": 30,
+          "signature": [
+            1
+          ],
+          "support_count": 6
+        },
+        {
+          "ordered_disjoint_pairs": 30,
+          "primitive_pairs": 30,
+          "signature": [
+            2
+          ],
+          "support_count": 6
+        }
+      ],
+      "n": 16,
+      "nonzero_pair_bucket_count": 17,
+      "p": 17,
+      "primitive_examples": [
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              1,
+              2
+            ],
+            "values": [
+              3,
+              9
+            ]
+          },
+          "right": {
+            "indices": [
+              3,
+              14
+            ],
+            "values": [
+              10,
+              2
+            ]
+          },
+          "signature": [
+            5
+          ]
+        },
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              1,
+              2
+            ],
+            "values": [
+              3,
+              9
+            ]
+          },
+          "right": {
+            "indices": [
+              4,
+              8
+            ],
+            "values": [
+              13,
+              16
+            ]
+          },
+          "signature": [
+            5
+          ]
+        }
+      ],
+      "primitive_fraction_den": 546,
+      "primitive_fraction_num": 504,
+      "primitive_pairs": 504,
+      "prototype_expected_pairs": null,
+      "prototype_lower_bound_met": null,
+      "prototype_mass_seen_as_pullback": null,
+      "prototype_pairs_seen_by_scale_e": null,
+      "pullback_examples": [
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              1,
+              9
+            ],
+            "values": [
+              3,
+              14
+            ]
+          },
+          "right": {
+            "indices": [
+              2,
+              10
+            ],
+            "values": [
+              9,
+              8
+            ]
+          },
+          "signature": [
+            0
+          ]
+        },
+        {
+          "common_pullback_scales": [
+            2
+          ],
+          "left": {
+            "indices": [
+              1,
+              9
+            ],
+            "values": [
+              3,
+              14
+            ]
+          },
+          "right": {
+            "indices": [
+              3,
+              11
+            ],
+            "values": [
+              10,
+              7
+            ]
+          },
+          "signature": [
+            0
+          ]
+        }
+      ],
+      "pullback_pairs": 42,
+      "removed_indices": [
+        0
+      ],
+      "row_id": "f17_mu16_minus_one_w1_e2",
+      "sp_ordered_pairs": 546,
+      "support_count": 105,
+      "w": 1
+    },
+    {
+      "available_size": 15,
+      "bucket_count": 406,
+      "domain": "mu_n",
+      "e": 3,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 20,
+          "primitive_pairs": 0,
+          "signature": [
+            0,
+            0
+          ],
+          "support_count": 5
+        },
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            1,
+            8
+          ],
+          "support_count": 2
+        },
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            2,
+            1
+          ],
+          "support_count": 2
+        },
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            3,
+            10
+          ],
+          "support_count": 2
+        },
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            3,
+            24
+          ],
+          "support_count": 2
+        }
+      ],
+      "n": 15,
+      "nonzero_pair_bucket_count": 46,
+      "p": 31,
+      "primitive_examples": [
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1,
+              3
+            ],
+            "values": [
+              1,
+              9,
+              16
+            ]
+          },
+          "right": {
+            "indices": [
+              6,
+              9,
+              11
+            ],
+            "values": [
+              8,
+              4,
+              14
+            ]
+          },
+          "signature": [
+            5,
+            14
+          ]
+        },
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              6,
+              9,
+              11
+            ],
+            "values": [
+              8,
+              4,
+              14
+            ]
+          },
+          "right": {
+            "indices": [
+              0,
+              1,
+              3
+            ],
+            "values": [
+              1,
+              9,
+              16
+            ]
+          },
+          "signature": [
+            5,
+            14
+          ]
+        }
+      ],
+      "primitive_fraction_den": 110,
+      "primitive_fraction_num": 90,
+      "primitive_pairs": 90,
+      "prototype_expected_pairs": 20,
+      "prototype_lower_bound_met": true,
+      "prototype_mass_seen_as_pullback": true,
+      "prototype_pairs_seen_by_scale_e": 20,
+      "pullback_examples": [
+        {
+          "common_pullback_scales": [
+            3
+          ],
+          "left": {
+            "indices": [
+              0,
+              5,
+              10
+            ],
+            "values": [
+              1,
+              25,
+              5
+            ]
+          },
+          "right": {
+            "indices": [
+              1,
+              6,
+              11
+            ],
+            "values": [
+              9,
+              8,
+              14
+            ]
+          },
+          "signature": [
+            0,
+            0
+          ]
+        },
+        {
+          "common_pullback_scales": [
+            3
+          ],
+          "left": {
+            "indices": [
+              0,
+              5,
+              10
+            ],
+            "values": [
+              1,
+              25,
+              5
+            ]
+          },
+          "right": {
+            "indices": [
+              2,
+              7,
+              12
+            ],
+            "values": [
+              19,
+              10,
+              2
+            ]
+          },
+          "signature": [
+            0,
+            0
+          ]
+        }
+      ],
+      "pullback_pairs": 20,
+      "removed_indices": [],
+      "row_id": "f31_mu15_w2_e3",
+      "sp_ordered_pairs": 110,
+      "support_count": 455,
+      "w": 2
+    },
+    {
+      "available_size": 15,
+      "bucket_count": 3001,
+      "domain": "mu_n",
+      "e": 5,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 6,
+          "primitive_pairs": 0,
+          "signature": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "support_count": 3
+        }
+      ],
+      "n": 15,
+      "nonzero_pair_bucket_count": 1,
+      "p": 31,
+      "primitive_examples": [],
+      "primitive_fraction_den": 6,
+      "primitive_fraction_num": 0,
+      "primitive_pairs": 0,
+      "prototype_expected_pairs": 6,
+      "prototype_lower_bound_met": true,
+      "prototype_mass_seen_as_pullback": true,
+      "prototype_pairs_seen_by_scale_e": 6,
+      "pullback_examples": [
+        {
+          "common_pullback_scales": [
+            5
+          ],
+          "left": {
+            "indices": [
+              0,
+              3,
+              6,
+              9,
+              12
+            ],
+            "values": [
+              1,
+              16,
+              8,
+              4,
+              2
+            ]
+          },
+          "right": {
+            "indices": [
+              1,
+              4,
+              7,
+              10,
+              13
+            ],
+            "values": [
+              9,
+              20,
+              10,
+              5,
+              18
+            ]
+          },
+          "signature": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "common_pullback_scales": [
+            5
+          ],
+          "left": {
+            "indices": [
+              0,
+              3,
+              6,
+              9,
+              12
+            ],
+            "values": [
+              1,
+              16,
+              8,
+              4,
+              2
+            ]
+          },
+          "right": {
+            "indices": [
+              2,
+              5,
+              8,
+              11,
+              14
+            ],
+            "values": [
+              19,
+              25,
+              28,
+              14,
+              7
+            ]
+          },
+          "signature": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "pullback_pairs": 6,
+      "removed_indices": [],
+      "row_id": "f31_mu15_w4_e5",
+      "sp_ordered_pairs": 6,
+      "support_count": 3003,
+      "w": 4
+    },
+    {
+      "available_size": 16,
+      "bucket_count": 544,
+      "domain": "mu_n",
+      "e": 3,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            2,
+            27
+          ],
+          "support_count": 2
+        },
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            3,
+            85
+          ],
+          "support_count": 2
+        },
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            16,
+            79
+          ],
+          "support_count": 2
+        },
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            24,
+            8
+          ],
+          "support_count": 2
+        },
+        {
+          "ordered_disjoint_pairs": 2,
+          "primitive_pairs": 2,
+          "signature": [
+            31,
+            12
+          ],
+          "support_count": 2
+        }
+      ],
+      "n": 16,
+      "nonzero_pair_bucket_count": 16,
+      "p": 97,
+      "primitive_examples": [
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              0,
+              1,
+              4
+            ],
+            "values": [
+              1,
+              8,
+              22
+            ]
+          },
+          "right": {
+            "indices": [
+              3,
+              7,
+              9
+            ],
+            "values": [
+              27,
+              12,
+              89
+            ]
+          },
+          "signature": [
+            66,
+            12
+          ]
+        },
+        {
+          "common_pullback_scales": [],
+          "left": {
+            "indices": [
+              3,
+              7,
+              9
+            ],
+            "values": [
+              27,
+              12,
+              89
+            ]
+          },
+          "right": {
+            "indices": [
+              0,
+              1,
+              4
+            ],
+            "values": [
+              1,
+              8,
+              22
+            ]
+          },
+          "signature": [
+            66,
+            12
+          ]
+        }
+      ],
+      "primitive_fraction_den": 32,
+      "primitive_fraction_num": 32,
+      "primitive_pairs": 32,
+      "prototype_expected_pairs": null,
+      "prototype_lower_bound_met": null,
+      "prototype_mass_seen_as_pullback": null,
+      "prototype_pairs_seen_by_scale_e": null,
+      "pullback_examples": [],
+      "pullback_pairs": 0,
+      "removed_indices": [],
+      "row_id": "f97_mu16_w2_e3",
+      "sp_ordered_pairs": 32,
+      "support_count": 560,
+      "w": 2
+    },
+    {
+      "available_size": 16,
+      "bucket_count": 1817,
+      "domain": "mu_n",
+      "e": 4,
+      "largest_buckets": [
+        {
+          "ordered_disjoint_pairs": 12,
+          "primitive_pairs": 0,
+          "signature": [
+            0,
+            0,
+            0
+          ],
+          "support_count": 4
+        }
+      ],
+      "n": 16,
+      "nonzero_pair_bucket_count": 1,
+      "p": 97,
+      "primitive_examples": [],
+      "primitive_fraction_den": 12,
+      "primitive_fraction_num": 0,
+      "primitive_pairs": 0,
+      "prototype_expected_pairs": 12,
+      "prototype_lower_bound_met": true,
+      "prototype_mass_seen_as_pullback": true,
+      "prototype_pairs_seen_by_scale_e": 12,
+      "pullback_examples": [
+        {
+          "common_pullback_scales": [
+            2,
+            4
+          ],
+          "left": {
+            "indices": [
+              0,
+              4,
+              8,
+              12
+            ],
+            "values": [
+              1,
+              22,
+              96,
+              75
+            ]
+          },
+          "right": {
+            "indices": [
+              1,
+              5,
+              9,
+              13
+            ],
+            "values": [
+              8,
+              79,
+              89,
+              18
+            ]
+          },
+          "signature": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "common_pullback_scales": [
+            2,
+            4
+          ],
+          "left": {
+            "indices": [
+              0,
+              4,
+              8,
+              12
+            ],
+            "values": [
+              1,
+              22,
+              96,
+              75
+            ]
+          },
+          "right": {
+            "indices": [
+              2,
+              6,
+              10,
+              14
+            ],
+            "values": [
+              64,
+              50,
+              33,
+              47
+            ]
+          },
+          "signature": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "pullback_pairs": 12,
+      "removed_indices": [],
+      "row_id": "f97_mu16_w3_e4",
+      "sp_ordered_pairs": 12,
+      "support_count": 1820,
+      "w": 3
+    }
+  ],
+  "schema": "capg-shiftpairs-primitive-ledger.v1",
+  "source_blocks": [
+    {
+      "excerpt": [
+        "\\begin{theorem}[exact second-moment stratification]\\label{thm:capg-second-moment}",
+        "Let $N_w(z):=|\\mathrm{Fib}_w(z)|$.  Then",
+        "\\[",
+        "\\sum_{z\\in B^{w}} N_w(z)^{2}",
+        "\\;=\\;\\binom{n}{m}\\;+\\;\\sum_{e=w+1}^{\\min(m,\\,n-m)} P_e ,",
+        "\\qquad",
+        "P_e\\;=\\;\\sum_{\\substack{R\\subseteq D\\\\ |R|=m-e}}",
+        "\\mathrm{sp}_w\\big(e;\\,D\\setminus R\\big),",
+        "\\]"
+      ],
+      "label": "thm:capg-second-moment",
+      "line_end": 9595,
+      "line_start": 9575,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "bb1c805b33428bdb4c6515f86c9df25cfc71503b363657eabe8ccc434cead837"
+    },
+    {
+      "excerpt": [
+        "\\begin{remark}[quotient prototype and the primitive part]\\label{rem:capg-prototype}",
+        "Let $D'\\supseteq\\mu_n$ contain the full group and suppose $(w+1)\\mid n$.",
+        "Then for every $\\beta\\in\\mu_{n/(w+1)}$ the binomial $X^{w+1}-\\beta$ is split",
+        "over $\\mu_n$ (its root set is a full fiber of the $(w+1)$-power map), and",
+        "any two distinct $\\beta,\\beta'\\in\\mu_{n/(w+1)}$ give a shift pair with",
+        "$c=\\beta-\\beta'$; hence",
+        "$\\mathrm{sp}_w(w+1;\\mu_n)\\geq \\tfrac{n}{w+1}\\big(\\tfrac{n}{w+1}-1\\big)$.",
+        "These pairs are exactly scale-$(w+1)$ pullbacks: both root sets are unions",
+        "of complete fibers, i.e.\\ periodic supports in the sense of"
+      ],
+      "label": "rem:capg-prototype",
+      "line_end": 9665,
+      "line_start": 9649,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "27aac7c500b1d30b415418d70066ba04d51ea549bdc312e1a0617ce12a6a14b1"
+    },
+    {
+      "excerpt": [
+        "\\begin{remark}[Primitive shift-pair ledger]\\label{prob:capg-shiftpairs}",
+        "For multiplicative cosets $D$ and the ranges of",
+        "\\cref{prop:capff1-identity-frontier}, bound the primitive part of",
+        "$\\mathrm{sp}_w(e;D')$ for $D'=D\\setminus R$: show it is dominated, up to a",
+        "factor $\\mathrm{poly}(n)$, by the pullback part plus the diagonal-scale term",
+        "implicit in $\\binom{n}{m}$.  Via \\cref{thm:capg-second-moment} and",
+        "Cauchy--Schwarz this is the exact combinatorial content of second-moment",
+        "flatness; it refines \\cref{lem:capf-gcd} and",
+        "\\cref{prob:capf-primitive-image-fiber} to the support side, and is the"
+      ],
+      "label": "prob:capg-shiftpairs",
+      "line_end": 9679,
+      "line_start": 9667,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "09fde3240d8cac085beedb69176f02e3790adfdc0697a5dbe0e68cd8c63b9ceb"
+    },
+    {
+      "excerpt": [
+        "\\begin{residualinput}[primitive shift-pair control]\\label{prob:capg-active-shiftpairs}",
+        "For the shift-pair strata \\(\\mathrm{sp}_w(e;D')\\) in",
+        "\\cref{thm:capg-second-moment}, bound the primitive part after all",
+        "quotient-pullback pairs have been removed.  The asymptotic form may lose a",
+        "polynomial factor with reserve; the finite form requires explicit constants",
+        "compatible with \\cref{cor:capg-adjacent-pairs}.",
+        "\\end{residualinput}"
+      ],
+      "label": "prob:capg-active-shiftpairs",
+      "line_end": 9932,
+      "line_start": 9926,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256": "9438472abbab1ce709c864e7670e14424ccfcc8730aab1653eb0edf60c260391"
+    }
+  ],
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "all_prototype_lower_bounds_met": true,
+    "all_prototype_mass_seen_as_pullback": true,
+    "non_oracle_rows": 9,
+    "prototype_rows": [
+      "oracle_f5_mu4_w1_e2",
+      "f17_mu16_w1_e2",
+      "f17_mu16_w3_e4",
+      "f31_mu15_w2_e3",
+      "f31_mu15_w4_e5",
+      "f97_mu16_w3_e4"
+    ],
+    "rows_with_primitive_residue": [
+      "f17_mu16_w1_e2",
+      "f17_mu16_w2_e3",
+      "f17_mu16_w3_e4",
+      "f17_mu16_w2_e4",
+      "f17_mu16_minus_one_w1_e2",
+      "f31_mu15_w2_e3",
+      "f97_mu16_w2_e3"
+    ],
+    "total_primitive_pairs": 5186,
+    "total_pullback_pairs": 192,
+    "total_sp_ordered_pairs": 5378
+  },
+  "theorem_problem_id": "prob:capg-shiftpairs / prob:capg-active-shiftpairs"
+}
