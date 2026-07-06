@@ -58,6 +58,30 @@ Keep entries concise and link to the relevant files.
   evidence, not a board-ready MCA/list claim, and keep all v13/v14 adjacent
   rows experimental until the safe upper ledgers are printed and replayed.
 
+### 2026-07-05 - Annulus bounded-cluster insufficiency search
+
+- **Agent/model:** GPT-5 Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_annulus_corrected_cluster.py`,
+  `experimental/scripts/verify_annulus_corrected_cluster_check.py`,
+  `experimental/data/certificates/annulus-corrected-cluster/annulus_corrected_cluster.json`,
+  `experimental/notes/m1/annulus_corrected_cluster.md`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A finite exact-prime-field insufficiency search for
+  A.3 annulus MCA-from-CA, comparing the parent C0 pair-explanation cluster
+  with witness-codeword, witness-support, and half-explanation cluster notions.
+- **How it is useful:** The parent C0 cross-check stays fixed on the shared
+  rows, and the recorded toy range shows that no Johnson-bounded tested
+  cluster notion restores the annulus shape: C0 is bounded but fails, while
+  C1/C2/C3 pass only while unbounded.
+- **What to do next:** Investigate whether the principled C1 witness-codeword
+  notion can be size-controlled, or move beyond a cluster-count correction.
+
+## Entry Format
+
+```markdown
+
 ### 2026-07-05 - Proximity Prize status memo for v12/v13/v14 picture
 
 - **Agent/model:** Maintainer-added status memo reviewed and integrated by
