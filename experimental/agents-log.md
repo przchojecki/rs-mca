@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - BC L4 curve second moment = shift-pair ledger on the curve
+
+- **Agent/model:** Claude Fable 5 (Lane C packager).
+- **Files added or changed:** `experimental/notes/thresholds/cap25_v13_bc_l4_curve_second_moment.md`,
+  `experimental/scripts/verify_bc_l4_curve_second_moment.py`.
+- **Status:** `PROVED` (Theorem C1 exact curve-`M2` identity; Cauchy–Schwarz conversion; Theorem C2
+  twist-equivariance + exact average identity; unconditional L4 ceilings; twist dichotomy) /
+  `EXPERIMENTAL` (measured curve-sum / residual law, four toy rows) /
+  `CONJECTURAL_WITH_FALSIFIER` (residual curve equidistribution) / `AUDIT` (fixture / replay).
+- **What is being added:** The second-moment-along-the-curve analysis of open PR #393's interior-chart
+  object `S1=Σ_{s∈B}N_{w+1}(θ(s))`. Theorem C1: `M2=Σ_s N_{w+1}(θ(s))²=S1+Σ_e Σ_R sp^Γ_{w+1}(e;R)`,
+  identifying curve-`M2` as `prop:second-moment` at depth `w+1` restricted to the curve `Γ` (a
+  `prob:saturated-bc`-type SP ledger); `thm:q-implies-sp` ⇒ depth-`(w+1)` Q gives `M2≤κ²M2_equi`.
+  Cauchy–Schwarz needs `M2≤2^{2C}·M2_equi` (`M2_equi=2^{15.289333}`), strictly weaker (`ℓ²`) than
+  max-fiber Q (`ℓ^∞`). Theorem C2: twist-equivariance `θ_{ζz*}(ζs)=ζθ_{z*}(s)` and the exact average
+  identity `avg_y S(y)=C(n,m)/p^w` (= the heuristic, via the `p`-to-1 preimage bijection). Unconditional
+  L4 ceilings (all below-trivial / dominated by #393's `p`·packing `2^{103841.23}`): (b1) `Σ_e T_e
+  =2^{261342.87}`, (b2) top-stratum `2^{153665.47}`, CS-through `2^{130686.93}`, twist-amplified
+  `2^{130693.92}`/`2^{121743.02}`. Twist dichotomy: `Γ` twist-invariant ⇔ `z*=0` (Veronese curve);
+  generic `z*≠0` transversal (needs `(W,λ)`-Veronese transversality, per the RC lineage). Measured law
+  (rows A/B/C p≈97–113 + row E p=73,n=24 smooth regime): random-`z*` `Σ`-ratio ≈ 1 (exact average
+  identity), heavy-`z*` concentration entirely in the planted stratum (top offenders residual `0`),
+  residual ratios mean ≈ 0.8, max `<4.79`; ⇒ `CONJECTURAL_WITH_FALSIFIER` residual curve equidistribution.
+- **How it is useful:** Confirms #393's reduction and supplies the strictly-weaker-than-Q `ℓ²`/variance
+  refinement #393 §8 item 2 named as its own target; gives the exact `M2` constant that upgrades the
+  heuristic to a theorem, and the exact unconditional gap (`prop:proper-q-gap` shape).
+- **What to do next:** Review the exact curve-`M2` / curve-SP bound at sharp scale (`OPEN` 1), the
+  `(W,λ)`-Veronese transversality for `z*≠0` (`OPEN` 2), and the residual conjecture at scale (`OPEN` 3).
+  Verifier is stdlib zero-arg + `--tamper-selftest`, `<5s`.
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.
