@@ -90,7 +90,11 @@ All quoted/verified from the files named; re-grepped at base
 - **`T1` = the open core (`l1_bounded_excess_structure.md` §6; #379
   `l1_t7_atlas_concurrency.md`; #365 `l1_e3_dim_syz_crux_refuted.md`).**
   *"no realizable config has `T >= 7`"* — equivalently the uniform ceiling
-  `C' <= 2` (`E_3 <= ell+2`). CONJECTURAL, TIGHT (attained at `T = 6`/excess `+2`).
+  `C' <= 2` (`E_3 <= ell+2`). ~~CONJECTURAL~~ **REFUTED globally over `F_p` (2026-07-07)** —
+  realizable `T = 7` at `ell = 43`, reaching `T = 10` at `ell = 53` (§6/§7;
+  `l1_k3_growth_refutation.md`). The pin needs only `H_19` (the `ell = 19` instance), which is
+  **UNTOUCHED** (fat-tail excess `<= +1` there — exhaustive over the five eligible primes
+  `n <= 30`, attained only at the `n = 30` boundary; beyond-window `647/761/1103` give `5`).
 
 ---
 
@@ -143,8 +147,12 @@ Therefore **`T1 ⟹ no m=8 crossing ⟹ m*(19) >= 9`** directly (a crosser has
   `T <= 6 ⟹ excess <= 2 ⟹ C' <= 2 ⟹ H_19`. **`T1` is strictly stronger than
   `H_19`**: a realizable `excess = 2, capslack = 1, T = 7` config satisfies
   `H_19`/`C' <= 2` yet violates `T1`. Both suffice; the block needs only `H_19`.
-- **Do NOT assume `T1`.** It is CONJECTURAL and runs in lane T1 (parallel). The
-  pin is stated *conditional*.
+- **Do NOT assume `T1`.** ~~It is CONJECTURAL~~ **it is now REFUTED globally (2026-07-07)**
+  (realizable `T = 7` at `ell = 43`, `T = 10` at `ell = 53`; §6/§7). This does **not** affect
+  the pin: the pin needs only `H_19` (the `ell = 19` instance, **UNTOUCHED** — exhaustive
+  fat-tail excess `<= +1` over the five eligible primes `n <= 30`, boundary-attained at
+  `n = 30`), and `T1` was only ever an *optional stronger* route to `H_19`. The pin remains
+  stated *conditional on `H_19`*.
 
 **The excess ladder — why `m = 9` is the onset (gate ii).** The bridge gives, at
 `top-m >= 2 ell`, `E_3 >= 2 ell - 2m = 2(ell-m)`:
@@ -239,14 +247,25 @@ root-count of the explicit degree-`(ell-mu_1)` pencil in one coset.
 
 | `ell` | Lemma R `(2ell-5)/3` | `R_zeta` `2(ell-1)/3` | empirical max `k3` |
 |:-:|:-:|:-:|:-:|
-| 17 | 9 | 10 | **7** |
-| 19 | 11 | 12 | **7** |
-| 23 | 13 | 14 | **7** |
-| 29 | 17 | 18 | **7** |
-| 31 | 19 | 20 | **7** |
+| 17 | 9 | 10 | 7 (only at `n=8`) |
+| 19 | 11 | 12 | 6 (only at `n=30`) |
+| 23 | 13 | 14 | 5 |
+| 29 | 17 | 18 | 7 (only at `n=8`) |
+| 31 | 19 | 20 | 7 |
+| **43** | **27** | **28** | **8**  ← falsifier |
+| **53** | **33** | **34** | **11** |
 
-Both are `Theta(ell)`; **neither reaches the empirical constant `7`**, one short
-of the fat-tail falsifier `k3 = 8` (`[16,3^8]`, excess `+3`).
+**CORRECTED 2026-07-07 (was: uniform empirical `7`).** The two `Theta(ell)` caps are **no
+longer read as overshoots** of an `O(1)` truth: the exhaustive-up-to-gauge `max k3` **GROWS
+with `ell`** (`4,4,7,6,5,7,7,7,7,8,7,11,9` at `ell = 11..59`), crossing the fat-tail falsifier
+`k3 = 8` at **`ell = 43`** (realizable `[40,3^8]`, excess `+3`) and reaching **`11`** at
+`ell = 53` (`[50,3^11,2^6]`, excess `+6`, `T = 10`) — and `k3` can grow with `n` at fixed
+`ell` as well (`ell = 53`: `7` at `n = 14` vs `11` at `n = 20`, both exhaustive). The
+`ell <= 31` reading (`max <= 7`) was a small-`ell` mirage; see §6/§7 and the companion note
+`experimental/notes/l1/l1_k3_growth_refutation.md` (finitely many exact points do not establish
+the growth *order*; the caps bracket it from above). (The `ell = 19` entry `6` is the
+pin-relevant one — excess `+1`, `H_19` safe; exhaustive over the five eligible primes
+`n <= 30`, attained only at the `n = 30` boundary; beyond-window `647/761/1103` give `5`.)
 
 ---
 
@@ -268,10 +287,28 @@ Across all searched families, **zero realizable excess `>= 3`**; realized fronti
 - **#382 min-`j` freeze**: 2.78M cap-tight pair-plant evals, `mu_3` frozen `<= 5`
   on the true frontier (`ell-a >= 9`), never `9`.
 
-**Striking plateau.** The empirical max `k3 = 7` is **constant across `ell`** —
-`O(1)` — while the two PROVED caps grow `Theta(ell)`. The realized ceiling sits
-**exactly one short** of the fat-tail falsifier everywhere. This is corroboration
-of `H_19`/`C' <= 2`, not a proof; no surviving shape is proved empty.
+**~~Striking plateau~~ — PLATEAU REFUTED (2026-07-07).** The reading that empirical max
+`k3 = 7` is constant across `ell` (`O(1)`) was a **small-`ell` mirage**: the sweep above
+stops at `ell <= 31`. Extending the exhaustive-up-to-gauge scan shows `max k3` **GROWS with
+`ell`** — `4,4,7,6,5,7,7,7,7,8,7,11,9` at `ell = 11..59` — crossing `k3 = 8` first at
+`ell = 43` (realizable `[40,3^8]`, excess `+3`, `T = 7`) and reaching `k3 = 11` at `ell = 53`
+(`[50,3^11,2^6]`, excess `+6`, `T = 10`; `9` at `ell = 59`, excess `+4`). The growth is not
+only in `ell`: at fixed `ell = 53` the exhaustive max jumps `7` (`n = 14`) `-> 11`
+(`n = 20`). So over `F_p` the uniform cap `k3 <= 7`, and with it `C' <= 2` and "no realizable
+`T >= 7`", are **REFUTED**; the two `Theta(ell)` caps are **no longer read as overshoots**
+(they bracket the realized growth from above). Companion note + verifier:
+`experimental/notes/l1/l1_k3_growth_refutation.md`,
+`experimental/scripts/verify_l1_k3_growth_refutation.py`.
+
+**The pin is UNTOUCHED.** At `ell = 19` the exhaustive-up-to-gauge max is `k3 = 6` (excess
+`+1`; exhaustive over the five eligible primes `n <= 30` — maxima `5,5,5,5,6`, attained only
+at the `n = 30` boundary — with `5` at the beyond-window primes `647/761/1103`), so the
+fat-tail family cannot make a realizable `E_3 >= 22` at `ell = 19` in the scanned range:
+`H_19` and the CONDITIONAL THEOREM `H_19 => m*(19) = 9` (§3) stand, and so does the min-`j`
+falsifier frontier `[10,9,9,2^5]` (§4) — which this fat-tail family never realizes anyway (it
+has `mu_2 = 3`, so it is not an `m = 8` crosser: a crosser needs `mu_2 >= 4`, §2). The
+refutation is of the *uniform-in-`ell`* cap; the `ell = 19` instance is a separate,
+still-standing pin.
 
 ---
 
@@ -283,6 +320,20 @@ Every survivor reduces to a single statement:
 > pencil member `P - lambda A_drop` (deg `= ell-mu_1`, `A_drop` a product of
 > cyclotomic factors) can concentrate inside one coset of `mu_ell`** — for the
 > fat tail the cubic case (`k3 <= 7`), for the min-`j` #382's `mu_3 <= 8`.
+
+**[(★) FAT-TAIL CUBIC HORN — REFUTED over `F_p`, 2026-07-07.]** The uniform `O(1)` for the
+**cubic** (fat-tail) case is **FALSE**: `k3` GROWS with `ell`, realizing `k3 = 8` at
+`ell = 43`, `k3 = 11` at `ell = 53` (excess `+6`, `T = 10`), and `k3 = 9` at `ell = 59` —
+explicit realizable mixed `Gamma`, verified in
+`experimental/notes/l1/l1_k3_growth_refutation.md`. The three `Theta(ell)` routes below are
+**no longer read as overshoots** of an `O(1)` truth (they bracket the realized growth from
+above). **The `ell = 19` instance is untouched** (exhaustive max `k3 = 6` over the five
+eligible primes `n <= 30`, attained only at the `n = 30` boundary; beyond-window
+`647/761/1103` give `5` — excess `+1`), so `H_19` and the pin (§3) stand; refuting
+`m*(19) = 9` still needs a realizable `ell = 19` crosser (`mu_2 >= 4`), which this
+`mu_2 = 3` fat-tail family does not provide. The min-`j` `mu_3 <= 8` horn (#382, a *different*,
+higher-degree, non-cubic shape) is **not** refuted by this fat-tail family and remains OPEN —
+it, not the cubic cap, is now the live missing input.
 
 **Re-derived barrier (PROVED negative, independent of the integrated N1 no-go).**
 The three elementary routes — the `R_zeta` cyclotomic-pair count, Lemma R, and a
@@ -299,7 +350,8 @@ a fresh angle rather than inheriting it.
 ## 8. Non-claims
 
 Does **not** prove `m*(19) = 9` unconditionally — it is conditional on `H_19`
-(implied by `T1`), CONJECTURAL. Does **not** prove any surviving shape
+(implied by `T1` — though `T1` itself is now REFUTED globally, §1/§6, so `H_19`, the
+`ell = 19` instance, is the operative and still-open hypothesis), CONJECTURAL. Does **not** prove any surviving shape
 unrealizable (§6 is EXPERIMENTAL corroboration, deep not exhaustive). Does **not**
 claim a new `E_3`/`T` ceiling beyond the notes. Does **not** claim `k3 <= 7`
 concurrency blocks `m = 8` (it does not apply — no crosser is a fat tail; even

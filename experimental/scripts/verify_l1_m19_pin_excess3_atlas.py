@@ -41,8 +41,10 @@ Six gates; exit 0 iff ALL pass (normal mode) or ALL tampers are CAUGHT
         the cap-tight (`T=7`) counts.
   (v)   k3 CAP arithmetic (PROVED x2, from lane T1). Pin the two Theta(ell)
         caps Lemma-R `(2ell-5)/3` and cyclotomic-pair `2(ell-1)/3` for
-        `ell in {17,19,23,29,31}` (empirical max k3 = 7 everywhere, one short of
-        the fat-tail falsifier k3=8), and verify the `deg R_zeta = 5`, `X|R_zeta`
+        `ell in {17,19,23,29,31,43,53}` (O(1) plateau REFUTED 2026-07-07: exhaustive-gauge
+        max k3 GROWS -- 6 at ell=19 [pin-safe, excess +1], 8 at ell=43 [C'<=2 falsifier],
+        11 at ell=53 [record, excess +6]; see l1_k3_growth_refutation.md), and verify the
+        `deg R_zeta = 5`, `X|R_zeta`
         structural claim SYMBOLICALLY (exact polynomial arithmetic over F_p) at
         one small case.
   (vi)  UNIQUE-Gamma nullspace-dim-1 crack (PROVED, #382 Thm 1). At one cap-tight
@@ -87,9 +89,17 @@ ATLAS = {
     29: dict(atlas=7989, cap_tight=141, FAT=1, MINJ=16, BIG3=23, MID=7949),
 }
 
-# --- gate (v) k3 caps pins: ell -> (LemmaR (2ell-5)/3, R_zeta 2(ell-1)/3, empirical max k3) ---
-K3CAPS = {17: (9, 10, 7), 19: (11, 12, 7), 23: (13, 14, 7),
-          29: (17, 18, 7), 31: (19, 20, 7)}
+# --- gate (v) k3 caps pins: ell -> (LemmaR (2ell-5)/3, R_zeta 2(ell-1)/3, exhaustive-gauge max k3) ---
+# CORRECTED 2026-07-07: the empirical max k3 is NOT a uniform O(1) "7" (that was a small-ell
+# mirage); the exhaustive-up-to-gauge max GROWS with ell -- crossing the fat-tail falsifier
+# k3=8 at ell=43 and reaching 11 at ell=53 (excess +6, T=10; it also grows with n at fixed
+# ell: 53 gives 7 at n=14 vs 11 at n=20). The two Theta(ell) caps still hold and are no
+# longer read as overshoots (they bracket the growth from above). Values below are the true
+# exhaustive-gauge maxima, re-verified in the companion packet (l1_k3_growth_refutation.md /
+# verify_l1_k3_growth_refutation.py). The ell=19 entry (6, attained only at the n=30 window
+# boundary) is the pin-relevant one: excess = k3-5 = +1, so H_19 is untouched.
+K3CAPS = {17: (9, 10, 7), 19: (11, 12, 6), 23: (13, 14, 5),
+          29: (17, 18, 7), 31: (19, 20, 7), 43: (27, 28, 8), 53: (33, 34, 11)}
 
 
 # ======================================================================
@@ -417,11 +427,17 @@ def gate_iv_atlas(tamper=False):
 
 
 def gate_v_k3caps(tamper=False):
-    # (a) the two Theta(ell) cap integers
+    # (a) the two Theta(ell) cap integers, and that each exhaustive-gauge max obeys BOTH caps
     caps_ok = True
     for ell, (lr, rz, emp) in K3CAPS.items():
-        if (2 * ell - 5) // 3 != lr or (2 * (ell - 1)) // 3 != rz or emp != 7:
+        if (2 * ell - 5) // 3 != lr or (2 * (ell - 1)) // 3 != rz or emp > min(lr, rz):
             caps_ok = False
+    # (a') the O(1) plateau is REFUTED (2026-07-07): max k3 is <=7 for ell<=31 but 8 at ell=43
+    #      and 11 at ell=53, so it is NOT a uniform constant (nor 8-capped) -- and the ell=19
+    #      entry (pin-relevant) is 6 (excess +1).
+    plateau_refuted = (max(K3CAPS[e][2] for e in (17, 19, 23, 29, 31)) == 7
+                       and K3CAPS[43][2] == 8 and K3CAPS[53][2] == 11 and K3CAPS[19][2] == 6)
+    caps_ok = caps_ok and plateau_refuted
     # (b) symbolic R_zeta = q(X)A_drop(zeta X) - q(zeta X)A_drop(X): deg 5, X | R_zeta.
     #     Exact polynomial arithmetic over F_p on a representative (q deg 2, A_drop deg 3)
     #     construction -- this checks the R_zeta identity engine and the deg = deg q +
@@ -442,8 +458,10 @@ def gate_v_k3caps(tamper=False):
     x_divides = (R[0] % p == 0)
     sym_ok = (deg == 5 and x_divides)
     ok = caps_ok and sym_ok
-    return ok, ("caps: LemmaR/(R_zeta) [%s] all match & empirical max k3=7 (falsifier needs 8) | "
-                "symbolic R_zeta deg=%d (pin 5) X|R_zeta=%s"
+    return ok, ("caps: LemmaR/(R_zeta) [%s] hold; O(1) PLATEAU REFUTED -- exhaustive-gauge max k3 "
+                "grows (ell19:6 excess+1 pin-safe; ell43:8 = C'<=2 falsifier; ell53:11 record, "
+                "excess+6, see l1_k3_growth_refutation.md) | symbolic R_zeta deg=%d (pin 5) "
+                "X|R_zeta=%s"
                 % (",".join("%d:%d/%d" % (e, K3CAPS[e][0], K3CAPS[e][1]) for e in sorted(K3CAPS)),
                    deg, x_divides))
 
