@@ -339,5 +339,7 @@ packets are #390/#391 — the **W3 collapse-edge at `ell = 17`** (the residual-e
 edge, a different `ell` and a different question than the `ell = 19`, `m = 8`
 onset), so they are disjoint by target even though same-lane; the rest (#389
 CAP25 LQ-seam, #392/#396 thresholds, #393/#395 BC L4, #394 Lean) are other program
-lanes. None touches the `m = 8` / `ell = 19` onset pin. Concurrent lanes T3/T4
+lanes, and the newest Q-frontier packets #397 (row-sharp Q atom reductions at the
+deployed row) and #398 (b2 conj:Q barrier map) share no object with the `ell = 19`
+onset. None touches the `m = 8` / `ell = 19` onset pin. Concurrent lanes T3/T4
 carry no dependency on this packet.
