@@ -17,7 +17,7 @@ combinatorial caps alone (11,927 shapes survive; explicit falsifier family heade
 by `[10,9,9,2^5]`). Lane T1's target *no-realizable-`T >= 7`* is strictly
 stronger, implies `H_19`, and blocks every crosser directly.
 
-Companion verifier (stdlib, zero-arg, `--tamper-selftest`, < 90s):
+Companion verifier (stdlib, zero-arg, `--tamper-selftest`, < 1s):
 `experimental/scripts/verify_l1_m19_pin_excess3_atlas.py` — 6 gates: the spine
 enumeration (17012/11927/59, 0 violations), the excess ladder, the two witness
 spectra recomputed from raw `gamma`, the excess-`3` atlas partition for
@@ -332,7 +332,12 @@ witness spectra, the four-`ell` atlas partition, the two `k3` caps + symbolic
 (bridge), `l1_prime_ell_key_lemma_refuted.md` (eligibility),
 `l1_e3_dim_syz_crux_refuted.md` (#365, the transversality crux).
 
-**Open siblings (no overlap with this lane).** #363 (M31 rung, NOT-GREEN), #365
-(dim-Syz), #366 (Q-routes) and the newer #369–#396 sit on the M31 / `Q`-wall /
-dim-Syz questions — none touches the `m = 8` / `ell = 19` onset pin. Concurrent
-lanes T3/T4 carry no dependency on this packet.
+**Open siblings (no overlap with this lane).** The older L1-core siblings #363
+(M31 rung, NOT-GREEN), #365 (dim-Syz), #366 (Q-routes) sit on the M31 / `Q`-wall /
+dim-Syz questions. Among the newer open siblings, the only other **L1-lane**
+packets are #390/#391 — the **W3 collapse-edge at `ell = 17`** (the residual-excess
+edge, a different `ell` and a different question than the `ell = 19`, `m = 8`
+onset), so they are disjoint by target even though same-lane; the rest (#389
+CAP25 LQ-seam, #392/#396 thresholds, #393/#395 BC L4, #394 Lean) are other program
+lanes. None touches the `m = 8` / `ell = 19` onset pin. Concurrent lanes T3/T4
+carry no dependency on this packet.

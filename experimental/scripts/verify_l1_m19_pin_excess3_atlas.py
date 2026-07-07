@@ -15,8 +15,8 @@ Self-contained: imports NO sibling verifier. Every arithmetic fact below is a
 fresh reimplementation matching the shipped convention (per-coset MAX fiber,
 coset key `x^ell mod p`, `Gamma` constant-free `sum_{r=1}^{ell-1} gamma_r X^r`).
 
-Seven gates; exit 0 iff ALL pass (normal mode) or ALL tampers are CAUGHT
-(`--tamper-selftest`), nonzero otherwise. Target run time < 90s.
+Six gates; exit 0 iff ALL pass (normal mode) or ALL tampers are CAUGHT
+(`--tamper-selftest`), nonzero otherwise. Target run time < 90s (typ. < 1s).
 
   (i)   SPINE enumeration (PROVED-HERE). Enumerate ALL descending top-8 profiles
         `mu_1>=...>=mu_8>=1` at `ell=19` with the PROVED pairwise cap
@@ -423,7 +423,10 @@ def gate_v_k3caps(tamper=False):
         if (2 * ell - 5) // 3 != lr or (2 * (ell - 1)) // 3 != rz or emp != 7:
             caps_ok = False
     # (b) symbolic R_zeta = q(X)A_drop(zeta X) - q(zeta X)A_drop(X): deg 5, X | R_zeta.
-    #     Exact polynomial arithmetic over F_p at one small case.
+    #     Exact polynomial arithmetic over F_p on a representative (q deg 2, A_drop deg 3)
+    #     construction -- this checks the R_zeta identity engine and the deg = deg q +
+    #     deg A_drop / constant-term-cancels structure (zeta != 1); it is NOT a re-proof
+    #     of the fat-tail k3 <= 2(ell-1)/3 cap, whose integer is pinned in (a) from lane T1.
     p = 191
     q = [3, 5, 7]                          # deg 2, q2=7 != 0
     Ad = [1]
@@ -478,7 +481,7 @@ def main():
     if selftest:
         print(" TAMPER SELF-TEST: each gate must FAIL when its guarded datum is flipped")
     else:
-        print(" verify_l1_m19_pin_excess3_atlas (zero-arg)  --  m*(19)=9 pin + excess-3 atlas")
+        print(" verify_l1_m19_pin_excess3_atlas (zero-arg)  --  m*(19)=9 pin (conditional on H_19) + excess-3 atlas")
         print(" note: experimental/notes/l1/l1_m19_pin_excess3_atlas.md")
     print("=" * 94)
     all_good = True
