@@ -117,10 +117,11 @@ The combinatorial core is `A(μ_n,w+2) := #{(P,P')}`. **If `A=0`, then (TS) is `
 
 ## 2. THE THEOREM: char-0 emptiness (`PROVED`)
 
-> **Theorem T4 (Veronese curve-`M2` top stratum, char 0).** For `n=2^a`, ordered constant-shift pairs
-> `(P,P')` of `d`-subsets of `μ_n` — disjoint `P,P'` with `p_i(P)=p_i(P')` for `i=1,…,d−1`, equivalently
-> `ℓ_P−ℓ_{P'}=c≠0` — exist over characteristic `0` **iff `d` is a power of `2`** (and then `P,P'` are
-> cosets of `μ_d`). In particular the L4 top stratum (`d=w+2`) is **empty**: `A(μ_{2^17},4218)=0`,
+> **Theorem T4 (Veronese curve-`M2` top stratum, char 0).** For `n=2^a` and `1≤d≤n/2` (disjointness of
+> `P,P'` forces `2d≤n`), ordered constant-shift pairs `(P,P')` of `d`-subsets of `μ_n` — disjoint `P,P'`
+> with `p_i(P)=p_i(P')` for `i=1,…,d−1`, equivalently `ℓ_P−ℓ_{P'}=c≠0` — exist over characteristic `0`
+> **iff `d` is a power of `2`** (and then `P,P'` are cosets of `μ_d`; the `d≤n/2` bound guarantees the
+> `n/d≥2` cosets needed for a disjoint pair). In particular the L4 top stratum (`d=w+2`) is **empty**: `A(μ_{2^17},4218)=0`,
 > because `w+2=4218` is not a power of `2`.
 
 The proof is two lemmas — antipodal forcing (from Lam–Leung) and parity descent — applied to (SP).

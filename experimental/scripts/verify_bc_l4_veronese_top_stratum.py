@@ -15,8 +15,9 @@ which is NOT integrated -- see the note for the exact Theorem-C1 statement used)
   degree-(w+2) divisors of X^n-1 (pairs P,P' of (w+2)-subsets of D=mu_n with
   ell_P - ell_{P'} = const != 0, equivalently equal power sums p_1..p_{w+1}).
 
-Theorem (PROVED, char 0).  For n=2^a, constant-shift pairs of d-subsets of mu_n exist
-  over characteristic 0  IFF  d is a power of 2 (and then P,P' are cosets of mu_d).
+Theorem (PROVED, char 0).  For n=2^a and 1<=d<=n/2 (disjointness forces 2d<=n),
+  constant-shift pairs of d-subsets of mu_n exist over characteristic 0  IFF  d is a
+  power of 2 (and then P,P' are cosets of mu_d; d<=n/2 gives the >=2 cosets a pair needs).
   Mechanism: the j=1 relation p_1(P)=p_1(P') is a vanishing sum of 2|P| roots of unity
   in mu_{2^a}; Lam-Leung (antipodal atoms for 2-power order) + disjointness force
   P=-P, P'=-P'; a parity descent (p_{2j} -> p_j one level down) forces w+2 to be a
