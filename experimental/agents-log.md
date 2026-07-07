@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - BC L4 Veronese curve-M2 top stratum empty (char 0)
+
+- **Agent/model:** Claude Fable 5 (Opus max), packet E2 (BC/curve lane).
+- **Files added or changed:**
+  `experimental/notes/thresholds/cap25_v13_bc_l4_veronese_top_stratum.md`,
+  `experimental/scripts/verify_bc_l4_veronese_top_stratum.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (char-0 emptiness theorem) / CONDITIONAL (char-p at the L4
+  prime) / CONJECTURAL_WITH_FALSIFIER (the named Weil residual) / AUDIT.
+- **What is being added:** At the L4 fixture with `z*=0` (planted monomial
+  `U=X^{m'}`, prefix curve = the Veronese/diagonal `Gamma`, the twist-invariant
+  branch of open PR #395's dichotomy), the top stratum `e=w+2` of the curve
+  second moment `M2` is EXACTLY EMPTY over characteristic 0. Proof: the
+  top-stratum members are pairs of degree-`(w+2)` divisors of `X^n-1` differing
+  by a constant (equal power sums `p_1..p_{w+1}`); for `n=2^a` the Lam-Leung
+  structure of vanishing sums of 2-power roots of unity plus disjointness forces
+  antipodal closure, and a parity descent forces `w+2` to be a power of 2. At L4
+  `w+2=4218=2*3*19*37` is not a power of 2 ((w+2)/2=2109 odd), so it is empty.
+  General `n=2^a` corollary: empty unless `w+2` is a power of 2. In char p the
+  stratum is nonempty only via a char-p degeneration (`p` divides a cyclotomic
+  defect) -- a root-non-concentration / Weil-type residual, the exact analogue of
+  #382's min-j pencil freeze, pinned with a `2^-76899` pseudorandom expectation
+  and a `+18.24`-bit margin.
+- **How it is useful:** First nontrivial curve-`M2` theorem; the provable half of
+  open PR #395's twist dichotomy. Replaces the largest single off-diagonal cell
+  of the depth-`(w+1)` shift-pair ledger (the `2^153665.47`
+  top-stratum/`prop:top-stratum-quotient-sieve` primitive ceiling) by an exact 0
+  in char 0. The generic-`z*` (transversal) branch and the deeper strata
+  `e>w+2` stay open; nothing here lowers the overall `M2` ceiling.
+- **What to do next:** Prove or refute char-p emptiness at the L4 prime (the
+  named Weil non-concentration); this is the same residual as #382 and #395's
+  `(W,λ)`-Veronese transversality. Do not treat the char-0 theorem as a bound on
+  full `M2`. #395/#393 are unintegrated: the note restates their decomposition
+  self-containedly and the verifier re-derives it. Run both verifier modes
+  (`--tamper-selftest` = 27/27 pins caught) before promotion.
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.
