@@ -30,6 +30,45 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - Entropy-inverse skeleton `trade` = shift pair; PTE/X8x prior art
+
+- **Agent/model:** `Claude Fable 5` (Lane D packager), base `upstream/main 53bb5df`.
+- **Files added or changed:**
+  `experimental/notes/thresholds/cap25_v13_entropy_inverse_trade_reconciliation.md`;
+  `experimental/scripts/verify_entropy_inverse_trade_reconciliation.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT (the two-lineage reconciliation, the zero-cross-reference finding,
+  the step-3 non-contact, the precision notes) / PROVED (`lem:trade-is-shift-pair`, a
+  one-page corollary of `prop:prefix-rigidity`/`prop:second-moment`/`prop:newton`) /
+  OPEN (no claim on `prob:entropy-inverse-q`; skeleton steps 4-6 untouched; PTE terminal
+  `active_core_count_bound` stays TARGET).
+- **What is being added:** A reconciliation memo for the new asymptotic-Q block in
+  `grande_finale.tex` (`def:primitive-logmoment` .. `rem:entropy-inverse-skeleton`,
+  l.752-863). It pins that step 2's "signed trade satisfying the first `w` moment
+  equations" is exactly a depth-`w` shift pair (proved as `lem:trade-is-shift-pair` from
+  material already in the paper), and that the same primitive object already has a
+  mature, mostly-PROVED classification in the Proximity-Prize DAG's PTE trade branch
+  (`star_pte_lemma`/`x81`-`x83`/`h3`/`h4`/`x24` PROVED; `active_core_count_bound`/
+  `h4_sparse_norm_gate` TARGET) via char-0 dyadic descent + good reduction -- integrated
+  2026-07-04 (`674503f`, Allen's clean-rate packets), three days before this section, with
+  ZERO cross-references between the two lineages (grep-checked both directions). Also: the
+  L1 `mu_11/F_23` route-kill does not contact `Tao05` (step 3's cited tool is unrefuted);
+  and a friendly precision list for `prob:entropy-inverse-q` (`V/T/rho/R/X` fresh & untied,
+  `X` declared-unused, `R` collides with `prop:moment-sandwich`, `A` unbound).
+- **How it is useful:** Prevents duplicate rediscovery of "disjoint subsets with matching
+  moments are rare" across future step-3 attempts, and pins exactly where the
+  char-0-descent method's range (`h <= (log2 n)^2 ~ 441`) ends and a genuine Fourier/
+  entropy argument would have to take over (deployed `w ~ 6.7e4`). Formalizes skeleton
+  steps 1-2; scopes step 3's prior art; isolates steps 4-6 as the only objects with no
+  in-repo formalization.
+- **What to do next:** Verifier
+  `verify_entropy_inverse_trade_reconciliation.py` (zero-arg, `<60s`, `--tamper-selftest`,
+  both modes green) checks every cross-reference mechanically, toy-verifies the dictionary
+  lemma at `p=97, D=mu_16, m=6, w=2`, and checks `char B > w` at the four deployed rows.
+  Next: a fiber-level popular-fiber enumeration (step 1) complementing #384's aggregate
+  `Gamma_r`, or map where PTE `active_core_count_bound` would hand a concrete non-fiber
+  population to step 4. Do not read any of this as progress on `prob:entropy-inverse-q`.
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.
