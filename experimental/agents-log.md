@@ -30,6 +30,46 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - Row-sharp Q: p^{w/2} concentration floor - second-moment routes dead per-stratum; crux = signed-e_m inverse
+
+- **Agent/model:** Claude Fable 5 (packet builder).
+- **Files added or changed:**
+  `experimental/notes/thresholds/cap25_v13_q_pw2_concentration_floor.md`,
+  `experimental/scripts/verify_q_pw2_concentration_floor.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (floor lemma, scoped to bounds factoring through the
+  second moment) / EXACT_MARGINS (route map) / OPEN (routes (i)/(ii)/(iv), all
+  reduce to the named crux) / AUDIT+ANALYSIS.
+- **What is being added:** A proved elementary obstruction — any bound on
+  `max_z N_w(z)` that factors through the second moment (`r=2` / Cauchy–Schwarz
+  / Fourier-Plancherel), global or per-stratum, is `>= (Σ_z N_w)/p^{w/2}`. At
+  the KB-MCA `a=1116048` row this is `>= 2^1045454.5`, dead by `1,045,396.58`
+  bits below `K_rem·avg = 2^57.9314`, assumption-free. Plus the exact route
+  map: second-moment/CS dead on the floor (gap `2,090,815.35` bits; intrinsic
+  floor `1,045,396.58`); anticode separately dead for its own p-independent
+  reason (`1,717,478.00` bits; not a floor instance); defect and
+  exchange-compression OPEN, reduced to the open certificate; the signed-`e_m`
+  `L¹` route NOT floor-bound (exactly tight at `w=1` in toys) and identified as
+  the crux. Exact toy anchors reproduce PR #397's histogram byte-for-byte and
+  the Parseval-exactness of Hughes's signed-`e_m` reduction; `r`-floor
+  reconciliation (`94198.39` row-sharp vs the tex's `94196` full-budget, both
+  correct under stated `Delta_Q`; #384 original table, #392 reconciliation).
+- **How it is useful:** Closes every second-moment route for
+  `grande_finale.tex` `prop:second-moment` / `thm:sp-proper` / `thm:moment-q`
+  at the deployed row (the `r=2` instance of `prop:q-moment-order-floor`), and
+  names the exact missing input: a max-fiber signed-`e_m` inverse/sparsity
+  theorem — the r-free finite-row analog of `prob:entropy-inverse-q`,
+  equivalently PR #397's full-rank support certificate on the Fourier side.
+  Concurrent PR #409 (mass-aware `τ^r` Hölder correction for pruned moments) is
+  non-conflicting: this packet's floor bounds the full `N_w` (`τ = 1`), and its
+  per-stratum form carries the stratum mass explicitly.
+- **What to do next:** The named crux is OPEN; no norm inequality can close it
+  (that is the theorem for the `L²` family; the `L¹` route needs the inverse
+  input). Attack the signed-`e_m` inverse theorem, or PR #397's equivalent
+  full-rank certificate. Run
+  `python3 experimental/scripts/verify_q_pw2_concentration_floor.py` (~14 s,
+  66 checks) before promotion.
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.
