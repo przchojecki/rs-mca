@@ -351,7 +351,10 @@ python3 experimental/scripts/verify_bc_l4_veronese_top_stratum.py --tamper-selft
 - **`#361`** (`cap25_v13_qfin_rung_audit`, integrated) — fixture-consistent rung; no object contact
   here (courtesy).
 - **Concurrent lanes T1/T2/T3** — no object or file dependency in either direction.
-- **`#389`–`#396`** — no deliverable-file or object contact (courtesy only).
+- **`#389`–`#398`** — no deliverable-file or object contact (courtesy only; the newest
+  Q-frontier packets `#397` (row-sharp Q atom reductions, deployed row) and `#398`
+  (b2 conj:Q barrier map) work the prefix-atom / character-sum side, not this
+  curve-restricted constant-shift stratum).
 
 ---
 
