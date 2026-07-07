@@ -55,9 +55,9 @@ Theorem C1, verbatim from its body: *"the curve second moment IS `prop:second-mo
 at depth `w+1` restricted to `Gamma`, i.e. the depth-`(w+1)` shift-pair ledger on the
 curve."* Same shift-pair machinery, but restricted to one BC-chart curve `Gamma`
 (target `prob:saturated-bc`), **not** the ambient `Fib_w(z)` system asymptotic Q needs.
-Adjacent, not overlapping. (Both PR bodies use the word "trade" zero times -- confirmed
-by the verifier's grep -- so even our nearest work never verbally connects to the
-skeleton's vocabulary.)
+Adjacent, not overlapping. (Both PR bodies use the word "trade" zero times -- checked by
+hand against the two PR bodies, not by the offline verifier -- so even our nearest work
+never verbally connects to the skeleton's vocabulary.)
 
 **Sister-manuscript instance (integrated):** `prob:capg-shiftpairs`
 (`cap25_cap_v13_raw.tex` l.9667) / `thm:capg-second-moment` (l.9575) with the toy ledger
@@ -110,8 +110,14 @@ method framing in `critical_path_status_2026_07_04.md`.
 
 Dictionary: `(S,S0) <-> (M,M')`, `C <-> R=M cap M'`, `P <-> M\M'`, `Q <-> M'\M`, `t <-> w`,
 `L_C(L_P-L_Q) <-> G(A-B)`, `|P|=|Q|>=t+1 <-> e>=w+1`, `e_r(P)=e_r(Q) for r<=t <-> Phi_w`
-equality (elementary-symmetric / power-sum reading). Word for word the same lemma, two
-lineages, two proofs, no cross-reference between them.
+equality (elementary-symmetric / power-sum reading). The same lemma up to one bookkeeping
+addendum: identical hypotheses (monic locators, roots in `D`, top-`t`/`w` coefficient
+agreement, `S != S0` / `M != M'`; and -- the point -- *no* characteristic hypothesis in
+either, the elementary-symmetric reading being char-free), and the same one-line proof via
+`L_C(L_P-L_Q)` and the degree count. The only asymmetry is emphasis: `prop:prefix-rigidity`
+additionally records the `e=w+1` constant-shift case, while `star_pte_lemma` states the
+`e_r(P)=e_r(Q)` trade-moment agreement that `prop:prefix-rigidity` carries inside its proof.
+Two lineages, two proofs, no cross-reference between them.
 
 ### 1(d). Scope pin -- three different axes; where the PTE branch is (and is not) a step-3 input
 
@@ -156,7 +162,8 @@ prefix value `z`; let `Fib_w(z) = {M subset D : |M|=m, Phi_w(M)=z}`.
 a depth-`w` shift pair of degree `e` in the exact sense of `thm:coeff-quotient-extract`:
 `A,B` monic of degree `e`, split over the disjoint root sets `S,T subset D\R`,
 `S cap T = emptyset`, `e >= w+1`, and `deg(A-B) <= e-w-1`. Equivalently (`prop:newton`,
-valid when `char F > w`), the signed trade `+S / -T` satisfies the first `w` power-sum
+valid when `char B > w` -- the same condition, since `D \subseteq B \subseteq F` forces
+`char B = char F`), the signed trade `+S / -T` satisfies the first `w` power-sum
 equations `sum_{x in S} x^i = sum_{x in T} x^i`, `i = 1,...,w`.
 
 *(Converse: shift pairs over a fixed common part are fiber pairs.)* Fix `R subset D` and
@@ -176,7 +183,7 @@ leading term and the next `w` coefficients of `ell_{M0}` and `ell_M`, i.e.
 `e <= w` this bound forces `A = B`, impossible for disjoint nonempty root sets, so
 `e >= w+1` (this is `prop:prefix-rigidity`). The converse multiplies `deg(A-B) <= e-w-1`
 by `G` to recover `deg(ell_{M0}-ell_M) <= m-w-1`, i.e. `Phi_w(M0) = Phi_w(M)`. For the
-power-sum reading, `prop:newton` gives that (when `char F > w`) `Phi_w` is triangularly
+power-sum reading, `prop:newton` gives that (when `char B > w`) `Phi_w` is triangularly
 equivalent to `(p_1,...,p_w)`; since `p_i(M0) = p_i(R)+p_i(S)` and `p_i(M) = p_i(R)+p_i(T)`,
 prefix equality is `p_i(S) = p_i(T)` for `i=1,...,w`. The top stratum `e = w+1` gives
 `deg(A-B) <= 0`, i.e. the constant-shift pairs `A, A-c` of `prop:second-moment`. `[]`
@@ -236,7 +243,9 @@ criticism -- these are the kind the maintainer closes same-day). Each is verifie
 the base commit.
 
 - **`V, T, rho, R, X` are fresh local notation, never tied to `Fib_w`/`D` by a stated map.**
-  `\rho(` and `moment-curve column` occur nowhere else in the file (empty grep, both). The
+  `\rho(` and `moment-curve column` occur only inside this new inverse-theorem block
+  (`prob:entropy-inverse-q` and the adjacent `prop:vandermonde-kills-low-rank`, l.826-862;
+  5 and 3 hits) -- never in the earlier `Phi_w`/`Fib_w`/`D` material. The
   tie to the earlier `Phi_w`/`Fib_w(z)` objects is asserted only by the prose "after
   quotient, planted, ... cells have been removed", which describes a reduction procedure,
   not a bijection. A one-line "let `T = ...`, `rho = ...`, identifying `V` with the columns
