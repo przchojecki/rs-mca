@@ -1,0 +1,102 @@
+[
+ {
+  "row": "KoalaBear MCA",
+  "p": 2130706433,
+  "ext_deg": 6,
+  "eps_bits": 128,
+  "pencil_shift": 1,
+  "a0": 1116047,
+  "n": 2097152,
+  "k": 1048576,
+  "at_a0": {
+   "m": 1116047,
+   "depth_w": 67470,
+   "unsafe": true,
+   "margin_bits": 8.9777
+  },
+  "at_a0_plus_1": {
+   "m": 1116048,
+   "depth_w": 67471,
+   "unsafe": false,
+   "margin_bits": -22.1969
+  },
+  "admissibility_q_minus_n": true,
+  "admissibility_q_minus_B": true,
+  "pair_ok": true
+ },
+ {
+  "row": "KoalaBear list",
+  "p": 2130706433,
+  "ext_deg": 6,
+  "eps_bits": 128,
+  "pencil_shift": 0,
+  "a0": 1116046,
+  "n": 2097152,
+  "k": 1048576,
+  "at_a0": {
+   "m": 1116046,
+   "depth_w": 67470,
+   "unsafe": true,
+   "margin_bits": 9.1637
+  },
+  "at_a0_plus_1": {
+   "m": 1116047,
+   "depth_w": 67471,
+   "unsafe": false,
+   "margin_bits": -22.0109
+  },
+  "admissibility_q_minus_n": true,
+  "admissibility_q_minus_B": true,
+  "pair_ok": true
+ },
+ {
+  "row": "Mersenne-31 MCA",
+  "p": 2147483647,
+  "ext_deg": 4,
+  "eps_bits": 100,
+  "pencil_shift": 1,
+  "a0": 1116023,
+  "n": 2097152,
+  "k": 1048576,
+  "at_a0": {
+   "m": 1116023,
+   "depth_w": 67446,
+   "unsafe": true,
+   "margin_bits": 27.927
+  },
+  "at_a0_plus_1": {
+   "m": 1116024,
+   "depth_w": 67447,
+   "unsafe": false,
+   "margin_bits": -3.2589
+  },
+  "admissibility_q_minus_n": true,
+  "admissibility_q_minus_B": true,
+  "pair_ok": true
+ },
+ {
+  "row": "Mersenne-31 list",
+  "p": 2147483647,
+  "ext_deg": 4,
+  "eps_bits": 100,
+  "pencil_shift": 0,
+  "a0": 1116022,
+  "n": 2097152,
+  "k": 1048576,
+  "at_a0": {
+   "m": 1116022,
+   "depth_w": 67446,
+   "unsafe": true,
+   "margin_bits": 28.1129
+  },
+  "at_a0_plus_1": {
+   "m": 1116023,
+   "depth_w": 67447,
+   "unsafe": false,
+   "margin_bits": -3.073
+  },
+  "admissibility_q_minus_n": true,
+  "admissibility_q_minus_B": true,
+  "pair_ok": true
+ }
+]

@@ -11,6 +11,24 @@ Keep entries concise and link to the relevant files.
 ## Entry Format
 
 ```markdown
+### 2026-07-07 - Independent replay of the four v13 adjacent pairs
+
+- **Agent/model:** Claude (Allen's lane).
+- **Files added or changed:** Added
+  `experimental/scripts/verify_v13_adjacent_pairs_independent.py`,
+  `experimental/notes/v13_adjacent_pairs_independent_replay.md`,
+  `experimental/data/v13_adjacent_pairs_independent_replay.json`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** A from-scratch exact-integer replay of the four
+  v13 adjacent pairs (locations, margins to every printed decimal, both
+  admissibility inequalities), with the MCA pencil-shift and M31 row
+  conventions re-derived independently rather than copied.
+- **How it is useful:** The promotion rule asks for the v13 rows to be
+  replayed and audited; this is a third-party code path over the same
+  integers, deterministic and CI-friendly (nonzero exit on mismatch).
+- **What to do next:** Fold into the v13 -> Paper D replay matrix; extend to
+  new adjacent rows as they are added.
+
 ### YYYY-MM-DD - Short title
 
 - **Agent/model:** Name the agent or model, for example `GPT-5.5 Pro`,
