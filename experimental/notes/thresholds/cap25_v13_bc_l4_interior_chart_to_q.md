@@ -266,9 +266,12 @@ degree bound: two rays give the same slope iff `(Ψ-Ψ')(α)=0`, at most `K-1` p
 
 **Floors.** By pigeonhole over `B^{d1-1}` some `z*` has `#{valid T} ≥ ⌈C(n,m)/p^w⌉ = 2^{23.139009}`
 (Theorem numerator, one dimension down). Each `e=1` ray has `≤ m+1` supports, so `#rays ≥ 2^{7.05}`
-(rigorous). With the `K-1` collision cap (C3) the best extension pole keeps `≥ ½` of the rays as distinct
-genuinely-`F∖B` slopes (line-level `α∉B`, per c.5): `≥ 2^{6.05}` distinct extension-valued MCA-bad slopes
-(rigorous, stated conservatively). Because the planted stratum has density `2^{-8.04} ≪ 1`, heuristically
+(rigorous). With the `K-1` collision cap (C3) the best pole keeps `≥ ½` of the rays as distinct slopes
+(line-level `α∉B` means the line is not paid by `thm:subfield-confinement`, per c.5): `≥ 2^{6.05}` distinct
+MCA-bad finite slopes (rigorous, stated conservatively). These slopes are **generically** `F∖B`-valued, but
+per the §4 honest scope the per-slope `F∖B` membership is **not** asserted (the even-word toy row B has zero
+extension-valued slopes); the rigorous floor is on the count of distinct MCA-bad slopes, not on how many are
+extension-valued. Because the planted stratum has density `2^{-8.04} ≪ 1`, heuristically
 `#rays ≈ #{valid T} ≈ 2^{23.14}` (primitive stratum dominates; `EXPERIMENTAL`), with collisions
 `≈ 2^{-124.65}` (negligible). The direct `(T,r)`-rigidity ceiling `2^{103810.24}` beats the reduction route
 `2^{103841.23}` by `≈ 31 = log2 p` bits (the reduction pays the `|B|` factor); use the direct ceiling for an
