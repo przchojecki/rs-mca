@@ -7,9 +7,10 @@ consistency with the integrated #369 ladder and #361 rung audit). Task **B1** (`
 "Finite BC chart-decomposition audit") / `prob:saturated-bc` (`experimental/grande_finale.tex`, resolution
 type (b)) / Good-first-PR #3.
 
-**B1 answer (one sentence).** At the first interior profile the residual chart is neither a moving-root
-pencil nor a new obstruction — it is `|B|` curve-restricted copies of the depth-`(w+1)` prefix-fiber
-problem, so it is discharged by row-sharp Q (list route) at the same agreement `m`.
+**B1 answer (one sentence).** At the first interior profile the residual chart of the planted interior
+family `U_{z*}` is neither a moving-root pencil nor a new obstruction — it is `|B|` curve-restricted copies
+of the depth-`(w+1)` prefix-fiber problem, so it is discharged by row-sharp Q (list route) at the same
+agreement `m` (the general-line chart at this profile is `§8` OPEN item 3, not claimed here).
 
 Concretely: the excess-1 interior split-pencil ray count decomposes exactly as
 `#valid T = Σ_{s∈B} |Fib_{w+1}(θ(s))|` along an explicit polynomial curve `θ`, and
@@ -296,7 +297,8 @@ identifies it with the depth-`(w+1)` Q gap.
 The packet's object is the **word census** of `U_{z*}` at dimension `K` (supports `T` with `U_{z*}|_T`
 explained by a `deg < K` codeword) — equivalently the pole line for the base code `RS[k]`, `k = K-1`
 (quotient degree `< K-1`, total `(ζ,P)`-space dimension `(K-1)+1 = K`, matching the direct `deg < K` test).
-This is the object counted at `2^{23.14}`.
+This is the object counted at the heuristic `2^{23.14}` (an `EXPERIMENTAL` size, per §6; the convention
+identity in this section — which count is the MCA numerator — is what is `PROVED`/`AUDIT`, not the size).
 
 One dimension up, the pole line for `RS[K]` (quotient degree `< K`, the prior-run object) frees the
 degree-`K` coefficient — the simple pole absorbs it via `U_{z*}-ℓ_T(X-r) = ζ+(X-α)P` — so it constrains only
@@ -314,7 +316,8 @@ Verified exactly:
   `old/new` are noisy around `p` (row A `5.0`, row B `3.0`, from small heaviest fibers, not the average); the
   exact claim is the **subset property** plus the `F_7` exact-`p` ratio, not a per-row ratio equal to `p`.
 
-At L4 the line-for-`RS[K]` count is `C(n,m)/p^{w-1} = 2^{54.127694} = p·2^{23.14}`. Route-D2 §4c had flagged
+At L4 the line-for-`RS[K]` heuristic count is `C(n,m)/p^{w-1} = 2^{54.127694} = p·2^{23.14}` (`EXPERIMENTAL`
+size; the exact `p×` ratio to the ray/census count is the `PROVED`/`AUDIT` content). Route-D2 §4c had flagged
 `2^{54.13}` as the pole-line slope number; the corrected convention resolves it: the **ray/census** count
 (the MCA numerator) is `2^{23.14}` (line-for-`RS[k]`), and `2^{54.13}` is the `RS[K]` line one dimension up,
 which the packet does **not** use for the ray count.
@@ -363,8 +366,8 @@ from scratch (no scratchpad dependence). Runtime `< 5s`.
   the cross-consistency target for the pigeonhole floor (verifier gate G1).
 - **#383** (`cap25_v13_saturated_bc_budget_fit`) / **#384** (`cap25_v13_gammar_order_floor`), integrated —
   same `prob:saturated-bc` / row-sharp-Q neighbourhood; no object overlap.
-- **#389** (Danny, draft, LQ top-seam at RAW row scale) — no file or object contact; courtesy cross-link
-  only, no coordination needed.
+- **#389** (Danny, draft, LQ top-seam at RAW row scale) — no deliverable-file or object contact (only the
+  shared `agents-log.md` append, as with every packet); courtesy cross-link only, no coordination needed.
 - **#392** (separate same-day reconciliation packet) — independent, no dependency in either direction.
 - Steering `b33609d` / `7bd50ca` / `ab7721e` (same-day): B1 is "Show that every residual balanced-core
   split-pencil chart … either is already paid or reduces to a primitive one-parameter pencil covered by the
