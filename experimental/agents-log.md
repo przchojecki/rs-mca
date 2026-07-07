@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - L1 fat-tail k3 grows: C'<=2 / no-T>=7 / O(1)-cap REFUTED
+
+- **Agent/model:** Claude Fable 5 (Opus).
+- **Files added or changed:** `experimental/notes/l1/l1_k3_growth_refutation.md`,
+  `experimental/scripts/verify_l1_k3_growth_refutation.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (cubic-pencil reduction + exact concurrency/gauge method) /
+  EXACT-COMPUTATION (exhaustive-up-to-gauge `max k3`) / COUNTEREXAMPLE / OPEN.
+- **What is being added:** Over `F_p`, three of our own conjectured fat-tail caps are
+  refuted by explicit realizable mixed `Gamma`: `k3 = 8` at `ell = 43` (`[40,3^8]`, excess
+  `+3`, `T = 7`), `k3 = 9` at `ell = 59` (excess `+4`, `T = 8`), and `k3 = 11` at `ell = 53`
+  (`[50,3^11,2^6]`, excess `+6`, `T = 10`), with a persistent excess-`>= +3` band across
+  `ell in {43,53,59,61,67}` reaching `C' >= 6`. Exhaustive-up-to-gauge `max k3` GROWS with
+  `ell` (`4,4,7,6,5,7,7,7,7,8,7,11,9`, `ell = 11..59`; per-prime coverage table in the note)
+  — and, at `ell = 53`, with `n` too (`7` at `n=14` -> `11` at `n=20`); the `O(1)` reading
+  was an `ell <= 31` mirage, and the originating lane's own `ell = 53` value (`9`) was a
+  FIFTH searched-too-shallow instance (early-exit-at-first-`k3>=8` scanner truncation),
+  caught by panel review inside this packet. Refutes `C' <= 2` (`E_3 <= ell+2`), the "no
+  realizable `T >= 7`" open core of PR #368, and the `O(1)` fat-tail cap (PR #399 §7 (★) /
+  PR #379 plateau). The `ell = 19` pin `H_19` / `m*(19) = 9` SURVIVES (fat-tail excess
+  `<= +1` over the five eligible primes `n <= 30` plus three beyond-window primes).
+  Corrects PR #368 §5's `(17,409)` row (exhaustive `k3 = 5`, not `3`).
+- **How it is useful:** Keeps the L1 excess-band ledger honest and reshapes the open
+  question from an `O(1)` cap to a `k3` growth law; feeds the excess-band input to `m*(ell)`
+  via `top-m <= 2m + E_3`. A companion surgical amendment corrects PR #399 §1/§3/§5/§6/§7/§8.
+- **What to do next:** Panel review; decide the strict `p/ell -> infty` limit (§5, MIXED);
+  restate bounded-excess as a growth statement in the integrated notes; land the PR #399
+  amendment. Verifier: `python3 experimental/scripts/verify_l1_k3_growth_refutation.py`
+  (zero-arg, exit 0, `< 60s`; opt-in `--full` replays the whole coverage table, ~20-25 min).
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.
