@@ -1,0 +1,600 @@
+{
+  "claim_class": "STRUCTURAL_NORMAL_FORM",
+  "deployed_ledger_interpretation": {
+    "generated_branch_cost": "covered by existing B_gen <= t*p if the row is part of the printed packet",
+    "new_obstruction": "pair_deficient_residual_window",
+    "recursive_branch": "descends to lower-rung affine split-locator obligations",
+    "status": "STRUCTURAL_ONLY_NO_NEW_BUDGET_DEDUCTED"
+  },
+  "exact_cyclotomic_scans": [
+    {
+      "examples": {
+        "honest_half_turn_pair_core": [
+          {
+            "residual_size": 1,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              8,
+              9
+            ]
+          },
+          {
+            "residual_size": 1,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              8,
+              10
+            ]
+          },
+          {
+            "residual_size": 1,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              9,
+              10
+            ]
+          }
+        ]
+      },
+      "j": 5,
+      "model": "Q(zeta_16)",
+      "n": 16,
+      "normal_form_buckets": {
+        "honest_half_turn_pair_core": 336
+      },
+      "residual_histogram": {
+        "1": 336
+      },
+      "survivor_supports": 336,
+      "window": [
+        1,
+        3
+      ]
+    },
+    {
+      "examples": {
+        "honest_half_turn_pair_core": [
+          {
+            "residual_size": 1,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              8,
+              9
+            ]
+          },
+          {
+            "residual_size": 1,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              8,
+              10
+            ]
+          },
+          {
+            "residual_size": 1,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              9,
+              10
+            ]
+          }
+        ]
+      },
+      "j": 5,
+      "model": "Q(zeta_16)",
+      "n": 16,
+      "normal_form_buckets": {
+        "honest_half_turn_pair_core": 336
+      },
+      "residual_histogram": {
+        "1": 336
+      },
+      "survivor_supports": 336,
+      "window": [
+        1,
+        5
+      ]
+    },
+    {
+      "examples": {
+        "honest_half_turn_pair_core": [
+          {
+            "residual_size": 0,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              3,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "residual_size": 0,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              4,
+              8,
+              9,
+              10,
+              12
+            ]
+          },
+          {
+            "residual_size": 0,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              5,
+              8,
+              9,
+              10,
+              13
+            ]
+          }
+        ]
+      },
+      "j": 8,
+      "model": "Q(zeta_16)",
+      "n": 16,
+      "normal_form_buckets": {
+        "honest_half_turn_pair_core": 70
+      },
+      "residual_histogram": {
+        "0": 70
+      },
+      "survivor_supports": 70,
+      "window": [
+        1,
+        5
+      ]
+    },
+    {
+      "examples": {
+        "recursive_lower_core_affine_slice": [
+          {
+            "residual_size": 2,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              4,
+              6,
+              9,
+              12,
+              14
+            ]
+          },
+          {
+            "residual_size": 2,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              4,
+              8,
+              9,
+              10,
+              14
+            ]
+          },
+          {
+            "residual_size": 2,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              5,
+              6,
+              8,
+              9,
+              13
+            ]
+          }
+        ]
+      },
+      "j": 8,
+      "model": "Q(zeta_16)",
+      "n": 16,
+      "normal_form_buckets": {
+        "recursive_lower_core_affine_slice": 70
+      },
+      "residual_histogram": {
+        "0": 6,
+        "2": 64
+      },
+      "survivor_supports": 70,
+      "window": [
+        1,
+        6
+      ]
+    },
+    {
+      "examples": {
+        "honest_half_turn_pair_core": [
+          {
+            "residual_size": 0,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              3,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "residual_size": 0,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              4,
+              8,
+              9,
+              10,
+              12
+            ]
+          },
+          {
+            "residual_size": 0,
+            "support_exponents": [
+              0,
+              1,
+              2,
+              5,
+              8,
+              9,
+              10,
+              13
+            ]
+          }
+        ]
+      },
+      "j": 8,
+      "model": "Q(zeta_16)",
+      "n": 16,
+      "normal_form_buckets": {
+        "honest_half_turn_pair_core": 70
+      },
+      "residual_histogram": {
+        "0": 70
+      },
+      "survivor_supports": 70,
+      "window": [
+        1,
+        7
+      ]
+    }
+  ],
+  "explicit_windows": {
+    "W_1_5": "theta_5 + b_1 theta_3 = 0 after theta_1=0",
+    "W_1_6": "theta_6 + b_1 theta_4 + b_2 theta_2 + b_3 = 0",
+    "W_1_7": "theta_7 + b_1 theta_5 + b_2 theta_3 = 0 after theta_1=0"
+  },
+  "finite_generated_collision_scans": [
+    {
+      "finite_only_generated_collisions": 128,
+      "finite_survivors": 464,
+      "honest_lift_survivors": 336,
+      "j": 5,
+      "meaning": "finite-only survivors have nonzero cyclotomic row defect that reduces to zero modulo p",
+      "model": "F_17",
+      "n": 16,
+      "omega": 3,
+      "window": [
+        1,
+        3
+      ]
+    },
+    {
+      "finite_only_generated_collisions": 112,
+      "finite_survivors": 448,
+      "honest_lift_survivors": 336,
+      "j": 5,
+      "meaning": "finite-only survivors have nonzero cyclotomic row defect that reduces to zero modulo p",
+      "model": "F_17",
+      "n": 16,
+      "omega": 3,
+      "window": [
+        1,
+        5
+      ]
+    }
+  ],
+  "formula_checks": [
+    {
+      "branch_rule": "odd window: nonzero active residual vector descends; all odd theta defects zero routes to half-turn",
+      "display": "b_0 theta_3 + b_1 theta_1 = 0",
+      "pair_deficient_condition": "q < 0 or no exposed nonzero active coefficient",
+      "parity": "odd",
+      "r": 3,
+      "recursive_condition": "some theta_{3-2h} with 1<=h<=min(q,0) is nonzero",
+      "row_condition_terms": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "solved_or_active_coefficient": "some existing lower-core coefficient with nonzero residual coefficient",
+      "window": [
+        1,
+        3
+      ]
+    },
+    {
+      "branch_rule": "even window: deep paired core solves for the next lower-domain coefficient",
+      "display": "b_0 theta_4 + b_1 theta_2 + b_2 theta_0 = 0",
+      "pair_deficient_condition": "q < 2",
+      "parity": "even",
+      "r": 4,
+      "recursive_condition": "q >= 2",
+      "row_condition_terms": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "solved_or_active_coefficient": "b_2",
+      "window": [
+        1,
+        4
+      ]
+    },
+    {
+      "branch_rule": "odd window: nonzero active residual vector descends; all odd theta defects zero routes to half-turn",
+      "display": "b_0 theta_5 + b_1 theta_3 + b_2 theta_1 = 0",
+      "pair_deficient_condition": "q < 1 or no exposed nonzero active coefficient",
+      "parity": "odd",
+      "r": 5,
+      "recursive_condition": "some theta_{5-2h} with 1<=h<=min(q,1) is nonzero",
+      "row_condition_terms": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "solved_or_active_coefficient": "some existing lower-core coefficient with nonzero residual coefficient",
+      "window": [
+        1,
+        5
+      ]
+    },
+    {
+      "branch_rule": "even window: deep paired core solves for the next lower-domain coefficient",
+      "display": "b_0 theta_6 + b_1 theta_4 + b_2 theta_2 + b_3 theta_0 = 0",
+      "pair_deficient_condition": "q < 3",
+      "parity": "even",
+      "r": 6,
+      "recursive_condition": "q >= 3",
+      "row_condition_terms": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "solved_or_active_coefficient": "b_3",
+      "window": [
+        1,
+        6
+      ]
+    },
+    {
+      "branch_rule": "odd window: nonzero active residual vector descends; all odd theta defects zero routes to half-turn",
+      "display": "b_0 theta_7 + b_1 theta_5 + b_2 theta_3 + b_3 theta_1 = 0",
+      "pair_deficient_condition": "q < 2 or no exposed nonzero active coefficient",
+      "parity": "odd",
+      "r": 7,
+      "recursive_condition": "some theta_{7-2h} with 1<=h<=min(q,2) is nonzero",
+      "row_condition_terms": [
+        [
+          0,
+          7
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "solved_or_active_coefficient": "some existing lower-core coefficient with nonzero residual coefficient",
+      "window": [
+        1,
+        7
+      ]
+    },
+    {
+      "branch_rule": "even window: deep paired core solves for the next lower-domain coefficient",
+      "display": "b_0 theta_8 + b_1 theta_6 + b_2 theta_4 + b_3 theta_2 + b_4 theta_0 = 0",
+      "pair_deficient_condition": "q < 4",
+      "parity": "even",
+      "r": 8,
+      "recursive_condition": "q >= 4",
+      "row_condition_terms": [
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "solved_or_active_coefficient": "b_4",
+      "window": [
+        1,
+        8
+      ]
+    },
+    {
+      "branch_rule": "odd window: nonzero active residual vector descends; all odd theta defects zero routes to half-turn",
+      "display": "b_0 theta_9 + b_1 theta_7 + b_2 theta_5 + b_3 theta_3 + b_4 theta_1 = 0",
+      "pair_deficient_condition": "q < 3 or no exposed nonzero active coefficient",
+      "parity": "odd",
+      "r": 9,
+      "recursive_condition": "some theta_{9-2h} with 1<=h<=min(q,3) is nonzero",
+      "row_condition_terms": [
+        [
+          0,
+          9
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "solved_or_active_coefficient": "some existing lower-core coefficient with nonzero residual coefficient",
+      "window": [
+        1,
+        9
+      ]
+    },
+    {
+      "branch_rule": "even window: deep paired core solves for the next lower-domain coefficient",
+      "display": "b_0 theta_10 + b_1 theta_8 + b_2 theta_6 + b_3 theta_4 + b_4 theta_2 + b_5 theta_0 = 0",
+      "pair_deficient_condition": "q < 5",
+      "parity": "even",
+      "r": 10,
+      "recursive_condition": "q >= 5",
+      "row_condition_terms": [
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          0
+        ]
+      ],
+      "solved_or_active_coefficient": "b_5",
+      "window": [
+        1,
+        10
+      ]
+    }
+  ],
+  "no_deployed_budget_deducted": true,
+  "note": "experimental/notes/m1/m1_nonconsecutive_window_normal_form_v1.md",
+  "script": "experimental/scripts/verify_m1_nonconsecutive_window_normal_form_v1.py",
+  "status": "PROVED",
+  "theorem": {
+    "branches": [
+      "generated_field_collision",
+      "honest_half_turn_pair_core",
+      "recursive_lower_core_affine_slice",
+      "pair_deficient_residual_window"
+    ],
+    "does_not_prove": [
+      "payment of pair-deficient residual windows",
+      "lower-rung Q/BC/SP constants",
+      "primitive Q-fin max-fiber flatness",
+      "arbitrary sparse Hankel row-slices without printed coefficient rows",
+      "extension-valued split-pencil branches"
+    ],
+    "name": "nonconsecutive coefficient-window inverse normal form",
+    "normal_form_identity": "sum_h b_h theta_{r-2h}(R)=0",
+    "unpaid_named_residual": "pair_deficient_residual_window",
+    "window_family": "W={1,r}, 3<=r<=j"
+  },
+  "unpaid_residuals": [
+    "pair_deficient_residual_window"
+  ]
+}

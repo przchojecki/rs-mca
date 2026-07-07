@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - M1 nonconsecutive coefficient-window normal form
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_nonconsecutive_window_normal_form_v1.md`;
+  `experimental/scripts/verify_m1_nonconsecutive_window_normal_form_v1.py`;
+  `experimental/data/certificates/m1-nonconsecutive-window-normal-form-v1/`;
+  `experimental/notes/certificate_scanner/outputs/m1_nonconsecutive_window_normal_form_v1.report.md`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL_NORMAL_FORM; no deployed budget deducted.
+- **What is being added:** A structural inverse-routing theorem for printed
+  two-row coefficient windows `W={1,r}`. After half-turn decomposition, every
+  survivor satisfies `sum_h b_h theta_{r-2h}=0` and is routed to generated-field
+  collision, honest half-turn, recursive lower-core affine slice, or the named
+  `PAIR-DEFICIENT-RESIDUAL-WINDOW` branch.
+- **How it is useful:** Removes nonconsecutive coefficient windows such as
+  `{1,5}`, `{1,6}`, and `{1,7}` from the amorphous M1 mass bucket while keeping
+  the new pair-deficient residual obstruction explicit and unpaid.
+- **What to do next:** Prove image/fiber bounds for pair-deficient residual
+  windows, prove lower-rung Q/BC/SP constants for recursive slices, and keep
+  arbitrary sparse Hankel row-slices and extension-valued split-pencils separate.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
