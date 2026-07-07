@@ -1,0 +1,5314 @@
+{
+ "_provenance": {
+  "what": "R2 overnight exhaustive-up-to-rotation-gauge k3 scan grid + witnesses, packaged for l1_k3_growth_refutation.md (PR #410 follow-up, 2026-07-07)",
+  "method": "exhaustive over all C(ell,3)/ell rotation-orbit representative dropsets, exact P^2-concurrency max per drop, NO early exit; independently-written scan library (coset labels via x^ell, L'Hopital Gamma evaluator), 4-route witness verification",
+  "cross_verification": "packet-side: all 5 new witnesses re-verified through verify_l1_k3_growth_refutation.py's own checker (spectrum/E3/T/excess/k3/c1/constant-free/degree; pencil cross-check on the ell=23 record); two ell=19 rows (p=1901, p=13567) replayed exhaustively by the packet's own transversal (both match); gate 5 of the verifier checks this file's ell=19 stats, and --full replays the ell=23/43 records plus six ell=19 spot rows",
+  "ell19_sweep": "ALL 80 eligible primes p=19n+1, n<=714 (p=191..13567): max k3 = 6, attained uniquely at p=571 (n=30); distribution k3=3:42, 4:15, 5:22, 6:1",
+  "schema_rows": "ell, n, p, k3 (= exhaustive-gauge max), tri (winning drop-exponent orbit rep in the scan's own generator convention), sec (wall seconds)"
+ },
+ "rows": [
+  {
+   "ell": 19,
+   "n": 10,
+   "p": 191,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 0.791,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 12,
+   "p": 229,
+   "k3": 5,
+   "tri": [
+    0,
+    2,
+    6
+   ],
+   "sec": 1.19,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 22,
+   "p": 419,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 2.995,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 24,
+   "p": 457,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 3.329,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 30,
+   "p": 571,
+   "k3": 6,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 3.717,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 34,
+   "p": 647,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 4.17,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 40,
+   "p": 761,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    9
+   ],
+   "sec": 5.192,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 58,
+   "p": 1103,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 7.657,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 64,
+   "p": 1217,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 9.089,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 78,
+   "p": 1483,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 10.969,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 82,
+   "p": 1559,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    9
+   ],
+   "sec": 13.33,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 84,
+   "p": 1597,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    7
+   ],
+   "sec": 12.551,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 94,
+   "p": 1787,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 15.723,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 100,
+   "p": 1901,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    8
+   ],
+   "sec": 17.483,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 108,
+   "p": 2053,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 17.881,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 112,
+   "p": 2129,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 18.472,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 118,
+   "p": 2243,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 18.734,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 120,
+   "p": 2281,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 19.087,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 124,
+   "p": 2357,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 18.504,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 142,
+   "p": 2699,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 22.869,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 150,
+   "p": 2851,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 21.831,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 154,
+   "p": 2927,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    10
+   ],
+   "sec": 23.263,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 160,
+   "p": 3041,
+   "k3": 5,
+   "tri": [
+    0,
+    2,
+    7
+   ],
+   "sec": 24.014,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 162,
+   "p": 3079,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 24.417,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 174,
+   "p": 3307,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 27.233,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 204,
+   "p": 3877,
+   "k3": 5,
+   "tri": [
+    0,
+    2,
+    7
+   ],
+   "sec": 31.651,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 222,
+   "p": 4219,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 34.186,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 232,
+   "p": 4409,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 37.071,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 234,
+   "p": 4447,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 37.799,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 238,
+   "p": 4523,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 39.364,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 240,
+   "p": 4561,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 37.399,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 244,
+   "p": 4637,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 36.736,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 250,
+   "p": 4751,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 39.82,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 252,
+   "p": 4789,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 39.299,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 258,
+   "p": 4903,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 43.227,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 300,
+   "p": 5701,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 49.725,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 318,
+   "p": 6043,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 65.067,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 330,
+   "p": 6271,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 78.473,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 352,
+   "p": 6689,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 96.179,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 358,
+   "p": 6803,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 112.022,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 360,
+   "p": 6841,
+   "k3": 4,
+   "tri": [
+    0,
+    2,
+    5
+   ],
+   "sec": 119.004,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 364,
+   "p": 6917,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 121.127,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 372,
+   "p": 7069,
+   "k3": 4,
+   "tri": [
+    0,
+    2,
+    10
+   ],
+   "sec": 121.858,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 384,
+   "p": 7297,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 125.083,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 390,
+   "p": 7411,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 128.218,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 394,
+   "p": 7487,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 138.091,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 402,
+   "p": 7639,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 145.779,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 408,
+   "p": 7753,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 161.478,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 412,
+   "p": 7829,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 163.159,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 414,
+   "p": 7867,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 177.844,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 430,
+   "p": 8171,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 204.004,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 432,
+   "p": 8209,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 217.486,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 448,
+   "p": 8513,
+   "k3": 5,
+   "tri": [
+    0,
+    3,
+    8
+   ],
+   "sec": 227.618,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 454,
+   "p": 8627,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 216.92,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 460,
+   "p": 8741,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 205.225,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 462,
+   "p": 8779,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 185.739,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 468,
+   "p": 8893,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 182.824,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 472,
+   "p": 8969,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 184.365,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 474,
+   "p": 9007,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 186.481,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 490,
+   "p": 9311,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 193.087,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 492,
+   "p": 9349,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 199.468,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 498,
+   "p": 9463,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 190.865,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 502,
+   "p": 9539,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    7
+   ],
+   "sec": 182.525,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 514,
+   "p": 9767,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 181.691,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 538,
+   "p": 10223,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    9
+   ],
+   "sec": 176.435,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 544,
+   "p": 10337,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 182.944,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 570,
+   "p": 10831,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 190.183,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 582,
+   "p": 11059,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 192.18,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 588,
+   "p": 11173,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 201.604,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 594,
+   "p": 11287,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 219.251,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 618,
+   "p": 11743,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    9
+   ],
+   "sec": 249.385,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 628,
+   "p": 11933,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 278.462,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 630,
+   "p": 11971,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 280.8,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 640,
+   "p": 12161,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 284.555,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 658,
+   "p": 12503,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 292.603,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 660,
+   "p": 12541,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 286.778,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 682,
+   "p": 12959,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 308.081,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 694,
+   "p": 13187,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 310.91,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 702,
+   "p": 13339,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 312.956,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 19,
+   "n": 714,
+   "p": 13567,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 314.276,
+   "_source": "ell19_sweep.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 6,
+   "p": 103,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 0.41,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 8,
+   "p": 137,
+   "k3": 7,
+   "tri": [
+    0,
+    2,
+    6
+   ],
+   "sec": 0.43,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 14,
+   "p": 239,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 0.75,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 18,
+   "p": 307,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    7
+   ],
+   "sec": 1.16,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 24,
+   "p": 409,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 1.49,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 26,
+   "p": 443,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 1.69,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 36,
+   "p": 613,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    8
+   ],
+   "sec": 2.76,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 38,
+   "p": 647,
+   "k3": 5,
+   "tri": [
+    0,
+    2,
+    5
+   ],
+   "sec": 2.64,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 54,
+   "p": 919,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 4.45,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 56,
+   "p": 953,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 4.05,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 60,
+   "p": 1021,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 4.07,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 66,
+   "p": 1123,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 4.57,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 74,
+   "p": 1259,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 5.22,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 78,
+   "p": 1327,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 5.71,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 80,
+   "p": 1361,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 5.62,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 84,
+   "p": 1429,
+   "k3": 5,
+   "tri": [
+    0,
+    2,
+    5
+   ],
+   "sec": 5.82,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 90,
+   "p": 1531,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 6.5,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 98,
+   "p": 1667,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 7.02,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 110,
+   "p": 1871,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 7.98,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 116,
+   "p": 1973,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 9.03,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 126,
+   "p": 2143,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 9.62,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 138,
+   "p": 2347,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 11.3,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 140,
+   "p": 2381,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 10.9,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 150,
+   "p": 2551,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 11.7,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 158,
+   "p": 2687,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 13.61,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 164,
+   "p": 2789,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 13.38,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 168,
+   "p": 2857,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 12.37,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 180,
+   "p": 3061,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 13.75,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 186,
+   "p": 3163,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 14.21,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 194,
+   "p": 3299,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 15.36,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 204,
+   "p": 3469,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 15.26,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 210,
+   "p": 3571,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 16.22,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 216,
+   "p": 3673,
+   "k3": 5,
+   "tri": [
+    0,
+    2,
+    5
+   ],
+   "sec": 20.41,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 228,
+   "p": 3877,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 22.08,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 230,
+   "p": 3911,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 22.7,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 236,
+   "p": 4013,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 23.12,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 248,
+   "p": 4217,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 25.33,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 260,
+   "p": 4421,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 28.28,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 266,
+   "p": 4523,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 29.24,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 270,
+   "p": 4591,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 27.99,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 290,
+   "p": 4931,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 31.82,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 294,
+   "p": 4999,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 43.52,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 300,
+   "p": 5101,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 43.85,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 17,
+   "n": 308,
+   "p": 5237,
+   "k3": 5,
+   "tri": [
+    0,
+    2,
+    6
+   ],
+   "sec": 47.0,
+   "_source": "fixed_ell17.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 2,
+   "p": 47,
+   "k3": 1,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 0.39,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 6,
+   "p": 139,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    7
+   ],
+   "sec": 1.5,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 12,
+   "p": 277,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 3.44,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 20,
+   "p": 461,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    6
+   ],
+   "sec": 7.04,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 26,
+   "p": 599,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 9.11,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 30,
+   "p": 691,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 10.51,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 36,
+   "p": 829,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 13.23,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 42,
+   "p": 967,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    7
+   ],
+   "sec": 14.0,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 44,
+   "p": 1013,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 15.46,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 50,
+   "p": 1151,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 18.05,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 56,
+   "p": 1289,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 22.31,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 60,
+   "p": 1381,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 24.42,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 62,
+   "p": 1427,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    9
+   ],
+   "sec": 24.92,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 72,
+   "p": 1657,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 26.72,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 84,
+   "p": 1933,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 32.47,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 86,
+   "p": 1979,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    9
+   ],
+   "sec": 38.08,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 102,
+   "p": 2347,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    7
+   ],
+   "sec": 50.8,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 104,
+   "p": 2393,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    8
+   ],
+   "sec": 54.25,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 110,
+   "p": 2531,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 58.98,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 132,
+   "p": 3037,
+   "k3": 4,
+   "tri": [
+    0,
+    1,
+    5
+   ],
+   "sec": 82.93,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 23,
+   "n": 134,
+   "p": 3083,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 100.52,
+   "_source": "fixed_ell23.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 2,
+   "p": 59,
+   "k3": 1,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 1.23,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 8,
+   "p": 233,
+   "k3": 7,
+   "tri": [
+    0,
+    3,
+    8
+   ],
+   "sec": 8.56,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 12,
+   "p": 349,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 16.03,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 18,
+   "p": 523,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 25.03,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 32,
+   "p": 929,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    4
+   ],
+   "sec": 49.54,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 38,
+   "p": 1103,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 64.84,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 44,
+   "p": 1277,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    11
+   ],
+   "sec": 78.44,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 50,
+   "p": 1451,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    10
+   ],
+   "sec": 116.83,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 54,
+   "p": 1567,
+   "k3": 6,
+   "tri": [
+    0,
+    1,
+    8
+   ],
+   "sec": 92.23,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 60,
+   "p": 1741,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    9
+   ],
+   "sec": 103.23,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 68,
+   "p": 1973,
+   "k3": 7,
+   "tri": [
+    0,
+    2,
+    5
+   ],
+   "sec": 120.21,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 29,
+   "n": 72,
+   "p": 2089,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 127.61,
+   "_source": "fixed_ell29.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 4,
+   "p": 173,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    18
+   ],
+   "sec": 19.68,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 10,
+   "p": 431,
+   "k3": 8,
+   "tri": [
+    0,
+    1,
+    16
+   ],
+   "sec": 74.84,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 22,
+   "p": 947,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    12
+   ],
+   "sec": 157.45,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 24,
+   "p": 1033,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    10
+   ],
+   "sec": 156.3,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 30,
+   "p": 1291,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    3
+   ],
+   "sec": 198.99,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 36,
+   "p": 1549,
+   "k3": 6,
+   "tri": [
+    0,
+    1,
+    30
+   ],
+   "sec": 201.28,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 40,
+   "p": 1721,
+   "k3": 8,
+   "tri": [
+    0,
+    1,
+    14
+   ],
+   "sec": 265.29,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 46,
+   "p": 1979,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    17
+   ],
+   "sec": 350.39,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 43,
+   "n": 52,
+   "p": 2237,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    29
+   ],
+   "sec": 380.79,
+   "_source": "fixed_ell43.jsonl"
+  },
+  {
+   "ell": 53,
+   "n": 2,
+   "p": 107,
+   "k3": 1,
+   "tri": [
+    0,
+    1,
+    2
+   ],
+   "sec": 14.55,
+   "_source": "fixed_ell53.jsonl"
+  },
+  {
+   "ell": 53,
+   "n": 14,
+   "p": 743,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    7
+   ],
+   "sec": 288.37,
+   "_source": "fixed_ell53.jsonl"
+  },
+  {
+   "ell": 53,
+   "n": 20,
+   "p": 1061,
+   "k3": 11,
+   "tri": [
+    0,
+    2,
+    27
+   ],
+   "sec": 436.05,
+   "_source": "fixed_ell53.jsonl"
+  },
+  {
+   "ell": 53,
+   "n": 32,
+   "p": 1697,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    42
+   ],
+   "sec": 324.21,
+   "_source": "fixed_ell53.jsonl"
+  },
+  {
+   "ell": 53,
+   "n": 44,
+   "p": 2333,
+   "k3": 8,
+   "tri": [
+    0,
+    1,
+    27
+   ],
+   "sec": 348.91,
+   "_source": "fixed_ell53.jsonl"
+  },
+  {
+   "ell": 53,
+   "n": 56,
+   "p": 2969,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    21
+   ],
+   "sec": 438.08,
+   "_source": "fixed_ell53.jsonl"
+  },
+  {
+   "ell": 61,
+   "n": 6,
+   "p": 367,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    20
+   ],
+   "sec": 60.36,
+   "_source": "fixed_ell61.jsonl"
+  },
+  {
+   "ell": 61,
+   "n": 12,
+   "p": 733,
+   "k3": 9,
+   "tri": [
+    0,
+    1,
+    11
+   ],
+   "sec": 159.72,
+   "_source": "fixed_ell61.jsonl"
+  },
+  {
+   "ell": 67,
+   "n": 4,
+   "p": 269,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    24
+   ],
+   "sec": 49.05,
+   "_source": "fixed_ell67.jsonl"
+  },
+  {
+   "ell": 71,
+   "n": 8,
+   "p": 569,
+   "k3": 7,
+   "tri": [
+    0,
+    1,
+    27
+   ],
+   "sec": 205.08,
+   "_source": "fixed_ell71.jsonl"
+  },
+  {
+   "ell": 71,
+   "n": 12,
+   "p": 853,
+   "k3": 9,
+   "tri": [
+    0,
+    2,
+    15
+   ],
+   "sec": 343.68,
+   "_source": "fixed_ell71.jsonl"
+  },
+  {
+   "ell": 73,
+   "n": 4,
+   "p": 293,
+   "k3": 3,
+   "tri": [
+    0,
+    1,
+    54
+   ],
+   "sec": 79.35,
+   "_source": "fixed_ell73.jsonl"
+  },
+  {
+   "ell": 73,
+   "n": 6,
+   "p": 439,
+   "k3": 5,
+   "tri": [
+    0,
+    1,
+    28
+   ],
+   "sec": 159.95,
+   "_source": "fixed_ell73.jsonl"
+  },
+  {
+   "ell": 73,
+   "n": 12,
+   "p": 877,
+   "k3": 9,
+   "tri": [
+    0,
+    2,
+    12
+   ],
+   "sec": 405.92,
+   "_source": "fixed_ell73.jsonl"
+  }
+ ],
+ "by_ell": {
+  "17": [
+   {
+    "ell": 17,
+    "n": 6,
+    "p": 103,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 0.41,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 8,
+    "p": 137,
+    "k3": 7,
+    "tri": [
+     0,
+     2,
+     6
+    ],
+    "sec": 0.43,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 14,
+    "p": 239,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 0.75,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 18,
+    "p": 307,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     7
+    ],
+    "sec": 1.16,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 24,
+    "p": 409,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 1.49,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 26,
+    "p": 443,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 1.69,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 36,
+    "p": 613,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     8
+    ],
+    "sec": 2.76,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 38,
+    "p": 647,
+    "k3": 5,
+    "tri": [
+     0,
+     2,
+     5
+    ],
+    "sec": 2.64,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 54,
+    "p": 919,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 4.45,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 56,
+    "p": 953,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 4.05,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 60,
+    "p": 1021,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 4.07,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 66,
+    "p": 1123,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 4.57,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 74,
+    "p": 1259,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 5.22,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 78,
+    "p": 1327,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 5.71,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 80,
+    "p": 1361,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 5.62,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 84,
+    "p": 1429,
+    "k3": 5,
+    "tri": [
+     0,
+     2,
+     5
+    ],
+    "sec": 5.82,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 90,
+    "p": 1531,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 6.5,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 98,
+    "p": 1667,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 7.02,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 110,
+    "p": 1871,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 7.98,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 116,
+    "p": 1973,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 9.03,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 126,
+    "p": 2143,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 9.62,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 138,
+    "p": 2347,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 11.3,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 140,
+    "p": 2381,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 10.9,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 150,
+    "p": 2551,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 11.7,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 158,
+    "p": 2687,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 13.61,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 164,
+    "p": 2789,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 13.38,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 168,
+    "p": 2857,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 12.37,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 180,
+    "p": 3061,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 13.75,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 186,
+    "p": 3163,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 14.21,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 194,
+    "p": 3299,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 15.36,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 204,
+    "p": 3469,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 15.26,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 210,
+    "p": 3571,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 16.22,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 216,
+    "p": 3673,
+    "k3": 5,
+    "tri": [
+     0,
+     2,
+     5
+    ],
+    "sec": 20.41,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 228,
+    "p": 3877,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 22.08,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 230,
+    "p": 3911,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 22.7,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 236,
+    "p": 4013,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 23.12,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 248,
+    "p": 4217,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 25.33,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 260,
+    "p": 4421,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 28.28,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 266,
+    "p": 4523,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 29.24,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 270,
+    "p": 4591,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 27.99,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 290,
+    "p": 4931,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 31.82,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 294,
+    "p": 4999,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 43.52,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 300,
+    "p": 5101,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 43.85,
+    "_source": "fixed_ell17.jsonl"
+   },
+   {
+    "ell": 17,
+    "n": 308,
+    "p": 5237,
+    "k3": 5,
+    "tri": [
+     0,
+     2,
+     6
+    ],
+    "sec": 47.0,
+    "_source": "fixed_ell17.jsonl"
+   }
+  ],
+  "19": [
+   {
+    "ell": 19,
+    "n": 10,
+    "p": 191,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 0.791,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 12,
+    "p": 229,
+    "k3": 5,
+    "tri": [
+     0,
+     2,
+     6
+    ],
+    "sec": 1.19,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 22,
+    "p": 419,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 2.995,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 24,
+    "p": 457,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 3.329,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 30,
+    "p": 571,
+    "k3": 6,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 3.717,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 34,
+    "p": 647,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 4.17,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 40,
+    "p": 761,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     9
+    ],
+    "sec": 5.192,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 58,
+    "p": 1103,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 7.657,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 64,
+    "p": 1217,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 9.089,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 78,
+    "p": 1483,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 10.969,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 82,
+    "p": 1559,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     9
+    ],
+    "sec": 13.33,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 84,
+    "p": 1597,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     7
+    ],
+    "sec": 12.551,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 94,
+    "p": 1787,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 15.723,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 100,
+    "p": 1901,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     8
+    ],
+    "sec": 17.483,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 108,
+    "p": 2053,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 17.881,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 112,
+    "p": 2129,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 18.472,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 118,
+    "p": 2243,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 18.734,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 120,
+    "p": 2281,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 19.087,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 124,
+    "p": 2357,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 18.504,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 142,
+    "p": 2699,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 22.869,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 150,
+    "p": 2851,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 21.831,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 154,
+    "p": 2927,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     10
+    ],
+    "sec": 23.263,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 160,
+    "p": 3041,
+    "k3": 5,
+    "tri": [
+     0,
+     2,
+     7
+    ],
+    "sec": 24.014,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 162,
+    "p": 3079,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 24.417,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 174,
+    "p": 3307,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 27.233,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 204,
+    "p": 3877,
+    "k3": 5,
+    "tri": [
+     0,
+     2,
+     7
+    ],
+    "sec": 31.651,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 222,
+    "p": 4219,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 34.186,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 232,
+    "p": 4409,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 37.071,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 234,
+    "p": 4447,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 37.799,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 238,
+    "p": 4523,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 39.364,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 240,
+    "p": 4561,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 37.399,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 244,
+    "p": 4637,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 36.736,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 250,
+    "p": 4751,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 39.82,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 252,
+    "p": 4789,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 39.299,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 258,
+    "p": 4903,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 43.227,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 300,
+    "p": 5701,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 49.725,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 318,
+    "p": 6043,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 65.067,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 330,
+    "p": 6271,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 78.473,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 352,
+    "p": 6689,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 96.179,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 358,
+    "p": 6803,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 112.022,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 360,
+    "p": 6841,
+    "k3": 4,
+    "tri": [
+     0,
+     2,
+     5
+    ],
+    "sec": 119.004,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 364,
+    "p": 6917,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 121.127,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 372,
+    "p": 7069,
+    "k3": 4,
+    "tri": [
+     0,
+     2,
+     10
+    ],
+    "sec": 121.858,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 384,
+    "p": 7297,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 125.083,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 390,
+    "p": 7411,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 128.218,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 394,
+    "p": 7487,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 138.091,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 402,
+    "p": 7639,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 145.779,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 408,
+    "p": 7753,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 161.478,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 412,
+    "p": 7829,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 163.159,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 414,
+    "p": 7867,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 177.844,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 430,
+    "p": 8171,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 204.004,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 432,
+    "p": 8209,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 217.486,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 448,
+    "p": 8513,
+    "k3": 5,
+    "tri": [
+     0,
+     3,
+     8
+    ],
+    "sec": 227.618,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 454,
+    "p": 8627,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 216.92,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 460,
+    "p": 8741,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 205.225,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 462,
+    "p": 8779,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 185.739,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 468,
+    "p": 8893,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 182.824,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 472,
+    "p": 8969,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 184.365,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 474,
+    "p": 9007,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 186.481,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 490,
+    "p": 9311,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 193.087,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 492,
+    "p": 9349,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 199.468,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 498,
+    "p": 9463,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 190.865,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 502,
+    "p": 9539,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     7
+    ],
+    "sec": 182.525,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 514,
+    "p": 9767,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 181.691,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 538,
+    "p": 10223,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     9
+    ],
+    "sec": 176.435,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 544,
+    "p": 10337,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 182.944,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 570,
+    "p": 10831,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 190.183,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 582,
+    "p": 11059,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 192.18,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 588,
+    "p": 11173,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 201.604,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 594,
+    "p": 11287,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 219.251,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 618,
+    "p": 11743,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     9
+    ],
+    "sec": 249.385,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 628,
+    "p": 11933,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 278.462,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 630,
+    "p": 11971,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 280.8,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 640,
+    "p": 12161,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 284.555,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 658,
+    "p": 12503,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 292.603,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 660,
+    "p": 12541,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 286.778,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 682,
+    "p": 12959,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 308.081,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 694,
+    "p": 13187,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 310.91,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 702,
+    "p": 13339,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 312.956,
+    "_source": "ell19_sweep.jsonl"
+   },
+   {
+    "ell": 19,
+    "n": 714,
+    "p": 13567,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 314.276,
+    "_source": "ell19_sweep.jsonl"
+   }
+  ],
+  "23": [
+   {
+    "ell": 23,
+    "n": 2,
+    "p": 47,
+    "k3": 1,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 0.39,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 6,
+    "p": 139,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     7
+    ],
+    "sec": 1.5,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 12,
+    "p": 277,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 3.44,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 20,
+    "p": 461,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     6
+    ],
+    "sec": 7.04,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 26,
+    "p": 599,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 9.11,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 30,
+    "p": 691,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 10.51,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 36,
+    "p": 829,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 13.23,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 42,
+    "p": 967,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     7
+    ],
+    "sec": 14.0,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 44,
+    "p": 1013,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 15.46,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 50,
+    "p": 1151,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 18.05,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 56,
+    "p": 1289,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 22.31,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 60,
+    "p": 1381,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 24.42,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 62,
+    "p": 1427,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     9
+    ],
+    "sec": 24.92,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 72,
+    "p": 1657,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 26.72,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 84,
+    "p": 1933,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 32.47,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 86,
+    "p": 1979,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     9
+    ],
+    "sec": 38.08,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 102,
+    "p": 2347,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     7
+    ],
+    "sec": 50.8,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 104,
+    "p": 2393,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     8
+    ],
+    "sec": 54.25,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 110,
+    "p": 2531,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 58.98,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 132,
+    "p": 3037,
+    "k3": 4,
+    "tri": [
+     0,
+     1,
+     5
+    ],
+    "sec": 82.93,
+    "_source": "fixed_ell23.jsonl"
+   },
+   {
+    "ell": 23,
+    "n": 134,
+    "p": 3083,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 100.52,
+    "_source": "fixed_ell23.jsonl"
+   }
+  ],
+  "29": [
+   {
+    "ell": 29,
+    "n": 2,
+    "p": 59,
+    "k3": 1,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 1.23,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 8,
+    "p": 233,
+    "k3": 7,
+    "tri": [
+     0,
+     3,
+     8
+    ],
+    "sec": 8.56,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 12,
+    "p": 349,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 16.03,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 18,
+    "p": 523,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 25.03,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 32,
+    "p": 929,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     4
+    ],
+    "sec": 49.54,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 38,
+    "p": 1103,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 64.84,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 44,
+    "p": 1277,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     11
+    ],
+    "sec": 78.44,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 50,
+    "p": 1451,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     10
+    ],
+    "sec": 116.83,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 54,
+    "p": 1567,
+    "k3": 6,
+    "tri": [
+     0,
+     1,
+     8
+    ],
+    "sec": 92.23,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 60,
+    "p": 1741,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     9
+    ],
+    "sec": 103.23,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 68,
+    "p": 1973,
+    "k3": 7,
+    "tri": [
+     0,
+     2,
+     5
+    ],
+    "sec": 120.21,
+    "_source": "fixed_ell29.jsonl"
+   },
+   {
+    "ell": 29,
+    "n": 72,
+    "p": 2089,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 127.61,
+    "_source": "fixed_ell29.jsonl"
+   }
+  ],
+  "43": [
+   {
+    "ell": 43,
+    "n": 4,
+    "p": 173,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     18
+    ],
+    "sec": 19.68,
+    "_source": "fixed_ell43.jsonl"
+   },
+   {
+    "ell": 43,
+    "n": 10,
+    "p": 431,
+    "k3": 8,
+    "tri": [
+     0,
+     1,
+     16
+    ],
+    "sec": 74.84,
+    "_source": "fixed_ell43.jsonl"
+   },
+   {
+    "ell": 43,
+    "n": 22,
+    "p": 947,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     12
+    ],
+    "sec": 157.45,
+    "_source": "fixed_ell43.jsonl"
+   },
+   {
+    "ell": 43,
+    "n": 24,
+    "p": 1033,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     10
+    ],
+    "sec": 156.3,
+    "_source": "fixed_ell43.jsonl"
+   },
+   {
+    "ell": 43,
+    "n": 30,
+    "p": 1291,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     3
+    ],
+    "sec": 198.99,
+    "_source": "fixed_ell43.jsonl"
+   },
+   {
+    "ell": 43,
+    "n": 36,
+    "p": 1549,
+    "k3": 6,
+    "tri": [
+     0,
+     1,
+     30
+    ],
+    "sec": 201.28,
+    "_source": "fixed_ell43.jsonl"
+   },
+   {
+    "ell": 43,
+    "n": 40,
+    "p": 1721,
+    "k3": 8,
+    "tri": [
+     0,
+     1,
+     14
+    ],
+    "sec": 265.29,
+    "_source": "fixed_ell43.jsonl"
+   },
+   {
+    "ell": 43,
+    "n": 46,
+    "p": 1979,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     17
+    ],
+    "sec": 350.39,
+    "_source": "fixed_ell43.jsonl"
+   },
+   {
+    "ell": 43,
+    "n": 52,
+    "p": 2237,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     29
+    ],
+    "sec": 380.79,
+    "_source": "fixed_ell43.jsonl"
+   }
+  ],
+  "53": [
+   {
+    "ell": 53,
+    "n": 2,
+    "p": 107,
+    "k3": 1,
+    "tri": [
+     0,
+     1,
+     2
+    ],
+    "sec": 14.55,
+    "_source": "fixed_ell53.jsonl"
+   },
+   {
+    "ell": 53,
+    "n": 14,
+    "p": 743,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     7
+    ],
+    "sec": 288.37,
+    "_source": "fixed_ell53.jsonl"
+   },
+   {
+    "ell": 53,
+    "n": 20,
+    "p": 1061,
+    "k3": 11,
+    "tri": [
+     0,
+     2,
+     27
+    ],
+    "sec": 436.05,
+    "_source": "fixed_ell53.jsonl"
+   },
+   {
+    "ell": 53,
+    "n": 32,
+    "p": 1697,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     42
+    ],
+    "sec": 324.21,
+    "_source": "fixed_ell53.jsonl"
+   },
+   {
+    "ell": 53,
+    "n": 44,
+    "p": 2333,
+    "k3": 8,
+    "tri": [
+     0,
+     1,
+     27
+    ],
+    "sec": 348.91,
+    "_source": "fixed_ell53.jsonl"
+   },
+   {
+    "ell": 53,
+    "n": 56,
+    "p": 2969,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     21
+    ],
+    "sec": 438.08,
+    "_source": "fixed_ell53.jsonl"
+   }
+  ],
+  "61": [
+   {
+    "ell": 61,
+    "n": 6,
+    "p": 367,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     20
+    ],
+    "sec": 60.36,
+    "_source": "fixed_ell61.jsonl"
+   },
+   {
+    "ell": 61,
+    "n": 12,
+    "p": 733,
+    "k3": 9,
+    "tri": [
+     0,
+     1,
+     11
+    ],
+    "sec": 159.72,
+    "_source": "fixed_ell61.jsonl"
+   }
+  ],
+  "67": [
+   {
+    "ell": 67,
+    "n": 4,
+    "p": 269,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     24
+    ],
+    "sec": 49.05,
+    "_source": "fixed_ell67.jsonl"
+   }
+  ],
+  "71": [
+   {
+    "ell": 71,
+    "n": 8,
+    "p": 569,
+    "k3": 7,
+    "tri": [
+     0,
+     1,
+     27
+    ],
+    "sec": 205.08,
+    "_source": "fixed_ell71.jsonl"
+   },
+   {
+    "ell": 71,
+    "n": 12,
+    "p": 853,
+    "k3": 9,
+    "tri": [
+     0,
+     2,
+     15
+    ],
+    "sec": 343.68,
+    "_source": "fixed_ell71.jsonl"
+   }
+  ],
+  "73": [
+   {
+    "ell": 73,
+    "n": 4,
+    "p": 293,
+    "k3": 3,
+    "tri": [
+     0,
+     1,
+     54
+    ],
+    "sec": 79.35,
+    "_source": "fixed_ell73.jsonl"
+   },
+   {
+    "ell": 73,
+    "n": 6,
+    "p": 439,
+    "k3": 5,
+    "tri": [
+     0,
+     1,
+     28
+    ],
+    "sec": 159.95,
+    "_source": "fixed_ell73.jsonl"
+   },
+   {
+    "ell": 73,
+    "n": 12,
+    "p": 877,
+    "k3": 9,
+    "tri": [
+     0,
+     2,
+     12
+    ],
+    "sec": 405.92,
+    "_source": "fixed_ell73.jsonl"
+   }
+  ]
+ },
+ "witnesses": [
+  {
+   "label": "ell23_p1657_k3_7_new_local_max",
+   "p": 1657,
+   "ell": 23,
+   "n": 72,
+   "D_field": [
+    1,
+    16,
+    913
+   ],
+   "D_exponents": [
+    0,
+    1,
+    4
+   ],
+   "h_generator": 16,
+   "q_abc": [
+    1,
+    0,
+    650
+   ],
+   "c1": 1306,
+   "spectrum": [
+    20,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "spectrum_compact": "[20,3^7]",
+   "mu1": 20,
+   "E3": 25,
+   "T": 6,
+   "excess": 2,
+   "k3_concurrency_route": 7,
+   "k3_gamma_route": 7,
+   "k3_pencil_route": 7,
+   "interp_mismatches": 0,
+   "interp_checked": 1657,
+   "interp_const_term": 0,
+   "interp_true_degree": 22,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    1,
+    4
+   ]
+  },
+  {
+   "label": "ell17_p137_n8_current_peak_k3_7",
+   "p": 137,
+   "ell": 17,
+   "n": 8,
+   "D_field": [
+    1,
+    119,
+    59
+   ],
+   "D_exponents": [
+    0,
+    2,
+    6
+   ],
+   "h_generator": 16,
+   "q_abc": [
+    1,
+    0,
+    53
+   ],
+   "c1": 75,
+   "spectrum": [
+    14,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "spectrum_compact": "[14,3^7]",
+   "mu1": 14,
+   "E3": 19,
+   "T": 6,
+   "excess": 2,
+   "k3_concurrency_route": 7,
+   "k3_gamma_route": 7,
+   "k3_pencil_route": 7,
+   "interp_mismatches": 0,
+   "interp_checked": 137,
+   "interp_const_term": 0,
+   "interp_true_degree": 16,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    2,
+    6
+   ]
+  },
+  {
+   "label": "ell29_p233_n8_current_peak_k3_7",
+   "p": 233,
+   "ell": 29,
+   "n": 8,
+   "D_field": [
+    1,
+    8,
+    23
+   ],
+   "D_exponents": [
+    0,
+    3,
+    8
+   ],
+   "h_generator": 2,
+   "q_abc": [
+    1,
+    0,
+    64
+   ],
+   "c1": 182,
+   "spectrum": [
+    26,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "spectrum_compact": "[26,3^7]",
+   "mu1": 26,
+   "E3": 31,
+   "T": 6,
+   "excess": 2,
+   "k3_concurrency_route": 7,
+   "k3_gamma_route": 7,
+   "k3_pencil_route": 7,
+   "interp_mismatches": 0,
+   "interp_checked": 233,
+   "interp_const_term": 0,
+   "interp_true_degree": 28,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    3,
+    8
+   ]
+  },
+  {
+   "label": "ell43_p1721_n40_recurrence_of_k3_8",
+   "p": 1721,
+   "ell": 43,
+   "n": 40,
+   "D_field": [
+    1,
+    32,
+    1462
+   ],
+   "D_exponents": [
+    0,
+    1,
+    14
+   ],
+   "h_generator": 32,
+   "q_abc": [
+    1,
+    75,
+    925
+   ],
+   "c1": 730,
+   "spectrum": [
+    40,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "spectrum_compact": "[40,3^8,2^4]",
+   "mu1": 40,
+   "E3": 46,
+   "T": 7,
+   "excess": 3,
+   "k3_concurrency_route": 8,
+   "k3_gamma_route": 8,
+   "k3_pencil_route": 8,
+   "interp_mismatches": 0,
+   "interp_checked": 1721,
+   "interp_const_term": 0,
+   "interp_true_degree": 42,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    1,
+    14
+   ]
+  },
+  {
+   "label": "ell61_p733_n12_k3_9",
+   "p": 733,
+   "ell": 61,
+   "n": 12,
+   "D_field": [
+    1,
+    10,
+    16
+   ],
+   "D_exponents": [
+    0,
+    1,
+    11
+   ],
+   "h_generator": 10,
+   "q_abc": [
+    1,
+    258,
+    515
+   ],
+   "c1": 432,
+   "spectrum": [
+    58,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "spectrum_compact": "[58,3^9,2^2]",
+   "mu1": 58,
+   "E3": 65,
+   "T": 8,
+   "excess": 4,
+   "k3_concurrency_route": 9,
+   "k3_gamma_route": 9,
+   "k3_pencil_route": 9,
+   "interp_mismatches": 0,
+   "interp_checked": 733,
+   "interp_const_term": 0,
+   "interp_true_degree": 60,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    1,
+    11
+   ]
+  },
+  {
+   "label": "ell71_p853_n12_k3_9",
+   "p": 853,
+   "ell": 71,
+   "n": 12,
+   "D_field": [
+    1,
+    81,
+    547
+   ],
+   "D_exponents": [
+    0,
+    2,
+    15
+   ],
+   "h_generator": 9,
+   "q_abc": [
+    1,
+    761,
+    164
+   ],
+   "c1": 543,
+   "spectrum": [
+    68,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "spectrum_compact": "[68,3^9,2^2]",
+   "mu1": 68,
+   "E3": 75,
+   "T": 8,
+   "excess": 4,
+   "k3_concurrency_route": 9,
+   "k3_gamma_route": 9,
+   "k3_pencil_route": 9,
+   "interp_mismatches": 0,
+   "interp_checked": 853,
+   "interp_const_term": 0,
+   "interp_true_degree": 70,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    2,
+    15
+   ]
+  },
+  {
+   "label": "ell43_p431_n10_headline_peak_k3_8",
+   "p": 431,
+   "ell": 43,
+   "n": 10,
+   "D_field": [
+    1,
+    2,
+    24
+   ],
+   "D_exponents": [
+    0,
+    1,
+    16
+   ],
+   "h_generator": 2,
+   "q_abc": [
+    1,
+    412,
+    348
+   ],
+   "c1": 316,
+   "spectrum": [
+    40,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    1
+   ],
+   "spectrum_compact": "[40,3^8]",
+   "mu1": 40,
+   "E3": 46,
+   "T": 7,
+   "excess": 3,
+   "k3_concurrency_route": 8,
+   "k3_gamma_route": 8,
+   "k3_pencil_route": 8,
+   "interp_mismatches": 0,
+   "interp_checked": 431,
+   "interp_const_term": 0,
+   "interp_true_degree": 42,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    1,
+    16
+   ]
+  },
+  {
+   "label": "ell53_p1061_n20_headline_peak_k3_11",
+   "p": 1061,
+   "ell": 53,
+   "n": 20,
+   "D_field": [
+    1,
+    164,
+    221
+   ],
+   "D_exponents": [
+    0,
+    2,
+    27
+   ],
+   "h_generator": 35,
+   "q_abc": [
+    1,
+    984,
+    447
+   ],
+   "c1": 790,
+   "spectrum": [
+    50,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "spectrum_compact": "[50,3^11,2^6]",
+   "mu1": 50,
+   "E3": 59,
+   "T": 10,
+   "excess": 6,
+   "k3_concurrency_route": 11,
+   "k3_gamma_route": 11,
+   "k3_pencil_route": 11,
+   "interp_mismatches": 0,
+   "interp_checked": 1061,
+   "interp_const_term": 0,
+   "interp_true_degree": 52,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    2,
+    27
+   ]
+  },
+  {
+   "label": "ell73_p877_n12_k3_9",
+   "p": 877,
+   "ell": 73,
+   "n": 12,
+   "D_field": [
+    1,
+    567,
+    766
+   ],
+   "D_exponents": [
+    0,
+    2,
+    12
+   ],
+   "h_generator": 38,
+   "q_abc": [
+    1,
+    448,
+    140
+   ],
+   "c1": 262,
+   "spectrum": [
+    70,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "spectrum_compact": "[70,3^9,2^2]",
+   "mu1": 70,
+   "E3": 77,
+   "T": 8,
+   "excess": 4,
+   "k3_concurrency_route": 9,
+   "k3_gamma_route": 9,
+   "k3_pencil_route": 9,
+   "interp_mismatches": 0,
+   "interp_checked": 877,
+   "interp_const_term": 0,
+   "interp_true_degree": 72,
+   "constant_free": true,
+   "degree_ok": true,
+   "all_routes_agree": true,
+   "source_tri": [
+    0,
+    2,
+    12
+   ]
+  }
+ ]
+}

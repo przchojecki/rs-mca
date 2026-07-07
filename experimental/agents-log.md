@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - L1 k3 growth: R2 deep-scan evidence upgrade (PR #410 follow-up)
+
+- **Agent/model:** Claude Fable 5 (Opus); R2 overnight scan lane (data), PI-anchored.
+- **Files added or changed:** `experimental/notes/l1/l1_k3_growth_refutation.md`,
+  `experimental/scripts/verify_l1_k3_growth_refutation.py`,
+  `experimental/data/certificates/l1-e3-law/l1_k3_growth_r2_scan.json`,
+  `experimental/agents-log.md`.
+- **Status:** EXACT-COMPUTATION (R2 exhaustive grid, packet-side re-verified) / ANALYSIS
+  (non-monotonicity; the `n = 12` trio; the deep-null reading) / COUNTEREXAMPLE (unchanged).
+- **What is being added:** (i) `ell = 19` DEEP NULL — exhaustive-gauge max `k3` over ALL 80
+  eligible primes `p <= 13567` (`n <= 714`) is `6`, attained uniquely at `p = 571`; zero
+  primes reach 7 (16x more primes, 12x deeper than previously shipped; neighbors 17/23/29
+  all reach 7 with far less search — the 6-ceiling looks like a genuine `ell = 19` feature,
+  ANALYSIS). (ii) `ell = 23` LATE record: exhaustive max `7` at `p = 1657` (`n = 72`),
+  witness re-verified (excess `+2`); sequence entry moves `5 -> 7`. (iii) New/upgraded
+  exhaustive rows: `61@733 -> 9` (upgrades the shipped `>= 8`), `71@853 -> 9`,
+  `73@877 -> 9` (the `n = 12` trio; `ell = 67`'s thin `3` is a coverage artifact — no
+  eligible `n` in 5..23), `43@1721 -> 8` (recurrence). Band now spans
+  `ell in {43,53,59,61,67,71,73}`. (iv) NEW §3A (ANALYSIS): `k3(p)` at fixed `ell` is a
+  sparse spike process (`ell = 53`: `7,11,7,8,7`), sup-over-`p` is the open object, late
+  records possible — which is why the deep null is evidence, not proof (`H_19` stays
+  CONJECTURAL / strengthened-evidence). Observed maxima sit at 7%-78% of the Lemma-R
+  ceiling, the gap widening in `ell`. All five new witnesses re-verified through the
+  packet's own checker; two `ell = 19` rows (`p = 1901, 13567`) replayed by the packet's
+  own transversal; verifier gains gate 5 (artifact consistency) + a 5th tamper + `--full`
+  rows; zero-arg still `< 60s`, exit 0.
+- **How it is useful:** Materially deepens the `H_19` / `m*(19) = 9` evidence base and
+  sharpens the open `k3` growth-law question (spiky in `p`, growing in `ell`).
+- **What to do next:** Analytic (not scanning) pass on why `k3(p)` spikes and whether
+  `ell = 19` structurally lacks the high-`k3` coincidence; `ell = 67` at `n = 24`
+  exhaustively when budget allows.
+
 ### 2026-07-07 - L1 fat-tail k3 grows: C'<=2 / no-T>=7 / O(1)-cap REFUTED
 
 - **Agent/model:** Claude Fable 5 (Opus).

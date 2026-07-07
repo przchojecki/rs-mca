@@ -27,39 +27,59 @@ the note states per witness -- including c1 -- is recomputed here from
 cross product never vanishes for distinct points of a tail coset) is enforced
 as an ASSERTION in the tally, not a silent skip.
 
-Gates (exit 0 iff ALL pass; zero-arg runs gates 1-4 incl. tamper self-tests,
+Gates (exit 0 iff ALL pass; zero-arg runs gates 1-5 incl. tamper self-tests,
 measured < 60s):
 
-  (1) FOUR PRIMARY FALSIFIER WITNESSES rebuilt from (p, ell, drop-SET D,
-      q = X^2+bX+c): spectrum / E_3 / T / excess / k3 / c1 recomputed exactly;
-      constant-free & degree = ell-1 checked; mu_1 = ell-3; an INDEPENDENT
-      pencil-count of k3 cross-checks the via-Gamma k3; [40,3^8] head asserted.
+  (1) WITNESSES rebuilt from (p, ell, drop-SET D, q = X^2+bX+c): spectrum /
+      E_3 / T / excess / k3 / c1 recomputed exactly; constant-free & degree =
+      ell-1 checked; mu_1 = ell-3; an INDEPENDENT pencil-count of k3
+      cross-checks the via-Gamma k3 on the four primary + the ell=23 record;
+      [40,3^8] head asserted. Four PRIMARY falsifiers:
         ell=43 p=431 : [40,3^8]        E_3=46=ell+3 excess+3 T=7  k3=8  (C'<=2 & T1 falsifier)
         ell=53 p=1061: [50,3^11,2^6]   E_3=59=ell+6 excess+6 T=10 k3=11 (the RECORD; = exhaustive max)
         ell=53 p=1061: [50,3^9,2^3]    E_3=57=ell+4 excess+4 T=8  k3=9  (the lane's (0,1,k) record)
         ell=59 p=709 : [56,3^9,2]      E_3=63=ell+4 excess+4 T=8  k3=9
-      plus two BAND witnesses (via-Gamma) showing excess>=+3 persists to ell=61,67:
-        ell=61 p=733 : [58,3^8,2]      excess+3 T=7 k3=8
-        ell=67 p=1609: [64,3^9,2^12]   excess+4 T=8 k3=9
+      four BAND witnesses (excess >= +3 persists across ell in {43,53,59,61,67,71,73}):
+        ell=61 p=733 : [58,3^9,2^2]    excess+4 T=8 k3=9  (R2 exhaustive max; upgrades the
+                                        shipped (0,1,k) lower bound 8 at the same prime)
+        ell=67 p=1609: [64,3^9,2^12]   excess+4 T=8 k3=9  (witness lower bound)
+        ell=71 p=853 : [68,3^9,2^2]    excess+4 T=8 k3=9  (R2 exhaustive max, n=12)
+        ell=73 p=877 : [70,3^9,2^2]    excess+4 T=8 k3=9  (R2 exhaustive max, n=12)
+      and two R2 coverage-extension records:
+        ell=23 p=1657: [20,3^7]        E_3=25=ell+2 excess+2 T=6 k3=7 (NEW ell=23 max; LATE
+                                        record at R2's largest ell=23 prime; pencil-checked)
+        ell=43 p=1721: [40,3^8,2^4]    excess+3 T=7 k3=8 (recurrence of the ell=43 max at n=40)
   (2) ell=19 PIN SURVIVES: exhaustive-up-to-gauge max k3 over ALL eligible
       primes n in [2,30] (self-verifies p=191 is the smallest) is 6, attained
       only at p=571 (n=30, the window boundary); p=191 gives 5; the three
       beyond-window primes 647/761/1103 (n=34/40/58) give 5 -- so fat-tail
       excess <= +1 at ell=19 across the scanned range, H_19 untouched.
   (3) GROWTH + corrections: exhaustive-up-to-gauge max k3 at small ell
-      (11->4, 13->4, 17->7, 23->5, 29->7, 31->7: the ell<=31 mirage window);
+      (11->4, 13->4, 17->7, 23->5-at-139, 29->7, 31->7: the ell<=31 mirage
+      window; the ell=23 SUP moved to 7 at p=1657, gate 1 + --full);
       ell=17,p=409 -> exhaustive max k3=5 (corrects PR #368's reported 3, a
       1-of-680-plant undercount); ell=43,p=431 gauge scan REACHES k3=8.
-  (4) TAMPER self-tests (>=4): a mutated q-coefficient at ell=43, a wrong
-      claimed spectrum head, a claim k3=7-at-ell=43, and a mutated q on the
-      ell=53 k3=11 record must each be REJECTED.
+  (4) TAMPER self-tests (>=5): a mutated q-coefficient at ell=43, a wrong
+      claimed spectrum head, a claim k3=7-at-ell=43, a mutated q on the
+      ell=53 k3=11 record, and tampered R2 deep-sweep stats must each be
+      REJECTED.
+  (5) R2 ARTIFACT consistency (the ell=19 DEEP NULL): load the in-repo
+      data/certificates/l1-e3-law/l1_k3_growth_r2_scan.json and assert -- 80
+      ell=19 rows (ALL eligible primes to p=13567), every k3 <= 6, the 6
+      unique at (571, n=30), distribution 3:42/4:15/5:22/6:1; the ell=23 grid
+      max 7 at n=72 only; the ell=53 grid sequence 1,7,11,7,8,7; 9 four-route
+      witnesses present. (Two of the 80 rows -- p=1901 and p=13567 -- were
+      additionally replayed by this packet's own transversal at build time.)
 
-Opt-in `--full` (documented, ~20-25 min): reproduces the note's ENTIRE Sec 3
-coverage table live -- full exhaustive-up-to-gauge scans with NO early exit at
-every (ell, p) pair of the coverage column -- and asserts every max, including
-(53,1061)->11 (the value the originating lane's early-exit-at->=8 scanner
-truncated to 9), (53,743)->7, (59,709)->9, (41,739)->7, (47,283)->5,
-(47,659)->7, (37,593)->7.
+Opt-in `--full` (documented, ~25-35 min): replays live, with NO early exit,
+every within-budget (ell, p) pair of the note's Sec 3 coverage column -- the
+original 37 rows (incl. (53,1061)->11, the value the originating lane's
+early-exit-at->=8 scanner truncated to 9; (53,743)->7; (59,709)->9) plus
+(23,1657)->7, (43,1721)->8, and six deterministic ell=19 deep-sweep spot rows
+(p in {1787,1901,2053,4409,8209,13567}). The R2-heavy rows NOT in --full (the
+full 80-prime ell=19 sweep, the 44-prime ell=17 extension, the exhaustive
+61/71/73 scans) are established by the R2 artifact + gate 5 + gate-1
+witnesses; per-row provenance is the note's Sec 3 coverage column.
 """
 import sys
 import itertools
@@ -385,10 +405,26 @@ WITNESSES = [
          spec="[56,3^9,2]", E3=63, T=8, exc=4, k3=9, pencil=True),
 ]
 BAND_WITNESSES = [
-    dict(ell=61, p=733, D=[1, 299, 364], q=[249, 507, 1], c1=93,
-         spec="[58,3^8,2]", E3=64, T=7, exc=3, k3=8, pencil=False),
+    # ell=61: the R2 EXHAUSTIVE-max witness (k3=9, excess +4) -- upgrades the originally
+    # shipped (0,1,k)-family lower bound k3>=8 (excess +3) at the same prime.
+    dict(ell=61, p=733, D=[1, 10, 16], q=[515, 258, 1], c1=432,
+         spec="[58,3^9,2^2]", E3=65, T=8, exc=4, k3=9, pencil=False),
     dict(ell=67, p=1609, D=[1, 1141, 320], q=[708, 644, 1], c1=45,
          spec="[64,3^9,2^12]", E3=71, T=8, exc=4, k3=9, pencil=False),
+    # ell=71, 73: R2 exhaustive maxima at their n=12 primes (4-route witnesses, re-verified here).
+    dict(ell=71, p=853, D=[1, 81, 547], q=[164, 761, 1], c1=543,
+         spec="[68,3^9,2^2]", E3=75, T=8, exc=4, k3=9, pencil=False),
+    dict(ell=73, p=877, D=[1, 567, 766], q=[140, 448, 1], c1=262,
+         spec="[70,3^9,2^2]", E3=77, T=8, exc=4, k3=9, pencil=False),
+]
+# R2 coverage-extension records (note Sec 2): the new ell=23 max (LATE record at its largest
+# tested prime -- excess +2, not a falsifier, but it moves the Sec 3 table row) and the
+# recurrence of the ell=43 max at n=40.
+R2_RECORDS = [
+    dict(ell=23, p=1657, D=[1, 16, 913], q=[650, 0, 1], c1=1306,
+         spec="[20,3^7]", E3=25, T=6, exc=2, k3=7, pencil=True),
+    dict(ell=43, p=1721, D=[1, 32, 1462], q=[925, 75, 1], c1=730,
+         spec="[40,3^8,2^4]", E3=46, T=7, exc=3, k3=8, pencil=False),
 ]
 
 
@@ -436,15 +472,20 @@ def gate1_witnesses():
         ok, detail, comp = check_witness(w)
         allok = allok and ok
         lines.append(("OK  " if ok else "BAD ") + detail)
-    lines.append("-- excess >= +3 band persists (ell in {43,53,59,61,67}):")
+    lines.append("-- excess >= +3 band persists (ell in {43,53,59,61,67,71,73}):")
     for w in BAND_WITNESSES:
+        ok, detail, comp = check_witness(w)
+        allok = allok and ok
+        lines.append(("OK  " if ok else "BAD ") + detail)
+    lines.append("-- R2 coverage-extension records (ell=23 late record; ell=43 recurrence):")
+    for w in R2_RECORDS:
         ok, detail, comp = check_witness(w)
         allok = allok and ok
         lines.append(("OK  " if ok else "BAD ") + detail)
     # explicit [40,3^8] head for ell=43 (the C'<=2 / T1 falsifier)
     head_ok = (check_witness(WITNESSES[0])[2]["spec"] == "[40,3^8]")
     allok = allok and head_ok
-    return allok, ("4 primary + 2 band witnesses rebuilt; [40,3^8] head=%s\n    %s"
+    return allok, ("4 primary + 4 band + 2 R2-record witnesses rebuilt; [40,3^8] head=%s\n    %s"
                    % (head_ok, "\n    ".join(lines)))
 
 
@@ -516,8 +557,54 @@ def gate3_growth_and_corrections():
     return ok, "growth table + corrections:\n    " + "\n    ".join(lines)
 
 
+# ---------- R2 artifact (note Sec 3/3A; shipped in-repo) ----------
+R2_JSON_RELPATH = ("..", "data", "certificates", "l1-e3-law", "l1_k3_growth_r2_scan.json")
+
+
+def load_r2_artifact():
+    import json
+    import os
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), *R2_JSON_RELPATH)
+    with open(path) as f:
+        return json.load(f)
+
+
+def check_r2_stats(data):
+    """Validate the R2 artifact's headline invariants; returns (ok, msg)."""
+    e19 = [r for r in data["rows"] if r["ell"] == 19]
+    dist = Counter(r["k3"] for r in e19)
+    sixes = [(r["p"], r["n"]) for r in e19 if r["k3"] == 6]
+    checks = [
+        ("80 ell=19 rows", len(e19) == 80),
+        ("all k3 <= 6", all(r["k3"] <= 6 for r in e19)),
+        ("6 uniquely at (571, n=30)", sixes == [(571, 30)]),
+        ("distribution 3:42/4:15/5:22/6:1",
+         dict(dist) == {3: 42, 4: 15, 5: 22, 6: 1}),
+        ("deepest prime 13567", max(r["p"] for r in e19) == 13567),
+        ("ell=23 grid max 7 at n=72 only",
+         [(r["n"], r["k3"]) for r in data["by_ell"]["23"] if r["k3"] >= 6] == [(72, 7)]),
+        ("ell=53 grid sequence 1,7,11,7,8,7",
+         [r["k3"] for r in data["by_ell"]["53"]] == [1, 7, 11, 7, 8, 7]),
+        ("9 four-route witnesses present", len(data["witnesses"]) == 9
+         and all(w.get("all_routes_agree") for w in data["witnesses"])),
+    ]
+    ok = all(c for _, c in checks)
+    msg = "; ".join("%s=%s" % (n, "ok" if c else "BAD") for n, c in checks)
+    return ok, msg
+
+
+def gate5_r2_artifact():
+    """R2 artifact consistency (note Sec 3 coverage column / Sec 3A; the ell=19 deep null)."""
+    try:
+        data = load_r2_artifact()
+    except Exception as e:
+        return False, "artifact missing/unreadable: %r" % (e,)
+    ok, msg = check_r2_stats(data)
+    return ok, "R2 artifact (l1_k3_growth_r2_scan.json): " + msg
+
+
 def gate4_tamper():
-    """>=4 tamper self-tests: each MUST be rejected (i.e. produce a mismatch)."""
+    """>=5 tamper self-tests: each MUST be rejected (i.e. produce a mismatch)."""
     results = []
     # (a) mutate a q-coefficient of the ell=43 witness -> spectrum/k3 must change (rejected)
     w = dict(WITNESSES[0])
@@ -538,6 +625,20 @@ def gate4_tamper():
     w11["pencil"] = False
     ok_d, _, _ = check_witness(w11)
     results.append(("mutated q (b:32->33) on the ell=53 k3=11 record rejected", not ok_d))
+    # (e) tamper the R2 deep-sweep artifact stats -> check_r2_stats must reject:
+    #     flip one ell=19 row's k3 from 3 to 7 (breaks all-<=6, uniqueness AND distribution)
+    try:
+        data = load_r2_artifact()
+        import copy
+        bad = copy.deepcopy(data)
+        for r in bad["rows"]:
+            if r["ell"] == 19 and r["k3"] == 3:
+                r["k3"] = 7
+                break
+        ok_e, _ = check_r2_stats(bad)
+        results.append(("tampered R2 ell=19 stats (a 3 -> 7) rejected", not ok_e))
+    except Exception:
+        results.append(("tampered R2 ell=19 stats (artifact unreadable)", False))
     allok = all(caught for _, caught in results)
     return allok, "tamper self-tests: " + "; ".join(
         "%s=%s" % (name, "CAUGHT" if caught else "MISSED") for name, caught in results)
@@ -550,12 +651,15 @@ FULL_TABLE = {
     11: [(23, 1), (67, 4), (89, 3), (199, 4), (331, 4)],
     13: [(53, 3), (79, 3), (131, 3), (157, 3), (313, 4)],
     17: [(103, 4), (137, 7), (239, 5), (307, 5), (409, 5)],
-    23: [(47, 1), (139, 5), (277, 5), (461, 5), (599, 5)],
+    # six deterministic ell=19 deep-sweep spot rows (the full 80-prime sweep is the R2
+    # artifact, gate 5; two of these -- 1901 and 13567 -- were also replayed at build time)
+    19: [(1787, 4), (1901, 5), (2053, 3), (4409, 3), (8209, 4), (13567, 3)],
+    23: [(47, 1), (139, 5), (277, 5), (461, 5), (599, 5), (1657, 7)],
     29: [(59, 1), (233, 7), (349, 5), (523, 5)],
     31: [(311, 7), (373, 7), (683, 7)],
     37: [(149, 3), (223, 5), (593, 7)],
     41: [(739, 7)],
-    43: [(431, 8)],
+    43: [(431, 8), (1721, 8)],
     47: [(283, 5), (659, 7)],
     53: [(743, 7), (1061, 11)],
     59: [(709, 9)],
@@ -581,10 +685,11 @@ def gate_full():
 
 
 GATES = [
-    ("(1) falsifier witnesses (4+2) + [40,3^8] head", gate1_witnesses),
+    ("(1) witnesses (4 primary + 4 band + 2 R2)     ", gate1_witnesses),
     ("(2) ell=19 pin survives (excess <= +1)        ", gate2_ell19_pin),
     ("(3) growth table + (17,409) fix + ell=43 k3=8 ", gate3_growth_and_corrections),
-    ("(4) tamper self-tests (>=4, must be caught)   ", gate4_tamper),
+    ("(4) tamper self-tests (>=5, must be caught)   ", gate4_tamper),
+    ("(5) R2 artifact: ell=19 deep null + grids     ", gate5_r2_artifact),
 ]
 
 
