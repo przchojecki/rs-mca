@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - L1 m*(19)=9 pin + excess-3 atlas (lane E1)
+
+- **Agent/model:** Claude Fable 5 (packager, lanes T1/T2).
+- **Files added or changed:** `experimental/notes/l1/l1_m19_pin_excess3_atlas.md`,
+  `experimental/scripts/verify_l1_m19_pin_excess3_atlas.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (spine + equivalence) / CONDITIONAL (the pin, on `H_19`) /
+  AUDIT (atlas localization + two k3 caps) / EXPERIMENTAL (null evidence) /
+  CONJECTURAL (`H_19`/`T1`) / OPEN (the one missing input).
+- **What is being added:** The `m*(19) = 9` pin. PROVED spine: every `m = 8`
+  crossing shape at `ell = 19` (`top-8 >= 38`) forces `E_3 >= 22`, `excess >= 3`,
+  `T >= 7` (airtight over all 17,012 crossers via the bridge `top-m <= 2m+E_3`
+  and the #368 identity `excess = T-4-capslack`). Hence, conditional on
+  `H_19` := "no realizable `Gamma` at `ell = 19` has `E_3 >= 22`" (the `ell = 19`
+  instance of `C' <= 2`, implied by lane T1's stronger `no-T>=7`), `m*(19) = 9`
+  exactly — `<= 9` is the unconditional #364 witness, `>= 9` is the spine. NOT
+  unconditional: 11,927 shapes survive the two PROVED caps; frontier = 59
+  cap-tight (`T=7`) shapes, unique `j=3` = `[10,9,9,2^5]`. Localizes the excess-3
+  atlas (partition for `ell in {17,19,23,29}`, two `Theta(ell)` k3 caps, empirical
+  `k3 = 7` plateau one short of the falsifier 8).
+- **How it is useful:** Reduces the `m = 8`/`ell = 19` listing-onset question to
+  the exact same wall as the L1 prize core `C' <= 2` (the bounded-excess ceiling)
+  — supplies the sufficiency (`H_19`) and tightness (a frontier refutation breaks
+  both) and the single named missing input (★) — an `O(1)` cyclotomic-root-
+  concentration cap. Reconciles the apparent `m*(19)=10` (attainment) vs
+  `m*(19)=9` (band) tension: `m*` is the onset, `m=10/11` are non-minimal rungs.
+- **What to do next:** Attack `H_19` via lane T1's (★): an `O(1)` cap
+  (`k3 <= 7` uniform, or a per-shape kill of the 59-frontier / `[10,9,9,2^5]`).
+  Or hunt the invited falsifier: realize `[10,9,9,2^5]` at `p ≡ 1 (mod 19)`,
+  `n >= 15`. Run `verify_l1_m19_pin_excess3_atlas.py` (both modes green, < 1s).
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.
