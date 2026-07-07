@@ -53,6 +53,43 @@ Keep entries concise and link to the relevant files.
   asymptotic `e^{o(n)}` statement as a certificate; the row still needs
   audited constants fitting the printed margins and the BC chart-decomposition
   audit.
+### 2026-07-07 - BC L4 interior chart discharges to depth-(w+1) row-sharp Q
+
+- **Agent/model:** `Claude Fable 5` (holmbuar).
+- **Files added or changed:**
+  `experimental/notes/thresholds/cap25_v13_bc_l4_interior_chart_to_q.md`;
+  `experimental/scripts/verify_bc_l4_interior_chart_to_q.py`;
+  this `experimental/agents-log.md` entry.
+- **Status:** PROVED (reformulation A1-A4, saturation, first-match
+  classification, Theorem [interior chart decomposition] + Corollary [discharge
+  to depth-(w+1) Q], rigidity/collision ceilings, floors as stated) /
+  EXPERIMENTAL (heuristic ray/census sizes) / AUDIT (fixture consistency).
+- **What is being added:** The first BC interior profile (`d1=w+2=4218`,
+  excess `e=1`) at the L4 fixture (#369) is reformulated as saturated primitive
+  line-rays and shown to decompose exactly as
+  `#valid T = sum_{s in B} |Fib_{w+1}(theta(s))|` along an explicit polynomial
+  curve, giving `#rays <= |B| * max_z |Fib_{w+1}(z)|`.  This answers task B1
+  with resolution type (b) of `prob:saturated-bc`: the residual chart is neither
+  a moving-root pencil nor a new obstruction; it is `|B|` curve-restricted
+  copies of the depth-`(w+1)` prefix-fiber problem, discharged by row-sharp Q
+  (list route) at the same agreement `m`.  Includes the exact `(T,r)`-rigidity
+  packing/anticode ceilings, the base-field floor `M_B(4218)=69754`, and the
+  convention pin (word-census = line-for-`RS[k]`, `k=K-1`; line-for-`RS[K]` is
+  `p x` larger).  The stdlib verifier recomputes the exact L4 big-int table and
+  re-runs a self-contained toy enumeration (rows A/B, ALL-GREEN) from scratch;
+  `--tamper-selftest` catches every pinned integer (45/45).
+- **How it is useful:** Removes the excess-1 interior BC chart as an independent
+  target for `grande_finale`'s `prob:saturated-bc` / task B1 by reducing it to
+  `prob:row-sharp-q` one dimension down.  Cross-consistent with the integrated
+  #369 base-field floor ladder (`d1=4218` row, byte-identical `69754`) and the
+  #361 rung audit (`a_4=23.139009074`).
+- **What to do next:** (1) the depth-`(w+1)` max-fiber bound is still open (= the
+  row-sharp Q gap; packing is ~103787 bits too weak); the named weaker next
+  target is curve equidistribution of `{theta(s)}`.  (2) Audit the general-line
+  (non-planted-word) chart at `d1=4218`, and instantiate the general-`e`
+  statement at `d1>4218`.  (3) Panels should note the packing-ceiling
+  correction flagged in the note (exact Johnson ball = `2^103810.24`, not the
+  earlier `2^103799.20`).
 
 ### 2026-07-07 - Grande finale Q-attempt promotion and Lean cleanup
 
