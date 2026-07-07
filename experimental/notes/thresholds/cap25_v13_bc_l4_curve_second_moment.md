@@ -132,9 +132,13 @@ exact curve-restricted diagonal `S1≪C(n,m)`. Its off-diagonal `M2−S1` is the
 
 **Planted stratum spreads (`PROVED`).** For a prefix-`z*` `(m+1)`-subset `M⁺⊆D`, deleting `ρ∈M⁺`
 gives a valid `T=M⁺∖{ρ}` with `a_1(T)=z*_1+ρ` varying with `ρ`; the `m+1` supports land in `m+1`
-**distinct** `a_1`-fibers of `Γ`, contributing `≤1` each. Fiber heaviness lives entirely in the
-primitive stratum (`r∉D`). (Verifier: the toy top offenders have all their mass in the planted
-stratum, `residual=0`, §7.)
+**distinct** `a_1`-fibers of `Γ`, contributing `≤1` each — so a *single* planted `M⁺` cannot by
+itself make any curve fiber heavy. But several prefix-`z*` `(m+1)`-subsets (`N^{(m+1)}(z*)≥2`) can
+still pile into the same fiber, and the total planted curve-mass is exactly `(m+1)·N^{(m+1)}(z*)`,
+which is *not* a priori small (§7): the toy top offenders `A[1,1,1]`/`B[0,0,0]` are the *heaviest*
+curve-sums yet have `residual=0` — entirely planted (`N^{(m+1)}=3`, planted `21` / `48`). So
+heaviness *beyond the exact planted census* lives in the primitive stratum (`r∉D`); the planted
+census itself is the `prop:base-field-floor` object and can be large (see §7 correction).
 
 ---
 
@@ -169,6 +173,13 @@ heuristic a theorem, and it sits strictly inside the max-fiber Q neighborhood.
 `S1 ≤ p^{1−1/r}M_r^{1/r}`, and `S1≤2^C·C(n,m)/p^w` needs
 `log2 M_r + ((w+1)r−1)log2 p ≤ r·log2 C(n,m) + rC` — the exact curve analogue of `thm:moment-q` one
 depth down; `r=2` is (CS).
+
+**Scale disambiguation (`AUDIT`).** These curve moments `M_r` are *finite*-order (`r=2,3`),
+depth-`(w+1)`, and **restricted to `Γ`**; they are a different object and scale from the base-commit
+`thm:logmoment-equivalence` / `def:primitive-logmoment`, which is *asymptotic* — logarithmic order
+`r=r(n)→∞` under `w log|B|/r=o(n)`, on the *full* primitive depth-`w` row (all prefixes, not on a
+curve). Our route makes no asymptotic-Q claim; consistently, `rem:finite-moment-order` states fixed
+`r=2,3` cannot fit the printed adjacent margins, which is exactly §5's below-trivial curve-CS.
 
 ---
 
@@ -268,7 +279,10 @@ twist-invariant is exhibited on rows A/B.) The generic-case (`z*≠0`) sharp cur
 open core in the integrated bounded-excess/RC lineage
 (`experimental/notes/l1/l1_bounded_excess_structure.md:295` — *"an instance of the `(W,λ)`-Veronese
 transversality the residual conjecture RC already flags as its own open core"* —,
-`experimental/notes/l1/l1_sigma_calculus.md` §2A.2/§2A.3).
+`experimental/notes/l1/l1_sigma_calculus.md` §2A.2/§2A.3). This transversality of the finite
+depth-`(w+1)` curve `Γ` to twist orbits is **not** the base-commit `prop:vandermonde-kills-low-rank`
+(linear independence of the *primitive moment-curve columns* `v_y` at `R=Θ(n)` in the asymptotic
+entropy-inverse route): a distinct object at a distinct scale; the two must not be conflated.
 
 ---
 
@@ -325,13 +339,24 @@ truth): A `26/26`, B `25/25`, C `26/26`, E `6/6`. Twist-orbit constancy: `240/24
 > ```
 > with a small `R_res` (measured `R_res<4.79` across four toy rows, mean residual ratio `≈0.8`).
 > **Falsifier:** any `z*` whose residual curve mass `≫` heuristic. The **planted** mass is *not* a
-> falsifier — it is exactly the base-field-floor object of `prop:base-field-floor`, bounded by
-> `(m+1)·⌈planted density⌉ = 69754·1 = 2^{16.089988}` at L4 (density `2^{−8.035617}<1 ⇒ ⌈·⌉=1`),
-> subdominant to the heuristic `2^{23.14}` by `≈7` bits.
+> falsifier — it is the *exact* `prop:base-field-floor` census `(m+1)·N^{(m+1)}(z*)`. **Direction
+> caveat (`AUDIT`):** `prop:base-field-floor` bounds this census **from below**
+> (`≥(m+1)·⌈C(n,m+1)p^{−(w+1)}⌉ = 69754·1 = 2^{16.089988}` at L4, density `2^{−8.035617}<1 ⇒ ⌈·⌉=1`);
+> it is **not** an upper bound. Bounding the planted mass *above* needs a depth-`(w+1)` max-fiber
+> (`ℓ^∞`/Q-type) input on `(m+1)`-subsets, `N^{(m+1)}(z*)≤⌈density⌉` — unproven, and *demonstrably
+> false* off the sub-unit regime: `(m+1)·⌈density⌉` is violated `3×` in row A (`z*=[1,1,1]`: planted
+> `21` vs `7`) and `3.43×` in row E (`z*=[0,0,0]`: `N^{(m+1)}=24`, planted `264` vs `77`). So the
+> planted term is exact but **not a priori subdominant**; at L4 its smallness (`2^{16.09}`) is a
+> *floor*, not a ceiling, and asserting it is small assumes the very `(m+1)`-max-fiber bound this
+> program treats as open.
 >
-> **Consequence chain.** residual-equidistribution `+` the exact planted floor `⇒` #393's heuristic
-> `S1 ≈ C(n,m)/p^w` up to `R_res` plus the exact planted term — **strictly weaker than depth-`(w+1)`
-> row-sharp Q** (it is the `ℓ²`/variance-along-`Γ` statement of §3, not the `ℓ^∞` max-fiber).
+> **Consequence chain.** residual-equidistribution splits `S1 = residual + planted` with
+> `residual ≤ R_res·C(n,m)/p^w` (conjecture) and `planted = (m+1)·N^{(m+1)}(z*)` the *exact*
+> `prop:base-field-floor` census — itself the raw-BC obstruction (`cor:raw-bc-fails`). Thus the
+> conjecture is the `ℓ²`/variance-along-`Γ` statement of §3 (**strictly weaker than depth-`(w+1)`
+> row-sharp Q**, not the `ℓ^∞` max-fiber) governing the *primitive* part only; upgrading it to the
+> full `S1 ≈ C(n,m)/p^w` additionally requires an `(m+1)`-subset max-fiber bound on the planted
+> census, which is *not* supplied here.
 
 ---
 
@@ -404,6 +429,7 @@ python3 experimental/scripts/verify_bc_l4_curve_second_moment.py --tamper-selfte
 `experimental/grande_finale.tex`:
 `prop:prefix-witness` (563), `prop:pole-line` (579), `prop:prefix-rigidity` (660),
 `prop:second-moment` (676), `cor:anticode-cap` (694), `thm:moment-q` (721),
+`def:primitive-logmoment` (752), `thm:logmoment-equivalence` (769), `prop:vandermonde-kills-low-rank` (841),
 `rem:finite-moment-order` (865), `prop:twist-orbit` (869), `prop:q-orbit-moment` (923),
 `prop:composite-descend` (969), `prop:top-stratum-quotient-sieve` (1163), `prop:gamma2-ledger` (1199),
 `prop:base-field-floor` (1389), `thm:q-proper` (1557), `thm:saturation` (1706), `cor:raw-bc-fails` (1738),
