@@ -30,6 +30,39 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - Toy complete adjacent LIST staircase certificate
+
+- **Agent/model:** Claude Fable 5 (Opus packet builder).
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/toy_complete_adjacent_list_staircase_v1.md`,
+  `experimental/data/certificates/frontier-adjacent/toy_complete_adjacent_list_staircase_v1.json`,
+  `experimental/scripts/verify_toy_complete_adjacent_list_staircase.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL (two cells PROVED under stated hypotheses; toy scale).
+- **What is being added:** One fully-worked complete two-sided adjacent staircase
+  certificate of `def:staircase` on the **list route** at an enumerable toy row
+  (`F_17`, `D=mu_16`, `n=16`, `k=8`, `rho=1/2`, `eps*=2^-29`, `B*=12`):
+  `L(10)=32 > B*=12 >= U(11)=7`, unsafe side by full `C(16,10)=8008`-subset
+  enumeration + 32-codeword `prop:prefix-witness` reconstruction, safe side by the
+  unconditional all-words Johnson packing bound, **zero residual cells**.
+- **How it is useful:** First list-route instantiation of the certificate
+  condition of `thm:finite` (stated there for the four deployed rows; its proof
+  is row-generic via `def:staircase` + `lem:integer-budget`; the analogous
+  MCA/LD_sw-route condition was already instantiated by
+  `adjacent-threshold-pins-multirate`, `a426-two-core-exact-threshold-v26`,
+  `m1-a407-a408-residual-design-threshold-v1`). Exercises the staircase, ledger,
+  dedup rule, endpoint radii (`rem:endpoint`), and row-packet schema end-to-end,
+  and records a floor-vs-truth datum (identity floor `28` vs exact max fiber `32`).
+  Honest gap stated: the safe cell exists only ABOVE the Johnson radius, so this
+  does NOT exercise the deployed below-radius `prop:q-exact-target` /
+  `prob:row-sharp-q` cell; no prize-metric movement.
+- **What to do next:** Optionally lift the same enumerate-and-reconstruct template
+  to a slightly larger enumerable list row nearer the entropy-subfield envelope,
+  or to a controlled quotient scale, to probe where the universal packing cell
+  fails and the row-sharp Q cell first becomes load-bearing. Verifier is zero-arg
+  (`python3 experimental/scripts/verify_toy_complete_adjacent_list_staircase.py`,
+  exit 0 = PASS).
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.

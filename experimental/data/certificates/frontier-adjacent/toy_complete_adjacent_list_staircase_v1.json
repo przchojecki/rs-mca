@@ -1,0 +1,670 @@
+{
+ "meta": {
+  "artifact": "toy_complete_adjacent_list_staircase_v1",
+  "title": "first in-repo complete two-sided adjacent staircase certificate on the list route (enumerable toy row)",
+  "schema": "frontier-adjacent row-packet (agents.md L135-152 style), complete-toy variant",
+  "companion_note": "experimental/notes/frontier-adjacent/toy_complete_adjacent_list_staircase_v1.md",
+  "companion_verifier": "experimental/scripts/verify_toy_complete_adjacent_list_staircase.py",
+  "source_draft": "gradient/g4 session draft (g4_note.md, g4_certificate.py, g4_verify.py, g4_row_packet.json); adapted to the repo frontier-adjacent schema, numbers recomputed from scratch by the companion verifier",
+  "date": "2026-07-07",
+  "repo_base_commit": "53bb5df",
+  "status": "PROVED / COMPLETE / NO RESIDUAL (toy scale, list route)",
+  "supports_labels": [
+   "thm:finite",
+   "def:staircase",
+   "lem:integer-budget",
+   "lem:first-match-ledger",
+   "prop:prefix-witness",
+   "rem:endpoint"
+  ],
+  "supports_tasks": [
+   "E1 (more finite adjacent examples)",
+   "Good-first-PR #6 (adjacent example)"
+  ],
+  "object": "list-route base-code list-size numerator B_list(a); adjacent staircase certificate of def:staircase",
+  "label_hygiene": "cites only promoted grande_finale.tex labels; NOT the grande_finale_work/*.tex working-draft labels (e.g. thm:finite-next-compiler, prop:finite-packet-unsafe), which are already absorbed into the promoted tex under the labels above"
+ },
+ "thm_finite_instance": {
+  "compiler_theorem": "thm:finite (grande_finale.tex L1917, 'adjacent criterion from an explicit upper bound')",
+  "hypothesis": "unsafe inequality at a0 (banked identity-prefix theorem, prop:prefix-witness) AND a proved upper bound B(a0+1) <= U(a0+1) <= B*",
+  "instantiated_here": "unsafe L(10)=32 > B*=12 (enumerated prop:prefix-witness fiber) AND proved U(11)=7 <= B*=12 (Johnson packing, all words) -- both halves proved, list route",
+  "conclusion": "first safe integer agreement = a0+1 = 11; delta*_C(eps*) pinned to one integer step (closed-ball convention, lem:integer-budget)",
+  "significance": "first list-route instantiation of the certificate condition of thm:finite in the repo (toy scale). thm:finite is stated there for the four deployed rows; its proof is row-generic via def:staircase + lem:integer-budget. Here U is a single unconditional Johnson cell, not the deployed first-match ledger of lem:first-match-ledger; the deployed rows' U cell remains open at prop:q-exact-target / prob:row-sharp-q."
+ },
+ "scope_of_first_claim": {
+  "claim": "First in-repo COMPLETE two-sided adjacent staircase certificate on the LIST route whose unsafe side is a fully ENUMERATED exact worst-received-word max prefix-fiber with its entire maximal codeword list reconstructed and verified (prop:prefix-witness realized end-to-end), paired with an all-received-words safe cell, with ZERO residual/conditional cells.",
+  "not_claimed_unqualified_first": "This is NOT the repo's first complete adjacent staircase certificate. Complete two-sided adjacent certificates already exist on the LD_sw / support-wise-MCA (line-decoding) route, paid by closed-form or structural theorems, at toy through prize scale.",
+  "prior_complete_adjacent_certificates_other_routes": [
+   {
+    "path": "experimental/data/certificates/adjacent-threshold-pins-multirate/adjacent_threshold_pins.json",
+    "route": "LD_sw",
+    "safe_side_paid_by": "tangent theorem LD_sw=n-A+1 at r=R3=floor((n-k)/3)",
+    "scale": "toy..prize (64 rows)"
+   },
+   {
+    "path": "experimental/data/certificates/a426-two-core-exact-threshold-v26/",
+    "route": "LD_sw",
+    "safe_side_paid_by": "two-core closure theorem (r=R3+1)",
+    "scale": "deployed prime field"
+   },
+   {
+    "path": "experimental/data/certificates/m1-a407-a408-residual-design-threshold-v1/",
+    "route": "LD_sw",
+    "safe_side_paid_by": "exact-support reduction / residual-design theorem (status PROVED_ADJACENT_THRESHOLD_ROW)",
+    "scale": "deployed prime field"
+   }
+  ],
+  "prior_list_route_status": "All prior LIST-route two-sided-shaped packets leave the safe side OPEN/conditional (cap25-v13-identity-frontier, frontier-adjacent/*.packet.json, list-planted-arithmetic) or are lower-bound / closed-form-count only; none enumerates the worst received word and reconstructs its codeword list. The only prior list enumeration+dedup artifact (l1-petal-fixed-excess/e15_worst_word_challenge.json) is a toy tightness probe, explicitly not a safe-side proof and not framed as an adjacent budget crossing.",
+  "not_claimed_prize": "This does NOT close any deployed dense-frontier row; those sit BELOW their Johnson radius where no universal packing cell exists and prob:row-sharp-q is still required."
+ },
+ "row": {
+  "route": "list (base-code list size; K_list = k, no MCA conversion)",
+  "F": 17,
+  "B": 17,
+  "beta_log2_B": 4.087463,
+  "D": "mu_16 = F_17^x (full multiplicative group; n = p-1)",
+  "n": 16,
+  "k": 8,
+  "rho": "1/2",
+  "K_list": 8,
+  "min_distance_d": 9,
+  "unique_decode_agreement_threshold": 12
+ },
+ "denominators": {
+  "Q_list": {
+   "value": 6975757441,
+   "expr": "p^k = 17^8",
+   "desc": "toy sampler denominator = number of deg-<k codewords; also the list-size budget denominator. NOTE: this Q_list = p^k is a TOY list-denominator convention, not the deployed rows' shared Q = q_line = |field|^ext convention of prop:q-exact-target"
+  },
+  "q_gen": {
+   "value": 17,
+   "desc": "|B|, pigeonhole base for the identity-prefix construction"
+  },
+  "q_chal": {
+   "value": "not protocol-bound (toy)"
+  }
+ },
+ "target": {
+  "epsilon_star": "2^-29",
+  "epsilon_star_note": "non-cryptographic at toy scale by design; only the integer staircase L>B*>=U transfers, not the probabilistic reading",
+  "B_star": {
+   "value": 12,
+   "formula": "floor(eps* * Q_list) = floor(17^8 >> 29)"
+  }
+ },
+ "agreement_interval": {
+  "a0_unsafe": 10,
+  "a0_plus_1_safe": 11,
+  "endpoint_convention": "closed ball; agreement counts positions where the codeword EQUALS the received word; threshold '>= a' (equality positions counted)",
+  "endpoint_radii_rem_endpoint": {
+   "first_proved_unsafe_closed_grid_radius": "(n-a0)/n = 6/16 = 3/8",
+   "largest_attained_safe_closed_grid_radius": "(n-a0-1)/n = 5/16",
+   "real_supremum_caveat": "recorded as a real supremum over closed integer balls, the safe-radius threshold sits at the upper edge of the unit interval (3/8), NOT attained at the unsafe endpoint; the convention must be printed with the proof (rem:endpoint, grande_finale.tex L1929)"
+  }
+ },
+ "unsafe_certificates": {
+  "statement": "B_list(a0) >= L(a0) > B*",
+  "L_a0": 32,
+  "B_star": 12,
+  "inequality_holds": true,
+  "value_is": "EXACT max prefix fiber = exact list-(>=a0) count for the witness word U_z (prop:prefix-witness: the >=a0 list of U_z is exactly {U_z - ell_M : M in Fib_w(z)})",
+  "witness_prefix_z_star": [
+   0,
+   0
+  ],
+  "witness_word_Uz_coeffs_low_to_high": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1
+  ],
+  "witness_word_Uz_evals_on_D": [
+   1,
+   4,
+   8,
+   16,
+   9,
+   15,
+   2,
+   13,
+   13,
+   2,
+   15,
+   9,
+   16,
+   8,
+   4,
+   1
+  ],
+  "n_buckets": 289,
+  "codewords_sha256": "4def8f2447e4f0fcb24382cd6ddba089f159fd51869be4d6cf6b71968e4f8282",
+  "status": "PAID_BY_EXACT_CERTIFICATE",
+  "paid_by": "full enumeration of C(16,10)=8008 ten-subsets bucketed by depth-2 signed elementary-symmetric prefix mod 17; heaviest bucket 32 at null prefix z*=(0,0); all 32 codewords c_M = X^10 - ell_M reconstructed and verified (deg<8, agreement exactly 10, pairwise distinct)"
+ },
+ "safe_certificates": {
+  "statement": "B_list(a0+1) <= U(a0+1) <= B*",
+  "U_a0_plus_1": 7,
+  "B_star": 12,
+  "inequality_holds": true,
+  "binding_cell": "johnson_packing",
+  "johnson_value": 7,
+  "johnson_radius_check": {
+   "a1_squared": 121,
+   "n_times_t": 112,
+   "above_radius": true,
+   "johnson_radius_floor_sqrt_nt": 10,
+   "note": "the safe cell EXISTS only because a0+1=11 is above the Johnson radius sqrt(n(k-1))=sqrt(112)~=10.58; at a=10, a^2=100 < n*t=112 and the bound is vacuous"
+  },
+  "unique_decoding_at_a1": {
+   "two_a_minus_n": 6,
+   "t": 7,
+   "active": false,
+   "note": "inactive at a=11 (2*11-16=6 <= 7)"
+  },
+  "status": "PAID_BY_EXACT_CERTIFICATE",
+  "paid_by": "unconditional Johnson/Cauchy-Schwarz packing bound for ALL received words: distinct deg-<8 codewords agree on <= 7 points, so L <= n(a-t)/(a^2-nt) = 16*4/(121-112) = 64/9, hence L <= 7; no fiber, prefix, or genericity assumption"
+ },
+ "safe_cell_table": [
+  {
+   "cell": "paid_Q_prefix_boundary / row-sharp-Q",
+   "value_at_a0_plus_1": 0,
+   "status": "PAID_BY_THEOREM",
+   "note": "zero at this row BY THEOREM: the all-words Johnson packing cell caps the entire list at a0+1 (a0+1 is above the Johnson radius), so under first-match the residual prefix-boundary family is empty; no row-sharp Q input is consumed. Contrast the deployed below-radius rows, where this cell is the open prob:row-sharp-q."
+  },
+  {
+   "cell": "paid_johnson_packing (all-words)",
+   "value_at_a0_plus_1": 7,
+   "status": "PAID_BY_EXACT_CERTIFICATE"
+  },
+  {
+   "cell": "paid_unique_decoding",
+   "value_at_a0_plus_1": null,
+   "status": "PAID_BY_EXACT_CERTIFICATE",
+   "active_at_a": ">=12 (2a-n>k-1); inactive at a=11"
+  },
+  {
+   "cell": "paid_tangent / paid_quotient / paid_extension",
+   "value_at_a0_plus_1": 0,
+   "status": "PAID_BY_THEOREM",
+   "note": "zero additional under first-match: the Johnson cell already caps the whole list for every word, so these cells contribute nothing beyond it; the extension cell is moreover zero by the generating-row rule (q_gen = q_line = p forces Paid_ext^only = 0, experimental/notes/thresholds/paid_ledger_functions.md)"
+  },
+  {
+   "cell": "explicitly_named_residuals",
+   "value_at_a0_plus_1": 0,
+   "status": "PAID_BY_THEOREM",
+   "note": "empty by the covering cell: the single unconditional all-words Johnson bound leaves no unpaid branch; no CONDITIONAL_ON_NAMED_INPUT anywhere in this ledger"
+  }
+ ],
+ "paid_cells_summary": [
+  {
+   "cell": "lower_max_fiber",
+   "status": "PAID_BY_EXACT_CERTIFICATE",
+   "value": 32
+  },
+  {
+   "cell": "upper_johnson_packing",
+   "status": "PAID_BY_EXACT_CERTIFICATE",
+   "value": 7
+  },
+  {
+   "cell": "upper_unique_decoding",
+   "status": "PAID_BY_EXACT_CERTIFICATE",
+   "value": null,
+   "active_at_a": ">=12"
+  }
+ ],
+ "residual_cells": [],
+ "residual_status": "No residual cells: the upper ledger at a0+1 is a single unconditional all-received-words combinatorial cell (Johnson packing); no CONDITIONAL_ON_NAMED_INPUT branch.",
+ "deduplication_rule": "list route: codewords indexed by distinct m-subsets M in Fib_w(z) are automatically distinct (ell_M = U_z - c_M recovers M as its root set); verified len(set(codewords))=32. No first-match slope collapse needed (that is an MCA-route device).",
+ "margins": {
+  "unsafe_bits": 1.415,
+  "safe_bits": 0.778,
+  "total_separation_bits": 2.193,
+  "note": "unsafe = log2(L(a0)/B*), safe = log2(B*/U(a0+1)), total = log2(L(a0)/U(a0+1)) = unsafe + safe"
+ },
+ "floor_vs_truth": {
+  "id_prefix_average_floor": 28,
+  "id_prefix_floor_formula": "ceil(C(16,10)/17^2) = ceil(8008/289)",
+  "exact_max_fiber": 32,
+  "null_prefix_excess": 4,
+  "note": "the deployed L(a)=ceil(C(n,a)/p^w) staircase is an AVERAGE floor, not the true worst word; here the exact heaviest fiber (32) exceeds the average floor (28) by 4 (null-prefix excess). Small independent datum on floor-vs-truth gaps."
+ },
+ "companion_pair": {
+  "a0_unsafe": 11,
+  "a0_plus_1_safe": 12,
+  "L_a0": 3,
+  "U_a0_plus_1": 1,
+  "budget_window_B_star": [
+   1,
+   2
+  ],
+  "safe_cell": "unique_decoding (2*12-16=8 > 7)",
+  "safe_cell_johnson_also": 2,
+  "total_separation_bits": 1.585,
+  "note": "recorded, non-headline: a SECOND adjacent pair on the same row whose safe side is the unique-decoding cell (U=1) rather than Johnson. Its budget window {1,2} needs a smaller eps* than the headline B*=12; tighter margins, trivial safe cell."
+ },
+ "honest_gap": [
+  {
+   "id": "no-hard-Q-cell",
+   "status": "SCOPE",
+   "claim": "The safe side here is a WORD-INDEPENDENT packing cell that exists ONLY ABOVE the Johnson radius (a^2 > n(k-1)). The four deployed rows sit far BELOW their Johnson radius, where no universal packing cell exists and the safe side genuinely requires prob:row-sharp-q (the row-sharp Q max-fiber atom). Per prop:q-exact-target (grande_finale.tex L1956), that open cell is a prefix-boundary max-fiber at w = a+ - K = 67471 (KoalaBear) / 67447 (Mersenne-31) whose exact constants must fit the printed row margins (22.20/22.01/3.26/3.07 bits). This toy validates the certificate GRAMMAR end-to-end; it does NOT exercise that hard cell."
+  },
+  {
+   "id": "toy-epsilon",
+   "status": "SCOPE",
+   "claim": "eps* = 2^-29 is non-cryptographic at toy scale (F_17 is far too small for eps* to mean protocol soundness). Only the integer staircase L > B* >= U transfers; the probabilistic reading does not. Deployed rows use eps* in {2^-128, 2^-100}."
+  },
+  {
+   "id": "floor-is-not-truth",
+   "status": "DATUM",
+   "claim": "The identity-prefix average floor ceil(C(n,a)/p^w)=28 is loose; the exact worst-word fiber is 32. The certificate uses the EXACT enumerated 32, confirming the deployed L(a) formula is a floor, not the true B_list."
+  }
+ ],
+ "non_claims": [
+  "does not close any deployed dense-frontier adjacent row",
+  "does not prove or bound row-sharp Q (prob:row-sharp-q); it sidesteps it via the above-Johnson-radius packing cell",
+  "does not claim prize-metric movement; experimental grammar/template plus honest-gap documentation only",
+  "does not claim to be the first complete adjacent certificate unqualified (prior LD_sw-route complete certs exist; see scope_of_first_claim)"
+ ],
+ "witness": {
+  "D": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16
+  ],
+  "z_star": [
+   0,
+   0
+  ],
+  "Uz_coeffs_low_to_high": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1
+  ],
+  "Uz_evals_on_D": [
+   1,
+   4,
+   8,
+   16,
+   9,
+   15,
+   2,
+   13,
+   13,
+   2,
+   15,
+   9,
+   16,
+   8,
+   4,
+   1
+  ],
+  "codewords_deg_lt_k_low_to_high": [
+   [
+    1,
+    1,
+    9,
+    6,
+    16,
+    16,
+    9,
+    11
+   ],
+   [
+    1,
+    16,
+    9,
+    11,
+    16,
+    1,
+    9,
+    6
+   ],
+   [
+    2,
+    7,
+    8,
+    13,
+    8,
+    11,
+    2,
+    1
+   ],
+   [
+    2,
+    10,
+    8,
+    4,
+    8,
+    6,
+    2,
+    16
+   ],
+   [
+    3,
+    4,
+    0,
+    12,
+    10,
+    9,
+    5,
+    9
+   ],
+   [
+    3,
+    13,
+    0,
+    5,
+    10,
+    8,
+    5,
+    8
+   ],
+   [
+    4,
+    2,
+    9,
+    3,
+    4,
+    2,
+    8,
+    3
+   ],
+   [
+    4,
+    15,
+    9,
+    14,
+    4,
+    15,
+    8,
+    14
+   ],
+   [
+    5,
+    2,
+    0,
+    7,
+    6,
+    4,
+    12,
+    16
+   ],
+   [
+    5,
+    15,
+    0,
+    10,
+    6,
+    13,
+    12,
+    1
+   ],
+   [
+    6,
+    6,
+    0,
+    8,
+    5,
+    14,
+    3,
+    10
+   ],
+   [
+    6,
+    11,
+    0,
+    9,
+    5,
+    3,
+    3,
+    7
+   ],
+   [
+    7,
+    5,
+    0,
+    13,
+    14,
+    11,
+    14,
+    5
+   ],
+   [
+    7,
+    12,
+    0,
+    4,
+    14,
+    6,
+    14,
+    12
+   ],
+   [
+    8,
+    3,
+    8,
+    2,
+    2,
+    5,
+    15,
+    9
+   ],
+   [
+    8,
+    14,
+    8,
+    15,
+    2,
+    12,
+    15,
+    8
+   ],
+   [
+    9,
+    5,
+    8,
+    8,
+    15,
+    14,
+    15,
+    2
+   ],
+   [
+    9,
+    12,
+    8,
+    9,
+    15,
+    3,
+    15,
+    15
+   ],
+   [
+    10,
+    3,
+    0,
+    16,
+    3,
+    10,
+    14,
+    14
+   ],
+   [
+    10,
+    14,
+    0,
+    1,
+    3,
+    7,
+    14,
+    3
+   ],
+   [
+    11,
+    7,
+    0,
+    2,
+    12,
+    5,
+    3,
+    11
+   ],
+   [
+    11,
+    10,
+    0,
+    15,
+    12,
+    12,
+    3,
+    6
+   ],
+   [
+    12,
+    8,
+    0,
+    6,
+    11,
+    16,
+    12,
+    4
+   ],
+   [
+    12,
+    9,
+    0,
+    11,
+    11,
+    1,
+    12,
+    13
+   ],
+   [
+    13,
+    8,
+    9,
+    5,
+    13,
+    8,
+    8,
+    5
+   ],
+   [
+    13,
+    9,
+    9,
+    12,
+    13,
+    9,
+    8,
+    12
+   ],
+   [
+    14,
+    1,
+    0,
+    14,
+    7,
+    15,
+    5,
+    2
+   ],
+   [
+    14,
+    16,
+    0,
+    3,
+    7,
+    2,
+    5,
+    15
+   ],
+   [
+    15,
+    6,
+    8,
+    1,
+    9,
+    7,
+    2,
+    4
+   ],
+   [
+    15,
+    11,
+    8,
+    16,
+    9,
+    10,
+    2,
+    13
+   ],
+   [
+    16,
+    4,
+    9,
+    10,
+    1,
+    13,
+    9,
+    7
+   ],
+   [
+    16,
+    13,
+    9,
+    7,
+    1,
+    4,
+    9,
+    10
+   ]
+  ],
+  "codewords_sha256": "4def8f2447e4f0fcb24382cd6ddba089f159fd51869be4d6cf6b71968e4f8282"
+ },
+ "replay": "python3 experimental/scripts/verify_toy_complete_adjacent_list_staircase.py  (zero-arg: recompute from scratch, cross-check this JSON field-by-field, tamper self-tests, exit 0 = PASS). --emit regenerates this file.",
+ "output_standard": {
+  "input_parameters": {
+   "p": 17,
+   "n": 16,
+   "k": 8,
+   "rho": "1/2",
+   "lambda": 29,
+   "route": "list"
+  },
+  "object_checked": "adjacent staircase L(a0)>B*>=U(a0+1) for the list numerator, def:staircase",
+  "result": "L(10)=32 > B*=12 >= U(11)=7",
+  "certificate": "exact enumeration + reconstruction (unsafe) + Johnson packing (safe); reproducibility: this verifier, stdlib python3, deterministic",
+  "supports_id": "def:staircase / prop:prefix-witness / task E1 / GFP #6",
+  "verdict": "PROVED (toy scale, list route, complete/no residual)"
+ }
+}
