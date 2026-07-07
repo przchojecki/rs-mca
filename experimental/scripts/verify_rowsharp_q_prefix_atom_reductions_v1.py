@@ -623,7 +623,7 @@ context.  Experimental sources listed here are not imported as payments.
             f"`{source['source_path']}` ({source['source_pr_or_commit']}). "
             f"{source['consumed_statement']}\n"
         )
-    text += """
+    text += f"""
 
 ## RIM guardrail
 

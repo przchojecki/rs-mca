@@ -206,24 +206,24 @@ If the missing support certificate proves
 for every primitive finite prefix target `z`, then
 
 ```text
-t*p = {cc['t_times_p']},
-|E_ret(z)| <= {cc['retained_exact_lift_bound']},
-t*p + |E_ret(z)| = {cc['paid_plus_retained']}.
+t*p = 143763024447376,
+|E_ret(z)| <= 11440,
+t*p + |E_ret(z)| = 143763024458816.
 ```
 
 Since
 
 ```text
-{cc['paid_plus_retained']} < {cc['target_floor']},
+143763024458816 < 274836936291722953,
 ```
 
 the row-sharp Q-prefix atom inequality follows with integer slack
 
 ```text
-{cc['integer_slack']}
+274693173267264137
 ```
 
-and about `{cc['slack_bits_approx']}` bits of slack.
+and about `10.900667525` bits of slack.
 
 ## Missing theorem
 
@@ -238,7 +238,7 @@ mass is at most t*p = 143763024447376.
 ```
 
 Equivalent forms include deterministic fixed-subgroup RIM nonvanishing after
-branch deletion, marked-incidence injection into `{{0,...,67471}} x F_p`, and a
+branch deletion, marked-incidence injection into `{0,...,67471} x F_p`, and a
 primitive Fourier phase-spread coefficient bound.
 
 ## Related experiment packet
