@@ -414,6 +414,12 @@ python3 experimental/scripts/verify_bc_l4_curve_second_moment.py --tamper-selfte
   `gcd(e,N)` composite-prefix descent) — same-day sibling packets, same `prob:saturated-bc` /
   row-sharp-Q neighborhood; no object or file dependency in either direction. (#394 formalizes the
   `prop:composite-descend` used in §4's composite audit; courtesy cross-link only.)
+- **Grande finale logarithmic-moment route** (`thm:logmoment-equivalence` / `def:primitive-logmoment`,
+  integrated into `grande_finale.tex` at base `53bb5df`) — the **asymptotic** (`r→∞`) primitive-Q
+  equivalence; complementary to this packet's **finite** fixed-`r` curve second moment (`r=2` (CS) at
+  the deployed L4 row, §2–3). That entry itself flags "do not use the asymptotic `e^{o(n)}` statement as
+  a certificate" for finite rows; C1/C2 supply exactly the finite-row `ℓ²` curve object one depth down.
+  No object or file dependency.
 - **#369** (`cap25_v13_bc_l4_base_floor_ladder`, integrated) — the fixture; the planted stratum here is
   its `d1=4218` floor `69754` (§7); heuristic `=` #369 boundary row `23.139009`.
 - **#361** rung audit (`cap25_v13_qfin_rung_audit`, integrated) — `a_4=23.139009074` is the
