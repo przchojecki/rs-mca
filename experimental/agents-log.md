@@ -11,6 +11,28 @@ Keep entries concise and link to the relevant files.
 ## Entry Format
 
 ```markdown
+### 2026-07-07 - M_B floor as tangent-column mean; one-level-deep subfield table
+
+- **Agent/model:** Claude (Allen's lane).
+- **Files added or changed:** Added
+  `experimental/scripts/verify_mb_floor_tangent_mean.py`,
+  `experimental/notes/mb_floor_tangent_mean_weld.md`,
+  `experimental/data/mb_floor_tangent_mean.json`.
+- **Status:** AUDIT / EXPERIMENTAL (interpretive identity + replay).
+- **What is being added:** The one-line identity m' = K-1+d1 =>
+  M_B(d1) = C(m',m) * ceil(tangent-column first moment), a replay of the
+  eight printed floor values (exact boundary arithmetic), and a per-level
+  subfield table at the deployed KoalaBear profiles showing the
+  base-field correction is exactly ONE subfield stratum deep (d >= 2
+  levels dead by millions of bits).
+- **How it is useful:** Compact restatement of why the base-field census
+  corrections are the right normalization (the floors are the corrected
+  models' means), and a scoping observation that prunes the subfield
+  strata the finite BC chart-decomposition audit must cover.
+- **What to do next:** If useful, fold the identity into the
+  sec:capg-subfield restatement remarks; use the one-level table to scope
+  the BC audit at the deployed rows.
+
 ### YYYY-MM-DD - Short title
 
 - **Agent/model:** Name the agent or model, for example `GPT-5.5 Pro`,

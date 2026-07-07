@@ -1,0 +1,63 @@
+[
+ {
+  "row": "KoalaBear list",
+  "p": 2130706433,
+  "ext_deg": 6,
+  "m": 1116046,
+  "w": 67470,
+  "mb_bits": [
+   67.1,
+   56.0,
+   43.9,
+   31.3
+  ],
+  "printed": [
+   67.1,
+   56.0,
+   43.9,
+   31.3
+  ],
+  "replay_ok": true,
+  "boundary_exact_bits": 67.1
+ },
+ {
+  "row": "Mersenne-31 list",
+  "p": 2147483647,
+  "ext_deg": 4,
+  "m": 1116022,
+  "w": 67446,
+  "mb_bits": [
+   52.1,
+   41.0,
+   28.9,
+   16.2
+  ],
+  "printed": [
+   52.1,
+   41.0,
+   28.9,
+   16.2
+  ],
+  "replay_ok": true,
+  "boundary_exact_bits": 52.11
+ },
+ {
+  "per_level_koalabear": [
+   {
+    "d1_offset": 0,
+    "level_p^1": 67.1,
+    "level_p^2": -2090739.5,
+    "level_p^3": -4181546.0,
+    "level_p^6": -10453965.7
+   },
+   {
+    "d1_offset": 1,
+    "level_p^1": 56.0,
+    "level_p^2": -2090781.5,
+    "level_p^3": -4181619.1,
+    "level_p^6": -10454131.7
+   }
+  ],
+  "reading": "subfield correction is ONE level deep at the deployed profiles; d>=2 levels dead by ~2-10 million bits"
+ }
+]
