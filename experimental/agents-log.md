@@ -30,6 +30,39 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - Row-sharp Q-prefix atom reductions and route evidence
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_rowsharp_q_prefix_atom_reductions_v1.py`;
+  `experimental/notes/thresholds/rowsharp_q_prefix_atom_reductions_v1.md`;
+  `experimental/data/certificates/rowsharp-q-prefix-atom-reductions-v1/`;
+  `experimental/notes/certificate_scanner/outputs/rowsharp_q_prefix_atom_reductions_v1.report.md`;
+  `experimental/scripts/experiment_rowsharp_q_prefix_atom_routes_v1.py`;
+  `experimental/notes/thresholds/rowsharp_q_prefix_atom_routes_v1.md`;
+  `experimental/data/certificates/rowsharp-q-prefix-atom-routes-v1/`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** REDUCED_NOT_PROVED / EXPERIMENTAL_EVIDENCE. This does not
+  prove the row-sharp Q-prefix atom theorem and does not prove
+  `U(1116048) <= B*`.
+- **What is being added:** A reduction verifier and note for the KB-MCA
+  `a=1116048` primitive Q-fin wall. The packet proves and records the
+  Newton/power-sum equivalence, Q1 collision distance, top-seam
+  `U-V=constant` marked-incidence guardrail, RS/list reformulations, folding
+  identities, small signed-defect impossibility, a roots-of-unity RIM
+  specialization guardrail, and exact conditional closure if a support-level
+  Route D certificate supplies `<= t*p`. The reduction certificate includes
+  provenance blocks and tamper gates; the route experiment uses a fast artifact
+  `--check` with full regeneration behind `--full --write --check`.
+- **How it is useful:** Narrows the remaining Q target to one deterministic
+  support-counting certificate: primitive fixed-subgroup Boolean-coset /
+  Route D support multiplicity. The companion small-model experiments support
+  Route D plus marked incidence and rule out image-cell and zero-defect
+  shortcuts.
+- **What to do next:** Prove the missing support certificate, preferably as a
+  deterministic RIM/marked-incidence theorem or a large signed folding-defect
+  transfer theorem with printed support cost. The top-seam item is consumed as a
+  guardrail here and does not supersede the separate #389 audit.
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.

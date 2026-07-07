@@ -18,7 +18,15 @@ python3 experimental/scripts/certify_koalabear_bchks25_jmca_bounds_v1.py --check
 python3 experimental/scripts/verify_m1_half_turn_pair_core_13_v1.py --check
 python3 experimental/scripts/verify_kb_mca_1116048_first_match_ledger_v1.py --check
 python3 experimental/scripts/verify_m1_nonconsecutive_window_normal_form_v1.py --check
+python3 experimental/scripts/verify_rowsharp_q_prefix_atom_reductions_v1.py --check
+python3 experimental/scripts/verify_rowsharp_q_prefix_atom_reductions_v1.py --tamper-selftest
+python3 experimental/scripts/experiment_rowsharp_q_prefix_atom_routes_v1.py --check
+python3 experimental/scripts/experiment_rowsharp_q_prefix_atom_routes_v1.py --tamper-selftest
 ```
+
+`experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
+replay. Use `--full --write --check` only when regenerating the route evidence,
+or `--case P N J W` for a single small-model case.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

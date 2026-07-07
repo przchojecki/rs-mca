@@ -1,0 +1,3164 @@
+{
+  "bc_to_q_toy_chart_decomposition": [
+    {
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 2
+      },
+      "curve_checks": [
+        {
+          "curve": "linear_first_coordinate",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 742,
+          "injective_theta": true,
+          "max_curve_target_fiber": 54,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 742,
+          "sum_over_parameter_fibers": 742,
+          "theta_target_collisions": 0
+        },
+        {
+          "curve": "moment_curve",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 742,
+          "injective_theta": true,
+          "max_curve_target_fiber": 54,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 742,
+          "sum_over_parameter_fibers": 742,
+          "theta_target_collisions": 0
+        },
+        {
+          "curve": "shifted_moment_curve",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 759,
+          "injective_theta": true,
+          "max_curve_target_fiber": 49,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 759,
+          "sum_over_parameter_fibers": 759,
+          "theta_target_collisions": 0
+        }
+      ]
+    },
+    {
+      "case": {
+        "j": 5,
+        "n": 32,
+        "p": 97,
+        "w": 3
+      },
+      "curve_checks": [
+        {
+          "curve": "linear_first_coordinate",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 256,
+          "injective_theta": true,
+          "max_curve_target_fiber": 7,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 256,
+          "sum_over_parameter_fibers": 256,
+          "theta_target_collisions": 0
+        },
+        {
+          "curve": "moment_curve",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 0,
+          "injective_theta": true,
+          "max_curve_target_fiber": 0,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 0,
+          "sum_over_parameter_fibers": 0,
+          "theta_target_collisions": 0
+        },
+        {
+          "curve": "shifted_moment_curve",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 19,
+          "injective_theta": true,
+          "max_curve_target_fiber": 2,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 19,
+          "sum_over_parameter_fibers": 19,
+          "theta_target_collisions": 0
+        }
+      ]
+    },
+    {
+      "case": {
+        "j": 4,
+        "n": 64,
+        "p": 193,
+        "w": 2
+      },
+      "curve_checks": [
+        {
+          "curve": "linear_first_coordinate",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 3408,
+          "injective_theta": true,
+          "max_curve_target_fiber": 19,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 3408,
+          "sum_over_parameter_fibers": 3408,
+          "theta_target_collisions": 0
+        },
+        {
+          "curve": "moment_curve",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 3408,
+          "injective_theta": true,
+          "max_curve_target_fiber": 26,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 3408,
+          "sum_over_parameter_fibers": 3408,
+          "theta_target_collisions": 0
+        },
+        {
+          "curve": "shifted_moment_curve",
+          "decomposition_identity_holds": true,
+          "direct_union_count": 3315,
+          "injective_theta": true,
+          "max_curve_target_fiber": 27,
+          "multiplicity_accounting_dominates_union": true,
+          "multiplicity_weighted_direct_count": 3315,
+          "sum_over_parameter_fibers": 3315,
+          "theta_target_collisions": 0
+        }
+      ]
+    }
+  ],
+  "composite_prefix_gcd_descent_regression": [
+    {
+      "case": {
+        "n": 16,
+        "p": 17
+      },
+      "rows": [
+        {
+          "e": 2,
+          "expected_image_size": 8,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            2
+          ],
+          "gcd_c": 2,
+          "image_size": 8,
+          "sample_full_preimage_size": 6,
+          "sample_image_exponents": [
+            0,
+            2,
+            4
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "e": 4,
+          "expected_image_size": 4,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            4
+          ],
+          "gcd_c": 4,
+          "image_size": 4,
+          "sample_full_preimage_size": 12,
+          "sample_image_exponents": [
+            0,
+            4,
+            8
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            4,
+            8
+          ]
+        },
+        {
+          "e": 6,
+          "expected_image_size": 8,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            2
+          ],
+          "gcd_c": 2,
+          "image_size": 8,
+          "sample_full_preimage_size": 6,
+          "sample_image_exponents": [
+            0,
+            2,
+            4
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            6,
+            12
+          ]
+        },
+        {
+          "e": 8,
+          "expected_image_size": 2,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            8
+          ],
+          "gcd_c": 8,
+          "image_size": 2,
+          "sample_full_preimage_size": 16,
+          "sample_image_exponents": [
+            0,
+            8
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            8
+          ]
+        },
+        {
+          "e": 10,
+          "expected_image_size": 8,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            2
+          ],
+          "gcd_c": 2,
+          "image_size": 8,
+          "sample_full_preimage_size": 6,
+          "sample_image_exponents": [
+            0,
+            2,
+            4
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            10,
+            4
+          ]
+        },
+        {
+          "e": 12,
+          "expected_image_size": 4,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            4
+          ],
+          "gcd_c": 4,
+          "image_size": 4,
+          "sample_full_preimage_size": 12,
+          "sample_image_exponents": [
+            0,
+            4,
+            8
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            12,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "case": {
+        "n": 32,
+        "p": 97
+      },
+      "rows": [
+        {
+          "e": 2,
+          "expected_image_size": 16,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            2
+          ],
+          "gcd_c": 2,
+          "image_size": 16,
+          "sample_full_preimage_size": 6,
+          "sample_image_exponents": [
+            0,
+            2,
+            4
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "e": 4,
+          "expected_image_size": 8,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            4
+          ],
+          "gcd_c": 4,
+          "image_size": 8,
+          "sample_full_preimage_size": 12,
+          "sample_image_exponents": [
+            0,
+            4,
+            8
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            4,
+            8
+          ]
+        },
+        {
+          "e": 6,
+          "expected_image_size": 16,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            2
+          ],
+          "gcd_c": 2,
+          "image_size": 16,
+          "sample_full_preimage_size": 6,
+          "sample_image_exponents": [
+            0,
+            2,
+            4
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            22,
+            12
+          ]
+        },
+        {
+          "e": 8,
+          "expected_image_size": 4,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            8
+          ],
+          "gcd_c": 8,
+          "image_size": 4,
+          "sample_full_preimage_size": 24,
+          "sample_image_exponents": [
+            0,
+            8,
+            16
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            8,
+            16
+          ]
+        },
+        {
+          "e": 12,
+          "expected_image_size": 8,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            4
+          ],
+          "gcd_c": 4,
+          "image_size": 8,
+          "sample_full_preimage_size": 12,
+          "sample_image_exponents": [
+            0,
+            4,
+            8
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            12,
+            24
+          ]
+        },
+        {
+          "e": 16,
+          "expected_image_size": 2,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            16
+          ],
+          "gcd_c": 16,
+          "image_size": 2,
+          "sample_full_preimage_size": 32,
+          "sample_image_exponents": [
+            0,
+            16
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            16
+          ]
+        },
+        {
+          "e": 20,
+          "expected_image_size": 8,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            4
+          ],
+          "gcd_c": 4,
+          "image_size": 8,
+          "sample_full_preimage_size": 12,
+          "sample_image_exponents": [
+            0,
+            4,
+            8
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            20,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "case": {
+        "n": 64,
+        "p": 193
+      },
+      "rows": [
+        {
+          "e": 2,
+          "expected_image_size": 32,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            2
+          ],
+          "gcd_c": 2,
+          "image_size": 32,
+          "sample_full_preimage_size": 6,
+          "sample_image_exponents": [
+            0,
+            2,
+            4
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "e": 4,
+          "expected_image_size": 16,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            4
+          ],
+          "gcd_c": 4,
+          "image_size": 16,
+          "sample_full_preimage_size": 12,
+          "sample_image_exponents": [
+            0,
+            4,
+            8
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            4,
+            8
+          ]
+        },
+        {
+          "e": 6,
+          "expected_image_size": 32,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            2
+          ],
+          "gcd_c": 2,
+          "image_size": 32,
+          "sample_full_preimage_size": 6,
+          "sample_image_exponents": [
+            0,
+            2,
+            4
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            22,
+            44
+          ]
+        },
+        {
+          "e": 8,
+          "expected_image_size": 8,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            8
+          ],
+          "gcd_c": 8,
+          "image_size": 8,
+          "sample_full_preimage_size": 24,
+          "sample_image_exponents": [
+            0,
+            8,
+            16
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            8,
+            16
+          ]
+        },
+        {
+          "e": 12,
+          "expected_image_size": 16,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            4
+          ],
+          "gcd_c": 4,
+          "image_size": 16,
+          "sample_full_preimage_size": 12,
+          "sample_image_exponents": [
+            0,
+            4,
+            8
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            44,
+            24
+          ]
+        },
+        {
+          "e": 16,
+          "expected_image_size": 4,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            16
+          ],
+          "gcd_c": 16,
+          "image_size": 4,
+          "sample_full_preimage_size": 48,
+          "sample_image_exponents": [
+            0,
+            16,
+            32
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            16,
+            32
+          ]
+        },
+        {
+          "e": 24,
+          "expected_image_size": 8,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            8
+          ],
+          "gcd_c": 8,
+          "image_size": 8,
+          "sample_full_preimage_size": 24,
+          "sample_image_exponents": [
+            0,
+            8,
+            16
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            24,
+            48
+          ]
+        },
+        {
+          "e": 32,
+          "expected_image_size": 2,
+          "factorization_identity_holds": true,
+          "fiber_size_set": [
+            32
+          ],
+          "gcd_c": 32,
+          "image_size": 2,
+          "sample_full_preimage_size": 64,
+          "sample_image_exponents": [
+            0,
+            32
+          ],
+          "sample_quotient_root_exponents_for_X^c": [
+            0,
+            32
+          ]
+        }
+      ]
+    }
+  ],
+  "primitive_orbit_excess_diagnostics": [
+    {
+      "average_fiber_size": 757.0588235294117,
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 1
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 1,
+        "gt_2_times_average": 0,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 758,
+      "max_primitive_target_fiber": 757,
+      "max_stabilized_target_fiber": 758,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 758,
+          "largest_exact_lift_class": 70,
+          "nonretained_after_largest": 688
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        }
+      ]
+    },
+    {
+      "average_fiber_size": 44.53287197231834,
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 2
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 185,
+        "gt_2_times_average": 0,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 54,
+      "max_primitive_target_fiber": 49,
+      "max_stabilized_target_fiber": 54,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 49,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 54,
+          "largest_exact_lift_class": 6,
+          "nonretained_after_largest": 48
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        }
+      ]
+    },
+    {
+      "average_fiber_size": 2.61958070425402,
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 3
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 2721,
+        "gt_2_times_average": 9,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 7,
+      "max_primitive_target_fiber": 5,
+      "max_stabilized_target_fiber": 7,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        }
+      ]
+    },
+    {
+      "average_fiber_size": 0.014101436111290682,
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 97,
+        "w": 3
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 12457,
+        "gt_1_times_average": 12457,
+        "gt_2_times_average": 12457,
+        "gt_4_times_average": 12457,
+        "gt_8_times_average": 12457
+      },
+      "max_fiber": 6,
+      "max_primitive_target_fiber": 2,
+      "max_stabilized_target_fiber": 6,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 6,
+          "largest_exact_lift_class": 6,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        }
+      ]
+    },
+    {
+      "average_fiber_size": 21.402486980550538,
+      "case": {
+        "j": 5,
+        "n": 32,
+        "p": 97,
+        "w": 2
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 4464,
+        "gt_2_times_average": 0,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 33,
+      "max_primitive_target_fiber": 33,
+      "max_stabilized_target_fiber": 26,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        }
+      ]
+    },
+    {
+      "average_fiber_size": 0.22064419567577873,
+      "case": {
+        "j": 5,
+        "n": 32,
+        "p": 97,
+        "w": 3
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 32,
+        "gt_1_times_average": 183936,
+        "gt_2_times_average": 183936,
+        "gt_4_times_average": 183936,
+        "gt_8_times_average": 16576
+      },
+      "max_fiber": 7,
+      "max_primitive_target_fiber": 7,
+      "max_stabilized_target_fiber": 2,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        }
+      ]
+    },
+    {
+      "average_fiber_size": 17.05753174581868,
+      "case": {
+        "j": 4,
+        "n": 64,
+        "p": 193,
+        "w": 2
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 16352,
+        "gt_2_times_average": 0,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 32,
+      "max_primitive_target_fiber": 32,
+      "max_stabilized_target_fiber": 27,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        }
+      ]
+    },
+    {
+      "average_fiber_size": 5.168526397068843,
+      "case": {
+        "j": 3,
+        "n": 128,
+        "p": 257,
+        "w": 2
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 26240,
+        "gt_2_times_average": 256,
+        "gt_4_times_average": 256,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 21,
+      "max_primitive_target_fiber": 21,
+      "max_stabilized_target_fiber": 6,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        }
+      ]
+    }
+  ],
+  "purpose": "row-sharp Q prefix atom route diagnostics",
+  "route_d_folding_defect_profiles": [
+    {
+      "average_fiber_size": 757.0588235294117,
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 1
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 1,
+        "gt_2_times_average": 0,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 758,
+      "max_primitive_target_fiber": 757,
+      "max_stabilized_target_fiber": 758,
+      "nonempty_fibers": 17,
+      "primitive_targets": 16,
+      "stabilized_targets": 1,
+      "target_space_size": 17,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 758,
+          "largest_exact_lift_class": 70,
+          "nonretained_after_largest": 688
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        },
+        {
+          "exact_lift_classes": 193,
+          "exact_prefix_depth_used": 1,
+          "fiber_size": 757,
+          "largest_exact_lift_class": 20,
+          "nonretained_after_largest": 737
+        }
+      ],
+      "top_fibers": [
+        {
+          "fiber_size": 758,
+          "folding_defect_histogram": {
+            "0": 70,
+            "4": 480,
+            "6": 192,
+            "8": 16
+          },
+          "h_coset_union_counts": {
+            "2": 70,
+            "4": 6,
+            "8": 2
+          },
+          "prefix": [
+            0
+          ],
+          "target_stabilizer_size": 16
+        },
+        {
+          "fiber_size": 757,
+          "folding_defect_histogram": {
+            "2": 140,
+            "4": 390,
+            "6": 212,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            1
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 757,
+          "folding_defect_histogram": {
+            "2": 140,
+            "4": 390,
+            "6": 212,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            2
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 757,
+          "folding_defect_histogram": {
+            "2": 140,
+            "4": 390,
+            "6": 212,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            3
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 757,
+          "folding_defect_histogram": {
+            "2": 140,
+            "4": 390,
+            "6": 212,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            4
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 757,
+          "folding_defect_histogram": {
+            "2": 140,
+            "4": 390,
+            "6": 212,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            5
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 757,
+          "folding_defect_histogram": {
+            "2": 140,
+            "4": 390,
+            "6": 212,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            6
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 757,
+          "folding_defect_histogram": {
+            "2": 140,
+            "4": 390,
+            "6": 212,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            7
+          ],
+          "target_stabilizer_size": 1
+        }
+      ],
+      "total_supports": 12870
+    },
+    {
+      "average_fiber_size": 44.53287197231834,
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 2
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 185,
+        "gt_2_times_average": 0,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 54,
+      "max_primitive_target_fiber": 49,
+      "max_stabilized_target_fiber": 54,
+      "nonempty_fibers": 289,
+      "primitive_targets": 272,
+      "stabilized_targets": 17,
+      "target_space_size": 289,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 49,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 54,
+          "largest_exact_lift_class": 6,
+          "nonretained_after_largest": 48
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        },
+        {
+          "exact_lift_classes": 43,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 49,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 47
+        }
+      ],
+      "top_fibers": [
+        {
+          "fiber_size": 54,
+          "folding_defect_histogram": {
+            "0": 6,
+            "4": 32,
+            "8": 16
+          },
+          "h_coset_union_counts": {
+            "2": 6,
+            "4": 6,
+            "8": 2
+          },
+          "prefix": [
+            0,
+            0
+          ],
+          "target_stabilizer_size": 16
+        },
+        {
+          "fiber_size": 49,
+          "folding_defect_histogram": {
+            "2": 8,
+            "4": 26,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            1,
+            9
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 49,
+          "folding_defect_histogram": {
+            "2": 8,
+            "4": 26,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            2,
+            2
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 49,
+          "folding_defect_histogram": {
+            "2": 8,
+            "4": 26,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            3,
+            13
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 49,
+          "folding_defect_histogram": {
+            "2": 8,
+            "4": 26,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            4,
+            8
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 49,
+          "folding_defect_histogram": {
+            "2": 8,
+            "4": 26,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            5,
+            4
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 49,
+          "folding_defect_histogram": {
+            "2": 8,
+            "4": 26,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            6,
+            1
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 49,
+          "folding_defect_histogram": {
+            "2": 8,
+            "4": 26,
+            "8": 15
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            7,
+            16
+          ],
+          "target_stabilizer_size": 1
+        }
+      ],
+      "total_supports": 12870
+    },
+    {
+      "average_fiber_size": 2.61958070425402,
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 3
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 2721,
+        "gt_2_times_average": 9,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 7,
+      "max_primitive_target_fiber": 5,
+      "max_stabilized_target_fiber": 7,
+      "nonempty_fibers": 4881,
+      "primitive_targets": 4864,
+      "stabilized_targets": 17,
+      "target_space_size": 4913,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        },
+        {
+          "exact_lift_classes": 6,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 5
+        }
+      ],
+      "top_fibers": [
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "0": 3,
+            "6": 4
+          },
+          "h_coset_union_counts": {
+            "2": 3,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            1,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "0": 3,
+            "6": 4
+          },
+          "h_coset_union_counts": {
+            "2": 3,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            2,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "0": 3,
+            "6": 4
+          },
+          "h_coset_union_counts": {
+            "2": 3,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            4,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "0": 3,
+            "6": 4
+          },
+          "h_coset_union_counts": {
+            "2": 3,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            8,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "0": 3,
+            "6": 4
+          },
+          "h_coset_union_counts": {
+            "2": 3,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            9,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "0": 3,
+            "6": 4
+          },
+          "h_coset_union_counts": {
+            "2": 3,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            13,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "0": 3,
+            "6": 4
+          },
+          "h_coset_union_counts": {
+            "2": 3,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            15,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "0": 3,
+            "6": 4
+          },
+          "h_coset_union_counts": {
+            "2": 3,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            16,
+            0
+          ],
+          "target_stabilizer_size": 2
+        }
+      ],
+      "total_supports": 12870
+    },
+    {
+      "average_fiber_size": 0.014101436111290682,
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 97,
+        "w": 3
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 12457,
+        "gt_1_times_average": 12457,
+        "gt_2_times_average": 12457,
+        "gt_4_times_average": 12457,
+        "gt_8_times_average": 12457
+      },
+      "max_fiber": 6,
+      "max_primitive_target_fiber": 2,
+      "max_stabilized_target_fiber": 6,
+      "nonempty_fibers": 12457,
+      "primitive_targets": 12416,
+      "stabilized_targets": 41,
+      "target_space_size": 912673,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 6,
+          "largest_exact_lift_class": 6,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 2,
+          "largest_exact_lift_class": 2,
+          "nonretained_after_largest": 0
+        }
+      ],
+      "top_fibers": [
+        {
+          "fiber_size": 6,
+          "folding_defect_histogram": {
+            "0": 6
+          },
+          "h_coset_union_counts": {
+            "2": 6,
+            "4": 6,
+            "8": 2
+          },
+          "prefix": [
+            0,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 16
+        },
+        {
+          "fiber_size": 2,
+          "folding_defect_histogram": {
+            "0": 2
+          },
+          "h_coset_union_counts": {
+            "2": 2,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            11,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 2,
+          "folding_defect_histogram": {
+            "0": 2
+          },
+          "h_coset_union_counts": {
+            "2": 2,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            14,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 2,
+          "folding_defect_histogram": {
+            "0": 2
+          },
+          "h_coset_union_counts": {
+            "2": 2,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            17,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 2,
+          "folding_defect_histogram": {
+            "0": 2
+          },
+          "h_coset_union_counts": {
+            "2": 2,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            21,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 2,
+          "folding_defect_histogram": {
+            "0": 2
+          },
+          "h_coset_union_counts": {
+            "2": 2,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            23,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 2,
+          "folding_defect_histogram": {
+            "0": 2
+          },
+          "h_coset_union_counts": {
+            "2": 2,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            25,
+            0
+          ],
+          "target_stabilizer_size": 2
+        },
+        {
+          "fiber_size": 2,
+          "folding_defect_histogram": {
+            "0": 2
+          },
+          "h_coset_union_counts": {
+            "2": 2,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            0,
+            28,
+            0
+          ],
+          "target_stabilizer_size": 2
+        }
+      ],
+      "total_supports": 12870
+    },
+    {
+      "average_fiber_size": 21.402486980550538,
+      "case": {
+        "j": 5,
+        "n": 32,
+        "p": 97,
+        "w": 2
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 4464,
+        "gt_2_times_average": 0,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 33,
+      "max_primitive_target_fiber": 33,
+      "max_stabilized_target_fiber": 26,
+      "nonempty_fibers": 9408,
+      "primitive_targets": 9312,
+      "stabilized_targets": 96,
+      "target_space_size": 9409,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        },
+        {
+          "exact_lift_classes": 33,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 33,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 32
+        }
+      ],
+      "top_fibers": [
+        {
+          "fiber_size": 33,
+          "folding_defect_histogram": {
+            "3": 6,
+            "5": 27
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            4,
+            70
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 33,
+          "folding_defect_histogram": {
+            "3": 6,
+            "5": 27
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            6,
+            12
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 33,
+          "folding_defect_histogram": {
+            "3": 6,
+            "5": 27
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            9,
+            27
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 33,
+          "folding_defect_histogram": {
+            "3": 6,
+            "5": 27
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            10,
+            1
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 33,
+          "folding_defect_histogram": {
+            "3": 6,
+            "5": 27
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            11,
+            8
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 33,
+          "folding_defect_histogram": {
+            "3": 6,
+            "5": 27
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            14,
+            33
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 33,
+          "folding_defect_histogram": {
+            "3": 6,
+            "5": 27
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            15,
+            75
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 33,
+          "folding_defect_histogram": {
+            "3": 6,
+            "5": 27
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            17,
+            64
+          ],
+          "target_stabilizer_size": 1
+        }
+      ],
+      "total_supports": 201376
+    },
+    {
+      "average_fiber_size": 0.22064419567577873,
+      "case": {
+        "j": 5,
+        "n": 32,
+        "p": 97,
+        "w": 3
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 32,
+        "gt_1_times_average": 183936,
+        "gt_2_times_average": 183936,
+        "gt_4_times_average": 183936,
+        "gt_8_times_average": 16576
+      },
+      "max_fiber": 7,
+      "max_primitive_target_fiber": 7,
+      "max_stabilized_target_fiber": 2,
+      "nonempty_fibers": 183936,
+      "primitive_targets": 183904,
+      "stabilized_targets": 32,
+      "target_space_size": 912673,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        },
+        {
+          "exact_lift_classes": 1,
+          "exact_prefix_depth_used": 3,
+          "fiber_size": 7,
+          "largest_exact_lift_class": 7,
+          "nonretained_after_largest": 0
+        }
+      ],
+      "top_fibers": [
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "1": 7
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            1,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "1": 7
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            8,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "1": 7
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            12,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "1": 7
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            18,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "1": 7
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            19,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "1": 7
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            20,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "1": 7
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            22,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 7,
+          "folding_defect_histogram": {
+            "1": 7
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            27,
+            0,
+            0
+          ],
+          "target_stabilizer_size": 1
+        }
+      ],
+      "total_supports": 201376
+    },
+    {
+      "average_fiber_size": 17.05753174581868,
+      "case": {
+        "j": 4,
+        "n": 64,
+        "p": 193,
+        "w": 2
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 16352,
+        "gt_2_times_average": 0,
+        "gt_4_times_average": 0,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 32,
+      "max_primitive_target_fiber": 32,
+      "max_stabilized_target_fiber": 27,
+      "nonempty_fibers": 37249,
+      "primitive_targets": 37056,
+      "stabilized_targets": 193,
+      "target_space_size": 37249,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        },
+        {
+          "exact_lift_classes": 32,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 32,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 31
+        }
+      ],
+      "top_fibers": [
+        {
+          "fiber_size": 32,
+          "folding_defect_histogram": {
+            "2": 3,
+            "4": 29
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            4,
+            148
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 32,
+          "folding_defect_histogram": {
+            "2": 3,
+            "4": 29
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            7,
+            19
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 32,
+          "folding_defect_histogram": {
+            "2": 3,
+            "4": 29
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            10,
+            153
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 32,
+          "folding_defect_histogram": {
+            "2": 3,
+            "4": 29
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            12,
+            174
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 32,
+          "folding_defect_histogram": {
+            "2": 3,
+            "4": 29
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            21,
+            171
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 32,
+          "folding_defect_histogram": {
+            "2": 3,
+            "4": 29
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            25,
+            136
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 32,
+          "folding_defect_histogram": {
+            "2": 3,
+            "4": 29
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            30,
+            26
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 32,
+          "folding_defect_histogram": {
+            "2": 3,
+            "4": 29
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            32,
+            15
+          ],
+          "target_stabilizer_size": 1
+        }
+      ],
+      "total_supports": 635376
+    },
+    {
+      "average_fiber_size": 5.168526397068843,
+      "case": {
+        "j": 3,
+        "n": 128,
+        "p": 257,
+        "w": 2
+      },
+      "heavy_target_counts": {
+        "gt_16_times_average": 0,
+        "gt_1_times_average": 26240,
+        "gt_2_times_average": 256,
+        "gt_4_times_average": 256,
+        "gt_8_times_average": 0
+      },
+      "max_fiber": 21,
+      "max_primitive_target_fiber": 21,
+      "max_stabilized_target_fiber": 6,
+      "nonempty_fibers": 65792,
+      "primitive_targets": 65536,
+      "stabilized_targets": 256,
+      "target_space_size": 66049,
+      "top_fiber_exact_lift_diagnostics": [
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        },
+        {
+          "exact_lift_classes": 21,
+          "exact_prefix_depth_used": 2,
+          "fiber_size": 21,
+          "largest_exact_lift_class": 1,
+          "nonretained_after_largest": 20
+        }
+      ],
+      "top_fibers": [
+        {
+          "fiber_size": 21,
+          "folding_defect_histogram": {
+            "1": 1,
+            "3": 20
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            1,
+            193
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 21,
+          "folding_defect_histogram": {
+            "1": 1,
+            "3": 20
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            2,
+            1
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 21,
+          "folding_defect_histogram": {
+            "3": 21
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            3,
+            195
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 21,
+          "folding_defect_histogram": {
+            "1": 1,
+            "3": 20
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            4,
+            4
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 21,
+          "folding_defect_histogram": {
+            "3": 21
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            5,
+            199
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 21,
+          "folding_defect_histogram": {
+            "3": 21
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            6,
+            9
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 21,
+          "folding_defect_histogram": {
+            "3": 21
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            7,
+            205
+          ],
+          "target_stabilizer_size": 1
+        },
+        {
+          "fiber_size": 21,
+          "folding_defect_histogram": {
+            "1": 1,
+            "3": 20
+          },
+          "h_coset_union_counts": {
+            "2": 0,
+            "4": 0,
+            "8": 0
+          },
+          "prefix": [
+            8,
+            16
+          ],
+          "target_stabilizer_size": 1
+        }
+      ],
+      "total_supports": 341376
+    }
+  ],
+  "status": "EXPERIMENTAL_EVIDENCE_NOT_A_PROOF",
+  "summary_findings": {
+    "bc_to_q_observation": "toy chart counts are controlled by multiplicity-weighted sums of ordinary prefix fibers; non-injective theta curves require multiplicity accounting",
+    "cases_with_nonretained_exact_lift_mass": [
+      {
+        "case": {
+          "j": 8,
+          "n": 16,
+          "p": 17,
+          "w": 1
+        },
+        "fiber_size": 758,
+        "nonretained": 688
+      },
+      {
+        "case": {
+          "j": 8,
+          "n": 16,
+          "p": 17,
+          "w": 2
+        },
+        "fiber_size": 54,
+        "nonretained": 48
+      },
+      {
+        "case": {
+          "j": 8,
+          "n": 16,
+          "p": 17,
+          "w": 3
+        },
+        "fiber_size": 7,
+        "nonretained": 5
+      },
+      {
+        "case": {
+          "j": 5,
+          "n": 32,
+          "p": 97,
+          "w": 2
+        },
+        "fiber_size": 33,
+        "nonretained": 32
+      },
+      {
+        "case": {
+          "j": 4,
+          "n": 64,
+          "p": 193,
+          "w": 2
+        },
+        "fiber_size": 32,
+        "nonretained": 31
+      },
+      {
+        "case": {
+          "j": 3,
+          "n": 128,
+          "p": 257,
+          "w": 2
+        },
+        "fiber_size": 21,
+        "nonretained": 20
+      }
+    ],
+    "composite_descent_failures": 0,
+    "composite_descent_observation": "gcd(e,N) fiber-factorization passed all checked finite regressions",
+    "generated_prefix_support_observation": "top finite fibers often split into multiple exact lift classes; support payment cannot be inferred from image labels",
+    "route_d_observation": "top fibers frequently have large nonzero signed folding defect; zero-defect descent alone is insufficient",
+    "top_seam_constant_diff_violations": 0,
+    "top_seam_free_core_warning": "some unmarked side-pair keys have multiple common cores/mates, so marked incidence is the right object",
+    "top_seam_observation": "minimal Q1 collisions satisfy the constant side-polynomial condition in all checked cases"
+  },
+  "top_seam_marked_incidence": [
+    {
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 1
+      },
+      "pair_budget": 4865239,
+      "pair_cap": 4000000,
+      "status": "SKIPPED_PAIR_BUDGET"
+    },
+    {
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 2
+      },
+      "max_common_cores_for_one_unmarked_sidepair": 252,
+      "max_minimal_mates_for_one_support": 20,
+      "minimal_one_sided_difference": 3,
+      "minimal_ordered_marked_pairs": 177408,
+      "minimal_unordered_marked_pairs": 88704,
+      "pair_budget": 280575,
+      "primitive_minimal_unordered_pairs": 83552,
+      "side_polynomial_constant_diff_violations": 0,
+      "sidepair_keys": 352,
+      "status": "CHECKED"
+    },
+    {
+      "case": {
+        "j": 8,
+        "n": 16,
+        "p": 17,
+        "w": 3
+      },
+      "max_common_cores_for_one_unmarked_sidepair": 70,
+      "max_minimal_mates_for_one_support": 6,
+      "minimal_one_sided_difference": 4,
+      "minimal_ordered_marked_pairs": 17640,
+      "minimal_unordered_marked_pairs": 8820,
+      "pair_budget": 12743,
+      "primitive_minimal_unordered_pairs": 8640,
+      "side_polynomial_constant_diff_violations": 0,
+      "sidepair_keys": 126,
+      "status": "CHECKED"
+    },
+    {
+      "case": {
+        "j": 5,
+        "n": 32,
+        "p": 97,
+        "w": 2
+      },
+      "max_common_cores_for_one_unmarked_sidepair": 325,
+      "max_minimal_mates_for_one_support": 10,
+      "minimal_one_sided_difference": 3,
+      "minimal_ordered_marked_pairs": 624000,
+      "minimal_unordered_marked_pairs": 312000,
+      "pair_budget": 2121312,
+      "primitive_minimal_unordered_pairs": 308320,
+      "side_polynomial_constant_diff_violations": 0,
+      "sidepair_keys": 960,
+      "status": "CHECKED"
+    },
+    {
+      "case": {
+        "j": 5,
+        "n": 32,
+        "p": 97,
+        "w": 3
+      },
+      "max_common_cores_for_one_unmarked_sidepair": 24,
+      "max_minimal_mates_for_one_support": 6,
+      "minimal_one_sided_difference": 4,
+      "minimal_ordered_marked_pairs": 19008,
+      "minimal_unordered_marked_pairs": 9504,
+      "pair_budget": 18624,
+      "primitive_minimal_unordered_pairs": 9504,
+      "side_polynomial_constant_diff_violations": 0,
+      "sidepair_keys": 396,
+      "status": "CHECKED"
+    },
+    {
+      "case": {
+        "j": 4,
+        "n": 64,
+        "p": 193,
+        "w": 2
+      },
+      "pair_budget": 5333720,
+      "pair_cap": 4000000,
+      "status": "SKIPPED_PAIR_BUDGET"
+    }
+  ]
+}

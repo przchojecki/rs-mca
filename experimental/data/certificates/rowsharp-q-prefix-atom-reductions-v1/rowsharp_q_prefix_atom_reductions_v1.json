@@ -1,0 +1,279 @@
+{
+  "claim_class": "ROW_SHARP_Q_PREFIX_ATOM_REDUCTION_PACKET",
+  "conditional_closure": {
+    "integer_slack": 274693173267264137,
+    "missing_support_certificate": "|G_gen_support(z)| + |D_full_rank_prim(z)| <= t*p",
+    "paid_plus_retained": 143763024458816,
+    "retained_exact_lift_bound": 11440,
+    "slack_bits_approx": 10.900667525,
+    "status": "PROVED_IF_SUPPORT_CERTIFICATE_SUPPLIED",
+    "t_times_p": 143763024447376,
+    "target_floor": 274836936291722953
+  },
+  "does_not_prove": [
+    "U(1116048) <= B*",
+    "the KoalaBear MCA first-safe agreement",
+    "row-sharp Q-prefix atom theorem",
+    "primitive full-rank signed-defect support bound",
+    "generated-prefix support payment"
+  ],
+  "missing_certificate": {
+    "equivalent_forms": [
+      "support-level primitive full-rank signed-defect theorem",
+      "generated-prefix support multiplicity theorem",
+      "deterministic fixed-subgroup RIM nonvanishing after first-match branch deletion",
+      "marked-incidence injection into {0,...,67471} x F_p",
+      "primitive Fourier phase-spread coefficient bound"
+    ],
+    "name": "Primitive fixed-subgroup Boolean-coset / Route D support certificate",
+    "sufficient_bound": 143763024447376
+  },
+  "not_a_safe_side_certificate": true,
+  "proved_reductions": {
+    "exact_lift_terminal_16_bound": {
+      "reason": "w>=2^16 forces exact-lift mask divisibility by (X^n-1)/(X^16-1).",
+      "retained_exact_lift_bound": 11440,
+      "status": "IMPORTED_PROVED_INPUT_FROM_KB_LEDGER"
+    },
+    "folding_identities": {
+      "even_power_sum": "P_{2a}(S)=sum_y u_y y^a",
+      "odd_power_sum": "P_{2a+1}(S)=sum_y sigma_y x y^a",
+      "status": "PROVED"
+    },
+    "newton_power_sum_equivalence": {
+      "condition": "w < p",
+      "meaning": "Locator-prefix equality is triangularly equivalent to equality of the first w power sums.",
+      "p": 2130706433,
+      "status": "PROVED",
+      "w": 67471
+    },
+    "q1_collision_distance": {
+      "one_sided_difference_at_least": 67472,
+      "proof_key": "deg(Lambda_S-Lambda_T)<=j-w-1 and Lambda_S-Lambda_T=G(U-V)",
+      "status": "PROVED",
+      "symmetric_difference_at_least": 134944
+    },
+    "raw_constant_list_import_obstruction": {
+      "avg_floor": 57198030365,
+      "meaning": "The raw prefix map has average fiber about 2^35.735, so no constant-list RS theorem can apply to raw fibers.",
+      "status": "PROVED_BY_AVERAGE"
+    },
+    "rs_list_equivalence": {
+      "complement_side_dimension": 1048577,
+      "complement_side_statement": "Equivalently, after passing to D\\S, it is an RS_D(k+1) list at agreement a=k+t.",
+      "status": "PROVED_REFORMULATION",
+      "support_side_dimension": 913633,
+      "support_side_statement": "A prefix fiber is the list of h in F_p[X]_<913633 agreeing with -F_z on at least 981104 points of D."
+    },
+    "small_signed_defect_impossibility": {
+      "nonzero_signed_defect_support_at_least": 33737,
+      "odd_equations": 33736,
+      "proof_key": "Vandermonde full column rank on any support of size <= number of odd equations.",
+      "status": "PROVED"
+    },
+    "top_seam_constant_difference": {
+      "conclusion": "At e=w+1, the coprime side locators U and V satisfy U-V=constant.",
+      "degree_bound_for_side_difference": 0,
+      "guardrail": "The common core G must remain marked; unmarked side pairs can have many cores.",
+      "minimal_one_sided_difference": 67472,
+      "status": "PROVED"
+    }
+  },
+  "provenance": [
+    {
+      "consumed_statement": "p,n,k,agreement,j,t,w,B*,K_raw,K_rem and B_gen<=t*p image-cell arithmetic.",
+      "name": "KB adjacent row constants and generated image-cell ledger",
+      "source_path": "experimental/notes/thresholds/kb_mca_1116048_first_match_ledger_v1.md",
+      "source_pr_or_commit": "local main / prior KB-MCA 1116048 partial ledger packet",
+      "status": "IMPORTED_PROVED_INPUT_WITH_CONDITIONAL_LEDGER_SCOPE"
+    },
+    {
+      "consumed_statement": "A retained exact lifted prefix class has size at most binom(16,7)=11440.",
+      "name": "Exact-lift terminal-16 retained fiber bound",
+      "source_path": "experimental/notes/thresholds/kb_mca_1116048_first_match_ledger_v1.md",
+      "source_pr_or_commit": "local main / prior KB-MCA 1116048 partial ledger packet",
+      "status": "IMPORTED_PROVED_INPUT"
+    },
+    {
+      "consumed_statement": "Q-fin needs near-lossless recursion; Route gamma/folding defects are the aligned route.",
+      "name": "Q-fin / Route gamma strategy context",
+      "source_path": "experimental/cap25_v13_missing_inputs_strategy.md",
+      "source_pr_or_commit": "local main strategy note",
+      "status": "STRATEGY_CONTEXT_NOT_CONSUMED_AS_PAYMENT"
+    },
+    {
+      "consumed_statement": "At e=w+1, coprime side locators U,V satisfy U-V=constant; common core G remains marked.",
+      "name": "Top-seam marked-incidence guardrail",
+      "source_path": "experimental/notes/thresholds/rowsharp_q_prefix_atom_reductions_v1.md",
+      "source_pr_or_commit": "this packet; conceptually adjacent to open PR #389",
+      "status": "PROVED_LOCAL_LEMMA_DOES_NOT_SUPERSEDE_PR_389"
+    },
+    {
+      "consumed_statement": "Small-model regressions support c=gcd(e,N) quotient factorization.",
+      "name": "Composite-prefix gcd(e,N) descent context",
+      "source_path": "experimental/notes/thresholds/rowsharp_q_prefix_atom_routes_v1.md",
+      "source_pr_or_commit": "this packet; conceptually adjacent to open PR #394",
+      "status": "EXPERIMENTAL_REGRESSION_NOT_CONSUMED_AS_PAYMENT"
+    },
+    {
+      "consumed_statement": "Toy chart decompositions motivate multiplicity accounting; no BC/SP upper payment is imported here.",
+      "name": "BC-to-Q and shift-pair route context",
+      "source_path": "experimental/notes/thresholds/rowsharp_q_prefix_atom_routes_v1.md",
+      "source_pr_or_commit": "this packet; conceptually adjacent to open PRs #393/#395/#396",
+      "status": "EXPERIMENTAL_CONTEXT_NOT_CONSUMED_AS_PAYMENT"
+    }
+  ],
+  "rim_guardrail": {
+    "agreement_checks": {
+      "u_minus_v_zero_on_12": [
+        true,
+        true
+      ],
+      "u_zero_on_13": [
+        true,
+        true
+      ],
+      "v_zero_on_23": [
+        true,
+        true
+      ]
+    },
+    "dimension_k": 3,
+    "domain_mu_8": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      15,
+      13,
+      9
+    ],
+    "edges": {
+      "12": [
+        8,
+        16
+      ],
+      "13": [
+        1,
+        2
+      ],
+      "23": [
+        4,
+        13
+      ]
+    },
+    "field": "F_17",
+    "kernel_vector": [
+      2,
+      14,
+      1,
+      3,
+      0,
+      3
+    ],
+    "matrix_times_kernel": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "meaning": "Symbolic RIM full rank does not imply full rank after a fixed roots-of-unity specialization; a deterministic rank-drop/pivot first-match branch is necessary.",
+    "omega": 2,
+    "rim_matrix_rows_mod_17": [
+      [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        2,
+        4,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        4,
+        16
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        13,
+        16
+      ],
+      [
+        1,
+        8,
+        13,
+        16,
+        9,
+        4
+      ],
+      [
+        1,
+        16,
+        1,
+        16,
+        1,
+        16
+      ]
+    ],
+    "status": "COUNTEREXAMPLE_TO_NAIVE_FIXED_SUBGROUP_RIM_NONSINGULARITY",
+    "u_coefficients_constant_to_quadratic": [
+      2,
+      14,
+      1
+    ],
+    "v_coefficients_constant_to_quadratic": [
+      3,
+      0,
+      3
+    ],
+    "weak_partition_connected": true
+  },
+  "row_packet": {
+    "B_gen_image_cell_bound": 143763024447376,
+    "B_rem_after_generated_image_cells": 274836965086947711,
+    "B_star": 274980728111395087,
+    "K_raw": 4807520,
+    "K_rem": 4805007,
+    "agreement_a": 1116048,
+    "field": "KoalaBear sextic line field",
+    "j": 981104,
+    "k": 1048576,
+    "n": 2097152,
+    "p": 2130706433,
+    "q_line": 93571093019388561295270373781649880353786165192103559169,
+    "safe_certificate_status": "NOT_PROVED_BY_THIS_PACKET",
+    "t": 67472,
+    "w": 67471
+  },
+  "status": "REDUCED_NOT_PROVED",
+  "supporting_experimental_packet": {
+    "json": "experimental/data/certificates/rowsharp-q-prefix-atom-routes-v1/rowsharp_q_prefix_atom_routes_v1.json",
+    "report": "experimental/notes/thresholds/rowsharp_q_prefix_atom_routes_v1.md",
+    "script": "experimental/scripts/experiment_rowsharp_q_prefix_atom_routes_v1.py",
+    "status": "EXPERIMENTAL_EVIDENCE_NOT_A_PROOF"
+  },
+  "target": {
+    "avg_floor": 57198030365,
+    "avg_log2_approx": 35.735246417,
+    "integer_form": "|R_prim(z)| * p^67471 <= 4805007 * binom(2097152,981104)",
+    "statement": "max primitive Q-fin fiber <= 4805007 * binom(n,j) / p^w",
+    "target_floor": 274836936291722953
+  }
+}
