@@ -16,6 +16,7 @@ python3 experimental/scripts/verify_l1_fourier_orbit_cancellation.py
 python3 experimental/scripts/verify_l1_coset_chart_residue_bridge_v1.py --check
 python3 experimental/scripts/certify_koalabear_bchks25_jmca_bounds_v1.py --check
 python3 experimental/scripts/verify_m1_half_turn_pair_core_13_v1.py --check
+python3 experimental/scripts/verify_kb_mca_1116048_first_match_ledger_v1.py --check
 ```
 
 The active Python scripts are intentionally flat in this directory. Several M1

@@ -1,0 +1,2196 @@
+{
+  "claim_class": "PARTIAL_UPPER_LEDGER_AUDIT",
+  "conditional_first_match_closure": {
+    "K_rem": 4805007,
+    "assumptions_required": [
+      "Every named open first-match branch is paid by an explicit theorem/certificate with printed cost.",
+      "The remaining primitive Q-fin residual satisfies max_z |R(z)| <= 4805007 * binom(2097152,981104) / p^67471.",
+      "The complete first-match paid-cell sum is <= B* under the repo endpoint and denominator conventions."
+    ],
+    "conclusion_if_all_assumptions_hold": "the row would close under a future complete U(1116048) upper-ledger certificate",
+    "not_proved_here": "This packet does not prove U(1116048)<=B*.  It does not pay all named open branches and does not prove the primitive max-orbit certificate.",
+    "proved_paid_budget": 143763495894416,
+    "remaining_budget": 274836964615500671,
+    "residual_fiber_definition": "R(z) is the first-match residual set of j-subsets with Phi_w(S)=z after generated-field, terminal quotient/planted, tangent/common-line, extension-confined, sparse/Pade-Hankel, known M1/half-turn, and contained/rank-drop branches are removed.",
+    "status": "CONDITIONAL_ON_ALL_NAMED_OPEN_BRANCH_PAYMENTS",
+    "theorem": "conditional ledger implication for KB-MCA A=1116048"
+  },
+  "conditional_ledger": {
+    "B_paid_conditional": 143763497991569,
+    "B_rem_conditional": 274836964613403518,
+    "K_rem_conditional": 4805007,
+    "deducted_conditional_branches": [
+      "quotient_periodic_or_divisor_stabilized",
+      "base_generated_field_collision",
+      "m1_half_turn_or_coefficient_shadow"
+    ],
+    "meaning": "Adds only the named n+1 half-turn/pair-small image cost as a scenario; still not a deployed proof."
+  },
+  "deployed_arithmetic": {
+    "A_adjacent_candidate": 1116048,
+    "B_gen_t_times_p": 143763024447376,
+    "B_rem_after_generated_collision": 274836965086947711,
+    "B_rem_after_generated_collision_and_terminal_quotient": 274836964615500671,
+    "B_star_floor_q_minus_1_over_2^128": 274980728111395087,
+    "K_after_generated_collision": 4805007,
+    "K_after_generated_collision_and_terminal_quotient": 4805007,
+    "K_after_generated_collision_plus_pair_small": 4805007,
+    "K_raw": 4807520,
+    "base_generated_field_size_for_generated_cells": 2130706433,
+    "j": 981104,
+    "k": 1048576,
+    "line_field_size": 93571093019388561295270373781649880353786165192103559169,
+    "log2_average": 35.73524641455151,
+    "log2_budget": 57.932108124695574,
+    "n": 2097152,
+    "not_certified_safe": true,
+    "p": 2130706433,
+    "pair_small_n_plus_1_cost": 2097153,
+    "prefix_depth_w": 67471,
+    "q_line": 93571093019388561295270373781649880353786165192103559169,
+    "raw_margin_bits": 22.196861710144063,
+    "safe_certificate_status": "NOT_PROVED_BY_THIS_PACKET",
+    "t": 67472,
+    "terminal_quotient_raw_paid_cost": 471447040
+  },
+  "finite_field_guardrail": {
+    "field": "F_17",
+    "forced_slope": 16,
+    "g3_exact_key": "1,3,3,1,2,0,0,-2",
+    "g3_exact_nonzero": true,
+    "g3_mod_p": 0,
+    "generated_cell": {
+      "lambda": 16,
+      "row_index": 3
+    },
+    "half_turn_residual_size": 4,
+    "locator_coefficients_c0_to_cj_mod_p": [
+      9,
+      3,
+      3,
+      1,
+      1
+    ],
+    "meaning": "The support is a finite-field {1,3} survivor, but its honest cyclotomic cross-defect is nonzero and only vanishes after reduction modulo 17.",
+    "n": 16,
+    "omega": 3,
+    "row1_zero": true,
+    "row3_zero": true,
+    "status": "FINITE_ONLY_GENERATED_COLLISION_GUARDRAIL",
+    "support_exponents": [
+      0,
+      1,
+      3,
+      14
+    ],
+    "support_values": [
+      1,
+      3,
+      10,
+      2
+    ]
+  },
+  "first_match_branches": [
+    {
+      "branch": "contained_or_noncontained_failure",
+      "cost": 0,
+      "deducted_in_proved_ledger": false,
+      "order": 1,
+      "reason": "These witnesses are removed before the noncontained finite-slope numerator is counted.",
+      "status": "INTERFACE_BUCKET_NOT_A_DEDUCTED_SAFE_CELL"
+    },
+    {
+      "branch": "rank_drop_or_pivot_failure",
+      "cost": null,
+      "deducted_in_proved_ledger": false,
+      "order": 2,
+      "reason": "The generated-collision lemma assumes a surviving pivot row with red_p(B_0(S)) nonzero.",
+      "status": "OPEN_EXACT_MINOR_OR_PIVOT_BUCKET_REQUIRED"
+    },
+    {
+      "branch": "tangent_common_line_residue",
+      "cost": null,
+      "deducted_in_proved_ledger": false,
+      "high_agreement_tangent_cap_floor_n_minus_k_over_3": 349525,
+      "order": 3,
+      "radius_j": 981104,
+      "reason": "The standard high-agreement tangent function is unavailable because j is outside the high-agreement range.",
+      "status": "OPEN_FOR_THIS_ROW"
+    },
+    {
+      "branch": "quotient_periodic_or_divisor_stabilized",
+      "cost": 471447040,
+      "deducted_in_proved_ledger": true,
+      "order": 4,
+      "reason": "Dyadic quotient/planted descent is proved for r_c<=w; terminal rungs c=65536,131072 are raw-paid. Lower-rung obligations and large planted tails remain open.",
+      "status": "PARTIAL_PROVED_DESCENT_WITH_TERMINAL_RAW_PAID"
+    },
+    {
+      "branch": "planted_prefix_structured",
+      "cost": null,
+      "deducted_in_proved_ledger": false,
+      "order": 5,
+      "reason": "Planted/prefix structured cells need a row-specific image cost before deduction.",
+      "status": "OPEN_EXACT_IMAGE_COST_REQUIRED"
+    },
+    {
+      "branch": "extension_valued_slope",
+      "cost": null,
+      "deducted_in_proved_ledger": false,
+      "order": 6,
+      "reason": "Line slopes live in F_{p^6}; this packet only pays base-generated finite-only cells over F_p.",
+      "status": "OPEN_PROPER_EXTENSION_BRANCH"
+    },
+    {
+      "base_field_slope_values": 2130706433,
+      "branch": "base_generated_field_collision",
+      "cost": 143763024447376,
+      "cost_model": "row-indexed generated-slope image cells",
+      "deducted_in_proved_ledger": true,
+      "formula": "B_gen <= R*p <= t*p",
+      "not_a_raw_support_bound": true,
+      "order": 7,
+      "row_count_bound_R": 67472,
+      "status": "PROVED_IMAGE_CELL_COVER"
+    },
+    {
+      "branch": "sparse_sigma_or_sparse_support",
+      "cost": null,
+      "deducted_in_proved_ledger": false,
+      "order": 8,
+      "reason": "No A=1116048 sparse-sigma image cost is supplied by this packet.",
+      "status": "OPEN_ROW_SPECIFIC_BOUND_REQUIRED"
+    },
+    {
+      "branch": "m1_half_turn_or_coefficient_shadow",
+      "cost": 2097153,
+      "deducted_in_conditional_ledger": true,
+      "deducted_in_proved_ledger": false,
+      "order": 9,
+      "reason": "The half-turn and nonconsecutive-window packets localize printed coefficient windows; pair-deficient residual windows and arbitrary sparse Hankel row-slices remain open.",
+      "status": "PARTIAL_NORMAL_FORM_WITH_NAMED_RESIDUAL"
+    },
+    {
+      "branch": "primitive_qfin_residual",
+      "cost": null,
+      "deducted_in_proved_ledger": false,
+      "order": 10,
+      "status": "TARGET_NOT_DEDUCTED",
+      "target": "max primitive Q-fin fiber <= K_rem * binom(n,j)/p^w"
+    }
+  ],
+  "generated_field_collision_charge": {
+    "B_gen_bound": 143763024447376,
+    "base_slope_field_size": 2130706433,
+    "cost_model": "row-indexed generated-slope image cells, not raw supports",
+    "requires_prior_buckets": [
+      "contained/noncontained failure removed",
+      "rank-drop/pivot-failure removed",
+      "denominators cleared and not killed by reduction",
+      "base/generated-field normalized printed affine row packet"
+    ],
+    "row_count_bound_R": 67472,
+    "status": "PROVED_IMAGE_CELL_COVER",
+    "theorem": "finite-only affine row survivors are generated-field reduction collisions"
+  },
+  "generated_prefix_support_payment_counterexample": {
+    "exact_lift_classes": 193,
+    "field": "F_17",
+    "finite_fiber_size": 757,
+    "j": 8,
+    "largest_exact_lift_class": 20,
+    "meaning": "Every non-retained lift class is a genuine generated-prefix collision label, but the support multiplicity is much larger than the row-indexed image-cell count.  A separate support/fiber multiplicity theorem is required for finite Q2 use.",
+    "n": 16,
+    "nonretained_supports_after_keeping_largest_class": 737,
+    "omega": 3,
+    "primitive_target": 1,
+    "status": "COUNTEREXAMPLE_TO_NAIVE_SUPPORT_PAYMENT_FROM_IMAGE_CELLS",
+    "target_stabilizer_size": 1,
+    "w": 1,
+    "w_times_p_image_cell_bound": 17
+  },
+  "honest_cyclotomic_exact_lift_fiber_bound": {
+    "bound_is_below_K_rem_times_average": true,
+    "comparison_K_rem": 4805007,
+    "honest_cyclotomic_exact_fiber_bound": 11440,
+    "j": 981104,
+    "largest_power_of_two_exponent_at_most_w": 16,
+    "max_variable_terminal_cosets": 7,
+    "n": 2097152,
+    "status": "PROVED_EXACT_LIFT_ONLY_NOT_DEDUCTED",
+    "terminal_coset_size": 131072,
+    "terminal_quotient_order": 16,
+    "w": 67471,
+    "why_not_deducted": "The exact-lift proof works after a single honest cyclotomic prefix lift is fixed. The proposed lift-class generated removal would need a valid finite-field image cost for prefix-vector lift classes; w*p row-coordinate cells do not bound the number of finite prefix values or raw supports."
+  },
+  "next_target": {
+    "name": "KB-MCA 1116048 primitive Q-fin max-orbit flatness after first-match removal",
+    "proved_K_rem_current": 4805007,
+    "remaining_ledger_work": [
+      "prove or certify extension-valued slope image cells",
+      "prove lower-rung quotient/planted max-fiber certificates for c=2..32768",
+      "prove arbitrary planted-tail bounds for c>=262144",
+      "prove primitive-heavy-orbit exclusion from Q1/higher collision ledgers so Q2 stabilizer forcing activates",
+      "prove sparse-sigma image costs or keep sparse branch in primitive residual",
+      "pay pair-deficient residual windows and classify arbitrary sparse Hankel row-slices beyond printed {1,r} coefficient windows",
+      "prove generated-prefix support multiplicity for non-retained exact lift classes, or an equivalent primitive orbitwise flatness certificate",
+      "prove primitive max-orbit flatness with K<=4805007, or replace it by a replayable certified recursion"
+    ],
+    "statement": "max primitive Q-fin fiber <= K_rem * binom(n,j) / p^w"
+  },
+  "not_a_safe_side_certificate": true,
+  "not_certified_safe": true,
+  "note": "experimental/notes/thresholds/kb_mca_1116048_first_match_ledger_v1.md",
+  "partial_paid_ledger": {
+    "B_paid_proved": 143763495894416,
+    "B_rem_proved": 274836964615500671,
+    "K_rem_proved": 4805007,
+    "not_complete_U": true,
+    "paid_cells": [
+      {
+        "cost": 471447040,
+        "dedup_rule": "first-match branch order",
+        "name": "quotient_periodic_or_divisor_stabilized",
+        "paid": true,
+        "status": "PARTIAL_PROVED_DESCENT_WITH_TERMINAL_RAW_PAID"
+      },
+      {
+        "cost": 143763024447376,
+        "dedup_rule": "first-match branch order",
+        "name": "base_generated_field_collision",
+        "paid": true,
+        "status": "PROVED_IMAGE_CELL_COVER"
+      }
+    ],
+    "unpaid_residual_cells": [
+      {
+        "blocking_input": "These witnesses are removed before the noncontained finite-slope numerator is counted.",
+        "cost": 0,
+        "dedup_rule": null,
+        "name": "contained_or_noncontained_failure",
+        "paid": false,
+        "status": "INTERFACE_BUCKET_NOT_A_DEDUCTED_SAFE_CELL"
+      },
+      {
+        "blocking_input": "The generated-collision lemma assumes a surviving pivot row with red_p(B_0(S)) nonzero.",
+        "cost": null,
+        "dedup_rule": null,
+        "name": "rank_drop_or_pivot_failure",
+        "paid": false,
+        "status": "OPEN_EXACT_MINOR_OR_PIVOT_BUCKET_REQUIRED"
+      },
+      {
+        "blocking_input": "The standard high-agreement tangent function is unavailable because j is outside the high-agreement range.",
+        "cost": null,
+        "dedup_rule": null,
+        "name": "tangent_common_line_residue",
+        "paid": false,
+        "status": "OPEN_FOR_THIS_ROW"
+      },
+      {
+        "blocking_input": "Planted/prefix structured cells need a row-specific image cost before deduction.",
+        "cost": null,
+        "dedup_rule": null,
+        "name": "planted_prefix_structured",
+        "paid": false,
+        "status": "OPEN_EXACT_IMAGE_COST_REQUIRED"
+      },
+      {
+        "blocking_input": "Line slopes live in F_{p^6}; this packet only pays base-generated finite-only cells over F_p.",
+        "cost": null,
+        "dedup_rule": null,
+        "name": "extension_valued_slope",
+        "paid": false,
+        "status": "OPEN_PROPER_EXTENSION_BRANCH"
+      },
+      {
+        "blocking_input": "No A=1116048 sparse-sigma image cost is supplied by this packet.",
+        "cost": null,
+        "dedup_rule": null,
+        "name": "sparse_sigma_or_sparse_support",
+        "paid": false,
+        "status": "OPEN_ROW_SPECIFIC_BOUND_REQUIRED"
+      },
+      {
+        "blocking_input": "The half-turn and nonconsecutive-window packets localize printed coefficient windows; pair-deficient residual windows and arbitrary sparse Hankel row-slices remain open.",
+        "cost": 2097153,
+        "dedup_rule": null,
+        "name": "m1_half_turn_or_coefficient_shadow",
+        "paid": false,
+        "status": "PARTIAL_NORMAL_FORM_WITH_NAMED_RESIDUAL"
+      },
+      {
+        "blocking_input": "max primitive Q-fin fiber <= K_rem * binom(n,j)/p^w",
+        "cost": null,
+        "dedup_rule": null,
+        "name": "primitive_qfin_residual",
+        "paid": false,
+        "status": "TARGET_NOT_DEDUCTED"
+      }
+    ]
+  },
+  "q1_collision_ledger": {
+    "deployed_parameters": {
+      "forbidden_one_sided_differences": [
+        1,
+        67471
+      ],
+      "gcd_n_w_plus_1": 16,
+      "j": 981104,
+      "maximum_possible_one_sided_difference": 981104,
+      "minimum_nontrivial_one_sided_difference": 67472,
+      "n": 2097152,
+      "w": 67471,
+      "w_plus_1_divides_n": false
+    },
+    "exact_second_moment_identity": {
+      "factorized_form": "C_e = sum_{I subset D, |I|=j-e} P_w(D\\I,e), where P_w(E,e) counts ordered disjoint e-subsets A,B of E with deg(Lambda_A - Lambda_B) <= e-w-1.",
+      "minimal_collision_clause": "For e=w+1, the condition becomes Lambda_A - Lambda_B is constant; these are the constant-shift split-pair packets.",
+      "statement": "sum_z N_w(z)^2 = binom(n,j) + sum_{e=w+1}^{min(j,n-j)} C_e, where C_e counts ordered distinct support pairs with one-sided difference e and equal first w locator-prefix coefficients."
+    },
+    "name": "exact split-prefix collision ledger",
+    "proof_summary": [
+      "For a colliding ordered pair S,T, write I=S cap T, S=I disjoint-union A, T=I disjoint-union B.",
+      "Then Lambda_S - Lambda_T = Lambda_I (Lambda_A - Lambda_B).",
+      "Equal first w prefix coefficients are equivalent to deg(Lambda_S-Lambda_T) <= j-w-1.",
+      "If S!=T and e=deg Lambda_A=deg Lambda_B, this is equivalent to deg(Lambda_A-Lambda_B) <= e-w-1, hence e>=w+1.",
+      "Summing ordered pairs by e gives the displayed exact second-moment decomposition."
+    ],
+    "status": "PROVED_EXACT_PAIR_DECOMPOSITION_AND_TOY_REPLAY",
+    "step": "Q1",
+    "theorem": "split-prefix second-moment decomposition by one-sided collision distance",
+    "toy_replay_cases": [
+      {
+        "average_fiber": 3.5,
+        "collision_distance_strata": {
+          "0": 56,
+          "2": 112,
+          "3": 32
+        },
+        "fiber_count": 16,
+        "field": "F_17",
+        "forbidden_strata_1_through_w_empty": true,
+        "j": 3,
+        "max_fiber": 4,
+        "minimum_nontrivial_one_sided_difference": 2,
+        "n": 8,
+        "number_of_max_fibers": 8,
+        "omega": 2,
+        "p": 17,
+        "second_moment": 200,
+        "second_moment_over_average_squared": 1.0204081632653061,
+        "total_supports": 56,
+        "w": 1
+      },
+      {
+        "average_fiber": 15.114186851211073,
+        "collision_distance_strata": {
+          "0": 4368,
+          "3": 31680,
+          "4": 23904,
+          "5": 6720
+        },
+        "fiber_count": 289,
+        "field": "F_17",
+        "forbidden_strata_1_through_w_empty": true,
+        "j": 5,
+        "max_fiber": 17,
+        "minimum_nontrivial_one_sided_difference": 3,
+        "n": 16,
+        "number_of_max_fibers": 80,
+        "omega": 3,
+        "p": 17,
+        "second_moment": 66672,
+        "second_moment_over_average_squared": 1.0098946383287042,
+        "total_supports": 4368,
+        "w": 2
+      },
+      {
+        "average_fiber": 2.6367547633681623,
+        "collision_distance_strata": {
+          "0": 12870,
+          "4": 17640,
+          "5": 4480,
+          "6": 3360,
+          "8": 6
+        },
+        "fiber_count": 4881,
+        "field": "F_17",
+        "forbidden_strata_1_through_w_empty": true,
+        "j": 8,
+        "max_fiber": 7,
+        "minimum_nontrivial_one_sided_difference": 4,
+        "n": 16,
+        "number_of_max_fibers": 8,
+        "omega": 3,
+        "p": 17,
+        "second_moment": 38356,
+        "second_moment_over_average_squared": 1.130277347620005,
+        "total_supports": 12870,
+        "w": 3
+      },
+      {
+        "average_fiber": 2.067469879518072,
+        "collision_distance_strata": {
+          "0": 12870,
+          "3": 8064,
+          "4": 8680,
+          "5": 6720,
+          "6": 288,
+          "7": 96,
+          "8": 6
+        },
+        "fiber_count": 6225,
+        "field": "F_97",
+        "forbidden_strata_1_through_w_empty": true,
+        "j": 8,
+        "max_fiber": 8,
+        "minimum_nontrivial_one_sided_difference": 3,
+        "n": 16,
+        "number_of_max_fibers": 16,
+        "omega": 8,
+        "p": 97,
+        "second_moment": 36724,
+        "second_moment_over_average_squared": 1.3801689116374432,
+        "total_supports": 12870,
+        "w": 2
+      }
+    ],
+    "what_q1_does_not_prove": [
+      "It does not evaluate all deployed C_e summands.",
+      "It does not prove a worst-case max-fiber bound.",
+      "It does not prove the Q0 lower-rung max-fiber certificates.",
+      "It does not replace the Q2 heavy-fiber symmetry descent."
+    ],
+    "what_q1_proves": [
+      "No nontrivial prefix collision can occur below one-sided distance w+1.",
+      "The second moment is exactly reduced to the residual split-pair counts C_e for e>=w+1.",
+      "Minimal collisions are exactly constant-shift split-pair packets.",
+      "Small finite cyclic-domain replays satisfy the formula and the distance gap."
+    ]
+  },
+  "q1_distance_insufficiency": {
+    "greedy_distance_code_lower_bound_log2": 1368942.4947949348,
+    "interpretation": "A generic constant-weight packing with the Q1 distance constraint can be astronomically larger than the heavy-target scale.  The missing theorem must use moment-curve algebra and first-match branch structure, not distance alone.",
+    "johnson_ball_log2_radius_e_minus_1": 721930.7849983689,
+    "log2_n_times_threshold_T": 78.93135351664387,
+    "log2_threshold_T": 57.93135351664387,
+    "parameters": {
+      "j": 981104,
+      "n": 2097152,
+      "one_sided_distance_e": 67472,
+      "w": 67471
+    },
+    "statement": "The Q1 one-sided distance lower bound e>=w+1 is far too weak by itself to imply primitive-heavy-orbit exclusion or #heavy<=n/2.",
+    "status": "PROVED_DISTANCE_ONLY_INSUFFICIENT",
+    "total_support_log2": 2090873.2797933037
+  },
+  "q1_q2_plan": {
+    "Q1": {
+      "deliverables": [
+        "exact second-moment decomposition by e",
+        "constant-shift split-pair normal form for minimal e=w+1 collisions",
+        "small cyclic-domain replay of the distance gap and stratum identity"
+      ],
+      "name": "exact split-prefix collision ledger",
+      "proof_ideas": [
+        "Use Lambda_S=G A and Lambda_T=G B; prefix equality is a high-order vanishing condition on G(A-B).",
+        "Minimal collisions have A-B constant, matching quotient constant-shift split pairs."
+      ],
+      "proved_input_already_in_this_packet": "If two distinct supports collide in the first w prefix coordinates, then e>=w+1.",
+      "status": "PROVED_IN_THIS_PACKET_AS_EXACT_PAIR_DECOMPOSITION",
+      "target": "Reduce the exact second moment sum_z N_w(z)^2 to ordered split-pair collision counts stratified by one-sided distance e=|S\\T|, with no nontrivial terms below e=w+1.",
+      "why_it_does_not_close_Q_fin": "Q1 leaves the deployed C_e summands unevaluated and gives typical/heavy-fiber calibration, not the finite worst-case max-fiber bound with K<=4805007."
+    },
+    "Q2": {
+      "deliverables": [
+        "twist orbit-stabilizer theorem for prefix targets",
+        "stabilizer-to-quotient target normal form",
+        "exact-lift folding theorem for stabilized target fibers",
+        "finite wrapper conditional on generated-prefix support multiplicity",
+        "small replay showing generated-prefix image cells are not support payments",
+        "toy replay showing few max-heavy fibers force nontrivial stabilizer"
+      ],
+      "experimental_evidence_used": [
+        "Small prefix-fiber scans showed mode-at-null is false, so Q2 should target max-orbit/stabilizer descent rather than a null-fiber shortcut.",
+        "Finite {1,3}/{1,4} scans produced generated-only survivors, confirming that generated-field stripping must precede finite Q comparisons.",
+        "Small cyclic-domain scans showed heavy fibers often have visible stabilizer/quotient structure after primitive filtering."
+      ],
+      "finite_row_acceptance_threshold": "For the current local packet, Q2 must eventually imply max_z |R(z)| <= 4805007 * binom(2097152,981104) / p^67471, or replace that inequality with an equivalent replayable certified recursion. The structural stabilizer and exact-lift folding parts are now proved; the missing input is primitive-heavy-orbit exclusion, or equivalently a support-level generated-prefix multiplicity certificate for non-retained exact lift classes.  The stronger #heavy<=n/2 target is sufficient but not necessary.",
+      "name": "heavy-fiber symmetry descent and primitive max-orbit reduction",
+      "proof_ideas": [
+        "The mu_n twist action sends z_i to eta^i z_i and preserves fiber sizes; few heavy fibers force stabilizer.",
+        "An h-stabilized exact lifted target has lambda_1=...=lambda_{h/2}=0, so Newton identities force P_1,P_2,P_4,...,P_{h/2}=0.",
+        "Iterated 2-power antipodal balancing then forces the support to be a union of h-cosets.",
+        "Finite KoalaBear use first classifies nonzero lifted low-prefix coefficients reducing to zero as generated-prefix collisions; support payment still needs a multiplicity theorem."
+      ],
+      "status": "PROVED_STABILIZER_AND_EXACT_LIFT_FOLDING_WITH_OPEN_SUPPORT_MULTIPLICITY",
+      "target": "Use orbitwise moment/excess certificates, or a support-level generated-prefix multiplicity theorem, to rule out primitive heavy target orbits.  Then apply the proved twist-stabilizer theorem and exact-lift folding rigidity to route every threatening stabilized target toward quotient descent or emptiness."
+    }
+  },
+  "q2_failed_route_evidence": {
+    "remaining_q2_target": {
+      "conditional_closure_status": "PROVED_IF_SUPPORT_BOUND_SUPPLIED",
+      "conditional_support_bound_t_p_plus_retained": 143763024458816,
+      "retained_exact_lift_bound": 11440,
+      "slack_bits_vs_t_p_plus_retained": 10.900667525231928,
+      "statement": "For every primitive finite prefix target z, prove |G_gen(z)| <= t*p, or at least (|G_gen(z)|+11440)*p^67471 <= 4805007*binom(2097152,981104).",
+      "status": "OPEN_REQUIRED_SUPPORT_MULTIPLICITY_OR_PRIMITIVE_EXCESS_CERTIFICATE",
+      "t_times_p": 143763024447376,
+      "threshold_ceil": 274836936291722954,
+      "threshold_floor": 274836936291722953
+    },
+    "route_A_delsarte_distance_attempt": {
+      "conclusion": "Q1/distance-only information is astronomically too weak; a real BCH/Fourier/prefix dual or excess-moment certificate is needed.",
+      "diagnostics": {
+        "gap_bits_vs_t_p": 1368895.464108941,
+        "log2_binom_n_j": 2090873.2797933037,
+        "log2_gilbert_lower_bound_at_q1_distance": 1368942.4947949348,
+        "log2_johnson_ball_radius_w": 721930.7849983689,
+        "log2_t_times_p": 47.0306859937284
+      },
+      "status": "OPEN_MISSING_ROUTE_A_DUAL_EXCESS_CERTIFICATE"
+    },
+    "route_B_split_pair_rank_attempt": {
+      "conclusion": "Local nondegeneracy does not control global support multiplicity; almost all B choices must be proved impossible or first-matched to paid branches.",
+      "diagnostics": {
+        "e_min": 67472,
+        "gap_choose_j_e_min_vs_t_p": 354438.46659446985,
+        "gap_naive_full_rank_vs_t_p": 354469.4552791573,
+        "log2_choose_j_e_min": 354485.4972804636,
+        "log2_naive_A_side_full_rank_bound": 354516.48596515105,
+        "log2_t_times_p": 47.0306859937284,
+        "minimum_nullity": 1,
+        "rank": 67471
+      },
+      "proved": "The split-pair power-sum Jacobian has a nonzero Vandermonde pivot minor on ordinary distinct exchange variables.",
+      "status": "PROVED_LOCAL_FULL_ROW_RANK_ONLY_INSUFFICIENT"
+    },
+    "route_C_primitive_orbit_excess_attempt": {
+      "diagnostics": {
+        "log2_threshold": 57.931353519075124,
+        "q3_minimum_ordered_tuple_log2": 173.79406055722538,
+        "q4_minimum_ordered_tuple_log2": 231.7254140763005,
+        "threshold_ceil": 274836936291722954,
+        "threshold_floor": 274836936291722953
+      },
+      "missing_certificate": "Prove sum_{primitive O} X_O^3=0 or sum_{primitive O} X_O^4=0, or provide a complete tuple first-match classification with zero primitive full-rank tuple residual.",
+      "proved": [
+        "exact threshold arithmetic",
+        "formal excess-to-tuple amplification",
+        "tuple-strata certificate interface"
+      ],
+      "status": "OPEN_REQUIRED_PRIMITIVE_EXCESS_CERTIFICATE"
+    },
+    "route_D_folding_defect_transfer_attempt": {
+      "diagnostics": {
+        "even_constraints": 33735,
+        "first_allowed_nonzero_signed_defect_size": 33737,
+        "folded_n": 1048576,
+        "gap_bits_vs_t_p": 215091.3804132762,
+        "log2_choose_folded_n_first_allowed_defect": 215138.41109926993,
+        "log2_t_times_p": 47.0306859937284,
+        "odd_constraints": 33736
+      },
+      "next_theorem": "Large signed folding-defect transfer: every large signed defect satisfying the odd prefix equations must be quotient-descended, sparse/Pade-Hankel, M1/half-turn/window-shadow, rank-drop with printed pivot cost, generated-field support-paid, or bounded in a primitive full-rank defect stratum by <=t*p.",
+      "proved": [
+        "dyadic folding identities",
+        "small signed-defect emptiness via odd-equation BCH/RS distance",
+        "recursive first-match schema that refuses to count open strata"
+      ],
+      "status": "OPEN_MISSING_ROUTE_D_FOLDING_DEFECT_SUPPORT_CERTIFICATE"
+    },
+    "small_model_regression_summary": {
+      "observed_failures": [
+        {
+          "case": "F17 n16 j8 w1",
+          "max_nonretained": 737,
+          "max_primitive": 757,
+          "nonretained_le_w_times_p": false,
+          "w_times_p": 17
+        },
+        {
+          "case": "F17 n16 j8 w2",
+          "max_nonretained": 47,
+          "max_primitive": 49,
+          "nonretained_le_w_times_p": false,
+          "w_times_p": 34
+        }
+      ],
+      "status": "EVIDENCE_ONLY",
+      "warnings_confirmed": [
+        "generated-prefix image labels do not imply support payment",
+        "global max fibers can be stabilized rather than primitive",
+        "retained exact-lift class need not be singleton in small models"
+      ]
+    },
+    "status": "EVIDENCE_RECORDED_NO_Q2_CLOSURE"
+  },
+  "q2_folding_stabilized_fiber_rigidity": {
+    "deployed_h_rows": [
+      {
+        "exact_lift_outcome": "QUOTIENT_DESCENT",
+        "floor_w_over_h": 33735,
+        "h": 2,
+        "h_divides_j": true,
+        "h_over_2": 1,
+        "h_over_2_le_w": true,
+        "j_div_h": 490552,
+        "j_mod_h": 0,
+        "n_over_h": 1048576
+      },
+      {
+        "exact_lift_outcome": "QUOTIENT_DESCENT",
+        "floor_w_over_h": 16867,
+        "h": 4,
+        "h_divides_j": true,
+        "h_over_2": 2,
+        "h_over_2_le_w": true,
+        "j_div_h": 245276,
+        "j_mod_h": 0,
+        "n_over_h": 524288
+      },
+      {
+        "exact_lift_outcome": "QUOTIENT_DESCENT",
+        "floor_w_over_h": 8433,
+        "h": 8,
+        "h_divides_j": true,
+        "h_over_2": 4,
+        "h_over_2_le_w": true,
+        "j_div_h": 122638,
+        "j_mod_h": 0,
+        "n_over_h": 262144
+      },
+      {
+        "exact_lift_outcome": "QUOTIENT_DESCENT",
+        "floor_w_over_h": 4216,
+        "h": 16,
+        "h_divides_j": true,
+        "h_over_2": 8,
+        "h_over_2_le_w": true,
+        "j_div_h": 61319,
+        "j_mod_h": 0,
+        "n_over_h": 131072
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 2108,
+        "h": 32,
+        "h_divides_j": false,
+        "h_over_2": 16,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 16,
+        "n_over_h": 65536
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 1054,
+        "h": 64,
+        "h_divides_j": false,
+        "h_over_2": 32,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 48,
+        "n_over_h": 32768
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 527,
+        "h": 128,
+        "h_divides_j": false,
+        "h_over_2": 64,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 112,
+        "n_over_h": 16384
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 263,
+        "h": 256,
+        "h_divides_j": false,
+        "h_over_2": 128,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 112,
+        "n_over_h": 8192
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 131,
+        "h": 512,
+        "h_divides_j": false,
+        "h_over_2": 256,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 112,
+        "n_over_h": 4096
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 65,
+        "h": 1024,
+        "h_divides_j": false,
+        "h_over_2": 512,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 112,
+        "n_over_h": 2048
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 32,
+        "h": 2048,
+        "h_divides_j": false,
+        "h_over_2": 1024,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 112,
+        "n_over_h": 1024
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 16,
+        "h": 4096,
+        "h_divides_j": false,
+        "h_over_2": 2048,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 2160,
+        "n_over_h": 512
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 8,
+        "h": 8192,
+        "h_divides_j": false,
+        "h_over_2": 4096,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 6256,
+        "n_over_h": 256
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 4,
+        "h": 16384,
+        "h_divides_j": false,
+        "h_over_2": 8192,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 14448,
+        "n_over_h": 128
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 2,
+        "h": 32768,
+        "h_divides_j": false,
+        "h_over_2": 16384,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 30832,
+        "n_over_h": 64
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 1,
+        "h": 65536,
+        "h_divides_j": false,
+        "h_over_2": 32768,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 63600,
+        "n_over_h": 32
+      },
+      {
+        "exact_lift_outcome": "EMPTY_AFTER_GENERATED_PREFIX_REMOVAL",
+        "floor_w_over_h": 0,
+        "h": 131072,
+        "h_divides_j": false,
+        "h_over_2": 65536,
+        "h_over_2_le_w": true,
+        "j_div_h": null,
+        "j_mod_h": 63600,
+        "n_over_h": 16
+      },
+      {
+        "exact_lift_outcome": "NOT_APPLICABLE_H_OVER_2_GREATER_THAN_W",
+        "floor_w_over_h": 0,
+        "h": 262144,
+        "h_divides_j": false,
+        "h_over_2": 131072,
+        "h_over_2_le_w": false,
+        "j_div_h": null,
+        "j_mod_h": 194672,
+        "n_over_h": 8
+      },
+      {
+        "exact_lift_outcome": "NOT_APPLICABLE_H_OVER_2_GREATER_THAN_W",
+        "floor_w_over_h": 0,
+        "h": 524288,
+        "h_divides_j": false,
+        "h_over_2": 262144,
+        "h_over_2_le_w": false,
+        "j_div_h": null,
+        "j_mod_h": 456816,
+        "n_over_h": 4
+      },
+      {
+        "exact_lift_outcome": "NOT_APPLICABLE_H_OVER_2_GREATER_THAN_W",
+        "floor_w_over_h": 0,
+        "h": 1048576,
+        "h_divides_j": false,
+        "h_over_2": 524288,
+        "h_over_2_le_w": false,
+        "j_div_h": null,
+        "j_mod_h": 981104,
+        "n_over_h": 2
+      },
+      {
+        "exact_lift_outcome": "NOT_APPLICABLE_H_OVER_2_GREATER_THAN_W",
+        "floor_w_over_h": 0,
+        "h": 2097152,
+        "h_divides_j": false,
+        "h_over_2": 1048576,
+        "h_over_2_le_w": false,
+        "j_div_h": null,
+        "j_mod_h": 981104,
+        "n_over_h": 1
+      }
+    ],
+    "does_not_prove": [
+      "It does not prove heavy-target fewness; Q1/higher moments still need evaluated constants.",
+      "It does not prove lower-rung max-fiber constants for h=2,4,8,16.",
+      "It does not apply to h>=262144 because h/2>w.",
+      "Finite KoalaBear use is conditional unless generated-prefix lift collisions are included in the generated first-match bucket."
+    ],
+    "empty_exact_lift_h": [
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024,
+      2048,
+      4096,
+      8192,
+      16384,
+      32768,
+      65536,
+      131072
+    ],
+    "finite_wrapper": {
+      "cost_model_warning": "This is an image-cell generated-prefix cover, not a raw support bound.  It is deducted only if the first-match generated bucket is explicitly scoped to include prefix-coordinate lift collisions.",
+      "generated_cells_budgeted_t_times_p": 143763024447376,
+      "generated_cells_used_bound": 143760893740943,
+      "global_generated_rows_used": 67471,
+      "predicate": "First d<=h/2 with lifted lambda_d nonzero in Z[zeta_n] but finite lambda_d=0 in F_p.",
+      "slack": 2130706433,
+      "status": "FINITE_USE_CONDITIONAL_ON_GENERATED_PREFIX_COLLISION_BUCKET"
+    },
+    "name": "stabilized prefix fibers fold to quotient cosets",
+    "not_applicable_h": [
+      262144,
+      524288,
+      1048576,
+      2097152
+    ],
+    "proof_summary": [
+      "An h-stabilized exact target has lambda_d=0 for all d<=w with h not dividing d.",
+      "Since h is a 2-power and h/2<=w, this gives lambda_1=...=lambda_{h/2}=0.",
+      "Newton identities in characteristic zero give P_k(S)=0 for every 1<=k<=h/2, in particular for k=1,2,4,...,h/2.",
+      "The 2-power positive zero-sum lemma forces P_1(S)=0 to make S antipodally paired.",
+      "Iterating on the quotient by x->x^2, P_{2^a}(S)=0 forces union of 2^{a+1}-cosets.",
+      "Thus S is a union of h-cosets.  If h does not divide j the exact lifted fiber is empty; otherwise it descends bijectively to the quotient prefix fiber at (n/h,j/h,floor(w/h))."
+    ],
+    "quotient_descended_h": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "status": "PROVED_EXACT_LIFT_FINITE_CONDITIONAL_ON_GENERATED_PREFIX_BUCKET",
+    "step": "Q2",
+    "theorem": "If an exact lifted prefix target is h-stabilized and h/2<=w, then every support in that exact lifted fiber is a union of h-cosets.",
+    "what_this_buys": [
+      "A stabilized heavy target is not unstructured top-rung primitive mass after generated-prefix lift collisions are removed.",
+      "For h=2,4,8,16 the exact lifted branch descends to the corresponding Q0 quotient rung.",
+      "For h=32,...,131072 the exact lifted branch is empty because h does not divide j=981104."
+    ]
+  },
+  "q2_heavy_fiber_closure": {
+    "closure_statement": "If primitive-heavy-orbit exclusion holds, every threatening target has nontrivial dyadic stabilizer.  After generated-prefix lift-collision removal, Q2 folding sends each such target to quotient descent when h divides j, or to an empty exact-lift branch when h does not divide j.",
+    "does_not_prove": [
+      "primitive-heavy-orbit exclusion / orbitwise excess certificate",
+      "global heavy-target fewness; it is stronger than necessary and remains unproved",
+      "generated-prefix support multiplicity; image-cell labels are not support payments",
+      "BC split-pencil census",
+      "SP primitive shift-pair control",
+      "extension-valued slope branch",
+      "sparse/Pade-Hankel residual branch",
+      "arbitrary planted tails outside the stabilized Q2 branch",
+      "finite use unless generated-prefix lift collisions are included in first-match generated cells"
+    ],
+    "generated_lift_class_pointwise_route": {
+      "claim_if_bucket_is_paid": "If for every finite prefix target z the first-match ledger may retain one exact lifted prefix class and charge all other exact lift classes over z as generated-prefix collisions, then every residual finite fiber is contained in one exact lifted fiber and has size <=11440.  This would imply no target is heavy.",
+      "exact_lift_bound_used": 11440,
+      "status": "CONDITIONAL_ON_GENERATED_PREFIX_SUPPORT_MULTIPLICITY_CERTIFICATE",
+      "threshold_comparison": "11440 * p^w < 4805007 * binom(n,j)",
+      "threshold_comparison_pass": true,
+      "why_not_marked_proved_here": "The assignment depends on the finite target z and its retained exact lift class.  A row-indexed w*p image-cell count does not by itself bound the number of removed exact lift classes or raw supports.  The packet records this as a conditional route and adds a small finite replay showing that the naive image-cell to support-payment inference is false."
+    },
+    "generated_prefix_bucket": {
+      "K_if_deducted_separately": 4805006,
+      "cell_model": "heavy-target-local prefix lift collision cells (z,d)",
+      "existing_generated_allowance_t_times_p": 143763024447376,
+      "fits_existing_generated_allowance": true,
+      "max_cells_if_separate": 70748471296,
+      "note": "Do not claim no new cost unless generated row-universe coalescing is explicit.  If treated as a separate paid branch, deduct at most (n/h)*w cells; at h=2 this drops the top multiplier by one.",
+      "status": "PAID_IF_INCLUDED_IN_GENERATED_FIRST_MATCH_BUCKET",
+      "worst_case_h": 2
+    },
+    "generated_prefix_support_multiplicity_target": {
+      "convenient_bound_fits_threshold": true,
+      "convenient_stronger_bound": "|G_gen_prefix(z)| <= t*p = 143763024447376",
+      "not_proved": "The number of supports lying in those generated-prefix collision cells is bounded by t*p or by the remaining primitive threshold.",
+      "proved_part": "A non-retained exact lift class over a finite target gives a nonzero cyclotomic prefix-coordinate difference whose reduction mod p is zero.",
+      "status": "OPEN_REQUIRED_SUPPORT_MULTIPLICITY_CERTIFICATE",
+      "sufficient_deployed_bound": "(|G_gen_prefix(z)| + 11440) * p^67471 <= 4805007 * binom(2097152,981104) for every primitive target z.",
+      "why_this_is_still_the_Q2_bottleneck": "Since each retained exact-lift class is already <=11440, bounding the non-retained generated-prefix support mass is equivalent, up to 11440, to the finite primitive prefix-fiber bound for that target."
+    },
+    "lower_rung_exact_lift_certificates": [
+      {
+        "J": 490552,
+        "K_h": 749194961,
+        "N": 1048576,
+        "W": 33735,
+        "exact_lift_max_fiber_bound": 11440,
+        "h": 2,
+        "max_variable_terminal_cosets": 7,
+        "proof_key": "W>=N/32 forces terminal-16 exact-lift rigidity.",
+        "status": "PROVED_EXACT_LIFT_FINITE_USE_REQUIRES_GENERATED_PREFIX_BUCKET",
+        "terminal_coset_size": 65536
+      },
+      {
+        "J": 245276,
+        "K_h": 7866613560,
+        "N": 524288,
+        "W": 16867,
+        "exact_lift_max_fiber_bound": 11440,
+        "h": 4,
+        "max_variable_terminal_cosets": 7,
+        "proof_key": "W>=N/32 forces terminal-16 exact-lift rigidity.",
+        "status": "PROVED_EXACT_LIFT_FINITE_USE_REQUIRES_GENERATED_PREFIX_BUCKET",
+        "terminal_coset_size": 32768
+      },
+      {
+        "J": 122638,
+        "K_h": 21435171266,
+        "N": 262144,
+        "W": 8433,
+        "exact_lift_max_fiber_bound": 11440,
+        "h": 8,
+        "max_variable_terminal_cosets": 7,
+        "proof_key": "W>=N/32 forces terminal-16 exact-lift rigidity.",
+        "status": "PROVED_EXACT_LIFT_FINITE_USE_REQUIRES_GENERATED_PREFIX_BUCKET",
+        "terminal_coset_size": 16384
+      },
+      {
+        "J": 61319,
+        "K_h": 29753587796,
+        "N": 131072,
+        "W": 4216,
+        "exact_lift_max_fiber_bound": 11440,
+        "h": 16,
+        "max_variable_terminal_cosets": 7,
+        "proof_key": "W>=N/32 forces terminal-16 exact-lift rigidity.",
+        "status": "PROVED_EXACT_LIFT_FINITE_USE_REQUIRES_GENERATED_PREFIX_BUCKET",
+        "terminal_coset_size": 8192
+      }
+    ],
+    "name": "Q2 exact-lift closure conditional on generated-prefix support multiplicity",
+    "primitive_heavy_orbit_input": {
+      "status": "OPEN_REQUIRED_CERTIFICATE",
+      "stronger_but_not_needed": "|{z : |R_pre(z)| > threshold}| <= 1048576",
+      "suggested_certificate_shape": "An orbit-stratified integer excess certificate.  For each primitive orbit O, define X_O=max(0,N_pre(O)*p^w-K_rem*binom(n,j)); the clean successful certificate is sum_{O primitive} X_O^q=0.",
+      "target": "For every trivial-stabilizer prefix-target orbit O, N_pre(O) * p^w <= 4805007 * binom(n,j).",
+      "why_this_is_the_right_Q2_trigger": "Q2 only needs every threatening target to have nontrivial twist stabilizer.  The global count bound #heavy<=n/2 is sufficient but stronger than necessary."
+    },
+    "q2_folding_outcomes": {
+      "empty_exact_lift_h": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096,
+        8192,
+        16384,
+        32768,
+        65536,
+        131072
+      ],
+      "not_applicable_h": [
+        262144,
+        524288,
+        1048576,
+        2097152
+      ],
+      "quotient_descended_h": [
+        2,
+        4,
+        8,
+        16
+      ]
+    },
+    "status": "CONDITIONAL_ON_PRIMITIVE_HEAVY_ORBIT_EXCLUSION",
+    "step": "Q2",
+    "threshold": {
+      "K_rem_proved": 4805007,
+      "integer_heavy_test": "N_pre(z) * p^67471 > 4805007 * binom(2097152,981104)",
+      "rational_form": "4805007 * binom(2097152,981104) / p^67471"
+    }
+  },
+  "q2_symmetry_descent": {
+    "deployed_thresholds": [
+      {
+        "forced_stabilizer_at_least": 2,
+        "quotient_prefix_depth_floor_w_over_h": 33735,
+        "sufficient_heavy_target_count_bound": 1048576
+      },
+      {
+        "forced_stabilizer_at_least": 4,
+        "quotient_prefix_depth_floor_w_over_h": 16867,
+        "sufficient_heavy_target_count_bound": 524288
+      },
+      {
+        "forced_stabilizer_at_least": 8,
+        "quotient_prefix_depth_floor_w_over_h": 8433,
+        "sufficient_heavy_target_count_bound": 262144
+      },
+      {
+        "forced_stabilizer_at_least": 16,
+        "quotient_prefix_depth_floor_w_over_h": 4216,
+        "sufficient_heavy_target_count_bound": 131072
+      },
+      {
+        "forced_stabilizer_at_least": 32,
+        "quotient_prefix_depth_floor_w_over_h": 2108,
+        "sufficient_heavy_target_count_bound": 65536
+      },
+      {
+        "forced_stabilizer_at_least": 64,
+        "quotient_prefix_depth_floor_w_over_h": 1054,
+        "sufficient_heavy_target_count_bound": 32768
+      },
+      {
+        "forced_stabilizer_at_least": 128,
+        "quotient_prefix_depth_floor_w_over_h": 527,
+        "sufficient_heavy_target_count_bound": 16384
+      },
+      {
+        "forced_stabilizer_at_least": 256,
+        "quotient_prefix_depth_floor_w_over_h": 263,
+        "sufficient_heavy_target_count_bound": 8192
+      },
+      {
+        "forced_stabilizer_at_least": 512,
+        "quotient_prefix_depth_floor_w_over_h": 131,
+        "sufficient_heavy_target_count_bound": 4096
+      },
+      {
+        "forced_stabilizer_at_least": 1024,
+        "quotient_prefix_depth_floor_w_over_h": 65,
+        "sufficient_heavy_target_count_bound": 2048
+      },
+      {
+        "forced_stabilizer_at_least": 2048,
+        "quotient_prefix_depth_floor_w_over_h": 32,
+        "sufficient_heavy_target_count_bound": 1024
+      },
+      {
+        "forced_stabilizer_at_least": 4096,
+        "quotient_prefix_depth_floor_w_over_h": 16,
+        "sufficient_heavy_target_count_bound": 512
+      },
+      {
+        "forced_stabilizer_at_least": 8192,
+        "quotient_prefix_depth_floor_w_over_h": 8,
+        "sufficient_heavy_target_count_bound": 256
+      },
+      {
+        "forced_stabilizer_at_least": 16384,
+        "quotient_prefix_depth_floor_w_over_h": 4,
+        "sufficient_heavy_target_count_bound": 128
+      },
+      {
+        "forced_stabilizer_at_least": 32768,
+        "quotient_prefix_depth_floor_w_over_h": 2,
+        "sufficient_heavy_target_count_bound": 64
+      },
+      {
+        "forced_stabilizer_at_least": 65536,
+        "quotient_prefix_depth_floor_w_over_h": 1,
+        "sufficient_heavy_target_count_bound": 32
+      },
+      {
+        "forced_stabilizer_at_least": 131072,
+        "quotient_prefix_depth_floor_w_over_h": 0,
+        "sufficient_heavy_target_count_bound": 16
+      },
+      {
+        "forced_stabilizer_at_least": 262144,
+        "quotient_prefix_depth_floor_w_over_h": 0,
+        "sufficient_heavy_target_count_bound": 8
+      },
+      {
+        "forced_stabilizer_at_least": 524288,
+        "quotient_prefix_depth_floor_w_over_h": 0,
+        "sufficient_heavy_target_count_bound": 4
+      },
+      {
+        "forced_stabilizer_at_least": 1048576,
+        "quotient_prefix_depth_floor_w_over_h": 0,
+        "sufficient_heavy_target_count_bound": 2
+      },
+      {
+        "forced_stabilizer_at_least": 2097152,
+        "quotient_prefix_depth_floor_w_over_h": 0,
+        "sufficient_heavy_target_count_bound": 1
+      }
+    ],
+    "name": "heavy-fiber twist-stabilizer descent",
+    "proof_summary": [
+      "Twisting supports by eta in mu_n bijects each prefix fiber with the twisted target fiber.",
+      "Therefore any threshold-heavy target set is a union of twist orbits.",
+      "If a heavy target set has at most M elements, each heavy orbit has size at most M.",
+      "Orbit-stabilizer gives |Stab(z)|=n/|Orb(z)|; M<=n/h forces |Stab(z)|>=h.",
+      "If eta is in Stab(z), eta^d z_d=z_d for each prefix coordinate d; a stabilizer of order h forces z_d=0 unless h divides d.",
+      "The surviving coordinates are exactly a quotient-prefix target at depth floor(w/h), ready for Q0 descent after folding-defect accounting."
+    ],
+    "statement": "The mu_n twist action sends a prefix target (z_1,...,z_w) to (eta z_1, eta^2 z_2, ..., eta^w z_w) and preserves fiber size. If a heavy-target set has size at most M, every heavy target has twist orbit size at most M.  Hence if M<=n/h, its stabilizer has size at least h and its nonzero prefix coordinates occur only at indices divisible by h.",
+    "status": "PROVED_STABILIZER_FORCING_CONDITIONAL_ON_HEAVY_COUNT_BOUND",
+    "step": "Q2",
+    "theorem": "twist orbit-stabilizer reduction for heavy prefix fibers",
+    "toy_replay_cases": [
+      {
+        "fiber_count": 16,
+        "field": "F_17",
+        "heavy_target_count": 8,
+        "heavy_target_count_less_than_n": false,
+        "heavy_threshold_used": 4,
+        "interpretation": "If heavy_target_count<n, every max-heavy target in this replay has nontrivial twist stabilizer and nonzero coordinates only at multiples of that stabilizer.",
+        "j": 3,
+        "max_fiber": 4,
+        "n": 8,
+        "number_of_heavy_twist_orbits": 1,
+        "omega": 2,
+        "orbit_size_distribution_on_heavy_targets": {
+          "8": 8
+        },
+        "p": 17,
+        "stabilizer_distribution_on_heavy_targets": {
+          "1": 8
+        },
+        "w": 1
+      },
+      {
+        "fiber_count": 4881,
+        "field": "F_17",
+        "heavy_target_count": 8,
+        "heavy_target_count_less_than_n": true,
+        "heavy_threshold_used": 7,
+        "interpretation": "If heavy_target_count<n, every max-heavy target in this replay has nontrivial twist stabilizer and nonzero coordinates only at multiples of that stabilizer.",
+        "j": 8,
+        "max_fiber": 7,
+        "n": 16,
+        "number_of_heavy_twist_orbits": 1,
+        "omega": 3,
+        "orbit_size_distribution_on_heavy_targets": {
+          "8": 8
+        },
+        "p": 17,
+        "stabilizer_distribution_on_heavy_targets": {
+          "2": 8
+        },
+        "w": 3
+      },
+      {
+        "fiber_count": 6225,
+        "field": "F_97",
+        "heavy_target_count": 16,
+        "heavy_target_count_less_than_n": false,
+        "heavy_threshold_used": 8,
+        "interpretation": "If heavy_target_count<n, every max-heavy target in this replay has nontrivial twist stabilizer and nonzero coordinates only at multiples of that stabilizer.",
+        "j": 8,
+        "max_fiber": 8,
+        "n": 16,
+        "number_of_heavy_twist_orbits": 1,
+        "omega": 8,
+        "orbit_size_distribution_on_heavy_targets": {
+          "16": 16
+        },
+        "p": 97,
+        "stabilizer_distribution_on_heavy_targets": {
+          "1": 16
+        },
+        "w": 2
+      }
+    ],
+    "what_q2_does_not_prove": [
+      "It does not supply the heavy-target count bound; that needs evaluated Q1/higher moments.",
+      "It does not prove the folding-defect descent from stabilized target to Q0 quotient/planted support cells.",
+      "It does not prove the final primitive max-orbit bound with K<=4805007.",
+      "It does not pay extension-valued, sparse, or pair-deficient M1 residual branches."
+    ],
+    "what_q2_proves": [
+      "Heavy-fiber targets are twist-orbit structured.",
+      "A sufficiently small heavy-target count forces quotient-supported prefix targets.",
+      "The stabilizer order gives the quotient rung and lower prefix depth floor(w/h)."
+    ]
+  },
+  "quotient_planted_descent": {
+    "audit_results": [
+      "Support-level quotient counting is not a valid payment route: periodic support mass is far above the MCA numerator budget.",
+      "Image-level descent is valid for every dyadic rung with r_c<=w, which covers c=2 through c=131072 for this row.",
+      "The terminal covered rungs c=65536 and c=131072 are already raw-paid; nonterminal covered rungs become explicit lower-rung max-fiber obligations.",
+      "The only dyadic quotient/planted rungs not covered by this theorem are c>=262144, where the planted tail has r_c>w and is not recoverable from the top prefix."
+    ],
+    "condition_for_descent": "r_c <= w",
+    "exact_quotient_descent_rungs": [
+      {
+        "A_c": 558024,
+        "K_c_at_current_B_rem": 749194961,
+        "c": 2,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 490552,
+        "n_c": 1048576,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1045432,
+        "raw_quotient_count_log2": 1045431.7285188144,
+        "status": "PROVED_EXACT_QUOTIENT_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 33735
+      },
+      {
+        "A_c": 279012,
+        "K_c_at_current_B_rem": 7866613560,
+        "c": 4,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 245276,
+        "n_c": 524288,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 522712,
+        "raw_quotient_count_log2": 522711.20288130577,
+        "status": "PROVED_EXACT_QUOTIENT_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 16867
+      },
+      {
+        "A_c": 139506,
+        "K_c_at_current_B_rem": 21435171266,
+        "c": 8,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 122638,
+        "n_c": 262144,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 261352,
+        "raw_quotient_count_log2": 261351.19006203415,
+        "status": "PROVED_EXACT_QUOTIENT_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 8433
+      },
+      {
+        "A_c": 69753,
+        "K_c_at_current_B_rem": 29753587796,
+        "c": 16,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 61319,
+        "n_c": 131072,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 130672,
+        "raw_quotient_count_log2": 130671.43365136092,
+        "status": "PROVED_EXACT_QUOTIENT_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 4216
+      }
+    ],
+    "fiber_bound": "top c-quotient/planted fiber injects into lower Phi_{w_c} fiber",
+    "lower_rung_obligations": [
+      {
+        "c": 2,
+        "j_c": 490552,
+        "n_c": 1048576,
+        "required_multiplier_K_c": 749194961,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 33735
+      },
+      {
+        "c": 4,
+        "j_c": 245276,
+        "n_c": 524288,
+        "required_multiplier_K_c": 7866613560,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 16867
+      },
+      {
+        "c": 8,
+        "j_c": 122638,
+        "n_c": 262144,
+        "required_multiplier_K_c": 21435171266,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 8433
+      },
+      {
+        "c": 16,
+        "j_c": 61319,
+        "n_c": 131072,
+        "required_multiplier_K_c": 29753587796,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 4216
+      },
+      {
+        "c": 32,
+        "j_c": 30659,
+        "n_c": 65536,
+        "required_multiplier_K_c": 1451233453254335,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 2108
+      },
+      {
+        "c": 64,
+        "j_c": 15329,
+        "n_c": 32768,
+        "required_multiplier_K_c": 269518971028625790,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 1054
+      },
+      {
+        "c": 128,
+        "j_c": 7664,
+        "n_c": 16384,
+        "required_multiplier_K_c": 3088723598520252665,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 527
+      },
+      {
+        "c": 256,
+        "j_c": 3832,
+        "n_c": 8192,
+        "required_multiplier_K_c": 178584294092863,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 263
+      },
+      {
+        "c": 512,
+        "j_c": 1916,
+        "n_c": 4096,
+        "required_multiplier_K_c": 1141899454925,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 131
+      },
+      {
+        "c": 1024,
+        "j_c": 958,
+        "n_c": 2048,
+        "required_multiplier_K_c": 76786108785,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 65
+      },
+      {
+        "c": 2048,
+        "j_c": 479,
+        "n_c": 1024,
+        "required_multiplier_K_c": 16745284864,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 32
+      },
+      {
+        "c": 4096,
+        "j_c": 239,
+        "n_c": 512,
+        "required_multiplier_K_c": 324102591630340,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 16
+      },
+      {
+        "c": 8192,
+        "j_c": 119,
+        "n_c": 256,
+        "required_multiplier_K_c": 38033798950172476,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 8
+      },
+      {
+        "c": 16384,
+        "j_c": 59,
+        "n_c": 128,
+        "required_multiplier_K_c": 348610218401621578,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 4
+      },
+      {
+        "c": 32768,
+        "j_c": 29,
+        "n_c": 64,
+        "required_multiplier_K_c": 898414905870876045,
+        "target": "max_u |Phi_{w_c}^{-1}(u)| <= K_c * binom(n_c,j_c) / p^w_c",
+        "w_c": 2
+      }
+    ],
+    "name": "Q0 quotient/planted rung-margin audit",
+    "nonclaims": [
+      "Lower-rung max-fiber certificates are not proved for c=2..32768.",
+      "Arbitrary planted tails with r_c>w remain open for c>=262144.",
+      "This descent theorem is not primitive Q-fin flatness."
+    ],
+    "open_planted_tail_rungs": [
+      {
+        "A_c": 5,
+        "K_c_at_current_B_rem": 4907802939562511,
+        "c": 262144,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 3,
+        "n_c": 8,
+        "r_c": 194672,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 6,
+        "raw_quotient_count_log2": 5.807354922057602,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 3,
+        "K_c_at_current_B_rem": 68709241153875167,
+        "c": 524288,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 1,
+        "n_c": 4,
+        "r_c": 456816,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 3,
+        "raw_quotient_count_log2": 1.9999999999999984,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 2,
+        "K_c_at_current_B_rem": 274836964615500671,
+        "c": 1048576,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 0,
+        "n_c": 2,
+        "r_c": 981104,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1,
+        "raw_quotient_count_log2": 0.0,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 1,
+        "K_c_at_current_B_rem": 274836964615500671,
+        "c": 2097152,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 0,
+        "n_c": 1,
+        "r_c": 981104,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1,
+        "raw_quotient_count_log2": 0.0,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      }
+    ],
+    "open_rungs": [
+      {
+        "A_c": 5,
+        "K_c_at_current_B_rem": 4907802939562511,
+        "c": 262144,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 3,
+        "n_c": 8,
+        "r_c": 194672,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 6,
+        "raw_quotient_count_log2": 5.807354922057602,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 3,
+        "K_c_at_current_B_rem": 68709241153875167,
+        "c": 524288,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 1,
+        "n_c": 4,
+        "r_c": 456816,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 3,
+        "raw_quotient_count_log2": 1.9999999999999984,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 2,
+        "K_c_at_current_B_rem": 274836964615500671,
+        "c": 1048576,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 0,
+        "n_c": 2,
+        "r_c": 981104,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1,
+        "raw_quotient_count_log2": 0.0,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 1,
+        "K_c_at_current_B_rem": 274836964615500671,
+        "c": 2097152,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 0,
+        "n_c": 1,
+        "r_c": 981104,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1,
+        "raw_quotient_count_log2": 0.0,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      }
+    ],
+    "planted_descent_needs_lower_rung_bound": [
+      {
+        "A_c": 34877,
+        "K_c_at_current_B_rem": 1451233453254335,
+        "c": 32,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 30659,
+        "n_c": 65536,
+        "r_c": 16,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 65332,
+        "raw_quotient_count_log2": 65331.71247376958,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 2108
+      },
+      {
+        "A_c": 17439,
+        "K_c_at_current_B_rem": 269518971028625790,
+        "c": 64,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 15329,
+        "n_c": 32768,
+        "r_c": 48,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 32663,
+        "raw_quotient_count_log2": 32662.101849800492,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 1054
+      },
+      {
+        "A_c": 8720,
+        "K_c_at_current_B_rem": 3088723598520252665,
+        "c": 128,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 7664,
+        "n_c": 16384,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 16328,
+        "raw_quotient_count_log2": 16327.54646747166,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 527
+      },
+      {
+        "A_c": 4360,
+        "K_c_at_current_B_rem": 178584294092863,
+        "c": 256,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 3832,
+        "n_c": 8192,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 8161,
+        "raw_quotient_count_log2": 8160.611827932798,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 263
+      },
+      {
+        "A_c": 2180,
+        "K_c_at_current_B_rem": 1141899454925,
+        "c": 512,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 1916,
+        "n_c": 4096,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 4078,
+        "raw_quotient_count_log2": 4077.3944749590087,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 131
+      },
+      {
+        "A_c": 1090,
+        "K_c_at_current_B_rem": 76786108785,
+        "c": 1024,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 958,
+        "n_c": 2048,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 2037,
+        "raw_quotient_count_log2": 2036.035732063467,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 65
+      },
+      {
+        "A_c": 545,
+        "K_c_at_current_B_rem": 16745284864,
+        "c": 2048,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 479,
+        "n_c": 1024,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1016,
+        "raw_quotient_count_log2": 1015.6062277984184,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 32
+      },
+      {
+        "A_c": 273,
+        "K_c_at_current_B_rem": 324102591630340,
+        "c": 4096,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 239,
+        "n_c": 512,
+        "r_c": 2160,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 506,
+        "raw_quotient_count_log2": 505.54686478155617,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 16
+      },
+      {
+        "A_c": 137,
+        "K_c_at_current_B_rem": 38033798950172476,
+        "c": 8192,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 119,
+        "n_c": 256,
+        "r_c": 6256,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 251,
+        "raw_quotient_count_log2": 250.76269960150876,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 8
+      },
+      {
+        "A_c": 69,
+        "K_c_at_current_B_rem": 348610218401621578,
+        "c": 16384,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 59,
+        "n_c": 128,
+        "r_c": 14448,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 124,
+        "raw_quotient_count_log2": 123.61169994635883,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 4
+      },
+      {
+        "A_c": 35,
+        "K_c_at_current_B_rem": 898414905870876045,
+        "c": 32768,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 29,
+        "n_c": 64,
+        "r_c": 30832,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 61,
+        "raw_quotient_count_log2": 60.26856356544513,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 2
+      }
+    ],
+    "rungs": [
+      {
+        "A_c": 1116048,
+        "K_c_at_current_B_rem": 4805007,
+        "c": 1,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 981104,
+        "n_c": 2097152,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 2090874,
+        "raw_quotient_count_log2": 2090873.2797933037,
+        "status": "TOP_PRIMITIVE_TARGET",
+        "terminal_raw_paid": false,
+        "w_c": 67471
+      },
+      {
+        "A_c": 558024,
+        "K_c_at_current_B_rem": 749194961,
+        "c": 2,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 490552,
+        "n_c": 1048576,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1045432,
+        "raw_quotient_count_log2": 1045431.7285188144,
+        "status": "PROVED_EXACT_QUOTIENT_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 33735
+      },
+      {
+        "A_c": 279012,
+        "K_c_at_current_B_rem": 7866613560,
+        "c": 4,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 245276,
+        "n_c": 524288,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 522712,
+        "raw_quotient_count_log2": 522711.20288130577,
+        "status": "PROVED_EXACT_QUOTIENT_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 16867
+      },
+      {
+        "A_c": 139506,
+        "K_c_at_current_B_rem": 21435171266,
+        "c": 8,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 122638,
+        "n_c": 262144,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 261352,
+        "raw_quotient_count_log2": 261351.19006203415,
+        "status": "PROVED_EXACT_QUOTIENT_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 8433
+      },
+      {
+        "A_c": 69753,
+        "K_c_at_current_B_rem": 29753587796,
+        "c": 16,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 61319,
+        "n_c": 131072,
+        "r_c": 0,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 130672,
+        "raw_quotient_count_log2": 130671.43365136092,
+        "status": "PROVED_EXACT_QUOTIENT_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 4216
+      },
+      {
+        "A_c": 34877,
+        "K_c_at_current_B_rem": 1451233453254335,
+        "c": 32,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 30659,
+        "n_c": 65536,
+        "r_c": 16,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 65332,
+        "raw_quotient_count_log2": 65331.71247376958,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 2108
+      },
+      {
+        "A_c": 17439,
+        "K_c_at_current_B_rem": 269518971028625790,
+        "c": 64,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 15329,
+        "n_c": 32768,
+        "r_c": 48,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 32663,
+        "raw_quotient_count_log2": 32662.101849800492,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 1054
+      },
+      {
+        "A_c": 8720,
+        "K_c_at_current_B_rem": 3088723598520252665,
+        "c": 128,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 7664,
+        "n_c": 16384,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 16328,
+        "raw_quotient_count_log2": 16327.54646747166,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 527
+      },
+      {
+        "A_c": 4360,
+        "K_c_at_current_B_rem": 178584294092863,
+        "c": 256,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 3832,
+        "n_c": 8192,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 8161,
+        "raw_quotient_count_log2": 8160.611827932798,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 263
+      },
+      {
+        "A_c": 2180,
+        "K_c_at_current_B_rem": 1141899454925,
+        "c": 512,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 1916,
+        "n_c": 4096,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 4078,
+        "raw_quotient_count_log2": 4077.3944749590087,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 131
+      },
+      {
+        "A_c": 1090,
+        "K_c_at_current_B_rem": 76786108785,
+        "c": 1024,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 958,
+        "n_c": 2048,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 2037,
+        "raw_quotient_count_log2": 2036.035732063467,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 65
+      },
+      {
+        "A_c": 545,
+        "K_c_at_current_B_rem": 16745284864,
+        "c": 2048,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 479,
+        "n_c": 1024,
+        "r_c": 112,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1016,
+        "raw_quotient_count_log2": 1015.6062277984184,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 32
+      },
+      {
+        "A_c": 273,
+        "K_c_at_current_B_rem": 324102591630340,
+        "c": 4096,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 239,
+        "n_c": 512,
+        "r_c": 2160,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 506,
+        "raw_quotient_count_log2": 505.54686478155617,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 16
+      },
+      {
+        "A_c": 137,
+        "K_c_at_current_B_rem": 38033798950172476,
+        "c": 8192,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 119,
+        "n_c": 256,
+        "r_c": 6256,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 251,
+        "raw_quotient_count_log2": 250.76269960150876,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 8
+      },
+      {
+        "A_c": 69,
+        "K_c_at_current_B_rem": 348610218401621578,
+        "c": 16384,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 59,
+        "n_c": 128,
+        "r_c": 14448,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 124,
+        "raw_quotient_count_log2": 123.61169994635883,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 4
+      },
+      {
+        "A_c": 35,
+        "K_c_at_current_B_rem": 898414905870876045,
+        "c": 32768,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 29,
+        "n_c": 64,
+        "r_c": 30832,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 61,
+        "raw_quotient_count_log2": 60.26856356544513,
+        "status": "PROVED_PLANTED_DESCENT_NEEDS_LOWER_RUNG_BOUND",
+        "terminal_raw_paid": false,
+        "w_c": 2
+      },
+      {
+        "A_c": 18,
+        "K_c_at_current_B_rem": 1242156698671972696,
+        "c": 65536,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 14,
+        "n_c": 32,
+        "r_c": 63600,
+        "raw_quotient_count": 471435600,
+        "raw_quotient_count_bit_length": 29,
+        "raw_quotient_count_log2": 28.81248546551091,
+        "status": "PROVED_DESCENT_AND_RAW_PAID",
+        "terminal_raw_paid": true,
+        "w_c": 1
+      },
+      {
+        "A_c": 9,
+        "K_c_at_current_B_rem": 24024210193662,
+        "c": 131072,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 7,
+        "n_c": 16,
+        "r_c": 63600,
+        "raw_quotient_count": 11440,
+        "raw_quotient_count_bit_length": 14,
+        "raw_quotient_count_log2": 13.481799431665754,
+        "status": "PROVED_DESCENT_AND_RAW_PAID",
+        "terminal_raw_paid": true,
+        "w_c": 0
+      },
+      {
+        "A_c": 5,
+        "K_c_at_current_B_rem": 4907802939562511,
+        "c": 262144,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 3,
+        "n_c": 8,
+        "r_c": 194672,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 6,
+        "raw_quotient_count_log2": 5.807354922057602,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 3,
+        "K_c_at_current_B_rem": 68709241153875167,
+        "c": 524288,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 1,
+        "n_c": 4,
+        "r_c": 456816,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 3,
+        "raw_quotient_count_log2": 1.9999999999999984,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 2,
+        "K_c_at_current_B_rem": 274836964615500671,
+        "c": 1048576,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 0,
+        "n_c": 2,
+        "r_c": 981104,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1,
+        "raw_quotient_count_log2": 0.0,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      },
+      {
+        "A_c": 1,
+        "K_c_at_current_B_rem": 274836964615500671,
+        "c": 2097152,
+        "descent_condition_r_c_le_w": false,
+        "j_c": 0,
+        "n_c": 1,
+        "r_c": 981104,
+        "raw_quotient_count": null,
+        "raw_quotient_count_bit_length": 1,
+        "raw_quotient_count_log2": 0.0,
+        "status": "OPEN_PLANTED_TAIL_R_GREATER_THAN_W",
+        "terminal_raw_paid": false,
+        "w_c": 0
+      }
+    ],
+    "status": "PROVED_DESCENT_WITH_TERMINAL_RAW_PAID_ROWS_AND_EXPLICIT_LOWER_RUNG_OBLIGATIONS",
+    "step": "Q0",
+    "terminal_raw_paid_cost": 471447040,
+    "terminal_raw_paid_rungs": [
+      {
+        "A_c": 18,
+        "K_c_at_current_B_rem": 1242156698671972696,
+        "c": 65536,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 14,
+        "n_c": 32,
+        "r_c": 63600,
+        "raw_quotient_count": 471435600,
+        "raw_quotient_count_bit_length": 29,
+        "raw_quotient_count_log2": 28.81248546551091,
+        "status": "PROVED_DESCENT_AND_RAW_PAID",
+        "terminal_raw_paid": true,
+        "w_c": 1
+      },
+      {
+        "A_c": 9,
+        "K_c_at_current_B_rem": 24024210193662,
+        "c": 131072,
+        "descent_condition_r_c_le_w": true,
+        "j_c": 7,
+        "n_c": 16,
+        "r_c": 63600,
+        "raw_quotient_count": 11440,
+        "raw_quotient_count_bit_length": 14,
+        "raw_quotient_count_log2": 13.481799431665754,
+        "status": "PROVED_DESCENT_AND_RAW_PAID",
+        "terminal_raw_paid": true,
+        "w_c": 0
+      }
+    ],
+    "theorem": "dyadic quotient/planted prefix descent"
+  },
+  "row_packet": {
+    "B_star": 274980728111395087,
+    "D": "mu_2^21",
+    "agreement": 1116048,
+    "deduplication_rule": "First-match order is recorded in first_match_branches.  Only rows with deducted_in_proved_ledger=true are included in the partial paid-cell total.",
+    "denominator_separation_note": "q_gen, q_line, q_chal, and q_list are intentionally separate. This packet does not instantiate q_chal or q_list ledgers.",
+    "endpoint_convention": "B* = floor((q_line - 1) / 2^128)",
+    "epsilon_star": "2^-128",
+    "field": "KoalaBear sextic line field",
+    "k": 1048576,
+    "n": 2097152,
+    "not_certified_safe": true,
+    "partial_paid_cells_total": 143763495894416,
+    "q_chal": null,
+    "q_gen": 2130706433,
+    "q_line": 93571093019388561295270373781649880353786165192103559169,
+    "q_list": null,
+    "replay": {
+      "full_recompute_command": "python3 experimental/scripts/verify_kb_mca_1116048_first_match_ledger_v1.py --full --check",
+      "json_sha256": null,
+      "quick_check_command": "python3 experimental/scripts/verify_kb_mca_1116048_first_match_ledger_v1.py --check",
+      "script": "experimental/scripts/verify_kb_mca_1116048_first_match_ledger_v1.py",
+      "seed": null
+    },
+    "rho": "1/2",
+    "safe_certificate": null,
+    "safe_certificate_status": "NOT_PROVED_BY_THIS_PACKET",
+    "unsafe_certificate": null
+  },
+  "scope": {
+    "does_not_prove": [
+      "primitive Q-fin max-orbit flatness",
+      "extension-valued slope safety over F_{p^6} \\ F_p",
+      "lower-rung quotient/planted max-fiber bounds for c=2..32768",
+      "arbitrary planted-tail bounds for c>=262144",
+      "sparse-sigma bounds",
+      "arbitrary M1 row-slice compression",
+      "raw support multiplicity inside a generated-field image cell",
+      "finite-field lift-class removal at cost w*p for prefix-vector fibers",
+      "generated-prefix support multiplicity bound for non-retained exact lift classes",
+      "primitive-heavy-orbit exclusion from evaluated higher moments"
+    ],
+    "object": "KoalaBear sextic finite-slope support-wise MCA partial first-match ledger audit",
+    "proved_here": [
+      "deployed integer constants",
+      "generated-field collision image-cell cost B_gen <= t*p",
+      "dyadic quotient/planted prefix descent for r_c<=w",
+      "raw-paid terminal quotient/planted rungs c=65536 and c=131072",
+      "Q1 exact split-prefix collision decomposition by one-sided difference e",
+      "Q2 twist-stabilizer forcing theorem for heavy prefix targets",
+      "Q2 exact-lift folding rigidity for stabilized prefix targets",
+      "split-prefix collision distance e>=w+1 for supports in a common prefix fiber",
+      "honest cyclotomic exact-lift prefix fiber bound <= 11440, not deducted for finite-field use",
+      "small finite replay showing generated-prefix image cells are not support payments",
+      "Route A/B/C/D evidence explaining why Q2 support multiplicity remains open",
+      "proved remaining primitive allowance after generated-cell deduction"
+    ],
+    "row": "KB-MCA A=1116048",
+    "top_level_nonclaim": "This packet does not prove U(1116048) <= B*."
+  },
+  "script": "experimental/scripts/verify_kb_mca_1116048_first_match_ledger_v1.py",
+  "split_prefix_collision_distance": {
+    "limitations": [
+      "This is a pairwise support-separation lemma, not a worst-case fiber bound.",
+      "Packing bounds from this distance are not strong enough to close the finite Q-fin target."
+    ],
+    "parameters": {
+      "j": 981104,
+      "minimum_one_sided_difference": 67472,
+      "minimum_symmetric_difference": 134944,
+      "w": 67471
+    },
+    "proof_summary": [
+      "Let Lambda_S=G A and Lambda_T=G B, where G is the common split locator and deg A=deg B=e.",
+      "Equality of the first w prefix coefficients gives deg(Lambda_S-Lambda_T) <= j-w-1.",
+      "Since Lambda_S-Lambda_T=G(A-B), nonzero difference implies j-e+deg(A-B) <= j-w-1, hence e>=w+1."
+    ],
+    "statement": "If two distinct j-subsets have the same first w locator-prefix coefficients, then their one-sided difference size is at least w+1.",
+    "status": "PROVED_SUPPORT_LEVEL_PREFIX_COLLISION_RIGIDITY"
+  },
+  "status": "CONDITIONAL"
+}

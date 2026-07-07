@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-06 - KB-MCA 1116048 partial first-match paid-cell ledger audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/kb_mca_1116048_first_match_ledger_v1.md`;
+  `experimental/scripts/verify_kb_mca_1116048_first_match_ledger_v1.py`;
+  `experimental/data/certificates/kb-mca-1116048-first-match-ledger-v1/`;
+  `experimental/notes/certificate_scanner/outputs/kb_mca_1116048_first_match_ledger_v1.report.md`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / PARTIAL_UPPER_LEDGER_AUDIT; not a safe-side
+  certificate and does not prove `U(1116048) <= B*`.
+- **What is being added:** A partial first-match paid-cell ledger audit for the
+  KoalaBear MCA adjacent candidate `A=1116048` row. It proves the base
+  generated-field finite-only affine-row collision bucket is paid by row-indexed
+  generated slope image cells with cost `B_gen <= t*p`, records Q0/Q1/Q2
+  structural inputs, raw-pays terminal quotient rungs `c=65536,131072`, and
+  keeps the generated-prefix support multiplicity obstruction explicit.
+- **How it is useful:** Converts finite-only generated collisions into typed
+  image-cell ledger entries, removes terminal quotient mass without support-level
+  overcounting, and gives the remaining primitive Q-fin target its exact current
+  multiplier `K_rem=4805007`.
+- **What to do next:** Prove the large signed folding-defect transfer theorem or
+  another support/moment certificate that bounds non-retained generated-prefix
+  support multiplicity by `<=t*p`, while separately paying extension, BC/SP,
+  sparse, lower-rung quotient/planted, planted-tail, and M1 residual branches.
+
 ### 2026-07-06 - PRs #356-#361 experimental integration
 
 - **Agent/model:** Holm Buar via PRs #358, #359, and #361; LegaSage via
