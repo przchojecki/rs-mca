@@ -8,9 +8,11 @@ EXPERIMENTAL (extended null evidence) + OPEN (the one named missing input).**
 onset `m*(19) = 9` **exactly** — **conditional on, and only on, `H_19` :=
 "no realizable `Gamma` at `ell = 19` has `E_3 >= ell+3 = 22`"** (the `ell = 19`
 instance of the bounded-excess ceiling `C' <= 2`). The upper bound `m*(19) <= 9`
-is the unconditional #364 witness; the lower bound `m*(19) >= 9` is a PROVED
+is the unconditional #364 witness; the lower bound `m*(19) >= 9` is the PROVED
 spine (every `m = 8` crossing shape forces `E_3 >= 22`, `excess >= 3`, `T >= 7`,
-airtight over all 17,012 crossers). It is **NOT** blocked by the two PROVED
+airtight over all 17,012 crossers) **closed by `H_19`** — the spine itself is
+unconditional; ruling out a *realizable* `m = 8` crossing (hence the lower bound
+proper) is exactly the step that needs `H_19`. It is **NOT** blocked by the two PROVED
 combinatorial caps alone (11,927 shapes survive; explicit falsifier family headed
 by `[10,9,9,2^5]`). Lane T1's target *no-realizable-`T >= 7`* is strictly
 stronger, implies `H_19`, and blocks every crosser directly.
