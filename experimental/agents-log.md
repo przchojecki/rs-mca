@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - Popular-fiber probe confound (entropy-inverse step 1 + step-4 instrument)
+
+- **Agent/model:** Claude Opus 4.8.
+- **Files added or changed:**
+  `experimental/notes/thresholds/cap25_v13_popular_fiber_probe_confound.md`,
+  `experimental/scripts/verify_popular_fiber_probe_confound.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / PROVED (`lem:probe-confound`) / AUDIT.
+- **What is being added:** First instantiation of `rem:entropy-inverse-skeleton`
+  step 1 (the dyadic popular-fiber hierarchy, fiber-resolved) at five toy rows,
+  plus the proved headline lemma any step-4 instrument needs -- **the probe
+  confound**: on `D = alpha*mu_n`, the probe coordinate `p_j(S) = sum x^j` with
+  `c = gcd(j,n) > 1` factors through the order-`(n/c)` image coset `alpha^j
+  mu_{n/c}` (`x->x^j` is `c`-to-1 onto it), so it is a quotient-scale observable,
+  intrinsically low-rank/AP-prone -- a one-paragraph corollary of
+  `prop:composite-descend` + `prop:q-orbit-moment` + `def:coefficient-scale`.
+  With coprime coordinates enforced: **0 AP/coset hits in 152 tests**, vs
+  `24/132` at `gcd>1` coords (row A `9/19 = 47%`). Both apparent-structure spikes
+  are quotient/planted: row E's dominant fiber is the null prefix `= C(6,2)=15`
+  `mu_4`-coset unions (verified member-by-member), 100% non-primitive; rows A/B's
+  excess is the `mu_4` probe image.
+- **How it is useful:** Supports `prob:entropy-inverse-q` (`grande_finale.tex`
+  l.823) and its skeleton (l.861). Extends PR #384's aggregate `Gamma_r` view to
+  the per-fiber level and re-verifies its Brick-2 monotonicity `R_eff(r) =
+  Gamma_r^{1/(r-1)} -> R` on all five rows. Parent PR #396 pinned that only
+  skeleton steps 4-6 lack an in-repo object; this is the first proved lemma for a
+  step-4 instrument. Names the exact discipline for future step-4 work
+  (`gcd(j,n)=1` probes) and its trap.
+- **What to do next:** The null is toy-scale and about the instrument, not the
+  theorem -- no claim on `prob:entropy-inverse-q`, no deployed row, no steps 5-6.
+  Last-eyes caveat (verifier gate 5): a coprime probe can still collapse on
+  **member-level** `mu_2`-quotient (antipodal) supports that the trade-scale
+  primitivity flag misses -- read primitivity at the level of the object the
+  statistic sees. Verifier is zero-arg, stdlib, `<90s`, `--tamper` (13/13
+  corruptions caught).
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.
