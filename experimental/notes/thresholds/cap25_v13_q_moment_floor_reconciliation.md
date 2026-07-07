@@ -16,7 +16,7 @@ certificate lives in the script -- no separate JSON).
 printed `94196 / 94992 / 641584 / 680397` for the same objects. This packet recomputes the
 floor from scratch under **both** averaging conventions for the bit margin `Delta_Q`,
 confirms the maintainer's four values exactly, and pins the exact source of the two #384
-entries that differ. It is a convention refinement, not a correction of a hidden slip: the
+entries that differ. It is a precision (rounded-margin) refinement, not a correction of a hidden slip: the
 #384 note (Sec 3, "computed from ... the 4-decimal `Delta` printed in `grande_finale.tex`'s
 own adjacent-margin table") disclosed the rounded-margin input it used.
 
