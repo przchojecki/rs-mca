@@ -53,8 +53,8 @@ Keep entries concise and link to the relevant files.
   defect) -- a root-non-concentration / Weil-type residual, the exact analogue of
   #382's min-j pencil freeze, pinned with a `2^-76899` pseudorandom expectation
   and a `+18.24`-bit margin.
-- **How it is useful:** First nontrivial curve-`M2` theorem; the provable half of
-  open PR #395's twist dichotomy. Replaces the largest single off-diagonal cell
+- **How it is useful:** First nontrivial curve-`M2` emptiness theorem; the provable half of
+  open PR #395's twist dichotomy. Replaces the leading off-diagonal cell
   of the depth-`(w+1)` shift-pair ledger (the `2^153665.47`
   top-stratum/`prop:top-stratum-quotient-sieve` primitive ceiling) by an exact 0
   in char 0. The generic-`z*` (transversal) branch and the deeper strata

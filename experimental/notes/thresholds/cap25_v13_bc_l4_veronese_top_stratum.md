@@ -13,7 +13,7 @@ The mechanism is a two-step rigidity: the top-stratum members are pairs of degre
 `X^n−1` differing by a constant; for `n=2^a` the Lam–Leung structure of vanishing sums of `2`-power
 roots of unity forces every such pair to be antipodal-closed, and a parity descent then forces `w+2`
 to be a power of `2`. At L4 `w+2 = 4218 = 2·3·19·37` is **not** a power of `2` (and `(w+2)/2 = 2109 =
-3·19·37` is odd), so the stratum is empty. This is the **first nontrivial curve-`M2` theorem** — the
+3·19·37` is odd), so the stratum is empty. This is the **first nontrivial curve-`M2` emptiness theorem** — the
 provable half of `#395`'s dichotomy: the leading off-diagonal term of the curve second moment vanishes
 identically. In characteristic `p` the stratum is nonempty only through a char-`p` degeneration (`p`
 dividing a cyclotomic defect); that residual is a **root-non-concentration / Weil-type input, the exact
@@ -212,7 +212,7 @@ vanish**. ∎
 | pseudorandom threshold `p_0` (`E[A]∼1`): `log2 p_0 = 2 log2 C(n,w+2)/(w+1)` | `2^{12.753}` | heuristic |
 | L4 prime `p` margin above threshold | `+18.24` bits | — |
 
-The theorem replaces the single **largest** off-diagonal cell of the depth-`(w+1)` SP ledger — the
+The theorem replaces the **leading** off-diagonal cell of the depth-`(w+1)` SP ledger — the
 `2^{153665.47}` top-stratum constant-shift ceiling, the `prop:top-stratum-quotient-sieve` primitive
 residual — by an **exact `0`** (char 0). It does **not** by itself lower the overall `M2` ceiling
 (`#395` shows `M2` is dominated by the deep stratum `e*≈32632`); its content is *structural*: the
@@ -279,8 +279,8 @@ two share the identical residual (Weil non-concentration at the specific prime),
 twist-invariant, iff `z*=0` (Veronese) versus `z*≠0` (transversal). This note resolves the **twist-
 invariant branch's leading term**:
 - **`z*=0` (this note).** The twist-orbit machinery is available, and T4 shows it makes the top
-  off-diagonal stratum of curve-`M2` **provably vanish in char 0** — the **first curve-`M2` theorem**.
-  It removes the largest single cell (`2^{153665.47}`) of the `prop:top-stratum-quotient-sieve` ledger at
+  off-diagonal stratum of curve-`M2` **provably vanish in char 0** — the **first curve-`M2` emptiness theorem**.
+  It removes the leading (top-stratum) cell (`2^{153665.47}`) of the `prop:top-stratum-quotient-sieve` ledger at
   this depth, replacing it by exact `0`.
 - **Generic `z*≠0` branch — still open.** `Γ` is transversal, the twist gain is unavailable, and the
   sharp curve-`M2` bound needs the `(W,λ)`-Veronese-transversality estimate `#395` §6 flags. Untouched
