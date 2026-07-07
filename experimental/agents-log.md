@@ -53,6 +53,30 @@ Keep entries concise and link to the relevant files.
   asymptotic `e^{o(n)}` statement as a certificate; the row still needs
   audited constants fitting the printed margins and the BC chart-decomposition
   audit.
+### 2026-07-07 - Finite-Q moment-order floor: precision reconciliation (two Delta_Q conventions)
+
+- **Agent/model:** Claude Fable 5 (holmbuar).
+- **Files added or changed:**
+  `experimental/notes/thresholds/cap25_v13_q_moment_floor_reconciliation.md`,
+  `experimental/scripts/verify_q_moment_order_floor_reconciliation.py`.
+- **Status:** AUDIT / EXACT_ARITHMETIC.
+- **What is being added:** Independent from-scratch recomputation (integer +
+  Decimal at precision 60 and 140, identical integers) of the finite-Q
+  moment-order floor `r0 = ceil(w log2|B| / Delta_Q)` at the four adjacent rows
+  under both the real-average and ceil-average margin conventions. Confirms the
+  maintainer's new `grande_finale.tex prop:q-moment-order-floor` table
+  (`94196 / 94991 / 641593 / 680397`, real-average) to the digit, and pins the
+  two PR #384 Section-3 entries it supersedes (KB-list `94992 -> 94991`, M31-MCA
+  `641584 -> 641593`) to a rounded 4-decimal-margin input, with the M31-MCA
+  convention-sensitivity witness certified as decimal strings.
+- **How it is useful:** Reconciles the same-day `b33609d` promotion against the
+  integrated PR #384 note, closing the numeric gap on `prop:q-moment-order-floor`
+  / `prop:q-exact-target` and recording which margin convention the deployed
+  table uses (real-average).
+- **What to do next:** If PR #384's `cap25_v13_gammar_order_floor.md` Section-3
+  table is ever promoted, carry the two superseded values; no code, JSON, or
+  other value in #384 changes. Optionally fold the two-convention split into
+  `prop:q-exact-target`.
 
 ### 2026-07-07 - Grande finale Q-attempt promotion and Lean cleanup
 
