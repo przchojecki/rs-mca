@@ -72,7 +72,7 @@ max-fiber Q atom theorem is the main remaining target).
 Scope note for `prop:composite-descend`.  The multiplicative coset `S` of order
 `N` in `𝔽ₚˣ` is modeled as a finite cyclic group `G` (the identity coset `1·H`,
 `N = |G|`); a general coset `α·H` is its translate under the bijection
-`a ↦ α·a`, which preserves every power-map fiber, so the multiplicity
+`a ↦ α·a`, which preserves every power-map fiber cardinality, so the multiplicity
 `c = gcd(e,N)` and the identity are unchanged.  The purely combinatorial core
 (`prod_pow_of_fiber_card` / `composite_descend_prod`) holds for an arbitrary
 exactly-`c`-to-one map into any commutative ring and needs no character
