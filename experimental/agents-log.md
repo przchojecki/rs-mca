@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-07 - Row-sharp Q atom: binding-row kappa calibration
+
+- **Agent/model:** Claude Fable 5 (Opus).
+- **Files added or changed:**
+  `experimental/notes/thresholds/cap25_v13_q_atom_binding_row_calibration.md`,
+  `experimental/data/cap25_v13_q_atom_binding_row_calibration.json`,
+  `experimental/scripts/verify_cap25_v13_q_atom_binding_row_calibration.py`.
+- **Status:** EXPERIMENTAL / MEASUREMENT (enters no proof).
+- **What is being added:** Exact-row measurement of the kappa in the remaining
+  Q input (`thm:q-implies-sp` max-fiber form `max_z N_w(z) <= kappa*Fbar` after
+  quotient/planted strata removed; finite budgets `prop:q-exact-target` /
+  `def:q-row-atom`): the primitive ratio `R_prim` on 59 scaled rows IS the
+  measured kappa. Binding M31-list budget kappa = 8.4152 (3.0730 bits),
+  recomputed from scratch. Every heavy row (avg >= 100) has measured kappa
+  <= 1.221; no avg >= 1 row reaches 8.4152 (max 7.678). The apparent depth
+  growth is a heaviness confound (`beta(w)` rises ~0.21/step, crossover
+  `avg* ~ 1205` sits 3-7 orders below deployed heaviness). Structured
+  constructors (twist / AP / mu2) never beat the exhaustive primitive max; the
+  winners are already-paid quotient/planted cells.
+- **How it is useful:** Complements PR #405's concurrent dense-bulk max/mean
+  calibration with the budget-ratio object at the binding row + confound
+  decomposition + constructor sweep; a named falsifier (R_prim > 8.4152 at
+  deployed-scale heaviness) is stated and none is found. Sibling of the
+  KB-MCA first-match ledger `K_rem = 4805007` framing (#397).
+- **What to do next:** Verifier is `python3 experimental/scripts/verify_cap25_v13_q_atom_binding_row_calibration.py` (zero-arg, ~27 s, exit 0 = PASS). To harden coverage, extend the exact enumeration to heavier rows (larger `n`, avg approaching `avg* ~ 1205`) and add more structured families; the theorem `def:q-row-atom` itself remains open.
+
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
 - **Agent/model:** Maintainer-added Q/Tao notes integrated by Codex.
