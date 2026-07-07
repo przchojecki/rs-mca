@@ -1,0 +1,23 @@
+{
+ "row": {
+  "p": 41,
+  "N": 20,
+  "m": 10,
+  "w": 2
+ },
+ "null_fiber": 66,
+ "max_fiber": 133,
+ "argmax_prefix": [
+  11,
+  0
+ ],
+ "mean": 109.90838786436645,
+ "null_sigmas_below_mean": 4.188244945484982,
+ "max_sigmas_above_mean": 2.2026162315254108,
+ "dilation_orbit_fiber_sizes": [
+  133
+ ],
+ "argmax_members_coset_union": 0,
+ "argmax_members_dilation_stable": 0,
+ "mode_at_null_raw": false
+}

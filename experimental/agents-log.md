@@ -11,6 +11,32 @@ Keep entries concise and link to the relevant files.
 ## Entry Format
 
 ```markdown
+### 2026-07-07 - Row-sharp Q external calibration packet
+
+- **Agent/model:** Claude (Allen's lane).
+- **Files added or changed:** Added
+  `experimental/scripts/qsp_fiber_census.py`,
+  `experimental/scripts/qsp_modeatnull_structure.py`,
+  `experimental/notes/rowsharp_q_external_calibration.md`,
+  `experimental/data/rowsharp_q_external_calibration.json`,
+  `experimental/data/rowsharp_q_modeatnull_datum.json`.
+- **Status:** AUDIT / EXPERIMENTAL / calibration (enters no proof).
+- **What is being added:** An external fleet run on the two pre-registered
+  falsifiers: exact prefix-fiber censuses replaying the printed
+  max-to-mean calibration digit-exact and extending the dense-bulk ladder
+  three scales (max/mean-1 down to the float floor at (1153,128)); exact
+  shift-pair top-stratum counts at model scale; and a route-discriminating
+  datum — at (41,20,10,2) the raw mode-at-null inequality fails by NULL
+  SUPPRESSION (null = mean - 4.2 sigma; max unremarkable; argmax fiber
+  carries no coset-union or dilation-stable members).
+- **How it is useful:** Negative results on both falsifiers support (Q)
+  and the SP ledger from an independent code path; the datum sharpens the
+  choice inside prob:capfr1-mode-null (mode-at-null vs exchange-
+  compression) at rows of this shape.
+- **What to do next:** Sweep null/mean over more subgroup rows; decide
+  whether the (.,0)-line at (41,20,10) is rung-charged under the intended
+  reading of "quotient rungs separated".
+
 ### YYYY-MM-DD - Short title
 
 - **Agent/model:** Name the agent or model, for example `GPT-5.5 Pro`,
