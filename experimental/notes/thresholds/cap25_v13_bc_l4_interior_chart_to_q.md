@@ -166,8 +166,8 @@ scalar-confinement — no `λ∈F^×` makes `λ g_α` base-valued — which is e
 `ζ = c(α)` with `c∈B[X]`, `α∉B` need **not** lie in `F∖B` (a base-field polynomial at an
 extension point can be base-valued, e.g. an even polynomial at a pole with `α²∈B`). The toy confirms this
 distinction: at the even planted word `U = X^{m'}` over the negation-closed `D` (row B, `z*=0`), **all**
-rays have base-valued `ζ` (`num_zeta_extension_valued = 0`), whereas the `m`-even non-monomial row A has all
-`21` slopes extension-valued. The PROVED extension statement is scalar-confinement of the line; per-slope
+rays have base-valued `ζ` (`num_zeta_extension_valued = 0`), whereas the `m`-even non-monomial row A has
+every slope value extension-valued (all `21` per-support values; `3` distinct rays). The PROVED extension statement is scalar-confinement of the line; per-slope
 membership is `F`-generic but not guaranteed, and the packet does not assert it.
 
 ---
@@ -249,8 +249,8 @@ degree bound: two rays give the same slope iff `(Ψ-Ψ')(α)=0`, at most `K-1` p
 
 | quantity | formula | exact `log2` | label |
 |---|---|---:|---|
-| ray/census heuristic | `C(n,m)/p^w` | `23.139009` | `EXPERIMENTAL` |
-| **pigeonhole floor** `∃z*` | `⌈C(n,m)/p^w⌉` | `23.139009` (= `a_4`, #361 / #369 boundary) | `PROVED` |
+| ray/census heuristic | `C(n,m)/p^w` | `23.139009` (= `a_4`, #361 / #369 boundary) | `EXPERIMENTAL` |
+| **pigeonhole floor** `∃z*` | `⌈C(n,m)/p^w⌉` | `23.139009` (ceil differs from `a_4` below print precision) | `PROVED` |
 | rigorous ray floor | `≥ #valid T /(m+1)` | `7.05` | `PROVED` |
 | conservative slope floor | best pole keeps `≥ ½` | `6.05` | `PROVED` |
 | planted per-ray mult. | `C(m+1,m) = m+1` | `69754 = 2^{16.089988}` | `PROVED` |
