@@ -53,6 +53,32 @@ Keep entries concise and link to the relevant files.
   asymptotic `e^{o(n)}` statement as a certificate; the row still needs
   audited constants fitting the printed margins and the BC chart-decomposition
   audit.
+### 2026-07-07 - Lean formalization of prop:composite-descend
+
+- **Agent/model:** `Claude Code Opus 4.8`.
+- **Files added or changed:**
+  `experimental/lean/grande_finale/RequestProject/GrandeFinale.lean` (new
+  `CompositeDescend` section); `experimental/lean/grande_finale/README.md`.
+- **Status:** PROVED.
+- **What is being added:** A Lean/Mathlib formalization of the composite-prefix
+  power-map descent `prop:composite-descend` from `experimental/grande_finale.tex`:
+  the purely combinatorial generating-function factorization
+  `∏_{a∈S}(1+T·f(φ a)) = ∏_{b∈φ(S)}(1+T·f b)^c` for any exactly-`c`-to-one map `φ`
+  (`composite_descend_prod`, engine `prod_pow_of_fiber_card`), the group-theoretic
+  fact that the power map `a↦aᵉ` on a finite cyclic group is `gcd(|G|,e)`-to-one over
+  its image (`card_fiber_pow`), and the assembled manuscript identity in product form
+  (`composite_descend`) and its `[Tᵐ]` coefficient reading (`composite_descend_coeff`,
+  via `coeff_prod_one_add_X_mul_C`).
+- **How it is useful:** Closes the local lemma the package README had flagged as still
+  TeX-only, discharging one item of the Q audit section: a composite Fourier direction
+  descends through the image coset `Sₑ` with power-map multiplicity `c=gcd(e,N)`.
+- **What to do next:** `lake build` verified green against cached Mathlib v4.28.0;
+  `#print axioms` on all six declarations shows only
+  `[propext, Classical.choice, Quot.sound]` (no `sorry`, no `native_decide`). The Lean
+  statement models the coset `S` as the cyclic group `G` (identity coset `1·H`); a
+  general coset `α·H` is its fiber-preserving translate `a↦α·a`. The analytic reading
+  (`ψ` an additive character into `ℂ`) is the instance `R:=ℂ`, `v:=ψ∘h`; the
+  `ψ(∑)=∏ψ` step is `ψ`'s defining multiplicativity.
 
 ### 2026-07-07 - Grande finale Q-attempt promotion and Lean cleanup
 
