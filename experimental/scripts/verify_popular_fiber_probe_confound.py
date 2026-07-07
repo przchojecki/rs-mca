@@ -11,7 +11,7 @@ THE PROBE CONFOUND -- on five toy rows, exact Fraction/int arithmetic throughout
 (floats appear only in the final human-readable log lines, never in a gate decision).
 
 Manuscript objects (experimental/grande_finale.tex, base commit 53bb5df):
-  Phi_w / Fib_w(z)        depth-w prefix and its fiber (l.660, l.676)
+  Phi_w / Fib_w(z)        depth-w prefix and its fiber (def. l.549, prop:newton l.551)
   Gamma_r                 |B|^{w(r-1)} sum_z mu(z)^r          (prop:moment-sandwich l.705)
   R_eff(r):=Gamma_r^{1/(r-1)} -> R    monotone certificate    (Brick 2, PR #384)
   s(z)=gcd(n,{j:z_j!=0})  twist stabilizer                    (prop:q-orbit-moment l.923)
@@ -33,9 +33,12 @@ Five gates; exit 0 iff ALL pass, nonzero on ANY failure.
   gate 1  IMAGE-COLLAPSE LEMMA (part a). For all 5 rows and probe orders j=w+1,w+2,
           recompute the multiset {x^j : x in D} and assert image size = n/gcd(j,n) with
           every fiber of size exactly gcd(j,n). Pinned per (row,j).
-  gate 2  DYADIC HIERARCHY + EXACT GAMMA_r (rows A, D from scratch). Recomputes the whole
-          prefix histogram, the dyadic level counts/masses, num observed/zero prefixes,
-          max fiber, R_max, and Gamma_2/3/4 as exact Fractions; diffs against pins.
+  gate 2  DYADIC HIERARCHY + EXACT GAMMA_r + R_eff (rows A, B, C, D from scratch).
+          Recomputes the whole prefix histogram, the dyadic level counts/masses, num
+          observed/zero prefixes, max fiber, R_max, and Gamma_2/3/4 as exact Fractions;
+          diffs against pins. Also verifies Brick-2 monotonicity R_eff(2)<=R_eff(3)<=
+          R_eff(4)<=R exactly (root-cleared: Gamma_2^2<=Gamma_3, Gamma_3^3<=Gamma_4^2,
+          Gamma_4<=R^3), i.e. the Sec 4 AUDIT (row E's Brick-2 check is in gate 4).
   gate 3  THE CONFOUND, MEASURED. Recomputes the primitive-trade exact-AP scan
           (|P+P| = 2|P|-1, the Vosper/Cauchy-Davenport equality = "contained in an AP")
           over every fiber of size >= minN, split by gcd(j,n). Asserts the aggregate
@@ -46,9 +49,12 @@ Five gates; exit 0 iff ALL pass, nonzero on ANY failure.
           4); mu_4 sums to 0. Also pins row E's dyadic top level and Gamma_2/3/4.
   gate 5  TWIST STABILIZER + ANTIPODAL MECHANISM (the note's last-eyes finding). Verifies
           s(z)=gcd(n,A(z)) and orbit size n/s(z) on pure directions; and at row E fiber
-          z=(0,42,0) (s(z)=2): exactly 5 of 7 members are antipodal (M=-M), antipodal
-          <=> p5(M)=0 exactly, and antipodal members are mu_2-quotient (all odd power
-          sums vanish). This explains why a COPRIME probe coordinate can still collapse.
+          z=(0,42,0) (s(z)=2): exactly 5 of 7 members are antipodal (M=-M). The theorem
+          is one-directional -- antipodal => every odd power sum vanishes (in particular
+          p5(M)=0), since an antipodal support is a union of mu_2-pairs {x,-x}. The
+          converse is NOT general (p5=0 is one linear condition); on THESE 7 measured
+          members the biconditional antipodal <=> p5(M)=0 happens to hold, checked
+          member-by-member (empirical). This explains why a COPRIME probe can still collapse.
 
 Non-claims (mirrors the note): toy scale only; no claim on prob:entropy-inverse-q, on any
 deployed row, or on skeleton steps 5-6.
@@ -209,7 +215,8 @@ PINS = dict(
         ("D", 3): (1, 10, 1), ("D", 4): (2, 5, 2),
         ("E", 4): (4, 6, 4),  ("E", 5): (1, 24, 1),
     },
-    # gate 2: exact structure of rows A and D
+    # gate 2: exact structure of rows A, B, C, D (every row in the Sec 1 tables
+    # except E, which gate 4 recomputes in full)
     rowA=dict(
         Cnm=8008, Bw=9409, gcd_mn=2, observed=4728, zero=4681, maxfib=5,
         Rmax=Fraction(47045, 8008),
@@ -218,6 +225,24 @@ PINS = dict(
                4: Fraction(15564081912098365, 514051074048512)},
         # dyadic level -> (count_z, mass)
         dyadic={0: (2504, 2504), 1: (1968, 4432), 2: (256, 1072)},
+        below=(0, 0),
+    ),
+    rowB=dict(
+        Cnm=11440, Bw=9409, gcd_mn=1, observed=5880, zero=3529, maxfib=6,
+        Rmax=Fraction(28227, 5720),
+        gamma={2: Fraction(17867691, 8179600),
+               3: Fraction(563665932127, 93574624000),
+               4: Fraction(1876685927105037, 97317608960000)},
+        dyadic={0: (1312, 2624), 1: (1400, 4640), 2: (240, 1248)},
+        below=(2928, 2928),
+    ),
+    rowC=dict(
+        Cnm=8008, Bw=12769, gcd_mn=2, observed=5928, zero=6841, maxfib=5,
+        Rmax=Fraction(63845, 8008),
+        gamma={2: Fraction(20698549, 8016008),
+               3: Fraction(527132118113, 64192192064),
+               4: Fraction(1496923310125871, 46731915822592)},
+        dyadic={0: (4168, 4168), 1: (1504, 3008), 2: (256, 832)},
         below=(0, 0),
     ),
     rowD=dict(
@@ -318,9 +343,20 @@ def _analyze_small(row):
                 gamma=gamma, lvl_c=lvl_c, lvl_m=lvl_m, below=(below_c, below_m))
 
 
+def _reff_monotone(gamma, Rmax):
+    """Brick-2 (PR #384) certificate, EXACT (no float in the decision): with
+    R_eff(r)=Gamma_r^{1/(r-1)}, verify R_eff(2)<=R_eff(3)<=R_eff(4)<=R by
+    clearing the fractional roots -- Gamma_2^2<=Gamma_3, Gamma_3^3<=Gamma_4^2,
+    Gamma_4<=R^3 (all quantities positive)."""
+    return (gamma[2] ** 2 <= gamma[3]
+            and gamma[3] ** 3 <= gamma[4] ** 2
+            and gamma[4] <= Rmax ** 3)
+
+
 def gate2_dyadic_gamma(pins):
-    print("gate 2  DYADIC HIERARCHY + EXACT Gamma_r (rows A, D, from scratch)")
-    for lbl, pinkey in (("A", "rowA"), ("D", "rowD")):
+    print("gate 2  DYADIC HIERARCHY + EXACT Gamma_r + R_eff MONOTONICITY "
+          "(rows A, B, C, D, from scratch)")
+    for lbl, pinkey in (("A", "rowA"), ("B", "rowB"), ("C", "rowC"), ("D", "rowD")):
         row = next(r for r in ROWS if r["label"] == lbl)
         a = _analyze_small(row)
         pn = pins[pinkey]
@@ -334,8 +370,11 @@ def gate2_dyadic_gamma(pins):
         _eq(f"row{lbl}.below", a["below"], pn["below"])
         # dyadic masses + below must reconstruct C(n,m) exactly
         _eq(f"row{lbl}.mass_total", sum(a["lvl_m"].values()) + a["below"][1], pn["Cnm"])
+        # Brick-2 (Sec 4 AUDIT), recomputed exactly from this row's Gamma_r
+        if not _reff_monotone(a["gamma"], a["Rmax"]):
+            raise GateFail(f"row{lbl}: R_eff(r)=Gamma_r^(1/(r-1)) not monotone <= R")
         print(f"        row {lbl}: C(n,m)={a['Cnm']} |B|^w={a['Bw']} gcd(m,n)={a['gcd_mn']} "
-              f"maxfib={a['maxfib']} R_max={a['Rmax']}")
+              f"maxfib={a['maxfib']} R_max={a['Rmax']}  R_eff mono<=R: ok")
         print(f"                Gamma_2={a['gamma'][2]}")
         print(f"                Gamma_3={a['gamma'][3]}")
         print(f"                Gamma_4={a['gamma'][4]}")
@@ -423,9 +462,14 @@ def gate4_rowE_quotient(pins):
     _eq("rowE.dominant_is_null",
         [z for z, N in counts.items() if N == maxfib], [pn["null_key"]])
     # exact Gamma_2/3/4 from the same histogram
+    gE = {}
     for r in (2, 3, 4):
         g = Fraction((p ** w) ** (r - 1) * sum(c ** r for c in counts.values()), pn["Cnm"] ** r)
         _eq(f"rowE.Gamma_{r}", g, pn["gamma"][r])
+        gE[r] = g
+    # Brick-2 (Sec 4 AUDIT) for row E, exact from its Gamma_r and R=R_max
+    if not _reff_monotone(gE, Fraction(pn["Bw"] * maxfib, pn["Cnm"])):
+        raise GateFail("rowE: R_eff(r) not monotone <= R")
     # dyadic top level: exactly one fiber, ratio in [128,256), mass 15
     Cnm, Bw = pn["Cnm"], pn["Bw"]
     topk = pn["dyadic_top"]["level"]
@@ -495,6 +539,9 @@ def gate5_twist(pins):
         p5 = sum(pow(x, 5, p) for x in M) % p
         n_anti += int(antipodal)
         n_p5 += int(p5 == 0)
+        # antipodal => p5==0 is a theorem (mu_2-pairs kill odd power sums); the
+        # converse is not general -- here we check it holds member-by-member on
+        # THIS fiber's members only (an empirical coincidence of the small fiber).
         match &= (antipodal == (p5 == 0))
         if antipodal:                       # antipodal member is mu_2-quotient: p_odd == 0
             odds = [sum(pow(x, j, p) for x in M) % p for j in (1, 3, 5, 7)]
@@ -503,9 +550,10 @@ def gate5_twist(pins):
     _eq("antipodal.count", n_anti, an["n_antipodal"])
     _eq("antipodal.p5zero", n_p5, an["n_p5_zero"])
     if not match:
-        raise GateFail("antipodal <=> (p5==0) failed")
+        raise GateFail("antipodal <=> (p5==0) failed on this fiber's members")
     print(f"        E fiber z={an['z']}: s(z)={s}; {n_anti}/{an['N']} members antipodal (M=-M),")
-    print(f"        antipodal <=> p5(M)=0 exactly; antipodal members are mu_2-quotient (p_odd=0).")
+    print(f"        antipodal => p5(M)=0 (theorem, mu_2-quotient); <=> holds member-by-member")
+    print(f"        on these {an['N']} members only (empirical; converse not general).")
     print("        => a COPRIME probe (j=5) still collapses on quotient MEMBERS: member-level,")
     print("           not trade-level, structure -- the note's last-eyes caveat.")
     print("        PASS\n")
@@ -537,6 +585,11 @@ def _corruptions(pins):
     yield "rowA.Gamma_2", mut(["rowA", "gamma", 2], Fraction(20445757, 8016009))
     yield "rowA.dyadic[1].count", mut(["rowA", "dyadic", 1], (1969, 4432))
     yield "rowA.observed", mut(["rowA", "observed"], 4729)
+    yield "rowB.Gamma_3", mut(["rowB", "gamma", 3], Fraction(563665932127, 93574624001))
+    yield "rowB.dyadic[0].count", mut(["rowB", "dyadic", 0], (1313, 2624))
+    yield "rowB.below", mut(["rowB", "below"], (2927, 2928))
+    yield "rowC.Gamma_2", mut(["rowC", "gamma", 2], Fraction(20698549, 8016009))
+    yield "rowC.Rmax", mut(["rowC", "Rmax"], Fraction(63845, 8009))
     yield "rowD.Rmax", mut(["rowD", "Rmax"], Fraction(961, 127))
     yield "scan.coprime_tests", mut(["scan_totals", "coprime_tests"], 151)
     yield "scan.coprime_hits(nonzero)", mut(["scan_totals", "coprime_hits"], 1)

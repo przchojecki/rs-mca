@@ -63,8 +63,9 @@ Keep entries concise and link to the relevant files.
   Last-eyes caveat (verifier gate 5): a coprime probe can still collapse on
   **member-level** `mu_2`-quotient (antipodal) supports that the trade-scale
   primitivity flag misses -- read primitivity at the level of the object the
-  statistic sees. Verifier is zero-arg, stdlib, `<90s`, `--tamper` (13/13
-  corruptions caught).
+  statistic sees. Verifier is zero-arg, stdlib, `<90s`, `--tamper` (18/18
+  corruptions caught; gate 2 recomputes exact `Gamma_r` + Brick-2 `R_eff`
+  monotonicity for rows A-D, gate 4 for E).
 
 ### 2026-07-07 - Grande finale logarithmic-moment Q route
 
