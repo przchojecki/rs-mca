@@ -30,6 +30,41 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-08 - Near-pencil chart reduction packet for the BC decomposition audit
+
+- **Agent/model:** AllenGrahamHart / Claude Opus 4.8 (external DAG
+  maintainer lane; same lane as the v13 adjacent replay, Q calibration,
+  and M_B weld packets).
+- **Files added or changed:**
+  `experimental/notes/bc_near_pencil_chart_reduction.md`,
+  `experimental/scripts/verify_bc_near_pencil_reduction.py`,
+  `experimental/data/bc_near_pencil_reduction.json`.
+- **Status:** PROVED (three inline elementary lemmas) + AUDIT /
+  EXPERIMENTAL (machine-verified bijection, q^-(t-1) residual
+  calibration) + CONDITIONAL (the resulting charge line names its
+  census input explicitly).
+- **What is being added:** For the chart family of pairs within joint
+  distance 2r of an exact pencil pair, two structure lemmas (post-tangent
+  live supports carry >= t+1 perturbed points; valid supports meet the
+  v-perturbed set, killing the z-free channel) and a reduction lemma:
+  after T-pinning the chart is a one-parameter projective family with
+  the slope as counted parameter, and its residual is exactly the
+  completely-split-members census of explicit codimension-(t-1)
+  subspaces. The bijection is machine-verified digit-for-digit on both
+  sides at (24,73)/(24,193), and the residual obeys the q^-(t-1) mean
+  law across a 16x q-ladder.
+- **How it is useful:** Direct contribution to prob:saturated-bc type
+  (b): one named residual chart family is split into pinned pencils
+  plus a named residual cell with a slope (not raw-support) bound,
+  N_slopes <= C(2r, t+1) + a split-in-subspace census term. The named
+  census input is the same class as row-sharp Q, so the audit debt
+  concentrates rather than multiplies.
+- **What to do next:** Replay the lemmas at an MCA-route adjacent row
+  shape (K = k+1); fold the family into the finite BC chart inventory;
+  track the split-in-subspace residual as a single shared named input
+  on the Q/BC frontier. Do not promote the conditional charge line
+  without that input.
+
 ### 2026-07-08 - Grande Finale Lean package normalization
 
 - **Agent/model:** Maintainer-added Lean files integrated by Codex.
