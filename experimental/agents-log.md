@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-09 - Row-sharp Q singleton-heavy top-seam compiler
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/scripts/verify_rowsharp_q_singleton_topseam_v1.py`;
+  `experimental/notes/thresholds/rowsharp_q_singleton_topseam_v1.md`;
+  `experimental/data/certificates/rowsharp-q-singleton-topseam-v1/`;
+  `experimental/notes/certificate_scanner/outputs/rowsharp_q_singleton_topseam_v1.report.md`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / PROVED-LOCAL. This is a local Route-D
+  singleton-heavy top-seam compiler and residual-ledger packet, not a
+  Row-sharp Q closure or safe-side certificate.
+- **What is being added:** The packet formalizes the top-seam boundary-packet
+  compiler, the planted-switch core-fiber descent for repeated side-pair reuse,
+  the multiplicity-aware SP/Padé realization for same-cell distinct-side
+  packets, and the fixed-key split-shift residual
+  `X_{r,c,U0,H,beta}(z)` that still needs a printed finite count.
+- **How it is useful:** It narrows the remaining Row-sharp Q Route-D work to
+  explicitly named obligations: planted core-fiber cost, weighted primitive
+  SP/Padé finite count, strict-distance child payment, and charged-row-budget
+  scope. It does not rely on the refuted lift-class cost model or on
+  entropy-inverse missing-cell completeness.
+- **What to do next:** Prove or import the printed finite split-locator
+  flatness bound and the other named branch ledgers, then combine them with the
+  conditional counting compiler.
+
 ### 2026-07-08 - Grande Finale Lean package normalization
 
 - **Agent/model:** Maintainer-added Lean files integrated by Codex.

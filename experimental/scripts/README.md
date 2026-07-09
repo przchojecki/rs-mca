@@ -22,6 +22,8 @@ python3 experimental/scripts/verify_rowsharp_q_prefix_atom_reductions_v1.py --ch
 python3 experimental/scripts/verify_rowsharp_q_prefix_atom_reductions_v1.py --tamper-selftest
 python3 experimental/scripts/experiment_rowsharp_q_prefix_atom_routes_v1.py --check
 python3 experimental/scripts/experiment_rowsharp_q_prefix_atom_routes_v1.py --tamper-selftest
+python3 experimental/scripts/verify_rowsharp_q_singleton_topseam_v1.py --check
+python3 experimental/scripts/verify_rowsharp_q_singleton_topseam_v1.py --tamper-selftest
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact

@@ -1,0 +1,607 @@
+{
+  "canonical_data": {
+    "branch_excess_unit": {
+      "base_child_rule": "C0(B) is the globally least unpaid child under a fixed total order.",
+      "definition": "B is an unpaid primitive singleton-heavy top-seam bucket; C is an unpaid child of B under the row r=rho(B) split, excluding the canonical base child C0(B).",
+      "identity": "outdeg_unpaid(B)-1 = #{C unpaid child of B: C != C0(B)}",
+      "symbol": "u=(B,C)"
+    },
+    "canonical_top_seam_boundary_packet": {
+      "canonical_pair_rule": "Choose the globally lexicographically least distance-r boundary pair (S,S') with S in C and S' in B\\C.",
+      "markkey": "(r,c,G,U,V)",
+      "note": "V=U-c is redundant but retained for verifier clarity.",
+      "payment_cell": "(r,c)",
+      "requirements": [
+        "r=rho(B)=m(B)+1",
+        "|S\\S'|=|S'\\S|=r",
+        "G=S cap S'",
+        "U(X)=prod_{a in S\\S'}(X-a)",
+        "V(X)=prod_{a' in S'\\S}(X-a')",
+        "U-V=c in F_p^*"
+      ],
+      "sidekey": "(r,c,U)",
+      "source_orientation": "S is in the charged child C; S' is in B\\C.",
+      "symbol": "Pi(B,C)=(r,c,G,U,V;S,S')"
+    }
+  },
+  "claim_class": "LOCAL_ROUTE_D_PAYMENT_COMPILER",
+  "conditional_counting_compiler": {
+    "charged_cell_count_under_row_budget": 143763024379904,
+    "charged_cells": "|R_D|*(p-1) <= t*(p-1)",
+    "if_branch_realization_and_row_budget_hold": "sum_B(outdeg_unpaid(B)-1) <= |R_D|*(p-1) <= t*(p-1)",
+    "t_times_p": 143763024447376,
+    "then_unpaid_supports_bound": "1 + t*(p-1) <= t*p",
+    "tree_identity": "unpaid leaves = 1 + sum_B(outdeg_unpaid(B)-1)"
+  },
+  "deployed_arithmetic_closure_if_compiler_is_paid": {
+    "integer_slack": 274693173267264137,
+    "integer_slack_bits": 57.93059866978271,
+    "multiplicative_gap_bits": 10.900667525231928,
+    "paid_plus_retained": 143763024458816,
+    "retained_exact_lift_bound": 11440,
+    "status": "PASS_CONDITIONAL",
+    "target_floor": 274836936291722953
+  },
+  "does_not_prove": [
+    "U(1116048) <= B*",
+    "KoalaBear MCA first-safe agreement",
+    "row-sharp Q-prefix atom theorem without branch-payment realization",
+    "zero-cost repeated side-pair deletion",
+    "planted core-fiber cost bound |G_{beta,A}|-1",
+    "finite numerical bound for weighted primitive SP/Pade certificates emitted by Rule 2",
+    "strict-distance child payment unless it is already a named paid branch",
+    "all-depth Route-D row-cell payment without the row-budget hypothesis |R_D|<=t",
+    "a promoted Paper-D theorem"
+  ],
+  "first_match_order": [
+    {
+      "examples": [
+        "generated_field",
+        "quotient_planted",
+        "sparse_pade_hankel",
+        "m1_window_shadow",
+        "rank_drop_pivot",
+        "bc_chart",
+        "sp_shift_pair",
+        "extension_slope"
+      ],
+      "name": "earlier_global_first_match_branches",
+      "priority": 0
+    },
+    {
+      "name": "strict_distance_child(B,C)",
+      "priority": 1
+    },
+    {
+      "name": "construct canonical packet Pi(B,C)",
+      "priority": 2
+    },
+    {
+      "name": "repeated_side_pair_reuse / planted_switch_core_fiber(Pi_min_key, Pi)",
+      "priority": 3
+    },
+    {
+      "name": "cross_pair_multiplicity_aware_sp_pade(Pi_min_cell, Pi)",
+      "priority": 4
+    },
+    {
+      "name": "residual_route_d_cell_charge(Pi)",
+      "priority": 5
+    }
+  ],
+  "formal_branch_predicates": {
+    "cross_pair_multiplicity_aware_sp_pade": {
+      "dedup_key": "(r,c)",
+      "dedup_rule": "Retain the globally least packet per cell after P1/P2; compare every other same-cell packet against that representative.",
+      "first_match_priority": "P3",
+      "input": "two canonical packets Pi0, Pi with the same cell (r,c) and U != U0",
+      "meaning": "A same-cell collision with different side polynomials produces a nontrivial weighted low-degree split-pair relation through row r. After cancellation this realizes a multiplicity-aware SP/shift-pair and Pad\u00e9/Hankel certificate.",
+      "paid_status": "Rule 2 is realized as a marked multiplicity-aware SP/Pad\u00e9 certificate with exact support cost. The finite numerical payment remains conditional on a printed weighted primitive SP/Pad\u00e9 bound.",
+      "predicate": "L_+=U0*(U-c), L_-=(U0-c)*U; after H=gcd(L_+,L_-), M_+=L_+/H and M_-=L_-/H are split, coprime, nonidentical, and deg(M_+-M_-) <= E-r-1 where E=deg(M_+)=deg(M_-).",
+      "recovery": "U = H*M_-/(U0-c), V=U-c, and marked core G recovers the deleted packet.",
+      "route_d_cell_cost": 0,
+      "support_cost": "1 support unit per marked certificate (r,c,U0,G,H,M_+,M_-)",
+      "verified_identity": "U0*(U-c) - (U0-c)*U = c*(U-U0)"
+    },
+    "repeated_side_pair_reuse": {
+      "dedup_key": "(r,c,U,beta)",
+      "dedup_rule": "Retain the globally least core for each planted-switch key (r,c,U,beta); noncanonical cores enter planted_switch_core_fiber.",
+      "first_exposed_short_key": "(r,c,U) is safe only at the first exposed seam because beta=z is fixed.",
+      "first_match_priority": "P2",
+      "input": "two canonical packets Pi_min, Pi with the same planted-switch key (r,c,U,beta)",
+      "meaning": "The same local top-seam switch U <-> U-c is reused over the same parent prefix beta with two distinct marked cores.",
+      "paid_status": "Rule 1 is proved as exact planted-switch core-fiber descent.  It is paid exactly to the extent that the planted-core fiber ledger includes the printed cost |G_{beta,A}|-1.",
+      "planted_switch_cost": "1 per deleted repeated packet, aggregated as |G_{beta,A}|-1",
+      "predicate": "r_min=r, c_min=c, U_min=U, beta_min=beta, and G_min != G",
+      "route_d_cell_cost": 0
+    },
+    "residual_route_d_cell_charge": {
+      "first_match_priority": "P4",
+      "input": "canonical packet surviving P1-P3",
+      "predicate": "packet survives all earlier predicates and is charged to cell (r,c)",
+      "route_d_cell_cost": 1,
+      "validity_condition": "r in R_D and |R_D| <= t"
+    },
+    "strict_distance_child": {
+      "dedup_key": "(B,C)",
+      "first_match_priority": "P1",
+      "input": "branch-excess unit (B,C), r=rho(B)",
+      "meaning": "C has no top-seam boundary pair and is strict-distance separated from B\\C.",
+      "paid_status": "Paid only if the strict-distance Route-D/RIM/window-shadow payment theorem is imported; otherwise remains conditional residual.",
+      "predicate": "d(S,S')=|S\\S'| >= r+1 for every S in C and S' in B\\C",
+      "route_d_cell_cost": 0
+    }
+  },
+  "missing_branch_realization": [
+    {
+      "name": "planted_switch_core_fiber_cost",
+      "needed_statement": "Repeated side-pair reuse with key (r,c,U,beta) is exactly the planted core fiber G_{beta,A}.  The noncanonical repeats are removed from Route-D row-cell mass, but their printed support cost |G_{beta,A}|-1 must be included in a planted/core ledger.",
+      "risk": "The descent is proved, but it is not zero-cost and cannot be hidden inside image-cell accounting.",
+      "status": "RULE_1_PROVED_AS_PLANTED_DESCENT_OPEN_REQUIRED_PLANTED_CORE_LEDGER"
+    },
+    {
+      "name": "weighted_primitive_sp_pade_bound",
+      "needed_statement": "If U != U0 in a common cell (r,c), cancellation produces a marked multiplicity-aware SP/Pade certificate (r,c,U0,G,H,M_+,M_-) with deg(M_+-M_-) <= E-r-1 and exact support cost one.  The weighted SP/Pade dichotomy first-matches cancellation/common-divisor, extension-slope, RIM rank-drop, BC corank-one, and structural quotient/planted classes.  The full-rank primitive residual reduces to fixed-key split-shift sets X_{r,c,U0,H,beta}(z).  The finite ledger still needs a printed bound for their total count, equivalently for N_WSP_full(z).",
+      "risk": "Exact support-cost realization is not the same as a small printed finite adjacent bound.",
+      "status": "RULE_2_MULTIPLICITY_AWARE_REALIZED_OPEN_REQUIRED_WEIGHTED_PRIMITIVE_SP_BOUND"
+    },
+    {
+      "name": "strict_distance_child",
+      "needed_statement": "A child separated from the rest of a top-seam bucket by distance at least r+1 is already paid or routed by strict-distance Route-D/RIM/window-shadow rules.",
+      "risk": "If not already a named branch, this is a new payment obligation.",
+      "status": "OPEN_REQUIRED_BRANCH_PAYMENT_CHECK"
+    },
+    {
+      "name": "charged_row_budget",
+      "needed_statement": "All charged top-seam rows r used by the compiler lie in a row set of size at most t, or the theorem is explicitly restricted to the first exposed seam.",
+      "risk": "Without this, the cell count t*(p-1) does not follow.",
+      "status": "OPEN_REQUIRED_SCOPE_CHECK"
+    }
+  ],
+  "not_a_safe_side_certificate": true,
+  "open_pr_interactions": [
+    {
+      "position": "keeps raw versus masked residual accounting separate; does not convert masked participation-ratio material into Row-sharp Q proof",
+      "pr": "#414",
+      "topic": "signed-e_m inverse / participation-ratio bound"
+    },
+    {
+      "position": "does not rely on the lift-class cost model refuted by #417",
+      "pr": "#416/#417",
+      "topic": "masked participation ratio and lift-class cost model"
+    },
+    {
+      "position": "does not introduce Lean theorem-label dependencies or claim lake build/correspondence closure",
+      "pr": "#418",
+      "topic": "Lean correspondence audit"
+    },
+    {
+      "position": "treats the fixed-key split-shift residual as a shared unresolved object, not as a solved BC/SP payment",
+      "pr": "#419",
+      "topic": "BC near-pencil split-in-subspace residual"
+    },
+    {
+      "position": "does not claim entropy-inverse removal-list completeness; #422-style F_p-span normalization remains adjacent open context",
+      "pr": "#420/#421/#422",
+      "topic": "entropy-inverse missing-cell and F_p-span cell"
+    },
+    {
+      "position": "records a local singleton-heavy top-seam compiler and does not supersede a full Route-D residual support certificate",
+      "pr": "#423",
+      "topic": "KB-MCA Route-D residual support certificate"
+    },
+    {
+      "position": "does not use a moment-floor route as a closure; the weighted primitive SP/Pade and row-budget obligations remain explicit",
+      "pr": "#424",
+      "topic": "row-sharp Q moment floor audit"
+    }
+  ],
+  "parameters": {
+    "B_star": 274980728111395087,
+    "K_rem": 4805007,
+    "agreement": 1116048,
+    "j": 981104,
+    "k": 1048576,
+    "n": 2097152,
+    "p": 2130706433,
+    "t": 67472,
+    "w": 67471
+  },
+  "proved_local_lemmas": {
+    "lemma_A_singleton_witness_coverage": {
+      "statement": "At a top-seam bucket of depth m with r=m+1, every singleton child either has a distance-r boundary witness and hence a canonical top-seam packet, or has strict distance at least r+1 to the rest of the bucket.",
+      "status": "PROVED_LOCAL",
+      "uses": [
+        "Q1 distance at common depth m",
+        "side-locator degree bound",
+        "top-seam constant-difference U-V=c",
+        "Newton identity P_r(A)-P_r(B)=-r*c"
+      ]
+    },
+    "lemma_B_no_surviving_same_cell_collision": {
+      "cross_identity_checks": [
+        {
+          "c": 5,
+          "degree_bound_pass": true,
+          "degree_lhs": 0,
+          "degree_rhs": 0,
+          "expected_degree_bound": 0,
+          "identity_pass": true,
+          "prime": 101,
+          "r": 1
+        },
+        {
+          "c": 11,
+          "degree_bound_pass": true,
+          "degree_lhs": 1,
+          "degree_rhs": 1,
+          "expected_degree_bound": 1,
+          "identity_pass": true,
+          "prime": 101,
+          "r": 2
+        },
+        {
+          "c": 17,
+          "degree_bound_pass": true,
+          "degree_lhs": 3,
+          "degree_rhs": 3,
+          "expected_degree_bound": 3,
+          "identity_pass": true,
+          "prime": 101,
+          "r": 4
+        },
+        {
+          "c": 41,
+          "degree_bound_pass": true,
+          "degree_lhs": 6,
+          "degree_rhs": 6,
+          "expected_degree_bound": 6,
+          "identity_pass": true,
+          "prime": 101,
+          "r": 7
+        }
+      ],
+      "statement": "Two surviving canonical top-seam packets with the same cell (r,c) must be identical, after same-side-pair repeats are routed to the planted-switch core-fiber branch and distinct side-pair cross identities are realized as marked multiplicity-aware SP/Pade-Hankel certificates with exact support cost.",
+      "status": "ALGEBRA_PROVED_RULE1_DESCENT_RULE2_MULTIPLICITY_AWARE_EXACT_COST_CONDITIONAL_ON_NUMERIC_BOUNDS",
+      "verified_cross_identity": "U0*(U-c) - (U0-c)*U = c*(U-U0)"
+    },
+    "lemma_C_live_child_excess_compiler": {
+      "requires": [
+        "charged row set has size at most t",
+        "strict-distance child is a named paid branch",
+        "Lemma B branch routings are paid and first-matched"
+      ],
+      "statement": "After choosing one canonical base child at each unpaid top-seam bucket, every other surviving child has a canonical top-seam boundary packet; same-cell collisions are ruled out by Lemma B.",
+      "status": "COMPILER_PROVED_MODULO_ROW_BUDGET_AND_BRANCH_ROUTING"
+    }
+  },
+  "status": "CONDITIONAL_ON_WEIGHTED_PRIMITIVE_SP_PADE_BOUND_AND_PLANTED_CORE_COST_BOUND_AND_STRICT_DISTANCE_AND_ROW_BUDGET_SCOPE",
+  "step_3_repeated_side_pair_planted_switch": {
+    "algebra_checks": [
+      {
+        "c": 5,
+        "c_nonzero": true,
+        "r": 1,
+        "r_less_than_p": true,
+        "row_r_crosses": true,
+        "row_r_delta_formula": "-r*c",
+        "row_r_delta_mod_p": 2130706428,
+        "side_switch_preserves_rows_before_r": true
+      },
+      {
+        "c": 11,
+        "c_nonzero": true,
+        "r": 2,
+        "r_less_than_p": true,
+        "row_r_crosses": true,
+        "row_r_delta_formula": "-r*c",
+        "row_r_delta_mod_p": 2130706411,
+        "side_switch_preserves_rows_before_r": true
+      },
+      {
+        "c": 19,
+        "c_nonzero": true,
+        "r": 17,
+        "r_less_than_p": true,
+        "row_r_crosses": true,
+        "row_r_delta_formula": "-r*c",
+        "row_r_delta_mod_p": 2130706110,
+        "side_switch_preserves_rows_before_r": true
+      },
+      {
+        "c": 1,
+        "c_nonzero": true,
+        "r": 67472,
+        "r_less_than_p": true,
+        "row_r_crosses": true,
+        "row_r_delta_formula": "-r*c",
+        "row_r_delta_mod_p": 2130638961,
+        "side_switch_preserves_rows_before_r": true
+      },
+      {
+        "c": 2130706432,
+        "c_nonzero": true,
+        "r": 67472,
+        "r_less_than_p": true,
+        "row_r_crosses": true,
+        "row_r_delta_formula": "-r*c",
+        "row_r_delta_mod_p": 67472,
+        "side_switch_preserves_rows_before_r": true
+      }
+    ],
+    "core_fiber": {
+      "bijection": "Pi=(r,c,G,U,U-c;G union A,G union B) <-> G in G_{beta,A}",
+      "definition": "G_{beta,A}={G subset Omega_AB: |G|=j-r and P_k(G)=beta_k-P_k(A) for 1<=k<=r-1}",
+      "first_exposed_specialization": {
+        "beta": "original primitive target z",
+        "core_size": 913632,
+        "punctured_domain": "Omega \\ (A union B)",
+        "r": "w+1=t"
+      },
+      "parent_prefix": "beta=(beta_1,...,beta_{r-1})"
+    },
+    "cost_model": {
+      "aggregate_cost": "|G_{beta,A}|-1",
+      "planted_switch_deleted_packet_cost": 1,
+      "requires_printed_ledger": true,
+      "route_d_row_cell_cost": 0
+    },
+    "cost_status": "RULE_1_COST_REQUIRES_PLANTED_CORE_LEDGER",
+    "dedup": {
+      "correct_key": "(r,c,U,beta)",
+      "delete": "every other core G under the same planted-switch key",
+      "first_exposed_short_key_safe": "(r,c,U) only when beta=z is fixed globally.",
+      "retain": "least core G_min(r,c,U,beta)",
+      "why_beta_is_required": "For all-depth nodes, the same side key can occur over different parent prefixes beta; those are different planted core fibers."
+    },
+    "not_zero_cost_row_cell_deletion": true,
+    "planted_switch": {
+      "involution": true,
+      "map_A_to_B": "tau_{A,B}(G union A)=G union B",
+      "map_B_to_A": "tau_{B,A}(G union B)=G union A",
+      "prefix_behavior": [
+        "P_k(A)=P_k(B) for 1 <= k <= r-1",
+        "P_r(A)-P_r(B)=-r*c != 0 because r<p and c != 0"
+      ]
+    },
+    "side_data": {
+      "A": "Roots(U)",
+      "B": "Roots(U-c)",
+      "disjointness": "A cap B is empty because U(x)=U(x)-c=0 would force c=0.",
+      "free_core_domain": "Omega_AB = Omega \\ (A union B)"
+    },
+    "status": "RULE_1_PROVED_AS_EXACT_PLANTED_SWITCH_DESCENT"
+  },
+  "step_4_cross_pair_branch_matching": {
+    "algebra_checks": [
+      {
+        "E": 2,
+        "E_lower_bound": 2,
+        "E_lower_bound_pass": true,
+        "c": 5,
+        "coprime_reduced_pair": true,
+        "degree_mplus_minus_mminus": 0,
+        "equal_reduced_degrees": true,
+        "h_degree": 0,
+        "h_degree_bound": 0,
+        "h_degree_bound_pass": true,
+        "prime": 101,
+        "r": 1,
+        "shift_pair_degree_bound": 0,
+        "shift_pair_degree_bound_pass": true,
+        "squarefree_required": false,
+        "support_recovery_from_certificate_pass": true,
+        "u1_distinct_u2": true
+      },
+      {
+        "E": 4,
+        "E_lower_bound": 3,
+        "E_lower_bound_pass": true,
+        "c": 11,
+        "coprime_reduced_pair": true,
+        "degree_mplus_minus_mminus": 1,
+        "equal_reduced_degrees": true,
+        "h_degree": 0,
+        "h_degree_bound": 1,
+        "h_degree_bound_pass": true,
+        "prime": 101,
+        "r": 2,
+        "shift_pair_degree_bound": 1,
+        "shift_pair_degree_bound_pass": true,
+        "squarefree_required": false,
+        "support_recovery_from_certificate_pass": true,
+        "u1_distinct_u2": true
+      },
+      {
+        "E": 8,
+        "E_lower_bound": 5,
+        "E_lower_bound_pass": true,
+        "c": 17,
+        "coprime_reduced_pair": true,
+        "degree_mplus_minus_mminus": 3,
+        "equal_reduced_degrees": true,
+        "h_degree": 0,
+        "h_degree_bound": 3,
+        "h_degree_bound_pass": true,
+        "prime": 101,
+        "r": 4,
+        "shift_pair_degree_bound": 3,
+        "shift_pair_degree_bound_pass": true,
+        "squarefree_required": false,
+        "support_recovery_from_certificate_pass": true,
+        "u1_distinct_u2": true
+      },
+      {
+        "E": 14,
+        "E_lower_bound": 8,
+        "E_lower_bound_pass": true,
+        "c": 41,
+        "coprime_reduced_pair": true,
+        "degree_mplus_minus_mminus": 6,
+        "equal_reduced_degrees": true,
+        "h_degree": 0,
+        "h_degree_bound": 6,
+        "h_degree_bound_pass": true,
+        "prime": 101,
+        "r": 7,
+        "shift_pair_degree_bound": 6,
+        "shift_pair_degree_bound_pass": true,
+        "squarefree_required": false,
+        "support_recovery_from_certificate_pass": true,
+        "u1_distinct_u2": true
+      }
+    ],
+    "cancellation": {
+      "E": "deg(M_plus)=deg(M_minus)=2r-deg(H)",
+      "H": "gcd(L_plus,L_minus)",
+      "M_minus": "L_minus/H",
+      "M_plus": "L_plus/H",
+      "consequence": "depth-r shift-pair / prefix-collision degree inequality",
+      "proved_bound": "deg(M_plus-M_minus) <= E-r-1"
+    },
+    "construction": {
+      "L_minus": "(U0-c)*U",
+      "L_plus": "U0*(U-c)",
+      "degree_before_cancellation": "deg(L_plus-L_minus) <= r-1",
+      "identity": "L_plus-L_minus=c*(U-U0)"
+    },
+    "first_match_realization": [
+      "construct L_plus and L_minus",
+      "cancel H=gcd(L_plus,L_minus)",
+      "form weighted Pad\u00e9 normal form F_mu=Y^(r+1)R_D/Q_D",
+      "if |D|<=r+1, route to cancellation/common-divisor",
+      "if R_D(0)=0, route to extension_slope",
+      "else if quotient-pullback, route to quotient_planted",
+      "else if complete-fiber, route to complete_fiber/quotient",
+      "else if planted-core data remains, route to planted_switch_core_fiber",
+      "else if canonical RIM pivot minor vanishes, route to rank_drop_pivot",
+      "else if |D|=r+2, route to BC corank-one chart",
+      "else reduce to fixed-key split-shift set X_{r,c,U0,H,beta}(z) for printed counting"
+    ],
+    "fixed_key_split_shift_reduction": {
+      "abstract_counterexample_family": {
+        "certificate": "L_plus=(X-a0)(X-a-c), L_minus=(X-a0-c)(X-a), L_plus-L_minus=c*(a0-a)",
+        "lesson": "SP/Pade shape alone allows many same-key full-rank split-shift members; a KB proof needs a finite split-locator flatness ledger or a new deletion branch.",
+        "parameters": "r=1, H=1, U0=X-a0, U=X-a"
+      },
+      "bound_reduction": "N_WSP_full(z) = sum_{r,c,U0,H,beta} |X_{r,c,U0,H,beta}(z)| after canonical first-match partitioning",
+      "fixed_key": "(r,c,U0,H), with V0=U0-c",
+      "fixed_key_conditions": [
+        "deg K <= r-deg(H)-1",
+        "U0+H*K is monic squarefree split degree r over Omega",
+        "U0-c+H*K is monic squarefree split degree r over Omega",
+        "the cross-pair gcd is exactly H",
+        "G satisfies parent-prefix compatibility for beta",
+        "all primitive first-match filters fail"
+      ],
+      "fixed_key_set": "X_{r,c,U0,H,beta}(z)",
+      "gcd_decomposition": [
+        "H_A=gcd(H,U0)",
+        "H_B=gcd(H,U0-c)",
+        "H=H_A*H_B for exact same-key Rule-2 gcd data",
+        "U0=H_A*U0_prime",
+        "U0-c=H_B*V0_prime"
+      ],
+      "normal_form": [
+        "U=U0+H*K",
+        "U-c=U0-c+H*K",
+        "deg K <= r-deg(H)-1"
+      ],
+      "remaining_bound": "prove sum_{r,c,U0,H,beta} |X_{r,c,U0,H,beta}(z)| <= B_WSP_full with printed constants",
+      "sp_pade_automatic": "With M_plus=U0_prime*(V0_prime+H_A*K) and M_minus=V0_prime*(U0_prime+H_B*K), one has M_plus-M_minus=c*K.  Thus the weighted SP/Pade degree condition is exactly the degree bound on K.",
+      "status": "FULL_RANK_WSP_REDUCED_TO_SPLIT_SHIFT_FLATNESS_PRINTED_FINITE_COUNT_REQUIRED",
+      "support_core_constraints": [
+        "G subset Omega \\ (Roots(U) union Roots(U-c))",
+        "|G|=j-r",
+        "P_k(G)=beta_k-P_k(Roots(U)) for 1<=k<=r-1"
+      ]
+    },
+    "input": "same-cell canonical top-seam packets Pi0, Pi with U != U0",
+    "multiplicity_aware_sp_match": {
+      "condition": "M_plus and M_minus are monic split polynomials after cancellation; squarefreeness is not required",
+      "locator_condition": "deg(M_plus-M_minus) <= E-r-1",
+      "matched_object": "multiplicity-aware depth-r weighted sp_shift_pair normal form",
+      "weighted_power_sum_condition": "sum_a m_plus(a)*a^k = sum_a m_minus(a)*a^k for 0<=k<=r"
+    },
+    "pade_hankel_match": {
+      "moment_certificate": "mu_k=sum_a (m_plus(a)-m_minus(a))*a^k=0 for 0<=k<=r",
+      "non_squarefree_interpretation": "non-squarefree reduced sides give weighted Pad\u00e9/Hankel packets, not branch-shape failures",
+      "object": "weighted sparse_pade_hankel / finite Hankel-Pade certificate shape"
+    },
+    "payment_status": "FINITE_WEIGHTED_PRIMITIVE_SP_BOUND_STILL_REQUIRED",
+    "status": "RULE_2_MULTIPLICITY_AWARE_SP_PADE_REALIZED_WITH_EXACT_SUPPORT_COST",
+    "support_exact_cost": {
+      "certificate_key": "(r,c,U0,G,H,M_plus,M_minus)",
+      "cost": "1 support unit per marked multiplicity-aware SP/Pad\u00e9 certificate",
+      "not_an_image_cell": true,
+      "recovery": "U = H*M_minus/(U0-c); V=U-c; marked core G recovers the deleted packet"
+    },
+    "weighted_sp_pade_dichotomy": {
+      "defect_complexity": "s=|D|-r-1 and deg R_D <= s-1",
+      "first_match_classes": [
+        {
+          "consequence": "impossible for nonzero reduced mu; route to cancellation/common-divisor if produced upstream",
+          "name": "support_collapse_or_common_divisor",
+          "predicate": "|D| <= r+1"
+        },
+        {
+          "consequence": "certificate extends from depth r to depth r+1",
+          "name": "extension_slope",
+          "predicate": "R_D(0)=0, equivalently mu_{r+1}=0"
+        },
+        {
+          "consequence": "route to rank_drop_pivot branch",
+          "name": "rim_rank_drop_pivot",
+          "predicate": "canonical RIM/Hankel pivot vanishes"
+        },
+        {
+          "consequence": "one-dimensional barycentric nullvector / BC chart",
+          "name": "bc_corank_one_chart",
+          "predicate": "|D|=r+2 and the pivot is nonzero"
+        },
+        {
+          "consequence": "route to the corresponding named structural branch",
+          "name": "structural_quotient_complete_common_planted",
+          "predicate": "quotient-pullback, complete-fiber, common-divisor, or planted-core structure is present"
+        },
+        {
+          "consequence": "finite support-level chart count N_WSP_full(z) remains to be printed",
+          "name": "full_rank_primitive_weighted_stratum",
+          "predicate": "|D|>=r+3, R_D(0)!=0, pivot nonzero, and no structural first-match predicate applies"
+        }
+      ],
+      "full_rank_chart": {
+        "free_set": "F=D\\P with |F|=s",
+        "injective_chart_key": "(r,c,U0,G,H,D,P,mu_F)",
+        "linear_solution": "mu_P=-V_P^{-1}V_F*mu_F",
+        "pivot_set": "P subset D with |P|=r+1 and nonzero canonical pivot",
+        "remaining_count": "N_WSP_full(z)"
+      },
+      "input_object": "marked weighted certificate C=(r,c,U0,G,H,M_plus,M_minus)",
+      "pade_normal_form": "F_mu(Y)=Y^(r+1)*R_D(Y)/Q_D(Y), Q_D(Y)=prod_{a in D}(1-aY)",
+      "rule2_weight_bound": "Because L_plus and L_minus are products of two squarefree degree-r locators, residual multiplicities in M_plus and M_minus are at most 2; hence mu(a) in {-2,-1,0,1,2}.",
+      "signed_weight": "mu(a)=ord_{X=a}M_plus - ord_{X=a}M_minus on D=supp(mu)",
+      "status": "WEIGHTED_SP_PADE_DICHOTOMY_PROVED_FULL_RANK_PRIMITIVE_COUNT_REQUIRED"
+    }
+  },
+  "theorem_scope": {
+    "budgeted_all_depth_theorem": {
+      "branch_realization_scope": "strict_distance_child is a genuine named paid first-match branch; repeated_side_pair_reuse is accounted for by the planted-switch core-fiber ledger; cross_pair_multiplicity_aware_sp_pade realizes same-cell distinct-U packets as marked weighted SP/Pad\u00e9 certificates with exact support cost, but still requires a printed finite weighted primitive SP/Pad\u00e9 bound.",
+      "conclusion": "sum_B(outdeg_unpaid(B)-1) <= |R_D|*(p-1) <= t*(p-1)",
+      "row_budget_scope": "|R_D| <= t",
+      "status": "CONDITIONAL_COMPILER",
+      "top_seam_scope": "e(B)=rho(B) for every singleton-heavy top-seam bucket B"
+    },
+    "charged_row_set": {
+      "definition": "R_D = {rho(B): B contributes an unpaid top-seam Route-D branch-excess unit}, where rho(B)=m(B)+1.",
+      "deployed_first_exposed_seam": {
+        "R_D": "{t}",
+        "local_bound": "sum_B(outdeg_unpaid(B)-1) <= p-1",
+        "m": "w=t-1",
+        "rho": "w+1=t",
+        "warning": "This local specialization only pays first-exposed nodes; all-depth use requires the row-budget hypothesis."
+      },
+      "row_budget_hypothesis": "|R_D| <= t"
+    }
+  }
+}
