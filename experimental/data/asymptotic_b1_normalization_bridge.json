@@ -1,0 +1,243 @@
+{
+  "companion_note": "experimental/notes/audits/asymptotic_b1_normalization_bridge.md",
+  "companion_verifier": "experimental/scripts/verify_asymptotic_b1_normalization_bridge.py",
+  "logic_summary": {
+    "max_fiber_direction": "An ambient max-fiber bound M/A implies the image-normalized bound M/L because L <= A.",
+    "moment_relation": "Gamma_ambient_r = (A/L)^(r-1) Gamma_image_r exactly.",
+    "therefore": "The B1 gap is not the max-fiber implication; it is the denominator convention for moments/Fourier payment and the single-field vs two-field reading of the ambient box."
+  },
+  "nonclaims": [
+    "Does not prove the asymptotic RS-MCA theorem.",
+    "Does not audit C9's missing moduli manuscript.",
+    "Does not instantiate finite deployed adjacent rows.",
+    "Does not decide whether the intended convention is the two-field reading or an image-scale theorem."
+  ],
+  "repair_options": [
+    "Print a two-field convention: point field E grows to contain T, while the base alphabet B supplies the entropy denominator.",
+    "Restate C9/Fourier-Sidon payment at image scale L=|im Phi| instead of ambient box scale.",
+    "Add an explicit bridge hypothesis A/L=exp(o(N)) exactly where ambient moments are converted to image moments."
+  ],
+  "schema": "asymptotic-b1-normalization-bridge/v1",
+  "single_field_obstruction": {
+    "statement": "If T is inside the same growing field K and R=kappa*N, then |Omega|<=3^N cannot balance ambient K^R; the offset is -Omega(N log N), not o(N).",
+    "table": [
+      {
+        "N": 100,
+        "kappa": "1/4",
+        "tends_to_minus_infinity": true,
+        "upper_bound_log2_Omega_over_ambient_per_N": -0.07600154672252502
+      },
+      {
+        "N": 1000,
+        "kappa": "1/4",
+        "tends_to_minus_infinity": true,
+        "upper_bound_log2_Omega_over_ambient_per_N": -0.9064835704443657
+      },
+      {
+        "N": 10000,
+        "kappa": "1/4",
+        "tends_to_minus_infinity": true,
+        "upper_bound_log2_Omega_over_ambient_per_N": -1.736965594166206
+      },
+      {
+        "N": 100000,
+        "kappa": "1/4",
+        "tends_to_minus_infinity": true,
+        "upper_bound_log2_Omega_over_ambient_per_N": -2.567447617888047
+      }
+    ]
+  },
+  "source_gap": "PR #433 B1: image-normalized primitive moments vs ambient Fourier-flat Q",
+  "status": "AUDIT",
+  "toy_rows": [
+    {
+      "actual_image_size_L": 4881,
+      "ambient_over_image_ratio": {
+        "decimal": 1.0065560336,
+        "denominator": 4881,
+        "log2": 0.009427487357335451,
+        "numerator": 4913,
+        "per_N_log2": 0.0005892179598334657
+      },
+      "ambient_prefix_box_size_A": 4913,
+      "gamma_relation": {
+        "2": {
+          "ambient_over_image_power": 1.0065560336,
+          "gamma_ambient": 1.137687483888,
+          "gamma_image": 1.13027734762,
+          "relation_exact": true
+        },
+        "3": {
+          "ambient_over_image_power": 1.013155048776,
+          "gamma_ambient": 1.419892365431,
+          "gamma_image": 1.401456141531,
+          "relation_exact": true
+        },
+        "4": {
+          "ambient_over_image_power": 1.019797327317,
+          "gamma_ambient": 1.914862850826,
+          "gamma_image": 1.877689614919,
+          "relation_exact": true
+        }
+      },
+      "histogram_sha256": "035fd2bdf7883f4c0cf3ea57779d786068e2408c51c64fdee5ffc3447d0766b0",
+      "label": "F17x_16_m8_w3",
+      "max_fiber": {
+        "R_ambient": 2.672183372183,
+        "R_image": 2.654778554779,
+        "R_relation_exact": true,
+        "count": 7
+      },
+      "parameters": {
+        "label": "F17x_16_m8_w3",
+        "m": 8,
+        "n": 16,
+        "p": 17,
+        "w": 3
+      },
+      "total_supports": 12870
+    },
+    {
+      "actual_image_size_L": 12629,
+      "ambient_over_image_ratio": {
+        "decimal": 6.613429408504,
+        "denominator": 12629,
+        "log2": 2.725398578484615,
+        "numerator": 83521,
+        "per_N_log2": 0.17033741115528844
+      },
+      "ambient_prefix_box_size_A": 83521,
+      "gamma_relation": {
+        "2": {
+          "ambient_over_image_power": 6.613429408504,
+          "gamma_ambient": 6.732632595756,
+          "gamma_image": 1.018024413642,
+          "relation_exact": true
+        },
+        "3": {
+          "ambient_over_image_power": 43.737448541269,
+          "gamma_ambient": 46.846529193882,
+          "gamma_image": 1.071085094268,
+          "relation_exact": true
+        },
+        "4": {
+          "ambient_over_image_power": 289.254528435767,
+          "gamma_ambient": 344.957704933394,
+          "gamma_image": 1.192574950508,
+          "relation_exact": true
+        }
+      },
+      "histogram_sha256": "7bd090f1235b9292f55bb508052fe34206c0b788ad920b68aa716ea3e73b16ab",
+      "label": "F17x_16_m8_w4_underfilled",
+      "max_fiber": {
+        "R_ambient": 12.979176379176,
+        "R_image": 1.962548562549,
+        "R_relation_exact": true,
+        "count": 2
+      },
+      "parameters": {
+        "label": "F17x_16_m8_w4_underfilled",
+        "m": 8,
+        "n": 16,
+        "p": 17,
+        "w": 4
+      },
+      "total_supports": 12870
+    },
+    {
+      "actual_image_size_L": 1681,
+      "ambient_over_image_ratio": {
+        "decimal": 1.0,
+        "denominator": 1,
+        "log2": 0.0,
+        "numerator": 1,
+        "per_N_log2": 0.0
+      },
+      "ambient_prefix_box_size_A": 1681,
+      "gamma_relation": {
+        "2": {
+          "ambient_over_image_power": 1.0,
+          "gamma_ambient": 1.004136261371,
+          "gamma_image": 1.004136261371,
+          "relation_exact": true
+        },
+        "3": {
+          "ambient_over_image_power": 1.0,
+          "gamma_ambient": 1.012428521912,
+          "gamma_image": 1.012428521912,
+          "relation_exact": true
+        },
+        "4": {
+          "ambient_over_image_power": 1.0,
+          "gamma_ambient": 1.024964928918,
+          "gamma_image": 1.024964928918,
+          "relation_exact": true
+        }
+      },
+      "histogram_sha256": "386c573d2e31f9d0d65887d36508a0e4ff1d8ec1d23f1871ae5ec48977c80f5d",
+      "label": "mu20_F41_m10_w2",
+      "max_fiber": {
+        "R_ambient": 1.210098724805,
+        "R_image": 1.210098724805,
+        "R_relation_exact": true,
+        "count": 133
+      },
+      "parameters": {
+        "label": "mu20_F41_m10_w2",
+        "m": 10,
+        "n": 20,
+        "p": 41,
+        "w": 2
+      },
+      "total_supports": 184756
+    },
+    {
+      "actual_image_size_L": 9409,
+      "ambient_over_image_ratio": {
+        "decimal": 1.0,
+        "denominator": 1,
+        "log2": 0.0,
+        "numerator": 1,
+        "per_N_log2": 0.0
+      },
+      "ambient_prefix_box_size_A": 9409,
+      "gamma_relation": {
+        "2": {
+          "ambient_over_image_power": 1.0,
+          "gamma_ambient": 1.001340003433,
+          "gamma_image": 1.001340003433,
+          "relation_exact": true
+        },
+        "3": {
+          "ambient_over_image_power": 1.0,
+          "gamma_ambient": 1.00403411621,
+          "gamma_image": 1.00403411621,
+          "relation_exact": true
+        },
+        "4": {
+          "ambient_over_image_power": 1.0,
+          "gamma_ambient": 1.008103538058,
+          "gamma_image": 1.008103538058,
+          "relation_exact": true
+        }
+      },
+      "histogram_sha256": "0ab4056d5f66f15bca27711a5bc1b36254584d472f2426754ea24fcb687b24e1",
+      "label": "mu24_F97_m12_w2",
+      "max_fiber": {
+        "R_ambient": 1.224769576903,
+        "R_image": 1.224769576903,
+        "R_relation_exact": true,
+        "count": 352
+      },
+      "parameters": {
+        "label": "mu24_F97_m12_w2",
+        "m": 12,
+        "n": 24,
+        "p": 97,
+        "w": 2
+      },
+      "total_supports": 2704156
+    }
+  ],
+  "wall_id": "ASYMPTOTIC-RS-MCA-B1-NORMALIZATION-BRIDGE"
+}

@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-09 - B1 normalization bridge audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_asymptotic_b1_normalization_bridge.py`,
+  `experimental/data/asymptotic_b1_normalization_bridge.json`,
+  `experimental/notes/audits/asymptotic_b1_normalization_bridge.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Added an exact audit packet for PR #433's B1
+  normalization gap in `experimental/asymptotic_rs_mca.tex`.  The verifier
+  checks the exact identities relating image-normalized and ambient-normalized
+  max fibers and moments, and replays the single-field obstruction that makes
+  the ambient `K^R` denominator ill-formed unless a two-field/base-alphabet
+  convention or image-scale theorem is printed.
+- **How it is useful:** Sharpens B1 from a broad field-denominator warning into
+  a small repair menu: ambient max-fiber bounds are strong enough, but ambient
+  moments differ from image moments by `(A/L)^(r-1)`, and the single-field
+  reading is not frontier-normalized.  This is direct input to the
+  asymptotic-RS-MCA promotion audit.
+- **What to do next:** If the asymptotic proof note is revised, either print
+  the two-field convention, restate the Fourier/Sidon payment at image scale, or
+  add the explicit bridge hypothesis `A/L = exp(o(N))` in the frontier window.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
