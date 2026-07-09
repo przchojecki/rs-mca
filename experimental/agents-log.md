@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-09 - C9 literal-interface counterexample and list-recovery floor
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/audits/c9_literal_interface_counterexample_v1.md`;
+  `experimental/data/c9_literal_interface_counterexample_v1.json`;
+  `experimental/scripts/verify_c9_literal_interface_counterexample_v1.py`;
+  `experimental/scripts/README.md`; `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT.  `COUNTEREXAMPLE_NEW_FLOOR` applies only
+  to the literal quantitative `def:primitive-leaf` interface;
+  `SPECIFICATION_BLOCKER` applies to the intended smooth-row C1--C8 residual.
+- **What is being added:** Proves that C9 is equivalent to primitive Q at
+  positive exponential scale, gives an explicit block family violating C9
+  under the displayed primitive-leaf data, and replays a `k=5` instance with
+  exact energy.  It also proves bounded fibers in the zero-error two-list
+  recovery range `R/N > 1/2` and the sharper constant-weight Plotkin range.
+- **How it is useful:** Prevents promotion of an underspecified universal C9
+  input, isolates the exact missing content in the phrase `surviving C1--C8`,
+  and supplies a noncircular coding-theoretic target for a repaired theorem.
+  It does not refute C9 for formal smooth rows or the conditional compiler.
+- **What to do next:** Print the admissible smooth-row class and exact C1--C8
+  first-match predicates, then test whether their residual has subexponential
+  zero-error two-list-recovery lists or a summable image-scale Fourier bound.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

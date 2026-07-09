@@ -1,0 +1,71 @@
+{
+  "C9_sample": {
+    "log_C9_lower_bound": 4.9171472370538325,
+    "logarithmic_q": 3,
+    "normalized_log_C9_lower_bound": 0.0819524539508972,
+    "sigma": 0.035960259056472606
+  },
+  "asymptotic_family": {
+    "barN_limit": 1.0,
+    "energy_decay_rate_per_N": 0.07192051811294521,
+    "filler_log_rate_per_N": 0.40235947810852507,
+    "heavy_log_rate_per_N": 0.17328679513998632,
+    "normalized_log_C9_lower_limit": 0.17328679513998632
+  },
+  "caveat": "This refutes the universal statement under the displayed quantitative data in def:primitive-leaf. It does not assert that the example survives the intended informal C1--C8 atlas or belongs to an intended smooth-domain row sequence.",
+  "checks": {
+    "all_fixed_weight": true,
+    "brute_energy_matches_formula": true,
+    "finite_normalized_C9_lower_bound_positive": true,
+    "heavy_same_image": true,
+    "integer_no_wrap_threshold_valid": true,
+    "sidon_cut_contains_heavy_fiber": true,
+    "singleton_images_avoid_heavy": true,
+    "singleton_images_distinct": true,
+    "support_families_disjoint": true
+  },
+  "energy": {
+    "brute_energy_checked": true,
+    "heavy_delta_denominator": 1024,
+    "heavy_delta_numerator": 243,
+    "heavy_energy": 7776
+  },
+  "field_model": {
+    "choose_any_prime_strictly_greater_than": 505020040100,
+    "integer_total_point_sum": 252510020050,
+    "reason": "Every subset sum lies in [0,sum(T)], so congruence modulo such a prime is equivalent to integer equality."
+  },
+  "nonclaims": [
+    "not a counterexample to C9 for formal smooth-domain rows",
+    "not a counterexample under R asymptotic to N",
+    "not a proof that the construction survives exact C1--C8 predicates",
+    "not a refutation of the conditional compiler in asymptotic_rs_mca.tex"
+  ],
+  "parameters": {
+    "N": 20,
+    "Q": 501,
+    "R": 2,
+    "k": 5,
+    "m": 10
+  },
+  "proof_status": "PROVED_FAMILY_WITH_REPLAYED_K5_INSTANCE",
+  "sample_counts": {
+    "barN_denominator": 121,
+    "barN_numerator": 152,
+    "domain_size_M": 152,
+    "heavy_fiber_size": 32,
+    "image_size_L": 121,
+    "singleton_fibers": 120
+  },
+  "schema_version": 1,
+  "scope": "LITERAL_QUANTITATIVE_PRIMITIVE_LEAF_INTERFACE_ONLY",
+  "source_labels": [
+    "experimental/asymptotic_rs_mca.tex:def:primitive-leaf",
+    "experimental/asymptotic_rs_mca.tex:def:sidon-paid",
+    "experimental/asymptotic_rs_mca.tex:ass:image-normalized-sidon-input",
+    "experimental/asymptotic_rs_mca.tex:thm:bsg",
+    "experimental/asymptotic_rs_mca.tex:thm:quasicube"
+  ],
+  "status": "COUNTEREXAMPLE_NEW_FLOOR",
+  "theorem_attacked": "image-normalized C9 Fourier/Sidon payment"
+}
