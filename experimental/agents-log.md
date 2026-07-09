@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-09 - B1 image-normalized C9 interface repair
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/asymptotic_rs_mca.tex`;
+  `experimental/asymptotic_rs_mca.pdf`;
+  `experimental/data/asymptotic_b1_image_normalization_repair.json`;
+  `experimental/notes/audits/asymptotic_b1_image_scale_repair.md`;
+  `experimental/scripts/verify_asymptotic_b1_image_normalization_repair.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / CONDITIONAL.
+- **What is being added:** Implements the image-scale repair path from the B1
+  normalization audit: the C9 Fourier/Sidon input is now an explicit
+  image-normalized assumption with `L = |im Phi|` and `barN = M/L`.  The note
+  also proves the local ambient-to-image max-fiber transfer and the exact
+  moment-normalization identity
+  `Gamma_amb(q) = (A/L)^(q-1) Gamma_img(q)`.
+- **How it is useful:** Prevents the asymptotic proof from silently replacing
+  image-normalized moments by ambient moments, and makes the asymptotic theorem
+  visibly conditional on C9, add-back, B3 window-uniformity, and lower-side
+  inputs.  This repairs the B1 normalization interface, but it does not prove
+  the separate C9 moduli/Fourier-Sidon source theorem.
+- **What to do next:** Run
+  `python experimental/scripts/verify_asymptotic_b1_image_normalization_repair.py --check`,
+  recompile `experimental/asymptotic_rs_mca.tex`, and continue the independent
+  C9 moduli-source, `lem:addback`, B3 window-uniformity, and lower-side pole
+  audits.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

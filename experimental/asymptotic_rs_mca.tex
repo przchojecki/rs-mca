@@ -17,6 +17,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
@@ -46,7 +47,7 @@
 \begin{document}
 
 \begin{abstract}
-We give a compact proof of the asymptotic Reed--Solomon mutual-correlated-agreement frontier from the paid ledger developed in the v13 raw and Grande Finale manuscripts.  The proof reduces the remaining primitive prefix problem to a fixed-density Boolean slice mapped by Vandermonde moments.  After the Fourier/Sidon cell is paid, any positive logarithmic moment excess gives a large high-energy Boolean fiber.  Balog--Szemeredi--Gowers and quasicube difference growth forbid such a fiber, so primitive Q holds with only \(\exp(o(n))\) loss.  Combined with the identity-prefix lower construction, every smooth row sequence covered by the closed ledger has threshold \(1-\rho-g^*(\rho,\log_2|\B|)+o(1)\).  The closed-ledger package is stated explicitly, with the individual cell payments cited to the existing ledgers.
+We give a compact conditional proof of the asymptotic Reed--Solomon mutual-correlated-agreement frontier from the paid ledger developed in the v13 raw and Grande Finale manuscripts.  The proof reduces the remaining primitive prefix problem to a fixed-density Boolean slice mapped by Vandermonde moments.  After the image-normalized Fourier/Sidon cell is paid, any positive logarithmic moment excess gives a large high-energy Boolean fiber.  Balog--Szemeredi--Gowers and quasicube difference growth forbid such a fiber, so primitive Q holds with only \(\exp(o(n))\) loss.  Combined with the stated add-back and lower-side inputs, every smooth row sequence covered by the conditional closed ledger has threshold \(1-\rho-g^*(\rho,\log_2|\B|)+o(1)\).  The closed-ledger package is stated explicitly, with the individual cell payments cited to the existing ledgers and with the C9 normalization exposed as an assumption.
 \end{abstract}
 
 \maketitle
@@ -97,13 +98,13 @@ A smooth RS row sequence is \emph{closed-ledger} at agreements \(a_n\) if the fo
     \item \emph{Differential-locator and regular-rank cells.}  The locator map has a rank drop, a ramification defect, or an overdetermined Hankel minor.  These cells include regular closed-range Hankel packing, canonical rank-drop ledgers, and curve rank-drop ledgers.
     \item \emph{Saturation and effective-image-collapse cells.}  The apparent support count is larger than the actual line-ray or codeword-ray image.  The payment uses exact saturation identities and exact residual image ledgers.
     \item \emph{Balanced-core and split-pencil cells.}  The residual witness lies in a balanced-core split-pencil chart.  One-parameter primitive locator pencils are paid by the moving-root theorem; deficiency-one and identically split top charts are tangent-borne or eliminated.
-    \item \emph{Fourier/Sidon cells.}  In a primitive prefix leaf, a heavy fiber with exponentially small additive closure is cut as a Fourier/Sidon cell: major arcs are routed to \textup{(C1)--(C8)}, and minor arcs are paid by Fourier flatness.
+    \item \emph{Fourier/Sidon cells.}  In a primitive prefix leaf, an image-normalized heavy fiber with exponentially small additive closure is cut as a Fourier/Sidon cell.  The moment is the \(L=|\operatorname{im}\Phi|\) average from \cref{def:primitive-leaf}, not an ambient \(|K|^R\) average: major arcs are routed to \textup{(C1)--(C8)}, and minor arcs are paid by a Fourier/Sidon theorem stated at image scale.
 \end{enumerate}
 The remaining first-match complement is a disjoint union of primitive prefix leaves.  Every such leaf has the Boolean fixed-density Vandermonde form of \cref{def:primitive-leaf}.
 \end{definition}
 
-\begin{theorem}[Closed ledger package]\label{thm:closed-ledger-package}
-For the smooth multiplicative and circle-type RS row sequences treated in the v13 raw ledger and in the Grande Finale notes, the cells \textup{(C1)--(C9)} form a closed paid ledger in the asymptotic frontier window.
+\begin{theorem}[Conditional closed ledger package]\label{thm:closed-ledger-package}
+For the smooth multiplicative and circle-type RS row sequences treated in the v13 raw ledger and in the Grande Finale notes, assume the cited \textup{(C1)--(C8)} payments hold uniformly in the asymptotic frontier window, and assume the image-normalized C9 input of \cref{ass:image-normalized-sidon-input} for every surviving primitive leaf.  Then the cells \textup{(C1)--(C9)} form a closed paid ledger in that window.
 \end{theorem}
 
 \begin{proof}
@@ -125,15 +126,15 @@ For \textup{(C7)}, the exact saturation identity and line-ray saturation identit
 
 For \textup{(C8)}, the interpolation-lattice split-pencil reduction, near-rational payment, deficiency-one split-test eliminant, split annihilator dictionary, tangent-borne split charts, boundary-profile identification with Q, base-field split-pencil floor, one-parameter moving-root theorem, and primitive one-pencil corollary are proved in \cite[split-pencil and BC sections]{Cho26Grande}, with the balanced-core and split-pencil reductions also developed in \cite[rank-one and split-pencil reductions]{Cho26CapV13}.
 
-For \textup{(C9)}, Fourier-flat leaves satisfy asymptotic Q and large-characteristic Fourier examples are proved in \cite[Fourier-flat Q section]{Cho26Grande}.  The Sidon/Fourier operational cut, the split between Sidon-heavy and high-energy fibers, and the fact that major arcs route to algebraic cells while minor arcs are Fourier-flat are the moduli-ledger results of \cite{Cho26ModuliFinal,Cho26ModuliSelf}.  They are restated and used below in \cref{def:sidon-paid,prop:energy-extract,thm:primitive-q}.
+For \textup{(C9)}, Fourier-flat leaves satisfy asymptotic Q and large-characteristic Fourier examples are proved in \cite[Fourier-flat Q section]{Cho26Grande}.  The Sidon/Fourier operational cut, the split between Sidon-heavy and high-energy fibers, and the fact that major arcs route to algebraic cells while minor arcs are Fourier-flat are the moduli-ledger results of \cite{Cho26ModuliFinal,Cho26ModuliSelf}.  The C9 input consumed here is the image-normalized assumption in \cref{ass:image-normalized-sidon-input}.  Ambient max-fiber information may enter through \cref{lem:ambient-image-max}, and ambient moment information may enter through \cref{lem:moment-normalization}; no unprinted bridge \(A/L=\exp(o(N))\) is used.  The image-normalized C9 input is used below in \cref{def:sidon-paid,prop:energy-extract,thm:primitive-q}.
 
 Finally, first-match disjointization is \cref{lem:first-match} here and is also proved in the Grande Finale and moduli-ledger notes.  The listed cells exhaust the nonprimitive branches of the v13 first-match atlas; after removing them, the remaining leaf is the primitive Boolean prefix slice.  Summing the printed budgets gives \(\exp(o(n))\barN_{n,a_n}\), which is the closed paid ledger.
 \end{proof}
 
-Thus the row-specific geometry is not an additional conjectural input to this paper: it is the imported closed ledger package.  The remaining work below is the uniform primitive count and the compiler from that count to the MCA staircase.
+Thus the row-specific geometry is packaged as an imported conditional ledger.  The internal work below starts after those cell inputs, the image-normalized C9 assumption, the add-back profile input in \cref{lem:addback}, and the lower-side input in the proof of \cref{thm:frontier}.
 
 \begin{theorem}[Asymptotic RS--MCA frontier]\label{thm:frontier}
-Let \(C_n=\RS_{\F_n}(D_n,k_n)\) be a smooth RS row sequence as above.  Assume the closed paid ledger holds uniformly in every \(o(n)\)-window around the crossing \(a_n=(\rho+g^*)n+o(n)\).  Assume also the standard identity-prefix pole construction supplies the lower side below the crossing.  Then, for every target sequence with \(\log_2(1/\eps_n)=O(n)\) and fixed challenge normalization,
+Let \(C_n=\RS_{\F_n}(D_n,k_n)\) be a smooth RS row sequence as above.  Assume the conditional closed paid ledger of \cref{thm:closed-ledger-package} holds uniformly in every \(o(n)\)-window around the crossing \(a_n=(\rho+g^*)n+o(n)\).  Assume also the add-back profile input in \cref{lem:addback} and a lower-side identity-prefix input with subexponential collision loss, or an equivalent collision-free identity-prefix floor.  Then, for every target sequence with \(\log_2(1/\eps_n)=O(n)\) and fixed challenge normalization,
 \[
         \delta_{C_n}^*(\eps_n)
         =1-\rho-g^*(\rho,\beta)+o(1),
@@ -141,7 +142,11 @@ Let \(C_n=\RS_{\F_n}(D_n,k_n)\) be a smooth RS row sequence as above.  Assume th
 with the evident replacement of \(\beta\) by \(\lim\log_2|\B_n|\) when the base alphabet varies.
 \end{theorem}
 
-The rest of the paper proves \cref{thm:frontier}.  The proof is self-contained after the imported closed-ledger package and the standard external additive-combinatorics facts stated in \cref{sec:bsg}.
+\begin{remark}[Current audit status]\label{rem:current-audit-status}
+The normalization repair in this version is limited to B1: C9 is consumed at image scale, and ambient/image moment transfers are printed explicitly.  The note does not supply the missing C9 moduli/Fourier--Sidon source theorem, the B3 window-uniformity theorem, the add-back profile decomposition, or the lower-side pole-reservoir collision-loss proof.
+\end{remark}
+
+Subject to the imported cell inputs, the image-normalized C9 assumption, the add-back profile input, and the lower-side input stated above, the rest of the paper proves \cref{thm:frontier}.  The proof is otherwise self-contained after the standard external additive-combinatorics facts stated in \cref{sec:bsg}.
 
 \section{Primitive leaves}
 
@@ -177,6 +182,72 @@ Hence \(\Gord_q\le \exp(o(Nq))\) is equivalent to \(\max_s|F_s|\le\exp(o(N))\bar
 The upper bound replaces every summand by the maximum; the lower bound keeps a maximum summand.  Taking \(q\)-th roots and using \(\log L=o(Nq)\) gives the final assertion.
 \end{proof}
 
+\begin{lemma}[Max-fiber ambient-to-image transfer]\label{lem:ambient-image-max}
+Let \(\Phi:\OmegaC\to G\) map into a finite abelian ambient group \(G\) of size \(A\).  Put \(\Scal=\operatorname{im}\Phi\), \(L=|\Scal|\), \(M=|\OmegaC|\), and \(F_s=\OmegaC\cap\Phi^{-1}(s)\).  If
+\[
+        \max_{y\in G}|\OmegaC\cap\Phi^{-1}(y)|
+        \le \exp(o(N))\frac{M}{A},
+\]
+then
+\[
+        \max_{s\in\Scal}|F_s|
+        \le \exp(o(N))\frac{M}{L}.
+\]
+\end{lemma}
+
+\begin{proof}
+Every image fiber is an ambient fiber, so
+\[
+        \max_{s\in\Scal}|F_s|
+        \le \max_{y\in G}|\OmegaC\cap\Phi^{-1}(y)|
+        \le \exp(o(N))\frac{M}{A}.
+\]
+Since \(L\le A\), one has \(M/A\le M/L\), proving the claimed image-normalized bound.
+\end{proof}
+
+\begin{lemma}[Moment normalization identity]\label{lem:moment-normalization}
+Let \(\Phi:\OmegaC\to G\) map into a finite abelian ambient group \(G\) of size \(A\).  Put \(\Scal=\operatorname{im}\Phi\), \(L=|\Scal|\), \(M=|\OmegaC|\), \(\barN=M/L\), and \(F_s=\OmegaC\cap\Phi^{-1}(s)\).  For \(q\ge1\), define
+\[
+        \Gamma_{\rm img}(q)
+        =L^{-1}\sum_{s\in\Scal}\left(\frac{|F_s|}{M/L}\right)^q
+\]
+and
+\[
+        \Gamma_{\rm amb}(q)
+        =A^{-1}\sum_{y\in G}
+        \left(\frac{|\OmegaC\cap\Phi^{-1}(y)|}{M/A}\right)^q .
+\]
+Then
+\[
+        \Gamma_{\rm amb}(q)
+        =\left(\frac{A}{L}\right)^{q-1}\Gamma_{\rm img}(q).
+\]
+Consequently,
+\[
+        \Gamma_{\rm img}(q)
+        =\left(\frac{L}{A}\right)^{q-1}\Gamma_{\rm amb}(q)
+        \le \Gamma_{\rm amb}(q)
+        \qquad(q\ge1),
+\]
+so an ambient upper bound is safe to use as an image upper bound.  The reverse direction is unsafe without a printed bound on \(A/L\), and the Fourier/Sidon payment consumed below is therefore stated directly at image scale.
+\end{lemma}
+
+\begin{proof}
+The summands with \(y\notin\Scal\) vanish.  Since \(M/A=(L/A)(M/L)=(L/A)\barN\),
+\[
+\begin{aligned}
+        \Gamma_{\rm amb}(q)
+        &=A^{-1}\sum_{s\in\Scal}
+        \left(\frac{|F_s|}{M/A}\right)^q \\
+        &=A^{-1}\left(\frac{A}{L}\right)^q
+        \sum_{s\in\Scal}\left(\frac{|F_s|}{\barN}\right)^q \\
+        &=\left(\frac{A}{L}\right)^{q-1}
+        L^{-1}\sum_{s\in\Scal}\left(\frac{|F_s|}{\barN}\right)^q .
+\end{aligned}
+\]
+This is the displayed identity.
+\end{proof}
+
 \section{Sidon cut}
 
 For a finite \(F\) in an abelian group, let
@@ -194,10 +265,31 @@ For \(\sigma>0\), define the Sidon-heavy moment of a primitive leaf by
 \]
 
 \begin{definition}[Paid Fourier/Sidon cell]\label{def:sidon-paid}
-The Fourier/Sidon cell is paid if, for every fixed \(\sigma>0\) and every logarithmic \(q\), one has \(\Gsid_{q,\sigma}\le\exp(o(Nq))\).  Equivalently, no positive-rate heavy fiber with exponentially small additive closure remains in the primitive residual.
+The Fourier/Sidon cell is paid if, for every fixed \(\sigma>0\) and every logarithmic \(q\), one has \(\Gsid_{q,\sigma}\le\exp(o(Nq))\).  Equivalently, no positive-rate heavy fiber with exponentially small additive closure remains in the primitive residual.  This is an image-normalized statement: \(L=|\operatorname{im}\Phi|\), \(\barN=M/L\), and the average is over \(\Scal\), not over an ambient group.
 \end{definition}
 
-In practice this cell is paid by Fourier flatness after major arcs have been routed to algebraic cells.  If \(\mu=\Phi_*\operatorname{Unif}(\OmegaC)\) and \(\sum_{\chi\ne1}|\widehat\mu(\chi)|\le\exp(o(N))\), Fourier inversion gives \(L\mu(s)\le\exp(o(N))\) for all \(s\), hence primitive Q.  In RS moment-curve leaves, large Fourier coefficients are algebraic major arcs: quotient, descent, dihedral, ramification, or effective-image-collapse phenomena.  These are exactly the earlier paid cells in \cref{def:closed-ledger}.
+\begin{assumption}[Image-normalized C9 Fourier/Sidon input]\label{ass:image-normalized-sidon-input}
+Let \((T,m,K,\rho(t),v_t,\OmegaC,\Phi)\) be a primitive prefix leaf surviving cells \textup{(C1)--(C8)} in the asymptotic frontier window.  Write
+\[
+        \Scal=\operatorname{im}\Phi,\qquad
+        L=|\Scal|,\qquad
+        M=|\OmegaC|,\qquad
+        \barN=M/L,\qquad
+        F_s=\OmegaC\cap\Phi^{-1}(s).
+\]
+The C9 moduli ledger input used by this note is the following image-scale payment: for every fixed \(\sigma>0\) and every logarithmic \(q=q_N\to\infty\),
+\[
+        \Gsid_{q,\sigma}
+        =L^{-1}\sum_{\Delta(F_s)\le \exp(-\sigma N)}
+        \left(\frac{|F_s|}{\barN}\right)^q
+        \le \exp(o(Nq)).
+\]
+Equivalently, the Fourier/Sidon cell is paid in the image normalization used by \cref{def:primitive-leaf}.
+\end{assumption}
+
+This is the C9 Fourier/Sidon input stated in the leaf normalization of \cref{def:primitive-leaf}.  The present note does not prove the missing moduli ledger; it records the exact normalization consumed downstream.  A proof of C9 may provide the displayed inequality directly, or may first prove a stronger image-scale minor-arc estimate after major arcs have been routed to \textup{(C1)--(C8)}.  Ambient moment estimates can be consumed here only through \cref{lem:ambient-image-max,lem:moment-normalization}.
+
+In practice this cell is paid by Fourier flatness after major arcs have been routed to algebraic cells.  The output needed here is an image-scale bound such as \(L\mu(s)\le\exp(o(N))\) for all \(s\in\Scal\), where \(\mu=\Phi_*\operatorname{Unif}(\OmegaC)\), or directly the bound in \cref{ass:image-normalized-sidon-input}.  An ambient Fourier estimate does not imply this image-scale statement without one of the printed transfers above.  In RS moment-curve leaves, large Fourier coefficients are algebraic major arcs: quotient, descent, dihedral, ramification, or effective-image-collapse phenomena.  These are exactly the earlier paid cells in \cref{def:closed-ledger}.
 
 \begin{proposition}[Energy extraction after the Sidon cut]\label{prop:energy-extract}
 Assume the Fourier/Sidon cell is paid.  If \(\Gord_q\ge e^{\eta Nq}\) for some fixed \(\eta>0\), then some level \(s=s_N\) satisfies \(|F_s|\ge e^{\eta N-o(N)}\barN\) and \(E(F_s)\ge |F_s|^3e^{-o(N)}\).
@@ -243,12 +335,12 @@ If not, \cref{lem:moment-max} gives \(\Gord_q\ge e^{\eta Nq}\) for some fixed \(
 
 \section{MCA compiler}
 
-\begin{lemma}[First-match add-back]\label{lem:addback}
-For a closed-ledger row, the full first-match prefix count after paid cells satisfies \(\max_sN(s)\le\exp(o(n))\barN_{n,a_n}\).
+\begin{lemma}[Conditional first-match add-back]\label{lem:addback}
+Assume the paid primitive leaves admit a first-match profile decomposition into \(\exp(o(n))\) profiles, and that the normalized primitive leaf averages in those profiles sum to at most \(\exp(o(n))\barN_{n,a_n}\).  Then, for a closed-ledger row, the full first-match prefix count after paid cells satisfies \(\max_sN(s)\le\exp(o(n))\barN_{n,a_n}\).
 \end{lemma}
 
 \begin{proof}
-Paid cells contribute \(\exp(o(n))\barN_{n,a_n}\) by closure.  Primitive leaves satisfy \cref{thm:primitive-q}; their normalized averages sum to at most \(\exp(o(n))\barN_{n,a_n}\) by the first-match profile decomposition.  Summing over the subexponential profile family preserves the same scale.
+Paid cells contribute \(\exp(o(n))\barN_{n,a_n}\) by closure.  Primitive leaves satisfy \cref{thm:primitive-q}.  The stated profile-decomposition input bounds the sum of their normalized averages, and summing over the subexponential profile family preserves the same scale.  The present note records this add-back dependency rather than proving the profile decomposition.
 \end{proof}
 
 \begin{lemma}[Q pays shift pairs]\label{lem:q-sp}
@@ -259,8 +351,8 @@ If \(\sum_sN(s)=M\), \(\barN=M/L\), and \(\max_sN(s)\le \kappa\barN\), then \(M^
 \(\sum_sN(s)^2\le(\max_sN(s))\sum_sN(s)\le\kappa\barN M\).
 \end{proof}
 
-\begin{theorem}[Closed-ledger upper bound]\label{thm:upper}
-If a smooth RS row sequence is closed-ledger at \(a_n\), then
+\begin{theorem}[Conditional closed-ledger upper bound]\label{thm:upper}
+If a smooth RS row sequence is closed-ledger at \(a_n\) and satisfies the add-back input in \cref{lem:addback}, then
 \[
         B_{C_n}^{\rm MCA}(a_n)
         \le \exp(o(n))\binom n{a_n}|\B_n|^{-(a_n-k_n-1)} .
@@ -280,7 +372,7 @@ We recall the identity-prefix pole construction in the form needed here.  Let \(
         g_\alpha(x)=\frac{-1}{x-\alpha},
         \qquad x\in D,
 \]
-has the property that \(f_\alpha+\zeta g_\alpha\) is code-explained on \(S\) exactly when \(\ell_S(\alpha)=U_z(\alpha)-\zeta\).  The word \(g_\alpha\) is not explained by a degree-\(<k\) polynomial on \(k+1\) positions, so the corresponding slopes are MCA-bad.  Except for the usual collision loss in evaluating \(\ell_S(\alpha)\), which is subexponential in the standard pole-reservoir regime, this gives
+has the property that \(f_\alpha+\zeta g_\alpha\) is code-explained on \(S\) exactly when \(\ell_S(\alpha)=U_z(\alpha)-\zeta\).  The word \(g_\alpha\) is not explained by a degree-\(<k\) polynomial on \(k+1\) positions, so the corresponding slopes are MCA-bad.  The lower side consumed by \cref{thm:frontier} assumes either a subexponential collision loss for evaluating \(\ell_S(\alpha)\) in the pole-reservoir regime, or a replacement by a collision-free identity-prefix floor.  Under that lower-side input, this gives
 \[
         B_C^{\rm MCA}(m)\ge \exp(-o(n))\binom nm|\B|^{-w}.
 \]

@@ -1,0 +1,73 @@
+{
+  "status": "AUDIT / CONDITIONAL",
+  "purpose": "B1 repair contract for experimental/asymptotic_rs_mca.tex: C9/Fourier-Sidon payment is consumed only at image scale, while ambient comparisons are printed as separate algebraic lemmas.",
+  "audit_note": "experimental/notes/audits/asymptotic_b1_image_scale_repair.md",
+  "proved_locally": [
+    "lem:ambient-image-max",
+    "lem:moment-normalization"
+  ],
+  "conditional_inputs": [
+    "ass:image-normalized-sidon-input",
+    "lem:addback profile decomposition",
+    "B3 window uniformity",
+    "lower-side identity-prefix collision control"
+  ],
+  "required_tex_labels": [
+    "ass:image-normalized-sidon-input",
+    "lem:ambient-image-max",
+    "lem:moment-normalization",
+    "rem:current-audit-status",
+    "def:sidon-paid",
+    "def:primitive-leaf",
+    "prop:energy-extract",
+    "thm:primitive-q"
+  ],
+  "forbidden_unqualified_claims": [
+    "ambient and image moments are interchangeable",
+    "A/L = exp(o(N)) is automatic",
+    "ambient Fourier-flat Q pays image-normalized C9 without the normalization factor",
+    "Fourier inversion on Scal gives L mu(s)"
+  ],
+  "reported_moments": [
+    {
+      "name": "ordinary primitive moment",
+      "symbol": "Gord_q",
+      "normalization": "image",
+      "denominator": "L = |im Phi|",
+      "average_fiber": "barN = M/L",
+      "source_label": "lem:moment-max"
+    },
+    {
+      "name": "Sidon-heavy primitive moment",
+      "symbol": "Gsid_{q,sigma}",
+      "normalization": "image",
+      "denominator": "L = |im Phi|",
+      "average_fiber": "barN = M/L",
+      "source_label": "ass:image-normalized-sidon-input"
+    },
+    {
+      "name": "image comparison moment",
+      "symbol": "Gamma_img(q)",
+      "normalization": "image",
+      "denominator": "L = |im Phi|",
+      "average_fiber": "M/L",
+      "source_label": "lem:moment-normalization"
+    },
+    {
+      "name": "ambient comparison moment",
+      "symbol": "Gamma_amb(q)",
+      "normalization": "ambient",
+      "denominator": "A = |G|",
+      "average_fiber": "M/A",
+      "source_label": "lem:moment-normalization"
+    }
+  ],
+  "nonclaims": [
+    "does not prove the C9 moduli/Fourier-Sidon source theorem",
+    "does not close the full asymptotic theorem by itself",
+    "does not prove B3 window uniformity",
+    "does not prove the add-back profile decomposition",
+    "does not prove the lower-side pole-reservoir collision-loss input",
+    "does not close any finite deployed adjacent row"
+  ]
+}
