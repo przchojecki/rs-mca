@@ -1,0 +1,376 @@
+{
+  "base_sha": "2b1a7e20654d44d0beefcd5c7d508be618b0cea1",
+  "beats_trivial_baseline": true,
+  "citation_hit_counts": {
+    "Cho26CapV13": 3,
+    "Cho26Grande": 3,
+    "phrase:finite_source": 1,
+    "phrase:row_by_row": 1,
+    "sec:source-integration": 1,
+    "sec:verification-template": 2,
+    "word:certificate": 38
+  },
+  "citation_hits_sample": [
+    {
+      "line": 245,
+      "tag": "word:certificate",
+      "text": "a proved implication that converts one family of row certificates---for"
+    },
+    {
+      "line": 289,
+      "tag": "word:certificate",
+      "text": "degeneracies; primitivity is a ledger certificate, not merely trivial"
+    },
+    {
+      "line": 372,
+      "tag": "Cho26CapV13",
+      "text": "\\cite{Cho26CapV13,Cho26Grande}."
+    },
+    {
+      "line": 372,
+      "tag": "Cho26Grande",
+      "text": "\\cite{Cho26CapV13,Cho26Grande}."
+    },
+    {
+      "line": 601,
+      "tag": "word:certificate",
+      "text": "\\(\\barN_\\lambda\\) only after a full-image certificate"
+    },
+    {
+      "line": 827,
+      "tag": "word:certificate",
+      "text": "the full-image certificate \\textup{(FI)} is proved before an ambient"
+    },
+    {
+      "line": 915,
+      "tag": "word:certificate",
+      "text": "effective-image certificate, profile add-back, the lower-side reserve, or"
+    },
+    {
+      "line": 1133,
+      "tag": "word:certificate",
+      "text": "without the full-image certificate \\textup{(FI)}."
+    },
+    {
+      "line": 1203,
+      "tag": "word:certificate",
+      "text": "certificate used by the analytic and ray arguments.  Its residual support"
+    },
+    {
+      "line": 1700,
+      "tag": "word:certificate",
+      "text": "formal cell name.  It is an enumerative certificate, not a topological"
+    },
+    {
+      "line": 2565,
+      "tag": "word:certificate",
+      "text": "be retained in a finite adjacent-row certificate."
+    },
+    {
+      "line": 3285,
+      "tag": "word:certificate",
+      "text": "certificate."
+    },
+    {
+      "line": 3316,
+      "tag": "word:certificate",
+      "text": "requires a separate quotient-cell certificate; it is not asserted here."
+    },
+    {
+      "line": 3475,
+      "tag": "word:certificate",
+      "text": "certificates named by the atlas have all been applied.  Primitivity does"
+    },
+    {
+      "line": 3507,
+      "tag": "word:certificate",
+      "text": "ambient full-image certificate has been proved, we set"
+    },
+    {
+      "line": 3508,
+      "tag": "word:certificate",
+      "text": "\\(\\barN=\\barN^{\\rm img}\\).  The certificate is"
+    },
+    {
+      "line": 3510,
+      "tag": "word:certificate",
+      "text": "L\\ge e^{-o(N)}A.                       \\tag{FI}\\label{eq:full-image-certificate}"
+    },
+    {
+      "line": 3515,
+      "tag": "word:certificate",
+      "text": "the \\emph{full-image certificate}, says that these two target counts differ"
+    },
+    {
+      "line": 3519,
+      "tag": "word:certificate",
+      "text": "Under \\eqref{eq:full-image-certificate}, the two scales differ by only"
+    },
+    {
+      "line": 3521,
+      "tag": "word:certificate",
+      "text": "certificate fails, effective-image collapse must be retained as an"
+    },
+    {
+      "line": 3528,
+      "tag": "word:certificate",
+      "text": "\\eqref{eq:full-image-certificate}.  This distinction is immaterial for a"
+    },
+    {
+      "line": 3550,
+      "tag": "word:certificate",
+      "text": "logarithmic order only under \\eqref{eq:full-image-certificate}."
+    },
+    {
+      "line": 3563,
+      "tag": "word:certificate",
+      "text": "\\eqref{eq:full-image-certificate},"
+    },
+    {
+      "line": 3574,
+      "tag": "word:certificate",
+      "text": "itself proves \\eqref{eq:full-image-certificate}; image collapse cannot be"
+    },
+    {
+      "line": 3601,
+      "tag": "word:certificate",
+      "text": "when \\eqref{eq:full-image-certificate} has already been certified."
+    },
+    {
+      "line": 3914,
+      "tag": "word:certificate",
+      "text": "cycle-by-cycle certificate or a separate image-normalized Q/Sidon theorem."
+    },
+    {
+      "line": 3973,
+      "tag": "word:certificate",
+      "text": "certificate; the exact identity"
+    },
+    {
+      "line": 4023,
+      "tag": "word:certificate",
+      "text": "full-image certificate by \\cref{rem:flatness-certifies-image}, and"
+    },
+    {
+      "line": 4185,
+      "tag": "word:certificate",
+      "text": "certificate \\eqref{eq:full-image-certificate} or a direct ambient theorem."
+    },
+    {
+      "line": 4602,
+      "tag": "word:certificate",
+      "text": "adjacent-row certificate.  For a finite challenge set \\(\\Gamma\\), the"
+    },
+    {
+      "line": 4736,
+      "tag": "word:certificate",
+      "text": "certificate \\(L_w\\ge e^{-o(n)}\\abs\\B^w\\), this is equivalent at"
+    },
+    {
+      "line": 4825,
+      "tag": "word:certificate",
+      "text": "\\cref{thm:prefix-flatness-power-sum}; the finite numerical certificate is"
+    },
+    {
+      "line": 4887,
+      "tag": "word:certificate",
+      "text": "For finite certificates this is the minor-character check.  It must be"
+    },
+    {
+      "line": 4982,
+      "tag": "word:certificate",
+      "text": "certificate consists of a witness-exhaustive ordered atlas"
+    },
+    {
+      "line": 5011,
+      "tag": "word:certificate",
+      "text": "list is exhaustive for every row.  A finite certificate must verify the"
+    },
+    {
+      "line": 5222,
+      "tag": "word:certificate",
+      "text": "Let \\(\\B_n\\) be a finite field and let \\(D_n=\\theta_nH_n\\subseteq\\B_n^\\times\\) be a coset of a cyclic subgroup of order \\(n\\).  The quotient scales are divisors"
+    },
+    {
+      "line": 5342,
+      "tag": "phrase:row_by_row",
+      "text": "\\section{A row-by-row verification template}\\label{sec:verification-template}"
+    },
+    {
+      "line": 5342,
+      "tag": "sec:verification-template",
+      "text": "\\section{A row-by-row verification template}\\label{sec:verification-template}"
+    },
+    {
+      "line": 5351,
+      "tag": "sec:verification-template",
+      "text": "\\begin{proposition}[Verification template]\\label{prop:verification-template}"
+    },
+    {
+      "line": 5362,
+      "tag": "word:certificate",
+      "text": "particular, a second-moment identity is not a finite ray certificate without"
+    },
+    {
+      "line": 5388,
+      "tag": "word:certificate",
+      "text": "integer-staircase checks in finite-row certificates."
+    },
+    {
+      "line": 5716,
+      "tag": "phrase:finite_source",
+      "text": "\\section{Finite source theorems and certificates}\\label{sec:source-integration}"
+    },
+    {
+      "line": 5716,
+      "tag": "sec:source-integration",
+      "text": "\\section{Finite source theorems and certificates}\\label{sec:source-integration}"
+    },
+    {
+      "line": 5716,
+      "tag": "word:certificate",
+      "text": "\\section{Finite source theorems and certificates}\\label{sec:source-integration}"
+    },
+    {
+      "line": 5718,
+      "tag": "Cho26CapV13",
+      "text": "The finite constructions in \\cite{Cho26CapV13,Cho26Grande} supply the"
+    },
+    {
+      "line": 5718,
+      "tag": "Cho26Grande",
+      "text": "The finite constructions in \\cite{Cho26CapV13,Cho26Grande} supply the"
+    },
+    {
+      "line": 5744,
+      "tag": "word:certificate",
+      "text": "A finite certificate must additionally tabulate the major-character"
+    },
+    {
+      "line": 5811,
+      "tag": "Cho26CapV13",
+      "text": "\\bibitem[Cho26a]{Cho26CapV13}"
+    },
+    {
+      "line": 5817,
+      "tag": "Cho26Grande",
+      "text": "\\bibitem[Cho26b]{Cho26Grande}"
+    }
+  ],
+  "claim_boundaries": {
+    "asserts": [
+      "whether tracked finite integers appear and match integrated certs",
+      "citation/section inventory for finite-source language"
+    ],
+    "does_not_assert": [
+      "that conceptual theorem citations equal certificate replay",
+      "completeness of all possible numbers beyond the tracked set"
+    ]
+  },
+  "evidence_type": "CANONICAL_STATEMENT_HIT",
+  "generator_routes": {
+    "citations": "regex tag inventory (Cho26, finite source, certificate, sections)",
+    "numbers": "exact decimal string search for q-r1 integers",
+    "scope": "overclaim phrase scan near certificate language"
+  },
+  "honest_headline": "Draft does not embed the integrated adjacent-row integers (14 tracked values absent). It cites Cho26CapV13/Cho26Grande and discusses finite-source interfaces conceptually in sec:source-integration. No byte-level numeric misquote is possible because no numbers are quoted. Scope language correctly marks many payments as conditional.",
+  "integrated_cert_presence": [
+    {
+      "path": "experimental/data/certificates/q-r1-closing-audit/q_r1_closing_audit.json",
+      "present": true
+    },
+    {
+      "path": "experimental/data/certificates/frontier-adjacent/kb_mca_v1.packet.json",
+      "present": true
+    },
+    {
+      "path": "experimental/data/certificates/frontier-adjacent/m31_mca_v1.packet.json",
+      "present": true
+    }
+  ],
+  "integration_mode": "THEOREM_CITATION_ONLY",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "mismatches": [],
+  "number_hits_in_paper": [],
+  "object": "finite-source certificate integration honesty for rs_mca_entropy_frontiers.tex",
+  "payload_sha256": "f4072dfa9db330d3108c11e60b5e305240a8fc3db9e2de8618607087cb4321b1",
+  "proposed_ledger_entry": null,
+  "q_r1_source": {
+    "claim_boundaries": {
+      "audits_canonical_statement_inputs": true,
+      "beats_or_narrows_trivial_baseline": false,
+      "claims_no_method_can_reach": false,
+      "independent_recheck_confirms": true,
+      "is_counterexample": false,
+      "is_full_canonical_statement_not_proxy_or_toy_row": false,
+      "is_not_degenerate_or_tautological_by_construction": true,
+      "is_novel_not_confirming_a_proven_theorem": true,
+      "proves_prob_band_undecidable": false,
+      "resolves_or_advances_prob_band": false,
+      "verifies_one_step_inequality": false
+    },
+    "path": "experimental/data/certificates/q-r1-closing-audit/q_r1_closing_audit.json",
+    "present": true,
+    "rows": [
+      {
+        "B_star_threshold": 274980728111395087,
+        "a0": 1116047,
+        "a1": 1116048,
+        "lower_floor_at_a0": 138634741058327852652,
+        "lower_floor_at_a1": 57198030366,
+        "row_id": "kb_mca"
+      },
+      {
+        "B_star_threshold": 274980728111395087,
+        "a0": 1116046,
+        "a1": 1116047,
+        "lower_floor_at_a0": 157702518233425975347,
+        "lower_floor_at_a1": 65065153468,
+        "row_id": "kb_list"
+      },
+      {
+        "B_star_threshold": 16777215,
+        "a0": 1116023,
+        "a1": 1116024,
+        "lower_floor_at_a0": 4281388998575706,
+        "lower_floor_at_a1": 1752700,
+        "row_id": "m31_mca"
+      },
+      {
+        "B_star_threshold": 16777215,
+        "a0": 1116022,
+        "a1": 1116023,
+        "lower_floor_at_a0": 4870025984688527,
+        "lower_floor_at_a1": 1993678,
+        "row_id": "m31_list"
+      }
+    ],
+    "status": "EXPERIMENTAL / AUDIT"
+  },
+  "scope_analysis": [
+    {
+      "severity": "info",
+      "text": "source-integration section correctly limits partial-occupancy to conditional criteria",
+      "type": "scope_ok_note"
+    }
+  ],
+  "status": "EXPERIMENTAL / AUDIT",
+  "tracked_numbers": {
+    "a0_kb_mca": 1116047,
+    "a0_m31_mca": 1116023,
+    "a1_kb_mca": 1116048,
+    "a1_m31_mca": 1116024,
+    "kb_list_L_a0": 157702518233425975347,
+    "kb_list_L_a1": 65065153468,
+    "kb_mca_B_star": 274980728111395087,
+    "kb_mca_L_a0": 138634741058327852652,
+    "kb_mca_L_a1": 57198030366,
+    "m31_B_star": 16777215,
+    "m31_list_L_a0": 4870025984688527,
+    "m31_list_L_a1": 1993678,
+    "m31_mca_L_a0": 4281388998575706,
+    "m31_mca_L_a1": 1752700
+  },
+  "verdict": "NO ISSUE"
+}

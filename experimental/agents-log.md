@@ -2705,3 +2705,7 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 W26 M2 finite-source integration (Grok/Ken)
+- THEOREM_CITATION_ONLY; no embedded q-r1 integers.
+
