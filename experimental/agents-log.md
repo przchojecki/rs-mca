@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - Split-pencil G2 support-forcing repair
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/split_pencil_g2_support_forcing_repair.md`,
+  `experimental/scripts/verify_split_pencil_g2_support_forcing_repair.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / PROVED / OPEN.
+- **What is being added:** A base-field-normalized split-pencil census packet
+  for the G2 support-forcing seam: exact fixed-M counterexamples, the
+  all-scales stabilizer-closure repair, and the corrected open pricing seam
+  for small-scale quotient-periodic contributors.
+- **How it is useful:** It prevents the split-pencil program from consuming a
+  false fixed-scale dichotomy and explains why the all-scales replacement is
+  only a partition theorem, not a priced census input.
+- **What to do next:** Price or exclude the official-row class that is
+  periodic only at scales `<= t`, then reconnect that priced class to the
+  petal/BC residual ledger.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
