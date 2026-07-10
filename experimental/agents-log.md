@@ -2730,3 +2730,10 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W39 M2 lean-single-circuit-ray (executor)
+
+- **Files:** experimental/lean/single_circuit_ray/* (source only); experimental/notes/audits/lean_single_circuit_ray.md
+- **Status:** EXPERIMENTAL / AUDIT — lake build PASS; |Z|≤C(R+1,2) on R=3
+- **Usefulness:** Kernel-checked thm:single-mds-circuit-ray instance
+- **Next:** optional kernel-ray variant instance; general proof formalization out of scope

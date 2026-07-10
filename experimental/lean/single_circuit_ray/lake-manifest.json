@@ -1,0 +1,5 @@
+{"version": "1.1.0",
+ "packagesDir": ".lake/packages",
+ "packages": [],
+ "name": "single_circuit_ray",
+ "lakeDir": ".lake"}
