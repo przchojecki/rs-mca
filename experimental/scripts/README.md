@@ -26,11 +26,20 @@ python3 experimental/scripts/experiment_rowsharp_q_prefix_atom_routes_v1.py --ch
 python3 experimental/scripts/experiment_rowsharp_q_prefix_atom_routes_v1.py --tamper-selftest
 python3 experimental/scripts/verify_rowsharp_q_singleton_topseam_v1.py --check
 python3 experimental/scripts/verify_rowsharp_q_singleton_topseam_v1.py --tamper-selftest
+python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --check
+python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --tamper-selftest
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
 replay. Use `--full --write --check` only when regenerating the route evidence,
 or `--case P N J W` for a single small-model case.
+
+`verify_asymptotic_primitive_profile_character_frame_v1.py` checks a proved
+finite character-frame implication, the five existing elementary-prefix toys,
+and an exact block-parabola product where global absolute Fourier summation is
+exponential but the packed multiplier is one.  Its source-specific semantic
+residual packing hypothesis remains open; the script does not prove
+primitive-profile Q, effective MI/MA, or the direct Sidon payment.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

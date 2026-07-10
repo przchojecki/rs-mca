@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Primitive-profile packed character-frame certificate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/asymptotic_primitive_profile_character_frame_v1.md`,
+  `experimental/data/certificates/primitive-profile-character-frame/primitive_profile_character_frame_v1.json`,
+  `experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py`,
+  `experimental/scripts/README.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED CONDITIONAL CERTIFICATE / EXPERIMENTAL CENSUS.
+- **What is being added:** A corrected affine effective-span character-frame
+  inequality, its converse Rayleigh guardrail, and a packed major-difference
+  corollary, together with deterministic finite power-sum toys, all five
+  existing elementary-prefix toys, a heavy-fiber regression, and an exact
+  block-parabola product separation.
+- **How it is useful:** This gives the frontiers Fourier/Sidon program a
+  noncircular sufficient certificate that can be narrower than the current
+  all-character absolute-sum interface.  In the scalable block family, the
+  global absolute multiplier is exponential in the ambient length while the
+  packed Gram multiplier is exactly one.  The negative-control menu and heavy
+  regression delimit that gain and prevent a false flatness claim.
+- **What to do next:** Prove or falsify the source-derived uniform packing and
+  packed Gram bounds on semantic many-shell residual profiles.  Do not promote
+  this packet as primitive-profile Q, effective MI/MA, or direct Sidon closure.
+
 ### 2026-07-10 - Identity-window and finite-prize theory packets
 
 - **Agent/model:** Codex integrating PR #542 by holmbuar and PR #543 by

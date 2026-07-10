@@ -1,0 +1,736 @@
+{
+  "base_commit": "486c8fb347ace37f3033332abe572ab9fbf1bf8f",
+  "cases": [
+    {
+      "actual_image_multiplier": 1.0,
+      "checks": {
+        "differences_avoid_major": true,
+        "frame_dominates_actual": true,
+        "greedy_cardinality_floor": true,
+        "minor_controls_packed_rows": true,
+        "rayleigh_guardrail": true
+      },
+      "full_dual_gershgorin_image_multiplier": 2.4,
+      "full_slice_size": 10,
+      "global_absolute_fourier_multiplier": 6.0,
+      "group": {
+        "dual_size": 25,
+        "p": 5,
+        "rank": 2
+      },
+      "image_size": 10,
+      "max_fiber_size": 1,
+      "minor_global_mass": 1.38196601125,
+      "name": "F5_full_m2_r2",
+      "packed": {
+        "gram_row_bound": 1.690983005625,
+        "image_multiplier": 1.690983005625,
+        "major_size": 11,
+        "selected_size": 10,
+        "threshold": 0.138196601125
+      },
+      "packed_off_diagonal_row_mass": 0.690983005625,
+      "rayleigh_image_multiplier": 1.095491502813,
+      "source": {
+        "depth": 2,
+        "effective_rank": 2,
+        "kind": "fixed_weight_power_sum",
+        "support": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "weight": 2
+      }
+    },
+    {
+      "actual_image_multiplier": 1.6,
+      "checks": {
+        "differences_avoid_major": true,
+        "frame_dominates_actual": true,
+        "greedy_cardinality_floor": true,
+        "minor_controls_packed_rows": true,
+        "rayleigh_guardrail": true
+      },
+      "full_dual_gershgorin_image_multiplier": 4.199887512317,
+      "full_slice_size": 35,
+      "global_absolute_fourier_multiplier": 7.349803146555,
+      "group": {
+        "dual_size": 49,
+        "p": 7,
+        "rank": 2
+      },
+      "image_size": 28,
+      "max_fiber_size": 2,
+      "minor_global_mass": 0.0,
+      "name": "F7_full_m4_r2",
+      "packed": {
+        "gram_row_bound": 1.0,
+        "image_multiplier": 4.0,
+        "major_size": 43,
+        "selected_size": 7,
+        "threshold": 0.0
+      },
+      "packed_off_diagonal_row_mass": 0.0,
+      "rayleigh_image_multiplier": 4.0,
+      "source": {
+        "depth": 2,
+        "effective_rank": 2,
+        "kind": "fixed_weight_power_sum",
+        "support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "weight": 4
+      }
+    },
+    {
+      "actual_image_multiplier": 1.9,
+      "checks": {
+        "differences_avoid_major": true,
+        "frame_dominates_actual": true,
+        "greedy_cardinality_floor": true,
+        "minor_controls_packed_rows": true,
+        "rayleigh_guardrail": true
+      },
+      "full_dual_gershgorin_image_multiplier": 3.666254087875,
+      "full_slice_size": 20,
+      "global_absolute_fourier_multiplier": 9.455076331888,
+      "group": {
+        "dual_size": 49,
+        "p": 7,
+        "rank": 2
+      },
+      "image_size": 19,
+      "max_fiber_size": 2,
+      "minor_global_mass": 0.3,
+      "name": "F7_prefix6_m3_r2",
+      "packed": {
+        "gram_row_bound": 1.3,
+        "image_multiplier": 3.528571428571,
+        "major_size": 43,
+        "selected_size": 7,
+        "threshold": 0.05
+      },
+      "packed_off_diagonal_row_mass": 0.3,
+      "rayleigh_image_multiplier": 1.9,
+      "source": {
+        "depth": 2,
+        "effective_rank": 2,
+        "kind": "fixed_weight_power_sum",
+        "support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "weight": 3
+      }
+    },
+    {
+      "actual_image_multiplier": 1.942857142857,
+      "checks": {
+        "differences_avoid_major": true,
+        "frame_dominates_actual": true,
+        "greedy_cardinality_floor": true,
+        "minor_controls_packed_rows": true,
+        "rayleigh_guardrail": true
+      },
+      "full_dual_gershgorin_image_multiplier": 4.179670429301,
+      "full_slice_size": 35,
+      "global_absolute_fourier_multiplier": 14.874709468984,
+      "group": {
+        "dual_size": 121,
+        "p": 11,
+        "rank": 2
+      },
+      "image_size": 34,
+      "max_fiber_size": 2,
+      "minor_global_mass": 13.874709468984,
+      "name": "F11_prefix7_m3_r2",
+      "packed": {
+        "gram_row_bound": 14.874709468984,
+        "image_multiplier": 4.179670429301,
+        "major_size": 1,
+        "selected_size": 121,
+        "threshold": 0.418075853927
+      },
+      "packed_off_diagonal_row_mass": 13.874709468984,
+      "rayleigh_image_multiplier": 1.942857142857,
+      "source": {
+        "depth": 2,
+        "effective_rank": 2,
+        "kind": "fixed_weight_power_sum",
+        "support": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "weight": 3
+      }
+    },
+    {
+      "actual_image_multiplier": 16.5,
+      "checks": {
+        "differences_avoid_major": true,
+        "frame_dominates_actual": true,
+        "greedy_cardinality_floor": true,
+        "minor_controls_packed_rows": true,
+        "rayleigh_guardrail": true
+      },
+      "full_dual_gershgorin_image_multiplier": 16.5,
+      "full_slice_size": 64,
+      "global_absolute_fourier_multiplier": 32.0,
+      "group": {
+        "dual_size": 64,
+        "p": 2,
+        "rank": 6
+      },
+      "image_size": 33,
+      "max_fiber_size": 32,
+      "minor_global_mass": 31.0,
+      "name": "synthetic_heavy_atom_regression",
+      "packed": {
+        "gram_row_bound": 32.0,
+        "image_multiplier": 16.5,
+        "major_size": 1,
+        "selected_size": 64,
+        "threshold": 0.96875
+      },
+      "packed_off_diagonal_row_mass": 31.0,
+      "rayleigh_image_multiplier": 16.5,
+      "source": {
+        "kind": "synthetic_distribution_regression",
+        "purpose": "CF3 must prevent a false flatness certificate"
+      }
+    }
+  ],
+  "checked_object": "finite effective-group character-frame inequality, converse guardrail, packed-major corollary, and deterministic toy census",
+  "existing_elementary_prefix_menu": {
+    "rows": [
+      {
+        "actual_image_multiplier": 1.0,
+        "checks": {
+          "differences_avoid_major": true,
+          "frame_dominates_actual": true,
+          "greedy_cardinality_floor": true,
+          "minor_controls_packed_rows": true,
+          "rayleigh_guardrail": true
+        },
+        "full_dual_gershgorin_image_multiplier": 1.0,
+        "full_slice_size": 10,
+        "global_absolute_fourier_multiplier": 1.0,
+        "group": {
+          "dual_size": 5,
+          "p": 5,
+          "rank": 1
+        },
+        "image_size": 5,
+        "max_fiber_size": 2,
+        "minor_global_mass": 0.0,
+        "name": "elementary_F5_n5_m2_w1",
+        "packed": {
+          "gram_row_bound": 1.0,
+          "image_multiplier": 1.0,
+          "major_size": 1,
+          "selected_size": 5,
+          "threshold": 0.0
+        },
+        "packed_off_diagonal_row_mass": 0.0,
+        "packed_strictly_improves_full_dual_row": false,
+        "rayleigh_image_multiplier": 1.0,
+        "source": {
+          "depth": 1,
+          "effective_image_difference_rank": 1,
+          "kind": "existing_elementary_prefix_toy",
+          "source_script": "experimental/scripts/verify_boolean_prefix_fibers.py",
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "weight": 2
+        }
+      },
+      {
+        "actual_image_multiplier": 1.440476190476,
+        "checks": {
+          "differences_avoid_major": true,
+          "frame_dominates_actual": true,
+          "greedy_cardinality_floor": true,
+          "minor_controls_packed_rows": true,
+          "rayleigh_guardrail": true
+        },
+        "full_dual_gershgorin_image_multiplier": 4.76925018518,
+        "full_slice_size": 252,
+        "global_absolute_fourier_multiplier": 4.76925018518,
+        "group": {
+          "dual_size": 121,
+          "p": 11,
+          "rank": 2
+        },
+        "image_size": 121,
+        "max_fiber_size": 3,
+        "minor_global_mass": 3.76925018518,
+        "name": "elementary_F11_n10_m5_w2",
+        "packed": {
+          "gram_row_bound": 4.76925018518,
+          "image_multiplier": 4.76925018518,
+          "major_size": 1,
+          "selected_size": 121,
+          "threshold": 0.057444651126
+        },
+        "packed_off_diagonal_row_mass": 3.76925018518,
+        "packed_strictly_improves_full_dual_row": false,
+        "rayleigh_image_multiplier": 1.440476190476,
+        "source": {
+          "depth": 2,
+          "effective_image_difference_rank": 2,
+          "kind": "existing_elementary_prefix_toy",
+          "source_script": "experimental/scripts/verify_boolean_prefix_fibers.py",
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "weight": 5
+        }
+      },
+      {
+        "actual_image_multiplier": 2.269841269841,
+        "checks": {
+          "differences_avoid_major": true,
+          "frame_dominates_actual": true,
+          "greedy_cardinality_floor": true,
+          "minor_controls_packed_rows": true,
+          "rayleigh_guardrail": true
+        },
+        "full_dual_gershgorin_image_multiplier": 6.8981265622,
+        "full_slice_size": 252,
+        "global_absolute_fourier_multiplier": 8.152331391691,
+        "group": {
+          "dual_size": 169,
+          "p": 13,
+          "rank": 2
+        },
+        "image_size": 143,
+        "max_fiber_size": 4,
+        "minor_global_mass": 7.152331391691,
+        "name": "elementary_F13_n10_m5_w2",
+        "packed": {
+          "gram_row_bound": 8.152331391691,
+          "image_multiplier": 6.8981265622,
+          "major_size": 1,
+          "selected_size": 169,
+          "threshold": 0.099962174153
+        },
+        "packed_off_diagonal_row_mass": 7.152331391691,
+        "packed_strictly_improves_full_dual_row": false,
+        "rayleigh_image_multiplier": 2.269841269841,
+        "source": {
+          "depth": 2,
+          "effective_image_difference_rank": 2,
+          "kind": "existing_elementary_prefix_toy",
+          "source_script": "experimental/scripts/verify_boolean_prefix_fibers.py",
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "weight": 5
+        }
+      },
+      {
+        "actual_image_multiplier": 1.942857142857,
+        "checks": {
+          "differences_avoid_major": true,
+          "frame_dominates_actual": true,
+          "greedy_cardinality_floor": true,
+          "minor_controls_packed_rows": true,
+          "rayleigh_guardrail": true
+        },
+        "full_dual_gershgorin_image_multiplier": 2.060227160873,
+        "full_slice_size": 70,
+        "global_absolute_fourier_multiplier": 2.060227160873,
+        "group": {
+          "dual_size": 17,
+          "p": 17,
+          "rank": 1
+        },
+        "image_size": 17,
+        "max_fiber_size": 8,
+        "minor_global_mass": 1.060227160873,
+        "name": "elementary_F17_n8_m4_w1",
+        "packed": {
+          "gram_row_bound": 2.060227160873,
+          "image_multiplier": 2.060227160873,
+          "major_size": 1,
+          "selected_size": 17,
+          "threshold": 0.415170089262
+        },
+        "packed_off_diagonal_row_mass": 1.060227160873,
+        "packed_strictly_improves_full_dual_row": false,
+        "rayleigh_image_multiplier": 1.942857142857,
+        "source": {
+          "depth": 1,
+          "effective_image_difference_rank": 1,
+          "kind": "existing_elementary_prefix_toy",
+          "source_script": "experimental/scripts/verify_boolean_prefix_fibers.py",
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "weight": 4
+        }
+      },
+      {
+        "actual_image_multiplier": 1.850649350649,
+        "checks": {
+          "differences_avoid_major": true,
+          "frame_dominates_actual": true,
+          "greedy_cardinality_floor": true,
+          "minor_controls_packed_rows": true,
+          "rayleigh_guardrail": true
+        },
+        "full_dual_gershgorin_image_multiplier": 6.326113641363,
+        "full_slice_size": 924,
+        "global_absolute_fourier_multiplier": 6.414901201242,
+        "group": {
+          "dual_size": 289,
+          "p": 17,
+          "rank": 2
+        },
+        "image_size": 285,
+        "max_fiber_size": 6,
+        "minor_global_mass": 5.414901201242,
+        "name": "elementary_F17_n12_m6_w2",
+        "packed": {
+          "gram_row_bound": 6.414901201242,
+          "image_multiplier": 6.326113641363,
+          "major_size": 1,
+          "selected_size": 289,
+          "threshold": 0.073945875566
+        },
+        "packed_off_diagonal_row_mass": 5.414901201242,
+        "packed_strictly_improves_full_dual_row": false,
+        "rayleigh_image_multiplier": 1.850649350649,
+        "source": {
+          "depth": 2,
+          "effective_image_difference_rank": 2,
+          "kind": "existing_elementary_prefix_toy",
+          "source_script": "experimental/scripts/verify_boolean_prefix_fibers.py",
+          "support": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "weight": 6
+        }
+      }
+    ],
+    "source_script": "experimental/scripts/verify_boolean_prefix_fibers.py",
+    "summary": {
+      "all_checks_pass": true,
+      "negative_control": "No menu row selected a nontrivial forbidden-difference packing; the scalable block-parabola product is the strict family witness.",
+      "nonuniform_rows": 4,
+      "row_count": 5,
+      "strict_forbidden_difference_improvements": 0
+    }
+  },
+  "nonclaims": [
+    "no proof of exact primitive-profile Q in the unrestricted many-shell range",
+    "no proof of the uniform source-specific character packing input",
+    "no proof of effective MI or effective MA",
+    "no proof of the direct Sidon moment payment",
+    "no proof of first-match witness exhaustiveness",
+    "no claim that the block-parabola separation family is a semantic primitive residual"
+  ],
+  "note_contract": {
+    "affine_translation_printed": true,
+    "claims_mi_ma_proved": true,
+    "claims_q_proved": true,
+    "claims_sidon_proved": true,
+    "converse_guardrail_printed": true,
+    "family_residual_nonclaim": true,
+    "frame_formula_printed": true,
+    "global_exponential_formula_printed": true,
+    "mi_ma_nonclaim_printed": true,
+    "packed_corollary_printed": true,
+    "packed_identity_printed": true,
+    "q_nonclaim_printed": true,
+    "scalable_family_printed": true,
+    "source_packing_open": true,
+    "status_is_conditional": true
+  },
+  "payload_sha256": "62aa09b75ef64eadf955ac2e745cbd2646bad8756bf78f616808e4150c3ecbcd",
+  "scalable_separating_family": {
+    "base_rows": [
+      {
+        "absolute_fourier_base": 4.464101615138,
+        "checks": {
+          "full_effective_span": true,
+          "gauss_product_formula": true,
+          "injective_profile": true,
+          "packed_gram_identity": true,
+          "packed_multiplier_exact": true,
+          "selected_matches_image": true
+        },
+        "global_loss_rate_per_coordinate": 0.498689329356,
+        "p": 3,
+        "packed_multiplier": 1.0
+      },
+      {
+        "absolute_fourier_base": 9.944271909999,
+        "checks": {
+          "full_effective_span": true,
+          "gauss_product_formula": true,
+          "injective_profile": true,
+          "packed_gram_identity": true,
+          "packed_multiplier_exact": true,
+          "selected_matches_image": true
+        },
+        "global_loss_rate_per_coordinate": 0.459399339592,
+        "p": 5,
+        "packed_multiplier": 1.0
+      },
+      {
+        "absolute_fourier_base": 16.874507866388,
+        "checks": {
+          "full_effective_span": true,
+          "gauss_product_formula": true,
+          "injective_profile": true,
+          "packed_gram_identity": true,
+          "packed_multiplier_exact": true,
+          "selected_matches_image": true
+        },
+        "global_loss_rate_per_coordinate": 0.403686296123,
+        "p": 7,
+        "packed_multiplier": 1.0
+      }
+    ],
+    "definition": {
+      "absolute_multiplier": "[1+(p-1)*sqrt(p)]^k",
+      "block": "F_p with occupancy one",
+      "effective_group": "(F_p^2)^k",
+      "packed_family": "{((a_1,0),...,(a_k,0)) : a_i in F_p}",
+      "packed_gram": "identity",
+      "profile": "t -> (t,t^2), direct product over blocks"
+    },
+    "explicit_product_replays": [
+      {
+        "ambient_coordinates": 6,
+        "blocks": 2,
+        "checks": {
+          "full_effective_span": true,
+          "gauss_product_formula": true,
+          "injective_profile": true,
+          "packed_gram_identity": true,
+          "packed_multiplier_exact": true,
+          "selected_matches_image": true
+        },
+        "dual_size": 81,
+        "effective_image_difference_rank": 4,
+        "expected_global_multiplier": 19.928203230276,
+        "full_slice_size": 9,
+        "global_absolute_multiplier": 19.928203230276,
+        "image_size": 9,
+        "max_packed_off_diagonal": 0.0,
+        "p": 3,
+        "packed_gram_row_bound": 1.0,
+        "packed_image_multiplier": 1.0,
+        "selected_size": 9
+      },
+      {
+        "ambient_coordinates": 10,
+        "blocks": 2,
+        "checks": {
+          "full_effective_span": true,
+          "gauss_product_formula": true,
+          "injective_profile": true,
+          "packed_gram_identity": true,
+          "packed_multiplier_exact": true,
+          "selected_matches_image": true
+        },
+        "dual_size": 625,
+        "effective_image_difference_rank": 4,
+        "expected_global_multiplier": 98.888543819998,
+        "full_slice_size": 25,
+        "global_absolute_multiplier": 98.888543819998,
+        "image_size": 25,
+        "max_packed_off_diagonal": 0.0,
+        "p": 5,
+        "packed_gram_row_bound": 1.0,
+        "packed_image_multiplier": 1.0,
+        "selected_size": 25
+      },
+      {
+        "ambient_coordinates": 14,
+        "blocks": 2,
+        "checks": {
+          "full_effective_span": true,
+          "gauss_product_formula": true,
+          "injective_profile": true,
+          "packed_gram_identity": true,
+          "packed_multiplier_exact": true,
+          "selected_matches_image": true
+        },
+        "dual_size": 2401,
+        "effective_image_difference_rank": 4,
+        "expected_global_multiplier": 284.749015732775,
+        "full_slice_size": 49,
+        "global_absolute_multiplier": 284.749015732775,
+        "image_size": 49,
+        "max_packed_off_diagonal": 0.0,
+        "p": 7,
+        "packed_gram_row_bound": 1.0,
+        "packed_image_multiplier": 1.0,
+        "selected_size": 49
+      }
+    ],
+    "name": "block_parabola_product",
+    "provenance": {
+      "model": "existing block-profile toy with one selected point per block",
+      "related_script": "experimental/scripts/verify_asymptotic_c9_block_profile_plotkin.py",
+      "semantic_residual_claimed": false
+    },
+    "scale_rows_p5": [
+      {
+        "ambient_coordinates": 5,
+        "blocks": 1,
+        "full_slice_size": 5,
+        "global_absolute_multiplier": 9.944271909999,
+        "global_log_loss_per_coordinate": 0.459399339592,
+        "image_size": 5,
+        "packed_gram_operator_norm": 1.0,
+        "packed_image_multiplier": 1.0,
+        "selected_size": 5
+      },
+      {
+        "ambient_coordinates": 10,
+        "blocks": 2,
+        "full_slice_size": 25,
+        "global_absolute_multiplier": 98.888543819998,
+        "global_log_loss_per_coordinate": 0.459399339592,
+        "image_size": 25,
+        "packed_gram_operator_norm": 1.0,
+        "packed_image_multiplier": 1.0,
+        "selected_size": 25
+      },
+      {
+        "ambient_coordinates": 20,
+        "blocks": 4,
+        "full_slice_size": 625,
+        "global_absolute_multiplier": 9778.94409883973,
+        "global_log_loss_per_coordinate": 0.459399339592,
+        "image_size": 625,
+        "packed_gram_operator_norm": 1.0,
+        "packed_image_multiplier": 1.0,
+        "selected_size": 625
+      },
+      {
+        "ambient_coordinates": 40,
+        "blocks": 8,
+        "full_slice_size": 390625,
+        "global_absolute_multiplier": 95627747.68823236,
+        "global_log_loss_per_coordinate": 0.459399339592,
+        "image_size": 390625,
+        "packed_gram_operator_norm": 1.0,
+        "packed_image_multiplier": 1.0,
+        "selected_size": 390625
+      },
+      {
+        "ambient_coordinates": 80,
+        "blocks": 16,
+        "full_slice_size": 152587890625,
+        "global_absolute_multiplier": 9144666127924230.0,
+        "global_log_loss_per_coordinate": 0.459399339592,
+        "image_size": 152587890625,
+        "packed_gram_operator_norm": 1.0,
+        "packed_image_multiplier": 1.0,
+        "selected_size": 152587890625
+      }
+    ],
+    "summary": {
+      "all_checks_pass": true,
+      "global_absolute_sum_is_exponential": true,
+      "p5_global_log_loss_per_coordinate": 0.459399339592,
+      "packed_multiplier_is_one": true,
+      "strict_asymptotic_separation": true
+    }
+  },
+  "schema": "asymptotic-primitive-profile-character-frame-v1",
+  "source_pins": {
+    "def:aggregate-minor-payment": true,
+    "def:effective-fourier-payment": true,
+    "def:effective-major-minor": true,
+    "def:major-arc-aggregate": true,
+    "lem:effective-span-fourier": true,
+    "prop:effective-mi-ma-flatness": true
+  },
+  "status": "PROVED CONDITIONAL CERTIFICATE / OPEN SOURCE-SPECIFIC PACKING INPUT",
+  "summary": {
+    "all_finite_checks_pass": true,
+    "case_count": 5,
+    "existing_menu_all_checks_pass": true,
+    "existing_menu_nonuniform_rows": 4,
+    "existing_menu_rows": 5,
+    "heavy_regression_guardrail_pass": true,
+    "nonuniform_source_cases": 3,
+    "p5_global_log_loss_per_coordinate": 0.459399339592,
+    "p5_packed_multiplier": 1.0,
+    "scalable_separating_family_pass": true,
+    "source_case_count": 4,
+    "strict_packed_improvements": 3
+  },
+  "theorem": {
+    "converse": "||K_A||_op >= |A|*max_z(mu(z))",
+    "frame": "|F_z| <= M*||K_A||_op/|A|",
+    "image_multiplier": "kappa_frame = L*||K_A||_op/|A|",
+    "packed_size": "|A| >= |hat(G)|/|Mfrak|"
+  },
+  "theorem_id": "asymptotic-primitive-profile-character-frame-v1"
+}
