@@ -1,0 +1,2457 @@
+{
+  "adversarial": [
+    {
+      "N": 6,
+      "R": 2,
+      "best": {
+        "L": 20,
+        "M": 20,
+        "barN": 1.0,
+        "energy_routes_ok": true,
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 20,
+        "ratio": 1.0,
+        "tag": "full",
+        "thr": 1.0
+      },
+      "deep_ce": false,
+      "m": 3,
+      "p": 11,
+      "regime": "deep",
+      "shallow_ratio": 1.1055415967851332,
+      "thr": 1.0
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "best": {
+        "L": 56,
+        "M": 56,
+        "barN": 1.0,
+        "energy_routes_ok": true,
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 56,
+        "ratio": 1.0,
+        "tag": "full",
+        "thr": 1.0
+      },
+      "deep_ce": false,
+      "m": 3,
+      "p": 13,
+      "regime": "deep",
+      "shallow_ratio": 1.3520817282989959,
+      "thr": 1.0
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "best": {
+        "L": 56,
+        "M": 56,
+        "barN": 1.0,
+        "energy_routes_ok": true,
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 56,
+        "ratio": 1.0,
+        "tag": "full",
+        "thr": 1.0
+      },
+      "deep_ce": false,
+      "m": 3,
+      "p": 17,
+      "regime": "deep",
+      "shallow_ratio": 1.5461646096066226,
+      "thr": 1.0
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "best": {
+        "L": 70,
+        "M": 70,
+        "barN": 1.0,
+        "energy_routes_ok": true,
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 70,
+        "ratio": 1.0,
+        "tag": "full",
+        "thr": 1.0
+      },
+      "deep_ce": false,
+      "m": 4,
+      "p": 17,
+      "regime": "deep",
+      "shallow_ratio": 1.5461646096066226,
+      "thr": 1.0
+    },
+    {
+      "N": 10,
+      "R": 4,
+      "best": {
+        "L": 210,
+        "M": 210,
+        "barN": 1.0,
+        "energy_routes_ok": true,
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 210,
+        "ratio": 1.0,
+        "tag": "full",
+        "thr": 1.0
+      },
+      "deep_ce": false,
+      "m": 4,
+      "p": 17,
+      "regime": "deep",
+      "shallow_ratio": 1.6492422502470643,
+      "thr": 1.0
+    },
+    {
+      "N": 10,
+      "R": 3,
+      "best": {
+        "L": 210,
+        "M": 210,
+        "barN": 1.0,
+        "energy_routes_ok": true,
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 210,
+        "ratio": 1.0,
+        "tag": "full",
+        "thr": 1.0
+      },
+      "deep_ce": false,
+      "m": 4,
+      "p": 19,
+      "regime": "deep",
+      "shallow_ratio": 1.3076696830622023,
+      "thr": 1.0
+    },
+    {
+      "N": 10,
+      "R": 3,
+      "best": {
+        "L": 252,
+        "M": 252,
+        "barN": 1.0,
+        "energy_routes_ok": true,
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 252,
+        "ratio": 1.0,
+        "tag": "full",
+        "thr": 1.0
+      },
+      "deep_ce": false,
+      "m": 5,
+      "p": 19,
+      "regime": "deep",
+      "shallow_ratio": 1.3076696830622023,
+      "thr": 1.0
+    },
+    {
+      "N": 12,
+      "R": 3,
+      "best": {
+        "L": 115,
+        "M": 116,
+        "barN": 1.008695652173913,
+        "energy_routes_ok": true,
+        "log_ratio_over_N": 0.05704075981806923,
+        "max_f_low": 2,
+        "n_low": 1,
+        "ratio": 1.9827586206896552,
+        "tag": "sparse_28",
+        "thr": 0.75
+      },
+      "deep_ce": false,
+      "m": 5,
+      "p": 19,
+      "regime": "deep",
+      "shallow_ratio": 1.0897247358851685,
+      "thr": 0.75
+    }
+  ],
+  "all_pass": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "charts": [
+    {
+      "L": 20,
+      "M": 20,
+      "N": 6,
+      "Omega_mode": "all",
+      "R": 2,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 20,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 20,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 20,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0,
+      "deep_and_nonempty": true,
+      "m": 3,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 1.0,
+      "min_thr_nonempty_f2": 1.0,
+      "n_fibers": 20,
+      "p": 11,
+      "primary": {
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 20,
+        "nonempty": true,
+        "ratio": 1.0,
+        "thr": 1.0,
+        "thr_value": 1.0
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.1055415967851332,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 20,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 20,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 20,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 20,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 56,
+      "M": 56,
+      "N": 8,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0,
+      "deep_and_nonempty": true,
+      "m": 3,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 1.0,
+      "min_thr_nonempty_f2": 1.0,
+      "n_fibers": 56,
+      "p": 13,
+      "primary": {
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 56,
+        "nonempty": true,
+        "ratio": 1.0,
+        "thr": 1.0,
+        "thr_value": 1.0
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.3520817282989959,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 63,
+      "M": 70,
+      "N": 8,
+      "Omega_mode": "all",
+      "R": 2,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.07347333311276487,
+          "max_f_low": 2,
+          "n_low": 63,
+          "nonempty": true,
+          "ratio": 1.7999999999999998,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.07347333311276487,
+          "max_f_low": 2,
+          "n_low": 63,
+          "nonempty": true,
+          "ratio": 1.7999999999999998,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.07347333311276487,
+          "max_f_low": 2,
+          "n_low": 63,
+          "nonempty": true,
+          "ratio": 1.7999999999999998,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.1111111111111112,
+      "deep_and_nonempty": false,
+      "m": 4,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.75,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 63,
+      "p": 13,
+      "primary": {
+        "log_ratio_over_N": 0.07347333311276487,
+        "max_f_low": 2,
+        "n_low": 7,
+        "nonempty": true,
+        "ratio": 1.7999999999999998,
+        "thr": 0.75
+      },
+      "regime": "borderline",
+      "shallow_ratio": 0.9013878188659973,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.07347333311276487,
+          "max_f_low": 2,
+          "n_low": 7,
+          "nonempty": true,
+          "ratio": 1.7999999999999998,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.07347333311276487,
+          "max_f_low": 2,
+          "n_low": 63,
+          "nonempty": true,
+          "ratio": 1.7999999999999998,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.07347333311276487,
+          "max_f_low": 2,
+          "n_low": 63,
+          "nonempty": true,
+          "ratio": 1.7999999999999998,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.07347333311276487,
+          "max_f_low": 2,
+          "n_low": 63,
+          "nonempty": true,
+          "ratio": 1.7999999999999998,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.07347333311276487,
+          "max_f_low": 2,
+          "n_low": 63,
+          "nonempty": true,
+          "ratio": 1.7999999999999998,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 56,
+      "M": 56,
+      "N": 8,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0,
+      "deep_and_nonempty": true,
+      "m": 3,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 1.0,
+      "min_thr_nonempty_f2": 1.0,
+      "n_fibers": 56,
+      "p": 17,
+      "primary": {
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 56,
+        "nonempty": true,
+        "ratio": 1.0,
+        "thr": 1.0,
+        "thr_value": 1.0
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.5461646096066226,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 56,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 70,
+      "M": 70,
+      "N": 8,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 70,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 70,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 70,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0,
+      "deep_and_nonempty": true,
+      "m": 4,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 1.0,
+      "min_thr_nonempty_f2": 1.0,
+      "n_fibers": 70,
+      "p": 17,
+      "primary": {
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 70,
+        "nonempty": true,
+        "ratio": 1.0,
+        "thr": 1.0,
+        "thr_value": 1.0
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.5461646096066226,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 70,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 70,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 70,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 70,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 210,
+      "M": 210,
+      "N": 10,
+      "Omega_mode": "all",
+      "R": 4,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0,
+      "deep_and_nonempty": true,
+      "m": 4,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 1.0,
+      "min_thr_nonempty_f2": 1.0,
+      "n_fibers": 210,
+      "p": 17,
+      "primary": {
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 210,
+        "nonempty": true,
+        "ratio": 1.0,
+        "thr": 1.0,
+        "thr_value": 1.0
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.6492422502470643,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 210,
+      "M": 210,
+      "N": 10,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0,
+      "deep_and_nonempty": true,
+      "m": 4,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 1.0,
+      "min_thr_nonempty_f2": 1.0,
+      "n_fibers": 210,
+      "p": 19,
+      "primary": {
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 210,
+        "nonempty": true,
+        "ratio": 1.0,
+        "thr": 1.0,
+        "thr_value": 1.0
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.3076696830622023,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 252,
+      "M": 252,
+      "N": 10,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 252,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 252,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 252,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0,
+      "deep_and_nonempty": true,
+      "m": 5,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 1.0,
+      "min_thr_nonempty_f2": 1.0,
+      "n_fibers": 252,
+      "p": 19,
+      "primary": {
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 252,
+        "nonempty": true,
+        "ratio": 1.0,
+        "thr": 1.0,
+        "thr_value": 1.0
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.3076696830622023,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 252,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 252,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 252,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 252,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 759,
+      "M": 792,
+      "N": 12,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.05421563051176245,
+          "max_f_low": 2,
+          "n_low": 759,
+          "nonempty": true,
+          "ratio": 1.9166666666666667,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.05421563051176245,
+          "max_f_low": 2,
+          "n_low": 759,
+          "nonempty": true,
+          "ratio": 1.9166666666666667,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.05421563051176245,
+          "max_f_low": 2,
+          "n_low": 759,
+          "nonempty": true,
+          "ratio": 1.9166666666666667,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0434782608695652,
+      "deep_and_nonempty": true,
+      "m": 5,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.75,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 759,
+      "p": 19,
+      "primary": {
+        "log_ratio_over_N": 0.05421563051176245,
+        "max_f_low": 2,
+        "n_low": 33,
+        "nonempty": true,
+        "ratio": 1.9166666666666667,
+        "thr": 0.75
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.0897247358851685,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.05421563051176245,
+          "max_f_low": 2,
+          "n_low": 33,
+          "nonempty": true,
+          "ratio": 1.9166666666666667,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.05421563051176245,
+          "max_f_low": 2,
+          "n_low": 759,
+          "nonempty": true,
+          "ratio": 1.9166666666666667,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.05421563051176245,
+          "max_f_low": 2,
+          "n_low": 759,
+          "nonempty": true,
+          "ratio": 1.9166666666666667,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.05421563051176245,
+          "max_f_low": 2,
+          "n_low": 759,
+          "nonempty": true,
+          "ratio": 1.9166666666666667,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.05421563051176245,
+          "max_f_low": 2,
+          "n_low": 759,
+          "nonempty": true,
+          "ratio": 1.9166666666666667,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 210,
+      "M": 210,
+      "N": 10,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0,
+      "deep_and_nonempty": true,
+      "m": 4,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 1.0,
+      "min_thr_nonempty_f2": 1.0,
+      "n_fibers": 210,
+      "p": 23,
+      "primary": {
+        "log_ratio_over_N": 0.0,
+        "max_f_low": 1,
+        "n_low": 210,
+        "nonempty": true,
+        "ratio": 1.0,
+        "thr": 1.0,
+        "thr_value": 1.0
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.4387494569938157,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0,
+          "max_f_low": 1,
+          "n_low": 210,
+          "nonempty": true,
+          "ratio": 1.0,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 780,
+      "M": 792,
+      "N": 12,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0153846153846153,
+      "deep_and_nonempty": true,
+      "m": 5,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.75,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 780,
+      "p": 23,
+      "primary": {
+        "log_ratio_over_N": 0.056489975702429744,
+        "max_f_low": 2,
+        "n_low": 12,
+        "nonempty": true,
+        "ratio": 1.9696969696969697,
+        "thr": 0.75
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.1989578808281798,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 12,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 906,
+      "M": 924,
+      "N": 12,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0198675496688743,
+      "deep_and_nonempty": true,
+      "m": 6,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.75,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 906,
+      "p": 23,
+      "primary": {
+        "log_ratio_over_N": 0.0561228679134367,
+        "max_f_low": 2,
+        "n_low": 18,
+        "nonempty": true,
+        "ratio": 1.961038961038961,
+        "thr": 0.75
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.1989578808281798,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 18,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 780,
+      "M": 792,
+      "N": 12,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0153846153846153,
+      "deep_and_nonempty": true,
+      "m": 5,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.75,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 780,
+      "p": 29,
+      "primary": {
+        "log_ratio_over_N": 0.056489975702429744,
+        "max_f_low": 2,
+        "n_low": 12,
+        "nonempty": true,
+        "ratio": 1.9696969696969697,
+        "thr": 0.75
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.346291201783626,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 12,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.056489975702429744,
+          "max_f_low": 2,
+          "n_low": 780,
+          "nonempty": true,
+          "ratio": 1.9696969696969697,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 906,
+      "M": 924,
+      "N": 12,
+      "Omega_mode": "all",
+      "R": 3,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0198675496688743,
+      "deep_and_nonempty": true,
+      "m": 6,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.75,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 906,
+      "p": 31,
+      "primary": {
+        "log_ratio_over_N": 0.0561228679134367,
+        "max_f_low": 2,
+        "n_low": 18,
+        "nonempty": true,
+        "ratio": 1.961038961038961,
+        "thr": 0.75
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.3919410907075054,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 18,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.0561228679134367,
+          "max_f_low": 2,
+          "n_low": 906,
+          "nonempty": true,
+          "ratio": 1.961038961038961,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 181,
+      "M": 252,
+      "N": 10,
+      "Omega_mode": "all",
+      "R": 2,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.07676802324225121,
+          "max_f_low": 3,
+          "n_low": 181,
+          "nonempty": true,
+          "ratio": 2.1547619047619047,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.07676802324225121,
+          "max_f_low": 3,
+          "n_low": 181,
+          "nonempty": true,
+          "ratio": 2.1547619047619047,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.07676802324225121,
+          "max_f_low": 3,
+          "n_low": 181,
+          "nonempty": true,
+          "ratio": 2.1547619047619047,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.3922651933701657,
+      "deep_and_nonempty": false,
+      "m": 5,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.5555555555555556,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 181,
+      "p": 17,
+      "primary": {
+        "log_ratio_over_N": 0.07676802324225121,
+        "max_f_low": 3,
+        "n_low": 65,
+        "nonempty": true,
+        "ratio": 2.1547619047619047,
+        "thr": 0.75
+      },
+      "regime": "borderline",
+      "shallow_ratio": 0.8246211251235321,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.07676802324225121,
+          "max_f_low": 3,
+          "n_low": 65,
+          "nonempty": true,
+          "ratio": 2.1547619047619047,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.07676802324225121,
+          "max_f_low": 3,
+          "n_low": 181,
+          "nonempty": true,
+          "ratio": 2.1547619047619047,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.07676802324225121,
+          "max_f_low": 3,
+          "n_low": 181,
+          "nonempty": true,
+          "ratio": 2.1547619047619047,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.07676802324225121,
+          "max_f_low": 3,
+          "n_low": 181,
+          "nonempty": true,
+          "ratio": 2.1547619047619047,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.07676802324225121,
+          "max_f_low": 3,
+          "n_low": 181,
+          "nonempty": true,
+          "ratio": 2.1547619047619047,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 353,
+      "M": 924,
+      "N": 12,
+      "Omega_mode": "all",
+      "R": 2,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 190,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 0.5555555555555556,
+          "thr_value": 0.5555555555555556
+        },
+        "p75": {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 287,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 0.75,
+          "thr_value": 0.75
+        },
+        "p90": {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 353,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 2.6175637393767706,
+      "deep_and_nonempty": false,
+      "m": 6,
+      "max_Delta": 1.0,
+      "median_Delta": 0.5555555555555556,
+      "min_Delta": 0.3055555555555556,
+      "min_thr_nonempty_f2": 0.5,
+      "n_fibers": 353,
+      "p": 19,
+      "primary": {
+        "log_ratio_over_N": 0.06912628787663896,
+        "max_f_low": 6,
+        "n_low": 74,
+        "nonempty": true,
+        "ratio": 2.292207792207792,
+        "thr": 0.5
+      },
+      "regime": "borderline",
+      "shallow_ratio": 0.726483157256779,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 74,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 287,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 353,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 353,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 353,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.06912628787663896,
+          "max_f_low": 6,
+          "n_low": 353,
+          "nonempty": true,
+          "ratio": 2.292207792207792,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 65,
+      "M": 70,
+      "N": 8,
+      "Omega_mode": "all",
+      "R": 2,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.07737990105077794,
+          "max_f_low": 2,
+          "n_low": 65,
+          "nonempty": true,
+          "ratio": 1.8571428571428572,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.07737990105077794,
+          "max_f_low": 2,
+          "n_low": 65,
+          "nonempty": true,
+          "ratio": 1.8571428571428572,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.07737990105077794,
+          "max_f_low": 2,
+          "n_low": 65,
+          "nonempty": true,
+          "ratio": 1.8571428571428572,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.0769230769230769,
+      "deep_and_nonempty": true,
+      "m": 4,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.75,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 65,
+      "p": 17,
+      "primary": {
+        "log_ratio_over_N": 0.07737990105077794,
+        "max_f_low": 2,
+        "n_low": 5,
+        "nonempty": true,
+        "ratio": 1.8571428571428572,
+        "thr": 0.75
+      },
+      "regime": "deep",
+      "shallow_ratio": 1.0307764064044151,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.07737990105077794,
+          "max_f_low": 2,
+          "n_low": 5,
+          "nonempty": true,
+          "ratio": 1.8571428571428572,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.07737990105077794,
+          "max_f_low": 2,
+          "n_low": 65,
+          "nonempty": true,
+          "ratio": 1.8571428571428572,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.07737990105077794,
+          "max_f_low": 2,
+          "n_low": 65,
+          "nonempty": true,
+          "ratio": 1.8571428571428572,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.07737990105077794,
+          "max_f_low": 2,
+          "n_low": 65,
+          "nonempty": true,
+          "ratio": 1.8571428571428572,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.07737990105077794,
+          "max_f_low": 2,
+          "n_low": 65,
+          "nonempty": true,
+          "ratio": 1.8571428571428572,
+          "thr": 5.0
+        }
+      ]
+    },
+    {
+      "L": 193,
+      "M": 252,
+      "N": 10,
+      "Omega_mode": "all",
+      "R": 2,
+      "adaptive": {
+        "p50": {
+          "log_ratio_over_N": 0.08318733900615718,
+          "max_f_low": 3,
+          "n_low": 193,
+          "nonempty": true,
+          "ratio": 2.2976190476190474,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p75": {
+          "log_ratio_over_N": 0.08318733900615718,
+          "max_f_low": 3,
+          "n_low": 193,
+          "nonempty": true,
+          "ratio": 2.2976190476190474,
+          "thr": 1.0,
+          "thr_value": 1.0
+        },
+        "p90": {
+          "log_ratio_over_N": 0.08318733900615718,
+          "max_f_low": 3,
+          "n_low": 193,
+          "nonempty": true,
+          "ratio": 2.2976190476190474,
+          "thr": 1.0,
+          "thr_value": 1.0
+        }
+      },
+      "barN": 1.305699481865285,
+      "deep_and_nonempty": false,
+      "m": 5,
+      "max_Delta": 1.0,
+      "median_Delta": 1.0,
+      "min_Delta": 0.5555555555555556,
+      "min_thr_nonempty_f2": 0.75,
+      "n_fibers": 193,
+      "p": 19,
+      "primary": {
+        "log_ratio_over_N": 0.08318733900615718,
+        "max_f_low": 3,
+        "n_low": 55,
+        "nonempty": true,
+        "ratio": 2.2976190476190474,
+        "thr": 0.75
+      },
+      "regime": "borderline",
+      "shallow_ratio": 0.8717797887081348,
+      "thr_sweep": [
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.1
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.25
+        },
+        {
+          "log_ratio_over_N": null,
+          "max_f_low": 0,
+          "n_low": 0,
+          "nonempty": false,
+          "ratio": 0.0,
+          "thr": 0.5
+        },
+        {
+          "log_ratio_over_N": 0.08318733900615718,
+          "max_f_low": 3,
+          "n_low": 55,
+          "nonempty": true,
+          "ratio": 2.2976190476190474,
+          "thr": 0.75
+        },
+        {
+          "log_ratio_over_N": 0.08318733900615718,
+          "max_f_low": 3,
+          "n_low": 193,
+          "nonempty": true,
+          "ratio": 2.2976190476190474,
+          "thr": 1.0
+        },
+        {
+          "log_ratio_over_N": 0.08318733900615718,
+          "max_f_low": 3,
+          "n_low": 193,
+          "nonempty": true,
+          "ratio": 2.2976190476190474,
+          "thr": 1.5
+        },
+        {
+          "log_ratio_over_N": 0.08318733900615718,
+          "max_f_low": 3,
+          "n_low": 193,
+          "nonempty": true,
+          "ratio": 2.2976190476190474,
+          "thr": 2.0
+        },
+        {
+          "log_ratio_over_N": 0.08318733900615718,
+          "max_f_low": 3,
+          "n_low": 193,
+          "nonempty": true,
+          "ratio": 2.2976190476190474,
+          "thr": 5.0
+        }
+      ]
+    }
+  ],
+  "checker_route": "sum-histogram energy on extremal; algebraic ratio; phase0 cube3",
+  "claim_boundaries": {
+    "is_counterexample": false,
+    "is_measurement": true,
+    "is_theorem": false
+  },
+  "evidence_type": "FINITE_TOY_ROW",
+  "falsifiable": true,
+  "generator_route": "thr grid + percentile adaptive thr; deep-chart energy census; adversarial max low-energy fiber; log(ratio)/N",
+  "hard_input": "b / reduced C9 / deep R<m",
+  "honest_headline": "Rung MEASURED-SUPPORT: deep_nonempty=14/14; obs_fixed=True; max_deep_log=0.07737990105077794; trend=GROW; ce=False",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Adaptive thr is a finite stand-in for e^{-sigma N}.",
+    "Non-empty at large thr may include not-truly-Sidon fibers.",
+    "Not a proof of reduced input at density m=Theta(N)."
+  ],
+  "object": "deep low-energy fiber observability + max-fiber ratio",
+  "payload_sha256": "69d969fd2cee1e6f50b1ab9359cde40890e8437e818ae210eeabc4f59c044801",
+  "phase0": {
+    "cert_energy": 216,
+    "energy_4tuple": 216,
+    "energy_diff": 216,
+    "pass": true,
+    "paste": "image_scale_mi_ma sidon_energy_cube3 energy=216 Delta=27/64"
+  },
+  "proof_status": "MEASURED-SUPPORT",
+  "regeneration": "py -3.13 experimental/scripts/verify_deep_lowenergy_observable.py",
+  "rung": "MEASURED-SUPPORT",
+  "schema": "deep_lowenergy_observable.v1",
+  "status": "EXPERIMENTAL",
+  "summary": {
+    "any_counterexample": false,
+    "max_deep_log_ratio_over_N": 0.07737990105077794,
+    "max_deep_ratio": 1.9696969696969697,
+    "n_charts": 18,
+    "n_deep": 14,
+    "n_deep_ce": 0,
+    "n_deep_nonempty_at_thr_0.5": 0,
+    "n_deep_nonempty_primary": 14,
+    "observability_fixed": true,
+    "rung": "MEASURED-SUPPORT",
+    "trend": "GROW",
+    "w51_empty_at_thr_0.5": true
+  },
+  "thr_observability": {
+    "0.1": {
+      "n_deep_charts": 14,
+      "n_deep_nonempty_at_thr": 0
+    },
+    "0.25": {
+      "n_deep_charts": 14,
+      "n_deep_nonempty_at_thr": 0
+    },
+    "0.5": {
+      "n_deep_charts": 14,
+      "n_deep_nonempty_at_thr": 0
+    },
+    "0.75": {
+      "n_deep_charts": 14,
+      "n_deep_nonempty_at_thr": 6
+    },
+    "1.0": {
+      "n_deep_charts": 14,
+      "n_deep_nonempty_at_thr": 14
+    },
+    "1.5": {
+      "n_deep_charts": 14,
+      "n_deep_nonempty_at_thr": 14
+    },
+    "2.0": {
+      "n_deep_charts": 14,
+      "n_deep_nonempty_at_thr": 14
+    },
+    "5.0": {
+      "n_deep_charts": 14,
+      "n_deep_nonempty_at_thr": 14
+    }
+  },
+  "verdict": "MEASURED-SUPPORT",
+  "weave": [
+    "W51",
+    "#576",
+    "C9"
+  ]
+}
