@@ -1,0 +1,119 @@
+{
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "4-fold a-b=c-d energy + successive-multiply (f/barN)^q",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "CANONICAL_STATEMENT_HIT",
+  "falsifiable": true,
+  "generator_route": "Counter r(d)^2 energy per fiber + (f/barN)**q Sidon-heavy sum",
+  "hard_input": "b",
+  "honest_headline": "Direct Sidon payment (hard b): pins_ok=True; dual energy routes agree on Gsid toys; payment inequality falsifiable at toy threshold. OPEN GAP: paper self-discloses residual Sidon after algebraic removal remains open; shallow MI/MA does not close deployed (b).",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_rows": 6,
+  "nonclaims": [
+    "Does not prove thm:unconditional-shallow-mi-ma Weil bounds.",
+    "Toy payment threshold is not paper e^{o(Nq)}.",
+    "Does not close hard input (b) at deployed deep residual."
+  ],
+  "object": "hard input (b): direct Sidon payment path (not image-scale MI/MA)",
+  "open_input": {
+    "closes_hard_b_at_deployed": false,
+    "detail": "Paper: Sidon payment on residual after quotient/subfield/planted/remainder removal remains genuinely open. thm:unconditional-shallow-mi-ma is shallow odd-prime coset regime only \u2014 does not close deployed deep residual (b).",
+    "id": "OPEN-direct-Sidon-residual-after-algebraic-removal"
+  },
+  "payload_sha256": "c2cc7002960478ec72a1eebac4f7661d3ba4f076a2cdb64657a21117061c67ff",
+  "pins": {
+    "cor:fourier-sidon-paid-smooth-circle": {
+      "found": true,
+      "line": 3358,
+      "sha256_line": "83837933e3157efc"
+    },
+    "def:sidon-heavy": {
+      "found": true,
+      "line": 5093,
+      "sha256_line": "18a3170ea448de33"
+    },
+    "def:sidon-paid-cell": {
+      "found": true,
+      "line": 5130,
+      "sha256_line": "d779f90f40120dbf"
+    },
+    "prop:ordinary-moment-split": {
+      "found": true,
+      "line": 5108,
+      "sha256_line": "5679fb714bedf7cb"
+    },
+    "thm:unconditional-shallow-mi-ma": {
+      "found": true,
+      "line": 5267,
+      "sha256_line": "77a4bd0f110b8d9d"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT dual-route Gsid toys + paper open residual disclosure",
+  "regeneration": "python experimental/scripts/verify_sidon_direct_payment.py --emit-defaults",
+  "rows": [
+    {
+      "chk_Gsid": 0.0,
+      "gen_Gsid": 0.0,
+      "inc_Gsid": 0.0,
+      "kind": "sparse_fibers_sidon_heavy",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "chk_Gsid": 0.0,
+      "gen_Gsid": 0.0,
+      "kind": "dense_high_energy_not_sidon",
+      "pass": true
+    },
+    {
+      "can_fail": true,
+      "fail_instance_Gsid": 8.0,
+      "fail_instance_fails_inequality": true,
+      "kind": "payment_falsifiability",
+      "note": "can_fail = (fail_instance_Gsid > thr_pay); both fail and pass instances computed",
+      "pass": true,
+      "pass_instance_Gsid": 0.25,
+      "pass_instance_holds_inequality": true,
+      "sigma_toy": 0.0,
+      "threshold": 1.0
+    },
+    {
+      "E1": 28,
+      "E2": 28,
+      "kind": "energy_dual_route",
+      "pass": true
+    },
+    {
+      "kind": "open_input_disclosure",
+      "open": {
+        "closes_hard_b_at_deployed": false,
+        "detail": "Paper: Sidon payment on residual after quotient/subfield/planted/remainder removal remains genuinely open. thm:unconditional-shallow-mi-ma is shallow odd-prime coset regime only \u2014 does not close deployed deep residual (b).",
+        "id": "OPEN-direct-Sidon-residual-after-algebraic-removal"
+      },
+      "pass": true
+    },
+    {
+      "found": true,
+      "kind": "paper_self_discloses_open_sidon_residual",
+      "pass": true
+    }
+  ],
+  "schema": "sidon-direct-payment-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "def:sidon-paid-cell; thm:unconditional-shallow-mi-ma",
+  "verdict": "OPEN GAP",
+  "weave": "Complements filed #522 image-scale MI/MA; this is the direct Sidon branch of (b)."
+}
