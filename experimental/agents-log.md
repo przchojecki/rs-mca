@@ -2730,3 +2730,10 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W39 M1 lean-anticode-cap (executor)
+
+- **Files:** experimental/lean/anticode_packing/* (source only); experimental/notes/audits/lean_anticode_packing.md
+- **Status:** EXPERIMENTAL / AUDIT — lake build PASS; packingCap=2 on (6,3,2,1)
+- **Usefulness:** Kernel-checked prop:prefix-rigidity-full / eq:packing-fiber-cap instance
+- **Next:** larger (n,m,w) toys optional; general prop formalization out of scope
