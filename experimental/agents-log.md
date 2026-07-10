@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F2 arc-class recursion
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f2_arcclass_recursion.md`,
+  `experimental/scripts/verify_f2_arcclass_recursion.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A self-contained orthogonality lemma showing that
+  the structured arc classes in the F2 `t=2` Fourier inversion collapse exactly
+  to lower-order `t=1` censuses, plus a Parseval guardrail explaining why raw
+  second moments cannot close the mid-band.
+- **How it is useful:** This gives the `(Q)` / F2 quotient-prefix program a
+  precise recursion interface: structured arcs are exact lower-order masses,
+  while only the generic class and the `t=1` zero-fiber flatness input remain
+  as estimate targets.
+- **What to do next:** Use this recursion together with the F2 empty-extremes
+  and effective-energy packets to isolate a finite mid-band `t=1`/generic-class
+  obligation.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
