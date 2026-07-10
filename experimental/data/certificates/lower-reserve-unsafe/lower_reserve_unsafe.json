@@ -1,0 +1,351 @@
+{
+  "all_deployed_unsafe_quiet": true,
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "binary-search ceil_div (least k: k*den>=num) + Fraction ceil for L; redeploy U?B*",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "falsifiable": true,
+  "generator_route": "nested (num+den-1)//den ceilings (eq:exact-unsafe-budget); bigint U?B*",
+  "hard_input": "e",
+  "honest_headline": "Lower reserve / unsafe-side (new draft): pins_ok=True; all 4 deployed rows U(a0)>B* and U(a1)<=B* with a1=a0+1; toy SB1 nested-ceil vs binsearch-ceil agree; swapped-U negative fails. Hard input (e). W34-R1: checker is genuine binsearch, not relabel.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_rows": 16,
+  "nonclaims": [
+    "Deployed U are committed collision-aware integers, not re-derived from binom at n=2^21 here.",
+    "Does not prove closed safe-side ledger.",
+    "Toy SB1 uses small (n,k,B) only."
+  ],
+  "object": "hard input (e): lower reserve / unsafe-side comparison (new draft)",
+  "payload_sha256": "7e0db9811eec2aa9ead2f785b3392750f3448ad9f89d571b7416db0aef17d7ba",
+  "pins": {
+    "eq:exact-safe-budget": {
+      "found": true,
+      "line": 6159,
+      "sha256_line": "68c43ce683a80345"
+    },
+    "eq:exact-unsafe-budget": {
+      "found": true,
+      "line": 6194,
+      "sha256_line": "a61ad7a9cb1e081e"
+    },
+    "lem:safe-side": {
+      "found": true,
+      "line": 6154,
+      "sha256_line": "09215c2ae42b2d5c"
+    },
+    "prop:simple-pole-lower": {
+      "found": true,
+      "line": 6180,
+      "sha256_line": "1cd0431b570d2922"
+    },
+    "thm:unconditional-support-envelope-bracket": {
+      "found": true,
+      "line": 6212,
+      "sha256_line": "9f628ca0b94fced5"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT deployed unsafe_quiet + toy SB1 dual-ceil routes",
+  "regeneration": "python experimental/scripts/verify_lower_reserve_unsafe.py --emit-defaults",
+  "rows": [
+    {
+      "B_star": 274980728111395087,
+      "U0": 138634741058327852652,
+      "U0_gt_B": true,
+      "U1": 57198030366,
+      "U1_le_B": true,
+      "a0": 1116047,
+      "a1": 1116048,
+      "delta_a": 1,
+      "kind": "deployed_kb_mca",
+      "log2_safe_margin": 22.1968617076667,
+      "log2_unsafe_reserve": 8.977742606804256,
+      "pass": true,
+      "row_id": "kb_mca",
+      "unsafe_quiet": true
+    },
+    {
+      "B_star": 274980728111395087,
+      "U0": 157702518233425975347,
+      "U0_gt_B": true,
+      "U1": 65065153468,
+      "U1_le_B": true,
+      "a0": 1116046,
+      "a1": 1116047,
+      "delta_a": 1,
+      "kind": "deployed_kb_list",
+      "log2_safe_margin": 22.010942080644256,
+      "log2_unsafe_reserve": 9.163659470680855,
+      "pass": true,
+      "row_id": "kb_list",
+      "unsafe_quiet": true
+    },
+    {
+      "B_star": 16777215,
+      "U0": 4281388998575706,
+      "U0_gt_B": true,
+      "U1": 1752700,
+      "U1_le_B": true,
+      "a0": 1116023,
+      "a1": 1116024,
+      "delta_a": 1,
+      "kind": "deployed_m31_mca",
+      "log2_safe_margin": 3.2588522656154986,
+      "log2_unsafe_reserve": 27.927000431223018,
+      "pass": true,
+      "row_id": "m31_mca",
+      "unsafe_quiet": true
+    },
+    {
+      "B_star": 16777215,
+      "U0": 4870025984688527,
+      "U0_gt_B": true,
+      "U1": 1993678,
+      "U1_le_B": true,
+      "a0": 1116022,
+      "a1": 1116023,
+      "delta_a": 1,
+      "kind": "deployed_m31_list",
+      "log2_safe_margin": 3.072998926581203,
+      "log2_unsafe_reserve": 28.11285097932627,
+      "pass": true,
+      "row_id": "m31_list",
+      "unsafe_quiet": true
+    },
+    {
+      "B": 5,
+      "B_star": 2,
+      "Gamma": 17,
+      "P_gt_Bstar": false,
+      "U_triv": 17,
+      "U_triv_le_Bstar": false,
+      "a": 10,
+      "chk": {
+        "L": 65,
+        "P": 1,
+        "inner": 1,
+        "route": "binsearch_ceil+Fraction_L"
+      },
+      "gen": {
+        "L": 65,
+        "P": 1,
+        "inner": 1,
+        "route": "nested_ceil_formula"
+      },
+      "k": 6,
+      "kind": "toy_SB1",
+      "n": 16,
+      "pass": true,
+      "q": 17,
+      "routes_agree": true
+    },
+    {
+      "B": 5,
+      "B_star": 100,
+      "Gamma": 17,
+      "P_gt_Bstar": false,
+      "U_triv": 17,
+      "U_triv_le_Bstar": true,
+      "a": 12,
+      "chk": {
+        "L": 1,
+        "P": 1,
+        "inner": 1,
+        "route": "binsearch_ceil+Fraction_L"
+      },
+      "gen": {
+        "L": 1,
+        "P": 1,
+        "inner": 1,
+        "route": "nested_ceil_formula"
+      },
+      "k": 6,
+      "kind": "toy_SB1",
+      "n": 16,
+      "pass": true,
+      "q": 17,
+      "routes_agree": true
+    },
+    {
+      "B": 7,
+      "B_star": 5,
+      "Gamma": 37,
+      "P_gt_Bstar": false,
+      "U_triv": 37,
+      "U_triv_le_Bstar": false,
+      "a": 20,
+      "chk": {
+        "L": 275,
+        "P": 1,
+        "inner": 1,
+        "route": "binsearch_ceil+Fraction_L"
+      },
+      "gen": {
+        "L": 275,
+        "P": 1,
+        "inner": 1,
+        "route": "nested_ceil_formula"
+      },
+      "k": 12,
+      "kind": "toy_SB1",
+      "n": 32,
+      "pass": true,
+      "q": 37,
+      "routes_agree": true
+    },
+    {
+      "B": 7,
+      "B_star": 1000000000,
+      "Gamma": 37,
+      "P_gt_Bstar": false,
+      "U_triv": 37,
+      "U_triv_le_Bstar": true,
+      "a": 24,
+      "chk": {
+        "L": 1,
+        "P": 1,
+        "inner": 1,
+        "route": "binsearch_ceil+Fraction_L"
+      },
+      "gen": {
+        "L": 1,
+        "P": 1,
+        "inner": 1,
+        "route": "nested_ceil_formula"
+      },
+      "k": 12,
+      "kind": "toy_SB1",
+      "n": 32,
+      "pass": true,
+      "q": 37,
+      "routes_agree": true
+    },
+    {
+      "B": 3,
+      "B_star": 3,
+      "Gamma": 23,
+      "P_gt_Bstar": false,
+      "U_triv": 23,
+      "U_triv_le_Bstar": false,
+      "a": 12,
+      "chk": {
+        "L": 4666,
+        "P": 1,
+        "inner": 1,
+        "route": "binsearch_ceil+Fraction_L"
+      },
+      "gen": {
+        "L": 4666,
+        "P": 1,
+        "inner": 1,
+        "route": "nested_ceil_formula"
+      },
+      "k": 8,
+      "kind": "toy_SB1",
+      "n": 20,
+      "pass": true,
+      "q": 23,
+      "routes_agree": true
+    },
+    {
+      "kind": "negative_swapped_U",
+      "pass": true,
+      "would_pass": false
+    },
+    {
+      "B": 5,
+      "B_star": 10,
+      "Gamma": 29,
+      "P": 1,
+      "a": 10,
+      "k": 8,
+      "kind": "stress_a10",
+      "n": 24,
+      "pass": true,
+      "q": 29,
+      "routes_agree": true
+    },
+    {
+      "B": 5,
+      "B_star": 10,
+      "Gamma": 29,
+      "P": 1,
+      "a": 11,
+      "k": 8,
+      "kind": "stress_a11",
+      "n": 24,
+      "pass": true,
+      "q": 29,
+      "routes_agree": true
+    },
+    {
+      "B": 5,
+      "B_star": 10,
+      "Gamma": 29,
+      "P": 1,
+      "a": 12,
+      "k": 8,
+      "kind": "stress_a12",
+      "n": 24,
+      "pass": true,
+      "q": 29,
+      "routes_agree": true
+    },
+    {
+      "B": 5,
+      "B_star": 10,
+      "Gamma": 29,
+      "P": 1,
+      "a": 13,
+      "k": 8,
+      "kind": "stress_a13",
+      "n": 24,
+      "pass": true,
+      "q": 29,
+      "routes_agree": true
+    },
+    {
+      "B": 5,
+      "B_star": 10,
+      "Gamma": 29,
+      "P": 1,
+      "a": 14,
+      "k": 8,
+      "kind": "stress_a14",
+      "n": 24,
+      "pass": true,
+      "q": 29,
+      "routes_agree": true
+    },
+    {
+      "B": 5,
+      "B_star": 10,
+      "Gamma": 29,
+      "P": 1,
+      "a": 15,
+      "k": 8,
+      "kind": "stress_a15",
+      "n": 24,
+      "pass": true,
+      "q": 29,
+      "routes_agree": true
+    }
+  ],
+  "schema": "lower-reserve-unsafe-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "eq:exact-unsafe-budget; prop:simple-pole-lower; SB1\u2013SB3",
+  "verdict": "NO ISSUE",
+  "weave": "Five hard inputs (e); new asymptotic_rs_mca_frontiers.tex; cross-check integrated adjacent-row integers."
+}

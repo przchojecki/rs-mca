@@ -2730,3 +2730,11 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 W32 w32-lower-reserve-unsafe (Ken / Grok)
+- AUDIT hard-input packet on asymptotic_rs_mca_frontiers.tex base 4e3c4ee.
+- Status: EXPERIMENTAL / AUDIT.
+
+## 2026-07-10 W34-R1 lower-reserve dual-route fix (Ken / Grok)
+- Replaced soft-relabel P_unsafe_product with binsearch ceil + Fraction L.
+- Status: EXPERIMENTAL / AUDIT.
