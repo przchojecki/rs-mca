@@ -2821,3 +2821,7 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W51-M2 maxfiber-control-proof
+- EXPERIMENTAL PROVED-SPECIAL: Lemma A Newton R>=m injectivity; Lemma B ratio<=L; open R<m deep; phase0 E=216.
+

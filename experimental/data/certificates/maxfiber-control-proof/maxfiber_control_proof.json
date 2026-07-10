@@ -1,0 +1,276 @@
+{
+  "all_pass": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "checker_route": "re-enum R>=m instances for max_f=1; independent fiber counts; phase0 cube3",
+  "claim_boundaries": {
+    "is_counterexample": false,
+    "is_measurement": false,
+    "is_theorem": true,
+    "theorem_scope": "R >= m power-sum injectivity; trivial L-majorant"
+  },
+  "discharged_subclass": "Power-sum charts with R >= m (Newton injectivity => max fiber 1); trivial ratio <= L majorant.",
+  "evidence_type": "FINITE_TOY_ROW",
+  "falsifiable": true,
+  "generator_route": "Newton-Girard injectivity argument for R>=m; exact enumeration certificates; ratio<=L majorant",
+  "hard_input": "b / reduced C9 core",
+  "honest_headline": "Rung PROVED-SPECIAL: Lemma A R>=m injectivity (n=10 toys); open core R<m deep max-fiber control",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "lemmas": {
+    "A": {
+      "all_injective_when_R_ge_m": true,
+      "control_R_lt_m_noninjective_exists": true,
+      "lemma": "A",
+      "n_R_ge_m": 10,
+      "pass": true,
+      "proof_text": "Lemma A (power-sum injectivity for R >= m).\nLet T subset F_p with |T|=N, p > N (so T embeds injectively), and let Omega be\nthe family of m-subsets of T. Let Phi_R(S) = (p_1(S),...,p_R(S)) with\np_j(S) = sum_{t in S} t^j in F_p. Suppose R >= m and either char(F_p) = 0 or\nchar(F_p) > m (so Newton-Girard identities are non-degenerate through degree m).\n\nThen Phi_R is injective on Omega. Indeed the power sums p_1,...,p_m determine\nthe elementary symmetric sums e_1,...,e_m of the elements of S via Newton-Girard,\nhence determine the monic polynomial prod_{t in S}(X-t), hence determine S as a set.\n\nTherefore every fiber has size f_s <= 1. In particular, for any energy cutoff thr,\nthe low-energy max-fiber ratio satisfies\n  max_{Delta_s <= thr} f_s / barN <= 1/barN <= 1,\nso log(ratio)/N <= 0 = o(1). The reduced C9 input holds on this subclass.\n\nWhat stays open: R < m (underdetermined power sums), especially deep charts with\nsmall R and large N.",
+      "rows": [
+        {
+          "L": 15,
+          "M": 15,
+          "N": 6,
+          "R": 2,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 2,
+          "max_f": 1,
+          "p": 17
+        },
+        {
+          "L": 15,
+          "M": 15,
+          "N": 6,
+          "R": 3,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 2,
+          "max_f": 1,
+          "p": 17
+        },
+        {
+          "L": 35,
+          "M": 35,
+          "N": 7,
+          "R": 3,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 3,
+          "max_f": 1,
+          "p": 19
+        },
+        {
+          "L": 35,
+          "M": 35,
+          "N": 7,
+          "R": 4,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 3,
+          "max_f": 1,
+          "p": 19
+        },
+        {
+          "L": 56,
+          "M": 56,
+          "N": 8,
+          "R": 3,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 3,
+          "max_f": 1,
+          "p": 23
+        },
+        {
+          "L": 70,
+          "M": 70,
+          "N": 8,
+          "R": 4,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 4,
+          "max_f": 1,
+          "p": 23
+        },
+        {
+          "L": 84,
+          "M": 84,
+          "N": 9,
+          "R": 3,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 3,
+          "max_f": 1,
+          "p": 31
+        },
+        {
+          "L": 126,
+          "M": 126,
+          "N": 9,
+          "R": 4,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 4,
+          "max_f": 1,
+          "p": 31
+        },
+        {
+          "L": 56,
+          "M": 56,
+          "N": 8,
+          "R": 3,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 3,
+          "max_f": 1,
+          "p": 17
+        },
+        {
+          "L": 210,
+          "M": 210,
+          "N": 10,
+          "R": 4,
+          "R_ge_m": true,
+          "bound_holds": true,
+          "injective": true,
+          "lemma_A_applies": true,
+          "m": 4,
+          "max_f": 1,
+          "p": 19
+        },
+        {
+          "L": 65,
+          "M": 70,
+          "N": 8,
+          "R": 2,
+          "R_ge_m": false,
+          "bound_holds": true,
+          "injective": false,
+          "lemma_A_applies": false,
+          "m": 4,
+          "max_f": 2,
+          "p": 17
+        },
+        {
+          "L": 17,
+          "M": 70,
+          "N": 8,
+          "R": 1,
+          "R_ge_m": false,
+          "bound_holds": true,
+          "injective": false,
+          "lemma_A_applies": false,
+          "m": 4,
+          "max_f": 8,
+          "p": 17
+        },
+        {
+          "L": 193,
+          "M": 252,
+          "N": 10,
+          "R": 2,
+          "R_ge_m": false,
+          "bound_holds": true,
+          "injective": false,
+          "lemma_A_applies": false,
+          "m": 5,
+          "max_f": 3,
+          "p": 19
+        }
+      ],
+      "title": "R >= m => injective power-sum map => max fiber 1"
+    },
+    "B": {
+      "lemma": "B",
+      "pass": true,
+      "proof_text": "Lemma B (image-size trivial majorant).\nAlways max_s f_s <= |Omega| and barN = |Omega|/L, so max_f/barN <= L.\nHence the low-energy max-fiber ratio is at most L = |im Phi|.\nIf a chart has L = exp(o(N)), the reduced input holds for free.\nThis is only useful under strong image collapse (small L); the hard regime is\nlarge L with a single low-energy fiber capturing exp(eta N) barN mass.",
+      "rows": [
+        {
+          "L": 17,
+          "N": 8,
+          "R": 1,
+          "barN": 4.117647058823529,
+          "m": 4,
+          "max_f": 8,
+          "p": 17,
+          "ratio": 1.942857142857143,
+          "ratio_le_L": true
+        },
+        {
+          "L": 193,
+          "N": 10,
+          "R": 2,
+          "barN": 1.305699481865285,
+          "m": 5,
+          "max_f": 3,
+          "p": 19,
+          "ratio": 2.2976190476190474,
+          "ratio_le_L": true
+        },
+        {
+          "L": 56,
+          "N": 8,
+          "R": 3,
+          "barN": 1.0,
+          "m": 3,
+          "max_f": 1,
+          "p": 13,
+          "ratio": 1.0,
+          "ratio_le_L": true
+        }
+      ],
+      "title": "max_f/barN <= L always"
+    }
+  },
+  "nonclaims": [
+    "Does not prove reduced input for R < m (deep underdetermined regime).",
+    "Newton argument assumes char > m or non-degenerate Newton-Girard.",
+    "Not a full C9 / moduli ledger theorem."
+  ],
+  "object": "low-energy max-fiber control special-case proofs (reduced C9)",
+  "open_core_reduced": "REDUCED (remaining C9 core after Lemma A):\nFor power-sum charts with 1 <= R < m on deep rows (R sqrt(p) not o(N)), prove\n  max { f_s : Delta_s <= exp(-sigma N) } <= exp(o(N)) * barN\nfor every fixed sigma > 0. Proposed attack: large fibers of Phi_R are near\nalgebraic complete intersections / have additive structure (Plunnecke/BSG or\nWeil bound on difference sets), contradicting Delta_s small. Make this a theorem\nfor R=2 first (sum and sum-of-squares fixed).",
+  "payload_sha256": "e919e8f8d91987f7d304c59970b9888adfd27bf14b8c633c7b22e94d28487488",
+  "phase0": {
+    "cert_energy": 216,
+    "energy_4tuple": 216,
+    "energy_diff": 216,
+    "pass": true,
+    "paste": "image_scale_mi_ma sidon_energy_cube3 energy=216 Delta=27/64"
+  },
+  "proof_status": "PROVED-SPECIAL",
+  "proof_texts": {
+    "A": "Lemma A (power-sum injectivity for R >= m).\nLet T subset F_p with |T|=N, p > N (so T embeds injectively), and let Omega be\nthe family of m-subsets of T. Let Phi_R(S) = (p_1(S),...,p_R(S)) with\np_j(S) = sum_{t in S} t^j in F_p. Suppose R >= m and either char(F_p) = 0 or\nchar(F_p) > m (so Newton-Girard identities are non-degenerate through degree m).\n\nThen Phi_R is injective on Omega. Indeed the power sums p_1,...,p_m determine\nthe elementary symmetric sums e_1,...,e_m of the elements of S via Newton-Girard,\nhence determine the monic polynomial prod_{t in S}(X-t), hence determine S as a set.\n\nTherefore every fiber has size f_s <= 1. In particular, for any energy cutoff thr,\nthe low-energy max-fiber ratio satisfies\n  max_{Delta_s <= thr} f_s / barN <= 1/barN <= 1,\nso log(ratio)/N <= 0 = o(1). The reduced C9 input holds on this subclass.\n\nWhat stays open: R < m (underdetermined power sums), especially deep charts with\nsmall R and large N.",
+    "B": "Lemma B (image-size trivial majorant).\nAlways max_s f_s <= |Omega| and barN = |Omega|/L, so max_f/barN <= L.\nHence the low-energy max-fiber ratio is at most L = |im Phi|.\nIf a chart has L = exp(o(N)), the reduced input holds for free.\nThis is only useful under strong image collapse (small L); the hard regime is\nlarge L with a single low-energy fiber capturing exp(eta N) barN mass.",
+    "C": "Lemma C (W50-II restated).\nGsid <= (max_s f_s / barN)^q, so the finite Sidon payment gate is controlled by\nthe max-fiber ratio. Low-energy restriction only makes the needed bound easier\non the high-energy side; the Sidon-heavy branch needs the low-energy max-fiber\nform of the bound. Filed computationally as W50-M2 / #575.",
+    "REDUCED": "REDUCED (remaining C9 core after Lemma A):\nFor power-sum charts with 1 <= R < m on deep rows (R sqrt(p) not o(N)), prove\n  max { f_s : Delta_s <= exp(-sigma N) } <= exp(o(N)) * barN\nfor every fixed sigma > 0. Proposed attack: large fibers of Phi_R are near\nalgebraic complete intersections / have additive structure (Plunnecke/BSG or\nWeil bound on difference sets), contradicting Delta_s small. Make this a theorem\nfor R=2 first (sum and sum-of-squares fixed)."
+  },
+  "regeneration": "py -3.13 experimental/scripts/verify_maxfiber_control_proof.py",
+  "rung": "PROVED-SPECIAL",
+  "schema": "maxfiber_control_proof.v1",
+  "status": "EXPERIMENTAL",
+  "verdict": "PROVED-SPECIAL",
+  "weave": [
+    "W50",
+    "#575",
+    "W51-M1",
+    "C9"
+  ]
+}
