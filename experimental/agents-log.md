@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - pole-line division second-opinion
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/audits/pole_line_division.md`, `experimental/data/certificates/pole-line-division/pole_line_division.json`, `experimental/scripts/verify_pole_line_division.py`, `experimental/scripts/verify_pole_line_division_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Second-opinion full-prefix pole line vanishes on S over F_p. Agrees with #435.
+- **How it is useful:** Second-opinion assurance for the asymptotic paper promotion path.
+- **What to do next:** No further action if designer confirms agreement with #435.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
