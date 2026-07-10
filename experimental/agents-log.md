@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F2 effective energy dichotomy
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f2_effective_energy_dichotomy.md`,
+  `experimental/scripts/verify_f2_effective_energy_dichotomy.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXTERNAL-INPUT.
+- **What is being added:** A printed-constant BSG/quasicube composition lemma
+  for Boolean F2 fibers: under `BSG(c1,e1,c2,e2)` and the quasicube
+  difference-growth theorem, any `A subset {0,1}^d` with
+  `E(A) >= |A|^3/K` satisfies `|A| <= c1 c2^2 K^(e1+2e2)`.
+- **How it is useful:** This vendors the finite-row high-energy branch of the
+  `(Q)` / F2 quotient-prefix flatness program. At `|A| > 2^123`, the weakest
+  printed row in the note forces an energy deficit of `2^7.75`, ruling out
+  few-structured-pieces explanations while leaving the low-energy residual
+  explicitly open.
+- **What to do next:** Decide which published BSG constant row upstream is
+  willing to cite, then route the remaining low-energy F2 residual through the
+  existing Fourier-flatness, mode-at-null, or major-arc machinery.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
