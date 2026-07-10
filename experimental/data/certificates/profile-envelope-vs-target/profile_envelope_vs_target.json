@@ -1,0 +1,331 @@
+{
+  "all_deployed_ok": true,
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "alternate expansion (n-a+2)+sum barN + n_profiles; pure integer redeploy",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "falsifiable": true,
+  "generator_route": "exact int E=1+(n-a+1)+sum(1+barN); bigint U vs B*",
+  "hard_input": "d",
+  "honest_headline": "Complete envelope vs target (new draft): pins_ok=True; formula E=1+(n-a+1)+sum(1+barN) dual-route exact; multi-profile toys show E_complete > E_identity; 4 deployed rows U(a0)>B*>=U(a1) with E_complete_lower using identity L (no extra atlas terms committed \u2014 full atlas would only raise E). Hard input (d).",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_rows": 11,
+  "nonclaims": [
+    "Deployed extra_profile_barNs empty: complete lower reduces to universal+identity image L; not a proved full atlas.",
+    "Does not prove closed ledger or e^{o(n)} domination.",
+    "U values are committed collision-aware integers from integrated adjacent-row class."
+  ],
+  "object": "hard input (d): complete profile-envelope vs target (new draft)",
+  "payload_sha256": "9a6031eb3b51f626846a99511ce9077b6fc9d550c4e5a4de7bc7a691799ede00",
+  "pins": {
+    "eq:exact-safe-budget": {
+      "found": true,
+      "line": 6159,
+      "sha256_line": "68c43ce683a80345"
+    },
+    "eq:intro-target-crossing": {
+      "found": true,
+      "line": 1024,
+      "sha256_line": "2a09dddb71bcbe22"
+    },
+    "eq:profile-envelope": {
+      "found": true,
+      "line": 862,
+      "sha256_line": "24588f5505c0a125"
+    },
+    "eq:target-entropy": {
+      "found": true,
+      "line": 6112,
+      "sha256_line": "19b8471a54d0222a"
+    },
+    "lem:safe-side": {
+      "found": true,
+      "line": 6154,
+      "sha256_line": "09215c2ae42b2d5c"
+    },
+    "thm:intro-asymptotic-rs-mca": {
+      "found": true,
+      "line": 989,
+      "sha256_line": "5e85a51313fba745"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT complete envelope lower formula + deployed U/B* brackets",
+  "regeneration": "python experimental/scripts/verify_profile_envelope_vs_target.py --emit-defaults",
+  "rows": [
+    {
+      "B_star": 274980728111395087,
+      "E_also_brackets": true,
+      "a0": {
+        "E_checker": 138634741058328833760,
+        "E_complete_lower": 138634741058328833760,
+        "E_gt_B": true,
+        "E_le_B": false,
+        "L": 138634741058327852652,
+        "U": 138634741058327852652,
+        "U_gt_B": true,
+        "U_le_B": false,
+        "a": 1116047,
+        "honest_complete_note": "extra_profile_barNs empty => complete lower = universal + identity image only; full atlas may add more terms (would only increase E).",
+        "n_extra_profiles": 0,
+        "routes_agree": true
+      },
+      "a1": {
+        "E_checker": 57199011473,
+        "E_complete_lower": 57199011473,
+        "E_gt_B": false,
+        "E_le_B": true,
+        "L": 57198030366,
+        "U": 57198030366,
+        "U_gt_B": false,
+        "U_le_B": true,
+        "a": 1116048,
+        "honest_complete_note": "extra_profile_barNs empty => complete lower = universal + identity image only; full atlas may add more terms (would only increase E).",
+        "n_extra_profiles": 0,
+        "routes_agree": true
+      },
+      "kind": "deployed_kb_mca",
+      "pass": true,
+      "row_id": "kb_mca",
+      "unsafe_quiet": true
+    },
+    {
+      "B_star": 274980728111395087,
+      "E_also_brackets": true,
+      "a0": {
+        "E_checker": 157702518233426956456,
+        "E_complete_lower": 157702518233426956456,
+        "E_gt_B": true,
+        "E_le_B": false,
+        "L": 157702518233425975347,
+        "U": 157702518233425975347,
+        "U_gt_B": true,
+        "U_le_B": false,
+        "a": 1116046,
+        "honest_complete_note": "extra_profile_barNs empty => complete lower = universal + identity image only; full atlas may add more terms (would only increase E).",
+        "n_extra_profiles": 0,
+        "routes_agree": true
+      },
+      "a1": {
+        "E_checker": 65066134576,
+        "E_complete_lower": 65066134576,
+        "E_gt_B": false,
+        "E_le_B": true,
+        "L": 65065153468,
+        "U": 65065153468,
+        "U_gt_B": false,
+        "U_le_B": true,
+        "a": 1116047,
+        "honest_complete_note": "extra_profile_barNs empty => complete lower = universal + identity image only; full atlas may add more terms (would only increase E).",
+        "n_extra_profiles": 0,
+        "routes_agree": true
+      },
+      "kind": "deployed_kb_list",
+      "pass": true,
+      "row_id": "kb_list",
+      "unsafe_quiet": true
+    },
+    {
+      "B_star": 16777215,
+      "E_also_brackets": true,
+      "a0": {
+        "E_checker": 4281388999556838,
+        "E_complete_lower": 4281388999556838,
+        "E_gt_B": true,
+        "E_le_B": false,
+        "L": 4281388998575706,
+        "U": 4281388998575706,
+        "U_gt_B": true,
+        "U_le_B": false,
+        "a": 1116023,
+        "honest_complete_note": "extra_profile_barNs empty => complete lower = universal + identity image only; full atlas may add more terms (would only increase E).",
+        "n_extra_profiles": 0,
+        "routes_agree": true
+      },
+      "a1": {
+        "E_checker": 2733831,
+        "E_complete_lower": 2733831,
+        "E_gt_B": false,
+        "E_le_B": true,
+        "L": 1752700,
+        "U": 1752700,
+        "U_gt_B": false,
+        "U_le_B": true,
+        "a": 1116024,
+        "honest_complete_note": "extra_profile_barNs empty => complete lower = universal + identity image only; full atlas may add more terms (would only increase E).",
+        "n_extra_profiles": 0,
+        "routes_agree": true
+      },
+      "kind": "deployed_m31_mca",
+      "pass": true,
+      "row_id": "m31_mca",
+      "unsafe_quiet": true
+    },
+    {
+      "B_star": 16777215,
+      "E_also_brackets": true,
+      "a0": {
+        "E_checker": 4870025985669660,
+        "E_complete_lower": 4870025985669660,
+        "E_gt_B": true,
+        "E_le_B": false,
+        "L": 4870025984688527,
+        "U": 4870025984688527,
+        "U_gt_B": true,
+        "U_le_B": false,
+        "a": 1116022,
+        "honest_complete_note": "extra_profile_barNs empty => complete lower = universal + identity image only; full atlas may add more terms (would only increase E).",
+        "n_extra_profiles": 0,
+        "routes_agree": true
+      },
+      "a1": {
+        "E_checker": 2974810,
+        "E_complete_lower": 2974810,
+        "E_gt_B": false,
+        "E_le_B": true,
+        "L": 1993678,
+        "U": 1993678,
+        "U_gt_B": false,
+        "U_le_B": true,
+        "a": 1116023,
+        "honest_complete_note": "extra_profile_barNs empty => complete lower = universal + identity image only; full atlas may add more terms (would only increase E).",
+        "n_extra_profiles": 0,
+        "routes_agree": true
+      },
+      "kind": "deployed_m31_list",
+      "pass": true,
+      "row_id": "m31_list",
+      "unsafe_quiet": true
+    },
+    {
+      "B": 1000,
+      "E_complete": 65,
+      "E_exceeds_identity": true,
+      "E_identity_only": 65,
+      "E_vs_B": "at_or_below",
+      "U_triv": 10000,
+      "a": 20,
+      "barNs": [
+        50
+      ],
+      "kind": "toy_multi",
+      "n": 32,
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "B": 1000,
+      "E_complete": 82,
+      "E_exceeds_identity": true,
+      "E_identity_only": 65,
+      "E_vs_B": "at_or_below",
+      "U_triv": 10000,
+      "a": 20,
+      "barNs": [
+        50,
+        10,
+        5
+      ],
+      "kind": "toy_multi",
+      "n": 32,
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "B": 5000,
+      "E_complete": 148,
+      "E_exceeds_identity": true,
+      "E_identity_only": 127,
+      "E_vs_B": "at_or_below",
+      "U_triv": 50000,
+      "a": 40,
+      "barNs": [
+        100,
+        20
+      ],
+      "kind": "toy_multi",
+      "n": 64,
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "B": 5000,
+      "E_complete": 54,
+      "E_exceeds_identity": true,
+      "E_identity_only": 27,
+      "E_vs_B": "at_or_below",
+      "U_triv": 50000,
+      "a": 48,
+      "barNs": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "kind": "toy_multi",
+      "n": 64,
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "B": 1000000,
+      "E_complete": 1303,
+      "E_exceeds_identity": true,
+      "E_identity_only": 1051,
+      "E_vs_B": "at_or_below",
+      "U_triv": 10000000,
+      "a": 80,
+      "barNs": [
+        1000,
+        200,
+        50
+      ],
+      "kind": "toy_multi",
+      "n": 128,
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "B": 50,
+      "E_complete": 18,
+      "E_exceeds_identity": true,
+      "E_identity_only": 14,
+      "E_vs_B": "at_or_below",
+      "U_triv": 500,
+      "a": 10,
+      "barNs": [
+        5,
+        3
+      ],
+      "kind": "toy_multi",
+      "n": 16,
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "E_full": 76,
+      "E_id_only": 65,
+      "gap": 11,
+      "kind": "negative_omit_extra_profiles",
+      "note": "Omitting known extra profiles understates complete envelope (falsifies identity-only as complete).",
+      "pass": true
+    }
+  ],
+  "schema": "profile-envelope-vs-target-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "eq:profile-envelope; lem:safe-side; eq:exact-safe-budget",
+  "verdict": "NO ISSUE",
+  "weave": "Five hard inputs (d); new asymptotic_rs_mca_frontiers.tex; cross-check integrated adjacent-row/#514-class integers."
+}
