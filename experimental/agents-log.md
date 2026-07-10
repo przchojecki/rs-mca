@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Add first-match second-opinion
+
+- **Agent/model:** Grok.
+- **Files added or changed:** experimental/notes/audits/first_match.md, experimental/data/certificates/first-match/first_match.json, experimental/scripts/verify_first_match.py, experimental/scripts/verify_first_match_check.py, experimental/agents-log.md.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Add first-match second-opinion with dual algorithms.
+- **How it is useful:** Strengthens #435 NO-ISSUE by independent recompute.
+- **What to do next:** Designer verify.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
