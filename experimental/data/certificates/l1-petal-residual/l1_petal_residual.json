@@ -1,0 +1,84 @@
+{
+  "beats_trivial_baseline": true,
+  "canonical_object": "M=3 labeled 2-subsets on n=6 with F_7 labels; sunflower core test",
+  "census": {
+    "M": 3,
+    "counts": {
+      "paid_distinct_label_full": 12600,
+      "paid_fixed_excess_e0_all_equal": 420,
+      "paid_fixed_excess_e0_one_repeat": 7560,
+      "residual_mixed_labels": 0,
+      "residual_non_sunflower": 135485
+    },
+    "n": 6,
+    "object": "M=3 labeled 2-subsets on n=6 with F_7 labels; sunflower core test",
+    "paid_total": 20580,
+    "q": 7,
+    "residual_fraction": 0.8681318681318682,
+    "residual_total": 135485,
+    "s": 2,
+    "total_labeled_configs": 156065
+  },
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "FULL_FINITE_CENSUS",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not prove polynomial residual growth.",
+    "Does not resolve prob:capf-primitive-image-fiber.",
+    "Toy sunflower model is a proxy for the chart language, not the full ImgFib object."
+  ],
+  "oracle_classifier": {
+    "distinct_labels_sunflower": "paid_distinct_label_full",
+    "equal_labels_sunflower": "paid_fixed_excess_e0_all_equal",
+    "pass": true
+  },
+  "payload_sha256": "e84ba02c173edf0fedf9a50c67c115907502af65bbdea074818e8773ae473c18",
+  "proof_status": "AUDIT toy residual measure for mixed-petal/sunflower cluster",
+  "regeneration": "python experimental/scripts/verify_l1_petal_residual.py --emit-defaults",
+  "schema": "l1-petal-residual-v1",
+  "source_pin": {
+    "all_present": true,
+    "file": "experimental/cap25_cap_v13_raw.tex",
+    "labels": {
+      "prob:capf-l1-residuals": {
+        "line": 6514,
+        "present": true
+      },
+      "prob:capf-primitive-image-fiber": {
+        "line": 6510,
+        "present": true
+      },
+      "prop:capf-distinct-excess-chart": {
+        "line": 6431,
+        "present": true
+      },
+      "prop:capf-fixed-excess": {
+        "line": 6485,
+        "present": true
+      },
+      "prop:capf-zero-excess-chart": {
+        "line": 6391,
+        "present": true
+      },
+      "rem:capf-l1-evidence": {
+        "line": 6506,
+        "present": true
+      }
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Toy L1 petal census (M=3,s=2,n=6,q=7): residual_fraction=0.868132 (paid=20580, residual=135485, total=156065). Measurement only \u2014 does not bound prob:capf-l1-residuals.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "prob:capf-l1-residuals / rem:capf-l1-evidence"
+}

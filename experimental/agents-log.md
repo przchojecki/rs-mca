@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - L1 mixed-petal residual toy census
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/m1/l1_petal_residual.md`, `experimental/data/certificates/l1-petal-residual/l1_petal_residual.json`, `experimental/scripts/verify_l1_petal_residual.py`, `experimental/scripts/verify_l1_petal_residual_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact toy census of paid vs residual labeled petal configs for the L1 sunflower residual cluster.
+- **How it is useful:** Measures residual share at toy scale for prob:capf-l1-residuals.
+- **What to do next:** Larger toys or genuine ImgFib residual enumeration.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
