@@ -1,0 +1,110 @@
+{
+  "base_sha": "2acc7bef9584fa34fc564d3b6ba827332a41bb90",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "asserts": [
+      "exact recompute of #444 k=5 counts",
+      "paper's eq:counterexample block is a distinct smooth-square construction",
+      "definitional exclusion of Sidon-heavy #444 fiber from post-Sidon primitive Q"
+    ],
+    "does_not_assert": [
+      "full C1-C8 atlas classification of #444",
+      "unconditional C9 for all smooth rows",
+      "that thm:polynomial-obstruction equals #444"
+    ]
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "generator_routes": {
+    "A_k": "multinomial vs factorial",
+    "ledger": "scan theorem environments for free-standing C9 claim",
+    "paper": "label pin + construction keyword inventory on thm:polynomial-obstruction",
+    "residual": "finite k=5 rate test + definitional exclusion under paid Sidon"
+  },
+  "honest_headline": "#444 numbers recompute exactly; paper absorbs via Sidon-cut residual (not by claiming the Boolean blocks are algebraic); thm:polynomial-obstruction is a separate smooth-domain obstruction; no standalone literal C9 theorem.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "mismatches": [],
+  "object": "#444 C9 counterexample absorption into profile-envelope revision",
+  "paper_counterexample_block": {
+    "construction_is_444_boolean_blocks": false,
+    "construction_is_smooth_square_quotient": true,
+    "distinct_from_444": true,
+    "pins": {
+      "def:closed-ledger": 153,
+      "def:sidon-paid": 388,
+      "eq:counterexample-extension": 535,
+      "eq:counterexample-fiber": 511,
+      "eq:counterexample-mca": 541,
+      "eq:counterexample-scale": 504,
+      "eq:counterexample-sidon": 530,
+      "thm:polynomial-obstruction": 492,
+      "thm:primitive-q": 457
+    },
+    "route": "label pin + construction keyword inventory on thm:polynomial-obstruction"
+  },
+  "payload_sha256": "027561bd128ff9f8faa9fb8d65bb8f3c63d59ed14692c1a661b8ccae7dcea6a0",
+  "prior_c9_cert_match": {
+    "A_k_match": true,
+    "L_match": true,
+    "M_match": true,
+    "caveat_present": true,
+    "delta_match": true,
+    "energy_match": true,
+    "heavy_fiber_match": true,
+    "params_match": true,
+    "present": true,
+    "prior_nonclaims": [
+      "not a counterexample to C9 for formal smooth-domain rows",
+      "not a counterexample under R asymptotic to N",
+      "not a proof that the construction survives exact C1--C8 predicates",
+      "not a refutation of the conditional compiler in asymptotic_rs_mca.tex"
+    ],
+    "prior_status": "COUNTEREXAMPLE_NEW_FLOOR"
+  },
+  "proposed_ledger_entry": null,
+  "recomputed_444_k5": {
+    "A_k": 120,
+    "Delta_heavy": 0.2373046875,
+    "Delta_heavy_den": 1024,
+    "Delta_heavy_num": 243,
+    "L": 121,
+    "M": 152,
+    "barN": 1.256198347107438,
+    "barN_limit_as_k_to_inf": 1.0,
+    "energy_E": 7776,
+    "heavy_fiber_size": 32,
+    "k": 5,
+    "params": {
+      "N": 20,
+      "Q": 501,
+      "R": 2,
+      "k": 5,
+      "m": 10
+    },
+    "routes": {
+      "A_k_A": "multinomial product of C(n,r)",
+      "A_k_B": "factorial ratio k!/(r!)^5",
+      "Delta": "closed form (3/4)^k from block energy product"
+    }
+  },
+  "residual_predicate_test": {
+    "Delta_heavy": 0.2373046875,
+    "N": 20,
+    "absorption_mechanism": "Revision makes C9 a first-match Sidon cut (def:sidon-paid) after major arcs route to C1-C8; thm:primitive-q applies only after paid Sidon. The #444 heavy fiber is exactly the Sidon-heavy object cut by C9. Separately, thm:polynomial-obstruction is a DIFFERENT smooth-domain counterexample showing unrestricted identity Sidon fails.",
+    "c1_c8_survival": "UNKNOWN \u2014 #444 itself nonclaims full C1-C8 survival",
+    "classified_as_sidon_heavy_finite_test": true,
+    "excluded_from_primitive_Q_by_paid_sidon": true,
+    "heavy_log_rate_per_N_asymptotic": 0.17328679513998632,
+    "heavy_over_barN": 25.473684210526315,
+    "route": "finite k=5 rate test + definitional exclusion under paid Sidon",
+    "survives_after_sidon_cut": false
+  },
+  "standalone_c9_check": {
+    "has_standalone_C9_theorem_env": false,
+    "has_thm_primitive_q_after_sidon": true,
+    "ledger_verdict_preserved": true,
+    "route": "scan theorem environments for free-standing C9 claim"
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "verdict": "NO ISSUE"
+}
