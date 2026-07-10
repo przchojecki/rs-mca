@@ -2790,3 +2790,9 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W40 M1 lean-saturation (executor)
+- **Files:** experimental/lean/saturation_identity/*; notes/audits/lean_saturation_identity.md
+- **Status:** lake build PASS; Cen=4 on F5 K=1
+- **Usefulness:** thm:saturation instance with explicit U
+- **Next:** higher K toys optional
