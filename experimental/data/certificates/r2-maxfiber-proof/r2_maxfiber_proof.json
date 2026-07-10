@@ -1,0 +1,207 @@
+{
+  "all_pass": true,
+  "all_toys_respect_bound": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "checker_route": "independent max-fiber count vs N^{m-2} on toys; phase0 cube3 dual energy",
+  "claim_boundaries": {
+    "is_counterexample": false,
+    "is_measurement": false,
+    "is_theorem": true,
+    "theorem_scope": "R=2 fixed-m fiber size; not density regime"
+  },
+  "density_regime_note": {
+    "example_N": 20,
+    "example_m": 10,
+    "poly_bound": 25600000000,
+    "reason": "N^{m-2} with m=Theta(N) is not exp(o(N))",
+    "useful_for_exp_o_N": false
+  },
+  "discharged_subclass": "R=2 with fixed m (or m=o(N/log N)): max fiber <= N^{m-2} => log(ratio)/N -> 0 for barN>=1",
+  "evidence_type": "FINITE_TOY_ROW",
+  "falsifiable": true,
+  "generator_route": "inductive combinatorial bound f_s<=N^{m-2} for R=2; exact fiber enumeration toys",
+  "hard_input": "b / reduced C9 / R=2",
+  "honest_headline": "Rung PROVED-SPECIAL: R=2 f_s<=N^{m-2} (fixed m); density m=Theta(N) REDUCED open; toys_ok=True",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_toys": 13,
+  "nonclaims": [
+    "Does not prove density regime m=Theta(N).",
+    "N^{m-2} is useless for m~N/2.",
+    "Low-energy hypothesis not needed for fixed-m bound (bound is unconditional on fibers)."
+  ],
+  "object": "R=2 max-fiber control (fixed-m proved; density REDUCED)",
+  "open_core_reduced": "REDUCED open core (density regime):\nFor m = floor(alpha N) with fixed alpha in (0,1), R=2, deep rows\n(R sqrt(p) not o(N)), prove that every fiber F_s of Phi=(sum,sumsq) that is\nlow-energy (Delta_s <= exp(-sigma N)) satisfies |F_s| <= exp(o(N)) barN.\nThe fixed-m polynomial bound is insufficient; need additive structure of large\nBoolean families of constant-weight vectors with two power-sum constraints, or\na Fourier/Weil bound on the number of m-subsets with given (e1,e2) that form a\nSidon-like set.",
+  "payload_sha256": "f7a54058936e7f462c2f05536bf5656ebf0016c2d7c5a35658cfe39aec0fc5ba",
+  "phase0": {
+    "cert_energy": 216,
+    "energy_4tuple": 216,
+    "energy_diff": 216,
+    "pass": true,
+    "paste": "image_scale_mi_ma sidon_energy_cube3 energy=216 Delta=27/64"
+  },
+  "proof_status": "PROVED-SPECIAL",
+  "proof_texts": {
+    "R2_fixed_m": "Lemma (R=2 fiber size for any m >= 2).\nLet T be a ground set of size N, Omega the m-subsets of T, and\nPhi(S) = (sum_{t in S} t, sum_{t in S} t^2) with values in an ambient field\n(or Z). For every target s, the fiber F_s = { S in Omega : Phi(S)=s } satisfies\n  |F_s| <= N^{m-2}    for m >= 2,\nwith the convention N^{0} = 1, and in fact |F_s| <= 1 when m = 2.\n\nProof. Proceed by induction on m.\nBase m=2: S={a,b}, a+b=A, a^2+b^2=Q. Then 2ab = A^2-Q, so {a,b} is the\nunordered root pair of X^2 - A X + (A^2-Q)/2 = 0 (char != 2), or by direct\ncheck at most one unordered pair in T has a given (A,Q). Thus |F_s| <= 1 = N^0.\n\nInductive step: fix m >= 3 and assume the claim for m-1. For each a in T, let\nF_s(a) be the (m-1)-subsets U of T\\{a} with sum(U)=A-a and sumsq(U)=Q-a^2\n(when s=(A,Q)). By induction |F_s(a)| <= (N-1)^{m-3} <= N^{m-3}. Every\nm-subset containing a that lies in F_s arises uniquely this way, and every\nmember of F_s contains some a, so\n  |F_s| <= sum_{a in T} |F_s(a)| <= N * N^{m-3} = N^{m-2}.\n\nCorollary (fixed-m reduced input). If m is fixed (independent of N) and\nbarN >= 1, then max_s f_s <= N^{m-2}, hence\n  log(max_s f_s / barN) / N <= (m-2) log N / N -> 0 as N -> infinity.\nThus the reduced C9 / low-energy max-fiber input holds for R=2 at fixed m\neven without an energy hypothesis (the energy restriction only shrinks F_s).\n\nWhat stays open: m = Theta(N) (fixed positive density), where N^{m-2} is\nsuper-exponential and does not give exp(o(N)) control.",
+    "R2_m3": "Lemma (R=2, m=3). Under char != 2, |F_s| <= N.\nProof (specialization of the induction). For each a in T there is at most one\nunordered pair {b,c} subset T\\{a} with b+c=A-a and b^2+c^2=Q-a^2, because that\npair is determined by sum and product. Summing over a and dividing by the triple\ncounting multiplicity (each triple counted 3 times) still yields |F_s| <= N.",
+    "REDUCED_density": "REDUCED open core (density regime):\nFor m = floor(alpha N) with fixed alpha in (0,1), R=2, deep rows\n(R sqrt(p) not o(N)), prove that every fiber F_s of Phi=(sum,sumsq) that is\nlow-energy (Delta_s <= exp(-sigma N)) satisfies |F_s| <= exp(o(N)) barN.\nThe fixed-m polynomial bound is insufficient; need additive structure of large\nBoolean families of constant-weight vectors with two power-sum constraints, or\na Fourier/Weil bound on the number of m-subsets with given (e1,e2) that form a\nSidon-like set."
+  },
+  "regeneration": "py -3.13 experimental/scripts/verify_r2_maxfiber_proof.py",
+  "rung": "PROVED-SPECIAL",
+  "schema": "r2_maxfiber_proof.v1",
+  "status": "EXPERIMENTAL",
+  "toys": [
+    {
+      "L": 28,
+      "M": 28,
+      "N": 8,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 1,
+      "bound_holds": true,
+      "m": 2,
+      "max_f": 1,
+      "p": 17
+    },
+    {
+      "L": 54,
+      "M": 56,
+      "N": 8,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 8,
+      "bound_holds": true,
+      "m": 3,
+      "max_f": 2,
+      "p": 17
+    },
+    {
+      "L": 65,
+      "M": 70,
+      "N": 8,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 64,
+      "bound_holds": true,
+      "m": 4,
+      "max_f": 2,
+      "p": 17
+    },
+    {
+      "L": 45,
+      "M": 45,
+      "N": 10,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 1,
+      "bound_holds": true,
+      "m": 2,
+      "max_f": 1,
+      "p": 19
+    },
+    {
+      "L": 113,
+      "M": 120,
+      "N": 10,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 10,
+      "bound_holds": true,
+      "m": 3,
+      "max_f": 2,
+      "p": 19
+    },
+    {
+      "L": 176,
+      "M": 210,
+      "N": 10,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 100,
+      "bound_holds": true,
+      "m": 4,
+      "max_f": 3,
+      "p": 19
+    },
+    {
+      "L": 66,
+      "M": 66,
+      "N": 12,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 1,
+      "bound_holds": true,
+      "m": 2,
+      "max_f": 1,
+      "p": 23
+    },
+    {
+      "L": 198,
+      "M": 220,
+      "N": 12,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 12,
+      "bound_holds": true,
+      "m": 3,
+      "max_f": 2,
+      "p": 23
+    },
+    {
+      "L": 340,
+      "M": 495,
+      "N": 12,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 144,
+      "bound_holds": true,
+      "m": 4,
+      "max_f": 3,
+      "p": 23
+    },
+    {
+      "L": 206,
+      "M": 220,
+      "N": 12,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 12,
+      "bound_holds": true,
+      "m": 3,
+      "max_f": 2,
+      "p": 31
+    },
+    {
+      "L": 643,
+      "M": 1001,
+      "N": 14,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 196,
+      "bound_holds": true,
+      "m": 4,
+      "max_f": 5,
+      "p": 31
+    },
+    {
+      "L": 53,
+      "M": 56,
+      "N": 8,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 8,
+      "bound_holds": true,
+      "m": 3,
+      "max_f": 2,
+      "p": 13
+    },
+    {
+      "L": 181,
+      "M": 252,
+      "N": 10,
+      "R": 2,
+      "bound_N_pow_m_minus_2": 1000,
+      "bound_holds": true,
+      "m": 5,
+      "max_f": 3,
+      "p": 17
+    }
+  ],
+  "verdict": "PROVED-SPECIAL",
+  "weave": [
+    "W50",
+    "W51",
+    "#575",
+    "#577",
+    "C9"
+  ]
+}
