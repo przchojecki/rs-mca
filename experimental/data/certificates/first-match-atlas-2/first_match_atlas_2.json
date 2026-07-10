@@ -1,0 +1,711 @@
+{
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "multi-pointer sorted-merge union of Z_i^circ; compare sizes to budgets",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "INDEPENDENT_RECHECK",
+  "falsifiable": true,
+  "generator_route": "sequential first-match parts + sum budgets / set-union",
+  "hard_input": "a",
+  "honest_headline": "First-match summation (hard a, distinct from #519): pins_ok=True; |union Z_i^circ| = sum |Z_i^circ| <= sum U_i on toys; dual merge-union agrees; under-budget negative fails; residual after j matches charged slopes. Weave #519.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_random": 20,
+  "n_rows": 28,
+  "nonclaims": [
+    "Does not prove e^{o(n)} profile count (prop:first-match-atlas-finite hypothesis).",
+    "Does not prove real algebraic U_i payments.",
+    "Distinct object from #519 partition audit: this is the summation/union-bound step."
+  ],
+  "object": "hard input (a): first-match summation / budget add-back (not #519 partition-only)",
+  "payload_sha256": "dd673c79bf55d494fa027e2b66e6fd5f0f6e2889713995f02d15f95c7ffecfa5",
+  "pins": {
+    "def:profile-payment": {
+      "found": true,
+      "line": 1476,
+      "sha256_line": "911952008c663bad"
+    },
+    "eq:profile-payment": {
+      "found": true,
+      "line": 1486,
+      "sha256_line": "2a545d6a2c2182c6"
+    },
+    "lem:first-match-bound": {
+      "found": true,
+      "line": 1526,
+      "sha256_line": "7392aec5a8fca302"
+    },
+    "prop:first-match-atlas-finite": {
+      "found": true,
+      "line": 6516,
+      "sha256_line": "856b7a5bce1b38a7"
+    },
+    "prop:first-match-sum-detail": {
+      "found": true,
+      "line": 6694,
+      "sha256_line": "980a629545f223ff"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT first-match union-bound toys for prop:first-match-sum-detail",
+  "random_pass": 20,
+  "regeneration": "python experimental/scripts/verify_first_match_atlas_2.py --emit-defaults",
+  "rows": [
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        4,
+        2,
+        4
+      ],
+      "kind": "oracle_overlap_summation",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        4,
+        2,
+        4
+      ],
+      "sum_U": 10,
+      "union_chk_size": 10,
+      "union_size": 10
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        5,
+        0,
+        1
+      ],
+      "kind": "boundary_subset_summation",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        5,
+        0,
+        1
+      ],
+      "sum_U": 6,
+      "union_chk_size": 6,
+      "union_size": 6
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        10,
+        10,
+        10
+      ],
+      "kind": "loose_budgets",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        4,
+        2,
+        4
+      ],
+      "sum_U": 30,
+      "union_chk_size": 10,
+      "union_size": 10
+    },
+    {
+      "bound_ok": false,
+      "budget_ok": false,
+      "budgets": [
+        1,
+        1,
+        1
+      ],
+      "kind": "negative_underbudget",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        4,
+        2,
+        4
+      ],
+      "sum_U": 3,
+      "union_chk_size": 10,
+      "union_size": 10
+    },
+    {
+      "j": 1,
+      "kind": "residual_after_j1",
+      "later_parts_cover_residual": true,
+      "n_residual_slopes": 6,
+      "pass": true
+    },
+    {
+      "j": 0,
+      "kind": "residual_after_j0",
+      "later_parts_cover_residual": true,
+      "n_residual_slopes": 10,
+      "pass": true
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        0,
+        10,
+        13,
+        3,
+        3
+      ],
+      "kind": "random_0",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        0,
+        10,
+        13,
+        3,
+        3
+      ],
+      "sum_U": 29,
+      "union_chk_size": 29,
+      "union_size": 29
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        7,
+        3,
+        3,
+        1,
+        3,
+        0,
+        0,
+        0
+      ],
+      "kind": "random_1",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        7,
+        3,
+        3,
+        1,
+        3,
+        0,
+        0,
+        0
+      ],
+      "sum_U": 17,
+      "union_chk_size": 17,
+      "union_size": 17
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        4,
+        2,
+        2,
+        3,
+        0
+      ],
+      "kind": "random_2",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        4,
+        2,
+        2,
+        3,
+        0
+      ],
+      "sum_U": 11,
+      "union_chk_size": 11,
+      "union_size": 11
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        15,
+        2,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "kind": "random_3",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        15,
+        2,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "sum_U": 21,
+      "union_chk_size": 21,
+      "union_size": 21
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        11,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      "kind": "random_4",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        11,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      "sum_U": 13,
+      "union_chk_size": 13,
+      "union_size": 13
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        14,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "random_5",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        14,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sum_U": 19,
+      "union_chk_size": 19,
+      "union_size": 19
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        11,
+        10,
+        1,
+        3,
+        1
+      ],
+      "kind": "random_6",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        11,
+        10,
+        1,
+        3,
+        1
+      ],
+      "sum_U": 26,
+      "union_chk_size": 26,
+      "union_size": 26
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        12,
+        2,
+        0,
+        0,
+        1,
+        1
+      ],
+      "kind": "random_7",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        12,
+        2,
+        0,
+        0,
+        1,
+        1
+      ],
+      "sum_U": 16,
+      "union_chk_size": 16,
+      "union_size": 16
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        4,
+        7
+      ],
+      "kind": "random_8",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        4,
+        7
+      ],
+      "sum_U": 11,
+      "union_chk_size": 11,
+      "union_size": 11
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        5,
+        5
+      ],
+      "kind": "random_9",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        5,
+        5
+      ],
+      "sum_U": 10,
+      "union_chk_size": 10,
+      "union_size": 10
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        23,
+        1,
+        1
+      ],
+      "kind": "random_10",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        23,
+        1,
+        1
+      ],
+      "sum_U": 25,
+      "union_chk_size": 25,
+      "union_size": 25
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        12,
+        8,
+        0,
+        0
+      ],
+      "kind": "random_11",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        12,
+        8,
+        0,
+        0
+      ],
+      "sum_U": 20,
+      "union_chk_size": 20,
+      "union_size": 20
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        2,
+        8
+      ],
+      "kind": "random_12",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        2,
+        8
+      ],
+      "sum_U": 10,
+      "union_chk_size": 10,
+      "union_size": 10
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        4,
+        9
+      ],
+      "kind": "random_13",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        4,
+        9
+      ],
+      "sum_U": 13,
+      "union_chk_size": 13,
+      "union_size": 13
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        0,
+        12,
+        0,
+        0,
+        0
+      ],
+      "kind": "random_14",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        0,
+        12,
+        0,
+        0,
+        0
+      ],
+      "sum_U": 12,
+      "union_chk_size": 12,
+      "union_size": 12
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        2,
+        1
+      ],
+      "kind": "random_15",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        2,
+        1
+      ],
+      "sum_U": 3,
+      "union_chk_size": 3,
+      "union_size": 3
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        13,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "kind": "random_16",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        13,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sum_U": 16,
+      "union_chk_size": 16,
+      "union_size": 16
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        31,
+        8,
+        0
+      ],
+      "kind": "random_17",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        31,
+        8,
+        0
+      ],
+      "sum_U": 39,
+      "union_chk_size": 39,
+      "union_size": 39
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        5,
+        1,
+        11,
+        7,
+        2,
+        2,
+        0
+      ],
+      "kind": "random_18",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        5,
+        1,
+        11,
+        7,
+        2,
+        2,
+        0
+      ],
+      "sum_U": 28,
+      "union_chk_size": 28,
+      "union_size": 28
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        8,
+        2,
+        16,
+        0
+      ],
+      "kind": "random_19",
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        8,
+        2,
+        16,
+        0
+      ],
+      "sum_U": 26,
+      "union_chk_size": 26,
+      "union_size": 26
+    },
+    {
+      "bound_ok": true,
+      "budget_ok": true,
+      "budgets": [
+        10,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "kind": "higher_deficiency_many_profiles",
+      "n_profiles": 17,
+      "partition_ok": true,
+      "pass": true,
+      "routes_agree": true,
+      "sizes": [
+        10,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "sum_U": 58,
+      "union_chk_size": 58,
+      "union_size": 58
+    },
+    {
+      "kind": "orphan_slope_outside_atlas",
+      "note": "unassigned slope outside atlas is not a first-match bucket member",
+      "orphan_slope": 99,
+      "outside": true,
+      "pass": true
+    }
+  ],
+  "schema": "first-match-atlas-2-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "prop:first-match-sum-detail; lem:first-match-bound",
+  "verdict": "NO ISSUE",
+  "weave": "Complements filed #519 first-match atlas partition; this packet is prop:first-match-sum-detail."
+}
