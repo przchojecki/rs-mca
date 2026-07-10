@@ -30,6 +30,39 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Codeword-ray refutation of prob:capg-split-pencil-B at interior profiles
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/data/certificates/capg-split-pencil-refutation/capg_split_pencil_refutation.json`,
+  `experimental/notes/audits/capg_split_pencil_refutation.md`,
+  `experimental/scripts/verify_capg_split_pencil_refutation.py`,
+  `experimental/scripts/verify_capg_split_pencil_refutation_check.py`,
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT.
+- **What is being added:** An exact certificate that the recorded correction
+  `prob:capg-split-pencil-B` (and `prob:capg-active-BC` by inheritance) fails
+  verbatim at interior balanced profiles: a new unconditional profile
+  localization lemma (`d1 = e` for `2e <= n-K+1`, proof in the audits note)
+  plants the codeword-ray blowup at any interior `d1`, and a single ray then
+  exceeds the corrected budget `max(1, M_B(d1), C(n,omega) q^{1-w'})` by a
+  factor `>= 2^2015057` at the deployed KoalaBear census row, against the
+  +3.3/+22.2-bit `cor:capg-adjacent-pairs` margins its finite form must meet.
+  `F_73` toy rows isolate the mechanism exactly (censuses 15504/3877/818 vs
+  budget ~245.36; excess strata exactly codeword rays; both `M_B` variants).
+- **How it is useful:** Settles two recorded residual inputs negatively and
+  shows the hypothesis of `prop:capg-final-active-package` is unsatisfiable
+  as stated; localizes the correct repair object as the ray-deduplicated
+  count, i.e. exactly what `prob:saturated-bc` already demands, so the
+  split-pencil lane collapses into the saturated-BC lane.  `thm:saturation`,
+  `cor:raw-bc-fails`, and all slope-count objects are unaffected.
+- **What to do next:** Re-record the missing census lemma on the
+  ray-deduplicated count (or fold it into `prob:saturated-bc`); re-derive
+  the `prop:capg-final-active-package` closure from slope-count inputs;
+  check whether other recorded problems inherit the with-multiplicity trap
+  (`prob:capfr1-balanced-core`, `prob:capfp-balanced`,
+  `prob:capfr1-rank-one-census` per the problem's own mutatis-mutandis note).
+
 ### 2026-07-10 - RS--MCA Entropy Frontiers submission draft
 
 - **Agent/model:** Maintainer-added paper, read and logged by Codex.

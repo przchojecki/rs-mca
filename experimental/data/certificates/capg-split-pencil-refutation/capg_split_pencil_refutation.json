@@ -1,0 +1,507 @@
+{
+  "base_sha": "2b1a7e20654d44d0beefcd5c7d508be618b0cea1",
+  "beats_trivial_baseline": true,
+  "caveats": [
+    "A fixed n = 24 toy cannot refute an e^{o(n)} statement; the refutation is the finite deployed form (the problem's own text reduces it to exact constants at cor:capg-adjacent-pairs) plus the e^{Theta(n)} family.",
+    "The literal prob:capfp-split is already conceded upstream via the subfield-floor mechanism; the toy (q = p prime) isolates the independent codeword-ray mechanism.",
+    "M_B is evaluated in both recorded variants (with and without the prop:capg-census-floor(b) ceiling); verdicts agree.",
+    "log2 values in log2_display are display-grade strings; every verdict field is an exact integer or boolean."
+  ],
+  "claim_boundaries": {
+    "asserts": [
+      "prob:capg-split-pencil-B fails verbatim at interior balanced profiles, in its finite deployed form (exact constants vs cor:capg-adjacent-pairs margins) and along e^{Theta(n)} families",
+      "prob:capg-active-BC fails by inheritance (it asks to prove the same census)",
+      "the hypothesis of prop:capg-final-active-package is unsatisfiable as stated (its finite forms cannot hold below the cor:capg-adjacent-pairs margins)",
+      "profile localization d1 = e for 2e <= n-K+1 (unconditional lemma, proof in the audits note)"
+    ],
+    "does_not_assert": [
+      "any defect in thm:saturation, cor:raw-bc-fails, prop:capfr1-detrep, the near-rational dichotomy, or any slope-count (ray-deduplicated) object",
+      "any claim against the asymptotic frontier conjecture prob:capff1-frontier itself",
+      "any claim about prob:capg-active-Q (boundary profile) or prob:capg-active-shiftpairs",
+      "a toy-scale refutation of an e^{o(n)} statement (the toy rows are mechanism exhibits only)"
+    ],
+    "independent_recheck_confirms": true,
+    "is_counterexample": true,
+    "is_degenerate_by_construction": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": true,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "is_tautology_under_preconditions": false,
+    "refutes_recorded_open_problem_not_a_theorem": true
+  },
+  "deployed": {
+    "K": 1048576,
+    "bits": {
+      "C_n_m": 2090874,
+      "C_n_m_plus_1": 2090874,
+      "C_ray_boundary": 2015084,
+      "C_ray_interior": 2015083
+    },
+    "budget": {
+      "MB_ceiling_variant_ceil": 30133296,
+      "MB_interior_ceil": 29959898,
+      "base_field_reading_ceil": "138634741058327852652",
+      "literal_term_below_1": true,
+      "q_pow_min_bits": 12481950
+    },
+    "e_boundary": 67472,
+    "e_interior": 67473,
+    "lemma_range_ok": true,
+    "log2_display": {
+      "C_n_m": "2090873.4657",
+      "C_n_m_plus_1": "2090873.2798",
+      "C_ray_boundary": "2015083.7420",
+      "C_ray_interior": "2015082.5904"
+    },
+    "m": 1116047,
+    "margins_bits": {
+      "boundary_ray_vs_literal": 2015083,
+      "interior_ray_vs_conservative_with_base_field": 2015015,
+      "interior_ray_vs_recorded_corrected": 2015057
+    },
+    "n": 2097152,
+    "omega": 981105,
+    "p": 2130706433,
+    "row_note": "m = KB-MCA proved-unsafe edge a0 = KB-list a+ under the census convention w' = m - K; the saturated-bc MCA adjacent row a+ is m+1",
+    "saturated_bc_cross_check": {
+      "adjacent_mca_row_log2_C_n_m_plus_1": "2090873.2798",
+      "packet_printed_C_n_a_plus": "2090873.2798",
+      "printed_value_matches_m_plus_1": true,
+      "this_row_log2_C_n_m": "2090873.4657"
+    },
+    "w_prime": 67471
+  },
+  "evidence_type": "COUNTEREXAMPLE_VS_RECORDED_PROBLEM",
+  "falsifiability": "The gate fails if any toy census, ray count, profile, or budget comparison changes; if any deployed bit-length or margin changes; if any pinned label moves or its line hash drifts; or if d1 != e at any toy row with 2e <= n-K+1.",
+  "generator_routes": "toy: full C(24,9) divisor enumeration + shifted-weak-Popov basis (verified from defining properties) + cap-space parity membership + per-ray saturation identity; deployed: Legendre prime factorization + product-tree exact binomials, verdicts as bit-length/floor-division integer facts",
+  "honest_headline": "The recorded split-pencil census correction prob:capg-split-pencil-B fails verbatim at interior balanced profiles (finite deployed form: factor >= 2^2015057 over budget vs +3.3/+22.2-bit margins; asymptotic form: e^{Theta(n)}); slope-count objects are unaffected.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "lemma": {
+    "deployed_uses_e": [
+      67472,
+      67473
+    ],
+    "name": "profile localization",
+    "statement": "A word at Hamming distance exactly e from a codeword, with 2e <= n-K+1, has shifted-Popov profile d1 = e (proof in the audits note; unconditional).",
+    "verified_at_toy_for_e": [
+      4,
+      5,
+      6
+    ]
+  },
+  "object": "codeword-ray refutation of prob:capg-split-pencil-B / prob:capg-active-BC at interior balanced profiles",
+  "payload_sha256": "bcd19ebfb9cef5159ddfa89debcdb3224c549bb7322c5c449297d1512669e4b7",
+  "regeneration": "python experimental/scripts/verify_capg_split_pencil_refutation.py --emit-defaults",
+  "seed": 20260710,
+  "statement_pins": {
+    "cap25_cap_v13_raw.tex": {
+      "cor:capg-adjacent-pairs": {
+        "line": 8680,
+        "sha256_line": "2c2aefbaa55ff11503e736f15151d87d98e62e87b14ac7b52902f74b4cf005cc",
+        "text": "\\begin{corollary}[updated adjacent pairs]\\label{cor:capg-adjacent-pairs}"
+      },
+      "prob:capfp-split": {
+        "line": 8433,
+        "sha256_line": "dbc51cb2fbccfc9cedc45f0500545e4ac63c4bebc6843cdbe106a88f7888cc97",
+        "text": "\\begin{remark}[Primitive split-pencil formulation]\\label{prob:capfp-split}"
+      },
+      "prob:capfr1-normalized-band": {
+        "line": 7639,
+        "sha256_line": "a4a502b99607303cee536dcdd17a07c8338dc4cbe5971492912ad7ad40bdd425",
+        "text": "\\begin{remark}[Normalized aperiodic band formulation]\\label{prob:capfr1-normalized-band}"
+      },
+      "prob:capg-active-BC": {
+        "line": 9919,
+        "sha256_line": "c851a31af51f4df55622d5b466782153dc32f83bf37d1ff83519b003ed2df5f2",
+        "text": "\\begin{residualinput}[base-field-normalized split-pencil census]\\label{prob:capg-active-BC}"
+      },
+      "prob:capg-split-pencil-B": {
+        "line": 9842,
+        "sha256_line": "0a397f2dcebd2b831cbd707a1de28feef93f1183b699b7d678fe34baf1f29243",
+        "text": "\\label{prob:capg-split-pencil-B}"
+      },
+      "prop:capfr1-detrep": {
+        "line": 7992,
+        "sha256_line": "f392908325758d07ca43d0112c907a955a11e1d688677f0b8fe53eefeffd539a",
+        "text": "\\begin{proposition}[determinantal representation of the adversary]\\label{prop:capfr1-detrep}"
+      },
+      "prop:capfr1-lattice-census": {
+        "line": 7885,
+        "sha256_line": "72382fff58209fda5e5b9cab1d9adc94774d9d54cf839d19c6ebf15769db7356",
+        "text": "\\begin{proposition}[the support census as a lattice locus]\\label{prop:capfr1-lattice-census}"
+      },
+      "prop:capg-census-floor": {
+        "line": 9728,
+        "sha256_line": "ad6da0c911fe5642c574d39fbc746a13ebb17b7853b6c4ed98ffbd54464c0181",
+        "text": "\\label{prop:capg-census-floor}"
+      },
+      "prop:capg-final-active-package": {
+        "line": 9934,
+        "sha256_line": "2c21a12548ade190f048d3215d25d3dc7243a14ee057983e2bed115ca33d4d06",
+        "text": "\\begin{proposition}[conditional frontier closure]\\label{prop:capg-final-active-package}"
+      },
+      "thm:capfr1-near-rational-dichotomy": {
+        "line": 7916,
+        "sha256_line": "33c78f24a5be17b0e80c06f9e2ff32fe7ed8f544b16e55d10d954223e2c48efe",
+        "text": "\\begin{theorem}[near-rational dichotomy]\\label{thm:capfr1-near-rational-dichotomy}"
+      }
+    },
+    "grande_finale.tex": {
+      "cor:raw-bc-fails": {
+        "line": 1843,
+        "sha256_line": "d2994aec60bd660b4daf0393660182ae95158b5147c5afebf4c2a019009b140c",
+        "text": "\\begin{corollary}[raw support BC is not the MCA object]\\label{cor:raw-bc-fails}"
+      },
+      "prob:saturated-bc": {
+        "line": 2191,
+        "sha256_line": "a97535ca5ff20b74115dc9a33c5a96f580a62a83b900c3883024ea76da0c84c4",
+        "text": "\\begin{problem}[BC chart-decomposition target after moving-root]\\label{prob:saturated-bc}"
+      },
+      "thm:saturation": {
+        "line": 1811,
+        "sha256_line": "2d220101060087fee17d5abb13088e575ab1c41741ca7723accec5b7293dfe51",
+        "text": "\\begin{theorem}[exact saturation identity]\\label{thm:saturation}"
+      }
+    }
+  },
+  "status": "COUNTEREXAMPLE / AUDIT",
+  "summary": {
+    "headline": "prob:capg-split-pencil-B (and prob:capg-active-BC by inheritance) fails verbatim at interior balanced profiles: a single codeword ray at distance w'+2 exceeds the corrected budget by a factor >= 2^2015057 at the deployed KoalaBear row, against the +3.3/+22.2-bit margins of cor:capg-adjacent-pairs; the toy rows isolate the mechanism exactly.",
+    "not_affected": "thm:saturation, cor:raw-bc-fails, and every slope-count (ray-deduplicated) object, including the saturated-bc packet's margin identity; the ray-deduplicated toy counts sit far below every budget.",
+    "verdict": "COUNTEREXAMPLE"
+  },
+  "toy_parameters": {
+    "K": 12,
+    "domain": [
+      1,
+      3,
+      7,
+      8,
+      9,
+      10,
+      17,
+      21,
+      22,
+      24,
+      27,
+      30,
+      43,
+      46,
+      49,
+      51,
+      52,
+      56,
+      63,
+      64,
+      65,
+      66,
+      70,
+      72
+    ],
+    "m": 15,
+    "n": 24,
+    "omega": 9,
+    "p": 73,
+    "subfield_floor_vacuous_since_q_equals_p": true,
+    "w": 3
+  },
+  "toy_rows": [
+    {
+      "budget_MB": [
+        1307504,
+        389017
+      ],
+      "budget_MB_ceiling_variant": 4,
+      "budget_literal": [
+        1307504,
+        5329
+      ],
+      "census": 15504,
+      "codeword_coeffs": [
+        19,
+        69,
+        39,
+        49,
+        27,
+        17,
+        9,
+        44,
+        49,
+        65,
+        12,
+        40
+      ],
+      "corrected_ceiling_holds_raw": false,
+      "corrected_holds_raw": false,
+      "corrected_holds_rays": true,
+      "d1": 4,
+      "d1_equals_e": true,
+      "d2": 9,
+      "e": 4,
+      "error_positions": [
+        17,
+        18,
+        20,
+        21
+      ],
+      "label": "codeword_plus_noise_e4",
+      "literal_holds_raw": false,
+      "literal_holds_rays": true,
+      "ray_rows": [
+        [
+          20,
+          15504
+        ]
+      ],
+      "rays": 1,
+      "word": [
+        1,
+        7,
+        66,
+        53,
+        25,
+        41,
+        31,
+        36,
+        9,
+        54,
+        10,
+        57,
+        2,
+        60,
+        2,
+        68,
+        13,
+        36,
+        20,
+        7,
+        50,
+        40,
+        0,
+        17
+      ]
+    },
+    {
+      "budget_MB": [
+        11767536,
+        28398241
+      ],
+      "budget_MB_ceiling_variant": 16,
+      "budget_literal": [
+        1307504,
+        5329
+      ],
+      "census": 3877,
+      "codeword_coeffs": [
+        19,
+        69,
+        39,
+        49,
+        27,
+        17,
+        9,
+        44,
+        49,
+        65,
+        12,
+        40
+      ],
+      "corrected_ceiling_holds_raw": false,
+      "corrected_holds_raw": false,
+      "corrected_holds_rays": true,
+      "d1": 5,
+      "d1_equals_e": true,
+      "d2": 8,
+      "e": 5,
+      "error_positions": [
+        6,
+        14,
+        17,
+        19,
+        23
+      ],
+      "label": "codeword_plus_noise_e5",
+      "literal_holds_raw": false,
+      "literal_holds_rays": true,
+      "ray_rows": [
+        [
+          19,
+          3876
+        ],
+        [
+          15,
+          1
+        ]
+      ],
+      "rays": 2,
+      "word": [
+        1,
+        7,
+        66,
+        53,
+        25,
+        41,
+        51,
+        36,
+        9,
+        54,
+        10,
+        57,
+        2,
+        60,
+        63,
+        68,
+        13,
+        28,
+        46,
+        57,
+        65,
+        24,
+        0,
+        31
+      ]
+    },
+    {
+      "budget_MB": [
+        47070144,
+        2073071593
+      ],
+      "budget_MB_ceiling_variant": 136,
+      "budget_literal": [
+        1307504,
+        5329
+      ],
+      "census": 818,
+      "codeword_coeffs": [
+        19,
+        69,
+        39,
+        49,
+        27,
+        17,
+        9,
+        44,
+        49,
+        65,
+        12,
+        40
+      ],
+      "corrected_ceiling_holds_raw": false,
+      "corrected_holds_raw": false,
+      "corrected_holds_rays": true,
+      "d1": 6,
+      "d1_equals_e": true,
+      "d2": 7,
+      "e": 6,
+      "error_positions": [
+        2,
+        6,
+        8,
+        13,
+        16,
+        22
+      ],
+      "label": "codeword_plus_noise_e6",
+      "literal_holds_raw": false,
+      "literal_holds_rays": true,
+      "ray_rows": [
+        [
+          18,
+          816
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          15,
+          1
+        ]
+      ],
+      "rays": 3,
+      "word": [
+        1,
+        7,
+        4,
+        53,
+        25,
+        41,
+        59,
+        36,
+        23,
+        54,
+        10,
+        57,
+        2,
+        49,
+        2,
+        68,
+        52,
+        54,
+        46,
+        7,
+        65,
+        24,
+        4,
+        17
+      ]
+    },
+    {
+      "budget_MB": [
+        47070144,
+        2073071593
+      ],
+      "budget_MB_ceiling_variant": 136,
+      "budget_literal": [
+        1307504,
+        5329
+      ],
+      "census": 1,
+      "codeword_coeffs": null,
+      "corrected_ceiling_holds_raw": true,
+      "corrected_holds_raw": true,
+      "corrected_holds_rays": true,
+      "d1": 6,
+      "d1_equals_e": null,
+      "d2": 7,
+      "e": null,
+      "error_positions": null,
+      "label": "random_control",
+      "literal_holds_raw": true,
+      "literal_holds_rays": true,
+      "ray_rows": [
+        [
+          15,
+          1
+        ]
+      ],
+      "rays": 1,
+      "word": [
+        34,
+        8,
+        6,
+        29,
+        69,
+        11,
+        0,
+        56,
+        72,
+        7,
+        26,
+        56,
+        30,
+        4,
+        21,
+        2,
+        51,
+        43,
+        36,
+        30,
+        46,
+        48,
+        45,
+        70
+      ]
+    }
+  ]
+}
