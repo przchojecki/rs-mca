@@ -142,6 +142,14 @@ def main() -> int:
 
     if not cert["oracle_sample"]["pass"]:
         raise AssertionError("oracle pass flag")
+    # All oracle rows must pass (no soft-pass)
+    if not all(r.get("pass") for r in cert["oracle_sample"]["rows"]):
+        raise AssertionError("oracle row failure masked")
+    # No section-header leaks
+    if any(s["label"].startswith("sec:") for s in cert["statements"]):
+        raise AssertionError("sec: label leak")
+    if not cert.get("parser_fix_w27_r1", {}).get("oracle_soft_pass_removed"):
+        raise AssertionError("missing W27-R1 fix flag")
 
     print("RESULT: PASS")
     print(

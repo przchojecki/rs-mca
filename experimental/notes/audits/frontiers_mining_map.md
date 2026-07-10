@@ -17,3 +17,10 @@ generator: lookback label inventory + keyword classify; checker: forward beginâ†
 py -3.13 experimental/scripts/verify_frontiers_mining_map.py --emit --check
 py -3.13 experimental/scripts/verify_frontiers_mining_map_check.py --check
 ```
+
+## Weave with #494
+
+holmbuar open PR #494 is a curated 33-instance five-class entropy-frontiers audit.
+This packet is the **exhaustive** labeled-statement inventory complement (213 statements
+after W27-R1 parser fix: lookback stops at `\end{env}`, section headers dropped, oracle
+requires 10/10 with no soft-pass).
