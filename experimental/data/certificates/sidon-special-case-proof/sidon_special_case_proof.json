@@ -1,0 +1,245 @@
+{
+  "all_pass": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "checker_route": "recompute Gsid and max_f independently; verify inequality arithmetic; dual energy on injective toys",
+  "claim_boundaries": {
+    "is_counterexample": false,
+    "is_measurement": false,
+    "is_theorem": true,
+    "theorem_scope": "special-case only (injective / max-fiber control)"
+  },
+  "discharged_subclass": "Injective (barN=1) power-sum charts; any chart with max_f <= exp(eta N) barN for eta<=tau; singleton low-energy fibers.",
+  "evidence_type": "FINITE_TOY_ROW",
+  "falsifiable": true,
+  "generator_route": "elementary inequalities Gsid<=(max_f/barN)^q and injective => Gsid<=1; exact toy enumeration certificates",
+  "hard_input": "b",
+  "honest_headline": "Rung PROVED-SPECIAL: Lemmas I--III elementary payment under injective/max-fiber control; open core = low-energy max-fiber exp(o(N)) on deep charts",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "lemmas": {
+    "I": {
+      "lemma": "I",
+      "n_injective_toys": 5,
+      "pass": true,
+      "proof_text": "Lemma I (injective folding payment).\nLet Phi: Omega -> Sigma be injective. Then L = |Omega|, barN = 1, and every\nfiber has size f_s = 1. For any energy cutoff thr and any q >= 1,\n  Gsid = L^{-1} sum_{low} (f_s/barN)^q <= L^{-1} * L * 1^q = 1.\nHence rate = log(Gsid)/(N q) <= 0 <= tau for every tau >= 0.\nThis discharges the finite image-normalized Sidon payment gate on every\nnear-injective (exactly injective) power-sum chart, a natural subclass of (b)\nwith bounded fold (barN = 1).\nWhat stays open: heavy folding L << |Omega| (barN large) with mass concentrated\nin a low-energy heavy fiber.",
+      "proved_bound_holds_on_toys": true,
+      "rows": [
+        {
+          "Gsid": 0.0,
+          "Gsid_le_1": true,
+          "L": 10,
+          "M": 10,
+          "N": 5,
+          "R": 3,
+          "barN": 1.0,
+          "injective": true,
+          "m": 2,
+          "max_f": 1,
+          "p": 17,
+          "payment_holds": true,
+          "rate": null
+        },
+        {
+          "Gsid": 0.0,
+          "Gsid_le_1": true,
+          "L": 15,
+          "M": 15,
+          "N": 6,
+          "R": 4,
+          "barN": 1.0,
+          "injective": true,
+          "m": 2,
+          "max_f": 1,
+          "p": 19,
+          "payment_holds": true,
+          "rate": null
+        },
+        {
+          "Gsid": 0.0,
+          "Gsid_le_1": true,
+          "L": 15,
+          "M": 15,
+          "N": 6,
+          "R": 4,
+          "barN": 1.0,
+          "injective": true,
+          "m": 2,
+          "max_f": 1,
+          "p": 23,
+          "payment_holds": true,
+          "rate": null
+        },
+        {
+          "Gsid": 0.0,
+          "Gsid_le_1": true,
+          "L": 21,
+          "M": 21,
+          "N": 7,
+          "R": 5,
+          "barN": 1.0,
+          "injective": true,
+          "m": 2,
+          "max_f": 1,
+          "p": 31,
+          "payment_holds": true,
+          "rate": null
+        },
+        {
+          "Gsid": 0.0,
+          "Gsid_le_1": true,
+          "L": 20,
+          "M": 20,
+          "N": 6,
+          "R": 5,
+          "barN": 1.0,
+          "injective": true,
+          "m": 3,
+          "max_f": 1,
+          "p": 17,
+          "payment_holds": true,
+          "rate": null
+        }
+      ],
+      "title": "injective folding => Gsid <= 1"
+    },
+    "II": {
+      "lemma": "II",
+      "pass": true,
+      "proof_text": "Lemma II (max-fiber exponential control implies payment).\nLet M = max_s f_s and barN = |Omega|/L > 0. Then for any thr and q >= 1,\n  Gsid = L^{-1} sum_{Delta_s <= thr} (f_s/barN)^q\n       <= L^{-1} * L * (M/barN)^q\n       = (M/barN)^q.\nTherefore rate = log(Gsid)/(N q) <= log(M/barN)/N.\nIf M <= exp(eta N) * barN with 0 <= eta <= tau, then rate <= eta <= tau,\nso the finite payment gate holds.\nSpecializations: eta = 0 (uniform/max-fiber <= barN, forces Gsid <= 1);\ninjective case M = 1, barN = 1.\nWhat stays open: proving M <= exp(o(N)) barN for low-energy fibers on deep\npower-sum charts (the actual Sidon/Fourier content of C9).",
+      "proved_bound_holds_on_toys": true,
+      "rows": [
+        {
+          "Gsid": 1.153061224489796,
+          "N": 8,
+          "R": 1,
+          "barN": 3.5,
+          "bound_holds": true,
+          "m": 3,
+          "max_f": 6,
+          "p": 17,
+          "rate_upper": 0.06737456259158586,
+          "upper_(M/barN)^q": 2.9387755102040813
+        },
+        {
+          "Gsid": 1.2489795918367346,
+          "N": 8,
+          "R": 1,
+          "barN": 4.117647058823529,
+          "bound_holds": true,
+          "m": 4,
+          "max_f": 8,
+          "p": 17,
+          "rate_upper": 0.08301995546083664,
+          "upper_(M/barN)^q": 3.7746938775510213
+        },
+        {
+          "Gsid": 1.146031746031746,
+          "N": 10,
+          "R": 1,
+          "barN": 11.052631578947368,
+          "bound_holds": true,
+          "m": 4,
+          "max_f": 18,
+          "p": 19,
+          "rate_upper": 0.04877032063451364,
+          "upper_(M/barN)^q": 2.6522448979591835
+        },
+        {
+          "Gsid": 0.3598835578002246,
+          "N": 12,
+          "R": 2,
+          "barN": 2.3225806451612905,
+          "bound_holds": true,
+          "m": 5,
+          "max_f": 5,
+          "p": 19,
+          "rate_upper": 0.06389658315859927,
+          "upper_(M/barN)^q": 4.634452160493827
+        },
+        {
+          "Gsid": 0.0,
+          "N": 10,
+          "R": 3,
+          "barN": 1.0,
+          "bound_holds": true,
+          "m": 4,
+          "max_f": 1,
+          "p": 23,
+          "rate_upper": 0.0,
+          "upper_(M/barN)^q": 1.0
+        },
+        {
+          "Gsid": 0.0,
+          "N": 8,
+          "R": 3,
+          "barN": 1.0,
+          "bound_holds": true,
+          "m": 3,
+          "max_f": 1,
+          "p": 13,
+          "rate_upper": 0.0,
+          "upper_(M/barN)^q": 1.0
+        },
+        {
+          "Gsid": 1.39367156412611,
+          "N": 12,
+          "R": 1,
+          "barN": 25.548387096774192,
+          "bound_holds": true,
+          "m": 5,
+          "max_f": 49,
+          "p": 31,
+          "rate_upper": 0.054270509231778924,
+          "upper_(M/barN)^q": 3.678452772676258
+        }
+      ],
+      "title": "Gsid <= (max_f/barN)^q"
+    },
+    "III": {
+      "lemma": "III",
+      "note": "Covered by injective toys in Lemma I; large low-energy fibers remain open.",
+      "pass": true,
+      "proof_text": "Lemma III (singleton low-energy fibers).\nIf every fiber with Delta_s <= thr has f_s <= 1, then\n  Gsid <= L^{-1} * (# such fibers) * 1^q <= 1,\nhence rate <= 0. This is the Boolean-Sidon residual extreme where low-energy\nclasses cannot carry multiple supports (no additive structure left in the\nfiber). Open: fibers that are large yet low-energy (true Sidon-heavy branch).",
+      "title": "singleton low-energy fibers => Gsid <= 1"
+    }
+  },
+  "nonclaims": [
+    "Does NOT prove full ass:image-normalized-sidon-input / C9.",
+    "Does NOT prove max_f <= exp(o(N)) barN for deep low-energy fibers.",
+    "Injective charts are a real but narrow subclass of (b)."
+  ],
+  "object": "special-case proofs for image-normalized Sidon payment (hard b)",
+  "open_core_reduced": "REDUCED open subproblem (sharp form of remaining (b)/C9 content):\nProve that on primitive power-sum charts in the deep regime R*sqrt(p) not o(N),\nno low-energy fiber (Delta_s <= exp(-sigma N)) satisfies\n  f_s >= exp(eta N) * barN\nfor fixed eta, sigma > 0. Equivalently: low-energy max-fiber ratio is\nexp(o(N)). This is exactly Lemma II's missing input; Lemmas I--III discharge\nonly when that max-fiber control is free (injective / bounded / singleton).",
+  "payload_sha256": "a017e945632ee4cbf8c434193405e539fdc531baf2dc8062e8c2cb1558e1b9ce",
+  "phase0": {
+    "Delta": "27/64",
+    "cert_energy": 216,
+    "energy_4tuple": 216,
+    "energy_diff": 216,
+    "pass": true,
+    "paste": "image_scale_mi_ma sidon_energy_cube3 energy=216 Delta=27/64"
+  },
+  "proof_status": "PROVED-SPECIAL",
+  "proof_texts": {
+    "I": "Lemma I (injective folding payment).\nLet Phi: Omega -> Sigma be injective. Then L = |Omega|, barN = 1, and every\nfiber has size f_s = 1. For any energy cutoff thr and any q >= 1,\n  Gsid = L^{-1} sum_{low} (f_s/barN)^q <= L^{-1} * L * 1^q = 1.\nHence rate = log(Gsid)/(N q) <= 0 <= tau for every tau >= 0.\nThis discharges the finite image-normalized Sidon payment gate on every\nnear-injective (exactly injective) power-sum chart, a natural subclass of (b)\nwith bounded fold (barN = 1).\nWhat stays open: heavy folding L << |Omega| (barN large) with mass concentrated\nin a low-energy heavy fiber.",
+    "II": "Lemma II (max-fiber exponential control implies payment).\nLet M = max_s f_s and barN = |Omega|/L > 0. Then for any thr and q >= 1,\n  Gsid = L^{-1} sum_{Delta_s <= thr} (f_s/barN)^q\n       <= L^{-1} * L * (M/barN)^q\n       = (M/barN)^q.\nTherefore rate = log(Gsid)/(N q) <= log(M/barN)/N.\nIf M <= exp(eta N) * barN with 0 <= eta <= tau, then rate <= eta <= tau,\nso the finite payment gate holds.\nSpecializations: eta = 0 (uniform/max-fiber <= barN, forces Gsid <= 1);\ninjective case M = 1, barN = 1.\nWhat stays open: proving M <= exp(o(N)) barN for low-energy fibers on deep\npower-sum charts (the actual Sidon/Fourier content of C9).",
+    "III": "Lemma III (singleton low-energy fibers).\nIf every fiber with Delta_s <= thr has f_s <= 1, then\n  Gsid <= L^{-1} * (# such fibers) * 1^q <= 1,\nhence rate <= 0. This is the Boolean-Sidon residual extreme where low-energy\nclasses cannot carry multiple supports (no additive structure left in the\nfiber). Open: fibers that are large yet low-energy (true Sidon-heavy branch).",
+    "REDUCED": "REDUCED open subproblem (sharp form of remaining (b)/C9 content):\nProve that on primitive power-sum charts in the deep regime R*sqrt(p) not o(N),\nno low-energy fiber (Delta_s <= exp(-sigma N)) satisfies\n  f_s >= exp(eta N) * barN\nfor fixed eta, sigma > 0. Equivalently: low-energy max-fiber ratio is\nexp(o(N)). This is exactly Lemma II's missing input; Lemmas I--III discharge\nonly when that max-fiber control is free (injective / bounded / singleton)."
+  },
+  "regeneration": "py -3.13 experimental/scripts/verify_sidon_special_case_proof.py",
+  "rung": "PROVED-SPECIAL",
+  "schema": "sidon_special_case_proof.v1",
+  "status": "EXPERIMENTAL",
+  "tightness": {
+    "analytic": "Upper bound Gsid <= (M/barN)^q is tight up to the factor (n_low/L) <= 1; equality when every fiber is low-energy and f_s = M constant (uniform). On concentrated instances Gsid = L^{-1}(M/barN)^q, so the bound is off by L.",
+    "synthetic_fail_rate": 0.15370331058808068,
+    "synthetic_shows_gate_can_fail": true
+  },
+  "verdict": "PROVED-SPECIAL",
+  "weave": [
+    "W49",
+    "W50-M1",
+    "C9"
+  ]
+}
