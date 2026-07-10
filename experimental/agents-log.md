@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F3 shallow shift-pair replay packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f3_shallow_shiftpair_replay_packet.md`,
+  `experimental/scripts/verify_f3_h3_char0_classification.py`,
+  `experimental/scripts/verify_f3_h2_energy_replay.py`,
+  `experimental/scripts/verify_f3_h2_levelset_replay.py`,
+  `experimental/scripts/verify_f3_h2_hbk_conditional_compiler.py`,
+  `experimental/scripts/verify_f3_h2_rich_coset_stepanov.py`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Two shallow F3 inputs from the prize critical DAG:
+  the characteristic-zero `h=3` classification of equal-prefix 3-trades, and
+  the `h=2` additive-energy reduction plus explicit in-house Stepanov
+  reconstruction.
+- **How it is useful:** These are replayable support packets for the primitive
+  shift-pair and exact second-moment lanes.  They isolate low-depth structure
+  while leaving the finite `h=3` accident problem and the `h >= 4` aggregate
+  explicit.
+- **What to do next:** Decide whether these should feed a future
+  `grande_finale`/frontiers-paper primitive shift-pair appendix; do not treat
+  the packet as a close of full F3 or row-sharp Q.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
