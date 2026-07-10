@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - Row-sharp Q Myerson summit bridge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/rowsharp_q_myerson_summit_bridge.md`,
+  `experimental/scripts/verify_rowsharp_q_myerson_bridge.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A `(Q)`-lane bridge note relating the
+  zero-prefix row-sharp Q summit slice to the Myerson/Gaussian-period norm
+  census at growing subgroup order, plus an exact verifier for the
+  Habegger/Myerson subgroup-census identity and the Newton/divisor
+  zero-prefix dictionary.
+- **How it is useful:** Connects the existing finite signed-census frame to
+  the upstream prefix/quotient-flatness program in the terminology of
+  `agents.md`, while keeping the growing-order gap and all non-claims
+  explicit.
+- **What to do next:** Treat this as orientation for the `(Q)` ledger: any
+  proposed row-sharp Q proof should either prove the growing-order Myerson
+  input or explain why it bypasses this zero-prefix Gaussian-period summit.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
