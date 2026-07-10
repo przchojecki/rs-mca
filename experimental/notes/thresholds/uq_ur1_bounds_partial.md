@@ -72,3 +72,10 @@ gap remains ~1.66e6 bits; one-pencil stays 2).
 py -3.13 experimental/scripts/verify_uq_ur1_bounds.py --emit --check
 py -3.13 experimental/scripts/verify_uq_ur1_bounds_check.py --check
 ```
+
+## Deviations (W24 R2)
+
+The printed `log2` upper bounds used **lgamma / product-sum float routes**
+rather than exact-bigint interval arithmetic.  An independent designer-side
+exact-bigint recompute confirmed every printed value, so the numbers stand;
+this packet does not claim interval-certified floats.
