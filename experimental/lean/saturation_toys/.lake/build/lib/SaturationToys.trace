@@ -1,0 +1,5 @@
+{"log":
+ [{"message":
+   ".> LEAN_PATH=.\\.\\.lake\\build\\lib PATH c:\\Users\\kw\\.elan\\toolchains\\leanprover--lean4---v4.14.0\\bin\\lean.exe .\\.\\.\\.\\SaturationToys.lean -R .\\.\\.\\. -o .\\.\\.lake\\build\\lib\\SaturationToys.olean -i .\\.\\.lake\\build\\lib\\SaturationToys.ilean -c .\\.\\.lake\\build\\ir\\SaturationToys.c --json",
+   "level": "trace"}],
+ "depHash": "812411824782131104"}
