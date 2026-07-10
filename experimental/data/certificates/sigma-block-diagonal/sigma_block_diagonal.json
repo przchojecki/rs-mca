@@ -1,0 +1,100 @@
+{
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "edge_two_blocks": {
+    "all_eventual": false,
+    "block_sigmas_nonincreasing": true,
+    "eventual_below_grid": {
+      "0.01": {
+        "first_n_below": null,
+        "holds": false
+      },
+      "0.05": {
+        "first_n_below": null,
+        "holds": false
+      },
+      "0.1": {
+        "first_n_below": null,
+        "holds": false
+      },
+      "0.2": {
+        "first_n_below": null,
+        "holds": false
+      },
+      "0.5": {
+        "first_n_below": null,
+        "holds": false
+      }
+    },
+    "final_sigma": 0.5,
+    "goes_to_zero": false,
+    "len": 3
+  },
+  "evidence_type": "INDEPENDENT_RECHECK",
+  "extract_toy": {
+    "Gord": 23.329545454545457,
+    "Gsid": 0.05681818181818182,
+    "complementary": 23.272727272727273,
+    "heavy_ratio": 4.0,
+    "note": "block-diagonal sigma not needed on finite toy; checks extract split algebra",
+    "recovered_ratio_from_comp": 4.0,
+    "recovery_close": true
+  },
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not prove Sidon payment."
+  ],
+  "payload_sha256": "6c9bf2c2d38a1c656d1c03860b6b208c97e41abcf5e696597303041fea3b67e8",
+  "proof_status": "AUDIT second-opinion sigma\u21930 block construction for energy-extract",
+  "regeneration": "python experimental/scripts/verify_sigma_block_diagonal.py --emit-defaults",
+  "schema": "sigma-block-diagonal-v1",
+  "sigma_sequence_props": {
+    "all_eventual": true,
+    "block_sigmas_nonincreasing": true,
+    "eventual_below_grid": {
+      "0.01": {
+        "first_n_below": 25251,
+        "holds": true
+      },
+      "0.05": {
+        "first_n_below": 1051,
+        "holds": true
+      },
+      "0.1": {
+        "first_n_below": 276,
+        "holds": true
+      },
+      "0.2": {
+        "first_n_below": 76,
+        "holds": true
+      },
+      "0.5": {
+        "first_n_below": 16,
+        "holds": true
+      }
+    },
+    "final_sigma": 0.005,
+    "goes_to_zero": true,
+    "len": 100500
+  },
+  "source_pin": {
+    "file": "experimental/asymptotic_rs_mca.tex",
+    "has_energy_extract": true
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "disagrees_with_435": false,
+    "headline": "Second-opinion block-diagonal sigma_n=1/k sequence tends to 0 and is eventually below every tested sigma0; complementary Gord split recovers the heavy fiber on a synthetic toy. Agrees with #435 NO-ISSUE on the energy-extract diagonalization by a rebuilt construction.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "prop:energy-extract sigma diagonalization (second opinion vs #435)"
+}

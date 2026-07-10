@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - sigma-block-diagonal second-opinion
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/audits/sigma_block_diagonal.md`, `experimental/data/certificates/sigma-block-diagonal/sigma_block_diagonal.json`, `experimental/scripts/verify_sigma_block_diagonal.py`, `experimental/scripts/verify_sigma_block_diagonal_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Second-opinion sigma_n=1/k block sequence tends to 0; Gord complementary split recovers heavy fiber. Agrees with #435.
+- **How it is useful:** Second-opinion assurance for the asymptotic paper promotion path.
+- **What to do next:** No further action if designer confirms agreement with #435.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
