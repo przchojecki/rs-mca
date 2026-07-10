@@ -1,0 +1,333 @@
+{
+  "base_sha": "2acc7bef9584fa34fc564d3b6ba827332a41bb90",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "asserts": [
+      "exact collision-aware lowers at four deployed rows match dual routes",
+      "a0 exceeds B_*, a1 does not (identity-prefix floors)",
+      "toy grid U routes agree"
+    ],
+    "does_not_assert": [
+      "full Eprof upper bound at deployed rows",
+      "identity-dominant window holds at deployed scale",
+      "g* alone pins the finite adjacent pair without closed-ledger"
+    ]
+  },
+  "deployed_rows": [
+    {
+      "B_star": 274980728111395087,
+      "a0": {
+        "Eprof_identity_lower": 138634741058328833759,
+        "Eprof_lo_vs_B_star": true,
+        "L_list_floor": 138634741058327852652,
+        "U_collision_aware": 138634741058327852652,
+        "U_exceeds_B_star": true,
+        "a": 1116047,
+        "w": 67470
+      },
+      "a0_vs_cross": 5,
+      "a1": {
+        "Eprof_identity_lower": 57199011472,
+        "Eprof_lo_vs_B_star": false,
+        "L_list_floor": 57198030366,
+        "U_collision_aware": 57198030366,
+        "U_exceeds_B_star": false,
+        "a": 1116048,
+        "w": 67471
+      },
+      "a1_vs_cross": 6,
+      "a_cross_approx": 1116042,
+      "cross_minus_a0_over_n": -2.384185791015625e-06,
+      "g_T": 0.03217,
+      "g_star": 0.03217,
+      "g_star_bisection": 0.03217339488174941,
+      "kind": "mca",
+      "q_line": 93571093019388561295270373781649880353786165192103559169,
+      "row_id": "kb_mca",
+      "tau_bits_per_n": 2.7624181806896007e-05,
+      "within_O1_of_a0": true
+    },
+    {
+      "B_star": 274980728111395087,
+      "a0": {
+        "Eprof_identity_lower": 157702518233426956455,
+        "Eprof_lo_vs_B_star": true,
+        "L_list_floor": 157702518233425975347,
+        "U_collision_aware": 157702518233425975347,
+        "U_exceeds_B_star": true,
+        "a": 1116046,
+        "w": 67470
+      },
+      "a0_vs_cross": 4,
+      "a1": {
+        "Eprof_identity_lower": 65066134575,
+        "Eprof_lo_vs_B_star": false,
+        "L_list_floor": 65065153468,
+        "U_collision_aware": 65065153468,
+        "U_exceeds_B_star": false,
+        "a": 1116047,
+        "w": 67471
+      },
+      "a1_vs_cross": 5,
+      "a_cross_approx": 1116042,
+      "cross_minus_a0_over_n": -1.9073486328125e-06,
+      "g_T": 0.03217,
+      "g_star": 0.03217,
+      "g_star_bisection": 0.03217339488174941,
+      "kind": "list",
+      "q_line": 93571093019388561295270373781649880353786165192103559169,
+      "row_id": "kb_list",
+      "tau_bits_per_n": 2.7624181806896007e-05,
+      "within_O1_of_a0": true
+    },
+    {
+      "B_star": 16777215,
+      "a0": {
+        "Eprof_identity_lower": 4281388999556837,
+        "Eprof_lo_vs_B_star": true,
+        "L_list_floor": 4281388998575706,
+        "U_collision_aware": 4281388998575706,
+        "U_exceeds_B_star": true,
+        "a": 1116023,
+        "w": 67446
+      },
+      "a0_vs_cross": 2,
+      "a1": {
+        "Eprof_identity_lower": 2733830,
+        "Eprof_lo_vs_B_star": false,
+        "L_list_floor": 1752700,
+        "U_collision_aware": 1752700,
+        "U_exceeds_B_star": false,
+        "a": 1116024,
+        "w": 67447
+      },
+      "a1_vs_cross": 3,
+      "a_cross_approx": 1116021,
+      "cross_minus_a0_over_n": -9.5367431640625e-07,
+      "g_T": 0.03216,
+      "g_star": 0.03216,
+      "g_star_bisection": 0.03216172126868258,
+      "kind": "mca",
+      "q_line": 21267647892944572736998860269687930881,
+      "row_id": "m31_mca",
+      "tau_bits_per_n": 1.1444091796875e-05,
+      "within_O1_of_a0": true
+    },
+    {
+      "B_star": 16777215,
+      "a0": {
+        "Eprof_identity_lower": 4870025985669659,
+        "Eprof_lo_vs_B_star": true,
+        "L_list_floor": 4870025984688527,
+        "U_collision_aware": 4870025984688527,
+        "U_exceeds_B_star": true,
+        "a": 1116022,
+        "w": 67446
+      },
+      "a0_vs_cross": 1,
+      "a1": {
+        "Eprof_identity_lower": 2974809,
+        "Eprof_lo_vs_B_star": false,
+        "L_list_floor": 1993678,
+        "U_collision_aware": 1993678,
+        "U_exceeds_B_star": false,
+        "a": 1116023,
+        "w": 67447
+      },
+      "a1_vs_cross": 2,
+      "a_cross_approx": 1116021,
+      "cross_minus_a0_over_n": -4.76837158203125e-07,
+      "g_T": 0.03216,
+      "g_star": 0.03216,
+      "g_star_bisection": 0.03216172126868258,
+      "kind": "list",
+      "q_line": 21267647892944572736998860269687930881,
+      "row_id": "m31_list",
+      "tau_bits_per_n": 1.1444091796875e-05,
+      "within_O1_of_a0": true
+    }
+  ],
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "extension_tier": [
+    {
+      "B_star": 274980728111395087,
+      "a0": {
+        "Eprof_identity_lower": 57199011472,
+        "Eprof_lo_vs_B_star": false,
+        "L_list_floor": 57198030366,
+        "U_collision_aware": 57198030366,
+        "U_exceeds_B_star": false,
+        "a": 1116048,
+        "w": 67471
+      },
+      "a0_vs_cross": 6,
+      "a1": {
+        "Eprof_identity_lower": 981129,
+        "Eprof_lo_vs_B_star": false,
+        "L_list_floor": 24,
+        "U_collision_aware": 24,
+        "U_exceeds_B_star": false,
+        "a": 1116049,
+        "w": 67472
+      },
+      "a1_vs_cross": 7,
+      "a_cross_approx": 1116042,
+      "cross_minus_a0_over_n": -2.86102294921875e-06,
+      "g_T": 0.03217,
+      "g_star": 0.03217,
+      "g_star_bisection": 0.03217339488174941,
+      "kind": "mca",
+      "q_line": 93571093019388561295270373781649880353786165192103559169,
+      "row_id": "kb_mca_ap2",
+      "tau_bits_per_n": 2.7624181806896007e-05,
+      "within_O1_of_a0": true
+    }
+  ],
+  "generator_routes": {
+    "Eprof_lo": "1+(n-a+1)+L",
+    "L": "ceil(C(n,a)/p^w) via comb_batch",
+    "U_mca_A": "ceil_div formula",
+    "U_mca_B": "binary search ceil",
+    "g_star_A": "fine grid max",
+    "g_star_B": "bisection on H2_nats"
+  },
+  "gstar_table": [
+    {
+      "a0": 1116047,
+      "a_cross_approx": 1116042,
+      "delta_a": 5,
+      "delta_a_over_n": -2.384185791015625e-06,
+      "g_T": 0.03217,
+      "g_star": 0.03217,
+      "row_id": "kb_mca"
+    },
+    {
+      "a0": 1116046,
+      "a_cross_approx": 1116042,
+      "delta_a": 4,
+      "delta_a_over_n": -1.9073486328125e-06,
+      "g_T": 0.03217,
+      "g_star": 0.03217,
+      "row_id": "kb_list"
+    },
+    {
+      "a0": 1116023,
+      "a_cross_approx": 1116021,
+      "delta_a": 2,
+      "delta_a_over_n": -9.5367431640625e-07,
+      "g_T": 0.03216,
+      "g_star": 0.03216,
+      "row_id": "m31_mca"
+    },
+    {
+      "a0": 1116022,
+      "a_cross_approx": 1116021,
+      "delta_a": 1,
+      "delta_a_over_n": -4.76837158203125e-07,
+      "g_T": 0.03216,
+      "g_star": 0.03216,
+      "row_id": "m31_list"
+    }
+  ],
+  "honest_headline": "Collision-aware lower (eq:collision-aware-lower) recomputes exactly and matches integrated identity-prefix floors; profile-envelope identity lower 1+(n-a+1)+L is explicit; g*/g_T routes agree but do not by themselves certify the finite adjacent staircase without closed-ledger+RC.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "object": "profile-envelope quantitative spine at deployed rows + toys",
+  "payload_sha256": "d8184920666fb6cb8471ba3a0e7989d5462d2384b3bfb810472958a67857475d",
+  "statement_pins": {
+    "eq:collision-aware-lower": {
+      "line": 735,
+      "sha256_line": "9aa9465c2f22710a5222606fd52a32a8fcb23a7c2a1058706d73db37cd04cc72"
+    },
+    "eq:profile-envelope": {
+      "line": 114,
+      "sha256_line": "e0266e51af95bf757fb4c8965dea0899bf1a9d3a8465885ca9887bcf266d1a60"
+    },
+    "eq:target-crossing": {
+      "line": 307,
+      "sha256_line": "8a164dcfdfc7283d3da51339a3fe67be3e3ab81d535d7c453e5caa9a3e06fe13"
+    },
+    "eq:threshold-bracket": {
+      "line": 283,
+      "sha256_line": "142bc3521d2d7926bef759524bf5ba2cbb38efafcc3bc8d6e31bb32b412aa446"
+    },
+    "prop:collision-aware-lower": {
+      "line": 724,
+      "sha256_line": "37decb7ce4990dada97cc455a48bf8088722da869b9f8809137db1a670617e4a"
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "toy_grid": [
+    {
+      "Eprof_lo": 7,
+      "L": 1,
+      "L_ge_1": true,
+      "U": 1,
+      "U_routes_agree": true,
+      "a": 12,
+      "k": 8,
+      "n": 16,
+      "p": 17,
+      "pass": true,
+      "w": 4
+    },
+    {
+      "Eprof_lo": 36,
+      "L": 28,
+      "L_ge_1": true,
+      "U": 1,
+      "U_routes_agree": true,
+      "a": 10,
+      "k": 8,
+      "n": 16,
+      "p": 17,
+      "pass": true,
+      "w": 2
+    },
+    {
+      "Eprof_lo": 2718,
+      "L": 2704,
+      "L_ge_1": true,
+      "U": 0,
+      "U_routes_agree": true,
+      "a": 20,
+      "k": 16,
+      "n": 32,
+      "p": 17,
+      "pass": true,
+      "w": 4
+    },
+    {
+      "Eprof_lo": 1631282,
+      "L": 1631266,
+      "L_ge_1": true,
+      "U": 0,
+      "U_routes_agree": true,
+      "a": 18,
+      "k": 16,
+      "n": 32,
+      "p": 17,
+      "pass": true,
+      "w": 2
+    },
+    {
+      "Eprof_lo": 27,
+      "L": 1,
+      "L_ge_1": true,
+      "U": 1,
+      "U_routes_agree": true,
+      "a": 40,
+      "k": 32,
+      "n": 64,
+      "p": 257,
+      "pass": true,
+      "w": 8
+    }
+  ],
+  "verdict_summary": {
+    "a0_unsafe_a1_quiet": true,
+    "collision_aware_matches_identity_prefix_floors": true,
+    "g_star_routes_agree": true,
+    "g_star_vs_deployed_a0": "g_T/g* give asymptotic fractional crossings; absolute agreement index a_cross_approx is NOT claimed within O(1) of deployed a0 without the full identity-dominant + closed-ledger hypotheses \u2014 distances reported in gstar_table"
+  }
+}
