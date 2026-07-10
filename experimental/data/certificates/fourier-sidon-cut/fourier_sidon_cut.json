@@ -1,0 +1,161 @@
+{
+  "beats_trivial_baseline": false,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": false,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "FULL_FINITE_CENSUS",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "menu": [
+    {
+      "all_Delta_in_0_1": true,
+      "example_high_energy": null,
+      "example_sidon_light": {
+        "Delta": "3/4",
+        "Delta_float": 0.75,
+        "E": 6,
+        "high_energy_relative": false,
+        "key": [
+          3
+        ],
+        "sidon_light_abs_proxy": true,
+        "sidon_light_relative": true,
+        "size": 2
+      },
+      "has_both_kinds": false,
+      "m": 2,
+      "median_Delta": 0.75,
+      "n": 4,
+      "num_fibers_size_ge2": 1,
+      "num_high_energy_relative": 0,
+      "num_sidon_light_relative": 1,
+      "p": 5,
+      "sigma": 0.05,
+      "split_note": "relative median split on Delta; abs e^{-sigma N} rarely hits at tiny n",
+      "thresh_2^{-sigma n}": 0.8705505632961241,
+      "w": 1
+    },
+    {
+      "all_Delta_in_0_1": true,
+      "example_high_energy": {
+        "Delta": "3/4",
+        "Delta_float": 0.75,
+        "E": 6,
+        "high_energy_relative": true,
+        "key": [
+          4
+        ],
+        "sidon_light_abs_proxy": true,
+        "sidon_light_relative": false,
+        "size": 2
+      },
+      "example_sidon_light": {
+        "Delta": "5/9",
+        "Delta_float": 0.5555555555555556,
+        "E": 15,
+        "high_energy_relative": false,
+        "key": [
+          3
+        ],
+        "sidon_light_abs_proxy": true,
+        "sidon_light_relative": true,
+        "size": 3
+      },
+      "has_both_kinds": true,
+      "m": 3,
+      "median_Delta": 0.5555555555555556,
+      "n": 6,
+      "num_fibers_size_ge2": 7,
+      "num_high_energy_relative": 1,
+      "num_sidon_light_relative": 6,
+      "p": 7,
+      "sigma": 0.05,
+      "split_note": "relative median split on Delta; abs e^{-sigma N} rarely hits at tiny n",
+      "thresh_2^{-sigma n}": 0.8122523963562355,
+      "w": 1
+    },
+    {
+      "all_Delta_in_0_1": true,
+      "example_high_energy": null,
+      "example_sidon_light": {
+        "Delta": "3/4",
+        "Delta_float": 0.75,
+        "E": 6,
+        "high_energy_relative": false,
+        "key": [
+          4,
+          3
+        ],
+        "sidon_light_abs_proxy": true,
+        "sidon_light_relative": true,
+        "size": 2
+      },
+      "has_both_kinds": false,
+      "m": 3,
+      "median_Delta": 0.75,
+      "n": 6,
+      "num_fibers_size_ge2": 1,
+      "num_high_energy_relative": 0,
+      "num_sidon_light_relative": 1,
+      "p": 7,
+      "sigma": 0.05,
+      "split_note": "relative median split on Delta; abs e^{-sigma N} rarely hits at tiny n",
+      "thresh_2^{-sigma n}": 0.8122523963562355,
+      "w": 2
+    },
+    {
+      "all_Delta_in_0_1": true,
+      "example_high_energy": null,
+      "example_sidon_light": {
+        "Delta": "3/4",
+        "Delta_float": 0.75,
+        "E": 6,
+        "high_energy_relative": false,
+        "key": [
+          6,
+          0
+        ],
+        "sidon_light_abs_proxy": true,
+        "sidon_light_relative": true,
+        "size": 2
+      },
+      "has_both_kinds": false,
+      "m": 4,
+      "median_Delta": 0.75,
+      "n": 8,
+      "num_fibers_size_ge2": 9,
+      "num_high_energy_relative": 0,
+      "num_sidon_light_relative": 9,
+      "p": 11,
+      "sigma": 0.05,
+      "split_note": "relative median split on Delta; abs e^{-sigma N} rarely hits at tiny n",
+      "thresh_2^{-sigma n}": 0.757858283255199,
+      "w": 2
+    }
+  ],
+  "nonclaims": [
+    "Does not pay the asymptotic Sidon cell.",
+    "Relative median split is a toy proxy, not the paper's continuum Sidon cut."
+  ],
+  "payload_sha256": "c03c9a4614319db9371ceb00f13b4df062ee543aeb52bf13100fb42ec3a88543",
+  "proof_status": "AUDIT Sidon/high-energy split examples on toy fibers",
+  "regeneration": "python experimental/scripts/verify_fourier_sidon_cut.py --emit-defaults",
+  "schema": "fourier-sidon-cut-v1",
+  "source_pin": {
+    "file": "experimental/asymptotic_rs_mca.tex",
+    "label": "def:sidon-paid",
+    "line": 196
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Toy Fourier/Sidon cut: exact Delta=E/|F|^3 on ES-prefix fibers; relative median split exhibits lighter vs heavier fibers with exact numbers. Absolute e^{-sigma N} rarely triggers at tiny n \u2014 disclosed. Exposition only.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "def:sidon-paid / prop:energy-extract (instantiation)"
+}

@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Add Fourier Sidon cut examples
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/audits/fourier_sidon_cut.md`, `experimental/data/certificates/fourier-sidon-cut/fourier_sidon_cut.json`, `experimental/scripts/verify_fourier_sidon_cut.py`, `experimental/scripts/verify_fourier_sidon_cut_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact Delta on fibers; relative Sidon/high-energy split. Exposition only.
+- **How it is useful:** AGENTS.md priority-3 proof-object instantiation for audit/exposition.
+- **What to do next:** No frontier claim; optional larger toys.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
