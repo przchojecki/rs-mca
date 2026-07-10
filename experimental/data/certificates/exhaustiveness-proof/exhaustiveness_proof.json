@@ -1,0 +1,244 @@
+{
+  "all_pass": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "checker_route": "dual bad-slope routes on toys; t=1 special case; restricted sub-atlas fails",
+  "claim_boundaries": {
+    "is_counterexample": false,
+    "is_measurement": false,
+    "is_theorem": true,
+    "theorem_scope": "full |E|<=t secant atlas; PO atlas conditional on draft thm"
+  },
+  "evidence_type": "FINITE_TOY_ROW",
+  "falsifiable": true,
+  "full_exhaustive_toys": true,
+  "generator_route": "Lemmas A-C from secant compiler + first-match projections; toy confirmation",
+  "hard_input": "a",
+  "honest_headline": "Rung PROVED-SPECIAL: full secant atlas exhaustive (Lemma A); t=1 ok; restricted sub-atlas non-exhaustive exhibit=True",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not re-prove full PO disintegration (conditional import of L3744).",
+    "Incomplete atlases can miss witnesses (shown by |E|=t-only).",
+    "Lane (a) only."
+  ],
+  "object": "first-match atlas exhaustiveness (full secant atlas)",
+  "payload_sha256": "e1f326f0015910ceacf584727d462d0d2420e2995f4bfdd23be51386db428361",
+  "pins": {
+    "def:first-match": {
+      "found": true,
+      "line": 1453,
+      "paste": "\\label{def:first-match}"
+    },
+    "thm:canonical-partial-occupancy-atlas": {
+      "found": true,
+      "line": 3744,
+      "paste": "\\label{thm:canonical-partial-occupancy-atlas}"
+    },
+    "thm:syndrome-secant-exact": {
+      "found": true,
+      "line": 1607,
+      "paste": "\\label{thm:syndrome-secant-exact}"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "PROVED-SPECIAL",
+  "proof_text": "Lemma A (full secant atlas is witness-exhaustive).\nLet D be the evaluation domain, t = n-a, and for a syndrome line (y0,y1) put\n  B = {gamma in F : exists E subset D, |E|<=t, y0+gamma y1 in V_E,\n       {y0,y1} not subset V_E},\nas in thm:syndrome-secant-exact. For each E with |E|<=t let\n  Z_E = {gamma : y0+gamma y1 in V_E and {y0,y1} not subset V_E}.\nThen B = union_{|E|<=t} Z_E by definition of B. Order these cells arbitrarily and\ndefine first-match projections Z_E^circ as in def:first-match (2.3). The disjoint\nunion of Z_E^circ equals the union of Z_E, hence equals B. Therefore every bad\nslope is covered by exactly one first-match cell: the full secant atlas is\nwitness-exhaustive for every finite syndrome line.\n\nLemma B (t=1). If t=1 then every witnessing E is a singleton or empty; the\natlas of cells |E|<=1 is the full secant atlas, hence exhaustive by Lemma A.\n\nLemma C (canonical PO atlas \u2014 conditional). thm:canonical-partial-occupancy-atlas\nasserts that the ordered family of nonempty canonical slices Omega_{t,m,p,r}\nis a witness-exhaustive first-match atlas. Relative to the secant support\ndescription, every bad gamma has a witness E with |E|<=t, and the complementary\nagreement support S=D\\E of size >=a falls into a unique coarse occupancy type;\nthe theorem packages those types as the exhaustive atlas. We treat the full\nPO statement as imported (CONDITIONAL on that theorem) and verify the secant\nsupport half on toys (every bad gamma has some E of size <=t).\n\nREDUCED open. For an atlas that deliberately omits some |E|<=t cells (e.g. only\nalgebraic profiles, residual unpaid), characterize when first-match can leave a\nbad gamma uncovered: precisely when every witnessing E for that gamma is among\nthe omitted cells. The restricted |E|=t-only atlas is the model example of a\nnon-exhaustive sub-atlas.",
+  "regeneration": "py -3.13 experimental/scripts/verify_exhaustiveness_proof.py",
+  "restricted_nonexhaustive_exhibit": true,
+  "rung": "PROVED-SPECIAL",
+  "schema": "exhaustiveness_proof.v1",
+  "status": "EXPERIMENTAL",
+  "t1_exhaustive": true,
+  "toys": [
+    {
+      "R": 2,
+      "a": 2,
+      "examples_missing_restricted": [
+        {
+          "a": 2,
+          "gamma": 0,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        },
+        {
+          "a": 2,
+          "gamma": 0,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        },
+        {
+          "a": 2,
+          "gamma": 2,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "a": 2,
+          "gamma": 0,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "a": 2,
+          "gamma": 0,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        }
+      ],
+      "full_exhaustive": true,
+      "k": 2,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 58,
+      "n": 4,
+      "n_lines": 23,
+      "p": 5,
+      "restricted_exhaustive": false,
+      "routes_agree_all": true,
+      "routes_agree_lines": 23,
+      "t": 2,
+      "total_bad_slope_instances": 58
+    },
+    {
+      "R": 2,
+      "a": 3,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 2,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 4,
+      "n_lines": 23,
+      "p": 5,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 23,
+      "t": 1,
+      "total_bad_slope_instances": 71
+    },
+    {
+      "R": 3,
+      "a": 3,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 2,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 5,
+      "n_lines": 25,
+      "p": 7,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 25,
+      "t": 2,
+      "total_bad_slope_instances": 141
+    },
+    {
+      "R": 3,
+      "a": 4,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 2,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 5,
+      "n_lines": 25,
+      "p": 7,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 25,
+      "t": 1,
+      "total_bad_slope_instances": 20
+    },
+    {
+      "R": 3,
+      "a": 5,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 3,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 6,
+      "n_lines": 25,
+      "p": 11,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 25,
+      "t": 1,
+      "total_bad_slope_instances": 16
+    },
+    {
+      "R": 4,
+      "a": 4,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 3,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 7,
+      "n_lines": 25,
+      "p": 11,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 25,
+      "t": 3,
+      "total_bad_slope_instances": 268
+    },
+    {
+      "R": 4,
+      "a": 5,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 4,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 8,
+      "n_lines": 25,
+      "p": 13,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 25,
+      "t": 3,
+      "total_bad_slope_instances": 323
+    }
+  ],
+  "verdict": "PROVED-SPECIAL",
+  "weave": [
+    "#560",
+    "#563",
+    "thm:syndrome-secant-exact",
+    "def:first-match"
+  ]
+}

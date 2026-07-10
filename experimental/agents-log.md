@@ -2821,3 +2821,7 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W56-M2 exhaustiveness-proof
+- EXPERIMENTAL PROVED-SPECIAL: full secant atlas exhaustive (Lemma A); restricted non-exhaustive; input a.
+
