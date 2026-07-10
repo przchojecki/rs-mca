@@ -1,0 +1,1541 @@
+{
+  "adversarial": [
+    {
+      "N": 10,
+      "best": {
+        "L": 91,
+        "M": 100,
+        "barN": 1.098901098901099,
+        "energy_routes_ok": true,
+        "max_f": 3,
+        "max_f_low": 3,
+        "ratio_low": 2.73,
+        "tag": "sparse_11"
+      },
+      "ce_candidate": false,
+      "density": 0.4,
+      "m": 4,
+      "p": 17
+    },
+    {
+      "N": 12,
+      "best": {
+        "L": 233,
+        "M": 424,
+        "barN": 1.8197424892703862,
+        "energy_routes_ok": true,
+        "max_f": 6,
+        "max_f_low": 6,
+        "ratio_low": 3.297169811320755,
+        "tag": "sparse_14"
+      },
+      "ce_candidate": false,
+      "density": 0.5,
+      "m": 6,
+      "p": 17
+    },
+    {
+      "N": 12,
+      "best": {
+        "L": 213,
+        "M": 309,
+        "barN": 1.4507042253521127,
+        "energy_routes_ok": true,
+        "max_f": 4,
+        "max_f_low": 4,
+        "ratio_low": 2.757281553398058,
+        "tag": "sparse_31"
+      },
+      "ce_candidate": false,
+      "density": 0.3333333333333333,
+      "m": 4,
+      "p": 17
+    },
+    {
+      "N": 14,
+      "best": {
+        "L": 289,
+        "M": 3432,
+        "barN": 11.875432525951558,
+        "energy_routes_ok": true,
+        "max_f": 17,
+        "max_f_low": 17,
+        "ratio_low": 1.4315268065268065,
+        "tag": "full"
+      },
+      "ce_candidate": false,
+      "density": 0.5,
+      "m": 7,
+      "p": 17
+    },
+    {
+      "N": 16,
+      "best": {
+        "L": 361,
+        "M": 3000,
+        "barN": 8.310249307479225,
+        "energy_routes_ok": true,
+        "max_f": 20,
+        "max_f_low": 20,
+        "ratio_low": 2.4066666666666663,
+        "tag": "sample_26"
+      },
+      "ce_candidate": false,
+      "density": 0.5,
+      "m": 8,
+      "p": 19
+    }
+  ],
+  "all_pass": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "ce_policy": "density>=0.25, N>=10, max_f_low>=max(8,N), ratio_low>=max(8,N); O(1) ratios are not CE",
+  "charts_sample": [
+    {
+      "L": 28,
+      "M": 28,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.0,
+      "ce_candidate": false,
+      "density": 0.25,
+      "frontier_top10": [
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 1.0,
+      "largest_fiber_E": 1,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 1.0,
+      "linear_density": true,
+      "m": 2,
+      "max_f": 1,
+      "max_f_low": 0,
+      "mean_cs_excess_top_quartile_f": 1.0,
+      "min_delta_among_f_ge_2": null,
+      "min_delta_large_fibers": null,
+      "n_fibers": 28,
+      "n_low": 0,
+      "p": 9,
+      "ratio_low": 0.0,
+      "shallow_ratio": 0.75
+    },
+    {
+      "L": 28,
+      "M": 28,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.0,
+      "ce_candidate": false,
+      "density": 0.25,
+      "frontier_top10": [
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 1.0,
+      "largest_fiber_E": 1,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 1.0,
+      "linear_density": true,
+      "m": 2,
+      "max_f": 1,
+      "max_f_low": 0,
+      "mean_cs_excess_top_quartile_f": 1.0,
+      "min_delta_among_f_ge_2": null,
+      "min_delta_large_fibers": null,
+      "n_fibers": 28,
+      "n_low": 0,
+      "p": 13,
+      "ratio_low": 0.0,
+      "shallow_ratio": 0.9013878188659973
+    },
+    {
+      "L": 28,
+      "M": 28,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.0,
+      "ce_candidate": false,
+      "density": 0.25,
+      "frontier_top10": [
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 1.0,
+      "largest_fiber_E": 1,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 1.0,
+      "linear_density": true,
+      "m": 2,
+      "max_f": 1,
+      "max_f_low": 0,
+      "mean_cs_excess_top_quartile_f": 1.0,
+      "min_delta_among_f_ge_2": null,
+      "min_delta_large_fibers": null,
+      "n_fibers": 28,
+      "n_low": 0,
+      "p": 17,
+      "ratio_low": 0.0,
+      "shallow_ratio": 1.0307764064044151
+    },
+    {
+      "L": 28,
+      "M": 28,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.0,
+      "ce_candidate": false,
+      "density": 0.25,
+      "frontier_top10": [
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 1.0,
+      "largest_fiber_E": 1,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 1.0,
+      "linear_density": true,
+      "m": 2,
+      "max_f": 1,
+      "max_f_low": 0,
+      "mean_cs_excess_top_quartile_f": 1.0,
+      "min_delta_among_f_ge_2": null,
+      "min_delta_large_fibers": null,
+      "n_fibers": 28,
+      "n_low": 0,
+      "p": 31,
+      "ratio_low": 0.0,
+      "shallow_ratio": 1.3919410907075054
+    },
+    {
+      "L": 28,
+      "M": 28,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.0,
+      "ce_candidate": false,
+      "density": 0.25,
+      "frontier_top10": [
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 1.0,
+      "largest_fiber_E": 1,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 1.0,
+      "linear_density": true,
+      "m": 2,
+      "max_f": 1,
+      "max_f_low": 0,
+      "mean_cs_excess_top_quartile_f": 1.0,
+      "min_delta_among_f_ge_2": null,
+      "min_delta_large_fibers": null,
+      "n_fibers": 28,
+      "n_low": 0,
+      "p": 37,
+      "ratio_low": 0.0,
+      "shallow_ratio": 1.5206906325745548
+    },
+    {
+      "L": 28,
+      "M": 28,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.0,
+      "ce_candidate": false,
+      "density": 0.25,
+      "frontier_top10": [
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 1.0,
+      "largest_fiber_E": 1,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 1.0,
+      "linear_density": true,
+      "m": 2,
+      "max_f": 1,
+      "max_f_low": 0,
+      "mean_cs_excess_top_quartile_f": 1.0,
+      "min_delta_among_f_ge_2": null,
+      "min_delta_large_fibers": null,
+      "n_fibers": 28,
+      "n_low": 0,
+      "p": 41,
+      "ratio_low": 0.0,
+      "shallow_ratio": 1.6007810593582121
+    },
+    {
+      "L": 47,
+      "M": 56,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.1914893617021276,
+      "ce_candidate": false,
+      "density": 0.375,
+      "frontier_top10": [
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 0.75,
+      "largest_fiber_E": 6,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 0.75,
+      "linear_density": true,
+      "m": 3,
+      "max_f": 2,
+      "max_f_low": 2,
+      "mean_cs_excess_top_quartile_f": 1.4090909090909092,
+      "min_delta_among_f_ge_2": 0.75,
+      "min_delta_large_fibers": 0.75,
+      "n_fibers": 47,
+      "n_low": 9,
+      "p": 9,
+      "ratio_low": 1.6785714285714286,
+      "shallow_ratio": 0.75
+    },
+    {
+      "L": 53,
+      "M": 56,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.0566037735849056,
+      "ce_candidate": false,
+      "density": 0.375,
+      "frontier_top10": [
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 0.75,
+      "largest_fiber_E": 6,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 0.75,
+      "linear_density": true,
+      "m": 3,
+      "max_f": 2,
+      "max_f_low": 2,
+      "mean_cs_excess_top_quartile_f": 1.1153846153846154,
+      "min_delta_among_f_ge_2": 0.75,
+      "min_delta_large_fibers": 0.75,
+      "n_fibers": 53,
+      "n_low": 3,
+      "p": 13,
+      "ratio_low": 1.8928571428571428,
+      "shallow_ratio": 0.9013878188659973
+    },
+    {
+      "L": 54,
+      "M": 56,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.037037037037037,
+      "ce_candidate": false,
+      "density": 0.375,
+      "frontier_top10": [
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 0.75,
+      "largest_fiber_E": 6,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 0.75,
+      "linear_density": true,
+      "m": 3,
+      "max_f": 2,
+      "max_f_low": 2,
+      "mean_cs_excess_top_quartile_f": 1.0769230769230769,
+      "min_delta_among_f_ge_2": 0.75,
+      "min_delta_large_fibers": 0.75,
+      "n_fibers": 54,
+      "n_low": 2,
+      "p": 17,
+      "ratio_low": 1.9285714285714286,
+      "shallow_ratio": 1.0307764064044151
+    },
+    {
+      "L": 54,
+      "M": 56,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.037037037037037,
+      "ce_candidate": false,
+      "density": 0.375,
+      "frontier_top10": [
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 0.75,
+      "largest_fiber_E": 6,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 0.75,
+      "linear_density": true,
+      "m": 3,
+      "max_f": 2,
+      "max_f_low": 2,
+      "mean_cs_excess_top_quartile_f": 1.0769230769230769,
+      "min_delta_among_f_ge_2": 0.75,
+      "min_delta_large_fibers": 0.75,
+      "n_fibers": 54,
+      "n_low": 2,
+      "p": 31,
+      "ratio_low": 1.9285714285714286,
+      "shallow_ratio": 1.3919410907075054
+    },
+    {
+      "L": 54,
+      "M": 56,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.037037037037037,
+      "ce_candidate": false,
+      "density": 0.375,
+      "frontier_top10": [
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 0.75,
+      "largest_fiber_E": 6,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 0.75,
+      "linear_density": true,
+      "m": 3,
+      "max_f": 2,
+      "max_f_low": 2,
+      "mean_cs_excess_top_quartile_f": 1.0769230769230769,
+      "min_delta_among_f_ge_2": 0.75,
+      "min_delta_large_fibers": 0.75,
+      "n_fibers": 54,
+      "n_low": 2,
+      "p": 37,
+      "ratio_low": 1.9285714285714286,
+      "shallow_ratio": 1.5206906325745548
+    },
+    {
+      "L": 54,
+      "M": 56,
+      "N": 8,
+      "Omega_mode": "all",
+      "barN": 1.037037037037037,
+      "ce_candidate": false,
+      "density": 0.375,
+      "frontier_top10": [
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 0.75,
+          "E": 6,
+          "f": 2,
+          "log_f_over_N": 0.08664339756999316
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        },
+        {
+          "Delta": 1.0,
+          "E": 1,
+          "f": 1,
+          "log_f_over_N": 0.0
+        }
+      ],
+      "largest_excess_over_sidon": 0.0,
+      "largest_fiber_Delta": 0.75,
+      "largest_fiber_E": 6,
+      "largest_near_sidon": true,
+      "largest_sidon_floor": 0.75,
+      "linear_density": true,
+      "m": 3,
+      "max_f": 2,
+      "max_f_low": 2,
+      "mean_cs_excess_top_quartile_f": 1.0769230769230769,
+      "min_delta_among_f_ge_2": 0.75,
+      "min_delta_large_fibers": 0.75,
+      "n_fibers": 54,
+      "n_low": 2,
+      "p": 41,
+      "ratio_low": 1.9285714285714286,
+      "shallow_ratio": 1.6007810593582121
+    }
+  ],
+  "checker_route": "sum-histogram energy on extremal; recompute Delta; phase0 cube3",
+  "claim_boundaries": {
+    "is_counterexample": false,
+    "is_measurement": true,
+    "is_theorem": false
+  },
+  "evidence_type": "FINITE_TOY_ROW",
+  "falsifiable": true,
+  "generator_route": "linear-density R=2 fiber census; size-vs-Delta frontier; adversarial max low-Delta fiber",
+  "hard_input": "b / C9 crux linear density R=2",
+  "honest_headline": "Rung MEASURED-SUPPORT: linear charts=108; max_f_low=32; max_ratio_low=4.0673076923076925; largest_near_sidon=106/108; ce=False",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "min_density": 0.25,
+  "nonclaims": [
+    "Toy N<=16; asymptotic exp-large not fully reached.",
+    "thr is finite stand-in for e^{-sigma N}.",
+    "Not a proof of large=>high energy."
+  ],
+  "object": "R=2 linear-density large fiber vs additive energy",
+  "payload_sha256": "f0e1f3bec7c8369d9cb7929890c3991047ee9bd6ff6885e2ac6b6ab972dfc185",
+  "phase0": {
+    "cert_energy": 216,
+    "energy_4tuple": 216,
+    "energy_diff": 216,
+    "pass": true,
+    "paste": "image_scale_mi_ma sidon_energy_cube3 energy=216 Delta=27/64"
+  },
+  "proof_status": "MEASURED-SUPPORT",
+  "regeneration": "py -3.13 experimental/scripts/verify_largefiber_lowenergy_hunt.py",
+  "rung": "MEASURED-SUPPORT",
+  "scatter_frontier": [
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    },
+    {
+      "Delta": 1.0,
+      "N": 8,
+      "density": 0.25,
+      "f": 1,
+      "log_f_over_N": 0.0,
+      "m": 2
+    }
+  ],
+  "schema": "largefiber_lowenergy_hunt.v1",
+  "status": "EXPERIMENTAL",
+  "summary": {
+    "N_range": [
+      8,
+      16
+    ],
+    "any_counterexample": false,
+    "densities_reached": [
+      0.25,
+      0.286,
+      0.3,
+      0.312,
+      0.333,
+      0.357,
+      0.375,
+      0.4,
+      0.417,
+      0.429,
+      0.5
+    ],
+    "largest_fibers_above_thr": false,
+    "max_f_low_linear": 32,
+    "max_ratio_low_linear": 4.0673076923076925,
+    "n_charts": 114,
+    "n_largest_near_sidon": 106,
+    "n_linear": 108,
+    "rung": "MEASURED-SUPPORT"
+  },
+  "thr": 0.75,
+  "verdict": "MEASURED-SUPPORT",
+  "weave": [
+    "W52",
+    "#579",
+    "#575",
+    "C9"
+  ]
+}
