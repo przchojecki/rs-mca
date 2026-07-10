@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Add bad-line strata instantiation examples
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/audits/bad_line_strata.md`, `experimental/data/certificates/bad-line-strata/bad_line_strata.json`, `experimental/scripts/verify_bad_line_strata.py`, `experimental/scripts/verify_bad_line_strata_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** C4 tangent r+1, C1 coset pair, C7 raw>image toys. Exposition only.
+- **How it is useful:** AGENTS.md priority-3 proof-object instantiation for audit/exposition.
+- **What to do next:** No frontier claim; optional larger toys.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

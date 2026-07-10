@@ -1,0 +1,131 @@
+{
+  "beats_trivial_baseline": false,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": false,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "FINITE_TOY_ROW",
+  "examples": [
+    {
+      "A": 3,
+      "count": 2,
+      "f1": [
+        0,
+        4,
+        0,
+        0
+      ],
+      "f2": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "k": 1,
+      "matches_exact_cell": true,
+      "mca_bad_slopes": [
+        0,
+        1
+      ],
+      "n": 4,
+      "oracle_enumerated": true,
+      "paper_cell": "def:closed-ledger (C4)",
+      "paying_theorem": "prop:capf-tangent / thm:deep-mca (via asymptotic C4 import)",
+      "predicted_count": 2,
+      "q": 5,
+      "r": 1,
+      "stratum": "C4_tangent_high_agreement"
+    },
+    {
+      "A": 3,
+      "count": 1,
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "f1": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "f2": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "has_at_least_one_bad": true,
+      "k": 1,
+      "mca_bad_slopes": [
+        1
+      ],
+      "n": 4,
+      "note": "coset-constant pair; pays via quotient structure exposition",
+      "paper_cell": "def:closed-ledger (C1)",
+      "paying_theorem": "def:closed-ledger (C1) quotient-pullback cells",
+      "q": 5,
+      "stratum": "C1_quotient_pullback"
+    },
+    {
+      "A": 3,
+      "U": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "distinct_explaining_codewords": 1,
+      "k": 1,
+      "n": 4,
+      "note": "raw C(n,A) supports vs few constant codewords \u2014 saturation gap toy",
+      "paper_cell": "def:closed-ledger (C7)",
+      "paying_theorem": "def:closed-ledger (C7) / thm:saturation (grande_finale)",
+      "q": 5,
+      "raw_exceeds_image": true,
+      "raw_support_count": 4,
+      "stratum": "C7_saturation_image_collapse"
+    }
+  ],
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not prove closed-ledger package.",
+    "Does not advance the asymptotic frontier.",
+    "C1 example is coset-structure exposition, not a full quotient-remainder payment."
+  ],
+  "payload_sha256": "1f5c2bd1b4a6854a28997c7f08de48642f0620da6f91d0b94dfe76e98b4e17a6",
+  "proof_status": "AUDIT instantiation examples for closed-ledger strata (not a proof)",
+  "regeneration": "python experimental/scripts/verify_bad_line_strata.py --emit-defaults",
+  "schema": "bad-line-strata-v1",
+  "source_pin": {
+    "file": "experimental/asymptotic_rs_mca.tex",
+    "labels": {
+      "def:cells": {
+        "line": 77,
+        "present": true
+      },
+      "def:closed-ledger": {
+        "line": 89,
+        "present": true
+      },
+      "thm:closed-ledger-package": {
+        "line": 105,
+        "present": true
+      }
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Worked toy table: C4 tangent witness achieves exact r+1 MCA-bad slopes; C1 coset-constant pair has >=1 bad slope; C7 raw supports exceed image codewords. Exposition/instantiation only \u2014 not ledger progress.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "def:closed-ledger structured cases / AGENTS.md priority-3"
+}
