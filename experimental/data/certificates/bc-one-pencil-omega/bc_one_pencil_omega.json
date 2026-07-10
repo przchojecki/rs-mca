@@ -1,0 +1,74 @@
+{
+  "base_sha": "2b1a7e20654d44d0beefcd5c7d508be618b0cea1",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "asserts": [
+      "printed omega values are n-m-1000",
+      "floor(n/omega)=2 for both printed and corrected"
+    ],
+    "does_not_assert": [
+      "that the mathematical one-pencil bound is false",
+      "automatic edit of grande_finale.tex"
+    ],
+    "is_counterexample": false
+  },
+  "evidence_type": "CANONICAL_STATEMENT_HIT",
+  "generator_routes": {
+    "floor": "integer division n//omega both printed and corrected",
+    "omega_A": "n - m exact integer",
+    "omega_B": "n + (-m)"
+  },
+  "honest_headline": "FIXED-class table typo: omega understated by 1000; one-pencil floor 2 unaffected. PARKS for Ken (maintainer-text correction).",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "object": "cor:bc-one-pencil worked table omega correction",
+  "park_reason": "correction against maintainer text (grande_finale.tex table)",
+  "parks_for_ken": true,
+  "payload_sha256": "d1bcf6126f35e16c77a21edb7b4485bc63dbaf8e89c5fc2d99f2786ba68982b4",
+  "printed_table_hits": {
+    "kb": {
+      "line": 1774,
+      "m": 1116048,
+      "omega_printed": 980104,
+      "text": "\\text{KoalaBear MCA} & 1116048 & 980104 & 2\\\\"
+    },
+    "m31": {
+      "line": 1775,
+      "m": 1116024,
+      "omega_printed": 980128,
+      "text": "\\text{Mersenne-31 MCA} & 1116024 & 980128 & 2"
+    }
+  },
+  "repair_suggestion": "In cor:bc-one-pencil table, replace omega 980104\u2192981104 (KB) and 980128\u2192981128 (M31); floor(n/omega)=2 unchanged.",
+  "rows": [
+    {
+      "discrepancy": 1000,
+      "floor_n_over_omega_correct": 2,
+      "floor_n_over_omega_printed": 2,
+      "floor_unaffected": true,
+      "m_a_plus": 1116048,
+      "n": 2097152,
+      "omega_correct_n_minus_m": 981104,
+      "omega_printed_in_tex": 980104,
+      "row_id": "kb_mca"
+    },
+    {
+      "discrepancy": 1000,
+      "floor_n_over_omega_correct": 2,
+      "floor_n_over_omega_printed": 2,
+      "floor_unaffected": true,
+      "m_a_plus": 1116024,
+      "n": 2097152,
+      "omega_correct_n_minus_m": 981128,
+      "omega_printed_in_tex": 980128,
+      "row_id": "m31_mca"
+    }
+  ],
+  "statement_pin": {
+    "label": "cor:bc-one-pencil",
+    "line": 1764,
+    "path": "experimental/grande_finale.tex"
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "verdict": "FIXED"
+}
