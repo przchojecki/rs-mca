@@ -1,0 +1,159 @@
+{
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "4-fold energy Gsid; independent SFM1 ratio recompute",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "falsifiable": true,
+  "generator_route": "Counter energy Gsid on residual fibers; SFM1 ratio R*sqrt(p)/N",
+  "hard_input": "b",
+  "honest_headline": "ISOLATE (b): MISSING_B = primitive-residual Sidon payment (Gsid=e^{o(Nq)} on post-algebraic residual). Dual-route residual Gsid toys; SFM1 holds on shallow (R,N,p) and FAILS on deployed-like deep params \u2014 shallow thm does not cover deployed. Weave #527.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "missing_input": {
+    "checkable_toy": "Build residual fiber family by removing a designated algebraic dense fiber; compute Gsid dual routes; compare shallow (R,N,p) to SFM1 vs deep deployed-like (R,N).",
+    "id": "MISSING_B_primitive_residual_Sidon_payment",
+    "not_closed_by": [
+      "ambient identity-normalized Sidon (refuted for unrestricted deep prefix)",
+      "thm:unconditional-shallow-mi-ma (requires R sqrt(p)=o(N), odd prime coset/twin-coset)",
+      "image-scale MI+MA without residual Sidon cut"
+    ],
+    "statement": "On every primitive first-match residual leaf (after algebraic quotient/subfield/planted/remainder cells are charged), with image-normalized scale barN = |Omega0|/L and fiber sizes f_s, the Sidon-heavy moment Gsid_{q,sigma} = L^{-1} sum_{Delta_s <= exp(-sigma N)} (f_s/barN)^q is e^{o(Nq)} for every fixed sigma>0 and every logarithmic q used by primitive-Q (def:sidon-paid-cell restricted to the residual). Equivalent operational form: no positive-rate Sidon-heavy obstruction on the residual (def:sidon-heavy)."
+  },
+  "n_rows": 4,
+  "nonclaims": [
+    "Does not prove residual Sidon payment.",
+    "Does not close hard input (b).",
+    "Deployed (R,N,p) are schematic scale markers, not a full q-r1 recompute."
+  ],
+  "object": "ISOLATE hard input (b): MISSING residual Sidon payment statement",
+  "payload_sha256": "52ecce5a59f4880982314baa55f02c4bb25c9b2a3b09adaef38b577bf06224a2",
+  "pins": {
+    "def:sidon-heavy": {
+      "found": true,
+      "line": 5093,
+      "sha256_line": "18a3170ea448de33"
+    },
+    "def:sidon-paid-cell": {
+      "found": true,
+      "line": 5130,
+      "sha256_line": "d779f90f40120dbf"
+    },
+    "eq:image-ambient-scales": {
+      "found": true,
+      "line": 4837,
+      "sha256_line": "e48756d4c07c966d"
+    },
+    "prop:ordinary-moment-split": {
+      "found": true,
+      "line": 5108,
+      "sha256_line": "5679fb714bedf7cb"
+    },
+    "thm:unconditional-shallow-mi-ma": {
+      "found": true,
+      "line": 5267,
+      "sha256_line": "77a4bd0f110b8d9d"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "MEASURED isolation + SFM1 vs deep parameter separation",
+  "regeneration": "python experimental/scripts/verify_sidon_residual_input.py --emit-defaults",
+  "rows": [
+    {
+      "Gsid_full": 0.0,
+      "Gsid_residual_chk": 0.0,
+      "Gsid_residual_gen": 0.0,
+      "kind": "residual_vs_full_Gsid",
+      "note": "residual family after removing dense algebraic fiber",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "all_deep_fail_sfm1": true,
+      "all_shallow_ok": true,
+      "deep_deployed_like": [
+        {
+          "N": 2097152,
+          "R": 1000,
+          "R_sqrt_p_over_N": 22.09708690693473,
+          "p": 2147483647,
+          "shallow_ok": false
+        },
+        {
+          "N": 2097152,
+          "R": 32768,
+          "R_sqrt_p_over_N": 724.0773437664373,
+          "p": 2147483647,
+          "shallow_ok": false
+        },
+        {
+          "N": 1048576,
+          "R": 1024,
+          "R_sqrt_p_over_N": 45.25483398540233,
+          "p": 2147483647,
+          "shallow_ok": false
+        }
+      ],
+      "kind": "sfm1_parameter_separation",
+      "note": "thm:unconditional-shallow-mi-ma regime excludes deployed-like (R,N,p)",
+      "pass": true,
+      "shallow": [
+        {
+          "N": 1000,
+          "R": 1,
+          "R_sqrt_p_over_N": 0.01004987562112089,
+          "p": 101,
+          "shallow_ok": true
+        },
+        {
+          "N": 10006,
+          "R": 2,
+          "R_sqrt_p_over_N": 0.019995001774363943,
+          "p": 10007,
+          "shallow_ok": true
+        },
+        {
+          "N": 100002,
+          "R": 3,
+          "R_sqrt_p_over_N": 0.00948678554622167,
+          "p": 100003,
+          "shallow_ok": true
+        }
+      ]
+    },
+    {
+      "found": true,
+      "kind": "paper_open_disclosure",
+      "pass": true
+    },
+    {
+      "kind": "missing_B_statement",
+      "missing_input": {
+        "checkable_toy": "Build residual fiber family by removing a designated algebraic dense fiber; compute Gsid dual routes; compare shallow (R,N,p) to SFM1 vs deep deployed-like (R,N).",
+        "id": "MISSING_B_primitive_residual_Sidon_payment",
+        "not_closed_by": [
+          "ambient identity-normalized Sidon (refuted for unrestricted deep prefix)",
+          "thm:unconditional-shallow-mi-ma (requires R sqrt(p)=o(N), odd prime coset/twin-coset)",
+          "image-scale MI+MA without residual Sidon cut"
+        ],
+        "statement": "On every primitive first-match residual leaf (after algebraic quotient/subfield/planted/remainder cells are charged), with image-normalized scale barN = |Omega0|/L and fiber sizes f_s, the Sidon-heavy moment Gsid_{q,sigma} = L^{-1} sum_{Delta_s <= exp(-sigma N)} (f_s/barN)^q is e^{o(Nq)} for every fixed sigma>0 and every logarithmic q used by primitive-Q (def:sidon-paid-cell restricted to the residual). Equivalent operational form: no positive-rate Sidon-heavy obstruction on the residual (def:sidon-heavy)."
+      },
+      "pass": true
+    }
+  ],
+  "schema": "sidon-residual-input-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "def:sidon-paid-cell; thm:unconditional-shallow-mi-ma",
+  "verdict": "OPEN GAP",
+  "weave": "Sharpens filed OPEN GAP #527 into precise MISSING_B + shallow/deep separation table."
+}
