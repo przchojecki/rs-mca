@@ -1,0 +1,264 @@
+{
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "iterative A=B^R log2; 4-fold energy count a-b=c-d",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "INDEPENDENT_RECHECK",
+  "falsifiable": true,
+  "generator_route": "Fraction barN_img/amb + Counter additive energy",
+  "hard_input": "b",
+  "honest_headline": "Image-scale MI/MA/Sidon (hard b): pins_ok=True; dual Fraction/log2 scales; collapse+wrong-extension ledger entries; Boolean energy dual routes agree; moment conversion factor (A/L)^{r-1} toy. Does not prove (PF)/(MA) at deployed.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_rows": 19,
+  "n_stress": 12,
+  "nonclaims": [
+    "Does not prove Sidon payment for deployed deep prefix.",
+    "Soft FI is toy, not e^{-o(n)}.",
+    "Energy toys are Boolean models of Delta, not full RS fibers."
+  ],
+  "object": "hard input (b): image-scale MI+MA / Sidon payment (new draft)",
+  "payload_sha256": "466bc5ff6493fecf277cd45a4eeed321d1e51f3004249151d7831bbff9f30baa",
+  "pins": {
+    "def:major-arc-aggregate": {
+      "found": true,
+      "line": 2985,
+      "sha256_line": "afed917878c9f9a7"
+    },
+    "def:sidon-heavy": {
+      "found": true,
+      "line": 5093,
+      "sha256_line": "18a3170ea448de33"
+    },
+    "def:sidon-paid-cell": {
+      "found": true,
+      "line": 5130,
+      "sha256_line": "d779f90f40120dbf"
+    },
+    "eq:full-image-certificate": {
+      "found": true,
+      "line": 4844,
+      "sha256_line": "45785b0db7db1abb"
+    },
+    "eq:image-ambient-scales": {
+      "found": true,
+      "line": 4837,
+      "sha256_line": "e48756d4c07c966d"
+    },
+    "lem:image-ambient-moment-conversion": {
+      "found": true,
+      "line": 4866,
+      "sha256_line": "7ba5c9add5826614"
+    },
+    "prop:effective-mi-ma-flatness": {
+      "found": true,
+      "line": 3098,
+      "sha256_line": "695d168c6649735a"
+    },
+    "thm:unconditional-shallow-mi-ma": {
+      "found": true,
+      "line": 5267,
+      "sha256_line": "77a4bd0f110b8d9d"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT image vs ambient + Sidon energy toys",
+  "proposed_ledger_entries": [
+    {
+      "detail": "Using barN_amb in MI/Sidon when L<<A understates scale; require FI or route collapse.",
+      "id": "GAP-image-required-before-ambient-MI"
+    },
+    {
+      "detail": "Profile coefficient field |B| not challenge |K| for image-scale MI denominators.",
+      "id": "GAP-B-vs-K-in-image-scale-MI"
+    }
+  ],
+  "regeneration": "python experimental/scripts/verify_image_scale_mi_ma.py --emit-defaults",
+  "rows": [
+    {
+      "chk": {
+        "A": 8,
+        "amb_forbidden": false,
+        "fi_soft": true,
+        "log2_amb": 1.0,
+        "log2_img": 1.0
+      },
+      "gen": {
+        "A": 8,
+        "B": 2,
+        "L": 8,
+        "R": 3,
+        "amb_forbidden": false,
+        "barN_amb": 2.0,
+        "barN_img": 2.0,
+        "barN_img_den": 1,
+        "barN_img_num": 2,
+        "fi_soft": true,
+        "img_ge_amb": true,
+        "omega": 16
+      },
+      "kind": "full_image",
+      "pass": true
+    },
+    {
+      "chk": {
+        "A": 625,
+        "amb_forbidden": true,
+        "fi_soft": false,
+        "log2_amb": 0.6780719051126383,
+        "log2_img": 7.965784284662087
+      },
+      "gen": {
+        "A": 625,
+        "B": 5,
+        "L": 4,
+        "R": 4,
+        "amb_forbidden": true,
+        "barN_amb": 1.6,
+        "barN_img": 250.0,
+        "barN_img_den": 1,
+        "barN_img_num": 250,
+        "fi_soft": false,
+        "img_ge_amb": true,
+        "omega": 1000
+      },
+      "kind": "collapse_L_ll_A",
+      "pass": true
+    },
+    {
+      "A_B": 49,
+      "A_K": 2401,
+      "kind": "wrong_extension_denom",
+      "pass": true
+    },
+    {
+      "energy_checker": 216,
+      "gen": {
+        "Delta": 0.421875,
+        "Delta_den": 64,
+        "Delta_num": 27,
+        "energy": 216,
+        "size": 8
+      },
+      "kind": "sidon_energy_cube3",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "gen": {
+        "Delta": 0.3055555555555556,
+        "Delta_den": 36,
+        "Delta_num": 11,
+        "energy": 66,
+        "size": 6
+      },
+      "kind": "sidon_energy_basis",
+      "pass": true
+    },
+    {
+      "A": 16,
+      "L": 4,
+      "factor_den": 1,
+      "factor_num": 4,
+      "kind": "moment_conversion_factor",
+      "note": "lem:image-ambient-moment-conversion cost shape (A/L)^{r-1}",
+      "pass": true,
+      "r": 2
+    },
+    {
+      "M_empty": true,
+      "bound_holds_vacuously": true,
+      "kind": "MA_vacuous_empty",
+      "pass": true,
+      "pin": "def:major-arc-aggregate"
+    },
+    {
+      "A": 9,
+      "fi_soft": true,
+      "kind": "stress_0",
+      "pass": true
+    },
+    {
+      "A": 27,
+      "fi_soft": true,
+      "kind": "stress_1",
+      "pass": true
+    },
+    {
+      "A": 2401,
+      "fi_soft": true,
+      "kind": "stress_2",
+      "pass": true
+    },
+    {
+      "A": 8,
+      "fi_soft": true,
+      "kind": "stress_3",
+      "pass": true
+    },
+    {
+      "A": 7,
+      "fi_soft": true,
+      "kind": "stress_4",
+      "pass": true
+    },
+    {
+      "A": 343,
+      "fi_soft": true,
+      "kind": "stress_5",
+      "pass": true
+    },
+    {
+      "A": 3,
+      "fi_soft": true,
+      "kind": "stress_6",
+      "pass": true
+    },
+    {
+      "A": 25,
+      "fi_soft": false,
+      "kind": "stress_7",
+      "pass": true
+    },
+    {
+      "A": 8,
+      "fi_soft": true,
+      "kind": "stress_8",
+      "pass": true
+    },
+    {
+      "A": 125,
+      "fi_soft": false,
+      "kind": "stress_9",
+      "pass": true
+    },
+    {
+      "A": 625,
+      "fi_soft": true,
+      "kind": "stress_10",
+      "pass": true
+    },
+    {
+      "A": 2,
+      "fi_soft": true,
+      "kind": "stress_11",
+      "pass": true
+    }
+  ],
+  "schema": "image-scale-mi-ma-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "stress_ok": 12,
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "eq:image-ambient-scales; def:sidon-heavy; def:major-arc-aggregate",
+  "verdict": "NO ISSUE",
+  "weave": "Hard input (b); cross-check B1 image-scale class; new draft pins."
+}
