@@ -1,0 +1,434 @@
+{
+  "L433": {
+    "found": true,
+    "line": 433,
+    "paste": "\\emph{first-match atlas} is witness-exhaustive if its realized cells cover"
+  },
+  "all_pass": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "checker_route": "brute force gamma x E membership; recompute missing counts; pin labels",
+  "claim_boundaries": {
+    "is_counterexample": false,
+    "is_measurement": true,
+    "is_theorem": false
+  },
+  "evidence_type": "FINITE_TOY_ROW",
+  "falsifiability_exhibit": "Restricted atlas using only |E|=t cells misses bad slopes witnessed solely by proper subsets |E|<t \u2014 gate can fail for incomplete atlases. Full |E|<=t secant atlas has missing=0 on the sweep.",
+  "falsifiable": true,
+  "generator_route": "per-E transverse gamma solve for bad slopes; full |E|<=t coverage vs restricted |E|=t; dual brute gamma x E",
+  "hard_input": "a",
+  "honest_headline": "Rung MEASURED-SUPPORT: full secant atlas missing=0; restricted missing=265; routes_agree=True",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not prove deployed exhaustiveness without the canonical atlas theorem.",
+    "Toy unweighted Vandermonde parity; weights lambda_x omitted (span geometry preserved for small R).",
+    "Lane (a) only \u2014 no Sidon/RC content."
+  ],
+  "object": "first-match atlas exhaustiveness vs syndrome-secant bad slopes (input a)",
+  "payload_sha256": "0050a06b7b6fab7dbac945fcceb39f58d9cb57ada48c4c7a6f37b87160d97acf",
+  "phase0_pastes": {
+    "def:first-match": "\\label{def:first-match}",
+    "eq:realized-profile-scale": "\\tag{2.2}\\label{eq:realized-profile-scale}",
+    "thm:canonical-partial-occupancy-atlas": "\\label{thm:canonical-partial-occupancy-atlas}",
+    "thm:exact-partial-occupancy": "\\label{thm:exact-partial-occupancy}",
+    "thm:syndrome-secant-exact": "\\label{thm:syndrome-secant-exact}"
+  },
+  "pins": {
+    "L433_exhaustiveness": {
+      "found": true,
+      "line": 433,
+      "paste": "\\emph{first-match atlas} is witness-exhaustive if its realized cells cover"
+    },
+    "def:first-match": {
+      "found": true,
+      "line": 1453,
+      "paste": "\\label{def:first-match}"
+    },
+    "eq:realized-profile-scale": {
+      "found": true,
+      "line": 1441,
+      "paste": "\\tag{2.2}\\label{eq:realized-profile-scale}"
+    },
+    "thm:canonical-partial-occupancy-atlas": {
+      "found": true,
+      "line": 3744,
+      "paste": "\\label{thm:canonical-partial-occupancy-atlas}"
+    },
+    "thm:exact-partial-occupancy": {
+      "found": true,
+      "line": 3609,
+      "paste": "\\label{thm:exact-partial-occupancy}"
+    },
+    "thm:syndrome-secant-exact": {
+      "found": true,
+      "line": 1607,
+      "paste": "\\label{thm:syndrome-secant-exact}"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "MEASURED-SUPPORT",
+  "regeneration": "py -3.13 experimental/scripts/verify_atlas_exhaustiveness_hunt.py",
+  "rows": [
+    {
+      "R": 2,
+      "a": 2,
+      "examples_missing_restricted": [
+        {
+          "a": 2,
+          "gamma": 0,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        },
+        {
+          "a": 2,
+          "gamma": 0,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        },
+        {
+          "a": 2,
+          "gamma": 1,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        },
+        {
+          "a": 2,
+          "gamma": 0,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        },
+        {
+          "a": 2,
+          "gamma": 0,
+          "k": 2,
+          "n": 4,
+          "p": 5,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        }
+      ],
+      "full_exhaustive": true,
+      "k": 2,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 112,
+      "n": 4,
+      "n_lines": 39,
+      "p": 5,
+      "restricted_exhaustive": false,
+      "routes_agree_all": true,
+      "routes_agree_lines": 39,
+      "t": 2,
+      "total_bad_slope_instances": 112
+    },
+    {
+      "R": 2,
+      "a": 3,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 2,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 4,
+      "n_lines": 36,
+      "p": 5,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 36,
+      "t": 1,
+      "total_bad_slope_instances": 99
+    },
+    {
+      "R": 3,
+      "a": 3,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 2,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 5,
+      "n_lines": 40,
+      "p": 7,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 2,
+      "total_bad_slope_instances": 213
+    },
+    {
+      "R": 2,
+      "a": 3,
+      "examples_missing_restricted": [
+        {
+          "a": 3,
+          "gamma": 2,
+          "k": 3,
+          "n": 5,
+          "p": 7,
+          "t": 2,
+          "witness_E_sizes": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "a": 3,
+          "gamma": 0,
+          "k": 3,
+          "n": 5,
+          "p": 7,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        },
+        {
+          "a": 3,
+          "gamma": 0,
+          "k": 3,
+          "n": 5,
+          "p": 7,
+          "t": 2,
+          "witness_E_sizes": [
+            0,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "a": 3,
+          "gamma": 1,
+          "k": 3,
+          "n": 5,
+          "p": 7,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        },
+        {
+          "a": 3,
+          "gamma": 0,
+          "k": 3,
+          "n": 5,
+          "p": 7,
+          "t": 2,
+          "witness_E_sizes": [
+            1
+          ]
+        }
+      ],
+      "full_exhaustive": true,
+      "k": 3,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 153,
+      "n": 5,
+      "n_lines": 40,
+      "p": 7,
+      "restricted_exhaustive": false,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 2,
+      "total_bad_slope_instances": 153
+    },
+    {
+      "R": 3,
+      "a": 4,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 3,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 6,
+      "n_lines": 40,
+      "p": 7,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 2,
+      "total_bad_slope_instances": 260
+    },
+    {
+      "R": 3,
+      "a": 4,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 3,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 6,
+      "n_lines": 40,
+      "p": 11,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 2,
+      "total_bad_slope_instances": 360
+    },
+    {
+      "R": 4,
+      "a": 4,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 3,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 7,
+      "n_lines": 40,
+      "p": 11,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 3,
+      "total_bad_slope_instances": 428
+    },
+    {
+      "R": 3,
+      "a": 5,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 4,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 7,
+      "n_lines": 40,
+      "p": 11,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 2,
+      "total_bad_slope_instances": 414
+    },
+    {
+      "R": 4,
+      "a": 5,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 4,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 8,
+      "n_lines": 40,
+      "p": 13,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 3,
+      "total_bad_slope_instances": 515
+    },
+    {
+      "R": 4,
+      "a": 6,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 4,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 8,
+      "n_lines": 40,
+      "p": 13,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 2,
+      "total_bad_slope_instances": 69
+    },
+    {
+      "R": 4,
+      "a": 5,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 4,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 8,
+      "n_lines": 40,
+      "p": 17,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 3,
+      "total_bad_slope_instances": 670
+    },
+    {
+      "R": 5,
+      "a": 6,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 4,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 9,
+      "n_lines": 40,
+      "p": 17,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 3,
+      "total_bad_slope_instances": 166
+    },
+    {
+      "R": 5,
+      "a": 7,
+      "examples_missing_restricted": [],
+      "full_exhaustive": true,
+      "k": 5,
+      "missing_full_atlas": 0,
+      "missing_restricted_atlas": 0,
+      "n": 10,
+      "n_lines": 40,
+      "p": 19,
+      "restricted_exhaustive": true,
+      "routes_agree_all": true,
+      "routes_agree_lines": 40,
+      "t": 3,
+      "total_bad_slope_instances": 228
+    }
+  ],
+  "rung": "MEASURED-SUPPORT",
+  "schema": "atlas_exhaustiveness_hunt.v1",
+  "status": "EXPERIMENTAL",
+  "summary": {
+    "full_atlas_exhaustive": true,
+    "missing_full_total": 0,
+    "missing_restricted_total": 265,
+    "n_instances": 13,
+    "restricted_atlas_shows_missing": true,
+    "routes_agree_all": true
+  },
+  "verdict": "MEASURED-SUPPORT",
+  "weave": [
+    "#559",
+    "#560",
+    "#563"
+  ]
+}
