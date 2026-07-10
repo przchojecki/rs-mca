@@ -1,0 +1,377 @@
+{
+  "beats_trivial_baseline": false,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": false,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "FULL_FINITE_CENSUS",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "menu": [
+    {
+      "C": 10,
+      "barN": "2",
+      "histogram": {
+        "2": 5
+      },
+      "m": 2,
+      "maxN": 2,
+      "max_over_barN": "1",
+      "meanN": 2.0,
+      "n": 5,
+      "num_occupied_fibers": 5,
+      "p": 5,
+      "sample_max_fiber_bool": [
+        [
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      ],
+      "sample_max_fiber_key": [
+        1
+      ],
+      "sum_N_equals_C": true,
+      "w": 1
+    },
+    {
+      "C": 252,
+      "barN": "252/121",
+      "histogram": {
+        "1": 40,
+        "2": 31,
+        "3": 50
+      },
+      "m": 5,
+      "maxN": 3,
+      "max_over_barN": "121/84",
+      "meanN": 2.0826446280991737,
+      "n": 10,
+      "num_occupied_fibers": 121,
+      "p": 11,
+      "sample_max_fiber_bool": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1
+        ]
+      ],
+      "sample_max_fiber_key": [
+        10,
+        2
+      ],
+      "sum_N_equals_C": true,
+      "w": 2
+    },
+    {
+      "C": 252,
+      "barN": "252/169",
+      "histogram": {
+        "1": 56,
+        "2": 73,
+        "3": 6,
+        "4": 8
+      },
+      "m": 5,
+      "maxN": 4,
+      "max_over_barN": "169/63",
+      "meanN": 1.7622377622377623,
+      "n": 10,
+      "num_occupied_fibers": 143,
+      "p": 13,
+      "sample_max_fiber_bool": [
+        [
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "sample_max_fiber_key": [
+        11,
+        2
+      ],
+      "sum_N_equals_C": true,
+      "w": 2
+    },
+    {
+      "C": 70,
+      "barN": "70/17",
+      "histogram": {
+        "1": 4,
+        "2": 2,
+        "3": 2,
+        "5": 4,
+        "7": 4,
+        "8": 1
+      },
+      "m": 4,
+      "maxN": 8,
+      "max_over_barN": "68/35",
+      "meanN": 4.117647058823529,
+      "n": 8,
+      "num_occupied_fibers": 17,
+      "p": 17,
+      "sample_max_fiber_bool": [
+        [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      ],
+      "sample_max_fiber_key": [
+        14
+      ],
+      "sum_N_equals_C": true,
+      "w": 1
+    },
+    {
+      "C": 924,
+      "barN": "924/289",
+      "histogram": {
+        "1": 24,
+        "2": 56,
+        "3": 88,
+        "4": 70,
+        "5": 38,
+        "6": 9
+      },
+      "m": 6,
+      "maxN": 6,
+      "max_over_barN": "289/154",
+      "meanN": 3.2421052631578946,
+      "n": 12,
+      "num_occupied_fibers": 285,
+      "p": 17,
+      "sample_max_fiber_bool": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      ],
+      "sample_max_fiber_key": [
+        15,
+        0
+      ],
+      "sum_N_equals_C": true,
+      "w": 2
+    }
+  ],
+  "nonclaims": [
+    "Does not prove primitive Q.",
+    "Does not advance the asymptotic frontier."
+  ],
+  "payload_sha256": "274bddb8e552379da39105b9690d33e6b5e66848573c6fc0a1ef6815ea776479",
+  "proof_status": "AUDIT primitive Boolean prefix fiber examples",
+  "regeneration": "python experimental/scripts/verify_boolean_prefix_fibers.py --emit-defaults",
+  "schema": "boolean-prefix-fibers-v1",
+  "source_pin": {
+    "file": "experimental/asymptotic_rs_mca.tex",
+    "label": "def:primitive-leaf",
+    "line": 148
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Exact ES-prefix fiber censuses on five toys: sum N=C, barN=C/p^w, max/barN and Boolean sample vectors tabulated. Exposition of def:primitive-leaf \u2014 not a Q bound.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "def:primitive-leaf / AGENTS.md priority-3"
+}

@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Add Boolean prefix fiber examples
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/audits/boolean_prefix_fibers.md`, `experimental/data/certificates/boolean-prefix-fibers/boolean_prefix_fibers.json`, `experimental/scripts/verify_boolean_prefix_fibers.py`, `experimental/scripts/verify_boolean_prefix_fibers_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** ES-prefix fiber censuses with barN and Boolean samples. Exposition only.
+- **How it is useful:** AGENTS.md priority-3 proof-object instantiation for audit/exposition.
+- **What to do next:** No frontier claim; optional larger toys.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
