@@ -10,10 +10,12 @@
     "does_not_assert": [
       "full C1-C8 atlas classification of #444",
       "unconditional C9 for all smooth rows",
-      "that thm:polynomial-obstruction equals #444"
-    ]
+      "that thm:polynomial-obstruction equals #444",
+      "that this packet itself is a counterexample"
+    ],
+    "is_counterexample": false
   },
-  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "evidence_type": "CANONICAL_STATEMENT_HIT",
   "generator_routes": {
     "A_k": "multinomial vs factorial",
     "ledger": "scan theorem environments for free-standing C9 claim",
@@ -42,7 +44,7 @@
     },
     "route": "label pin + construction keyword inventory on thm:polynomial-obstruction"
   },
-  "payload_sha256": "027561bd128ff9f8faa9fb8d65bb8f3c63d59ed14692c1a661b8ccae7dcea6a0",
+  "payload_sha256": "7ccb13102670d503a38b31aa346aa6cc490d7e2c512a89af9003a67e8e3c9850",
   "prior_c9_cert_match": {
     "A_k_match": true,
     "L_match": true,

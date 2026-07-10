@@ -309,7 +309,7 @@ def build_certificate(root: Path) -> dict[str, Any]:
         "is_degenerate_by_construction": False,
         "beats_trivial_baseline": True,
         "is_tautology_under_preconditions": False,
-        "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+        "evidence_type": "CANONICAL_STATEMENT_HIT",
         "verdict": verdict,
         "honest_headline": reason,
         "recomputed_444_k5": recomputed,
@@ -331,6 +331,7 @@ def build_certificate(root: Path) -> dict[str, Any]:
             "ledger": ledger["route"],
         },
         "claim_boundaries": {
+            "is_counterexample": False,
             "asserts": [
                 "exact recompute of #444 k=5 counts",
                 "paper's eq:counterexample block is a distinct smooth-square construction",
@@ -340,8 +341,10 @@ def build_certificate(root: Path) -> dict[str, Any]:
                 "full C1-C8 atlas classification of #444",
                 "unconditional C9 for all smooth rows",
                 "that thm:polynomial-obstruction equals #444",
+                "that this packet itself is a counterexample",
             ],
         },
+        # This audit absorbs someone else's construction; it is not a counterexample packet.
     }
     cert["payload_sha256"] = payload_hash(cert)
     return cert
