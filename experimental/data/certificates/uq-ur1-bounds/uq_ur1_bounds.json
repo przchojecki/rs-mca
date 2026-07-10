@@ -1,0 +1,604 @@
+{
+  "base_sha_target": "eb42b823f817baace7e37cf9b5018affa26eeb43",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "asserts": [
+      "Johnson packing and anticode give proved U_Q uppers; pigeonhole gives U_Q lower",
+      "one-pencil U_R1 upper is conditional on chart reduction; raw BC support upper is unconditional but huge",
+      "at deployed rows, packing U_Q upper exceeds B_* by ~1.66e6 bits (prop:proper-q-gap replay)"
+    ],
+    "does_not_assert": [
+      "U_paid+U_Q+U_R1 <= B_*",
+      "exact finite U_Q or U_R1 integers for the one-step inequality",
+      "prob:band resolution",
+      "chart-decomposition audit complete"
+    ]
+  },
+  "deployed_rows": [
+    {
+      "B_star": 274980728111395087,
+      "U_Q": {
+        "K": 1048577,
+        "U_Q_lower_pigeonhole": 57198030366,
+        "base_field_bits_exact": 30.98868468744926,
+        "base_field_bits_prop_convention": 31.0,
+        "bracket_width_bits_johnson_minus_lower": 1660789.0235477872,
+        "distance_anticode_upper_to_B_star_bits": 1729634.2020422115,
+        "distance_johnson_upper_to_B_star_bits": 1660766.8266860796,
+        "honest": "proved U_Q upper from packing is many orders of magnitude above B_*; this confirms prop:proper-q-gap and does not supply a closing U_Q integer",
+        "johnson_one_term_dominates_Vt": true,
+        "johnson_one_term_ratio_J_t_over_J_tm1": 900.9723750812492,
+        "log2_B_star": 57.932108124695574,
+        "log2_R_Q_anticode": 1729656.3989039217,
+        "log2_R_Q_pack_johnson_exact_p": 1660789.0235477898,
+        "log2_R_Q_pack_johnson_lgamma": 1660789.0235477898,
+        "log2_R_Q_pack_johnson_product": 1660789.0235477937,
+        "log2_R_Q_pack_johnson_prop31": 1661552.4790009006,
+        "log2_U_Q_lower": 35.735246417028875,
+        "log2_U_Q_upper_anticode": 1729692.1341503363,
+        "log2_U_Q_upper_johnson": 1660824.7587942043,
+        "m": 1116048,
+        "routes": {
+          "U_Q_lower": "pigeonhole ceil(C(n,m)/|B|^w) identity-prefix list floor",
+          "U_Q_upper_A": "Johnson one-term packing via lgamma log2 binoms (thm:q-proper)",
+          "U_Q_upper_A_prime": "Johnson one-term via product-sum log2 (independent of lgamma)",
+          "U_Q_upper_B": "anticode cap C(n-m+w,w) denominator (thm:q-proper)"
+        },
+        "t_floor_w_over_2": 33735,
+        "upper_exceeds_B_star": true,
+        "w": 67471
+      },
+      "U_R1": {
+        "U_R1_lower": 0,
+        "U_R1_upper_one_pencil_conditional": 2,
+        "blocker_unconditional_U_R1": "no unconditional finite U_R1(a0+1) integer: one-pencil bound is conditional on chart reduction; raw support bound is exponentially larger than the MCA slope numerator (cor:raw-bc-fails / thm:saturation)",
+        "distance_raw_support_to_B_star_bits": 2090815.347685179,
+        "honest": "conditional one-pencil upper is 2 at deployed MCA a+ and fits under B_*, but cannot be summed into the closing inequality without the chart audit; raw support upper does not close anything",
+        "log2_U_R1_upper_raw_support_bc_proper": 2090873.2797933037,
+        "m": 1116048,
+        "omega": 981104,
+        "one_pencil_condition": "cor:bc-one-pencil applies only after first-match has reduced the residual chart to a primitive one-parameter D-split locator pencil with slope\u2192parameter injection; chart-decomposition audit is an OPEN input (rem:bc-status-after-moving-root)",
+        "one_pencil_fits_under_B_star": true,
+        "raw_support_exceeds_B_star": true,
+        "routes": {
+          "U_R1_lower": "0 (no forced residual proved)",
+          "U_R1_upper_A": "floor(n/omega) moving-root one-pencil (thm:bc-moving-root / cor:bc-one-pencil) CONDITIONAL",
+          "U_R1_upper_B": "log2 C(n,omega) raw support bound first term (thm:bc-proper)"
+        }
+      },
+      "a0": 1116047,
+      "a1": 1116048,
+      "closing_status": {
+        "U_Q_proved_upper_fits_B_star": false,
+        "U_R1_conditional_one_pencil_fits_B_star": true,
+        "reason": "U_Q packing upper >> B_*; U_R1 one-pencil is conditional; sum of proved unconditional uppers does not fit B_*",
+        "unconditional_closing_possible_from_these_bounds": false
+      },
+      "kind": "mca",
+      "lower_L_a0": 138634741058327852652,
+      "lower_L_a1": 57198030366,
+      "row": "KoalaBear MCA",
+      "row_id": "kb_mca",
+      "tier": "deployed"
+    },
+    {
+      "B_star": 274980728111395087,
+      "U_Q": {
+        "K": 1048576,
+        "U_Q_lower_pigeonhole": 65065153468,
+        "base_field_bits_exact": 30.98868468744926,
+        "base_field_bits_prop_convention": 31.0,
+        "bracket_width_bits_johnson_minus_lower": 1660789.0173495254,
+        "distance_anticode_upper_to_B_star_bits": 1729634.2920098563,
+        "distance_johnson_upper_to_B_star_bits": 1660767.0064074446,
+        "honest": "proved U_Q upper from packing is many orders of magnitude above B_*; this confirms prop:proper-q-gap and does not supply a closing U_Q integer",
+        "johnson_one_term_dominates_Vt": true,
+        "johnson_one_term_ratio_J_t_over_J_tm1": 900.9724936551021,
+        "log2_B_star": 57.932108124695574,
+        "log2_R_Q_anticode": 1729656.3029519415,
+        "log2_R_Q_pack_johnson_exact_p": 1660789.0173495298,
+        "log2_R_Q_pack_johnson_lgamma": 1660789.0173495298,
+        "log2_R_Q_pack_johnson_product": 1660789.0173495347,
+        "log2_R_Q_pack_johnson_prop31": 1661552.4728026406,
+        "log2_U_Q_lower": 35.92116604405132,
+        "log2_U_Q_upper_anticode": 1729692.224117981,
+        "log2_U_Q_upper_johnson": 1660824.9385155693,
+        "m": 1116047,
+        "routes": {
+          "U_Q_lower": "pigeonhole ceil(C(n,m)/|B|^w) identity-prefix list floor",
+          "U_Q_upper_A": "Johnson one-term packing via lgamma log2 binoms (thm:q-proper)",
+          "U_Q_upper_A_prime": "Johnson one-term via product-sum log2 (independent of lgamma)",
+          "U_Q_upper_B": "anticode cap C(n-m+w,w) denominator (thm:q-proper)"
+        },
+        "t_floor_w_over_2": 33735,
+        "upper_exceeds_B_star": true,
+        "w": 67471
+      },
+      "U_R1": {
+        "U_R1_lower": 0,
+        "U_R1_upper_one_pencil_conditional": 2,
+        "blocker_unconditional_U_R1": "no unconditional finite U_R1(a0+1) integer: one-pencil bound is conditional on chart reduction; raw support bound is exponentially larger than the MCA slope numerator (cor:raw-bc-fails / thm:saturation)",
+        "distance_raw_support_to_B_star_bits": 2090815.533604804,
+        "honest": "conditional one-pencil upper is 2 at deployed MCA a+ and fits under B_*, but cannot be summed into the closing inequality without the chart audit; raw support upper does not close anything",
+        "log2_U_R1_upper_raw_support_bc_proper": 2090873.4657129287,
+        "m": 1116047,
+        "omega": 981105,
+        "one_pencil_condition": "cor:bc-one-pencil applies only after first-match has reduced the residual chart to a primitive one-parameter D-split locator pencil with slope\u2192parameter injection; chart-decomposition audit is an OPEN input (rem:bc-status-after-moving-root)",
+        "one_pencil_fits_under_B_star": true,
+        "raw_support_exceeds_B_star": true,
+        "routes": {
+          "U_R1_lower": "0 (no forced residual proved)",
+          "U_R1_upper_A": "floor(n/omega) moving-root one-pencil (thm:bc-moving-root / cor:bc-one-pencil) CONDITIONAL",
+          "U_R1_upper_B": "log2 C(n,omega) raw support bound first term (thm:bc-proper)"
+        }
+      },
+      "a0": 1116046,
+      "a1": 1116047,
+      "closing_status": {
+        "U_Q_proved_upper_fits_B_star": false,
+        "U_R1_conditional_one_pencil_fits_B_star": true,
+        "reason": "U_Q packing upper >> B_*; U_R1 one-pencil is conditional; sum of proved unconditional uppers does not fit B_*",
+        "unconditional_closing_possible_from_these_bounds": false
+      },
+      "kind": "list",
+      "lower_L_a0": 157702518233425975347,
+      "lower_L_a1": 65065153468,
+      "row": "KoalaBear list",
+      "row_id": "kb_list",
+      "tier": "deployed"
+    },
+    {
+      "B_star": 16777215,
+      "U_Q": {
+        "K": 1048577,
+        "U_Q_lower_pigeonhole": 1752700,
+        "base_field_bits_exact": 30.999999999328193,
+        "base_field_bits_prop_convention": 31.0,
+        "bracket_width_bits_johnson_minus_lower": 1660926.1201798816,
+        "distance_anticode_upper_to_B_star_bits": 1729765.2914012223,
+        "distance_johnson_upper_to_B_star_bits": 1660922.8613276158,
+        "honest": "proved U_Q upper from packing is many orders of magnitude above B_*; this confirms prop:proper-q-gap and does not supply a closing U_Q integer",
+        "johnson_one_term_dominates_Vt": true,
+        "johnson_one_term_ratio_J_t_over_J_tm1": 901.6379579665934,
+        "log2_B_star": 23.999999914008672,
+        "log2_R_Q_anticode": 1729768.5502541016,
+        "log2_R_Q_pack_johnson_exact_p": 1660926.120180495,
+        "log2_R_Q_pack_johnson_lgamma": 1660926.120180495,
+        "log2_R_Q_pack_johnson_product": 1660926.120180493,
+        "log2_R_Q_pack_johnson_prop31": 1660926.1202258065,
+        "log2_U_Q_lower": 20.741147648393174,
+        "log2_U_Q_upper_anticode": 1729789.2914011364,
+        "log2_U_Q_upper_johnson": 1660946.86132753,
+        "m": 1116024,
+        "routes": {
+          "U_Q_lower": "pigeonhole ceil(C(n,m)/|B|^w) identity-prefix list floor",
+          "U_Q_upper_A": "Johnson one-term packing via lgamma log2 binoms (thm:q-proper)",
+          "U_Q_upper_A_prime": "Johnson one-term via product-sum log2 (independent of lgamma)",
+          "U_Q_upper_B": "anticode cap C(n-m+w,w) denominator (thm:q-proper)"
+        },
+        "t_floor_w_over_2": 33723,
+        "upper_exceeds_B_star": true,
+        "w": 67447
+      },
+      "U_R1": {
+        "U_R1_lower": 0,
+        "U_R1_upper_one_pencil_conditional": 2,
+        "blocker_unconditional_U_R1": "no unconditional finite U_R1(a0+1) integer: one-pencil bound is conditional on chart reduction; raw support bound is exponentially larger than the MCA slope numerator (cor:raw-bc-fails / thm:saturation)",
+        "distance_raw_support_to_B_star_bits": 2090853.7411018093,
+        "honest": "conditional one-pencil upper is 2 at deployed MCA a+ and fits under B_*, but cannot be summed into the closing inequality without the chart audit; raw support upper does not close anything",
+        "log2_U_R1_upper_raw_support_bc_proper": 2090877.7411017234,
+        "m": 1116024,
+        "omega": 981128,
+        "one_pencil_condition": "cor:bc-one-pencil applies only after first-match has reduced the residual chart to a primitive one-parameter D-split locator pencil with slope\u2192parameter injection; chart-decomposition audit is an OPEN input (rem:bc-status-after-moving-root)",
+        "one_pencil_fits_under_B_star": true,
+        "raw_support_exceeds_B_star": true,
+        "routes": {
+          "U_R1_lower": "0 (no forced residual proved)",
+          "U_R1_upper_A": "floor(n/omega) moving-root one-pencil (thm:bc-moving-root / cor:bc-one-pencil) CONDITIONAL",
+          "U_R1_upper_B": "log2 C(n,omega) raw support bound first term (thm:bc-proper)"
+        }
+      },
+      "a0": 1116023,
+      "a1": 1116024,
+      "closing_status": {
+        "U_Q_proved_upper_fits_B_star": false,
+        "U_R1_conditional_one_pencil_fits_B_star": true,
+        "reason": "U_Q packing upper >> B_*; U_R1 one-pencil is conditional; sum of proved unconditional uppers does not fit B_*",
+        "unconditional_closing_possible_from_these_bounds": false
+      },
+      "kind": "mca",
+      "lower_L_a0": 4281388998575706,
+      "lower_L_a1": 1752700,
+      "row": "Mersenne-31 MCA",
+      "row_id": "m31_mca",
+      "tier": "deployed"
+    },
+    {
+      "B_star": 16777215,
+      "U_Q": {
+        "K": 1048576,
+        "U_Q_lower_pigeonhole": 1993678,
+        "base_field_bits_exact": 30.999999999328193,
+        "base_field_bits_prop_convention": 31.0,
+        "bracket_width_bits_johnson_minus_lower": 1660926.1139860824,
+        "distance_anticode_upper_to_B_star_bits": 1729765.3813378406,
+        "distance_johnson_upper_to_B_star_bits": 1660923.0409871556,
+        "honest": "proved U_Q upper from packing is many orders of magnitude above B_*; this confirms prop:proper-q-gap and does not supply a closing U_Q integer",
+        "johnson_one_term_dominates_Vt": true,
+        "johnson_one_term_ratio_J_t_over_J_tm1": 901.6380765826406,
+        "log2_B_star": 23.999999914008672,
+        "log2_R_Q_anticode": 1729768.454337413,
+        "log2_R_Q_pack_johnson_exact_p": 1660926.113986728,
+        "log2_R_Q_pack_johnson_lgamma": 1660926.113986728,
+        "log2_R_Q_pack_johnson_product": 1660926.113986734,
+        "log2_R_Q_pack_johnson_prop31": 1660926.1140320394,
+        "log2_U_Q_lower": 20.92700098742747,
+        "log2_U_Q_upper_anticode": 1729789.3813377547,
+        "log2_U_Q_upper_johnson": 1660947.0409870697,
+        "m": 1116023,
+        "routes": {
+          "U_Q_lower": "pigeonhole ceil(C(n,m)/|B|^w) identity-prefix list floor",
+          "U_Q_upper_A": "Johnson one-term packing via lgamma log2 binoms (thm:q-proper)",
+          "U_Q_upper_A_prime": "Johnson one-term via product-sum log2 (independent of lgamma)",
+          "U_Q_upper_B": "anticode cap C(n-m+w,w) denominator (thm:q-proper)"
+        },
+        "t_floor_w_over_2": 33723,
+        "upper_exceeds_B_star": true,
+        "w": 67447
+      },
+      "U_R1": {
+        "U_R1_lower": 0,
+        "U_R1_upper_one_pencil_conditional": 2,
+        "blocker_unconditional_U_R1": "no unconditional finite U_R1(a0+1) integer: one-pencil bound is conditional on chart reduction; raw support bound is exponentially larger than the MCA slope numerator (cor:raw-bc-fails / thm:saturation)",
+        "distance_raw_support_to_B_star_bits": 2090853.9269551162,
+        "honest": "conditional one-pencil upper is 2 at deployed MCA a+ and fits under B_*, but cannot be summed into the closing inequality without the chart audit; raw support upper does not close anything",
+        "log2_U_R1_upper_raw_support_bc_proper": 2090877.9269550303,
+        "m": 1116023,
+        "omega": 981129,
+        "one_pencil_condition": "cor:bc-one-pencil applies only after first-match has reduced the residual chart to a primitive one-parameter D-split locator pencil with slope\u2192parameter injection; chart-decomposition audit is an OPEN input (rem:bc-status-after-moving-root)",
+        "one_pencil_fits_under_B_star": true,
+        "raw_support_exceeds_B_star": true,
+        "routes": {
+          "U_R1_lower": "0 (no forced residual proved)",
+          "U_R1_upper_A": "floor(n/omega) moving-root one-pencil (thm:bc-moving-root / cor:bc-one-pencil) CONDITIONAL",
+          "U_R1_upper_B": "log2 C(n,omega) raw support bound first term (thm:bc-proper)"
+        }
+      },
+      "a0": 1116022,
+      "a1": 1116023,
+      "closing_status": {
+        "U_Q_proved_upper_fits_B_star": false,
+        "U_R1_conditional_one_pencil_fits_B_star": true,
+        "reason": "U_Q packing upper >> B_*; U_R1 one-pencil is conditional; sum of proved unconditional uppers does not fit B_*",
+        "unconditional_closing_possible_from_these_bounds": false
+      },
+      "kind": "list",
+      "lower_L_a0": 4870025984688527,
+      "lower_L_a1": 1993678,
+      "row": "Mersenne-31 list",
+      "row_id": "m31_list",
+      "tier": "deployed"
+    }
+  ],
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "extension_tier_rows": [
+    {
+      "B_star": 274980728111395087,
+      "U_Q": {
+        "K": 1048577,
+        "U_Q_lower_pigeonhole": 24,
+        "base_field_bits_exact": 30.98868468744926,
+        "base_field_bits_prop_convention": 31.0,
+        "bracket_width_bits_johnson_minus_lower": 1660810.178857184,
+        "distance_anticode_upper_to_B_star_bits": 1729630.1540745785,
+        "distance_johnson_upper_to_B_star_bits": 1660756.83171156,
+        "honest": "proved U_Q upper from packing is many orders of magnitude above B_*; this confirms prop:proper-q-gap and does not supply a closing U_Q integer",
+        "johnson_one_term_dominates_Vt": true,
+        "johnson_one_term_ratio_J_t_over_J_tm1": 900.9170608239098,
+        "log2_B_star": 57.932108124695574,
+        "log2_R_Q_anticode": 1729683.525543366,
+        "log2_R_Q_pack_johnson_exact_p": 1660810.2031803476,
+        "log2_R_Q_pack_johnson_lgamma": 1660810.2031803476,
+        "log2_R_Q_pack_johnson_product": 1660810.2031803518,
+        "log2_R_Q_pack_johnson_prop31": 1661573.6699487711,
+        "log2_U_Q_lower": 4.584962500721156,
+        "log2_U_Q_upper_anticode": 1729688.0861827033,
+        "log2_U_Q_upper_johnson": 1660814.7638196847,
+        "m": 1116049,
+        "routes": {
+          "U_Q_lower": "pigeonhole ceil(C(n,m)/|B|^w) identity-prefix list floor",
+          "U_Q_upper_A": "Johnson one-term packing via lgamma log2 binoms (thm:q-proper)",
+          "U_Q_upper_A_prime": "Johnson one-term via product-sum log2 (independent of lgamma)",
+          "U_Q_upper_B": "anticode cap C(n-m+w,w) denominator (thm:q-proper)"
+        },
+        "t_floor_w_over_2": 33736,
+        "upper_exceeds_B_star": true,
+        "w": 67472
+      },
+      "U_R1": {
+        "U_R1_lower": 0,
+        "U_R1_upper_one_pencil_conditional": 2,
+        "blocker_unconditional_U_R1": "no unconditional finite U_R1(a0+1) integer: one-pencil bound is conditional on chart reduction; raw support bound is exponentially larger than the MCA slope numerator (cor:raw-bc-fails / thm:saturation)",
+        "distance_raw_support_to_B_star_bits": 2090815.161762789,
+        "honest": "conditional one-pencil upper is 2 at deployed MCA a+ and fits under B_*, but cannot be summed into the closing inequality without the chart audit; raw support upper does not close anything",
+        "log2_U_R1_upper_raw_support_bc_proper": 2090873.0938709136,
+        "m": 1116049,
+        "omega": 981103,
+        "one_pencil_condition": "cor:bc-one-pencil applies only after first-match has reduced the residual chart to a primitive one-parameter D-split locator pencil with slope\u2192parameter injection; chart-decomposition audit is an OPEN input (rem:bc-status-after-moving-root)",
+        "one_pencil_fits_under_B_star": true,
+        "raw_support_exceeds_B_star": true,
+        "routes": {
+          "U_R1_lower": "0 (no forced residual proved)",
+          "U_R1_upper_A": "floor(n/omega) moving-root one-pencil (thm:bc-moving-root / cor:bc-one-pencil) CONDITIONAL",
+          "U_R1_upper_B": "log2 C(n,omega) raw support bound first term (thm:bc-proper)"
+        }
+      },
+      "a0": 1116048,
+      "a1": 1116049,
+      "closing_status": {
+        "U_Q_proved_upper_fits_B_star": false,
+        "U_R1_conditional_one_pencil_fits_B_star": true,
+        "reason": "U_Q packing upper >> B_*; U_R1 one-pencil is conditional; sum of proved unconditional uppers does not fit B_*",
+        "unconditional_closing_possible_from_these_bounds": false
+      },
+      "kind": "mca",
+      "lower_L_a0": 57198030366,
+      "lower_L_a1": 24,
+      "row": "KoalaBear MCA a0+2",
+      "row_id": "kb_mca_ap2",
+      "tier": "extension"
+    },
+    {
+      "B_star": 16777215,
+      "U_Q": {
+        "K": 1048577,
+        "U_Q_lower_pigeonhole": 1,
+        "base_field_bits_exact": 30.999999999328193,
+        "base_field_bits_prop_convention": 31.0,
+        "bracket_width_bits_johnson_minus_lower": 1660936.8653494725,
+        "distance_anticode_upper_to_B_star_bits": 1729761.24295135,
+        "distance_johnson_upper_to_B_star_bits": 1660912.8653495584,
+        "honest": "proved U_Q upper from packing is many orders of magnitude above B_*; this confirms prop:proper-q-gap and does not supply a closing U_Q integer",
+        "johnson_one_term_dominates_Vt": true,
+        "johnson_one_term_ratio_J_t_over_J_tm1": 901.5825838994057,
+        "log2_B_star": 23.999999914008672,
+        "log2_R_Q_anticode": 1729795.6876603034,
+        "log2_R_Q_pack_johnson_exact_p": 1660947.3100585118,
+        "log2_R_Q_pack_johnson_lgamma": 1660947.3100585118,
+        "log2_R_Q_pack_johnson_product": 1660947.3100585071,
+        "log2_R_Q_pack_johnson_prop31": 1660947.310103824,
+        "log2_U_Q_lower": 0.0,
+        "log2_U_Q_upper_anticode": 1729785.2429512641,
+        "log2_U_Q_upper_johnson": 1660936.8653494725,
+        "m": 1116025,
+        "routes": {
+          "U_Q_lower": "pigeonhole ceil(C(n,m)/|B|^w) identity-prefix list floor",
+          "U_Q_upper_A": "Johnson one-term packing via lgamma log2 binoms (thm:q-proper)",
+          "U_Q_upper_A_prime": "Johnson one-term via product-sum log2 (independent of lgamma)",
+          "U_Q_upper_B": "anticode cap C(n-m+w,w) denominator (thm:q-proper)"
+        },
+        "t_floor_w_over_2": 33724,
+        "upper_exceeds_B_star": true,
+        "w": 67448
+      },
+      "U_R1": {
+        "U_R1_lower": 0,
+        "U_R1_upper_one_pencil_conditional": 2,
+        "blocker_unconditional_U_R1": "no unconditional finite U_R1(a0+1) integer: one-pencil bound is conditional on chart reduction; raw support bound is exponentially larger than the MCA slope numerator (cor:raw-bc-fails / thm:saturation)",
+        "distance_raw_support_to_B_star_bits": 2090853.5552457345,
+        "honest": "conditional one-pencil upper is 2 at deployed MCA a+ and fits under B_*, but cannot be summed into the closing inequality without the chart audit; raw support upper does not close anything",
+        "log2_U_R1_upper_raw_support_bc_proper": 2090877.5552456486,
+        "m": 1116025,
+        "omega": 981127,
+        "one_pencil_condition": "cor:bc-one-pencil applies only after first-match has reduced the residual chart to a primitive one-parameter D-split locator pencil with slope\u2192parameter injection; chart-decomposition audit is an OPEN input (rem:bc-status-after-moving-root)",
+        "one_pencil_fits_under_B_star": true,
+        "raw_support_exceeds_B_star": true,
+        "routes": {
+          "U_R1_lower": "0 (no forced residual proved)",
+          "U_R1_upper_A": "floor(n/omega) moving-root one-pencil (thm:bc-moving-root / cor:bc-one-pencil) CONDITIONAL",
+          "U_R1_upper_B": "log2 C(n,omega) raw support bound first term (thm:bc-proper)"
+        }
+      },
+      "a0": 1116024,
+      "a1": 1116025,
+      "closing_status": {
+        "U_Q_proved_upper_fits_B_star": false,
+        "U_R1_conditional_one_pencil_fits_B_star": true,
+        "reason": "U_Q packing upper >> B_*; U_R1 one-pencil is conditional; sum of proved unconditional uppers does not fit B_*",
+        "unconditional_closing_possible_from_these_bounds": false
+      },
+      "kind": "mca",
+      "lower_L_a0": 1752700,
+      "lower_L_a1": 1,
+      "row": "Mersenne-31 MCA a0+2",
+      "row_id": "m31_mca_ap2",
+      "tier": "extension"
+    }
+  ],
+  "generator_routes": {
+    "U_Q_lower": "exact ceil(C(n,m)/p^w) via comb_batch",
+    "U_Q_upper_anticode": "lgamma log2 C(n-m+w,w)",
+    "U_Q_upper_johnson": "lgamma log2 binoms for C(m,t)C(n-m,t)",
+    "U_Q_upper_johnson_crosscheck": "product-sum log2 binoms",
+    "U_R1_one_pencil": "integer floor(n/omega)",
+    "U_R1_raw": "lgamma log2 C(n,omega)",
+    "oracle": "brute ES-prefix fiber census on small (n,m,w)"
+  },
+  "honest_headline": "PARTIAL brackets only.  Proved U_Q packing upper is ~2^(1.66e6) overhead bits above usable scale; conditional one-pencil U_R1 is 2 at deployed MCA a+ but needs chart audit; this quantifies prop:proper-q-gap and does not close cor:capfr1-Q-R1-closing.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "object": "proved U_Q / U_R1 brackets for cor:capfr1-Q-R1-closing at a0+1",
+  "oracle_gates": {
+    "all_pass": true,
+    "moving_root_floor_formula": {
+      "bound": 2,
+      "formula": "floor((n-g)/h)",
+      "g": 1,
+      "h": 3,
+      "n": 7,
+      "pass": true
+    },
+    "prefix_packing_vs_brute": {
+      "pass": true,
+      "rows": [
+        {
+          "anticode_holds": true,
+          "anticode_upper": 14,
+          "m": 4,
+          "max_fiber_brute": 8,
+          "n": 8,
+          "p": 11,
+          "packing_holds": true,
+          "packing_upper": 70,
+          "pass": true,
+          "pigeon_holds": true,
+          "pigeon_lower": 7,
+          "route_bound": "Johnson one-term + anticode integer floors",
+          "route_oracle": "brute ES-prefix fiber census",
+          "t": 0,
+          "w": 1
+        },
+        {
+          "anticode_holds": true,
+          "anticode_upper": 8,
+          "m": 5,
+          "max_fiber_brute": 3,
+          "n": 9,
+          "p": 11,
+          "packing_holds": true,
+          "packing_upper": 6,
+          "pass": true,
+          "pigeon_holds": true,
+          "pigeon_lower": 2,
+          "route_bound": "Johnson one-term + anticode integer floors",
+          "route_oracle": "brute ES-prefix fiber census",
+          "t": 1,
+          "w": 2
+        },
+        {
+          "anticode_holds": true,
+          "anticode_upper": 12,
+          "m": 5,
+          "max_fiber_brute": 4,
+          "n": 10,
+          "p": 13,
+          "packing_holds": true,
+          "packing_upper": 10,
+          "pass": true,
+          "pigeon_holds": true,
+          "pigeon_lower": 2,
+          "route_bound": "Johnson one-term + anticode integer floors",
+          "route_oracle": "brute ES-prefix fiber census",
+          "t": 1,
+          "w": 2
+        },
+        {
+          "anticode_holds": true,
+          "anticode_upper": 33,
+          "m": 6,
+          "max_fiber_brute": 7,
+          "n": 12,
+          "p": 13,
+          "packing_holds": true,
+          "packing_upper": 25,
+          "pass": true,
+          "pigeon_holds": true,
+          "pigeon_lower": 6,
+          "route_bound": "Johnson one-term + anticode integer floors",
+          "route_oracle": "brute ES-prefix fiber census",
+          "t": 1,
+          "w": 2
+        },
+        {
+          "anticode_holds": true,
+          "anticode_upper": 132,
+          "m": 7,
+          "max_fiber_brute": 51,
+          "n": 12,
+          "p": 17,
+          "packing_holds": true,
+          "packing_upper": 792,
+          "pass": true,
+          "pigeon_holds": true,
+          "pigeon_lower": 47,
+          "route_bound": "Johnson one-term + anticode integer floors",
+          "route_oracle": "brute ES-prefix fiber census",
+          "t": 0,
+          "w": 1
+        }
+      ]
+    }
+  },
+  "payload_sha256": "d73169575f0d96d0e0b221c3a76416a8b645ee07d2b78c5df1628f25ffbe9033",
+  "prop_proper_q_gap_replay": [
+    {
+      "abs_diff_vs_prop_table": 0.0009990993421524763,
+      "agrees_to_0p1_under_prop31_convention": true,
+      "exact_p_is_strictly_below_prop31": true,
+      "prop_proper_q_gap_log2_RQ": 1661552.48,
+      "recomputed_log2_RQ_exact_p": 1660789.0235477898,
+      "recomputed_log2_RQ_prop31_convention": 1661552.4790009006,
+      "row_id": "kb_mca"
+    },
+    {
+      "abs_diff_vs_prop_table": 0.002802640665322542,
+      "agrees_to_0p1_under_prop31_convention": true,
+      "exact_p_is_strictly_below_prop31": true,
+      "prop_proper_q_gap_log2_RQ": 1661552.47,
+      "recomputed_log2_RQ_exact_p": 1660789.0173495298,
+      "recomputed_log2_RQ_prop31_convention": 1661552.4728026406,
+      "row_id": "kb_list"
+    },
+    {
+      "abs_diff_vs_prop_table": 0.00022580637596547604,
+      "agrees_to_0p1_under_prop31_convention": true,
+      "exact_p_is_strictly_below_prop31": true,
+      "prop_proper_q_gap_log2_RQ": 1660926.12,
+      "recomputed_log2_RQ_exact_p": 1660926.120180495,
+      "recomputed_log2_RQ_prop31_convention": 1660926.1202258065,
+      "row_id": "m31_mca"
+    },
+    {
+      "abs_diff_vs_prop_table": 0.004032039316371083,
+      "agrees_to_0p1_under_prop31_convention": true,
+      "exact_p_is_strictly_below_prop31": true,
+      "prop_proper_q_gap_log2_RQ": 1660926.11,
+      "recomputed_log2_RQ_exact_p": 1660926.113986728,
+      "recomputed_log2_RQ_prop31_convention": 1660926.1140320394,
+      "row_id": "m31_list"
+    }
+  ],
+  "statement_pins": {
+    "cor:bc-one-pencil": {
+      "line": 1764,
+      "path": "experimental/grande_finale.tex",
+      "sha256_line": "65f35930a50591f6645df8561405a28b6a5473d08fb71487d5e6e1ec721850ed"
+    },
+    "cor:capfr1-Q-R1-closing": {
+      "line": 7829,
+      "path": "experimental/cap25_cap_v13_raw.tex",
+      "sha256_line": "b6de1b8de61cbb1d258b34bfc9913d5af540a9068c7f42fea77a0eaaae32e032"
+    },
+    "prop:proper-q-gap": {
+      "line": 1958,
+      "path": "experimental/grande_finale.tex",
+      "sha256_line": "f3b79b7a2739cdc31af5f33f210b0708c873814718f1ef08f18d7bb1fe31bfa7"
+    },
+    "thm:bc-moving-root": {
+      "line": 1735,
+      "path": "experimental/grande_finale.tex",
+      "sha256_line": "b81eabd19ba4747b7fa078b17b76886f6c5d8ab0aae1c39edf4fb2ba83e2b6c4"
+    },
+    "thm:bc-proper": {
+      "line": 1696,
+      "path": "experimental/grande_finale.tex",
+      "sha256_line": "5c3ccb6b296b6e3e2271a4ec9be5ca1b86fbfac0bbafc7ebf03de85ad9a62787"
+    },
+    "thm:q-proper": {
+      "line": 1662,
+      "path": "experimental/grande_finale.tex",
+      "sha256_line": "3ae71639d64c2b4b1ccd3b81e51adf4abacb5511c65b8ef526da02b884d04161"
+    }
+  },
+  "status": "EXPERIMENTAL / PARTIAL-LEDGER"
+}

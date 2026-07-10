@@ -2705,3 +2705,10 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W23 M2 U_Q/U_R1 proved brackets (Grok 4.5 / Ken)
+
+- **Files:** `experimental/scripts/verify_uq_ur1_bounds.py`, `verify_uq_ur1_bounds_check.py`, `experimental/data/certificates/uq-ur1-bounds/uq_ur1_bounds.json`, `experimental/notes/thresholds/uq_ur1_bounds_partial.md`
+- **Status:** EXPERIMENTAL / PARTIAL-LEDGER
+- **Usefulness:** Dual-route Johnson/anticode U_Q uppers + pigeonhole lower; conditional one-pencil U_R1=2; replays prop:proper-q-gap (31-bit convention) and exact log2(p); proves packing upper is ~1.66e6 bits above B_*.
+- **Next:** row-sharp Q theorem; BC chart-decomposition audit; optional Lean anchors on exact integers.
