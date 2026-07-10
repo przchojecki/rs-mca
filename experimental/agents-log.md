@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F3 shift-pair C36' and U16 compiler packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f3_shift_pair_c36_u16_packet.md`,
+  `experimental/scripts/verify_f3_shift_pair_c36_u16_packet.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CONDITIONAL / TARGET, by component.
+- **What is being added:** A compact F3/u1_x4 packet in the repository's
+  primitive shift-pair control language: official-regime K6 h=2 payment,
+  the corrected C36' h=3 direct-floor compiler with the catch-71 trace-zero
+  repair, and the U16 assembly reducing the local lane to C36' plus the HGE4
+  aggregate budget gate.
+- **How it is useful:** It gives the finite SP ledger a replayable constants
+  packet without editing the papers, and isolates the two remaining local
+  open leaves instead of hiding them inside a broad direct-column conjecture.
+- **What to do next:** Review whether C36' or HGE4 can be attacked as
+  standalone finite-row certificates, and only promote the packet after the
+  target premises are proved or explicitly assumed.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
