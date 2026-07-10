@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Stirling/g* second-opinion table
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/audits/stirling_gstar_table.md`, `experimental/data/certificates/stirling-gstar-table/stirling_gstar_table.json`, `experimental/scripts/verify_stirling_gstar_table.py`, `experimental/scripts/verify_stirling_gstar_table_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Second-opinion Newton vs bisection g* agree; integer-log Stirling residual o(1)/symbol. Agrees with #435.
+- **How it is useful:** Second-opinion assurance for the asymptotic paper promotion path.
+- **What to do next:** No further action if designer confirms agreement with #435.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

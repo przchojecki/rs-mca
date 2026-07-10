@@ -1,0 +1,212 @@
+{
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "INDEPENDENT_RECHECK",
+  "finite_stirling_rows": [
+    {
+      "B": 17,
+      "a": 20,
+      "asym_nH": 14.192036728597525,
+      "log2_barN_ceil": 12,
+      "log2_barN_floor": 10,
+      "n": 32,
+      "residual_mid_over_n": -0.09975114776867267,
+      "residual_ok": true,
+      "w": 4
+    },
+    {
+      "B": 17,
+      "a": 40,
+      "asym_nH": 28.38407345719505,
+      "log2_barN_ceil": 26,
+      "log2_barN_floor": 24,
+      "n": 64,
+      "residual_mid_over_n": -0.052876147768672666,
+      "residual_ok": true,
+      "w": 8
+    },
+    {
+      "B": 257,
+      "a": 80,
+      "asym_nH": -5.9224404127065355,
+      "log2_barN_ceil": -9,
+      "log2_barN_floor": -11,
+      "n": 128,
+      "residual_mid_over_n": -0.03185593427573019,
+      "residual_ok": true,
+      "w": 16
+    },
+    {
+      "B": 257,
+      "a": 160,
+      "asym_nH": -11.844880825413071,
+      "log2_barN_ceil": -15,
+      "log2_barN_floor": -17,
+      "n": 256,
+      "residual_mid_over_n": -0.01623093427573019,
+      "residual_ok": true,
+      "w": 32
+    },
+    {
+      "B": 2147483647,
+      "a": 288,
+      "asym_nH": -485.78590293479147,
+      "log2_barN_ceil": -489,
+      "log2_barN_floor": -491,
+      "n": 512,
+      "residual_mid_over_n": -0.008230658330485419,
+      "residual_ok": true,
+      "w": 32
+    }
+  ],
+  "gstar_rows": [
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 2.0,
+      "delta_env": 0.17053566085030109,
+      "f_at_g": 0.0,
+      "g_bisection": 0.3294643391496989,
+      "g_newton": 0.3294643391496989,
+      "rho": 0.5
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 8.0,
+      "delta_env": 0.3802249106575279,
+      "f_at_g": 0.0,
+      "g_bisection": 0.11977508934247211,
+      "g_newton": 0.11977508934247211,
+      "rho": 0.5
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 16.0,
+      "delta_env": 0.4381907221760327,
+      "f_at_g": 0.0,
+      "g_bisection": 0.0618092778239673,
+      "g_newton": 0.0618092778239673,
+      "rho": 0.5
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 31.0,
+      "delta_env": 0.4678382787320102,
+      "f_at_g": 0.0,
+      "g_bisection": 0.032161721267989746,
+      "g_newton": 0.032161721267989746,
+      "rho": 0.5
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 2.0,
+      "delta_env": 0.30584221603594414,
+      "f_at_g": 2.220446049250313e-16,
+      "g_bisection": 0.44415778396405586,
+      "g_newton": 0.44415778396405586,
+      "rho": 0.25
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 8.0,
+      "delta_env": 0.6312904922007112,
+      "f_at_g": 0.0,
+      "g_bisection": 0.11870950779928884,
+      "g_newton": 0.11870950779928884,
+      "rho": 0.25
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 16.0,
+      "delta_env": 0.6945060405853885,
+      "f_at_g": 0.0,
+      "g_bisection": 0.05549395941461151,
+      "g_newton": 0.05549395941461151,
+      "rho": 0.25
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 31.0,
+      "delta_env": 0.7225161386870032,
+      "f_at_g": 0.0,
+      "g_bisection": 0.02748386131299689,
+      "g_newton": 0.02748386131299689,
+      "rho": 0.25
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 2.0,
+      "delta_env": 0.3919703423936447,
+      "f_at_g": 0.0,
+      "g_bisection": 0.4830296576063553,
+      "g_newton": 0.4830296576063553,
+      "rho": 0.125
+    },
+    {
+      "abs_diff": 1.3877787807814457e-17,
+      "agree_1e12": true,
+      "beta": 8.0,
+      "delta_env": 0.7799728702509785,
+      "f_at_g": 0.0,
+      "g_bisection": 0.09502712974902155,
+      "g_newton": 0.09502712974902154,
+      "rho": 0.125
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 16.0,
+      "delta_env": 0.8345507532906579,
+      "f_at_g": 0.0,
+      "g_bisection": 0.040449246709342156,
+      "g_newton": 0.040449246709342156,
+      "rho": 0.125
+    },
+    {
+      "abs_diff": 0.0,
+      "agree_1e12": true,
+      "beta": 31.0,
+      "delta_env": 0.8558023418805664,
+      "f_at_g": 0.0,
+      "g_bisection": 0.019197658119433646,
+      "g_newton": 0.019197658119433646,
+      "rho": 0.125
+    }
+  ],
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not re-prove thm:frontier."
+  ],
+  "payload_sha256": "ea2d328f83b51ed40a0ea7e5f5e8343dfd85731f7f17383d86771cf247d1c657",
+  "proof_status": "AUDIT second-opinion g* (Newton vs bisection) + integer log2 Stirling",
+  "regeneration": "python experimental/scripts/verify_stirling_gstar_table.py --emit-defaults",
+  "schema": "stirling-gstar-table-v1",
+  "source_pin": {
+    "file": "experimental/asymptotic_rs_mca.tex",
+    "has_stirling_H2": true
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "disagrees_with_435": false,
+    "headline": "Second-opinion: Newton and bisection g* agree to 1e-12 on a (rho,beta) grid; integer log2 bounds for barN sit next to the Stirling n(H2-beta g) form with o(1) residual per symbol. Agrees with #435 NO-ISSUE on entropy-frontier algebra by a different dual-solver + integer-log route.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "thm:frontier Stirling/g* (second opinion vs #435)"
+}
