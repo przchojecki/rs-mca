@@ -1,0 +1,206 @@
+{
+  "MA_status": {
+    "finite_constant_in_paper": false,
+    "honest": "MA is an asymptotic input inequality; no finite numeric certificate embedded",
+    "label": "def:major-arc-aggregate",
+    "line": 2216,
+    "vacuous_when_M_empty": true
+  },
+  "PF_falsifiable": true,
+  "PF_toy_menu": [
+    {
+      "Delta_pole": 1,
+      "Lambda": 65,
+      "R": 1,
+      "T": 256,
+      "m": 2,
+      "q": 257,
+      "routes_agree": true,
+      "score_bits_lgamma": 4.078033044722053,
+      "score_bits_product": 4.078033044721927,
+      "score_over_T": 0.015929816580945028,
+      "toy_pf_pass": true
+    },
+    {
+      "Delta_pole": 1,
+      "Lambda": 17,
+      "R": 2,
+      "T": 16,
+      "m": 3,
+      "q": 17,
+      "routes_agree": true,
+      "score_bits_lgamma": 8.965995520970791,
+      "score_bits_product": 8.965995520970793,
+      "score_over_T": 0.5603747200606746,
+      "toy_pf_pass": false
+    },
+    {
+      "Delta_pole": 1,
+      "Lambda": 185364,
+      "R": 8,
+      "T": 32,
+      "m": 2,
+      "q": 2147483647,
+      "routes_agree": true,
+      "score_bits_lgamma": 273.0458145793176,
+      "score_bits_product": 273.0458145797351,
+      "score_over_T": 8.532681705616723,
+      "toy_pf_pass": false
+    },
+    {
+      "Delta_pole": 2,
+      "Lambda": 1537,
+      "R": 4,
+      "T": 64,
+      "m": 5,
+      "q": 65537,
+      "routes_agree": true,
+      "score_bits_lgamma": 87.16986842346711,
+      "score_bits_product": 87.1698684234651,
+      "score_over_T": 1.3620291941166423,
+      "toy_pf_pass": false
+    },
+    {
+      "Delta_pole": 0,
+      "Lambda": 9,
+      "R": 1,
+      "T": 16,
+      "m": 2,
+      "q": 17,
+      "routes_agree": true,
+      "score_bits_lgamma": 2.672425341971496,
+      "score_bits_product": 2.6724253419714943,
+      "score_over_T": 0.1670265838732184,
+      "toy_pf_pass": true
+    },
+    {
+      "Delta_pole": 1,
+      "Lambda": 65,
+      "R": 1,
+      "T": 128,
+      "m": 4,
+      "q": 257,
+      "routes_agree": true,
+      "score_bits_lgamma": 4.2941896183547925,
+      "score_bits_product": 4.294189618354732,
+      "score_over_T": 0.033548356393396345,
+      "toy_pf_pass": true
+    }
+  ],
+  "base_sha": "2b1a7e20654d44d0beefcd5c7d508be618b0cea1",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "asserts": [
+      "label pins for MA/PF/Sidon payment interfaces",
+      "falsifiable PF toy score menu",
+      "consistency with #444 Delta when c9 cert present"
+    ],
+    "does_not_assert": [
+      "deployed-row MA/PF certificates",
+      "unconditional Sidon payment on unrestricted deep prefix",
+      "prob:band resolution"
+    ],
+    "is_counterexample": false
+  },
+  "cross_check_packets": [
+    {
+      "keys": [
+        "beats_trivial_baseline",
+        "claim_boundaries",
+        "evidence_type",
+        "is_degenerate_by_construction",
+        "is_tautology_under_preconditions",
+        "menu",
+        "nonclaims",
+        "payload_sha256",
+        "proof_status",
+        "regeneration",
+        "schema",
+        "source_pin"
+      ],
+      "path": "C:/dev/research/rsmca-lab/worktrees/w27-fourier-sidon-payment/experimental/data/certificates/fourier-sidon-cut/fourier_sidon_cut.json",
+      "present": true,
+      "status": "EXPERIMENTAL / AUDIT"
+    },
+    {
+      "agrees_with_sidon_toy": true,
+      "delta": "243/1024",
+      "heavy_fiber": 32,
+      "path": "C:/dev/research/rsmca-lab/worktrees/w27-fourier-sidon-payment/experimental/data/c9_literal_interface_counterexample_v1.json",
+      "status": "COUNTEREXAMPLE_NEW_FLOOR"
+    },
+    {
+      "major_arc_notes": [
+        "c9_major_arc_valueset_structure.md"
+      ],
+      "present": true
+    }
+  ],
+  "evidence_type": "CANONICAL_STATEMENT_HIT",
+  "generator_routes": {
+    "PF_score_A": "product-sum log2 binoms",
+    "PF_score_B": "lgamma log2 binoms",
+    "pins": "label line scan",
+    "sidon_toy": "closed form 2^k and (3/4)^k"
+  },
+  "honest_headline": "PF (def:prefix-flat-range) is a quantitative inequality; toy menu is falsifiable (3/6 pass under score/T<0.5). MA is asymptotic vacuous-or-census input with no embedded finite constant. Sidon-heavy toy matches #444 k=5 Delta/energy. Payment remains a residual input after algebraic first-match \u2014 not a free theorem.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "object": "Fourier/Sidon + major-arc payment audit (entropy frontiers)",
+  "payload_sha256": "341b36a5e63c588b99e21e88a9d5fe57fbc69121e364fb3dc741db7b9de9b97f",
+  "scope_language_present": true,
+  "sidon_heavy_toy": {
+    "Delta": 0.2373046875,
+    "Delta_fraction": "243/1024",
+    "energy": 7776,
+    "heavy": 32,
+    "k": 5,
+    "moment_term_proxy": 16777.216000000004,
+    "note": "matches integrated #444 k=5 Delta=243/1024 energy=7776",
+    "sidon_heavy_finite_test": true
+  },
+  "statement_pins": {
+    "def:major-arc-aggregate": {
+      "line": 2216,
+      "sha256_line": "a6ef249082f851854d77dc1518d8dd23ef49689cc505ff2306924a32cb9a557c",
+      "text": "\\begin{definition}[Major-arc aggregate]\\label{def:major-arc-aggregate}"
+    },
+    "def:prefix-flat-range": {
+      "line": 2231,
+      "sha256_line": "0172ab52b2e78d6847e37ce7e86f06dad4bffc83e6d78d5a84298f1bd2e0bcea",
+      "text": "\\begin{definition}[Pointwise minor-arc range]\\label{def:prefix-flat-range}"
+    },
+    "def:sidon-heavy": {
+      "line": 3759,
+      "sha256_line": "18a3170ea448de334d29d6cbe98d788c756b22988f20ac847d00bd2548edfdb7",
+      "text": "\\begin{definition}[Sidon-heavy logarithmic moment]\\label{def:sidon-heavy}"
+    },
+    "def:sidon-paid-cell": {
+      "line": 3796,
+      "sha256_line": "d779f90f40120dbf33c195f477ca483a5db6e1682a5afd9ba9567fa3ae0d58b4",
+      "text": "\\begin{definition}[Sidon moment payment]\\label{def:sidon-paid-cell}"
+    },
+    "eq:major-arc-aggregate": {
+      "line": 2221,
+      "sha256_line": "1dae8c86bf0eaa4421dbd7047051ea063506bc46508c6e268b61a8ca8deeb35f",
+      "text": "\\tag{MA}\\label{eq:major-arc-aggregate}"
+    },
+    "thm:bounded-prefix-equidistribution": {
+      "line": 2246,
+      "sha256_line": "6ec74dd2c120edd325f99d1cda8af42cb6d29d083acb2862ad9925bc9b045b99",
+      "text": "\\begin{theorem}[Bounded-prefix flatness on smooth cosets]\\label{thm:bounded-prefix-equidistribution}"
+    },
+    "thm:intro-sidon-heavy-repair": {
+      "line": 855,
+      "sha256_line": "b389e26dafbecff52f8fb1b64e6138c32fdcf6e38cad717235b08b3654e4e87f",
+      "text": "\\label{thm:intro-sidon-heavy-repair}"
+    },
+    "thm:primitive-q": {
+      "line": 4124,
+      "sha256_line": "08d1152736df8763b1b8d7fed1bdab42516c529964e28fdb6f430a802a0c845f",
+      "text": "\\begin{theorem}[Primitive Q after a Sidon moment payment]\\label{thm:primitive-q}"
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "verdict": "NO ISSUE"
+}
