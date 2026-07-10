@@ -1,0 +1,188 @@
+{
+  "all_pass": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "chain": [
+    {
+      "name": "START ass packaging",
+      "pr": null,
+      "status": "OPEN",
+      "step": 0,
+      "summary": "image-normalized Sidon payment barN=|Omega|/|im Phi|"
+    },
+    {
+      "name": "REDUCE to max-fiber control",
+      "pr": 575,
+      "status": "REDUCED",
+      "step": 1,
+      "summary": "rate <= log(max_f/barN)/N (Lemma II)"
+    },
+    {
+      "name": "LOCALIZE R>=m trivial",
+      "pr": 577,
+      "status": "PROVED-SPECIAL",
+      "step": 2,
+      "summary": "Newton injectivity R>=m"
+    },
+    {
+      "name": "LOCALIZE R=2 fixed-m bound",
+      "pr": 579,
+      "status": "PROVED-SPECIAL",
+      "step": 3,
+      "summary": "f_s <= N^{m-2} for R=2"
+    },
+    {
+      "name": "CRUX mechanism fails",
+      "pr": 581,
+      "status": "MEASURED-mechanism-fails",
+      "step": 4,
+      "summary": "106/108 largest fibers near Sidon floor"
+    },
+    {
+      "name": "CRUX theory reduced",
+      "pr": 582,
+      "status": "REDUCED",
+      "step": 5,
+      "summary": "CS insufficient; beat Sidon on R=2 fibers"
+    },
+    {
+      "name": "RAZOR open",
+      "pr": null,
+      "status": "OPEN",
+      "step": 6,
+      "summary": "near-Sidon AND exp-large at linear density R=2?"
+    }
+  ],
+  "checker_route": "require note completeness phrases; recheck_ok; pins_ok; chain length 7",
+  "claim_boundaries": {
+    "is_counterexample": false,
+    "is_measurement": true,
+    "is_theorem": false
+  },
+  "evidence_type": "FINITE_TOY_ROW",
+  "expected_verdicts": {
+    "w49-image-normalized-sidon": {
+      "payload_prefix": "594159a6",
+      "verdict": "MEASURED-SUPPORT"
+    },
+    "w50-sidon-special-case-proof": {
+      "payload_prefix": "a017e945",
+      "verdict": "PROVED-SPECIAL"
+    },
+    "w51-maxfiber-control-proof": {
+      "payload_prefix": "e919e8f8",
+      "verdict": "PROVED-SPECIAL"
+    },
+    "w52-r2-maxfiber-proof": {
+      "payload_prefix": "f7a54058",
+      "verdict": "PROVED-SPECIAL"
+    },
+    "w53-largefiber-energy-proof": {
+      "payload_prefix": "8baa4e87",
+      "verdict": "REDUCED"
+    },
+    "w53-largefiber-lowenergy-hunt": {
+      "payload_prefix": "f0e1f3be",
+      "verdict": "MEASURED-SUPPORT"
+    }
+  },
+  "falsifiable": true,
+  "generator_route": "synthesize chain table with PR refs; embed recheck PASS lines; pin labels",
+  "hard_input": "b / C9",
+  "honest_headline": "OPEN: payment reduced to razor (near-Sidon + exp-large on R=2 linear-density fibers); easy large=>high-energy mechanism dead (#581)",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not prove or refute C9 payment.",
+    "Synthesis of prior waves only."
+  ],
+  "note_complete": true,
+  "note_hits": {
+    "#575": true,
+    "#577": true,
+    "#579": true,
+    "#581": true,
+    "#582": true,
+    "OPEN": true,
+    "RESULT: PASS": true,
+    "The razor": true,
+    "exp-large": true,
+    "near-Sidon": true
+  },
+  "note_path": "experimental/notes/thresholds/c9_payment_reduction_map.md",
+  "object": "C9 payment reduction map W49-W53",
+  "payload_sha256": "b54cb6e52ad3f961f10537343b4e0bce8dd86343313c3bc9a55a160901d383f2",
+  "pins": {
+    "def:sidon-heavy": {
+      "found": true,
+      "line": 5093
+    },
+    "def:sidon-paid-cell": {
+      "found": true,
+      "line": 5130
+    },
+    "eq:image-ambient-scales": {
+      "found": true,
+      "line": 4837
+    },
+    "thm:unconditional-shallow-mi-ma": {
+      "found": true,
+      "line": 5267
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "OPEN",
+  "razor": "Exists R=2 linear-density fiber that is near-Sidon AND exp-large? YES => payment fails; NO => reduced input holds.",
+  "recheck_ok": true,
+  "recheck_rows": [
+    {
+      "code": 0,
+      "dir": "w49-image-normalized-sidon",
+      "line": "RESULT: PASS\r | payload_sha256: 594159a6711cf186696988afb19d67c4feb5850c23ca76d9e1602c5c7e245b99\r | verdict: MEASURED-SUPPORT\r",
+      "ok": true
+    },
+    {
+      "code": 0,
+      "dir": "w50-sidon-special-case-proof",
+      "line": "RESULT: PASS\r | payload_sha256: a017e945632ee4cbf8c434193405e539fdc531baf2dc8062e8c2cb1558e1b9ce\r | verdict: PROVED-SPECIAL\r",
+      "ok": true
+    },
+    {
+      "code": 0,
+      "dir": "w51-maxfiber-control-proof",
+      "line": "RESULT: PASS\r | payload_sha256: e919e8f8d91987f7d304c59970b9888adfd27bf14b8c633c7b22e94d28487488\r | verdict: PROVED-SPECIAL\r",
+      "ok": true
+    },
+    {
+      "code": 0,
+      "dir": "w52-r2-maxfiber-proof",
+      "line": "RESULT: PASS\r | payload_sha256: f7a54058936e7f462c2f05536bf5656ebf0016c2d7c5a35658cfe39aec0fc5ba\r | verdict: PROVED-SPECIAL\r",
+      "ok": true
+    },
+    {
+      "code": 0,
+      "dir": "w53-largefiber-lowenergy-hunt",
+      "line": "RESULT: PASS\r | payload_sha256: f0e1f3bec7c8369d9cb7929890c3991047ee9bd6ff6885e2ac6b6ab972dfc185\r | verdict: MEASURED-SUPPORT\r",
+      "ok": true
+    },
+    {
+      "code": 0,
+      "dir": "w53-largefiber-energy-proof",
+      "line": "RESULT: PASS\r | payload_sha256: 8baa4e87dbf896e2de2248ac5c29726fd322d37f07ddc28ea3b4b3a6f8ef3f65\r | verdict: REDUCED\r",
+      "ok": true
+    }
+  ],
+  "regeneration": "py -3.13 experimental/scripts/verify_c9_reduction_map.py",
+  "rung": "OPEN",
+  "schema": "c9_reduction_map.v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "verdict": "OPEN",
+  "weave": [
+    "#575",
+    "#577",
+    "#579",
+    "#581",
+    "#582",
+    "W49-W53"
+  ]
+}

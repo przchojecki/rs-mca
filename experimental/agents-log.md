@@ -2821,3 +2821,7 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W54 c9-reduction-map
+- EXPERIMENTAL OPEN capstone: C9 payment reduction chain map; razor near-Sidon+exp-large; recheck PASS W49-W53.
+
