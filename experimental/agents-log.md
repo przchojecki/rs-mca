@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - Split-pencil W-collision pair-moment identity
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/split_pencil_wcollision_pair_moment.md`,
+  `experimental/scripts/verify_split_pencil_wcollision_pair_moment.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / INSTRUMENT.
+- **What is being added:** An exact W-collision pair-moment identity for the
+  split-pencil/XR lane: raw collision cores regroup by codeword-pair fibers
+  with factor `binom(L(f,g),2) * binom(J(f,g),k)`, and per-core multiplicity
+  is the second moment of pencil live counts.
+- **How it is useful:** Gives the base-field-normalized split-pencil program
+  an exact second-moment ledger while preventing the category error of treating
+  a support-pair moment as a closed slope-count bound.
+- **What to do next:** Use this as an instrument for the primitive
+  split-pencil residual; the remaining work is the anti-concentration bound
+  for pencil live counts after the paid strips remove planted/near-pencil
+  mass.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
