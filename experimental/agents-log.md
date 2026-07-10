@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-09 - Asymptotic vs finite deployed mismatch audit
+
+- **Agent/model:** Grok.
+- **Files added or changed:**
+  `experimental/notes/audits/asymptotic_finite_deployed_mismatch.md`,
+  `experimental/data/certificates/asymptotic-finite-mismatch/asymptotic_finite_deployed_mismatch.json`,
+  `experimental/scripts/verify_asymptotic_finite_deployed_mismatch.py`,
+  `experimental/scripts/verify_asymptotic_finite_deployed_mismatch_check.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Independent recompute of the entropy-subfield crossing
+  `g*(rho,beta)` and `a*=(rho+g*)n` for the four deployed adjacent rows, attacking
+  the agents.md failure mode "mismatch between asymptotic proof and finite deployed
+  rows" on `experimental/asymptotic_rs_mca.tex`. All six attacks return `NO ISSUE`:
+  deployed `a0` lies within distance 3 of `a*` at `n=2^21`; the paper's finite-adjacent
+  remark correctly refuses to supply constants; `exp(o(n))` overhead quantitatively
+  exceeds the printed spare margins; toy recomputes of `lem:moment-max` and `lem:q-sp`
+  hold; prize `log2(1/eps)` fits the `O(n)` hypothesis. The independent checker
+  re-derives g* by Newton/regula-falsi (not the generator's bisection) and
+  re-scans the paper quotes without importing the generator.
+- **How it is useful:** Gives a second-source consistency pin between the compact
+  asymptotic frontier theorem and the finite adjacent table, without overclaiming a
+  finite certificate from asymptotic losses. Supports the maintainer's split between
+  the asymptotic proof track and the finite constants project.
+- **What to do next:** Keep finite adjacent upper ledgers as a separate constants
+  project; do not treat this packet as closing C9/B1/add-back gaps.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

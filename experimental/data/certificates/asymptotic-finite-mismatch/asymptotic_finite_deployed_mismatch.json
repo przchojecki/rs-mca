@@ -1,0 +1,269 @@
+{
+  "adjacent_cert_crosslink": {
+    "missing_a0_rows": [],
+    "ok": true,
+    "path": "experimental/data/certificates/capg-adjacent-pairs/capg_adjacent_pair_margins.json",
+    "present": true
+  },
+  "attacks": [
+    {
+      "evidence": "Deployed a0 lies within distance 3 of a*=(rho+g*)n for all four rows; g* residual |H2(rho+g*)-beta g*| < 1e-12.",
+      "failure_mode": "entropy-frontier algebra error",
+      "object": "g* bisection + Stirling exponent sign + deployed a0 vs a*",
+      "verdict": "NO ISSUE"
+    },
+    {
+      "evidence": "Asymptotic crossing a* matches the finite adjacent pair to O(1) positions at n=2^21. No contradiction between thm:frontier and the deployed adjacent agreements.",
+      "failure_mode": "mismatch between asymptotic proof and finite deployed rows",
+      "object": "thm:frontier radius prediction vs finite adjacent a0/a1",
+      "verdict": "NO ISSUE"
+    },
+    {
+      "evidence": "Paper remark:finite correctly refuses to supply finite constants. Quantitatively, any overhead 2^{eps n} with eps >= margin/n already consumes the printed spare margin (eps_max ~ 1e-5 bits/symbol on KoalaBear, ~1.5e-6 on Mersenne-31). Asymptotic exp(o(n)) is not a finite adjacent certificate.",
+      "failure_mode": "asymptotic exp(o(n)) losses silently close finite margins",
+      "object": "remark:finite + spare-margin o(n) budget",
+      "verdict": "NO ISSUE"
+    },
+    {
+      "evidence": "Toy multiset sandwich lower <= Gord_q <= upper holds.",
+      "failure_mode": "lem:moment-max sandwich",
+      "object": "lem:moment-max",
+      "verdict": "NO ISSUE"
+    },
+    {
+      "evidence": "Toy N(s) values satisfy sum N^2 <= max N * sum N.",
+      "failure_mode": "lem:q-sp second-moment bound",
+      "object": "lem:q-sp",
+      "verdict": "NO ISSUE"
+    },
+    {
+      "evidence": "Prize targets use lambda in {100,128}; both are O(1) subset O(n) at n=2097152.",
+      "failure_mode": "prize log2(1/eps) vs O(n) hypothesis",
+      "object": "thm:frontier challenge-normalization hypothesis",
+      "verdict": "NO ISSUE"
+    }
+  ],
+  "base_commit_note": "origin/main asymptotic_rs_mca.tex + integrated adjacent-pair table",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": true,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "entropy_frontier_rows": {
+    "all_a0_within_3_of_a_star": true,
+    "k": 1048576,
+    "n": 2097152,
+    "rho": 0.5,
+    "rows": [
+      {
+        "a0": 1116047,
+        "a0_minus_a_star": -1.4994230505544692,
+        "a1": 1116048,
+        "a1_minus_a_star": -0.49942305055446923,
+        "a_star": 1116048.4994230506,
+        "abs_a0_a_star_le_3": true,
+        "abs_a1_a_star_le_3": true,
+        "base_prime": 2130706433,
+        "beta_log2": 30.98868468744926,
+        "delta_env": 0.4678266051182506,
+        "dim": 1048577,
+        "exp_on_overhead_eps_max_bits_per_symbol": 1.0584306716918945e-05,
+        "g_star": 0.03217339488174944,
+        "gstar_residual": -8.881784197001252e-16,
+        "kind": "mca",
+        "label": "KoalaBear MCA",
+        "lambda_bits": 128,
+        "printed_fail_margin_bits": 22.1969,
+        "prize_log_eps_compatible_with_O_n": true,
+        "radius_at_a0": 0.46782732009887695,
+        "radius_at_a1": 0.46782684326171875,
+        "row_id": "kb_mca",
+        "stirling_exponent_code_g": 2.228923867630961e-05,
+        "stirling_exponent_prefix_w": 3.7065795019164405e-05,
+        "w0": 67470,
+        "w1": 67471
+      },
+      {
+        "a0": 1116046,
+        "a0_minus_a_star": -2.4994230505544692,
+        "a1": 1116047,
+        "a1_minus_a_star": -1.4994230505544692,
+        "a_star": 1116048.4994230506,
+        "abs_a0_a_star_le_3": true,
+        "abs_a1_a_star_le_3": true,
+        "base_prime": 2130706433,
+        "beta_log2": 30.98868468744926,
+        "delta_env": 0.4678266051182506,
+        "dim": 1048576,
+        "exp_on_overhead_eps_max_bits_per_symbol": 1.0495615005493164e-05,
+        "g_star": 0.03217339488174944,
+        "gstar_residual": -8.881784197001252e-16,
+        "kind": "list",
+        "label": "KoalaBear list",
+        "lambda_bits": 128,
+        "printed_fail_margin_bits": 22.0109,
+        "prize_log_eps_compatible_with_O_n": true,
+        "radius_at_a0": 0.46782779693603516,
+        "radius_at_a1": 0.46782732009887695,
+        "row_id": "kb_list",
+        "stirling_exponent_code_g": 3.7154447130594015e-05,
+        "stirling_exponent_prefix_w": 3.7154447130594015e-05,
+        "w0": 67470,
+        "w1": 67471
+      },
+      {
+        "a0": 1116023,
+        "a0_minus_a_star": -1.0180820603854954,
+        "a1": 1116024,
+        "a1_minus_a_star": -0.018082060385495424,
+        "a_star": 1116024.0180820604,
+        "abs_a0_a_star_le_3": true,
+        "abs_a1_a_star_le_3": true,
+        "base_prime": 2147483647,
+        "beta_log2": 30.999999999328193,
+        "delta_env": 0.4678382787313174,
+        "dim": 1048577,
+        "exp_on_overhead_eps_max_bits_per_symbol": 1.5539646148681641e-06,
+        "g_star": 0.03216172126868261,
+        "gstar_residual": -9.992007221626409e-16,
+        "kind": "mca",
+        "label": "Mersenne-31 MCA",
+        "lambda_bits": 100,
+        "printed_fail_margin_bits": 3.2589,
+        "prize_log_eps_compatible_with_O_n": true,
+        "radius_at_a0": 0.46783876419067383,
+        "radius_at_a1": 0.4678382873535156,
+        "row_id": "m31_mca",
+        "stirling_exponent_code_g": 1.5139464332292185e-05,
+        "stirling_exponent_prefix_w": 2.9921416236255993e-05,
+        "w0": 67446,
+        "w1": 67447
+      },
+      {
+        "a0": 1116022,
+        "a0_minus_a_star": -2.0180820603854954,
+        "a1": 1116023,
+        "a1_minus_a_star": -1.0180820603854954,
+        "a_star": 1116024.0180820604,
+        "abs_a0_a_star_le_3": true,
+        "abs_a1_a_star_le_3": true,
+        "base_prime": 2147483647,
+        "beta_log2": 30.999999999328193,
+        "delta_env": 0.4678382787313174,
+        "dim": 1048576,
+        "exp_on_overhead_eps_max_bits_per_symbol": 1.465320587158203e-06,
+        "g_star": 0.03216172126868261,
+        "gstar_residual": -9.992007221626409e-16,
+        "kind": "list",
+        "label": "Mersenne-31 list",
+        "lambda_bits": 100,
+        "printed_fail_margin_bits": 3.073,
+        "prize_log_eps_compatible_with_O_n": true,
+        "radius_at_a0": 0.46783924102783203,
+        "radius_at_a1": 0.46783876419067383,
+        "row_id": "m31_list",
+        "stirling_exponent_code_g": 3.0010036725869327e-05,
+        "stirling_exponent_prefix_w": 3.0010036725869327e-05,
+        "w0": 67446,
+        "w1": 67447
+      }
+    ],
+    "verdict_entropy_alignment": "NO ISSUE"
+  },
+  "evidence_type": "INDEPENDENT_RECHECK",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "lem_moment_max_toy": {
+    "Gord_q": 352.3333333333333,
+    "lower": 341.3333333333333,
+    "q": 5,
+    "ratios": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "sandwich_ok": true,
+    "upper": 1024.0,
+    "verdict": "NO ISSUE"
+  },
+  "lem_q_sp_toy": {
+    "L": 5,
+    "M": 16,
+    "N_values": [
+      3,
+      5,
+      2,
+      5,
+      1
+    ],
+    "barN": 3.2,
+    "bound": 5.0,
+    "inequality_ok": true,
+    "kappa": 1.5625,
+    "second_moment": 4.0,
+    "verdict": "NO ISSUE"
+  },
+  "nonclaims": [
+    "Does not prove thm:frontier.",
+    "Does not audit closed-ledger cells (C1)--(C9).",
+    "Does not discharge C9 / B1 / add-back gaps from sibling audits.",
+    "Does not produce a finite adjacent upper ledger U(a0+1) <= B*.",
+    "Does not claim the asymptotic theorem settles the prize finite margins."
+  ],
+  "paper_path": "experimental/asymptotic_rs_mca.tex",
+  "paper_quote_gate": {
+    "all_ok": true,
+    "hits": [
+      {
+        "description": "frontier theorem label present",
+        "key": "thm_frontier_label",
+        "ok": true
+      },
+      {
+        "description": "g* definition matches paper",
+        "key": "gstar_def",
+        "ok": true
+      },
+      {
+        "description": "Stirling log2 barN identity present",
+        "key": "stirling_identity",
+        "ok": true
+      },
+      {
+        "description": "remark:finite scopes asymptotic losses",
+        "key": "remark_finite",
+        "ok": true
+      },
+      {
+        "description": "remark:finite denies finite constants from asymptotics",
+        "key": "remark_constants",
+        "ok": true
+      },
+      {
+        "description": "challenge-normalization hypothesis present",
+        "key": "eps_hypothesis",
+        "ok": true
+      }
+    ],
+    "missing": []
+  },
+  "payload_sha256": "6e00b14eab8669acc6c471d661c201906c621e238aff2fd81a77aff890b30ea6",
+  "proof_status": "AUDIT independent recompute of entropy frontier vs deployed rows",
+  "regeneration": "python experimental/scripts/verify_asymptotic_finite_deployed_mismatch.py --emit-defaults",
+  "schema": "asymptotic-finite-deployed-mismatch-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Asymptotic a*=(rho+g*)n lands within distance 3 of every deployed adjacent a0 at n=2^21; paper correctly scopes exp(o(n)) away from finite constants; no mismatch contradiction.",
+    "n_attacks": 6,
+    "n_counterexample": 0,
+    "n_no_issue": 6,
+    "n_open_gap": 0,
+    "verdict_overall": "NO ISSUE"
+  },
+  "theorem_problem_id": "thm:frontier + remark:finite asymptotic-vs-finite-deployed mismatch audit"
+}
