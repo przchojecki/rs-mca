@@ -1,0 +1,363 @@
+{
+  "base_sha": "2b1a7e20654d44d0beefcd5c7d508be618b0cea1",
+  "beats_trivial_baseline": true,
+  "citation_inventory": {
+    "Cho26CapV13": 4,
+    "Cho26Grande": 4,
+    "sec_source_integration": 1,
+    "sec_verification_template": 2,
+    "word_certificate": 39
+  },
+  "claim_boundaries": {
+    "asserts": [
+      "exhaustive match table for tracked integrated integers",
+      "paper large-int inventory"
+    ],
+    "does_not_assert": [
+      "that theorem citations equal certificate replay",
+      "completeness beyond tracked set + paper large ints"
+    ],
+    "is_counterexample": false
+  },
+  "coverage_table": [
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 274980728111395087,
+      "scope_honest": true,
+      "source_cert": "experimental/data/certificates/q-r1-closing-audit/q_r1_closing_audit.json",
+      "source_field": "B_star_threshold",
+      "tracked_name": "kb_mca_B_star"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 274980728111395087,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "B_star_threshold",
+      "tracked_name": "kb_list_B_star"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 16777215,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "B_star_threshold",
+      "tracked_name": "m31_B_star"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 138634741058327852652,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "lower_floor_at_a0",
+      "tracked_name": "kb_mca_U_a0"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 57198030366,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "lower_floor_at_a1",
+      "tracked_name": "kb_mca_U_a1"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 157702518233425975347,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "lower_floor_at_a0",
+      "tracked_name": "kb_list_U_a0"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 65065153468,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "lower_floor_at_a1",
+      "tracked_name": "kb_list_U_a1"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 4281388998575706,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "lower_floor_at_a0",
+      "tracked_name": "m31_mca_U_a0"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 1752700,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "lower_floor_at_a1",
+      "tracked_name": "m31_mca_U_a1"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 4870025984688527,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "lower_floor_at_a0",
+      "tracked_name": "m31_list_U_a0"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 1993678,
+      "scope_honest": true,
+      "source_cert": "q-r1-closing-audit",
+      "source_field": "lower_floor_at_a1",
+      "tracked_name": "m31_list_U_a1"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 1116047,
+      "scope_honest": true,
+      "source_cert": "q-r1 / adjacent rows",
+      "source_field": "a0",
+      "tracked_name": "a0_kb_mca"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 1116048,
+      "scope_honest": true,
+      "source_cert": "q-r1 / adjacent rows",
+      "source_field": "a1",
+      "tracked_name": "a1_kb_mca"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 1116023,
+      "scope_honest": true,
+      "source_cert": "q-r1",
+      "source_field": "a0",
+      "tracked_name": "a0_m31_mca"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 1116024,
+      "scope_honest": true,
+      "source_cert": "q-r1",
+      "source_field": "a1",
+      "tracked_name": "a1_m31_mca"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 471447040,
+      "scope_honest": true,
+      "source_cert": "kb-mca-1116048-first-match-ledger-v1 (integrated 0955594)",
+      "source_field": "terminal_dyadic_rung",
+      "tracked_name": "first_match_quotient_rung"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": false,
+      "notes": "absent from draft \u2014 no misquote possible",
+      "paper_lines": [],
+      "quoted_value": 143763024447376,
+      "scope_honest": true,
+      "source_cert": "kb-mca-1116048-first-match-ledger-v1",
+      "source_field": "generated_field_image_cover",
+      "tracked_name": "first_match_image_cover"
+    },
+    {
+      "byte_match_if_present": true,
+      "match_in_paper": true,
+      "notes": "present; exact decimal match",
+      "paper_lines": [
+        5800
+      ],
+      "quoted_value": 3614423,
+      "scope_honest": true,
+      "source_cert": "bibliography DOI fragment (not a cert)",
+      "source_field": "doi",
+      "tracked_name": "doi_acm"
+    }
+  ],
+  "evidence_type": "CANONICAL_STATEMENT_HIT",
+  "generator_routes": {
+    "paper_ints_A": "line-scan regex \\b\\d{7,}\\b",
+    "paper_ints_B": "whole-text findall unique set",
+    "q_r1": "reload JSON row_table and compare fields",
+    "tracked": "exact decimal search per tracked cert integer"
+  },
+  "honest_headline": "Tracked 18 cert integers: 1 appear in draft; paper large-int set size=1. Mode=PARTIAL_NUMERIC_EMBED. No cert-number misquote; draft integrates Cho26 finite-source material by theorem citation.",
+  "integration_mode": "PARTIAL_NUMERIC_EMBED",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "mismatches": [],
+  "object": "exhaustive finite-source cert coverage for rs_mca_entropy_frontiers.tex",
+  "paper_large_int_set_route_B": [
+    3614423
+  ],
+  "paper_large_ints_route_A": [
+    {
+      "line": 5800,
+      "text": "\\newblock doi:10.1145/3614423; conference version in",
+      "value": 3614423
+    }
+  ],
+  "payload_sha256": "c9998b5ff70fb7f41f202f864db9ade84f16adcf60b5bc525f92e86da1b7ba37",
+  "proposed_ledger_entry": null,
+  "q_r1_source_check": {
+    "all_tracked_match_cert": true,
+    "claim_boundaries": {
+      "audits_canonical_statement_inputs": true,
+      "beats_or_narrows_trivial_baseline": false,
+      "claims_no_method_can_reach": false,
+      "independent_recheck_confirms": true,
+      "is_counterexample": false,
+      "is_full_canonical_statement_not_proxy_or_toy_row": false,
+      "is_not_degenerate_or_tautological_by_construction": true,
+      "is_novel_not_confirming_a_proven_theorem": true,
+      "proves_prob_band_undecidable": false,
+      "resolves_or_advances_prob_band": false,
+      "verifies_one_step_inequality": false
+    },
+    "path": "C:/dev/research/rsmca-lab/worktrees/w27-finite-source-full-coverage/experimental/data/certificates/q-r1-closing-audit/q_r1_closing_audit.json",
+    "present": true,
+    "status": "EXPERIMENTAL / AUDIT",
+    "tracked_vs_cert": [
+      {
+        "cert_value": 274980728111395087,
+        "match": true,
+        "name": "kb_mca_B_star",
+        "tracked": 274980728111395087
+      },
+      {
+        "cert_value": 274980728111395087,
+        "match": true,
+        "name": "kb_list_B_star",
+        "tracked": 274980728111395087
+      },
+      {
+        "cert_value": 16777215,
+        "match": true,
+        "name": "m31_B_star",
+        "tracked": 16777215
+      },
+      {
+        "cert_value": 138634741058327852652,
+        "match": true,
+        "name": "kb_mca_U_a0",
+        "tracked": 138634741058327852652
+      },
+      {
+        "cert_value": 57198030366,
+        "match": true,
+        "name": "kb_mca_U_a1",
+        "tracked": 57198030366
+      },
+      {
+        "cert_value": 157702518233425975347,
+        "match": true,
+        "name": "kb_list_U_a0",
+        "tracked": 157702518233425975347
+      },
+      {
+        "cert_value": 65065153468,
+        "match": true,
+        "name": "kb_list_U_a1",
+        "tracked": 65065153468
+      },
+      {
+        "cert_value": 4281388998575706,
+        "match": true,
+        "name": "m31_mca_U_a0",
+        "tracked": 4281388998575706
+      },
+      {
+        "cert_value": 1752700,
+        "match": true,
+        "name": "m31_mca_U_a1",
+        "tracked": 1752700
+      },
+      {
+        "cert_value": 4870025984688527,
+        "match": true,
+        "name": "m31_list_U_a0",
+        "tracked": 4870025984688527
+      },
+      {
+        "cert_value": 1993678,
+        "match": true,
+        "name": "m31_list_U_a1",
+        "tracked": 1993678
+      },
+      {
+        "cert_value": 1116047,
+        "match": true,
+        "name": "a0_kb_mca",
+        "tracked": 1116047
+      },
+      {
+        "cert_value": 1116048,
+        "match": true,
+        "name": "a1_kb_mca",
+        "tracked": 1116048
+      },
+      {
+        "cert_value": 1116023,
+        "match": true,
+        "name": "a0_m31_mca",
+        "tracked": 1116023
+      },
+      {
+        "cert_value": 1116024,
+        "match": true,
+        "name": "a1_m31_mca",
+        "tracked": 1116024
+      }
+    ]
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "untracked_paper_large_ints": [],
+  "verdict": "NO ISSUE"
+}
