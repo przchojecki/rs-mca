@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - SP proper ceiling toy verification
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/thresholds/sp_proper_ceiling.md`, `experimental/data/certificates/sp-proper-ceiling/sp_proper_ceiling.json`, `experimental/scripts/verify_sp_proper_ceiling.py`, `experimental/scripts/verify_sp_proper_ceiling_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact T_e structural identity and pair-slack tables for thm:sp-proper.
+- **How it is useful:** Confirms the unconditional SP audit ceiling on toys.
+- **What to do next:** Deployed margins still need row-sharp Q.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

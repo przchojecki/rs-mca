@@ -1,0 +1,309 @@
+{
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "menu": [
+    {
+      "Bsize": 7,
+      "D_subset_B": true,
+      "all_P_le_T": true,
+      "any_positive_slack": true,
+      "m": 3,
+      "n": 6,
+      "not_all_tautology": true,
+      "num_fibers": 7,
+      "p": 7,
+      "strata": [
+        {
+          "P_e_same_fiber": 0,
+          "P_le_T": true,
+          "T_e": 180,
+          "e": 1,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 180
+        },
+        {
+          "P_e_same_fiber": 36,
+          "P_le_T": true,
+          "T_e": 180,
+          "e": 2,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 144
+        },
+        {
+          "P_e_same_fiber": 2,
+          "P_le_T": true,
+          "T_e": 20,
+          "e": 3,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 18
+        }
+      ],
+      "top_stratum": {
+        "D_subset_B": true,
+        "P_e": 36,
+        "P_le_top": true,
+        "T_e": 180,
+        "e": 2,
+        "slack_top": 324,
+        "top_bound": 360,
+        "top_le_T": false
+      },
+      "w": 1
+    },
+    {
+      "Bsize": 7,
+      "D_subset_B": true,
+      "all_P_le_T": true,
+      "any_positive_slack": true,
+      "m": 3,
+      "n": 6,
+      "not_all_tautology": true,
+      "num_fibers": 19,
+      "p": 7,
+      "strata": [
+        {
+          "P_e_same_fiber": 0,
+          "P_le_T": true,
+          "T_e": 180,
+          "e": 1,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 180
+        },
+        {
+          "P_e_same_fiber": 0,
+          "P_le_T": true,
+          "T_e": 180,
+          "e": 2,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 180
+        },
+        {
+          "P_e_same_fiber": 2,
+          "P_le_T": true,
+          "T_e": 20,
+          "e": 3,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 18
+        }
+      ],
+      "top_stratum": {
+        "D_subset_B": true,
+        "P_e": 2,
+        "P_le_top": true,
+        "T_e": 20,
+        "e": 3,
+        "slack_top": 118,
+        "top_bound": 120,
+        "top_le_T": false
+      },
+      "w": 2
+    },
+    {
+      "Bsize": 11,
+      "D_subset_B": true,
+      "all_P_le_T": true,
+      "any_positive_slack": true,
+      "m": 4,
+      "n": 8,
+      "not_all_tautology": true,
+      "num_fibers": 11,
+      "p": 11,
+      "strata": [
+        {
+          "P_e_same_fiber": 0,
+          "P_le_T": true,
+          "T_e": 1120,
+          "e": 1,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 1120
+        },
+        {
+          "P_e_same_fiber": 288,
+          "P_le_T": true,
+          "T_e": 2520,
+          "e": 2,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 2232
+        },
+        {
+          "P_e_same_fiber": 88,
+          "P_le_T": true,
+          "T_e": 1120,
+          "e": 3,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 1032
+        },
+        {
+          "P_e_same_fiber": 8,
+          "P_le_T": true,
+          "T_e": 70,
+          "e": 4,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 62
+        }
+      ],
+      "top_stratum": {
+        "D_subset_B": true,
+        "P_e": 288,
+        "P_le_top": true,
+        "T_e": 2520,
+        "e": 2,
+        "slack_top": 3912,
+        "top_bound": 4200,
+        "top_le_T": false
+      },
+      "w": 1
+    },
+    {
+      "Bsize": 11,
+      "D_subset_B": true,
+      "all_P_le_T": true,
+      "any_positive_slack": true,
+      "m": 4,
+      "n": 8,
+      "not_all_tautology": true,
+      "num_fibers": 61,
+      "p": 11,
+      "strata": [
+        {
+          "P_e_same_fiber": 0,
+          "P_le_T": true,
+          "T_e": 1120,
+          "e": 1,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 1120
+        },
+        {
+          "P_e_same_fiber": 0,
+          "P_le_T": true,
+          "T_e": 2520,
+          "e": 2,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 2520
+        },
+        {
+          "P_e_same_fiber": 16,
+          "P_le_T": true,
+          "T_e": 1120,
+          "e": 3,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 1104
+        },
+        {
+          "P_e_same_fiber": 2,
+          "P_le_T": true,
+          "T_e": 70,
+          "e": 4,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 68
+        }
+      ],
+      "top_stratum": {
+        "D_subset_B": true,
+        "P_e": 16,
+        "P_le_top": true,
+        "T_e": 1120,
+        "e": 3,
+        "slack_top": 2784,
+        "top_bound": 2800,
+        "top_le_T": false
+      },
+      "w": 2
+    },
+    {
+      "Bsize": 13,
+      "D_subset_B": true,
+      "all_P_le_T": true,
+      "any_positive_slack": true,
+      "m": 4,
+      "n": 8,
+      "not_all_tautology": true,
+      "num_fibers": 63,
+      "p": 13,
+      "strata": [
+        {
+          "P_e_same_fiber": 0,
+          "P_le_T": true,
+          "T_e": 1120,
+          "e": 1,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 1120
+        },
+        {
+          "P_e_same_fiber": 0,
+          "P_le_T": true,
+          "T_e": 2520,
+          "e": 2,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 2520
+        },
+        {
+          "P_e_same_fiber": 12,
+          "P_le_T": true,
+          "T_e": 1120,
+          "e": 3,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 1108
+        },
+        {
+          "P_e_same_fiber": 2,
+          "P_le_T": true,
+          "T_e": 70,
+          "e": 4,
+          "is_tautology_zero_slack": false,
+          "slack_T_minus_P": 68
+        }
+      ],
+      "top_stratum": {
+        "D_subset_B": true,
+        "P_e": 12,
+        "P_le_top": true,
+        "T_e": 1120,
+        "e": 3,
+        "slack_top": 3348,
+        "top_bound": 3360,
+        "top_le_T": false
+      },
+      "w": 2
+    }
+  ],
+  "nonclaims": [
+    "Does not model quotient vs primitive first-match split separately (reports full same-fiber P_e).",
+    "Does not prove SP at deployed margins."
+  ],
+  "oracle": {
+    "T_6_3_1": 180,
+    "e": 1,
+    "expected_binomial": 180,
+    "formula": "C(n,m-e)*C(n-m+e,e)*C(n-m,e)",
+    "m": 3,
+    "n": 6,
+    "pass": true
+  },
+  "payload_sha256": "819ffed6da188eaadd40720dd1303c7c4bc42b5de3f411f1f4064a2c1df351f6",
+  "proof_status": "AUDIT same-fiber P_e (depth-w prefix) vs T_e envelope \u2014 not the unrestricted pair identity",
+  "regeneration": "python experimental/scripts/verify_sp_proper_ceiling.py --emit-defaults",
+  "schema": "sp-proper-ceiling-v2",
+  "source_pin": {
+    "file": "experimental/grande_finale.tex",
+    "label": "thm:sp-proper",
+    "line": 1927
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Rebuilt census: same-fiber off-diagonal P_e (depth-w ES prefix) is strictly below T_e on all toys (positive slack); top-stratum bound holds with D subset F_p. Confirms thm:sp-proper's envelope on the restricted second-moment object, not the unrestricted pair identity.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "thm:sp-proper"
+}
