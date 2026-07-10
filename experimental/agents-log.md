@@ -2705,3 +2705,10 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W23 M1 partial U_paid ledger (Grok 4.5 / Ken)
+
+- **Files:** `experimental/scripts/verify_upaid_ledger.py`, `verify_upaid_ledger_check.py`, `experimental/data/certificates/upaid-ledger/upaid_ledger.json`, `experimental/notes/thresholds/upaid_ledger_partial.md`
+- **Status:** EXPERIMENTAL / PARTIAL-LEDGER
+- **Usefulness:** Per-cell value-or-blocker map for `cor:capfr1-Q-R1-closing` U_paid; only EXACT MCA cell is common-support 0; tangent out of range at a0+1; remaining cells blocked or charged to U_Q.
+- **Next:** Companion `contrib/w23-uq-ur1-bounds` for proved U_Q/U_R1 brackets; Lean anchors as follow-up.
