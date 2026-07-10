@@ -1,0 +1,253 @@
+{
+  "base_commit": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "finite_census": {
+    "representative_rows": [
+      {
+        "L": 1,
+        "best_raw_norm": 1.0,
+        "best_raw_over_kappa": 1.0,
+        "best_raw_size": 1,
+        "best_scaled_multiplier": 1.0,
+        "checks": {
+          "full_dual_raw_identity": true,
+          "full_dual_scaled_attains_atom": true,
+          "raw_mss_existence": true,
+          "scaled_infimum_exact": true
+        },
+        "full_dual_raw_norm": 3.0,
+        "group_shape": [
+          3
+        ],
+        "kappa": 1.0,
+        "max_atom": 1.0,
+        "q": 3,
+        "support_size": 1,
+        "total_mass": 1.0
+      },
+      {
+        "L": 2,
+        "best_raw_norm": 2.0,
+        "best_raw_over_kappa": 1.0,
+        "best_raw_size": 2,
+        "best_scaled_multiplier": 2.0,
+        "checks": {
+          "full_dual_raw_identity": true,
+          "full_dual_scaled_attains_atom": true,
+          "raw_mss_existence": true,
+          "scaled_infimum_exact": true
+        },
+        "full_dual_raw_norm": 3.0,
+        "group_shape": [
+          3
+        ],
+        "kappa": 2.0,
+        "max_atom": 1.0,
+        "q": 3,
+        "support_size": 1,
+        "total_mass": 1.0
+      },
+      {
+        "L": 1,
+        "best_raw_norm": 0.7,
+        "best_raw_over_kappa": 1.0,
+        "best_raw_size": 1,
+        "best_scaled_multiplier": 0.7,
+        "checks": {
+          "full_dual_raw_identity": true,
+          "full_dual_scaled_attains_atom": true,
+          "raw_mss_existence": true,
+          "scaled_infimum_exact": true
+        },
+        "full_dual_raw_norm": 2.1,
+        "group_shape": [
+          3
+        ],
+        "kappa": 0.7,
+        "max_atom": 0.7,
+        "q": 3,
+        "support_size": 1,
+        "total_mass": 0.7
+      },
+      {
+        "L": 3,
+        "best_raw_norm": 1.667622369587,
+        "best_raw_over_kappa": 1.365804761754,
+        "best_raw_size": 3,
+        "best_scaled_multiplier": 1.220981516748,
+        "checks": {
+          "full_dual_raw_identity": true,
+          "full_dual_scaled_attains_atom": true,
+          "raw_mss_existence": true,
+          "scaled_infimum_exact": true
+        },
+        "full_dual_raw_norm": 2.03496919458,
+        "group_shape": [
+          5
+        ],
+        "kappa": 1.220981516748,
+        "max_atom": 0.406993838916,
+        "q": 5,
+        "support_size": 3,
+        "total_mass": 1.0
+      },
+      {
+        "L": 5,
+        "best_raw_norm": 3.754358563214,
+        "best_raw_over_kappa": 1.017323360955,
+        "best_raw_size": 5,
+        "best_scaled_multiplier": 3.690427947796,
+        "checks": {
+          "full_dual_raw_identity": true,
+          "full_dual_scaled_attains_atom": true,
+          "raw_mss_existence": true,
+          "scaled_infimum_exact": true
+        },
+        "full_dual_raw_norm": 5.904684716474,
+        "group_shape": [
+          2,
+          2,
+          2
+        ],
+        "kappa": 3.690427947796,
+        "max_atom": 0.738085589559,
+        "q": 8,
+        "support_size": 4,
+        "total_mass": 1.0
+      }
+    ],
+    "rows_sha256": "3d1a5e71c84a2c034e3e12f0b61018a640f9719a1f7da47ff411f5128643d296"
+  },
+  "mss_reference": {
+    "arxiv": "1306.3969",
+    "bound": "(1/sqrt(r)+sqrt(delta))^2",
+    "paper": "Interlacing Families II: Mixed Characteristic Polynomials and the Kadison-Singer Problem",
+    "result": "Corollary 1.5"
+  },
+  "nonclaims": [
+    "no proof of the MSS theorem by finite regression",
+    "no proof of source-specific many-shell max-atom flatness",
+    "no proof of the signed multilevel large-sieve input",
+    "no efficient or succinct MSS partition algorithm",
+    "no closure of exact primitive-profile Q"
+  ],
+  "note_contract": {
+    "exact_scaled_identity_printed": true,
+    "full_residual_separation": true,
+    "heavy_atom_obstruction": true,
+    "large_sieve_open": true,
+    "nonconstructive_guard_printed": true,
+    "pr564_one_way_bridge": true,
+    "prior_note_superseded": true,
+    "raw_mss_bound_printed": true,
+    "residual_equivalence_printed": true,
+    "source_theorem_open": true,
+    "status_printed": true
+  },
+  "payload_sha256": "e576dcc6bd51533ef32fd27f1824d767aed70eec5ec6ffa9a243b051ac7cfc70",
+  "schema": "packed-flatness-converse-v1",
+  "status": "PROVED FINITE CONVERSE / OPEN SOURCE MAX-ATOM THEOREM",
+  "summary": {
+    "all_checks_pass": true,
+    "noncyclic_rows": 16,
+    "row_count": 164,
+    "scaled_ratio_is_tautologically_one": true,
+    "subprobability_rows": 41,
+    "support_slack_rows": 33,
+    "symbolic_separation_pass": true,
+    "worst_L": 3,
+    "worst_q": 5,
+    "worst_raw_over_kappa": 1.365804761754,
+    "zero_measure_pass": true
+  },
+  "symbolic_heavy_atom_and_residual_separation": [
+    {
+      "L": 16,
+      "N": 4,
+      "checks": {
+        "full_measure_has_exponential_rayleigh_floor": true,
+        "residual_measure_is_uniformly_flat": true,
+        "same_full_slice_normalization_used": true
+      },
+      "full_kappa": 8.0,
+      "full_log_rate": 0.51986038542,
+      "full_max_atom": 0.5,
+      "residual_kappa": 0.533333333333,
+      "residual_max_atom": 0.033333333333,
+      "residual_total_mass": 0.5
+    },
+    {
+      "L": 256,
+      "N": 8,
+      "checks": {
+        "full_measure_has_exponential_rayleigh_floor": true,
+        "residual_measure_is_uniformly_flat": true,
+        "same_full_slice_normalization_used": true
+      },
+      "full_kappa": 128.0,
+      "full_log_rate": 0.60650378299,
+      "full_max_atom": 0.5,
+      "residual_kappa": 0.501960784314,
+      "residual_max_atom": 0.001960784314,
+      "residual_total_mass": 0.5
+    },
+    {
+      "L": 65536,
+      "N": 16,
+      "checks": {
+        "full_measure_has_exponential_rayleigh_floor": true,
+        "residual_measure_is_uniformly_flat": true,
+        "same_full_slice_normalization_used": true
+      },
+      "full_kappa": 32768.0,
+      "full_log_rate": 0.649825481775,
+      "full_max_atom": 0.5,
+      "residual_kappa": 0.500007629511,
+      "residual_max_atom": 7.629511e-06,
+      "residual_total_mass": 0.5
+    },
+    {
+      "L": 4294967296,
+      "N": 32,
+      "checks": {
+        "full_measure_has_exponential_rayleigh_floor": true,
+        "residual_measure_is_uniformly_flat": true,
+        "same_full_slice_normalization_used": true
+      },
+      "full_kappa": 2147483648.0,
+      "full_log_rate": 0.671486331167,
+      "full_max_atom": 0.5,
+      "residual_kappa": 0.500000000116,
+      "residual_max_atom": 1.16e-10,
+      "residual_total_mass": 0.5
+    }
+  ],
+  "theorem": {
+    "full_slice": "existential PPF iff full-slice max-atom flatness",
+    "raw_paving": "exists |A|>=L with ||K_A|| <= (3+2sqrt(2))L||xi||_infinity",
+    "residual": "existential residual PPF iff exact primitive-profile Q",
+    "scaled_identity": "inf_{|A|>=L} (L/|A|)||K_A|| = L||xi||_infinity"
+  },
+  "theorem_id": "asymptotic-packed-flatness-converse-v1",
+  "zero_measure_row": {
+    "L": 3,
+    "best_raw_norm": 0.0,
+    "best_raw_over_kappa": 0.0,
+    "best_raw_size": 3,
+    "best_scaled_multiplier": 0.0,
+    "checks": {
+      "full_dual_raw_identity": true,
+      "full_dual_scaled_attains_atom": true,
+      "raw_mss_existence": true,
+      "scaled_infimum_exact": true
+    },
+    "full_dual_raw_norm": 0.0,
+    "group_shape": [
+      5
+    ],
+    "kappa": 0.0,
+    "max_atom": 0.0,
+    "q": 5,
+    "support_size": 0,
+    "total_mass": 0.0
+  }
+}

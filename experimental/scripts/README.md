@@ -28,6 +28,8 @@ python3 experimental/scripts/verify_rowsharp_q_singleton_topseam_v1.py --check
 python3 experimental/scripts/verify_rowsharp_q_singleton_topseam_v1.py --tamper-selftest
 python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --check
 python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --tamper-selftest
+python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --check
+python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --tamper-selftest
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
@@ -40,6 +42,15 @@ and an exact block-parabola product where global absolute Fourier summation is
 exponential but the packed multiplier is one.  Its source-specific semantic
 residual packing hypothesis remains open; the script does not prove
 primitive-profile Q, effective MI/MA, or the direct Sidon payment.
+
+`verify_asymptotic_packed_flatness_converse_v1.py` checks the corrected finite
+converse: the scaled full-dual infimum is exactly the max-atom multiplier, while
+MSS Corollary 1.5 supplies the nontrivial image-scale family with raw Gram norm
+at most `(3+2*sqrt(2))` times that multiplier.  The finite regression does not
+prove MSS or the open source many-shell max-atom/large-sieve theorem.  The
+regression covers cyclic and noncyclic product groups and includes a symbolic
+family where a full-slice heavy atom forces exponential packed norm while its
+semantic residual is uniformly flat under the same full-slice normalization.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

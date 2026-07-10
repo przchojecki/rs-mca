@@ -4,6 +4,20 @@
 
 `PROVED CONDITIONAL CERTIFICATE / OPEN SOURCE-SPECIFIC PACKING INPUT`.
 
+The original status string is retained for the integrated verifier.  Here
+`SOURCE-SPECIFIC PACKING INPUT` means the named major/minor or succinct
+source-algebraic construction in this packet, not unrestricted existential
+selection of an arbitrary character subset.
+
+**Subsequent converse.**  The existential packing target is superseded by
+`asymptotic_primitive_profile_packed_flatness_converse_v1.md`.  MSS paving of
+the restricted complete Fourier frame proves that a family of image-scale
+size and subexponential raw Gram norm exists if and only if the relevant
+full-slice or residual max-atom multiplier is subexponential.  The compiler,
+Rayleigh guardrail, packed major/minor sufficient condition, and block-product
+separation below remain correct; the unrestricted existence of a packed
+family is no longer a distinct source theorem.
+
 This note proves a finite character-frame implication and a packed
 major/minor corollary.  It does **not** prove exact primitive-profile Q,
 effective `(MI)+(MA)`, or the direct Sidon payment in the unrestricted
@@ -378,7 +392,7 @@ witness-exhaustiveness of the first-match atlas.
 semantic residuality of the block-parabola separation family.
 ```
 
-The next proof target is therefore the source-derived statement:
+The former next target was the source-derived existential statement:
 
 ```text
 For every semantically residual many-shell profile, construct
@@ -390,8 +404,12 @@ A_lambda subset of hat(V_g) such that
 uniformly over the required frontier window.
 ```
 
-This target is full-slice normalized and noncircular: neither its statement
-nor its hypotheses refer to the residual max-fiber size, Sidon energy, or Q.
+The subsequent finite converse shows that, without a certificate-complexity
+restriction, this statement is equivalent to the corresponding max-atom
+bound.  The actual open target is therefore the source many-shell max-fiber
+theorem itself, currently reduced in the cyclic lane to the signed multilevel
+large-sieve input, or a genuinely restricted succinct algebraic packing
+certificate.
 
 ## Reproducibility
 

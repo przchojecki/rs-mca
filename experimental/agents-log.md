@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Packed-flatness finite Fourier-paving converse
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/asymptotic_primitive_profile_packed_flatness_converse_v1.md`,
+  `experimental/notes/thresholds/asymptotic_primitive_profile_character_frame_v1.md`,
+  `experimental/data/certificates/packed-flatness-converse/packed_flatness_converse_v1.json`,
+  `experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py`,
+  `experimental/scripts/README.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED FINITE CONVERSE / OPEN SOURCE MAX-ATOM THEOREM.
+- **What is being added:** An exact scaled full-dual identity and an MSS
+  raw-norm paving theorem showing that existential full-slice PPF is equivalent
+  to full-slice max-atom flatness, while residual PPF is equivalent to exact Q.
+  The verifier separately checks the tautological scaled identity and the
+  nontrivial raw-norm existence bound on 164 finite distributions, including
+  16 noncyclic product-group cases.  It also records a symbolic heavy-atom
+  obstruction and a full-slice/residual separation family.
+- **How it is useful:** This supersedes the integrated packet's claim that
+  unrestricted source-specific character-family existence is a separate open
+  input.  It prevents further work on a reformulation equivalent to Q and
+  points back to the signed multilevel large-sieve/max-atom theorem in #564.
+  The corrected bridge is one-way from #564's technical large-sieve input to
+  its max-atom conclusion, followed by
+  `max atom <=> residual PPF <=> exact Q`; no converse to the technical
+  large-sieve estimate is claimed.
+- **What to do next:** Prove the source many-shell max-atom bound, or formulate
+  a genuinely restricted succinct algebraic packing certificate.  Do not
+  promote the finite regression as a proof of MSS or primitive-profile Q.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
