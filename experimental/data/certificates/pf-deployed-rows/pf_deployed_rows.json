@@ -1,0 +1,312 @@
+{
+  "adversarial_lane": "mismatch between asymptotic proof and finite deployed rows",
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "chart_identification": {
+    "B": "p (base field)",
+    "R": "w = a - K (prefix depth; K = k+1 for mca, k for list)",
+    "T": "n = 2^21 (full domain)",
+    "m": "a (agreement)",
+    "validation": "ceil of ambient scale barN0 = C(n,a)/p^w reproduces all 8 frozen floor integers exactly (gated above), and both printed margin pairs per row"
+  },
+  "checker_route": "independent: Kummer carry-count exponents + smallest-first heap merge; math.comb for the cycle-index binomials; lgamma cross-estimates with 0.5-bit tolerance; fresh pin re-scan",
+  "checks_failed": 0,
+  "checks_total": 57,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": true,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "failed_checks": [],
+  "falsifiability": "The gate fails if any of the 8 frozen floor integers, the exact surpluses (2dp), the flip thresholds, or the pinned label lines change.",
+  "falsifiable": true,
+  "generator_route": "Legendre prime-factorization exponents + product-tree exact binomials; exact integer comparisons; flip threshold by exact ratio recursion; surpluses via top-900-bit mantissa",
+  "hard_input": "b",
+  "honest_headline": "The degree-uniform (PF) route to (MI) cannot be instantiated at any of the four printed deployed rows: exact zero-slack surpluses +280,001.27 to +471,797.39 bits at the most favorable Weil parameters, flip thresholds Lambda* in {2,3,4} vs the Weil-forced 46,159 (kb) / 92,680 (m31 circle).  Finite effective complement of prop:pf-deep-prefix-barrier (different regime: deployed Lambda is ~2-4% of N, not >= cN) and an exact calibration of the pointwise bound thm:prefix-flatness-power-sum (PF') would need at deployed scale.  The draft is consistent: it asserts no deployed-row (PF) instance, and the surplus is o(n) along fixed-field families.",
+  "nonclaims": [
+    "does not decide the asymptotic (PF): along a fixed-field family the surplus is Theta(sqrt(p) log n) = o(n), so the asymptotic hypothesis is consistent with these rows",
+    "does not evaluate the effective-span variant (log A_N in place of R log|B|): ambient failure does not imply effective failure, and A_N is not evaluable while hard input (a) (witness-exhaustive atlas) is open",
+    "does not evaluate (MA), and does not attack the phase-dependent repaired certificate (PF') of thm:prefix-flatness-power-sum -- the flip thresholds calibrate what (PF') needs, they do not refute it",
+    "no claim about the four printed rows' safety or unsafety beyond the (PF)-route closure; the floor/margin reproductions are oracle checks, not new results"
+  ],
+  "numerics_oracle": "experimental/data/certificates/profile-envelope-numerics/profile_envelope_numerics.json",
+  "object": "exact zero-slack evaluation of the degree-uniform (PF) certificate (def:prefix-flat-range) at the four printed v13 deployed rows, identity-prefix chart",
+  "payload_sha256": "8f46eeb06d20c905149bf66d237a108f48fb2d1401bc620f5d99517894b0f236",
+  "pins": {
+    "cor:sidon-payment-from-prefix-flatness": {
+      "found": true,
+      "line": 5379,
+      "sha256_line": "832fc85e6846bd91"
+    },
+    "def:aggregate-minor-payment": {
+      "found": true,
+      "line": 3082,
+      "sha256_line": "02deefc6db520e01"
+    },
+    "def:major-arc-aggregate": {
+      "found": true,
+      "line": 2985,
+      "sha256_line": "afed917878c9f9a7"
+    },
+    "def:prefix-flat-range": {
+      "found": true,
+      "line": 3160,
+      "sha256_line": "0172ab52b2e78d68"
+    },
+    "prop:frontier-weil-separation": {
+      "found": true,
+      "line": 5401,
+      "sha256_line": "b7b864d1f7f57daa"
+    },
+    "prop:pf-deep-prefix-barrier": {
+      "found": true,
+      "line": 3176,
+      "sha256_line": "d7d19499202fa4f1"
+    },
+    "prop:pf-ma-square-dichotomy": {
+      "found": true,
+      "line": 3255,
+      "sha256_line": "26ced6747f043530"
+    },
+    "prop:weighted-weil-minor-arcs": {
+      "found": true,
+      "line": 5254,
+      "sha256_line": "d70b5405229a8d06"
+    },
+    "rem:pf-numerical": {
+      "found": true,
+      "line": 6611,
+      "sha256_line": "2e1f8e1e2dfc7edf"
+    },
+    "thm:prefix-flatness-power-sum": {
+      "found": true,
+      "line": 5212,
+      "sha256_line": "1ed5320f370c98e8"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT (exact arithmetic, dual-route)",
+  "regeneration": "python experimental/scripts/verify_pf_deployed_rows.py --emit-defaults",
+  "rows": {
+    "kb_list": {
+      "B_star": 274980728111395087,
+      "charts": {
+        "a0": {
+          "L_floor": 157702518233425975347,
+          "a": 1116046,
+          "eprof_identity_lower": 157702518233426956455,
+          "lambda_flip_threshold": 4,
+          "lambda_most_favorable": 46159,
+          "log2_barN0_bits": "67.0958",
+          "pf_exact_holds": false,
+          "pf_surplus_bits": "+280001.27",
+          "pf_surplus_bits_per_coordinate": "0.1335",
+          "surplus_sweep_exact_bits": {
+            "C0=1/2": "+162699.11",
+            "Dpole=0": "+280001.27",
+            "Dpole=1": "+470411.38",
+            "Dpole=2": "+628520.89"
+          },
+          "w": 67470
+        },
+        "a1": {
+          "L_floor": 65065153468,
+          "a": 1116047,
+          "eprof_identity_lower": 65066134575,
+          "lambda_flip_threshold": 2,
+          "lambda_most_favorable": 46159,
+          "log2_barN0_bits": "35.9212",
+          "pf_exact_holds": false,
+          "pf_surplus_bits": "+280032.51",
+          "pf_surplus_bits_per_coordinate": "0.1335",
+          "surplus_sweep_exact_bits": {
+            "C0=1/2": "+162730.32",
+            "Dpole=0": "+280032.51",
+            "Dpole=1": "+470442.67",
+            "Dpole=2": "+628552.23"
+          },
+          "w": 67471
+        }
+      },
+      "circle": false,
+      "circle_factor": 1,
+      "ext_deg": 6,
+      "fail_margin_bits_a1": "-22.0109",
+      "kind": "list",
+      "p": 2130706433,
+      "pass_margin_bits_a0": "+9.1637",
+      "sqrt_p_floor": 46159,
+      "target_bits": 128
+    },
+    "kb_mca": {
+      "B_star": 274980728111395087,
+      "charts": {
+        "a0": {
+          "L_floor": 138634741058327852652,
+          "a": 1116047,
+          "eprof_identity_lower": 138634741058328833759,
+          "lambda_flip_threshold": 4,
+          "lambda_most_favorable": 46159,
+          "log2_barN0_bits": "66.9099",
+          "pf_exact_holds": false,
+          "pf_surplus_bits": "+280001.52",
+          "pf_surplus_bits_per_coordinate": "0.1335",
+          "surplus_sweep_exact_bits": {
+            "C0=1/2": "+162699.33",
+            "Dpole=0": "+280001.52",
+            "Dpole=1": "+470411.68",
+            "Dpole=2": "+628521.24"
+          },
+          "w": 67470
+        },
+        "a1": {
+          "L_floor": 57198030366,
+          "a": 1116048,
+          "eprof_identity_lower": 57199011472,
+          "lambda_flip_threshold": 2,
+          "lambda_most_favorable": 46159,
+          "log2_barN0_bits": "35.7352",
+          "pf_exact_holds": false,
+          "pf_surplus_bits": "+280032.75",
+          "pf_surplus_bits_per_coordinate": "0.1335",
+          "surplus_sweep_exact_bits": {
+            "C0=1/2": "+162730.53",
+            "Dpole=0": "+280032.75",
+            "Dpole=1": "+470442.97",
+            "Dpole=2": "+628552.59"
+          },
+          "w": 67471
+        }
+      },
+      "circle": false,
+      "circle_factor": 1,
+      "ext_deg": 6,
+      "fail_margin_bits_a1": "-22.1969",
+      "kind": "mca",
+      "p": 2130706433,
+      "pass_margin_bits_a0": "+8.9777",
+      "sqrt_p_floor": 46159,
+      "target_bits": 128
+    },
+    "m31_list": {
+      "B_star": 16777215,
+      "charts": {
+        "a0": {
+          "L_floor": 4870025984688527,
+          "a": 1116022,
+          "eprof_identity_lower": 4870025985669659,
+          "lambda_flip_threshold": 3,
+          "lambda_most_favorable": 92680,
+          "log2_barN0_bits": "52.1129",
+          "pf_exact_holds": false,
+          "pf_surplus_bits": "+471765.79",
+          "pf_surplus_bits_per_coordinate": "0.2250",
+          "surplus_sweep_exact_bits": {
+            "C0=1/2": "+280856.75",
+            "Dpole=0": "+471765.79",
+            "Dpole=1": "+768499.87",
+            "Dpole=2": "+1004801.15"
+          },
+          "w": 67446
+        },
+        "a1": {
+          "L_floor": 1993678,
+          "a": 1116023,
+          "eprof_identity_lower": 2974809,
+          "lambda_flip_threshold": 2,
+          "lambda_most_favorable": 92680,
+          "log2_barN0_bits": "20.9270",
+          "pf_exact_holds": false,
+          "pf_surplus_bits": "+471797.09",
+          "pf_surplus_bits_per_coordinate": "0.2250",
+          "surplus_sweep_exact_bits": {
+            "C0=1/2": "+280888.00",
+            "Dpole=0": "+471797.09",
+            "Dpole=1": "+768531.28",
+            "Dpole=2": "+1004832.65"
+          },
+          "w": 67447
+        }
+      },
+      "circle": true,
+      "circle_factor": 2,
+      "ext_deg": 4,
+      "fail_margin_bits_a1": "-3.0730",
+      "kind": "list",
+      "p": 2147483647,
+      "pass_margin_bits_a0": "+28.1129",
+      "sqrt_p_floor": 46340,
+      "target_bits": 100
+    },
+    "m31_mca": {
+      "B_star": 16777215,
+      "charts": {
+        "a0": {
+          "L_floor": 4281388998575706,
+          "a": 1116023,
+          "eprof_identity_lower": 4281388999556837,
+          "lambda_flip_threshold": 3,
+          "lambda_most_favorable": 92680,
+          "log2_barN0_bits": "51.9270",
+          "pf_exact_holds": false,
+          "pf_surplus_bits": "+471766.09",
+          "pf_surplus_bits_per_coordinate": "0.2250",
+          "surplus_sweep_exact_bits": {
+            "C0=1/2": "+280857.00",
+            "Dpole=0": "+471766.09",
+            "Dpole=1": "+768500.28",
+            "Dpole=2": "+1004801.65"
+          },
+          "w": 67446
+        },
+        "a1": {
+          "L_floor": 1752700,
+          "a": 1116024,
+          "eprof_identity_lower": 2733830,
+          "lambda_flip_threshold": 2,
+          "lambda_most_favorable": 92680,
+          "log2_barN0_bits": "20.7411",
+          "pf_exact_holds": false,
+          "pf_surplus_bits": "+471797.39",
+          "pf_surplus_bits_per_coordinate": "0.2250",
+          "surplus_sweep_exact_bits": {
+            "C0=1/2": "+280888.24",
+            "Dpole=0": "+471797.39",
+            "Dpole=1": "+768531.69",
+            "Dpole=2": "+1004833.16"
+          },
+          "w": 67447
+        }
+      },
+      "circle": true,
+      "circle_factor": 2,
+      "ext_deg": 4,
+      "fail_margin_bits_a1": "-3.2589",
+      "kind": "mca",
+      "p": 2147483647,
+      "pass_margin_bits_a0": "+27.9270",
+      "sqrt_p_floor": 46340,
+      "target_bits": 100
+    }
+  },
+  "schema": "pf-deployed-rows-v1",
+  "score_convention_reconciliation": {
+    "note": "fourier-sidon-payment's toy menu scores the same quantity (score = PF surplus in bits) with a toy cutoff score/|T| < 0.5.  At the deployed rows the per-coordinate surplus is 0.1335 (kb) / 0.2250 (m31) -- under that toy cutoff -- while the zero-slack exact form fails by +280k/+472k bits.  Both are consistent: the o(|T|) slack is exactly the open question, and along a fixed-field family the surplus is Theta(sqrt(p) log n) = o(n).  Parameter deltas: toys there use C0=2 and round sqrt up; this packet uses the most favorable C0=1 and isqrt."
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "hard_input_b_pf_route": "NOT_INSTANTIABLE_AT_DEPLOYED_ROWS",
+    "hard_input_b_status": "OPEN (unchanged; only the degree-uniform (PF) sub-route is closed at the printed rows)",
+    "headline": "PF-exact fails at all 8 charts at the most favorable parameters; surpluses +280,001.27 to +471,797.39 bits; flip Lambda* in {2,3,4} vs Weil-forced 46,159/92,680; no admissible (C0, Delta_pole, |P|) flips any chart (surplus monotone in Lambda).",
+    "verdict": "NO ISSUE"
+  },
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "def:prefix-flat-range; rem:pf-numerical; prop:pf-deep-prefix-barrier; thm:prefix-flatness-power-sum",
+  "verdict": "NO ISSUE",
+  "weave": "quantifies the A4/(PF) cell left OPEN by #497; supplies the deployed-row PF certificates #500 does_not_assert; disjoint from #527's SFM1 hypothesis-ratio separation"
+}

@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Deployed-row failure map for the degree-uniform (PF) certificate
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/data/certificates/pf-deployed-rows/pf_deployed_rows.json`,
+  `experimental/notes/audits/pf_deployed_rows.md`,
+  `experimental/scripts/verify_pf_deployed_rows.py`,
+  `experimental/scripts/verify_pf_deployed_rows_check.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** The exact finite minor-character check of
+  `rem:pf-numerical` at all eight charts of the four printed v13 deployed
+  rows: the degree-uniform (PF) certificate (`def:prefix-flat-range`) fails
+  zero-slack at the most favorable Weil parameters by +280,001.27 to
+  +471,797.39 bits, with flip thresholds `Lambda* in {2,3,4}` versus the
+  Weil-forced 46,159 (kb) / 92,680 (m31 circle); surplus monotone in
+  `(C0, Delta_pole, |P|)`, so no admissible assignment flips any chart.
+  Gated against the frozen profile-envelope-numerics floors (all 8 exact).
+- **How it is useful:** Hard input (b) route arithmetic: quantifies the
+  `A4_PF_MA_or_Sidon: OPEN` cell of deployed-template-replay at all four
+  rows; the finite effective complement of `prop:pf-deep-prefix-barrier`
+  (deployed rows sit at `Lambda ~ 2-4%` of `N`, outside its `Lambda >= cN`
+  regime); calibrates the pointwise bound `thm:prefix-flatness-power-sum`
+  (PF') needs at deployed scale (`|P_j| <= 4`); reconciles the
+  fourier-sidon-payment score/|T| toy convention with the zero-slack exact
+  reading so the certificate family stays mutually consistent.
+- **What to do next:** Decide whether hard input (b) at deployed scale
+  should route through phase-dependent (PF') estimates or a direct Sidon
+  payment, using the flip thresholds as the target; evaluate the
+  effective-span variant (`log A_N`) once hard input (a) fixes an atlas;
+  extend the same exact check to any newly printed rows.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
