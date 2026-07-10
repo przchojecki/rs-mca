@@ -1,0 +1,118 @@
+{
+  "base_sha": "2b1a7e20654d44d0beefcd5c7d508be618b0cea1",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "asserts": [
+      "RC is hypothesis-class",
+      "toy double-count falsifiable"
+    ],
+    "does_not_assert": [
+      "RC holds for deployed rows",
+      "existence of incidence I"
+    ],
+    "is_counterexample": false
+  },
+  "evidence_type": "CANONICAL_STATEMENT_HIT",
+  "falsifiable": true,
+  "finite_constant_in_paper": false,
+  "generator_routes": {
+    "bound_A": "floor(J*P/H) vs |Z|",
+    "bound_B": "product test |Z|*H <= J*P",
+    "pins": "label line scan"
+  },
+  "honest_headline": "RC is an explicit HYPOTHESIS (not a proved theorem): direct slope bound or incidence double-count with J|Omega|/H = e^{o(n)}. Toy bipartite bounds are falsifiable (4/6 hold). No deployed-row H,J certificate is embedded in the draft.",
+  "is_degenerate_by_construction": false,
+  "is_hypothesis_env": true,
+  "is_tautology_under_preconditions": false,
+  "object": "hyp:ray-compiler (RC) audit",
+  "payload_sha256": "14ac29b8c714fbb290f59fc481e7e481fbd5450a51787b5e58c808d4b0675229",
+  "statement_pins": {
+    "eq:ray-compiler": {
+      "line": 4392,
+      "sha256_line": "0cae1708e13ff181a192c4a3888d71e17790d9f8a936f3dc4b7ccdbbcd90cdd7"
+    },
+    "hyp:ray-compiler": {
+      "line": 4375,
+      "sha256_line": "5101e6934274b85042ee9c5fcd5eb4265ce639c90b75ceb6d945de8205ea1fdc"
+    },
+    "lem:saturation-quotient-rays": {
+      "line": 4255,
+      "sha256_line": "db3f44d51838aa617ffa7748a65b3cc64eb908e699b160c5465b9f18f4242209"
+    },
+    "prop:q-implies-sp": {
+      "line": 4400,
+      "sha256_line": "73889b0eb8854fc2ba49d525a9e0c8a913699313942e6553562e2675b5ee94ec"
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "toy_double_count": [
+    {
+      "H": 5,
+      "J": 1,
+      "P": 10,
+      "Z": 2,
+      "bound_floor": 2,
+      "holds_floor": true,
+      "holds_product": true,
+      "matches_expect": true,
+      "ok_expect": true
+    },
+    {
+      "H": 2,
+      "J": 1,
+      "P": 8,
+      "Z": 4,
+      "bound_floor": 4,
+      "holds_floor": true,
+      "holds_product": true,
+      "matches_expect": true,
+      "ok_expect": true
+    },
+    {
+      "H": 1,
+      "J": 1,
+      "P": 5,
+      "Z": 10,
+      "bound_floor": 5,
+      "holds_floor": false,
+      "holds_product": false,
+      "matches_expect": true,
+      "ok_expect": false
+    },
+    {
+      "H": 10,
+      "J": 2,
+      "P": 100,
+      "Z": 3,
+      "bound_floor": 20,
+      "holds_floor": true,
+      "holds_product": true,
+      "matches_expect": true,
+      "ok_expect": true
+    },
+    {
+      "H": 2,
+      "J": 1,
+      "P": 10,
+      "Z": 50,
+      "bound_floor": 5,
+      "holds_floor": false,
+      "holds_product": false,
+      "matches_expect": true,
+      "ok_expect": false
+    },
+    {
+      "H": 1,
+      "J": 1,
+      "P": 1,
+      "Z": 1,
+      "bound_floor": 1,
+      "holds_floor": true,
+      "holds_product": true,
+      "matches_expect": true,
+      "ok_expect": true
+    }
+  ],
+  "verdict": "NO ISSUE",
+  "weave_494": "Complement to holmbuar #494 curated audit \u2014 this packet targets hyp:ray-compiler only."
+}
