@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F2 Newton empty extremes
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f2_newton_empty_extremes.md`,
+  `experimental/scripts/verify_f2_newton_empty_extremes.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An elementary Newton-identity edge-band lemma for
+  F2 t-null Boolean supports: no nonempty t-null subset has size
+  `<= min(t,p-1)`, and by complementation no proper t-null subset has
+  size in the mirrored top band.
+- **How it is useful:** This gives the `(Q)` / F2 guarded official extras
+  floor a proved empty edge band at the characteristic-limited width
+  `p-1 ~= 2^31`, isolating the real remaining work in the mid-band.
+- **What to do next:** Combine this edge-band removal with the existing
+  full-ladder dictionary and the F2 high-energy dichotomy; the unresolved
+  piece remains mid-band anti-concentration rather than edge control.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
