@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - Row-sharp Q full-ladder dictionary
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/rowsharp_q_full_ladder_dictionary.md`,
+  `experimental/scripts/verify_rowsharp_q_full_ladder_dictionary.py`,
+  `experimental/data/certificates/rowsharp-q-full-ladder-dictionary/`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A log-derivative dictionary lemma for zero-prefix
+  row-sharp Q: vanishing first power sums through depth `t` is equivalent to
+  vanishing reversed-locator coefficients at exactly the `q`-free indices
+  `1 <= i <= min(t,b)`.  The packet also records the Myerson/Gaussian-period
+  placement as context, without importing any fixed-order theorem as a proof.
+- **How it is useful:** This removes a spurious large-characteristic
+  `w < char(B)` restriction from the Q/prefix interface and keeps tower or
+  ladder transfers honest when Frobenius-redundant coefficients appear.
+- **What to do next:** Use the dictionary when stating row-sharp Q, image-scale
+  flatness, or direct Sidon-payment inputs; the max-fiber theorem itself
+  remains open.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,

@@ -1,0 +1,295 @@
+{
+  "schema_version": "rowsharp-q-full-ladder-dictionary-v1",
+  "status": "PROVED_DICTIONARY_LEMMA_WITH_AUDIT_REPLAY",
+  "claim": "For reversed locators ell*_S=prod(1-xX), vanishing power sums p_1..p_t are equivalent to vanishing coefficients c_i at exactly the indices 1<=i<=min(t,|S|) with char(F) not dividing i.",
+  "does_not_prove": [
+    "row-sharp Q",
+    "a max-fiber bound",
+    "image-scale MI/MA",
+    "a direct Sidon payment",
+    "a finite adjacent upper ledger"
+  ],
+  "subset_rows": [
+    {
+      "p": 5,
+      "n": 4,
+      "b": 2,
+      "t": 1,
+      "domain": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "total_subsets": 6,
+      "q_free_indices": [
+        1
+      ],
+      "counts": {
+        "power_nonzero": 4,
+        "coeff_nonzero": 4,
+        "power_zero": 2,
+        "coeff_zero": 2,
+        "both_zero": 2
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    },
+    {
+      "p": 7,
+      "n": 6,
+      "b": 3,
+      "t": 2,
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "total_subsets": 20,
+      "q_free_indices": [
+        1,
+        2
+      ],
+      "counts": {
+        "power_nonzero": 18,
+        "coeff_nonzero": 18,
+        "power_zero": 2,
+        "coeff_zero": 2,
+        "both_zero": 2
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    },
+    {
+      "p": 11,
+      "n": 10,
+      "b": 5,
+      "t": 3,
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "total_subsets": 252,
+      "q_free_indices": [
+        1,
+        2,
+        3
+      ],
+      "counts": {
+        "power_nonzero": 250,
+        "coeff_nonzero": 250,
+        "power_zero": 2,
+        "coeff_zero": 2,
+        "both_zero": 2
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    },
+    {
+      "p": 17,
+      "n": 8,
+      "b": 4,
+      "t": 20,
+      "domain": [
+        1,
+        2,
+        4,
+        8,
+        9,
+        13,
+        15,
+        16
+      ],
+      "total_subsets": 70,
+      "q_free_indices": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "counts": {
+        "power_nonzero": 70,
+        "coeff_nonzero": 70
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    },
+    {
+      "p": 17,
+      "n": 16,
+      "b": 8,
+      "t": 20,
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "total_subsets": 12870,
+      "q_free_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "counts": {
+        "power_nonzero": 12870,
+        "coeff_nonzero": 12870
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    },
+    {
+      "p": 31,
+      "n": 15,
+      "b": 7,
+      "t": 40,
+      "domain": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        14,
+        16,
+        18,
+        19,
+        20,
+        25,
+        28
+      ],
+      "total_subsets": 6435,
+      "q_free_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "counts": {
+        "power_nonzero": 6435,
+        "coeff_nonzero": 6435
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    }
+  ],
+  "formal_derivative_rows": [
+    {
+      "q": 2,
+      "b": 8,
+      "t": 8,
+      "total_polynomials": 256,
+      "q_free_indices": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "q_divisible_free_indices": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "counts": {
+        "derivative_zero": 16,
+        "qfree_coeff_zero": 16,
+        "derivative_nonzero": 240,
+        "qfree_coeff_nonzero": 240
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    },
+    {
+      "q": 3,
+      "b": 7,
+      "t": 9,
+      "total_polynomials": 2187,
+      "q_free_indices": [
+        1,
+        2,
+        4,
+        5,
+        7
+      ],
+      "q_divisible_free_indices": [
+        3,
+        6
+      ],
+      "counts": {
+        "derivative_zero": 9,
+        "qfree_coeff_zero": 9,
+        "derivative_nonzero": 2178,
+        "qfree_coeff_nonzero": 2178
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    },
+    {
+      "q": 5,
+      "b": 6,
+      "t": 11,
+      "total_polynomials": 15625,
+      "q_free_indices": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "q_divisible_free_indices": [
+        5
+      ],
+      "counts": {
+        "derivative_zero": 5,
+        "qfree_coeff_zero": 5,
+        "derivative_nonzero": 15620,
+        "qfree_coeff_nonzero": 15620
+      },
+      "mismatch_count": 0,
+      "mismatch_examples": [],
+      "pass": true
+    }
+  ]
+}
