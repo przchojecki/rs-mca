@@ -1,0 +1,384 @@
+{
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "linear-form image rank formula |im|=q (or 1 if zero form)",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "completeness": {
+    "deployed_rows": "NOT certified",
+    "linear_parametrized_cores": "COMPLETE on toys (direct==rank image)",
+    "nonlinear_balanced_cores": "OPEN \u2014 needs proved RC (hyp:ray-compiler)"
+  },
+  "evidence_type": "INDEPENDENT_RECHECK",
+  "falsifiable": true,
+  "generator_route": "enumerate F_q^d residual grid; set of gamma(p)",
+  "hard_input": "c",
+  "honest_headline": "Residual ray compiler higher-dim (hard c): pins_ok=True; d=2,3 linear param cores: direct==compiled image size; residual after slope-0 remove agrees; nonlinear product map discloses OPEN need for hyp:ray-compiler (not linear rank).",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_rows": 15,
+  "nonclaims": [
+    "Linear param model is a special case of balanced-core charts.",
+    "Does not prove hyp:ray-compiler or deployed residual bounds.",
+    "Nonlinear gap is a disclosed incompleteness, not a paper refutation."
+  ],
+  "object": "hard input (c): residual ray compiler higher-dim balanced cores",
+  "payload_sha256": "f980f2242f144f6dc08932fcde97cb709137cf81e6a8a6017ae804ed49587bcc",
+  "pins": {
+    "def:balanced-quotient-core": {
+      "found": true,
+      "line": 3425,
+      "sha256_line": "7753498e1d4a8564"
+    },
+    "eq:ray-compiler": {
+      "found": true,
+      "line": 6051,
+      "sha256_line": "0cae1708e13ff181"
+    },
+    "hyp:ray-compiler": {
+      "found": true,
+      "line": 6033,
+      "sha256_line": "5101e6934274b850"
+    },
+    "rem:balanced-core-exhaustion": {
+      "found": true,
+      "line": 4763,
+      "sha256_line": "90def3dd230c4af1"
+    },
+    "thm:bounded-residual-kernel-ray": {
+      "found": true,
+      "line": 1680,
+      "sha256_line": "299f2b21fbfaa953"
+    },
+    "thm:single-mds-circuit-ray": {
+      "found": true,
+      "line": 1735,
+      "sha256_line": "2df02bb38aefc797"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT higher-dim residual ray count toys + nonlinear gap disclosure",
+  "regeneration": "python experimental/scripts/verify_residual_ray_compiler.py --emit-defaults",
+  "rows": [
+    {
+      "compiled": {
+        "coeffs": [
+          1,
+          0
+        ],
+        "n_rays_compiled": 5,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 2,
+      "direct": {
+        "d": 2,
+        "n_params": 25,
+        "n_rays_direct": 5,
+        "q": 5,
+        "rays": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "kind": "full_core_q5_c(1, 0)",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          1,
+          2
+        ],
+        "n_rays_compiled": 5,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 2,
+      "direct": {
+        "d": 2,
+        "n_params": 25,
+        "n_rays_direct": 5,
+        "q": 5,
+        "rays": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "kind": "full_core_q5_c(1, 2)",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          0,
+          0
+        ],
+        "n_rays_compiled": 1,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 2,
+      "direct": {
+        "d": 2,
+        "n_params": 25,
+        "n_rays_direct": 1,
+        "q": 5,
+        "rays": [
+          0
+        ]
+      },
+      "kind": "full_core_q5_c(0, 0)",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          1,
+          3
+        ],
+        "n_rays_compiled": 7,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 2,
+      "direct": {
+        "d": 2,
+        "n_params": 49,
+        "n_rays_direct": 7,
+        "q": 7,
+        "rays": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "kind": "full_core_q7_c(1, 3)",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          2,
+          4
+        ],
+        "n_rays_compiled": 7,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 2,
+      "direct": {
+        "d": 2,
+        "n_params": 49,
+        "n_rays_direct": 7,
+        "q": 7,
+        "rays": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "kind": "full_core_q7_c(2, 4)",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          1,
+          1
+        ],
+        "n_rays_compiled": 11,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 2,
+      "direct": {
+        "d": 2,
+        "n_params": 121,
+        "n_rays_direct": 11,
+        "q": 11,
+        "rays": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "kind": "full_core_q11_c(1, 1)",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          3,
+          5
+        ],
+        "n_rays_compiled": 11,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 2,
+      "direct": {
+        "d": 2,
+        "n_params": 121,
+        "n_rays_direct": 11,
+        "q": 11,
+        "rays": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "kind": "full_core_q11_c(3, 5)",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          1,
+          0,
+          0
+        ],
+        "n_rays_compiled": 3,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 3,
+      "direct": {
+        "d": 3,
+        "n_params": 27,
+        "n_rays_direct": 3,
+        "q": 3
+      },
+      "kind": "full_core_d3_q3",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          1,
+          1,
+          1
+        ],
+        "n_rays_compiled": 3,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 3,
+      "direct": {
+        "d": 3,
+        "n_params": 27,
+        "n_rays_direct": 3,
+        "q": 3
+      },
+      "kind": "full_core_d3_q3",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "compiled": {
+        "coeffs": [
+          1,
+          2,
+          3
+        ],
+        "n_rays_compiled": 5,
+        "route": "linear_form_image_rank"
+      },
+      "dim": 3,
+      "direct": {
+        "d": 3,
+        "n_params": 125,
+        "n_rays_direct": 5,
+        "q": 5
+      },
+      "kind": "full_core_d3_q5",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "kind": "residual_remove_slope0",
+      "n_rays_direct": 6,
+      "n_rays_expected": 6,
+      "n_residual_params": 42,
+      "note": "first-match residual after charging slope 0",
+      "pass": true,
+      "routes_agree": true
+    },
+    {
+      "d1_rays": 5,
+      "d2_rays": 5,
+      "higher_dim_is_d_ge_2": true,
+      "kind": "d1_vs_d2_scope",
+      "note": "d=1 split-pencil vs d>=2 balanced-core parameter space",
+      "pass": true
+    },
+    {
+      "H": 1,
+      "J": 1,
+      "P": 42,
+      "Z": 6,
+      "bound_floor": 42,
+      "holds": true,
+      "kind": "RC_residual_doublecount",
+      "note": "trivial incidence; real RC needs proved H,J",
+      "pass": true
+    },
+    {
+      "kind": "nonlinear_gap_disclosure",
+      "linear_formula_wrongly_applied": 5,
+      "mismatch": true,
+      "n_rays_direct_square": 3,
+      "open_input": "higher-dim balanced-core ray map may be nonlinear; needs proved RC not linear rank only",
+      "pass": true
+    },
+    {
+      "full_rays": 7,
+      "kind": "negative_full_vs_residual_sizes",
+      "pass": true,
+      "residual_rays": 6
+    }
+  ],
+  "schema": "residual-ray-compiler-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "thm:bounded-residual-kernel-ray; hyp:ray-compiler; def:balanced-quotient-core",
+  "verdict": "NO ISSUE",
+  "weave": "Hard input (c); new draft; extends #513-style RC with higher-dim residual focus."
+}
