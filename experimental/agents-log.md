@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Q-implies-SP toy verification
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/thresholds/q_implies_sp.md`, `experimental/data/certificates/q-implies-sp/q_implies_sp.json`, `experimental/scripts/verify_q_implies_sp.py`, `experimental/scripts/verify_q_implies_sp_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exact ES-prefix fiber + shift-pair recompute of thm:q-implies-sp.
+- **How it is useful:** Confirms SP is downstream of max-fiber Q on toys.
+- **What to do next:** Row-sharp Q remains the active bottleneck.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

@@ -1,0 +1,176 @@
+{
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "menu": [
+    {
+      "C": 6,
+      "Fbar": "6/5",
+      "P_hist": {
+        "2": 2
+      },
+      "full_off_diagonal_holds": true,
+      "identity_sumN2": true,
+      "inequality_holds": true,
+      "kappa": "5/3",
+      "m": 2,
+      "maxN": 2,
+      "n": 4,
+      "num_fibers": 5,
+      "p": 5,
+      "rhs": "6",
+      "rhs_equals_maxN_minus_1_times_C": true,
+      "sumN2": 8,
+      "sumP_all_e": 2,
+      "sumP_e_gt_w": 2,
+      "tightness_ratio": 0.3333333333333333,
+      "w": 1
+    },
+    {
+      "C": 20,
+      "Fbar": "20/7",
+      "P_hist": {
+        "2": 36,
+        "3": 2
+      },
+      "full_off_diagonal_holds": true,
+      "identity_sumN2": true,
+      "inequality_holds": true,
+      "kappa": "21/20",
+      "m": 3,
+      "maxN": 3,
+      "n": 6,
+      "num_fibers": 7,
+      "p": 7,
+      "rhs": "40",
+      "rhs_equals_maxN_minus_1_times_C": true,
+      "sumN2": 58,
+      "sumP_all_e": 38,
+      "sumP_e_gt_w": 38,
+      "tightness_ratio": 0.95,
+      "w": 1
+    },
+    {
+      "C": 20,
+      "Fbar": "20/49",
+      "P_hist": {
+        "3": 2
+      },
+      "full_off_diagonal_holds": true,
+      "identity_sumN2": true,
+      "inequality_holds": true,
+      "kappa": "49/10",
+      "m": 3,
+      "maxN": 2,
+      "n": 6,
+      "num_fibers": 19,
+      "p": 7,
+      "rhs": "20",
+      "rhs_equals_maxN_minus_1_times_C": true,
+      "sumN2": 22,
+      "sumP_all_e": 2,
+      "sumP_e_gt_w": 2,
+      "tightness_ratio": 0.1,
+      "w": 2
+    },
+    {
+      "C": 20,
+      "Fbar": "20/11",
+      "P_hist": {
+        "2": 28
+      },
+      "full_off_diagonal_holds": true,
+      "identity_sumN2": true,
+      "inequality_holds": true,
+      "kappa": "33/20",
+      "m": 3,
+      "maxN": 3,
+      "n": 6,
+      "num_fibers": 10,
+      "p": 11,
+      "rhs": "40",
+      "rhs_equals_maxN_minus_1_times_C": true,
+      "sumN2": 48,
+      "sumP_all_e": 28,
+      "sumP_e_gt_w": 28,
+      "tightness_ratio": 0.7,
+      "w": 1
+    },
+    {
+      "C": 70,
+      "Fbar": "70/121",
+      "P_hist": {
+        "3": 16,
+        "4": 2
+      },
+      "full_off_diagonal_holds": true,
+      "identity_sumN2": true,
+      "inequality_holds": true,
+      "kappa": "121/35",
+      "m": 4,
+      "maxN": 2,
+      "n": 8,
+      "num_fibers": 61,
+      "p": 11,
+      "rhs": "70",
+      "rhs_equals_maxN_minus_1_times_C": true,
+      "sumN2": 88,
+      "sumP_all_e": 18,
+      "sumP_e_gt_w": 18,
+      "tightness_ratio": 0.2571428571428571,
+      "w": 2
+    }
+  ],
+  "nonclaims": [
+    "Does not prove row-sharp Q.",
+    "Does not improve deployed SP margins."
+  ],
+  "oracle": {
+    "C": 6,
+    "Fbar": "6/5",
+    "P_hist": {
+      "2": 2
+    },
+    "full_off_diagonal_holds": true,
+    "identity_sumN2": true,
+    "inequality_holds": true,
+    "kappa": "5/3",
+    "m": 2,
+    "maxN": 2,
+    "n": 4,
+    "num_fibers": 5,
+    "p": 5,
+    "rhs": "6",
+    "rhs_equals_maxN_minus_1_times_C": true,
+    "sumN2": 8,
+    "sumP_all_e": 2,
+    "sumP_e_gt_w": 2,
+    "tightness_ratio": 0.3333333333333333,
+    "w": 1
+  },
+  "payload_sha256": "f5c8f9da69738aeee7077d87be2bc68ffeef8859a08abde3601f7e786879c693",
+  "proof_status": "AUDIT exact rational recompute of thm:q-implies-sp on toys",
+  "regeneration": "python experimental/scripts/verify_q_implies_sp.py --emit-defaults",
+  "schema": "q-implies-sp-v1",
+  "source_pin": {
+    "file": "experimental/grande_finale.tex",
+    "label": "thm:q-implies-sp",
+    "line": 1889
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Exact toy recompute: second-moment identity and Q=>SP inequality hold on all menu rows with attained kappa=maxN/Fbar; tightness ratios recorded. Confirmation of a proved theorem.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "thm:q-implies-sp"
+}
