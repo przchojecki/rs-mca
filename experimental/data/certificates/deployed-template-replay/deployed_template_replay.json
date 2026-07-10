@@ -1,0 +1,120 @@
+{
+  "base_sha": "2b1a7e20654d44d0beefcd5c7d508be618b0cea1",
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "asserts": [
+      "exact finite budget chain for KB MCA and M31 MCA",
+      "match to integrated q-r1-closing floors",
+      "template prop has no embedded deployed integers"
+    ],
+    "does_not_assert": [
+      "ledger-admissible (A1)--(A7) for deployed rows",
+      "thm:main-smooth-circle applies to KoalaBear",
+      "safe-side adjacent certificate"
+    ]
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "falsifiability": "Replay fails if U(a0)<=B_* or U(a1)>B_* or dual U routes disagree or q-r1 integers differ",
+  "generator_routes": {
+    "B_star": "floor(q_line/2^lambda)",
+    "L": "comb_batch ceil(C(n,a)/p^w)",
+    "U_A": "ceil_div formula",
+    "U_B": "incremental integer loop"
+  },
+  "honest_headline": "prop:verification-template has no printed numeric expected values for deployed rows; this packet replays the finite identity-prefix + collision-aware budget chain that any finite version of the template must include. Pattern U(a0)>B_*>=U(a1) holds and matches integrated q-r1 floors. (A2)--(A7) remain OPEN inputs.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "object": "finite fragment of prop:verification-template on KB MCA + M31 MCA",
+  "payload_sha256": "2b4875ced549fa778a816811650d896242531d2e99458cf1688ead4abf88586b",
+  "q_r1_match": [
+    {
+      "B_star_match": true,
+      "L_a0_match": true,
+      "L_a1_match": true,
+      "matched": true,
+      "row_id": "kb_mca"
+    },
+    {
+      "B_star_match": true,
+      "L_a0_match": true,
+      "L_a1_match": true,
+      "matched": true,
+      "row_id": "m31_mca"
+    }
+  ],
+  "rows": [
+    {
+      "A1_A7_status": {
+        "A1_domain_structure": "ASSUMED (deployed smooth coset) \u2014 not re-proved here",
+        "A2_atlas_exhaustive": "OPEN \u2014 not supplied by this arithmetic chain",
+        "A3_image_normalization": "OPEN",
+        "A4_PF_MA_or_Sidon": "OPEN",
+        "A5_Vandermonde_columns": "ASSUMED for RS \u2014 not finite-checked",
+        "A6_RC": "OPEN",
+        "A7_profile_envelope": "OPEN \u2014 identity term only used below as lower floor",
+        "finite_fragment_executed": "B_*, L, U collision-aware, budget comparisons"
+      },
+      "B_star": 274980728111395087,
+      "K_prefix": 1048577,
+      "L_a0": 138634741058327852652,
+      "L_a1": 57198030366,
+      "U_a0": 138634741058327852652,
+      "U_a0_exceeds_B_star": true,
+      "U_a1": 57198030366,
+      "U_a1_exceeds_B_star": false,
+      "a0": 1116047,
+      "a1": 1116048,
+      "ext": 6,
+      "lambda_bits": 128,
+      "p": 2130706433,
+      "q_line": 93571093019388561295270373781649880353786165192103559169,
+      "row_id": "kb_mca",
+      "unsafe_quiet_pattern": true
+    },
+    {
+      "A1_A7_status": {
+        "A1_domain_structure": "ASSUMED (deployed smooth coset) \u2014 not re-proved here",
+        "A2_atlas_exhaustive": "OPEN \u2014 not supplied by this arithmetic chain",
+        "A3_image_normalization": "OPEN",
+        "A4_PF_MA_or_Sidon": "OPEN",
+        "A5_Vandermonde_columns": "ASSUMED for RS \u2014 not finite-checked",
+        "A6_RC": "OPEN",
+        "A7_profile_envelope": "OPEN \u2014 identity term only used below as lower floor",
+        "finite_fragment_executed": "B_*, L, U collision-aware, budget comparisons"
+      },
+      "B_star": 16777215,
+      "K_prefix": 1048577,
+      "L_a0": 4281388998575706,
+      "L_a1": 1752700,
+      "U_a0": 4281388998575706,
+      "U_a0_exceeds_B_star": true,
+      "U_a1": 1752700,
+      "U_a1_exceeds_B_star": false,
+      "a0": 1116023,
+      "a1": 1116024,
+      "ext": 4,
+      "lambda_bits": 100,
+      "p": 2147483647,
+      "q_line": 21267647892944572736998860269687930881,
+      "row_id": "m31_mca",
+      "unsafe_quiet_pattern": true
+    }
+  ],
+  "statement_pins": {
+    "def:admissible-sequence": {
+      "line": 624
+    },
+    "prop:verification-template": {
+      "line": 5351
+    },
+    "sec:verification-template": {
+      "line": 5342
+    },
+    "thm:main-smooth-circle": {
+      "line": 676
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "template_has_printed_deployed_numbers": false,
+  "verdict": "NO ISSUE"
+}
