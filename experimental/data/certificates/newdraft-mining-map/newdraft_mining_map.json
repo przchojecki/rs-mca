@@ -1,0 +1,3800 @@
+{
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "forward begin\u2192label parse; set overlap of label inventory",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "counts": {
+    "by_already": {
+      "ALREADY-AUDITED": 14,
+      "FRESH": 276
+    },
+    "by_env": {
+      "corollary": 18,
+      "definition": 47,
+      "equation": 23,
+      "hypothesis": 2,
+      "lemma": 51,
+      "proposition": 63,
+      "remark": 12,
+      "theorem": 74
+    },
+    "by_hard_input": {
+      "a": 37,
+      "b": 69,
+      "c": 10,
+      "d": 10,
+      "e": 12
+    },
+    "by_priority": {
+      "1": 9,
+      "2": 90,
+      "3": 4,
+      "4": 173,
+      "5": 14
+    },
+    "by_status": {
+      "CITED": 6,
+      "CONDITIONAL": 14,
+      "DEFINITIONAL": 128,
+      "PROVED-IN-PAPER": 142
+    },
+    "n_lines": 7913,
+    "n_statements": 290
+  },
+  "evidence_type": "CANONICAL_STATEMENT_HIT",
+  "falsifiable": true,
+  "generator_route": "lookback from \\label to \\begin{env} + keyword classify",
+  "honest_headline": "New-draft mining map: 290 labeled envs / 7913 lines; status={'DEFINITIONAL': 128, 'PROVED-IN-PAPER': 142, 'CONDITIONAL': 14, 'CITED': 6}; hard-input hits={'e': 12, 'b': 69, 'd': 10, 'a': 37, 'c': 10}; FRESH=276 ALREADY=14; oracle_pass=True (fail=0); dual parse set_ok=True. Heuristic triage for campaign steering, not referee judgments.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_lines": 7913,
+  "n_statements": 290,
+  "nonclaims": [
+    "Classifications are parser heuristics, not final mathematical status.",
+    "Hard-input tags are keyword-based and may multi-tag.",
+    "Does not replace reading the proof for any individual statement."
+  ],
+  "object": "asymptotic_rs_mca_frontiers.tex labeled-statement mining map",
+  "oracle_fail_count": 0,
+  "oracle_pass": true,
+  "oracle_sample": [
+    {
+      "expected": "DEFINITIONAL",
+      "got": "DEFINITIONAL",
+      "label": "def:first-match",
+      "pass": true
+    },
+    {
+      "expected": "PROVED-IN-PAPER",
+      "got": "PROVED-IN-PAPER",
+      "label": "lem:first-match-bound",
+      "pass": true
+    },
+    {
+      "expected": "CONDITIONAL",
+      "got": "CONDITIONAL",
+      "label": "hyp:ray-compiler",
+      "pass": true
+    },
+    {
+      "expected": "DEFINITIONAL",
+      "got": "DEFINITIONAL",
+      "label": "eq:profile-envelope",
+      "pass": true
+    },
+    {
+      "expected": "CONDITIONAL",
+      "got": "CONDITIONAL",
+      "label": "thm:main-ledger",
+      "pass": true
+    },
+    {
+      "expected": "DEFINITIONAL",
+      "got": "DEFINITIONAL",
+      "label": "def:mca-bad",
+      "pass": true
+    },
+    {
+      "expected": "PROVED-IN-PAPER",
+      "got": "PROVED-IN-PAPER",
+      "label": "prop:simple-pole-lower",
+      "pass": true
+    },
+    {
+      "expected": "DEFINITIONAL",
+      "got": "DEFINITIONAL",
+      "label": "eq:exact-unsafe-budget",
+      "pass": true
+    },
+    {
+      "expected": "DEFINITIONAL",
+      "got": "DEFINITIONAL",
+      "label": "def:sidon-heavy",
+      "pass": true
+    },
+    {
+      "expected": "CITED",
+      "got": "CITED",
+      "label": "thm:bsg",
+      "pass": true
+    }
+  ],
+  "payload_sha256": "22f34bb302efb55d0505396c3f336753b3654c9ebc1ec94260d7038e9669be08",
+  "priority_queue_top": [
+    {
+      "hard": [
+        "a",
+        "d"
+      ],
+      "label": "thm:main-smooth-circle",
+      "line": 957,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "e"
+      ],
+      "label": "thm:main-ledger",
+      "line": 1125,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "a"
+      ],
+      "label": "lem:profile-atlas",
+      "line": 4772,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "a",
+        "c"
+      ],
+      "label": "hyp:ray-compiler",
+      "line": 6033,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "prop:primitive-residual-numerator",
+      "line": 6073,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "a",
+        "b"
+      ],
+      "label": "prop:numerator-bound",
+      "line": 6084,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "d",
+        "e"
+      ],
+      "label": "prop:entropy-crossing-detail",
+      "line": 6675,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "thm:q-sp-to-mca-final",
+      "line": 6902,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "cor:smooth-domain-full-ledger",
+      "line": 7486,
+      "status": "CONDITIONAL"
+    },
+    {
+      "hard": [
+        "e"
+      ],
+      "label": "eq:intro-asymptotic-threshold",
+      "line": 238,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "rem:intro-countertheorem-scope",
+      "line": 830,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "a",
+        "d"
+      ],
+      "label": "eq:conditional-numerator",
+      "line": 962,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "d",
+        "e"
+      ],
+      "label": "eq:intro-threshold-bracket",
+      "line": 997,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "thm:intro-sidon-heavy-repair",
+      "line": 1144,
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "eq:intro-moment-accessibility",
+      "line": 1160,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "rem:intro-sidon-heavy-scope",
+      "line": 1199,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "a"
+      ],
+      "label": "prop:exact-support-upper",
+      "line": 1361,
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "hard": [
+        "a",
+        "b"
+      ],
+      "label": "def:profile-payment",
+      "line": 1476,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "a",
+        "b"
+      ],
+      "label": "eq:profile-payment",
+      "line": 1486,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "a"
+      ],
+      "label": "eq:first-match-residual",
+      "line": 1508,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "c"
+      ],
+      "label": "thm:bounded-residual-kernel-ray",
+      "line": 1680,
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "hard": [
+        "c"
+      ],
+      "label": "thm:single-mds-circuit-ray",
+      "line": 1735,
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "prop:prefix-rigidity-full",
+      "line": 2045,
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "hard": [
+        "b"
+      ],
+      "label": "eq:packing-fiber-cap",
+      "line": 2051,
+      "status": "DEFINITIONAL"
+    },
+    {
+      "hard": [
+        "a"
+      ],
+      "label": "def:asymptotic-row",
+      "line": 2252,
+      "status": "DEFINITIONAL"
+    }
+  ],
+  "proof_status": "AUDIT parser triage heuristics + hard oracle 10",
+  "regeneration": "python experimental/scripts/verify_newdraft_mining_map.py --emit-defaults",
+  "schema": "newdraft-mining-map-v1",
+  "set_compare": {
+    "exact_equal": true,
+    "n_chk": 290,
+    "n_gen": 290,
+    "n_overlap": 290,
+    "only_chk_sample": [],
+    "only_gen_sample": [],
+    "set_ok": true
+  },
+  "statements": [
+    {
+      "already": "FRESH",
+      "begin_line": 211,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:intro-normalized-mca",
+      "line": 211,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 238,
+      "env": "equation",
+      "hard_inputs": [
+        "e"
+      ],
+      "label": "eq:intro-asymptotic-threshold",
+      "line": 238,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 249,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:intro-unconditional-asymptotic-deep",
+      "line": 250,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 249,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:intro-unconditional-asymptotic-deep",
+      "line": 265,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 249,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:intro-unconditional-asymptotic-deep-answer",
+      "line": 271,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 304,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:unconditional-asymptotic-rs-mca",
+      "line": 305,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 366,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:unconditional-rs-mca-capacity",
+      "line": 367,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 572,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:intro-identity-scale",
+      "line": 572,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 673,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:main-unconditional",
+      "line": 674,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 729,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:intro-closure-barrier-package",
+      "line": 730,
+      "priority": 3,
+      "scale": "mixed/unclear",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 796,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:intro-countertheorem",
+      "line": 797,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 829,
+      "env": "remark",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "rem:intro-countertheorem-scope",
+      "line": 830,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 862,
+      "env": "equation",
+      "hard_inputs": [
+        "d"
+      ],
+      "label": "eq:profile-envelope",
+      "line": 862,
+      "priority": 5,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 895,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:admissible-sequence",
+      "line": 896,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 956,
+      "env": "theorem",
+      "hard_inputs": [
+        "a",
+        "d"
+      ],
+      "label": "thm:main-smooth-circle",
+      "line": 957,
+      "priority": 1,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 956,
+      "env": "theorem",
+      "hard_inputs": [
+        "a",
+        "d"
+      ],
+      "label": "eq:conditional-numerator",
+      "line": 962,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 988,
+      "env": "theorem",
+      "hard_inputs": [
+        "d",
+        "e"
+      ],
+      "label": "thm:intro-asymptotic-rs-mca",
+      "line": 989,
+      "priority": 5,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 988,
+      "env": "theorem",
+      "hard_inputs": [
+        "d",
+        "e"
+      ],
+      "label": "eq:intro-threshold-bracket",
+      "line": 997,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1010,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:intro-identity-frontier",
+      "line": 1011,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 1010,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "eq:intro-target-crossing",
+      "line": 1024,
+      "priority": 5,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1097,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:closed-asymptotic-ledger",
+      "line": 1097,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1125,
+      "env": "theorem",
+      "hard_inputs": [
+        "e"
+      ],
+      "label": "thm:main-ledger",
+      "line": 1125,
+      "priority": 1,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1143,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "thm:intro-sidon-heavy-repair",
+      "line": 1144,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1143,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:intro-moment-accessibility",
+      "line": 1160,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1198,
+      "env": "remark",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "rem:intro-sidon-heavy-scope",
+      "line": 1199,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1286,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:explanation",
+      "line": 1287,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1304,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:mca-bad",
+      "line": 1304,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1323,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:exact-witness-incidence",
+      "line": 1324,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1323,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "eq:exact-witness-incidence",
+      "line": 1334,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1341,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:exact-agreement-reduction",
+      "line": 1342,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1360,
+      "env": "proposition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "prop:exact-support-upper",
+      "line": 1361,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1380,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:universal-witness-incidence",
+      "line": 1381,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1416,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:profile-cell",
+      "line": 1417,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1416,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "eq:realized-profile-scale",
+      "line": 1441,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 1452,
+      "env": "definition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "def:first-match",
+      "line": 1453,
+      "priority": 5,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 1452,
+      "env": "definition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "eq:first-match-projections",
+      "line": 1461,
+      "priority": 5,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1475,
+      "env": "definition",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "def:profile-payment",
+      "line": 1476,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1475,
+      "env": "definition",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "eq:profile-payment",
+      "line": 1486,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 1500,
+      "env": "definition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "def:primitive-first-match-residual",
+      "line": 1501,
+      "priority": 5,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1500,
+      "env": "definition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "eq:first-match-residual",
+      "line": 1508,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 1526,
+      "env": "lemma",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "lem:first-match-bound",
+      "line": 1526,
+      "priority": 5,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1559,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:parity-columns",
+      "line": 1559,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1569,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:syndrome-line-normal-form",
+      "line": 1570,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1569,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:syndrome-line",
+      "line": 1578,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1606,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:syndrome-secant-exact",
+      "line": 1607,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1606,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:transverse-secant-count",
+      "line": 1615,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1606,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:exact-secant-numerator",
+      "line": 1621,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1646,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:independent-union-rays",
+      "line": 1647,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1679,
+      "env": "theorem",
+      "hard_inputs": [
+        "c"
+      ],
+      "label": "thm:bounded-residual-kernel-ray",
+      "line": 1680,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1734,
+      "env": "theorem",
+      "hard_inputs": [
+        "c"
+      ],
+      "label": "thm:single-mds-circuit-ray",
+      "line": 1735,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1790,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:deep-regime-upper",
+      "line": 1790,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1790,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:deep-upper",
+      "line": 1795,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1833,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:universal-tangent-floor",
+      "line": 1833,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1833,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:tangent-floor",
+      "line": 1839,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1854,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:exact-deep-numerator",
+      "line": 1854,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1869,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:exact-first-adjacent-row",
+      "line": 1870,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1930,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:subfield-confinement-full",
+      "line": 1930,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1965,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:exact-prefix-list",
+      "line": 1965,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1965,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:prefix-bijection",
+      "line": 1972,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1996,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:collision-aware-pole",
+      "line": 1997,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 1996,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:collision-aware-pole",
+      "line": 2006,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2031,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:identity-prefix-floor",
+      "line": 2031,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2031,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "eq:identity-prefix-floor",
+      "line": 2036,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2044,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "prop:prefix-rigidity-full",
+      "line": 2045,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2044,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:packing-fiber-cap",
+      "line": 2051,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2073,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:prefix-to-line-hardness",
+      "line": 2074,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2073,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:extension-separation",
+      "line": 2080,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2096,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:exact-list-line-bijection",
+      "line": 2097,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2156,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:exact-prefix-ray-realization",
+      "line": 2157,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2183,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:aperiodic-ray-obstruction",
+      "line": 2184,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2251,
+      "env": "definition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "def:asymptotic-row",
+      "line": 2252,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2294,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:cell",
+      "line": 2294,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2306,
+      "env": "definition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "def:paid-cell",
+      "line": 2306,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2306,
+      "env": "definition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "eq:paid-cell-scale",
+      "line": 2313,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2340,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:constructible-cells",
+      "line": 2340,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2513,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:planted-entropy",
+      "line": 2513,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2526,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:quotient-entropy",
+      "line": 2526,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2534,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:rank-defect-payment",
+      "line": 2534,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2555,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:pencil-payment",
+      "line": 2555,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2574,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:saturation-principle",
+      "line": 2574,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2605,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:structured-folding",
+      "line": 2606,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2635,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:circle-domain-code",
+      "line": 2636,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2656,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:circle-twin-domain",
+      "line": 2657,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2693,
+      "env": "remark",
+      "hard_inputs": [],
+      "label": "rem:characteristic-two-rows",
+      "line": 2694,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2731,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:map-smooth",
+      "line": 2731,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2741,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:map-smooth-fiber",
+      "line": 2741,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2749,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:map-smooth-cap",
+      "line": 2749,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2776,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:cheb-smooth",
+      "line": 2776,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2784,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:circle-uniformization",
+      "line": 2784,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2800,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:artin-schreier-phase",
+      "line": 2801,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2862,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:effective-fourier-span",
+      "line": 2862,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2868,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:effective-span-fourier",
+      "line": 2869,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2911,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:effective-major-minor",
+      "line": 2912,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2929,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:effective-fourier-payment",
+      "line": 2930,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2957,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:constant-modes-annihilator",
+      "line": 2958,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2984,
+      "env": "definition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "def:major-arc-aggregate",
+      "line": 2985,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 2984,
+      "env": "definition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:major-arc-aggregate",
+      "line": 2991,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3010,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:sparse-major-payment",
+      "line": 3011,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3026,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:small-effective-dual-closure",
+      "line": 3027,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3081,
+      "env": "definition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "def:aggregate-minor-payment",
+      "line": 3082,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3097,
+      "env": "proposition",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "prop:effective-mi-ma-flatness",
+      "line": 3098,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3126,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:exact-finite-fourier-constants",
+      "line": 3127,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3160,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:prefix-flat-range",
+      "line": 3160,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3175,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:pf-deep-prefix-barrier",
+      "line": 3176,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3254,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "prop:pf-ma-square-dichotomy",
+      "line": 3255,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3300,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:bounded-prefix-equidistribution",
+      "line": 3300,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3332,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:circle-prefix-equidistribution",
+      "line": 3332,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3358,
+      "env": "corollary",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "cor:fourier-sidon-paid-smooth-circle",
+      "line": 3358,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3384,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:quotient-remainder-profile",
+      "line": 3385,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3424,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:balanced-quotient-core",
+      "line": 3425,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3456,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:exact-quotient-remainder-normal-form",
+      "line": 3457,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3456,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:qr-locators",
+      "line": 3479,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3456,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:qr-fiber-exact",
+      "line": 3499,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3456,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:qr-shallow-remainder",
+      "line": 3520,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3541,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:qr-infinity",
+      "line": 3541,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3577,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:complete-support-factorization",
+      "line": 3578,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3577,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:complete-support-factorization",
+      "line": 3585,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3608,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:exact-partial-occupancy",
+      "line": 3609,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3664,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:partial-occupancy-fourier",
+      "line": 3665,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3743,
+      "env": "theorem",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "thm:canonical-partial-occupancy-atlas",
+      "line": 3744,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3835,
+      "env": "remark",
+      "hard_inputs": [],
+      "label": "rem:qr-rounding",
+      "line": 3836,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3835,
+      "env": "remark",
+      "hard_inputs": [],
+      "label": "eq:qr-rounding",
+      "line": 3842,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3857,
+      "env": "remark",
+      "hard_inputs": [],
+      "label": "rem:qr-chebyshev",
+      "line": 3858,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3889,
+      "env": "equation",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:qr-natural-scale",
+      "line": 3889,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3896,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:identity-quotient-comparison",
+      "line": 3897,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3896,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:identity-crossing-qr",
+      "line": 3904,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3896,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:qr-comparison-general",
+      "line": 3914,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3896,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:qr-comparison-crossing",
+      "line": 3922,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "thm:smooth-quotient-obstruction",
+      "line": 3986,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:polynomial-field-tower",
+      "line": 3991,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:polynomial-field-parameters",
+      "line": 4001,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:polynomial-identity-scale",
+      "line": 4006,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:polynomial-large-fiber",
+      "line": 4020,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:polynomial-image-profile",
+      "line": 4030,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:polynomial-sidon-energy",
+      "line": 4038,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:polynomial-sidon-moment",
+      "line": 4054,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 3985,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:polynomial-extension-separation",
+      "line": 4063,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4069,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:polynomial-mca-obstruction",
+      "line": 4069,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4081,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:square-quotient-domain",
+      "line": 4081,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4098,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:polynomial-even-locator",
+      "line": 4098,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4115,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:quantitative-cube-energy",
+      "line": 4115,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4150,
+      "env": "remark",
+      "hard_inputs": [
+        "b",
+        "d"
+      ],
+      "label": "rem:odd-ambient-image",
+      "line": 4151,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4160,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:binary-cubic-obstruction",
+      "line": 4161,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4160,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:binary-cubic-tower",
+      "line": 4165,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4160,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:binary-identity-scale",
+      "line": 4176,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4160,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:binary-cubic-large-fibers",
+      "line": 4204,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4160,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "eq:binary-cubic-image-profile",
+      "line": 4215,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4160,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:binary-cubic-sidon-energy",
+      "line": 4226,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4160,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:binary-cubic-sidon-moment-definition",
+      "line": 4235,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4243,
+      "env": "equation",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:binary-cubic-sidon-moment",
+      "line": 4243,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4250,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:binary-extension-separation",
+      "line": 4250,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4257,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:binary-cubic-mca-obstruction",
+      "line": 4257,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4274,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:binary-cube-domain",
+      "line": 4274,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4287,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:binary-cubic-locator",
+      "line": 4287,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4302,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:binary-cubic-power-sums",
+      "line": 4302,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4349,
+      "env": "remark",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "rem:binary-ambient-image",
+      "line": 4350,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4361,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:aperiodic-support",
+      "line": 4362,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4370,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "prop:aperiodic-planted-obstruction",
+      "line": 4371,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4370,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:aperiodic-planted-family",
+      "line": 4379,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4424,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "prop:stereographic-circle-equivalence",
+      "line": 4425,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4454,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:circle-quotient-obstruction",
+      "line": 4455,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4473,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:necessary-quotient-envelope",
+      "line": 4474,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4473,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:necessary-quotient-envelope",
+      "line": 4485,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4503,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:quotient-rounding",
+      "line": 4503,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4542,
+      "env": "theorem",
+      "hard_inputs": [
+        "c"
+      ],
+      "label": "thm:smooth-circle-ledger-closure",
+      "line": 4543,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4561,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:periodicity-scale",
+      "line": 4561,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4565,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:stabilizer-payment",
+      "line": 4566,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4594,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:quotient-descent",
+      "line": 4594,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4615,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:deep-invariant-quotient-ray",
+      "line": 4616,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4652,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:planted-payment",
+      "line": 4652,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4668,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:tangent-payment",
+      "line": 4669,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4695,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:extension-payment",
+      "line": 4695,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4710,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:rank-pivot-payment",
+      "line": 4710,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4726,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:saturation-payment",
+      "line": 4726,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4741,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:split-pencil-payment",
+      "line": 4742,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4741,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:moving-root-bound",
+      "line": 4750,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4762,
+      "env": "remark",
+      "hard_inputs": [
+        "c"
+      ],
+      "label": "rem:balanced-core-exhaustion",
+      "line": 4763,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4772,
+      "env": "lemma",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "lem:profile-atlas",
+      "line": 4772,
+      "priority": 1,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4819,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:exact-power-sum-map",
+      "line": 4819,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4837,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:image-ambient-scales",
+      "line": 4837,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4844,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:full-image-certificate",
+      "line": 4844,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4865,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:image-ambient-moment-conversion",
+      "line": 4866,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4865,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "eq:image-ambient-moment-identity",
+      "line": 4880,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4902,
+      "env": "remark",
+      "hard_inputs": [],
+      "label": "rem:flatness-certifies-image",
+      "line": 4903,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4912,
+      "env": "definition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "def:primitive-q",
+      "line": 4912,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4940,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:logmoment-q",
+      "line": 4940,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 4957,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:vandermonde",
+      "line": 4957,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5011,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:newton-equivalence",
+      "line": 5011,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5028,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:profile-multiplicity",
+      "line": 5028,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5093,
+      "env": "definition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "def:sidon-heavy",
+      "line": 5093,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5108,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "prop:ordinary-moment-split",
+      "line": 5108,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5130,
+      "env": "definition",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "def:sidon-paid-cell",
+      "line": 5130,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5155,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:no-go",
+      "line": 5155,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5212,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:prefix-flatness-power-sum",
+      "line": 5212,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5242,
+      "env": "remark",
+      "hard_inputs": [],
+      "label": "rem:small-characteristic-cycles",
+      "line": 5242,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5254,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:weighted-weil-minor-arcs",
+      "line": 5254,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "CITED"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5266,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "thm:unconditional-shallow-mi-ma",
+      "line": 5267,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5347,
+      "env": "definition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "def:major-arc",
+      "line": 5347,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5361,
+      "env": "proposition",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "prop:major-arcs-are-cells",
+      "line": 5361,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5379,
+      "env": "corollary",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "cor:sidon-payment-from-prefix-flatness",
+      "line": 5379,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5401,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:frontier-weil-separation",
+      "line": 5401,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "CITED"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5418,
+      "env": "theorem",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "thm:sidon-resolved-payment",
+      "line": 5418,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5418,
+      "env": "theorem",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "thm:no-sidon-heavy-fourier",
+      "line": 5418,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5418,
+      "env": "theorem",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "thm:fourier-sidon-closure",
+      "line": 5418,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5466,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:bsg",
+      "line": 5466,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "CITED"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5472,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:quasicube",
+      "line": 5472,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "CITED"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5537,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:high-energy-impossible",
+      "line": 5537,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5548,
+      "env": "theorem",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "thm:primitive-q",
+      "line": 5548,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5591,
+      "env": "definition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "def:q-sp",
+      "line": 5591,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5615,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:moment-sandwich-full",
+      "line": 5615,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5627,
+      "env": "corollary",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "cor:finite-moment-floor",
+      "line": 5627,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5646,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:explanation-occupancy",
+      "line": 5647,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5673,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:exact-occupancy-compiler",
+      "line": 5674,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5711,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:max-occupancy-addback",
+      "line": 5712,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5754,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:pair-to-ray-map",
+      "line": 5755,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5754,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "eq:interpolation-functional",
+      "line": 5763,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5767,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:saturation-quotient-rays",
+      "line": 5767,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5767,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "eq:slope-elimination",
+      "line": 5773,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5787,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:second-moment-identity",
+      "line": 5787,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5811,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:q-sp-no-ray",
+      "line": 5812,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5837,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:pair-ray-multiplicity",
+      "line": 5838,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5837,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "eq:pair-ray-multiplicity",
+      "line": 5849,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5864,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:finite-pair-ray-compiler",
+      "line": 5865,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5895,
+      "env": "proposition",
+      "hard_inputs": [
+        "c"
+      ],
+      "label": "prop:curve-degree-ray-compiler",
+      "line": 5896,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5944,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:automatic-locator-curve-ray",
+      "line": 5945,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 5983,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:automatic-one-pencil-ray",
+      "line": 5984,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6033,
+      "env": "hypothesis",
+      "hard_inputs": [
+        "a",
+        "c"
+      ],
+      "label": "hyp:ray-compiler",
+      "line": 6033,
+      "priority": 1,
+      "scale": "mixed/unclear",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6033,
+      "env": "hypothesis",
+      "hard_inputs": [
+        "a",
+        "c"
+      ],
+      "label": "eq:ray-compiler",
+      "line": 6051,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6059,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:q-implies-sp",
+      "line": 6059,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6073,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "prop:primitive-residual-numerator",
+      "line": 6073,
+      "priority": 1,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6084,
+      "env": "proposition",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "prop:numerator-bound",
+      "line": 6084,
+      "priority": 1,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 6112,
+      "env": "equation",
+      "hard_inputs": [],
+      "label": "eq:target-entropy",
+      "line": 6112,
+      "priority": 5,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 6154,
+      "env": "lemma",
+      "hard_inputs": [
+        "e"
+      ],
+      "label": "lem:safe-side",
+      "line": 6154,
+      "priority": 5,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 6154,
+      "env": "lemma",
+      "hard_inputs": [
+        "e"
+      ],
+      "label": "eq:exact-safe-budget",
+      "line": 6159,
+      "priority": 5,
+      "scale": "asymptotic",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 6180,
+      "env": "proposition",
+      "hard_inputs": [
+        "e"
+      ],
+      "label": "prop:simple-pole-lower",
+      "line": 6180,
+      "priority": 5,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 6180,
+      "env": "proposition",
+      "hard_inputs": [
+        "e"
+      ],
+      "label": "eq:exact-unsafe-budget",
+      "line": 6194,
+      "priority": 5,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 6211,
+      "env": "theorem",
+      "hard_inputs": [
+        "e"
+      ],
+      "label": "thm:unconditional-support-envelope-bracket",
+      "line": 6212,
+      "priority": 5,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6448,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:support-prefix-incidence",
+      "line": 6448,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6472,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:newton-dictionary-expanded",
+      "line": 6472,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6495,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:mca-witness-scheme",
+      "line": 6495,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "ALREADY-AUDITED",
+      "begin_line": 6516,
+      "env": "proposition",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "prop:first-match-atlas-finite",
+      "line": 6516,
+      "priority": 5,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6533,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:slope-multiplicity-fixed-support",
+      "line": 6533,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6561,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:cycle-index-bound",
+      "line": 6561,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6574,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:residual-monotonicity",
+      "line": 6574,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6593,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:smooth-circle-prefix-flatness-criterion",
+      "line": 6593,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6611,
+      "env": "remark",
+      "hard_inputs": [],
+      "label": "rem:pf-numerical",
+      "line": 6611,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6622,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "prop:equidistribution-to-sidon",
+      "line": 6622,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6643,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:largest-fiber-log-detail",
+      "line": 6643,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6659,
+      "env": "lemma",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "lem:q-to-sp-detail",
+      "line": 6659,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6667,
+      "env": "definition",
+      "hard_inputs": [
+        "d"
+      ],
+      "label": "def:integer-staircase-detail",
+      "line": 6667,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6675,
+      "env": "proposition",
+      "hard_inputs": [
+        "d",
+        "e"
+      ],
+      "label": "prop:entropy-crossing-detail",
+      "line": 6675,
+      "priority": 1,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6694,
+      "env": "proposition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "prop:first-match-sum-detail",
+      "line": 6694,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6722,
+      "env": "proposition",
+      "hard_inputs": [
+        "a",
+        "b",
+        "e"
+      ],
+      "label": "prop:finite-specialization-principle",
+      "line": 6722,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6736,
+      "env": "theorem",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "thm:exact-finite-profile-compiler",
+      "line": 6737,
+      "priority": 2,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6812,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:exact-adjacent-identity-ratio",
+      "line": 6813,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6835,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:finite-boolean-high-energy",
+      "line": 6836,
+      "priority": 3,
+      "scale": "finite-testable",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6876,
+      "env": "theorem",
+      "hard_inputs": [
+        "a",
+        "b"
+      ],
+      "label": "thm:domain-to-ledger-final",
+      "line": 6876,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6890,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "thm:primitive-to-q-final",
+      "line": 6890,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6902,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "thm:q-sp-to-mca-final",
+      "line": 6902,
+      "priority": 1,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6913,
+      "env": "corollary",
+      "hard_inputs": [
+        "d",
+        "e"
+      ],
+      "label": "cor:frontier-final",
+      "line": 6913,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6959,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:quotient-lacunarity-expanded",
+      "line": 6959,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 6992,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:ramification-payment-expanded",
+      "line": 6992,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7015,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:weil-restriction-expanded",
+      "line": 7015,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "CITED"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7040,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:vandermonde-image-rank-expanded",
+      "line": 7040,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7058,
+      "env": "lemma",
+      "hard_inputs": [
+        "c"
+      ],
+      "label": "lem:split-pencil-alternatives-expanded",
+      "line": 7058,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7100,
+      "env": "proposition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "prop:standard-admissible",
+      "line": 7100,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "CITED"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7137,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:stabilizer-package",
+      "line": 7137,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7145,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:exact-descent-package",
+      "line": 7145,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7159,
+      "env": "theorem",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "thm:aperiodic-package",
+      "line": 7159,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7173,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "thm:prefix-flatness-package",
+      "line": 7173,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7193,
+      "env": "theorem",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "thm:boolean-package",
+      "line": 7193,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7221,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:verification-template",
+      "line": 7221,
+      "priority": 3,
+      "scale": "finite-testable",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7241,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:profile-complexity",
+      "line": 7241,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7260,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:exact-profile-addback",
+      "line": 7261,
+      "priority": 4,
+      "scale": "finite-testable",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7327,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:profile-summation",
+      "line": 7327,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7416,
+      "env": "proposition",
+      "hard_inputs": [
+        "a"
+      ],
+      "label": "prop:cell-budget-theorem",
+      "line": 7416,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7433,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:exact-multiplicative-descent",
+      "line": 7433,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7450,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:smooth-stabilizer-exhaustion",
+      "line": 7450,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7462,
+      "env": "proposition",
+      "hard_inputs": [
+        "a",
+        "c"
+      ],
+      "label": "prop:smooth-domain-algebraic-closure",
+      "line": 7462,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7486,
+      "env": "corollary",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "cor:smooth-domain-full-ledger",
+      "line": 7486,
+      "priority": 1,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7501,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:chebyshev-descent",
+      "line": 7501,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7514,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:circle-diagonal-uniformization",
+      "line": 7514,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7524,
+      "env": "proposition",
+      "hard_inputs": [
+        "a",
+        "b",
+        "d"
+      ],
+      "label": "prop:circle-domain-full-ledger",
+      "line": 7524,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7551,
+      "env": "theorem",
+      "hard_inputs": [],
+      "label": "thm:smooth-circle-ledger-closure-expanded",
+      "line": 7551,
+      "priority": 3,
+      "scale": "asymptotic",
+      "status": "CONDITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7564,
+      "env": "corollary",
+      "hard_inputs": [],
+      "label": "cor:final-no-ledger-assumption",
+      "line": 7564,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7584,
+      "env": "definition",
+      "hard_inputs": [],
+      "label": "def:algebraically-planted",
+      "line": 7584,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "DEFINITIONAL"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7597,
+      "env": "proposition",
+      "hard_inputs": [
+        "b"
+      ],
+      "label": "prop:planted-payment-repaired",
+      "line": 7597,
+      "priority": 2,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7614,
+      "env": "proposition",
+      "hard_inputs": [],
+      "label": "prop:determinantal-payment-repaired",
+      "line": 7614,
+      "priority": 4,
+      "scale": "asymptotic",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7633,
+      "env": "lemma",
+      "hard_inputs": [],
+      "label": "lem:circle-edge-cases-repaired",
+      "line": 7633,
+      "priority": 4,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    },
+    {
+      "already": "FRESH",
+      "begin_line": 7650,
+      "env": "proposition",
+      "hard_inputs": [
+        "a",
+        "c"
+      ],
+      "label": "prop:closed-algebraic-ledger-repaired",
+      "line": 7650,
+      "priority": 2,
+      "scale": "mixed/unclear",
+      "status": "PROVED-IN-PAPER"
+    }
+  ],
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "campaign map for five hard inputs on new draft",
+  "verdict": "NO ISSUE",
+  "weave": "Analogue of capf/entropy mining maps for asymptotic_rs_mca_frontiers.tex; drives W34+."
+}

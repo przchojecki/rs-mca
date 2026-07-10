@@ -2730,3 +2730,14 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 W33 w33-newdraft-mining-map (Ken / Grok)
+- AUDIT on asymptotic_rs_mca_frontiers.tex base 4e3c4ee.
+- Status: EXPERIMENTAL / AUDIT.
+
+## 2026-07-10 W34-R2 mining-map re-verify (Ken / Grok)
+- Confirmed oracle_pass and set_ok; lookback+forward dual parse equal.
+- Status: EXPERIMENTAL / AUDIT. Steering artifact for W35+.
+
+## 2026-07-10 W35-R1 mining-map remark+hypothesis ENVS (Ken / Grok)
+- Added remark to ENVS; spot-check rem:balanced-core-exhaustion + hyp:ray-compiler.
