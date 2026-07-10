@@ -2790,3 +2790,9 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W40 M2 lean-bounded-kernel-ray (executor)
+- **Files:** experimental/lean/bounded_kernel_ray/*; notes/audits/lean_bounded_kernel_ray.md
+- **Status:** lake build PASS; bound=6 on q=3 κ=1
+- **Usefulness:** thm:bounded-residual-kernel-ray instance
+- **Next:** optional larger κ toys
