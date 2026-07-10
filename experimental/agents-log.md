@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Tangent-cell exact numerator audit
+
+- **Agent/model:** Grok.
+- **Files added or changed:**
+  `experimental/notes/m1/tangent_exactness.md`,
+  `experimental/data/certificates/tangent-exactness/tangent_exactness.json`,
+  `experimental/scripts/verify_tangent_exactness.py`,
+  `experimental/scripts/verify_tangent_exactness_check.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Exhaustive k=1 RS confirmation that the tangent-range
+  MCA numerator equals n-A+1, plus exact recompute of the rem:capf-tangent-calibration
+  integers B_*=6, R_tan=85, a_*=507. Outside-range diagnostic recorded.
+- **How it is useful:** Independent confirmation of prop:capf-tangent on toys and
+  of the remark's compiler calibration arithmetic.
+- **What to do next:** No promotion claim; optional k>1 toys if desired.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

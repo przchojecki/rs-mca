@@ -1,0 +1,208 @@
+{
+  "beats_trivial_baseline": true,
+  "calibration_integers": {
+    "A_min_ok": true,
+    "A_min_tangent": 427,
+    "B_star": 6,
+    "B_star_ok": true,
+    "N_506": 7,
+    "N_507": 6,
+    "N_table_ok": true,
+    "Q_bit_length": 131,
+    "R_tan": 85,
+    "R_tan_ok": true,
+    "a_star": 507,
+    "a_star_ok": true,
+    "k": 256,
+    "n": 512,
+    "r_safe_ok": true,
+    "strictly_decreasing_N": true
+  },
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "menu": [
+    {
+      "A": 4,
+      "k": 1,
+      "kind": "in_range_exhaustive_k1",
+      "lower_achieved": true,
+      "matches_prediction": true,
+      "n": 4,
+      "pairs_checked": 390625,
+      "predicted_N": 1,
+      "q": 5,
+      "r": 0,
+      "true_max_N": 1
+    },
+    {
+      "A": 3,
+      "k": 1,
+      "kind": "in_range_exhaustive_k1",
+      "lower_achieved": true,
+      "matches_prediction": true,
+      "n": 4,
+      "pairs_checked": 390625,
+      "predicted_N": 2,
+      "q": 5,
+      "r": 1,
+      "true_max_N": 2
+    },
+    {
+      "A": 4,
+      "k": 1,
+      "kind": "in_range_lower_only",
+      "lower_achieved": true,
+      "matches_prediction": true,
+      "n": 4,
+      "note": "constructive pair only (full max for q=5 toys)",
+      "pairs_checked": 1,
+      "predicted_N": 1,
+      "q": 7,
+      "r": 0,
+      "true_max_N": 1
+    },
+    {
+      "A": 3,
+      "k": 1,
+      "kind": "in_range_lower_only",
+      "lower_achieved": true,
+      "matches_prediction": true,
+      "n": 4,
+      "note": "constructive pair only (full max for q=5 toys)",
+      "pairs_checked": 1,
+      "predicted_N": 2,
+      "q": 7,
+      "r": 1,
+      "true_max_N": 2
+    },
+    {
+      "A": 5,
+      "k": 1,
+      "kind": "in_range_lower_only",
+      "lower_achieved": true,
+      "matches_prediction": true,
+      "n": 6,
+      "note": "constructive pair only (full max for q=5 toys)",
+      "pairs_checked": 1,
+      "predicted_N": 2,
+      "q": 11,
+      "r": 1,
+      "true_max_N": 2
+    },
+    {
+      "A": 2,
+      "in_range": false,
+      "k": 1,
+      "kind": "outside_range_probe",
+      "n": 4,
+      "note": "N=n-A+1 not claimed outside 3r<=n-k; diagnostic only.",
+      "pairs_checked": 390625,
+      "predicted_if_in_range": 3,
+      "q": 5,
+      "r": 2,
+      "true_max_N": 5
+    }
+  ],
+  "nonclaims": [
+    "Does not re-prove prop:capf-tangent or thm:deep-mca.",
+    "Exhaustive MCA census is for k=1 toys only.",
+    "n=512 row is integer calibration, not a deployed certificate."
+  ],
+  "oracle_gate": {
+    "full": {
+      "A": 4,
+      "R_tan": 1,
+      "in_range": true,
+      "k": 1,
+      "matches_prediction": true,
+      "n": 4,
+      "pairs_checked": 390625,
+      "predicted_N": 1,
+      "q": 5,
+      "r": 0,
+      "true_max_N": 1
+    },
+    "instance": {
+      "A": 4,
+      "k": 1,
+      "n": 4,
+      "predicted_N": 1,
+      "q": 5,
+      "r": 0
+    },
+    "lower": {
+      "A": 4,
+      "achieves_lower": true,
+      "all_constructed_mca_bad": true,
+      "n": 4,
+      "pair_mca_count": 1,
+      "predicted": 1,
+      "q": 5,
+      "r": 0,
+      "witnesses": [
+        {
+          "gamma": 0,
+          "joint": false,
+          "mca_bad": true,
+          "point_ok": true,
+          "ti": 0
+        }
+      ]
+    },
+    "oracle_pass": true
+  },
+  "payload_sha256": "8b0574a797a00419575b1f216f9120c5ab2a7d9c79880a560d6a0b5f42fb88ad",
+  "proof_status": "AUDIT exhaustive MCA numerator on k=1 toys + constructive lower + remark calibration integers",
+  "regeneration": "python experimental/scripts/verify_tangent_exactness.py --emit-defaults",
+  "schema": "tangent-exactness-v1",
+  "source_pin": {
+    "base_hint": "eb42b82",
+    "file": "experimental/cap25_cap_v13_raw.tex",
+    "labels": {
+      "all_present": true,
+      "has_N_formula": true,
+      "has_worked_507": true,
+      "labels": {
+        "def:capf-tangent-cell": {
+          "line": 5782,
+          "present": true
+        },
+        "prop:capf-tangent": {
+          "line": 5794,
+          "present": true
+        },
+        "rem:capf-tangent-calibration": {
+          "line": 5834,
+          "present": true
+        },
+        "thm:capf-staircase": {
+          "line": 5691,
+          "present": true
+        },
+        "thm:deep-mca": {
+          "line": 4538,
+          "present": true
+        }
+      }
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "all_in_range_match": true,
+    "calibration_ok": true,
+    "headline": "Exhaustive k=1 RS toys confirm max MCA-bad slopes = n-A+1 in the tangent range; constructive lower matches; remark calibration B_*=6, R_tan=85, a_*=507 exact. Confirmation only.",
+    "oracle_pass": true,
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "rem:capf-tangent-calibration / prop:capf-tangent"
+}
