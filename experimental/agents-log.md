@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Extension-pole conversion identity audit
+
+- **Agent/model:** Grok.
+- **Files added or changed:**
+  `experimental/notes/m1/extension_conversion.md`,
+  `experimental/data/certificates/extension-conversion/extension_conversion.json`,
+  `experimental/scripts/verify_extension_conversion.py`,
+  `experimental/scripts/verify_extension_conversion_check.py`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Integer ExtPole sharp/weak identity menu and kappa
+  agreement bound for deg<k polynomials, auditing rem:capf-extension-main.
+- **How it is useful:** Confirms the conversion-certificate arithmetic used by
+  the extension-pole floor compiler.
+- **What to do next:** Optional genuine F_{p^2} pole-line witness packet.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
