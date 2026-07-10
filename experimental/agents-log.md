@@ -2790,3 +2790,7 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+## 2026-07-10 — W44 first_match_atlas
+- lake PASS; labels grepped
+## 2026-07-10 — W44-FIX first_match_atlas
+- Structural slopeOf + firstOccurrences; |Z|<|Omega| on all slices
