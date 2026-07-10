@@ -2730,3 +2730,10 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W38 M2 lean-moving-root (executor)
+
+- **Files:** experimental/lean/moving_root_toy/* (source only); experimental/notes/audits/lean_moving_root_toy.md
+- **Status:** EXPERIMENTAL / AUDIT — lake build PASS, theorem instance nWithH ≤ bound
+- **Usefulness:** Kernel-checked moving-root incidence toy (not bare Nat table)
+- **Next:** optional larger-field toys; general prop formalization is out of scope
