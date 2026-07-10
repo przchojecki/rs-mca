@@ -2705,3 +2705,13 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 W29 rebase refresh (w22-moment-max / Ken)
+- Rebased onto origin/main; packet files preserved.
+
+
+## 2026-07-10 W29 moment-max line pin refresh (Ken / Grok)
+- Files: moment_max.json re-emitted; lem:moment-max L165→L375 after frontiers draft on main.
+- Status: EXPERIMENTAL / AUDIT. payload_sha256 b4f11bf1… (expected change: tex line map only).
+- Next: designer re-verify dual routes + #435 agreement.
+
