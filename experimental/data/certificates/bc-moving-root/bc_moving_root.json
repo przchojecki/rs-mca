@@ -1,0 +1,155 @@
+{
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "cor_bc_one_pencil": {
+    "all_ok": true,
+    "n": 2097152,
+    "rows": [
+      {
+        "expected": 2,
+        "floor_n_over_omega": 2,
+        "m": 1116048,
+        "ok": true,
+        "omega": 981104,
+        "row": "KoalaBear MCA"
+      },
+      {
+        "expected": 2,
+        "floor_n_over_omega": 2,
+        "m": 1116024,
+        "ok": true,
+        "omega": 981128,
+        "row": "Mersenne-31 MCA"
+      }
+    ]
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not re-prove thm:bc-moving-root.",
+    "Does not audit higher-dimensional BC charts."
+  ],
+  "oracle": {
+    "Z": 2,
+    "bound": 2,
+    "g": 0,
+    "h": 2,
+    "holds": true,
+    "n": 4,
+    "note": "synthetic incidence: 2 params x 2 roots, 4 points exclusive"
+  },
+  "payload_sha256": "59e34235874a370f2ca1a631de5d691d6c7a540995d4881c1fa43cd1c9d35735",
+  "pencils": [
+    {
+      "I_le_n_minus_g": true,
+      "I_size": 6,
+      "Z_le_bound": true,
+      "Z_size": 6,
+      "all_thresholds_hold": true,
+      "at_most_one_hit_per_moving_x": true,
+      "bound_floor_n_minus_g_over_hmin": 6,
+      "bound_holds": true,
+      "fixed_roots": [],
+      "g": 0,
+      "h_min_on_Z": 1,
+      "n": 6,
+      "name": "F7_linear_distinct",
+      "p": 7,
+      "threshold_rows": [
+        {
+          "Z_h": 6,
+          "bound": 6,
+          "h": 1,
+          "holds": true
+        }
+      ],
+      "vacuous": false
+    },
+    {
+      "I_le_n_minus_g": true,
+      "I_size": 5,
+      "Z_le_bound": true,
+      "Z_size": 5,
+      "all_thresholds_hold": true,
+      "at_most_one_hit_per_moving_x": true,
+      "bound_floor_n_minus_g_over_hmin": 5,
+      "bound_holds": true,
+      "fixed_roots": [
+        1
+      ],
+      "g": 1,
+      "h_min_on_Z": 1,
+      "n": 6,
+      "name": "F7_shared_root",
+      "p": 7,
+      "threshold_rows": [
+        {
+          "Z_h": 5,
+          "bound": 5,
+          "h": 1,
+          "holds": true
+        }
+      ],
+      "vacuous": false
+    },
+    {
+      "I_le_n_minus_g": true,
+      "I_size": 5,
+      "Z_le_bound": true,
+      "Z_size": 5,
+      "all_thresholds_hold": true,
+      "at_most_one_hit_per_moving_x": true,
+      "bound_floor_n_minus_g_over_hmin": 5,
+      "bound_holds": true,
+      "fixed_roots": [],
+      "g": 0,
+      "h_min_on_Z": 1,
+      "n": 5,
+      "name": "F5_full_linear",
+      "p": 5,
+      "threshold_rows": [
+        {
+          "Z_h": 5,
+          "bound": 5,
+          "h": 1,
+          "holds": true
+        }
+      ],
+      "vacuous": false
+    }
+  ],
+  "proof_status": "AUDIT toy pencil incidence + cor:bc-one-pencil integers",
+  "regeneration": "python experimental/scripts/verify_bc_moving_root.py --emit-defaults",
+  "schema": "bc-moving-root-v1",
+  "source_pin": {
+    "file": "experimental/grande_finale.tex",
+    "labels": {
+      "all_present": true,
+      "labels": {
+        "cor:bc-one-pencil": {
+          "line": 1764,
+          "present": true
+        },
+        "thm:bc-moving-root": {
+          "line": 1735,
+          "present": true
+        }
+      }
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Moving-root incidence |Z|<=floor((n-g)/h) holds on concrete one-parameter pencils; cor:bc-one-pencil floor(n/omega)=2 for both active MCA rows. Confirmation of a proved theorem.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "thm:bc-moving-root / cor:bc-one-pencil"
+}

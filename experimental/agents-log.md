@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - BC moving-root toy verification
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/thresholds/bc_moving_root.md`, `experimental/data/certificates/bc-moving-root/bc_moving_root.json`, `experimental/scripts/verify_bc_moving_root.py`, `experimental/scripts/verify_bc_moving_root_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Toy incidence verification of thm:bc-moving-root and cor:bc-one-pencil integers.
+- **How it is useful:** Independent confirmation of the proved one-parameter BC pencil bound.
+- **What to do next:** Higher-dimensional BC chart audit remains open.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
