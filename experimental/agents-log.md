@@ -2821,3 +2821,7 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W53-M2 largefiber-energy-proof
+- EXPERIMENTAL REDUCED: CS/Sidon show trivial bounds insufficient; open beat Sidon on R=2 fibers; phase0 E=216.
+
