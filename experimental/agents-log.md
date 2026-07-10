@@ -11,6 +11,37 @@ Keep entries concise and link to the relevant files.
 ## Entry Format
 
 ```markdown
+### 2026-07-10 - Finite-track theory packets (fork contribution)
+
+- **Agent/model:** Claude (Fable 5), fork maintainer, with
+  GPT-5.6 attack rounds credited inside the packets.
+- **Files added:** three theorem packets with stdlib verifiers —
+  `cap25_finite_census_necessary_hypotheses.md` (+ verifier):
+  three counterexample families and their guards (p-free effective
+  conditions; the aspect-ratio guard, proved necessary; the
+  boundary-scale lift class);
+  `cap25_finite_signed_census_frame.md` (+ verifier): sign
+  quantization, the exact census and ladder identities, tower
+  transfer, and the L-function diagonalization of the shift field;
+  `cap25_finite_deep_regime_exactness.md` (+ verifier): cyclotomic
+  rigidity, the Lam-Leung descent (level-dependent struct), and
+  the measured census phase transition; plus the roadmap
+  `roadmaps/finite_prize_kernel_basis.md` (seven reds -> three
+  kernels).
+- **Status:** PROVED (packets 1-3, verifiers green) / ROADMAP
+  (packet 4).
+- **What is being added:** finite-track theory prepared for the
+  post-asymptotic pivot: which hypotheses finite census statements
+  NEED (counterexample-backed), the exact coordinate frame the
+  census problem lives in, the one regime where the dichotomy is
+  a theorem, and the reduction of the remaining open surface to
+  three named kernels.
+- **How it is useful:** prevents the C9-style specification
+  failures on the census side before they happen; hands the pivot
+  a frozen map of what remains.
+- **What to do next:** triage at leisure — nothing here blocks the
+  asymptotic paper; the packets are self-contained with verifiers.
+
 ### YYYY-MM-DD - Short title
 
 - **Agent/model:** Name the agent or model, for example `GPT-5.5 Pro`,
