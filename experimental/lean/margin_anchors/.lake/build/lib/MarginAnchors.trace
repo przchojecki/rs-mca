@@ -1,0 +1,5 @@
+{"log":
+ [{"message":
+   ".> LEAN_PATH=.\\.\\.lake\\build\\lib PATH c:\\Users\\kw\\.elan\\toolchains\\leanprover--lean4---v4.14.0\\bin\\lean.exe .\\.\\.\\.\\MarginAnchors.lean -R .\\.\\.\\. -o .\\.\\.lake\\build\\lib\\MarginAnchors.olean -i .\\.\\.lake\\build\\lib\\MarginAnchors.ilean -c .\\.\\.lake\\build\\ir\\MarginAnchors.c --json",
+   "level": "trace"}],
+ "depHash": "8801831564403058579"}
