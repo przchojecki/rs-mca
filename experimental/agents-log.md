@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F2 chord-orbit formula
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f2_chord_orbit_formula.md`,
+  `experimental/scripts/verify_f2_chord_orbit_formula.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CLASSICAL-INPUT.
+- **What is being added:** An exact Jacobi-sum formula for
+  `N(c)=#{(x,y) in mu_n^2 : x+y=c}` by `mu_n`-orbit, including the unordered
+  collision count `kappa(c)` and the printed error term
+  `|E(c)| <= (m-1)(m-2)sqrt(q)`.
+- **How it is useful:** This gives the `(Q)` / F2 program an exact generic
+  chord-orbit census with generated-field co-index discipline, explaining the
+  observed small-row `kappa` strata and feeding later generic-arc bounds.
+- **What to do next:** Use the orbit formula only as an accounting primitive;
+  the F2 mid-band still needs a separate generic-class or `t=1` flatness
+  estimate.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
