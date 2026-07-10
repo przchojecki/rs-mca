@@ -1,0 +1,104 @@
+{
+  "beats_trivial_baseline": true,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "hankel_toys": [
+    {
+      "full_rank": true,
+      "j": 2,
+      "p": 5,
+      "rank": 2
+    },
+    {
+      "full_rank": false,
+      "j": 3,
+      "p": 7,
+      "rank": 1
+    },
+    {
+      "full_rank": false,
+      "j": 2,
+      "p": 11,
+      "rank": 1
+    }
+  ],
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not re-prove thm:capf-spi.",
+    "Does not classify higher-deficiency SPI charts."
+  ],
+  "oracle": {
+    "hand": "128+385*128=128*(1+385)=128*386=49408",
+    "pass": true
+  },
+  "payload_sha256": "443381368cf6c412f638d8342f6d7476fc47b58fddd7160b3c3f70c417ea7183",
+  "pencil_rank_sample": [
+    {
+      "rank": 2,
+      "z": 0
+    },
+    {
+      "rank": 2,
+      "z": 1
+    },
+    {
+      "rank": 2,
+      "z": 2
+    },
+    {
+      "rank": 2,
+      "z": 3
+    },
+    {
+      "rank": 2,
+      "z": 4
+    }
+  ],
+  "proof_status": "AUDIT remark SPI degree formula + tiny Hankel/pencil ranks",
+  "regeneration": "python experimental/scripts/verify_spi_calibration.py --emit-defaults",
+  "remark_calibration": {
+    "A": 384,
+    "cap": 49408,
+    "expected": 49408,
+    "formula": "t+(n-j+1)*t",
+    "j": 128,
+    "k": 256,
+    "n": 512,
+    "ok": true,
+    "t": 128
+  },
+  "schema": "spi-calibration-v1",
+  "source_pin": {
+    "all_present": true,
+    "file": "experimental/cap25_cap_v13_raw.tex",
+    "labels": {
+      "rem:capf-spi-calibration": {
+        "line": 6895,
+        "present": true
+      },
+      "thm:aperiodic-affine-eliminant": {
+        "line": 2485,
+        "present": true
+      },
+      "thm:capf-spi": {
+        "line": 6859,
+        "present": true
+      }
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "SPI eliminant degree cap t+(n-j+1)t recomputes to 49408 for the remark's (n,k,A)=(512,256,384) row; tiny Hankel/pencil ranks tabulated. Calibration confirmation only.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "rem:capf-spi-calibration / thm:capf-spi"
+}

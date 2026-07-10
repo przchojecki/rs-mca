@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - SPI eliminant-degree calibration
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/m1/spi_calibration.md`, `experimental/data/certificates/spi-calibration/spi_calibration.json`, `experimental/scripts/verify_spi_calibration.py`, `experimental/scripts/verify_spi_calibration_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Recompute of rem:capf-spi-calibration degree 49408 plus tiny Hankel ranks.
+- **How it is useful:** Confirms the SPI compiler degree print.
+- **What to do next:** Higher-deficiency SPI remains open.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
