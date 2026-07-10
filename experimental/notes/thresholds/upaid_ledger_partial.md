@@ -87,3 +87,14 @@ agreements and every structural paid cell still open.
 py -3.13 experimental/scripts/verify_upaid_ledger.py --emit --check
 py -3.13 experimental/scripts/verify_upaid_ledger_check.py --check
 ```
+
+## Weave with first-match ledger (in-base)
+
+Under the *different* first-match decomposition of the integrated certificate
+`kb-mca-1116048-first-match-ledger-v1` (integrated at 0955594), the same
+deployed MCA row raw-pays terminal dyadic quotient rungs (471,447,040) and a
+generated-field image-cell cover (143,763,024,447,376) with lower rungs open.
+Therefore the claim that the only exact paid MCA entry in *this* packet's
+paid-cell map is common-support 0 is **route-scoped** to the
+`cor:capfr1-Q-R1-closing` cell catalog — not a claim that no proved paid mass
+exists under any first-match decomposition.
