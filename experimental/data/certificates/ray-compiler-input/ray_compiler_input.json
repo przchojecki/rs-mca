@@ -1,0 +1,460 @@
+{
+  "all_pass": true,
+  "base_sha": "4e3c4ee85cb01ef7c4f1e7bbfbc13735cf6c9d15",
+  "beats_trivial_baseline": true,
+  "checker_route": "linear closed-form |im|; odd-q square-image formula (q+1)/2",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "falsifiable": true,
+  "generator_route": "enumerate F_q^d evaluate Phi; |set| of values",
+  "hard_input": "c",
+  "honest_headline": "ISOLATE (c): MISSING_C = poly-degree-D image bound (or RC H,J) for residual higher-dim balanced cores. Linear toys match |im|=q; square maps give |im|/q\u22480.5 (measured gap). Does not prove MISSING_C. Weave #523.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "missing_input": {
+    "checkable_prediction": "At fixed (q,d,D), enumerate P=F_q^d and Phi; record |im Phi|. Linear nonzero: expect |im|=q. Nonlinear: |im| may be << q or =q; no draft theorem forces poly(n) bound uniform in D for residual MCA.",
+    "id": "MISSING_C_poly_image_bound_balanced_core",
+    "statement": "After first-match removal of algebraic cells, for every residual balanced-core chart with parameter space P subset F_q^d (d>=2) and slope map Phi: P -> F of polynomial degree <= D, either (i) |im Phi| <= C_D * poly(n) * (1+barN_res), or (ii) incidence degrees H,J exist with |Z|*H <= J*|P| and J|P|/H = e^{o(n)}(1+barN_res) (hyp:ray-compiler / eq:ray-compiler). Proved special cases in draft: bounded residual-kernel rays; single MDS-circuit rays; linear (D=1) image size q. General nonlinear higher-dim balanced cores: OPEN."
+  },
+  "n_rows": 30,
+  "nonclaims": [
+    "Does not prove hyp:ray-compiler.",
+    "Does not close hard input (c).",
+    "Toy fields only; not deployed n."
+  ],
+  "object": "ISOLATE hard input (c): missing poly image bound for residual balanced cores",
+  "payload_sha256": "02c8949783238bf42c6f5cc1ab0c154b47a9eea9f88bde475fda0c139335b22f",
+  "pins": {
+    "def:balanced-quotient-core": {
+      "found": true,
+      "line": 3425,
+      "sha256_line": "7753498e1d4a8564"
+    },
+    "eq:ray-compiler": {
+      "found": true,
+      "line": 6051,
+      "sha256_line": "0cae1708e13ff181"
+    },
+    "hyp:ray-compiler": {
+      "found": true,
+      "line": 6033,
+      "sha256_line": "5101e6934274b850"
+    },
+    "rem:balanced-core-exhaustion": {
+      "found": true,
+      "line": 4763,
+      "sha256_line": "90def3dd230c4af1"
+    },
+    "thm:bounded-residual-kernel-ray": {
+      "found": true,
+      "line": 1680,
+      "sha256_line": "299f2b21fbfaa953"
+    },
+    "thm:single-mds-circuit-ray": {
+      "found": true,
+      "line": 1735,
+      "sha256_line": "2df02bb38aefc797"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "MEASURED isolation + precise missing-input statement",
+  "regeneration": "python experimental/scripts/verify_ray_compiler_input.py --emit-defaults",
+  "rows": [
+    {
+      "D": 1,
+      "coeffs": [
+        1,
+        0
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 5,
+      "im_predict": 5,
+      "kind": "linear",
+      "pass": true,
+      "q": 5,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        1,
+        2
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 5,
+      "im_predict": 5,
+      "kind": "linear",
+      "pass": true,
+      "q": 5,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        0,
+        0
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 1,
+      "im_predict": 1,
+      "kind": "linear",
+      "pass": true,
+      "q": 5,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        3,
+        5
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 5,
+      "im_predict": 5,
+      "kind": "linear",
+      "pass": true,
+      "q": 5,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        1,
+        0
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 7,
+      "im_predict": 7,
+      "kind": "linear",
+      "pass": true,
+      "q": 7,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        1,
+        2
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 7,
+      "im_predict": 7,
+      "kind": "linear",
+      "pass": true,
+      "q": 7,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        0,
+        0
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 1,
+      "im_predict": 1,
+      "kind": "linear",
+      "pass": true,
+      "q": 7,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        3,
+        5
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 7,
+      "im_predict": 7,
+      "kind": "linear",
+      "pass": true,
+      "q": 7,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        1,
+        0
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 11,
+      "im_predict": 11,
+      "kind": "linear",
+      "pass": true,
+      "q": 11,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        1,
+        2
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 11,
+      "im_predict": 11,
+      "kind": "linear",
+      "pass": true,
+      "q": 11,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        0,
+        0
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 1,
+      "im_predict": 1,
+      "kind": "linear",
+      "pass": true,
+      "q": 11,
+      "routes_agree": true
+    },
+    {
+      "D": 1,
+      "coeffs": [
+        3,
+        5
+      ],
+      "d": 2,
+      "gap_ratio": 1.0,
+      "im_enum": 11,
+      "im_predict": 11,
+      "kind": "linear",
+      "pass": true,
+      "q": 11,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 0.6,
+      "im_enum": 3,
+      "im_formula": 3,
+      "kind": "nonlinear_square_x",
+      "linear_predict_q": 5,
+      "pass": true,
+      "q": 5,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 5,
+      "kind": "nonlinear_product_xy",
+      "linear_predict_q": 5,
+      "note": "xy is onto F_q; gap vs linear prediction is 1.0 but map is nonlinear",
+      "pass": true,
+      "q": 5,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 5,
+      "kind": "nonlinear_sum_squares",
+      "linear_predict_q": 5,
+      "measured": true,
+      "pass": true,
+      "q": 5
+    },
+    {
+      "D": 3,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 5,
+      "kind": "nonlinear_cube_x",
+      "linear_predict_q": 5,
+      "measured": true,
+      "pass": true,
+      "q": 5
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 0.5714285714285714,
+      "im_enum": 4,
+      "im_formula": 4,
+      "kind": "nonlinear_square_x",
+      "linear_predict_q": 7,
+      "pass": true,
+      "q": 7,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 7,
+      "kind": "nonlinear_product_xy",
+      "linear_predict_q": 7,
+      "note": "xy is onto F_q; gap vs linear prediction is 1.0 but map is nonlinear",
+      "pass": true,
+      "q": 7,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 7,
+      "kind": "nonlinear_sum_squares",
+      "linear_predict_q": 7,
+      "measured": true,
+      "pass": true,
+      "q": 7
+    },
+    {
+      "D": 3,
+      "d": 2,
+      "gap_vs_linear": 0.42857142857142855,
+      "im_enum": 3,
+      "kind": "nonlinear_cube_x",
+      "linear_predict_q": 7,
+      "measured": true,
+      "pass": true,
+      "q": 7
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 0.5454545454545454,
+      "im_enum": 6,
+      "im_formula": 6,
+      "kind": "nonlinear_square_x",
+      "linear_predict_q": 11,
+      "pass": true,
+      "q": 11,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 11,
+      "kind": "nonlinear_product_xy",
+      "linear_predict_q": 11,
+      "note": "xy is onto F_q; gap vs linear prediction is 1.0 but map is nonlinear",
+      "pass": true,
+      "q": 11,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 11,
+      "kind": "nonlinear_sum_squares",
+      "linear_predict_q": 11,
+      "measured": true,
+      "pass": true,
+      "q": 11
+    },
+    {
+      "D": 3,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 11,
+      "kind": "nonlinear_cube_x",
+      "linear_predict_q": 11,
+      "measured": true,
+      "pass": true,
+      "q": 11
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 0.5384615384615384,
+      "im_enum": 7,
+      "im_formula": 7,
+      "kind": "nonlinear_square_x",
+      "linear_predict_q": 13,
+      "pass": true,
+      "q": 13,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 13,
+      "kind": "nonlinear_product_xy",
+      "linear_predict_q": 13,
+      "note": "xy is onto F_q; gap vs linear prediction is 1.0 but map is nonlinear",
+      "pass": true,
+      "q": 13,
+      "routes_agree": true
+    },
+    {
+      "D": 2,
+      "d": 2,
+      "gap_vs_linear": 1.0,
+      "im_enum": 13,
+      "kind": "nonlinear_sum_squares",
+      "linear_predict_q": 13,
+      "measured": true,
+      "pass": true,
+      "q": 13
+    },
+    {
+      "D": 3,
+      "d": 2,
+      "gap_vs_linear": 0.38461538461538464,
+      "im_enum": 5,
+      "kind": "nonlinear_cube_x",
+      "linear_predict_q": 13,
+      "measured": true,
+      "pass": true,
+      "q": 13
+    },
+    {
+      "interpretation": "Square maps have |im|~q/2 << q=linear prediction \u2014 linear-rank RC formula overstates residual ray budget if misapplied.",
+      "kind": "gap_summary",
+      "linear_always_match": true,
+      "max_square_gap": 0.6,
+      "min_square_gap": 0.5384615384615384,
+      "pass": true,
+      "square_gaps": [
+        0.6,
+        0.5714285714285714,
+        0.5454545454545454,
+        0.5384615384615384
+      ]
+    },
+    {
+      "kind": "pin_hyp_present",
+      "pass": true
+    }
+  ],
+  "schema": "ray-compiler-input-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "hyp:ray-compiler; thm:bounded-residual-kernel-ray",
+  "verdict": "OPEN GAP",
+  "weave": "Sharpens filed OPEN GAP #523 into precise MISSING_C + image-size table."
+}
