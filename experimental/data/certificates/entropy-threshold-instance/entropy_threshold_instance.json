@@ -1,0 +1,261 @@
+{
+  "beats_trivial_baseline": false,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": false,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "INDEPENDENT_RECHECK",
+  "excluded_deployed": "KoalaBear/Mersenne beta~31 rho=1/2 rows deferred to #450",
+  "grid": [
+    {
+      "agree": true,
+      "beta": 2.0,
+      "delta_env": 0.2754273830362812,
+      "g_bisection": 0.42457261696371873,
+      "g_newton": 0.42457261696371873,
+      "rho": 0.3
+    },
+    {
+      "agree": true,
+      "beta": 3.0,
+      "delta_env": 0.380528518834455,
+      "g_bisection": 0.31947148116554497,
+      "g_newton": 0.31947148116554497,
+      "rho": 0.3
+    },
+    {
+      "agree": true,
+      "beta": 4.0,
+      "delta_env": 0.45168640209483785,
+      "g_bisection": 0.2483135979051621,
+      "g_newton": 0.2483135979051621,
+      "rho": 0.3
+    },
+    {
+      "agree": true,
+      "beta": 5.0,
+      "delta_env": 0.49999999999999994,
+      "g_bisection": 0.2,
+      "g_newton": 0.19999999999999998,
+      "rho": 0.3
+    },
+    {
+      "agree": true,
+      "beta": 8.0,
+      "delta_env": 0.5771556946369684,
+      "g_bisection": 0.12284430536303162,
+      "g_newton": 0.12284430536303162,
+      "rho": 0.3
+    },
+    {
+      "agree": true,
+      "beta": 2.0,
+      "delta_env": 0.21995622159118072,
+      "g_bisection": 0.38004377840881925,
+      "g_newton": 0.38004377840881925,
+      "rho": 0.4
+    },
+    {
+      "agree": true,
+      "beta": 3.0,
+      "delta_env": 0.3044469669384083,
+      "g_bisection": 0.2955530330615917,
+      "g_newton": 0.2955530330615917,
+      "rho": 0.4
+    },
+    {
+      "agree": true,
+      "beta": 4.0,
+      "delta_env": 0.3635935639182019,
+      "g_bisection": 0.23640643608179807,
+      "g_newton": 0.23640643608179807,
+      "rho": 0.4
+    },
+    {
+      "agree": true,
+      "beta": 5.0,
+      "delta_env": 0.4052159814861644,
+      "g_bisection": 0.1947840185138356,
+      "g_newton": 0.1947840185138356,
+      "rho": 0.4
+    },
+    {
+      "agree": true,
+      "beta": 8.0,
+      "delta_env": 0.47522153444737414,
+      "g_bisection": 0.12477846555262587,
+      "g_newton": 0.12477846555262587,
+      "rho": 0.4
+    },
+    {
+      "agree": true,
+      "beta": 2.0,
+      "delta_env": 0.12634114983629052,
+      "g_bisection": 0.2736588501637095,
+      "g_newton": 0.2736588501637095,
+      "rho": 0.6
+    },
+    {
+      "agree": true,
+      "beta": 3.0,
+      "delta_env": 0.17614390810933384,
+      "g_bisection": 0.2238560918906662,
+      "g_newton": 0.2238560918906662,
+      "rho": 0.6
+    },
+    {
+      "agree": true,
+      "beta": 4.0,
+      "delta_env": 0.2131396567175516,
+      "g_bisection": 0.1868603432824484,
+      "g_newton": 0.1868603432824484,
+      "rho": 0.6
+    },
+    {
+      "agree": true,
+      "beta": 5.0,
+      "delta_env": 0.24074470033682344,
+      "g_bisection": 0.15925529966317659,
+      "g_newton": 0.15925529966317659,
+      "rho": 0.6
+    },
+    {
+      "agree": true,
+      "beta": 8.0,
+      "delta_env": 0.29121439949437183,
+      "g_bisection": 0.10878560050562819,
+      "g_newton": 0.10878560050562819,
+      "rho": 0.6
+    },
+    {
+      "agree": true,
+      "beta": 2.0,
+      "delta_env": 0.08693024468766869,
+      "g_bisection": 0.21306975531233135,
+      "g_newton": 0.21306975531233135,
+      "rho": 0.7
+    },
+    {
+      "agree": true,
+      "beta": 3.0,
+      "delta_env": 0.12181489379095733,
+      "g_bisection": 0.1781851062090427,
+      "g_newton": 0.1781851062090427,
+      "rho": 0.7
+    },
+    {
+      "agree": true,
+      "beta": 4.0,
+      "delta_env": 0.1484886819245867,
+      "g_bisection": 0.15151131807541335,
+      "g_newton": 0.15151131807541335,
+      "rho": 0.7
+    },
+    {
+      "agree": true,
+      "beta": 5.0,
+      "delta_env": 0.16894353585431537,
+      "g_bisection": 0.13105646414568467,
+      "g_newton": 0.13105646414568467,
+      "rho": 0.7
+    },
+    {
+      "agree": true,
+      "beta": 8.0,
+      "delta_env": 0.2078345982362282,
+      "g_bisection": 0.09216540176377183,
+      "g_newton": 0.09216540176377183,
+      "rho": 0.7
+    }
+  ],
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not re-do #450 deployed rows.",
+    "Does not prove thm:frontier."
+  ],
+  "payload_sha256": "32aaaf383e74965150f2578954a079abb6b86245f0b697232fe6318a7f647c51",
+  "proof_status": "AUDIT entropy-threshold instantiation beyond deployed rows",
+  "regeneration": "python experimental/scripts/verify_entropy_threshold_instance.py --emit-defaults",
+  "schema": "entropy-threshold-instance-v1",
+  "source_pin": {
+    "file": "experimental/asymptotic_rs_mca.tex",
+    "has_gstar_H2": true
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "headline": "Entropy-threshold instances on a non-deployed (rho,beta) grid; Newton/bisection g* agree; worked toy (rho=0.4,beta=4,n=64) exhibits log2 barN sign ladder around g*. Exposition only.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "thm:frontier g* (exposition; not #450 deployed rows)",
+  "worked_toy": {
+    "beta": 4.0,
+    "delta_env": 0.3635935639182019,
+    "gstar": 0.23640643608179807,
+    "ladder": [
+      {
+        "B": 16,
+        "a": 38,
+        "above_gstar": false,
+        "asym_nH": 14.36732181747535,
+        "below_gstar": true,
+        "g": 0.18640643608179808,
+        "log2_barN_float": 11.061481104278869,
+        "sign_log_barN": 1,
+        "w": 12
+      },
+      {
+        "B": 16,
+        "a": 39,
+        "above_gstar": false,
+        "asym_nH": 9.772908720004196,
+        "below_gstar": true,
+        "g": 0.21640643608179808,
+        "log2_barN_float": 6.4765186035577145,
+        "sign_log_barN": 1,
+        "w": 13
+      },
+      {
+        "B": 16,
+        "a": 41,
+        "above_gstar": false,
+        "asym_nH": 0.2984428213472725,
+        "below_gstar": false,
+        "g": 0.23640643608179807,
+        "log2_barN_float": -2.974142805451855,
+        "sign_log_barN": -1,
+        "w": 15
+      },
+      {
+        "B": 16,
+        "a": 42,
+        "above_gstar": true,
+        "asym_nH": -4.584827366728476,
+        "below_gstar": false,
+        "g": 0.2564064360817981,
+        "log2_barN_float": -7.842898272173599,
+        "sign_log_barN": -1,
+        "w": 16
+      },
+      {
+        "B": 16,
+        "a": 44,
+        "above_gstar": true,
+        "asym_nH": -14.653553117788327,
+        "below_gstar": false,
+        "g": 0.28640643608179805,
+        "log2_barN_float": -17.876845604096935,
+        "sign_log_barN": -1,
+        "w": 18
+      }
+    ],
+    "n": 64,
+    "note": "toy not a deployed row; B=round(2^beta)",
+    "rho": 0.4
+  }
+}

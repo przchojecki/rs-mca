@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - Add entropy threshold instances
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/audits/entropy_threshold_instance.md`, `experimental/data/certificates/entropy-threshold-instance/entropy_threshold_instance.json`, `experimental/scripts/verify_entropy_threshold_instance.py`, `experimental/scripts/verify_entropy_threshold_instance_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** g* grid beyond deployed rows; worked toy ladder. Exposition only.
+- **How it is useful:** AGENTS.md priority-3 proof-object instantiation for audit/exposition.
+- **What to do next:** No frontier claim; optional larger toys.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.
