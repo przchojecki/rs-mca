@@ -2821,3 +2821,6 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W49 image-normalized Sidon payment hard attack
+- EXPERIMENTAL MEASURED-SUPPORT: finite Gsid rate gate on power-sum toys (input b/C9); cube3 E=216 validated; 0/21 field fails; dual energy routes; synthetic fail exhibit; no deployed proof.
