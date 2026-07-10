@@ -2790,3 +2790,9 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-10 — W40 M3 lean-second-moment (executor)
+- **Files:** experimental/lean/second_moment_identity/*; notes/audits/lean_second_moment_identity.md
+- **Status:** lake build PASS; SP=14 on Q=[3,2,1]
+- **Usefulness:** lem:second-moment-identity instance
+- **Next:** optional more fiber profiles
