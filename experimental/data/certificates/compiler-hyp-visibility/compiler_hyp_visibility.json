@@ -1,0 +1,613 @@
+{
+  "all_pass": true,
+  "base_sha": "e190193cebced1d3752d068a1c24136bc69a85d9",
+  "beats_trivial_baseline": true,
+  "checker_route": "independent re-read of statement window (lines before begin{proof}) for each curated SILENT/VISIBLE claim; require SILENT rows fail statement-token search and pass proof-token search",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "resolves_or_advances_prob_band": false
+  },
+  "compiler_registry": {
+    "ENVELOPE_A7": {
+      "envelope_line": 862,
+      "hard_input": "d",
+      "label": "def:admissible-sequence (A7) + eq:profile-envelope",
+      "line": 896,
+      "statement_summary": "(A7): profile envelope eq:profile-envelope used in final budget; not replaced by identity term without proved comparison."
+    },
+    "RC": {
+      "eq": "eq:ray-compiler",
+      "eq_line": 6051,
+      "hard_input": "c",
+      "label": "hyp:ray-compiler",
+      "line": 6033,
+      "paste": "\\begin{hypothesis}[Ray compiler]\\label{hyp:ray-compiler}",
+      "statement_summary": "For every residual profile, either |Z\u00b0|<=e^{o(n)}(1+barN) or incidence I with deg_gamma>=H, deg_pair<=J, J m / H = e^{o(n)}."
+    },
+    "SIDON_A4": {
+      "hard_input": "b",
+      "label": "def:admissible-sequence (A4) + def:sidon-paid-cell",
+      "line": 896,
+      "sidon_paid_line": 5130,
+      "statement_summary": "(A4): Fourier (MI)/(MA) or image-normalized Sidon moment payment of strength def:sidon-paid-cell on every primitive leaf."
+    }
+  },
+  "counts": {
+    "CITED": 5,
+    "SILENT": 0,
+    "VISIBLE": 30
+  },
+  "curated_cited_resolved": true,
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "falsifiable": true,
+  "generator_route": "parse thm/prop/cor envs; statement-vs-proof token match for RC/A4/envelope; curated second pass on high-value labels",
+  "hard_inputs": [
+    "b",
+    "c",
+    "d"
+  ],
+  "honest_headline": "CLEAN: every audited conditional compiler input is surfaced or cited (RC via closed-ledger L3 / prop:q-implies-sp / ledger-admissible A6; Sidon via A4; envelope via A7). Draft follows agents.md strategy #2. Weave #523/#530.",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "n_envs_parsed": 111,
+  "n_rows": 35,
+  "nonclaims": [
+    "Does not prove hyp:ray-compiler.",
+    "Does not close hard inputs b/c/d.",
+    "Does not restate the open ray-compiler gap as a new isolation of MISSING_C.",
+    "Visibility audit only: SILENT is a statement-plumbing finding, not a math counterexample."
+  ],
+  "object": "Audit: conditional compiler hypothesis visibility in theorem statements",
+  "payload_sha256": "6583f560d7b42f54aecd66d6662830ce16cfe521ec9d3ef3c6f8af1b0d1be101",
+  "pins": {
+    "def:admissible-sequence": {
+      "found": true,
+      "line": 896,
+      "sha16": "a96e687dd9431944",
+      "text": "\\label{def:admissible-sequence}"
+    },
+    "def:closed-asymptotic-ledger": {
+      "found": true,
+      "line": 1097,
+      "sha16": "52342811c0ec01cc",
+      "text": "\\begin{definition}[Closed asymptotic ledger]\\label{def:closed-asymptotic-ledger}"
+    },
+    "def:sidon-paid-cell": {
+      "found": true,
+      "line": 5130,
+      "sha16": "d779f90f40120dbf",
+      "text": "\\begin{definition}[Sidon moment payment]\\label{def:sidon-paid-cell}"
+    },
+    "eq:profile-envelope": {
+      "found": true,
+      "line": 862,
+      "sha16": "24588f5505c0a125",
+      "text": "\\tag{1.6}\\label{eq:profile-envelope}"
+    },
+    "eq:ray-compiler": {
+      "found": true,
+      "line": 6051,
+      "sha16": "0cae1708e13ff181",
+      "text": "\\tag{RC}\\label{eq:ray-compiler}"
+    },
+    "hyp:ray-compiler": {
+      "found": true,
+      "line": 6033,
+      "sha16": "5101e6934274b850",
+      "text": "\\begin{hypothesis}[Ray compiler]\\label{hyp:ray-compiler}"
+    },
+    "prop:numerator-bound": {
+      "found": true,
+      "line": 6084,
+      "sha16": "7a5678d2a80a451b",
+      "text": "\\begin{proposition}[Asymptotic MCA numerator bound]\\label{prop:numerator-bound}"
+    },
+    "prop:primitive-residual-numerator": {
+      "found": true,
+      "line": 6073,
+      "sha16": "1c488d45b58a3253",
+      "text": "\\begin{proposition}[Primitive residual numerator]\\label{prop:primitive-residual-numerator}"
+    },
+    "prop:q-implies-sp": {
+      "found": true,
+      "line": 6059,
+      "sha16": "f7003e80370c8d47",
+      "text": "\\begin{proposition}[Q plus RC implies rays]\\label{prop:q-implies-sp}"
+    },
+    "thm:exact-finite-profile-compiler": {
+      "found": true,
+      "line": 6737,
+      "sha16": "da1f873b9a813a64",
+      "text": "\\label{thm:exact-finite-profile-compiler}"
+    },
+    "thm:intro-asymptotic-rs-mca": {
+      "found": true,
+      "line": 989,
+      "sha16": "5e85a51313fba745",
+      "text": "\\label{thm:intro-asymptotic-rs-mca}"
+    },
+    "thm:main-ledger": {
+      "found": true,
+      "line": 1125,
+      "sha16": "5460d526bb386e99",
+      "text": "\\begin{theorem}[Compiler for closed ledgers]\\label{thm:main-ledger}"
+    },
+    "thm:main-smooth-circle": {
+      "found": true,
+      "line": 957,
+      "sha16": "113beac5ab8b2654",
+      "text": "\\label{thm:main-smooth-circle}"
+    },
+    "thm:primitive-q": {
+      "found": true,
+      "line": 5548,
+      "sha16": "08d1152736df8763",
+      "text": "\\begin{theorem}[Primitive Q after a Sidon moment payment]\\label{thm:primitive-q}"
+    },
+    "thm:q-sp-to-mca-final": {
+      "found": true,
+      "line": 6902,
+      "sha16": "824f014a6b79582b",
+      "text": "\\begin{theorem}[Paid profiles, Q, and RC imply the numerator]\\label{thm:q-sp-to-mca-final}"
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT isolation",
+  "regeneration": "python experimental/scripts/verify_compiler_hyp_visibility.py --emit-defaults",
+  "resolution_spot_checks": {
+    "cor:frontier-final": "profile-envelope + thm:q-sp-to-mca-final names RC",
+    "prop:numerator-bound": "def:admissible-sequence (A4)+(A6)",
+    "prop:primitive-residual-numerator": "def:admissible-sequence (A6) RC",
+    "thm:main-ledger": "def:closed-asymptotic-ledger L1097 (L3) distinct-ray compiler",
+    "thm:main-smooth-circle": "def:admissible-sequence (A4)+(A6)+(A7)"
+  },
+  "schema": "compiler-hyp-visibility-v1",
+  "silent_results": [],
+  "status": "EXPERIMENTAL / AUDIT",
+  "table": [
+    {
+      "compiler": "hyp:ray-compiler",
+      "curated": true,
+      "evidence_invocation": "statement L6060: 'If primitive Q is discharged and (RC) holds'; proof L6068 uses (RC)",
+      "hard_input": "c",
+      "kind": "proposition",
+      "result": "prop:q-implies-sp",
+      "start_line": 6059,
+      "title": "Q plus RC implies rays",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon + A6/RC + A7/envelope via ledger-admissible",
+      "curated": true,
+      "definition_clause": "def:admissible-sequence L896: (A4) Sidon/MI-MA L924-934; (A6) RC of hyp:ray-compiler L942-945; (A7) profile envelope L946-952",
+      "evidence_invocation": "statement L958: 'Every ledger-admissible smooth/circle sequence'; A4/A6/A7 packaged in def:admissible-sequence L896; proof L969-974 uses A4, A6, prop:q-implies-sp",
+      "hard_input": "b/c/d",
+      "kind": "theorem",
+      "result": "thm:main-smooth-circle",
+      "start_line": 957,
+      "title": "Conditional profile-envelope compiler",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "CITED"
+    },
+    {
+      "compiler": "hyp:ray-compiler (via prop:q-implies-sp)",
+      "curated": true,
+      "definition_clause": "def:admissible-sequence L896 (A6) L942-945: every residual shift-pair/balanced-core chart satisfies ray compiler (RC) of hyp:ray-compiler, or a direct distinct-slope bound",
+      "evidence_invocation": "statement L6075: ledger-admissible; proof L6081 applies prop:q-implies-sp using (RC)",
+      "hard_input": "c",
+      "kind": "proposition",
+      "result": "prop:primitive-residual-numerator",
+      "start_line": 6073,
+      "title": "Primitive residual numerator",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "CITED"
+    },
+    {
+      "compiler": "A4 + RC via primitive residual",
+      "curated": true,
+      "definition_clause": "def:admissible-sequence (A4) L924-934 Sidon/MI-MA or sidon-paid-cell; (A6) L942-945 RC; residual numerator inherits both via ledger-admissible",
+      "evidence_invocation": "statement L6085: ledger-admissible; proof L6094 A4 + prop:primitive-residual-numerator (RC)",
+      "hard_input": "b/c",
+      "kind": "proposition",
+      "result": "prop:numerator-bound",
+      "start_line": 6084,
+      "title": "Asymptotic MCA numerator bound",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "CITED"
+    },
+    {
+      "compiler": "hyp:ray-compiler",
+      "curated": true,
+      "evidence_invocation": "statement L6903-6905: 'Paid profiles, Q, and (RC) imply...'; explicit (RC) in statement",
+      "hard_input": "c",
+      "kind": "theorem",
+      "result": "thm:q-sp-to-mca-final",
+      "start_line": 6902,
+      "title": "Paid profiles, Q, and RC imply the numerator",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "RC via closed asymptotic ledger (L3)",
+      "curated": true,
+      "definition_clause": "def:closed-asymptotic-ledger L1097 (L3): primitive residual has image-normalized scale, Sidon/Fourier or direct primitive-Q, and distinct-ray compiler proved at profile scale",
+      "evidence_invocation": "statement L1126: hypothesis 'A closed asymptotic ledger' = def:closed-asymptotic-ledger L1097; clause (L3) L1111-1114 requires 'distinct-ray compiler proved at its stated profile scale' \u2014 RC is surfaced via the defined term (not a silent proof-only dependence). Proof L1137 discharges L3 via prop:q-implies-sp under (RC).",
+      "hard_input": "c",
+      "kind": "theorem",
+      "result": "thm:main-ledger",
+      "start_line": 1125,
+      "title": "Compiler for closed ledgers",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "CITED"
+    },
+    {
+      "compiler": "profile-envelope budget (d)",
+      "curated": true,
+      "evidence_invocation": "statement L990-992: 'closed-ledger profile-envelope budget is safe at a+'; explicit envelope budget in statement",
+      "hard_input": "d",
+      "kind": "theorem",
+      "result": "thm:intro-asymptotic-rs-mca",
+      "start_line": 989,
+      "title": "Target-aware threshold bracket",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "RC incidence form (inline)",
+      "curated": true,
+      "evidence_invocation": "statement L6762-6770: certified incidence I_lambda with H,J degrees \u2014 inlines the RC incidence data in the finite statement",
+      "hard_input": "c",
+      "kind": "theorem",
+      "result": "thm:exact-finite-profile-compiler",
+      "start_line": 6737,
+      "title": "Exact finite profile compiler",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "RC via thm:q-sp-to-mca-final + envelope",
+      "curated": true,
+      "definition_clause": "statement cites profile-envelope comparison + thm:intro-asymptotic-rs-mca (safe envelope budget); proof chain thm:q-sp-to-mca-final names (RC) explicitly in ITS statement L6903-6905",
+      "evidence_invocation": "statement L6914-6917: under additional profile-envelope comparison and hypotheses of thm:intro-asymptotic-rs-mca; proof applies thm:q-sp-to-mca-final (which names RC)",
+      "hard_input": "c/d",
+      "kind": "corollary",
+      "result": "cor:frontier-final",
+      "start_line": 6913,
+      "title": "Conditional target-adjusted frontier",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "CITED"
+    },
+    {
+      "compiler": "Sidon moment (b)",
+      "curated": true,
+      "evidence_invocation": "statement L6891-6893: 'satisfying the ... Sidon moment hypotheses of thm:primitive-q' \u2014 Sidon hyp visible",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "thm:primitive-to-q-final",
+      "start_line": 6890,
+      "title": "Primitive residue with Sidon payment implies Q",
+      "uses_in_proof": true,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "hyp:ray-compiler",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "c",
+      "kind": "theorem",
+      "result": "thm:unconditional-asymptotic-rs-mca",
+      "start_line": 304,
+      "title": "Unconditional shallow-prefix RS--MCA exponent",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "hyp:ray-compiler",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "c",
+      "kind": "theorem",
+      "result": "thm:intro-closure-barrier-package",
+      "start_line": 729,
+      "title": "Exact closure formulas and barriers",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "thm:intro-closure-barrier-package",
+      "start_line": 729,
+      "title": "Exact closure formulas and barriers",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A7/profile-envelope",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "d",
+      "kind": "theorem",
+      "result": "thm:intro-closure-barrier-package",
+      "start_line": 729,
+      "title": "Exact closure formulas and barriers",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "thm:intro-countertheorem",
+      "start_line": 796,
+      "title": "Countertheorem to unrestricted identity-only bounds",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A7/profile-envelope",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "d",
+      "kind": "corollary",
+      "result": "cor:intro-identity-frontier",
+      "start_line": 1010,
+      "title": "Identity-frontier corollary",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "thm:intro-sidon-heavy-repair",
+      "start_line": 1143,
+      "title": "Primitive Sidon-heavy implication",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "hyp:ray-compiler",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "c",
+      "kind": "theorem",
+      "result": "thm:small-effective-dual-closure",
+      "start_line": 3026,
+      "title": "Exact low-boundary-entropy closure",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "thm:small-effective-dual-closure",
+      "start_line": 3026,
+      "title": "Exact low-boundary-entropy closure",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "proposition",
+      "result": "prop:effective-mi-ma-flatness",
+      "start_line": 3097,
+      "title": "Effective MI plus MA",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "proposition",
+      "result": "prop:pf-ma-square-dichotomy",
+      "start_line": 3254,
+      "title": "Ambient PF/MA dichotomy on the square-field row",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "theorem:L3300",
+      "start_line": 3300,
+      "title": "Bounded-prefix flatness on smooth cosets",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "theorem:L3332",
+      "start_line": 3332,
+      "title": "Bounded-prefix flatness on circle domains",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "corollary",
+      "result": "corollary:L3358",
+      "start_line": 3358,
+      "title": "Sidon moment bound from full Fourier control",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "hyp:ray-compiler",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "c",
+      "kind": "theorem",
+      "result": "thm:canonical-partial-occupancy-atlas",
+      "start_line": 3743,
+      "title": "Canonical partial-occupancy atlas and bounded-boundary closure",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A7/profile-envelope",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "d",
+      "kind": "theorem",
+      "result": "thm:canonical-partial-occupancy-atlas",
+      "start_line": 3743,
+      "title": "Canonical partial-occupancy atlas and bounded-boundary closure",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "thm:smooth-quotient-obstruction",
+      "start_line": 3985,
+      "title": "Polynomial-field Sidon and MCA obstruction",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "thm:binary-cubic-obstruction",
+      "start_line": 4160,
+      "title": "Characteristic-two cubic quotient obstruction",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "hyp:ray-compiler",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "c",
+      "kind": "theorem",
+      "result": "thm:smooth-circle-ledger-closure",
+      "start_line": 4542,
+      "title": "Conditional algebraic-ledger criterion",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A7/profile-envelope",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "d",
+      "kind": "theorem",
+      "result": "thm:smooth-circle-ledger-closure",
+      "start_line": 4542,
+      "title": "Conditional algebraic-ledger criterion",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A7/profile-envelope",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "d",
+      "kind": "proposition",
+      "result": "prop:stabilizer-payment",
+      "start_line": 4565,
+      "title": "Stabilizer exhaustion and quotient budget",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "proposition",
+      "result": "proposition:L5108",
+      "start_line": 5108,
+      "title": "Ordinary moment split",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "theorem",
+      "result": "thm:unconditional-shallow-mi-ma",
+      "start_line": 5266,
+      "title": "Unconditional shallow-prefix MI and MA",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "proposition",
+      "result": "proposition:L5361",
+      "start_line": 5361,
+      "title": "Major-arc algebraic interface",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    },
+    {
+      "compiler": "A4/Sidon-MI-MA",
+      "evidence_invocation": "statement_tokens=True; proof_tokens=False",
+      "hard_input": "b",
+      "kind": "corollary",
+      "result": "corollary:L5379",
+      "start_line": 5379,
+      "title": "Sidon payment from prefix flatness",
+      "uses_in_proof": false,
+      "uses_in_statement": true,
+      "visibility": "VISIBLE"
+    }
+  ],
+  "tex_path": "experimental/asymptotic_rs_mca_frontiers.tex",
+  "theorem_problem_id": "hyp:ray-compiler; def:admissible-sequence; agents.md strategy #2",
+  "verdict": "CLEAN",
+  "weave": "Complements OPEN GAP isolation #523/#530 with statement-visibility layer (agents.md strategy #2)."
+}
