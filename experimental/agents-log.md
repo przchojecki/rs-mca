@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-10 - BSG/quasicube second-opinion
+
+- **Agent/model:** Grok.
+- **Files added or changed:** `experimental/notes/audits/bsg_quasicube.md`, `experimental/data/certificates/bsg-quasicube/bsg_quasicube.json`, `experimental/scripts/verify_bsg_quasicube.py`, `experimental/scripts/verify_bsg_quasicube_check.py`, `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** Second-opinion |A-A|^2>=|A|^3 on Boolean samples; eps<c/2 contradiction model. Agrees with #435.
+- **How it is useful:** Second-opinion assurance for the asymptotic paper promotion path.
+- **What to do next:** No further action if designer confirms agreement with #435.
+
 ### 2026-07-09 - Asymptotic RS MCA closed-ledger proof paper
 
 - **Agent/model:** Codex.

@@ -1,0 +1,177 @@
+{
+  "beats_trivial_baseline": true,
+  "boolean_samples": [
+    {
+      "diff_size": 9,
+      "diff_sq": 81,
+      "family": "full_cube_n2",
+      "quasicube_holds": true,
+      "size": 4,
+      "size_cubed": 64,
+      "slack_ratio": 1.125
+    },
+    {
+      "diff_size": 27,
+      "diff_sq": 729,
+      "family": "full_cube_n3",
+      "quasicube_holds": true,
+      "size": 8,
+      "size_cubed": 512,
+      "slack_ratio": 1.1932426932522988
+    },
+    {
+      "diff_size": 81,
+      "diff_sq": 6561,
+      "family": "full_cube_n4",
+      "quasicube_holds": true,
+      "size": 16,
+      "size_cubed": 4096,
+      "slack_ratio": 1.265625
+    },
+    {
+      "diff_size": 21,
+      "diff_sq": 441,
+      "family": "weight_1_n5",
+      "quasicube_holds": true,
+      "size": 5,
+      "size_cubed": 125,
+      "slack_ratio": 1.8782971010998233
+    },
+    {
+      "diff_size": 51,
+      "diff_sq": 2601,
+      "family": "weight_2_n5",
+      "quasicube_holds": true,
+      "size": 10,
+      "size_cubed": 1000,
+      "slack_ratio": 1.6127616066858734
+    },
+    {
+      "diff_size": 51,
+      "diff_sq": 2601,
+      "family": "weight_3_n5",
+      "quasicube_holds": true,
+      "size": 10,
+      "size_cubed": 1000,
+      "slack_ratio": 1.6127616066858734
+    },
+    {
+      "diff_size": 43,
+      "diff_sq": 1849,
+      "family": "basis_plus_zero_n6",
+      "quasicube_holds": true,
+      "size": 7,
+      "size_cubed": 343,
+      "slack_ratio": 2.321781762770967
+    }
+  ],
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "contradiction_chain": {
+    "paper_regime": "eps=o(1), c>0 fixed => eventual contradiction",
+    "paper_regime_ok": true,
+    "rows": [
+      {
+        "c": 0.1,
+        "eps": 0.01,
+        "formal_contradiction": true,
+        "threshold_eps": 0.05
+      },
+      {
+        "c": 0.1,
+        "eps": 0.05,
+        "formal_contradiction": false,
+        "threshold_eps": 0.05
+      },
+      {
+        "c": 0.1,
+        "eps": 0.04000000000000001,
+        "formal_contradiction": true,
+        "threshold_eps": 0.05
+      },
+      {
+        "c": 0.1,
+        "eps": 0.06,
+        "formal_contradiction": false,
+        "threshold_eps": 0.05
+      },
+      {
+        "c": 0.2,
+        "eps": 0.01,
+        "formal_contradiction": true,
+        "threshold_eps": 0.1
+      },
+      {
+        "c": 0.2,
+        "eps": 0.05,
+        "formal_contradiction": true,
+        "threshold_eps": 0.1
+      },
+      {
+        "c": 0.2,
+        "eps": 0.08000000000000002,
+        "formal_contradiction": true,
+        "threshold_eps": 0.1
+      },
+      {
+        "c": 0.2,
+        "eps": 0.12,
+        "formal_contradiction": false,
+        "threshold_eps": 0.1
+      },
+      {
+        "c": 0.5,
+        "eps": 0.01,
+        "formal_contradiction": true,
+        "threshold_eps": 0.25
+      },
+      {
+        "c": 0.5,
+        "eps": 0.05,
+        "formal_contradiction": true,
+        "threshold_eps": 0.25
+      },
+      {
+        "c": 0.5,
+        "eps": 0.2,
+        "formal_contradiction": true,
+        "threshold_eps": 0.25
+      },
+      {
+        "c": 0.5,
+        "eps": 0.3,
+        "formal_contradiction": false,
+        "threshold_eps": 0.25
+      }
+    ],
+    "rule": "contradiction iff eps < c/2 for pure exponential model"
+  },
+  "evidence_type": "INDEPENDENT_RECHECK",
+  "is_degenerate_by_construction": false,
+  "is_tautology_under_preconditions": false,
+  "nonclaims": [
+    "Does not re-prove BSG polynomial exponents."
+  ],
+  "payload_sha256": "e6e357980fc95b8844a303172b3676bfd7ad08371882900c2a8a88f72134fe19",
+  "proof_status": "AUDIT second-opinion quasicube inequality + contradiction slack",
+  "regeneration": "python experimental/scripts/verify_bsg_quasicube.py --emit-defaults",
+  "schema": "bsg-quasicube-v1",
+  "source_pin": {
+    "file": "experimental/asymptotic_rs_mca.tex",
+    "has_labels": true
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "disagrees_with_435": false,
+    "headline": "Second-opinion: |A-A|^2 >= |A|^3 holds on all tested Boolean families; exponential model contradicts when eps < c/2, matching the paper's o(N) vs fixed-c regime. Agrees with #435 NO-ISSUE by direct finite difference-set arithmetic.",
+    "verdict": "NO ISSUE"
+  },
+  "theorem_problem_id": "prop:no-high-energy / thm:quasicube (second opinion vs #435)"
+}
