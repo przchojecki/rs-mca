@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - AQB certificate guardrails
+
+- **Agent/model:** Codex, vendoring from the smooth-RS prize DAG.
+- **Files added or changed:** `experimental/notes/roadmaps/aqb_certificate_guardrails.md`,
+  `experimental/scripts/verify_aqb_certificate_guardrails.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED certificate-interface guardrails; AQB family payload open.
+- **What is being added:** A dependency-free replay of the AQB finite-deficit
+  arithmetic, average-to-member transfer, averaged-family schema, monotone
+  entropy-ledger rule, and coupled-manifest consistency check.
+- **How it is useful:** Makes a conditional averaged quotient-box route
+  checkable if a concrete manifest is proposed, while keeping the missing
+  family payload explicit.
+- **What to do next:** Supply or refute the actual coupled AQB manifest; do not
+  cite this packet as proving AQB family existence.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
