@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F3 three-to-one characteristic-zero classification
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f3_three_to_one_charzero_classification.md`,
+  `experimental/scripts/verify_f3_three_to_one_charzero_classification.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED exact characteristic-zero count and large-field transfer.
+- **What is being added:** A complete characteristic-zero classification of
+  `(1-x)(1-y)(1-z)=1-w` over `mu_{2^s}`, plus a signed-collision norm payment
+  proving the corresponding three-to-one bound in the large-field branch
+  `p > 8^(n/4)`.
+- **How it is useful:** The packet isolates the exact obstruction behind the
+  F3 C36/C36' h=3 direct-floor route and gives a verified branch where the
+  three-to-one premise is already sufficient.
+- **What to do next:** Treat the official polynomial-field corridor
+  `p >= n^2` as still open; compare this classification against any proposed
+  C36' proof to ensure it is pricing the same obstruction.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
