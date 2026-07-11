@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F3 h=3 moment bookkeeping identity
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f3_h3_moment_bookkeeping_identity.md`,
+  `experimental/scripts/verify_f3_h3_moment_bookkeeping_identity.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED arithmetic identity.
+- **What is being added:** An exact ordered-triple second-moment identity:
+  `M = trivial + 72*T_3 + repeat_residue`, together with the guardrail that
+  the repeat-entry residue cannot be silently dropped.
+- **How it is useful:** This is a constants-first primitive shift-pair ledger
+  component for the F3 h=3 route and a check against false moment-to-trade
+  shortcuts.
+- **What to do next:** Any h=3 moment proof should either bound
+  `repeat_residue` explicitly or route around it with a separate repeat-cell
+  payment.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
