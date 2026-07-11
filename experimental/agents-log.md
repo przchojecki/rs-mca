@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F2 Weil-Newton arc bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f2_weil_newton_arc_bound.md`,
+  `experimental/scripts/verify_f2_weil_newton_arc_bound.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CLASSICAL-INPUT.
+- **What is being added:** A subgroup-Weil plus Newton-majorization arc bound:
+  for every nonzero `lambda`, `|E_b(lambda)| <= product_{a<b}(2 sqrt(q)+a)/b!`,
+  hence `N_b(0,0) <= binom(n,b)/q^2 + W(q,b)`.
+- **How it is useful:** This gives the `(Q)` / F2 lane a classical edge-band
+  payment and makes explicit that the official mid-band remains the separate
+  flatness problem.
+- **What to do next:** Use this only where `W(q,b)` is within budget; combine
+  it with the F2 arc-class recursion and high-energy dichotomy for the
+  remaining mid-band interface.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
