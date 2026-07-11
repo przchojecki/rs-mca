@@ -1,0 +1,181 @@
+{
+  "claims": [
+    "full-rank complementary Hankel rank and determinant bridge",
+    "canonical -4 inverse-variable normalization",
+    "explicit z_Z(v) and deployed zero-fiber endpoint identification",
+    "exact non-full and full-support centering",
+    "coefficient Fourier pairing and Salie factorization",
+    "T_d=chi((-1)^d) g^d H_d normalization"
+  ],
+  "deployed_arithmetic": {
+    "H_d_target": "p^1048578",
+    "T_d_prefactor": "p^1014840",
+    "T_d_target": "p^2063418",
+    "a_m": "-134944/2097152",
+    "beta_0": -67472,
+    "c": 67472,
+    "checks": {
+      "H_target_exponent": true,
+      "T_target_exponent": true,
+      "d": true,
+      "d_even": true,
+      "gauss_prefactor_exponent": true,
+      "m": true,
+      "normalization_equivalence": true,
+      "p_mod_4_is_1": true
+    },
+    "d": 2029680,
+    "m": 981104,
+    "n": 2097152,
+    "p": 2130706433
+  },
+  "nonclaims": [
+    "signed Hankel-Salie aggregate estimate",
+    "lower-rank pseudodeterminant strata",
+    "N(0) <= n^3 or max_v N(v) <= n^3",
+    "LS or SV* closure"
+  ],
+  "note_contract": {
+    "centering_split": true,
+    "endpoint_corollary": true,
+    "minus_four": true,
+    "normalization": true,
+    "pairing_guard": true,
+    "rank_bridge": true,
+    "salie": true,
+    "signed_estimate_open": true,
+    "status": true,
+    "transform_note_consumes_bridge": true,
+    "z_formula": true
+  },
+  "payload_sha256": "dbb2f059e8f0d58f1493c6bf5aabf8df33cd531a334a11064260f2a4857bf2ce",
+  "seed": 20260711,
+  "status": "PROVED FULL-RANK NORMALIZATION BRIDGE / OPEN SIGNED ESTIMATE",
+  "theorem_id": "b2-full-rank-chg-normalization-bridge-v1",
+  "toy_cases": [
+    {
+      "centering_mismatches": 0,
+      "centering_rows": 8,
+      "determinant_phase_termwise_mismatches": 0,
+      "direct_gaussian_mismatches": 0,
+      "direct_gaussian_rows": 4,
+      "full_rank_bridge_rows": 8,
+      "parameters": {
+        "c": 2,
+        "d": 4,
+        "m": 3,
+        "n": 6,
+        "p": 7,
+        "w": 1
+      },
+      "salie_factorization_mismatches": 0,
+      "salie_factorization_rows": 2,
+      "zero_fiber_endpoint_mismatches": 0,
+      "zero_fiber_endpoint_rows": [
+        {
+          "Z_size": 1,
+          "classification": "balanced zero twist",
+          "q": 1,
+          "z": [
+            0
+          ]
+        },
+        {
+          "Z_size": 1,
+          "classification": "balanced zero twist",
+          "q": 1,
+          "z": [
+            0
+          ]
+        },
+        {
+          "Z_size": 1,
+          "classification": "balanced zero twist",
+          "q": 1,
+          "z": [
+            0
+          ]
+        },
+        {
+          "Z_size": 1,
+          "classification": "balanced zero twist",
+          "q": 1,
+          "z": [
+            0
+          ]
+        },
+        {
+          "Z_size": 1,
+          "classification": "balanced zero twist",
+          "q": 1,
+          "z": [
+            0
+          ]
+        },
+        {
+          "Z_size": 0,
+          "classification": "balanced zero twist",
+          "q": 2,
+          "z": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "centering_mismatches": 0,
+      "centering_rows": 8,
+      "determinant_phase_termwise_mismatches": 0,
+      "direct_gaussian_mismatches": 0,
+      "direct_gaussian_rows": 4,
+      "full_rank_bridge_rows": 8,
+      "parameters": {
+        "c": 2,
+        "d": 3,
+        "m": 2,
+        "n": 5,
+        "p": 11,
+        "w": 1
+      },
+      "salie_factorization_mismatches": 0,
+      "salie_factorization_rows": 2,
+      "zero_fiber_endpoint_mismatches": 0,
+      "zero_fiber_endpoint_rows": [
+        {
+          "Z_size": 1,
+          "classification": "nonzero endpoint twist",
+          "q": 1,
+          "z": [
+            4
+          ]
+        },
+        {
+          "Z_size": 1,
+          "classification": "nonzero endpoint twist",
+          "q": 1,
+          "z": [
+            9
+          ]
+        },
+        {
+          "Z_size": 1,
+          "classification": "nonzero endpoint twist",
+          "q": 1,
+          "z": [
+            5
+          ]
+        },
+        {
+          "Z_size": 0,
+          "classification": "nonzero endpoint twist",
+          "q": 2,
+          "z": [
+            2,
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

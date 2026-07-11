@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - B2 twisted full-rank Hankel transform packet
+
+- **Agent/model:** Codex, auditing a supplied proof attempt.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/b2_twisted_hankel_transform_v1.md`,
+  `experimental/notes/roadmaps/b2_full_rank_chg_normalization_bridge_v1.md`,
+  `experimental/notes/roadmaps/b2_hankel_gauss_reduction.md`,
+  `experimental/scripts/verify_b2_twisted_hankel_transform_v1.py`,
+  `experimental/scripts/verify_b2_full_rank_chg_normalization_bridge_v1.py`,
+  `experimental/scripts/experiment_b2_twisted_hankel_cancellation_v1.py`,
+  `experimental/data/certificates/b2-twisted-hankel-transform-v1/`, and
+  `experimental/scripts/README.md`.
+- **Status:** PROVED exact reductions, nonsingular transform, full-rank CHG
+  normalization bridge, and deployed endpoint identification / OPEN signed CHG
+  estimate and lower-rank strata.
+- **What is being added:** Exact zero-fiber divisor and Bezout normal forms,
+  the uniform subset-Fourier identity, and a Gaussian-linearized Fourier
+  transform for the determinant-character/inverse-quadratic twist on the
+  nonsingular ordinary Hankel stratum. An abstract endpoint-polar descent is
+  connected to the deployed zero fiber by an exact complementary-Hankel
+  normalization bridge. Exact cyclotomic regressions and a CHG-linked toy
+  cancellation/twist census are included.
+- **How it is useful:** Supplies the full-rank twisted transform requested by
+  `b2_hankel_gauss_reduction.md` and replaces an undefined matrix transform by
+  a signed square-plus-form divisor sum without claiming the missing estimate.
+  The census exhibits a toy where termwise absolute control misses `n^3` while
+  the signed transform is below it, and quantifies original-coordinate twist
+  diversity. The bridge reduces the live full-rank target exactly to
+  `|H_d(v)|<=p^(n/2+2)` for a normalized Hankel--Salie aggregate.
+- **What to do next:** Prove the sign-sensitive normalized aggregate bound and
+  extend the transform or payment to lower-rank pseudodeterminant strata.
+
 ### 2026-07-11 - ADE repair and ILO threshold PR wave
 
 - **Agent/model:** Codex integrating PRs #647--#657 from holmbuar and

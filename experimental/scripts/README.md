@@ -30,6 +30,11 @@ python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame
 python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --tamper-selftest
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --check
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --tamper-selftest
+python3 experimental/scripts/verify_b2_twisted_hankel_transform_v1.py --check
+python3 experimental/scripts/verify_b2_twisted_hankel_transform_v1.py --tamper-selftest
+python3 experimental/scripts/verify_b2_full_rank_chg_normalization_bridge_v1.py --check
+python3 experimental/scripts/verify_b2_full_rank_chg_normalization_bridge_v1.py --tamper-selftest
+python3 experimental/scripts/experiment_b2_twisted_hankel_cancellation_v1.py --artifact-check
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
@@ -51,6 +56,32 @@ prove MSS or the open source many-shell max-atom/large-sieve theorem.  The
 regression covers cyclic and noncyclic product groups and includes a symbolic
 family where a full-slice heavy atom forces exponential packed norm while its
 semantic residual is uniformly flat under the same full-slice normalization.
+
+`verify_b2_twisted_hankel_transform_v1.py` checks the exact zero-fiber divisor
+normal forms, uniform subset-Fourier identity, nonsingular twisted Hankel
+transform, and abstract polar/endpoint cancellation on deterministic small
+fields.  It protects the Fourier sign, projective-divisor normalization, and
+claim boundary.  It does not prove `N(0)<=n^3`, CHG, the lower-rank transform,
+or the open signed aggregate estimate.
+
+`verify_b2_full_rank_chg_normalization_bridge_v1.py` checks the proved
+full-rank bridge from centered `T_d(v)` to the normalized Hankel--Salie
+aggregate: rank duality, determinant reciprocity, canonical `-4` variables,
+complete scalar phase, explicit `z_Z(v)`, deployed zero-fiber endpoint,
+support-wise centering, coefficient Fourier pairing, Salie factorization, and
+the deployed exponent conversion.  It does not prove the signed aggregate
+bound or cover lower-rank pseudodeterminant strata.
+
+`experiment_b2_twisted_hankel_cancellation_v1.py` supplies a CHG-linked toy
+census.  It checks the ordinary-Hankel transform at the same `(p,c)` as two
+integrated CHG toys, finds an explicit `(p,c)=(11,2)` case where the termwise
+absolute transformed bound is `374 > n^3=125` but the signed value is about
+`31.31`, measures polar-incidence reduction, and reconstructs the
+original-coordinate Gaussian completion twists.  Those original-coordinate
+twists are not substituted directly for the complementary-Hankel `z(v)`; the
+bridge verifier checks the exact change of coordinates.  Use
+`--artifact-check` for fast review; `--check` recomputes the full deterministic
+census and takes roughly one minute on the reference machine.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

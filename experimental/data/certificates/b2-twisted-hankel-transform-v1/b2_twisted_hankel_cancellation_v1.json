@@ -1,0 +1,313 @@
+{
+  "nonclaims": [
+    "asymptotic cancellation estimate",
+    "lower-rank pseudodeterminant strata",
+    "N(0) <= n^3 or max_v N(v) <= n^3"
+  ],
+  "note_contract": {
+    "absolute_separation": true,
+    "census_section": true,
+    "coordinate_distinction": true,
+    "elkies_specialization": true,
+    "exact_cyclotomic": true,
+    "original_coordinate_warning": true,
+    "proof_code_map": true
+  },
+  "ordinary_hankel": [
+    {
+      "bridge_scope": "same ordinary-Hankel order as the integrated toy; (P,z) are target-space census points, not asserted CHG images",
+      "c": 2,
+      "checked_pair_count": 16807,
+      "endpoint_pair_count": 2058,
+      "exact_transform_mismatch_count": 0,
+      "largest_absolute_over_signed": {
+        "P": [
+          0,
+          0,
+          1
+        ],
+        "absolute_over_signed": "infinity",
+        "divisor_absolute_mass": 294,
+        "impulse_absolute_mass": 0,
+        "signed_numerator_abs": 0.0,
+        "signed_transform_abs": 0.0,
+        "triangle_transform_bound": 42.0,
+        "z": [
+          0,
+          1
+        ]
+      },
+      "largest_finite_absolute_over_signed": {
+        "P": [
+          0,
+          1,
+          6
+        ],
+        "absolute_over_signed": 13.80287470855,
+        "divisor_absolute_mass": 301,
+        "impulse_absolute_mass": 0,
+        "signed_numerator_abs": 21.807051527719,
+        "signed_transform_abs": 3.115293075388,
+        "triangle_transform_bound": 43.0,
+        "z": [
+          0,
+          1
+        ]
+      },
+      "maximum_signed_transform_abs": 91.0,
+      "maximum_triangle_transform_bound": 154.0,
+      "p": 7,
+      "population_pair_count": 16807,
+      "sampling": "exhaustive",
+      "source_toy": {
+        "m": 3,
+        "n": 6,
+        "p": 7,
+        "w": 1
+      },
+      "toy_n_cubed_separation_witness": null,
+      "zero_signed_count": 7056
+    },
+    {
+      "bridge_scope": "same ordinary-Hankel order as the integrated toy; (P,z) are target-space census points, not asserted CHG images",
+      "c": 2,
+      "checked_pair_count": 500,
+      "endpoint_pair_count": 51,
+      "exact_transform_mismatch_count": 0,
+      "largest_absolute_over_signed": {
+        "P": [
+          3,
+          1,
+          10
+        ],
+        "absolute_over_signed": "infinity",
+        "divisor_absolute_mass": 1199,
+        "impulse_absolute_mass": 0,
+        "signed_numerator_abs": 0.0,
+        "signed_transform_abs": 0.0,
+        "triangle_transform_bound": 109.0,
+        "z": [
+          7,
+          3
+        ]
+      },
+      "largest_finite_absolute_over_signed": {
+        "P": [
+          1,
+          10,
+          5
+        ],
+        "absolute_over_signed": 35.452765197722,
+        "divisor_absolute_mass": 1221,
+        "impulse_absolute_mass": 0,
+        "signed_numerator_abs": 34.440190862135,
+        "signed_transform_abs": 3.130926442012,
+        "triangle_transform_bound": 111.0,
+        "z": [
+          4,
+          2
+        ]
+      },
+      "maximum_signed_transform_abs": 231.0,
+      "maximum_triangle_transform_bound": 374.0,
+      "p": 11,
+      "population_pair_count": 161051,
+      "sampling": "deterministic sample",
+      "source_toy": {
+        "m": 2,
+        "n": 5,
+        "p": 11,
+        "w": 1
+      },
+      "toy_n_cubed_separation_witness": {
+        "P": [
+          10,
+          3,
+          6
+        ],
+        "absolute_over_signed": 11.945346111665,
+        "divisor_absolute_mass": 1452,
+        "impulse_absolute_mass": 2662,
+        "signed_numerator_abs": 344.40190862135,
+        "signed_transform_abs": 31.309264420123,
+        "triangle_transform_bound": 374.0,
+        "z": [
+          1,
+          7
+        ]
+      },
+      "zero_signed_count": 242
+    }
+  ],
+  "original_gauss_twists": [
+    {
+      "coordinate_warning": "z_A=l/2 is the completion vector in the original free-coefficient Hankel A_lambda; it is not the complementary-Hankel z of Theorem 4.1",
+      "full_rank_lambda_count": 99372,
+      "lambda_count": 117649,
+      "parameters": {
+        "c": 2,
+        "d": 4,
+        "m": 3,
+        "n": 6,
+        "p": 7,
+        "w": 1
+      },
+      "syndromes": [
+        {
+          "first_axis_twist_lambda_count": 0,
+          "most_common_twist_count": 99372,
+          "unique_original_twists": 1,
+          "v": 0,
+          "zero_twist_lambda_count": 99372
+        },
+        {
+          "first_axis_twist_lambda_count": 288,
+          "most_common_twist_count": 48,
+          "unique_original_twists": 2401,
+          "v": 1,
+          "zero_twist_lambda_count": 42
+        },
+        {
+          "first_axis_twist_lambda_count": 288,
+          "most_common_twist_count": 48,
+          "unique_original_twists": 2401,
+          "v": 2,
+          "zero_twist_lambda_count": 42
+        },
+        {
+          "first_axis_twist_lambda_count": 288,
+          "most_common_twist_count": 48,
+          "unique_original_twists": 2401,
+          "v": 3,
+          "zero_twist_lambda_count": 42
+        },
+        {
+          "first_axis_twist_lambda_count": 288,
+          "most_common_twist_count": 48,
+          "unique_original_twists": 2401,
+          "v": 4,
+          "zero_twist_lambda_count": 42
+        },
+        {
+          "first_axis_twist_lambda_count": 288,
+          "most_common_twist_count": 48,
+          "unique_original_twists": 2401,
+          "v": 5,
+          "zero_twist_lambda_count": 42
+        },
+        {
+          "first_axis_twist_lambda_count": 288,
+          "most_common_twist_count": 48,
+          "unique_original_twists": 2401,
+          "v": 6,
+          "zero_twist_lambda_count": 42
+        }
+      ]
+    },
+    {
+      "coordinate_warning": "z_A=l/2 is the completion vector in the original free-coefficient Hankel A_lambda; it is not the complementary-Hankel z of Theorem 4.1",
+      "full_rank_lambda_count": 146410,
+      "lambda_count": 161051,
+      "parameters": {
+        "c": 2,
+        "d": 3,
+        "m": 2,
+        "n": 5,
+        "p": 11,
+        "w": 1
+      },
+      "syndromes": [
+        {
+          "first_axis_twist_lambda_count": 1100,
+          "most_common_twist_count": 114,
+          "unique_original_twists": 1331,
+          "v": 0,
+          "zero_twist_lambda_count": 110
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 116,
+          "unique_original_twists": 1331,
+          "v": 1,
+          "zero_twist_lambda_count": 110
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 112,
+          "unique_original_twists": 1331,
+          "v": 2,
+          "zero_twist_lambda_count": 100
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 116,
+          "unique_original_twists": 1331,
+          "v": 3,
+          "zero_twist_lambda_count": 110
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 116,
+          "unique_original_twists": 1331,
+          "v": 4,
+          "zero_twist_lambda_count": 110
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 116,
+          "unique_original_twists": 1331,
+          "v": 5,
+          "zero_twist_lambda_count": 110
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 112,
+          "unique_original_twists": 1331,
+          "v": 6,
+          "zero_twist_lambda_count": 100
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 112,
+          "unique_original_twists": 1331,
+          "v": 7,
+          "zero_twist_lambda_count": 100
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 112,
+          "unique_original_twists": 1331,
+          "v": 8,
+          "zero_twist_lambda_count": 100
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 116,
+          "unique_original_twists": 1331,
+          "v": 9,
+          "zero_twist_lambda_count": 110
+        },
+        {
+          "first_axis_twist_lambda_count": 1120,
+          "most_common_twist_count": 112,
+          "unique_original_twists": 1331,
+          "v": 10,
+          "zero_twist_lambda_count": 100
+        }
+      ]
+    }
+  ],
+  "payload_sha256": "ec173cbc9ea9c00118cfd686616a3a4326d695245554b14eb21b9451a64e2b77",
+  "polar": {
+    "exact_polar_mismatch_count": 0,
+    "k": 2,
+    "maximum_retained_fraction": 1.0,
+    "mean_retained_fraction": 0.177589848702,
+    "minimum_retained_fraction": 0.0,
+    "p": 3,
+    "sample_count": 40
+  },
+  "seed": 20260711,
+  "status": "EXPERIMENTAL CENSUS / BRIDGE PROVED / SIGNED ESTIMATE OPEN",
+  "theorem_id": "b2-twisted-hankel-cancellation-census-v1"
+}

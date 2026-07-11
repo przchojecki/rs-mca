@@ -37,6 +37,28 @@ with those twists, poly loss, uniform in order. Existing: Elkies untwisted Hanke
 Dwivedi-Grinberg exact Hankel rank counts (2109.05415); Garcia Armas-Ghorpade-Ram Bezoutian (1011.1760).
 General resultant character-sum bounds lose 2^{2a+2b} (unusable at a,b~w) -- so the twisted formula is genuinely new.
 
+## UPDATE (2026-07-11): TWISTED NONSINGULAR TRANSFORM NOW AVAILABLE
+
+`b2_twisted_hankel_transform_v1.md` proves the exact Fourier transform of
+
+```text
+chi(det B) e_p(-z^T B^{-1}z)
+```
+
+on the nonsingular ordinary Hankel stratum.  It converts the transform into a
+signed square-plus-form projective-divisor sum using Elkies's singular-locus
+formula.  Thus the full-rank transform itself is no longer a missing algebraic
+identity.
+
+`b2_full_rank_chg_normalization_bridge_v1.md` now proves the exact bridge from
+the centered full-rank CHG term to the standalone transform, including the
+`-4` inverse variables, determinant sign, complete scalar phase, support-wise
+centering, coefficient Fourier pairing, and Salie product.  It also proves the
+zero-fiber endpoint identification on every surviving `q>=1` full-rank
+stratum.  This still does not prove Eq. 29 or CHG: the signed Hankel--Salie
+aggregate estimate remains open, and lower-rank pseudodeterminant strata are
+not covered.
+
 ## Verification status (this repo)
 - Reduction steps 1,3,5 INDEPENDENTLY VERIFIED (verify_chatgpt_hankel.py, rankcheck.py). Steps 2,4 follow +
   scanner confirms centering (sparse error ~1e-10). REDUCTION IS SOLID.
@@ -45,7 +67,7 @@ General resultant character-sum bounds lose 2^{2a+2b} (unusable at a,b~w) -- so 
   Scanner is a FALSIFIER: if R_max ~ C^n at larger n, CHG is false. (p^n cost limits to n<=6-7.)
 
 ## NEXT STEPS (this is the sharpest open lead of the session)
-1. Attack Eq 29 (full-rank case) -- cleanest, complementary Hankel nonsingular.
-2. Read Elkies math/0105007 + the twisted-determinant obstruction; is the twisted Elkies formula within reach?
+1. Prove the normalized full-rank signed Hankel--Salie estimate printed in the bridge note.
+2. Extend the transform or find a separate payment for lower-rank pseudodeterminant strata.
 3. Push the scanner to the largest feasible n (n=7,8 with careful memory) to stress-test CHG's n-scaling.
-4. Check whether CHG's rank strata connect to the finite-field decoupling / discrete Brascamp-Lieb literature.
+4. Check whether the normalized aggregate connects to finite-field decoupling / discrete Brascamp--Lieb literature.

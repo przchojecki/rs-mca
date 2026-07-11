@@ -1,0 +1,178 @@
+{
+  "claims": [
+    "exact zero-fiber complementary divisor gaps and Bezout certificate",
+    "exact uniform subset-Fourier identity",
+    "exact nonsingular twisted Hankel transform",
+    "exact abstract polar filtering and endpoint descent"
+  ],
+  "deployed_parameters": {
+    "c": 67472,
+    "checks": {
+      "m_equals_h_minus_c": true,
+      "n_equals_2m_plus_2c": true,
+      "n_minus_m_equals_h_plus_c": true,
+      "r_star_equals_2m": true
+    },
+    "h": 1048576,
+    "m": 981104,
+    "n": 2097152,
+    "w": 67471
+  },
+  "divisor_toys": [
+    {
+      "c": 2,
+      "m": 6,
+      "n": 16,
+      "p": 17,
+      "pass": true,
+      "subset_count": 8008,
+      "w": 1,
+      "zero_fiber_count": 472
+    },
+    {
+      "c": 3,
+      "m": 5,
+      "n": 16,
+      "p": 17,
+      "pass": true,
+      "subset_count": 4368,
+      "w": 2,
+      "zero_fiber_count": 16
+    }
+  ],
+  "nonclaims": [
+    "N(0) <= n^3",
+    "max_v N(v) <= n^3",
+    "CHG rank-stratum estimate",
+    "lower-rank pseudodeterminant transform",
+    "deployed zero-fiber endpoint-twist identification",
+    "LS or SV* closure"
+  ],
+  "note_contract": {
+    "chg_open": true,
+    "elkies_specialization": true,
+    "endpoint_application": true,
+    "endpoint_bridge_proved": true,
+    "exact_cyclotomic_guard": true,
+    "fourier_convention": true,
+    "full_rank_bridge_proved": true,
+    "kopparty_claim_removed": true,
+    "no_n0_claim": true,
+    "nonsingular_scope": true,
+    "omega_normalization": true,
+    "prior_note_updated": true,
+    "proof_code_map": true,
+    "proved_transform_status": true,
+    "toy_census_scoped": true
+  },
+  "oa_route_cut": {
+    "c": 2,
+    "direct_max": 3,
+    "n": 6,
+    "p": 7,
+    "pass": true,
+    "rows": [
+      {
+        "left": 6,
+        "r": 1,
+        "right": 2058,
+        "s": 0
+      },
+      {
+        "left": 12,
+        "r": 0,
+        "right": 2058,
+        "s": 1
+      },
+      {
+        "left": 24,
+        "r": 1,
+        "right": 1470,
+        "s": 1
+      },
+      {
+        "left": 12,
+        "r": 2,
+        "right": 420,
+        "s": 1
+      }
+    ]
+  },
+  "payload_sha256": "abee81a4140afb7e9dcddef1bbf8381123f6bf8c626049ff62262e43d976d19f",
+  "polar_endpoint": {
+    "arithmetic": "exact cyclotomic coefficient comparison modulo Phi_p",
+    "exact_endpoint_mismatch_count": 0,
+    "exact_filter_mismatch_count": 0,
+    "k": 2,
+    "max_endpoint_descent_error": 0.0,
+    "max_polar_filter_error": 0.0,
+    "p": 3,
+    "pass": true,
+    "sample_count": 24
+  },
+  "seed": 20260711,
+  "source_base_commit": "36de5bfc",
+  "status": "PROVED EXACT REDUCTIONS AND FULL-RANK BRIDGE / OPEN SIGNED CHG ESTIMATE",
+  "theorem_id": "b2-twisted-hankel-transform-v1",
+  "twisted_hankel_cases": [
+    {
+      "arithmetic": "exact cyclotomic coefficient comparison modulo Phi_p",
+      "c": 2,
+      "exact_mismatch_count": 0,
+      "max_error": 0.0,
+      "nonsingular_hankel_count": 18,
+      "p": 3,
+      "pair_count": 243,
+      "pass": true
+    },
+    {
+      "arithmetic": "exact cyclotomic coefficient comparison modulo Phi_p",
+      "c": 2,
+      "exact_mismatch_count": 0,
+      "max_error": 0.0,
+      "nonsingular_hankel_count": 100,
+      "p": 5,
+      "pair_count": 200,
+      "pass": true
+    },
+    {
+      "arithmetic": "exact cyclotomic coefficient comparison modulo Phi_p",
+      "c": 3,
+      "exact_mismatch_count": 0,
+      "max_error": 0.0,
+      "nonsingular_hankel_count": 162,
+      "p": 3,
+      "pair_count": 200,
+      "pass": true
+    }
+  ],
+  "uniform_fourier": {
+    "arithmetic": "exact cyclotomic coefficient comparison modulo Phi_p",
+    "direct_counts": [
+      3,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "exact_mismatch_count": 0,
+    "fourier_counts": [
+      3.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "m": 2,
+    "max_error": 0.0,
+    "mean_line": 2.142857142857,
+    "n": 6,
+    "p": 7,
+    "pass": true,
+    "w": 1
+  }
+}
