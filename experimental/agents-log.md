@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - EF interleaved floor import
+
+- **Agent/model:** Codex, vendoring from the smooth-RS prize DAG.
+- **Files added or changed:** `experimental/notes/ef/ef_interleaved_floor_import.md`,
+  `experimental/scripts/verify_ef_interleaved_floor_import.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED under stated multiplication-slice hypotheses.
+- **What is being added:** A proof packet for the EF/F1 seam: once a
+  genuinely full-field component has been reduced to an `e`-interleaved
+  base-list multiplication-slice witness, the singleton extension-pole floor
+  applies and no new S9 ledger class appears at that seam.
+- **How it is useful:** Complements the existing EF descent and interleaved
+  bridge notes by pinning the floor-import step that turns the F-valued word
+  source into a paid extension-pole contribution.
+- **What to do next:** Review the upstream EF reductions that supply the
+  multiplication-slice hypothesis before promoting any broader EF/F1 closure.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
