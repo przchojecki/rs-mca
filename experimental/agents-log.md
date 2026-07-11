@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-12 - Mask-aware signed-bulk reduction and census
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Added
+  `experimental/notes/audits/mask_aware_band_restriction_v1.md`,
+  `experimental/scripts/experiment_mask_aware_band_restriction_v1.py`, and
+  `experimental/data/certificates/mask-aware-band-restriction-v1/`; updated
+  `experimental/scripts/README.md`.
+- **Status:** AUDIT / PROVED SPARSE-PATTERN AND TOP-ORDER REDUCTIONS /
+  EXPERIMENTAL / OPEN ROOTED DENSE-BAND BCI.  No A4, primitive-Q, or
+  Proximity Prize theorem is promoted.
+- **What is being added:** Proves exact zero-character peeling, two
+  tuple-tail certificates, the diagonal mask obstruction, and the
+  complete-band Fourier identity, universal sparse-pattern payment,
+  top-order restriction compiler, endpoint guardrails, and exact dual witness.
+  It reduces the remaining mask-aware bulk problem to dense low-`|tau|`
+  top-order restriction or a rooted band-to-cell inverse theorem and adds a
+  deterministic finite spectrum census with exact and moment-certified
+  paid-versus-dense pattern diagnostics.
+- **How it is useful:** Separates the signed-bulk obligation from the
+  exceptional inverse/compiler obligation, preserves full-slice image
+  normalization, and supplies regressions showing that individual-character
+  thresholds, absolute summation, and proxy labels are not uniform payments.
+- **What to do next:** Prove dense-band `(q-BR)` or rooted `(BCI)` with the
+  received line/profile, whole-slope residual, effective group, incidence,
+  owner, and paid output printed explicitly; then prove exceptional-pattern
+  inverse structure.  Rebase this follow-up after the PR #674 PRE/A4 boundary
+  packet is integrated.
+
 ### 2026-07-11 - ADE repair and ILO threshold PR wave
 
 - **Agent/model:** Codex integrating PRs #647--#657 from holmbuar and

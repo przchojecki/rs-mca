@@ -30,6 +30,8 @@ python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame
 python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --tamper-selftest
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --check
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --tamper-selftest
+python3 experimental/scripts/experiment_mask_aware_band_restriction_v1.py --check
+python3 experimental/scripts/experiment_mask_aware_band_restriction_v1.py --tamper-selftest
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
@@ -51,6 +53,19 @@ prove MSS or the open source many-shell max-atom/large-sieve theorem.  The
 regression covers cyclic and noncyclic product groups and includes a symbolic
 family where a full-slice heavy atom forces exponential packed norm while its
 semantic residual is uniformly flat under the same full-slice normalization.
+
+`experiment_mask_aware_band_restriction_v1.py` replays ten source-like
+subgroup identity toys and one explicitly non-source-derived planted-pair
+regression.  It checks exact fixed-weight Fourier coefficients, signed secant
+contributions, threshold sweeps, character-triple selection, sign ablations,
+and conservative structural proxies.  The note proves an unconditional
+band-density payment for sparse complete patterns and a top-order restriction
+compiler for all lower sectors.  The script also reports exact and
+moment-certified `L rho D` values under declared finite proxy budgets, showing
+which complete patterns enter the dense diagnostic residue.  The census
+remains evidence and a guardrail; it does not prove the dense low-`|tau|`
+top-order estimate, the rooted band-to-cell inverse theorem, an
+exceptional-spectrum compiler, A4, or primitive Q.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

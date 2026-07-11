@@ -1,0 +1,3963 @@
+{
+  "status": "EXPERIMENTAL / PROVED FINITE REDUCTIONS / OPEN ROOTED DENSE-BAND BCI",
+  "experiment_id": "mask-aware-band-restriction-v1",
+  "source_base": "36de5bfcc7d6e0ca44806112acec2f4a1b4a7532",
+  "claim_boundary": {
+    "proved_in_note": [
+      "exact zero-character peeling identity",
+      "one-coordinate tuple-tail certificate",
+      "tensor-Holder tuple-tail certificate",
+      "diagonal point-mass obstruction",
+      "complete-band-pattern Fourier identity",
+      "universal mask-aware band-density restriction",
+      "sparse-pattern absolute payment criterion",
+      "top-order BR implies all lower bulk sectors",
+      "repeated-pattern endpoint guardrail",
+      "per-band point-mass low-spectrum guardrail",
+      "order-two BCI localization to the PRE/Q endpoint",
+      "exact dual witness for every MBR violation"
+    ],
+    "experimental_only": [
+      "finite threshold census",
+      "tuple-product versus any-large-coordinate comparison",
+      "structural proxy coverage",
+      "finite paid-versus-dense proxy census"
+    ],
+    "not_proved": [
+      "dense low-tau top-order band restriction payment",
+      "rooted band-to-cell inverse theorem",
+      "full source-specific mask-aware multilinear band restriction payment",
+      "exceptional-spectrum inverse compiler",
+      "A4 payment",
+      "primitive Q",
+      "Proximity Prize theorem"
+    ]
+  },
+  "exact_reduction_regressions": {
+    "group": "Z/11Z",
+    "orders_checked": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "max_zero_peeling_error": 1.4901161194162144e-07,
+    "band_count": 3,
+    "complete_patterns_checked": 27,
+    "max_complete_pattern_identity_error": 3.5588407709979825e-12,
+    "max_universal_band_density_ratio": 0.36338220046869724,
+    "max_sparse_triple_pattern_ratio": 0.01063199161144895,
+    "max_top_order_interpolation_ratio": 1.0,
+    "exact_top_order_exponent_checks": 65,
+    "repeated_pattern_endpoint_ratio": 0.7607728307816592,
+    "dual_witness_pairing_error": 4.440892098500626e-16,
+    "order_two_localization_ratio": 0.11347248601801134,
+    "point_mass_zero_sum_triples_checked": 121,
+    "max_diagonal_identity_error": 5.728578676879116e-14,
+    "max_point_mass_band_value_error": 6.647798613610977e-16,
+    "tail_check": {
+      "order": 3,
+      "theta": 2.0,
+      "actual_density": 0.049586776859504134,
+      "one_coordinate_h1_bound": 3.0,
+      "passes": true
+    }
+  },
+  "profiles": [
+    {
+      "name": "sg17_n8_w2_m4",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 17,
+        "n": 8,
+        "rank": 2,
+        "m": 4,
+        "frequency_count": 289
+      },
+      "fiber": {
+        "full_mass": 70,
+        "image_size": 69,
+        "image_average": 1.0144927536231885,
+        "max_fiber": 2,
+        "max_over_average": 1.9714285714285713
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": 26.435986159169573,
+        "positive_part_sum": 32.53013424248704,
+        "absolute_sum": 38.624282325804494,
+        "absolute_over_signed": 1.461049423057263,
+        "positive_over_signed": 1.2305247115286315
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 2.524073971675847,
+          "exceptional_count": 144,
+          "exceptional_fraction": 0.5,
+          "bulk_signed": -0.8896339616374344,
+          "bulk_signed_over_n2mu": -0.05738933368598628,
+          "bulk_positive": 2.1872130361592363,
+          "bulk_positive_over_n2mu": 0.1410947695200936,
+          "bulk_absolute": 5.264060033955907,
+          "exceptional_signed": 27.32562012080701,
+          "exceptional_positive": 30.342921206327794,
+          "exceptional_absolute": 33.36022229184859,
+          "exceptional_positive_share": 0.9327634795523665,
+          "exceptional_absolute_share": 0.863711123754938
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 3.1490492774447545,
+          "exceptional_count": 72,
+          "exceptional_fraction": 0.25,
+          "bulk_signed": -1.9531579287273098,
+          "bulk_signed_over_n2mu": -0.1259961253129894,
+          "bulk_positive": 2.259974381181551,
+          "bulk_positive_over_n2mu": 0.14578852592889915,
+          "bulk_absolute": 6.473106691090412,
+          "exceptional_signed": 28.38914408789688,
+          "exceptional_positive": 30.270159861305483,
+          "exceptional_absolute": 32.15117563471408,
+          "exceptional_positive_share": 0.9305267428552496,
+          "exceptional_absolute_share": 0.8324083633065773
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 4.446792167930151,
+          "exceptional_count": 36,
+          "exceptional_fraction": 0.125,
+          "bulk_signed": 1.2680691680291971,
+          "bulk_signed_over_n2mu": 0.08180178338402633,
+          "bulk_positive": 5.4812014779380585,
+          "bulk_positive_over_n2mu": 0.35358643462591494,
+          "bulk_absolute": 9.69433378784692,
+          "exceptional_signed": 25.167916991140377,
+          "exceptional_positive": 27.048932764548972,
+          "exceptional_absolute": 28.92994853795758,
+          "exceptional_positive_share": 0.8315038776944498,
+          "exceptional_absolute_share": 0.7490093484178416
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 4.763195431304797,
+          "exceptional_count": 20,
+          "exceptional_fraction": 0.06944444444444445,
+          "bulk_signed": -0.6129466053794035,
+          "bulk_signed_over_n2mu": -0.03954052878451956,
+          "bulk_positive": 5.481201477938058,
+          "bulk_positive_over_n2mu": 0.3535864346259149,
+          "bulk_absolute": 11.57534956125552,
+          "exceptional_signed": 27.048932764548972,
+          "exceptional_positive": 27.048932764548972,
+          "exceptional_absolute": 27.048932764548972,
+          "exceptional_positive_share": 0.8315038776944498,
+          "exceptional_absolute_share": 0.7003090060388735
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 5.811407088435484,
+          "exceptional_count": 4,
+          "exceptional_fraction": 0.013888888888888888,
+          "bulk_signed": 13.849567986903727,
+          "bulk_signed_over_n2mu": 0.8934207920123164,
+          "bulk_positive": 19.94371607022119,
+          "bulk_positive_over_n2mu": 1.286547755422751,
+          "bulk_absolute": 26.03786415353865,
+          "exceptional_signed": 12.586418172265846,
+          "exceptional_positive": 12.586418172265846,
+          "exceptional_absolute": 12.586418172265846,
+          "exceptional_positive_share": 0.38691565421906393,
+          "exceptional_absolute_share": 0.325868013963252
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 2.8284271247461903,
+          "exceptional_count": 104,
+          "exceptional_fraction": 0.3611111111111111,
+          "exceptional_positive_share": 0.9305267428552496,
+          "exceptional_absolute_share": 0.8498707621659938,
+          "bulk_signed_over_n2mu": -0.0824866190117349,
+          "bulk_positive_over_n2mu": 0.14578852592889918
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 3.5355339059327378,
+          "exceptional_count": 40,
+          "exceptional_fraction": 0.1388888888888889,
+          "exceptional_positive_share": 0.8910309736807509,
+          "exceptional_absolute_share": 0.7991442456093442,
+          "bulk_signed_over_n2mu": -0.04311488143549095,
+          "bulk_positive_over_n2mu": 0.2286697698063976
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 4.242640687119286,
+          "exceptional_count": 36,
+          "exceptional_fraction": 0.125,
+          "exceptional_positive_share": 0.8315038776944498,
+          "exceptional_absolute_share": 0.7490093484178416,
+          "bulk_signed_over_n2mu": 0.08180178338402633,
+          "bulk_positive_over_n2mu": 0.35358643462591494
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 4.949747468305833,
+          "exceptional_count": 4,
+          "exceptional_fraction": 0.013888888888888888,
+          "exceptional_positive_share": 0.38691565421906393,
+          "exceptional_absolute_share": 0.325868013963252,
+          "bulk_signed_over_n2mu": 0.8934207920123164,
+          "bulk_positive_over_n2mu": 1.286547755422751
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 5.656854249492381,
+          "exceptional_count": 4,
+          "exceptional_fraction": 0.013888888888888888,
+          "exceptional_positive_share": 0.38691565421906393,
+          "exceptional_absolute_share": 0.325868013963252,
+          "bulk_signed_over_n2mu": 0.8934207920123164,
+          "bulk_positive_over_n2mu": 1.286547755422751
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 4.763195431304797,
+        "exceptional_count": 20,
+        "class_counts": {
+          "dyadic_even_frequency_proxy": 4,
+          "unclassified": 16
+        },
+        "class_positive_mass": {
+          "dyadic_even_frequency_proxy": 12.586418172265846,
+          "unclassified": 14.462514592283128
+        },
+        "class_absolute_mass": {
+          "dyadic_even_frequency_proxy": 12.586418172265846,
+          "unclassified": 14.462514592283128
+        },
+        "classified_fraction": 0.19999999999999996,
+        "classified_positive_mass_fraction": 0.46532032453280114,
+        "classified_absolute_mass_fraction": 0.46532032453280114,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.0,
+          "bohr_fraction_010": 0.2,
+          "bohr_fraction_020": 0.2
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 4,
+        "partitioned_nonzero_frequency_count": 288,
+        "bands": [
+          {
+            "label": "lt1",
+            "dyadic_index": null,
+            "size": 24,
+            "exact_density": 0.08304498269896193,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 5.730103806228374,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 56,
+            "exact_density": 0.19377162629757785,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 13.370242214532873,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 168,
+            "exact_density": 0.5813148788927336,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 40.11072664359862,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 40,
+            "exact_density": 0.1384083044982699,
+            "moment_density_upper": 0.5,
+            "repeated_exact_L_rho_D": 9.550173010380623,
+            "repeated_moment_certified_L_rho_D_upper": 34.5
+          }
+        ],
+        "nonempty_complete_patterns": 64,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 8.0,
+          "N2": 64.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.109375,
+            "N2": 1.0
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.578125
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 27,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 16344,
+            "tuple_density": 0.19568731217298643,
+            "exact_D": 0.5813148788927336,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 40.11072664359862,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.46145547448601076,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k0",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 5488,
+            "tuple_density": 0.0657080255265143,
+            "exact_D": 0.40306122522805066,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 27.811224540735495,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.41567996245817285,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k1",
+              "k0",
+              "k1"
+            ],
+            "tuple_count": 5488,
+            "tuple_density": 0.0657080255265143,
+            "exact_D": 0.40306122522805066,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 27.811224540735495,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.41567996245817285,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 16344,
+            "tuple_density": 0.19568731217298643,
+            "exact_D": 0.5813148788927336,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 40.11072664359862,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.46145547448601076,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k0",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 5488,
+            "tuple_density": 0.0657080255265143,
+            "exact_D": 0.40306122522805066,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 27.811224540735495,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.41567996245817285,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k1",
+              "k0",
+              "k1"
+            ],
+            "tuple_count": 5488,
+            "tuple_density": 0.0657080255265143,
+            "exact_D": 0.40306122522805066,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 27.811224540735495,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.41567996245817285,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      },
+      "triple_census": {
+        "skipped": false,
+        "order": 3,
+        "single_frequency_threshold_quantile": 0.9,
+        "single_frequency_threshold": 4.446792167930151,
+        "any_high_tuple_fraction": 0.3321718931475029,
+        "any_high_positive_share": 0.7520802121334499,
+        "any_high_absolute_share": 0.6910370501414307,
+        "product_score_threshold_same_fraction": 18.073494519796284,
+        "product_high_positive_share": 0.8077768159898145,
+        "product_high_absolute_share": 0.7674949740415362,
+        "fixed_geometric_mean_sweep": [
+          {
+            "sqrt_n_multiplier": 1.0,
+            "tuple_fraction": 0.2452090592334495,
+            "positive_share": 0.7448908210468224,
+            "absolute_share": 0.6940716026975909
+          },
+          {
+            "sqrt_n_multiplier": 1.25,
+            "tuple_fraction": 0.05139372822299652,
+            "positive_share": 0.4654534167051597,
+            "absolute_share": 0.3809357645922966
+          },
+          {
+            "sqrt_n_multiplier": 1.5,
+            "tuple_fraction": 0.0078397212543554,
+            "positive_share": 0.22343602581037694,
+            "absolute_share": 0.17143929740959457
+          },
+          {
+            "sqrt_n_multiplier": 1.75,
+            "tuple_fraction": 0.0020325203252032522,
+            "positive_share": 0.15679384249019346,
+            "absolute_share": 0.11581242742231622
+          },
+          {
+            "sqrt_n_multiplier": 2.0,
+            "tuple_fraction": 0.0,
+            "positive_share": 0.0,
+            "absolute_share": 0.0
+          }
+        ],
+        "interpretation": "compares any-large-single-frequency against tuple-product selection at matched density"
+      }
+    },
+    {
+      "name": "sg13_n12_w2_m6",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 13,
+        "n": 12,
+        "rank": 2,
+        "m": 6,
+        "frequency_count": 169
+      },
+      "fiber": {
+        "full_mass": 924,
+        "image_size": 169,
+        "image_average": 5.4674556213017755,
+        "max_fiber": 7,
+        "max_over_average": 1.2803030303030303
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": 34.29585798816565,
+        "positive_part_sum": 43.30188702613501,
+        "absolute_sum": 52.307916064104376,
+        "absolute_over_signed": 1.5251963103577721,
+        "positive_over_signed": 1.262598155178886
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 2.9329869134495583,
+          "exceptional_count": 102,
+          "exceptional_fraction": 0.6071428571428571,
+          "bulk_signed": 8.013422136784873,
+          "bulk_signed_over_n2mu": 0.010178183179387955,
+          "bulk_positive": 12.253652441027034,
+          "bulk_positive_over_n2mu": 0.015563877333856186,
+          "bulk_absolute": 16.493882745269193,
+          "exceptional_signed": 26.282435851380786,
+          "exceptional_positive": 31.04823458510798,
+          "exceptional_absolute": 35.814033318835186,
+          "exceptional_positive_share": 0.7170180497299968,
+          "exceptional_absolute_share": 0.6846771199017829
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 4.069040698435438,
+          "exceptional_count": 54,
+          "exceptional_fraction": 0.32142857142857145,
+          "bulk_signed": 3.2476234030576725,
+          "bulk_signed_over_n2mu": 0.0041249425438668426,
+          "bulk_positive": 12.253652441027032,
+          "bulk_positive_over_n2mu": 0.015563877333856184,
+          "bulk_absolute": 21.259681478996395,
+          "exceptional_signed": 31.04823458510798,
+          "exceptional_positive": 31.04823458510798,
+          "exceptional_absolute": 31.04823458510798,
+          "exceptional_positive_share": 0.7170180497299968,
+          "exceptional_absolute_share": 0.5935666514998946
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 4.253983209210551,
+          "exceptional_count": 30,
+          "exceptional_fraction": 0.17857142857142858,
+          "bulk_signed": 26.298205419328806,
+          "bulk_signed_over_n2mu": 0.033402452470137144,
+          "bulk_positive": 35.304234457298165,
+          "bulk_positive_over_n2mu": 0.044841387260126486,
+          "bulk_absolute": 44.31026349526753,
+          "exceptional_signed": 7.997652568836849,
+          "exceptional_positive": 7.997652568836849,
+          "exceptional_absolute": 7.997652568836849,
+          "exceptional_positive_share": 0.18469524351236324,
+          "exceptional_absolute_share": 0.15289564506900963
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 4.253983209210551,
+          "exceptional_count": 30,
+          "exceptional_fraction": 0.17857142857142858,
+          "bulk_signed": 26.298205419328806,
+          "bulk_signed_over_n2mu": 0.033402452470137144,
+          "bulk_positive": 35.304234457298165,
+          "bulk_positive_over_n2mu": 0.044841387260126486,
+          "bulk_absolute": 44.31026349526753,
+          "exceptional_signed": 7.997652568836849,
+          "exceptional_positive": 7.997652568836849,
+          "exceptional_absolute": 7.997652568836849,
+          "exceptional_positive_share": 0.18469524351236324,
+          "exceptional_absolute_share": 0.15289564506900963
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 4.60555127546399,
+          "exceptional_count": 6,
+          "exceptional_fraction": 0.03571428571428571,
+          "bulk_signed": 27.00237324605366,
+          "bulk_signed_over_n2mu": 0.034296845528071405,
+          "bulk_positive": 36.00840228402302,
+          "bulk_positive_over_n2mu": 0.04573578031806074,
+          "bulk_absolute": 45.01443132199238,
+          "exceptional_signed": 7.293484742111993,
+          "exceptional_positive": 7.293484742111993,
+          "exceptional_absolute": 7.293484742111993,
+          "exceptional_positive_share": 0.1684334157934037,
+          "exceptional_absolute_share": 0.13943367067374055
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 3.4641016151377544,
+          "exceptional_count": 78,
+          "exceptional_fraction": 0.4642857142857143,
+          "exceptional_positive_share": 0.7170180497299969,
+          "exceptional_absolute_share": 0.6711539473296432,
+          "bulk_signed_over_n2mu": 0.009279724207870441,
+          "bulk_positive_over_n2mu": 0.015563877333856184
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 4.330127018922193,
+          "exceptional_count": 6,
+          "exceptional_fraction": 0.03571428571428571,
+          "exceptional_positive_share": 0.1684334157934037,
+          "exceptional_absolute_share": 0.13943367067374055,
+          "bulk_signed_over_n2mu": 0.034296845528071405,
+          "bulk_positive_over_n2mu": 0.04573578031806074
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 5.196152422706632,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": 0.04356060606060602,
+          "bulk_positive_over_n2mu": 0.054999540850595365
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 6.06217782649107,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": 0.04356060606060602,
+          "bulk_positive_over_n2mu": 0.054999540850595365
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 6.928203230275509,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": 0.04356060606060602,
+          "bulk_positive_over_n2mu": 0.054999540850595365
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 4.253983209210551,
+        "exceptional_count": 30,
+        "class_counts": {
+          "dyadic_even_frequency_proxy": 6,
+          "unclassified": 24
+        },
+        "class_positive_mass": {
+          "dyadic_even_frequency_proxy": 7.293484742111993,
+          "unclassified": 0.7041678267248574
+        },
+        "class_absolute_mass": {
+          "dyadic_even_frequency_proxy": 7.293484742111993,
+          "unclassified": 0.7041678267248574
+        },
+        "classified_fraction": 0.19999999999999996,
+        "classified_positive_mass_fraction": 0.9119531861800707,
+        "classified_absolute_mass_fraction": 0.9119531861800707,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.06666666666666665,
+          "bohr_fraction_010": 0.06666666666666665,
+          "bohr_fraction_020": 0.20000000000000007
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 3,
+        "partitioned_nonzero_frequency_count": 168,
+        "bands": [
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 12,
+            "exact_density": 0.07100591715976332,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 12.0,
+            "repeated_moment_certified_L_rho_D_upper": 169.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 102,
+            "exact_density": 0.6035502958579881,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 102.0,
+            "repeated_moment_certified_L_rho_D_upper": 169.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 54,
+            "exact_density": 0.31952662721893493,
+            "moment_density_upper": 0.75,
+            "repeated_exact_L_rho_D": 54.00000000000001,
+            "repeated_moment_certified_L_rho_D_upper": 126.75
+          }
+        ],
+        "nonempty_complete_patterns": 21,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 12.0,
+          "N2": 144.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.047619047619047616,
+            "N2": 1.0
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.3333333333333333
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 14,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 6468,
+            "tuple_density": 0.22646265887048772,
+            "exact_D": 0.6035502958579881,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 102.0,
+            "moment_certified_L_rho_D_upper": 169.0,
+            "exact_positive_log_rate": 0.3854144011070226,
+            "moment_certified_positive_log_rate": 0.4274915595769228
+          },
+          {
+            "labels": [
+              "k0",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 768,
+            "tuple_density": 0.026889814782395573,
+            "exact_D": 0.2957380184202589,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 49.97972511302375,
+            "moment_certified_L_rho_D_upper": 169.0,
+            "exact_positive_log_rate": 0.3259681187876817,
+            "moment_certified_positive_log_rate": 0.4274915595769228
+          },
+          {
+            "labels": [
+              "k1",
+              "k0",
+              "k1"
+            ],
+            "tuple_count": 768,
+            "tuple_density": 0.026889814782395573,
+            "exact_D": 0.2957380184202589,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 49.97972511302375,
+            "moment_certified_L_rho_D_upper": 169.0,
+            "exact_positive_log_rate": 0.3259681187876817,
+            "moment_certified_positive_log_rate": 0.4274915595769228
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 6468,
+            "tuple_density": 0.22646265887048772,
+            "exact_D": 0.6035502958579881,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 102.0,
+            "moment_certified_L_rho_D_upper": 169.0,
+            "exact_positive_log_rate": 0.3854144011070226,
+            "moment_certified_positive_log_rate": 0.4274915595769228
+          },
+          {
+            "labels": [
+              "k0",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 768,
+            "tuple_density": 0.026889814782395573,
+            "exact_D": 0.2957380184202589,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 49.97972511302375,
+            "moment_certified_L_rho_D_upper": 169.0,
+            "exact_positive_log_rate": 0.3259681187876817,
+            "moment_certified_positive_log_rate": 0.4274915595769228
+          },
+          {
+            "labels": [
+              "k1",
+              "k0",
+              "k1"
+            ],
+            "tuple_count": 768,
+            "tuple_density": 0.026889814782395573,
+            "exact_D": 0.2957380184202589,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 49.97972511302375,
+            "moment_certified_L_rho_D_upper": 169.0,
+            "exact_positive_log_rate": 0.3259681187876817,
+            "moment_certified_positive_log_rate": 0.4274915595769228
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      },
+      "triple_census": {
+        "skipped": false,
+        "order": 3,
+        "single_frequency_threshold_quantile": 0.9,
+        "single_frequency_threshold": 4.253983209210551,
+        "any_high_tuple_fraction": 0.4448246364414029,
+        "any_high_positive_share": 0.3136179748047274,
+        "any_high_absolute_share": 0.2482813790907837,
+        "product_score_threshold_same_fraction": 35.00356548676256,
+        "product_high_positive_share": 0.789485395838798,
+        "product_high_absolute_share": 0.7763923970556855,
+        "fixed_geometric_mean_sweep": [
+          {
+            "sqrt_n_multiplier": 1.0,
+            "tuple_fraction": 0.34880239520958084,
+            "positive_share": 0.6413709264020824,
+            "absolute_share": 0.6320702200477006
+          },
+          {
+            "sqrt_n_multiplier": 1.25,
+            "tuple_fraction": 0.000427715996578272,
+            "positive_share": 0.005437945892573663,
+            "absolute_share": 0.0024112184533947472
+          },
+          {
+            "sqrt_n_multiplier": 1.5,
+            "tuple_fraction": 0.0,
+            "positive_share": 0.0,
+            "absolute_share": 0.0
+          },
+          {
+            "sqrt_n_multiplier": 1.75,
+            "tuple_fraction": 0.0,
+            "positive_share": 0.0,
+            "absolute_share": 0.0
+          },
+          {
+            "sqrt_n_multiplier": 2.0,
+            "tuple_fraction": 0.0,
+            "positive_share": 0.0,
+            "absolute_share": 0.0
+          }
+        ],
+        "interpretation": "compares any-large-single-frequency against tuple-product selection at matched density"
+      }
+    },
+    {
+      "name": "sg17_n16_w2_m8",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 17,
+        "n": 16,
+        "rank": 2,
+        "m": 8,
+        "frequency_count": 289
+      },
+      "fiber": {
+        "full_mass": 12870,
+        "image_size": 289,
+        "image_average": 44.53287197231834,
+        "max_fiber": 54,
+        "max_over_average": 1.2125874125874125
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": 48.11072664359888,
+        "positive_part_sum": 70.42423162178645,
+        "absolute_sum": 92.737736599974,
+        "absolute_over_signed": 1.9275896056812671,
+        "positive_over_signed": 1.4637948028406338
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 3.609784963277628,
+          "exceptional_count": 168,
+          "exceptional_fraction": 0.5833333333333334,
+          "bulk_signed": -1.9935623390006445,
+          "bulk_signed_over_n2mu": -0.00017486752014471223,
+          "bulk_positive": 10.291205651734364,
+          "bulk_positive_over_n2mu": 0.0009027044584520782,
+          "bulk_absolute": 22.57597364246937,
+          "exceptional_signed": 50.10428898259953,
+          "exceptional_positive": 60.13302597005208,
+          "exceptional_absolute": 70.16176295750464,
+          "exceptional_positive_share": 0.853868399913778,
+          "exceptional_absolute_share": 0.756561088612166
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 4.277930813009187,
+          "exceptional_count": 72,
+          "exceptional_fraction": 0.25,
+          "bulk_signed": 2.5833484480960394,
+          "bulk_signed_over_n2mu": 0.0002266012594392711,
+          "bulk_positive": 15.0013769064047,
+          "bulk_positive_over_n2mu": 0.0013158623269810357,
+          "bulk_absolute": 27.41940536471336,
+          "exceptional_signed": 45.527378195502834,
+          "exceptional_positive": 55.422854715381746,
+          "exceptional_absolute": 65.31833123526064,
+          "exceptional_positive_share": 0.7869855792396907,
+          "exceptional_absolute_share": 0.7043338950249833
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 5.109383899676658,
+          "exceptional_count": 40,
+          "exceptional_fraction": 0.1388888888888889,
+          "bulk_signed": 13.733268661685536,
+          "bulk_signed_over_n2mu": 0.0012046288131395443,
+          "bulk_positive": 26.15129711999419,
+          "bulk_positive_over_n2mu": 0.0022938898806813086,
+          "bulk_absolute": 38.56932557830285,
+          "exceptional_signed": 34.377457981913345,
+          "exceptional_positive": 44.27293450179225,
+          "exceptional_absolute": 54.16841102167115,
+          "exceptional_positive_share": 0.6286605261035744,
+          "exceptional_absolute_share": 0.5841032249398929
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 5.109383899676659,
+          "exceptional_count": 40,
+          "exceptional_fraction": 0.1388888888888889,
+          "bulk_signed": 13.733268661685536,
+          "bulk_signed_over_n2mu": 0.0012046288131395443,
+          "bulk_positive": 26.15129711999419,
+          "bulk_positive_over_n2mu": 0.0022938898806813086,
+          "bulk_absolute": 38.56932557830285,
+          "exceptional_signed": 34.377457981913345,
+          "exceptional_positive": 44.27293450179225,
+          "exceptional_absolute": 54.16841102167115,
+          "exceptional_positive_share": 0.6286605261035744,
+          "exceptional_absolute_share": 0.5841032249398929
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 5.123105625617663,
+          "exceptional_count": 8,
+          "exceptional_fraction": 0.027777777777777776,
+          "bulk_signed": 3.837792141806628,
+          "bulk_signed_over_n2mu": 0.00033663617211238453,
+          "bulk_positive": 26.15129711999419,
+          "bulk_positive_over_n2mu": 0.0022938898806813086,
+          "bulk_absolute": 48.464802098181764,
+          "exceptional_signed": 44.27293450179225,
+          "exceptional_positive": 44.27293450179225,
+          "exceptional_absolute": 44.27293450179225,
+          "exceptional_positive_share": 0.6286605261035744,
+          "exceptional_absolute_share": 0.4773993427590798
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 4.0,
+          "exceptional_count": 104,
+          "exceptional_fraction": 0.3611111111111111,
+          "exceptional_positive_share": 0.8421311719679491,
+          "exceptional_absolute_share": 0.7462109791290251,
+          "bulk_signed_over_n2mu": -0.00011405177105111956,
+          "bulk_positive_over_n2mu": 0.000975209296490645
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 5.0,
+          "exceptional_count": 40,
+          "exceptional_fraction": 0.1388888888888889,
+          "exceptional_positive_share": 0.6286605261035744,
+          "exceptional_absolute_share": 0.5841032249398929,
+          "bulk_signed_over_n2mu": 0.0012046288131395443,
+          "bulk_positive_over_n2mu": 0.0022938898806813086
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 6.0,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": 0.004220085470085493,
+          "bulk_positive_over_n2mu": 0.006177339178654417
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 7.0,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": 0.004220085470085493,
+          "bulk_positive_over_n2mu": 0.006177339178654417
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 8.0,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": 0.004220085470085493,
+          "bulk_positive_over_n2mu": 0.006177339178654417
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 5.109383899676659,
+        "exceptional_count": 40,
+        "class_counts": {
+          "dyadic_even_frequency_proxy": 8,
+          "unclassified": 32
+        },
+        "class_positive_mass": {
+          "dyadic_even_frequency_proxy": 44.27293450179225,
+          "unclassified": 0.0
+        },
+        "class_absolute_mass": {
+          "dyadic_even_frequency_proxy": 44.27293450179225,
+          "unclassified": 9.895476519878903
+        },
+        "classified_fraction": 0.19999999999999996,
+        "classified_positive_mass_fraction": 1.0,
+        "classified_absolute_mass_fraction": 0.8173201625589493,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.05,
+          "bohr_fraction_010": 0.15,
+          "bohr_fraction_020": 0.2
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 3,
+        "partitioned_nonzero_frequency_count": 288,
+        "bands": [
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 16,
+            "exact_density": 0.05536332179930796,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 16.0,
+            "repeated_moment_certified_L_rho_D_upper": 289.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 168,
+            "exact_density": 0.5813148788927336,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 168.0,
+            "repeated_moment_certified_L_rho_D_upper": 289.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 104,
+            "exact_density": 0.35986159169550175,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 104.0,
+            "repeated_moment_certified_L_rho_D_upper": 289.0
+          }
+        ],
+        "nonempty_complete_patterns": 21,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 16.0,
+          "N2": 256.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.047619047619047616,
+            "N2": 1.0
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.0
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 21,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 17016,
+            "tuple_density": 0.20373319284970248,
+            "exact_D": 0.5813148788927336,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 168.0,
+            "moment_certified_L_rho_D_upper": 289.0,
+            "exact_positive_log_rate": 0.3202477487127037,
+            "moment_certified_positive_log_rate": 0.354151668007027
+          },
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 9408,
+            "tuple_density": 0.1126423294740245,
+            "exact_D": 0.4954343620351295,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 143.18053062815244,
+            "moment_certified_L_rho_D_upper": 289.0,
+            "exact_positive_log_rate": 0.3102566428739144,
+            "moment_certified_positive_log_rate": 0.354151668007027
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k1"
+            ],
+            "tuple_count": 9408,
+            "tuple_density": 0.1126423294740245,
+            "exact_D": 0.4954343620351296,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 143.18053062815244,
+            "moment_certified_L_rho_D_upper": 289.0,
+            "exact_positive_log_rate": 0.3102566428739144,
+            "moment_certified_positive_log_rate": 0.354151668007027
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 17016,
+            "tuple_density": 0.20373319284970248,
+            "exact_D": 0.5813148788927336,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 168.0,
+            "moment_certified_L_rho_D_upper": 289.0,
+            "exact_positive_log_rate": 0.3202477487127037,
+            "moment_certified_positive_log_rate": 0.354151668007027
+          },
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 9408,
+            "tuple_density": 0.1126423294740245,
+            "exact_D": 0.4954343620351295,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 143.18053062815244,
+            "moment_certified_L_rho_D_upper": 289.0,
+            "exact_positive_log_rate": 0.3102566428739144,
+            "moment_certified_positive_log_rate": 0.354151668007027
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k1"
+            ],
+            "tuple_count": 9408,
+            "tuple_density": 0.1126423294740245,
+            "exact_D": 0.4954343620351296,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 143.18053062815244,
+            "moment_certified_L_rho_D_upper": 289.0,
+            "exact_positive_log_rate": 0.3102566428739144,
+            "moment_certified_positive_log_rate": 0.354151668007027
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      },
+      "triple_census": {
+        "skipped": false,
+        "order": 3,
+        "single_frequency_threshold_quantile": 0.9,
+        "single_frequency_threshold": 5.109383899676658,
+        "any_high_tuple_fraction": 0.3603368176538908,
+        "any_high_positive_share": 0.7695515091684716,
+        "any_high_absolute_share": 0.7725925803658822,
+        "product_score_threshold_same_fraction": 62.0706914431906,
+        "product_high_positive_share": 0.8468286543823892,
+        "product_high_absolute_share": 0.8154393157163855,
+        "fixed_geometric_mean_sweep": [
+          {
+            "sqrt_n_multiplier": 1.0,
+            "tuple_fraction": 0.3324622531939605,
+            "positive_share": 0.842682338022306,
+            "absolute_share": 0.7912657208623555
+          },
+          {
+            "sqrt_n_multiplier": 1.25,
+            "tuple_fraction": 0.00029036004645760743,
+            "positive_share": 0.348695638562487,
+            "absolute_share": 0.23462598017775857
+          },
+          {
+            "sqrt_n_multiplier": 1.5,
+            "tuple_fraction": 0.0,
+            "positive_share": 0.0,
+            "absolute_share": 0.0
+          },
+          {
+            "sqrt_n_multiplier": 1.75,
+            "tuple_fraction": 0.0,
+            "positive_share": 0.0,
+            "absolute_share": 0.0
+          },
+          {
+            "sqrt_n_multiplier": 2.0,
+            "tuple_fraction": 0.0,
+            "positive_share": 0.0,
+            "absolute_share": 0.0
+          }
+        ],
+        "interpretation": "compares any-large-single-frequency against tuple-product selection at matched density"
+      }
+    },
+    {
+      "name": "sg19_n18_w2_m9",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 19,
+        "n": 18,
+        "rank": 2,
+        "m": 9,
+        "frequency_count": 361
+      },
+      "fiber": {
+        "full_mass": 48620,
+        "image_size": 361,
+        "image_average": 134.6814404432133,
+        "max_fiber": 139,
+        "max_over_average": 1.0320649938296997
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": -118.52077562326939,
+        "positive_part_sum": 117.99911588354954,
+        "absolute_sum": 354.5190073903685,
+        "absolute_over_signed": 2.99119715953635,
+        "positive_over_signed": 0.995598579768175
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 4.143589706212593,
+          "exceptional_count": 198,
+          "exceptional_fraction": 0.55,
+          "bulk_signed": -2.9125814050750294,
+          "bulk_signed_over_n2mu": -6.674601007765472e-05,
+          "bulk_positive": 50.99333213664917,
+          "bulk_positive_over_n2mu": 0.0011685858650183555,
+          "bulk_absolute": 104.89924567837335,
+          "exceptional_signed": -115.60819421819434,
+          "exceptional_positive": 67.00578374690036,
+          "exceptional_absolute": 249.6197617119951,
+          "exceptional_positive_share": 0.5678498795959348,
+          "exceptional_absolute_share": 0.7041082607938519
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 4.9141848945049365,
+          "exceptional_count": 108,
+          "exceptional_fraction": 0.3,
+          "bulk_signed": 3.0621577287276107,
+          "bulk_signed_over_n2mu": 7.017376759492026e-05,
+          "bulk_positive": 60.6562036032391,
+          "bulk_positive_over_n2mu": 0.0013900245225488491,
+          "bulk_absolute": 118.25024947775059,
+          "exceptional_signed": -121.58293335199699,
+          "exceptional_positive": 57.34291228031044,
+          "exceptional_absolute": 236.2687579126179,
+          "exceptional_positive_share": 0.4859605247966499,
+          "exceptional_absolute_share": 0.666448774218916
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 5.054277300258489,
+          "exceptional_count": 36,
+          "exceptional_fraction": 0.1,
+          "bulk_signed": -13.45313058348322,
+          "bulk_signed_over_n2mu": -0.0003082979201668166,
+          "bulk_positive": 117.99911588354954,
+          "bulk_positive_over_n2mu": 0.002704120188432933,
+          "bulk_absolute": 249.4513623505823,
+          "exceptional_signed": -105.06764503978616,
+          "exceptional_positive": 0.0,
+          "exceptional_absolute": 105.06764503978616,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.29636674719698153
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 5.224772545798758,
+          "exceptional_count": 36,
+          "exceptional_fraction": 0.1,
+          "bulk_signed": -13.45313058348322,
+          "bulk_signed_over_n2mu": -0.0003082979201668166,
+          "bulk_positive": 117.99911588354954,
+          "bulk_positive_over_n2mu": 0.002704120188432933,
+          "bulk_absolute": 249.4513623505823,
+          "exceptional_signed": -105.06764503978616,
+          "exceptional_positive": 0.0,
+          "exceptional_absolute": 105.06764503978616,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.29636674719698153
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 5.224772545798758,
+          "exceptional_count": 36,
+          "exceptional_fraction": 0.1,
+          "bulk_signed": -13.45313058348322,
+          "bulk_signed_over_n2mu": -0.0003082979201668166,
+          "bulk_positive": 117.99911588354954,
+          "bulk_positive_over_n2mu": 0.002704120188432933,
+          "bulk_absolute": 249.4513623505823,
+          "exceptional_signed": -105.06764503978616,
+          "exceptional_positive": 0.0,
+          "exceptional_absolute": 105.06764503978616,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.29636674719698153
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 4.242640687119285,
+          "exceptional_count": 162,
+          "exceptional_fraction": 0.45,
+          "exceptional_positive_share": 0.5332870449388623,
+          "exceptional_absolute_share": 0.6926042684917606,
+          "bulk_signed_over_n2mu": 2.6716048888004898e-05,
+          "bulk_positive_over_n2mu": 0.0012620479239840148
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 5.303300858899106,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": -0.00271607477489832,
+          "bulk_positive_over_n2mu": 0.002704120188432933
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 6.363961030678928,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": -0.00271607477489832,
+          "bulk_positive_over_n2mu": 0.002704120188432933
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 7.424621202458749,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": -0.00271607477489832,
+          "bulk_positive_over_n2mu": 0.002704120188432933
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 8.48528137423857,
+          "exceptional_count": 0,
+          "exceptional_fraction": 0.0,
+          "exceptional_positive_share": 0.0,
+          "exceptional_absolute_share": 0.0,
+          "bulk_signed_over_n2mu": -0.00271607477489832,
+          "bulk_positive_over_n2mu": 0.002704120188432933
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 5.224772545798758,
+        "exceptional_count": 36,
+        "class_counts": {
+          "unclassified": 36
+        },
+        "class_positive_mass": {
+          "unclassified": 0.0
+        },
+        "class_absolute_mass": {
+          "unclassified": 105.06764503978611
+        },
+        "classified_fraction": 0.0,
+        "classified_positive_mass_fraction": 1.0,
+        "classified_absolute_mass_fraction": 0.0,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.05555555555555555,
+          "bohr_fraction_010": 0.16666666666666669,
+          "bohr_fraction_020": 0.2222222222222222
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 3,
+        "partitioned_nonzero_frequency_count": 360,
+        "bands": [
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 18,
+            "exact_density": 0.04986149584487535,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 18.0,
+            "repeated_moment_certified_L_rho_D_upper": 361.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 144,
+            "exact_density": 0.3988919667590028,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 144.0,
+            "repeated_moment_certified_L_rho_D_upper": 361.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 198,
+            "exact_density": 0.5484764542936288,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 198.0,
+            "repeated_moment_certified_L_rho_D_upper": 361.0
+          }
+        ],
+        "nonempty_complete_patterns": 21,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 18.0,
+          "N2": 324.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.047619047619047616,
+            "N2": 1.0
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.0
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 21,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 20322,
+            "tuple_density": 0.15593802994145226,
+            "exact_D": 0.5484764542936288,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 198.0,
+            "moment_certified_L_rho_D_upper": 361.0,
+            "exact_positive_log_rate": 0.29379261281636304,
+            "moment_certified_positive_log_rate": 0.32715988657404893
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 16704,
+            "tuple_density": 0.12817581203336378,
+            "exact_D": 0.4932386369998705,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 178.05914795695324,
+            "moment_certified_L_rho_D_upper": 361.0,
+            "exact_positive_log_rate": 0.28789532149935315,
+            "moment_certified_positive_log_rate": 0.32715988657404893
+          },
+          {
+            "labels": [
+              "k2",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 16704,
+            "tuple_density": 0.12817581203336378,
+            "exact_D": 0.4932386369998705,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 178.05914795695324,
+            "moment_certified_L_rho_D_upper": 361.0,
+            "exact_positive_log_rate": 0.28789532149935315,
+            "moment_certified_positive_log_rate": 0.32715988657404893
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 20322,
+            "tuple_density": 0.15593802994145226,
+            "exact_D": 0.5484764542936288,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 198.0,
+            "moment_certified_L_rho_D_upper": 361.0,
+            "exact_positive_log_rate": 0.29379261281636304,
+            "moment_certified_positive_log_rate": 0.32715988657404893
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 16704,
+            "tuple_density": 0.12817581203336378,
+            "exact_D": 0.4932386369998705,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 178.05914795695324,
+            "moment_certified_L_rho_D_upper": 361.0,
+            "exact_positive_log_rate": 0.28789532149935315,
+            "moment_certified_positive_log_rate": 0.32715988657404893
+          },
+          {
+            "labels": [
+              "k2",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 16704,
+            "tuple_density": 0.12817581203336378,
+            "exact_D": 0.4932386369998705,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 178.05914795695324,
+            "moment_certified_L_rho_D_upper": 361.0,
+            "exact_positive_log_rate": 0.28789532149935315,
+            "moment_certified_positive_log_rate": 0.32715988657404893
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      }
+    },
+    {
+      "name": "sg41_n8_w2_m4",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 41,
+        "n": 8,
+        "rank": 2,
+        "m": 4,
+        "frequency_count": 1681
+      },
+      "fiber": {
+        "full_mass": 70,
+        "image_size": 69,
+        "image_average": 1.0144927536231885,
+        "max_fiber": 2,
+        "max_over_average": 1.9714285714285713
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": 29.668054729327785,
+        "positive_part_sum": 39.74476411793488,
+        "absolute_sum": 49.82147350654198,
+        "absolute_over_signed": 1.6792969394549457,
+        "positive_over_signed": 1.3396484697274726
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 2.356122662513206,
+          "exceptional_count": 852,
+          "exceptional_fraction": 0.5071428571428571,
+          "bulk_signed": -0.6241657258735531,
+          "bulk_signed_over_n2mu": -0.23420146990925061,
+          "bulk_positive": 2.366797132527748,
+          "bulk_positive_over_n2mu": 0.8880772276292732,
+          "bulk_absolute": 5.357759990929049,
+          "exceptional_signed": 30.29222045520134,
+          "exceptional_positive": 37.37796698540713,
+          "exceptional_absolute": 44.46371351561292,
+          "exceptional_positive_share": 0.9404500898406457,
+          "exceptional_absolute_share": 0.8924608283569627
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 3.4924022979952527,
+          "exceptional_count": 428,
+          "exceptional_fraction": 0.25476190476190474,
+          "bulk_signed": -0.9225125363600846,
+          "bulk_signed_over_n2mu": -0.3461481191118978,
+          "bulk_positive": 3.6457515912453022,
+          "bulk_positive_over_n2mu": 1.3679706305543198,
+          "bulk_absolute": 8.214015718850689,
+          "exceptional_signed": 30.590567265687866,
+          "exceptional_positive": 36.09901252668958,
+          "exceptional_absolute": 41.60745778769129,
+          "exceptional_positive_share": 0.9082708962512084,
+          "exceptional_absolute_share": 0.8351310159910843
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 4.317117192470194,
+          "exceptional_count": 180,
+          "exceptional_fraction": 0.10714285714285714,
+          "bulk_signed": -0.4192769140134892,
+          "bulk_signed_over_n2mu": -0.15732243135193646,
+          "bulk_positive": 7.671426570271578,
+          "bulk_positive_over_n2mu": 2.878497335854134,
+          "bulk_absolute": 15.762130054556645,
+          "exceptional_signed": 30.087331643341273,
+          "exceptional_positive": 32.0733375476633,
+          "exceptional_absolute": 34.059343451985335,
+          "exceptional_positive_share": 0.8069827123012202,
+          "exceptional_absolute_share": 0.683627782456355
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 4.700413233730186,
+          "exceptional_count": 92,
+          "exceptional_fraction": 0.05476190476190476,
+          "bulk_signed": 7.852384863887476,
+          "bulk_signed_over_n2mu": 2.9463970884363495,
+          "bulk_positive": 15.943088348172541,
+          "bulk_positive_over_n2mu": 5.982216855642419,
+          "bulk_absolute": 24.03379183245761,
+          "exceptional_signed": 21.81566986544031,
+          "exceptional_positive": 23.801675769762337,
+          "exceptional_absolute": 25.787681674084364,
+          "exceptional_positive_share": 0.5988631785342965,
+          "exceptional_absolute_share": 0.5176017459760243
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 5.6717182630146885,
+          "exceptional_count": 24,
+          "exceptional_fraction": 0.014285714285714285,
+          "bulk_signed": 14.557757050910947,
+          "bulk_signed_over_n2mu": 5.462408393433326,
+          "bulk_positive": 24.634466439518043,
+          "bulk_positive_over_n2mu": 9.243423679649515,
+          "bulk_absolute": 34.711175828125135,
+          "exceptional_signed": 15.110297678416838,
+          "exceptional_positive": 15.110297678416838,
+          "exceptional_absolute": 15.110297678416838,
+          "exceptional_positive_share": 0.38018335279535087,
+          "exceptional_absolute_share": 0.3032888554858324
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 2.8284271247461903,
+          "exceptional_count": 580,
+          "exceptional_fraction": 0.34523809523809523,
+          "exceptional_positive_share": 0.9294490486000695,
+          "exceptional_absolute_share": 0.8719138625669132,
+          "bulk_signed_over_n2mu": -0.2901894763153226,
+          "bulk_positive_over_n2mu": 1.0521374953916036
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 3.5355339059327378,
+          "exceptional_count": 396,
+          "exceptional_fraction": 0.2357142857142857,
+          "exceptional_positive_share": 0.9075407502421545,
+          "exceptional_absolute_share": 0.8301828531458884,
+          "bulk_signed_over_n2mu": -0.4168723676962489,
+          "bulk_positive_over_n2mu": 1.3788594134550805
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 4.242640687119286,
+          "exceptional_count": 180,
+          "exceptional_fraction": 0.10714285714285714,
+          "exceptional_positive_share": 0.8069827123012202,
+          "exceptional_absolute_share": 0.683627782456355,
+          "bulk_signed_over_n2mu": -0.15732243135193646,
+          "bulk_positive_over_n2mu": 2.878497335854134
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 4.949747468305833,
+          "exceptional_count": 24,
+          "exceptional_fraction": 0.014285714285714285,
+          "exceptional_positive_share": 0.38018335279535087,
+          "exceptional_absolute_share": 0.3032888554858324,
+          "bulk_signed_over_n2mu": 5.462408393433326,
+          "bulk_positive_over_n2mu": 9.243423679649515
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 5.656854249492381,
+          "exceptional_count": 24,
+          "exceptional_fraction": 0.014285714285714285,
+          "exceptional_positive_share": 0.38018335279535087,
+          "exceptional_absolute_share": 0.3032888554858324,
+          "bulk_signed_over_n2mu": 5.462408393433326,
+          "bulk_positive_over_n2mu": 9.243423679649515
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 4.700413233730186,
+        "exceptional_count": 92,
+        "class_counts": {
+          "dyadic_even_frequency_proxy": 12,
+          "unclassified": 80
+        },
+        "class_positive_mass": {
+          "dyadic_even_frequency_proxy": 8.820111647431748,
+          "unclassified": 14.981564122330585
+        },
+        "class_absolute_mass": {
+          "dyadic_even_frequency_proxy": 8.820111647431748,
+          "unclassified": 16.967570026652627
+        },
+        "classified_fraction": 0.13043478260869568,
+        "classified_positive_mass_fraction": 0.37056683456871653,
+        "classified_absolute_mass_fraction": 0.3420280953869389,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.10869565217391304,
+          "bohr_fraction_010": 0.1956521739130435,
+          "bohr_fraction_020": 0.391304347826087
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 4,
+        "partitioned_nonzero_frequency_count": 1680,
+        "bands": [
+          {
+            "label": "lt1",
+            "dyadic_index": null,
+            "size": 192,
+            "exact_density": 0.11421772754312909,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 7.881023200475907,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 460,
+            "exact_density": 0.27364663890541346,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 18.88161808447353,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 768,
+            "exact_density": 0.45687091017251635,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 31.524092801903628,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 260,
+            "exact_density": 0.15466983938132065,
+            "moment_density_upper": 0.5,
+            "repeated_exact_L_rho_D": 10.672218917311124,
+            "repeated_moment_certified_L_rho_D_upper": 34.5
+          }
+        ],
+        "nonempty_complete_patterns": 64,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 8.0,
+          "N2": 64.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.015625,
+            "N2": 1.0
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.578125
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 27,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 266556,
+            "tuple_density": 0.09433069534189197,
+            "exact_D": 0.45687091017251635,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 31.524092801903628,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.4313440130420395,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k0"
+            ],
+            "tuple_count": 162956,
+            "tuple_density": 0.057668005185151895,
+            "exact_D": 0.38511672269342195,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 26.573053865846116,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.40998721122268406,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k0",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 162956,
+            "tuple_density": 0.057668005185151895,
+            "exact_D": 0.3851167226934219,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 26.57305386584611,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.409987211222684,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 266556,
+            "tuple_density": 0.09433069534189197,
+            "exact_D": 0.45687091017251635,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 31.524092801903628,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.4313440130420395,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k0"
+            ],
+            "tuple_count": 162956,
+            "tuple_density": 0.057668005185151895,
+            "exact_D": 0.38511672269342195,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 26.573053865846116,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.40998721122268406,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k0",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 162956,
+            "tuple_density": 0.057668005185151895,
+            "exact_D": 0.3851167226934219,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 26.57305386584611,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.409987211222684,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      }
+    },
+    {
+      "name": "sg17_n8_w3_m4",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 17,
+        "n": 8,
+        "rank": 3,
+        "m": 4,
+        "frequency_count": 4913
+      },
+      "fiber": {
+        "full_mass": 70,
+        "image_size": 69,
+        "image_average": 1.0144927536231885,
+        "max_fiber": 2,
+        "max_over_average": 1.9714285714285713
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": 31.202116832892322,
+        "positive_part_sum": 41.6817734132973,
+        "absolute_sum": 52.16142999370227,
+        "absolute_over_signed": 1.671727282897527,
+        "positive_over_signed": 1.3358636414487637
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 2.4235035652422345,
+          "exceptional_count": 2480,
+          "exceptional_fraction": 0.504885993485342,
+          "bulk_signed": -0.09351540449493882,
+          "bulk_signed_over_n2mu": -0.1025538353311684,
+          "bulk_positive": 2.4935956353977797,
+          "bulk_positive_over_n2mu": 2.734606106408324,
+          "bulk_absolute": 5.080706675290499,
+          "exceptional_signed": 31.295632237387267,
+          "exceptional_positive": 39.18817777789952,
+          "exceptional_absolute": 47.08072331841177,
+          "exceptional_positive_share": 0.9401753948740992,
+          "exceptional_absolute_share": 0.9025964841089686
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 3.381050199906516,
+          "exceptional_count": 1232,
+          "exceptional_fraction": 0.250814332247557,
+          "bulk_signed": 0.019058019308491936,
+          "bulk_signed_over_n2mu": 0.020900010906835017,
+          "bulk_positive": 3.4578348859242807,
+          "bulk_positive_over_n2mu": 3.7920408023540157,
+          "bulk_absolute": 6.896611752540069,
+          "exceptional_signed": 31.183058813583834,
+          "exceptional_positive": 38.223938527373015,
+          "exceptional_absolute": 45.2648182411622,
+          "exceptional_positive_share": 0.9170420401349534,
+          "exceptional_absolute_share": 0.8677833074481905
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 4.315480164867285,
+          "exceptional_count": 492,
+          "exceptional_fraction": 0.1001628664495114,
+          "bulk_signed": 2.029805397196332,
+          "bulk_signed_over_n2mu": 2.225989713487852,
+          "bulk_positive": 8.702226147582149,
+          "bulk_positive_over_n2mu": 9.543311844435513,
+          "bulk_absolute": 15.374646897967965,
+          "exceptional_signed": 29.172311435695992,
+          "exceptional_positive": 32.97954726571515,
+          "exceptional_absolute": 36.78678309573431,
+          "exceptional_positive_share": 0.7912222673134639,
+          "exceptional_absolute_share": 0.7052487460596033
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 4.608160817193317,
+          "exceptional_count": 252,
+          "exceptional_fraction": 0.05130293159609121,
+          "bulk_signed": 5.983379400952824,
+          "bulk_signed_over_n2mu": 6.561683704660988,
+          "bulk_positive": 15.042993434240753,
+          "bulk_positive_over_n2mu": 16.496925612148395,
+          "bulk_absolute": 24.102607467528685,
+          "exceptional_signed": 25.2187374319395,
+          "exceptional_positive": 26.638779979056544,
+          "exceptional_absolute": 28.058822526173582,
+          "exceptional_positive_share": 0.6390990065350303,
+          "exceptional_absolute_share": 0.537922800996086
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 5.923695670318679,
+          "exceptional_count": 64,
+          "exceptional_fraction": 0.013029315960912053,
+          "bulk_signed": 16.29793542217009,
+          "bulk_signed_over_n2mu": 17.87315998417894,
+          "bulk_positive": 26.777592002575066,
+          "bulk_positive_over_n2mu": 29.36569408675252,
+          "bulk_absolute": 37.25724858298004,
+          "exceptional_signed": 14.90418141072223,
+          "exceptional_positive": 14.90418141072223,
+          "exceptional_absolute": 14.90418141072223,
+          "exceptional_positive_share": 0.3575707123336433,
+          "exceptional_absolute_share": 0.2857318407973419
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 2.8284271247461903,
+          "exceptional_count": 1984,
+          "exceptional_fraction": 0.40390879478827363,
+          "exceptional_positive_share": 0.9354149792963868,
+          "exceptional_absolute_share": 0.8916668544603995,
+          "bulk_signed_over_n2mu": -0.29255970710344203,
+          "bulk_positive_over_n2mu": 2.9522065649563998
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 3.5355339059327378,
+          "exceptional_count": 1120,
+          "exceptional_fraction": 0.2280130293159609,
+          "exceptional_positive_share": 0.9112847483737526,
+          "exceptional_absolute_share": 0.8572771039294301,
+          "bulk_signed_over_n2mu": -0.05374944683058268,
+          "bulk_positive_over_n2mu": 4.055208861272603
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 4.242640687119286,
+          "exceptional_count": 572,
+          "exceptional_fraction": 0.11644951140065146,
+          "exceptional_positive_share": 0.8383698839182795,
+          "exceptional_absolute_share": 0.7535050334910263,
+          "bulk_signed_over_n2mu": 0.6761185184079999,
+          "bulk_positive_over_n2mu": 7.388175843139822
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 4.949747468305833,
+          "exceptional_count": 140,
+          "exceptional_fraction": 0.028501628664495113,
+          "exceptional_positive_share": 0.5098972396303498,
+          "exceptional_absolute_share": 0.43467872250037104,
+          "bulk_signed_over_n2mu": 12.46754701947488,
+          "bulk_positive_over_n2mu": 22.402788926962288
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 5.656854249492381,
+          "exceptional_count": 92,
+          "exceptional_fraction": 0.018729641693811076,
+          "exceptional_positive_share": 0.4830312740829585,
+          "exceptional_absolute_share": 0.3859863527570662,
+          "bulk_signed_over_n2mu": 12.138308620746228,
+          "bulk_positive_over_n2mu": 23.630842723319805
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 4.608160817193317,
+        "exceptional_count": 252,
+        "class_counts": {
+          "dyadic_even_frequency_proxy": 4,
+          "unclassified": 248
+        },
+        "class_positive_mass": {
+          "dyadic_even_frequency_proxy": 0.7403775395450498,
+          "unclassified": 25.898402439511457
+        },
+        "class_absolute_mass": {
+          "dyadic_even_frequency_proxy": 0.7403775395450498,
+          "unclassified": 27.31844498662849
+        },
+        "classified_fraction": 0.015873015873015928,
+        "classified_positive_mass_fraction": 0.027793222517215055,
+        "classified_absolute_mass_fraction": 0.02638662184966667,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.06349206349206349,
+          "bohr_fraction_010": 0.15873015873015872,
+          "bohr_fraction_020": 0.40476190476190477
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 4,
+        "partitioned_nonzero_frequency_count": 4912,
+        "bands": [
+          {
+            "label": "lt1",
+            "dyadic_index": null,
+            "size": 656,
+            "exact_density": 0.13352330551597802,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 9.213108080602483,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 1240,
+            "exact_density": 0.2523916140850804,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 17.415021371870544,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 2304,
+            "exact_density": 0.4689599023000204,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 32.358233258701404,
+            "repeated_moment_certified_L_rho_D_upper": 69.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 712,
+            "exact_density": 0.14492163647465905,
+            "moment_density_upper": 0.5,
+            "repeated_exact_L_rho_D": 9.999592916751475,
+            "repeated_moment_certified_L_rho_D_upper": 34.5
+          }
+        ],
+        "nonempty_complete_patterns": 64,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 8.0,
+          "N2": 64.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 1.0
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.578125
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 27,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 2473392,
+            "tuple_density": 0.10247063405598136,
+            "exact_D": 0.4689599023000204,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 32.358233258701404,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.43460856178054913,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k0",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 1345120,
+            "tuple_density": 0.055727235828927094,
+            "exact_D": 0.3814598035260604,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 26.320726443298167,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.40879458831318666,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k1",
+              "k0",
+              "k1"
+            ],
+            "tuple_count": 1345120,
+            "tuple_density": 0.055727235828927094,
+            "exact_D": 0.3814598035260604,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 26.320726443298167,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.40879458831318666,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 2473392,
+            "tuple_density": 0.10247063405598136,
+            "exact_D": 0.4689599023000204,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 32.358233258701404,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.43460856178054913,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k0",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 1345120,
+            "tuple_density": 0.055727235828927094,
+            "exact_D": 0.3814598035260604,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 26.320726443298167,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.40879458831318666,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          },
+          {
+            "labels": [
+              "k1",
+              "k0",
+              "k1"
+            ],
+            "tuple_count": 1345120,
+            "tuple_density": 0.055727235828927094,
+            "exact_D": 0.3814598035260604,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 26.320726443298167,
+            "moment_certified_L_rho_D_upper": 69.0,
+            "exact_positive_log_rate": 0.40879458831318666,
+            "moment_certified_positive_log_rate": 0.5292633130746575
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      }
+    },
+    {
+      "name": "sg17_n16_w3_m8",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 17,
+        "n": 16,
+        "rank": 3,
+        "m": 8,
+        "frequency_count": 4913
+      },
+      "fiber": {
+        "full_mass": 12870,
+        "image_size": 4881,
+        "image_average": 2.6367547633681623,
+        "max_fiber": 7,
+        "max_over_average": 2.654778554778555
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": -4.699369020964838,
+        "positive_part_sum": 270.34486069395575,
+        "absolute_sum": 545.3890904088763,
+        "absolute_over_signed": 116.05581259436853,
+        "positive_over_signed": 57.527906297184266
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 3.527874238509382,
+          "exceptional_count": 2504,
+          "exceptional_fraction": 0.509771986970684,
+          "bulk_signed": 0.9096962436935623,
+          "bulk_signed_over_n2mu": 0.0013565151652542467,
+          "bulk_positive": 10.624922815306055,
+          "bulk_positive_over_n2mu": 0.015843606070196754,
+          "bulk_absolute": 20.340149386918547,
+          "exceptional_signed": -5.609065264658394,
+          "exceptional_positive": 259.7199378786497,
+          "exceptional_absolute": 525.0489410219577,
+          "exceptional_positive_share": 0.96069863215438,
+          "exceptional_absolute_share": 0.9627052507198675
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 4.729530251488934,
+          "exceptional_count": 1320,
+          "exceptional_fraction": 0.2687296416938111,
+          "bulk_signed": 12.267084053242193,
+          "bulk_signed_over_n2mu": 0.018292353812639283,
+          "bulk_positive": 26.90509836745359,
+          "bulk_positive_over_n2mu": 0.04012017660963587,
+          "bulk_absolute": 41.54311268166499,
+          "exceptional_signed": -16.96645307420703,
+          "exceptional_positive": 243.43976232650215,
+          "exceptional_absolute": 503.84597772721133,
+          "exceptional_positive_share": 0.900478602410306,
+          "exceptional_absolute_share": 0.9238284860987589
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 6.4230865553024215,
+          "exceptional_count": 512,
+          "exceptional_fraction": 0.10423452768729642,
+          "bulk_signed": 16.68512563418469,
+          "bulk_signed_over_n2mu": 0.024880421474586422,
+          "bulk_positive": 76.60835088276592,
+          "bulk_positive_over_n2mu": 0.11423636238801141,
+          "bulk_absolute": 136.53157613134715,
+          "exceptional_signed": -21.384494655149517,
+          "exceptional_positive": 193.73650981118982,
+          "exceptional_absolute": 408.85751427752916,
+          "exceptional_positive_share": 0.7166273082235859,
+          "exceptional_absolute_share": 0.749662069644646
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 6.823985877861959,
+          "exceptional_count": 272,
+          "exceptional_fraction": 0.05537459283387622,
+          "bulk_signed": 0.24929478721114995,
+          "bulk_signed_over_n2mu": 0.0003717418443959971,
+          "bulk_positive": 97.30673240868003,
+          "bulk_positive_over_n2mu": 0.14510124572766275,
+          "bulk_absolute": 194.3641700301489,
+          "exceptional_signed": -4.948663808175982,
+          "exceptional_positive": 173.03812828527572,
+          "exceptional_absolute": 351.0249203787274,
+          "exceptional_positive_share": 0.6400644267514438,
+          "exceptional_absolute_share": 0.6436229227019654
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 7.756614089413465,
+          "exceptional_count": 80,
+          "exceptional_fraction": 0.016286644951140065,
+          "bulk_signed": 9.697409535404098,
+          "bulk_signed_over_n2mu": 0.014460522608124617,
+          "bulk_positive": 136.13549161562543,
+          "bulk_positive_over_n2mu": 0.20300167246611783,
+          "bulk_absolute": 262.5735736958468,
+          "exceptional_signed": -14.39677855636893,
+          "exceptional_positive": 134.20936907833033,
+          "exceptional_absolute": 282.8155167130295,
+          "exceptional_positive_share": 0.4964376564578463,
+          "exceptional_absolute_share": 0.5185573413303953
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 4.0,
+          "exceptional_count": 2008,
+          "exceptional_fraction": 0.40879478827361565,
+          "exceptional_positive_share": 0.9535101175051168,
+          "exceptional_absolute_share": 0.9537535160957666,
+          "bulk_signed_over_n2mu": -0.0001278326263428654,
+          "bulk_positive_over_n2mu": 0.01874152033058951
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 5.0,
+          "exceptional_count": 1048,
+          "exceptional_fraction": 0.21335504885993486,
+          "exceptional_positive_share": 0.8804551657214152,
+          "exceptional_absolute_share": 0.8986996955392389,
+          "bulk_signed_over_n2mu": 0.014000007437093311,
+          "bulk_positive_over_n2mu": 0.04819224790029622
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 6.0,
+          "exceptional_count": 672,
+          "exceptional_fraction": 0.13680781758957655,
+          "exceptional_positive_share": 0.729829259068539,
+          "exceptional_absolute_share": 0.8119079541439735,
+          "bulk_signed_over_n2mu": 0.06485889010817109,
+          "bulk_positive_over_n2mu": 0.10891424460912986
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 7.0,
+          "exceptional_count": 176,
+          "exceptional_fraction": 0.035830618892508145,
+          "exceptional_positive_share": 0.5584081548841395,
+          "exceptional_absolute_share": 0.6031465841925091,
+          "bulk_signed_over_n2mu": 0.03328992957028808,
+          "bulk_positive_over_n2mu": 0.17801943345355484
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 8.0,
+          "exceptional_count": 48,
+          "exceptional_fraction": 0.009771986970684038,
+          "exceptional_positive_share": 0.4964376564578462,
+          "exceptional_absolute_share": 0.4847870832104143,
+          "bulk_signed_over_n2mu": -0.013003811797658086,
+          "bulk_positive_over_n2mu": 0.20300167246611783
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 6.823985877861959,
+        "exceptional_count": 272,
+        "class_counts": {
+          "unclassified": 272
+        },
+        "class_positive_mass": {
+          "unclassified": 173.0381282852757
+        },
+        "class_absolute_mass": {
+          "unclassified": 351.02492037872895
+        },
+        "classified_fraction": 0.0,
+        "classified_positive_mass_fraction": 0.0,
+        "classified_absolute_mass_fraction": 0.0,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.04411764705882353,
+          "bohr_fraction_010": 0.13970588235294118,
+          "bohr_fraction_020": 0.34558823529411764
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 5,
+        "partitioned_nonzero_frequency_count": 4912,
+        "bands": [
+          {
+            "label": "lt1",
+            "dyadic_index": null,
+            "size": 368,
+            "exact_density": 0.07490331772847547,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 365.6030938326888,
+            "repeated_moment_certified_L_rho_D_upper": 4881.0
+          },
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 912,
+            "exact_density": 0.1856299613270914,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 906.0598412375331,
+            "repeated_moment_certified_L_rho_D_upper": 4881.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 1624,
+            "exact_density": 0.3305515978017505,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 1613.422348870344,
+            "repeated_moment_certified_L_rho_D_upper": 4881.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 1960,
+            "exact_density": 0.39894158355383674,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 1947.233869326277,
+            "repeated_moment_certified_L_rho_D_upper": 4881.0
+          },
+          {
+            "label": "k3",
+            "dyadic_index": 3,
+            "size": 48,
+            "exact_density": 0.009769997964583757,
+            "moment_density_upper": 0.09375,
+            "repeated_exact_L_rho_D": 47.68736006513332,
+            "repeated_moment_certified_L_rho_D_upper": 457.59375
+          }
+        ],
+        "nonempty_complete_patterns": 121,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 16.0,
+          "N2": 256.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.1487603305785124
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.0
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 121,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 1599576,
+            "tuple_density": 0.06626914251389608,
+            "exact_D": 0.3989415835538368,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 1947.2338693262775,
+            "moment_certified_L_rho_D_upper": 4881.0,
+            "exact_positive_log_rate": 0.4733853197464414,
+            "moment_certified_positive_log_rate": 0.5308190872429467
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 1237024,
+            "tuple_density": 0.05124890580323147,
+            "exact_D": 0.3747019544668124,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 1828.9202397525114,
+            "moment_certified_L_rho_D_upper": 4881.0,
+            "exact_positive_log_rate": 0.4694675649234635,
+            "moment_certified_positive_log_rate": 0.5308190872429467
+          },
+          {
+            "labels": [
+              "k2",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 1237024,
+            "tuple_density": 0.05124890580323147,
+            "exact_D": 0.3747019544668124,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 1828.9202397525114,
+            "moment_certified_L_rho_D_upper": 4881.0,
+            "exact_positive_log_rate": 0.4694675649234635,
+            "moment_certified_positive_log_rate": 0.5308190872429467
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 1599576,
+            "tuple_density": 0.06626914251389608,
+            "exact_D": 0.3989415835538368,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 1947.2338693262775,
+            "moment_certified_L_rho_D_upper": 4881.0,
+            "exact_positive_log_rate": 0.4733853197464414,
+            "moment_certified_positive_log_rate": 0.5308190872429467
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 1237024,
+            "tuple_density": 0.05124890580323147,
+            "exact_D": 0.3747019544668124,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 1828.9202397525114,
+            "moment_certified_L_rho_D_upper": 4881.0,
+            "exact_positive_log_rate": 0.4694675649234635,
+            "moment_certified_positive_log_rate": 0.5308190872429467
+          },
+          {
+            "labels": [
+              "k2",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 1237024,
+            "tuple_density": 0.05124890580323147,
+            "exact_D": 0.3747019544668124,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 1828.9202397525114,
+            "moment_certified_L_rho_D_upper": 4881.0,
+            "exact_positive_log_rate": 0.4694675649234635,
+            "moment_certified_positive_log_rate": 0.5308190872429467
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      }
+    },
+    {
+      "name": "sg73_n24_w2_m12",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 73,
+        "n": 24,
+        "rank": 2,
+        "m": 12,
+        "frequency_count": 5329
+      },
+      "fiber": {
+        "full_mass": 2704156,
+        "image_size": 5329,
+        "image_average": 507.44154625633325,
+        "max_fiber": 592,
+        "max_over_average": 1.1666368360405244
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": 4700.266466504025,
+        "positive_part_sum": 9433.706871919088,
+        "absolute_sum": 14167.14727733415,
+        "absolute_over_signed": 3.0141157694558167,
+        "positive_over_signed": 2.0070578847279084
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 4.059488543677961,
+          "exceptional_count": 2688,
+          "exceptional_fraction": 0.5045045045045045,
+          "bulk_signed": 102.87636480634521,
+          "bulk_signed_over_n2mu": 0.00035197118038260525,
+          "bulk_positive": 158.14708826042548,
+          "bulk_positive_over_n2mu": 0.0005410690534592141,
+          "bulk_absolute": 213.41781171450575,
+          "exceptional_signed": 4597.39010169768,
+          "exceptional_positive": 9275.559783658662,
+          "exceptional_absolute": 13953.729465619646,
+          "exceptional_positive_share": 0.9832359548152618,
+          "exceptional_absolute_share": 0.984935724353205
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 5.652959007235665,
+          "exceptional_count": 1344,
+          "exceptional_fraction": 0.25225225225225223,
+          "bulk_signed": 111.9593864084701,
+          "bulk_signed_over_n2mu": 0.0003830469463348584,
+          "bulk_positive": 199.74738856416332,
+          "bulk_positive_over_n2mu": 0.0006833962714722126,
+          "bulk_absolute": 287.53539071985665,
+          "exceptional_signed": 4588.307080095555,
+          "exceptional_positive": 9233.959483354925,
+          "exceptional_absolute": 13879.611886614295,
+          "exceptional_positive_share": 0.9788262036041482,
+          "exceptional_absolute_share": 0.9797040727331268
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 7.411482126255406,
+          "exceptional_count": 564,
+          "exceptional_fraction": 0.10585585585585586,
+          "bulk_signed": -92.3231418820778,
+          "bulk_signed_over_n2mu": -0.0003158654107387495,
+          "bulk_positive": 514.6855597864695,
+          "bulk_positive_over_n2mu": 0.0017608950738581344,
+          "bulk_absolute": 1121.694261455017,
+          "exceptional_signed": 4792.589608386103,
+          "exceptional_positive": 8919.02131213262,
+          "exceptional_absolute": 13045.453015879135,
+          "exceptional_positive_share": 0.9454418536875986,
+          "exceptional_absolute_share": 0.9208242676174052
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 8.323477267242298,
+          "exceptional_count": 300,
+          "exceptional_fraction": 0.05630630630630631,
+          "bulk_signed": 903.9310741436555,
+          "bulk_signed_over_n2mu": 0.003092621786838597,
+          "bulk_positive": 1510.9397758122027,
+          "bulk_positive_over_n2mu": 0.005169382271435481,
+          "bulk_absolute": 2117.9484774807497,
+          "exceptional_signed": 3796.3353923603695,
+          "exceptional_positive": 7922.767096106886,
+          "exceptional_absolute": 12049.198799853402,
+          "exceptional_positive_share": 0.8398360478732118,
+          "exceptional_absolute_share": 0.8505028262909903
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 9.756380806983172,
+          "exceptional_count": 96,
+          "exceptional_fraction": 0.018018018018018018,
+          "bulk_signed": 7017.074080491751,
+          "bulk_signed_over_n2mu": 0.024007534204693568,
+          "bulk_positive": 7624.082782160298,
+          "bulk_positive_over_n2mu": 0.02608429468929045,
+          "bulk_absolute": 8231.091483828845,
+          "exceptional_signed": -2316.8076139877267,
+          "exceptional_positive": 1809.6240897587895,
+          "exceptional_absolute": 5936.055793505305,
+          "exceptional_positive_share": 0.19182534652898958,
+          "exceptional_absolute_share": 0.4190014882532018
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 4.898979485566356,
+          "exceptional_count": 1944,
+          "exceptional_fraction": 0.36486486486486486,
+          "exceptional_positive_share": 0.9806690536801871,
+          "exceptional_absolute_share": 0.9826865207218235,
+          "bulk_signed_over_n2mu": 0.0004086484345532285,
+          "bulk_positive_over_n2mu": 0.0006239172414814392
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 6.123724356957945,
+          "exceptional_count": 1092,
+          "exceptional_fraction": 0.20495495495495494,
+          "exceptional_positive_share": 0.9701583584678403,
+          "exceptional_absolute_share": 0.9717413005530271,
+          "bulk_signed_over_n2mu": 0.0005566098157690527,
+          "bulk_positive_over_n2mu": 0.0009631558826967606
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 7.348469228349534,
+          "exceptional_count": 564,
+          "exceptional_fraction": 0.10585585585585586,
+          "exceptional_positive_share": 0.9454418536875986,
+          "exceptional_absolute_share": 0.9208242676174052,
+          "bulk_signed_over_n2mu": -0.0003158654107387495,
+          "bulk_positive_over_n2mu": 0.0017608950738581344
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 8.573214099741122,
+          "exceptional_count": 204,
+          "exceptional_fraction": 0.038288288288288286,
+          "exceptional_positive_share": 0.6558928700415385,
+          "exceptional_absolute_share": 0.7280176154871524,
+          "bulk_signed_over_n2mu": 0.0090294920364053,
+          "bulk_positive_over_n2mu": 0.011106252521002183
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 9.797958971132712,
+          "exceptional_count": 48,
+          "exceptional_fraction": 0.009009009009009009,
+          "exceptional_positive_share": 0.1918253465289896,
+          "exceptional_absolute_share": 0.12773383761274126,
+          "bulk_signed_over_n2mu": 0.009889762447596198,
+          "bulk_positive_over_n2mu": 0.026084294689290452
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 8.323477267242298,
+        "exceptional_count": 300,
+        "class_counts": {
+          "dyadic_even_frequency_proxy": 12,
+          "unclassified": 288
+        },
+        "class_positive_mass": {
+          "dyadic_even_frequency_proxy": 219.83245952393543,
+          "unclassified": 7702.9346365829515
+        },
+        "class_absolute_mass": {
+          "dyadic_even_frequency_proxy": 219.83245952393543,
+          "unclassified": 11829.366340329469
+        },
+        "classified_fraction": 0.040000000000000036,
+        "classified_positive_mass_fraction": 0.027746929432263312,
+        "classified_absolute_mass_fraction": 0.018244570711756336,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.08,
+          "bohr_fraction_010": 0.23333333333333334,
+          "bohr_fraction_020": 0.44666666666666666
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 5,
+        "partitioned_nonzero_frequency_count": 5328,
+        "bands": [
+          {
+            "label": "lt1",
+            "dyadic_index": null,
+            "size": 252,
+            "exact_density": 0.04728842184274723,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 252.0,
+            "repeated_moment_certified_L_rho_D_upper": 5329.0
+          },
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 360,
+            "exact_density": 0.06755488834678176,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 360.0,
+            "repeated_moment_certified_L_rho_D_upper": 5329.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 1836,
+            "exact_density": 0.344529930568587,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 1836.0,
+            "repeated_moment_certified_L_rho_D_upper": 5329.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 2520,
+            "exact_density": 0.4728842184274723,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 2520.0,
+            "repeated_moment_certified_L_rho_D_upper": 5329.0
+          },
+          {
+            "label": "k3",
+            "dyadic_index": 3,
+            "size": 360,
+            "exact_density": 0.06755488834678176,
+            "moment_density_upper": 0.28125,
+            "repeated_exact_L_rho_D": 360.0,
+            "repeated_moment_certified_L_rho_D_upper": 1498.78125
+          }
+        ],
+        "nonempty_complete_patterns": 125,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 24.0,
+          "N2": 576.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.36
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.0
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 125,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 3007404,
+            "tuple_density": 0.10590106619631828,
+            "exact_D": 0.4728842184274723,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2520.0,
+            "moment_certified_L_rho_D_upper": 5329.0,
+            "exact_positive_log_rate": 0.3263339241877279,
+            "moment_certified_positive_log_rate": 0.35753828676236593
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 2185248,
+            "tuple_density": 0.07695011814288075,
+            "exact_D": 0.4255123791391183,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2267.5554684323615,
+            "moment_certified_L_rho_D_upper": 5329.0,
+            "exact_positive_log_rate": 0.32193573516932467,
+            "moment_certified_positive_log_rate": 0.35753828676236593
+          },
+          {
+            "labels": [
+              "k2",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 2185248,
+            "tuple_density": 0.07695011814288075,
+            "exact_D": 0.4255123791391183,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2267.5554684323615,
+            "moment_certified_L_rho_D_upper": 5329.0,
+            "exact_positive_log_rate": 0.32193573516932467,
+            "moment_certified_positive_log_rate": 0.35753828676236593
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 3007404,
+            "tuple_density": 0.10590106619631828,
+            "exact_D": 0.4728842184274723,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2520.0,
+            "moment_certified_L_rho_D_upper": 5329.0,
+            "exact_positive_log_rate": 0.3263339241877279,
+            "moment_certified_positive_log_rate": 0.35753828676236593
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 2185248,
+            "tuple_density": 0.07695011814288075,
+            "exact_D": 0.4255123791391183,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2267.5554684323615,
+            "moment_certified_L_rho_D_upper": 5329.0,
+            "exact_positive_log_rate": 0.32193573516932467,
+            "moment_certified_positive_log_rate": 0.35753828676236593
+          },
+          {
+            "labels": [
+              "k2",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 2185248,
+            "tuple_density": 0.07695011814288075,
+            "exact_D": 0.4255123791391183,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2267.5554684323615,
+            "moment_certified_L_rho_D_upper": 5329.0,
+            "exact_positive_log_rate": 0.32193573516932467,
+            "moment_certified_positive_log_rate": 0.35753828676236593
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      }
+    },
+    {
+      "name": "sg97_n16_w2_m8",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 97,
+        "n": 16,
+        "rank": 2,
+        "m": 8,
+        "frequency_count": 9409
+      },
+      "fiber": {
+        "full_mass": 12870,
+        "image_size": 6225,
+        "image_average": 2.067469879518072,
+        "max_fiber": 8,
+        "max_over_average": 3.86946386946387
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": 695.7185673291532,
+        "positive_part_sum": 1047.9848100043985,
+        "absolute_sum": 1400.251052679644,
+        "absolute_over_signed": 2.012668798038802,
+        "positive_over_signed": 1.5063343990194007
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 3.3626416668622294,
+          "exceptional_count": 4720,
+          "exceptional_fraction": 0.5017006802721088,
+          "bulk_signed": -5.6805396354648625,
+          "bulk_signed_over_n2mu": -0.016222379270496093,
+          "bulk_positive": 13.868030264647373,
+          "bulk_positive_over_n2mu": 0.03960406248787974,
+          "bulk_absolute": 33.416600164759615,
+          "exceptional_signed": 701.3991069646181,
+          "exceptional_positive": 1034.116779739751,
+          "exceptional_absolute": 1366.8344525148843,
+          "exceptional_positive_share": 0.986766954890702,
+          "exceptional_absolute_share": 0.9761352793837856
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 4.529065215960855,
+          "exceptional_count": 2360,
+          "exceptional_fraction": 0.2508503401360544,
+          "bulk_signed": -11.527399326334947,
+          "bulk_signed_over_n2mu": -0.0329197322569097,
+          "bulk_positive": 17.266612294207327,
+          "bulk_positive_over_n2mu": 0.04930966973709351,
+          "bulk_absolute": 46.0606239147496,
+          "exceptional_signed": 707.245966655488,
+          "exceptional_positive": 1030.7181977101911,
+          "exceptional_absolute": 1354.1904287648942,
+          "exceptional_positive_share": 0.9835239861023035,
+          "exceptional_absolute_share": 0.9671054531067096
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 6.317987302180607,
+          "exceptional_count": 968,
+          "exceptional_fraction": 0.10289115646258504,
+          "bulk_signed": -41.456296060634585,
+          "bulk_signed_over_n2mu": -0.11839011801746759,
+          "bulk_positive": 68.66179702894794,
+          "bulk_positive_over_n2mu": 0.19608308088255488,
+          "bulk_absolute": 178.7798901185305,
+          "exceptional_signed": 737.1748633897878,
+          "exceptional_positive": 979.3230129754504,
+          "exceptional_absolute": 1221.4711625611133,
+          "exceptional_positive_share": 0.9344820684675192,
+          "exceptional_absolute_share": 0.8723229739578472
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 6.955406089012598,
+          "exceptional_count": 472,
+          "exceptional_fraction": 0.050170068027210885,
+          "bulk_signed": -55.72952204542147,
+          "bulk_signed_over_n2mu": -0.15915133089469533,
+          "bulk_positive": 133.0301437662844,
+          "bulk_positive_over_n2mu": 0.3799050064032664,
+          "bulk_absolute": 321.78980957799024,
+          "exceptional_signed": 751.4480893745746,
+          "exceptional_positive": 914.954666238114,
+          "exceptional_absolute": 1078.4612431016537,
+          "exceptional_positive_share": 0.8730610000294506,
+          "exceptional_absolute_share": 0.7701913460717027
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 8.004163941472664,
+          "exceptional_count": 112,
+          "exceptional_fraction": 0.011904761904761904,
+          "bulk_signed": -48.73874969182921,
+          "bulk_signed_over_n2mu": -0.1391872134355639,
+          "bulk_positive": 303.52749298341615,
+          "bulk_positive_over_n2mu": 0.866808160171718,
+          "bulk_absolute": 655.7937356586615,
+          "exceptional_signed": 744.4573170209824,
+          "exceptional_positive": 744.4573170209824,
+          "exceptional_absolute": 744.4573170209824,
+          "exceptional_positive_share": 0.7103703316251863,
+          "exceptional_absolute_share": 0.5316598874154196
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 4.0,
+          "exceptional_count": 3296,
+          "exceptional_fraction": 0.35034013605442177,
+          "exceptional_positive_share": 0.9843338943842768,
+          "exceptional_absolute_share": 0.9720962164260106,
+          "bulk_signed_over_n2mu": -0.017810425754810476,
+          "bulk_positive_over_n2mu": 0.04688576367890449
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 5.0,
+          "exceptional_count": 1880,
+          "exceptional_fraction": 0.19982993197278912,
+          "exceptional_positive_share": 0.9796729364163514,
+          "exceptional_absolute_share": 0.9593819771648187,
+          "bulk_signed_over_n2mu": -0.04075348945256729,
+          "bulk_positive_over_n2mu": 0.06083515092049958
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 6.0,
+          "exceptional_count": 1064,
+          "exceptional_fraction": 0.1130952380952381,
+          "exceptional_positive_share": 0.9464047760888131,
+          "exceptional_absolute_share": 0.8944331760417937,
+          "bulk_signed_over_n2mu": -0.10134052984488315,
+          "bulk_positive_over_n2mu": 0.1604006167362899
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 7.0,
+          "exceptional_count": 408,
+          "exceptional_fraction": 0.04336734693877551,
+          "exceptional_positive_share": 0.8730610000294508,
+          "exceptional_absolute_share": 0.7081555174363612,
+          "bulk_signed_over_n2mu": -0.4072208768663613,
+          "bulk_positive_over_n2mu": 0.3799050064032665
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 8.0,
+          "exceptional_count": 112,
+          "exceptional_fraction": 0.011904761904761904,
+          "exceptional_positive_share": 0.7103703316251863,
+          "exceptional_absolute_share": 0.5316598874154196,
+          "bulk_signed_over_n2mu": -0.1391872134355639,
+          "bulk_positive_over_n2mu": 0.866808160171718
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 6.955406089012598,
+        "exceptional_count": 472,
+        "class_counts": {
+          "dyadic_even_frequency_proxy": 24,
+          "unclassified": 448
+        },
+        "class_positive_mass": {
+          "dyadic_even_frequency_proxy": 248.0933354028194,
+          "unclassified": 666.8613308352952
+        },
+        "class_absolute_mass": {
+          "dyadic_even_frequency_proxy": 248.0933354028194,
+          "unclassified": 830.3679076988346
+        },
+        "classified_fraction": 0.05084745762711862,
+        "classified_positive_mass_fraction": 0.27115369160623937,
+        "classified_absolute_mass_fraction": 0.23004381194942436,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.08898305084745763,
+          "bohr_fraction_010": 0.19915254237288135,
+          "bohr_fraction_020": 0.4152542372881356
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 5,
+        "partitioned_nonzero_frequency_count": 9408,
+        "bands": [
+          {
+            "label": "lt1",
+            "dyadic_index": null,
+            "size": 352,
+            "exact_density": 0.03741098947815921,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 232.8834095015411,
+            "repeated_moment_certified_L_rho_D_upper": 6225.0
+          },
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 1416,
+            "exact_density": 0.1504942076735041,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 936.8264427675631,
+            "repeated_moment_certified_L_rho_D_upper": 6225.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 4344,
+            "exact_density": 0.46168562015091935,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 2873.992985439473,
+            "repeated_moment_certified_L_rho_D_upper": 6225.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 3184,
+            "exact_density": 0.3383994048251674,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 2106.536295036667,
+            "repeated_moment_certified_L_rho_D_upper": 6225.0
+          },
+          {
+            "label": "k3",
+            "dyadic_index": 3,
+            "size": 112,
+            "exact_density": 0.011903496652141566,
+            "moment_density_upper": 0.125,
+            "repeated_exact_L_rho_D": 74.09926665958125,
+            "repeated_moment_certified_L_rho_D_upper": 778.125
+          }
+        ],
+        "nonempty_complete_patterns": 122,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 16.0,
+          "N2": 256.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.16393442622950818
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.0
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 122,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 8664096,
+            "tuple_density": 0.09786700967333056,
+            "exact_D": 0.46168562015091935,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2873.992985439473,
+            "moment_certified_L_rho_D_upper": 6225.0,
+            "exact_positive_log_rate": 0.49771610162124463,
+            "moment_certified_positive_log_rate": 0.5460205450833068
+          },
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 6456248,
+            "tuple_density": 0.07292782599239679,
+            "exact_D": 0.41626902475721456,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2591.2746791136606,
+            "moment_certified_L_rho_D_upper": 6225.0,
+            "exact_positive_log_rate": 0.49124407423271343,
+            "moment_certified_positive_log_rate": 0.5460205450833068
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k1"
+            ],
+            "tuple_count": 6456248,
+            "tuple_density": 0.07292782599239679,
+            "exact_D": 0.41626902475721456,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2591.2746791136606,
+            "moment_certified_L_rho_D_upper": 6225.0,
+            "exact_positive_log_rate": 0.49124407423271343,
+            "moment_certified_positive_log_rate": 0.5460205450833068
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 8664096,
+            "tuple_density": 0.09786700967333056,
+            "exact_D": 0.46168562015091935,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2873.992985439473,
+            "moment_certified_L_rho_D_upper": 6225.0,
+            "exact_positive_log_rate": 0.49771610162124463,
+            "moment_certified_positive_log_rate": 0.5460205450833068
+          },
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k2"
+            ],
+            "tuple_count": 6456248,
+            "tuple_density": 0.07292782599239679,
+            "exact_D": 0.41626902475721456,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2591.2746791136606,
+            "moment_certified_L_rho_D_upper": 6225.0,
+            "exact_positive_log_rate": 0.49124407423271343,
+            "moment_certified_positive_log_rate": 0.5460205450833068
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k1"
+            ],
+            "tuple_count": 6456248,
+            "tuple_density": 0.07292782599239679,
+            "exact_D": 0.41626902475721456,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 2591.2746791136606,
+            "moment_certified_L_rho_D_upper": 6225.0,
+            "exact_positive_log_rate": 0.49124407423271343,
+            "moment_certified_positive_log_rate": 0.5460205450833068
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      }
+    },
+    {
+      "name": "sg193_n24_w2_m12",
+      "kind": "source_like_subgroup_identity",
+      "parameters": {
+        "p": 193,
+        "n": 24,
+        "rank": 2,
+        "m": 12,
+        "frequency_count": 37249
+      },
+      "fiber": {
+        "full_mass": 2704156,
+        "image_size": 37249,
+        "image_average": 72.59674085210341,
+        "max_fiber": 208,
+        "max_over_average": 2.8651423956310214
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": 16710.599049638913,
+        "positive_part_sum": 20752.62948833782,
+        "absolute_sum": 24794.659927036737,
+        "absolute_over_signed": 1.4837684665513238,
+        "positive_over_signed": 1.2418842332756617
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 4.109668669940385,
+          "exceptional_count": 18624,
+          "exceptional_fraction": 0.5,
+          "bulk_signed": -10.316035139118464,
+          "bulk_signed_over_n2mu": -0.0002467023039522208,
+          "bulk_positive": 72.22337185081608,
+          "bulk_positive_over_n2mu": 0.0017271821968916706,
+          "bulk_absolute": 154.7627788407506,
+          "exceptional_signed": 16720.915084778033,
+          "exceptional_positive": 20680.406116487007,
+          "exceptional_absolute": 24639.897148195985,
+          "exceptional_positive_share": 0.9965197965929378,
+          "exceptional_absolute_share": 0.9937582213550752
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 5.7581337455826915,
+          "exceptional_count": 9336,
+          "exceptional_fraction": 0.2506443298969072,
+          "bulk_signed": 21.963722191021468,
+          "bulk_signed_over_n2mu": 0.0005252503306570302,
+          "bulk_positive": 141.39398669049658,
+          "bulk_positive_over_n2mu": 0.003381359389642012,
+          "bulk_absolute": 260.8242511899717,
+          "exceptional_signed": 16688.635327447893,
+          "exceptional_positive": 20611.23550164733,
+          "exceptional_absolute": 24533.835675846763,
+          "exceptional_positive_share": 0.9931866953645585,
+          "exceptional_absolute_share": 0.9894806280079057
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 7.312771239260341,
+          "exceptional_count": 3768,
+          "exceptional_fraction": 0.10115979381443299,
+          "bulk_signed": 15.548631487988253,
+          "bulk_signed_over_n2mu": 0.00037183696639855933,
+          "bulk_positive": 529.9357724710374,
+          "bulk_positive_over_n2mu": 0.012673122401410957,
+          "bulk_absolute": 1044.3229134540866,
+          "exceptional_signed": 16695.050418150924,
+          "exceptional_positive": 20222.693715866786,
+          "exceptional_absolute": 23750.337013582648,
+          "exceptional_positive_share": 0.9744641625887053,
+          "exceptional_absolute_share": 0.9578811358362156
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 8.158090375297535,
+          "exceptional_count": 1908,
+          "exceptional_fraction": 0.05122422680412371,
+          "bulk_signed": -171.99970691358774,
+          "bulk_signed_over_n2mu": -0.004113278347975347,
+          "bulk_positive": 1081.2990031067734,
+          "bulk_positive_over_n2mu": 0.02585867067436879,
+          "bulk_absolute": 2334.5977131271343,
+          "exceptional_signed": 16882.5987565525,
+          "exceptional_positive": 19671.330485231054,
+          "exceptional_absolute": 22460.0622139096,
+          "exceptional_positive_share": 0.9478958074342138,
+          "exceptional_absolute_share": 0.9058427209730984
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 10.304406060326842,
+          "exceptional_count": 396,
+          "exceptional_fraction": 0.010631443298969073,
+          "bulk_signed": 3034.812080479101,
+          "bulk_signed_over_n2mu": 0.07257586099888035,
+          "bulk_positive": 5711.952424803299,
+          "bulk_positive_over_n2mu": 0.1365981992365397,
+          "bulk_absolute": 8389.092769127497,
+          "exceptional_signed": 13675.786969159812,
+          "exceptional_positive": 15040.677063534527,
+          "exceptional_absolute": 16405.567157909238,
+          "exceptional_positive_share": 0.7247600633927768,
+          "exceptional_absolute_share": 0.6616572764533134
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 4.898979485566356,
+          "exceptional_count": 13956,
+          "exceptional_fraction": 0.3746778350515464,
+          "exceptional_positive_share": 0.995869219309125,
+          "exceptional_absolute_share": 0.9926363633837024,
+          "bulk_signed_over_n2mu": -0.00026616168871212216,
+          "bulk_positive_over_n2mu": 0.002050055710555632
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 6.123724356957945,
+          "exceptional_count": 8088,
+          "exceptional_fraction": 0.21713917525773196,
+          "exceptional_positive_share": 0.9919620223788079,
+          "exceptional_absolute_share": 0.9869327658354965,
+          "bulk_signed_over_n2mu": 0.00023007411787236417,
+          "bulk_positive_over_n2mu": 0.003989149547455755
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 7.348469228349534,
+          "exceptional_count": 3576,
+          "exceptional_fraction": 0.09600515463917526,
+          "exceptional_positive_share": 0.9701903387039913,
+          "exceptional_absolute_share": 0.9519247732761754,
+          "bulk_signed_over_n2mu": 0.0010821005021652871,
+          "bulk_positive_over_n2mu": 0.014794168691794111
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 8.573214099741122,
+          "exceptional_count": 1620,
+          "exceptional_fraction": 0.04349226804123711,
+          "exceptional_positive_share": 0.9318426082586062,
+          "exceptional_absolute_share": 0.8905048780608786,
+          "bulk_signed_over_n2mu": 0.002726148821705401,
+          "bulk_positive_over_n2mu": 0.03382567621289551
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 9.797958971132712,
+          "exceptional_count": 792,
+          "exceptional_fraction": 0.021262886597938145,
+          "exceptional_positive_share": 0.8860549999050874,
+          "exceptional_absolute_share": 0.8008294911372178,
+          "bulk_signed_over_n2mu": -0.004999274986985216,
+          "bulk_positive_over_n2mu": 0.056549503741471024
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 8.158090375297535,
+        "exceptional_count": 1908,
+        "class_counts": {
+          "dyadic_even_frequency_proxy": 36,
+          "unclassified": 1872
+        },
+        "class_positive_mass": {
+          "dyadic_even_frequency_proxy": 5974.330631316851,
+          "unclassified": 13696.999853914172
+        },
+        "class_absolute_mass": {
+          "dyadic_even_frequency_proxy": 5974.330631316851,
+          "unclassified": 16485.731582592685
+        },
+        "classified_fraction": 0.018867924528301883,
+        "classified_positive_mass_fraction": 0.3037075014220467,
+        "classified_absolute_mass_fraction": 0.2659979555896752,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.09014675052410902,
+          "bohr_fraction_010": 0.1928721174004193,
+          "bohr_fraction_020": 0.38469601677148846
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 5,
+        "partitioned_nonzero_frequency_count": 37248,
+        "bands": [
+          {
+            "label": "lt1",
+            "dyadic_index": null,
+            "size": 1404,
+            "exact_density": 0.03769228704126285,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 1404.0,
+            "repeated_moment_certified_L_rho_D_upper": 37249.0
+          },
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 4116,
+            "exact_density": 0.11049961072780477,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 4116.0,
+            "repeated_moment_certified_L_rho_D_upper": 37249.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 12468,
+            "exact_density": 0.334720395178394,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 12467.999999999998,
+            "repeated_moment_certified_L_rho_D_upper": 37249.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 17304,
+            "exact_density": 0.4645493838760772,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 17304.0,
+            "repeated_moment_certified_L_rho_D_upper": 37249.0
+          },
+          {
+            "label": "k3",
+            "dyadic_index": 3,
+            "size": 1956,
+            "exact_density": 0.05251147681816962,
+            "moment_density_upper": 0.28125,
+            "repeated_exact_L_rho_D": 1956.0,
+            "repeated_moment_certified_L_rho_D_upper": 10476.28125
+          }
+        ],
+        "nonempty_complete_patterns": 125,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 24.0,
+          "N2": 576.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.0
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 0.0
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 125,
+        "dense_diagnostic_residual_at_N2": [
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 139330452,
+            "tuple_density": 0.10041921220189348,
+            "exact_D": 0.4645493838760772,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 17304.0,
+            "moment_certified_L_rho_D_upper": 37249.0,
+            "exact_positive_log_rate": 0.40661220698470396,
+            "moment_certified_positive_log_rate": 0.4385575157420738
+          },
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k1"
+            ],
+            "tuple_count": 99834168,
+            "tuple_density": 0.07195317575939167,
+            "exact_D": 0.4164683326055261,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 15513.028921223242,
+            "moment_certified_L_rho_D_upper": 37249.0,
+            "exact_positive_log_rate": 0.4020598135576808,
+            "moment_certified_positive_log_rate": 0.4385575157420738
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 99834168,
+            "tuple_density": 0.07195317575939167,
+            "exact_D": 0.41646833260552607,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 15513.02892122324,
+            "moment_certified_L_rho_D_upper": 37249.0,
+            "exact_positive_log_rate": 0.4020598135576808,
+            "moment_certified_positive_log_rate": 0.4385575157420738
+          }
+        ],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 139330452,
+            "tuple_density": 0.10041921220189348,
+            "exact_D": 0.4645493838760772,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 17304.0,
+            "moment_certified_L_rho_D_upper": 37249.0,
+            "exact_positive_log_rate": 0.40661220698470396,
+            "moment_certified_positive_log_rate": 0.4385575157420738
+          },
+          {
+            "labels": [
+              "k2",
+              "k2",
+              "k1"
+            ],
+            "tuple_count": 99834168,
+            "tuple_density": 0.07195317575939167,
+            "exact_D": 0.4164683326055261,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 15513.028921223242,
+            "moment_certified_L_rho_D_upper": 37249.0,
+            "exact_positive_log_rate": 0.4020598135576808,
+            "moment_certified_positive_log_rate": 0.4385575157420738
+          },
+          {
+            "labels": [
+              "k1",
+              "k2",
+              "k2"
+            ],
+            "tuple_count": 99834168,
+            "tuple_density": 0.07195317575939167,
+            "exact_D": 0.41646833260552607,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 15513.02892122324,
+            "moment_certified_L_rho_D_upper": 37249.0,
+            "exact_positive_log_rate": 0.4020598135576808,
+            "moment_certified_positive_log_rate": 0.4385575157420738
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      }
+    },
+    {
+      "name": "planted_pair_B4",
+      "kind": "arbitrary_weight_regression",
+      "parameters": {
+        "p": 24971,
+        "n": 8,
+        "rank": 1,
+        "m": 4,
+        "frequency_count": 24971
+      },
+      "fiber": {
+        "full_mass": 70,
+        "image_size": 41,
+        "image_average": 1.7073170731707317,
+        "max_fiber": 6,
+        "max_over_average": 3.5142857142857142
+      },
+      "sign_ablation": {
+        "signed_nonzero_sum": -0.15698209923511364,
+        "positive_part_sum": 35.18617578798562,
+        "absolute_sum": 110.89419424870916,
+        "absolute_over_signed": 706.4129909654338,
+        "positive_over_signed": 224.14132540861831
+      },
+      "threshold_sweep": [
+        {
+          "quantile": 0.5,
+          "threshold": 2.0045503853508215,
+          "exceptional_count": 12486,
+          "exceptional_fraction": 0.5000400480576692,
+          "bulk_signed": -0.03900132968736206,
+          "bulk_signed_over_n2mu": -0.2173888847373031,
+          "bulk_positive": 2.124348945613126,
+          "bulk_positive_over_n2mu": 11.840874446630663,
+          "bulk_absolute": 6.75154050675015,
+          "exceptional_signed": -0.11798076954775133,
+          "exceptional_positive": 33.06182684237249,
+          "exceptional_absolute": 104.14265374195901,
+          "exceptional_positive_share": 0.9396254665919537,
+          "exceptional_absolute_share": 0.9391172770360903
+        },
+        {
+          "quantile": 0.75,
+          "threshold": 3.324876153355662,
+          "exceptional_count": 6244,
+          "exceptional_fraction": 0.2500600720865038,
+          "bulk_signed": 0.058946524327056174,
+          "bulk_signed_over_n2mu": 0.3285610845917232,
+          "bulk_positive": 2.8745285051451708,
+          "bulk_positive_over_n2mu": 16.02228823704912,
+          "bulk_absolute": 8.962179942115924,
+          "exceptional_signed": -0.21592862356216977,
+          "exceptional_positive": 32.31164728284045,
+          "exceptional_absolute": 101.93201430659323,
+          "exceptional_positive_share": 0.9183051740983263,
+          "exceptional_absolute_share": 0.9191826046184537
+        },
+        {
+          "quantile": 0.9,
+          "threshold": 4.679794836177563,
+          "exceptional_count": 2498,
+          "exceptional_fraction": 0.10004004805766921,
+          "bulk_signed": -0.24038662517031495,
+          "bulk_signed_over_n2mu": -1.3398871466803426,
+          "bulk_positive": 7.3600639106099335,
+          "bulk_positive_over_n2mu": 41.02414194460729,
+          "bulk_absolute": 23.23854083223893,
+          "exceptional_signed": 0.08340452593520123,
+          "exceptional_positive": 27.826111877375684,
+          "exceptional_absolute": 87.65565341647022,
+          "exceptional_positive_share": 0.7908251253288219,
+          "exceptional_absolute_share": 0.7904440264914099
+        },
+        {
+          "quantile": 0.95,
+          "threshold": 5.470077539420549,
+          "exceptional_count": 1250,
+          "exceptional_fraction": 0.0500600720865038,
+          "bulk_signed": 0.8538006511722565,
+          "bulk_signed_over_n2mu": 4.758985727772861,
+          "bulk_positive": 13.942831475076279,
+          "bulk_positive_over_n2mu": 77.71572427770754,
+          "bulk_absolute": 43.062624203829245,
+          "exceptional_signed": -1.01078275040737,
+          "exceptional_positive": 21.24334431290934,
+          "exceptional_absolute": 67.83157004487991,
+          "exceptional_positive_share": 0.6037412090734486,
+          "exceptional_absolute_share": 0.6116782804043819
+        },
+        {
+          "quantile": 0.99,
+          "threshold": 6.824895752046413,
+          "exceptional_count": 250,
+          "exceptional_fraction": 0.010012014417300761,
+          "bulk_signed": 0.13677816034071144,
+          "bulk_signed_over_n2mu": 0.7623855897026575,
+          "bulk_positive": 28.4662426917076,
+          "bulk_positive_over_n2mu": 158.66753264612288,
+          "bulk_absolute": 87.33436094265605,
+          "exceptional_signed": -0.2937602595758251,
+          "exceptional_positive": 6.719933096278021,
+          "exceptional_absolute": 23.559833306053093,
+          "exceptional_positive_share": 0.19098219530218324,
+          "exceptional_absolute_share": 0.2124532620094973
+        }
+      ],
+      "sqrt_n_threshold_sweep": [
+        {
+          "sqrt_n_multiplier": 1.0,
+          "threshold": 2.8284271247461903,
+          "exceptional_count": 8412,
+          "exceptional_fraction": 0.336884261113336,
+          "exceptional_positive_share": 0.9259680137002747,
+          "exceptional_absolute_share": 0.9267440470431809,
+          "bulk_signed_over_n2mu": 0.17923209361736098,
+          "bulk_positive_over_n2mu": 14.519424090371535
+        },
+        {
+          "sqrt_n_multiplier": 1.25,
+          "threshold": 3.5355339059327378,
+          "exceptional_count": 5488,
+          "exceptional_fraction": 0.21978374048858632,
+          "exceptional_positive_share": 0.9090340998611007,
+          "exceptional_absolute_share": 0.9111142142733326,
+          "bulk_signed_over_n2mu": 0.6860263780835058,
+          "bulk_positive_over_n2mu": 17.84056524610591
+        },
+        {
+          "sqrt_n_multiplier": 1.5,
+          "threshold": 4.242640687119286,
+          "exceptional_count": 3448,
+          "exceptional_fraction": 0.1380857028434121,
+          "exceptional_positive_share": 0.851228099065005,
+          "exceptional_absolute_share": 0.8548610963669436,
+          "bulk_signed_over_n2mu": 0.4790346272617889,
+          "bulk_positive_over_n2mu": 29.177689676738428
+        },
+        {
+          "sqrt_n_multiplier": 1.75,
+          "threshold": 4.949747468305833,
+          "exceptional_count": 1962,
+          "exceptional_fraction": 0.07857428914697637,
+          "exceptional_positive_share": 0.7403880684957063,
+          "exceptional_absolute_share": 0.7330702143520333,
+          "bulk_signed_over_n2mu": -4.092212862598589,
+          "bulk_positive_over_n2mu": 50.91604211685617
+        },
+        {
+          "sqrt_n_multiplier": 2.0,
+          "threshold": 5.656854249492381,
+          "exceptional_count": 1034,
+          "exceptional_fraction": 0.04140969162995595,
+          "exceptional_positive_share": 0.5264032523534493,
+          "exceptional_absolute_share": 0.5589072574306913,
+          "bulk_signed_over_n2mu": 15.106461688903593,
+          "bulk_positive_over_n2mu": 92.88352738587076
+        }
+      ],
+      "semantic_proxy": {
+        "threshold_quantile": 0.95,
+        "threshold": 5.470077539420549,
+        "exceptional_count": 1250,
+        "class_counts": {
+          "planted_pair_relation": 1250
+        },
+        "class_positive_mass": {
+          "planted_pair_relation": 21.243344312909304
+        },
+        "class_absolute_mass": {
+          "planted_pair_relation": 67.83157004487998
+        },
+        "classified_fraction": 1.0,
+        "classified_positive_mass_fraction": 1.0,
+        "classified_absolute_mass_fraction": 1.0,
+        "mean_bohr_fractions": {
+          "bohr_fraction_005": 0.1412,
+          "bohr_fraction_010": 0.2218,
+          "bohr_fraction_020": 0.3584
+        },
+        "warning": "labels are conservative structural proxies, not semantic atlas certificates"
+      },
+      "band_payment_census": {
+        "scope": "full-slice finite diagnostic with rho=1",
+        "order": 3,
+        "band_count": 4,
+        "partitioned_nonzero_frequency_count": 24970,
+        "bands": [
+          {
+            "label": "lt1",
+            "dyadic_index": null,
+            "size": 6700,
+            "exact_density": 0.26831124103960596,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 11.000760882623844,
+            "repeated_moment_certified_L_rho_D_upper": 41.0
+          },
+          {
+            "label": "k0",
+            "dyadic_index": 0,
+            "size": 5754,
+            "exact_density": 0.23042729566296904,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 9.447519122181731,
+            "repeated_moment_certified_L_rho_D_upper": 41.0
+          },
+          {
+            "label": "k1",
+            "dyadic_index": 1,
+            "size": 8448,
+            "exact_density": 0.33831244243322256,
+            "moment_density_upper": 1.0,
+            "repeated_exact_L_rho_D": 13.870810139762124,
+            "repeated_moment_certified_L_rho_D_upper": 41.0
+          },
+          {
+            "label": "k2",
+            "dyadic_index": 2,
+            "size": 4068,
+            "exact_density": 0.16290897441031596,
+            "moment_density_upper": 0.5,
+            "repeated_exact_L_rho_D": 6.679267950822954,
+            "repeated_moment_certified_L_rho_D_upper": 20.5
+          }
+        ],
+        "nonempty_complete_patterns": 64,
+        "proxy_budgets": {
+          "one": 1.0,
+          "N": 8.0,
+          "N2": 64.0
+        },
+        "fractions_at_proxy_budget": {
+          "exact": {
+            "one": 0.0,
+            "N": 0.109375,
+            "N2": 1.0
+          },
+          "moment_certified": {
+            "one": 0.0,
+            "N": 0.0,
+            "N2": 1.0
+          }
+        },
+        "dense_diagnostic_residual_count_at_N2": 0,
+        "dense_diagnostic_residual_at_N2": [],
+        "largest_patterns": [
+          {
+            "labels": [
+              "k1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 23032938,
+            "tuple_density": 0.036938348063265625,
+            "exact_D": 0.33831244243322256,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 13.870810139762124,
+            "moment_certified_L_rho_D_upper": 41.0,
+            "exact_positive_log_rate": 0.32872333026509554,
+            "moment_certified_positive_log_rate": 0.4641965083380385
+          },
+          {
+            "labels": [
+              "lt1",
+              "k1",
+              "k1"
+            ],
+            "tuple_count": 20045214,
+            "tuple_density": 0.03214687990453693,
+            "exact_D": 0.31315422084311384,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 12.839323054567668,
+            "moment_certified_L_rho_D_upper": 41.0,
+            "exact_positive_log_rate": 0.31906407190813785,
+            "moment_certified_positive_log_rate": 0.4641965083380385
+          },
+          {
+            "labels": [
+              "k1",
+              "lt1",
+              "k1"
+            ],
+            "tuple_count": 20045214,
+            "tuple_density": 0.03214687990453693,
+            "exact_D": 0.31315422084311384,
+            "moment_certified_D_upper": 1.0,
+            "exact_L_rho_D": 12.839323054567668,
+            "moment_certified_L_rho_D_upper": 41.0,
+            "exact_positive_log_rate": 0.31906407190813785,
+            "moment_certified_positive_log_rate": 0.4641965083380385
+          }
+        ],
+        "warning": "proxy budgets are finite diagnostics for exp(o(N)); they do not classify an asymptotic pattern as proved or open"
+      },
+      "source_scope": "not_source_derived"
+    }
+  ],
+  "external_regressions": {
+    "chg_signed_witness": {
+      "source": "PR #662 committed census",
+      "p": 11,
+      "c": 2,
+      "z": [
+        1,
+        7
+      ],
+      "P": [
+        10,
+        3,
+        6
+      ],
+      "termwise_absolute": 374.0,
+      "signed_magnitude": 31.3093,
+      "toy_n_cubed": 125.0,
+      "sign_blind_fails_while_signed_passes": true
+    },
+    "balanced_zero_twist": {
+      "source": "PR #662 full-rank bridge",
+      "parameters": [
+        7,
+        6,
+        1,
+        3
+      ],
+      "statement": "v=0 complementary twist is zero when m=n/2",
+      "role": "guard against assuming a nonzero endpoint exceptional phase"
+    }
+  },
+  "payload_sha256": "914b1849f3c500d1cacc1cd86cfc72906040f9dbd7411a2d92d9c7a35368ff74"
+}
