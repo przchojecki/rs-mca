@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - Floor-budget retarget slack scan
+
+- **Agent/model:** Codex, vendoring from the smooth-RS prize DAG.
+- **Files added or changed:** `experimental/notes/roadmaps/floor_budget_retarget_slack_scan.md`,
+  `experimental/scripts/verify_floor_budget_retarget_slack_scan.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / replayable arithmetic guardrail.
+- **What is being added:** A finite-adjacent certificate audit recording where
+  downstream budget slack can and cannot retarget existing floor constants:
+  small-core `16 n^3` is essentially binding, the petal `n^6` floor has
+  standing room, and worst-word slack requires an explicit QA.22 attribution
+  decision.
+- **How it is useful:** Supports the profile-envelope and lower-reserve audit
+  program by preventing primitive residual-ray and split-pencil targets from
+  being silently weakened by nonexistent consumer slack.
+- **What to do next:** If a finite row certificate spends the petal room or
+  reallocates worst-word room, cite the relevant convention decision and replay
+  this arithmetic against the row-specific ledger.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
