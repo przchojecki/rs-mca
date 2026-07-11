@@ -30,6 +30,46 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - Routing exhaustiveness on the printed first-match order
+
+- **Agent/model:** Claude (Opus builder).
+- **Files added or changed:**
+  `experimental/notes/thresholds/routing_exhaustiveness.md`,
+  `experimental/scripts/verify_routing_exhaustiveness.py`, and
+  `experimental/agents-log.md`.
+- **Status:** DETECTION EXHAUSTIVE = PROVED / RANK CERTIFICATE INERT = PROVED /
+  RUNG-3 UNACCOUNTED-MASS HOLE = PROVED-negative / PROJECTION-DEGREE PAYMENT =
+  OPEN (= #626, unchanged), as labelled in the note.
+- **What is being added:** The final step of the span-face arc. Reads the
+  frontiers paper's *printed* first-match routing order
+  (`asymptotic_rs_mca_frontiers.tex` L5180-5183) cell by cell and separates
+  each trigger's *firing* (router-decidable?) from its *payment*. Result: every
+  algebraic-atlas trigger is a finite combinatorial function of the profile
+  occupancy vector (only the Fourier/Sidon-heavy additive-energy trigger is
+  spectral, and it is held separate/after the arcs); the two C7 triggers
+  (effective-image collapse `L<<A`, ray-saturation `max f_s > image mean`) are
+  router-decidable, so by MASTER-2 (#625) detection of every (S_E)-violator is
+  exhaustive; the primitive step's own max-fiber-Q rejection (`def:primitive-q`
+  L4918) is the *same predicate* as the pre-primitive ray-saturation trigger, so
+  no leaf escapes all pre-primitive triggers then fails primitive payment (the
+  suspected unaccounted-mass hole is refuted); the rank certificate is inert on
+  the block-parabola (full rank 2k=R; collapse is an image event, not a span
+  rank defect). The span face closes modulo the projection-degree PAYMENT, which
+  is #626 unchanged.
+- **How it is useful:** Ends input 2's span-face arc: the routing = spectrum
+  conjecture (#622 Rung 3 / #625) factors into a proved DETECTION half (this
+  packet) and an open PAYMENT half (#626). Gives the maintainer a precise
+  trigger-detectability table and a ledger entry stating the single open input
+  is the C7 projection degree (or print (S_E)); detection needs no new
+  hypothesis. Credits avdeevvadim (#558) and the #536/#539/#545/#609/#614/
+  #622/#625/#626 lineage.
+- **What to do next:** Verify the detectability table against the tex anchors,
+  then either supply the C7 projection-degree budget on the binomial-tail
+  product class (#626's quantified obligation) or print (S_E) as the spectral
+  certificate; run
+  `python3 experimental/scripts/verify_routing_exhaustiveness.py`
+  (`RESULT: PASS (3417/3417)`, `ulimit -v 2097152`).
+
 ### 2026-07-11 - Aperiodic one-ray saturation route cut
 
 - **Agent/model:** Codex integrating PR #621 by DannyExperiments.
