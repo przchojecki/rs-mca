@@ -1,0 +1,251 @@
+{
+  "theorem_id": "primitive-a4-pre-boundary-v1",
+  "status": "AUDIT / PROVED EQUIVALENCE / COUNTEREXAMPLE GUARDRAIL",
+  "source_base_commit": "36de5bfc",
+  "seed": 20260711,
+  "claims": [
+    "exact finite max-moment sandwich",
+    "exact planted-pair image and fiber census",
+    "exact middle-slice additive-energy formula",
+    "weighted-Vandermonde MDS minor check",
+    "same-family finite-field weighted-Vandermonde realization",
+    "qualified PRE/Q/Sidon equivalence under accessibility and Boolean high energy"
+  ],
+  "nonclaims": [
+    "no proof of A4 from first-match removal",
+    "no source-derived PRE theorem",
+    "no Sidon or signed large-sieve payment",
+    "no unconditional asymptotic profile-envelope theorem"
+  ],
+  "moment_sandwich": [
+    {
+      "counts": [
+        0,
+        1,
+        3
+      ],
+      "full_mass": 6,
+      "residual_average_ratio": 0.6666666666666666,
+      "max_ratio": 1.5,
+      "orders_checked": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "counts": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "full_mass": 10,
+      "residual_average_ratio": 0.8,
+      "max_ratio": 0.8,
+      "orders_checked": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "counts": [
+        0,
+        0,
+        5,
+        1
+      ],
+      "full_mass": 9,
+      "residual_average_ratio": 0.6666666666666666,
+      "max_ratio": 2.2222222222222223,
+      "orders_checked": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "counts": [
+        1,
+        4,
+        2,
+        0,
+        3
+      ],
+      "full_mass": 12,
+      "residual_average_ratio": 0.8333333333333334,
+      "max_ratio": 1.6666666666666667,
+      "orders_checked": [
+        2,
+        3,
+        5
+      ]
+    }
+  ],
+  "planted_pair_rows": [
+    {
+      "B": 2,
+      "N": 4,
+      "M": 6,
+      "L": 5,
+      "max_fiber": 2,
+      "max_over_image_average": {
+        "numerator": 5,
+        "denominator": 3
+      },
+      "heavy_energy": 6,
+      "normalized_energy": {
+        "numerator": 3,
+        "denominator": 4
+      },
+      "log_ratio_per_B": 0.25541281188299536,
+      "log_delta_per_B": -0.14384103622589045,
+      "finite_field_realization": {
+        "p": 487,
+        "R": 1,
+        "evaluation_points": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "weights_nonzero": true,
+        "one_column_minors_nonzero": 4,
+        "no_wrap_bound": 484,
+        "image_census_matches_integer_model": true
+      }
+    },
+    {
+      "B": 4,
+      "N": 8,
+      "M": 70,
+      "L": 41,
+      "max_fiber": 6,
+      "max_over_image_average": {
+        "numerator": 123,
+        "denominator": 35
+      },
+      "heavy_energy": 90,
+      "normalized_energy": {
+        "numerator": 5,
+        "denominator": 12
+      },
+      "log_ratio_per_B": 0.31420907347075094,
+      "log_delta_per_B": -0.21886718433847496,
+      "finite_field_realization": {
+        "p": 24971,
+        "R": 1,
+        "evaluation_points": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "weights_nonzero": true,
+        "one_column_minors_nonzero": 8,
+        "no_wrap_bound": 24968,
+        "image_census_matches_integer_model": true
+      }
+    },
+    {
+      "B": 6,
+      "N": 12,
+      "M": 924,
+      "L": 365,
+      "max_fiber": 20,
+      "max_over_image_average": {
+        "numerator": 1825,
+        "denominator": 231
+      },
+      "heavy_energy": 1860,
+      "normalized_energy": {
+        "numerator": 93,
+        "denominator": 400
+      },
+      "log_ratio_per_B": 0.34448625924913306,
+      "log_delta_per_B": -0.24314417565912103,
+      "finite_field_realization": {
+        "p": 937459,
+        "R": 1,
+        "evaluation_points": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "weights_nonzero": true,
+        "one_column_minors_nonzero": 12,
+        "no_wrap_bound": 937452,
+        "image_census_matches_integer_model": true
+      }
+    },
+    {
+      "B": 8,
+      "N": 16,
+      "M": 12870,
+      "L": 3281,
+      "max_fiber": 70,
+      "max_over_image_average": {
+        "numerator": 22967,
+        "denominator": 1287
+      },
+      "heavy_energy": 44730,
+      "normalized_energy": {
+        "numerator": 639,
+        "denominator": 4900
+      },
+      "log_ratio_per_B": 0.36021805930253603,
+      "log_delta_per_B": -0.2546357537151479,
+      "finite_field_realization": {
+        "p": 31249937,
+        "R": 1,
+        "evaluation_points": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "weights_nonzero": true,
+        "one_column_minors_nonzero": 16,
+        "no_wrap_bound": 31249936,
+        "image_census_matches_integer_model": true
+      }
+    }
+  ],
+  "weighted_vandermonde": {
+    "p": 101,
+    "N": 8,
+    "R": 3,
+    "minors_checked": 56
+  },
+  "asymptotic_targets": {
+    "log_ratio_per_B": 0.4054651081081644,
+    "log_normalized_energy_per_B": -0.28768207245178085
+  },
+  "payload_sha256": "0945eca87b94e532b681abdf92e0892615ece0f4fe88b032fba254a4ce55764e"
+}

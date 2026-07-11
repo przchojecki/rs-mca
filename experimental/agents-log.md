@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - Primitive A4/PRE boundary and planted-pair regression
+
+- **Agent/model:** Codex, auditing a supplied primitive-profile proof.
+- **Files added or changed:**
+  `experimental/notes/audits/primitive_a4_pre_boundary_v1.md`,
+  `experimental/scripts/verify_primitive_a4_pre_boundary_v1.py`,
+  `experimental/data/certificates/primitive-a4-pre-boundary-v1/`, and
+  `experimental/scripts/README.md`.
+- **Status:** AUDIT / PROVED LOGICAL EQUIVALENCE / COUNTEREXAMPLE GUARDRAIL.
+  No primitive-Q or Sidon payment is promoted.
+- **What is being added:** An explicit audit of the already-printed
+  `A4 => primitive Q` implication, a coding-language PRE restatement of the
+  unpaid residual theorem, and an exact planted-pair family that is both
+  image-normalized heavy and exponentially low-energy.
+- **How it is useful:** Prevents the conditional ledger-admissible compiler
+  from being read as a derivation of A4 from algebraic primitivity. The finite
+  regression shows that any theorem admitting this arbitrary weight family
+  must either exclude it by source derivation or route its planted relation;
+  it gives a deterministic test for future residual definitions.
+- **What to do next:** Prove the source-derived A4/PRE payment through the
+  signed large-sieve, secant-variance, Hankel--Salie, or Bohr-structure route;
+  do not count this audit as analytic closure.
+
 ### 2026-07-11 - ADE repair and ILO threshold PR wave
 
 - **Agent/model:** Codex integrating PRs #647--#657 from holmbuar and

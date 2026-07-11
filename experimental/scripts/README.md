@@ -30,6 +30,8 @@ python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame
 python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --tamper-selftest
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --check
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --tamper-selftest
+python3 experimental/scripts/verify_primitive_a4_pre_boundary_v1.py --check
+python3 experimental/scripts/verify_primitive_a4_pre_boundary_v1.py --tamper-selftest
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
@@ -51,6 +53,14 @@ prove MSS or the open source many-shell max-atom/large-sieve theorem.  The
 regression covers cyclic and noncyclic product groups and includes a symbolic
 family where a full-slice heavy atom forces exponential packed norm while its
 semantic residual is uniformly flat under the same full-slice normalization.
+
+`verify_primitive_a4_pre_boundary_v1.py` checks the exact max-moment
+sandwich, the planted-pair image/fiber census, the middle-slice additive-energy
+formula, and explicit same-family prime-field weighted-Vandermonde
+realizations, plus a higher-rank minor regression. The companion audit
+separates the manuscript's literal ledger-admissible contract, which already
+assumes the A4 analytic payment, from the unpaid primitive residual.  It does
+not prove A4, PRE, primitive Q, or the source-specific Sidon payment.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into
