@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F3 affine coset-pair and q0 repeat-cell packet
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f3_affine_coset_q0_cell.md`,
+  `experimental/scripts/verify_f3_affine_coset_q0_cell.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED / CLASSICAL-INPUT, with replayed arithmetic.
+- **What is being added:** A primitive shift-pair support packet: the h=2
+  shifted-coset Stepanov estimate is stable under affine coordinate changes,
+  paying the h=3 repeat-boundary `q(r)=0` cell and bounding the exceptional
+  `lambda=1` scale branch.
+- **How it is useful:** This removes two small exceptional cells from the F3
+  repeat-boundary proof debt while preserving the generic LP4/C36'/HGE4
+  targets as separate open SP obligations.
+- **What to do next:** Review the imported h=2 Stepanov constant and decide
+  whether to merge this packet before or after the broader F3 C36'/U16 packet.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
