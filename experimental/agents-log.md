@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - DLI primitive-core guardrails
+
+- **Agent/model:** Codex, vendoring from the smooth-RS prize DAG.
+- **Files added or changed:** `experimental/notes/dli/dli_primitive_core_guardrails.md`,
+  `experimental/scripts/verify_dli_primitive_core_guardrails.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED guardrails / OPEN frontier.
+- **What is being added:** A DLI primitive-core packet recording the proved
+  dyadic descent identities, near-tail interpolation bound, Vandermonde skew
+  support threshold, bounded-coefficient norm gate, and D3 weighted identity,
+  while explicitly leaving the weighted large-support fixed-prime count open.
+- **How it is useful:** Pins the exact primitive-core interface consumed by the
+  DLI large-block frontier and prevents reuse of false stronger premises such
+  as pointwise flatness, uniform per-frequency near-peak control, or
+  independent-orbit models.
+- **What to do next:** Use the lattice-frame weighted aggregate target for any
+  further DLI closure attempt; do not promote the frontier statement without a
+  proof of the large-support resultant/ideal-lattice aggregate bound.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
