@@ -1,0 +1,691 @@
+{
+  "all_pass": true,
+  "base_sha": "36de5bfcc7d6e0ca44806112acec2f4a1b4a7532",
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "FULL_FINITE_CENSUS",
+  "falsifiable": true,
+  "gate_failures": 0,
+  "gated_words": 11,
+  "nonclaims": [
+    "no upper bound on |Ray|, |LineRay|, or any slope count",
+    "no chart verification for prob:saturated-bc alternatives",
+    "no progress on R_post <= 16 n^3",
+    "nothing about prob:capfp-R1"
+  ],
+  "object": "split-pencil ray collapse: ray-deduplicated census == exact list-codeword count at every profile; raw census == m-th binomial moment of the agreement profile",
+  "payload_sha256": "657ca392863f4daf15c4fadce7b2d4dadc58507f3b210ee06a1205a7c9f7d683",
+  "pins_ok": true,
+  "regeneration": "python experimental/scripts/verify_split_pencil_ray_collapse.py --emit-defaults",
+  "rows": [
+    {
+      "d1": 4,
+      "d2": 9,
+      "gate": true,
+      "in_scope": true,
+      "label": "planted_e4",
+      "list": 2,
+      "raw_census": 15505,
+      "ray_agreements": [
+        20,
+        15
+      ],
+      "rays": 2,
+      "word": [
+        47,
+        7,
+        57,
+        50,
+        18,
+        32,
+        16,
+        51,
+        17,
+        34,
+        5,
+        40,
+        40,
+        66,
+        20,
+        38,
+        2,
+        72,
+        40,
+        51,
+        65,
+        39,
+        51,
+        60
+      ]
+    },
+    {
+      "d1": 5,
+      "d2": 8,
+      "gate": true,
+      "in_scope": true,
+      "label": "planted_e5",
+      "list": 2,
+      "raw_census": 3877,
+      "ray_agreements": [
+        19,
+        15
+      ],
+      "rays": 2,
+      "word": [
+        47,
+        7,
+        0,
+        50,
+        18,
+        66,
+        16,
+        51,
+        17,
+        34,
+        5,
+        40,
+        40,
+        67,
+        20,
+        38,
+        25,
+        72,
+        9,
+        51,
+        18,
+        39,
+        10,
+        45
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "planted_e6",
+      "list": 4,
+      "raw_census": 819,
+      "ray_agreements": [
+        18,
+        15,
+        15,
+        15
+      ],
+      "rays": 4,
+      "word": [
+        47,
+        31,
+        20,
+        50,
+        18,
+        66,
+        16,
+        51,
+        17,
+        18,
+        21,
+        40,
+        40,
+        50,
+        20,
+        38,
+        2,
+        72,
+        40,
+        51,
+        18,
+        39,
+        44,
+        24
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "planted_e7",
+      "list": 3,
+      "raw_census": 138,
+      "ray_agreements": [
+        17,
+        15,
+        15
+      ],
+      "rays": 3,
+      "word": [
+        55,
+        7,
+        57,
+        50,
+        46,
+        66,
+        49,
+        51,
+        17,
+        34,
+        5,
+        40,
+        56,
+        66,
+        20,
+        38,
+        2,
+        56,
+        40,
+        12,
+        49,
+        39,
+        44,
+        45
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "planted_e8",
+      "list": 6,
+      "raw_census": 21,
+      "ray_agreements": [
+        16,
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "rays": 6,
+      "word": [
+        47,
+        7,
+        57,
+        50,
+        18,
+        66,
+        14,
+        51,
+        12,
+        22,
+        5,
+        40,
+        18,
+        43,
+        20,
+        4,
+        2,
+        37,
+        40,
+        51,
+        18,
+        39,
+        44,
+        8
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "planted_e9",
+      "list": 3,
+      "raw_census": 3,
+      "ray_agreements": [
+        15,
+        15,
+        15
+      ],
+      "rays": 3,
+      "word": [
+        66,
+        7,
+        30,
+        50,
+        18,
+        66,
+        67,
+        59,
+        17,
+        59,
+        5,
+        55,
+        35,
+        66,
+        20,
+        38,
+        49,
+        68,
+        40,
+        51,
+        18,
+        39,
+        44,
+        45
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "two_cw_15_15",
+      "list": 6,
+      "raw_census": 6,
+      "ray_agreements": [
+        15,
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "rays": 6,
+      "tight_ray_cap_exactness": [
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        }
+      ],
+      "word": [
+        24,
+        52,
+        67,
+        39,
+        16,
+        9,
+        67,
+        50,
+        28,
+        13,
+        6,
+        38,
+        2,
+        27,
+        10,
+        54,
+        71,
+        57,
+        34,
+        70,
+        53,
+        26,
+        44,
+        8
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "two_cw_16_15",
+      "list": 6,
+      "raw_census": 21,
+      "ray_agreements": [
+        16,
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "rays": 6,
+      "tight_ray_cap_exactness": [
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        },
+        {
+          "at_cap": true,
+          "cap_A": 3,
+          "cap_B": 2,
+          "degA0": 3,
+          "degB0": 2
+        }
+      ],
+      "word": [
+        72,
+        69,
+        63,
+        27,
+        52,
+        21,
+        0,
+        46,
+        7,
+        43,
+        46,
+        11,
+        25,
+        60,
+        58,
+        20,
+        44,
+        61,
+        28,
+        63,
+        72,
+        25,
+        6,
+        52
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "random_0",
+      "list": 4,
+      "raw_census": 4,
+      "ray_agreements": [
+        15,
+        15,
+        15,
+        15
+      ],
+      "rays": 4,
+      "word": [
+        6,
+        15,
+        55,
+        4,
+        42,
+        5,
+        57,
+        53,
+        23,
+        48,
+        48,
+        68,
+        68,
+        21,
+        69,
+        68,
+        21,
+        56,
+        68,
+        22,
+        42,
+        30,
+        61,
+        56
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "random_1",
+      "list": 5,
+      "raw_census": 5,
+      "ray_agreements": [
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "rays": 5,
+      "word": [
+        69,
+        56,
+        49,
+        66,
+        16,
+        0,
+        51,
+        54,
+        26,
+        18,
+        29,
+        42,
+        19,
+        29,
+        15,
+        41,
+        8,
+        7,
+        10,
+        54,
+        21,
+        24,
+        4,
+        55
+      ]
+    },
+    {
+      "d1": 6,
+      "d2": 7,
+      "gate": true,
+      "in_scope": true,
+      "label": "random_2",
+      "list": 6,
+      "raw_census": 6,
+      "ray_agreements": [
+        15,
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "rays": 6,
+      "word": [
+        22,
+        19,
+        16,
+        45,
+        28,
+        21,
+        19,
+        35,
+        15,
+        19,
+        61,
+        24,
+        41,
+        7,
+        60,
+        53,
+        60,
+        24,
+        43,
+        69,
+        34,
+        5,
+        25,
+        13
+      ]
+    }
+  ],
+  "seed": 20260711,
+  "statement_pins": {
+    "cap25_cap_v13_raw.tex": {
+      "lem:capfr1-autodiv": {
+        "found": true,
+        "line": 7972,
+        "sha256_line": "b3125928c10a1ef2"
+      },
+      "lem:capfr1-unimodular": {
+        "found": true,
+        "line": 7980,
+        "sha256_line": "f76f15f7534c76a6"
+      },
+      "prob:capfp-split": {
+        "found": true,
+        "line": 8433,
+        "sha256_line": "dbc51cb2fbccfc9c"
+      },
+      "prob:capg-split-pencil-B": {
+        "found": true,
+        "line": 9842,
+        "sha256_line": "0a397f2dcebd2b83"
+      },
+      "prop:capfr1-detrep": {
+        "found": true,
+        "line": 7992,
+        "sha256_line": "f392908325758d07"
+      },
+      "prop:capfr1-lattice-census": {
+        "found": true,
+        "line": 7885,
+        "sha256_line": "72382fff58209fda"
+      },
+      "thm:capfr1-near-rational-dichotomy": {
+        "found": true,
+        "line": 7916,
+        "sha256_line": "33c78f24a5be17b0"
+      }
+    },
+    "grande_finale.tex": {
+      "cor:raw-bc-fails": {
+        "found": true,
+        "line": 1843,
+        "sha256_line": "d2994aec60bd660b"
+      },
+      "def:line-rays": {
+        "found": true,
+        "line": 1857,
+        "sha256_line": "49dbda8a13b34eb7"
+      },
+      "def:saturated-rays": {
+        "found": true,
+        "line": 1792,
+        "sha256_line": "70dc04d92b123187"
+      },
+      "prob:saturated-bc": {
+        "found": true,
+        "line": 2191,
+        "sha256_line": "a97535ca5ff20b74"
+      },
+      "prop:lattice-split": {
+        "found": true,
+        "line": 1336,
+        "sha256_line": "c7b78bf173e69eae"
+      },
+      "prop:line-ray-saturation": {
+        "found": true,
+        "line": 1867,
+        "sha256_line": "81c7040f1b28ee0f"
+      },
+      "thm:saturation": {
+        "found": true,
+        "line": 1811,
+        "sha256_line": "2d220101060087fe"
+      }
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "headline": "RAYS == LIST with matching agreements and RAW == sum C(agr,m) over LIST at 11/11 in-scope words (planted e=4..9, two-codeword, random); tight-ray cap-exactness verified (deg A0 = omega-d1, deg B0 = omega-d2).",
+    "verdict": "NO ISSUE"
+  },
+  "toy_parameters": {
+    "K": 12,
+    "domain": [
+      1,
+      3,
+      7,
+      8,
+      9,
+      10,
+      17,
+      21,
+      22,
+      24,
+      27,
+      30,
+      43,
+      46,
+      49,
+      51,
+      52,
+      56,
+      63,
+      64,
+      65,
+      66,
+      70,
+      72
+    ],
+    "m": 15,
+    "n": 24,
+    "omega": 9,
+    "p": 73,
+    "w": 3
+  }
+}

@@ -30,6 +30,43 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - Split-pencil ray collapse: deduplicated census equals the list count
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/notes/thresholds/split_pencil_ray_collapse.md`,
+  `experimental/data/certificates/split-pencil-ray-collapse/split_pencil_ray_collapse.json`,
+  `experimental/scripts/verify_split_pencil_ray_collapse.py`,
+  `experimental/scripts/verify_split_pencil_ray_collapse_check.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED (from upstream ingredients) / AUDIT.
+- **What is being added:** A one-page theorem, assembled entirely from
+  upstream lemmas (thm:saturation's fiber statement, lattice-census,
+  predictable degrees, autodiv, lattice-split): the ray-deduplicated
+  split-pencil census equals the exact list-codeword count
+  `#{c : deg c < K, agr(U,c) >= m}` at EVERY profile, with per-ray fibers
+  exactly `C(s_c, m)`; summed over a slope line it is verbatim
+  `|LineRay_E(u,v;m)|`, the middle object of prop:line-ray-saturation's
+  two-loss chain.  Corollary: per-profile multiplicity cap `agr <= n - d1`
+  for every ray (generalizes #518's d1 = e lemma).  Verified by a
+  three-way exact toy gate (raw/rays/list, 11/11 words incl. two-codeword
+  and outside-lemma-range words) plus tight-ray cap-exactness.
+- **How it is useful:** Retires the repaired `prob:capg-split-pencil-B` /
+  `prob:capg-active-BC` as independent problems (their deduplicated forms
+  ARE the saturated-BC lane, not a second route to
+  `prob:capfr1-normalized-band`); compiles any census-lane bound into a
+  type-(b) "slope, not raw-support" bound; wires the integrated
+  W-collision pair-moment identity as the moment interface for future
+  anti-concentration inputs.  Also pins two statement-hygiene issues
+  (reduced-basis rigidity in prop:capfr1-detrep; exact-degree display
+  inconsistency in prob:capfp-split).
+- **What to do next:** Fold the collapse statement into the split-pencil
+  problem records (or mark them subsumed by prob:saturated-bc(b)); attack
+  the surviving open core (list-size control below Johnson at the deployed
+  rows) on the deduplicated object; separately verify whether
+  prob:capfp-R1's corrected model inherits the raw-count trap (flagged,
+  not asserted here).
+
 ### 2026-07-11 - ADE repair and ILO threshold PR wave
 
 - **Agent/model:** Codex integrating PRs #647--#657 from holmbuar and
