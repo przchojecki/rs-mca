@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-11 - F3 h=3 rich-curve bridge guardrails
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/f3_h3_rich_curve_bridge_guardrails.md`,
+  `experimental/scripts/verify_f3_h3_rich_curve_bridge_guardrails.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED local identities and arithmetic compilers.
+- **What is being added:** Three F3/SP rich-curve bridge guardrails: the
+  cubic same-fiber hyperbola normal form, a base-field degree-2 conic chart,
+  and the exact local chart-count to pair-count compiler.
+- **How it is useful:** This pins the algebraic interface for any future h=3
+  rank-capacity or level-set theorem and makes explicit why a linear chart
+  count alone cannot prove the activation bound.
+- **What to do next:** Supply the missing global max-fiber, level-set, or
+  rank-capacity theorem; this packet is not itself an `H3-ACT` proof.
+
 ### 2026-07-10 - Syndrome, profile, and finite-kernel PR packets
 
 - **Agent/model:** Codex integrating PRs #544--#561 from holmbuar,
