@@ -1,0 +1,325 @@
+{
+  "all_checks_pass": true,
+  "certificate_id": "owner-rooted-dense-band-v1",
+  "companion_note_audit": {
+    "barrier_required_tokens": {
+      "POINT-MASK REDUCTION + CHARGE-PRESERVING DICHOTOMY IMPLICATION PROVED": true,
+      "\\mathcal R_A^q\\le\\mathcal Y_A": true,
+      "\\mathcal Y_{B_i}(b_{\\mathcal U_i})": true,
+      "charge-preserving": true,
+      "does not rule out every atlas notion of quotient": true,
+      "hereditary source-algebraic emission contains source-algebraic heavy-fiber inverse": true,
+      "whole residual does not automatically apply to this submask": true
+    },
+    "forbidden_tokens_absent": {
+      "A4 PROVED": true,
+      "CANONICAL `(CAT)` CELL PROVED": true,
+      "DENSE-BAND complete-band restriction bound PROVED": true
+    },
+    "idempotent_required_tokens": {
+      "ABSTRACT FOURIER/RIM COUNTEREXAMPLE PROVED": true,
+      "NOT A VALID `(CAT)`/PRIMITIVE-SIDON FALSIFIER": true,
+      "abstract harmonic + rim hypotheses": true,
+      "does not place those words on one affine received line": true,
+      "not proved to be genuine weighted-Vandermonde columns": true,
+      "random union of scalar character orbits": true,
+      "source transfer-radius inverse": true
+    },
+    "rank_required_tokens": {
+      "ZERO-LOSS ROOTED LOCALIZATION + TRADE BRANCH PROVED": true,
+      "\\|P_Ab\\|_q\\ge \\Omega_+": true,
+      "baseline-free collective rank": true,
+      "the literal per-witness rank precursor is automatic": true
+    },
+    "secant_required_tokens": {
+      "Nonclaim: semantic source quotient, canonical `(CAT)` cell, or payment": true,
+      "\\log d_*=o(N)": true,
+      "\\mathcal R_{A'}(b)": true,
+      "\\mathcal Y_{A'}(b)": true,
+      "every nonzero secant generates such a cyclic annihilator": true,
+      "exact finite secant-annihilator localization proved": true
+    }
+  },
+  "diagnostic_float_decimals": 12,
+  "fourier_dual": {
+    "band": [
+      1,
+      4
+    ],
+    "checks": {
+      "dual_norm_one": true,
+      "heavy_owner_alternative": true,
+      "norming_pairing": true,
+      "owner_partition_exact": true,
+      "positive_mass_dominates": true,
+      "self_adjoint_pairing": true,
+      "support_pullback": true
+    },
+    "dual_norm_qprime": 1.0,
+    "group_order": 5,
+    "heavy_owner_mass_eta_half": 1.391992817194,
+    "owner_partition_sum": 1.476785594557,
+    "owner_positive_mass": {
+      "0": 1.391992817194,
+      "2": 0.084792777363
+    },
+    "positive_mass": 1.476785594557,
+    "projection_dual_pairing": 0.798443375654,
+    "projection_norm_q": 0.798443375654,
+    "q": 4.0,
+    "self_adjoint_pullback_pairing": 0.798443375654,
+    "support_pullback_sum": 0.798443375654
+  },
+  "incidence": {
+    "checks": {
+      "exact_case": true,
+      "positive_saturation_detected": true,
+      "positive_saturation_packet_complete": true
+    },
+    "exact_agreement_case": {
+      "agreement": 4,
+      "amplitude_shift": 0,
+      "checks": {
+        "fixed_support_unique_or_common": true,
+        "global_rims_unique": true,
+        "nonempty_exact_family": true,
+        "nonempty_rim_free_family": true,
+        "packing_bound": true,
+        "repeated_rim_mutation_rejected": true,
+        "saturation_packets_complete": true
+      },
+      "common_support_count": 0,
+      "exact_support_count": 5,
+      "k": 2,
+      "multiple_owner_supports": {},
+      "n": 8,
+      "negative_repeated_rim_mutation": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "p": 17,
+      "packing_lhs": 20,
+      "packing_rhs": 56,
+      "retained_rim_free_supports": [
+        {
+          "owner": 0,
+          "support": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "owner": 2,
+          "support": [
+            0,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "owner": 12,
+          "support": [
+            1,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "owner": 3,
+          "support": [
+            2,
+            3,
+            4,
+            6
+          ]
+        },
+        {
+          "owner": 1,
+          "support": [
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "saturation_record_count": 0,
+      "witness_record_count": 5
+    },
+    "positive_saturation_control": {
+      "agreement": 4,
+      "amplitude_shift": 0,
+      "checks": {
+        "fixed_support_unique_or_common": true,
+        "global_rims_unique": true,
+        "nonempty_exact_family": true,
+        "nonempty_rim_free_family": true,
+        "packing_bound": true,
+        "repeated_rim_mutation_rejected": true,
+        "saturation_packets_complete": true
+      },
+      "common_support_count": 0,
+      "exact_support_count": 2,
+      "k": 2,
+      "multiple_owner_supports": {},
+      "n": 8,
+      "negative_repeated_rim_mutation": [
+        0,
+        1,
+        2,
+        6
+      ],
+      "p": 17,
+      "packing_lhs": 8,
+      "packing_rhs": 56,
+      "retained_rim_free_supports": [
+        {
+          "owner": 16,
+          "support": [
+            0,
+            1,
+            6,
+            7
+          ]
+        },
+        {
+          "owner": 11,
+          "support": [
+            1,
+            3,
+            5,
+            7
+          ]
+        }
+      ],
+      "saturation_record_count": 1,
+      "witness_record_count": 3
+    }
+  },
+  "note_audit": {
+    "forbidden_tokens_absent": {
+      "A4 PROVED": true,
+      "DENSE-BAND rooted band-to-cell emission PROVED": true,
+      "PRIMITIVE Q PROVED": true
+    },
+    "required_tokens": {
+      "Assumption 7.1 (rooted exponential excess-to-cell emission, rooted excess-to-cell emission)": true,
+      "Corollary 5.1 (sparse-band complete-band restriction bound)": true,
+      "Positive-support and secant localization": true,
+      "Proposition 2.1 (norming dual)": true,
+      "Proposition 3.1 (fixed-support slope uniqueness)": true,
+      "Proposition 3.2 (lossless rooting and heavy-owner alternative)": true,
+      "Proposition 4.1 (saturation packet equivalence)": true,
+      "Rim packing does not imply dense-band complete-band restriction bound": true,
+      "Theorem 4.2 (global rim packing)": true,
+      "Theorem 7.2 (rooted excess-to-cell emission implies dense-band complete-band restriction bound)": true,
+      "Theorem 8.1 (owner-rooted projected-energy compiler)": true,
+      "complete-agreement-exact": true,
+      "e_Ax_A^{q-2}": true,
+      "mathcal R_A^q\\le\\mathcal Y_A": true,
+      "no dense complete-band estimate, A4 theorem, primitive Q, or Proximity Prize theorem is proved": true,
+      "prop:exact-support-upper": true,
+      "prove hereditary mask admissibility or a source-algebraic heavy-fiber inverse": true,
+      "prove the charge-preserving semantic-or-signed dichotomy": true
+    }
+  },
+  "paired_rim_free_guardrail": {
+    "L": 365,
+    "M": 924,
+    "N": 12,
+    "agreement": 6,
+    "asymptotic_excess_rate": "log(3/2)/2",
+    "block_count": 6,
+    "checks": {
+      "global_rim_packing": true,
+      "heavy_fiber_formula": true,
+      "image_formula": true,
+      "intersection_at_most_a_minus_2": true,
+      "naive_rim_packing_implies_dense_band_payment_rejected": true,
+      "planted_pair_certificate": true
+    },
+    "expected_L": 365,
+    "expected_heavy_fiber_size": 20,
+    "heavy_fiber_size": 20,
+    "normalized_heavy_denominator": 924,
+    "normalized_heavy_numerator": 7300,
+    "pair_sum": 39061,
+    "pairwise_intersection_max": 4,
+    "planted_pairs": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        10,
+        11
+      ]
+    ],
+    "rim_count": 120
+  },
+  "payload_sha256": "521718304111fd22c3ede51a876376715a19531209b78e06f36fcfbeca22bf9e",
+  "projected_energy_gate": {
+    "L": 5.0,
+    "M": 10.0,
+    "R_A": 0.266975633271,
+    "R_A_power_q": 0.005080266574,
+    "W": 6.0,
+    "Y_A": 0.08380310562,
+    "band_density": 0.4,
+    "checks": {
+      "L_exponents_cancel": true,
+      "M_exponents_cancel": true,
+      "interpolation_gate": true,
+      "low_energy_payment": true,
+      "positive_rate_failure_forces_high_load": true
+    },
+    "e_A": 0.058196601125,
+    "projected_energy": 1.1639320225,
+    "projection_norm_q": 0.798443375654,
+    "q": 4,
+    "x_A": 1.2
+  },
+  "status": "PROVED FINITE LOCALIZATION + SPARSE/LOW-LOAD PAYMENT / OPEN PRIMITIVE SIDON PAYMENT",
+  "theorem_boundary": {
+    "open": [
+      "trade/annihilator packet to non-tautological source structure",
+      "hereditary source-fiber admissibility or direct source-algebraic heavy-fiber inverse",
+      "charge-preserving signed nonstructure payment",
+      "source-realizability rigidity excluding kernel-sign masks",
+      "localized packet to canonical semantic cell",
+      "same-owner rooted payment validation",
+      "A4 and primitive Q"
+    ],
+    "proved": [
+      "exact norming-dual pullback and positive-mass truncation",
+      "fixed-support slope uniqueness and lossless owner partition",
+      "saturation equivalence and global (a-1)-rim packing",
+      "full-slice sparse-band complete-band restriction bound corollary",
+      "owner-rooted projected-energy gate and high-load proof object",
+      "exact owner-rooted localization is delegated to companion regressions",
+      "planted rim-free negative guardrail"
+    ]
+  }
+}

@@ -30,6 +30,13 @@ python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame
 python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --tamper-selftest
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --check
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --tamper-selftest
+python3 experimental/scripts/verify_owner_rooted_dense_band_localization_v1.py --check
+python3 experimental/scripts/verify_owner_rooted_dense_band_localization_v1.py --tamper-selftest
+python3 experimental/scripts/verify_owner_rooted_positive_support_localization_v1.py
+python3 experimental/scripts/verify_witness_rank_baseline_guardrail_v1.py
+python3 experimental/scripts/verify_secant_annihilator_localization_v1.py
+python3 experimental/scripts/verify_primitive_signed_payment_barriers_v1.py
+python3 experimental/scripts/verify_arbitrary_mask_idempotent_guardrail_v1.py --check
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
@@ -51,6 +58,17 @@ prove MSS or the open source many-shell max-atom/large-sieve theorem.  The
 regression covers cyclic and noncyclic product groups and includes a symbolic
 family where a full-slice heavy atom forces exponential packed norm while its
 semantic residual is uniformly flat under the same full-slice normalization.
+
+`verify_owner_rooted_dense_band_localization_v1.py` replays the finite
+norming-dual, owner-rooting, exact-agreement, rim-packing, sparse-band, and
+projected-energy reductions used before the primitive Sidon/Fourier payment.
+The companion verifiers bank positive-support and secant localization and
+enforce two specification guardrails: per-witness interpolation rank loss is
+not a `(CAT)` rank cell, and a cyclic secant annihilator is not automatically
+a source quotient. The arbitrary-mask idempotent regression is an abstract
+route cut, not a source-semantic counterexample. None of these scripts proves
+`(CAT)` exhaustion, `(UNIF)`, `(RC)`, A4, primitive Q, or the asymptotic
+Proximity theorem.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-13 - Owner-rooted dense-band localization and source-realizability guardrails
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Added
+  `experimental/notes/audits/owner_rooted_dense_band_localization_v1.md`, four
+  companion audit notes, six stdlib-only verifiers, and the replay certificate
+  under `experimental/data/certificates/owner-rooted-dense-band-v1/`; updated
+  `experimental/scripts/README.md`.
+- **Status:** PROVED finite reductions / COUNTEREXAMPLE to an abstract
+  arbitrary-mask implication / AUDIT. The primitive Sidon payment remains
+  open.
+- **What is being added:** Exact norming-dual pullback, positive owner rooting,
+  fixed-support ownership, rim packing, sparse-band payment, the
+  projected-energy gate, zero-loss positive-support localization, and a
+  secant-annihilator packet with printed order loss. The packet also proves
+  that witness-baseline rank loss is not a semantic rank cell and that
+  harmonic plus rim data do not control arbitrary residual masks for `q>2`.
+- **How it is useful:** It supplies a finite owner-rooted interface for the
+  primitive Sidon/Fourier lane, complements the order-two rooting reduction,
+  and prevents `(CAT)` from accepting tautological rank or quotient outputs.
+  The abstract idempotent construction is explicitly not a source-derived
+  first-match falsifier.
+- **What to do next:** Prove source-realizability rigidity and a
+  charge-preserving semantic-or-signed dichotomy, then emit a paid `(CAT)`
+  cell containing the same positive owner. This entry does not prove
+  `(UNIF)`, `(RC)`, A4, primitive Q, or the final theorem.
+
 ### 2026-07-12 - A6, L2, ILO, B2, and lower-reserve PR wave
 
 - **Agent/model:** Codex integrating PRs #658--#698 from
