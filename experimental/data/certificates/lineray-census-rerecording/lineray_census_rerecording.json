@@ -1,0 +1,2134 @@
+{
+  "base_sha": "ea4eb0784417ca5ab503a3c31a7eef6464ad100a",
+  "caveats": [
+    "The F_{17^2} planted-line hygiene (every other slope census-empty) is realized by a deterministic first-attempt search standing in for the deployed union-bound existence argument; the attempt index is frozen in the certificate.",
+    "The paper's printed interior M_B values at d1 = w'+3, w'+4 correspond to the un-ceiled product; both forms are recomputed and displayed.",
+    "log2 values in *_display fields are display-grade strings; every verdict field is an exact integer or boolean."
+  ],
+  "claim_boundaries": {
+    "asserts": [
+      "the recorded dedup target (OPEN) is stated once, per line, on |LineRay_E|, feeding prob:saturated-bc alternative (b); not a new independent problem",
+      "part (b) of prop:capg-census-floor requires the C(m',m) stripping under the dedup reading (model correction, with exact deployed recompute)",
+      "parts (a)/(c) survive verbatim at (slope, codeword)-pair level; the (c) floor's correct free justification is ray-distinctness, not distinct slopes",
+      "the pole-line witness set at census dimension K is the depth-(w'-1) fiber (witness-fiber calibration), pinned at the F_{17^2} toy: |LineRay| == 40 == |Fib_{w'-1}| vs depth-w' floor 5 and ceil term 3",
+      "compile-through: any bound on the recorded target is a per-line MCA-bad slope bound feeding cor:capfr1-Q-R1-closing / prop:capfp-closing unchanged",
+      "five subsumption grades + #666-withheld-item discharge"
+    ],
+    "does_not_assert": [
+      "any upper bound on |LineRay_E| or |Ray(U;m)| beyond the floors already proved upstream (the recorded target is OPEN)",
+      "any refutation (verdict NO ISSUE; this packet refutes nothing)",
+      "any chart verification for prob:saturated-bc, or progress on R_post <= 16 n^3",
+      "anything about the aperiodic core (Q), prob:capg-active-Q, or prob:capg-active-shiftpairs",
+      "any edit to upstream .tex (grades recorded in experimental/ only)"
+    ],
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_degenerate_by_construction": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "is_tautology_under_preconditions": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "STATEMENT_RERECORDING_WITH_FLOOR_AND_IDENTITY_GATES",
+  "falsifiability": "The gate fails if: any oracle certificate self-hash or replayed identity drifts; any F_73 fiber size, census count, ray profile, d1, or stripping identity changes; any deployed bit display or cross-link value changes; any F_{17^2} scan count, fiber size, slope multiset, collision witness, or model verdict changes; or any pinned statement moves or its line hash drifts.",
+  "falsifiable": true,
+  "gate_a_oracle_replay": {
+    "all_pass": true,
+    "oracle_r1": {
+      "path": "experimental/data/certificates/r1-rawcount-refutation/r1_rawcount_refutation.json",
+      "payload_sha256": "68f98dfba6f98983fc52fa90b9f954adc9fffaccd501eefbff21edaca02f02c3",
+      "rows_replayed": 4
+    },
+    "oracle_spc": {
+      "path": "experimental/data/certificates/split-pencil-ray-collapse/split_pencil_ray_collapse.json",
+      "payload_sha256": "657ca392863f4daf15c4fadce7b2d4dadc58507f3b210ee06a1205a7c9f7d683",
+      "rows_replayed": 11
+    },
+    "r1_deployed_corrected_middle_ceil": 65065153468,
+    "r1_rows": [
+      {
+        "label": "planted_e4",
+        "lineray": 206,
+        "loss2": 15503,
+        "n_slopes": 72,
+        "rank_one": 15709,
+        "recorded_dedup_model_holds": true
+      },
+      {
+        "label": "planted_e5",
+        "lineray": 210,
+        "loss2": 3905,
+        "n_slopes": 69,
+        "rank_one": 4115,
+        "recorded_dedup_model_holds": true
+      },
+      {
+        "label": "planted_e6",
+        "lineray": 211,
+        "loss2": 905,
+        "n_slopes": 70,
+        "rank_one": 1116,
+        "recorded_dedup_model_holds": true
+      },
+      {
+        "label": "random_line",
+        "lineray": 218,
+        "loss2": 0,
+        "n_slopes": 68,
+        "rank_one": 218,
+        "recorded_dedup_model_holds": true
+      }
+    ],
+    "spc_rows": [
+      {
+        "label": "planted_e4",
+        "list": 2,
+        "raw": 15505,
+        "rays": 2
+      },
+      {
+        "label": "planted_e5",
+        "list": 2,
+        "raw": 3877,
+        "rays": 2
+      },
+      {
+        "label": "planted_e6",
+        "list": 4,
+        "raw": 819,
+        "rays": 4
+      },
+      {
+        "label": "planted_e7",
+        "list": 3,
+        "raw": 138,
+        "rays": 3
+      },
+      {
+        "label": "planted_e8",
+        "list": 6,
+        "raw": 21,
+        "rays": 6
+      },
+      {
+        "label": "planted_e9",
+        "list": 3,
+        "raw": 3,
+        "rays": 3
+      },
+      {
+        "label": "two_cw_15_15",
+        "list": 6,
+        "raw": 6,
+        "rays": 6
+      },
+      {
+        "label": "two_cw_16_15",
+        "list": 6,
+        "raw": 21,
+        "rays": 6
+      },
+      {
+        "label": "random_0",
+        "list": 4,
+        "raw": 4,
+        "rays": 4
+      },
+      {
+        "label": "random_1",
+        "list": 5,
+        "raw": 5,
+        "rays": 5
+      },
+      {
+        "label": "random_2",
+        "list": 6,
+        "raw": 6,
+        "rays": 6
+      }
+    ],
+    "toy_dedup_model_terms": {
+      "ceil_p_term": 4,
+      "q_term": [
+        1307504,
+        5329
+      ]
+    }
+  },
+  "gate_b_deployed": {
+    "all_pass": true,
+    "crosslink_679_corrected_middle_ceil": 65065153468,
+    "crosslink_budget_fit_BB_displays": {
+      "KB": {
+        "list_row_depth_wprime": "35.9212",
+        "mca_row_witness_depth": "35.7352"
+      },
+      "M31": {
+        "list_row_depth_wprime": "20.9270",
+        "mca_row_witness_depth": "20.7411"
+      }
+    },
+    "rows": {
+      "KB": {
+        "K": 1048576,
+        "boundary_floor_log2_display": "67.0958",
+        "boundary_paper_prints": "67.1",
+        "interior": [
+          {
+            "C_mprime_m": 1116047,
+            "collapsed_to_1": false,
+            "d1": "w'+2",
+            "m_prime": 1116047,
+            "paper_prints": "56.0",
+            "raw_MB_ceil_form_log2_display": "56.0111",
+            "raw_MB_unceiled_log2_display": "56.0111",
+            "stripped_dedup_floor": 65065153468,
+            "stripped_log2_display": "35.9212"
+          },
+          {
+            "C_mprime_m": 622781011128,
+            "collapsed_to_1": false,
+            "d1": "w'+3",
+            "m_prime": 1116048,
+            "paper_prints": "43.9",
+            "raw_MB_ceil_form_log2_display": "43.9348",
+            "raw_MB_unceiled_log2_display": "43.9265",
+            "stripped_dedup_floor": 27,
+            "stripped_log2_display": "4.7549"
+          },
+          {
+            "C_mprime_m": 231684708229464424,
+            "collapsed_to_1": true,
+            "d1": "w'+4",
+            "m_prime": 1116049,
+            "paper_prints": "31.3",
+            "raw_MB_ceil_form_log2_display": "57.6849",
+            "raw_MB_unceiled_log2_display": "31.2569",
+            "stripped_dedup_floor": 1,
+            "stripped_log2_display": "0.0000"
+          }
+        ],
+        "m": 1116046,
+        "n": 2097152,
+        "p": 2130706433,
+        "w_prime": 67470
+      },
+      "M31": {
+        "K": 1048576,
+        "boundary_floor_log2_display": "52.1129",
+        "boundary_paper_prints": "52.1",
+        "interior": [
+          {
+            "C_mprime_m": 1116023,
+            "collapsed_to_1": false,
+            "d1": "w'+2",
+            "m_prime": 1116023,
+            "paper_prints": "41.0",
+            "raw_MB_ceil_form_log2_display": "41.0169",
+            "raw_MB_unceiled_log2_display": "41.0169",
+            "stripped_dedup_floor": 1993678,
+            "stripped_log2_display": "20.9270"
+          },
+          {
+            "C_mprime_m": 622754226276,
+            "collapsed_to_1": true,
+            "d1": "w'+3",
+            "m_prime": 1116024,
+            "paper_prints": "28.9",
+            "raw_MB_ceil_form_log2_display": "39.1799",
+            "raw_MB_unceiled_log2_display": "28.9210",
+            "stripped_dedup_floor": 1,
+            "stripped_log2_display": "0.0000"
+          },
+          {
+            "C_mprime_m": 231669761793224300,
+            "collapsed_to_1": true,
+            "d1": "w'+4",
+            "m_prime": 1116025,
+            "paper_prints": "16.2",
+            "raw_MB_ceil_form_log2_display": "57.6848",
+            "raw_MB_unceiled_log2_display": "16.2401",
+            "stripped_dedup_floor": 1,
+            "stripped_log2_display": "0.0000"
+          }
+        ],
+        "m": 1116022,
+        "n": 2097152,
+        "p": 2147483647,
+        "w_prime": 67446
+      }
+    }
+  },
+  "gate_b_toy_f73": {
+    "all_pass": true,
+    "rows": [
+      {
+        "all_agr_exactly_level": true,
+        "ceil_floor": 4,
+        "d1": 4,
+        "depth": 3,
+        "extras": 0,
+        "fiber": 13,
+        "label": "boundary_d1_4",
+        "level": 15,
+        "loss2": 0,
+        "profile": [
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15
+        ],
+        "raw": 13,
+        "rays": 13,
+        "word": [
+          4,
+          40,
+          38,
+          1,
+          17,
+          57,
+          36,
+          58,
+          14,
+          44,
+          0,
+          28,
+          68,
+          0,
+          15,
+          38,
+          7,
+          41,
+          33,
+          1,
+          56,
+          8,
+          53,
+          0
+        ],
+        "z": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "C_mp_m": 16,
+        "ceil_floor": 1,
+        "d1": 5,
+        "depth": 4,
+        "extra_agreements": [],
+        "extras": 0,
+        "fiber": 3,
+        "label": "interior_d1_5",
+        "level": 16,
+        "loss2": 45,
+        "profile": [
+          16,
+          16,
+          16
+        ],
+        "raw": 48,
+        "raw_equals_Cmpm_times_fiber_plus_extras": true,
+        "rays": 3,
+        "rays_at_level": 3,
+        "word": [
+          1,
+          8,
+          8,
+          8,
+          64,
+          1,
+          64,
+          64,
+          1,
+          64,
+          1,
+          8,
+          8,
+          1,
+          64,
+          1,
+          64,
+          64,
+          1,
+          64,
+          8,
+          8,
+          8,
+          1
+        ],
+        "z": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "C_mp_m": 136,
+        "ceil_floor": 1,
+        "d1": 6,
+        "depth": 5,
+        "extra_agreements": [
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15
+        ],
+        "extras": 10,
+        "fiber": 3,
+        "label": "interior_d1_6",
+        "level": 17,
+        "loss2": 405,
+        "profile": [
+          17,
+          17,
+          17,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15,
+          15
+        ],
+        "raw": 418,
+        "raw_equals_Cmpm_times_fiber_plus_extras": true,
+        "rays": 13,
+        "rays_at_level": 3,
+        "word": [
+          6,
+          72,
+          29,
+          0,
+          0,
+          68,
+          20,
+          6,
+          37,
+          38,
+          28,
+          57,
+          55,
+          47,
+          3,
+          17,
+          41,
+          39,
+          24,
+          0,
+          0,
+          33,
+          37,
+          0
+        ],
+        "z": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "gate_c_fp2_toy": {
+    "all_pass": true,
+    "control": {
+      "corrected_holds_raw": true,
+      "corrected_p_term": [
+        11440,
+        4913
+      ],
+      "counts": {
+        "beta_zero": 0,
+        "common": 0,
+        "rank_one": 0,
+        "rank_two": 11440
+      },
+      "e": null,
+      "label": "random_control",
+      "lineray_count": 0,
+      "literal_holds_raw": true,
+      "q_term": [
+        11440,
+        83521
+      ],
+      "recorded_ceil_p_term": 3,
+      "recorded_dedup_holds": true,
+      "slope_rows": [],
+      "slopes_hit": 0,
+      "u": [
+        144,
+        65,
+        117,
+        80,
+        7,
+        197,
+        70,
+        181,
+        18,
+        98,
+        49,
+        30,
+        22,
+        272,
+        243,
+        278
+      ],
+      "v": [
+        275,
+        274,
+        164,
+        168,
+        125,
+        283,
+        217,
+        192,
+        212,
+        160,
+        246,
+        127,
+        5,
+        117,
+        103,
+        266
+      ],
+      "z0": null
+    },
+    "field": {
+      "K": 6,
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "encoding": "element a + b*t stored as integer a + 17*b",
+      "interior_profiles": [
+        5
+      ],
+      "m": 9,
+      "n": 16,
+      "omega": 7,
+      "p": 17,
+      "q": 289,
+      "tower": "F_289 = F_17[t]/(t^2-3)",
+      "w_prime": 3
+    },
+    "planted": {
+      "attempt": 0,
+      "codeword_coeffs": [
+        67,
+        137,
+        195,
+        90,
+        134,
+        242
+      ],
+      "corrected_holds_raw": false,
+      "corrected_p_term": [
+        11440,
+        4913
+      ],
+      "counts": {
+        "beta_zero": 0,
+        "common": 0,
+        "rank_one": 55,
+        "rank_two": 11385
+      },
+      "e": 5,
+      "error_positions": [
+        1,
+        5,
+        7,
+        13,
+        15
+      ],
+      "label": "planted_e5",
+      "lineray_count": 1,
+      "literal_holds_raw": false,
+      "planted": {
+        "d1": 5,
+        "d1_equals_e": true,
+        "floor_C_n_minus_e_m": 55,
+        "mult_z0": 55
+      },
+      "q_term": [
+        11440,
+        83521
+      ],
+      "recorded_ceil_p_term": 3,
+      "recorded_dedup_holds": true,
+      "slope_rows": [
+        [
+          18,
+          55,
+          [
+            11
+          ]
+        ]
+      ],
+      "slopes_hit": 1,
+      "u": [
+        154,
+        256,
+        287,
+        33,
+        265,
+        56,
+        132,
+        11,
+        9,
+        140,
+        199,
+        66,
+        234,
+        27,
+        64,
+        108
+      ],
+      "v": [
+        230,
+        158,
+        175,
+        223,
+        72,
+        84,
+        199,
+        211,
+        168,
+        94,
+        135,
+        159,
+        212,
+        116,
+        250,
+        180
+      ],
+      "z0": 18
+    },
+    "pole_line": {
+      "admissible_alphas": 272,
+      "ceil_floor": 3,
+      "collision_alphas": 204,
+      "collision_witness": {
+        "T1": [
+          0,
+          1,
+          5,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "T2": [
+          3,
+          4,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          14
+        ],
+        "alpha": 18,
+        "slope": 10
+      },
+      "first_collision_alpha": 18,
+      "heaviest_depth_wprime_fiber": 5,
+      "n_slopes_max": 40,
+      "n_slopes_min": 35,
+      "rows": [
+        {
+          "all_agr_exactly_m": true,
+          "alpha": 17,
+          "collision_here": false,
+          "lineray": 40,
+          "n_slopes": 40,
+          "r1": 40,
+          "slope_rows": [
+            [
+              6,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              9,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              10,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              22,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              26,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              42,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              47,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              58,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              63,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              65,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              76,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              85,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              91,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              103,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              106,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              108,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              124,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              127,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              137,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              149,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              158,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              166,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              168,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              176,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              185,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              187,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              189,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              193,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              196,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              203,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              204,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              213,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              225,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              227,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              236,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              251,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              273,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              281,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              287,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              288,
+              1,
+              [
+                9
+              ]
+            ]
+          ]
+        },
+        {
+          "all_agr_exactly_m": true,
+          "alpha": 18,
+          "collision_here": true,
+          "lineray": 40,
+          "n_slopes": 39,
+          "r1": 40,
+          "slope_rows": [
+            [
+              10,
+              2,
+              [
+                9,
+                9
+              ]
+            ],
+            [
+              1,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              7,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              11,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              18,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              20,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              23,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              28,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              42,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              44,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              46,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              54,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              58,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              66,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              72,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              83,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              85,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              88,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              89,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              96,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              99,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              111,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              122,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              134,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              155,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              161,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              174,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              176,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              182,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              184,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              211,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              239,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              248,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              252,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              253,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              257,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              258,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              269,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              288,
+              1,
+              [
+                9
+              ]
+            ]
+          ]
+        },
+        {
+          "all_agr_exactly_m": true,
+          "alpha": 288,
+          "collision_here": true,
+          "lineray": 40,
+          "n_slopes": 39,
+          "r1": 40,
+          "slope_rows": [
+            [
+              238,
+              2,
+              [
+                9,
+                9
+              ]
+            ],
+            [
+              8,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              30,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              42,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              59,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              60,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              73,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              80,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              92,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              105,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              114,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              118,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              145,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              146,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              148,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              155,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              166,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              173,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              177,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              180,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              191,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              192,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              194,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              195,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              207,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              210,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              231,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              236,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              244,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              245,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              247,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              254,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              258,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              259,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              262,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              272,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              279,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              280,
+              1,
+              [
+                9
+              ]
+            ],
+            [
+              282,
+              1,
+              [
+                9
+              ]
+            ]
+          ]
+        }
+      ],
+      "tested_alphas": [
+        17,
+        18,
+        288
+      ],
+      "witness_fiber_depth": 2,
+      "witness_fiber_members": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          9,
+          11
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          10,
+          11,
+          13,
+          14
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          6,
+          8,
+          9,
+          14,
+          15
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          5,
+          7,
+          10,
+          14,
+          15
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          6,
+          8,
+          11,
+          12,
+          14
+        ],
+        [
+          0,
+          1,
+          2,
+          6,
+          7,
+          8,
+          9,
+          12,
+          13
+        ],
+        [
+          0,
+          1,
+          3,
+          5,
+          6,
+          8,
+          10,
+          12,
+          13
+        ],
+        [
+          0,
+          1,
+          4,
+          5,
+          6,
+          7,
+          9,
+          12,
+          14
+        ],
+        [
+          0,
+          1,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10,
+          15
+        ],
+        [
+          0,
+          1,
+          5,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        [
+          0,
+          1,
+          7,
+          8,
+          9,
+          10,
+          11,
+          14,
+          15
+        ],
+        [
+          0,
+          2,
+          3,
+          4,
+          5,
+          9,
+          10,
+          12,
+          13
+        ],
+        [
+          0,
+          2,
+          3,
+          4,
+          6,
+          7,
+          11,
+          12,
+          13
+        ],
+        [
+          0,
+          2,
+          3,
+          4,
+          7,
+          8,
+          9,
+          10,
+          15
+        ],
+        [
+          0,
+          2,
+          4,
+          6,
+          9,
+          12,
+          13,
+          14,
+          15
+        ],
+        [
+          0,
+          2,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        [
+          0,
+          2,
+          5,
+          7,
+          10,
+          11,
+          12,
+          13,
+          15
+        ],
+        [
+          0,
+          3,
+          5,
+          6,
+          9,
+          11,
+          12,
+          14,
+          15
+        ],
+        [
+          0,
+          3,
+          5,
+          7,
+          8,
+          10,
+          13,
+          14,
+          15
+        ],
+        [
+          0,
+          4,
+          5,
+          6,
+          7,
+          11,
+          13,
+          14,
+          15
+        ],
+        [
+          0,
+          4,
+          6,
+          7,
+          8,
+          10,
+          12,
+          13,
+          15
+        ],
+        [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          12,
+          15
+        ],
+        [
+          1,
+          2,
+          3,
+          4,
+          7,
+          8,
+          9,
+          11,
+          13
+        ],
+        [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          10,
+          11,
+          13
+        ],
+        [
+          1,
+          2,
+          3,
+          8,
+          10,
+          11,
+          12,
+          13,
+          15
+        ],
+        [
+          1,
+          2,
+          4,
+          7,
+          9,
+          11,
+          12,
+          14,
+          15
+        ],
+        [
+          1,
+          2,
+          5,
+          6,
+          9,
+          10,
+          13,
+          14,
+          15
+        ],
+        [
+          1,
+          3,
+          4,
+          5,
+          10,
+          11,
+          12,
+          14,
+          15
+        ],
+        [
+          1,
+          3,
+          4,
+          6,
+          8,
+          11,
+          13,
+          14,
+          15
+        ],
+        [
+          1,
+          3,
+          5,
+          7,
+          9,
+          10,
+          12,
+          13,
+          15
+        ],
+        [
+          1,
+          4,
+          6,
+          7,
+          9,
+          10,
+          11,
+          13,
+          14
+        ],
+        [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          14
+        ],
+        [
+          2,
+          3,
+          4,
+          5,
+          7,
+          12,
+          13,
+          14,
+          15
+        ],
+        [
+          2,
+          3,
+          5,
+          6,
+          8,
+          10,
+          12,
+          14,
+          15
+        ],
+        [
+          2,
+          3,
+          5,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14
+        ],
+        [
+          2,
+          3,
+          6,
+          7,
+          9,
+          10,
+          11,
+          12,
+          15
+        ],
+        [
+          2,
+          4,
+          6,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        [
+          3,
+          4,
+          5,
+          6,
+          8,
+          9,
+          12,
+          13,
+          15
+        ],
+        [
+          3,
+          4,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          14
+        ],
+        [
+          3,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      ],
+      "witness_fiber_size": 40,
+      "z_star": [
+        1,
+        4,
+        4
+      ]
+    },
+    "term_separation": {
+      "ceil_p_term": 3,
+      "p_term": [
+        11440,
+        4913
+      ],
+      "p_term_alive": true,
+      "q_term": [
+        11440,
+        83521
+      ],
+      "q_term_below_1": true
+    }
+  },
+  "honest_headline": "Statement packet: the tier-(4) census lemma is re-recorded once, per line, on the deduplicated |LineRay_E| pair count with model max(1, ceil(C(n,m)p^-w'), C(n,m)q^-(w'-1)); the recorded target is OPEN and nothing here bounds it.  Proved free parts: parts (a)/(c) of prop:capg-census-floor survive verbatim at pair level; the compile-through N_slopes <= |LineRay_E| feeds the closing corollaries unchanged; the #666-withheld inheritance item is discharged by #679.  One real correction: part (b)'s interior floor strips C(m',m).  New F_{17^2} toy separates the p- and q-terms: planted line raw #R1 = 55 FAILS the corrected raw model (2.33) while |LineRay| = 1 HOLDS the recorded model (<= 3) with the p-term alive; pole line: |LineRay| == witness fiber == 40 >= depth-w' floor 5 >= ceil 3, slope collision witnessed (39 < 40).",
+  "model_correction": {
+    "boundary_reproduces_part_a": "at d1 = w'+1 (m' = m) the stripped form is ceil(C(n,m) p^-w') verbatim",
+    "monotone": "strictly decreasing in d1 for m' > n/2 (deployed m/n ~ 0.532), so the per-line middle term dominates the interior terms",
+    "what": "part (b) of prop:capg-census-floor: the dedup interior floor strips the per-witness saturation factor C(m',m) from M_B(d1) = C(m',m) * ceil(C(n,m') p^-(d1-1)) -- the factor is loss-2 mass by the proof's own construction (cap25 L9794-9801); the stripped floor is the fiber cardinality ceil(C(n,m') p^-(d1-1))"
+  },
+  "nonclaims": [
+    "recorded target is OPEN; no bound proved on |LineRay_E| beyond the floors",
+    "no refutation of anything; statement packet, verdict NO ISSUE",
+    "no chart verification for prob:saturated-bc alternatives",
+    "aperiodic core untouched",
+    "toy gates pin mechanisms and identities, not asymptotics"
+  ],
+  "object": "re-recording of the tier-(4) 'Main aperiodic effort' census lemma on the slope/ray-deduplicated |LineRay_E| pair count, feeding prob:saturated-bc alternative (b); part-(b) model correction (strip C(m',m)); subsumption grades for five problems; NOT a counterexample packet",
+  "payload_sha256": "c53db00c7b2bc77cc6e2649c93c27925c41f6a74df2b81a8206dc3a8bdfa6185",
+  "recorded_target": {
+    "per_line": "For every primitive affine line (u,v) at normalized-band agreements (prob:capfr1-normalized-band; finite deployed form at the a_0+1 of cor:capg-adjacent-pairs), with E the residual finite slopes after the first-match paid branches of prob:saturated-bc's preamble (quotient, boundary-Q, common-support, tangent, extension, degree-drop, common-GCD), prove |LineRay_E(u,v;m)| <= e^{o(n)} max(1, ceil(C(n,m) p^-w'), C(n,m) q^-(w'-1)), the middle term achieved from below by the non-B-rational pole lines of prop:capg-census-floor(c)",
+    "per_word_interior": "for every word U = u + zv at interior profile d1 in [w'+2, floor((n-K+1)/2)] (boundary d1 = w'+1 delegated to (Q), rem:capg-boundary-offbyone), with m' = K-1+d1: |Ray(U;m)| <= e^{o(n)} max(1, ceil(C(n,m') p^-(d1-1)), C(n,m) q^-(w'-1))",
+    "q_terms_coincide": "C(n,omega) q^{1-w'} == C(n,m) q^{-(w'-1)} (omega = n-m): one q-term suffices",
+    "stated_on": "pair count |LineRay_E| (gf def:line-rays), NOT N_slopes (the floor survives exactly on pairs; the slope count carries the collision correction of thm:capg-aperiodic-floor)",
+    "status": "OPEN",
+    "witness_fiber_calibration": "at census dimension K the exact pole-line witness set is the depth-(w'-1) fiber (rem:capg-witnessrel), so the pole-line |LineRay| sits at ceil(C(n,m) p^-(w'-1)), a factor <= p above the middle term -- absorbed by e^{o(n)} along fixed-rate rows (p^w' <= C(n,m) forces log2 p <= n/w'); the finite deployed middle term must be pinned at the witness-fiber scale"
+  },
+  "regeneration": "python experimental/scripts/verify_lineray_census_rerecording.py --emit-defaults",
+  "seed": 20260712,
+  "statement_pins": {
+    "cap25_cap_v13_raw.tex": {
+      "Main aperiodic effort": {
+        "kind": "content",
+        "line": 8077,
+        "sha256_line": "8680577f3df8f8f8"
+      },
+      "lem:capg-witness": {
+        "kind": "label",
+        "line": 9183,
+        "sha256_line": "7b03c78175268fcb"
+      },
+      "prob:capfp-R1": {
+        "kind": "label",
+        "line": 8278,
+        "sha256_line": "cda4fb033697496a"
+      },
+      "prob:capfr1-normalized-band": {
+        "kind": "label",
+        "line": 7639,
+        "sha256_line": "a4a502b99607303c"
+      },
+      "prob:capfr1-rank-one-census": {
+        "kind": "label",
+        "line": 7819,
+        "sha256_line": "3d864d7d38203d4e"
+      },
+      "prob:capfr1-split-pencil": {
+        "kind": "label",
+        "line": 8012,
+        "sha256_line": "f7199513a88de842"
+      },
+      "prob:capg-active-BC": {
+        "kind": "label",
+        "line": 9919,
+        "sha256_line": "c851a31af51f4df5"
+      },
+      "prob:capg-split-pencil-B": {
+        "kind": "label",
+        "line": 9842,
+        "sha256_line": "0a397f2dcebd2b83"
+      },
+      "prop:capg-census-floor": {
+        "kind": "label",
+        "line": 9728,
+        "sha256_line": "ad6da0c911fe5642"
+      },
+      "rem:capg-band": {
+        "kind": "label",
+        "line": 9397,
+        "sha256_line": "d729c60e0cf41b31"
+      },
+      "rem:capg-boundary-offbyone": {
+        "kind": "label",
+        "line": 9828,
+        "sha256_line": "936b9ea4d8713aa5"
+      },
+      "rem:capg-subfield-scope": {
+        "kind": "label",
+        "line": 9874,
+        "sha256_line": "6607e30a6b53da71"
+      },
+      "rem:capg-witnessrel": {
+        "kind": "label",
+        "line": 9246,
+        "sha256_line": "f1cecd0474bc34ba"
+      }
+    },
+    "grande_finale.tex": {
+      "def:line-rays": {
+        "kind": "label",
+        "line": 1857,
+        "sha256_line": "49dbda8a13b34eb7"
+      },
+      "prob:saturated-bc": {
+        "kind": "label",
+        "line": 2191,
+        "sha256_line": "a97535ca5ff20b74"
+      },
+      "prop:line-ray-saturation": {
+        "kind": "label",
+        "line": 1867,
+        "sha256_line": "81c7040f1b28ee0f"
+      }
+    }
+  },
+  "status": "PROVED (free parts) + MODEL CORRECTION + OPEN (recorded target) / AUDIT",
+  "subsumption_grades": {
+    "prob:capfp-R1": "SUBSUMED-INTO-DEDUP-TARGET (raw form refuted by #679; identity #R1 = with-multiplicity LineRay census makes the recorded target its unique repair; unconditional strata transfer verbatim)",
+    "prob:capfr1-rank-one-census": "SUBSUMED-INTO-DEDUP-TARGET (resolves #679's REFUTED-WITH-AMBIGUITY-FOOTNOTE: any unprinted reading paying the plant must introduce a new cell, and that cell is ray-deduplication = this record)",
+    "prob:capfr1-split-pencil": "SUBSUMED-INTO-DEDUP-TARGET (conceded superseded upstream; tier-(4) chain position taken over by the recorded target; L8100 dichotomy preserved at ray level)",
+    "prob:capg-active-BC": "SUBSUMED by inheritance (asks to prove prob:capg-split-pencil-B's census; the re-recording makes prop:capg-final-active-package's BC input satisfiable again)",
+    "prob:capg-split-pencil-B": "SUBSUMED-INTO-DEDUP-TARGET (raw form refuted by #518; dedup quotient is |Ray(U;m)| by #666; base-field term stripped to ceil(C(n,m') p^-(d1-1)))",
+    "siblings": "prob:capfp-split, prob:capfp-balanced, prob:capfr1-balanced-core subsumed identically via #666's profile-independence"
+  },
+  "summary": {
+    "headline": "re-recording packet: PROVED free parts + part-(b) model correction + OPEN recorded target; gates A (oracle replay 11/11 and 4/4), B (F_73 boundary/interior survival + deployed recompute, all eight paper prints reproduced), C (F_{17^2}: raw FAILS / dedup HOLDS with p-term alive; pair-level floor verbatim; slope collision witnessed), D (16 pins) all pass",
+    "verdict": "NO ISSUE"
+  },
+  "withheld_item_discharge": {
+    "discharged_by": "#679 (r1_rawcount_refutation.json): refutes prob:capfp-R1 including the corrected mutatis-mutandis model; margins_bits.planted_R1_vs_corrected = 2015046; corrected_middle_ceil = 65065153468",
+    "residual": "none beyond citation wiring; the p = q toy gap flagged by #679's own cert is closed by gate_c",
+    "withheld": "split_pencil_ray_collapse.md L158-160: corrected model may inherit the raw-count trap -- withheld pending verification"
+  }
+}

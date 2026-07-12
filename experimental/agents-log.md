@@ -30,6 +30,53 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-12 - LineRay dedup census re-recording (tier-4 statement packet)
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/notes/thresholds/lineray_census_rerecording.md`,
+  `experimental/scripts/verify_lineray_census_rerecording.py`,
+  `experimental/scripts/verify_lineray_census_rerecording_check.py`,
+  `experimental/data/certificates/lineray-census-rerecording/lineray_census_rerecording.json`.
+- **Status:** PROVED (free parts) / AUDIT / OPEN-target (part (b) is a
+  model correction; certificate verdict NO ISSUE — this packet refutes
+  nothing).
+- **What is being added:** A statement re-recording of the tier-(4)
+  "Main aperiodic effort" census lemma (cap25 L8077), stated once, per
+  line, on the slope/ray-deduplicated pair count `|LineRay_E(u,v;m)| <=
+  e^{o(n)} max(1, ceil(C(n,m)p^-w'), C(n,m)q^-(w'-1))`, feeding
+  `prob:saturated-bc` alternative (b).  Free parts proved from upstream
+  ingredients: parts (a)/(c) of `prop:capg-census-floor` survive
+  verbatim at (slope, codeword)-pair level (with the witness-fiber
+  calibration: the exact pole-line witness set is the depth-(w'-1)
+  fiber); the compile-through `N_slopes <= |LineRay_E|` feeds the
+  closing corollaries unchanged.  One real correction: part (b)'s
+  interior floor strips the `C(m',m)` saturation factor (dedup floor
+  `ceil(C(n,m')p^-(d1-1))`; deployed recompute exact, all eight paper
+  prints reproduced).  Five problems graded
+  SUBSUMED-INTO-DEDUP-TARGET (`prob:capfp-R1`,
+  `prob:capfr1-rank-one-census` — resolving #679's ambiguity footnote,
+  `prob:capg-split-pencil-B`, `prob:capfr1-split-pencil`,
+  `prob:capg-active-BC` by inheritance); #666's withheld
+  corrected-model-inherits-trap item discharged via #679.  New
+  `F_{17^2}` toy separates the p- and q-terms for the first time in
+  tree: planted line raw `#R1 = 55` FAILS the corrected raw model while
+  the dedup count `1` HOLDS the recorded model with the p-term alive;
+  pole line `#R1 == |LineRay| == 40` with a witnessed slope collision
+  (`N_slopes = 39 < 40`).
+- **How it is useful:** The tier-(4) chain (split-pencil ->
+  balanced-core -> R1 -> normalized aperiodic input) now targets a
+  single recorded object that is immune to the #518/#679 saturation
+  refutations, restores `prob:band`'s original slope-count object per
+  `rem:capg-band`, and makes `prop:capg-final-active-package`'s BC
+  input satisfiable again.
+- **What to do next:** Prove the recorded dedup target — now the single
+  object implying balanced-core -> R1 -> the normalized aperiodic
+  input; extend the `F_{p^2}` gate to deployed-shape fields (sextic
+  extension of KoalaBear / M31-shaped towers, larger interior profile
+  ranges), and pin the finite-form middle term at the witness-fiber
+  scale in any deployed numerator work.
+
 ### 2026-07-12 - A6, L2, ILO, B2, and lower-reserve PR wave
 
 - **Agent/model:** Codex integrating PRs #658--#698 from
