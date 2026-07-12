@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-12 - R1 raw-count refutation packet (near-codeword-slope line)
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/scripts/verify_r1_rawcount_refutation.py`,
+  `experimental/scripts/verify_r1_rawcount_refutation_check.py`,
+  `experimental/notes/audits/r1_rawcount_refutation.md`,
+  `experimental/data/certificates/r1-rawcount-refutation/r1_rawcount_refutation.json`.
+- **Status:** COUNTEREXAMPLE / AUDIT.
+- **What is being added:** A planted near-codeword-slope line refutes
+  `prob:capfp-R1` at the raw rank-one support count, including the
+  corrected mutatis-mutandis model of `prob:capg-split-pencil-B`: at the
+  deployed KoalaBear census row (`n=2^21`, `K=2^20`, `m=1116047`,
+  `w'=67471`, `e=w'+2`) one slope carries `#R1 >= C(n-w'-2,m)`, a
+  2,015,083-bit integer, against the binding corrected middle term
+  `ceil(C(n,m)p^-w') ~ 2^35.92` --- factor `>= 2^2015046` --- with the
+  freedom-count hygiene certified as a bit-length fact.  An `F_73` toy
+  (frozen line menu) exhibits the mechanism (`#R1 = 15709/4115/1116` vs
+  model `~245.36`, random control `218` HOLDS), verifies the identity
+  `#R1 = sum_z sum_c C(agr(U_z,c),m)` at every slope (R1 is the
+  with-multiplicity LineRay census), and verifies `d1 = e` for every
+  planted word by two disjoint routes.
+- **How it is useful:** Cleans up the R1 waypoint of the safe-side
+  programme (opposite mechanism to the pole-line floors of
+  `prop:capg-census-floor`(c); contradicts
+  `rem:capg-subfield-scope`(ii)-(iii)); the sibling
+  `prob:capfr1-rank-one-census` is graded refuted-with-ambiguity-footnote
+  ("all paid cells" is not a closed printed list).  Repair direction:
+  record R1 on the slope/ray-deduplicated `|LineRay|` count (the PR #666
+  ray-collapse lane), under which the pole-line floors survive verbatim
+  and the toy deduplicated counts hold the model at every line.
+- **What to do next:** Maintainer review; restate R1 and the capfr1
+  sibling on the deduplicated count; once the split-pencil ray-collapse
+  packet (PR #666) is integrated, update the repair citation to the
+  in-tree note path.
+
 ### 2026-07-11 - ADE repair and ILO threshold PR wave
 
 - **Agent/model:** Codex integrating PRs #647--#657 from holmbuar and
