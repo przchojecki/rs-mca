@@ -1,0 +1,5628 @@
+{
+  "all_pass": true,
+  "asymptotic_sector": {
+    "folding_pairs_indivisible": "CompleteFiberFolding carries (degree, fieldRatio) as one structure: the (c, lambda) pair is indivisible -- the (2,1/5)+(3,1/10) regression trap (mixing degrees and ratios across foldings) is excluded by construction",
+    "lean_nonclaims_mirrored": "the Lean module proves only the exponent algebra: no A2/A4 ledger hypotheses, no realization of foldings, no exhaustiveness of the folding family, no deployed finite-row bound.  This certificate's finite sector is therefore the only place the deployed rows are touched, and its own verdict labels carry the same limits",
+    "m31_circle_caution_decision": {
+      "counterfactual": "if a future presentation did realize lambda = 1/2 at some scale c, CompleteFiberFolding.zeroTarget_mem_inFailureBand shows the zero-target crossing lies strictly inside that folding's failure band -- the band would be NONEMPTY and the asymptotic sector would have to be recomputed; the caution is discharged by decision, not by assumption",
+      "decision": "NO -- not realized on the deployed rows",
+      "grounds": [
+        "def:circle-twin-domain: the deployed domain is the PROJECTED Chebyshev twin-coset x-domain D(g,H)=chi(D(g,H)) subset F_p, of cardinality |H|; the norm-one torus upstairs (in F_{p^2}) is not the evaluation alphabet",
+        "prop:capg-moved-frontier proof, verbatim: 'the floor and the witness classification run verbatim on the twin-coset x-domain (D subset B = F_{p'} is all that is used)'",
+        "integer check (gated above): all eight frozen identity floors reproduce with denominator base p (p^w), NOT p^{2w}; a degree-2 effective alphabet would fail all eight m31 reproductions"
+      ],
+      "question": "does the circle construction place the effective alphabet in a degree-2 extension (which would make lambda = 1/2 drops realizable)?"
+    },
+    "row_finset": [
+      {
+        "degree": 2,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 4,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 8,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 16,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 32,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 64,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 128,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 256,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 512,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 1024,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 2048,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 4096,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 8192,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 16384,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 32768,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 65536,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 131072,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 262144,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 524288,
+        "fieldRatio": "1"
+      },
+      {
+        "degree": 1048576,
+        "fieldRatio": "1"
+      }
+    ],
+    "statement": "both deployed image alphabets are PRIME fields (integer checks above: p_kb, p_m31 prime; extension degree of the alphabet over itself is 1, whose only divisor is 1), so every realizable complete-fiber folding of the deployed domains has field ratio lambda = 1; by profileIdentityDominant_of_all_fieldRatio_eq_one (GrandeFinale/ProfileEnvelopeWindow.lean, integrated, zero-sorry at the exponent-algebra level) the finite row {(c=2^j, lambda=1) : j=1..20} is identity-dominant for every rational crossing (h, s) with h, s >= 0, and by profileIdentityDominant_iff_avoidsFailureBandUnion the failure band union is EMPTY (each lambda=1 band is the empty open interval (h, h): kappaLow(c,1) = kappaHigh(1) = 1)"
+  },
+  "base_sha": "36de5bfcc7d6e0ca44806112acec2f4a1b4a7532",
+  "checker_route": "independent: Kummer carry-count exponents + smallest-first heap merge binomials; math.comb spot checks; lgamma cross-estimates with 0.5-bit tolerance; fresh pin re-scan; full ledger recompute without importing the generator",
+  "checks_failed": 0,
+  "checks_total": 91,
+  "claim_boundaries": {
+    "beats_or_narrows_trivial_baseline": true,
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": true,
+    "is_not_degenerate_or_tautological_by_construction": true,
+    "is_novel_not_confirming_a_proven_theorem": true,
+    "resolves_or_advances_prob_band": false
+  },
+  "conventions": {
+    "Gceil": "graded floor with m=ceil(a/c); covers agreement mc>=a (>=frontier)",
+    "Gfloor": "prop:graded-prefix-floor, m=floor(a/c); covers agreement mc<=a (A1 convention)",
+    "Plant": "thm:v13-planted [annotation: = thm:capf-planted in cap25], M=c; P=C(n/c-1,k/c) at agreement k+sigma, 1<=sigma<c",
+    "Rem": "lem:quotient-remainder-prefix, s=a-mc; covers agreement EXACTLY a",
+    "TIGHT": "2M > B* and M < 2B* (within one bit, either side)",
+    "carried_verbatim_from": "experimental/data/certificates/frontier-adjacent/{kb_mca,m31_mca}_v1.packet.json rung_margin_audit.conventions",
+    "chebyshev_endpoint_multiplier": "rem:qr-chebyshev: on circle twin-coset domains the fixed or ramified endpoints form an exceptional set of cardinality b with crude total multiplier at most 2^b, b<=2 for involution-fixed endpoints.  For the DEPLOYED m31 rows b = 0: the twin coset contains no self-inverse element and T_c has complete fibers of size c at every dyadic scale (lem:torus-fibers, lem:cheb-fibers, rem:standard-position), so no endpoint multiplier is charged.  Sensitivity recorded in the watch-item block: the -0.3938 rung would fire under any multiplier >= 2^0.3938, so b=0 is load-bearing",
+    "fires": "M > B* (exact integer comparison)",
+    "frontier_covering": "a floor bears on the safety of a0+1 only if it covers an agreement >= a0+1 (unsafety propagates downward in agreement, def:v13-staircase monotonicity); Gceil covers at every c, Gfloor only when c | a0+1, Rem always (exactly a0+1), Plant iff a0+1-k < c.  Sub-frontier cells are reported but excluded from the verdict",
+    "margin_bits": "informational log2(M/B*), top-900-bit mantissa, 4dp; never used to decide fires/TIGHT",
+    "threshold_update_vs_old_pair_ledger": "the old-pair ledger compared raw rational masses against Theta_mca=(q+k)/k (MCA) / Theta_list=q/2^lam (list); post prop:capg-moved-frontier the deployed comparison is the committed v13_raw_moved_pair.route: integer mass L=ceil(mass) --prop:quantitative-deep-list-floor--> M=ceil(L(q-n)/(q-n+k(L-1))) (MCA; M=L for list) vs B*=floor(eps* q), exact integer comparison.  Verdicts (fires) are equivalent (ceil(F)>B* iff F>B* for integer B*); REPORTED margins differ for deep-suppressed cells (raw rational masses < 1 are floored at the trivial integer floor L=1 here, e.g. Rem cells read -log2(B*) instead of ~-10^6)"
+  },
+  "discharges_nonclaim": "profile-envelope-vs-target's printed nonclaim 'Deployed extra_profile_barNs empty: complete lower reduces to universal+identity image L; not a proved full atlas' -- this ledger commits the per-(profile, c) folding floor terms (the extra profile barNs) at the deployed rows for the complete dyadic family; the atlas-exhaustiveness caveat itself remains (see nonclaims)",
+  "evidence_type": "ORACLE_GATED_VS_COMMITTED_VALUE",
+  "failed_checks": [],
+  "falsifiability": "the gate fails if any committed overlap value (maintainer margins, v13_raw_moved_pair blocks, frozen floors, addendum sec 3.2 tables, list-packet verdicts), any pinned label line, or any rung verdict changes",
+  "gap_filled": "m31_mca_conjq_rung_audit_v1.json, verbatim: 'not a full ledger at (1116023,1116024)' -- the lower-side floor ledger at the moved pairs did not exist; this certificate is it",
+  "generator_route": "Legendre prime-factorization exponents + product-tree exact binomials; exact ceil division; exact cross-multiplied comparisons; margins via top-900-bit mantissa",
+  "headline": "Adjacent pairs survive the complete folding sector: all four deployed rows, all 21 dyadic rungs, all four slack profiles -- no frontier-covering floor at a0+1 exceeds B* (no rung fires).  The single sub-bit rung is the known watch-item, pinned exactly: m31_mca Gceil c=2048, M = 12,769,758 vs B* = 16,777,215, margin -0.3938 bits, headroom 4,007,457 (needs 4,007,458 more codewords at agreement 1,116,160 to fire).",
+  "honest_labels": {
+    "failure_side": "a firing rung, had one appeared, would NOT by itself move the printed frontier: failure verdicts need a realization witness for the firing folding (realization_witness block)",
+    "safety_side": "CONDITIONAL: the 'no rung fires' verdict certifies the periodic/quotient LOWER floors of the scanned family only; it is conditional on folding-family exhaustiveness (dyadic complete-fiber scales c=2^j, j=0..20, per rem:standard-position; the four slack profiles of the quotient ledger) and says nothing about aperiodic (prob:band), L1, or sparse cells.  a0+1 safety remains CONJECTURAL_WITH_FALSIFIER (prob:capff1-frontier)"
+  },
+  "ledger_outcome": {
+    "any_frontier_rung_fires": false,
+    "firing_rungs": [],
+    "tight_rungs": [
+      {
+        "M": 12769758,
+        "c": 2048,
+        "margin_bits": -0.3938,
+        "profile": "Gceil",
+        "row": "m31_mca"
+      }
+    ]
+  },
+  "named_demand": "prob:capfr1-rung-audit (cap25_cap_v13_raw.tex, 'Immediate' work-queue tier)",
+  "nonclaims": [
+    "no safety theorem: U(a0+1) <= B* is NOT established for any row; the aperiodic (prob:band), L1 (prob:v13-l1-residuals, prob:v13-primitive-image-fiber), and sparse (prob:mutual/prob:sparse-mutual) cells are untouched",
+    "mirrors the Lean module's nonclaims: no A2/A4, no realization, no exhaustiveness, no deployed finite-row bound proved in Lean; the Lean citation covers only the exponent algebra of the asymptotic sector",
+    "no claim that the four slack profiles exhaust all conceivable periodic floors; they are the profiles the quotient ledger defines (the named demand's scope)",
+    "does not duplicate or subsume the upper-side conj:Q rung audits (distinct objects; see not_conflated_with)",
+    "the profile-envelope-vs-target atlas caveat stands: committing these folding floor terms does not prove a full witness-exhaustive atlas"
+  ],
+  "not_conflated_with": {
+    "object": "upper-side conj:Q max-fiber rung audits {kb,m31}_mca_conjq_rung_audit_v1.json",
+    "reconciliation": "per those audits' own reconciliation blocks, the two are DISTINCT objects and must not be conflated: this ledger asks whether a periodic LOWER floor EXCEEDS the budget (refutation from below); the conj:Q audits charge quotient-pulled-back UPPER fibers to their rungs (K_raw consumption).  Their content is cited, not duplicated, here"
+  },
+  "object": "complete lower-side floor ledger (profile-envelope rung ledger) at the four moved deployed pairs: 4 rows x 4 slack profiles x 21 dyadic rungs, exact-integer rung margins at a0+1 vs B*",
+  "payload_sha256": "cdcc397b04c9b3110b96c8b0444b6f8c6955d33158ce0964419dac81c5750276",
+  "pins": {
+    "cap25": {
+      "cor:capg-adjacent-pairs": {
+        "found": true,
+        "line": 8680,
+        "sha256_line": "2c2aefbaa55ff115"
+      },
+      "cor:capg-budget-conversion": {
+        "found": true,
+        "line": 8560,
+        "sha256_line": "791826c34468e792"
+      },
+      "lem:capff1-identity-prefix-floor": {
+        "found": true,
+        "line": 6909,
+        "sha256_line": "08b40a6b09b382fb"
+      },
+      "lem:cheb-fibers": {
+        "found": true,
+        "line": 3957,
+        "sha256_line": "73ad87cc062ced04"
+      },
+      "lem:quotient-remainder-prefix": {
+        "found": true,
+        "line": 767,
+        "sha256_line": "6c7f3a0abd035845"
+      },
+      "lem:torus-fibers": {
+        "found": true,
+        "line": 3944,
+        "sha256_line": "701cebfbb2cf580f"
+      },
+      "prob:capff1-frontier": {
+        "found": true,
+        "line": 7004,
+        "sha256_line": "87783fcf2fe56ea6"
+      },
+      "prob:capfr1-rung-audit": {
+        "found": true,
+        "line": 8066,
+        "sha256_line": "f5ec08c2874a3d96"
+      },
+      "prop:capg-moved-frontier": {
+        "found": true,
+        "line": 8616,
+        "sha256_line": "d42e1de7511cf326"
+      },
+      "prop:graded-prefix-floor": {
+        "found": true,
+        "line": 5104,
+        "sha256_line": "37a203208f546ddb"
+      },
+      "prop:quantitative-deep-list-floor": {
+        "found": true,
+        "line": 350,
+        "sha256_line": "3ee8e59324d34621"
+      },
+      "rem:standard-position": {
+        "found": true,
+        "line": 3987,
+        "sha256_line": "911ed742b829af13"
+      },
+      "thm:capf-planted": {
+        "found": true,
+        "line": 6060,
+        "sha256_line": "61be2a4f325c35fc"
+      }
+    },
+    "frontiers": {
+      "def:circle-twin-domain": {
+        "found": true,
+        "line": 2657,
+        "sha256_line": "d3a2d6e054b727b5"
+      },
+      "def:quotient-remainder-profile": {
+        "found": true,
+        "line": 3385,
+        "sha256_line": "b0c5f022ac6ecf9c"
+      },
+      "def:structured-folding": {
+        "found": true,
+        "line": 2606,
+        "sha256_line": "50c949bd26300a56"
+      },
+      "eq:profile-envelope": {
+        "found": true,
+        "line": 862,
+        "sha256_line": "24588f5505c0a125"
+      },
+      "eq:qr-natural-scale": {
+        "found": true,
+        "line": 3889,
+        "sha256_line": "246275ebfa12b469"
+      },
+      "lem:cheb-smooth": {
+        "found": true,
+        "line": 2776,
+        "sha256_line": "d047e3e80712276a"
+      },
+      "prop:identity-quotient-comparison": {
+        "found": true,
+        "line": 3897,
+        "sha256_line": "46c8d43d9e1a98a2"
+      },
+      "rem:qr-chebyshev": {
+        "found": true,
+        "line": 3858,
+        "sha256_line": "951f02d31de897f3"
+      },
+      "rem:qr-rounding": {
+        "found": true,
+        "line": 3836,
+        "sha256_line": "814ef06e622b52f3"
+      }
+    },
+    "lean": {
+      "CompleteFiberFolding": {
+        "found": true,
+        "line": 138,
+        "sha256_line": "0868c3a191a68659"
+      },
+      "profileIdentityDominant_at_zeroTarget_iff_all_fieldRatio_eq_one": {
+        "found": true,
+        "line": 317,
+        "sha256_line": "38656cbdb9c08a58"
+      },
+      "profileIdentityDominant_iff_avoidsFailureBandUnion": {
+        "found": true,
+        "line": 258,
+        "sha256_line": "af5368c2049c1a34"
+      },
+      "profileIdentityDominant_of_all_fieldRatio_eq_one": {
+        "found": true,
+        "line": 286,
+        "sha256_line": "bee3df345a1880e4"
+      }
+    }
+  },
+  "pins_ok": true,
+  "proof_status": "AUDIT (exact arithmetic, dual-route)",
+  "realization_witness": {
+    "firing_rungs": [],
+    "requirement": "n/a for this outcome; recorded for symmetry -- a future firing rung needs a realization witness before any frontier moves",
+    "status": "NOT_APPLICABLE_NO_RUNG_FIRES"
+  },
+  "regeneration": "python3 experimental/scripts/verify_envelope_rung_ledger.py --emit-defaults",
+  "replay": {
+    "in_tree_gates": "experimental/scripts/verify_frontier_adjacent_v13_rows.py re-run at this base: 7/7 gates PASS including G7 (moved-pair recompute and the committed tight-rung expectation c=2048, L=12769758, margin -0.3938)",
+    "maintainer_partial_scan": {
+      "all_assertions_recomputed": true,
+      "commit_ref": "2b5b7ce per the committed provenance notes; in-tree at this base and re-run this session (exit 0); printed margins 8.978/-22.197 (kb_mca), 27.927 / 3.259 (unsigned as printed) (m31_mca)",
+      "script": "experimental/scripts/towards v13/cap25_v13_raw_moved_frontier_checks.py"
+    },
+    "overlap_policy": "every value this ledger shares with the maintainer script, the committed v13_raw_moved_pair blocks, the frozen profile-envelope-numerics floors, the addendum sec 3.2 Gceil tables, and the unchanged-pair list packets is gated above; the ledger is REJECTED on any overlap mismatch"
+  },
+  "rows": {
+    "kb_list": {
+      "B_star": 274980728111395087,
+      "K": 1048576,
+      "a0": 1116046,
+      "a0_plus_1": 1116047,
+      "circle": false,
+      "epsilon_star": "2^-128",
+      "ext_deg": 6,
+      "identity_anchor": {
+        "a0": {
+          "L": 157702518233425975347,
+          "M": 157702518233425975347,
+          "M_equals_L": true,
+          "TIGHT": false,
+          "a": 1116046,
+          "fires": true,
+          "margin_bits": 9.1637,
+          "w": 67470
+        },
+        "a1": {
+          "L": 65065153468,
+          "M": 65065153468,
+          "M_equals_L": true,
+          "TIGHT": false,
+          "a": 1116047,
+          "fires": false,
+          "margin_bits": -22.0109,
+          "w": 67471
+        }
+      },
+      "kind": "list",
+      "p": 2130706433,
+      "q_line_bits": 186,
+      "rung_ledger_at_a0_plus_1": [
+        {
+          "Gceil": {
+            "L": 65065153468,
+            "M": 65065153468,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1116047,
+            "margin_bits": -22.0109,
+            "w": 67471
+          },
+          "Gfloor": {
+            "L": 65065153468,
+            "M": 65065153468,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 1116047,
+            "margin_bits": -22.0109,
+            "w": 67471
+          },
+          "N": 2097152,
+          "Plant": {
+            "P_bit_length": 2097141,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 2097082.2421,
+            "max_covered_agreement": 1048576,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 65065153468,
+            "M": 65065153468,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1116047,
+            "margin_bits": -22.0109,
+            "s": 0,
+            "w_rem": 67471
+          },
+          "c": 1,
+          "j": 0
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 558024,
+            "margin_bits": -57.9321,
+            "w": 33736
+          },
+          "Gfloor": {
+            "L": 417298898,
+            "M": 417298898,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116046,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 558023,
+            "margin_bits": -29.2956,
+            "w": 33735
+          },
+          "N": 1048576,
+          "Plant": {
+            "P_bit_length": 1048565,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 1048506.7421,
+            "max_covered_agreement": 1048577,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 558023,
+            "margin_bits": -57.9321,
+            "s": 1,
+            "w_rem": 67471
+          },
+          "c": 2,
+          "j": 1
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 279012,
+            "margin_bits": -57.9321,
+            "w": 16868
+          },
+          "Gfloor": {
+            "L": 39742336,
+            "M": 39742336,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116044,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 279011,
+            "margin_bits": -32.6879,
+            "w": 16867
+          },
+          "N": 524288,
+          "Plant": {
+            "P_bit_length": 524278,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 524219.2421,
+            "max_covered_agreement": 1048579,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 279011,
+            "margin_bits": -57.9321,
+            "s": 3,
+            "w_rem": 67471
+          },
+          "c": 4,
+          "j": 2
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 139506,
+            "margin_bits": -57.9321,
+            "w": 8434
+          },
+          "Gfloor": {
+            "L": 14585203,
+            "M": 14585203,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116040,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 139505,
+            "margin_bits": -34.1341,
+            "w": 8433
+          },
+          "N": 262144,
+          "Plant": {
+            "P_bit_length": 262134,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 262075.7421,
+            "max_covered_agreement": 1048583,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 139505,
+            "margin_bits": -57.9321,
+            "s": 7,
+            "w_rem": 67471
+          },
+          "c": 8,
+          "j": 3
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69753,
+            "margin_bits": -57.9321,
+            "w": 4217
+          },
+          "Gfloor": {
+            "L": 10507431,
+            "M": 10507431,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 69752,
+            "margin_bits": -34.6072,
+            "w": 4216
+          },
+          "N": 131072,
+          "Plant": {
+            "P_bit_length": 131063,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 131004.2421,
+            "max_covered_agreement": 1048591,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69752,
+            "margin_bits": -57.9321,
+            "s": 15,
+            "w_rem": 67471
+          },
+          "c": 16,
+          "j": 4
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116064,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34877,
+            "margin_bits": -57.9321,
+            "w": 2109
+          },
+          "Gfloor": {
+            "L": 216,
+            "M": 216,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 34876,
+            "margin_bits": -50.1772,
+            "w": 2108
+          },
+          "N": 65536,
+          "Plant": {
+            "P_bit_length": 65527,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 65468.7421,
+            "max_covered_agreement": 1048607,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34876,
+            "margin_bits": -57.9321,
+            "s": 15,
+            "w_rem": 33743
+          },
+          "c": 32,
+          "j": 5
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116096,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17439,
+            "margin_bits": -57.9321,
+            "w": 1055
+          },
+          "Gfloor": {
+            "L": 2,
+            "M": 2,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 17438,
+            "margin_bits": -56.9321,
+            "w": 1054
+          },
+          "N": 32768,
+          "Plant": {
+            "P_bit_length": 32760,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 32701.2421,
+            "max_covered_agreement": 1048639,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17438,
+            "margin_bits": -57.9321,
+            "s": 15,
+            "w_rem": 16879
+          },
+          "c": 64,
+          "j": 6
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8720,
+            "margin_bits": -57.9321,
+            "w": 528
+          },
+          "Gfloor": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 8719,
+            "margin_bits": -57.9321,
+            "w": 527
+          },
+          "N": 16384,
+          "Plant": {
+            "P_bit_length": 16376,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 16317.7421,
+            "max_covered_agreement": 1048703,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8719,
+            "margin_bits": -57.9321,
+            "s": 15,
+            "w_rem": 8447
+          },
+          "c": 128,
+          "j": 7
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4360,
+            "margin_bits": -57.9321,
+            "w": 264
+          },
+          "Gfloor": {
+            "L": 1751,
+            "M": 1751,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115904,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 4359,
+            "margin_bits": -47.1581,
+            "w": 263
+          },
+          "N": 8192,
+          "Plant": {
+            "P_bit_length": 8185,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 8126.2421,
+            "max_covered_agreement": 1048831,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4359,
+            "margin_bits": -57.9321,
+            "s": 143,
+            "w_rem": 38015
+          },
+          "c": 256,
+          "j": 8
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2180,
+            "margin_bits": -57.9321,
+            "w": 132
+          },
+          "Gfloor": {
+            "L": 273705,
+            "M": 273705,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115648,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 2179,
+            "margin_bits": -39.8698,
+            "w": 131
+          },
+          "N": 4096,
+          "Plant": {
+            "P_bit_length": 4089,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 4030.7421,
+            "max_covered_agreement": 1049087,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2179,
+            "margin_bits": -57.9321,
+            "s": 399,
+            "w_rem": 52799
+          },
+          "c": 512,
+          "j": 9
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1090,
+            "margin_bits": -57.9321,
+            "w": 66
+          },
+          "Gfloor": {
+            "L": 4068183,
+            "M": 4068183,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115136,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 1089,
+            "margin_bits": -35.9762,
+            "w": 65
+          },
+          "N": 2048,
+          "Plant": {
+            "P_bit_length": 2042,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 1983.242,
+            "max_covered_agreement": 1049599,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1089,
+            "margin_bits": -57.9321,
+            "s": 911,
+            "w_rem": 60191
+          },
+          "c": 1024,
+          "j": 10
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 545,
+            "margin_bits": -57.9321,
+            "w": 33
+          },
+          "Gfloor": {
+            "L": 18635364,
+            "M": 18635364,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 544,
+            "margin_bits": -33.7806,
+            "w": 32
+          },
+          "N": 1024,
+          "Plant": {
+            "P_bit_length": 1018,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 959.7418,
+            "max_covered_agreement": 1050623,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 544,
+            "margin_bits": -57.9321,
+            "s": 1935,
+            "w_rem": 63887
+          },
+          "c": 2048,
+          "j": 11
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1118208,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 273,
+            "margin_bits": -57.9321,
+            "w": 17
+          },
+          "Gfloor": {
+            "L": 965,
+            "M": 965,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 272,
+            "margin_bits": -48.0177,
+            "w": 16
+          },
+          "N": 512,
+          "Plant": {
+            "P_bit_length": 507,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 448.2414,
+            "max_covered_agreement": 1052671,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 272,
+            "margin_bits": -57.9321,
+            "s": 1935,
+            "w_rem": 32911
+          },
+          "c": 4096,
+          "j": 12
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1122304,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 137,
+            "margin_bits": -57.9321,
+            "w": 9
+          },
+          "Gfloor": {
+            "L": 9,
+            "M": 9,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 136,
+            "margin_bits": -54.7622,
+            "w": 8
+          },
+          "N": 256,
+          "Plant": {
+            "P_bit_length": 251,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 192.7407,
+            "max_covered_agreement": 1056767,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 136,
+            "margin_bits": -57.9321,
+            "s": 1935,
+            "w_rem": 17423
+          },
+          "c": 8192,
+          "j": 13
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1130496,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69,
+            "margin_bits": -57.9321,
+            "w": 5
+          },
+          "Gfloor": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 68,
+            "margin_bits": -57.9321,
+            "w": 4
+          },
+          "N": 128,
+          "Plant": {
+            "P": 11975573020964041433067793888190275875,
+            "P_bit_length": 124,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 65.2393,
+            "max_covered_agreement": 1064959,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 68,
+            "margin_bits": -57.9321,
+            "s": 1935,
+            "w_rem": 9679
+          },
+          "c": 16384,
+          "j": 14
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1146880,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 35,
+            "margin_bits": -57.9321,
+            "w": 3
+          },
+          "Gfloor": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 34,
+            "margin_bits": -57.9321,
+            "w": 2
+          },
+          "N": 64,
+          "Plant": {
+            "P": 916312070471295267,
+            "P_bit_length": 60,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 1.7365,
+            "max_covered_agreement": 1081343,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34,
+            "margin_bits": -57.9321,
+            "s": 1935,
+            "w_rem": 5807
+          },
+          "c": 32768,
+          "j": 15
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1179648,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 18,
+            "margin_bits": -57.9321,
+            "w": 2
+          },
+          "Gfloor": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 17,
+            "margin_bits": -57.9321,
+            "w": 1
+          },
+          "N": 32,
+          "Plant": {
+            "P": 300540195,
+            "P_bit_length": 29,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -29.7691,
+            "max_covered_agreement": 1114111,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17,
+            "margin_bits": -57.9321,
+            "s": 1935,
+            "w_rem": 3871
+          },
+          "c": 65536,
+          "j": 16
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1179648,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 9,
+            "margin_bits": -57.9321,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 12870,
+            "M": 12870,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 8,
+            "margin_bits": -44.2804,
+            "w": 0
+          },
+          "N": 16,
+          "Plant": {
+            "P": 6435,
+            "P_bit_length": 13,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -45.2804,
+            "max_covered_agreement": 1179647,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8,
+            "margin_bits": -57.9321,
+            "s": 67471,
+            "w_rem": 67471
+          },
+          "c": 131072,
+          "j": 17
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1310720,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 5,
+            "margin_bits": -57.9321,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 70,
+            "M": 70,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 4,
+            "margin_bits": -51.8028,
+            "w": 0
+          },
+          "N": 8,
+          "Plant": {
+            "P": 35,
+            "P_bit_length": 6,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -52.8028,
+            "max_covered_agreement": 1310719,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4,
+            "margin_bits": -57.9321,
+            "s": 67471,
+            "w_rem": 67471
+          },
+          "c": 262144,
+          "j": 18
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1572864,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 3,
+            "margin_bits": -57.9321,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 6,
+            "M": 6,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -55.3471,
+            "w": 0
+          },
+          "N": 4,
+          "Plant": {
+            "P": 3,
+            "P_bit_length": 2,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -56.3471,
+            "max_covered_agreement": 1572863,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -57.9321,
+            "s": 67471,
+            "w_rem": 67471
+          },
+          "c": 524288,
+          "j": 19
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 2097152,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -57.9321,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 2,
+            "M": 2,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 1,
+            "margin_bits": -56.9321,
+            "w": 0
+          },
+          "N": 2,
+          "Plant": {
+            "P": 1,
+            "P_bit_length": 1,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -57.9321,
+            "max_covered_agreement": 2097151,
+            "sigma_needed": 67471
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116047,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1,
+            "margin_bits": -57.9321,
+            "s": 67471,
+            "w_rem": 67471
+          },
+          "c": 1048576,
+          "j": 20
+        }
+      ],
+      "sigma": 67471,
+      "summary": {
+        "any_frontier_rung_fires": false,
+        "any_frontier_rung_tight": false,
+        "firing_rungs": [],
+        "frontier_covering_cells": 47,
+        "max_frontier_margin_bits": -22.0109,
+        "min_frontier_margin_bits": -57.9321,
+        "subfrontier_fires_or_tight": [
+          {
+            "TIGHT": false,
+            "c": 1,
+            "covered": 1048576,
+            "fires": true,
+            "margin_bits": 2097082.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 2,
+            "covered": 1048577,
+            "fires": true,
+            "margin_bits": 1048506.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 4,
+            "covered": 1048579,
+            "fires": true,
+            "margin_bits": 524219.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 8,
+            "covered": 1048583,
+            "fires": true,
+            "margin_bits": 262075.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 16,
+            "covered": 1048591,
+            "fires": true,
+            "margin_bits": 131004.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 32,
+            "covered": 1048607,
+            "fires": true,
+            "margin_bits": 65468.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 64,
+            "covered": 1048639,
+            "fires": true,
+            "margin_bits": 32701.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 128,
+            "covered": 1048703,
+            "fires": true,
+            "margin_bits": 16317.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 256,
+            "covered": 1048831,
+            "fires": true,
+            "margin_bits": 8126.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 512,
+            "covered": 1049087,
+            "fires": true,
+            "margin_bits": 4030.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 1024,
+            "covered": 1049599,
+            "fires": true,
+            "margin_bits": 1983.242,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 2048,
+            "covered": 1050623,
+            "fires": true,
+            "margin_bits": 959.7418,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 4096,
+            "covered": 1052671,
+            "fires": true,
+            "margin_bits": 448.2414,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 8192,
+            "covered": 1056767,
+            "fires": true,
+            "margin_bits": 192.7407,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 16384,
+            "covered": 1064959,
+            "fires": true,
+            "margin_bits": 65.2393,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 32768,
+            "covered": 1081343,
+            "fires": true,
+            "margin_bits": 1.7365,
+            "profile": "Plant"
+          }
+        ],
+        "subfrontier_flags_note": "sub-frontier cells (covered agreement < a0+1) certify only already-unsafe agreements <= a0 and are excluded from the frontier verdict, per the frontier-adjacent convention",
+        "tight_rungs": []
+      },
+      "target_bits": 128
+    },
+    "kb_mca": {
+      "B_star": 274980728111395087,
+      "K": 1048577,
+      "a0": 1116047,
+      "a0_plus_1": 1116048,
+      "circle": false,
+      "epsilon_star": "2^-128",
+      "ext_deg": 6,
+      "identity_anchor": {
+        "a0": {
+          "L": 138634741058327852652,
+          "M": 138634741058327852652,
+          "M_equals_L": true,
+          "TIGHT": false,
+          "a": 1116047,
+          "fires": true,
+          "margin_bits": 8.9777,
+          "w": 67470
+        },
+        "a1": {
+          "L": 57198030366,
+          "M": 57198030366,
+          "M_equals_L": true,
+          "TIGHT": false,
+          "a": 1116048,
+          "fires": false,
+          "margin_bits": -22.1969,
+          "w": 67471
+        }
+      },
+      "kind": "mca",
+      "p": 2130706433,
+      "q_line_bits": 186,
+      "rung_ledger_at_a0_plus_1": [
+        {
+          "Gceil": {
+            "L": 57198030366,
+            "M": 57198030366,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1116048,
+            "margin_bits": -22.1969,
+            "w": 67471
+          },
+          "Gfloor": {
+            "L": 57198030366,
+            "M": 57198030366,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 1116048,
+            "margin_bits": -22.1969,
+            "w": 67471
+          },
+          "N": 2097152,
+          "Plant": {
+            "P_bit_length": 2097141,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 2097082.2421,
+            "max_covered_agreement": 1048576,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 57198030366,
+            "M": 57198030366,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1116048,
+            "margin_bits": -22.1969,
+            "s": 0,
+            "w_rem": 67471
+          },
+          "c": 1,
+          "j": 0
+        },
+        {
+          "Gceil": {
+            "L": 366843050,
+            "M": 366843050,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 558024,
+            "margin_bits": -29.4815,
+            "w": 33735
+          },
+          "Gfloor": {
+            "L": 366843050,
+            "M": 366843050,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 558024,
+            "margin_bits": -29.4815,
+            "w": 33735
+          },
+          "N": 1048576,
+          "Plant": {
+            "P_bit_length": 1048565,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 1048506.7421,
+            "max_covered_agreement": 1048577,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 366843050,
+            "M": 366843050,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 558024,
+            "margin_bits": -29.4815,
+            "s": 0,
+            "w_rem": 33735
+          },
+          "c": 2,
+          "j": 1
+        },
+        {
+          "Gceil": {
+            "L": 34937139,
+            "M": 34937139,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 279012,
+            "margin_bits": -32.8738,
+            "w": 16867
+          },
+          "Gfloor": {
+            "L": 34937139,
+            "M": 34937139,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 279012,
+            "margin_bits": -32.8738,
+            "w": 16867
+          },
+          "N": 524288,
+          "Plant": {
+            "P_bit_length": 524278,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 524219.2421,
+            "max_covered_agreement": 1048579,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 34937139,
+            "M": 34937139,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 279012,
+            "margin_bits": -32.8738,
+            "s": 0,
+            "w_rem": 16867
+          },
+          "c": 4,
+          "j": 2
+        },
+        {
+          "Gceil": {
+            "L": 12821777,
+            "M": 12821777,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 139506,
+            "margin_bits": -34.32,
+            "w": 8433
+          },
+          "Gfloor": {
+            "L": 12821777,
+            "M": 12821777,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 139506,
+            "margin_bits": -34.32,
+            "w": 8433
+          },
+          "N": 262144,
+          "Plant": {
+            "P_bit_length": 262134,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 262075.7421,
+            "max_covered_agreement": 1048583,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 12821777,
+            "M": 12821777,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 139506,
+            "margin_bits": -34.32,
+            "s": 0,
+            "w_rem": 8433
+          },
+          "c": 8,
+          "j": 3
+        },
+        {
+          "Gceil": {
+            "L": 9237104,
+            "M": 9237104,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69753,
+            "margin_bits": -34.7931,
+            "w": 4216
+          },
+          "Gfloor": {
+            "L": 9237104,
+            "M": 9237104,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 69753,
+            "margin_bits": -34.7931,
+            "w": 4216
+          },
+          "N": 131072,
+          "Plant": {
+            "P_bit_length": 131063,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 131004.2421,
+            "max_covered_agreement": 1048591,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 9237104,
+            "M": 9237104,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69753,
+            "margin_bits": -34.7931,
+            "s": 0,
+            "w_rem": 4216
+          },
+          "c": 16,
+          "j": 4
+        },
+        {
+          "Gceil": {
+            "L": 190,
+            "M": 190,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116064,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34877,
+            "margin_bits": -50.3623,
+            "w": 2108
+          },
+          "Gfloor": {
+            "L": 459016661889,
+            "M": 459016661889,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 34876,
+            "margin_bits": -19.1924,
+            "w": 2107
+          },
+          "N": 65536,
+          "Plant": {
+            "P_bit_length": 65527,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 65468.7421,
+            "max_covered_agreement": 1048607,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34876,
+            "margin_bits": -57.9321,
+            "s": 16,
+            "w_rem": 35851
+          },
+          "c": 32,
+          "j": 5
+        },
+        {
+          "Gceil": {
+            "L": 2,
+            "M": 2,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116096,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17439,
+            "margin_bits": -56.9321,
+            "w": 1054
+          },
+          "Gfloor": {
+            "L": 2471660650,
+            "M": 2471660650,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 17438,
+            "margin_bits": -26.7293,
+            "w": 1053
+          },
+          "N": 32768,
+          "Plant": {
+            "P_bit_length": 32760,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 32701.2421,
+            "max_covered_agreement": 1048639,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17438,
+            "margin_bits": -57.9321,
+            "s": 16,
+            "w_rem": 17933
+          },
+          "c": 64,
+          "j": 6
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8720,
+            "margin_bits": -57.9321,
+            "w": 527
+          },
+          "Gfloor": {
+            "L": 215687035,
+            "M": 215687035,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 8719,
+            "margin_bits": -30.2477,
+            "w": 526
+          },
+          "N": 16384,
+          "Plant": {
+            "P_bit_length": 16376,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 16317.7421,
+            "max_covered_agreement": 1048703,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8719,
+            "margin_bits": -57.9321,
+            "s": 16,
+            "w_rem": 8974
+          },
+          "c": 128,
+          "j": 7
+        },
+        {
+          "Gceil": {
+            "L": 1539,
+            "M": 1539,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4360,
+            "margin_bits": -47.3443,
+            "w": 263
+          },
+          "Gfloor": {
+            "L": 3729951365129,
+            "M": 3729951365129,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115904,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 4359,
+            "margin_bits": -16.1698,
+            "w": 262
+          },
+          "N": 8192,
+          "Plant": {
+            "P_bit_length": 8185,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 8126.2421,
+            "max_covered_agreement": 1048831,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4359,
+            "margin_bits": -57.9321,
+            "s": 144,
+            "w_rem": 38278
+          },
+          "c": 256,
+          "j": 8
+        },
+        {
+          "Gceil": {
+            "L": 240685,
+            "M": 240685,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2180,
+            "margin_bits": -40.0553,
+            "w": 131
+          },
+          "Gfloor": {
+            "L": 583183563901269,
+            "M": 583183563901269,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115648,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 2179,
+            "margin_bits": -8.8812,
+            "w": 130
+          },
+          "N": 4096,
+          "Plant": {
+            "P_bit_length": 4089,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 4030.7421,
+            "max_covered_agreement": 1049087,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2179,
+            "margin_bits": -57.9321,
+            "s": 400,
+            "w_rem": 52930
+          },
+          "c": 512,
+          "j": 9
+        },
+        {
+          "Gceil": {
+            "L": 3579254,
+            "M": 3579254,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1090,
+            "margin_bits": -36.1609,
+            "w": 65
+          },
+          "Gfloor": {
+            "L": 8668101566922737,
+            "M": 8668101566922737,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115136,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 1089,
+            "margin_bits": -4.9875,
+            "w": 64
+          },
+          "N": 2048,
+          "Plant": {
+            "P_bit_length": 2042,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 1983.242,
+            "max_covered_agreement": 1049599,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1089,
+            "margin_bits": -57.9321,
+            "s": 912,
+            "w_rem": 60256
+          },
+          "c": 1024,
+          "j": 10
+        },
+        {
+          "Gceil": {
+            "L": 16412798,
+            "M": 16412798,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 545,
+            "margin_bits": -33.9638,
+            "w": 32
+          },
+          "Gfloor": {
+            "L": 39706488875425225,
+            "M": 39706488875425225,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 544,
+            "margin_bits": -2.7919,
+            "w": 31
+          },
+          "N": 1024,
+          "Plant": {
+            "P_bit_length": 1018,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 959.7418,
+            "max_covered_agreement": 1050623,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 544,
+            "margin_bits": -57.9321,
+            "s": 1936,
+            "w_rem": 63919
+          },
+          "c": 2048,
+          "j": 11
+        },
+        {
+          "Gceil": {
+            "L": 848,
+            "M": 848,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1118208,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 273,
+            "margin_bits": -48.2042,
+            "w": 16
+          },
+          "Gfloor": {
+            "L": 2055264221600,
+            "M": 2055264221600,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 272,
+            "margin_bits": -17.0296,
+            "w": 15
+          },
+          "N": 512,
+          "Plant": {
+            "P_bit_length": 507,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 448.2414,
+            "max_covered_agreement": 1052671,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 272,
+            "margin_bits": -57.9321,
+            "s": 1936,
+            "w_rem": 32927
+          },
+          "c": 4096,
+          "j": 12
+        },
+        {
+          "Gceil": {
+            "L": 8,
+            "M": 8,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1122304,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 137,
+            "margin_bits": -54.9321,
+            "w": 8
+          },
+          "Gfloor": {
+            "L": 17577956087,
+            "M": 17577956087,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 136,
+            "margin_bits": -23.8991,
+            "w": 7
+          },
+          "N": 256,
+          "Plant": {
+            "P_bit_length": 251,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 192.7407,
+            "max_covered_agreement": 1056767,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 136,
+            "margin_bits": -57.9321,
+            "s": 1936,
+            "w_rem": 17431
+          },
+          "c": 8192,
+          "j": 13
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1130496,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69,
+            "margin_bits": -57.9321,
+            "w": 4
+          },
+          "Gfloor": {
+            "L": 1931774763,
+            "M": 1931774763,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 68,
+            "margin_bits": -27.0848,
+            "w": 3
+          },
+          "N": 128,
+          "Plant": {
+            "P": 11975573020964041433067793888190275875,
+            "P_bit_length": 124,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 65.2393,
+            "max_covered_agreement": 1064959,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 68,
+            "margin_bits": -57.9321,
+            "s": 1936,
+            "w_rem": 9683
+          },
+          "c": 16384,
+          "j": 14
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1146880,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 35,
+            "margin_bits": -57.9321,
+            "w": 2
+          },
+          "Gfloor": {
+            "L": 760446388,
+            "M": 760446388,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 34,
+            "margin_bits": -28.4298,
+            "w": 1
+          },
+          "N": 64,
+          "Plant": {
+            "P": 916312070471295267,
+            "P_bit_length": 60,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 1.7365,
+            "max_covered_agreement": 1081343,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34,
+            "margin_bits": -57.9321,
+            "s": 1936,
+            "w_rem": 5809
+          },
+          "c": 32768,
+          "j": 15
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1179648,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 18,
+            "margin_bits": -57.9321,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 565722720,
+            "M": 565722720,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 17,
+            "margin_bits": -28.8566,
+            "w": 0
+          },
+          "N": 32,
+          "Plant": {
+            "P": 300540195,
+            "P_bit_length": 29,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -29.7691,
+            "max_covered_agreement": 1114111,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17,
+            "margin_bits": -57.9321,
+            "s": 1936,
+            "w_rem": 3872
+          },
+          "c": 65536,
+          "j": 16
+        },
+        {
+          "Gceil": {
+            "L": 11440,
+            "M": 11440,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1179648,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 9,
+            "margin_bits": -44.4503,
+            "w": 0
+          },
+          "Gfloor": {
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": true,
+            "m": 8
+          },
+          "N": 16,
+          "Plant": {
+            "P": 6435,
+            "P_bit_length": 13,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "deep_point_M_equals_P": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -45.2804,
+            "max_covered_agreement": 1179647,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8,
+            "margin_bits": -57.9321,
+            "s": 67472,
+            "w_rem": 67471
+          },
+          "c": 131072,
+          "j": 17
+        },
+        {
+          "Gceil": {
+            "L": 56,
+            "M": 56,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1310720,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 5,
+            "margin_bits": -52.1248,
+            "w": 0
+          },
+          "Gfloor": {
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": true,
+            "m": 4
+          },
+          "N": 8,
+          "Plant": {
+            "P": 35,
+            "P_bit_length": 6,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "deep_point_M_equals_P": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -52.8028,
+            "max_covered_agreement": 1310719,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4,
+            "margin_bits": -57.9321,
+            "s": 67472,
+            "w_rem": 67471
+          },
+          "c": 262144,
+          "j": 18
+        },
+        {
+          "Gceil": {
+            "L": 4,
+            "M": 4,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1572864,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 3,
+            "margin_bits": -55.9321,
+            "w": 0
+          },
+          "Gfloor": {
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": true,
+            "m": 2
+          },
+          "N": 4,
+          "Plant": {
+            "P": 3,
+            "P_bit_length": 2,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "deep_point_M_equals_P": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -56.3471,
+            "max_covered_agreement": 1572863,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -57.9321,
+            "s": 67472,
+            "w_rem": 67471
+          },
+          "c": 524288,
+          "j": 19
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 2097152,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -57.9321,
+            "w": 0
+          },
+          "Gfloor": {
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": true,
+            "m": 1
+          },
+          "N": 2,
+          "Plant": {
+            "P": 1,
+            "P_bit_length": 1,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "deep_point_M_equals_P": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -57.9321,
+            "max_covered_agreement": 2097151,
+            "sigma_needed": 67472
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116048,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1,
+            "margin_bits": -57.9321,
+            "s": 67472,
+            "w_rem": 67471
+          },
+          "c": 1048576,
+          "j": 20
+        }
+      ],
+      "sigma": 67471,
+      "summary": {
+        "any_frontier_rung_fires": false,
+        "any_frontier_rung_tight": false,
+        "firing_rungs": [],
+        "frontier_covering_cells": 51,
+        "max_frontier_margin_bits": -22.1969,
+        "min_frontier_margin_bits": -57.9321,
+        "subfrontier_fires_or_tight": [
+          {
+            "TIGHT": false,
+            "c": 1,
+            "covered": 1048576,
+            "fires": true,
+            "margin_bits": 2097082.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 2,
+            "covered": 1048577,
+            "fires": true,
+            "margin_bits": 1048506.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 4,
+            "covered": 1048579,
+            "fires": true,
+            "margin_bits": 524219.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 8,
+            "covered": 1048583,
+            "fires": true,
+            "margin_bits": 262075.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 16,
+            "covered": 1048591,
+            "fires": true,
+            "margin_bits": 131004.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 32,
+            "covered": 1048607,
+            "fires": true,
+            "margin_bits": 65468.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 64,
+            "covered": 1048639,
+            "fires": true,
+            "margin_bits": 32701.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 128,
+            "covered": 1048703,
+            "fires": true,
+            "margin_bits": 16317.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 256,
+            "covered": 1048831,
+            "fires": true,
+            "margin_bits": 8126.2421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 512,
+            "covered": 1049087,
+            "fires": true,
+            "margin_bits": 4030.7421,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 1024,
+            "covered": 1049599,
+            "fires": true,
+            "margin_bits": 1983.242,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 2048,
+            "covered": 1050623,
+            "fires": true,
+            "margin_bits": 959.7418,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 4096,
+            "covered": 1052671,
+            "fires": true,
+            "margin_bits": 448.2414,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 8192,
+            "covered": 1056767,
+            "fires": true,
+            "margin_bits": 192.7407,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 16384,
+            "covered": 1064959,
+            "fires": true,
+            "margin_bits": 65.2393,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 32768,
+            "covered": 1081343,
+            "fires": true,
+            "margin_bits": 1.7365,
+            "profile": "Plant"
+          }
+        ],
+        "subfrontier_flags_note": "sub-frontier cells (covered agreement < a0+1) certify only already-unsafe agreements <= a0 and are excluded from the frontier verdict, per the frontier-adjacent convention",
+        "tight_rungs": []
+      },
+      "target_bits": 128
+    },
+    "m31_list": {
+      "B_star": 16777215,
+      "K": 1048576,
+      "a0": 1116022,
+      "a0_plus_1": 1116023,
+      "circle": true,
+      "epsilon_star": "2^-100",
+      "ext_deg": 4,
+      "identity_anchor": {
+        "a0": {
+          "L": 4870025984688527,
+          "M": 4870025984688527,
+          "M_equals_L": true,
+          "TIGHT": false,
+          "a": 1116022,
+          "fires": true,
+          "margin_bits": 28.1129,
+          "w": 67446
+        },
+        "a1": {
+          "L": 1993678,
+          "M": 1993678,
+          "M_equals_L": true,
+          "TIGHT": false,
+          "a": 1116023,
+          "fires": false,
+          "margin_bits": -3.073,
+          "w": 67447
+        }
+      },
+      "kind": "list",
+      "p": 2147483647,
+      "q_line_bits": 124,
+      "rung_ledger_at_a0_plus_1": [
+        {
+          "Gceil": {
+            "L": 1993678,
+            "M": 1993678,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1116023,
+            "margin_bits": -3.073,
+            "w": 67447
+          },
+          "Gfloor": {
+            "L": 1993678,
+            "M": 1993678,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 1116023,
+            "margin_bits": -3.073,
+            "w": 67447
+          },
+          "N": 2097152,
+          "Plant": {
+            "P_bit_length": 2097141,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 2097116.1743,
+            "max_covered_agreement": 1048576,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1993678,
+            "M": 1993678,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1116023,
+            "margin_bits": -3.073,
+            "s": 0,
+            "w_rem": 67447
+          },
+          "c": 1,
+          "j": 0
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 558012,
+            "margin_bits": -24.0,
+            "w": 33724
+          },
+          "Gfloor": {
+            "L": 2318960,
+            "M": 2318960,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116022,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 558011,
+            "margin_bits": -2.855,
+            "w": 33723
+          },
+          "N": 1048576,
+          "Plant": {
+            "P_bit_length": 1048565,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 1048540.6743,
+            "max_covered_agreement": 1048577,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 558011,
+            "margin_bits": -24.0,
+            "s": 1,
+            "w_rem": 67447
+          },
+          "c": 2,
+          "j": 1
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 279006,
+            "margin_bits": -24.0,
+            "w": 16862
+          },
+          "Gfloor": {
+            "L": 2974194,
+            "M": 2974194,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116020,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 279005,
+            "margin_bits": -2.4959,
+            "w": 16861
+          },
+          "N": 524288,
+          "Plant": {
+            "P_bit_length": 524278,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 524253.1743,
+            "max_covered_agreement": 1048579,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 279005,
+            "margin_bits": -24.0,
+            "s": 3,
+            "w_rem": 67447
+          },
+          "c": 4,
+          "j": 2
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 139503,
+            "margin_bits": -24.0,
+            "w": 8431
+          },
+          "Gfloor": {
+            "L": 4005560,
+            "M": 4005560,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116016,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 139502,
+            "margin_bits": -2.0664,
+            "w": 8430
+          },
+          "N": 262144,
+          "Plant": {
+            "P_bit_length": 262134,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 262109.6743,
+            "max_covered_agreement": 1048583,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 139502,
+            "margin_bits": -24.0,
+            "s": 7,
+            "w_rem": 67447
+          },
+          "c": 8,
+          "j": 3
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69752,
+            "margin_bits": -24.0,
+            "w": 4216
+          },
+          "Gfloor": {
+            "L": 112,
+            "M": 112,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116016,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 69751,
+            "margin_bits": -17.1926,
+            "w": 4215
+          },
+          "N": 131072,
+          "Plant": {
+            "P_bit_length": 131063,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 131038.1742,
+            "max_covered_agreement": 1048591,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69751,
+            "margin_bits": -24.0,
+            "s": 7,
+            "w_rem": 33727
+          },
+          "c": 16,
+          "j": 4
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34876,
+            "margin_bits": -24.0,
+            "w": 2108
+          },
+          "Gfloor": {
+            "L": 34738,
+            "M": 34738,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116000,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 34875,
+            "margin_bits": -8.9158,
+            "w": 2107
+          },
+          "N": 65536,
+          "Plant": {
+            "P_bit_length": 65527,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 65502.6742,
+            "max_covered_agreement": 1048607,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34875,
+            "margin_bits": -24.0,
+            "s": 23,
+            "w_rem": 50591
+          },
+          "c": 32,
+          "j": 5
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17438,
+            "margin_bits": -24.0,
+            "w": 1054
+          },
+          "Gfloor": {
+            "L": 728008,
+            "M": 728008,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115968,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 17437,
+            "margin_bits": -4.5264,
+            "w": 1053
+          },
+          "N": 32768,
+          "Plant": {
+            "P_bit_length": 32760,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 32735.1742,
+            "max_covered_agreement": 1048639,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17437,
+            "margin_bits": -24.0,
+            "s": 55,
+            "w_rem": 59023
+          },
+          "c": 64,
+          "j": 6
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8719,
+            "margin_bits": -24.0,
+            "w": 527
+          },
+          "Gfloor": {
+            "L": 3963103,
+            "M": 3963103,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115904,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 8718,
+            "margin_bits": -2.0818,
+            "w": 526
+          },
+          "N": 16384,
+          "Plant": {
+            "P_bit_length": 16376,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 16351.6742,
+            "max_covered_agreement": 1048703,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8718,
+            "margin_bits": -24.0,
+            "s": 119,
+            "w_rem": 63239
+          },
+          "c": 128,
+          "j": 7
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4360,
+            "margin_bits": -24.0,
+            "w": 264
+          },
+          "Gfloor": {
+            "L": 223,
+            "M": 223,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115904,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 4359,
+            "margin_bits": -16.1991,
+            "w": 263
+          },
+          "N": 8192,
+          "Plant": {
+            "P_bit_length": 8185,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 8160.1742,
+            "max_covered_agreement": 1048831,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4359,
+            "margin_bits": -24.0,
+            "s": 119,
+            "w_rem": 31679
+          },
+          "c": 256,
+          "j": 8
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2180,
+            "margin_bits": -24.0,
+            "w": 132
+          },
+          "Gfloor": {
+            "L": 97964,
+            "M": 97964,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115648,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 2179,
+            "margin_bits": -7.42,
+            "w": 131
+          },
+          "N": 4096,
+          "Plant": {
+            "P_bit_length": 4089,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 4064.6742,
+            "max_covered_agreement": 1049087,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2179,
+            "margin_bits": -24.0,
+            "s": 375,
+            "w_rem": 49631
+          },
+          "c": 512,
+          "j": 9
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1090,
+            "margin_bits": -24.0,
+            "w": 66
+          },
+          "Gfloor": {
+            "L": 2443399,
+            "M": 2443399,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115136,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 1089,
+            "margin_bits": -2.7795,
+            "w": 65
+          },
+          "N": 2048,
+          "Plant": {
+            "P_bit_length": 2042,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 2017.1741,
+            "max_covered_agreement": 1049599,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1089,
+            "margin_bits": -24.0,
+            "s": 887,
+            "w_rem": 58607
+          },
+          "c": 1024,
+          "j": 10
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 545,
+            "margin_bits": -24.0,
+            "w": 33
+          },
+          "Gfloor": {
+            "L": 14498996,
+            "M": 14498996,
+            "M_equals_L": true,
+            "TIGHT": true,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 544,
+            "margin_bits": -0.2106,
+            "w": 32
+          },
+          "N": 1024,
+          "Plant": {
+            "P_bit_length": 1018,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 993.6739,
+            "max_covered_agreement": 1050623,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 544,
+            "margin_bits": -24.0,
+            "s": 1911,
+            "w_rem": 63095
+          },
+          "c": 2048,
+          "j": 11
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1118208,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 273,
+            "margin_bits": -24.0,
+            "w": 17
+          },
+          "Gfloor": {
+            "L": 851,
+            "M": 851,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 272,
+            "margin_bits": -14.267,
+            "w": 16
+          },
+          "N": 512,
+          "Plant": {
+            "P_bit_length": 507,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 482.1735,
+            "max_covered_agreement": 1052671,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 272,
+            "margin_bits": -24.0,
+            "s": 1911,
+            "w_rem": 32503
+          },
+          "c": 4096,
+          "j": 12
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1122304,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 137,
+            "margin_bits": -24.0,
+            "w": 9
+          },
+          "Gfloor": {
+            "L": 8,
+            "M": 8,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 136,
+            "margin_bits": -21.0,
+            "w": 8
+          },
+          "N": 256,
+          "Plant": {
+            "P_bit_length": 251,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 226.6728,
+            "max_covered_agreement": 1056767,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 136,
+            "margin_bits": -24.0,
+            "s": 1911,
+            "w_rem": 17207
+          },
+          "c": 8192,
+          "j": 13
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1130496,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69,
+            "margin_bits": -24.0,
+            "w": 5
+          },
+          "Gfloor": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 68,
+            "margin_bits": -24.0,
+            "w": 4
+          },
+          "N": 128,
+          "Plant": {
+            "P": 11975573020964041433067793888190275875,
+            "P_bit_length": 124,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 99.1714,
+            "max_covered_agreement": 1064959,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 68,
+            "margin_bits": -24.0,
+            "s": 1911,
+            "w_rem": 9559
+          },
+          "c": 16384,
+          "j": 14
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1146880,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 35,
+            "margin_bits": -24.0,
+            "w": 3
+          },
+          "Gfloor": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 34,
+            "margin_bits": -24.0,
+            "w": 2
+          },
+          "N": 64,
+          "Plant": {
+            "P": 916312070471295267,
+            "P_bit_length": 60,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 35.6686,
+            "max_covered_agreement": 1081343,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34,
+            "margin_bits": -24.0,
+            "s": 1911,
+            "w_rem": 5735
+          },
+          "c": 32768,
+          "j": 15
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1179648,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 18,
+            "margin_bits": -24.0,
+            "w": 2
+          },
+          "Gfloor": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 17,
+            "margin_bits": -24.0,
+            "w": 1
+          },
+          "N": 32,
+          "Plant": {
+            "P": 300540195,
+            "P_bit_length": 29,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 4.163,
+            "max_covered_agreement": 1114111,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17,
+            "margin_bits": -24.0,
+            "s": 1911,
+            "w_rem": 3823
+          },
+          "c": 65536,
+          "j": 16
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1179648,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 9,
+            "margin_bits": -24.0,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 12870,
+            "M": 12870,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 8,
+            "margin_bits": -10.3483,
+            "w": 0
+          },
+          "N": 16,
+          "Plant": {
+            "P": 6435,
+            "P_bit_length": 13,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -11.3483,
+            "max_covered_agreement": 1179647,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8,
+            "margin_bits": -24.0,
+            "s": 67447,
+            "w_rem": 67447
+          },
+          "c": 131072,
+          "j": 17
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1310720,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 5,
+            "margin_bits": -24.0,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 70,
+            "M": 70,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 4,
+            "margin_bits": -17.8707,
+            "w": 0
+          },
+          "N": 8,
+          "Plant": {
+            "P": 35,
+            "P_bit_length": 6,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -18.8707,
+            "max_covered_agreement": 1310719,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4,
+            "margin_bits": -24.0,
+            "s": 67447,
+            "w_rem": 67447
+          },
+          "c": 262144,
+          "j": 18
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1572864,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 3,
+            "margin_bits": -24.0,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 6,
+            "M": 6,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -21.415,
+            "w": 0
+          },
+          "N": 4,
+          "Plant": {
+            "P": 3,
+            "P_bit_length": 2,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -22.415,
+            "max_covered_agreement": 1572863,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -24.0,
+            "s": 67447,
+            "w_rem": 67447
+          },
+          "c": 524288,
+          "j": 19
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 2097152,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -24.0,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 2,
+            "M": 2,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": false,
+            "m": 1,
+            "margin_bits": -23.0,
+            "w": 0
+          },
+          "N": 2,
+          "Plant": {
+            "P": 1,
+            "P_bit_length": 1,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -24.0,
+            "max_covered_agreement": 2097151,
+            "sigma_needed": 67447
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116023,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1,
+            "margin_bits": -24.0,
+            "s": 67447,
+            "w_rem": 67447
+          },
+          "c": 1048576,
+          "j": 20
+        }
+      ],
+      "sigma": 67447,
+      "summary": {
+        "any_frontier_rung_fires": false,
+        "any_frontier_rung_tight": false,
+        "firing_rungs": [],
+        "frontier_covering_cells": 47,
+        "max_frontier_margin_bits": -3.073,
+        "min_frontier_margin_bits": -24.0,
+        "subfrontier_fires_or_tight": [
+          {
+            "TIGHT": false,
+            "c": 1,
+            "covered": 1048576,
+            "fires": true,
+            "margin_bits": 2097116.1743,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 2,
+            "covered": 1048577,
+            "fires": true,
+            "margin_bits": 1048540.6743,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 4,
+            "covered": 1048579,
+            "fires": true,
+            "margin_bits": 524253.1743,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 8,
+            "covered": 1048583,
+            "fires": true,
+            "margin_bits": 262109.6743,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 16,
+            "covered": 1048591,
+            "fires": true,
+            "margin_bits": 131038.1742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 32,
+            "covered": 1048607,
+            "fires": true,
+            "margin_bits": 65502.6742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 64,
+            "covered": 1048639,
+            "fires": true,
+            "margin_bits": 32735.1742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 128,
+            "covered": 1048703,
+            "fires": true,
+            "margin_bits": 16351.6742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 256,
+            "covered": 1048831,
+            "fires": true,
+            "margin_bits": 8160.1742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 512,
+            "covered": 1049087,
+            "fires": true,
+            "margin_bits": 4064.6742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 1024,
+            "covered": 1049599,
+            "fires": true,
+            "margin_bits": 2017.1741,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": true,
+            "c": 2048,
+            "covered": 1114112,
+            "fires": false,
+            "margin_bits": -0.2106,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 2048,
+            "covered": 1050623,
+            "fires": true,
+            "margin_bits": 993.6739,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 4096,
+            "covered": 1052671,
+            "fires": true,
+            "margin_bits": 482.1735,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 8192,
+            "covered": 1056767,
+            "fires": true,
+            "margin_bits": 226.6728,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 16384,
+            "covered": 1064959,
+            "fires": true,
+            "margin_bits": 99.1714,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 32768,
+            "covered": 1081343,
+            "fires": true,
+            "margin_bits": 35.6686,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 65536,
+            "covered": 1114111,
+            "fires": true,
+            "margin_bits": 4.163,
+            "profile": "Plant"
+          }
+        ],
+        "subfrontier_flags_note": "sub-frontier cells (covered agreement < a0+1) certify only already-unsafe agreements <= a0 and are excluded from the frontier verdict, per the frontier-adjacent convention",
+        "tight_rungs": []
+      },
+      "target_bits": 100
+    },
+    "m31_mca": {
+      "B_star": 16777215,
+      "K": 1048577,
+      "a0": 1116023,
+      "a0_plus_1": 1116024,
+      "circle": true,
+      "epsilon_star": "2^-100",
+      "ext_deg": 4,
+      "identity_anchor": {
+        "a0": {
+          "L": 4281388998575706,
+          "M": 4281388998575706,
+          "M_equals_L": true,
+          "TIGHT": false,
+          "a": 1116023,
+          "fires": true,
+          "margin_bits": 27.927,
+          "w": 67446
+        },
+        "a1": {
+          "L": 1752700,
+          "M": 1752700,
+          "M_equals_L": true,
+          "TIGHT": false,
+          "a": 1116024,
+          "fires": false,
+          "margin_bits": -3.2589,
+          "w": 67447
+        }
+      },
+      "kind": "mca",
+      "p": 2147483647,
+      "q_line_bits": 124,
+      "rung_ledger_at_a0_plus_1": [
+        {
+          "Gceil": {
+            "L": 1752700,
+            "M": 1752700,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1116024,
+            "margin_bits": -3.2589,
+            "w": 67447
+          },
+          "Gfloor": {
+            "L": 1752700,
+            "M": 1752700,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 1116024,
+            "margin_bits": -3.2589,
+            "w": 67447
+          },
+          "N": 2097152,
+          "Plant": {
+            "P_bit_length": 2097141,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 2097116.1743,
+            "max_covered_agreement": 1048576,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1752700,
+            "M": 1752700,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1116024,
+            "margin_bits": -3.2589,
+            "s": 0,
+            "w_rem": 67447
+          },
+          "c": 1,
+          "j": 0
+        },
+        {
+          "Gceil": {
+            "L": 2038667,
+            "M": 2038667,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 558012,
+            "margin_bits": -3.0408,
+            "w": 33723
+          },
+          "Gfloor": {
+            "L": 2038667,
+            "M": 2038667,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 558012,
+            "margin_bits": -3.0408,
+            "w": 33723
+          },
+          "N": 1048576,
+          "Plant": {
+            "P_bit_length": 1048565,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 1048540.6743,
+            "max_covered_agreement": 1048577,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 2038667,
+            "M": 2038667,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 558012,
+            "margin_bits": -3.0408,
+            "s": 0,
+            "w_rem": 33723
+          },
+          "c": 2,
+          "j": 1
+        },
+        {
+          "Gceil": {
+            "L": 2614708,
+            "M": 2614708,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 279006,
+            "margin_bits": -2.6818,
+            "w": 16861
+          },
+          "Gfloor": {
+            "L": 2614708,
+            "M": 2614708,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 279006,
+            "margin_bits": -2.6818,
+            "w": 16861
+          },
+          "N": 524288,
+          "Plant": {
+            "P_bit_length": 524278,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 524253.1743,
+            "max_covered_agreement": 1048579,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 2614708,
+            "M": 2614708,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 279006,
+            "margin_bits": -2.6818,
+            "s": 0,
+            "w_rem": 16861
+          },
+          "c": 4,
+          "j": 2
+        },
+        {
+          "Gceil": {
+            "L": 3521429,
+            "M": 3521429,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 139503,
+            "margin_bits": -2.2523,
+            "w": 8430
+          },
+          "Gfloor": {
+            "L": 3521429,
+            "M": 3521429,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "degenerate": false,
+            "fires": false,
+            "m": 139503,
+            "margin_bits": -2.2523,
+            "w": 8430
+          },
+          "N": 262144,
+          "Plant": {
+            "P_bit_length": 262134,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 262109.6743,
+            "max_covered_agreement": 1048583,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 3521429,
+            "M": 3521429,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 139503,
+            "margin_bits": -2.2523,
+            "s": 0,
+            "w_rem": 8430
+          },
+          "c": 8,
+          "j": 3
+        },
+        {
+          "Gceil": {
+            "L": 99,
+            "M": 99,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69752,
+            "margin_bits": -17.3706,
+            "w": 4215
+          },
+          "Gfloor": {
+            "L": 240193328119,
+            "M": 240193328119,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116016,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 69751,
+            "margin_bits": 13.8054,
+            "w": 4214
+          },
+          "N": 131072,
+          "Plant": {
+            "P_bit_length": 131063,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 131038.1742,
+            "max_covered_agreement": 1048591,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69751,
+            "margin_bits": -24.0,
+            "s": 8,
+            "w_rem": 37942
+          },
+          "c": 16,
+          "j": 4
+        },
+        {
+          "Gceil": {
+            "L": 30540,
+            "M": 30540,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34876,
+            "margin_bits": -9.1016,
+            "w": 2107
+          },
+          "Gfloor": {
+            "L": 74599090260210,
+            "M": 74599090260210,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116000,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 34875,
+            "margin_bits": 22.0842,
+            "w": 2106
+          },
+          "N": 65536,
+          "Plant": {
+            "P_bit_length": 65527,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 65502.6742,
+            "max_covered_agreement": 1048607,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34875,
+            "margin_bits": -24.0,
+            "s": 24,
+            "w_rem": 52698
+          },
+          "c": 32,
+          "j": 5
+        },
+        {
+          "Gceil": {
+            "L": 640044,
+            "M": 640044,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17438,
+            "margin_bits": -4.7122,
+            "w": 1053
+          },
+          "Gfloor": {
+            "L": 1563383245795432,
+            "M": 1563383245795432,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115968,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 17437,
+            "margin_bits": 26.4736,
+            "w": 1052
+          },
+          "N": 32768,
+          "Plant": {
+            "P_bit_length": 32760,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 32735.1742,
+            "max_covered_agreement": 1048639,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17437,
+            "margin_bits": -24.0,
+            "s": 56,
+            "w_rem": 60076
+          },
+          "c": 64,
+          "j": 6
+        },
+        {
+          "Gceil": {
+            "L": 3484476,
+            "M": 3484476,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116032,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8719,
+            "margin_bits": -2.2675,
+            "w": 526
+          },
+          "Gfloor": {
+            "L": 8510697801176697,
+            "M": 8510697801176694,
+            "M_equals_L": false,
+            "TIGHT": false,
+            "covered": 1115904,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 8718,
+            "margin_bits": 28.9182,
+            "w": 525
+          },
+          "N": 16384,
+          "Plant": {
+            "P_bit_length": 16376,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 16351.6742,
+            "max_covered_agreement": 1048703,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8718,
+            "margin_bits": -24.0,
+            "s": 120,
+            "w_rem": 63765
+          },
+          "c": 128,
+          "j": 7
+        },
+        {
+          "Gceil": {
+            "L": 196,
+            "M": 196,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4360,
+            "margin_bits": -16.3853,
+            "w": 263
+          },
+          "Gfloor": {
+            "L": 477821974050,
+            "M": 477821974050,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115904,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 4359,
+            "margin_bits": 14.7977,
+            "w": 262
+          },
+          "N": 8192,
+          "Plant": {
+            "P_bit_length": 8185,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 8160.1742,
+            "max_covered_agreement": 1048831,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4359,
+            "margin_bits": -24.0,
+            "s": 120,
+            "w_rem": 31942
+          },
+          "c": 256,
+          "j": 8
+        },
+        {
+          "Gceil": {
+            "L": 86145,
+            "M": 86145,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2180,
+            "margin_bits": -7.6055,
+            "w": 131
+          },
+          "Gfloor": {
+            "L": 210374452350531,
+            "M": 210374452350531,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1115648,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 2179,
+            "margin_bits": 23.58,
+            "w": 130
+          },
+          "N": 4096,
+          "Plant": {
+            "P_bit_length": 4089,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 4064.6742,
+            "max_covered_agreement": 1049087,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2179,
+            "margin_bits": -24.0,
+            "s": 376,
+            "w_rem": 49762
+          },
+          "c": 512,
+          "j": 9
+        },
+        {
+          "Gceil": {
+            "L": 2149743,
+            "M": 2149743,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1090,
+            "margin_bits": -2.9643,
+            "w": 65
+          },
+          "Gfloor": {
+            "L": 5247157510441937,
+            "M": 5247157510441936,
+            "M_equals_L": false,
+            "TIGHT": false,
+            "covered": 1115136,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 1089,
+            "margin_bits": 28.2205,
+            "w": 64
+          },
+          "N": 2048,
+          "Plant": {
+            "P_bit_length": 2042,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 2017.1741,
+            "max_covered_agreement": 1049599,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1089,
+            "margin_bits": -24.0,
+            "s": 888,
+            "w_rem": 58672
+          },
+          "c": 1024,
+          "j": 10
+        },
+        {
+          "Gceil": {
+            "L": 12769758,
+            "M": 12769758,
+            "M_equals_L": true,
+            "TIGHT": true,
+            "covered": 1116160,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 545,
+            "margin_bits": -0.3938,
+            "w": 32
+          },
+          "Gfloor": {
+            "L": 31136356315261323,
+            "M": 31136356315261276,
+            "M_equals_L": false,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 544,
+            "margin_bits": 30.7894,
+            "w": 31
+          },
+          "N": 1024,
+          "Plant": {
+            "P_bit_length": 1018,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 993.6739,
+            "max_covered_agreement": 1050623,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 544,
+            "margin_bits": -24.0,
+            "s": 1912,
+            "w_rem": 63127
+          },
+          "c": 2048,
+          "j": 11
+        },
+        {
+          "Gceil": {
+            "L": 748,
+            "M": 748,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1118208,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 273,
+            "margin_bits": -14.4531,
+            "w": 16
+          },
+          "Gfloor": {
+            "L": 1827148887172,
+            "M": 1827148887172,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 272,
+            "margin_bits": 16.7327,
+            "w": 15
+          },
+          "N": 512,
+          "Plant": {
+            "P_bit_length": 507,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 482.1735,
+            "max_covered_agreement": 1052671,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 272,
+            "margin_bits": -24.0,
+            "s": 1912,
+            "w_rem": 32519
+          },
+          "c": 4096,
+          "j": 12
+        },
+        {
+          "Gceil": {
+            "L": 7,
+            "M": 7,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1122304,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 137,
+            "margin_bits": -21.1926,
+            "w": 8
+          },
+          "Gfloor": {
+            "L": 16638900979,
+            "M": 16638900979,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 136,
+            "margin_bits": 9.9538,
+            "w": 7
+          },
+          "N": 256,
+          "Plant": {
+            "P_bit_length": 251,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 226.6728,
+            "max_covered_agreement": 1056767,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 136,
+            "margin_bits": -24.0,
+            "s": 1912,
+            "w_rem": 17215
+          },
+          "c": 8192,
+          "j": 13
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1130496,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 69,
+            "margin_bits": -24.0,
+            "w": 4
+          },
+          "Gfloor": {
+            "L": 1886851595,
+            "M": 1886851595,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 68,
+            "margin_bits": 6.8133,
+            "w": 3
+          },
+          "N": 128,
+          "Plant": {
+            "P": 11975573020964041433067793888190275875,
+            "P_bit_length": 124,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 99.1714,
+            "max_covered_agreement": 1064959,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 68,
+            "margin_bits": -24.0,
+            "s": 1912,
+            "w_rem": 9563
+          },
+          "c": 16384,
+          "j": 14
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1146880,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 35,
+            "margin_bits": -24.0,
+            "w": 2
+          },
+          "Gfloor": {
+            "L": 754505402,
+            "M": 754505402,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 34,
+            "margin_bits": 5.491,
+            "w": 1
+          },
+          "N": 64,
+          "Plant": {
+            "P": 916312070471295267,
+            "P_bit_length": 60,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 35.6686,
+            "max_covered_agreement": 1081343,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 34,
+            "margin_bits": -24.0,
+            "s": 1912,
+            "w_rem": 5737
+          },
+          "c": 32768,
+          "j": 15
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1179648,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 18,
+            "margin_bits": -24.0,
+            "w": 1
+          },
+          "Gfloor": {
+            "L": 565722720,
+            "M": 565722720,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1114112,
+            "covers_frontier": false,
+            "degenerate": false,
+            "fires": true,
+            "m": 17,
+            "margin_bits": 5.0755,
+            "w": 0
+          },
+          "N": 32,
+          "Plant": {
+            "P": 300540195,
+            "P_bit_length": 29,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": false,
+            "defined": true,
+            "fires_vs_Bstar": true,
+            "margin_bits": 4.163,
+            "max_covered_agreement": 1114111,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 17,
+            "margin_bits": -24.0,
+            "s": 1912,
+            "w_rem": 3824
+          },
+          "c": 65536,
+          "j": 16
+        },
+        {
+          "Gceil": {
+            "L": 11440,
+            "M": 11440,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1179648,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 9,
+            "margin_bits": -10.5182,
+            "w": 0
+          },
+          "Gfloor": {
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": true,
+            "m": 8
+          },
+          "N": 16,
+          "Plant": {
+            "P": 6435,
+            "P_bit_length": 13,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "deep_point_M_equals_P": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -11.3483,
+            "max_covered_agreement": 1179647,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 8,
+            "margin_bits": -24.0,
+            "s": 67448,
+            "w_rem": 67447
+          },
+          "c": 131072,
+          "j": 17
+        },
+        {
+          "Gceil": {
+            "L": 56,
+            "M": 56,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1310720,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 5,
+            "margin_bits": -18.1926,
+            "w": 0
+          },
+          "Gfloor": {
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": true,
+            "m": 4
+          },
+          "N": 8,
+          "Plant": {
+            "P": 35,
+            "P_bit_length": 6,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "deep_point_M_equals_P": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -18.8707,
+            "max_covered_agreement": 1310719,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 4,
+            "margin_bits": -24.0,
+            "s": 67448,
+            "w_rem": 67447
+          },
+          "c": 262144,
+          "j": 18
+        },
+        {
+          "Gceil": {
+            "L": 4,
+            "M": 4,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1572864,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 3,
+            "margin_bits": -22.0,
+            "w": 0
+          },
+          "Gfloor": {
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": true,
+            "m": 2
+          },
+          "N": 4,
+          "Plant": {
+            "P": 3,
+            "P_bit_length": 2,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "deep_point_M_equals_P": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -22.415,
+            "max_covered_agreement": 1572863,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -24.0,
+            "s": 67448,
+            "w_rem": 67447
+          },
+          "c": 524288,
+          "j": 19
+        },
+        {
+          "Gceil": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 2097152,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 2,
+            "margin_bits": -24.0,
+            "w": 0
+          },
+          "Gfloor": {
+            "covered": 1048576,
+            "covers_frontier": false,
+            "degenerate": true,
+            "m": 1
+          },
+          "N": 2,
+          "Plant": {
+            "P": 1,
+            "P_bit_length": 1,
+            "TIGHT_vs_Bstar": false,
+            "covers_frontier": true,
+            "deep_point_M_equals_P": true,
+            "defined": true,
+            "fires_vs_Bstar": false,
+            "margin_bits": -24.0,
+            "max_covered_agreement": 2097151,
+            "sigma_needed": 67448
+          },
+          "Rem": {
+            "L": 1,
+            "M": 1,
+            "M_equals_L": true,
+            "TIGHT": false,
+            "covered": 1116024,
+            "covers_frontier": true,
+            "fires": false,
+            "m": 1,
+            "margin_bits": -24.0,
+            "s": 67448,
+            "w_rem": 67447
+          },
+          "c": 1048576,
+          "j": 20
+        }
+      ],
+      "sigma": 67447,
+      "summary": {
+        "any_frontier_rung_fires": false,
+        "any_frontier_rung_tight": true,
+        "firing_rungs": [],
+        "frontier_covering_cells": 50,
+        "max_frontier_margin_bits": -0.3938,
+        "min_frontier_margin_bits": -24.0,
+        "subfrontier_fires_or_tight": [
+          {
+            "TIGHT": false,
+            "c": 1,
+            "covered": 1048576,
+            "fires": true,
+            "margin_bits": 2097116.1743,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 2,
+            "covered": 1048577,
+            "fires": true,
+            "margin_bits": 1048540.6743,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 4,
+            "covered": 1048579,
+            "fires": true,
+            "margin_bits": 524253.1743,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 8,
+            "covered": 1048583,
+            "fires": true,
+            "margin_bits": 262109.6743,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 16,
+            "covered": 1116016,
+            "fires": true,
+            "margin_bits": 13.8054,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 16,
+            "covered": 1048591,
+            "fires": true,
+            "margin_bits": 131038.1742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 32,
+            "covered": 1116000,
+            "fires": true,
+            "margin_bits": 22.0842,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 32,
+            "covered": 1048607,
+            "fires": true,
+            "margin_bits": 65502.6742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 64,
+            "covered": 1115968,
+            "fires": true,
+            "margin_bits": 26.4736,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 64,
+            "covered": 1048639,
+            "fires": true,
+            "margin_bits": 32735.1742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 128,
+            "covered": 1115904,
+            "fires": true,
+            "margin_bits": 28.9182,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 128,
+            "covered": 1048703,
+            "fires": true,
+            "margin_bits": 16351.6742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 256,
+            "covered": 1115904,
+            "fires": true,
+            "margin_bits": 14.7977,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 256,
+            "covered": 1048831,
+            "fires": true,
+            "margin_bits": 8160.1742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 512,
+            "covered": 1115648,
+            "fires": true,
+            "margin_bits": 23.58,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 512,
+            "covered": 1049087,
+            "fires": true,
+            "margin_bits": 4064.6742,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 1024,
+            "covered": 1115136,
+            "fires": true,
+            "margin_bits": 28.2205,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 1024,
+            "covered": 1049599,
+            "fires": true,
+            "margin_bits": 2017.1741,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 2048,
+            "covered": 1114112,
+            "fires": true,
+            "margin_bits": 30.7894,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 2048,
+            "covered": 1050623,
+            "fires": true,
+            "margin_bits": 993.6739,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 4096,
+            "covered": 1114112,
+            "fires": true,
+            "margin_bits": 16.7327,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 4096,
+            "covered": 1052671,
+            "fires": true,
+            "margin_bits": 482.1735,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 8192,
+            "covered": 1114112,
+            "fires": true,
+            "margin_bits": 9.9538,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 8192,
+            "covered": 1056767,
+            "fires": true,
+            "margin_bits": 226.6728,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 16384,
+            "covered": 1114112,
+            "fires": true,
+            "margin_bits": 6.8133,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 16384,
+            "covered": 1064959,
+            "fires": true,
+            "margin_bits": 99.1714,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 32768,
+            "covered": 1114112,
+            "fires": true,
+            "margin_bits": 5.491,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 32768,
+            "covered": 1081343,
+            "fires": true,
+            "margin_bits": 35.6686,
+            "profile": "Plant"
+          },
+          {
+            "TIGHT": false,
+            "c": 65536,
+            "covered": 1114112,
+            "fires": true,
+            "margin_bits": 5.0755,
+            "profile": "Gfloor"
+          },
+          {
+            "TIGHT": false,
+            "c": 65536,
+            "covered": 1114111,
+            "fires": true,
+            "margin_bits": 4.163,
+            "profile": "Plant"
+          }
+        ],
+        "subfrontier_flags_note": "sub-frontier cells (covered agreement < a0+1) certify only already-unsafe agreements <= a0 and are excluded from the frontier verdict, per the frontier-adjacent convention",
+        "tight_rungs": [
+          {
+            "M": 12769758,
+            "c": 2048,
+            "margin_bits": -0.3938,
+            "profile": "Gceil"
+          }
+        ]
+      },
+      "target_bits": 100
+    }
+  },
+  "schema": "envelope-rung-ledger-v1",
+  "status": "EXPERIMENTAL / AUDIT",
+  "tex_paths": {
+    "cap25": "experimental/cap25_cap_v13_raw.tex",
+    "frontiers": "experimental/asymptotic_rs_mca_frontiers.tex",
+    "lean": "experimental/lean/grande_finale/GrandeFinale/ProfileEnvelopeWindow.lean"
+  },
+  "verdict": "NO ISSUE",
+  "watch_item": {
+    "B_star": 16777215,
+    "L": 12769758,
+    "M": 12769758,
+    "additional_to_fire": 4007458,
+    "c": 2048,
+    "covered": 1116160,
+    "endpoint_multiplier_sensitivity": {
+      "consequence": "the b = 0 complete-fiber property is LOAD-BEARING for this rung's non-firing verdict: any endpoint multiplier >= 2^0.3938 would flip it; b=0 is a proved property of the deployed standard-position domains, not an assumption",
+      "reference": "rem:qr-chebyshev: crude exceptional-point multiplier <= 2^b, b <= 2 for involution-fixed endpoints; the deployed twin-coset x-domain has b = 0 (complete fibers at every dyadic scale, lem:cheb-fibers / rem:standard-position: a twin coset contains no self-inverse element)",
+      "would_fire_under_2^1_multiplier": true,
+      "would_fire_under_2^2_multiplier": true
+    },
+    "headroom_to_Bstar": 4007457,
+    "m": 545,
+    "margin_bits": -0.3938,
+    "profile": "Gceil",
+    "row": "m31_mca",
+    "w": 32
+  }
+}

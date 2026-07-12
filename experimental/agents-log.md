@@ -30,6 +30,50 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-12 - Profile-envelope rung ledger at the moved deployed pairs
+
+- **Agent/model:** Claude Fable 5 (latifkasuli).
+- **Files added or changed:**
+  `experimental/scripts/verify_envelope_rung_ledger.py` (generator),
+  `experimental/scripts/verify_envelope_rung_ledger_check.py`
+  (independent checker, no generator import),
+  `experimental/data/certificates/envelope-rung-ledger/envelope_rung_ledger.json`,
+  `experimental/notes/audits/envelope_rung_ledger.md`.
+- **Status:** EXPERIMENTAL / AUDIT (exact integer arithmetic, dual-route).
+- **What is being added:** The full lower-side floor ledger demanded by
+  `prob:capfr1-rung-audit` at the four deployed adjacent pairs of
+  `cor:capg-adjacent-pairs` (the two MCA pairs moved by
+  `prop:capg-moved-frontier`): 4 rows x 4 slack profiles
+  (Gfloor/Gceil/Rem/Plant) x 21 dyadic rungs, exact-integer margins of
+  the deep-point-converted masses against B* at a0+1, filling the
+  acknowledged "not a full ledger at (1116023,1116024)" gap.  Verdict is
+  an outcome: NO ISSUE -- no frontier-covering rung fires anywhere; the
+  single tight rung is the known watch-item, pinned exactly (m31_mca
+  Gceil c=2048, M=12,769,758 vs B*=16,777,215, -0.3938 bits, headroom
+  4,007,457).  The asymptotic sector records the prime-field
+  subfield-lattice facts as integer checks and cites the integrated
+  zero-sorry `profileIdentityDominant_of_all_fieldRatio_eq_one`
+  (failure band union empty at lambda=1); the M31 circle degree-2
+  caution is decided (not assumed) from `def:circle-twin-domain` plus an
+  alphabet-is-p integer check, and the `rem:qr-chebyshev` endpoint
+  multiplier (b<=2) is carried with a load-bearing b=0 sensitivity note.
+- **How it is useful:** Discharges the "Immediate"-tier rung audit of
+  the cap25 work queue at the moved pairs; closes the periodic
+  lower-floor veto for the printed frontier from below; pins the
+  M31 refutation trigger inside a replayed full ledger (maintainer scan
+  `cap25_v13_raw_moved_frontier_checks.py` re-run exit 0, in-tree
+  7/7 gates including G7, committed v13_raw_moved_pair blocks, frozen
+  profile-envelope-numerics floors, addendum sec 3.2 tables, and
+  unchanged-pair list-packet verdicts all gated); discharges
+  profile-envelope-vs-target's deployed extra_profile_barNs nonclaim.
+  NOT a safety certificate: aperiodic/L1/sparse cells untouched, and
+  the ledger is conditional on the scanned folding family.
+- **What to do next:** Replay both scripts (`--emit-defaults` byte-stable;
+  both `--check` exit 0); if any future construction pushes the c=2048
+  planted count at agreement 1,116,160 past B*, the generator flips to
+  COUNTEREXAMPLE_NEW_FLOOR and the M31 frontier moves -- treat that as
+  the named falsifier event, requiring a realization witness.
+
 ### 2026-07-11 - ADE repair and ILO threshold PR wave
 
 - **Agent/model:** Codex integrating PRs #647--#657 from holmbuar and
