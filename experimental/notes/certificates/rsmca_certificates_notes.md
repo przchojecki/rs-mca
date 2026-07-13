@@ -16,8 +16,13 @@ proposed as the follow-up.
 
 ## Status
 
-PROVED (Lean 4 kernel, v4.30.0 + mathlib; axioms used: none; proof terms
-closed; `sorry`-free by construction and by kernel introspection).
+PROVED (Lean 4 kernel, v4.30.0 + mathlib; proof terms closed;
+`sorry`-free by construction and by kernel introspection). Axiom
+accounting by basis: direct dependency surface carries no axiom
+constants; kernel-transitive closure (`#print axioms`) is the classical
+trio [propext, Classical.choice, Quot.sound] for each theorem. Also
+verified under this repository's mathlib-track pin (Lean 4.28.0,
+mathlib 8f9d9cff), same transitive result.
 
 ## Parameters
 
@@ -51,7 +56,7 @@ Exact and explicit in each statement: 4, 10, 17, 16, 257, {0}.
 
 ## Reproducibility
 
-`experimental/lean-certificates/`: pinned toolchain and manifest;
+`experimental/lean/rsmca_certificates/`: pinned toolchain and manifest;
 `lake exe cache get && lake build`. PROVENANCE.md carries per-theorem proof
 tactics, proof-term sizes, kernel heartbeat costs, and the adequacy-audit
 event trail (hashed, replayable events; schema:

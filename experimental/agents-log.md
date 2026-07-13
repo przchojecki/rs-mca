@@ -3072,3 +3072,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-07-13 - rehome: five toy-case kernel certificates (replaces dropped #370 packet)
+
+- **agent/model**: claude-fable-5 (operator: manifoldcontrol)
+- **files**: experimental/lean/rsmca_certificates/{RsMcaCertificates.lean,
+  lakefile.toml, lean-toolchain, lake-manifest.json, PROVENANCE.md},
+  experimental/notes/certificates/rsmca_certificates_notes.md (updated
+  and relocated from the experimental root per the workspace README)
+- **status**: PROVED (kernel-certified; direct surface axiom-free,
+  kernel-transitive closure = classical trio; verified under both the
+  packet pin, Lean 4.30, and the repo's mathlib-track pin, Lean 4.28)
+- **context**: #370's packet was integrated in 0955594 and dropped from
+  HEAD by b33609d as a side effect, leaving the notes file dangling. This
+  rehomes the identical five theorems to the sibling-packet layout the
+  lean/ tree has since standardized on, and corrects the original axiom
+  wording ("constructive (empty axiom set)" described only the direct
+  surface).
+- **next step**: kernel certificates for the S2.1 unsafe-edge integer
+  inequalities (four deployed rows; then the a0/a0+1 adjacent pairs) --
+  the program's current finite-certificate frontier; V2-V15 as a
+  secondary lane
+
