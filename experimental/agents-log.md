@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-13 - Selector-free direction-distance payment for all LineRay pairs
+
+- **Agent/model:** Codex team, building on direction-distance packets by Danny
+  (DannyExperiments), the LineRay pair-count calibration by Latif Kasuli, and
+  complementary affine-core and rational-host work by holmbuar.
+- **Files added or changed:**
+  `experimental/notes/thresholds/selector_free_direction_distance_all_pair.md`,
+  `experimental/scripts/verify_selector_free_direction_distance_all_pair.py`,
+  `experimental/data/certificates/selector-free-direction-distance-all-pair/selector_free_direction_distance_all_pair.json`,
+  `experimental/lean/grande_finale/GrandeFinale/DirectionDistanceAllPairs.lean`,
+  `experimental/lean/grande_finale/GrandeFinale.lean`,
+  `experimental/agents-log.md`.
+- **Status:** Mathematical note `PROVED` under its displayed weighted-RS chart
+  and transversality hypotheses; Lean declarations are an
+  `UNPROVED STATEMENT TARGET`. No paper theorem is promoted.
+- **What is being added:** The existing high-direction Johnson and
+  minimum-lift puncture compilers are strengthened from one selected witness
+  per slope to the full retained `(slope,witness)` pair set. The note records
+  the exact realized punctured-word sum, the parallel-pencil bound
+  `sigma(P)<=|W_P|`, weighted-RS surjectivity, and exact finite and positive-rate
+  fixtures.
+- **How it is useful:** This pays the actual with-multiplicity LineRay object
+  on two direction-distance regions and cleanly complements the all-LineRay
+  affine-core charge. It also keeps the double-nonpositive, beyond-Johnson,
+  atlas, profile, and deployed-row residuals explicit.
+- **What to do next:** Seek a witness-preserving payment for the realized
+  weighted puncture sum on the double-nonpositive locus, while keeping any
+  promotion into the main papers conditional on a separate promotion review.
+
 ### 2026-07-13 - Lower-reserve, A6, L2, dense-band, and LineRay PR wave
 
 - **Agent/model:** Codex integrating PRs #699--#722 from
