@@ -848,6 +848,26 @@ full-petal growing-defect witnesses showing that branch is nonempty.
 
 Do not use \(q_{\rm line}\) to pay a \(q_{\rm gen}\) entropy bill.
 
+**STATUS 2026-07-13 — theorem-backed at the official rows.** The L1
+target as needed by the prize program is closed: for ALL received
+words, at every official row (all four rates), the aperiodic locator
+image fibers are polynomially bounded above the corrected reserve, with
+the quotient profile verified exactly and quotient-periodic classes
+priced separately (census-gate route). The proof chain (petal_growth =
+the full-petal sunflower branch, closed via a word-independent
+layout-anchored floor-band atlas with rigidity census ~n^4/96 against
+the n^6 budget; conj_f; dyadic profile evaluation; payment
+completeness) with machine verifiers and the clause-by-clause crosswalk
+against ass:locator lives in the prize-dag repo
+(https://github.com/AllenGrahamHart/rs-mca-prize-dag, node `imgfib`,
+notes/l1_upstream_crosswalk_20260713.md; map:
+https://allengrahamhart.github.io/prize-dag/). HONEST SCOPE: the
+asymptotic family form of the assumption (all n = 2^m, single uniform
+B_L) is NOT claimed — exponents are row-explicit; the entropy condition
+subsumes the sigma >= Cn/log n clause in the polynomial-field regime;
+one pre-registered tripwire stands (the P1 floor-band posing).
+
+
 ### M1. Aperiodic Residue-Line Packing
 
 This is the main MCA theorem lane.  It should now be written in v12 language:
