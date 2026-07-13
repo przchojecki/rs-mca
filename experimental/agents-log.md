@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-13 - Selected-owner unit-layer boundary
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/audits/selected_owner_unit_layer_boundary_v1.md`,
+  `experimental/scripts/verify_selected_owner_unit_layer_boundary.py`,
+  `experimental/scripts/census_slope_faithful_multiplicity_layers.py`, and
+  their JSON certificates under `experimental/data/certificates/`.
+- **Status:** PROVED finite identities and source-free guardrail / OPEN
+  source-specific inverse.
+- **What is being added:** Records the exact charge-faithful unit-layer
+  decomposition, the integrated sparse-band estimate, a positive-rooted
+  dense-idempotent obstruction to source-free payment, and the selected-owner
+  unit-layer source inverse (SULSI) as the remaining uniform theorem.
+- **How it is useful:** Prevents positivity, unit multiplicity, generic owner
+  decoration, or ordinary restriction from being mistaken for dense-band
+  payment, while retaining the deterministic 9,800-line source census as
+  compact aggregate summaries plus full row-stream hashes for the narrower
+  source-coupled target.
+- **What to do next:** Prove selected-owner cell emission using the coupled
+  weighted-Vandermonde boundary, actual `|tau|` band, and semantic atlas data;
+  do not infer it from the syndrome mask or owner records alone.
+
 ### 2026-07-13 - Threshold, C9, LineRay, Lean, and audit PR wave
 
 - **Agent/model:** Codex integrating PRs #723--#741 from holmbuar and
