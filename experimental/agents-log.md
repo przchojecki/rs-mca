@@ -30,6 +30,43 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-14 - b=0 complete-fiber audit + CircleCode.lean twin-coset formalization
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** Rewrote
+  `experimental/lean/cs25_cap_v12/cs25_cap_v12/CircleCode.lean` (twin-coset /
+  torus-fiber / Chebyshev-fiber development, 28 new or repaired proved
+  declarations — 25 named in the correspondence statement map plus 3 auxiliary
+  lemmas — `sorry`-bearing declarations `CircleCode` 5 -> 3, package-wide
+  21 -> 19); added
+  `experimental/lean/cs25_cap_v12/CIRCLE_FIBER_CORRESPONDENCE.md` and
+  `experimental/notes/audits/circle_fiber_b0_audit.md`.  No `.tex`/`.pdf`
+  edited; no build artifacts committed.
+- **Status:** AUDIT / PROVED (Lean, for the mapped statements only).
+- **What is being added:** Lean proofs, on the package's pinned v4.28.0
+  toolchain, of the b=0 complete-fiber chain — `lem:torus-fibers` (kernel,
+  a-to-one cosets, disjoint/coincident dichotomy, all-scales criterion),
+  the `E_w = 2a` count and `lem:cheb-fibers` (`(T_a,a)`-smooth twin-coset
+  x-domains), `rem:standard-position`, no-self-inverse, and `|chi(D)| = |H|` —
+  plus an audit note crosswalking `tex/cs25_cap_v12.tex:3908-3953` with the
+  thresholds draft's `def:circle-twin-domain`/`lem:cheb-smooth`, flagging two
+  compression gaps there (asserted two-to-one step; unproved `|D| = |H|`) and
+  one new in-tree finding (the previous `lem_cheb_fibers` skeleton's `htwin`
+  hypothesis was jointly unsatisfiable with `hdom`, i.e. vacuous; statement
+  repaired and proved).
+- **How it is useful:** Machine-checks the smoothness input named by the
+  pay-per-bit `H5` blocker for the M31 circle rows (`cor:circle-deployed(a)/(b)`
+  stay blocked — `cor_circle_grand`/`lem_circle_rs`/`lem_stereographic` remain
+  `sorry`), upgrades the `b = 0` citation behind the envelope-rung-ledger
+  -0.3938-bit watch-item from printed to Lean-proved, and certifies the
+  `thm:fixed-length-prime-density`(c) instantiation (`H = <g^4>`, `ord(g) = 4n`)
+  used by the submission draft — all while keeping proof status conservative.
+- **What to do next:** Human-review the `lem_cheb_fibers` statement repair
+  against the printed lemma; decide whether the two thresholds-draft
+  compression gaps should be expanded in the draft's text or left citing v12;
+  extend the Lean lane toward `lem_circle_rs` (diagonal invariance +
+  uniformization) so the `H5` rows' certifying route becomes formalizable.
+
 ### 2026-07-14 - L1/L2 threshold PR integration wave
 
 - **Agent/model:** Codex integrating PRs #742--#754 from DannyExperiments,
