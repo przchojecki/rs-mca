@@ -30,6 +30,50 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-15 - Deficiency-2 named-cell typing at both deployed MCA rows
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/notes/thresholds/bc_dim2_stratum_typing_deployed.md`,
+  `experimental/scripts/verify_bc_dim2_stratum_typing.py`,
+  `experimental/scripts/verify_bc_dim2_stratum_typing_check.py`,
+  `experimental/data/certificates/bc-dim2-stratum-typing/bc_dim2_stratum_typing.json`.
+- **Status:** EXPERIMENTAL / AUDIT — CITED-THEOREM (enumerative half,
+  `thm:capf-dim2` both clauses) / CONDITIONAL_ON_NAMED_INPUT (every
+  joint-fit sentence) / MEASURED (toy censuses, twin censuses, computed
+  placement).
+- **What is being added:** The second deployed-row named cell for
+  `prob:saturated-bc` (after #777's simple-pole cell): budget-fit P2's
+  float dim-2 row (`~2^21.1`) converted to exact typed integers at both
+  deployed MCA rows — cell bounds `floor(C(n,2)/(omega-1)) = 2,241,377`
+  (KB) / `2,241,322` (M31), triple-routed in-generator plus a fourth
+  checker route — with the first computed first-match placement for the
+  stratum (outcome COMMON_GCD_OWNED at all four exhibited toy
+  instances: every split point twin-routes to the paid common-GCD
+  branch; tangent-owned and fresh-(b)-cell were equally admissible) and
+  the M31 joint ledger printed exactly: 0.2069-bit naming price
+  (Q margin 3.2589 -> 3.0520; list 3.0730 -> 2.8661), #690 watch rung
+  tightening +0.3938 -> +0.1869 bits, and the fully-additive three-way
+  slack 13,435 = 0.00116 bits (rung-as-Q-payment reading: 1,766,135 =
+  0.1605 bits).  The upside clause (pairwise-distinct `E_h` -> cell
+  <= 4) is quantified and DEMOTED as empirically adverse (twin classes
+  at every known extremal instance and every exhibited plane).
+- **How it is useful:** Converts the largest proved-but-uncertified
+  non-Q M31 budget consumer (`2^21.0959` of `2^24`) into exact,
+  independently replayable integers inside `prob:saturated-bc`'s
+  grammar; gives `prob:row-sharp-q` consumers the tightened conditional
+  allowance (14,535,893) they must book against; surfaces the
+  adjacency-critical 13,435 slack no artifact previously recorded; and
+  flags the omega-typo trap that shifts both cell bounds by +2,287
+  invisibly at one-decimal log2.
+- **What to do next:** `d = 3` is open at both rows
+  (`C(n,3) = 2^60.4150` exceeds both budgets; deficiency-2 is the
+  outermost proved-fitting stratum); the growing-deficiency interior
+  core (dim `omega-w+1 = 913,634/913,682`, `prob:band`-hard) remains
+  the target; the twin-routing refund (the full 0.2069 bits back, cell
+  collapsing to 4) is the quantified upside if twin-freeness — or a
+  deployed-scale twin-routing theorem — is ever proved.
+
 ### 2026-07-15 - L1/BC/L2 threshold and Lean PR wave
 
 - **Agent/model:** Codex integrating non-draft PRs #775, #777, #779--#792,

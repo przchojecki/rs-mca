@@ -1,0 +1,1234 @@
+{
+  "base_sha": "764f1c0243770baa437d4ae790b1448afa091680",
+  "caveats": [
+    "log2 values in *_display fields are display-grade strings; every verdict field is an exact integer, boolean, or computed enum",
+    "saturated_bc_budget_fit_v1.json and Hart's f_dim2 certs are old-style certificates without payload_sha256 fields; they are consumed by whole-file sha256 plus field equality",
+    "#792 has no JSON certificate in-tree; it is consumed by file sha256 of note + verifier, content pins, and the full T2 dim-2 replay"
+  ],
+  "cell_definition": {
+    "delimitation": "deficiency-1 = dim P(W) = 1 = the one-parameter pencil (lem:capf-dim1 / cor:bc-one-pencil, bound floor(n/omega) = 2 at both rows); deficiency-2 = dim P(W) = 2 exactly (thm:capf-dim2); fixed d >= 3 has only thm:capf-fixeddim's C(n,d), which already fails BOTH rows at d = 3; growing deficiency (dim omega-w+1) is the open interior core",
+    "disambiguation": "NOT the agreement deficiency d with R = 2t - d of the fixed_deficiency_complete_absorption / _kernel_minor_compiler packets (matroid basis-exchange, bound C(N,d+1)).  Same word, different object; naming collision only",
+    "grammar": "prob:saturated-bc type (b): 'a higher-dimensional coefficient family that is explicitly split into such pencils, or else assigned to a separate named residual cell with its own slope, not raw-support, bound'; slope-vs-locator conversion by prop:slope-elimination (gf L1320) and the pencil dictionary (thm:capfp-slope-elim(c), raw L8267: 'the chart's slope count is bounded by the same rank-one census ... at every deficiency')",
+    "name": "deficiency-2 stratum cell (per deployed MCA adjacent row)",
+    "operational_definition": "a chart of capf projective deficiency EXACTLY 2, stated operationally in two equivalent forms: (i) pencil shape (raw L6857): the exact-agreement syndrome pencil M(Z) is t x (j+1) with deficiency (j+1) - t = 2; (ii) incidence form (budget-fit Sec. 3): after slope elimination the count is the fixed-dimension Conjecture-F incidence |P(W) cap Dloc_j(H)| with dim P(W) = 2 (dim_K W = 3).  No standalone \\emph definition exists in either .tex; this certificate states the operational one"
+  },
+  "claim_boundaries": {
+    "asserts": [
+      "the deficiency-2 stratum carries a typed named-cell certificate row at both deployed MCA rows with exact cell bounds floor(C(n,2)/(omega-1)) = 2241377 / 2241322, re-derived by three independent in-generator routes and a further checker route",
+      "the first-match placement of the exhibited deficiency-2 instances is decided by computation among three admissible outcomes (tangent-owned / common-GCD-owned / fresh (b)-cell); the computed outcome is the verdict field",
+      "the M31 joint ledger is printed exactly, with the naming price, the watch-rung tightening, and the three-way slack under BOTH ledger-semantics readings, all CONDITIONAL_ON_NAMED_INPUT",
+      "the upside (pairwise-distinct E_h) branch is quantified exactly (cell collapses to <= 4) and DEMOTED with the measured adverse twin census",
+      "thm:capf-dim2's unconditional coincidence-multiplicity fact and the f_dim2_skeleton dichotomy are verified on every exhibited plane"
+    ],
+    "does_not_assert": [
+      "any resolution of prob:saturated-bc (the growing-deficiency interior residual, dim omega-w+1 = 913634/913682, stays OPEN and prob:band-hard, missing by ~2.07M bits per budget-fit Sec. 6)",
+      "any chart-multiplicity-per-line bound (the cell bound is per chart; the row booking inherits P2's accepted bookkeeping)",
+      "any twin-free / pairwise-distinct-E_h claim at deployed scale (the empirical prior is adverse)",
+      "any unconditional upper bound on max_z |Fib_w(z)| or U(a_0+1) <= B* at any row",
+      "any fixed-d >= 3 fit (C(n,3) exceeds B* at BOTH rows; stated, exact)"
+    ],
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_degenerate_by_construction": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "is_tautology_under_preconditions": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "evidence_type": "NAMED_CELL_TYPING_WITH_COMPUTED_PLACEMENT_AND_EXACT_JOINT_LEDGER",
+  "falsifiability": "The gate fails if: any pinned statement moves or its line hash drifts; any oracle payload or file hash drifts; the three in-generator ledger routes disagree on any integer; the two B_B routes disagree on any row; any of C(n,2), the cell bounds, remainders, C(omega,2), B*, consumed/remaining/tightened values, the 13,435 or 1,766,135 slacks, or C(n,3) changes; any toy fiber, witness triple, census count, split-root set, twin class, or placement outcome changes; or the #792 replay drifts.",
+  "falsifiable": true,
+  "gate_t1_f73": {
+    "all_pass": true,
+    "census_route": "hyperplane-concurrency counting (lem:capf-concurrency) + direct full-plane scan (5403 points), cross-asserted",
+    "dim_PW_exactly_2": true,
+    "fiber_size": 13,
+    "field": {
+      "K": 12,
+      "j": 9,
+      "m": 15,
+      "n": 24,
+      "omega": 9,
+      "p": 73,
+      "q": 73,
+      "w_prime": 3
+    },
+    "gcd_trivial": true,
+    "plane": {
+      "bound_generic_floor": 34,
+      "bound_generic_holds": true,
+      "bound_sharp_floor": 7,
+      "common_root_of_all_split_points": [],
+      "n_split_points": 3,
+      "placement_outcome": "COMMON_GCD_OWNED",
+      "residual_collinear": true,
+      "residual_coordinate_rank": 0,
+      "skeleton_dichotomy": {
+        "all_or_none_verified": true,
+        "n_residual_points": 0,
+        "n_twin_routed_points": 3,
+        "residual_singleton_pair_bound": 3
+      },
+      "split_root_sets": [
+        [
+          0,
+          1,
+          3,
+          4,
+          9,
+          14,
+          19,
+          20,
+          22
+        ],
+        [
+          2,
+          3,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          15
+        ],
+        [
+          2,
+          5,
+          6,
+          10,
+          14,
+          15,
+          18,
+          22,
+          23
+        ]
+      ],
+      "twin_census": {
+        "class_size_histogram": [
+          4,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_class_size_below_j": true,
+        "n_classes": 19,
+        "n_singleton_classes": 16,
+        "n_twin_classes": 3,
+        "pairwise_distinct": false,
+        "twin_classes": [
+          [
+            2,
+            6,
+            10,
+            15
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            14,
+            22
+          ]
+        ]
+      }
+    },
+    "witness_triple_lex_first": [
+      0,
+      1,
+      11
+    ],
+    "witness_triple_members": [
+      [
+        0,
+        1,
+        3,
+        4,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        16,
+        17,
+        19,
+        20,
+        21
+      ],
+      [
+        0,
+        1,
+        4,
+        5,
+        11,
+        13,
+        14,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      [
+        2,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        21,
+        23
+      ]
+    ],
+    "z_star": [
+      1,
+      1,
+      1
+    ]
+  },
+  "gate_t1_fp2": {
+    "all_pass": true,
+    "census_route": "hyperplane-concurrency counting (lem:capf-concurrency); the independent checker re-censuses by monic split-divisor enumeration",
+    "dim_PW_exactly_2": true,
+    "field": {
+      "K": 6,
+      "encoding": "element a + b*t stored as integer a + 17*b",
+      "j": 7,
+      "m": 9,
+      "n": 16,
+      "omega": 7,
+      "p": 17,
+      "q": 289,
+      "tower": "F_289 = F_17[t]/(t^2-3)",
+      "w_prime": 3
+    },
+    "gcd_trivial": true,
+    "plane": {
+      "bound_generic_floor": 20,
+      "bound_generic_holds": true,
+      "bound_sharp_floor": 5,
+      "common_root_of_all_split_points": [],
+      "n_split_points": 3,
+      "placement_outcome": "COMMON_GCD_OWNED",
+      "residual_collinear": true,
+      "residual_coordinate_rank": 0,
+      "skeleton_dichotomy": {
+        "all_or_none_verified": true,
+        "n_residual_points": 0,
+        "n_twin_routed_points": 3,
+        "residual_singleton_pair_bound": 2
+      },
+      "split_root_sets": [
+        [
+          1,
+          2,
+          3,
+          5,
+          9,
+          11,
+          14
+        ],
+        [
+          5,
+          6,
+          7,
+          8,
+          9,
+          12,
+          15
+        ],
+        [
+          7,
+          8,
+          10,
+          12,
+          13,
+          14,
+          15
+        ]
+      ],
+      "twin_census": {
+        "class_size_histogram": [
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_class_size_below_j": true,
+        "n_classes": 12,
+        "n_singleton_classes": 10,
+        "n_twin_classes": 2,
+        "pairwise_distinct": false,
+        "twin_classes": [
+          [
+            5,
+            9
+          ],
+          [
+            7,
+            8,
+            12,
+            15
+          ]
+        ]
+      }
+    },
+    "witness_fiber_size": 40,
+    "witness_triple_lex_first": [
+      0,
+      1,
+      20
+    ],
+    "witness_triple_members": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9,
+        11
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        13,
+        14
+      ],
+      [
+        0,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ]
+    ],
+    "z_star": [
+      1,
+      4,
+      4
+    ]
+  },
+  "gate_t2_f97": {
+    "all_pass": true,
+    "cells": {
+      "A": {
+        "dim_PW_exactly_2": true,
+        "gcd_roots": [
+          15
+        ],
+        "plane": {
+          "bound_generic_floor": 15,
+          "bound_generic_holds": true,
+          "bound_sharp_floor": 3,
+          "common_root_of_all_split_points": [],
+          "n_split_points": 3,
+          "placement_outcome": "COMMON_GCD_OWNED",
+          "residual_collinear": true,
+          "residual_coordinate_rank": 0,
+          "skeleton_dichotomy": {
+            "all_or_none_verified": true,
+            "n_residual_points": 0,
+            "n_twin_routed_points": 3,
+            "residual_singleton_pair_bound": 0
+          },
+          "split_root_sets": [
+            [
+              0,
+              1,
+              2,
+              3,
+              5,
+              7,
+              8,
+              9
+            ],
+            [
+              4,
+              5,
+              8,
+              9,
+              10,
+              11,
+              13,
+              14
+            ],
+            [
+              0,
+              1,
+              2,
+              6,
+              7,
+              10,
+              12,
+              13
+            ]
+          ],
+          "twin_census": {
+            "class_size_histogram": [
+              4,
+              3,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_class_size_below_j": true,
+            "n_classes": 9,
+            "n_singleton_classes": 6,
+            "n_twin_classes": 3,
+            "pairwise_distinct": false,
+            "twin_classes": [
+              [
+                0,
+                1,
+                2,
+                7
+              ],
+              [
+                5,
+                8,
+                9
+              ],
+              [
+                10,
+                13
+              ]
+            ]
+          }
+        },
+        "residual_domain_size": 15,
+        "residual_locator_degree": 8,
+        "residual_span_rank": 3,
+        "split_roots_match_pinned": true
+      },
+      "B": {
+        "dim_PW_exactly_2": true,
+        "gcd_roots": [
+          10,
+          13
+        ],
+        "plane": {
+          "bound_generic_floor": 15,
+          "bound_generic_holds": true,
+          "bound_sharp_floor": 4,
+          "common_root_of_all_split_points": [],
+          "n_split_points": 3,
+          "placement_outcome": "COMMON_GCD_OWNED",
+          "residual_collinear": true,
+          "residual_coordinate_rank": 0,
+          "skeleton_dichotomy": {
+            "all_or_none_verified": true,
+            "n_residual_points": 0,
+            "n_twin_routed_points": 3,
+            "residual_singleton_pair_bound": 1
+          },
+          "split_root_sets": [
+            [
+              0,
+              5,
+              7,
+              8,
+              9,
+              11,
+              12
+            ],
+            [
+              4,
+              5,
+              8,
+              9,
+              10,
+              12,
+              13
+            ],
+            [
+              0,
+              1,
+              2,
+              6,
+              7,
+              11,
+              13
+            ]
+          ],
+          "twin_census": {
+            "class_size_histogram": [
+              4,
+              3,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "max_class_size_below_j": true,
+            "n_classes": 9,
+            "n_singleton_classes": 7,
+            "n_twin_classes": 2,
+            "pairwise_distinct": false,
+            "twin_classes": [
+              [
+                0,
+                7,
+                11
+              ],
+              [
+                5,
+                8,
+                9,
+                12
+              ]
+            ]
+          }
+        },
+        "residual_domain_size": 14,
+        "residual_locator_degree": 7,
+        "residual_span_rank": 3,
+        "split_roots_match_pinned": true
+      }
+    },
+    "field": {
+      "K": 5,
+      "m": 7,
+      "n": 16,
+      "omega": 9,
+      "p": 97,
+      "q": 97,
+      "w": 2
+    },
+    "oracle": {
+      "embedded_canonical_digest": "d77eefe2dcbb6b2544c991d2a6fc9022f430ddb2b5b7ad7a3d3e83147d614130",
+      "note_path": "experimental/notes/thresholds/bc_first_interior_f97_two_cell_certificate.md",
+      "note_sha256": "479b7bf8fdebc88f771e6868991789b4d99564f43e0ff7c29e121ee7a36c2a0d",
+      "schema": "note + standalone verifier only (no JSON cert in-tree); consumed by file sha256 + content pins + this full dim-2 replay",
+      "verifier_path": "experimental/scripts/verify_bc_first_interior_f97_two_cell_certificate.py",
+      "verifier_sha256": "8732422e359c5c6ae2a1f04610bf0bfcd0c2789c83765720f9d670e8512edc8f"
+    },
+    "scope_note": "#792's own scope disclaimer is honored: a finite fixture certificate, not a deployed-row estimate; his first-interior object is the growing-dimension residual -- his toy happens to be a dim-2 instance because omega - w + 1 is small there; complementary to this packet, consumed read-only",
+    "witnesses_verified": [
+      "z0",
+      "z1",
+      "z2a",
+      "z2b"
+    ]
+  },
+  "gate_t4_deployed": {
+    "K_mca": 1048577,
+    "all_pass": true,
+    "bb_routes": "Legendre floor-sum + product tree (up-stepping) vs Kummer carry-count + heap merge (down-stepping), as in #777; the independent checker adds the binary-splitting third route",
+    "budget_fit_P2_float_gate_replayed": {
+      "round_log2_1dp_kb": 21.1,
+      "round_log2_1dp_m31": 21.1
+    },
+    "displays": {
+      "C_n_2": "41.0000",
+      "C_n_3": "60.4150",
+      "additive_slack_bits_5dp": "0.00116",
+      "delta_q_m31": "23.8408",
+      "dim2_kb": "21.0960",
+      "dim2_m31": "21.0959",
+      "kb_fit_below_residual_bits": "36.8362",
+      "kb_list_tightened_margin": "22.0109",
+      "kb_tightened_margin": "22.1969",
+      "margin_m31_list": "3.0730",
+      "margin_m31_mca": "3.2589",
+      "naming_price_bits": "0.2069",
+      "remaining_m31": "23.6077",
+      "rung_as_q_slack_bits": "0.1605",
+      "rung_headroom_vs_Bstar": "0.3938",
+      "rung_headroom_vs_tightened": "0.1869",
+      "sharp_log2": "2.0000",
+      "spare_bits_m31": "2.7449",
+      "tightened_m31": "23.7931",
+      "tightened_margin_m31_list": "2.8661",
+      "tightened_margin_m31_mca": "3.0520",
+      "upside_margin_m31_mca": "3.2589"
+    },
+    "ledger_integers": {
+      "C_n_2": 2199022206976,
+      "C_n_3": 1537226473786572800,
+      "C_omega_2_kb": 481282038856,
+      "C_omega_2_m31": 481305585628,
+      "additive_slack_m31": 13435,
+      "additive_total_m31": 16763780,
+      "bstar_kb": 274980728111395087,
+      "bstar_m31": 16777215,
+      "consumed_kb": 57200271743,
+      "consumed_m31": 3994022,
+      "delta_q_kb": 274980670913364721,
+      "delta_q_m31": 15024515,
+      "dim2_kb": 2241377,
+      "dim2_m31": 2241322,
+      "dim2_rem_kb": 508145,
+      "dim2_rem_m31": 677082,
+      "remaining_kb": 274980670911123344,
+      "remaining_m31": 12783193,
+      "rung_as_q_slack_m31": 1766135,
+      "rung_as_q_total_m31": 15011080,
+      "sharp_kb": 4,
+      "sharp_m31": 4,
+      "tightened_kb": 274980728109153710,
+      "tightened_m31": 14535893,
+      "upside_tightened_m31": 16777211
+    },
+    "n": 2097152,
+    "omega_mca": {
+      "kb_mca": 981104,
+      "m31_mca": 981128
+    },
+    "omega_typo_trap": {
+      "invisible_at_one_decimal_log2": true,
+      "parked_certificate_cited": "experimental/data/certificates/bc-one-pencil-omega/bc_one_pencil_omega.json",
+      "printed_omega_shift_on_cell_bound": 2287
+    },
+    "route_1": "native Python big-int (math.comb, //, %, +, -)",
+    "route_2": "bit-level: shift-subtract long division with reconstruction identity, peasant double-and-add products, bytewise ripple-carry add/sub, XOR complement against B*_M31 = 2^24 - 1",
+    "route_3": "base-10^9 decimal-limb schoolbook arithmetic built from doubling chains (no multi-precision Python int operation on the value path), compared by decimal string",
+    "rows": {
+      "kb_list": {
+        "B_star": 274980728111395087,
+        "a_plus": 1116047,
+        "floor_BB": 65065153468,
+        "floor_BB_log2_display": "35.9212",
+        "margin_bits_display": "22.0109",
+        "p": 2130706433,
+        "w": 67471
+      },
+      "kb_mca": {
+        "B_star": 274980728111395087,
+        "a_plus": 1116048,
+        "floor_BB": 57198030366,
+        "floor_BB_log2_display": "35.7352",
+        "margin_bits_display": "22.1969",
+        "p": 2130706433,
+        "w": 67471
+      },
+      "m31_list": {
+        "B_star": 16777215,
+        "a_plus": 1116023,
+        "floor_BB": 1993678,
+        "floor_BB_log2_display": "20.9270",
+        "margin_bits_display": "3.0730",
+        "p": 2147483647,
+        "w": 67447
+      },
+      "m31_mca": {
+        "B_star": 16777215,
+        "a_plus": 1116024,
+        "floor_BB": 1752700,
+        "floor_BB_log2_display": "20.7411",
+        "margin_bits_display": "3.2589",
+        "p": 2147483647,
+        "w": 67447
+      }
+    },
+    "rung_690_M": 12769758,
+    "three_routes_agree_exactly_on_all_ledger_integers": true,
+    "two_routes_agree_exactly_on_all_four_rows": true
+  },
+  "gate_t5_oracles": {
+    "all_pass": true,
+    "oracle_690": {
+      "path": "experimental/data/certificates/envelope-rung-ledger/envelope_rung_ledger.json",
+      "payload_sha256": "cdcc397b04c9b3110b96c8b0444b6f8c6955d33158ce0964419dac81c5750276",
+      "watch_item": {
+        "B_star": 16777215,
+        "M": 12769758,
+        "c": 2048,
+        "headroom_to_Bstar": 4007457,
+        "margin_bits": -0.3938,
+        "profile": "Gceil",
+        "row": "m31_mca"
+      }
+    },
+    "oracle_777": {
+      "BB_and_Bstar_and_omega_match_T4": true,
+      "path": "experimental/data/certificates/bc-chart-typing/bc_chart_typing.json",
+      "payload_sha256": "c0913f60ad30f2f13562ddb442906349513746b4feaef86a10206aad77a05387",
+      "placement_convention_inherited": "placement decided by computation, admissible outcomes stated up front, verdict = computed outcome",
+      "simple_pole_cell_placement": "BOUNDARY_Q_OWNED"
+    },
+    "oracle_budget_fit": {
+      "P1_status_pin": "PROVED-LOCAL(corollary of cited unconditional propositions) -- fixes the TARGET CONSTANT for a general upper bound; is NOT itself a general upper bound",
+      "P2_dim1_and_growing_rows_match": true,
+      "P2_dim2_row_converted": {
+        "bound_formula": "C(n,2)/(omega-1)",
+        "cite": "thm:capf-dim2 (raw L6719)",
+        "deficiency": 2,
+        "fits_budget_KoalaBear": true,
+        "fits_budget_Mersenne31": true,
+        "log2_value_approx": 21.1
+      },
+      "file_sha256": "f6b1cec423f18c05651eb4a2e057e2d660b0a6f1374e59243477b714b380c036",
+      "margins_rows_match_T4": true,
+      "path": "experimental/data/certificates/frontier-adjacent/saturated_bc_budget_fit_v1.json",
+      "schema": "old-style (no payload_sha256 field)"
+    },
+    "oracle_f_dim2_evidence": {
+      "adverse_prior_for_upside": "every recorded extremal dim-2 plane in-tree has a twin class (Hart j=5: 5/5; j=4: 9/9; holmbuar F_97: 'evaluation hyperplanes collide')",
+      "j4_file_sha256": "f6de0b0e67ef289e9a3ee1ca6e4b30a6b016a83206f0005eb426b2d4445413e2",
+      "j4_path": "experimental/data/certificates/conjecture-f-dim2-evidence/conjecture_f_dim2_j4_grassmannian.json",
+      "n16_file_sha256": "e9ab0a114424917951065f6c94155b6cd53b677eb63d922419fea8461702a6cd",
+      "n16_path": "experimental/data/certificates/conjecture-f-dim2-evidence/conjecture_f_dim2_n16_f17.json",
+      "schema": "old-style (no payload_sha256 field)"
+    },
+    "oracle_f_dim2_skeleton": {
+      "claims_checked_all_true": true,
+      "file_sha256": "4918ad654e70370bacceb9a824042fe485d91763f80f075cb189cb72fd6f3f58",
+      "path": "experimental/data/certificates/conjecture-f-dim2-skeleton/conjecture_f_dim2_skeleton.json",
+      "schema": "old-style (no payload_sha256 field)",
+      "twin_routing_lemma": "PROVED (conjecture_f_dim2_skeleton.md): twin classes are all-or-none, route to the paid common-GCD branch one degree lower onto a projective line section; residual <= C(s,2)/C(j,2)"
+    },
+    "oracle_omega": {
+      "already_parked_for_maintainer": true,
+      "path": "experimental/data/certificates/bc-one-pencil-omega/bc_one_pencil_omega.json",
+      "payload_sha256": "d1bcf6126f35e16c77a21edb7b4485bc63dbaf8e89c5fc2d99f2786ba68982b4",
+      "rows_match_T4": true
+    }
+  },
+  "honest_headline": "naming the deficiency-2 cell COSTS the M31 ledger 0.2069 bits of conditional row-sharp-Q allowance (3.2589 -> 3.0520) and tightens the #690 watch rung's headroom from +0.3938 to +0.1869 bits; the fully-additive three-way slack is the exact integer 13,435 (0.00116 bits).  That price is the headline, not a footnote; the fit itself remains CONDITIONAL_ON_NAMED_INPUT",
+  "joint_ledger_kb": {
+    "consumed": 57200271743,
+    "qualifier": "CONDITIONAL_ON_NAMED_INPUT",
+    "remaining": 274980670911123344,
+    "sentence": "KB-MCA fits trivially: the cell bound 2,241,377 = 2^21.0960 sits 36.8362 bits below the post-Q-floor residual B* - B_B = 274,980,670,913,364,721; booking it alongside B_B consumes 57,200,271,743 of B* = 274,980,728,111,395,087, leaving 274,980,670,911,123,344; the Q-margin cost is 0.0000 bits at 4-decimal display (22.1969 unchanged; KB-list 22.0109 unchanged).",
+    "tightened_allowance": 274980728109153710
+  },
+  "joint_ledger_m31": {
+    "ledger_semantics_caveat": "whether #690's Gceil rung draws on the same additive line as the named cells is a semantics question; both readings are printed exactly",
+    "naming_price_bits_display": "0.2069",
+    "qualifier": "CONDITIONAL_ON_NAMED_INPUT on every joint-fit sentence (the Q line used is the proved FLOOR pin B_B(a_+), never an upper bound)",
+    "reading_1_fully_additive": {
+      "note": "THE most adjacency-critical integer this lane prints; exact integer only, never a float",
+      "slack_bits_display": "0.00116",
+      "slack_exact_integer": 13435,
+      "total": 16763780
+    },
+    "reading_2_rung_is_the_q_payment": {
+      "slack_bits_display": "0.1605",
+      "slack_exact_integer": 1766135,
+      "total": 15011080
+    },
+    "sentence": "Booking the deficiency-2 cell at its proved per-chart bound 2,241,322 = 2^21.0959 alongside the boundary-Q cell's proved floor B_B(a_+) = 1,752,700 = 2^20.7411 consumes 3,994,022 of B* = 16,777,215, leaving 12,783,193 = 2^23.6077; the cell FITS under the remaining Delta_Q = B* - B_B = 15,024,515 = 2^23.8408 with 2.7449 bits to spare, and the conditional row-sharp-Q allowance tightens from B* to B* - 2,241,322 = 14,535,893 = 2^23.7931 -- the M31-MCA Q margin drops 3.2589 -> 3.0520 bits (M31-list: 3.0730 -> 2.8661), a 0.2069-bit naming price; against the tightened allowance the #690 watch rung M = 12,769,758 sits at +0.1869 bits (was +0.3938), and under the fully-additive reading Q-floor + dim2 + rung = 16,763,780 <= B* with slack 13,435 = 0.00116 bits.",
+    "watch_rung_tightening": {
+      "now": "+0.1869",
+      "was": "+0.3938"
+    }
+  },
+  "nonclaims": [
+    "NOT a resolution of prob:saturated-bc: the growing-deficiency interior core (dim omega-w+1 = 913634/913682) remains OPEN, prob:band-hard, missing the floor by ~2.07M bits; rem:capf-conjf-open (raw L6758) verbatim: 'the growing-dimensional incidence theorem needed for the aperiodic band is not settled here and is part of the broad band formulation prob:band'",
+    "d = 3 FAILS BOTH ROWS: the only proved fixed-d bound is thm:capf-fixeddim's C(n,3) = 2^60.4150 > B* at KB (2^57.9321) and M31 (2^24.0000); deficiency-2 is the OUTERMOST proved-fitting stratum at both deployed rows",
+    "no chart-multiplicity-per-line bound (per-chart scope stated); no twin-free claim at deployed scale",
+    "deficiency-2's ELIMINANT/structural side is explicitly unclassified (rem:capf-spi-calibration: 'The theorem does not classify higher-deficiency SPI charts'); only the incidence COUNT is paid by thm:capf-dim2",
+    "the SPI/eliminant theorem thm:capf-spi is deficiency-ONE only; attributing deficiency-2 to 'tangent / bounded-SPI paid strata' wholesale would overreach -- hence the placement is computed, not presupposed",
+    "no edit to upstream .tex; the omega 1000-off typo stays parked via the banked bc_one_pencil_omega certificate (cited, not re-parked)"
+  ],
+  "object": "deficiency-2 named-cell typing at both deployed MCA rows for prob:saturated-bc: budget-fit P2's float ledger row converted to exact integers, typed rows, computed first-match placement, and the M31 joint ledger printed against the #690 watch rung under both ledger-semantics readings (second deployed-row named cell, after #777's simple-pole cell)",
+  "payload_sha256": "cce4851a74ac544a2a93c04332822e6d17a990a5471078e43480607b140db674",
+  "placement": {
+    "admissible_outcomes": [
+      "TANGENT_OWNED",
+      "COMMON_GCD_OWNED",
+      "FRESH_B_CELL"
+    ],
+    "computed": "COMMON_GCD_OWNED",
+    "decision_procedure": "Admissible outcomes, per the feasibility design:\n      COMMON_GCD_OWNED -- every exhibited deficiency-2 instance's split\n        mass is absorbed by the paid common-GCD branch (whole-plane\n        common root, or every split point twin-routed one degree lower\n        by the f_dim2_skeleton dichotomy);\n      TANGENT_OWNED    -- surviving residual mass always lies inside a\n        single projective sub-pencil (the deficiency-one shape paid by\n        the tangent / one-pencil strata);\n      FRESH_B_CELL     -- some instance carries genuinely\n        two-dimensional residual split mass that no already-paid branch\n        owns: prob:saturated-bc type (b) demands a separate named\n        residual cell, which is exactly the cell this packet types.\n    All three are valid certificate outcomes; nothing here presupposes\n    one.",
+    "per_instance": {
+      "f289_witness_plane": "COMMON_GCD_OWNED",
+      "f73_witness_plane": "COMMON_GCD_OWNED",
+      "f97_cell_A_residual_plane": "COMMON_GCD_OWNED",
+      "f97_cell_B_residual_plane": "COMMON_GCD_OWNED"
+    }
+  },
+  "placement_computed": "COMMON_GCD_OWNED",
+  "regeneration": "python experimental/scripts/verify_bc_dim2_stratum_typing.py --emit-defaults",
+  "risk_limits": [
+    "the M31 row is adjacency-critical three times over: +3.2589-bit row margin, the #690 -0.3938-bit tight rung (tightening to +0.1869 under this cell's booking), and the new 13,435-integer three-way slack (0.00116 bits); every new integer is therefore triple-routed in-generator and re-derived in the independent checker",
+    "the growing-deficiency BC interior core is prob:band-hard (Gamma_r route); this packet types one fixed-deficiency cell and cannot reach that core",
+    "the exhibited toy planes are constructed witness-locator planes and in-tree residual planes, not a first-match atlas; the placement computation is MEASURED evidence at toy scale, not a deployed-scale classification"
+  ],
+  "statement_pins": {
+    "bc_chart_typing_deployed.md": {
+      "(3.2589 bits) is adjacency-critical.": {
+        "kind": "content",
+        "line": 57,
+        "sha256_line": "73dcd26c8cd1e462"
+      },
+      "DECIDED BY COMPUTATION (Gate 1), not presupposed": {
+        "kind": "content",
+        "line": 14,
+        "sha256_line": "bb8c44f07a601389"
+      },
+      "margin -0.3938 bits, TIGHT, non-firing": {
+        "kind": "content",
+        "line": 282,
+        "sha256_line": "ae179b6c373e050a"
+      },
+      "placement decided by computation": {
+        "kind": "content",
+        "line": 1,
+        "sha256_line": "e08e4d9e2f419e06"
+      }
+    },
+    "bc_first_interior_f97_two_cell_certificate.md": {
+      "PROVED-SPECIAL / EXACT FINITE CERTIFICATE": {
+        "kind": "content",
+        "line": 5,
+        "sha256_line": "7b21cf326fb0fd9a"
+      },
+      "d77eefe2dcbb6b2544c991d2a6fc9022f430ddb2b5b7ad7a3d3e83147d614130": {
+        "kind": "content",
+        "line": 182,
+        "sha256_line": "48661d4b1ec8eb71"
+      },
+      "floor 15 here because evaluation hyperplanes collide.": {
+        "kind": "content",
+        "line": 116,
+        "sha256_line": "2306d659305862d8"
+      },
+      "| `A` | `z0,z1,z2a` | `{15}` | 15 | 8 | `3 / 2` |": {
+        "kind": "content",
+        "line": 75,
+        "sha256_line": "1f08d6c09a9faf60"
+      },
+      "| `B` | `z0,z1,z2b` | `{10,13}` | 14 | 7 | `3 / 2` |": {
+        "kind": "content",
+        "line": 76,
+        "sha256_line": "13ebb987694199f8"
+      }
+    },
+    "cap25_cap_v13_raw.tex": {
+      "The theorem does not classify higher-deficiency SPI charts": {
+        "kind": "content",
+        "line": 6900,
+        "sha256_line": "0cc5da62e2401fb2"
+      },
+      "in the deficiency-one shape $t=j$": {
+        "kind": "content",
+        "line": 6857,
+        "sha256_line": "6047cc93c9eb0935"
+      },
+      "lem:capf-concurrency": {
+        "kind": "label",
+        "line": 6707,
+        "sha256_line": "a501456c341e6f88"
+      },
+      "lem:capf-dim1": {
+        "kind": "label",
+        "line": 6696,
+        "sha256_line": "53ae88c64b1a807b"
+      },
+      "lem:capf-gcd": {
+        "kind": "label",
+        "line": 6672,
+        "sha256_line": "7c13524547873cb9"
+      },
+      "prob:band": {
+        "kind": "label",
+        "line": 4624,
+        "sha256_line": "9c388b50c61e0c2e"
+      },
+      "rem:capf-conjf-open": {
+        "kind": "label",
+        "line": 6758,
+        "sha256_line": "d9cd7c5a6fa4f833"
+      },
+      "rem:capf-spi-calibration": {
+        "kind": "label",
+        "line": 6895,
+        "sha256_line": "cbd975d22ccbfb69"
+      },
+      "so the chart's slope count is bounded by the same rank-one census": {
+        "kind": "content",
+        "line": 8267,
+        "sha256_line": "defcf7b26c0ace17"
+      },
+      "thm:capf-dim2": {
+        "kind": "label",
+        "line": 6719,
+        "sha256_line": "0b715f25a303efde"
+      },
+      "thm:capf-fixeddim": {
+        "kind": "label",
+        "line": 6735,
+        "sha256_line": "86bea3f93fc159b3"
+      },
+      "thm:capf-spi": {
+        "kind": "label",
+        "line": 6859,
+        "sha256_line": "75343fb56a2b1abc"
+      },
+      "thm:capfp-slope-elim": {
+        "kind": "label",
+        "line": 8258,
+        "sha256_line": "004bb307d536a708"
+      }
+    },
+    "cap25_v13_saturated_bc_budget_fit.md": {
+      "**P2 (fixed-deficiency charts fit, via proved Conjecture-F).**": {
+        "kind": "content",
+        "line": 182,
+        "sha256_line": "5e682ea48d1051d4"
+      },
+      "P2 is proved-and-fits at fixed deficiency": {
+        "kind": "content",
+        "line": 207,
+        "sha256_line": "b224b5d23fc82141"
+      },
+      "| 2 | `C(n,2)/(omega-1)` (`thm:capf-dim2`, raw L6719) | `2^21.10` fits | `2^21.10` fits |": {
+        "kind": "content",
+        "line": 190,
+        "sha256_line": "387772969d8dd216"
+      }
+    },
+    "conjecture_f_dim2_evidence.md": {
+      "the pair-counting explanation should use the weighted form rather than silently": {
+        "kind": "content",
+        "line": 77,
+        "sha256_line": "d2c87fc34ec3f7c7"
+      },
+      "top planes with a twin class          5/5": {
+        "kind": "content",
+        "line": 89,
+        "sha256_line": "d2d8e9eda7f905e2"
+      }
+    },
+    "conjecture_f_dim2_skeleton.md": {
+      "# residual <= binom(s,2) / binom(j,2).": {
+        "kind": "content",
+        "line": 44,
+        "sha256_line": "8a23acea71740d74"
+      },
+      "dimension-two source for Conjecture F: they are common-GCD charts one degree": {
+        "kind": "content",
+        "line": 48,
+        "sha256_line": "774adfe75a6f6457"
+      }
+    },
+    "grande_finale.tex": {
+      "cor:bc-one-pencil": {
+        "kind": "label",
+        "line": 1764,
+        "sha256_line": "65f35930a50591f6"
+      },
+      "def:first-match-ledger": {
+        "kind": "label",
+        "line": 148,
+        "sha256_line": "ec0894caa6412e2b"
+      },
+      "def:projective-locator-pencil": {
+        "kind": "label",
+        "line": 1722,
+        "sha256_line": "6e516684b28ced50"
+      },
+      "def:q-row-atom": {
+        "kind": "label",
+        "line": 2043,
+        "sha256_line": "2e8809e1edaeb4e5"
+      },
+      "prob:saturated-bc": {
+        "kind": "label",
+        "line": 2191,
+        "sha256_line": "a97535ca5ff20b74"
+      },
+      "prop:bc-not-q": {
+        "kind": "label",
+        "line": 2120,
+        "sha256_line": "bab4ed6eedbacfc5"
+      },
+      "prop:boundary-q": {
+        "kind": "label",
+        "line": 1475,
+        "sha256_line": "3b0d8b69bf38e9fe"
+      },
+      "prop:slope-elimination": {
+        "kind": "label",
+        "line": 1320,
+        "sha256_line": "2c99a42e87c16eef"
+      },
+      "prop:split-chart-tangent": {
+        "kind": "label",
+        "line": 1452,
+        "sha256_line": "64b232da050585c0"
+      },
+      "rem:bc-status-after-moving-root": {
+        "kind": "label",
+        "line": 1785,
+        "sha256_line": "3614c410e0b59848"
+      },
+      "thm:bc-moving-root": {
+        "kind": "label",
+        "line": 1735,
+        "sha256_line": "b81eabd19ba4747b"
+      }
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "theorem_quoted": {
+    "derivation_summary": "the E_h are lines in the plane P(W); no coincidence class has multiplicity >= j (such a class would be a 2-dimensional projective space inside the 0-dimensional span of one locator -- proved unconditionally); each locator point carries class multiplicities summing to j, each <= j-1, hence >= min m(j-m) = j-1 cross pairs {h,h'} with E_h != E_{h'}; each cross pair is charged to the unique intersection point E_h cap E_{h'}, at most once; there are at most C(|H|,2) pairs, so at most C(|H|,2)/(j-1) locator points",
+    "hypotheses": "W <= K[X]_{<=j} nonzero, no h in H a common root of all of W (gcd-triviality, lem:capf-concurrency), j >= 2, dim P(W) = 2 EXACTLY.  No balanced-core or mu_n hypothesis; H = D works with |H| = n = 2^21, j = omega",
+    "label": "thm:capf-dim2 (projective-plane pair bound, raw L6719)",
+    "per_chart_scope_nonclaim": "the theorem bounds LOCATOR POINTS PER CHART (one fixed W).  No chart-multiplicity-per-line bound is in hand; booking the cell as a single row consumer inherits budget-fit P2's accepted bookkeeping and is stated as such (cf. gf L2144: 'a line-by-line decomposition without a bound on the number of lines gives no row budget')",
+    "verbatim": "Under the hypotheses of \\cref{lem:capf-concurrency}, assume $j\\ge2$ and $\\dim\\PP(W)=2$.  Then |\\PP(W)\\cap\\Dloc_j(H)| \\le \\binom{|H|}{2}/(j-1), and if the evaluation lines $E_h$ are pairwise distinct, the sharper bound with denominator $\\binom j2$ holds."
+  },
+  "typed_rows": {
+    "kb_mca": {
+      "B_star": 274980728111395087,
+      "a_plus": 1116048,
+      "budget_fit": "CONDITIONAL_ON_NAMED_INPUT (depth-w max-fiber / row-sharp Q, def:q-row-atom); the proved Q side is budget-fit P1's floor pin, never an upper bound",
+      "cell": "deficiency-2 stratum (dim P(W) = 2 exactly)",
+      "cell_bound_cite": "thm:capf-dim2 (raw L6719), clause 1",
+      "cell_bound_exact": 2241377,
+      "cell_bound_formula": "floor(C(n,2)/(omega-1)), n = 2^21",
+      "cell_bound_log2_display": "21.0960",
+      "division_remainder": 508145,
+      "enumerative_half": "CITED-THEOREM (thm:capf-dim2), not new",
+      "floor_BB": 57198030366,
+      "margin_bits_display": "22.1969",
+      "omega_correct": 981104,
+      "per_chart_scope": "per-chart bound booked as a single row consumer; inherits P2's accepted bookkeeping (NON-CLAIM: no chart-multiplicity-per-line bound)",
+      "placement_computed_at_toys": "COMMON_GCD_OWNED",
+      "sharp_branch_two_branch_row": {
+        "else_generic": 2241377,
+        "empirical_prior": "ADVERSE -- every known extremal instance in-tree has a twin class; shipped MEASURED, no twin-free claim at deployed scale",
+        "if_E_h_pairwise_distinct": "floor(C(n,2)/C(omega,2)) = 4"
+      },
+      "type_assignment": "(b): separate named residual cell with its own slope (not raw-support) bound (prob:saturated-bc type (b); rem:bc-status-after-moving-root: 'must be split further or charged to a separate named cell')",
+      "w": 67471
+    },
+    "m31_mca": {
+      "B_star": 16777215,
+      "a_plus": 1116024,
+      "budget_fit": "CONDITIONAL_ON_NAMED_INPUT (depth-w max-fiber / row-sharp Q, def:q-row-atom); the proved Q side is budget-fit P1's floor pin, never an upper bound",
+      "cell": "deficiency-2 stratum (dim P(W) = 2 exactly)",
+      "cell_bound_cite": "thm:capf-dim2 (raw L6719), clause 1",
+      "cell_bound_exact": 2241322,
+      "cell_bound_formula": "floor(C(n,2)/(omega-1)), n = 2^21",
+      "cell_bound_log2_display": "21.0959",
+      "division_remainder": 677082,
+      "enumerative_half": "CITED-THEOREM (thm:capf-dim2), not new",
+      "floor_BB": 1752700,
+      "margin_bits_display": "3.2589",
+      "omega_correct": 981128,
+      "per_chart_scope": "per-chart bound booked as a single row consumer; inherits P2's accepted bookkeeping (NON-CLAIM: no chart-multiplicity-per-line bound)",
+      "placement_computed_at_toys": "COMMON_GCD_OWNED",
+      "sharp_branch_two_branch_row": {
+        "else_generic": 2241322,
+        "empirical_prior": "ADVERSE -- every known extremal instance in-tree has a twin class; shipped MEASURED, no twin-free claim at deployed scale",
+        "if_E_h_pairwise_distinct": "floor(C(n,2)/C(omega,2)) = 4"
+      },
+      "type_assignment": "(b): separate named residual cell with its own slope (not raw-support) bound (prob:saturated-bc type (b); rem:bc-status-after-moving-root: 'must be split further or charged to a separate named cell')",
+      "w": 67447
+    }
+  },
+  "upside_branch": {
+    "adverse_priors_cited": "holmbuar #792: 'evaluation hyperplanes collide'; Hart evidence: j=5 top planes with a twin class 5/5, j=4 top planes 9/9 twinned",
+    "cited_clause": "thm:capf-dim2 clause 2 (verbatim): 'and if the evaluation lines $E_h$ are pairwise distinct, the sharper bound with denominator $\\binom j2$ holds'",
+    "measured_toy_twin_census": {
+      "f289_witness_plane": {
+        "class_size_histogram": [
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_class_size_below_j": true,
+        "n_classes": 12,
+        "n_singleton_classes": 10,
+        "n_twin_classes": 2,
+        "pairwise_distinct": false,
+        "twin_classes": [
+          [
+            5,
+            9
+          ],
+          [
+            7,
+            8,
+            12,
+            15
+          ]
+        ]
+      },
+      "f73_witness_plane": {
+        "class_size_histogram": [
+          4,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_class_size_below_j": true,
+        "n_classes": 19,
+        "n_singleton_classes": 16,
+        "n_twin_classes": 3,
+        "pairwise_distinct": false,
+        "twin_classes": [
+          [
+            2,
+            6,
+            10,
+            15
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            14,
+            22
+          ]
+        ]
+      },
+      "f97_cell_A": {
+        "class_size_histogram": [
+          4,
+          3,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_class_size_below_j": true,
+        "n_classes": 9,
+        "n_singleton_classes": 6,
+        "n_twin_classes": 3,
+        "pairwise_distinct": false,
+        "twin_classes": [
+          [
+            0,
+            1,
+            2,
+            7
+          ],
+          [
+            5,
+            8,
+            9
+          ],
+          [
+            10,
+            13
+          ]
+        ]
+      },
+      "f97_cell_B": {
+        "class_size_histogram": [
+          4,
+          3,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_class_size_below_j": true,
+        "n_classes": 9,
+        "n_singleton_classes": 7,
+        "n_twin_classes": 2,
+        "pairwise_distinct": false,
+        "twin_classes": [
+          [
+            0,
+            7,
+            11
+          ],
+          [
+            5,
+            8,
+            9,
+            12
+          ]
+        ]
+      }
+    },
+    "quantified": {
+      "kb": "floor(C(n,2)/C(981104,2)) = 4 (C(omega,2) = 481,282,038,856)",
+      "m31": "floor(C(n,2)/C(981128,2)) = 4 (C(omega,2) = 481,305,585,628)",
+      "refund_if_it_held": "the full 0.2069-bit naming price (the tightened M31 allowance returns to 16,777,211, margin 3.2589 at 4dp)"
+    },
+    "status": "DEMOTED (empirically adverse); PROVED cited clause + PROVED twin-routing skeleton + MEASURED toy twin census; NO twin-free claim at deployed scale",
+    "twin_routing_skeleton": "conjecture_f_dim2_skeleton.md (PROVED, cited): twin classes are all-or-none and route to the paid common-GCD branch one degree lower; residual <= C(s,2)/C(j,2)",
+    "unconditional_partial_fact": "no coincidence class has multiplicity >= j (proved inside thm:capf-dim2; verified on every exhibited plane)"
+  },
+  "verdict": "PLACEMENT COMPUTED: COMMON_GCD_OWNED -- at every exhibited deficiency-2 instance (two constructed witness planes at F_73/F_17^2 and both #792 F_97 residual planes) the computed owner is recorded per instance and the aggregate is the named outcome; the deficiency-2 cell is typed at BOTH deployed MCA rows with exact triple-routed bounds 2,241,377 (KB, 2^21.0960) / 2,241,322 (M31, 2^21.0959) = floor(C(n,2)/(omega-1)); M31 JOINT LEDGER: FITS -- consuming 3,994,022 of B* = 16,777,215 alongside the boundary-Q floor leaves 12,783,193, a 0.2069-bit naming price on the conditional row-sharp-Q allowance (margin 3.2589 -> 3.0520; list 3.0730 -> 2.8661); the #690 watch rung tightens +0.3938 -> +0.1869 bits; three-way slack 13,435 exact (fully-additive reading, 0.00116 bits) / 1,766,135 (rung-as-Q-payment reading, 0.1605 bits).  KB fits trivially (36.8362 bits below the post-Q-floor residual, 4dp margin cost 0.0000).  ALL joint-fit sentences CONDITIONAL_ON_NAMED_INPUT (depth-w max-fiber / row-sharp Q; proved side is a floor pin).  PER-CHART SCOPE: no chart-multiplicity-per-line bound is claimed.  d = 3 fails both rows (C(n,3) = 1,537,226,473,786,572,800 = 2^60.4150 > B* at KB and M31).  Not a resolution of prob:saturated-bc."
+}
