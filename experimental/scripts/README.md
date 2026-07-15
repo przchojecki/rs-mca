@@ -30,6 +30,8 @@ python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame
 python3 experimental/scripts/verify_asymptotic_primitive_profile_character_frame_v1.py --tamper-selftest
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --check
 python3 experimental/scripts/verify_asymptotic_packed_flatness_converse_v1.py --tamper-selftest
+python3 experimental/scripts/verify_selected_owner_cube_mean_boundary_v1.py --check
+python3 experimental/scripts/verify_selected_owner_cube_mean_boundary_v1.py --tamper-selftest
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
@@ -51,6 +53,13 @@ prove MSS or the open source many-shell max-atom/large-sieve theorem.  The
 regression covers cyclic and noncyclic product groups and includes a symbolic
 family where a full-slice heavy atom forces exponential packed norm while its
 semantic residual is uniformly flat under the same full-slice normalization.
+
+`verify_selected_owner_cube_mean_boundary_v1.py` checks the exact ambient
+decomposition guardrail, the cube/projection commutator identity, the Hamming
+middle-layer leakage regression, the equitable-partition reduction, and the
+unconditional maximal-band quartic unit-mask bound.  It does not prove the
+source-specific ambient estimate, non-equitable cube localization, nonempty
+mode compression, or paid cube-spectrum admission.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

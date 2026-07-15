@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-15 - Selected-owner cube-mean boundary
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/selected_owner_cube_mean_boundary_v1.md`,
+  `experimental/scripts/verify_selected_owner_cube_mean_boundary_v1.py`,
+  `experimental/data/certificates/selected-owner-cube-mean-boundary-v1/selected_owner_cube_mean_boundary_v1.json`,
+  `experimental/scripts/README.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / CONDITIONAL / AUDIT.  No stable paper theorem is
+  promoted.
+- **What is being added:** Exact ambient and commutator guards for the proposed
+  selected-owner cube-mean route, a source-free Hamming leakage regression, an
+  equitable-chart reduction criterion with an explicit paid-admission
+  hypothesis, and an unconditional maximal-band quartic unit-mask theorem.
+- **How it is useful:** Prevents within-image cube flatness from silently
+  assuming ambient MI/MA or charge payment, removes the maximal band from the
+  quartic selected-layer residual, and isolates source-specific AL4,
+  non-equitable localization, mode compression, and admission as separate
+  obligations.
+- **What to do next:** Prove operator-level equitability and ambient leakage on
+  the integrated base-3 cylinder hierarchy, then audit whether its empty-mode
+  cube family has a valid selected-owner payment in the first-match grammar.
+
 ### 2026-07-15 - L1/BC/L2 threshold and Lean PR wave
 
 - **Agent/model:** Codex integrating non-draft PRs #775, #777, #779--#792,

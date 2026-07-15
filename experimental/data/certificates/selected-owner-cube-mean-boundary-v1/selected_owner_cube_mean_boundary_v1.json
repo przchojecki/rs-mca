@@ -1,0 +1,443 @@
+{
+  "certificate_id": "selected-owner-cube-mean-boundary-v1",
+  "commutator_guardrail": {
+    "band": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "checks": {
+      "commutator_identity_exact": true,
+      "commutator_is_nonzero": true,
+      "holder_guard": true
+    },
+    "commutator": [
+      "1/12",
+      "0",
+      "0",
+      "-1/12",
+      "1/12",
+      "0",
+      "0",
+      "-1/12"
+    ],
+    "commutator_pairing": "-2/33",
+    "empty_charge": "-2/33",
+    "group": "F_2^3",
+    "holder_rhs": 0.158012049,
+    "partition": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6,
+        7
+      ]
+    ],
+    "reconstructed_charge": "-2/33"
+  },
+  "equitable_reduction": {
+    "band": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "checks": {
+      "EQ1_f_is_partition_measurable": true,
+      "EQ2_commutator_zero_on_layers": true,
+      "EQ2_partition_range_invariant": true,
+      "norming_dual_numerator_measurable": true,
+      "projected_layers_measurable": true,
+      "root_weight_measurable": true,
+      "selected_layers_measurable": true,
+      "within_active_parts_residual_zero": true
+    },
+    "group": "F_2^3",
+    "layers": [
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    ],
+    "partition": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        7
+      ]
+    ]
+  },
+  "hamming_guardrail": {
+    "checks": {
+      "color_classes_are_rim_free": true,
+      "color_pigeonhole_bound": true,
+      "exact_krawtchouk_shell_identity": true,
+      "not_source_semantic_falsifier": true,
+      "positive_asymptotic_exponent_printed": true
+    },
+    "color_census": {
+      "color_bits": 4,
+      "image_size": 924,
+      "largest_class": 68,
+      "n": 12,
+      "nonempty_colors": 16,
+      "pigeonhole_floor": 57.75
+    },
+    "scope": "source-free ambient guardrail; not a post-atlas RS falsifier",
+    "shell_rows": [
+      {
+        "formula_numerator": -8,
+        "image_size": 70,
+        "kernel_absolute_value": 0.03125,
+        "n": 8,
+        "normalized_log_rate": -1.06343981,
+        "normalized_lower_bound": 0.000201944,
+        "signed_kernel_numerator": -8
+      },
+      {
+        "formula_numerator": 30,
+        "image_size": 924,
+        "kernel_absolute_value": 0.007324219,
+        "n": 12,
+        "normalized_log_rate": -0.762963991,
+        "normalized_lower_bound": 0.00010563,
+        "signed_kernel_numerator": 30
+      },
+      {
+        "formula_numerator": -112,
+        "image_size": 12870,
+        "kernel_absolute_value": 0.001708984,
+        "n": 16,
+        "normalized_log_rate": -0.592962177,
+        "normalized_lower_bound": 7.5801e-05,
+        "signed_kernel_numerator": -112
+      },
+      {
+        "formula_numerator": 420,
+        "image_size": 184756,
+        "kernel_absolute_value": 0.000400543,
+        "n": 20,
+        "normalized_log_rate": -0.48119704,
+        "normalized_lower_bound": 6.6127e-05,
+        "signed_kernel_numerator": 420
+      },
+      {
+        "formula_numerator": -1584,
+        "image_size": 2704156,
+        "kernel_absolute_value": 9.4414e-05,
+        "n": 24,
+        "normalized_log_rate": -0.401160316,
+        "normalized_lower_bound": 6.5869e-05,
+        "signed_kernel_numerator": -1584
+      },
+      {
+        "formula_numerator": 6006,
+        "image_size": 40116600,
+        "kernel_absolute_value": 2.2374e-05,
+        "n": 28,
+        "normalized_log_rate": -0.340562409,
+        "normalized_lower_bound": 7.2223e-05,
+        "signed_kernel_numerator": 6006
+      },
+      {
+        "formula_numerator": -22880,
+        "image_size": 601080390,
+        "kernel_absolute_value": 5.327e-06,
+        "n": 32,
+        "normalized_log_rate": -0.292841296,
+        "normalized_lower_bound": 8.5165e-05,
+        "signed_kernel_numerator": -22880
+      },
+      {
+        "formula_numerator": 87516,
+        "image_size": 9075135300,
+        "kernel_absolute_value": 1.274e-06,
+        "n": 36,
+        "normalized_log_rate": -0.254141383,
+        "normalized_lower_bound": 0.000106317,
+        "signed_kernel_numerator": 87516
+      },
+      {
+        "formula_numerator": -335920,
+        "image_size": 137846528820,
+        "kernel_absolute_value": 3.06e-07,
+        "n": 40,
+        "normalized_log_rate": -0.222034203,
+        "normalized_lower_bound": 0.000138954,
+        "signed_kernel_numerator": -335920
+      },
+      {
+        "formula_numerator": 1293292,
+        "image_size": 2104098963720,
+        "kernel_absolute_value": 7.4e-08,
+        "n": 44,
+        "normalized_log_rate": -0.194906984,
+        "normalized_lower_bound": 0.000188595,
+        "signed_kernel_numerator": 1293292
+      },
+      {
+        "formula_numerator": -4992288,
+        "image_size": 32247603683100,
+        "kernel_absolute_value": 1.8e-08,
+        "n": 48,
+        "normalized_log_rate": -0.171642964,
+        "normalized_lower_bound": 0.000264185,
+        "signed_kernel_numerator": -4992288
+      },
+      {
+        "formula_numerator": 19315400,
+        "image_size": 495918532948104,
+        "kernel_absolute_value": 4e-09,
+        "n": 52,
+        "normalized_log_rate": -0.151442208,
+        "normalized_lower_bound": 0.000380131,
+        "signed_kernel_numerator": 19315400
+      },
+      {
+        "formula_numerator": -74884320,
+        "image_size": 7648690600760440,
+        "kernel_absolute_value": 1e-09,
+        "n": 56,
+        "normalized_log_rate": -0.133715443,
+        "normalized_lower_bound": 0.000559725,
+        "signed_kernel_numerator": -74884320
+      },
+      {
+        "formula_numerator": 290845350,
+        "image_size": 118264581564861424,
+        "kernel_absolute_value": 0.0,
+        "n": 60,
+        "normalized_log_rate": -0.118018217,
+        "normalized_lower_bound": 0.000840854,
+        "signed_kernel_numerator": 290845350
+      },
+      {
+        "formula_numerator": -1131445440,
+        "image_size": 1832624140942590534,
+        "kernel_absolute_value": 0.0,
+        "n": 64,
+        "normalized_log_rate": -0.104008481,
+        "normalized_lower_bound": 0.001285583,
+        "signed_kernel_numerator": -1131445440
+      },
+      {
+        "formula_numerator": 4407922860,
+        "image_size": 28453041475240576740,
+        "kernel_absolute_value": 0.0,
+        "n": 68,
+        "normalized_log_rate": -0.091418376,
+        "normalized_lower_bound": 0.00199632,
+        "signed_kernel_numerator": 4407922860
+      },
+      {
+        "formula_numerator": -17194993200,
+        "image_size": 442512540276836779204,
+        "kernel_absolute_value": 0.0,
+        "n": 72,
+        "normalized_log_rate": -0.080034924,
+        "normalized_lower_bound": 0.003143198,
+        "signed_kernel_numerator": -17194993200
+      },
+      {
+        "formula_numerator": 67156001220,
+        "image_size": 6892620648693261354600,
+        "kernel_absolute_value": 0.0,
+        "n": 76,
+        "normalized_log_rate": -0.069686497,
+        "normalized_lower_bound": 0.005010729,
+        "signed_kernel_numerator": 67156001220
+      },
+      {
+        "formula_numerator": -262564816800,
+        "image_size": 107507208733336176461620,
+        "kernel_absolute_value": 0.0,
+        "n": 80,
+        "normalized_log_rate": -0.060233138,
+        "normalized_lower_bound": 0.008077676,
+        "signed_kernel_numerator": -262564816800
+      },
+      {
+        "formula_numerator": 1027583214840,
+        "image_size": 1678910486211891090247320,
+        "kernel_absolute_value": 0.0,
+        "n": 84,
+        "normalized_log_rate": -0.051559493,
+        "normalized_lower_bound": 0.013154421,
+        "signed_kernel_numerator": 1027583214840
+      },
+      {
+        "formula_numerator": -4025232800160,
+        "image_size": 26248505381684851188961800,
+        "kernel_absolute_value": 0.0,
+        "n": 88,
+        "normalized_log_rate": -0.043569572,
+        "normalized_lower_bound": 0.021620306,
+        "signed_kernel_numerator": -4025232800160
+      },
+      {
+        "formula_numerator": 15780742227900,
+        "image_size": 410795449442059149332177040,
+        "kernel_absolute_value": 0.0,
+        "n": 92,
+        "normalized_log_rate": -0.036182805,
+        "normalized_lower_bound": 0.035835434,
+        "signed_kernel_numerator": 15780742227900
+      },
+      {
+        "formula_numerator": -61915399071552,
+        "image_size": 6435067013866298908421603100,
+        "kernel_absolute_value": 0.0,
+        "n": 96,
+        "normalized_log_rate": -0.029331032,
+        "normalized_lower_bound": 0.059858069,
+        "signed_kernel_numerator": -61915399071552
+      },
+      {
+        "formula_numerator": 243097320072600,
+        "image_size": 100891344545564193334812497256,
+        "kernel_absolute_value": 0.0,
+        "n": 100,
+        "normalized_log_rate": -0.022956171,
+        "normalized_lower_bound": 0.100699234,
+        "signed_kernel_numerator": 243097320072600
+      },
+      {
+        "formula_numerator": -955102359751904,
+        "image_size": 1583065848125949175357548128136,
+        "kernel_absolute_value": 0.0,
+        "n": 104,
+        "normalized_log_rate": -0.017008407,
+        "normalized_lower_bound": 0.17052484,
+        "signed_kernel_numerator": -955102359751904
+      },
+      {
+        "formula_numerator": 3754811749464216,
+        "image_size": 24857784491537440929618523018320,
+        "kernel_absolute_value": 0.0,
+        "n": 108,
+        "normalized_log_rate": -0.011444751,
+        "normalized_lower_bound": 0.290534452,
+        "signed_kernel_numerator": 3754811749464216
+      },
+      {
+        "formula_numerator": -14769885298020160,
+        "image_size": 390590044887157789360330532465784,
+        "kernel_absolute_value": 0.0,
+        "n": 112,
+        "normalized_log_rate": -0.0062279,
+        "normalized_lower_bound": 0.497815983,
+        "signed_kernel_numerator": -14769885298020160
+      },
+      {
+        "formula_numerator": 58130048565779344,
+        "image_size": 6141219157058215937976400809912720,
+        "kernel_absolute_value": 0.0,
+        "n": 116,
+        "normalized_log_rate": -0.001325314,
+        "normalized_lower_bound": 0.857498047,
+        "signed_kernel_numerator": 58130048565779344
+      },
+      {
+        "formula_numerator": -228899190125538240,
+        "image_size": 96614908840363322603893139521372656,
+        "kernel_absolute_value": 0.0,
+        "n": 120,
+        "normalized_log_rate": 0.003291528,
+        "normalized_lower_bound": 1.484359532,
+        "signed_kernel_numerator": -228899190125538240
+      },
+      {
+        "formula_numerator": 901767434432068358,
+        "image_size": 1520803477811874490019821888415218656,
+        "kernel_absolute_value": 0.0,
+        "n": 124,
+        "normalized_log_rate": 0.007647736,
+        "normalized_lower_bound": 2.581367357,
+        "signed_kernel_numerator": 901767434432068358
+      },
+      {
+        "formula_numerator": -3554180152131084672,
+        "image_size": 23951146041928082866135587776380551750,
+        "kernel_absolute_value": 0.0,
+        "n": 128,
+        "normalized_log_rate": 0.01176551,
+        "normalized_lower_bound": 4.508593383,
+        "signed_kernel_numerator": -3554180152131084672
+      }
+    ]
+  },
+  "maximal_band": {
+    "ambient_trials": 156750,
+    "checks": {
+      "normalized_ambient_bound_at_most_one": true,
+      "quartic_bound_at_most_2L": true
+    },
+    "full_trials": 4750,
+    "group_orders": [
+      2,
+      96
+    ],
+    "maximum_fourth_moment_per_support": 0.958980984,
+    "maximum_normalized_ambient_fourth_power": 0.10546875
+  },
+  "nonclaims": [
+    "the Hamming guardrail is not a post-atlas RS falsifier",
+    "EQ3 is assumed rather than proved by the equitable reduction",
+    "EQ4 paid admission is not proved",
+    "no stable paper theorem or finite deployed row is closed"
+  ],
+  "open_obligations": [
+    "source-specific ambient leakage AL4",
+    "non-equitable within-image cube localization",
+    "commutator control or signed nonempty-mode compression",
+    "paid selected-owner cube-spectrum admission"
+  ],
+  "source_revision": "764f1c0243770baa437d4ae790b1448afa091680",
+  "status": "PROVED_FINITE_BOUNDARIES_AND_MAXIMAL_BAND__SOURCE_AL4_AND_PAID_ADMISSION_OPEN"
+}
