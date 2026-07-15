@@ -30,6 +30,46 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-15 - First deployed-row chart typing for prob:saturated-bc (simple-pole/rank-one cell)
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/notes/thresholds/bc_chart_typing_deployed.md`,
+  `experimental/scripts/verify_bc_chart_typing.py`,
+  `experimental/scripts/verify_bc_chart_typing_check.py`,
+  `experimental/data/certificates/bc-chart-typing/bc_chart_typing.json`.
+- **Status:** EXPERIMENTAL / AUDIT (placement argument and non-pencil
+  exclusion lemma PROVED-LOCAL from cited upstream propositions;
+  enumerative half CITED-THEOREM; B* fit CONDITIONAL_ON_NAMED_INPUT).
+- **What is being added:** The simple-pole/rank-one cell is typed at both
+  deployed MCA adjacent rows in `prob:saturated-bc`'s per-row grammar,
+  with the first-match placement decided by computation rather than
+  presupposed: every computed pole-line profile is `d1 = w+1`, the
+  boundary-Q profile, so the computed outcome is BOUNDARY_Q_OWNED,
+  typed (b)-via-Q (the cell's own slope bound is the `def:q-row-atom`
+  target) and quantitatively never type (a) (an elementary non-pencil
+  exclusion lemma: the heaviest-fiber witness floor exceeds the
+  one-pencil cap `floor((n-g)/(omega-g))` for every `g`, exact sweep).
+  All four deployed rows are recomputed two independent exact ways in
+  the generator and a third way in the checker (the M31 3.2589-bit
+  margin is adjacency-critical), with the corrected omega cited from the
+  banked `bc_one_pencil_omega` certificate and the Q-conditional budget
+  line printed against the #690 -0.3938-bit M31 watch-item.
+- **How it is useful:** First chart-typing certificate at a deployed
+  `a_+` row (third chart family overall, after the toy-row near-pencil
+  family and the L4 planted interior family); gives `prob:saturated-bc`'s
+  boundary-Q first-match line exact deployed integers and routes the
+  cell's entire charge to `prob:row-sharp-q` in quantified, conditional
+  form; supplies an exact ray payment at a scale the thresholds draft's
+  four proved ray compilers cannot reach (hard inputs 1/3).  It is not a
+  resolution of `prob:saturated-bc` and claims no bound on
+  `U(a_0+1) <= B*`.
+- **What to do next:** Extend the typing to the deficiency-2 named cell
+  (the first genuinely interior type-(b) candidate, slope bound
+  `C(n,2)/(omega-1) ~ 2^21.10`, which alone consumes ~2^21.1 of M31's
+  2^24 budget); the growing-deficiency interior core remains the open
+  target and is prob:band-hard.
+
 ### 2026-07-15 - L1/L2, LineRay, circle, and charge-obstruction PR wave
 
 - **Agent/model:** Codex integrating non-draft PRs #755--#774 and #776 from

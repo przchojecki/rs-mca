@@ -1,0 +1,1295 @@
+{
+  "base_sha": "2633895a66d3edf516120a87b2eb18c994f977ab",
+  "caveats": [
+    "log2 values in *_display fields are display-grade strings; every verdict field is an exact integer, boolean, or computed enum",
+    "saturated_bc_budget_fit_v1.json is an old-style certificate without a payload_sha256 field; it is consumed by whole-file sha256 plus field equality",
+    "#721 has no JSON certificate in-tree; it is consumed by whole-file sha256 of its note, content pins, and a full replay of its printed d=1 collision-literal census"
+  ],
+  "cell_definition": {
+    "grammar": "stated inside prob:saturated-bc's per-row first-match grammar (quotient, boundary-Q, common-support, tangent, extension, degree-drop, common-GCD paid first; residual charts must be type (a) pencils or type (b) named cells with slope, not raw-support, bounds)",
+    "lines": "pole lines (f_alpha, g_alpha) = (U_z/(X-alpha), -1/(X-alpha)), alpha not in D u B, z in B^w a depth-w prefix value (prop:pole-line, prop:rank-one-floor; w = a_+ - K, K = k+1)",
+    "name": "simple-pole/rank-one cell (per deployed MCA adjacent row)",
+    "witness_floor": "|Fib_w(z*)| >= ceil(C(n,a_+) p^-w) = B_B(a_+) at a heaviest prefix value (pigeonhole, prop:rank-one-floor)",
+    "witnesses": "exactly the depth-w prefix fiber Fib_w(z) (prop:pole-line; #715 witness-fiber calibration: this depth-w MCA-route fiber is cap25's depth-(w'-1) witness fiber, one below the census depth w' = a_+ - k)"
+  },
+  "claim_boundaries": {
+    "asserts": [
+      "the simple-pole/rank-one cell's first-match placement is decided by computation: d1 = w+1 (boundary-Q profile) at every computed pole-line word at both toys, with the scale-free module element (X-alpha, U_z-zeta) forcing d1 <= w+1 at the deployed rows",
+      "the cell is not type (a): its heaviest-fiber witness floor exceeds the one-pencil cap floor((n-g)/(omega-g)) for EVERY g < omega at both deployed MCA rows (exact integers, cap sweep)",
+      "typed rows at both deployed MCA rows with corrected omega (bc_one_pencil_omega cited, not re-parked), exact B*, B_B(a_+), margins, and H_ext exclusion, all four rows recomputed two independent ways that agree exactly",
+      "enumerative half is CITED-THEOREM (frontiers bijection + #715 witness-fiber calibration), not a new bound",
+      "the Q-conditional budget line is printed against the #690 -0.3938-bit M31 watch-item"
+    ],
+    "does_not_assert": [
+      "any resolution of prob:saturated-bc (the growing-deficiency interior residual stays open, ~2.07M bits from target per budget-fit Sec. 6)",
+      "any unconditional upper bound on max_z |Fib_w(z)| or on the cell's slope count (that IS the row-sharp Q atom target; budget-fit P1 is a floor pin, 'NOT itself a general upper bound')",
+      "U(a_0+1) <= B* at any row",
+      "any new census bound or any refutation",
+      "any edit to upstream .tex (the omega typo stays parked via the banked bc_one_pencil_omega certificate)"
+    ],
+    "independent_recheck_confirms": true,
+    "is_counterexample": false,
+    "is_degenerate_by_construction": false,
+    "is_full_canonical_statement_not_proxy_or_toy_row": false,
+    "is_novel_not_confirming_a_proven_theorem": false,
+    "is_tautology_under_preconditions": false,
+    "resolves_or_advances_prob_band": false
+  },
+  "deployed_placement_argument": {
+    "conclusion": "d1 = w+1 = the boundary-Q profile (prop:boundary-q: 'BC starts only after this profile is removed'; bc_section.tex: interior is w+2 <= d1 <= floor((n-K+1)/2))",
+    "lower": "d1 >= w+1 for all but at most one slope per line (thm:near-rational dichotomy + cor:near-rational-line; toys: zero near-rational slopes observed)",
+    "module_element": "(X - alpha, U_z - zeta) in M_{f_alpha + zeta g_alpha}: (x-alpha)((U_z(x)-zeta)/(x-alpha)) = U_z(x) - zeta on D",
+    "shifted_degree": "wdeg = max(deg(X-alpha), deg(U_z - zeta) - (K-1)) = max(1, a_+ - k) = w + 1",
+    "shifted_degree_values": {
+      "kb_mca": 67472,
+      "m31_mca": 67448
+    },
+    "upper": "d1 <= w+1 at every scale (the displayed element)"
+  },
+  "evidence_type": "CHART_TYPING_WITH_COMPUTED_PLACEMENT_AND_EXACT_ROW_ARITHMETIC",
+  "falsifiability": "The gate fails if: any pinned statement moves or its line hash drifts; any oracle payload or file hash drifts; the two deployed big-int routes disagree on any row; any of B*, B_B(a_+), margin display, H_ext, omega, dim omega-w, or pencil-cap sweep value changes; any toy fiber, slope set, module element, computed d1, or locator rank changes; or the #721 census replay drifts.",
+  "falsifiable": true,
+  "gate_1_placement_f73": {
+    "all_pass": true,
+    "alpha": 0,
+    "ceil_floor": 4,
+    "counting_cap_equals_n_minus_omega_plus_1": true,
+    "counting_cap_max_over_g": 16,
+    "counting_exclusion_bites": false,
+    "counts": {
+      "boundary": 8,
+      "interior": 0,
+      "near_rational": 0
+    },
+    "d1_rows": [
+      {
+        "d1": 4,
+        "module_element_wdeg": 4,
+        "n_fiber_members_at_slope": 2,
+        "zeta": 1
+      },
+      {
+        "d1": 4,
+        "module_element_wdeg": 4,
+        "n_fiber_members_at_slope": 2,
+        "zeta": 8
+      },
+      {
+        "d1": 4,
+        "module_element_wdeg": 4,
+        "n_fiber_members_at_slope": 1,
+        "zeta": 9
+      },
+      {
+        "d1": 4,
+        "module_element_wdeg": 4,
+        "n_fiber_members_at_slope": 1,
+        "zeta": 27
+      },
+      {
+        "d1": 4,
+        "module_element_wdeg": 4,
+        "n_fiber_members_at_slope": 2,
+        "zeta": 51
+      },
+      {
+        "d1": 4,
+        "module_element_wdeg": 4,
+        "n_fiber_members_at_slope": 2,
+        "zeta": 64
+      },
+      {
+        "d1": 4,
+        "module_element_wdeg": 4,
+        "n_fiber_members_at_slope": 1,
+        "zeta": 65
+      },
+      {
+        "d1": 4,
+        "module_element_wdeg": 4,
+        "n_fiber_members_at_slope": 2,
+        "zeta": 72
+      }
+    ],
+    "d1_values": [
+      4
+    ],
+    "fiber_members": [
+      [
+        0,
+        1,
+        3,
+        4,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        16,
+        17,
+        19,
+        20,
+        21
+      ],
+      [
+        0,
+        1,
+        4,
+        5,
+        11,
+        13,
+        14,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      [
+        0,
+        2,
+        3,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        17,
+        19,
+        20,
+        21,
+        22
+      ],
+      [
+        1,
+        2,
+        3,
+        4,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      [
+        1,
+        2,
+        3,
+        5,
+        8,
+        10,
+        11,
+        12,
+        13,
+        15,
+        18,
+        20,
+        21,
+        22,
+        23
+      ],
+      [
+        1,
+        2,
+        3,
+        6,
+        7,
+        10,
+        11,
+        12,
+        13,
+        16,
+        17,
+        20,
+        21,
+        22,
+        23
+      ],
+      [
+        1,
+        3,
+        4,
+        5,
+        8,
+        9,
+        10,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        22,
+        23
+      ],
+      [
+        1,
+        3,
+        4,
+        6,
+        7,
+        9,
+        10,
+        13,
+        14,
+        16,
+        17,
+        19,
+        20,
+        22,
+        23
+      ],
+      [
+        1,
+        3,
+        5,
+        6,
+        7,
+        8,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        20,
+        22,
+        23
+      ],
+      [
+        2,
+        4,
+        5,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        21,
+        23
+      ],
+      [
+        2,
+        4,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        19,
+        21,
+        23
+      ],
+      [
+        2,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        21,
+        23
+      ],
+      [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        23
+      ]
+    ],
+    "fiber_size": 13,
+    "field": {
+      "K": 12,
+      "m": 15,
+      "n": 24,
+      "note": "p = q toy: exercises the placement computation only; the extension-valued case is the F_{17^2} layer",
+      "omega": 9,
+      "p": 73,
+      "q": 73,
+      "w_prime": 3
+    },
+    "interior_profile_range": [
+      5,
+      6
+    ],
+    "locator_matrix_rank": 6,
+    "n_distinct_slopes": 8,
+    "pencil_rank_cap": 2,
+    "rank_exclusion_bites": true,
+    "slope_collisions_at_alpha": 5,
+    "z_star": [
+      1,
+      1,
+      1
+    ]
+  },
+  "gate_1_placement_fp2": {
+    "all_pass": true,
+    "alpha_rows": [
+      {
+        "alpha": 17,
+        "d1_values": [
+          4
+        ],
+        "n_boundary": 40,
+        "n_distinct_slopes": 40,
+        "n_interior": 0,
+        "n_near_rational": 0,
+        "slope_collisions": 0
+      },
+      {
+        "alpha": 18,
+        "d1_values": [
+          4
+        ],
+        "n_boundary": 39,
+        "n_distinct_slopes": 39,
+        "n_interior": 0,
+        "n_near_rational": 0,
+        "slope_collisions": 1
+      },
+      {
+        "alpha": 288,
+        "d1_values": [
+          4
+        ],
+        "n_boundary": 39,
+        "n_distinct_slopes": 39,
+        "n_interior": 0,
+        "n_near_rational": 0,
+        "slope_collisions": 1
+      }
+    ],
+    "counting_cap_equals_n_minus_omega_plus_1": true,
+    "counting_cap_max_over_g": 10,
+    "counting_exclusion_bites": true,
+    "field": {
+      "K": 6,
+      "encoding": "element a + b*t stored as integer a + 17*b",
+      "m": 9,
+      "n": 16,
+      "omega": 7,
+      "p": 17,
+      "q": 289,
+      "tower": "F_289 = F_17[t]/(t^2-3)",
+      "w_prime": 3
+    },
+    "heaviest_depth_wprime_fiber": 5,
+    "interior_profile_range": [
+      5,
+      5
+    ],
+    "locator_matrix_rank": 6,
+    "pencil_rank_cap": 2,
+    "rank_exclusion_bites": true,
+    "witness_fiber_depth": 2,
+    "witness_fiber_members": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9,
+        11
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        13,
+        14
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        6,
+        8,
+        9,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        4,
+        5,
+        7,
+        10,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        4,
+        6,
+        8,
+        11,
+        12,
+        14
+      ],
+      [
+        0,
+        1,
+        2,
+        6,
+        7,
+        8,
+        9,
+        12,
+        13
+      ],
+      [
+        0,
+        1,
+        3,
+        5,
+        6,
+        8,
+        10,
+        12,
+        13
+      ],
+      [
+        0,
+        1,
+        4,
+        5,
+        6,
+        7,
+        9,
+        12,
+        14
+      ],
+      [
+        0,
+        1,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        15
+      ],
+      [
+        0,
+        1,
+        5,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      [
+        0,
+        1,
+        7,
+        8,
+        9,
+        10,
+        11,
+        14,
+        15
+      ],
+      [
+        0,
+        2,
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        13
+      ],
+      [
+        0,
+        2,
+        3,
+        4,
+        6,
+        7,
+        11,
+        12,
+        13
+      ],
+      [
+        0,
+        2,
+        3,
+        4,
+        7,
+        8,
+        9,
+        10,
+        15
+      ],
+      [
+        0,
+        2,
+        4,
+        6,
+        9,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        2,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      [
+        0,
+        2,
+        5,
+        7,
+        10,
+        11,
+        12,
+        13,
+        15
+      ],
+      [
+        0,
+        3,
+        5,
+        6,
+        9,
+        11,
+        12,
+        14,
+        15
+      ],
+      [
+        0,
+        3,
+        5,
+        7,
+        8,
+        10,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        4,
+        5,
+        6,
+        7,
+        11,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        4,
+        6,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15
+      ],
+      [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8,
+        12,
+        15
+      ],
+      [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8,
+        9,
+        11,
+        13
+      ],
+      [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        10,
+        11,
+        13
+      ],
+      [
+        1,
+        2,
+        3,
+        8,
+        10,
+        11,
+        12,
+        13,
+        15
+      ],
+      [
+        1,
+        2,
+        4,
+        7,
+        9,
+        11,
+        12,
+        14,
+        15
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        9,
+        10,
+        13,
+        14,
+        15
+      ],
+      [
+        1,
+        3,
+        4,
+        5,
+        10,
+        11,
+        12,
+        14,
+        15
+      ],
+      [
+        1,
+        3,
+        4,
+        6,
+        8,
+        11,
+        13,
+        14,
+        15
+      ],
+      [
+        1,
+        3,
+        5,
+        7,
+        9,
+        10,
+        12,
+        13,
+        15
+      ],
+      [
+        1,
+        4,
+        6,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14
+      ],
+      [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        14
+      ],
+      [
+        2,
+        3,
+        4,
+        5,
+        7,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        2,
+        3,
+        5,
+        6,
+        8,
+        10,
+        12,
+        14,
+        15
+      ],
+      [
+        2,
+        3,
+        5,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14
+      ],
+      [
+        2,
+        3,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        15
+      ],
+      [
+        2,
+        4,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      [
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12,
+        13,
+        15
+      ],
+      [
+        3,
+        4,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        14
+      ],
+      [
+        3,
+        7,
+        8,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "witness_fiber_size": 40,
+    "z_star": [
+      1,
+      4,
+      4
+    ]
+  },
+  "gate_2_deployed": {
+    "K_mca": 1048577,
+    "all_pass": true,
+    "n": 2097152,
+    "omega_rows": {
+      "kb_mca": {
+        "dim_omega_minus_w": 913633,
+        "floor_n_over_omega_correct": 2,
+        "floor_n_over_omega_printed": 2,
+        "omega_correct": 981104,
+        "omega_printed_in_cor_table": 980104
+      },
+      "m31_mca": {
+        "dim_omega_minus_w": 913681,
+        "floor_n_over_omega_correct": 2,
+        "floor_n_over_omega_printed": 2,
+        "omega_correct": 981128,
+        "omega_printed_in_cor_table": 980128
+      }
+    },
+    "route_1": "Legendre floor-sum exponents + product tree, anchored at a = 1116023, ratio-stepped up",
+    "route_2": "Kummer carry-count exponents + smallest-first heap merge, anchored at a = 1116048, ratio-stepped down",
+    "rows": {
+      "kb_list": {
+        "B_star": 274980728111395087,
+        "H_ext": 4226236,
+        "H_ext_matches_gf_printed_table": true,
+        "a_plus": 1116047,
+        "cell_count_exceeds_H_ext": true,
+        "floor_BB": 65065153468,
+        "floor_BB_log2_display": "35.9212",
+        "margin_bits_display": "22.0109",
+        "p": 2130706433,
+        "w": 67471
+      },
+      "kb_mca": {
+        "B_star": 274980728111395087,
+        "H_ext": 4807520,
+        "H_ext_matches_gf_printed_table": true,
+        "a_plus": 1116048,
+        "cell_count_exceeds_H_ext": true,
+        "floor_BB": 57198030366,
+        "floor_BB_log2_display": "35.7352",
+        "margin_bits_display": "22.1969",
+        "p": 2130706433,
+        "w": 67471
+      },
+      "m31_list": {
+        "B_star": 16777215,
+        "H_ext": 8,
+        "H_ext_matches_gf_printed_table": true,
+        "a_plus": 1116023,
+        "cell_count_exceeds_H_ext": true,
+        "floor_BB": 1993678,
+        "floor_BB_log2_display": "20.9270",
+        "margin_bits_display": "3.0730",
+        "p": 2147483647,
+        "w": 67447
+      },
+      "m31_mca": {
+        "B_star": 16777215,
+        "H_ext": 9,
+        "H_ext_matches_gf_printed_table": true,
+        "a_plus": 1116024,
+        "cell_count_exceeds_H_ext": true,
+        "floor_BB": 1752700,
+        "floor_BB_log2_display": "20.7411",
+        "margin_bits_display": "3.2589",
+        "p": 2147483647,
+        "w": 67447
+      }
+    },
+    "two_routes_agree_exactly_on_all_four_rows": true
+  },
+  "gate_3_non_pencil": {
+    "all_pass": true,
+    "rows": {
+      "kb_mca": {
+        "cell_exceeds_every_pencil_cap": true,
+        "cell_witness_floor_BB": 57198030366,
+        "conditional_on_max_fiber_le_Bstar": {
+          "full_fiber_slope_separation_alpha_exists": true,
+          "separating_pole_exists_thm_4_6": true
+        },
+        "exclusion_excess": 57196914317,
+        "exclusion_factor_log2_display": "15.6453",
+        "omega": 981104,
+        "pencil_cap_g0": 2,
+        "pencil_cap_sweep_argmax_g": 981103,
+        "pencil_cap_sweep_max": 1116049,
+        "pencil_cap_sweep_max_at_printed_omega": 1117049,
+        "slope_level_unconditional": {
+          "collision_mass_C_BB_2_times_Kminus1_bits": 91,
+          "q_minus_p_bits": 186,
+          "some_alpha_has_zero_collisions": true
+        }
+      },
+      "m31_mca": {
+        "cell_exceeds_every_pencil_cap": true,
+        "cell_witness_floor_BB": 1752700,
+        "conditional_on_max_fiber_le_Bstar": {
+          "full_fiber_slope_separation_alpha_exists": true,
+          "separating_pole_exists_thm_4_6": true
+        },
+        "exclusion_excess": 636675,
+        "exclusion_factor_log2_display": "0.6512",
+        "omega": 981128,
+        "pencil_cap_g0": 2,
+        "pencil_cap_sweep_argmax_g": 981127,
+        "pencil_cap_sweep_max": 1116025,
+        "pencil_cap_sweep_max_at_printed_omega": 1117025,
+        "slope_level_unconditional": {
+          "collision_mass_C_BB_2_times_Kminus1_bits": 61,
+          "q_minus_p_bits": 124,
+          "some_alpha_has_zero_collisions": true
+        }
+      }
+    }
+  },
+  "gate_4_oracles": {
+    "all_pass": true,
+    "oracle_690": {
+      "path": "experimental/data/certificates/envelope-rung-ledger/envelope_rung_ledger.json",
+      "payload_sha256": "cdcc397b04c9b3110b96c8b0444b6f8c6955d33158ce0964419dac81c5750276",
+      "watch_item": {
+        "B_star": 16777215,
+        "M": 12769758,
+        "c": 2048,
+        "headroom_to_Bstar": 4007457,
+        "margin_bits": -0.3938,
+        "profile": "Gceil",
+        "row": "m31_mca"
+      }
+    },
+    "oracle_715": {
+      "BB_displays_match_gate2": true,
+      "gate_c_pole_line": {
+        "admissible_alphas": 272,
+        "collision_alphas": 204,
+        "first_collision_alpha": 18,
+        "n_slopes_max": 40,
+        "n_slopes_min": 35,
+        "tested_alphas": [
+          17,
+          18,
+          288
+        ],
+        "witness_fiber_size": 40
+      },
+      "path": "experimental/data/certificates/lineray-census-rerecording/lineray_census_rerecording.json",
+      "payload_sha256": "c53db00c7b2bc77cc6e2649c93c27925c41f6a74df2b81a8206dc3a8bdfa6185",
+      "witness_fiber_calibration_consumed": true
+    },
+    "oracle_721": {
+      "d1_census_replayed": {
+        "F_RH": 76,
+        "M_RH": 76,
+        "distinct_slopes": 16,
+        "max_fiber": 7,
+        "multiplicities": {
+          "0": 4,
+          "1": 4,
+          "10": 5,
+          "11": 7,
+          "12": 3,
+          "14": 5,
+          "15": 3,
+          "16": 3,
+          "2": 5,
+          "3": 7,
+          "4": 5,
+          "5": 6,
+          "6": 4,
+          "7": 4,
+          "8": 6,
+          "9": 5
+        },
+        "slope_13_absent": true
+      },
+      "file_sha256": "cb941b9469a350abf6f0b1bf8864980c83a1d3739689ef0e7c4b71750cbef456",
+      "path": "experimental/notes/thresholds/canonical_reduced_rational_host_compiler.md",
+      "schema": "note + replay verifier only (no JSON cert in-tree)",
+      "scope_note": "M_RH theorem covers the reduced rational-host stratum containing this cell; it explicitly disclaims novelty for the separating simple pole and retains the nonseparating d=1 formulas as a collision-literal audit specialization"
+    },
+    "oracle_budget_fit": {
+      "P1_status_pin": "PROVED-LOCAL(corollary of cited unconditional propositions) -- fixes the TARGET CONSTANT for a general upper bound; is NOT itself a general upper bound",
+      "file_sha256": "f6b1cec423f18c05651eb4a2e057e2d660b0a6f1374e59243477b714b380c036",
+      "margins_rows_match_gate2": true,
+      "path": "experimental/data/certificates/frontier-adjacent/saturated_bc_budget_fit_v1.json",
+      "schema": "old-style (no payload_sha256 field)"
+    },
+    "oracle_omega": {
+      "already_parked_for_maintainer": true,
+      "path": "experimental/data/certificates/bc-one-pencil-omega/bc_one_pencil_omega.json",
+      "payload_sha256": "d1bcf6126f35e16c77a21edb7b4485bc63dbaf8e89c5fc2d99f2786ba68982b4",
+      "rows_match_gate2": true
+    }
+  },
+  "honest_headline": "per-row chart VERIFICATION progress on prob:saturated-bc -- one named cell typed, enumeratively exact, budget fit CONDITIONAL_ON_NAMED_INPUT (depth-w max-fiber / row-sharp Q); the placement computation itself decided boundary-Q ownership, it was not presupposed",
+  "non_pencil_lemma": {
+    "consequence": "the cell's witness locators at a heaviest-fiber line (>= B_B(a_+) of them) do not fit in ANY single one-parameter pencil at either deployed MCA row; the cell can never be typed (a)",
+    "mechanism_cite": "thm:bc-moving-root (gf L1735), prop:bc-not-q's proof mechanism (gf L2120: 'a line-by-line decomposition without a bound on the number of lines gives no row budget')",
+    "proof_sketch": "distinct S give distinct monic degree-omega members, hence distinct projective parameters; every member is D-split with fixed D-part divisible by G, so it has >= omega - g moving roots in D\\Z(G); thm:bc-moving-root's incidence count gives N <= floor((n-g)/(omega-g)), which is increasing in g and peaks at g = omega-1 with value n - omega + 1.",
+    "statement": "Let Fib be a set of N >= 2 distinct m-subsets of D and W_S = ell_{D\\S} their monic degree-omega D-split locators.  If all W_S lie in one projective locator pencil {sA+tB} (def:projective-locator-pencil) with g = deg G_D(A,B) < omega, then N <= floor((n-g)/(omega-g)) <= n - omega + 1 = m + 1."
+  },
+  "nonclaims": [
+    "NOT a resolution of prob:saturated-bc: the growing-deficiency interior residual (dim omega-w+1 = 913634/913682) remains open, missing the floor by ~2.07M bits (budget-fit Sec. 6); its core is prob:band-hard (Gamma_r route) and no progress on it is claimed",
+    "no claim U(a_0+1) <= B*",
+    "the enumerative half is a cited theorem (thm:exact-list-line-bijection / cor:exact-prefix-ray-realization), not new",
+    "no bound at raw-support scale anywhere (the #679/#518 Use Rules are honored: slope/ray-deduplicated scale only)",
+    "toy gates pin the placement mechanism and the rank exclusion, not asymptotics"
+  ],
+  "object": "first deployed-a_+-row chart-typing certificate for prob:saturated-bc: the simple-pole/rank-one cell typed at both deployed MCA rows, first-match placement decided by computation (third chart family overall, after the toy-row near-pencil family and the L4 planted interior family)",
+  "payload_sha256": "c0913f60ad30f2f13562ddb442906349513746b4feaef86a10206aad77a05387",
+  "placement_computed": "BOUNDARY_Q_OWNED",
+  "q_conditional_budget_line": {
+    "kb_mca": {
+      "cell_pigeonhole_margin_bits": "+22.1969",
+      "watch_item_margin_bits": "none within 22 bits (kb_mca max frontier margin -22.1969, #690)"
+    },
+    "m31_mca": {
+      "cell_pigeonhole_margin_bits": "+3.2589",
+      "reading": "the same M31 row's ledger already carries a sub-bit-tight rung; the cell's +3.2589-bit pigeonhole margin means any flatness multiplier >= 2^3.2589 on the heaviest depth-w fiber would overrun B* -- exactly why the fit is left CONDITIONAL_ON_NAMED_INPUT and why gate 2 recomputes all four rows two independent ways",
+      "watch_item_margin_bits": "-0.3938 (the #690 envelope rung-ledger m31_mca Gceil c=2048 rung, M = 12769758 vs B* = 16777215, TIGHT, non-firing)"
+    }
+  },
+  "regeneration": "python experimental/scripts/verify_bc_chart_typing.py --emit-defaults",
+  "risk_limits": [
+    "the growing-deficiency BC core is prob:band-hard (tied to Gamma_r via prop:capfp-kernel); this packet types one boundary-owned cell and cannot reach that core",
+    "the M31 margin is adjacency-critical (3.2589 bits, with the same row carrying a -0.3938-bit tight rung); all four deployed rows are therefore recomputed by two independent exact routes in the same generator and a third route in the independent checker",
+    "the F_73 toy has p = q (no extension-valued line); the F_{17^2} toy carries the extension-valued case"
+  ],
+  "statement_pins": {
+    "asymptotic_rs_mca_frontiers.tex": {
+      "cor:exact-prefix-ray-realization": {
+        "kind": "label",
+        "line": 2157,
+        "sha256_line": "370455c113610cd5"
+      },
+      "thm:exact-list-line-bijection": {
+        "kind": "label",
+        "line": 2097,
+        "sha256_line": "182aca60bea945a2"
+      }
+    },
+    "bc_section.tex": {
+      "An interior balanced profile": {
+        "kind": "content",
+        "line": 24,
+        "sha256_line": "4b504ea61cda490e"
+      },
+      "The excluded endpoint": {
+        "kind": "content",
+        "line": 29,
+        "sha256_line": "3c38090da9a99150"
+      }
+    },
+    "canonical_reduced_rational_host_compiler.md": {
+      "F_RH = {S in binom(D,5):sum_{x in S}x=0 in F_17},": {
+        "kind": "content",
+        "line": 447,
+        "sha256_line": "83f5f2d5334eec08"
+      },
+      "The full multiplicity certificate is": {
+        "kind": "content",
+        "line": 451,
+        "sha256_line": "6d30788c39cb9b97"
+      },
+      "`d = 1` formulas below are retained as a collision-literal audit": {
+        "kind": "content",
+        "line": 14,
+        "sha256_line": "998b471d146b5f68"
+      },
+      "supports = LineRay pairs = 76,": {
+        "kind": "content",
+        "line": 461,
+        "sha256_line": "f48a15f1b2ae6225"
+      }
+    },
+    "grande_finale.tex": {
+      "In all four rows \\(p>H_{\\rm ext}\\)": {
+        "kind": "content",
+        "line": 425,
+        "sha256_line": "34f02ddab9d1311e"
+      },
+      "cor:bc-one-pencil": {
+        "kind": "label",
+        "line": 1764,
+        "sha256_line": "65f35930a50591f6"
+      },
+      "cor:near-rational-line": {
+        "kind": "label",
+        "line": 1381,
+        "sha256_line": "05a666819b0ef329"
+      },
+      "def:first-match-ledger": {
+        "kind": "label",
+        "line": 148,
+        "sha256_line": "ec0894caa6412e2b"
+      },
+      "def:projective-locator-pencil": {
+        "kind": "label",
+        "line": 1722,
+        "sha256_line": "6e516684b28ced50"
+      },
+      "def:q-row-atom": {
+        "kind": "label",
+        "line": 2043,
+        "sha256_line": "2e8809e1edaeb4e5"
+      },
+      "prob:saturated-bc": {
+        "kind": "label",
+        "line": 2191,
+        "sha256_line": "a97535ca5ff20b74"
+      },
+      "prop:bc-not-q": {
+        "kind": "label",
+        "line": 2120,
+        "sha256_line": "bab4ed6eedbacfc5"
+      },
+      "prop:boundary-q": {
+        "kind": "label",
+        "line": 1475,
+        "sha256_line": "3b0d8b69bf38e9fe"
+      },
+      "prop:extension-cell-target": {
+        "kind": "label",
+        "line": 402,
+        "sha256_line": "e7c7e00ac881b724"
+      },
+      "prop:lattice-split": {
+        "kind": "label",
+        "line": 1336,
+        "sha256_line": "c7b78bf173e69eae"
+      },
+      "prop:line-ray-saturation": {
+        "kind": "label",
+        "line": 1867,
+        "sha256_line": "81c7040f1b28ee0f"
+      },
+      "prop:pole-line": {
+        "kind": "label",
+        "line": 583,
+        "sha256_line": "92573e446208fa45"
+      },
+      "prop:rank-one-distinct-slope-floor": {
+        "kind": "label",
+        "line": 1546,
+        "sha256_line": "2b68fa9b10c7f806"
+      },
+      "prop:rank-one-floor": {
+        "kind": "label",
+        "line": 1523,
+        "sha256_line": "62e00a953ccd1b96"
+      },
+      "prop:slope-elimination": {
+        "kind": "label",
+        "line": 1320,
+        "sha256_line": "2c99a42e87c16eef"
+      },
+      "rem:bc-status-after-moving-root": {
+        "kind": "label",
+        "line": 1785,
+        "sha256_line": "3614c410e0b59848"
+      },
+      "thm:bc-moving-root": {
+        "kind": "label",
+        "line": 1735,
+        "sha256_line": "b81eabd19ba4747b"
+      },
+      "thm:finite": {
+        "kind": "label",
+        "line": 2022,
+        "sha256_line": "3db3ea886c3a9815"
+      },
+      "thm:near-rational": {
+        "kind": "label",
+        "line": 1350,
+        "sha256_line": "08a291a02ff7ba4b"
+      }
+    }
+  },
+  "status": "EXPERIMENTAL / AUDIT",
+  "typed_rows": {
+    "kb_mca": {
+      "B_star": 274980728111395087,
+      "H_ext": 4807520,
+      "a_plus": 1116048,
+      "budget_fit": "CONDITIONAL_ON_NAMED_INPUT: max_z |Fib_w(z)| <= B* (the depth-w max-fiber bound = row-sharp Q one dimension down, def:q-row-atom); the PROVED side is only the two-sided pin of the heaviest-fiber pole-line class at B_B(a_+) = B* 2^-Delta (budget-fit P1, 'NOT itself a general upper bound')",
+      "cell": "simple-pole/rank-one cell",
+      "dim_omega_minus_w": 913633,
+      "enumerative_half": "CITED-THEOREM: thm:exact-list-line-bijection + cor:exact-prefix-ray-realization (frontiers L2097/L2157) + #715 witness-fiber calibration; not a new bound",
+      "extension_headroom_exclusion": "cell count 57198030366 > H_ext = 4807520 (prop:extension-cell-target): the paid extension branch cannot absorb the cell",
+      "floor_BB": 57198030366,
+      "margin_bits_display": "22.1969",
+      "not_type_a": "non-pencil exclusion: B_B(a_+) = 57198030366 > 1116049 = max_g floor((n-g)/(omega-g))",
+      "omega_correct": 981104,
+      "placement_computed": "BOUNDARY_Q_OWNED",
+      "type_assignment": "(b)-via-Q: boundary-Q-owned named cell; its own slope bound IS the row-sharp Q atom target (def:q-row-atom), owned by the first-match boundary-Q branch, not a fresh saturated-BC residual cell",
+      "w": 67471
+    },
+    "m31_mca": {
+      "B_star": 16777215,
+      "H_ext": 9,
+      "a_plus": 1116024,
+      "budget_fit": "CONDITIONAL_ON_NAMED_INPUT: max_z |Fib_w(z)| <= B* (the depth-w max-fiber bound = row-sharp Q one dimension down, def:q-row-atom); the PROVED side is only the two-sided pin of the heaviest-fiber pole-line class at B_B(a_+) = B* 2^-Delta (budget-fit P1, 'NOT itself a general upper bound')",
+      "cell": "simple-pole/rank-one cell",
+      "dim_omega_minus_w": 913681,
+      "enumerative_half": "CITED-THEOREM: thm:exact-list-line-bijection + cor:exact-prefix-ray-realization (frontiers L2097/L2157) + #715 witness-fiber calibration; not a new bound",
+      "extension_headroom_exclusion": "cell count 1752700 > H_ext = 9 (prop:extension-cell-target): the paid extension branch cannot absorb the cell",
+      "floor_BB": 1752700,
+      "margin_bits_display": "3.2589",
+      "not_type_a": "non-pencil exclusion: B_B(a_+) = 1752700 > 1116025 = max_g floor((n-g)/(omega-g))",
+      "omega_correct": 981128,
+      "placement_computed": "BOUNDARY_Q_OWNED",
+      "type_assignment": "(b)-via-Q: boundary-Q-owned named cell; its own slope bound IS the row-sharp Q atom target (def:q-row-atom), owned by the first-match boundary-Q branch, not a fresh saturated-BC residual cell",
+      "w": 67447
+    }
+  },
+  "verdict": "PLACEMENT COMPUTED: BOUNDARY_Q_OWNED -- every computed pole-line profile is d1 = w+1, the boundary-Q profile (the toy tables state this endpoint as w'+1 in the #715 census-toy convention w' := m - K, which plays the deployed w = a_+ - K role); the cell is typed (b)-via-Q at both deployed MCA rows (owned by the paid first-match boundary-Q branch; its own slope bound is the row-sharp Q atom target), and is quantitatively NOT type (a) (witness floor exceeds every one-pencil cap: 57198030366 > 1116049 at KB, 1752700 > 1116025 at M31).  Enumerative half CITED-THEOREM; budget fit CONDITIONAL_ON_NAMED_INPUT (depth-w max-fiber / row-sharp Q).  Not a resolution of prob:saturated-bc."
+}
