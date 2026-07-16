@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Verify finite identities for the selected-owner cube-mean boundary.
 
-The script checks exact finite guardrails and the maximal-band theorem.  It
-does not prove source-specific ambient leakage, non-equitable localization,
+The script checks exact finite guardrails, sharp ambient localization,
+same-owner packing, and the maximal-band theorem.  It does not prove the
+signed selected-owner ambient-kernel inverse, non-equitable localization,
 cube-spectrum compression, or paid atlas admission.
 """
 
@@ -319,6 +320,259 @@ def maximal_band_regression() -> dict[str, Any]:
     }
 
 
+def cross_block_localization_regression() -> dict[str, Any]:
+    sharp_projection = walsh_project(
+        [Fraction(1), Fraction(0)], {1}
+    )
+    sharp_ambient_square = sharp_projection[1] ** 2
+    sharp_input_square = Fraction(1)
+
+    trials = 0
+    maximum_cross_block_square = Fraction(0)
+    maximum_load_ratio_fourth = Fraction(0)
+    bands_by_order = {
+        2: [{1}],
+        4: [
+            set(indices)
+            for size in range(1, 4)
+            for indices in itertools.combinations(range(1, 4), size)
+        ],
+        8: [{1}, {1, 2, 3, 5}, {1, 3, 5, 7}, set(range(1, 8))],
+    }
+    for order, bands in bands_by_order.items():
+        for states in itertools.product(range(3), repeat=order):
+            image = {index for index, state in enumerate(states) if state > 0}
+            selected = {index for index, state in enumerate(states) if state == 2}
+            outside = set(range(order)).difference(image)
+            if not selected or not outside:
+                continue
+            layer = [Fraction(int(index in selected)) for index in range(order)]
+            mass = len(selected)
+            for band in bands:
+                projected = walsh_project(layer, band)
+                ambient = [projected[index] for index in sorted(outside)]
+                second = sum((value**2 for value in ambient), Fraction(0))
+                fourth = sum((value**4 for value in ambient), Fraction(0))
+                maximum = max((abs(value) for value in ambient), default=Fraction(0))
+                if 4 * second > mass:
+                    raise AssertionError("cross-block 1/2 bound failed")
+                if 4 * fourth > mass * maximum**2:
+                    raise AssertionError("load-weighted localization failed")
+                maximum_cross_block_square = max(
+                    maximum_cross_block_square, second / mass
+                )
+                if maximum:
+                    # This is R_amb^4 / Lambda_amb^2; the theorem bounds it by 1/4.
+                    load_ratio = Fraction(fourth, mass) / maximum**2
+                    maximum_load_ratio_fourth = max(
+                        maximum_load_ratio_fourth, load_ratio
+                    )
+                trials += 1
+
+    order = 8
+    band = {1, 2, 3, 5}
+    image = {0, 1, 2, 3, 4}
+    selected = {0, 2, 4}
+    layer = [Fraction(int(index in selected)) for index in range(order)]
+    ambient_dual = [
+        Fraction(value, 13) if index not in image else Fraction(0)
+        for index, value in enumerate((3, -2, 5, 1, -4, 2, 7, -3))
+    ]
+    projected_layer = walsh_project(layer, band)
+    projected_dual = walsh_project(ambient_dual, band)
+    ambient_pairing = sum(
+        (
+            projected_layer[index] * ambient_dual[index]
+            for index in range(order)
+            if index not in image
+        ),
+        Fraction(0),
+    )
+    selected_pullback = sum(
+        (projected_dual[index] for index in selected), Fraction(0)
+    )
+
+    # Positive truncation is strictly stronger than signed localization.
+    order = 4
+    band = {1}
+    kernel = walsh_project(
+        [Fraction(int(index == 0)) for index in range(order)], band
+    )
+    image = {0, 1}
+    off_image_point = 2
+    terms = [kernel[off_image_point ^ syndrome] for syndrome in sorted(image)]
+    signed_sum = sum(terms, Fraction(0))
+    positive_sum = sum((max(term, Fraction(0)) for term in terms), Fraction(0))
+
+    return {
+        "small_walsh_trials": trials,
+        "sharp_example": {
+            "group": "F_2",
+            "ambient_square": str(sharp_ambient_square),
+            "input_square": str(sharp_input_square),
+        },
+        "maximum_cross_block_square": str(maximum_cross_block_square),
+        "maximum_load_ratio_fourth": str(maximum_load_ratio_fourth),
+        "ambient_pullback": {
+            "ambient_pairing": str(ambient_pairing),
+            "selected_pullback": str(selected_pullback),
+        },
+        "positive_part_guardrail": {
+            "group": "F_2^2",
+            "band": sorted(band),
+            "off_image_point": off_image_point,
+            "kernel_terms": [str(term) for term in terms],
+            "signed_sum": str(signed_sum),
+            "positive_part_sum": str(positive_sum),
+        },
+        "checks": {
+            "sharp_constant_one_half": (
+                sharp_ambient_square == Fraction(1, 4) * sharp_input_square
+            ),
+            "cross_block_bound_exact": maximum_cross_block_square <= Fraction(1, 4),
+            "load_weighted_bound_exact": maximum_load_ratio_fourth <= Fraction(1, 4),
+            "ambient_pullback_exact": ambient_pairing == selected_pullback,
+            "positive_part_strictly_stronger": (
+                signed_sum == 0 and positive_sum > 0
+            ),
+        },
+    }
+
+
+def greedy_owner_family(
+    supports: Sequence[tuple[int, ...]], k: int
+) -> list[tuple[int, ...]]:
+    family: list[tuple[int, ...]] = []
+    family_sets: list[set[int]] = []
+    for support in supports:
+        support_set = set(support)
+        if all(len(support_set.intersection(other)) < k for other in family_sets):
+            family.append(support)
+            family_sets.append(support_set)
+    return family
+
+
+def binary_entropy(value: float) -> float:
+    if value <= 0.0 or value >= 1.0:
+        return 0.0
+    return -value * math.log2(value) - (1.0 - value) * math.log2(1.0 - value)
+
+
+def owner_packing_regression() -> dict[str, Any]:
+    packing_rows = 0
+    johnson_rows = 0
+    largest_family = 0
+    for order in range(5, 13):
+        for agreement in range(2, order):
+            supports = list(itertools.combinations(range(order), agreement))
+            orderings = (
+                supports,
+                list(reversed(supports)),
+                sorted(
+                    supports,
+                    key=lambda support: (
+                        sum(index**2 for index in support),
+                        support,
+                    ),
+                ),
+            )
+            for dimension in range(1, agreement):
+                for ordering in orderings:
+                    family = greedy_owner_family(ordering, dimension)
+                    family_sets = [set(support) for support in family]
+                    if any(
+                        len(left.intersection(right)) >= dimension
+                        for index, left in enumerate(family_sets)
+                        for right in family_sets[index + 1 :]
+                    ):
+                        raise AssertionError("same-owner intersection guard failed")
+                    if len(family) * math.comb(agreement, dimension) > math.comb(
+                        order, dimension
+                    ):
+                        raise AssertionError("same-owner k-packing bound failed")
+                    denominator = agreement**2 - order * (dimension - 1)
+                    if denominator > 0:
+                        if len(family) * denominator > order * (
+                            agreement - dimension + 1
+                        ):
+                            raise AssertionError("Johnson incidence bound failed")
+                        johnson_rows += 1
+                    largest_family = max(largest_family, len(family))
+                    packing_rows += 1
+
+    phase_inputs = (
+        ("paid_below_johnson_dense_image", 0.80, 0.65, 1.00),
+        ("paid_below_johnson_second", 0.70, 0.50, 1.00),
+        ("unpaid_below_johnson", 0.55, 0.45, 1.00),
+    )
+    phase_rows = []
+    for name, alpha, kappa, image_rate in phase_inputs:
+        owner_rate = binary_entropy(kappa) - alpha * binary_entropy(kappa / alpha)
+        margin = owner_rate - image_rate / 2.0
+        phase_rows.append(
+            {
+                "name": name,
+                "alpha": alpha,
+                "kappa": kappa,
+                "image_rate_bits": image_rate,
+                "owner_packing_rate_bits": owner_rate,
+                "criterion_margin_bits": margin,
+                "above_johnson": alpha**2 > kappa,
+                "packing_pays": margin <= 0.0,
+            }
+        )
+
+    deployed = {
+        "name": "KoalaBear MCA",
+        "N": 2_097_152,
+        "k": 1_048_576,
+        "a": 1_116_048,
+        "p": 2_130_706_433,
+        "w": 67_471,
+    }
+    deployed["johnson_integer_margin"] = (
+        deployed["a"] ** 2 - deployed["N"] * (deployed["k"] - 1)
+    )
+    deployed["above_johnson"] = deployed["johnson_integer_margin"] > 0
+    log_owner_ratio = (
+        math.lgamma(deployed["N"] + 1)
+        - math.lgamma(deployed["k"] + 1)
+        - math.lgamma(deployed["N"] - deployed["k"] + 1)
+        - math.lgamma(deployed["a"] + 1)
+        + math.lgamma(deployed["k"] + 1)
+        + math.lgamma(deployed["a"] - deployed["k"] + 1)
+    ) / math.log(2.0)
+    image_upper = deployed["w"] * math.log2(deployed["p"])
+    deployed["owner_packing_log2"] = round(log_owner_ratio, 3)
+    deployed["image_upper_log2"] = round(image_upper, 3)
+    deployed["optimistic_margin_log2"] = round(
+        log_owner_ratio - image_upper / 2.0, 3
+    )
+    deployed["packing_pays_optimistically"] = (
+        deployed["optimistic_margin_log2"] <= 0.0
+    )
+
+    return {
+        "packing_rows": packing_rows,
+        "johnson_rows": johnson_rows,
+        "largest_greedy_family": largest_family,
+        "phase_rows": phase_rows,
+        "deployed_audit": deployed,
+        "checks": {
+            "same_owner_k_packing": True,
+            "johnson_incidence_when_enabled": True,
+            "phase_grid_contains_below_johnson_payment": (
+                not phase_rows[0]["above_johnson"] and phase_rows[0]["packing_pays"]
+            ),
+            "phase_grid_contains_unpaid_row": not phase_rows[2]["packing_pays"],
+            "deployed_is_below_johnson": not deployed["above_johnson"],
+            "deployed_not_paid_even_optimistically": not deployed[
+                "packing_pays_optimistically"
+            ],
+        },
+    }
+
+
 def quantize(value: Any) -> Any:
     if isinstance(value, float):
         return round(value, 9)
@@ -337,21 +591,26 @@ def build_payload() -> dict[str, Any]:
             "certificate_id": "selected-owner-cube-mean-boundary-v1",
             "source_revision": SOURCE_REVISION,
             "status": (
-                "PROVED_FINITE_BOUNDARIES_AND_MAXIMAL_BAND__"
-                "SOURCE_AL4_AND_PAID_ADMISSION_OPEN"
+                "PROVED_FINITE_BOUNDARIES_LOCALIZATION_OWNER_PACKING_AND_"
+                "MAXIMAL_BAND__SIGNED_SOURCE_INVERSION_AND_ADMISSION_OPEN"
             ),
             "hamming_guardrail": hamming_guardrail(),
+            "ambient_localization": cross_block_localization_regression(),
+            "owner_packing": owner_packing_regression(),
             "commutator_guardrail": commutator_guardrail(),
             "equitable_reduction": equitable_reduction_regression(),
             "maximal_band": maximal_band_regression(),
             "open_obligations": [
-                "source-specific ambient leakage AL4",
+                "signed selected-owner ambient-kernel inversion outside paid owner regimes",
                 "non-equitable within-image cube localization",
                 "commutator control or signed nonempty-mode compression",
                 "paid selected-owner cube-spectrum admission",
             ],
             "nonclaims": [
                 "the Hamming guardrail is not a post-atlas RS falsifier",
+                "positive-part ambient emission is stronger than signed localization",
+                "the ambient diagnostic dual is not the original natural charge",
+                "the Johnson corollary and owner packing do not pay the deployed row",
                 "EQ3 is assumed rather than proved by the equitable reduction",
                 "EQ4 paid admission is not proved",
                 "no stable paper theorem or finite deployed row is closed",
@@ -363,6 +622,8 @@ def build_payload() -> dict[str, Any]:
 def validate(payload: dict[str, Any]) -> bool:
     blocks = (
         "hamming_guardrail",
+        "ambient_localization",
+        "owner_packing",
         "commutator_guardrail",
         "equitable_reduction",
         "maximal_band",
@@ -380,12 +641,34 @@ def validate(payload: dict[str, Any]) -> bool:
         return False
     if not any(Fraction(value) != 0 for value in commutator["commutator"]):
         return False
+    ambient = payload["ambient_localization"]
+    if ambient["sharp_example"]["ambient_square"] != "1/4":
+        return False
+    if ambient["ambient_pullback"]["ambient_pairing"] != ambient[
+        "ambient_pullback"
+    ]["selected_pullback"]:
+        return False
+    if ambient["positive_part_guardrail"]["signed_sum"] != "0":
+        return False
+    if Fraction(
+        ambient["positive_part_guardrail"]["positive_part_sum"]
+    ) <= 0:
+        return False
+    owner = payload["owner_packing"]
+    if owner["deployed_audit"]["johnson_integer_margin"] >= 0:
+        return False
+    if owner["deployed_audit"]["optimistic_margin_log2"] <= 0:
+        return False
+    if owner["deployed_audit"]["packing_pays_optimistically"]:
+        return False
     maximal = payload["maximal_band"]
     return maximal["full_trials"] == 4750 and maximal["ambient_trials"] == 156750
 
 
 def print_summary(payload: dict[str, Any]) -> None:
     hamming = payload["hamming_guardrail"]
+    ambient = payload["ambient_localization"]
+    owner = payload["owner_packing"]
     commutator = payload["commutator_guardrail"]
     equitable = payload["equitable_reduction"]
     maximal = payload["maximal_band"]
@@ -398,6 +681,17 @@ def print_summary(payload: dict[str, Any]) -> None:
     print(
         "Hamming n=12 largest color class   = "
         f"{hamming['color_census']['largest_class']}"
+    )
+    print(f"ambient localization trials         = {ambient['small_walsh_trials']}")
+    print(
+        "sharp cross-block square           = "
+        f"{ambient['maximum_cross_block_square']}"
+    )
+    print(f"same-owner packing rows             = {owner['packing_rows']}")
+    print(f"above-Johnson incidence rows        = {owner['johnson_rows']}")
+    print(
+        "deployed optimistic margin (bits)  = "
+        f"{owner['deployed_audit']['optimistic_margin_log2']}"
     )
     print(
         "commutator nonzero                 = "
@@ -429,10 +723,26 @@ def main() -> int:
         data_tamper["hamming_guardrail"]["shell_rows"][0][
             "formula_numerator"
         ] += 1
-        caught = int(not validate(semantic_tamper)) + int(not validate(data_tamper))
-        if caught != 2:
-            raise SystemExit(f"tamper self-test failed: caught {caught}/2")
-        print("TAMPER SELF-TEST: PASS (2/2)")
+        sign_tamper = json.loads(json.dumps(expected))
+        sign_tamper["ambient_localization"]["positive_part_guardrail"][
+            "signed_sum"
+        ] = "1/4"
+        coverage_tamper = json.loads(json.dumps(expected))
+        coverage_tamper["owner_packing"]["deployed_audit"][
+            "packing_pays_optimistically"
+        ] = True
+        caught = sum(
+            int(not validate(payload))
+            for payload in (
+                semantic_tamper,
+                data_tamper,
+                sign_tamper,
+                coverage_tamper,
+            )
+        )
+        if caught != 4:
+            raise SystemExit(f"tamper self-test failed: caught {caught}/4")
+        print("TAMPER SELF-TEST: PASS (4/4)")
         return 0
     if args.write:
         CERTIFICATE.parent.mkdir(parents=True, exist_ok=True)

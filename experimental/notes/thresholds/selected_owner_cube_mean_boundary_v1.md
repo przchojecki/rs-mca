@@ -5,12 +5,18 @@
 ```text
 PROVED:
   exact ambient/within-image fourth-power decomposition;
+  sharp 1/2 cross-block norm for every Fourier projection;
+  load-weighted single-point localization of every AL4 violation;
+  exact selected-record ambient dual pullback;
+  same-owner k-packing and its image-normalized payment criterion;
+  SOAL4 in the printed above-Johnson, subexponential-owner regime;
   exact empty-mode/projection commutator identity;
   positive-rate Hamming ambient-leakage guardrail;
   equitable-chart reduction of within-chart SOCML4 to ambient leakage;
   unconditional maximal-band quartic unit-mask bound.
 
 CONDITIONAL:
+  signed selected-owner ambient-kernel inversion implies AL4;
   equitable-chart SOCQI4, only under an explicit paid empty-mode admission
   theorem at the same selected owners.
 
@@ -21,9 +27,10 @@ OPEN:
   compiler admission and payment of general cube-spectrum cells.
 ```
 
-This packet audits the proposed selected-owner cube-mean localization target.
-It does not promote a stable paper theorem.  Its purpose is to separate three
-obligations which a source-cube proof must not merge:
+This packet sharpens the proposed selected-owner cube-mean localization
+target.  It does not promote a stable paper theorem.  Its purpose is to bank
+the exact finite reductions and to separate three obligations which a
+source-cube proof must not merge:
 
 ```text
 ambient leakage outside the realized image;
@@ -55,7 +62,7 @@ experimental/data/certificates/selected-owner-cube-mean-boundary-v1/
 SHA-256:
 
 ```text
-0a93c1b33f633b359013fb230ab3138def481782c3d8da91d22df4e5b454f2aa
+4bf0a8d406b1d1b1cd5f73b8a63394bc91b534c5b17bbd8d174d7c7856a9ba9a
 ```
 
 ## Repository interfaces consumed
@@ -199,6 +206,361 @@ L^{-1/4}\|1_{G\setminus\mathcal S}P_Au\|_4
 
 Within-image Walsh derivatives and cube averaging do not change a single
 value on `G \ S`; they cannot prove `(AL4)` by themselves.
+
+### Proposition 2.2: sharp cross-block norm
+
+Let `J = 1_S` and `Q = I-J`, viewed as orthogonal coordinate projections on
+`ell^2(G)`.  Relative to
+
+\[
+\ell^2(G)=\ell^2(\mathcal S)\oplus\ell^2(G\setminus\mathcal S),
+\]
+
+write the orthogonal Fourier projection as
+
+\[
+P_A=
+\begin{pmatrix}
+C&B^*\\
+B&D
+\end{pmatrix},
+\qquad B=QP_AJ.
+\]
+
+Then
+
+\[
+B^*B=C-C^2
+\]
+
+and, sharply,
+
+\[
+\boxed{\|QP_AJ\|_{2\to2}\le {1\over2}.}
+\tag{2.4}
+\]
+
+Indeed, the upper-left block of `P_A^2=P_A` gives the identity, while
+`0 <= C <= I` gives
+
+\[
+\|C-C^2\|_{2\to2}
+=\max_{0\le t\le1}t(1-t)\le {1\over4}.
+\]
+
+The constant is attained already by the nontrivial-character projection on
+`F_2` with `S` a singleton.
+
+### Corollary 2.3: load-weighted point localization
+
+For a selected unit layer, put
+
+```text
+E = supp u subseteq S,
+m = |E|,
+F_amb = Q P_A u,
+M_infty = ||F_amb||_infty.
+```
+
+Proposition 2.2 gives
+
+\[
+\|F_{\rm amb}\|_4
+\le\|F_{\rm amb}\|_2
+\le {1\over2}\sqrt m.
+\tag{2.5}
+\]
+
+Define the dimensionless signed ambient load
+
+\[
+\Lambda_{\rm amb}(A,u)
+:=
+\sqrt{m\over L}
+\sup_{x\notin\mathcal S}
+\left|\sum_{s\in E}K_A(x-s)\right|,
+\qquad
+K_A(y)={1\over H}\sum_{\gamma\in A}\gamma(y).
+\tag{2.6}
+\]
+
+Since
+
+\[
+\|F_{\rm amb}\|_4^4
+\le M_\infty^2\|F_{\rm amb}\|_2^2
+\le {1\over4}M_\infty^2m,
+\]
+
+one has the exact normalized reduction
+
+\[
+\boxed{
+L^{-1/4}\|F_{\rm amb}\|_4
+\le 2^{-1/2}\Lambda_{\rm amb}(A,u)^{1/2}.
+}
+\tag{2.7}
+\]
+
+Consequently, a violation
+
+\[
+L^{-1/4}\|F_{\rm amb}\|_4\ge e^{\eta N}
+\]
+
+forces both
+
+\[
+\boxed{m\ge4e^{2\eta N}L^{1/2}}
+\tag{2.8}
+\]
+
+and
+
+\[
+\boxed{
+\Lambda_{\rm amb}(A,u)\ge2e^{2\eta N},
+\qquad
+M_\infty\ge2e^{2\eta N}\sqrt{L\over m}.
+}
+\tag{2.9}
+\]
+
+Thus every positive-rate ambient violation is witnessed at one off-image
+syndrome without an `L^4` tuple pigeonhole, and it requires an exponentially
+large selected layer.
+
+### Proposition 2.4: exact ambient dual pullback
+
+If `F_amb != 0`, define its exact quartic norming dual
+
+\[
+h(x)=1_{G\setminus\mathcal S}(x)
+{|F_{\rm amb}(x)|^2F_{\rm amb}(x)\over\|F_{\rm amb}\|_4^3}.
+\tag{2.10}
+\]
+
+Then `||h||_(4/3)=1`, `supp h subseteq G \ S`, and self-adjointness gives
+
+\[
+\boxed{
+\|F_{\rm amb}\|_4
+=\sum_{s\in E}\operatorname{Re}\overline{(P_Ah)(s)}.
+}
+\tag{2.11}
+\]
+
+The positive terms in (2.11) carry the exact records already attached to the
+selected layer.  This is an ambient diagnostic charge.  It is not the
+original natural charge `Re <P_Au,g>` defined by the norming dual of `P_Af`,
+and no downstream charge-preservation statement is inferred from it.
+
+### The signed ambient-kernel inverse
+
+The load-weighted source theorem exactly triggered by Corollary 2.3 is:
+
+> **Selected-owner signed ambient-kernel inverse `(SOAKI4)`.**  For every
+> fixed `xi > 0`, if an actual selected layer has an off-image point `x` with
+> \[
+> \sqrt{m\over L}
+> \left|\sum_{s\in E}K_A(x-s)\right|\ge e^{\xi N},
+> \tag{2.12}
+> \]
+> then the packet emits a canonical paid earlier cell rooted at one of the
+> actual attached records `(X_{s,j},o(X_{s,j}),h_{X_{s,j}})`.  The output must
+> print the source derivation, the same-owner projection/payment theorem, the
+> subexponential parameter census, and whole-slope first-match deletion.
+
+The usual uniform-supremum argument and (2.7) prove
+
+\[
+\boxed{\mathrm{SOAKI4}\Longrightarrow\mathrm{AL4}.}
+\tag{2.13}
+\]
+
+This is a sufficient source inverse, not a source-free consequence of the
+displayed Fourier and rim axioms.
+
+One may instead ask for the stronger positive-part packet.  After orienting
+`theta = arg(P_Au(x))`, put
+
+\[
+\Lambda_+(A,u;x)
+=\sqrt{m\over L}
+\sum_{s\in E}
+\left[\operatorname{Re}\left(e^{-i\theta}K_A(x-s)\right)\right]_+.
+\tag{2.14}
+\]
+
+Then `Lambda_+ >= Lambda_amb` at a maximizing `x`, so an emission theorem for
+`Lambda_+` also proves `(AL4)`.  It is strictly stronger than `(SOAKI4)` and
+is not called equivalent: for `G=F_2^2`, one nontrivial character, two
+oppositely signed kernel terms can have zero signed sum and positive
+positive-part mass.
+
+### Theorem 2.5: same-owner packing payment
+
+Assume now that the attached records come from a locator set `T`, `|T|=N`,
+have agreement supports of size `a`, and use degree-`<k` explaining
+polynomials with `1 <= k <= a-1`.  For an affine-line owner `z`, let
+
+\[
+E_z=\{s\in E:o(X_{s,j})=z\},
+\qquad m_z=|E_z|,
+\qquad Z_u=\{z:m_z>0\}.
+\]
+
+Distinct selected supports at the same owner satisfy
+
+\[
+\boxed{|X_{s,j}\cap X_{s',j}|\le k-1.}
+\tag{2.15}
+\]
+
+Indeed, `k` common agreement points force the two degree-`<k` explaining
+polynomials to coincide; complete-agreement exactness then forces the two
+supports to coincide.  Every `k`-subset of `T` is therefore contained in at
+most one same-owner support, so
+
+\[
+\boxed{
+m_z\le {\binom Nk\over\binom ak},
+\qquad
+m\le |Z_u|{\binom Nk\over\binom ak}.
+}
+\tag{2.16}
+\]
+
+Put `B_own = binom(N,k)/binom(a,k)` for the universal packing cap.  More
+generally, an independently validated saturation cell may print a smaller
+same-owner cap `B_own`; then again `m <= |Z_u| B_own`.  In either form,
+
+\[
+\boxed{
+L^{-1/4}\|F_{\rm amb}\|_4
+\le {1\over2}
+\left({|Z_u|B_{\rm own}\over L^{1/2}}\right)^{1/2}.
+}
+\tag{2.17}
+\]
+
+For a proper profile slice define
+
+\[
+\partial_{a-1}\Omega^0
+=\left\{R\in\binom{T}{a-1}:R\subseteq X
+\text{ for some }X\in\Omega^0\right\},
+\]
+
+and
+
+\[
+\vartheta(\Omega^0)
+:={(N-a+1)|\partial_{a-1}\Omega^0|\over aM}.
+\]
+
+Global `(a-1)`-rim packing gives
+`|Omega^circ| <= vartheta(Omega^0) M/(N-a+1)`.  Thus the profile
+shadow/thinning census remains available independently:
+
+\[
+m\le\min\left\{
+L,
+\vartheta(\Omega^0){M\over N-a+1},
+|Z_u|{\binom Nk\over\binom ak}
+\right\}.
+\tag{2.18}
+\]
+
+Hence same-owner packing proves `(AL4)` whenever
+
+\[
+\boxed{
+\log^+\left(
+{|Z_u|\over L^{1/2}}{\binom Nk\over\binom ak}
+\right)=o(N).
+}
+\tag{2.19}
+\]
+
+For `a/N -> alpha`, `k/N -> kappa`, `0 < kappa < alpha < 1`, write
+
+\[
+\ell_N={1\over N}\log_2L,
+\qquad
+\zeta_N={1\over N}\log_2|Z_u|.
+\]
+
+Stirling's formula turns (2.19) into the explicit phase test
+
+\[
+\boxed{
+\left[
+\zeta_N+H_2(\kappa)-\alpha H_2(\kappa/\alpha)
+-{\ell_N\over2}
+\right]_+=o(1).
+}
+\tag{2.20}
+\]
+
+This criterion can pay below Johnson when the realized image is sufficiently
+large; it is not merely the classical Johnson range.
+
+### Corollary 2.6: Johnson-paid owner lists
+
+For a fixed owner enumerate its supports as `X_1,...,X_(m_z)`, and put
+`r_t = #{i:t in X_i}`.  Then
+
+\[
+\sum_t r_t=m_za,
+\qquad
+\sum_t\binom{r_t}{2}
+=\sum_{i<i'}|X_i\cap X_{i'}|
+\le\binom{m_z}{2}(k-1).
+\]
+
+Cauchy--Schwarz gives `sum_t r_t^2 >= m_z^2 a^2/N`.  Substitution into the
+preceding incidence inequality yields
+
+\[
+m_z\left({a^2\over N}-(k-1)\right)\le a-k+1.
+\tag{2.21}
+\]
+
+Thus, if
+
+\[
+a^2>N(k-1),
+\]
+
+then
+
+\[
+m_z\le {N(a-k+1)\over a^2-N(k-1)}\le N(N+1).
+\tag{2.22}
+\]
+
+For an affine line over the evaluation field `F_eval`,
+`|Z_u| <= |F_eval|`.  Consequently `(AL4)` holds uniformly when
+`log |F_eval| = o(N)`.  For a projective owner line the harmless replacement
+is `|Z_u| <= |F_eval|+1`.
+
+This is the elementary Johnson/constant-weight incidence payment, not a new
+payment of the unresolved below-Johnson prefix lane.  In the deployed
+KoalaBear MCA row
+
+```text
+N = 2097152,
+k = 1048576,
+a = 1116048,
+p = 2130706433,
+w = 67471,
+```
+
+one has `a^2 <= N(k-1)`.  Even in the identity-prefix owner-packing
+criterion's optimistic case `|Z_u|=1` and the maximal image `L=p^w`, its
+base-two logarithmic margin is approximately `684269.404`.  Thus neither
+(2.19) nor the Johnson corollary is presented as a deployed close.
 
 ## 3. Exact empty-mode commutator guard
 
@@ -608,6 +970,13 @@ L^{-1/4}\|[P_A,E_{\mathcal C}]u\|_4=e^{o(N)}
 plus signed nonempty-mode compression, or a direct selected-owner semantic
 classifier paying the exact terms in (3.4).
 
+The first input now has a sharp finite interface.  It is already proved when
+the owner cap satisfies (2.19), including the Johnson-paid regime of
+Corollary 2.6.  Outside those ranges, `(SOAKI4)` is a sufficient signed
+source-semantic inverse.  The stronger positive-part packet (2.14) is an
+optional route only; replacing the signed load by positive parts is not an
+equivalence and must not be used silently.
+
 The tested cube-capture census reports an image `L4` fraction close to one on
 its largest source-model row (`0.999268` at `B = 12`, `q = 4.199`).  That is
 finite evidence for (8.1) on those rows, not a uniform theorem.  The Hamming
@@ -616,15 +985,22 @@ obligation.
 
 ## 9. Ledger impact
 
-This packet changes the proof plan in four ways.
+This packet changes the proof plan in seven ways.
 
 1. A source-cube localization theorem must print an ambient leakage input or
    use a controlled partition of all `G`.
-2. Empty-mode charge cannot be identified with the projected cube mean unless
+2. Every ambient violation localizes to one load-weighted signed off-image
+   kernel value by (2.7)-(2.9); no quartic-tuple pigeonhole is needed.
+3. Same-owner exact-agreement packing pays the explicit phase region (2.20),
+   and an independently printed saturation cap can be substituted directly
+   into (2.17).
+4. The classical above-Johnson owner bound is recorded as a paid consistency
+   range, not as progress on the deployed below-Johnson lane.
+5. Empty-mode charge cannot be identified with the projected cube mean unless
    the commutator is controlled or equitability is proved.
-3. Exact base-3 hierarchy flatness becomes compiler-useful only after its
+6. Exact base-3 hierarchy flatness becomes compiler-useful only after its
    operator-level equitability and paid-admission interfaces are checked.
-4. The maximal band is removed from the quartic selected-layer residual
+7. The maximal band is removed from the quartic selected-layer residual
    unconditionally by Theorem 7.1.
 
 No finite deployed row, row-sharp Q theorem, general SULSI theorem, or
@@ -638,6 +1014,12 @@ The verifier checks:
 exact Krawtchouk shell identity for n = 4m;
 exact rim-free color-class census;
 the positive-rate lower-bound formula and asymptotic exponent ledger;
+the sharp 1/2 Fourier-projection cross-block constant;
+load-weighted ambient localization on exhaustive small Walsh models;
+the exact ambient dual pullback convention;
+the strict positive-part-versus-signed packet distinction;
+same-owner k-packing and above-Johnson incidence bounds;
+synthetic phase rows and the deployed KoalaBear noncoverage audit;
 finite commutator identities and a nonzero commutator guardrail;
 equitable-partition invariance and selected-layer measurability;
 the maximal-band quartic and ambient formulas;
@@ -648,5 +1030,13 @@ The Hamming family is a source-free ambient guardrail, not a valid
 source-derived post-atlas falsifier.  Finite checks do not prove any asymptotic
 source estimate.  The equitable theorem assumes `(EQ3)`, and the SOCQI4
 conclusion separately assumes the paid admission theorem `(EQ4)`.
+
+`(SOAKI4)` and the still stronger positive-part emission theorem are not
+proved.  The ambient dual in (2.11) is not substituted for the original
+natural charge.  The Johnson corollary does not cover the deployed row, and
+the phase criterion does not pay that row even under its optimistic image and
+owner assumptions.  No source-semantic counterexample to unrestricted AL4 is
+claimed: the source-free regressions only rule out proofs using the universal
+Fourier, positivity, rim, and decoration interfaces alone.
 
 No `.tex`, `.pdf`, or stable paper source is modified.

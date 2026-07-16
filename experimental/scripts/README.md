@@ -55,11 +55,14 @@ family where a full-slice heavy atom forces exponential packed norm while its
 semantic residual is uniformly flat under the same full-slice normalization.
 
 `verify_selected_owner_cube_mean_boundary_v1.py` checks the exact ambient
-decomposition guardrail, the cube/projection commutator identity, the Hamming
-middle-layer leakage regression, the equitable-partition reduction, and the
-unconditional maximal-band quartic unit-mask bound.  It does not prove the
-source-specific ambient estimate, non-equitable cube localization, nonempty
-mode compression, or paid cube-spectrum admission.
+decomposition guardrail, the sharp `1/2` Fourier-projection cross-block norm,
+load-weighted single-point localization, selected-record ambient pullback,
+same-owner packing and Johnson bounds, the deployed noncoverage audit, the
+cube/projection commutator identity, the Hamming middle-layer leakage
+regression, the equitable-partition reduction, and the unconditional
+maximal-band quartic unit-mask bound.  It does not prove signed selected-owner
+ambient-kernel inversion outside the paid owner regimes, non-equitable cube
+localization, nonempty-mode compression, or paid cube-spectrum admission.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

@@ -30,7 +30,7 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
-### 2026-07-15 - Selected-owner cube-mean boundary
+### 2026-07-16 - Selected-owner cube-mean and ambient-localization boundary
 
 - **Agent/model:** Codex.
 - **Files added or changed:**
@@ -41,17 +41,21 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / CONDITIONAL / AUDIT.  No stable paper theorem is
   promoted.
 - **What is being added:** Exact ambient and commutator guards for the proposed
-  selected-owner cube-mean route, a source-free Hamming leakage regression, an
-  equitable-chart reduction criterion with an explicit paid-admission
-  hypothesis, and an unconditional maximal-band quartic unit-mask theorem.
+  selected-owner cube-mean route; the sharp `1/2` projection cross-block norm;
+  load-weighted single-point ambient localization; exact selected-record
+  pullback; same-owner packing, phase, and Johnson-paid bounds; a source-free
+  Hamming leakage regression; an equitable-chart reduction with explicit paid
+  admission; and an unconditional maximal-band quartic unit-mask theorem.
 - **How it is useful:** Prevents within-image cube flatness from silently
   assuming ambient MI/MA or charge payment, removes the maximal band from the
-  quartic selected-layer residual, and isolates source-specific AL4,
-  non-equitable localization, mode compression, and admission as separate
-  obligations.
-- **What to do next:** Prove operator-level equitability and ambient leakage on
-  the integrated base-3 cylinder hierarchy, then audit whether its empty-mode
-  cube family has a valid selected-owner payment in the first-match grammar.
+  quartic selected-layer residual, pays explicit owner-packed ranges, proves
+  that the deployed row is not among them even under optimistic normalization,
+  and reduces every remaining AL4 violation to a load-weighted signed kernel
+  value without discarding cancellation or changing the selected owner.
+- **What to do next:** Prove the selected-owner signed ambient-kernel inverse
+  outside the owner-packed ranges, or prove operator-level equitability and
+  ambient leakage on an admitted cylinder hierarchy; then audit its empty-mode
+  family against the first-match payment grammar.
 
 ### 2026-07-15 - L1/BC/L2 threshold and Lean PR wave
 

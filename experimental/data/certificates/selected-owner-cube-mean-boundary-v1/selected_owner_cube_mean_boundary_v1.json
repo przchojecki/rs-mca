@@ -1,4 +1,38 @@
 {
+  "ambient_localization": {
+    "ambient_pullback": {
+      "ambient_pairing": "1/52",
+      "selected_pullback": "1/52"
+    },
+    "checks": {
+      "ambient_pullback_exact": true,
+      "cross_block_bound_exact": true,
+      "load_weighted_bound_exact": true,
+      "positive_part_strictly_stronger": true,
+      "sharp_constant_one_half": true
+    },
+    "maximum_cross_block_square": "1/4",
+    "maximum_load_ratio_fourth": "1/4",
+    "positive_part_guardrail": {
+      "band": [
+        1
+      ],
+      "group": "F_2^2",
+      "kernel_terms": [
+        "1/4",
+        "-1/4"
+      ],
+      "off_image_point": 2,
+      "positive_part_sum": "1/4",
+      "signed_sum": "0"
+    },
+    "sharp_example": {
+      "ambient_square": "1/4",
+      "group": "F_2",
+      "input_square": "1"
+    },
+    "small_walsh_trials": 24552
+  },
   "certificate_id": "selected-owner-cube-mean-boundary-v1",
   "commutator_guardrail": {
     "band": [
@@ -428,16 +462,78 @@
   },
   "nonclaims": [
     "the Hamming guardrail is not a post-atlas RS falsifier",
+    "positive-part ambient emission is stronger than signed localization",
+    "the ambient diagnostic dual is not the original natural charge",
+    "the Johnson corollary and owner packing do not pay the deployed row",
     "EQ3 is assumed rather than proved by the equitable reduction",
     "EQ4 paid admission is not proved",
     "no stable paper theorem or finite deployed row is closed"
   ],
   "open_obligations": [
-    "source-specific ambient leakage AL4",
+    "signed selected-owner ambient-kernel inversion outside paid owner regimes",
     "non-equitable within-image cube localization",
     "commutator control or signed nonempty-mode compression",
     "paid selected-owner cube-spectrum admission"
   ],
+  "owner_packing": {
+    "checks": {
+      "deployed_is_below_johnson": true,
+      "deployed_not_paid_even_optimistically": true,
+      "johnson_incidence_when_enabled": true,
+      "phase_grid_contains_below_johnson_payment": true,
+      "phase_grid_contains_unpaid_row": true,
+      "same_owner_k_packing": true
+    },
+    "deployed_audit": {
+      "N": 2097152,
+      "a": 1116048,
+      "above_johnson": false,
+      "image_upper_log2": 2090837.545,
+      "johnson_integer_margin": -953458020096,
+      "k": 1048576,
+      "name": "KoalaBear MCA",
+      "optimistic_margin_log2": 684269.404,
+      "owner_packing_log2": 1729688.176,
+      "p": 2130706433,
+      "packing_pays_optimistically": false,
+      "w": 67471
+    },
+    "johnson_rows": 576,
+    "largest_greedy_family": 68,
+    "packing_rows": 648,
+    "phase_rows": [
+      {
+        "above_johnson": false,
+        "alpha": 0.8,
+        "criterion_margin_bits": -0.122901753,
+        "image_rate_bits": 1.0,
+        "kappa": 0.65,
+        "name": "paid_below_johnson_dense_image",
+        "owner_packing_rate_bits": 0.377098247,
+        "packing_pays": true
+      },
+      {
+        "above_johnson": false,
+        "alpha": 0.7,
+        "criterion_margin_bits": -0.104184398,
+        "image_rate_bits": 1.0,
+        "kappa": 0.5,
+        "name": "paid_below_johnson_second",
+        "owner_packing_rate_bits": 0.395815602,
+        "packing_pays": true
+      },
+      {
+        "above_johnson": false,
+        "alpha": 0.55,
+        "criterion_margin_bits": 0.116553314,
+        "image_rate_bits": 1.0,
+        "kappa": 0.45,
+        "name": "unpaid_below_johnson",
+        "owner_packing_rate_bits": 0.616553314,
+        "packing_pays": false
+      }
+    ]
+  },
   "source_revision": "764f1c0243770baa437d4ae790b1448afa091680",
-  "status": "PROVED_FINITE_BOUNDARIES_AND_MAXIMAL_BAND__SOURCE_AL4_AND_PAID_ADMISSION_OPEN"
+  "status": "PROVED_FINITE_BOUNDARIES_LOCALIZATION_OWNER_PACKING_AND_MAXIMAL_BAND__SIGNED_SOURCE_INVERSION_AND_ADMISSION_OPEN"
 }
