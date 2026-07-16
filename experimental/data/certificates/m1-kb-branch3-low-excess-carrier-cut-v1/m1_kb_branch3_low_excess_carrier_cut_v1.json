@@ -1,0 +1,460 @@
+{
+  "schema": "rs-mca-m1-kb-branch3-low-excess-carrier-cut-v1",
+  "artifact_kind": "M1_KB_BRANCH3_LOW_EXCESS_COMMON_CARRIER_ROUTE_CUT",
+  "status": "PROVED_CONDITIONAL_GLOBAL_CARRIER_OWNER_EXACT_EXCESS10_BUDGET_CUTOFF_FAIL_CLOSED_ROW_OPEN",
+  "source_bindings": [
+    {
+      "binding_id": "packet-note",
+      "path": "experimental/notes/m1/m1_kb_branch3_low_excess_carrier_cut_v1.md",
+      "sha256": "82b6cd709b6831e6e1685a7db5f4b8ee7824a56516b38ff195ce4b6a2be393b5",
+      "role": "human-readable proof and audit"
+    },
+    {
+      "binding_id": "certificate-readme",
+      "path": "experimental/data/certificates/m1-kb-branch3-low-excess-carrier-cut-v1/README.md",
+      "sha256": "8ed3ef6e89c219ec475bbb4560d8057e6da5393baad3a6822511c8ee16dcd494",
+      "role": "replay commands and machine-readable scope summary"
+    },
+    {
+      "binding_id": "python-verifier",
+      "path": "experimental/scripts/verify_m1_kb_branch3_low_excess_carrier_cut_v1.py",
+      "sha256": "e59a09f1091ba1e4468a0d44c1e351147ccdcfad80fb7591bcf9c6c561efb36c",
+      "role": "exact arithmetic, schema, and mutation replay"
+    },
+    {
+      "binding_id": "branch2-note",
+      "path": "experimental/notes/m1/m1_kb_branch2_rank_deep_owner_v1.md",
+      "sha256": "28913b382293d3681e63b955862c1a372cd956dd6e2aa96e5ca4919c654114a8",
+      "role": "full-row-rank branch-2 complement and actual-support bridge"
+    },
+    {
+      "binding_id": "branch2-certificate",
+      "path": "experimental/data/certificates/m1-kb-branch2-rank-deep-owner-v1/m1_kb_branch2_rank_deep_owner_v1.json",
+      "sha256": "d1a9fe843bf4873993f63201bde724ba721bff0ce7eb229eee4197638fc3b438",
+      "role": "machine-readable predecessor ledger and branch order"
+    },
+    {
+      "binding_id": "branch2-verifier",
+      "path": "experimental/scripts/verify_m1_kb_branch2_rank_deep_owner_v1.py",
+      "sha256": "1da65d923e163921332e7236a2b7cd5218170baa4f507dd7e7b53a86bc13c77e",
+      "role": "predecessor semantic and mutation replay"
+    },
+    {
+      "binding_id": "transverse-secant-owner",
+      "path": "experimental/notes/thresholds/agreement_weighted_transverse_secant.md",
+      "sha256": "75cb8733caf153c379336bb9ec672e9c0de1c20f6da2a70bf94a5adb92862fa9",
+      "role": "agreement-weighted one-global-carrier theorem"
+    },
+    {
+      "binding_id": "transverse-secant-verifier",
+      "path": "experimental/scripts/verify_agreement_weighted_transverse_secant.py",
+      "sha256": "80a4b821f179c19325cb26a104decbaec9b1985ce2e58e5c7821d0c2cb7e42bb",
+      "role": "deterministic finite-field stress replay for the imported owner"
+    },
+    {
+      "binding_id": "exact-thresholds",
+      "path": "experimental/rs_mca_thresholds.tex",
+      "sha256": "ae662448b90d4db365feed6d8e826a5f7e7cc752b787ae7dc94af41c7c1d0a1e",
+      "role": "exact-support reduction and independent-union ray theorem"
+    },
+    {
+      "binding_id": "first-match-note",
+      "path": "experimental/notes/thresholds/kb_mca_1116048_first_match_ledger_v1.md",
+      "sha256": "34c5aa072783f39c94885b36b810f35a2bb8109eb5f6045aa4cf22fd5c2fb117",
+      "role": "frozen KoalaBear branch labels"
+    },
+    {
+      "binding_id": "post-c5-certificate",
+      "path": "experimental/data/certificates/m1-fp2-post-c5-mask-incidence-v1/m1_fp2_post_c5_mask_incidence_v1.json",
+      "sha256": "4f73fd717a79a3d8546101cc7e219b9b4cbfdd1fa2d4f8e1ac6af8057691eb55",
+      "role": "machine-readable open branch-3 source status"
+    }
+  ],
+  "row": {
+    "row_id": "koalabear-mca-A1116048",
+    "p": 2130706433,
+    "ambient_extension_degree": 6,
+    "q_line": "93571093019388561295270373781649880353786165192103559169",
+    "n": 2097152,
+    "k": 1048576,
+    "agreement_A": 1116048,
+    "redundancy_R": 1048576,
+    "error_cap_j": 981104,
+    "full_row_rank_threshold_t": 67472,
+    "R_minus_j": 67472,
+    "B_star": "274980728111395087",
+    "U_paid_before": "2602220945",
+    "B_remaining_before": "274980725509174142",
+    "challenge_scope": "distinct finite slopes in F_(p^6)"
+  },
+  "branch3_scope": {
+    "v2_order": [
+      "contained_or_noncontained_failure",
+      "rank_drop_or_pivot_failure",
+      "tangent_common_line_residue",
+      "quotient_periodic_or_divisor_stabilized",
+      "planted_prefix_structured",
+      "extension_valued_slope",
+      "residual_base_slope_universe",
+      "sparse_sigma_or_sparse_support",
+      "m1_half_turn_or_coefficient_shadow",
+      "primitive_qfin_residual"
+    ],
+    "branch_index_one_based": 3,
+    "frozen_branch_label": "tangent_common_line_residue",
+    "predecessor_branch": "rank_drop_or_pivot_failure",
+    "predecessor_branch_closed": true,
+    "safe_full_row_rank_envelope": "Z_3_pre(f,g)=Bad_A(f,g)_MINUS_Z_2_env(f,g)",
+    "literal_first_match_branch3_subset_of_safe_envelope": true,
+    "safe_envelope_may_retain_earlier_branch1_slopes": true,
+    "monotone_under_earlier_first_match_deletion": true,
+    "carrier_scope": "ONE_RECEIVED_PAIR_AT_A_TIME",
+    "full_row_rank_required": true,
+    "branch3_projector_claimed_complete": false,
+    "low_excess_synonymous_with_frozen_branch_label": false,
+    "scope_status": "BRANCH3_ENVELOPE_OWNER_NOT_EXHAUSTIVE_PROJECTOR"
+  },
+  "actual_witness_contract": {
+    "one_witness_per_retained_slope": true,
+    "witness": "(gamma,S_gamma,c_gamma)",
+    "exact_support_size": 1116048,
+    "line_word": "y_gamma=f+gamma*g",
+    "actual_error": "e_gamma=y_gamma-c_gamma",
+    "actual_error_support": "E_gamma=supp(e_gamma)",
+    "actual_support_not_padded_co_support": true,
+    "actual_support_subset_of_D_minus_S_gamma": true,
+    "actual_error_weight_lower_bound_on_branch2_complement": 67472,
+    "actual_error_weight_upper_bound": 981104,
+    "syndrome_equation": "H*e_gamma=s(f)+gamma*s(g)",
+    "transversality": "{s(f),s(g)}_NOT_SUBSET_V_(E_gamma)",
+    "transversality_reason": "IF_BOTH_SYNDROMES_LAY_IN_V_E_THEN_THE_PAIR_WOULD_BE_SIMULTANEOUSLY_EXPLAINED_ON_D_MINUS_E_SUPERSET_S_gamma",
+    "arbitrary_explaining_codeword_without_declared_bad_witness_allowed": false,
+    "finite_slopes_only": true
+  },
+  "carrier_dichotomy": {
+    "selected_global_union": "U_sel=UNION_(gamma in Z) E_gamma",
+    "minimum_global_excess": "kappa_star(Z)=MIN_over_one_valid_witness_selection_per_slope_MAX(0,|U_sel|-R)",
+    "mathematical_minimum_defined": true,
+    "empty_slope_set_minimum_excess": 0,
+    "minimum_computed_by_this_packet": false,
+    "single_global_carrier_required": true,
+    "multiple_carriers_combine_by": "SUM_REQUIRED_NOT_MAXIMUM",
+    "kappa_zero_owner": "INDEPENDENT_UNION_RAYS",
+    "kappa_zero_cap_formula": "j+1",
+    "positive_kappa_owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+    "positive_kappa_cap_formula": "floor(C(R+kappa,kappa+1)/C(R+kappa-j-1,kappa))",
+    "positive_kappa_carrier_size_identity": "|U_sel|=R+kappa",
+    "pair_level_low_excess_alternative": "kappa_star<=10",
+    "pair_level_high_excess_alternative": "kappa_star>=11",
+    "pair_level_dichotomy_exhaustive": true,
+    "high_excess_owner": null,
+    "executable_default_terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS",
+    "default_terminal_does_not_assert_kappa_star_ge_11": true
+  },
+  "budget_table": {
+    "records": [
+      {
+        "excess": 0,
+        "owner": "INDEPENDENT_UNION_RAYS",
+        "cap": "981105",
+        "budget_fits": true,
+        "remaining_if_used": "274980725508193037"
+      },
+      {
+        "excess": 1,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "8147918",
+        "budget_fits": true,
+        "remaining_if_used": "274980725501026224"
+      },
+      {
+        "excess": 2,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "84416263",
+        "budget_fits": true,
+        "remaining_if_used": "274980725424757879"
+      },
+      {
+        "excess": 3,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "983902549",
+        "budget_fits": true,
+        "remaining_if_used": "274980724525271593"
+      },
+      {
+        "excess": 4,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "12232092309",
+        "budget_fits": true,
+        "remaining_if_used": "274980713277081833"
+      },
+      {
+        "excess": 5,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "158406193634",
+        "budget_fits": true,
+        "remaining_if_used": "274980567102980508"
+      },
+      {
+        "excess": 6,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "2109949210211",
+        "budget_fits": true,
+        "remaining_if_used": "274978615559963931"
+      },
+      {
+        "excess": 7,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "28689347099870",
+        "budget_fits": true,
+        "remaining_if_used": "274952036162074272"
+      },
+      {
+        "excess": 8,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "396280526311830",
+        "budget_fits": true,
+        "remaining_if_used": "274584444982862312"
+      },
+      {
+        "excess": 9,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "5542092977392141",
+        "budget_fits": true,
+        "remaining_if_used": "269438632531782001"
+      },
+      {
+        "excess": 10,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "78289526705722101",
+        "budget_fits": true,
+        "remaining_if_used": "196691198803452041"
+      },
+      {
+        "excess": 11,
+        "owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "cap": "1115145741750273207",
+        "budget_fits": false,
+        "remaining_if_used": "-840165016241099065"
+      }
+    ],
+    "record_count": 12,
+    "largest_budget_fitting_excess": 10,
+    "first_budget_failing_excess": 11,
+    "B_10": "78289526705722101",
+    "B_11": "1115145741750273207",
+    "B_10_fits": true,
+    "B_11_fits": false,
+    "B_10_remaining": "196691198803452041",
+    "B_11_shortfall": "840165016241099065",
+    "raw_cap_monotonicity_ratio": "((R+kappa+1)*(kappa+1))/((kappa+2)*(R+kappa-j))",
+    "raw_ratio_difference": "j*(kappa+2)-R+1",
+    "monotonicity_checks": [
+      {
+        "from_excess": 1,
+        "to_excess": 2,
+        "raw_ratio_numerator_minus_denominator": 1894737,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 2,
+        "to_excess": 3,
+        "raw_ratio_numerator_minus_denominator": 2875841,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 3,
+        "to_excess": 4,
+        "raw_ratio_numerator_minus_denominator": 3856945,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 4,
+        "to_excess": 5,
+        "raw_ratio_numerator_minus_denominator": 4838049,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 5,
+        "to_excess": 6,
+        "raw_ratio_numerator_minus_denominator": 5819153,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 6,
+        "to_excess": 7,
+        "raw_ratio_numerator_minus_denominator": 6800257,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 7,
+        "to_excess": 8,
+        "raw_ratio_numerator_minus_denominator": 7781361,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 8,
+        "to_excess": 9,
+        "raw_ratio_numerator_minus_denominator": 8762465,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 9,
+        "to_excess": 10,
+        "raw_ratio_numerator_minus_denominator": 9743569,
+        "strictly_positive": true
+      },
+      {
+        "from_excess": 10,
+        "to_excess": 11,
+        "raw_ratio_numerator_minus_denominator": 10724673,
+        "strictly_positive": true
+      }
+    ],
+    "exact_integer_arithmetic": true
+  },
+  "classifier_contract": {
+    "required_inputs": [
+      "ONE_DECLARED_NONCONTAINED_EXACT_A_WITNESS_PER_SLOPE",
+      "ACTUAL_NONZERO_ERROR_SUPPORT_FOR_EACH_WITNESS",
+      "ONE_GLOBAL_CARRIER_FOR_THE_ENTIRE_RETAINED_SET",
+      "ALL_SELECTED_SUPPORTS_CONTAINED_IN_THAT_CARRIER",
+      "TRANSVERSALITY_FOR_EVERY_SELECTED_WITNESS",
+      "CERTIFIED_CARRIER_EXCESS"
+    ],
+    "certified_low_excess_terminal": "CERTIFIED_LOW_EXCESS_COMMON_CARRIER",
+    "fail_closed_terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS",
+    "symbolic_controls": {
+      "excess_zero": {
+        "terminal": "CERTIFIED_LOW_EXCESS_COMMON_CARRIER",
+        "paid_owner": "INDEPENDENT_UNION_RAYS",
+        "certified_excess": 0,
+        "global_distinct_slope_cap": "981105",
+        "budget_fits": true,
+        "ledger_charge_banked": false
+      },
+      "excess_ten": {
+        "terminal": "CERTIFIED_LOW_EXCESS_COMMON_CARRIER",
+        "paid_owner": "AGREEMENT_WEIGHTED_TRANSVERSE_SECANT",
+        "certified_excess": 10,
+        "global_distinct_slope_cap": "78289526705722101",
+        "budget_fits": true,
+        "ledger_charge_banked": false
+      },
+      "excess_eleven": {
+        "terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS",
+        "paid_owner": null,
+        "certified_excess": null,
+        "global_distinct_slope_cap": null,
+        "budget_fits": null,
+        "ledger_charge_banked": false
+      },
+      "missing_transversality": {
+        "terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS",
+        "paid_owner": null,
+        "certified_excess": null,
+        "global_distinct_slope_cap": null,
+        "budget_fits": null,
+        "ledger_charge_banked": false
+      },
+      "multiple_carriers": {
+        "terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS",
+        "paid_owner": null,
+        "certified_excess": null,
+        "global_distinct_slope_cap": null,
+        "budget_fits": null,
+        "ledger_charge_banked": false
+      },
+      "padded_supports": {
+        "terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS",
+        "paid_owner": null,
+        "certified_excess": null,
+        "global_distinct_slope_cap": null,
+        "budget_fits": null,
+        "ledger_charge_banked": false
+      },
+      "missing_noncontained_witness": {
+        "terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS",
+        "paid_owner": null,
+        "certified_excess": null,
+        "global_distinct_slope_cap": null,
+        "budget_fits": null,
+        "ledger_charge_banked": false
+      },
+      "support_outside_carrier": {
+        "terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS",
+        "paid_owner": null,
+        "certified_excess": null,
+        "global_distinct_slope_cap": null,
+        "budget_fits": null,
+        "ledger_charge_banked": false
+      }
+    },
+    "controls_are_semantic_unit_cases_not_deployed_witnesses": true,
+    "deployed_low_excess_certificate_present": false,
+    "deployed_terminal": "UNPAID_NOT_CERTIFIED_LOW_EXCESS"
+  },
+  "charges": [],
+  "ledger": {
+    "U_paid_before": "2602220945",
+    "B_remaining_before": "274980725509174142",
+    "conditional_max_low_excess_cap": "78289526705722101",
+    "conditional_U_paid_if_global_low_excess_exhaustive": "78289529307943046",
+    "conditional_B_remaining_if_global_low_excess_exhaustive": "196691198803452041",
+    "actual_charge_banked": null,
+    "packet_banked_charge": "0",
+    "branch3_charge": null,
+    "U_paid_after": "2602220945",
+    "B_remaining_after": "274980725509174142",
+    "K_rem": 4807520,
+    "local_owner_contract_proved": true,
+    "global_low_excess_exhaustiveness_proved": false,
+    "high_excess_owner_proved": false,
+    "branch3_closed": false,
+    "ledger_consequence": false,
+    "U_2": null,
+    "U_Q": null,
+    "U_A": null,
+    "lhs": null,
+    "row_complete": false,
+    "inequality_status": "UNDECIDED_OPEN_COMPONENTS",
+    "next_attack": "UNPAID_NOT_CERTIFIED_LOW_EXCESS"
+  },
+  "audit_sections": {
+    "parameter_dependence": "GENERAL_OWNER_DEPENDS_ON_R_J_KAPPA_BUDGET_CUTOFF_KOALABEAR_SPECIFIC",
+    "layer_cake_dyadic_summability": "NOT_APPLICABLE",
+    "moment_markov_chebyshev": "NOT_APPLICABLE",
+    "numerical_evidence": "EXACT_BIG_INTEGER_REPLAY_ONLY_NO_ASYMPTOTIC_EXTRAPOLATION",
+    "edge_cases": [
+      "Each selected error support is the actual nonzero support tied to a declared noncontained exact-A witness, not the padded co-support.",
+      "One carrier must contain the selected actual error supports for the entire retained slope set.",
+      "Several unrelated carriers cannot be charged by taking the maximum of their individual caps.",
+      "The kappa=0 case uses the independent-union theorem; the transverse-secant theorem is invoked only for kappa>=1.",
+      "A supplied carrier with excess above ten does not prove the minimum global excess is above ten.",
+      "Failure to exhibit a valid low-excess carrier emits UNPAID_NOT_CERTIFIED_LOW_EXCESS.",
+      "The low-excess theorem is monotone under arbitrary earlier first-match deletion.",
+      "The packet does not identify low carrier excess with the full tangent/common-line/residue-line branch.",
+      "Null ledger entries are not zero."
+    ],
+    "remaining_risks": [
+      "No witness-exhaustive theorem proves that every retained branch-3 family has global carrier excess at most ten.",
+      "The high-excess residual has no paid owner.",
+      "The frozen tangent/common-line/residue-line label still lacks an exact exhaustive row-specific projector.",
+      "Branches 4 and 5, the field-full quadratic support union, U_2, U_Q, and U_A remain open.",
+      "The complete KoalaBear row inequality remains undecided."
+    ],
+    "verdict": "GREEN_LOCAL_OWNER_ROUTE_CUT_YELLOW_BRANCH3_AND_ROW"
+  },
+  "nonclaims": [
+    "This packet does not prove the KoalaBear row safe.",
+    "This packet does not close branch 3.",
+    "This packet does not prove that a low-excess global carrier exists.",
+    "This packet does not prove a bounded cover by several low-excess carriers.",
+    "This packet does not charge the cap once per carrier, support, chart, or slope.",
+    "This packet does not bank B_10 in the deployed upper ledger.",
+    "This packet does not identify transverse low-excess carriers with every tangent, common-line, or residue-line component.",
+    "This packet does not determine U_2, U_Q, or U_A.",
+    "This packet does not begin the degree-three parameter class."
+  ],
+  "payload_sha256": "f365c4d36e834ba5e76ad89701d33e0304eed427264b79f37904b8969ceb4ad1"
+}

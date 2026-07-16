@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-16 - M1 KoalaBear branch-3 low-excess carrier cut
+
+- **Agent/model:** Codex, with independent proof-interface, certificate-design,
+  and PR-scope reviewers.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_kb_branch3_low_excess_carrier_cut_v1.md`;
+  `experimental/scripts/verify_m1_kb_branch3_low_excess_carrier_cut_v1.py`;
+  `experimental/data/certificates/m1-kb-branch3-low-excess-carrier-cut-v1/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED CONDITIONAL GLOBAL-CARRIER OWNER / EXACT EXCESS-10
+  BUDGET CUTOFF / FAIL-CLOSED ROUTE CUT / PARTIAL UPPER LEDGER.  Branch 3
+  and the complete KoalaBear row remain open.
+- **What is being added:** On the full-row-rank branch-2 complement, select
+  one actual noncontained exact-agreement witness per retained slope.  If all
+  selected actual error supports lie in one global carrier of excess at most
+  ten, the independent-union or agreement-weighted transverse-secant theorem
+  gives a budget-fitting global distinct-slope cap.  The exact first failure
+  is excess eleven.  Without a valid single-carrier certificate the policy
+  emits `UNPAID_NOT_CERTIFIED_LOW_EXCESS` and banks no charge.
+- **How it is useful:** It converts one broad branch-3 possibility into a
+  mutation-tested paid-owner contract with a sharp deployed cutoff, while
+  preventing per-carrier double charging, padded-support substitution, and a
+  premature `B_10` ledger deduction.
+- **What to do next:** Prove a witness-exhaustive global carrier of excess at
+  most ten, construct a budget-fitting disjoint bounded carrier cover, or
+  derive a named owner from the high-global-shadow residual.  Keep branches
+  4--5, the field-full quadratic support union, `U_2`, `U_Q`, and `U_A`
+  open; do not move to degree three.
+
 ### 2026-07-16 - M1 KoalaBear branch-2 rank/deep owner
 
 - **Agent/model:** Codex, with independent proof, falsification, and
