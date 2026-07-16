@@ -482,6 +482,7 @@
       "johnson_incidence_when_enabled": true,
       "phase_grid_contains_below_johnson_payment": true,
       "phase_grid_contains_unpaid_row": true,
+      "phase_grid_respects_slice_entropy": true,
       "same_owner_k_packing": true
     },
     "deployed_audit": {
@@ -504,33 +505,36 @@
     "phase_rows": [
       {
         "above_johnson": false,
-        "alpha": 0.8,
-        "criterion_margin_bits": -0.122901753,
-        "image_rate_bits": 1.0,
-        "kappa": 0.65,
-        "name": "paid_below_johnson_dense_image",
-        "owner_packing_rate_bits": 0.377098247,
-        "packing_pays": true
+        "alpha": 0.4,
+        "criterion_margin_bits": -0.221253824,
+        "image_rate_bits": 0.970950594,
+        "kappa": 0.17,
+        "name": "paid_below_johnson_full_slice_image",
+        "owner_packing_rate_bits": 0.264221474,
+        "packing_pays": true,
+        "slice_entropy_bits": 0.970950594
       },
       {
         "above_johnson": false,
         "alpha": 0.7,
-        "criterion_margin_bits": -0.104184398,
-        "image_rate_bits": 1.0,
+        "criterion_margin_bits": -0.044829848,
+        "image_rate_bits": 0.881290899,
         "kappa": 0.5,
         "name": "paid_below_johnson_second",
         "owner_packing_rate_bits": 0.395815602,
-        "packing_pays": true
+        "packing_pays": true,
+        "slice_entropy_bits": 0.881290899
       },
       {
         "above_johnson": false,
         "alpha": 0.55,
-        "criterion_margin_bits": 0.116553314,
-        "image_rate_bits": 1.0,
+        "criterion_margin_bits": 0.120166087,
+        "image_rate_bits": 0.992774454,
         "kappa": 0.45,
         "name": "unpaid_below_johnson",
         "owner_packing_rate_bits": 0.616553314,
-        "packing_pays": false
+        "packing_pays": false,
+        "slice_entropy_bits": 0.992774454
       }
     ]
   },

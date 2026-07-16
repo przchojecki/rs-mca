@@ -501,12 +501,15 @@ def owner_packing_regression() -> dict[str, Any]:
                     packing_rows += 1
 
     phase_inputs = (
-        ("paid_below_johnson_dense_image", 0.80, 0.65, 1.00),
-        ("paid_below_johnson_second", 0.70, 0.50, 1.00),
-        ("unpaid_below_johnson", 0.55, 0.45, 1.00),
+        ("paid_below_johnson_full_slice_image", 0.40, 0.17),
+        ("paid_below_johnson_second", 0.70, 0.50),
+        ("unpaid_below_johnson", 0.55, 0.45),
     )
     phase_rows = []
-    for name, alpha, kappa, image_rate in phase_inputs:
+    for name, alpha, kappa in phase_inputs:
+        slice_entropy = binary_entropy(alpha)
+        # This is the largest feasible image rate because L <= binom(N,a).
+        image_rate = slice_entropy
         owner_rate = binary_entropy(kappa) - alpha * binary_entropy(kappa / alpha)
         margin = owner_rate - image_rate / 2.0
         phase_rows.append(
@@ -514,6 +517,7 @@ def owner_packing_regression() -> dict[str, Any]:
                 "name": name,
                 "alpha": alpha,
                 "kappa": kappa,
+                "slice_entropy_bits": slice_entropy,
                 "image_rate_bits": image_rate,
                 "owner_packing_rate_bits": owner_rate,
                 "criterion_margin_bits": margin,
@@ -563,6 +567,10 @@ def owner_packing_regression() -> dict[str, Any]:
             "johnson_incidence_when_enabled": True,
             "phase_grid_contains_below_johnson_payment": (
                 not phase_rows[0]["above_johnson"] and phase_rows[0]["packing_pays"]
+            ),
+            "phase_grid_respects_slice_entropy": all(
+                row["image_rate_bits"] <= row["slice_entropy_bits"]
+                for row in phase_rows
             ),
             "phase_grid_contains_unpaid_row": not phase_rows[2]["packing_pays"],
             "deployed_is_below_johnson": not deployed["above_johnson"],
@@ -655,6 +663,11 @@ def validate(payload: dict[str, Any]) -> bool:
     ) <= 0:
         return False
     owner = payload["owner_packing"]
+    if any(
+        row["image_rate_bits"] > row["slice_entropy_bits"]
+        for row in owner["phase_rows"]
+    ):
+        return False
     if owner["deployed_audit"]["johnson_integer_margin"] >= 0:
         return False
     if owner["deployed_audit"]["optimistic_margin_log2"] <= 0:
@@ -731,6 +744,12 @@ def main() -> int:
         coverage_tamper["owner_packing"]["deployed_audit"][
             "packing_pays_optimistically"
         ] = True
+        phase_tamper = json.loads(json.dumps(expected))
+        phase_tamper["owner_packing"]["phase_rows"][0][
+            "image_rate_bits"
+        ] = phase_tamper["owner_packing"]["phase_rows"][0][
+            "slice_entropy_bits"
+        ] + 0.25
         caught = sum(
             int(not validate(payload))
             for payload in (
@@ -738,11 +757,12 @@ def main() -> int:
                 data_tamper,
                 sign_tamper,
                 coverage_tamper,
+                phase_tamper,
             )
         )
-        if caught != 4:
-            raise SystemExit(f"tamper self-test failed: caught {caught}/4")
-        print("TAMPER SELF-TEST: PASS (4/4)")
+        if caught != 5:
+            raise SystemExit(f"tamper self-test failed: caught {caught}/5")
+        print("TAMPER SELF-TEST: PASS (5/5)")
         return 0
     if args.write:
         CERTIFICATE.parent.mkdir(parents=True, exist_ok=True)

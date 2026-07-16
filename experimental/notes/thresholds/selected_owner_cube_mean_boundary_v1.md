@@ -62,7 +62,7 @@ experimental/data/certificates/selected-owner-cube-mean-boundary-v1/
 SHA-256:
 
 ```text
-4bf0a8d406b1d1b1cd5f73b8a63394bc91b534c5b17bbd8d174d7c7856a9ba9a
+01544e2cd0519b287f9e93bc4c0deae59cab51a0ea6823be363dc8c19e5fb962
 ```
 
 ## Repository interfaces consumed
@@ -503,8 +503,11 @@ Stirling's formula turns (2.19) into the explicit phase test
 \tag{2.20}
 \]
 
-This criterion can pay below Johnson when the realized image is sufficiently
-large; it is not merely the classical Johnson range.
+Since `L <= M <= binom(N,a)`, every feasible phase row also satisfies
+`ell_N <= H_2(alpha)+o(1)`.  The verifier enforces this slice-entropy ceiling.
+Even with that ceiling, (2.20) pays nonempty below-Johnson parameter regions
+when the realized image is sufficiently large; it is not merely the classical
+Johnson range.
 
 ### Corollary 2.6: Johnson-paid owner lists
 
