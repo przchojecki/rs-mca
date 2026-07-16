@@ -1258,362 +1258,413 @@
     }
 
     const fallbackEntriesRaw = [
-          {
-                "id": "tangent257-lower-floor",
-                "title": "Tangent lower-floor capacity-edge row",
-                "short": "Generic moving-root tangent floor gives 256 bad slopes one step below capacity.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 257,
-                "badSlopes": "256",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "theorem-backed scanner row",
-                "radiusLabel": "255/512",
-                "proof": "The generic moving-root tangent floor gives LD_sw(C,a) >= n-a+1 for all k+1 <= a <= n. At a=257 this gives at least 256 support-wise MCA bad finite slopes, and the certificate scanner verifies 256/17^32 > 2^-128.",
-                "nonclaims": "Finite-slope support-wise MCA lower floor only; not an exact threshold, not ordinary list decoding, and not protocol soundness.",
-                "links": [
-                      {
-                            "label": "Tangent staircase summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent/tangent_staircase_summary.md"
-                      },
-                      {
-                            "label": "Scanner report",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/outputs/f17_512.report.md"
-                      }
-                ],
-                "authors": "tangent staircase notes / Codex audit"
-          },
-          {
-                "id": "cycle116",
-                "title": "Cycle116 closed-threshold proof record",
-                "short": "ABF printed closed threshold at delta = 125/256.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 262,
-                "badSlopes": "52747567092",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "proof record",
-                "radiusLabel": "125/256",
-                "proof": "Cycle116 agreement-262 transfer reaches the printed ABF closed support threshold. The weaker >2^-128 gate is independently unconditional via the moving-root tangent floor, which gives LD_sw(C,262) >= n-a+1 = 251 >= 7 with no Cycle84 census input.",
-                "nonclaims": "The >2^-128 gate and delta*_C <= 125/256 conclusion are unconditional via the tangent floor; the printed 52,747,567,092 numerator and ~2^-95 density still import the Cycle84 finite count. Not ordinary list decoding; not protocol soundness; not exact delta*_C.",
-                "links": [
-                      {
-                            "label": "Cycle120 scope note",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_cycle120_abf_counterexample_candidate.md"
-                      },
-                      {
-                            "label": "Tangent gate audit",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/audits/audit_prize_gate_unconditional_via_tangent.md"
-                      }
-                ],
-                "authors": "DannyExperiments / AllenGrahamHart / Codex audit"
-          },
-          {
-                "id": "cycle119",
-                "title": "Cycle119 strict263 proof record",
-                "short": "Two-ended upgrade with one-symbol strict margin.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 263,
-                "badSlopes": "52747567092",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "proof record",
-                "radiusLabel": "249/512",
-                "proof": "Two-ended locator theorem: common top-six coefficients plus common nonzero constant coefficient. The weaker strict >2^-128 gate is independently unconditional via the moving-root tangent floor, which gives LD_sw(C,263) >= n-a+1 = 250 >= 7.",
-                "nonclaims": "The strict >2^-128 gate and delta*_C <= 249/512 conclusion are unconditional via the tangent floor; the exact 52,747,567,092 numerator and ~2^-95 density still import the Cycle84 finite count. Finite/source-scoped; not an official prize solve by itself.",
-                "links": [
-                      {
-                            "label": "Cycle119 review",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_cycle119_strict263_admissibility_review.md"
-                      },
-                      {
-                            "label": "Standalone LDsw note",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_cycle120_standalone_ldsw_proof.md"
-                      },
-                      {
-                            "label": "Tangent gate audit",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/audits/audit_prize_gate_unconditional_via_tangent.md"
-                      }
-                ],
-                "authors": "DannyExperiments / AllenGrahamHart / Codex audit"
-          },
-          {
-                "id": "strict264-min",
-                "title": "Strict264 quotient-floor proof record",
-                "short": "Quotient-core entropy plus deep-point conversion gives at least nine bad slopes.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 264,
-                "badSlopes": "9",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "proof record",
-                "radiusLabel": "31/64",
-                "proof": "Quotient map x -> x^8 on |H|=512 gives an augmented C+ list of size binom(64,33); deep-point conversion yields at least nine support-wise noncontained slopes at agreement 264.",
-                "nonclaims": "Quotient-core mechanism record superseded as a lower-bound frontier by the generic tangent floor, which gives LD_sw(C,264) >= 249.",
-                "links": [
-                      {
-                            "label": "Strict264 quotient floor",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict264/strict264_quotient_floor.md"
-                      },
-                      {
-                            "label": "Entropy MCA package",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict264/entropy_mca_new_results.md"
-                      }
-                ],
-                "authors": "RS-MCA strict264 notes / Codex audit"
-          },
-          {
-                "id": "tangent506-exact-gate",
-                "title": "High-agreement tangent exact gate",
-                "short": "Tangent-star classification pins the finite-slope threshold at agreements 506/507.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 506,
-                "badSlopes": "7",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "exact gate",
-                "radiusLabel": "3/256",
-                "proof": "Generic moving-root tangent floor gives LD_sw(C,a) >= n-a+1 for all k+1 <= a <= n; the common residual budget proves equality when 3a-2n >= k, and the tangent-star refinement classifies extremizers. For n=512,k=256 this gives LD_sw(C,506)=7 and LD_sw(C,507)=6, with no seventh finite-slope branch at a>=507.",
-                "nonclaims": "Finite-slope support-wise MCA convention for this row; adjacent high-agreement CA/projective/curve/list ledgers are recorded separately, and protocol/folding/query/challenge-field losses remain conditional.",
-                "links": [
-                      {
-                            "label": "Finite-row threshold note",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/thresholds/f17_32_finite_mca_threshold.pdf"
-                      },
-                      {
-                            "label": "Pure MCA scanner report",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.md"
-                      },
-                      {
-                            "label": "Adjacent ledgers summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/adjacent-ledgers/high_agreement_adjacent_ledgers_summary.md"
-                      },
-                      {
-                            "label": "Generalized ledgers summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/generalized-ledgers/generalized_high_agreement_ledgers_summary.md"
-                      },
-                      {
-                            "label": "Tangent-star summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent-star/tangent_star_no_nontangent_summary.md"
-                      },
-                      {
-                            "label": "Tangent-star verifier",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent-star/verify_tangent_star_threshold.py"
-                      },
-                      {
-                            "label": "Tangent staircase summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent/tangent_staircase_summary.md"
-                      }
-                ],
-                "authors": "tangent-star notes / Codex audit"
-          },
-          {
-                "id": "prime-a425-a426-adjacent-gate",
-                "title": "Prime-field A425/A426 adjacent threshold row",
-                "short": "Two-core coverage plus the tangent floor pins the finite-slope gate at A=425/426 for a smooth prime-field row.",
-                "row": "RS[F_p,H,256], p=22275*2^120+1",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 425,
-                "badSlopes": "88",
-                "q": "29608553606109001068932302267744675430401",
-                "status": "proved",
-                "tag": "proved",
-                "label": "exact finite-slope gate",
-                "radiusLabel": "87/512",
-                "proof": "PR #204 proves the two-core upper bound LD_sw(RS[F,D,256],426) <= 87 for every 512-point domain, while the moving-root tangent witness gives LD_sw(C,426)=87 and LD_sw(C,425)>=88. For p=22275*2^120+1, p is 1 mod 512 and 87*2^128 < p < 88*2^128, so A=426 is safe and A=425 is the first unsafe closed-grid finite-slope point.",
-                "nonclaims": "Finite-slope support-wise MCA / LD_sw object only. This is not ordinary list decoding, not protocol soundness, and not a statement about the F_17^32 row.",
-                "links": [
-                      {
-                            "label": "A426 exact threshold note",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/a426_two_core_exact_threshold_v26.md"
-                      },
-                      {
-                            "label": "A425 unsafe fallback",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/a425_second_pin_unsafe.md"
-                      },
-                      {
-                            "label": "A426 certificate data",
-                            "href": "https://github.com/przchojecki/rs-mca/tree/main/experimental/data/certificates/a426-two-core-exact-threshold-v26"
-                      }
-                ],
-                "authors": "Vadim Avdeev / AllenGrahamHart / Codex audit"
-          },
-          {
-                "id": "strict352-quotient-core",
-                "title": "Strict352 quotient-core proof record",
-                "short": "Dyadic quotient-core floors give at least seven bad slopes through agreement 352.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 352,
-                "badSlopes": "16",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "proof record",
-                "radiusLabel": "5/16",
-                "proof": "Dyadic quotient maps x -> x^c with c in {4,8,16,32}, quotient-prefix pigeonholing, and quantitative deep-point conversion give LD_sw(C,a) >= 7 for 264 <= a <= 352, with LD_sw(C,352) >= 16.",
-                "nonclaims": "Quotient-core mechanism record superseded as a lower-bound frontier by the generic tangent floor, which gives LD_sw(C,352) >= 161 and LD_sw(C,353) >= 160.",
-                "links": [
-                      {
-                            "label": "Strict352 summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict352/strict352_quotient_core_summary.md"
-                      },
-                      {
-                            "label": "Strict352 verifier",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict352/verify_strict352_quotient_core.py"
-                      }
-                ],
-                "authors": "RS-MCA strict352 notes / Codex audit"
-          },
-          {
-                "id": "strict264-2187",
-                "title": "Strict264 2187-slope candidate",
-                "short": "Candidate subpacket shape if the hinted strict264 target is validated.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 264,
-                "badSlopes": "2187",
-                "q": "17^32",
-                "status": "candidate",
-                "tag": "candidate",
-                "label": "candidate",
-                "radiusLabel": "31/64",
-                "proof": "Candidate target; requires independent theorem and admissibility audit.",
-                "nonclaims": "Do not cite as proved without a proof record.",
-                "authors": "DannyExperiments / Codex audit"
-          },
-          {
-                "id": "reserve272",
-                "title": "Reserve-scale sigma = 16 (proved, subsumed)",
-                "short": "Deeper finite-slack rung, now subsumed by proved tangent and strict352 floors.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 272,
-                "badSlopes": "241",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "subsumed proof record",
-                "radiusLabel": "15/32",
-                "proof": "The moving-root tangent floor gives LD_sw(C,272) >= n-a+1 = 241; strict352 also gives a much larger quotient-core lower bound through this agreement. Since floor(17^32/2^128)=6, this clears the prize gate without a special reserve272 search.",
-                "nonclaims": "Subsumed lower-bound row, not an independent reserve-scale mechanism. Finite-slope support-wise MCA convention.",
-                "links": [
-                      {
-                            "label": "Reserve subsumption note",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_reserve_subsumed_by_strict352.md"
-                      },
-                      {
-                            "label": "Tangent staircase summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent/tangent_staircase_summary.md"
-                      }
-                ],
-                "authors": "AllenGrahamHart / Claude / Codex audit"
-          },
-          {
-                "id": "reserve288",
-                "title": "Reserve-scale sigma = 32 (proved, subsumed)",
-                "short": "Deeper below capacity, now subsumed by proved tangent and strict352 floors.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 288,
-                "badSlopes": "225",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "subsumed proof record",
-                "radiusLabel": "7/16",
-                "proof": "The moving-root tangent floor gives LD_sw(C,288) >= n-a+1 = 225; strict352 also covers this agreement. Since floor(17^32/2^128)=6, this clears the prize gate.",
-                "nonclaims": "Subsumed lower-bound row, not an independent reserve-scale mechanism. Finite-slope support-wise MCA convention.",
-                "links": [
-                      {
-                            "label": "Reserve subsumption note",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_reserve_subsumed_by_strict352.md"
-                      },
-                      {
-                            "label": "Strict352 summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict352/strict352_quotient_core_summary.md"
-                      }
-                ],
-                "authors": "AllenGrahamHart / Claude / Codex audit"
-          },
-          {
-                "id": "reserve313",
-                "title": "n/log n scale sigma ~= 57 (proved, subsumed)",
-                "short": "Closer to the local-limit reserve scale, now covered by proved lower floors.",
-                "row": "RS[F_17^32,H,256]",
-                "n": 512,
-                "k": 256,
-                "rho": 0.5,
-                "agreement": 313,
-                "badSlopes": "200",
-                "q": "17^32",
-                "status": "proved",
-                "tag": "proved",
-                "label": "subsumed proof record",
-                "radiusLabel": "199/512",
-                "proof": "The moving-root tangent floor gives LD_sw(C,313) >= n-a+1 = 200; strict352 also covers this agreement. Since floor(17^32/2^128)=6, this clears the prize gate.",
-                "nonclaims": "Subsumed lower-bound row, not an independent n/log n local-limit theorem. Finite-slope support-wise MCA convention.",
-                "links": [
-                      {
-                            "label": "Reserve subsumption note",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_reserve_subsumed_by_strict352.md"
-                      },
-                      {
-                            "label": "Tangent staircase summary",
-                            "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent/tangent_staircase_summary.md"
-                      }
-                ],
-                "authors": "AllenGrahamHart / Claude / Codex audit"
-          }
-    ];
-    const fallbackUpdatesRaw = [
     {
-        "date": "2026-07-13",
-        "status": "exact-threshold draft",
-        "author": "Przemek Chojecki / Codex audit",
-        "title": "Reed--Solomon MCA Thresholds draft added",
-        "summary": "A cleaner exact-threshold paper now packages the CA/sparse decomposition, exact deep and quadratic MCA staircases, certified Proth prime rows at all four official rates, the F_17^32 6/7 gate, smooth/circle transports, and target-aware certificate formulas.",
-        "impact": "Read this before the older frontiers draft for exact finite threshold work. It does not delete the broader frontiers machinery; profile-envelope and cell-budget material still lives in asymptotic_rs_mca_frontiers.tex.",
-        "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/rs_mca_thresholds.tex"
+        "id": "tangent257-lower-floor",
+        "title": "Tangent lower-floor capacity-edge row",
+        "short": "Generic moving-root tangent floor gives 256 bad slopes one step below capacity.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 257,
+        "badSlopes": "256",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "theorem-backed scanner row",
+        "radiusLabel": "255/512",
+        "proof": "The generic moving-root tangent floor gives LD_sw(C,a) >= n-a+1 for all k+1 <= a <= n. At a=257 this gives at least 256 support-wise MCA bad finite slopes, and the certificate scanner verifies 256/17^32 > 2^-128.",
+        "nonclaims": "Finite-slope support-wise MCA lower floor only; not an exact threshold, not ordinary list decoding, and not protocol soundness.",
+        "links": [
+            {
+                "label": "Tangent staircase summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent/tangent_staircase_summary.md"
+            },
+            {
+                "label": "Scanner report",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/outputs/f17_512.report.md"
+            }
+        ],
+        "authors": "tangent staircase notes / Codex audit"
     },
     {
-        "date": "2026-07-04",
-        "status": "experimental v13 identity frontier",
+        "id": "cycle116",
+        "title": "Cycle116 closed-threshold proof record",
+        "short": "ABF printed closed threshold at delta = 125/256.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 262,
+        "badSlopes": "52747567092",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "proof record",
+        "radiusLabel": "125/256",
+        "proof": "Cycle116 agreement-262 transfer reaches the printed ABF closed support threshold. The weaker >2^-128 gate is independently unconditional via the moving-root tangent floor, which gives LD_sw(C,262) >= n-a+1 = 251 >= 7 with no Cycle84 census input.",
+        "nonclaims": "The >2^-128 gate and delta*_C <= 125/256 conclusion are unconditional via the tangent floor; the printed 52,747,567,092 numerator and ~2^-95 density still import the Cycle84 finite count. Not ordinary list decoding; not protocol soundness; not exact delta*_C.",
+        "links": [
+            {
+                "label": "Cycle120 scope note",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_cycle120_abf_counterexample_candidate.md"
+            },
+            {
+                "label": "Tangent gate audit",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/audits/audit_prize_gate_unconditional_via_tangent.md"
+            }
+        ],
+        "authors": "DannyExperiments / AllenGrahamHart / Codex audit"
+    },
+    {
+        "id": "cycle119",
+        "title": "Cycle119 strict263 proof record",
+        "short": "Two-ended upgrade with one-symbol strict margin.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 263,
+        "badSlopes": "52747567092",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "proof record",
+        "radiusLabel": "249/512",
+        "proof": "Two-ended locator theorem: common top-six coefficients plus common nonzero constant coefficient. The weaker strict >2^-128 gate is independently unconditional via the moving-root tangent floor, which gives LD_sw(C,263) >= n-a+1 = 250 >= 7.",
+        "nonclaims": "The strict >2^-128 gate and delta*_C <= 249/512 conclusion are unconditional via the tangent floor; the exact 52,747,567,092 numerator and ~2^-95 density still import the Cycle84 finite count. Finite/source-scoped; not an official prize solve by itself.",
+        "links": [
+            {
+                "label": "Cycle119 review",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_cycle119_strict263_admissibility_review.md"
+            },
+            {
+                "label": "Standalone LDsw note",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_cycle120_standalone_ldsw_proof.md"
+            },
+            {
+                "label": "Tangent gate audit",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/audits/audit_prize_gate_unconditional_via_tangent.md"
+            }
+        ],
+        "authors": "DannyExperiments / AllenGrahamHart / Codex audit"
+    },
+    {
+        "id": "strict264-min",
+        "title": "Strict264 quotient-floor proof record",
+        "short": "Quotient-core entropy plus deep-point conversion gives at least nine bad slopes.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 264,
+        "badSlopes": "9",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "proof record",
+        "radiusLabel": "31/64",
+        "proof": "Quotient map x -> x^8 on |H|=512 gives an augmented C+ list of size binom(64,33); deep-point conversion yields at least nine support-wise noncontained slopes at agreement 264.",
+        "nonclaims": "Quotient-core mechanism record superseded as a lower-bound frontier by the generic tangent floor, which gives LD_sw(C,264) >= 249.",
+        "links": [
+            {
+                "label": "Strict264 quotient floor",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict264/strict264_quotient_floor.md"
+            },
+            {
+                "label": "Entropy MCA package",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict264/entropy_mca_new_results.md"
+            }
+        ],
+        "authors": "RS-MCA strict264 notes / Codex audit"
+    },
+    {
+        "id": "tangent506-exact-gate",
+        "title": "High-agreement tangent exact gate",
+        "short": "Tangent-star classification pins the finite-slope threshold at agreements 506/507.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 506,
+        "badSlopes": "7",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "exact gate",
+        "radiusLabel": "3/256",
+        "proof": "Generic moving-root tangent floor gives LD_sw(C,a) >= n-a+1 for all k+1 <= a <= n; the common residual budget proves equality when 3a-2n >= k, and the tangent-star refinement classifies extremizers. For n=512,k=256 this gives LD_sw(C,506)=7 and LD_sw(C,507)=6, with no seventh finite-slope branch at a>=507.",
+        "nonclaims": "Finite-slope support-wise MCA convention for this row; adjacent high-agreement CA/projective/curve/list ledgers are recorded separately, and protocol/folding/query/challenge-field losses remain conditional.",
+        "links": [
+            {
+                "label": "Finite-row threshold note",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/thresholds/f17_32_finite_mca_threshold.pdf"
+            },
+            {
+                "label": "Pure MCA scanner report",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.md"
+            },
+            {
+                "label": "Adjacent ledgers summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/adjacent-ledgers/high_agreement_adjacent_ledgers_summary.md"
+            },
+            {
+                "label": "Generalized ledgers summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/generalized-ledgers/generalized_high_agreement_ledgers_summary.md"
+            },
+            {
+                "label": "Tangent-star summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent-star/tangent_star_no_nontangent_summary.md"
+            },
+            {
+                "label": "Tangent-star verifier",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent-star/verify_tangent_star_threshold.py"
+            },
+            {
+                "label": "Tangent staircase summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent/tangent_staircase_summary.md"
+            }
+        ],
+        "authors": "tangent-star notes / Codex audit"
+    },
+    {
+        "id": "prime-a425-a426-adjacent-gate",
+        "title": "Prime-field A425/A426 adjacent threshold row",
+        "short": "Two-core coverage plus the tangent floor pins the finite-slope gate at A=425/426 for a smooth prime-field row.",
+        "row": "RS[F_p,H,256], p=22275*2^120+1",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 425,
+        "badSlopes": "88",
+        "q": "29608553606109001068932302267744675430401",
+        "status": "proved",
+        "tag": "proved",
+        "label": "exact finite-slope gate",
+        "radiusLabel": "87/512",
+        "proof": "PR #204 proves the two-core upper bound LD_sw(RS[F,D,256],426) <= 87 for every 512-point domain, while the moving-root tangent witness gives LD_sw(C,426)=87 and LD_sw(C,425)>=88. For p=22275*2^120+1, p is 1 mod 512 and 87*2^128 < p < 88*2^128, so A=426 is safe and A=425 is the first unsafe closed-grid finite-slope point.",
+        "nonclaims": "Finite-slope support-wise MCA / LD_sw object only. This is not ordinary list decoding, not protocol soundness, and not a statement about the F_17^32 row.",
+        "links": [
+            {
+                "label": "A426 exact threshold note",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/a426_two_core_exact_threshold_v26.md"
+            },
+            {
+                "label": "A425 unsafe fallback",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/a425_second_pin_unsafe.md"
+            },
+            {
+                "label": "A426 certificate data",
+                "href": "https://github.com/przchojecki/rs-mca/tree/main/experimental/data/certificates/a426-two-core-exact-threshold-v26"
+            }
+        ],
+        "authors": "Vadim Avdeev / AllenGrahamHart / Codex audit"
+    },
+    {
+        "id": "strict352-quotient-core",
+        "title": "Strict352 quotient-core proof record",
+        "short": "Dyadic quotient-core floors give at least seven bad slopes through agreement 352.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 352,
+        "badSlopes": "16",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "proof record",
+        "radiusLabel": "5/16",
+        "proof": "Dyadic quotient maps x -> x^c with c in {4,8,16,32}, quotient-prefix pigeonholing, and quantitative deep-point conversion give LD_sw(C,a) >= 7 for 264 <= a <= 352, with LD_sw(C,352) >= 16.",
+        "nonclaims": "Quotient-core mechanism record superseded as a lower-bound frontier by the generic tangent floor, which gives LD_sw(C,352) >= 161 and LD_sw(C,353) >= 160.",
+        "links": [
+            {
+                "label": "Strict352 summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict352/strict352_quotient_core_summary.md"
+            },
+            {
+                "label": "Strict352 verifier",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict352/verify_strict352_quotient_core.py"
+            }
+        ],
+        "authors": "RS-MCA strict352 notes / Codex audit"
+    },
+    {
+        "id": "strict264-2187",
+        "title": "Strict264 2187-slope candidate",
+        "short": "Candidate subpacket shape if the hinted strict264 target is validated.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 264,
+        "badSlopes": "2187",
+        "q": "17^32",
+        "status": "candidate",
+        "tag": "candidate",
+        "label": "candidate",
+        "radiusLabel": "31/64",
+        "proof": "Candidate target; requires independent theorem and admissibility audit.",
+        "nonclaims": "Do not cite as proved without a proof record.",
+        "authors": "DannyExperiments / Codex audit"
+    },
+    {
+        "id": "reserve272",
+        "title": "Reserve-scale sigma = 16 (proved, subsumed)",
+        "short": "Deeper finite-slack rung, now subsumed by proved tangent and strict352 floors.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 272,
+        "badSlopes": "241",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "subsumed proof record",
+        "radiusLabel": "15/32",
+        "proof": "The moving-root tangent floor gives LD_sw(C,272) >= n-a+1 = 241; strict352 also gives a much larger quotient-core lower bound through this agreement. Since floor(17^32/2^128)=6, this clears the prize gate without a special reserve272 search.",
+        "nonclaims": "Subsumed lower-bound row, not an independent reserve-scale mechanism. Finite-slope support-wise MCA convention.",
+        "links": [
+            {
+                "label": "Reserve subsumption note",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_reserve_subsumed_by_strict352.md"
+            },
+            {
+                "label": "Tangent staircase summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent/tangent_staircase_summary.md"
+            }
+        ],
+        "authors": "AllenGrahamHart / Claude / Codex audit"
+    },
+    {
+        "id": "reserve288",
+        "title": "Reserve-scale sigma = 32 (proved, subsumed)",
+        "short": "Deeper below capacity, now subsumed by proved tangent and strict352 floors.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 288,
+        "badSlopes": "225",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "subsumed proof record",
+        "radiusLabel": "7/16",
+        "proof": "The moving-root tangent floor gives LD_sw(C,288) >= n-a+1 = 225; strict352 also covers this agreement. Since floor(17^32/2^128)=6, this clears the prize gate.",
+        "nonclaims": "Subsumed lower-bound row, not an independent reserve-scale mechanism. Finite-slope support-wise MCA convention.",
+        "links": [
+            {
+                "label": "Reserve subsumption note",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_reserve_subsumed_by_strict352.md"
+            },
+            {
+                "label": "Strict352 summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/strict352/strict352_quotient_core_summary.md"
+            }
+        ],
+        "authors": "AllenGrahamHart / Claude / Codex audit"
+    },
+    {
+        "id": "reserve313",
+        "title": "n/log n scale sigma ~= 57 (proved, subsumed)",
+        "short": "Closer to the local-limit reserve scale, now covered by proved lower floors.",
+        "row": "RS[F_17^32,H,256]",
+        "n": 512,
+        "k": 256,
+        "rho": 0.5,
+        "agreement": 313,
+        "badSlopes": "200",
+        "q": "17^32",
+        "status": "proved",
+        "tag": "proved",
+        "label": "subsumed proof record",
+        "radiusLabel": "199/512",
+        "proof": "The moving-root tangent floor gives LD_sw(C,313) >= n-a+1 = 200; strict352 also covers this agreement. Since floor(17^32/2^128)=6, this clears the prize gate.",
+        "nonclaims": "Subsumed lower-bound row, not an independent n/log n local-limit theorem. Finite-slope support-wise MCA convention.",
+        "links": [
+            {
+                "label": "Reserve subsumption note",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_reserve_subsumed_by_strict352.md"
+            },
+            {
+                "label": "Tangent staircase summary",
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/data/tangent/tangent_staircase_summary.md"
+            }
+        ],
+        "authors": "AllenGrahamHart / Claude / Codex audit"
+    },
+    {
+        "agreement": 406,
+        "authors": "Vadim Avdeev / Codex audit",
+        "badSlopes": "107",
+        "id": "prime-a406-a407-adjacent-gate",
+        "k": 256,
+        "label": "exact finite-slope gate",
+        "links": [
+            {
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_a407_a408_residual_design_threshold_v1.md",
+                "label": "A407/A408 residual-design threshold note"
+            },
+            {
+                "href": "https://github.com/przchojecki/rs-mca/tree/main/experimental/data/certificates/m1-a407-a408-residual-design-threshold-v1",
+                "label": "A407/A408 certificate data"
+            },
+            {
+                "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/outputs/m1_a407_a408_residual_design_threshold_v1.report.md",
+                "label": "Scanner report"
+            }
+        ],
+        "n": 512,
+        "nonclaims": "Finite-slope support-wise MCA / LD_sw only. Not ordinary list decoding, not interleaved-list safety, not protocol soundness, not an exact A406 value, and not based on the false global RNC Fano-line route.",
+        "proof": "The residual-design sweep proves LD_sw(RS[F,D,256],407)=106 and LD_sw(RS[F,D,256],408)=105 for every 512-point RS domain. The moving-root tangent witness gives LD_sw(C,406)>=107. For p=27168*2^120+1, p is prime, p is 1 mod 512, and 106*2^128 < p < 107*2^128, so A=407 is safe and A=406 is the first unsafe closed-grid finite-slope point.",
+        "q": "36112466189484594435050630213696401440769",
+        "radiusLabel": "53/256",
+        "rho": 0.5,
+        "row": "RS[F_p,H,256], p=27168*2^120+1",
+        "short": "Residual-design sweep plus the tangent floor pins a new finite-slope gate 19 grid points below the A425/A426 row.",
+        "status": "proved",
+        "tag": "proved",
+        "title": "Prime-field A406/A407 adjacent threshold row"
+    }
+];
+    const fallbackUpdatesRaw = [
+    {
+        "date": "2026-07-15",
+        "status": "proved exact MCA thresholds / independently audited",
+        "author": "Przemek Chojecki / independent theorem-chain and certificate audits",
+        "title": "Certified Proth rows solve the MCA target at all four official rates",
+        "summary": "For rho in {1/2,1/4,1/8,1/16}, k=2^40 and explicit Proth primes p<2^256, the full-field affine MCA safe sets are exactly [0,B/n), with B values 389500552609, 1210584858040, 2879806199253, and 6233898019554. The endpoint B/n is unsafe in every row.",
+        "impact": "One exact support-wise MCA row is added to each official-rate leaderboard. The audit checks the mean-overlap staircase, tangent floor, target-window compiler, and half-open endpoint conversion; the arithmetic packet passes 143/143 checks and all 12 mutation tests. This does not prove list decoding or protocol soundness, promote the result into Paper D, or make a priority claim.",
+        "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/rs_mca_thresholds.tex#L409-L463"
+    },
+    {
+        "date": "2026-07-15",
+        "status": "board reconciliation / no new theorem",
+        "author": "Scott Hughes / board audit",
+        "title": "Rate board reconciled with integrated exact frontiers",
+        "summary": "The rate-half board now records the corrected KoalaBear MCA unsafe edge at agreement 1116047 with 1116048 open, and mirrors the proved A406/A407 prime-field gate already present on the frontier board. The missing-piece labels now record that restriction of scalars absorbs the independent F1 lift into the base-field interleaved M1 ledger.",
+        "impact": "This is source and status hygiene, not a new theorem: it does not certify the KoalaBear safe side, promote the four Proth rows, merge MCA with list decoding, or remove the remaining L1/M1 work.",
+        "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/audits/audit_koalabear_frontier_adjacent_ledger.md"
+    },
+    {
+        "date": "2026-07-05",
+        "status": "PR integration / conditional imports and finite anchors",
+        "author": "Vadim Avdeev, latifkasuli, DannyExperiments, LegaSage/Ken Webster / Codex audit",
+        "title": "Johnson-import audits, sparse witnesses, and Lean staircase anchors integrated",
+        "summary": "PRs #271-#280 add conditional BCHKS25/Hab25 KoalaBear safe-edge audits, proof-audited corridor safe-edge imports for clean-rate rows, MCA-vs-CA sparse-layer toy structure, a seven-slope CCL/TDD split, paid-ledger replay repairs, a k=1 sparse-census counterexample family, an F_11 affine-shear eca/emca staircase, a deployed-shaped F_17^32 sparse moving-zero witness, and a Lean finite anchor for the (7,6,3) EMCA staircase.",
+        "impact": "No conditional or toy packet is promoted as a proved Paper D theorem row. The useful effect is sharper audit infrastructure for the adjacent-staircase program: external Johnson imports are status-labelled, sparse residual behavior has new finite anchors, and certificate replay hygiene improved.",
+        "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/agents-log.md"
+    },
+    {
+        "date": "2026-07-05",
+        "status": "experimental v13 corrected identity frontier",
         "author": "Przemek Chojecki / Codex audit",
-        "title": "Identity-prefix KoalaBear frontier edge added",
-        "summary": "The CAP25 v13 experimental source now uses the c=1 identity-prefix floor, superseding the c=2 addendum. The deployed KoalaBear sextic MCA unsafe edge improves from 15331/32768 to 981109/2097152, with the exact checker reporting a +25.7 bit margin over the 2^-128 target.",
-        "impact": "This appears on the rho=1/2 MCA board as experimental v13 material. It is not promoted to the active Paper D v12 draft; the adjacent safe-side agreement 1116044 still needs an exact upper ledger.",
-        "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/cap25_v13_experimental.tex"
+        "title": "Identity-prefix KoalaBear frontier edge corrected",
+        "summary": "The direct composition of the merged identity-prefix floor and quantitative deep-list floor proves the deployed KoalaBear sextic MCA row unsafe through agreement 1116047. The certified unsafe edge is 981105/2097152 with a +8.9777-bit margin, and agreement 1116048 is the new open step.",
+        "impact": "This remains experimental v13 raw material and is not promoted to Paper D v12. The correction strengthens only the unsafe side; agreement 1116048 still needs an exact complete upper ledger.",
+        "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/cap25_cap_v13_raw.tex"
     },
     {
         "date": "2026-07-03",
@@ -1623,6 +1674,15 @@
         "summary": "PR #204 adds a two-core upper bound proving LD_sw(RS[F,D,256],426)=87 for every 512-point domain, and PR #208 records the direct A=425 unsafe witness. For p=22275*2^120+1, p is 1 mod 512 and 87*2^128 < p < 88*2^128, giving an adjacent finite-slope support-wise MCA gate for the smooth prime-field row.",
         "impact": "This is a new exact finite-slope threshold row on the public frontier. It does not claim ordinary list decoding, protocol soundness, or anything about the F_17^32 denominator row. Allen authored most of the surrounding batch: DAG maintenance, quotient-census and compiler infrastructure, Conjecture F/M1/L1/F1/M5 proof-program packets, Lean certification-map updates, and the A425 unsafe fallback. The CAP25 sparse-sigma audit is from DannyExperiments/Gia.",
         "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/a426_two_core_exact_threshold_v26.md"
+    },
+    {
+        "author": "Vadim Avdeev / Codex audit",
+        "date": "2026-07-03",
+        "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_a407_a408_residual_design_threshold_v1.md",
+        "impact": "Moves the prime-field rate-1/2 finite-slope MCA gate from A425/A426 down to A406/A407 for a smooth budget-106 prime row; deliberately does not claim A406 exactness or M1 closure.",
+        "status": "proved threshold row / M1 residual design",
+        "summary": "The A409 residual-design method proves exact support-wise finite-slope numerators LD_sw(408)=105 and LD_sw(407)=106 for every 512-point rate-half RS domain. For the prime p=27168*2^120+1, this pins a new adjacent finite-slope MCA gate: A=407 is safe and A=406 is unsafe.",
+        "title": "A407/A408 residual-design exact rows and budget-106 gate"
     },
     {
         "date": "2026-07-02",
@@ -1635,21 +1695,30 @@
     },
     {
         "date": "2026-07-02",
-        "status": "paper promotion / v12 audit focus",
+        "status": "paper promotion / audit focus",
         "author": "Przemek Chojecki / Codex audit",
         "title": "Paper D v12 is the main submission reference",
         "summary": "Paper D v12 supersedes v10/v11 as the active cap draft and is now the main Proximity Prize submission reference. It keeps the self-contained cap route and adds the safe-side pincer, deployed-row two-sided intervals, map/rational smooth extensions, circle/genus-one transports, explicit witness machinery, optimized failure profile, and certificate grammar v2.",
-        "impact": "The current project focus is auditing v12: direct conversion and radius conventions, optional BCIKS half-distance import, exact-integer certificate replay, and deployed model transfers.",
+        "impact": "The current project focus is auditing v12: direct conversion and radius conventions, optional BCIKS half-distance import, exact-integer certificate replay, and deployed model transfers. Its exact restriction-of-scalars theorem also shows that F1 extension lines are not an independent board bucket but route to base-field interleaved ledgers; the resulting M1/interleaved residual band remains open.",
         "href": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v12.tex"
+    },
+    {
+        "date": "2026-06-30",
+        "status": "paper promotion / Hankel certificate atlas",
+        "author": "Przemek Chojecki / Codex audit",
+        "title": "Paper D v9 adds the aperiodic Hankel chart atlas",
+        "summary": "Paper D v9 preserves the v8 universal, first-grid, quotient-support, and quotient-image ledgers, then adds a certificate atlas for the aperiodic safe-side MCA task: regular Hankel minors, affine pivots, projective infinity, curve pivots, and named singular residual buckets.",
+        "impact": "This is proof-program infrastructure for building Hankel eliminant certificates. It is not a new numerical leaderboard row and does not close M1 by itself.",
+        "href": "https://github.com/przchojecki/rs-mca/blob/main/archived/cs25_cap_v9.tex"
     },
     {
         "date": "2026-06-30",
         "status": "paper promotion / quotient ledger audit",
         "author": "Przemek Chojecki / Codex audit",
-        "title": "Paper D v12 keeps quotient support and image ledgers",
-        "summary": "Paper D v12 preserves the universal and first-grid MCA caps, keeps conservative quotient-support plus exact quotient image ledgers, and adds extension and canonical regular-Hankel ledgers for branch accounting.",
-        "impact": "The public Paper D cap rows now cite v12 and use PROVED_PAPERD_V12_CAP / PROVED_PAPERD_V12_FIRST_GRID. The quotient and Hankel ledgers are proof-program infrastructure, not a new numeric leaderboard row or a full safe-side M1 theorem.",
-        "href": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v12.tex"
+        "title": "Paper D v8 adds quotient support and image ledgers",
+        "summary": "Paper D v8 preserves the v7 universal and first-grid MCA caps, restores the endpoint/q>n fixes, and adds conservative quotient-support plus exact quotient image ledgers for line, projective-line, curve, and interleaved-list branch accounting.",
+        "impact": "Archived milestone. The active Paper D cap rows now cite v12; the v8 quotient ledgers remain useful provenance for the proof-program infrastructure, not a standalone safe-side M1 theorem.",
+        "href": "https://github.com/przchojecki/rs-mca/blob/main/archived/cs25_cap_v8.tex"
     },
     {
         "date": "2026-06-29",
@@ -1719,7 +1788,7 @@
         "status": "PROVED_PAPERD_V12_CAP rows",
         "author": "Codex scanner audit",
         "title": "Prime192 scanner rows instantiate Paper D v12 across all four rates",
-        "summary": "The leaderboard_sweep_192 packet contributes four concrete q\u22482^192 smooth subgroup rows with k=2^40, one for each official rate, plus a small F_17^32 Paper D example. They instantiate the proved Paper D v12 cap with exact primes q = 1 mod n and +87 bit margins on the prime192 rows.",
+        "summary": "The leaderboard_sweep_192 packet contributes four concrete q≈2^192 smooth subgroup rows with k=2^40, one for each official rate, plus a small F_17^32 Paper D example. They instantiate the proved Paper D v12 cap with exact primes q = 1 mod n and +87 bit margins on the prime192 rows.",
         "impact": "These are scanner-backed examples of the Paper D v12 cap, not new theorems beyond Paper D and not explicit slope censuses. The scanner verifies the divisor, binomial, and field ledgers for each displayed cap row.",
         "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/outputs/leaderboard_sweep_192/site_candidate_rows.md"
     },
@@ -1993,6 +2062,15 @@
         "summary": "PR #101 adds deep-point/interleaved bridge notes, quotient-reduction notes, prize-path maps, and a small Lean scaffold.",
         "impact": "This gives future agents a cleaner path from experimental notes toward mechanized statements.",
         "href": "https://github.com/przchojecki/rs-mca/tree/main/experimental/lean/rs_mca_formalization"
+    },
+    {
+        "date": "2026-07-04",
+        "status": "experimental v13 identity frontier",
+        "author": "Przemek Chojecki / Codex audit",
+        "title": "Identity-prefix KoalaBear frontier edge added",
+        "summary": "The CAP25 v13 experimental source now uses the c=1 identity-prefix floor, superseding the c=2 addendum. The deployed KoalaBear sextic MCA unsafe edge improves from 15331/32768 to 981109/2097152, with the exact checker reporting a +25.7 bit margin over the 2^-128 target.",
+        "impact": "This appears on the rho=1/2 MCA board as experimental v13 material. It is not promoted to the active Paper D v12 draft; the adjacent safe-side agreement 1116044 still needs an exact upper ledger.",
+        "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/cap25_v13_experimental.tex"
     }
 ];
     const fallbackPapersRaw = [
@@ -2130,6 +2208,54 @@
                     "authors": "Paper D authors / Codex audit"
                 },
                 {
+                    "id": "proth-exact-rho-1-2-n2199023255552",
+                    "title": "Certified Proth exact MCA threshold, rho=1/2",
+                    "rho": "1/2",
+                    "track": "mca",
+                    "trackLabel": "support-wise affine MCA (Gamma=F_p)",
+                    "direction": "exact-finite-slope-gate",
+                    "n": "2199023255552 (=2^41)",
+                    "k": "1099511627776 (=2^40)",
+                    "field": "F_p, p=132540169958804033333249306710494641010898987122689 (certified Proth prime; n | p-1)",
+                    "fieldSizeLog2": 166.502834419,
+                    "domainKind": "multiplicative-subgroup",
+                    "smoothPowerOfTwo": true,
+                    "agreementA": "1809522702943 unsafe / 1809522702944 safe",
+                    "sigma": "710011075167 / 710011075168",
+                    "deltaExact": "389500552609/2199023255552",
+                    "deltaApprox": 0.177124344467757,
+                    "etaExact": "710011075167/2199023255552",
+                    "etaApprox": 0.322875655532243,
+                    "qGen": "132540169958804033333249306710494641010898987122689",
+                    "qLine": "132540169958804033333249306710494641010898987122689",
+                    "qChal": "132540169958804033333249306710494641010898987122689",
+                    "nBad": ">=389500552610 at a=1809522702943; =389500552609 at a=1809522702944",
+                    "bound": "e_mca <= 2^-128 iff floor(delta*n) <= 389500552608",
+                    "failureMarginBits": 3.70396145876e-12,
+                    "marginLabel": "exact B / >=B+1 gate",
+                    "prizeBox": {
+                        "rate": true,
+                        "smoothDomain": true,
+                        "kBound": true,
+                        "fieldBound": true,
+                        "denominatorAudited": true,
+                        "endpointConvention": true,
+                        "publicSource": true,
+                        "conditionalImport": false,
+                        "rhoNIntegral": true
+                    },
+                    "status": "PROVED_EXACT_MCA_THRESHOLD",
+                    "statusLabel": "proved exact full-field MCA threshold",
+                    "source": "Reed-Solomon MCA Thresholds, thm:intro-prize-rows (P1-P3)",
+                    "sourceHref": "https://github.com/przchojecki/rs-mca/blob/main/experimental/rs_mca_thresholds.tex#L409-L463",
+                    "nonClaims": [
+                        "Exact for the full-field affine support-wise MCA sampler Gamma=F_p; not an ordinary-list, interleaved-list, CA, curve-MCA, or protocol-soundness theorem.",
+                        "deltaExact is the unsafe supremum B/n of the half-open safe set [0,B/n); the largest safe grid radius is (B-1)/n.",
+                        "Proved in the experimental exact-threshold manuscript and independently audited, but not promoted into Paper D or externally peer reviewed; no novelty or priority claim is made."
+                    ],
+                    "authors": "Przemek Chojecki / independent theorem-chain and certificate audits"
+                },
+                {
                     "id": "mca-cap-rho-1-2",
                     "title": "Paper D MCA δ* upper cap",
                     "rho": "1/2",
@@ -2230,7 +2356,7 @@
                 },
                 {
                     "id": "cap25-v13-identity-kb-mca-edge",
-                    "title": "CAP25 v13 experimental KoalaBear identity-prefix edge",
+                    "title": "CAP25 v13 raw KoalaBear identity-prefix edge",
                     "rho": "1/2",
                     "track": "mca",
                     "trackLabel": "support-wise MCA",
@@ -2241,18 +2367,18 @@
                     "fieldSizeLog2": 185.93,
                     "domainKind": "multiplicative-subgroup",
                     "smoothPowerOfTwo": true,
-                    "agreementA": "1116043",
-                    "sigma": "67467",
-                    "deltaExact": "981109/2097152",
-                    "deltaApprox": 0.4678292,
-                    "etaExact": "67467/2097152",
-                    "etaApprox": 0.03217077,
+                    "agreementA": "1116047 unsafe / 1116048 open",
+                    "sigma": "67471 / 67472",
+                    "deltaExact": "981105/2097152",
+                    "deltaApprox": 0.46782732009887695,
+                    "etaExact": "67471/2097152",
+                    "etaApprox": 0.03217267990112305,
                     "qGen": "2130706433",
                     "qLine": "2130706433^6",
                     "qChal": "protocol-dependent",
-                    "bound": "epsilon_mca > 2^-128",
-                    "failureMarginBits": 25.7,
-                    "marginLabel": "+25.7 bits",
+                    "bound": "epsilon_mca > 2^-128 at a=1116047",
+                    "failureMarginBits": 8.9777,
+                    "marginLabel": "+8.98 bits at a=1116047",
                     "prizeBox": {
                         "rate": true,
                         "smoothDomain": true,
@@ -2268,12 +2394,13 @@
                     },
                     "status": "EXPERIMENTAL_V13_IDENTITY_FRONTIER",
                     "statusLabel": "experimental v13 identity frontier",
-                    "source": "CAP25 v13 experimental identity frontier",
-                    "sourceHref": "https://github.com/przchojecki/rs-mca/blob/main/experimental/cap25_v13_experimental.tex",
+                    "source": "CAP25 v13 raw corrected identity frontier",
+                    "sourceHref": "https://github.com/przchojecki/rs-mca/blob/main/experimental/cap25_cap_v13_raw.tex",
                     "nonClaims": [
-                        "Experimental v13 source only; not promoted to the active Paper D v12 submission draft.",
-                        "This supersedes the c=2 addendum edge 490557/1048576 and narrows the deployed KoalaBear unsafe edge from 15331/32768 to 981109/2097152, but it does not close the safe-side threshold band.",
-                        "The conjectured adjacent safe agreement is 1116044 and still needs an exact upper ledger; the companion checker verifies the displayed lower edge, not the safe side."
+                        "The exact v13 raw proposition proves the MCA unsafe edge at agreement 1116047; this is a delta* upper cap, not an exact threshold.",
+                        "The identity-prefix lower comparison fails at 1116048 by 22.20 bits, but that only leaves 1116048 open; it does not prove safety there.",
+                        "The KoalaBear list row is separate and remains at 1116046 unsafe / 1116047 open.",
+                        "This v13 raw result is not promoted here into the active exact-threshold manuscript."
                     ],
                     "authors": "Przemek Chojecki / Codex audit"
                 },
@@ -2849,6 +2976,56 @@
                     "authors": "Vadim Avdeev / AllenGrahamHart / Codex audit"
                 },
                 {
+                    "id": "prime-a406-a407-adjacent-gate",
+                    "title": "Prime-field A406/A407 adjacent finite-slope gate",
+                    "rho": "1/2",
+                    "track": "mca",
+                    "trackLabel": "support-wise MCA",
+                    "direction": "exact-finite-slope-gate",
+                    "n": "512",
+                    "k": "256",
+                    "field": "F_p, p=27168*2^120+1",
+                    "fieldSizeLog2": 134.7296,
+                    "domainKind": "multiplicative-subgroup",
+                    "smoothPowerOfTwo": true,
+                    "agreementA": "406 unsafe / 407 safe",
+                    "sigma": "150 / 151",
+                    "deltaExact": "53/256",
+                    "deltaApprox": 0.20703125,
+                    "etaExact": "75/256",
+                    "etaApprox": 0.29296875,
+                    "qGen": "36112466189484594435050630213696401440769",
+                    "qLine": "36112466189484594435050630213696401440769",
+                    "qChal": "not protocol-bound",
+                    "nBad": ">=107 at a=406; =106 at a=407",
+                    "failureMarginBits": 0.011846,
+                    "marginLabel": "exact 106/107 budget gate",
+                    "prizeBox": {
+                        "rate": true,
+                        "smoothDomain": true,
+                        "kBound": true,
+                        "fieldBound": true,
+                        "denominatorAudited": true,
+                        "endpointConvention": true,
+                        "publicSource": true,
+                        "conditionalImport": false,
+                        "rhoNIntegral": true,
+                        "powerOfTwoQuotient": true,
+                        "quotientDivisor": "p == 1 mod 512, so F_p^* has an order-512 subgroup"
+                    },
+                    "status": "exact-gate",
+                    "statusLabel": "exact finite-slope gate",
+                    "source": "A407/A408 residual-design threshold packet",
+                    "sourceHref": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/m1/m1_a407_a408_residual_design_threshold_v1.md",
+                    "nonClaims": [
+                        "Finite-slope support-wise MCA / LD_sw only.",
+                        "LD_sw(C,406) is not classified exactly; only the tangent lower floor >=107 is used at the unsafe endpoint.",
+                        "This is a separate engineered prime-field row, not the F_17^32 or KoalaBear row.",
+                        "Not ordinary list decoding, interleaved-list safety, protocol soundness, or full M1 closure."
+                    ],
+                    "authors": "Vadim Avdeev / Codex audit"
+                },
+                {
                     "id": "strict352-quotient-core",
                     "title": "Strict352 quotient-core proof record",
                     "rho": "1/2",
@@ -2938,7 +3115,7 @@
                     "authors": "DannyExperiments / Codex audit"
                 }
             ],
-            "missingPiece": "L1 / M1 / F1"
+            "missingPiece": "L1 / M1 (including F1 via exact restriction of scalars to base-field interleaved samplers)"
         },
         {
             "rho": "1/4",
@@ -3000,6 +3177,54 @@
                         "The c=1 first-grid proof does not require smoothness, but the public board records it for smooth Proximity Prize rows."
                     ],
                     "authors": "Paper D authors / Codex audit"
+                },
+                {
+                    "id": "proth-exact-rho-1-4-n4398046511104",
+                    "title": "Certified Proth exact MCA threshold, rho=1/4",
+                    "rho": "1/4",
+                    "track": "mca",
+                    "trackLabel": "support-wise affine MCA (Gamma=F_p)",
+                    "direction": "exact-finite-slope-gate",
+                    "n": "4398046511104 (=2^42)",
+                    "k": "1099511627776 (=2^40)",
+                    "field": "F_p, p=411940680852499481698306614369841346700408394874881 (certified Proth prime; n | p-1)",
+                    "fieldSizeLog2": 168.13884135,
+                    "domainKind": "multiplicative-subgroup",
+                    "smoothPowerOfTwo": true,
+                    "agreementA": "3187461653064 unsafe / 3187461653065 safe",
+                    "sigma": "2087950025288 / 2087950025289",
+                    "deltaExact": "1210584858040/4398046511104",
+                    "deltaApprox": 0.275255128608478,
+                    "etaExact": "2087950025288/4398046511104",
+                    "etaApprox": 0.474744871391522,
+                    "qGen": "411940680852499481698306614369841346700408394874881",
+                    "qLine": "411940680852499481698306614369841346700408394874881",
+                    "qChal": "411940680852499481698306614369841346700408394874881",
+                    "nBad": ">=1210584858041 at a=3187461653064; =1210584858040 at a=3187461653065",
+                    "bound": "e_mca <= 2^-128 iff floor(delta*n) <= 1210584858039",
+                    "failureMarginBits": 1.19173391185e-12,
+                    "marginLabel": "exact B / >=B+1 gate",
+                    "prizeBox": {
+                        "rate": true,
+                        "smoothDomain": true,
+                        "kBound": true,
+                        "fieldBound": true,
+                        "denominatorAudited": true,
+                        "endpointConvention": true,
+                        "publicSource": true,
+                        "conditionalImport": false,
+                        "rhoNIntegral": true
+                    },
+                    "status": "PROVED_EXACT_MCA_THRESHOLD",
+                    "statusLabel": "proved exact full-field MCA threshold",
+                    "source": "Reed-Solomon MCA Thresholds, thm:intro-prize-rows (P1-P3)",
+                    "sourceHref": "https://github.com/przchojecki/rs-mca/blob/main/experimental/rs_mca_thresholds.tex#L409-L463",
+                    "nonClaims": [
+                        "Exact for the full-field affine support-wise MCA sampler Gamma=F_p; not an ordinary-list, interleaved-list, CA, curve-MCA, or protocol-soundness theorem.",
+                        "deltaExact is the unsafe supremum B/n of the half-open safe set [0,B/n); the largest safe grid radius is (B-1)/n.",
+                        "Proved in the experimental exact-threshold manuscript and independently audited, but not promoted into Paper D or externally peer reviewed; no novelty or priority claim is made."
+                    ],
+                    "authors": "Przemek Chojecki / independent theorem-chain and certificate audits"
                 },
                 {
                     "id": "mca-cap-rho-1-4",
@@ -3198,7 +3423,7 @@
                     "authors": "leaderboard_sweep_192 scanner / Codex audit"
                 }
             ],
-            "missingPiece": "L1 / M1 / F1"
+            "missingPiece": "L1 / M1 (including F1 via exact restriction of scalars to base-field interleaved samplers)"
         },
         {
             "rho": "1/8",
@@ -3260,6 +3485,54 @@
                         "The c=1 first-grid proof does not require smoothness, but the public board records it for smooth Proximity Prize rows."
                     ],
                     "authors": "Paper D authors / Codex audit"
+                },
+                {
+                    "id": "proth-exact-rho-1-8-n8796093022208",
+                    "title": "Certified Proth exact MCA threshold, rho=1/8",
+                    "rho": "1/8",
+                    "track": "mca",
+                    "trackLabel": "support-wise affine MCA (Gamma=F_p)",
+                    "direction": "exact-finite-slope-gate",
+                    "n": "8796093022208 (=2^43)",
+                    "k": "1099511627776 (=2^40)",
+                    "field": "F_p, p=979947269755402568812854322316630667196565607677953 (certified Proth prime; n | p-1)",
+                    "fieldSizeLog2": 169.389108865,
+                    "domainKind": "multiplicative-subgroup",
+                    "smoothPowerOfTwo": true,
+                    "agreementA": "5916286822955 unsafe / 5916286822956 safe",
+                    "sigma": "4816775195179 / 4816775195180",
+                    "deltaExact": "2879806199253/8796093022208",
+                    "deltaApprox": 0.32739606004418,
+                    "etaExact": "4816775195179/8796093022208",
+                    "etaApprox": 0.54760393995582,
+                    "qGen": "979947269755402568812854322316630667196565607677953",
+                    "qLine": "979947269755402568812854322316630667196565607677953",
+                    "qChal": "979947269755402568812854322316630667196565607677953",
+                    "nBad": ">=2879806199254 at a=5916286822955; =2879806199253 at a=5916286822956",
+                    "bound": "e_mca <= 2^-128 iff floor(delta*n) <= 2879806199252",
+                    "failureMarginBits": 5.00969485614e-13,
+                    "marginLabel": "exact B / >=B+1 gate",
+                    "prizeBox": {
+                        "rate": true,
+                        "smoothDomain": true,
+                        "kBound": true,
+                        "fieldBound": true,
+                        "denominatorAudited": true,
+                        "endpointConvention": true,
+                        "publicSource": true,
+                        "conditionalImport": false,
+                        "rhoNIntegral": true
+                    },
+                    "status": "PROVED_EXACT_MCA_THRESHOLD",
+                    "statusLabel": "proved exact full-field MCA threshold",
+                    "source": "Reed-Solomon MCA Thresholds, thm:intro-prize-rows (P1-P3)",
+                    "sourceHref": "https://github.com/przchojecki/rs-mca/blob/main/experimental/rs_mca_thresholds.tex#L409-L463",
+                    "nonClaims": [
+                        "Exact for the full-field affine support-wise MCA sampler Gamma=F_p; not an ordinary-list, interleaved-list, CA, curve-MCA, or protocol-soundness theorem.",
+                        "deltaExact is the unsafe supremum B/n of the half-open safe set [0,B/n); the largest safe grid radius is (B-1)/n.",
+                        "Proved in the experimental exact-threshold manuscript and independently audited, but not promoted into Paper D or externally peer reviewed; no novelty or priority claim is made."
+                    ],
+                    "authors": "Przemek Chojecki / independent theorem-chain and certificate audits"
                 },
                 {
                     "id": "mca-cap-rho-1-8",
@@ -3458,7 +3731,7 @@
                     "authors": "leaderboard_sweep_192 scanner / Codex audit"
                 }
             ],
-            "missingPiece": "L1 / M1 / F1"
+            "missingPiece": "L1 / M1 (including F1 via exact restriction of scalars to base-field interleaved samplers)"
         },
         {
             "rho": "1/16",
@@ -3520,6 +3793,54 @@
                         "The c=1 first-grid proof does not require smoothness, but the public board records it for smooth Proximity Prize rows."
                     ],
                     "authors": "Paper D authors / Codex audit"
+                },
+                {
+                    "id": "proth-exact-rho-1-16-n17592186044416",
+                    "title": "Certified Proth exact MCA threshold, rho=1/16",
+                    "rho": "1/16",
+                    "track": "mca",
+                    "trackLabel": "support-wise affine MCA (Gamma=F_p)",
+                    "direction": "exact-finite-slope-gate",
+                    "n": "17592186044416 (=2^44)",
+                    "k": "1099511627776 (=2^40)",
+                    "field": "F_p, p=2121285573237585848299875619011192262679065433997313 (certified Proth prime; n | p-1)",
+                    "fieldSizeLog2": 170.503271693,
+                    "domainKind": "multiplicative-subgroup",
+                    "smoothPowerOfTwo": true,
+                    "agreementA": "11358288024862 unsafe / 11358288024863 safe",
+                    "sigma": "10258776397086 / 10258776397087",
+                    "deltaExact": "6233898019554/17592186044416",
+                    "deltaApprox": 0.35435607626107,
+                    "etaExact": "10258776397086/17592186044416",
+                    "etaApprox": 0.58314392373893,
+                    "qGen": "2121285573237585848299875619011192262679065433997313",
+                    "qLine": "2121285573237585848299875619011192262679065433997313",
+                    "qChal": "2121285573237585848299875619011192262679065433997313",
+                    "nBad": ">=6233898019555 at a=11358288024862; =6233898019554 at a=11358288024863",
+                    "bound": "e_mca <= 2^-128 iff floor(delta*n) <= 6233898019553",
+                    "failureMarginBits": 2.31427423051e-13,
+                    "marginLabel": "exact B / >=B+1 gate",
+                    "prizeBox": {
+                        "rate": true,
+                        "smoothDomain": true,
+                        "kBound": true,
+                        "fieldBound": true,
+                        "denominatorAudited": true,
+                        "endpointConvention": true,
+                        "publicSource": true,
+                        "conditionalImport": false,
+                        "rhoNIntegral": true
+                    },
+                    "status": "PROVED_EXACT_MCA_THRESHOLD",
+                    "statusLabel": "proved exact full-field MCA threshold",
+                    "source": "Reed-Solomon MCA Thresholds, thm:intro-prize-rows (P1-P3)",
+                    "sourceHref": "https://github.com/przchojecki/rs-mca/blob/main/experimental/rs_mca_thresholds.tex#L409-L463",
+                    "nonClaims": [
+                        "Exact for the full-field affine support-wise MCA sampler Gamma=F_p; not an ordinary-list, interleaved-list, CA, curve-MCA, or protocol-soundness theorem.",
+                        "deltaExact is the unsafe supremum B/n of the half-open safe set [0,B/n); the largest safe grid radius is (B-1)/n.",
+                        "Proved in the experimental exact-threshold manuscript and independently audited, but not promoted into Paper D or externally peer reviewed; no novelty or priority claim is made."
+                    ],
+                    "authors": "Przemek Chojecki / independent theorem-chain and certificate audits"
                 },
                 {
                     "id": "mca-cap-rho-1-16",
@@ -3718,7 +4039,7 @@
                     "authors": "leaderboard_sweep_192 scanner / Codex audit"
                 }
             ],
-            "missingPiece": "L1 / M1 / F1"
+            "missingPiece": "L1 / M1 (including F1 via exact restriction of scalars to base-field interleaved samplers)"
         }
     ]
 };
