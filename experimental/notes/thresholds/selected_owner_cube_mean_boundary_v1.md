@@ -9,7 +9,7 @@ PROVED:
   load-weighted single-point localization of every AL4 violation;
   exact selected-record ambient dual pullback;
   same-owner k-packing and its image-normalized payment criterion;
-  SOAL4 in the printed above-Johnson, subexponential-owner regime;
+  AL4 in the printed above-Johnson, subexponential-owner regime;
   exact empty-mode/projection commutator identity;
   positive-rate Hamming ambient-leakage guardrail;
   equitable-chart reduction of within-chart SOCML4 to ambient leakage;
@@ -62,7 +62,7 @@ experimental/data/certificates/selected-owner-cube-mean-boundary-v1/
 SHA-256:
 
 ```text
-01544e2cd0519b287f9e93bc4c0deae59cab51a0ea6823be363dc8c19e5fb962
+6cd5a4b752361aecca21795b59eab75ef69596b3922186923e792d1ec67d6c3e
 ```
 
 ## Repository interfaces consumed
@@ -565,6 +565,38 @@ criterion's optimistic case `|Z_u|=1` and the maximal image `L=p^w`, its
 base-two logarithmic margin is approximately `684269.404`.  Thus neither
 (2.19) nor the Johnson corollary is presented as a deployed close.
 
+The optimistic image is numerically feasible rather than merely formal:
+`log_2(p^w) = 2090837.545`, while
+`log_2 binom(N,a) = 2090873.280`, leaving approximately `35.735` bits of
+slice-size slack.  The verifier checks this inequality explicitly.
+
+### Corollary 2.7: represented-owner dichotomy
+
+Suppose an ambient violation occurs at a fixed rate `eta > 0`.  For every
+fixed `theta` with `0 < theta < 2 eta`, either
+
+\[
+\boxed{|Z_u|\ge e^{\theta N}}
+\tag{2.23}
+\]
+
+or one of the actual represented owners satisfies
+
+\[
+\boxed{
+m_z\ge {m\over |Z_u|}
+>4e^{(2\eta-\theta)N}L^{1/2}.
+}
+\tag{2.24}
+\]
+
+Indeed, (2.8) supplies the lower bound for `m`, and ordinary averaging over
+the represented owners gives the second alternative whenever (2.23) fails.
+The heavy-owner branch is already rooted at the selected owner and is paid by
+any independently validated saturation cap below (2.24).  The exponentially
+many-owner branch remains a separate source problem; owner counting alone
+does not turn it into a quotient, rank, or saturation cell.
+
 ## 3. Exact empty-mode commutator guard
 
 Let `E = E_C`.  Since `E` is a real self-adjoint idempotent, the empty Walsh
@@ -986,9 +1018,33 @@ finite evidence for (8.1) on those rows, not a uniform theorem.  The Hamming
 guardrail shows why the ambient term must still be printed as a separate
 obligation.
 
+### Why the remaining implication is source-semantic
+
+The latest localization does not make the remaining emission theorem a
+source-free consequence:
+
+* additive-energy or BSG extraction can organize syndromes, but a permutation
+  of records inside one syndrome leaves the mask and Fourier norm unchanged;
+  it therefore does not identify the selected owner;
+* ambient leakage is a small nonzero singular-value statement.  Turning it
+  into an exact collective rank defect needs an arithmetic separation theorem
+  beyond the individual witness equations;
+* for a hard dyadic `|tau|` indicator, no uniformly sublinear-degree
+  approximation with source-census control is among the consumed inputs;
+  absent such a theorem, a source-walk expansion can have an exponential path
+  census;
+* generic exact-witness decoration on an affine line does not prove semantic
+  survival after quotient, planted, field, rank, and saturation routing; and
+* rim packing alone is cut by the Hamming ambient guardrail in Section 4.
+
+Accordingly, `(SOAKI4)` must use the coupled weighted-Vandermonde boundary,
+complete-band predicate, exact selected record, and first-match atlas.  A
+proof consuming only the syndrome mask would reintroduce the selected-owner
+permutation gap.
+
 ## 9. Ledger impact
 
-This packet changes the proof plan in seven ways.
+This packet changes the proof plan in eight ways.
 
 1. A source-cube localization theorem must print an ambient leakage input or
    use a controlled partition of all `G`.
@@ -997,13 +1053,16 @@ This packet changes the proof plan in seven ways.
 3. Same-owner exact-agreement packing pays the explicit phase region (2.20),
    and an independently printed saturation cap can be substituted directly
    into (2.17).
-4. The classical above-Johnson owner bound is recorded as a paid consistency
+4. Every remaining violation has the represented-owner dichotomy
+   (2.23)--(2.24), isolating a selected heavy-owner saturation branch from an
+   exponentially many-owner branch.
+5. The classical above-Johnson owner bound is recorded as a paid consistency
    range, not as progress on the deployed below-Johnson lane.
-5. Empty-mode charge cannot be identified with the projected cube mean unless
+6. Empty-mode charge cannot be identified with the projected cube mean unless
    the commutator is controlled or equitability is proved.
-6. Exact base-3 hierarchy flatness becomes compiler-useful only after its
+7. Exact base-3 hierarchy flatness becomes compiler-useful only after its
    operator-level equitability and paid-admission interfaces are checked.
-7. The maximal band is removed from the quartic selected-layer residual
+8. The maximal band is removed from the quartic selected-layer residual
    unconditionally by Theorem 7.1.
 
 No finite deployed row, row-sharp Q theorem, general SULSI theorem, or
@@ -1022,7 +1081,8 @@ load-weighted ambient localization on exhaustive small Walsh models;
 the exact ambient dual pullback convention;
 the strict positive-part-versus-signed packet distinction;
 same-owner k-packing and above-Johnson incidence bounds;
-synthetic phase rows and the deployed KoalaBear noncoverage audit;
+synthetic phase rows, the represented-owner dichotomy, and the deployed
+KoalaBear image-feasibility/noncoverage audit;
 finite commutator identities and a nonzero commutator guardrail;
 equitable-partition invariance and selected-layer measurability;
 the maximal-band quartic and ambient formulas;

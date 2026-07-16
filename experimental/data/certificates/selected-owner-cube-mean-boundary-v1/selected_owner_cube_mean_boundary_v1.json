@@ -479,10 +479,12 @@
     "checks": {
       "deployed_is_below_johnson": true,
       "deployed_not_paid_even_optimistically": true,
+      "deployed_optimistic_image_is_slice_feasible": true,
       "johnson_incidence_when_enabled": true,
       "phase_grid_contains_below_johnson_payment": true,
       "phase_grid_contains_unpaid_row": true,
       "phase_grid_respects_slice_entropy": true,
+      "represented_owner_dichotomy_sharp": true,
       "same_owner_k_packing": true
     },
     "deployed_audit": {
@@ -493,14 +495,18 @@
       "johnson_integer_margin": -953458020096,
       "k": 1048576,
       "name": "KoalaBear MCA",
+      "optimistic_image_is_slice_feasible": true,
       "optimistic_margin_log2": 684269.404,
       "owner_packing_log2": 1729688.176,
       "p": 2130706433,
       "packing_pays_optimistically": false,
+      "slice_log2": 2090873.28,
+      "slice_minus_image_log2": 35.735,
       "w": 67471
     },
     "johnson_rows": 576,
     "largest_greedy_family": 68,
+    "owner_dichotomy_rows": 2080,
     "packing_rows": 648,
     "phase_rows": [
       {

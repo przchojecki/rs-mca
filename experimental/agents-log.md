@@ -43,9 +43,10 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** Exact ambient and commutator guards for the proposed
   selected-owner cube-mean route; the sharp `1/2` projection cross-block norm;
   load-weighted single-point ambient localization; exact selected-record
-  pullback; same-owner packing, phase, and Johnson-paid bounds; a source-free
-  Hamming leakage regression; an equitable-chart reduction with explicit paid
-  admission; and an unconditional maximal-band quartic unit-mask theorem.
+  pullback; same-owner packing, represented-owner dichotomy, phase, and
+  Johnson-paid bounds; a source-free Hamming leakage regression; an
+  equitable-chart reduction with explicit paid admission; and an
+  unconditional maximal-band quartic unit-mask theorem.
 - **How it is useful:** Prevents within-image cube flatness from silently
   assuming ambient MI/MA or charge payment, removes the maximal band from the
   quartic selected-layer residual, pays explicit owner-packed ranges, proves

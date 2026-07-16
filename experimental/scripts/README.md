@@ -57,7 +57,8 @@ semantic residual is uniformly flat under the same full-slice normalization.
 `verify_selected_owner_cube_mean_boundary_v1.py` checks the exact ambient
 decomposition guardrail, the sharp `1/2` Fourier-projection cross-block norm,
 load-weighted single-point localization, selected-record ambient pullback,
-same-owner packing and Johnson bounds, the deployed noncoverage audit, the
+same-owner packing, the represented-owner dichotomy, and Johnson bounds, the
+deployed image-feasibility/noncoverage audit, the
 cube/projection commutator identity, the Hamming middle-layer leakage
 regression, the equitable-partition reduction, and the unconditional
 maximal-band quartic unit-mask bound.  It does not prove signed selected-owner

@@ -461,6 +461,7 @@ def binary_entropy(value: float) -> float:
 def owner_packing_regression() -> dict[str, Any]:
     packing_rows = 0
     johnson_rows = 0
+    owner_dichotomy_rows = 0
     largest_family = 0
     for order in range(5, 13):
         for agreement in range(2, order):
@@ -499,6 +500,16 @@ def owner_packing_regression() -> dict[str, Any]:
                         johnson_rows += 1
                     largest_family = max(largest_family, len(family))
                     packing_rows += 1
+
+    for total_load in range(1, 65):
+        for owner_count in range(1, total_load + 1):
+            quotient, remainder = divmod(total_load, owner_count)
+            extremal_loads = [quotient + 1] * remainder + [quotient] * (
+                owner_count - remainder
+            )
+            if max(extremal_loads) != math.ceil(total_load / owner_count):
+                raise AssertionError("represented-owner dichotomy failed")
+            owner_dichotomy_rows += 1
 
     phase_inputs = (
         ("paid_below_johnson_full_slice_image", 0.40, 0.17),
@@ -547,8 +558,16 @@ def owner_packing_regression() -> dict[str, Any]:
         + math.lgamma(deployed["a"] - deployed["k"] + 1)
     ) / math.log(2.0)
     image_upper = deployed["w"] * math.log2(deployed["p"])
+    slice_log2 = (
+        math.lgamma(deployed["N"] + 1)
+        - math.lgamma(deployed["a"] + 1)
+        - math.lgamma(deployed["N"] - deployed["a"] + 1)
+    ) / math.log(2.0)
     deployed["owner_packing_log2"] = round(log_owner_ratio, 3)
     deployed["image_upper_log2"] = round(image_upper, 3)
+    deployed["slice_log2"] = round(slice_log2, 3)
+    deployed["slice_minus_image_log2"] = round(slice_log2 - image_upper, 3)
+    deployed["optimistic_image_is_slice_feasible"] = image_upper <= slice_log2
     deployed["optimistic_margin_log2"] = round(
         log_owner_ratio - image_upper / 2.0, 3
     )
@@ -559,11 +578,13 @@ def owner_packing_regression() -> dict[str, Any]:
     return {
         "packing_rows": packing_rows,
         "johnson_rows": johnson_rows,
+        "owner_dichotomy_rows": owner_dichotomy_rows,
         "largest_greedy_family": largest_family,
         "phase_rows": phase_rows,
         "deployed_audit": deployed,
         "checks": {
             "same_owner_k_packing": True,
+            "represented_owner_dichotomy_sharp": owner_dichotomy_rows == 2080,
             "johnson_incidence_when_enabled": True,
             "phase_grid_contains_below_johnson_payment": (
                 not phase_rows[0]["above_johnson"] and phase_rows[0]["packing_pays"]
@@ -574,6 +595,9 @@ def owner_packing_regression() -> dict[str, Any]:
             ),
             "phase_grid_contains_unpaid_row": not phase_rows[2]["packing_pays"],
             "deployed_is_below_johnson": not deployed["above_johnson"],
+            "deployed_optimistic_image_is_slice_feasible": deployed[
+                "optimistic_image_is_slice_feasible"
+            ],
             "deployed_not_paid_even_optimistically": not deployed[
                 "packing_pays_optimistically"
             ],
@@ -670,6 +694,10 @@ def validate(payload: dict[str, Any]) -> bool:
         return False
     if owner["deployed_audit"]["johnson_integer_margin"] >= 0:
         return False
+    if not owner["deployed_audit"]["optimistic_image_is_slice_feasible"]:
+        return False
+    if owner["deployed_audit"]["slice_minus_image_log2"] <= 0:
+        return False
     if owner["deployed_audit"]["optimistic_margin_log2"] <= 0:
         return False
     if owner["deployed_audit"]["packing_pays_optimistically"]:
@@ -701,10 +729,15 @@ def print_summary(payload: dict[str, Any]) -> None:
         f"{ambient['maximum_cross_block_square']}"
     )
     print(f"same-owner packing rows             = {owner['packing_rows']}")
+    print(f"owner-dichotomy rows                = {owner['owner_dichotomy_rows']}")
     print(f"above-Johnson incidence rows        = {owner['johnson_rows']}")
     print(
         "deployed optimistic margin (bits)  = "
         f"{owner['deployed_audit']['optimistic_margin_log2']}"
+    )
+    print(
+        "deployed slice/image slack (bits)  = "
+        f"{owner['deployed_audit']['slice_minus_image_log2']}"
     )
     print(
         "commutator nonzero                 = "
@@ -750,6 +783,10 @@ def main() -> int:
         ] = phase_tamper["owner_packing"]["phase_rows"][0][
             "slice_entropy_bits"
         ] + 0.25
+        image_feasibility_tamper = json.loads(json.dumps(expected))
+        image_feasibility_tamper["owner_packing"]["deployed_audit"][
+            "optimistic_image_is_slice_feasible"
+        ] = False
         caught = sum(
             int(not validate(payload))
             for payload in (
@@ -758,11 +795,12 @@ def main() -> int:
                 sign_tamper,
                 coverage_tamper,
                 phase_tamper,
+                image_feasibility_tamper,
             )
         )
-        if caught != 5:
-            raise SystemExit(f"tamper self-test failed: caught {caught}/5")
-        print("TAMPER SELF-TEST: PASS (5/5)")
+        if caught != 6:
+            raise SystemExit(f"tamper self-test failed: caught {caught}/6")
+        print("TAMPER SELF-TEST: PASS (6/6)")
         return 0
     if args.write:
         CERTIFICATE.parent.mkdir(parents=True, exist_ok=True)
