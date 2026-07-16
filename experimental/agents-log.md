@@ -30,6 +30,45 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-16 - CircleCode statement repairs: two falsity witnesses, both uniformizations proved
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/lean/cs25_cap_v12/cs25_cap_v12/CircleCode.lean` (statement
+  repairs and proofs), `experimental/lean/cs25_cap_v12/CIRCLE_FIBER_CORRESPONDENCE.md`
+  (falsity-findings section, statement map, census update),
+  `experimental/notes/audits/circlecode_statement_repairs.md` (new audit note).
+- **Status:** COUNTEREXAMPLE (two machine-checked negations of pre-repair
+  skeleton statements) / PROVED (repaired `lem_circle_rs` and
+  `lem_stereographic`, plus helpers `chebyshev_antisymm`, `sum_range_center`,
+  `sum_range_parity`) / AUDIT (PLAUSIBLE-graded `htorusB` hygiene repair on
+  `cor_circle_grand`, proof intentionally left `sorry`).
+- **What is being added:** The two circle-code uniformization skeletons were
+  false as stated — `lem_circle_rs` omitted `(2 : F) ≠ 0` (ZMod 2
+  counterexample) and `lem_stereographic` left `sdom`/`twist` untied to `pt`
+  (ZMod 5 counterexample); both are formalization omissions, not paper defects
+  (the paper carries `p ≡ 3 (mod 4)` and the explicit stereographic twist).
+  The negations are proved as Lean lemmas, the statements are repaired to the
+  paper's hypotheses, and both repaired lemmas are proved in full (forward by
+  clearing denominators, reverse by Laurent symmetrization on
+  `chebyshev_semiconjugacy`/`chebyshev_antisymm`, resp. the even/odd
+  substitution).  `cor_circle_grand` additionally gains
+  `htorusB : ∀ i, torus i ∈ B`, matching its model `thm_phi_cap`'s `hdomB`;
+  no falsity claim is made for it and it stays `sorry` (Fiber.lean-blocked).
+- **How it is useful:** `lem:circle-rs` and `lem:stereographic`
+  (tex/cs25_cap_v12.tex) are now machine-checked instead of sorried
+  skeletons, closing two of the three CircleCode gaps and correcting two
+  false statements before anything could cite them; the falsity lemmas
+  document the exact defect class (missing side condition / untied binder).
+  Package sorry census 19 -> 17 (CircleCode 3 -> 1); clean-rebuild verified;
+  `#print axioms` on every new proof shows only
+  `propext, Classical.choice, Quot.sound`.
+- **What to do next:** Prove the divisibility-free
+  `lem_phi_fiber_ii`/`thm_phi_cap` route in Fiber.lean (the odd `k = 2w+1`
+  forces it) to discharge `cor_circle_grand`; consider formalizing
+  `lem:diag-invariance` so the uniformizations transfer list sizes and
+  `eca`/`emca` formally; revisit `htorusB` if `thm_phi_cap` is restated.
+
 ### 2026-07-16 - RS-MCA paving ePrint submission package
 
 - **Agent/model:** Codex logging a human-added ePrint submission candidate by
