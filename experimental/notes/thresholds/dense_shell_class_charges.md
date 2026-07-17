@@ -5,8 +5,8 @@
 ```text
 Status: labels are exact to the shipped artifacts: every PROVED
         claim has a complete proof in this note; every certified
-        constant has a named verifier gate; the single conditional
-        (INV-TAIL) is stated with its certified support.
+        constant has a named verifier gate; the former conditional
+        (INV-TAIL) is discharged by the transfer-shape certificate.
       + PROVED (C1, kernel reduction): for U subseteq {0..B-1} the
         support-class sums of the inverse transform obey
           sum_{sigma in class(U)} h(sigma)
@@ -28,28 +28,22 @@ Status: labels are exact to the shipped artifacts: every PROVED
         from three invariant floors tied by the single scalar (KEY) —
         and with it cone purity of G at every state and the |K|=1
         class-sum dichotomy at every depth, via the chain R1-R4.
-        Scope: UNCONDITIONAL for every B <= 49 — the three consumed
-        floors (pair-1 envelope <= 0.85, pair-2 <= 1.61, child-share
-        >= 1.20) are verifier-certified at every level j <= 48
-        (gates P7/P12 under --deep; measured sups 0.790/1.608, share
-        min 1.215) and (KEY) at exactly those caps has margin 0.030
-        (gate P8). For ALL B, conditional on the single named input
-        (INV-TAIL): the same three floors persist for j >= 49.
-        INV-TAIL's support: the envelope part follows from the PROVED
-        all-j loose caps (1.086 pair-1 / 1.663 pair-2 after the L5
-        cancellation a'(t_+) - a'(t_-) = -a'(t/3)) since (KEY) also
-        holds at (1.086, 1.663, 1.20) with margin 0.015 (gate P8) —
-        so the genuinely open part of INV-TAIL is the share floor
-        (and the measured inputs of the loose-cap closure itself);
-        routes in 3.5.
+        Scope: UNCONDITIONAL for every B.  The finite leg through
+        j = 48 remains independently checked by gates P7/P12.  The
+        all-depth tail is proved in dense_shell_transfer_shape.md:
+        one positive two-state cone gives the pair-1 envelope 1.086,
+        pair-2 envelope 1.663, and child-share 7/6 at every j >= 6.
+        The (KEY) scalar at those constants has certified margin
+        greater than 0.00574.  Thus INV-TAIL is discharged rather
+        than assumed.
       + PROVED (C3b, the general-K reduction): for K = {k_1<...<k_r}
         the dichotomy statement E_w[prod_K(a_k-1/2)] > 0 is EQUIVALENT
         to positivity of every decorated subtree charge
           T_pi(K) = sum_i c_i b_i(g^pi_{k_1-1}) b_i(G^S(t_pi)) > 0
         (c_0 = 1, c_{i>=1} = 1/2; pi over depth-(k_1-1) prefixes; G^S
         the drift-decorated cascade, S the relative pattern). |K| <= 1:
-        T_pi > 0 PROVED with C3's scope (unconditional B <= 49;
-        INV-TAIL beyond). |K| >= 2: T_pi > 0 verified EXHAUSTIVELY
+        T_pi > 0 PROVED unconditionally at every B. |K| >= 2:
+        T_pi > 0 verified EXHAUSTIVELY
         (every K, every prefix, B in {6, 8}, gate P11;
         no cancellation, min normalized term +9.9e-4) — CONJECTURAL
         in B; proof route = the aggregated joint two-walk cone. Two
@@ -80,7 +74,8 @@ Status: labels are exact to the shipped artifacts: every PROVED
           eps(B, K, |S|) <= 4 lam^B fac^{|S|} rho^{-K} / (rho - 1),
         lam = 24.85, fac = 12.42, rho = 5 — still poly(B, log 1/eps).
         Instantiated at B = 6, K = 24: observed 3.6e-12, bars hold.
-LANE: hard input 2 — thirteenth packet of the arc; the class-charge
+LANE: hard input 2 — thirteenth packet of the arc, with the INV-TAIL
+        continuation supplied by dense_shell_transfer_shape.md; the class-charge
         layer of the product-profile emission program (#842 transfer
         certificate -> #858 sign dichotomy -> THIS: class arithmetic).
         Fence (N1) respected: nothing here pays or claims lower reserve.
@@ -161,7 +156,7 @@ the #858 b_0, b_1 bootstrap; interior floor certified). So
 |DG_j(t)_i| <= L G_j(t)_i integrates with no zero-crossing to
     e^{-Lg} <= G_j(t')_i / G_j(t)_i <= e^{Lg},  g = |t' - t|.
 
-L4 (one-step differential bound — the propagation). For t in
+L4 (one-step differential bound — the original finite propagation). For t in
 [1/6,1/2], writing G_pm = G_{j-1}(t_pm), V_pm = N_{a(t_pm)}G_pm,
 s_-^+ = max(0, 1/2 - a(t_-)), and assuming the child envelopes with
 constants L_pm:
@@ -195,9 +190,10 @@ three-branch trace a(t_+) + a(t/3) + a(t_-) = 3/2 gives
 so L4's source rewrites as a'_+(G_+ - G_-) - a'(t/3) G_- with
 |G_+ - G_-|_i <= (e^D - 1) min(G_pm)_i envelope-small: the decoupled
 regional closure fixed point drops from 1.95 to 1.086 on the pair-1
-support (1.663 pair-2). The all-j persistence of the three certified
-floors is the named INV-TAIL input (3.5) — the sole conditional of
-the packet.
+support (1.663 pair-2).  The separate positive two-state and curvature
+cone in dense_shell_transfer_shape.md now proves these two envelopes
+and the 7/6 child-share floor at every depth, removing the former
+INV-TAIL input.
 
 ### 3.2 The MASTER theorem (base cases + the general step)
 
@@ -252,8 +248,12 @@ instantiated at the gate-certified caps (L1*, L2*, GAMMA*) =
 (0.85, 1.61, 1.20): every positive factor decreases and the deficit
 increases in eps, so the LHS-RHS is strictly decreasing with
 endpoint value 0.030 > 0 at eps -> 1/4 (gate P8; the same
-inequality at the PROVED all-j loose caps (1.086, 1.663, 1.20) has
-endpoint margin 0.015, carrying the conditional leg). What remains is Delta_i >= B2 (X2)_i >= 0,
+inequality at the PROVED all-j contract values (1.086, 1.663, 7/6)
+has certified margin greater than 0.0057).  The exact rational values
+are shared with the Arb producer through
+`dense-shell-transfer-shape/consumer_contract.json`; gate P8 reads that
+contract rather than duplicating the loose constants. What remains is
+Delta_i >= B2 (X2)_i >= 0,
 strict at i = 0, 1 (purity floors), and the top entry Delta_top =
 2^{1-j}(1 - need) > 0 (L1's t-free top). So (M_j) holds, strict in
 the low and top entries. QED (step).
@@ -310,28 +310,16 @@ The decorated cascade G^S and the PROVED reduction to
   caps 0.85 / 1.61 at every level j <= 48 (P7, --deep); the
   child-share floor 1.20 at 6 <= j <= 48 (P12, --deep). No
   monotonicity in j is claimed.
-- (INV-TAIL, the single conditional input): "the three certified
-  floors persist for every j >= 49: pair-1 secant <= 0.85 on gaps
-  [1/18, 1/9] over [1/6, 0.2778], pair-2 <= 1.61 on [0.3889, 0.50],
-  child-share >= 1.20." Support: (a) the envelope part follows from
-  the PROVED loose caps (1.086 / 1.663 after L5) together with
-  (KEY) at (1.086, 1.663, 1.20), margin 0.015 (P8) — so the open
-  content of INV-TAIL is the share floor plus the loose-cap
-  closure's own measured inputs (share, cross-child ratio); (b) at
-  the certified horizon the floors hold with room (pair-1 sup 0.621
-  for j in [8, 48], gate cap 0.65). Named routes to discharge it:
-  (i) a correlated profile-shape bound tighter than the independent
-  ratio bands (bands-only reaches 1.01 — just short); (ii) monotone
-  decrease of the envelope constant in j (empirically clean from
-  j = 5 on; false at j = 4 -> 5, so any proof starts at j >= 5);
-  (iii) an all-j child-share bound. Any of (i)+(iii) / (ii)+(iii)
-  upgrades the theorem to every B. This is the sole gap between
-  "B <= 49" and "every B".
+- INV-TAIL: DISCHARGED by dense_shell_transfer_shape.md.  Its Arb
+  base covers 5 <= j-1 <= 26; a symbolic positive two-state induction
+  then proves the 1.086 / 1.663 envelopes and 7/6 child-share floor
+  forever.  The direct finite P7/P12 scans remain useful independent
+  regressions but are no longer extrapolated.
 - COMPUTED: the exhaustive law B <= 10 (G3); the leak table (G4);
   T_pi census B in {6, 8} (P11); the anchored-case floor (P11) and
   the cone-pure-S classes (labs).
-- CONJECTURAL: T_pi(K) > 0 for all K uniformly in B (the general-K
-  dichotomy); no other conjecture is load-bearing.
+- CONJECTURAL: T_pi(K) > 0 for all |K| >= 2 uniformly in B (the
+  general-K dichotomy); no other conjecture is load-bearing.
 
 ## 4. The computed layers (C4, C5) and charge arithmetic (C6)
 

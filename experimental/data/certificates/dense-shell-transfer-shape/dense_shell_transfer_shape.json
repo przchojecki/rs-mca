@@ -1,0 +1,524 @@
+{
+  "arb_precision_bits": 448,
+  "base_interval_cells": 512,
+  "bernstein_rho": 2,
+  "chebyshev_degree": 320,
+  "consumed_note_sha256": "6ebb6f6eaf23665cb3ae23d82c6e6e9ba4057869561fcaf0d8066b36ba9f2879",
+  "consumer_contract_sha256": "3a3f1558e21418cec6bdab4e3c9ad370648bee9e8d7477b38aad1d861e40d702",
+  "consumer_script_sha256": "5fbe9ef774420324b7e22cdf512ee394c0df584c5101bc948acc19103fe2cdeb",
+  "curvature_C": "1289/500",
+  "curvature_base_level": 26,
+  "epsilon_interval_cells": 256,
+  "finite_target_levels_n": [
+    5,
+    26
+  ],
+  "interpolation_operator_bound": "2*K=640",
+  "lambda": "241/500",
+  "parameter_neighborhood_radius": "1/100000",
+  "pass": true,
+  "proof_sha256": "0cf65b76e6a788310ced83c9400aa0ef17b07747c8c509054d3149b7115a0509",
+  "python_flint_tested": "0.9.0",
+  "replay_source_sha256": "47e818c40caa974b31bdfc6a2d963d8d9cf4e32d3caab8e62a375ecf46adccef",
+  "results": [
+    {
+      "detail": {
+        "identity_checks": 644,
+        "max_equality_enclosure": "[+/- 2.54e-76]",
+        "worst_cell": [
+          "F-model",
+          7,
+          0,
+          0
+        ]
+      },
+      "name": "model-consistency",
+      "pass": true
+    },
+    {
+      "detail": {
+        "consumer_script_sha256": "5fbe9ef774420324b7e22cdf512ee394c0df584c5101bc948acc19103fe2cdeb",
+        "contract_sha256": "3a3f1558e21418cec6bdab4e3c9ad370648bee9e8d7477b38aad1d861e40d702",
+        "master_inputs": {
+          "master_margin_floor": "57/10000",
+          "ts1_envelope": "543/500",
+          "ts2_envelope": "1663/1000",
+          "ts3_share": "7/6"
+        }
+      },
+      "name": "consumer-contract",
+      "pass": true
+    },
+    {
+      "detail": {
+        "H1": {
+          "certified_bounds": {
+            "lower": "[0.31829702781060825827 +/- 2.31e-21]",
+            "upper": "[0.31829702781060825827 +/- 2.31e-21]"
+          },
+          "required": "positive",
+          "worst_cell": {
+            "point": "t=5/18"
+          }
+        },
+        "H2": {
+          "certified_bounds": {
+            "lower": "[0.00048284890141978392241 +/- 4.42e-24]",
+            "upper": "[0.00048284890141978392241 +/- 4.42e-24]"
+          },
+          "required": "positive",
+          "worst_cell": {
+            "point": "t=1/2"
+          }
+        },
+        "closure-dm": {
+          "certified_bounds": {
+            "lower": "[0.022471752826029566927 +/- 2.33e-22]",
+            "upper": "[0.088012500543052462740 +/- 2.22e-22]"
+          },
+          "required": "positive",
+          "worst_cell": {
+            "cell": 0
+          }
+        },
+        "closure-dp-plus-dm": {
+          "certified_bounds": {
+            "lower": "[0.028209337079584173549 +/- 4.17e-22]",
+            "upper": "[0.15925347809648471295 +/- 3.23e-21]"
+          },
+          "required": "positive",
+          "worst_cell": {
+            "cell": 0
+          }
+        },
+        "inner-cm": {
+          "certified_bounds": {
+            "lower": "[0.23200000000000000000 +/- 3e-25]",
+            "upper": "[0.23200000000000000000 +/- 1e-25]"
+          },
+          "required": "positive",
+          "worst_cell": {
+            "point": "m=1/6"
+          }
+        },
+        "lower-curvature": {
+          "certified_bounds": {
+            "lower": "[5.1428968107220197730 +/- 2.11e-20]",
+            "upper": "[5.2046451067444349341 +/- 1.18e-20]"
+          },
+          "required": "positive",
+          "worst_cell": {
+            "cell": 511
+          }
+        },
+        "master-key": {
+          "certified_bounds": {
+            "lower": "[0.0057452578846094279318 +/- 3.89e-23]",
+            "upper": "[0.0071727745004862394884 +/- 4.31e-23]"
+          },
+          "required": "greater-than-contract-floor",
+          "required_floor": {
+            "lower": "[0.0057000000000000000000 +/- 3e-27]",
+            "upper": "[0.0057000000000000000000 +/- 1e-27]"
+          },
+          "worst_cell": {
+            "cell": 511
+          }
+        },
+        "share": {
+          "certified_bounds": {
+            "lower": "[0.095011446587398980624 +/- 2.63e-23]",
+            "upper": "[0.095337084014466684890 +/- 3.69e-23]"
+          },
+          "required": "positive",
+          "worst_cell": {
+            "cell": 0
+          }
+        }
+      },
+      "name": "scalar-closure",
+      "pass": true
+    },
+    {
+      "detail": {
+        "B26-strict": {
+          "certified_bounds": {
+            "lower": "[2.9802322380222636310e-8 +/- 1.75e-28]",
+            "upper": "[2.9802322395167988690e-8 +/- 1.75e-28]"
+          },
+          "required": "positive",
+          "worst_cell": {
+            "cell": 0,
+            "coordinate": 26
+          }
+        },
+        "CF26": {
+          "certified_bounds": {
+            "lower": "[1.3622953197449271570e-6 +/- 4.16e-26]",
+            "upper": "[1.3627139237952216091e-6 +/- 6.94e-27]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "cell": 0,
+            "coordinate": 25
+          }
+        },
+        "F26": {
+          "certified_bounds": {
+            "lower": "[7.7154112870771315887e-8 +/- 3.59e-28]",
+            "upper": "[7.7408953072663630487e-8 +/- 1.24e-28]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "cell": 511,
+            "coordinate": 25
+          }
+        },
+        "inner-A0": {
+          "certified_bounds": {
+            "lower": "[5.9604644775384786972e-8 +/- 2.57e-28]",
+            "upper": "[5.9604644775396463028e-8 +/- 2.57e-28]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "cell": 0,
+            "coordinate": 25
+          }
+        },
+        "inner-A1": {
+          "certified_bounds": {
+            "lower": "[1.4901161193846196743e-8 +/- 6.59e-29]",
+            "upper": "[1.4901161193849115757e-8 +/- 6.59e-29]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "cell": 0,
+            "coordinate": 26
+          }
+        },
+        "inner-A2": {
+          "certified_bounds": {
+            "lower": "[3.7252902984615491857e-9 +/- 3.32e-29]",
+            "upper": "[3.7252902984622789393e-9 +/- 3.32e-29]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "cell": 0,
+            "coordinate": 27
+          }
+        },
+        "outer-A0": {
+          "certified_bounds": {
+            "lower": "[1.4901161193846196743e-8 +/- 6.59e-29]",
+            "upper": "[1.4901161193849115757e-8 +/- 6.59e-29]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "cell": 0,
+            "coordinate": 26
+          }
+        },
+        "outer-A1": {
+          "certified_bounds": {
+            "lower": "[3.7252902984615491857e-9 +/- 3.32e-29]",
+            "upper": "[3.7252902984622789393e-9 +/- 3.32e-29]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "cell": 0,
+            "coordinate": 27
+          }
+        },
+        "outer-A2": {
+          "certified_bounds": {
+            "lower": "[9.3132257461538729643e-10 +/- 3.20e-30]",
+            "upper": "[9.3132257461556973482e-10 +/- 3.20e-30]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "cell": 0,
+            "coordinate": 28
+          }
+        }
+      },
+      "name": "finite-base-cones",
+      "pass": true
+    },
+    {
+      "detail": {
+        "TS1-lower": {
+          "certified_bounds": {
+            "lower": "[1.7442499570131443919e-9 +/- 3.97e-29]",
+            "upper": "[1.7521744944364363236e-9 +/- 4.55e-29]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "coordinate": 26,
+            "epsilon_cell": 0,
+            "level_n": 26
+          }
+        },
+        "TS1-upper": {
+          "certified_bounds": {
+            "lower": "[1.8531910691441228677e-9 +/- 2.72e-30]",
+            "upper": "[1.8611156083699009111e-9 +/- 3.07e-29]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "coordinate": 26,
+            "epsilon_cell": 0,
+            "level_n": 26
+          }
+        },
+        "TS2-lower": {
+          "certified_bounds": {
+            "lower": "[2.6284732652981330933e-9 +/- 3.68e-29]",
+            "upper": "[2.6414116129163534253e-9 +/- 4.95e-29]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "coordinate": 26,
+            "epsilon_cell": 0,
+            "level_n": 26
+          }
+        },
+        "TS2-upper": {
+          "certified_bounds": {
+            "lower": "[2.8840342223352957428e-9 +/- 2.38e-29]",
+            "upper": "[2.8969725727182316145e-9 +/- 2.82e-29]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "coordinate": 26,
+            "epsilon_cell": 0,
+            "level_n": 26
+          }
+        },
+        "TS3": {
+          "certified_bounds": {
+            "lower": "[2.6613794058996931630e-7 +/- 3.86e-27]",
+            "upper": "[2.6614854699236305077e-7 +/- 3.57e-27]"
+          },
+          "required": "nonnegative",
+          "worst_cell": {
+            "coordinate": 26,
+            "epsilon_cell": 0,
+            "level_n": 26
+          }
+        }
+      },
+      "name": "finite-TS1-TS3",
+      "pass": true
+    },
+    {
+      "detail": {
+        "curvature_C_box": {
+          "lower": "[2.5779899999999684042 +/- 4.60e-20]",
+          "upper": "[2.5780100000000315958 +/- 4.60e-20]"
+        },
+        "finite_base_margins": {
+          "B26-strict": {
+            "certified_bounds": {
+              "lower": "[2.9802322380222636310e-8 +/- 1.75e-28]",
+              "upper": "[2.9802322395167988690e-8 +/- 1.75e-28]"
+            },
+            "required": "positive",
+            "worst_cell": {
+              "cell": 0,
+              "coordinate": 26
+            }
+          },
+          "CF26": {
+            "certified_bounds": {
+              "lower": "[1.3622894788060834528e-6 +/- 2.15e-26]",
+              "upper": "[1.3627197647340653133e-6 +/- 2.72e-26]"
+            },
+            "required": "nonnegative",
+            "worst_cell": {
+              "cell": 0,
+              "coordinate": 25
+            }
+          },
+          "F26": {
+            "certified_bounds": {
+              "lower": "[7.7154112870771315887e-8 +/- 3.59e-28]",
+              "upper": "[7.7408953072663630487e-8 +/- 1.24e-28]"
+            },
+            "required": "nonnegative",
+            "worst_cell": {
+              "cell": 511,
+              "coordinate": 25
+            }
+          },
+          "inner-A0": {
+            "certified_bounds": {
+              "lower": "[5.9604644775384786972e-8 +/- 2.57e-28]",
+              "upper": "[5.9604644775396463028e-8 +/- 2.57e-28]"
+            },
+            "required": "nonnegative",
+            "worst_cell": {
+              "cell": 0,
+              "coordinate": 25
+            }
+          },
+          "inner-A1": {
+            "certified_bounds": {
+              "lower": "[1.4901161193846196743e-8 +/- 6.59e-29]",
+              "upper": "[1.4901161193849115757e-8 +/- 6.59e-29]"
+            },
+            "required": "nonnegative",
+            "worst_cell": {
+              "cell": 0,
+              "coordinate": 26
+            }
+          },
+          "inner-A2": {
+            "certified_bounds": {
+              "lower": "[3.7252902984615491857e-9 +/- 3.32e-29]",
+              "upper": "[3.7252902984622789393e-9 +/- 3.32e-29]"
+            },
+            "required": "nonnegative",
+            "worst_cell": {
+              "cell": 0,
+              "coordinate": 27
+            }
+          },
+          "outer-A0": {
+            "certified_bounds": {
+              "lower": "[1.4901161193846196743e-8 +/- 6.59e-29]",
+              "upper": "[1.4901161193849115757e-8 +/- 6.59e-29]"
+            },
+            "required": "nonnegative",
+            "worst_cell": {
+              "cell": 0,
+              "coordinate": 26
+            }
+          },
+          "outer-A1": {
+            "certified_bounds": {
+              "lower": "[3.7252902984615491857e-9 +/- 3.32e-29]",
+              "upper": "[3.7252902984622789393e-9 +/- 3.32e-29]"
+            },
+            "required": "nonnegative",
+            "worst_cell": {
+              "cell": 0,
+              "coordinate": 27
+            }
+          },
+          "outer-A2": {
+            "certified_bounds": {
+              "lower": "[9.3132257461538729643e-10 +/- 3.20e-30]",
+              "upper": "[9.3132257461556973482e-10 +/- 3.20e-30]"
+            },
+            "required": "nonnegative",
+            "worst_cell": {
+              "cell": 0,
+              "coordinate": 28
+            }
+          }
+        },
+        "lambda_box": {
+          "lower": "[0.48198999999996840415 +/- 4.07e-21]",
+          "upper": "[0.48201000000003159585 +/- 4.07e-21]"
+        },
+        "radius_each_parameter": {
+          "lower": "[1.0000000000000000000e-5 +/- 3e-29]",
+          "upper": "[1.0000000000000000000e-5 +/- 1e-29]"
+        },
+        "scalar_margins": {
+          "H1": {
+            "certified_bounds": {
+              "lower": "[0.31829382559781718400 +/- 1.59e-21]",
+              "upper": "[0.31830023227404493881 +/- 3.46e-21]"
+            },
+            "required": "positive",
+            "worst_cell": {
+              "point": "t=5/18"
+            }
+          },
+          "H2": {
+            "certified_bounds": {
+              "lower": "[0.00047442753171637188497 +/- 3.34e-24]",
+              "upper": "[0.00049127541618346905888 +/- 3.93e-24]"
+            },
+            "required": "positive",
+            "worst_cell": {
+              "point": "t=1/2"
+            }
+          },
+          "closure-dm": {
+            "certified_bounds": {
+              "lower": "[0.022169970828795862961 +/- 3.96e-22]",
+              "upper": "[0.088314307775104475784 +/- 9.13e-23]"
+            },
+            "required": "positive",
+            "worst_cell": {
+              "cell": 0
+            }
+          },
+          "closure-dp-plus-dm": {
+            "certified_bounds": {
+              "lower": "[0.027620332441364490630 +/- 4.56e-22]",
+              "upper": "[0.15984253318521853650 +/- 2.54e-21]"
+            },
+            "required": "positive",
+            "worst_cell": {
+              "cell": 0
+            }
+          },
+          "inner-cm": {
+            "certified_bounds": {
+              "lower": "[0.23198999999996840415 +/- 4.07e-21]",
+              "upper": "[0.23201000000003159585 +/- 4.07e-21]"
+            },
+            "required": "positive",
+            "worst_cell": {
+              "point": "m=1/6"
+            }
+          },
+          "lower-curvature": {
+            "certified_bounds": {
+              "lower": "[5.1428677046007983897 +/- 2.37e-20]",
+              "upper": "[5.2046741737669840965 +/- 3.03e-20]"
+            },
+            "required": "positive",
+            "worst_cell": {
+              "cell": 511
+            }
+          },
+          "master-key": {
+            "certified_bounds": {
+              "lower": "[0.0057452578846094279318 +/- 3.89e-23]",
+              "upper": "[0.0071727745004862394884 +/- 4.31e-23]"
+            },
+            "required": "greater-than-contract-floor",
+            "required_floor": {
+              "lower": "[0.0057000000000000000000 +/- 3e-27]",
+              "upper": "[0.0057000000000000000000 +/- 1e-27]"
+            },
+            "worst_cell": {
+              "cell": 511
+            }
+          },
+          "share": {
+            "certified_bounds": {
+              "lower": "[0.094991864676056914616 +/- 2.06e-22]",
+              "upper": "[0.095356665073676461473 +/- 6.41e-23]"
+            },
+            "required": "positive",
+            "worst_cell": {
+              "cell": 0
+            }
+          }
+        }
+      },
+      "name": "parameter-neighborhood",
+      "pass": true
+    }
+  ],
+  "scalar_interval_cells": 512,
+  "schema": "dense-shell-transfer-shape-arb/v3",
+  "source_sha256": "1fd9d8bbacc79905842837c910e22c8f5cf4079c620fff23eb970150378e4b77",
+  "two_state_base_level": 25,
+  "upstream_base": "c4856fa6db0b2cd491f5c5fe2a0f3c8468de645e"
+}

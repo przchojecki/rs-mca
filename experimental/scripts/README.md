@@ -34,6 +34,7 @@ python3 experimental/scripts/verify_selected_owner_cube_mean_boundary_v1.py --ch
 python3 experimental/scripts/verify_selected_owner_cube_mean_boundary_v1.py --tamper-selftest
 python3 experimental/scripts/verify_first_wall_mds_extension_inverse.py --check
 python3 experimental/scripts/verify_first_wall_mds_extension_inverse.py --tamper-selftest
+python3 experimental/scripts/replay_dense_shell_transfer_shape.py
 ```
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
@@ -66,6 +67,12 @@ regression, the equitable-partition reduction, and the unconditional
 maximal-band quartic unit-mask bound.  It does not prove signed selected-owner
 ambient-kernel inversion outside the paid owner regimes, non-equitable cube
 localization, nonempty-mode compression, or paid cube-spectrum admission.
+
+`replay_dense_shell_transfer_shape.py` is the one-command replay for the
+all-depth dense-shell transfer theorem and its class-charge consumer.  It
+requires `python-flint==0.9.0`, checks detailed Arb margins and worst cells,
+requires all semantic mutations to fail, runs the deep downstream regression,
+and verifies the packet's artifact hashes.
 
 The active Python scripts are intentionally flat in this directory. Several M1
 and L1 verifiers import local helpers by module name, so scattering them into

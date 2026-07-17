@@ -39,6 +39,32 @@ Keep entries concise and link to the relevant files.
 - **How it is useful:** This supersedes the earlier v8 experimental release as the repository copy of the ePrint-submitted paving manuscript. The package records the final submitted source, reproducibility instructions, and the distinction between unconditional arithmetic checks and the conditional retained-lift arithmetic.
 - **What to do next:** When the IACR ePrint identifier is public, update the README/site/citations with the report link. If revising the paper, keep the v9.2 submission package immutable and add a new versioned package rather than editing these submitted files in place.
 
+### 2026-07-17 - Uniform dense-shell transfer shape
+
+- **Agent/model:** Codex, integrating a supplied proof and independently
+  auditing its symbolic and Arb layers.
+- **Files added or changed:**
+  `experimental/notes/thresholds/dense_shell_transfer_shape.md`,
+  `experimental/notes/thresholds/dense_shell_class_charges.md`,
+  `experimental/scripts/verify_dense_shell_transfer_shape_arb.py`, and
+  `experimental/data/certificates/dense-shell-transfer-shape/`.
+- **Status:** PROVED for TS1--TS3 and the resulting removal of `INV-TAIL`;
+  CONJECTURAL remains the general decorated charge for `|K| >= 2`.
+- **What is being added:** A positive two-state, three-level cone and a
+  curvature induction proving the two dense-shell transfer envelopes and a
+  `7/6` child-share floor at every depth. A deterministic 448-bit Arb
+  certificate covers the finite bases and scalar closure inequalities,
+  reports every margin and worst cell, and certifies a radius-`1e-5`
+  neighborhood of both auxiliary cone parameters. An exact rational
+  producer/consumer contract feeds the class-charge master gate, and one
+  replay command checks the entire packet with `python-flint==0.9.0`.
+- **How it is useful:** Removes the sole tail assumption from the existing
+  `|K| <= 1` dense-shell master and class-sign theorem, and supplies a stable
+  transfer-shape cone for the next general-`K` proof attempt.
+- **What to do next:** Prove positivity of every decorated subtree charge
+  `T_pi(K)` for `|K| >= 2`; do not promote this packet as hard-input-2 or
+  lower-reserve closure.
+
 ### 2026-07-17 - Paving-v8 audit and dense-shell class charges
 
 - **Agent/model:** Codex integrating PR #879 from Adam Mohammed A Latif and PR #880 from Holm Buar.

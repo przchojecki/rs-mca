@@ -1,0 +1,9 @@
+{
+  "consumer": "experimental/notes/thresholds/dense_shell_class_charges.md",
+  "master_margin_floor": "57/10000",
+  "producer": "experimental/notes/thresholds/dense_shell_transfer_shape.md",
+  "schema": "dense-shell-transfer-shape-consumer/v1",
+  "ts1_envelope": "543/500",
+  "ts2_envelope": "1663/1000",
+  "ts3_share": "7/6"
+}

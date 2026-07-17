@@ -40,13 +40,34 @@ j <= 48 (~50s); --tamper-selftest runs all tampers, each must FAIL;
 stdlib only, deterministic. RESULT: PASS/FAIL summary.
 """
 import cmath
+import hashlib
 import json
 import math
 import os
 import sys
+from fractions import Fraction
 from itertools import product as iproduct, combinations
 
 PI = math.pi
+CONTRACT_PATH = os.path.join(
+    os.path.dirname(__file__) or ".",
+    "..",
+    "data",
+    "certificates",
+    "dense-shell-transfer-shape",
+    "consumer_contract.json",
+)
+with open(CONTRACT_PATH, encoding="utf-8") as contract_file:
+    TRANSFER_CONTRACT = json.load(contract_file)
+
+
+def contract_float(name):
+    return float(Fraction(TRANSFER_CONTRACT[name]))
+
+
+def file_sha256(path):
+    with open(path, "rb") as source:
+        return hashlib.sha256(source.read()).hexdigest()
 
 # ---------------------------------------------------------------- basics
 
@@ -652,19 +673,24 @@ def gate_key(report, tamper=None):
     """P8: the (KEY) scalar inequality tying envelope+share constants
     together, 4000-pt eps grid, monotone decreasing, endpoint margin."""
     L1S, L2S = 0.85, 1.61          # the P7-certified envelope caps
-    L1L, L2L = 1.086, 1.663        # the proved all-j loose caps
-    GAMMA = 1.0 if tamper == "key-noshare" else 1.20
+    L1L = contract_float("ts1_envelope")
+    L2L = contract_float("ts2_envelope")
+    gamma_sharp = 1.0 if tamper == "key-noshare" else 1.20
+    gamma_loose = (
+        1.0 if tamper == "key-noshare" else contract_float("ts3_share")
+    )
+    loose_floor = contract_float("master_margin_floor")
     s49 = math.sin(4 * PI / 9)
 
-    def Fgen(eps, L1, L2):
+    def Fgen(eps, L1, L2, gamma):
         g = 1.0 / 18 + 2.0 * eps / 9.0
         rho1 = math.exp(-L1 * g); rho2 = math.exp(-L2 * g)
         nd = need_eps(eps)
         D1 = s49 * math.sin(PI * g)
-        return (min(rho1, rho2) - nd) * GAMMA * rho1 - D1
+        return (min(rho1, rho2) - nd) * gamma * rho1 - D1
 
     def F(eps):
-        return Fgen(eps, L1S, L2S)
+        return Fgen(eps, L1S, L2S, gamma_sharp)
 
     worst = float("inf"); prevF = None; mono = True
     for eps in eps_grid(4000):
@@ -674,13 +700,25 @@ def gate_key(report, tamper=None):
             mono = False
         prevF = Fv
     Fend = F(0.25 - 1e-9)
-    worstL = min(Fgen(eps, L1L, L2L) for eps in eps_grid(4000))
-    ok = (worst > 0.0) and mono and (Fend >= 0.030 - 1e-3) and (worstL >= 0.015 - 1e-3)
+    worstL = min(
+        Fgen(eps, L1L, L2L, gamma_loose) for eps in eps_grid(4000)
+    )
+    ok = (
+        (worst > 0.0)
+        and mono
+        and (Fend >= 0.030 - 1e-3)
+        and (worstL >= loose_floor)
+    )
     report.append(("P8 KEY scalar inequality at the certified caps "
-                   "(0.85,1.61,1.20) + the proved loose caps (1.086,1.663,1.20)",
+                   "(0.85,1.61,1.20) + the contract loose caps "
+                   "(1.086,1.663,7/6)",
                    "minF=%.4f mono=%s Fend=%.4f minF_loose=%.4f"
                    % (worst, mono, Fend, worstL), ok))
-    return ok, Fend
+    return ok, {
+        "sharp_endpoint_margin": Fend,
+        "loose_min_margin": worstL,
+        "loose_margin_floor": loose_floor,
+    }
 
 def gate_base(report, Glev):
     """P9: Master base cases. (a) j=2..5 Lipschitz-certified grid floors,
@@ -928,7 +966,7 @@ def run(tamper=None, deep=False):
     oks.append(gate_l4(report, Glev, Dlev, jmax=12))
     ok7, env_sups = gate_env(report, Glev, tamper=tamper, jmax=jmax_gd)
     oks.append(ok7)
-    ok8, key_margin = gate_key(report, tamper=tamper)
+    ok8, key_margins = gate_key(report, tamper=tamper)
     oks.append(ok8)
     ok9, base_floors = gate_base(report, Glev)
     oks.append(ok9)
@@ -946,7 +984,7 @@ def run(tamper=None, deep=False):
     print("RESULT: %s (%d/%d)" % ("PASS" if allok else "FAIL", npass, n))
     extra = {"share_floor": share_floor,
              "envelope_sups": env_sups,
-             "key_endpoint_margin": key_margin,
+             "key_margins": key_margins,
              "base_case_floors": {str(j): v for j, v in base_floors.items()},
              "tpi_census_min": tpi_min}
     return allok, margins, leak, extra
@@ -967,7 +1005,8 @@ if __name__ == "__main__":
                 "law_margins": margins,
                 "leak_table_B10": {str(k): v for k, v in leak.items()},
                 "envelope_sups": extra["envelope_sups"],
-                "key_endpoint_margin": extra["key_endpoint_margin"],
+                "key_margins": extra["key_margins"],
+                "transfer_shape_contract_sha256": file_sha256(CONTRACT_PATH),
                 "base_case_floors": extra["base_case_floors"],
                 "tpi_census_min": extra["tpi_census_min"],
                 "share_floor": extra["share_floor"],
