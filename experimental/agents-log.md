@@ -30,6 +30,43 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-17 - RS_MCA_Paving_v8 pre-submission audit: clean replay, one provenance item
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** `experimental/notes/audits/rs_mca_paving_v8_audit.md`,
+  `experimental/scripts/verify_rs_mca_paving_v8_audit.py`.
+- **Status:** AUDIT.
+- **What is being added:** Independent pre-submission replay + provenance audit
+  of `RS_MCA_Paving_v8` (tex sha256 `dd936a52...`, as pinned in
+  `REPRODUCIBILITY_v8.md`). Arithmetic is CLEAN — 176/176 independent checks by
+  routes different from the bundled scripts, including the two DP1
+  deployed-prefix certificates (tex L2549-2588) that neither bundled script
+  covers, confirmed three ways and cross-tied to the in-tree
+  `pf-deployed-rows` frozen floors; all five release digests match. One
+  confirmed pre-upload item: BCHKS 2025/2055 Theorem 4.6 at `M=1` — the
+  paper's only imported input — is sketch-status in its source (one-paragraph
+  proof; the source's own preamble defers to ACFY25 Conjecture 4.12 / Hab25),
+  while tex L313-315 ("proved positive theory"), the L382 table cell
+  ("prior"), and rem:bchks-theorem46-provenance (L751-760) present it as
+  settled; the import's normalization itself is exact, and no finite
+  certificate depends on it. Also: an M31 `a0` ceiling-collapse tightness
+  observation (`k(L-1)^2 = 1.9221e37` vs `q-n = 2.1268e37`, ~10% headroom —
+  named check in the script), a one-sentence definitional fix (explanation is
+  RS-specific under theorems stated for general MDS/linear codes), and a
+  one-word `REPRODUCIBILITY_v8.md` line-9 nit.
+- **How it is useful:** Serves the upload gate's "final independent read" for
+  the submission paper: a clean-replay certificate for the committee-facing
+  arithmetic, plus the one provenance fix that removes an easy referee
+  objection. Both fixes are stated in the note (textual reword, or swap the
+  import to the proved quadratic mutual event, Hab25 2025/2110 / BCGM25 —
+  affected results survive verbatim).
+- **What to do next:** Apply the provenance reword or the import swap before
+  the ePrint upload (either suffices; three tex touch-points). Optionally let
+  `verify_paving_mca_v8.py` adopt the four DP1 `M(L_a)` evaluations plus the
+  M31 collapse inequality (~15 lines; named checks in
+  `verify_rs_mca_paving_v8_audit.py` can be cribbed). Re-verify the collapse
+  inequality on any future M31 radius re-tuning.
+
 ### 2026-07-17 - R27/R28 residual, threshold, and Lean PR wave
 
 - **Agent/model:** Codex integrating reviewed non-draft PRs from DannyExperiments, Holm Buar, and Scott Hughes.  PR #864 was used as the superset for #851, and PR #876 was used as the superset for #862. Draft PRs #867, #871, and #874 were left open.
