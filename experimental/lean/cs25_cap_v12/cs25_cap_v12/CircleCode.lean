@@ -1,4 +1,5 @@
 import cs25_cap_v12.BlueprintCommon
+import cs25_cap_v12.Fiber
 
 /-!
 # Blueprint: circle codes, Chebyshev fibers, and torus uniformization (`sec:circle-geometry`, `sec:answers-stereo`)
@@ -64,12 +65,19 @@ Proved here (no `sorry`):
   `htwin_of_twin_coset` and consumed on the torus side, per the printed proof of
   `lem:cheb-fibers` (tex/cs25_cap_v12.tex, `lem:torus-fibers`/`lem:cheb-fibers`).
 
-Still a skeleton (proof `sorry`):
+Also proved (Fiber.lean discharge packet — this file now has **zero `sorry`**):
 
-* `cor_circle_grand` — `cor:circle-grand`: the universal cap for circle-FRI line-round
-  rows.  Statement-hygiene repair applied (`htorusB` ties `torus` to `B`, matching its
-  model `thm_phi_cap`); the proof remains blocked on the sorried divisibility-free
-  route `lem_phi_fiber_ii`/`thm_phi_cap` in Fiber.lean (`k = 2w+1` odd forces it).
+* `cor_circle_grand` — `cor:circle-grand`: the universal cap for circle-FRI
+  line-round rows, **statement-repaired and proved**.  Two statement repairs: the
+  lane-17 `htorusB` tie (untied `B`, graded PLAUSIBLE), and a `hδlo` cast repair
+  (the previous skeleton's `(a * (k / a + 2) : ℝ)` elaborated `k / a` as *real*
+  division while `hyp` uses the *floor* `ℓ₂ = ⌊k/a⌋ + 2`, silently widening the
+  claimed band below the paper's certified endpoint `1 − A₂/n`; graded PLAUSIBLE
+  claim-widening, no falsity claim — see the docstring).  The proof consumes the
+  repaired-and-proved `lem_phi_fiber_ii` (Fiber.lean) at `φ = Xᵃ` — the
+  divisibility-free route is forced since `k = 2w+1` is odd while every deployed
+  folding scale is even (tex `:4010`) — plus `hasList_fiber_input` and the proved
+  `universal_cap_emca_of_fiber_list` (MainCap.lean).
 -/
 
 namespace RSCap
@@ -1273,19 +1281,36 @@ Assembling `lem_circle_rs` (list-size equality) with the map-smooth universal ca
 the torus domain, every circle-FRI line-round row is unsafe at its first staircase
 step: for `C = 𝒞_w(F, E)` of odd RS dimension `k = 2w+1` under the field-size
 hypothesis, `ε_mca(C, δ)` exceeds the threshold across the deep band.  Stated here for
-the uniformized RS code.  (The `hsmooth` input is now constructible for twin cosets
+the uniformized RS code.  (The `hsmooth` input is constructible for twin cosets
 via `lem_torus_fibers`.)
 
-Statement-hygiene repair (untied-binder defect class, graded PLAUSIBLE — no
-counterexample constructed, so no falsity claim): the previous skeleton took
-`B : Subfield F` and used `Fintype.card B` in `hyp`, but had **no hypothesis tying
-`torus` to `B`**.  Its model `thm_phi_cap` (Fiber.lean) requires the domain to be
-`B`-valued (`hdomB`), and the paper instantiates a `B`-valued domain; shrinking `B`
-weakens `hyp` while the fiber pigeonhole needs `B`-valued slopes, so the untied
-statement is likely unprovable.  `htorusB` restores the tie.  The proof remains
-`sorry`: it is blocked on the sorried `lem_phi_fiber_ii`/`thm_phi_cap` in Fiber.lean —
-`k = 2w+1` is odd, so `a ∤ k` in every 2-power instantiation and the
-divisibility-free route is forced (paper cor:circle-grand(b)). -/
+Statement-hygiene repair 1 (lane-17 packet; untied-binder defect class, graded
+PLAUSIBLE — no counterexample constructed, so no falsity claim): the original
+skeleton took `B : Subfield F` and used `Fintype.card B` in `hyp`, but had **no
+hypothesis tying `torus` to `B`**.  Its model `thm_phi_cap` (Fiber.lean) requires
+the domain to be `B`-valued, and the paper instantiates a `B`-valued domain;
+shrinking `B` weakens `hyp` while the fiber pigeonhole needs `B`-valued slopes, so
+the untied statement is likely unprovable.  `htorusB` restores the tie.
+
+Statement-hygiene repair 2 (this packet; cast-semantics defect class, graded
+PLAUSIBLE claim-widening — no falsity claim): the previous `hδlo` read
+`1 - (a * (k / a + 2) : ℝ) / n ≤ δ`, whose `k / a` elaborates as **real** division
+(endpoint `1 − (k+2a)/n`), while `hyp` uses `Nat.choose N (k / a + 2)` with
+**floor** division (`ℓ₂ = ⌊k/a⌋ + 2`, `A₂ = a·ℓ₂`).  Two different `ℓ₂` semantics
+in one statement: since `a ∤ k` always here (`k` odd, `a` even in every 2-power
+instantiation), `A₂ ≤ k + 2a − 1 < k + 2a`, so the real-division band started a
+sliver *below* the paper's certified endpoint `1 − A₂/n_c` (tex `cor:circle-grand`(b)
+`:4015`, and the parity note `:4010`); the fiber list does not reach those radii and
+`emcaErr` is increasing in `δ`, so the widened claim is not provable by the paper
+route.  Repaired to the `ℕ`-cast `1 - ((a * (k / a + 2) : ℕ) : ℝ) / n ≤ δ`,
+matching the correct pattern of `thm_phi_cap`'s `hδlo` (`A₂ : ℕ` bound by
+`hA₂ : A₂ = a * ℓ₂`).
+
+Proved (census 1 → 0 for this file): `lem_phi_fiber_ii` at `φ = Xᵃ` — the
+divisibility-free route is forced, `a ∤ k` (paper cor:circle-grand(b)) — with
+`hQB` discharged by `Subfield` power-closure on `htorusB`; `hℓ₂N` is derived from
+`hyp` (a binomial `≥ 2` forces `ℓ₂ < N`); then `hasList_fiber_input` and
+`universal_cap_emca_of_fiber_list` close at any `δ < 1 − ρ`. -/
 theorem cor_circle_grand (torus : ι → F) (hdom : Function.Injective torus)
     (B : Subfield F) [Fintype B] (htorusB : ∀ i, torus i ∈ B) {w N a k : ℕ}
     (hk : k = 2 * w + 1) (ha : 0 < a) (haN : a * N = Fintype.card ι)
@@ -1293,11 +1318,70 @@ theorem cor_circle_grand (torus : ι → F) (hdom : Function.Injective torus)
     (hq : (Fintype.card ι : ℝ) < Fintype.card F)
     (hyp : (Fintype.card B : ℝ) * ((Fintype.card F : ℝ) / k + 1)
         ≤ (Nat.choose N (k / a + 2) : ℝ))
-    (δ : ℝ) (hδlo : 1 - (a * (k / a + 2) : ℝ) / Fintype.card ι ≤ δ)
+    (δ : ℝ) (hδlo : 1 - ((a * (k / a + 2) : ℕ) : ℝ) / Fintype.card ι ≤ δ)
     (hδhi : δ < 1 - (k : ℝ) / Fintype.card ι) :
     (1 / (2 * (k : ℝ))) * (1 - (Fintype.card ι : ℝ) / (Fintype.card F))
       < emcaErr (RSpoly torus k) δ := by
-  sorry
+  classical
+  have hk0 : 0 < k := by omega
+  have hF0 : (0 : ℝ) < Fintype.card F := lt_of_le_of_lt (Nat.cast_nonneg _) hq
+  have hBR : (0 : ℝ) < Fintype.card B := by exact_mod_cast Fintype.card_pos
+  have hB1 : (1 : ℝ) ≤ Fintype.card B := by exact_mod_cast Fintype.card_pos
+  have hqk : (0 : ℝ) < (Fintype.card F : ℝ) / k := div_pos hF0 (by exact_mod_cast hk0)
+  -- `hyp` forces a genuinely large binomial, hence `ℓ₂ ≤ N - 1`
+  have hchoose2 : 2 ≤ Nat.choose N (k / a + 2) := by
+    by_contra hcon
+    push_neg at hcon
+    have h1 : (Nat.choose N (k / a + 2) : ℝ) ≤ 1 := by
+      exact_mod_cast Nat.lt_succ_iff.mp hcon
+    have h2 : (1 : ℝ) * ((Fintype.card F : ℝ) / k + 1)
+        ≤ (Fintype.card B : ℝ) * ((Fintype.card F : ℝ) / k + 1) :=
+      mul_le_mul_of_nonneg_right hB1 (by positivity)
+    rw [one_mul] at h2
+    linarith
+  have hℓ₂N : k / a + 2 ≤ N - 1 := by
+    rcases lt_or_ge (k / a + 2) N with hlt | hge
+    · omega
+    · exfalso
+      have hle1 : Nat.choose N (k / a + 2) ≤ 1 := by
+        rcases eq_or_lt_of_le hge with heq | hlt2
+        · rw [← heq]; simp [Nat.choose_self]
+        · simp [Nat.choose_eq_zero_of_lt hlt2]
+      omega
+  have hN3 : 2 ≤ N - 1 := le_trans (Nat.le_add_left 2 (k / a)) hℓ₂N
+  have hn0 : 0 < Fintype.card ι := by
+    rw [← haN]
+    exact Nat.mul_pos ha (by omega)
+  have hnR : (0 : ℝ) < Fintype.card ι := by exact_mod_cast hn0
+  have hak : (k : ℝ) < (1 - δ) * Fintype.card ι := by
+    have h1 : (k : ℝ) / Fintype.card ι < 1 - δ := by linarith
+    calc (k : ℝ) = (k : ℝ) / Fintype.card ι * Fintype.card ι := by
+          rw [div_mul_cancel₀ _ (ne_of_gt hnR)]
+      _ < (1 - δ) * Fintype.card ι := mul_lt_mul_of_pos_right h1 hnR
+  -- instantiate the (repaired, proved) fiber lemma at `φ = Xᵃ`
+  have hφdeg : (Polynomial.X ^ a : Polynomial F).natDegree = a := Polynomial.natDegree_X_pow a
+  have hsmooth' : DomSmooth torus (fun x => (Polynomial.X ^ a : Polynomial F).eval x) a := by
+    simpa using hsmooth
+  have hQB : ∀ i, (Polynomial.X ^ a : Polynomial F).eval (torus i) ∈ B := by
+    intro i
+    simpa using pow_mem (htorusB i) a
+  obtain ⟨z, hzB, L, hLge, hlist⟩ :=
+    lem_phi_fiber_ii torus hdom B htorusB (Polynomial.X ^ a) ha hφdeg hQB haN hsmooth'
+      rfl hℓ₂N rfl
+  have hL1 : 1 ≤ L := by
+    have h1 : (1 : ℝ) ≤ (Nat.choose N (k / a + 2) : ℝ) / (Fintype.card B : ℝ) := by
+      rw [le_div_iff₀ hBR, one_mul]
+      have h2 : (Fintype.card B : ℝ) * 1
+          ≤ (Fintype.card B : ℝ) * ((Fintype.card F : ℝ) / k + 1) :=
+        mul_le_mul_of_nonneg_left (by linarith) (by positivity)
+      rw [mul_one] at h2
+      linarith
+    exact_mod_cast le_trans h1 hLge
+  obtain ⟨P, hPdeg, hPdist, hPclose⟩ := hasList_fiber_input torus hδlo hnR hlist
+  exact universal_cap_emca_of_fiber_list torus hdom hk0 δ hak hq Fintype.card_pos hyp
+    ⟨fun i => ((Polynomial.X ^ a : Polynomial F).eval (torus i)) ^ (k / a + 2)
+        + z * ((Polynomial.X ^ a : Polynomial F).eval (torus i)) ^ (k / a + 2 - 1),
+      L, P, hL1, hPdeg, hPdist, hPclose, hLge⟩
 
 /-- **`lem:stereographic` — stereographic uniformization, no `i` required.**
 

@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-17 - Fiber.lean discharge: cor_circle_grand proved, CircleCode census zero
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:** Changed `experimental/lean/cs25_cap_v12/cs25_cap_v12/Fiber.lean` (statement repairs + full proofs of `lem_phi_fiber_ii` and `thm_phi_cap`, new reusable `hasList_fiber_input`, private locator-algebra helpers; `lem_fiber_ii` left honestly sorried), `experimental/lean/cs25_cap_v12/cs25_cap_v12/CircleCode.lean` (`cor_circle_grand` `hδlo` cast repair + full proof; new `import cs25_cap_v12.Fiber`), `experimental/lean/cs25_cap_v12/CIRCLE_FIBER_CORRESPONDENCE.md` (statement map, falsity findings 4–5, census).  Added `experimental/notes/audits/fiber_discharge_census_zero.md`.
+- **Status:** PROVED (with two statement repairs and one documented hand-verified falsity finding; no formalized falsity claim, no sorried falsity claim).
+- **What is being added:** The advertised Fiber.lean open target is discharged along the circle-code route: `lem:phi-fiber`(ii) was **false as stated** (untied `φ`; `F₁₆/F₄` shift counterexample, documented not formalized) and is repaired with the value-level tie `hQB : ∀ i, φ.eval (dom i) ∈ B` and proved in full (all-Mathlib: Vieta, complete disjoint fibers, composition injectivity, pigeonhole over `B`); `thm:phi-cap` inherits the repair (PLAUSIBLE grade) and is proved via `universal_cap_of_fiber_list`; `cor_circle_grand`'s `hδlo` real-vs-floor `k/a` cast defect (PLAUSIBLE claim-widening) is repaired to the `ℕ`-cast endpoint `1 − A₂/n` and the corollary is proved via `lem_phi_fiber_ii` at `φ = Xᵃ` plus `universal_cap_emca_of_fiber_list`.  Package sorry census 17 → 14; `CircleCode.lean` 1 → 0; gates: `lake build` exit 0 from scratch, `#print axioms` on all four proved declarations = `[propext, Classical.choice, Quot.sound]` only.
+- **How it is useful:** Supplies the list-mass input that the universal-cap reduction was isolated for, making the map-smooth cap chain (`lem:phi-fiber`(ii) → `thm:phi-cap` → `cor:circle-grand`, uniformized `ε_mca` clause) fully machine-checked, and closes the last `sorry` in the circle-code file.  The two statement repairs protect downstream consumers from an unprovable-as-stated lemma and a silently widened radius band.
+- **What to do next:** Human-review the two statement repairs against `def:map-smooth` and `cor:circle-grand`(b) before promotion; optionally derive `lem_fiber_ii` later as a corollary of the proved lemma plus the `ℓ₂ = N` edge case (out of scope here); do not read any M31 deployed-row claim into this packet — the numeric `(eq:hyp-phi)` instantiation and circle-side transport remain unformalized.
+
 ### 2026-07-17 - RS-MCA Paving v9.2 ePrint submission package
 
 - **Agent/model:** Codex logging a human-submitted ePrint package by Przemek Chojecki.
