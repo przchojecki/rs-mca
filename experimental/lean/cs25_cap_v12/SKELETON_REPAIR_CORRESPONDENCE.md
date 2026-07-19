@@ -51,8 +51,8 @@ pigeonhole).
 | `cor:quantitative-first-grid-floor` (`:993`) | `RSCap.cor_quantitative_first_grid_floor` | statement unchanged, **PROVED** (census 4 → 3 for the file) |
 | `cor:first-grid-cap`, `c = 1` clause (`:1091`, consumed at `:1153`) | `RSCap.cor_first_grid_cap_one` | new, **PROVED** (both `ε_ca` and `ε_mca` clauses) |
 | `cor:first-grid-cap`, general `c` (`:1091`) | `RSCap.cor_first_grid_cap` | statement audited — **no defect found** (its `hyp` matches the paper exactly, no `\|B\|` division, `:1095`–`:1097`); `c > 1` out of scope, still sorried |
-| `prop:rational-floor` (`:4837`) | `RSCap.prop_rational_floor` | audited — `hfB`/`hgB` correctly present, no defect found; still sorried |
-| `cor:ecfft-onestep` (`:4863`) | `RSCap.cor_ecfft_onestep` | audited — no defect found; still sorried |
+| `prop:rational-floor` (`:4837`) | `RSCap.prop_rational_floor` | audited — `hfB`/`hgB` correctly present, no defect found; statement byte-identical, **PROVED** (constructive discharge packet, 2026-07-19; locator expansion + slope pigeonhole) |
+| `cor:ecfft-onestep` (`:4863`) | `RSCap.cor_ecfft_onestep` | audited — no defect found; statement byte-identical, **PROVED** (constructive discharge packet, 2026-07-19; `prop_rational_floor` at `(2,1)` + `cor_quotient_remainder_trigger` at `A = k + 2`) |
 | `prop:graded-rational-floor` (`:5209`) | `RSCap.prop_graded_rational_floor` | **repaired** (deep-band radius; pre-repair statement FALSE — `RSCap.prop_graded_rational_floor_false` proved) and **PROVED** (wrapper over the deep floor; census 4 → 3 for the file) |
 | `cor:ecfft-macroscopic` (`:5241`) | `RSCap.cor_ecfft_macroscopic` | **repaired** (`hΔhi : Δ ≤ 1/512` band bound + `hfB`/`hgB` ties), graded PLAUSIBLE, **no falsity claim**; still sorried |
 | `lem:inter` CA/MCA (`lem:inter`) | `RSCap.lem_inter_eca`, `RSCap.lem_inter_emca` | unchanged (already PROVED) |
@@ -64,6 +64,7 @@ pigeonhole).
 | `thm:regular-closed-ball-hankel-packing` (`:2135`) | `RSCap.thm_regular_closed_ball_hankel_packing` | **repaired** (same syndrome tie), graded PLAUSIBLE; still sorried |
 | `thm:scanner-checkable-residual-aperiodic-ledger` | `RSCap.thm_scanner_checkable_residual_aperiodic_ledger` | unchanged (already PROVED; abstract chart predicates, no tie needed) |
 | (packet infrastructure) | `RSCap.RSpoly_one_const`, `RSCap.hasList_const_le_card` | new, **PROVED** (constants pigeonhole used by the negation certificates) |
+| (discharge infrastructure, 2026-07-19) | `RSCap.eval_mem_of_coeff_mem`, `RSCap.rational_locator_expansion`, `RSCap.eq_of_eval_eq_of_natDegree_lt` | new, **PROVED** (subfield evaluation closure; `j ≥ 2` locator-tail degree bound, tex `:4852`–`:4856`; distinct-interpolant fact extracted from the `hasList_first_grid` inline argument) |
 
 ## Falsity findings (all machine-checked; none sorried)
 
@@ -170,12 +171,13 @@ the quoted paper line carries the missing constraint.
   that produces the list (the constructive content of `:5223`–`:5239`) is
   **not** formalized — it enters through the `hlist` hypothesis, exactly as
   the skeleton's abstraction chose.
-* Remaining sorries after this packet (12 package-wide, by build warning):
+* Remaining sorries after this packet (12 package-wide, by build warning; **10
+  after the ECFFT constructive-discharge packet of 2026-07-19**, which proved
+  `prop_rational_floor` and `cor_ecfft_onestep` with byte-identical statements):
   `Fiber.lean` `lem_fiber_ii` (pre-existing, out of scope);
   `QuotientRemainder.lean` `lem_quotient_remainder_prefix`,
   `lem_heaviest_prefix_locator_floor`, `cor_first_grid_cap`;
-  `ECFFT.lean` `prop_rational_floor`, `cor_ecfft_onestep`,
-  `cor_ecfft_macroscopic`; `InterleavingTransfer.lean`
+  `ECFFT.lean` `cor_ecfft_macroscopic`; `InterleavingTransfer.lean`
   `thm_explicit_head_floor_even`, `thm_explicit_head_floor_odd`,
   `thm_explicit_pairs`; `AperiodicHankel.lean`
   `lem_regular_exact_agreement_eliminant`,

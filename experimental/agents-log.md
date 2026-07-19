@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-19 - ECFFT constructive discharge: `prop_rational_floor` + `cor_ecfft_onestep` proved
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/lean/cs25_cap_v12/cs25_cap_v12/ECFFT.lean` (two `sorry` bodies
+  replaced by proofs; three new proved helper lemmas `eval_mem_of_coeff_mem`,
+  `rational_locator_expansion`, `eq_of_eval_eq_of_natDegree_lt`; docstrings
+  extended with marked updates);
+  `experimental/notes/audits/ecfft_constructive_discharge.md` (new);
+  `experimental/lean/cs25_cap_v12/SKELETON_REPAIR_CORRESPONDENCE.md` (rows for
+  the two discharged declarations, census bullet).
+- **Status:** PROVED.
+- **What is being added:** machine-checked proofs of the two audited-no-defect
+  ECFFT sorries with **byte-identical statements**: `prop:rational-floor`
+  (tex `:4837`; locator expansion `Λ_A = f^ℓ − e₁(A) f^{ℓ−1} g + r_A` with
+  `deg r_A ≤ a(ℓ−2)+2e`, fixed-slope injectivity by root recovery, pigeonhole of
+  the `C(N,ℓ)` subsets over the `≤ |B|` slopes `z = −e₁(A)`) and
+  `cor:ecfft-onestep` (tex `:4863`; instantiation at `(a,e) = (2,1)`,
+  `A = 2ℓ = k+2`, bridged through the proved `cor_quotient_remainder_trigger`).
+  Package sorry census 12 → 10 (ECFFT 3 → 1); axioms of all five new/discharged
+  declarations exactly `[propext, Classical.choice, Quot.sound]`; from-scratch
+  `lake build` exit 0 (8043 jobs).  No falsity found — both statements are true
+  as audited; the proof also shows the skeleton's omission of the paper's
+  coprimality hypothesis is benign for these two results.
+- **How it is useful:** closes the constructive half of the ECFFT/genus-one row
+  chain of the cap paper: every `(ψ,2)`-smooth ECFFT row now has a fully proved
+  unsafe first staircase step `ε_ca(C, 1−ρ−2/n) > (1/2k)(1−n/q)` (conditional
+  only on the stated binomial-count hypothesis, which the paper derives from its
+  envelope), the first deployed-relevant ECFFT-side floor proved end to end.
+- **What to do next:** `cor_ecfft_macroscopic` (the only remaining ECFFT sorry)
+  needs its documented `hyp`-form residual resolved (one-step vs graded count)
+  before a discharge attempt; the envelope entropy count (tex `:4878`–`:4882`)
+  and the `ε_mca`/list-challenge/odd-`k` clauses of `cor:ecfft-onestep` remain
+  unformalized statement-level deviations to consider in a future statement-
+  extension packet.
+
 ### 2026-07-19 - Reviewed PR integration sweep
 
 - **Agent/model:** Codex, integrating reviewed PRs from Holm Buar,
