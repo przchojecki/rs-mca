@@ -30,6 +30,51 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-18 - cs25_cap_v12 skeleton falsity-and-repair packet (five negation certificates, first-grid chain discharged)
+
+- **Agent/model:** Claude Fable 5.
+- **Files added or changed:**
+  `experimental/lean/cs25_cap_v12/cs25_cap_v12/QuotientRemainder.lean`,
+  `experimental/lean/cs25_cap_v12/cs25_cap_v12/ECFFT.lean`,
+  `experimental/lean/cs25_cap_v12/cs25_cap_v12/InterleavingTransfer.lean`,
+  `experimental/lean/cs25_cap_v12/cs25_cap_v12/AperiodicHankel.lean`,
+  `experimental/lean/cs25_cap_v12/SKELETON_REPAIR_CORRESPONDENCE.md` (new),
+  `experimental/notes/audits/skeleton_falsity_repairs.md` (new).
+- **Status:** COUNTEREXAMPLE (five machine-checked statement-level negation
+  lemmas, never sorried) + PROVED (repaired `prop_graded_rational_floor`,
+  `cor_quantitative_first_grid_floor`, new `hasList_first_grid` and
+  `cor_first_grid_cap_one`) + AUDIT (PLAUSIBLE-graded untied-binder repairs,
+  still sorried).
+- **What is being added:** A statement-layer audit of the four remaining
+  `cs25_cap_v12` skeleton files (the README's completion queue) at base
+  `3404d21`.  Five skeletons were false as written — free certificate weight
+  `wₒ`, inverted heaviest-prefix quantifier, vacuous graded-floor radius,
+  dropped `(φ,c)`-smoothness, free explicit-pairs family size — each refuted
+  by a proved `ZMod 17`/`ZMod 7`/`ZMod 2` counterexample lemma and repaired to
+  the paper's statement (all formalization defects, not paper defects).  The
+  packet also proves the unconditional first-grid cap chain at `c = 1`
+  end-to-end (explicit `x^{k+1}` witness list, quantitative first-grid floor,
+  `ε_ca` + `ε_mca` cap — the clause the paper's deployed-row corollary
+  consumes at tex `:1153`), and adds PLAUSIBLE-graded repairs (no falsity
+  claims) for `cor_ecfft_macroscopic` (band bound `Δ ≤ 2⁻⁹`, `hfB`/`hgB`
+  ties) and the two `AperiodicHankel` certificates (syndromes `Syn(f)`,
+  `Syn(g)` now defined and tied).  Package sorry census 14 → 12; clean
+  rebuild exit 0; `#print axioms` on all new/repaired proved declarations
+  reports only `propext`, `Classical.choice`, `Quot.sound`.
+- **How it is useful:** Stops proof effort being spent on false formal
+  targets in the advertised completion queue, provides permanent
+  statement-level regression guards (the `*_false` lemmas), and lands the
+  paper's headline unconditional `c = 1` first-grid cap fully in Lean on any
+  injective domain.
+- **What to do next:** Human review of the five repairs against the paper
+  lines quoted in the correspondence note; a future discharge packet can
+  attack the repaired `prop_rational_floor` / `cor_ecfft_onestep`
+  (statements audited, no defect found) and the quotient-remainder prefix
+  construction; before discharging `cor_ecfft_macroscopic`, decide whether to
+  swap its one-step `hyp` for the paper's graded count (residual documented
+  in the note).  Do not re-derive the pre-repair statements — they are
+  machine-refuted.
+
 ### 2026-07-18 - Reviewed PR integration sweep
 
 - **Agent/model:** Codex, integrating reviewed PRs from Holm Buar, Scott
