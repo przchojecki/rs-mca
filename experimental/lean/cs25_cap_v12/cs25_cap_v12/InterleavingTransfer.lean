@@ -1,4 +1,5 @@
 import cs25_cap_v12.QuotientRemainder
+import cs25_cap_v12.ECFFT
 
 /-!
 # Blueprint: interleaving transfer and explicit witnesses (`lem:inter`, `sec:answers-explicit`)
@@ -36,6 +37,27 @@ statement-repaired below and stay honestly sorried;
 `thm_explicit_head_floor_odd` carries the identical smoothness omission (same-class
 flag, PLAUSIBLE — no separate counterexample constructed) and receives the same
 repair.
+
+**Update (head-floor second-round repair packet, 2026-07-19):** the 2026-07-18
+`hsmooth` repair of `thm_explicit_head_floor_even` was **insufficient** — two
+further defects survived it, each with a machine-checked negation against the
+repaired (post-`hsmooth`) statement.  (D1, `thm_explicit_head_floor_even_char2_false`)
+the paper's antipodal-partition consequence "so that `Q` is partitioned into `N/2`
+antipodal classes `{y, −y}`" (tex `:5334`) was never formalized: `hnegQ` only
+encodes `−Q = Q` and is *trivially* satisfied in characteristic `2` (`y = −y`,
+witness `j := i`), where the classes are singletons and the `C(N/2, m/2)` count
+collapses — `GaloisField 2 3` counterexample.  (D2,
+`thm_explicit_head_floor_even_deg_false`) the paper's *integer* arithmetic
+`cm ≤ K − 1 + 2c` (tex `:5334`) excludes `K = 0`, but the skeleton's ℕ-truncated
+subtraction admits it, and `RS[F, D, 0] = {0}` cannot carry two distinct
+codewords — `ZMod 5` counterexample.  Repaired with `h2 : (2 : F) ≠ 0` and
+`hK : 1 ≤ K` on the even clause (the odd clause gets `h2` only: `1 ≤ K` is
+derivable there from `m ≥ 3`), and **both repaired statements are now proved**,
+constructively, via the ECFFT locator expansion `rational_locator_expansion` at
+`f = φ²`, `g = 1`.  Both deployed towers have odd characteristic and `K ≥ 1`, so
+they satisfy the repaired hypotheses.  Census `3 → 1` in this module;
+`thm_explicit_pairs` (statement-repaired 2026-07-18) is untouched and stays
+honestly sorried.
 -/
 
 namespace RSCap
@@ -127,33 +149,333 @@ and `c·m ≤ K − 1 + 2c`, the explicit *pure power word* `u = φ^m|_D` carrie
 at least `C(N/2, m/2)` distinct codewords of `RS[F, D, K]` at radius `1 − cm/n`, with
 no pigeonhole and no subfield division.
 
-Statement repair (this packet; falsity class, machine-checked negation
-`thm_explicit_head_floor_even_false`): the paper opens "Let `D` be
+First-round statement repair (2026-07-18 packet; falsity class, machine-checked
+negation `thm_explicit_head_floor_even_false`): the paper opens "Let `D` be
 `(φ, c)`-smooth over `B`" (tex `:5334`) — complete fibers of size `c` are what make
 the locator `Λ_M` collect `cm` agreement points — but the skeleton carried **no
 smoothness hypothesis at all** (`hcN` only fixes the count `n = cN`).  On a
 non-smooth domain the fibers are deficient and even the single-codeword list fails;
 see the `ZMod 17` counterexample at the negation lemma.  Repaired with
 `hsmooth : DomSmooth dom (fun x => φ.eval x) c`, the same `(φ, c)`-smoothness form
-used by `lem_phi_fiber_ii` / `cor_circle_grand`.  A formalization omission, not a
-paper defect. -/
+used by `lem_phi_fiber_ii` / `cor_circle_grand`.
+
+Second-round statement repair (this packet; falsity class **twice over**,
+machine-checked negations `thm_explicit_head_floor_even_char2_false` and
+`thm_explicit_head_floor_even_deg_false`): the first-round packet claimed its
+`ZMod 17` instance "isolates the dropped hypothesis exactly" — it did not.  Two
+defects survived the `hsmooth` repair.  (D1) the paper's clause "so that `Q` is
+partitioned into `N/2` antipodal classes `{y, −y}`" (tex `:5334`) is a *consequence*
+of `−Q = Q`, `0 ∉ Q` only in characteristic `≠ 2`; the skeleton's `hnegQ` encodes
+`−Q = Q` alone, which is trivially true in characteristic `2` (`j := i`), where the
+classes are singletons and both the pairing count and the proof's `e₁`-vanishing
+fail.  Repaired with `h2 : (2 : F) ≠ 0`.  (D2) the paper's `cm ≤ K − 1 + 2c`
+(tex `:5334`) is integer arithmetic and, at `m = 2`, forces `K ≥ 1`; the skeleton's
+ℕ-truncated `K - 1` admits `K = 0`, whose code `RS[F, D, 0] = {0}` cannot carry the
+claimed two codewords.  Repaired with `hK : 1 ≤ K`.  Both are formalization
+omissions, not paper defects (both deployed towers are odd-characteristic with
+`K ≥ 1`).  **Now proved**: the locator `Λ_T = ∏_{r∈T}(φ² − r)` over `(m/2)`-subsets
+`T` of the square set `Qsq = {y² : y ∈ Q}` (`|Qsq| = N/2` — squaring is exactly
+`2`-to-`1` on `Q` by `h2`) expands as `φ^m + s` with `deg s ≤ c(m−2) ≤ K−1` by
+`rational_locator_expansion` at `f = φ²`, `g = 1`, collects the `cm` points of the
+`m/2` antipodal fiber pairs, and `T` is recovered from the root set. -/
 theorem thm_explicit_head_floor_even (dom : ι → F) (hdom : Function.Injective dom)
     (φ : Polynomial F) {c N K m : ℕ}
     (hc : 0 < c) (hφdeg : φ.natDegree = c) (hcN : c * N = Fintype.card ι)
     (hsmooth : DomSmooth dom (fun x => φ.eval x) c) (hNeven : Even N)
+    (h2 : (2 : F) ≠ 0) (hK : 1 ≤ K)
     (hnegQ : ∀ i, ∃ j, φ.eval (dom j) = - φ.eval (dom i))
     (h0 : ∀ i, φ.eval (dom i) ≠ 0)
     (hm_even : Even m) (hm_lo : 2 ≤ m) (hm_hi : m ≤ N - 2)
     (hmK : c * m ≤ K - 1 + 2 * c) :
     HasList (RSpoly dom K) (1 - (c * m : ℝ) / Fintype.card ι)
       (fun i => (φ.eval (dom i)) ^ m) (Nat.choose (N / 2) (m / 2)) := by
-  sorry
+  classical
+  -- numerology
+  have hmN : m ≤ N := by omega
+  have hn0 : 0 < Fintype.card ι := by
+    rw [← hcN]; exact Nat.mul_pos hc (by omega)
+  have hnR : (0 : ℝ) < Fintype.card ι := by exact_mod_cast hn0
+  have hcmn : c * m ≤ Fintype.card ι := by
+    rw [← hcN]; exact Nat.mul_le_mul_left c hmN
+  have h2m : 2 * (m / 2) = m := Nat.mul_div_cancel' hm_even.two_dvd
+  have hf2deg : (φ ^ 2).natDegree = 2 * c := by
+    rw [Polynomial.natDegree_pow, hφdeg]
+  -- the smoothness hypothesis, beta-reduced
+  have hsm : ∀ i, (Finset.univ.filter (fun j => φ.eval (dom j) = φ.eval (dom i))).card = c :=
+    hsmooth
+  -- the value set Q = φ(D): complete fibers of size c, |Q| = N
+  set Q : Finset F := Finset.univ.image (fun i => φ.eval (dom i)) with hQdef
+  have hfiber : ∀ y ∈ Q, (Finset.univ.filter (fun i => φ.eval (dom i) = y)).card = c := by
+    intro y hy
+    obtain ⟨i₀, -, rfl⟩ := Finset.mem_image.mp hy
+    exact hsm i₀
+  have hQcard : Q.card = N := by
+    have hcount : Fintype.card ι
+        = ∑ y ∈ Q, (Finset.univ.filter (fun i => φ.eval (dom i) = y)).card := by
+      rw [← Finset.card_univ]
+      exact Finset.card_eq_sum_card_image (fun i => φ.eval (dom i)) Finset.univ
+    rw [Finset.sum_congr rfl hfiber, Finset.sum_const, smul_eq_mul] at hcount
+    have h1 : c * Q.card = c * N := by rw [Nat.mul_comm c Q.card]; omega
+    exact Nat.eq_of_mul_eq_mul_left hc h1
+  -- Q is antipodally closed, and y ≠ −y on Q (this is where h2 enters)
+  have hQneg : ∀ y ∈ Q, -y ∈ Q := by
+    intro y hy
+    obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hy
+    obtain ⟨j, hj⟩ := hnegQ i
+    exact Finset.mem_image.mpr ⟨j, Finset.mem_univ _, hj⟩
+  have hQne : ∀ y ∈ Q, y ≠ -y := by
+    intro y hy hcon
+    obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hy
+    have h2y : (2 : F) * φ.eval (dom i) = 0 := by linear_combination hcon
+    rcases mul_eq_zero.mp h2y with hcase | hcase
+    · exact h2 hcase
+    · exact h0 i hcase
+  -- the square set Qsq: squaring is exactly 2-to-1 on Q, so |Qsq| = N/2
+  set Qsq : Finset F := Q.image (fun y => y ^ 2) with hQsqdef
+  have hQsqcard2 : 2 * Qsq.card = N := by
+    have hcount : Q.card = ∑ r ∈ Qsq, (Q.filter (fun y => y ^ 2 = r)).card :=
+      Finset.card_eq_sum_card_image (fun y => y ^ 2) Q
+    have hinner : ∀ r ∈ Qsq, (Q.filter (fun y => y ^ 2 = r)).card = 2 := by
+      intro r hr
+      obtain ⟨y₀, hy₀Q, rfl⟩ := Finset.mem_image.mp hr
+      have hpair : Q.filter (fun y => y ^ 2 = y₀ ^ 2) = {y₀, -y₀} := by
+        ext y
+        simp only [Finset.mem_filter, Finset.mem_insert, Finset.mem_singleton]
+        constructor
+        · rintro ⟨hyQ, hyy⟩
+          have hfac : (y - y₀) * (y + y₀) = 0 := by linear_combination hyy
+          rcases mul_eq_zero.mp hfac with hcase | hcase
+          · exact Or.inl (sub_eq_zero.mp hcase)
+          · exact Or.inr (by linear_combination hcase)
+        · rintro (rfl | rfl)
+          · exact ⟨hy₀Q, rfl⟩
+          · exact ⟨hQneg _ hy₀Q, neg_sq y₀⟩
+      rw [hpair, Finset.card_insert_of_notMem
+        (fun hmem => hQne _ hy₀Q (Finset.mem_singleton.mp hmem)), Finset.card_singleton]
+    rw [Finset.sum_congr rfl hinner, Finset.sum_const, smul_eq_mul, hQcard] at hcount
+    omega
+  have hQsqcard : Qsq.card = N / 2 := by omega
+  -- every square value is attained on the domain
+  have hwit : ∀ r ∈ Qsq, ∃ i₀, (φ.eval (dom i₀)) ^ 2 = r := by
+    intro r hr
+    obtain ⟨y₀, hy₀Q, hy₀r⟩ := Finset.mem_image.mp hr
+    obtain ⟨i₀, -, hi₀⟩ := Finset.mem_image.mp hy₀Q
+    exact ⟨i₀, by rw [hi₀, hy₀r]⟩
+  -- locator evaluation: vanishing on the T-fibers, and recovery of T
+  have hvanish : ∀ (T : Finset F) (i : ι), (φ.eval (dom i)) ^ 2 ∈ T →
+      (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i) = 0 := by
+    intro T i hi
+    rw [Polynomial.eval_prod]
+    refine Finset.prod_eq_zero hi ?_
+    simp only [Polynomial.eval_sub, Polynomial.eval_pow, Polynomial.eval_C]
+    exact sub_self _
+  have hrecover : ∀ (T : Finset F) (i : ι),
+      (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i) = 0 → (φ.eval (dom i)) ^ 2 ∈ T := by
+    intro T i hzero
+    rw [Polynomial.eval_prod, Finset.prod_eq_zero_iff] at hzero
+    obtain ⟨r, hrT, hr⟩ := hzero
+    simp only [Polynomial.eval_sub, Polynomial.eval_pow, Polynomial.eval_C] at hr
+    rw [sub_eq_zero] at hr
+    rwa [hr]
+  -- degree budget: c(m−2) ≤ K−1 (genuine, since the paper's bound is integer
+  -- arithmetic; the products are abstracted for omega)
+  have hdegK : c * (m - 2) ≤ K - 1 := by
+    have hsub : c * (m - 2) + 2 * c = c * m := by
+      obtain ⟨u, rfl⟩ : ∃ u, m = u + 2 := ⟨m - 2, by omega⟩
+      rw [Nat.add_sub_cancel]
+      ring
+    revert hmK hsub
+    generalize c * m = A
+    generalize c * (m - 2) = B
+    intro hmK hsub
+    omega
+  -- membership: each T-locator produces a codeword of RS[F, D, K]
+  have hkey : ∀ T : Finset F, T.card = m / 2 →
+      (fun i => (φ.eval (dom i)) ^ m - (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i))
+        ∈ RSpoly dom K := by
+    intro T hTc
+    obtain ⟨hdeg, -⟩ := rational_locator_expansion (φ ^ 2) 1 (a := 2 * c) (e := 0)
+      (by omega) hf2deg Polynomial.natDegree_one T
+    simp only [mul_one, Nat.mul_zero, Nat.add_zero] at hdeg
+    rw [hTc] at hdeg
+    refine ⟨(φ ^ 2) ^ (m / 2) - ∏ r ∈ T, (φ ^ 2 - Polynomial.C r), ?_, ?_⟩
+    · have hrw : (φ ^ 2) ^ (m / 2) - ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)
+          = Polynomial.C (∑ r ∈ T, r) * (φ ^ 2) ^ (m / 2 - 1)
+            - ((∏ r ∈ T, (φ ^ 2 - Polynomial.C r)) - (φ ^ 2) ^ (m / 2)
+              + Polynomial.C (∑ r ∈ T, r) * (φ ^ 2) ^ (m / 2 - 1)) := by
+        ring
+      have hb1 : (Polynomial.C (∑ r ∈ T, r) * (φ ^ 2) ^ (m / 2 - 1)).natDegree
+          ≤ c * (m - 2) := by
+        refine le_trans Polynomial.natDegree_mul_le ?_
+        rw [Polynomial.natDegree_C, Nat.zero_add]
+        refine le_trans Polynomial.natDegree_pow_le ?_
+        rw [hf2deg]
+        have harith : 2 * (m / 2 - 1) ≤ m - 2 := by omega
+        calc (m / 2 - 1) * (2 * c) = (2 * (m / 2 - 1)) * c := by ring
+          _ ≤ (m - 2) * c := Nat.mul_le_mul_right c harith
+          _ = c * (m - 2) := Nat.mul_comm _ _
+      have hb2 : ((∏ r ∈ T, (φ ^ 2 - Polynomial.C r)) - (φ ^ 2) ^ (m / 2)
+          + Polynomial.C (∑ r ∈ T, r) * (φ ^ 2) ^ (m / 2 - 1)).natDegree
+          ≤ c * (m - 2) := by
+        refine le_trans hdeg ?_
+        have harith : 2 * (m / 2 - 2) ≤ m - 2 := by omega
+        calc 2 * c * (m / 2 - 2) = (2 * (m / 2 - 2)) * c := by ring
+          _ ≤ (m - 2) * c := Nat.mul_le_mul_right c harith
+          _ = c * (m - 2) := Nat.mul_comm _ _
+      have hQnat : ((φ ^ 2) ^ (m / 2) - ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).natDegree
+          ≤ K - 1 := by
+        rw [hrw]
+        exact le_trans (le_trans (Polynomial.natDegree_sub_le _ _) (max_le hb1 hb2)) hdegK
+      have hKlt : K - 1 < K := by omega
+      exact lt_of_le_of_lt
+        (Polynomial.degree_le_natDegree.trans (WithBot.coe_le_coe.mpr hQnat))
+        (WithBot.coe_lt_coe.mpr hKlt)
+    · intro i
+      simp only [Polynomial.eval_sub, Polynomial.eval_pow, ← pow_mul, h2m]
+  -- closeness: agreement on the cm fiber points of the m/2 antipodal pairs of T
+  have hclose : ∀ T : Finset F, T ⊆ Qsq → T.card = m / 2 →
+      relDist (fun i => (φ.eval (dom i)) ^ m)
+        (fun i => (φ.eval (dom i)) ^ m - (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i))
+        ≤ 1 - (c * m : ℝ) / Fintype.card ι := by
+    intro T hTQ hTc
+    have hfibcard : (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).card
+        = c * m := by
+      have hinner : ∀ r ∈ T,
+          ((Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).filter
+            (fun i => (φ.eval (dom i)) ^ 2 = r)).card = 2 * c := by
+        intro r hr
+        have heqf : (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).filter
+            (fun i => (φ.eval (dom i)) ^ 2 = r)
+            = Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 = r) := by
+          ext i
+          simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+          exact ⟨fun hcase => hcase.2, fun hcase => ⟨by rw [hcase]; exact hr, hcase⟩⟩
+        rw [heqf]
+        obtain ⟨y₀, hy₀Q, rfl⟩ := Finset.mem_image.mp (hTQ hr)
+        have hdisj : Disjoint (Finset.univ.filter (fun i => φ.eval (dom i) = y₀))
+            (Finset.univ.filter (fun i => φ.eval (dom i) = -y₀)) := by
+          refine Finset.disjoint_left.mpr ?_
+          intro i hi hi'
+          simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi hi'
+          exact hQne y₀ hy₀Q (hi.symm.trans hi')
+        have hsplit : Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 = y₀ ^ 2)
+            = (Finset.univ.filter (fun i => φ.eval (dom i) = y₀))
+              ∪ (Finset.univ.filter (fun i => φ.eval (dom i) = -y₀)) := by
+          ext i
+          simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_union]
+          constructor
+          · intro hcase
+            have hfac : (φ.eval (dom i) - y₀) * (φ.eval (dom i) + y₀) = 0 := by
+              linear_combination hcase
+            rcases mul_eq_zero.mp hfac with hc1 | hc1
+            · exact Or.inl (sub_eq_zero.mp hc1)
+            · exact Or.inr (by linear_combination hc1)
+          · rintro (hcase | hcase)
+            · rw [hcase]
+            · rw [hcase]; exact neg_sq y₀
+        rw [hsplit, Finset.card_union_of_disjoint hdisj,
+          hfiber y₀ hy₀Q, hfiber (-y₀) (hQneg y₀ hy₀Q)]
+        omega
+      calc (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).card
+          = ∑ r ∈ T, ((Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).filter
+              (fun i => (φ.eval (dom i)) ^ 2 = r)).card :=
+            Finset.card_eq_sum_card_fiberwise (fun i hi => (Finset.mem_filter.mp hi).2)
+        _ = ∑ _r ∈ T, 2 * c := Finset.sum_congr rfl hinner
+        _ = T.card * (2 * c) := by rw [Finset.sum_const, smul_eq_mul]
+        _ = c * m := by
+            rw [hTc]
+            calc (m / 2) * (2 * c) = (2 * (m / 2)) * c := by ring
+              _ = m * c := by rw [h2m]
+              _ = c * m := Nat.mul_comm _ _
+    have hsubd : Finset.univ.filter (fun i =>
+          (φ.eval (dom i)) ^ m
+            ≠ (φ.eval (dom i)) ^ m - (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i))
+        ⊆ (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T))ᶜ := by
+      intro i hi
+      simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi
+      simp only [Finset.mem_compl, Finset.mem_filter, Finset.mem_univ, true_and]
+      intro hiT
+      exact hi (by rw [hvanish T i hiT]; ring)
+    have hnum : numDiff (fun i => (φ.eval (dom i)) ^ m)
+        (fun i => (φ.eval (dom i)) ^ m - (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i))
+        ≤ Fintype.card ι - c * m := by
+      calc numDiff _ _
+          ≤ ((Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T))ᶜ).card :=
+            Finset.card_le_card hsubd
+        _ = Fintype.card ι - c * m := by rw [Finset.card_compl, hfibcard]
+    rw [relDist, div_le_iff₀ hnR]
+    calc (numDiff _ _ : ℝ) ≤ ((Fintype.card ι - c * m : ℕ) : ℝ) := by exact_mod_cast hnum
+      _ = (Fintype.card ι : ℝ) - ((c * m : ℕ) : ℝ) := by rw [Nat.cast_sub hcmn]
+      _ = (1 - (c * m : ℝ) / Fintype.card ι) * Fintype.card ι := by
+          push_cast
+          field_simp
+  -- locator degrees stay below n = |D|, so equal words force equal locators
+  have hΛdeg : ∀ T : Finset F, T.card = m / 2 →
+      (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).natDegree < Fintype.card ι := by
+    intro T hTc
+    have hterm : ∀ r ∈ T, (φ ^ 2 - Polynomial.C r).natDegree ≤ 2 * c := by
+      intro r _
+      refine le_trans (Polynomial.natDegree_sub_le _ _) (max_le (le_of_eq hf2deg) ?_)
+      rw [Polynomial.natDegree_C]
+      omega
+    calc (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).natDegree
+        ≤ ∑ r ∈ T, (φ ^ 2 - Polynomial.C r).natDegree := Polynomial.natDegree_prod_le _ _
+      _ ≤ T.card • (2 * c) := Finset.sum_le_card_nsmul _ _ _ hterm
+      _ = (m / 2) * (2 * c) := by rw [smul_eq_mul, hTc]
+      _ = (2 * (m / 2)) * c := by ring
+      _ = m * c := by rw [h2m]
+      _ < N * c := mul_lt_mul_of_pos_right (by omega) hc
+      _ = c * N := Nat.mul_comm _ _
+      _ = Fintype.card ι := hcN
+  -- assembly: enumerate all (m/2)-subsets of Qsq — the count is exact
+  set 𝒯 : Finset (Finset F) := Qsq.powersetCard (m / 2) with h𝒯def
+  have h𝒯card : 𝒯.card = Nat.choose (N / 2) (m / 2) := by
+    rw [h𝒯def, Finset.card_powersetCard, hQsqcard]
+  have hmemT : ∀ T ∈ 𝒯, T ⊆ Qsq ∧ T.card = m / 2 := by
+    intro T hT
+    rw [h𝒯def, Finset.mem_powersetCard] at hT
+    exact hT
+  set E := 𝒯.equivFinOfCardEq h𝒯card with hEdef
+  refine ⟨fun j => (fun i =>
+      (φ.eval (dom i)) ^ m
+        - (∏ r ∈ ((E.symm j : Finset F)), (φ ^ 2 - Polynomial.C r)).eval (dom i)),
+    ?_, ?_, ?_⟩
+  · intro j
+    exact hkey _ (hmemT _ (E.symm j).2).2
+  · intro j j' hjj'
+    obtain ⟨hTQ, hTc⟩ := hmemT _ (E.symm j).2
+    obtain ⟨hT'Q, hT'c⟩ := hmemT _ (E.symm j').2
+    have heq : ∀ i,
+        (∏ r ∈ ((E.symm j : Finset F)), (φ ^ 2 - Polynomial.C r)).eval (dom i)
+          = (∏ r ∈ ((E.symm j' : Finset F)), (φ ^ 2 - Polynomial.C r)).eval (dom i) := by
+      intro i
+      have hpt := congrFun hjj' i
+      dsimp only at hpt
+      exact sub_right_inj.mp hpt
+    have hΛeq := eq_of_eval_eq_of_natDegree_lt dom hdom (hΛdeg _ hTc) (hΛdeg _ hT'c) heq
+    have hsub : (E.symm j : Finset F) ⊆ (E.symm j' : Finset F) := by
+      intro r hrT
+      obtain ⟨i₀, hi₀⟩ := hwit r (hTQ hrT)
+      have hz : (∏ r' ∈ ((E.symm j : Finset F)),
+          (φ ^ 2 - Polynomial.C r')).eval (dom i₀) = 0 :=
+        hvanish _ i₀ (by rw [hi₀]; exact hrT)
+      rw [hΛeq] at hz
+      have hrec := hrecover _ i₀ hz
+      rwa [hi₀] at hrec
+    have hTeq : (E.symm j : Finset F) = (E.symm j' : Finset F) :=
+      Finset.eq_of_subset_of_card_le hsub (by rw [hT'c, hTc])
+    exact E.symm.injective (Subtype.ext hTeq)
+  · intro j
+    obtain ⟨hTQ, hTc⟩ := hmemT _ (E.symm j).2
+    exact hclose _ hTQ hTc
 
 /-- The `GF(17)` counterexample instance below needs the primality fact as a closed
 instance term (a local `haveI` would put a free variable into the `decide` goals). -/
 private instance : Fact (Nat.Prime 17) := ⟨by norm_num⟩
 
 private instance : Fact (Nat.Prime 7) := ⟨by norm_num⟩
+
+private instance : Fact (Nat.Prime 5) := ⟨by norm_num⟩
 
 /-- **The previous `thm_explicit_head_floor_even` skeleton statement was false.**
 It dropped the paper's `(φ, c)`-smoothness hypothesis (tex `:5334`), keeping only
@@ -218,6 +540,175 @@ theorem thm_explicit_head_floor_even_false :
   rw [hconst i]
   exact hi
 
+/-- **The first-round (`hsmooth`-repaired) `thm_explicit_head_floor_even` statement
+was still false in characteristic `2`.**  The paper's "so that `Q` is partitioned
+into `N/2` antipodal classes `{y, −y}`" (tex `:5334`) is a consequence of `−Q = Q`,
+`0 ∉ Q` only when `char F ≠ 2`; the skeleton encoded `−Q = Q` alone (`hnegQ`),
+which any characteristic-`2` domain satisfies trivially with `j := i`.
+Counterexample: `F = GaloisField 2 3` (`GF(8)`), `φ = X`, `c = 1`, `N = 4`, `m = 2`,
+`K = 1`, `dom` any four distinct nonzero elements (the `7 ≥ 4` units provide an
+embedding; no explicit coordinates are needed, and none are available — `GaloisField`
+does not compute, so this proof is `decide`-free on the field).  All repaired
+hypotheses hold — `dom` is tautologically `(X, 1)`-smooth and `hnegQ` is trivial —
+but squaring is *injective* in characteristic `2` (Frobenius), so the word
+`u = φ²|_D` takes `4` distinct values, any constant codeword of `RS[F, D, 1]`
+agrees with it on at most `1` of the `4` points, and no codeword lies within the
+claimed radius `1 − 2/4 = 1/2` (which allows at most `2` disagreements) — even a
+list of size `1` is unreachable, let alone `C(2, 1) = 2`.  This negation targets
+the *current* on-main statement (with `hsmooth`), superseding the first-round
+packet's claim that its `ZMod 17` instance "isolates the dropped hypothesis
+exactly."  Note the instance has `K = 1`, so the `hK`-repair of the second negation
+below is independently necessary.  Stated over `Type` (universe 0), which suffices
+to refute the universe-polymorphic skeleton. -/
+theorem thm_explicit_head_floor_even_char2_false :
+    ¬ ∀ (ι F : Type) [Fintype ι] [Field F] [Fintype F]
+        (dom : ι → F), Function.Injective dom →
+        ∀ (φ : Polynomial F) (c N K m : ℕ),
+          0 < c → φ.natDegree = c → c * N = Fintype.card ι →
+          DomSmooth dom (fun x => φ.eval x) c → Even N →
+          (∀ i, ∃ j, φ.eval (dom j) = - φ.eval (dom i)) →
+          (∀ i, φ.eval (dom i) ≠ 0) →
+          Even m → 2 ≤ m → m ≤ N - 2 →
+          c * m ≤ K - 1 + 2 * c →
+          HasList (RSpoly dom K) (1 - (c * m : ℝ) / Fintype.card ι)
+            (fun i => (φ.eval (dom i)) ^ m) (Nat.choose (N / 2) (m / 2)) := by
+  intro h
+  haveI : Fintype (GaloisField 2 3) := Fintype.ofFinite _
+  haveI : DecidableEq (GaloisField 2 3) := Classical.decEq _
+  -- |GF(8)| = 8, so the unit group has 7 ≥ 4 elements: embed Fin 4 into it
+  have hcardF : Fintype.card (GaloisField 2 3) = 8 := by
+    have hn := GaloisField.card 2 3 (by norm_num)
+    rw [Nat.card_eq_fintype_card] at hn
+    norm_num at hn
+    exact hn
+  have hcardU : Fintype.card (GaloisField 2 3)ˣ = 7 := by
+    rw [Fintype.card_units, hcardF]
+  obtain ⟨e⟩ : Nonempty (Fin 4 ↪ (GaloisField 2 3)ˣ) :=
+    Function.Embedding.nonempty_of_card_le (by rw [Fintype.card_fin, hcardU]; norm_num)
+  set dom : Fin 4 → GaloisField 2 3 := fun i => ((e i : (GaloisField 2 3)ˣ) : GaloisField 2 3)
+    with hdomdef
+  have hdom : Function.Injective dom := fun i j hij => e.injective (Units.ext hij)
+  have h0 : ∀ i, (Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i) ≠ 0 := by
+    intro i
+    rw [Polynomial.eval_X]
+    exact Units.ne_zero (e i)
+  have hsmooth : DomSmooth dom
+      (fun x => (Polynomial.X : Polynomial (GaloisField 2 3)).eval x) 1 := by
+    intro i
+    rw [Finset.card_eq_one]
+    refine ⟨i, ?_⟩
+    ext j
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and, Polynomial.eval_X,
+      Finset.mem_singleton]
+    exact ⟨fun hj => hdom hj, fun hj => by rw [hj]⟩
+  have hnegQ : ∀ i, ∃ j, (Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom j)
+      = - (Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i) :=
+    fun i => ⟨i, by rw [Polynomial.eval_X, CharTwo.neg_eq]⟩
+  have key := h (Fin 4) (GaloisField 2 3) dom hdom Polynomial.X 1 4 1 2
+    (by norm_num) Polynomial.natDegree_X (by decide) hsmooth (by decide)
+    hnegQ h0 (by decide) (by norm_num) (by norm_num) (by norm_num)
+  rw [show Nat.choose (4 / 2) (2 / 2) = 2 from rfl] at key
+  obtain ⟨P, hmem, hinj, hclose⟩ := key
+  have hconst := fun x => RSpoly_one_const _ (hmem 0) x 0
+  -- the radius allows at most 2 disagreements out of 4 …
+  have hcl := hclose 0
+  rw [relDist, div_le_iff₀
+    (by norm_num [Fintype.card_fin] : (0 : ℝ) < (Fintype.card (Fin 4) : ℝ))] at hcl
+  have hnum : numDiff
+      (fun i => ((Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i)) ^ 2)
+      (P 0) ≤ 2 := by
+    have hcast : (numDiff
+        (fun i => ((Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i)) ^ 2)
+        (P 0) : ℝ) ≤ 2 := le_trans hcl (by norm_num [Fintype.card_fin])
+    exact_mod_cast hcast
+  -- … but char-2 squaring is injective, so the constant z := P 0 0 is hit at most once
+  have hagree : (Finset.univ.filter (fun i : Fin 4 =>
+      ((Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i)) ^ 2 = P 0 0)).card
+      ≤ 1 := by
+    refine Finset.card_le_one.mpr ?_
+    intro i hi j hj
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and, Polynomial.eval_X] at hi hj
+    refine hdom (CharTwo.sq_injective ?_)
+    show dom i ^ 2 = dom j ^ 2
+    rw [hi, hj]
+  -- so at least 3 of the 4 points disagree with the constant word P 0
+  have hsplit := Finset.card_filter_add_card_filter_not
+    (s := (Finset.univ : Finset (Fin 4)))
+    (fun i => ((Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i)) ^ 2 = P 0 0)
+  rw [Finset.card_univ, Fintype.card_fin] at hsplit
+  have hge3 : 3 ≤ (Finset.univ.filter (fun i : Fin 4 =>
+      ¬ ((Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i)) ^ 2 = P 0 0)).card := by
+    omega
+  -- the constant-disagreement set injects into the numDiff disagreement set
+  have hle : (Finset.univ.filter (fun i : Fin 4 =>
+      ¬ ((Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i)) ^ 2 = P 0 0)).card
+      ≤ numDiff (fun i => ((Polynomial.X : Polynomial (GaloisField 2 3)).eval (dom i)) ^ 2)
+        (P 0) := by
+    unfold numDiff
+    refine Finset.card_le_card ?_
+    intro i hi
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi ⊢
+    rw [hconst i]
+    exact hi
+  have hcontra : (3 : ℕ) ≤ 2 := le_trans hge3 (le_trans hle hnum)
+  omega
+
+/-- **The first-round (`hsmooth`-repaired) `thm_explicit_head_floor_even` statement
+was also false at `K = 0`, independently of the characteristic.**  The paper's
+`cm ≤ K − 1 + 2c` (tex `:5334`) is integer arithmetic: at `c = 1`, `m = 2` it reads
+`2 ≤ K + 1`, forcing `K ≥ 1`.  The skeleton's ℕ-truncated subtraction turns it into
+`2 ≤ (0 − 1) + 2 = 2` at `K = 0` — satisfied — while `RS[F, D, 0]` demands
+`degree < 0`, i.e. the zero polynomial, so the code is `{0}` and cannot carry the
+claimed `C(2, 1) = 2` *distinct* codewords.  Counterexample: `F = ZMod 5`
+(characteristic `5 ≠ 2`, so the `h2`-repair of the previous negation is
+independently necessary), `dom = (1, 2, 3, 4)`, `φ = X`, `c = 1`, `N = 4`, `m = 2`,
+`K = 0`; the evaluated hypotheses are checked by `decide`/`norm_num` (`hsmooth` is
+tautological at `c = 1` for injective `dom`, proved by the singleton-fiber lemma
+route), and injectivity of the list map fails on the two forced-equal zero words —
+no agreement analysis is needed at all.  Stated over `Type` (universe 0), which
+suffices to refute the universe-polymorphic skeleton. -/
+theorem thm_explicit_head_floor_even_deg_false :
+    ¬ ∀ (ι F : Type) [Fintype ι] [Field F] [Fintype F]
+        (dom : ι → F), Function.Injective dom →
+        ∀ (φ : Polynomial F) (c N K m : ℕ),
+          0 < c → φ.natDegree = c → c * N = Fintype.card ι →
+          DomSmooth dom (fun x => φ.eval x) c → Even N →
+          (∀ i, ∃ j, φ.eval (dom j) = - φ.eval (dom i)) →
+          (∀ i, φ.eval (dom i) ≠ 0) →
+          Even m → 2 ≤ m → m ≤ N - 2 →
+          c * m ≤ K - 1 + 2 * c →
+          HasList (RSpoly dom K) (1 - (c * m : ℝ) / Fintype.card ι)
+            (fun i => (φ.eval (dom i)) ^ m) (Nat.choose (N / 2) (m / 2)) := by
+  intro h
+  have hdom : Function.Injective (![1, 2, 3, 4] : Fin 4 → ZMod 5) := by decide
+  have hsmooth : DomSmooth (![1, 2, 3, 4] : Fin 4 → ZMod 5)
+      (fun x => (Polynomial.X : Polynomial (ZMod 5)).eval x) 1 := by
+    intro i
+    rw [Finset.card_eq_one]
+    refine ⟨i, ?_⟩
+    ext j
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and, Polynomial.eval_X,
+      Finset.mem_singleton]
+    exact ⟨fun hj => hdom hj, fun hj => by rw [hj]⟩
+  have key := h (Fin 4) (ZMod 5) ![1, 2, 3, 4] hdom Polynomial.X 1 4 0 2
+    (by norm_num) Polynomial.natDegree_X (by decide) hsmooth (by decide)
+    (by simp only [Polynomial.eval_X]; decide)
+    (by simp only [Polynomial.eval_X]; decide)
+    (by decide) (by norm_num) (by norm_num) (by decide)
+  rw [show Nat.choose (4 / 2) (2 / 2) = 2 from rfl] at key
+  obtain ⟨P, hmem, hinj, -⟩ := key
+  -- RS[F, D, 0] contains only the zero word: degree < 0 forces the zero polynomial
+  have hzero : ∀ w ∈ RSpoly (![1, 2, 3, 4] : Fin 4 → ZMod 5) 0, ∀ i, w i = 0 := by
+    rintro w ⟨Q, hQdeg, hQeval⟩ i
+    have hQ0 : Q = 0 := by
+      rw [← Polynomial.degree_eq_bot, ← Nat.WithBot.lt_zero_iff]
+      exact_mod_cast hQdeg
+    rw [hQeval i, hQ0, Polynomial.eval_zero]
+  have h01 : P 0 = P 1 := by
+    funext i
+    rw [hzero _ (hmem 0) i, hzero _ (hmem 1) i]
+  exact absurd (hinj h01) (by decide)
+
 /-- **`thm:explicit-head-floor`(ii) — one-head word, `m` odd**
 (tex `:5333`–`:5351`; statement-repaired, same-class flag, PLAUSIBLE).
 
@@ -225,17 +716,35 @@ Under the same antipodal hypotheses, for odd `m` and every `t ∈ Q` the explici
 *one-head word* `u = (φ^m − t·φ^{m−1})|_D` carries a list of at least
 `C(N/2 − 1, (m−1)/2)` distinct codewords of `RS[F, D, K]` at radius `1 − cm/n`.
 
-Statement repair (this packet): the identical `(φ, c)`-smoothness omission as
-`thm_explicit_head_floor_even` (the paper's tex `:5334` hypothesis covers both
-clauses).  No separate counterexample was constructed for the odd clause (the even
-one needs only `m = 2`; an odd instance needs `m = 3`, hence `N ≥ 6` — same defect
-class, larger instance), so per the packet's honesty discipline this is a
-same-class **PLAUSIBLE** flag, not a falsity claim.  Same `hsmooth` repair
-applied. -/
+First-round statement repair (2026-07-18 packet): the identical `(φ, c)`-smoothness
+omission as `thm_explicit_head_floor_even` (the paper's tex `:5334` hypothesis
+covers both clauses).  No separate counterexample was constructed for the odd
+clause (the even one needs only `m = 2`; an odd instance needs `m = 3`, hence
+`N ≥ 6` — same defect class, larger instance), so per the packet's honesty
+discipline this was a same-class **PLAUSIBLE** flag, not a falsity claim.  Same
+`hsmooth` repair applied.
+
+Second-round statement repair (this packet): the characteristic-`2` gap of
+`thm_explicit_head_floor_even_char2_false` (the paper's antipodal-partition clause,
+tex `:5334`, covers both clauses) propagates here by the same same-class discipline:
+`h2 : (2 : F) ≠ 0` is added as a same-class **PLAUSIBLE** flag — no separate odd
+counterexample was constructed (a characteristic-`2` odd instance needs `m = 3`,
+`N ≥ 6` over a `GaloisField`, which does not `decide`).  The `K`-truncation repair
+is *not* needed here: for odd `m` the constraint `cm ≤ K − 1 + 2c` with `m ≥ 3`
+already forces `K ≥ 1` even under ℕ-truncation (at `K = 0` it reads
+`3c ≤ cm ≤ 2c`, contradicting `c ≥ 1`), and the proof derives it.  **Now proved**,
+by the even clause's argument shifted by one head factor: the locator
+`Λ_T = (φ − t)·∏_{r∈T}(φ² − r)` over `((m−1)/2)`-subsets `T` of
+`Qsq ∖ {t²}` expands as `φ^m − t·φ^{m−1} + s` with `deg s ≤ c(m−2) ≤ K−1`, collects
+the `c` points of the `t`-fiber (disjoint from the pair fibers since `t² ∉ T`) plus
+the `c(m−1)` points of the `(m−1)/2` antipodal pairs, and `T` is recovered from the
+root set — the `(φ − t)` factor cannot fire on a pair witness since its square is
+not `t²`. -/
 theorem thm_explicit_head_floor_odd (dom : ι → F) (hdom : Function.Injective dom)
     (φ : Polynomial F) {c N K m : ℕ} (t : F)
     (hc : 0 < c) (hφdeg : φ.natDegree = c) (hcN : c * N = Fintype.card ι)
     (hsmooth : DomSmooth dom (fun x => φ.eval x) c) (hNeven : Even N)
+    (h2 : (2 : F) ≠ 0)
     (hnegQ : ∀ i, ∃ j, φ.eval (dom j) = - φ.eval (dom i))
     (h0 : ∀ i, φ.eval (dom i) ≠ 0) (ht : ∃ i, φ.eval (dom i) = t)
     (hm_odd : Odd m) (hm_lo : 2 ≤ m) (hm_hi : m ≤ N - 2)
@@ -243,7 +752,348 @@ theorem thm_explicit_head_floor_odd (dom : ι → F) (hdom : Function.Injective 
     HasList (RSpoly dom K) (1 - (c * m : ℝ) / Fintype.card ι)
       (fun i => (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1))
       (Nat.choose (N / 2 - 1) ((m - 1) / 2)) := by
-  sorry
+  classical
+  obtain ⟨k, hmk⟩ := hm_odd
+  -- numerology; K ≥ 1 is derivable for odd m (m ≥ 3 gives 3c ≤ cm ≤ K−1+2c)
+  have hk1 : 1 ≤ k := by omega
+  have hk2 : (m - 1) / 2 = k := by omega
+  have hmN : m ≤ N := by omega
+  have hn0 : 0 < Fintype.card ι := by
+    rw [← hcN]; exact Nat.mul_pos hc (by omega)
+  have hnR : (0 : ℝ) < Fintype.card ι := by exact_mod_cast hn0
+  have hcmn : c * m ≤ Fintype.card ι := by
+    rw [← hcN]; exact Nat.mul_le_mul_left c hmN
+  have hf2deg : (φ ^ 2).natDegree = 2 * c := by
+    rw [Polynomial.natDegree_pow, hφdeg]
+  have hφCdeg : (φ - Polynomial.C t).natDegree ≤ c := by
+    refine le_trans (Polynomial.natDegree_sub_le _ _) (max_le (le_of_eq hφdeg) ?_)
+    rw [Polynomial.natDegree_C]
+    omega
+  have h3c : 3 * c ≤ c * m := by
+    have h3m : 3 ≤ m := by omega
+    calc 3 * c = c * 3 := Nat.mul_comm _ _
+      _ ≤ c * m := Nat.mul_le_mul_left c h3m
+  have hK : 1 ≤ K := by
+    rcases Nat.eq_zero_or_pos K with hK0 | hKpos
+    · subst hK0
+      revert hmK h3c
+      generalize c * m = A
+      intro hmK h3c
+      omega
+    · exact hKpos
+  have hdegK : c * (m - 2) ≤ K - 1 := by
+    have hsub : c * (m - 2) + 2 * c = c * m := by
+      obtain ⟨u, rfl⟩ : ∃ u, m = u + 2 := ⟨m - 2, by omega⟩
+      rw [Nat.add_sub_cancel]
+      ring
+    revert hmK hsub
+    generalize c * m = A
+    generalize c * (m - 2) = B
+    intro hmK hsub
+    omega
+  -- the smoothness hypothesis, beta-reduced
+  have hsm : ∀ i, (Finset.univ.filter (fun j => φ.eval (dom j) = φ.eval (dom i))).card = c :=
+    hsmooth
+  -- the value set Q = φ(D): complete fibers of size c, |Q| = N
+  set Q : Finset F := Finset.univ.image (fun i => φ.eval (dom i)) with hQdef
+  have hfiber : ∀ y ∈ Q, (Finset.univ.filter (fun i => φ.eval (dom i) = y)).card = c := by
+    intro y hy
+    obtain ⟨i₀, -, rfl⟩ := Finset.mem_image.mp hy
+    exact hsm i₀
+  have hQcard : Q.card = N := by
+    have hcount : Fintype.card ι
+        = ∑ y ∈ Q, (Finset.univ.filter (fun i => φ.eval (dom i) = y)).card := by
+      rw [← Finset.card_univ]
+      exact Finset.card_eq_sum_card_image (fun i => φ.eval (dom i)) Finset.univ
+    rw [Finset.sum_congr rfl hfiber, Finset.sum_const, smul_eq_mul] at hcount
+    have h1 : c * Q.card = c * N := by rw [Nat.mul_comm c Q.card]; omega
+    exact Nat.eq_of_mul_eq_mul_left hc h1
+  have hQneg : ∀ y ∈ Q, -y ∈ Q := by
+    intro y hy
+    obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hy
+    obtain ⟨j, hj⟩ := hnegQ i
+    exact Finset.mem_image.mpr ⟨j, Finset.mem_univ _, hj⟩
+  have hQne : ∀ y ∈ Q, y ≠ -y := by
+    intro y hy hcon
+    obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hy
+    have h2y : (2 : F) * φ.eval (dom i) = 0 := by linear_combination hcon
+    rcases mul_eq_zero.mp h2y with hcase | hcase
+    · exact h2 hcase
+    · exact h0 i hcase
+  -- the square set Qsq with |Qsq| = N/2, and the head class t² ∈ Qsq
+  set Qsq : Finset F := Q.image (fun y => y ^ 2) with hQsqdef
+  have hQsqcard2 : 2 * Qsq.card = N := by
+    have hcount : Q.card = ∑ r ∈ Qsq, (Q.filter (fun y => y ^ 2 = r)).card :=
+      Finset.card_eq_sum_card_image (fun y => y ^ 2) Q
+    have hinner : ∀ r ∈ Qsq, (Q.filter (fun y => y ^ 2 = r)).card = 2 := by
+      intro r hr
+      obtain ⟨y₀, hy₀Q, rfl⟩ := Finset.mem_image.mp hr
+      have hpair : Q.filter (fun y => y ^ 2 = y₀ ^ 2) = {y₀, -y₀} := by
+        ext y
+        simp only [Finset.mem_filter, Finset.mem_insert, Finset.mem_singleton]
+        constructor
+        · rintro ⟨hyQ, hyy⟩
+          have hfac : (y - y₀) * (y + y₀) = 0 := by linear_combination hyy
+          rcases mul_eq_zero.mp hfac with hcase | hcase
+          · exact Or.inl (sub_eq_zero.mp hcase)
+          · exact Or.inr (by linear_combination hcase)
+        · rintro (rfl | rfl)
+          · exact ⟨hy₀Q, rfl⟩
+          · exact ⟨hQneg _ hy₀Q, neg_sq y₀⟩
+      rw [hpair, Finset.card_insert_of_notMem
+        (fun hmem => hQne _ hy₀Q (Finset.mem_singleton.mp hmem)), Finset.card_singleton]
+    rw [Finset.sum_congr rfl hinner, Finset.sum_const, smul_eq_mul, hQcard] at hcount
+    omega
+  have hQsqcard : Qsq.card = N / 2 := by omega
+  obtain ⟨it, hit⟩ := ht
+  have htQ : t ∈ Q := Finset.mem_image.mpr ⟨it, Finset.mem_univ _, hit⟩
+  have ht2Qsq : t ^ 2 ∈ Qsq := Finset.mem_image.mpr ⟨t, htQ, rfl⟩
+  have hQsqecard : (Qsq.erase (t ^ 2)).card = N / 2 - 1 := by
+    rw [Finset.card_erase_of_mem ht2Qsq, hQsqcard]
+  have hwit : ∀ r ∈ Qsq, ∃ i₀, (φ.eval (dom i₀)) ^ 2 = r := by
+    intro r hr
+    obtain ⟨y₀, hy₀Q, hy₀r⟩ := Finset.mem_image.mp hr
+    obtain ⟨i₀, -, hi₀⟩ := Finset.mem_image.mp hy₀Q
+    exact ⟨i₀, by rw [hi₀, hy₀r]⟩
+  have hvanish : ∀ (T : Finset F) (i : ι), (φ.eval (dom i)) ^ 2 ∈ T →
+      (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i) = 0 := by
+    intro T i hi
+    rw [Polynomial.eval_prod]
+    refine Finset.prod_eq_zero hi ?_
+    simp only [Polynomial.eval_sub, Polynomial.eval_pow, Polynomial.eval_C]
+    exact sub_self _
+  have hrecover : ∀ (T : Finset F) (i : ι),
+      (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i) = 0 → (φ.eval (dom i)) ^ 2 ∈ T := by
+    intro T i hzero
+    rw [Polynomial.eval_prod, Finset.prod_eq_zero_iff] at hzero
+    obtain ⟨r, hrT, hr⟩ := hzero
+    simp only [Polynomial.eval_sub, Polynomial.eval_pow, Polynomial.eval_C] at hr
+    rw [sub_eq_zero] at hr
+    rwa [hr]
+  -- membership: each one-head locator produces a codeword of RS[F, D, K]
+  have hkey : ∀ T : Finset F, T.card = k →
+      (fun i => (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1)
+        - ((φ - Polynomial.C t) * ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i))
+        ∈ RSpoly dom K := by
+    intro T hTc
+    obtain ⟨hdeg, -⟩ := rational_locator_expansion (φ ^ 2) 1 (a := 2 * c) (e := 0)
+      (by omega) hf2deg Polynomial.natDegree_one T
+    simp only [mul_one, Nat.mul_zero, Nat.add_zero] at hdeg
+    rw [hTc] at hdeg
+    refine ⟨(φ - Polynomial.C t) * ((φ ^ 2) ^ k - ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)),
+      ?_, ?_⟩
+    · have hinner : ((φ ^ 2) ^ k - ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).natDegree
+          ≤ 2 * c * (k - 1) := by
+        have hrw : (φ ^ 2) ^ k - ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)
+            = Polynomial.C (∑ r ∈ T, r) * (φ ^ 2) ^ (k - 1)
+              - ((∏ r ∈ T, (φ ^ 2 - Polynomial.C r)) - (φ ^ 2) ^ k
+                + Polynomial.C (∑ r ∈ T, r) * (φ ^ 2) ^ (k - 1)) := by
+          ring
+        rw [hrw]
+        refine le_trans (Polynomial.natDegree_sub_le _ _) (max_le ?_ ?_)
+        · refine le_trans Polynomial.natDegree_mul_le ?_
+          rw [Polynomial.natDegree_C, Nat.zero_add]
+          refine le_trans Polynomial.natDegree_pow_le ?_
+          rw [hf2deg]
+          exact le_of_eq (by ring)
+        · exact le_trans hdeg (Nat.mul_le_mul_left (2 * c) (by omega))
+      have hQnat : ((φ - Polynomial.C t)
+          * ((φ ^ 2) ^ k - ∏ r ∈ T, (φ ^ 2 - Polynomial.C r))).natDegree ≤ K - 1 := by
+        refine le_trans Polynomial.natDegree_mul_le ?_
+        refine le_trans (Nat.add_le_add hφCdeg hinner) ?_
+        refine le_trans ?_ hdegK
+        have hm2 : m - 2 = 2 * (k - 1) + 1 := by omega
+        rw [hm2]
+        obtain ⟨k', rfl⟩ : ∃ k', k = k' + 1 := ⟨k - 1, by omega⟩
+        rw [Nat.add_sub_cancel]
+        exact le_of_eq (by ring)
+      have hKlt : K - 1 < K := by omega
+      exact lt_of_le_of_lt
+        (Polynomial.degree_le_natDegree.trans (WithBot.coe_le_coe.mpr hQnat))
+        (WithBot.coe_lt_coe.mpr hKlt)
+    · intro i
+      have hm1 : m - 1 = 2 * k := by omega
+      simp only [Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_pow,
+        Polynomial.eval_C]
+      rw [hm1, hmk]
+      ring
+  -- closeness: the t-fiber (c points) plus the T-pair fibers (2c each) give cm
+  have hclose : ∀ T : Finset F, T ⊆ Qsq.erase (t ^ 2) → T.card = k →
+      relDist (fun i => (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1))
+        (fun i => (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1)
+          - ((φ - Polynomial.C t) * ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i))
+        ≤ 1 - (c * m : ℝ) / Fintype.card ι := by
+    intro T hTE hTc
+    have hTQsq : T ⊆ Qsq := fun r hr => Finset.mem_of_mem_erase (hTE hr)
+    have hfibT : (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).card
+        = k * (2 * c) := by
+      have hinner : ∀ r ∈ T,
+          ((Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).filter
+            (fun i => (φ.eval (dom i)) ^ 2 = r)).card = 2 * c := by
+        intro r hr
+        have heqf : (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).filter
+            (fun i => (φ.eval (dom i)) ^ 2 = r)
+            = Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 = r) := by
+          ext i
+          simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+          exact ⟨fun hcase => hcase.2, fun hcase => ⟨by rw [hcase]; exact hr, hcase⟩⟩
+        rw [heqf]
+        obtain ⟨y₀, hy₀Q, rfl⟩ := Finset.mem_image.mp (hTQsq hr)
+        have hdisj : Disjoint (Finset.univ.filter (fun i => φ.eval (dom i) = y₀))
+            (Finset.univ.filter (fun i => φ.eval (dom i) = -y₀)) := by
+          refine Finset.disjoint_left.mpr ?_
+          intro i hi hi'
+          simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi hi'
+          exact hQne y₀ hy₀Q (hi.symm.trans hi')
+        have hsplit : Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 = y₀ ^ 2)
+            = (Finset.univ.filter (fun i => φ.eval (dom i) = y₀))
+              ∪ (Finset.univ.filter (fun i => φ.eval (dom i) = -y₀)) := by
+          ext i
+          simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_union]
+          constructor
+          · intro hcase
+            have hfac : (φ.eval (dom i) - y₀) * (φ.eval (dom i) + y₀) = 0 := by
+              linear_combination hcase
+            rcases mul_eq_zero.mp hfac with hc1 | hc1
+            · exact Or.inl (sub_eq_zero.mp hc1)
+            · exact Or.inr (by linear_combination hc1)
+          · rintro (hcase | hcase)
+            · rw [hcase]
+            · rw [hcase]; exact neg_sq y₀
+        rw [hsplit, Finset.card_union_of_disjoint hdisj,
+          hfiber y₀ hy₀Q, hfiber (-y₀) (hQneg y₀ hy₀Q)]
+        omega
+      calc (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).card
+          = ∑ r ∈ T, ((Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)).filter
+              (fun i => (φ.eval (dom i)) ^ 2 = r)).card :=
+            Finset.card_eq_sum_card_fiberwise (fun i hi => (Finset.mem_filter.mp hi).2)
+        _ = ∑ _r ∈ T, 2 * c := Finset.sum_congr rfl hinner
+        _ = T.card * (2 * c) := by rw [Finset.sum_const, smul_eq_mul]
+        _ = k * (2 * c) := by rw [hTc]
+    have hdisjtT : Disjoint (Finset.univ.filter (fun i => φ.eval (dom i) = t))
+        (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)) := by
+      refine Finset.disjoint_left.mpr ?_
+      intro i hi hi'
+      simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi hi'
+      rw [hi] at hi'
+      exact (Finset.mem_erase.mp (hTE hi')).1 rfl
+    have hfibcard : (Finset.univ.filter (fun i => φ.eval (dom i) = t
+        ∨ (φ.eval (dom i)) ^ 2 ∈ T)).card = c * m := by
+      have hsplit : Finset.univ.filter (fun i => φ.eval (dom i) = t
+            ∨ (φ.eval (dom i)) ^ 2 ∈ T)
+          = (Finset.univ.filter (fun i => φ.eval (dom i) = t))
+            ∪ (Finset.univ.filter (fun i => (φ.eval (dom i)) ^ 2 ∈ T)) := by
+        ext i
+        simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_union]
+      rw [hsplit, Finset.card_union_of_disjoint hdisjtT, hfiber t htQ, hfibT]
+      calc c + k * (2 * c) = c * (2 * k + 1) := by ring
+        _ = c * m := by rw [← hmk]
+    have hvanishU : ∀ i, (φ.eval (dom i) = t ∨ (φ.eval (dom i)) ^ 2 ∈ T) →
+        ((φ - Polynomial.C t) * ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i) = 0 := by
+      intro i hi
+      rw [Polynomial.eval_mul]
+      rcases hi with hi | hi
+      · rw [Polynomial.eval_sub, Polynomial.eval_C, hi, sub_self, zero_mul]
+      · rw [hvanish T i hi, mul_zero]
+    have hsubd : Finset.univ.filter (fun i =>
+          (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1)
+            ≠ (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1)
+              - ((φ - Polynomial.C t) * ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i))
+        ⊆ (Finset.univ.filter (fun i => φ.eval (dom i) = t
+            ∨ (φ.eval (dom i)) ^ 2 ∈ T))ᶜ := by
+      intro i hi
+      simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi
+      simp only [Finset.mem_compl, Finset.mem_filter, Finset.mem_univ, true_and]
+      intro hiT
+      exact hi (by rw [hvanishU i hiT]; ring)
+    have hnum : numDiff
+        (fun i => (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1))
+        (fun i => (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1)
+          - ((φ - Polynomial.C t) * ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).eval (dom i))
+        ≤ Fintype.card ι - c * m := by
+      calc numDiff _ _
+          ≤ ((Finset.univ.filter (fun i => φ.eval (dom i) = t
+              ∨ (φ.eval (dom i)) ^ 2 ∈ T))ᶜ).card :=
+            Finset.card_le_card hsubd
+        _ = Fintype.card ι - c * m := by rw [Finset.card_compl, hfibcard]
+    rw [relDist, div_le_iff₀ hnR]
+    calc (numDiff _ _ : ℝ) ≤ ((Fintype.card ι - c * m : ℕ) : ℝ) := by exact_mod_cast hnum
+      _ = (Fintype.card ι : ℝ) - ((c * m : ℕ) : ℝ) := by rw [Nat.cast_sub hcmn]
+      _ = (1 - (c * m : ℝ) / Fintype.card ι) * Fintype.card ι := by
+          push_cast
+          field_simp
+  -- locator degrees stay below n
+  have hΛdeg : ∀ T : Finset F, T.card = k →
+      ((φ - Polynomial.C t) * ∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).natDegree
+        < Fintype.card ι := by
+    intro T hTc
+    have hterm : ∀ r ∈ T, (φ ^ 2 - Polynomial.C r).natDegree ≤ 2 * c := by
+      intro r _
+      refine le_trans (Polynomial.natDegree_sub_le _ _) (max_le (le_of_eq hf2deg) ?_)
+      rw [Polynomial.natDegree_C]
+      omega
+    have hprod : (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).natDegree ≤ k * (2 * c) := by
+      calc (∏ r ∈ T, (φ ^ 2 - Polynomial.C r)).natDegree
+          ≤ ∑ r ∈ T, (φ ^ 2 - Polynomial.C r).natDegree := Polynomial.natDegree_prod_le _ _
+        _ ≤ T.card • (2 * c) := Finset.sum_le_card_nsmul _ _ _ hterm
+        _ = k * (2 * c) := by rw [smul_eq_mul, hTc]
+    refine lt_of_le_of_lt
+      (le_trans Polynomial.natDegree_mul_le (Nat.add_le_add hφCdeg hprod)) ?_
+    have heq : c + k * (2 * c) = c * m := by
+      calc c + k * (2 * c) = c * (2 * k + 1) := by ring
+        _ = c * m := by rw [← hmk]
+    rw [heq, ← hcN]
+    exact mul_lt_mul_of_pos_left (by omega) hc
+  -- assembly: enumerate all k-subsets of Qsq ∖ {t²} — the count is exact
+  set 𝒯 : Finset (Finset F) := (Qsq.erase (t ^ 2)).powersetCard k with h𝒯def
+  have h𝒯card : 𝒯.card = Nat.choose (N / 2 - 1) ((m - 1) / 2) := by
+    rw [h𝒯def, Finset.card_powersetCard, hQsqecard, hk2]
+  have hmemT : ∀ T ∈ 𝒯, T ⊆ Qsq.erase (t ^ 2) ∧ T.card = k := by
+    intro T hT
+    rw [h𝒯def, Finset.mem_powersetCard] at hT
+    exact hT
+  set E := 𝒯.equivFinOfCardEq h𝒯card with hEdef
+  refine ⟨fun j => (fun i =>
+      (φ.eval (dom i)) ^ m - t * (φ.eval (dom i)) ^ (m - 1)
+        - ((φ - Polynomial.C t)
+            * ∏ r ∈ ((E.symm j : Finset F)), (φ ^ 2 - Polynomial.C r)).eval (dom i)),
+    ?_, ?_, ?_⟩
+  · intro j
+    exact hkey _ (hmemT _ (E.symm j).2).2
+  · intro j j' hjj'
+    obtain ⟨hTE, hTc⟩ := hmemT _ (E.symm j).2
+    obtain ⟨hT'E, hT'c⟩ := hmemT _ (E.symm j').2
+    have heq : ∀ i,
+        ((φ - Polynomial.C t)
+            * ∏ r ∈ ((E.symm j : Finset F)), (φ ^ 2 - Polynomial.C r)).eval (dom i)
+          = ((φ - Polynomial.C t)
+              * ∏ r ∈ ((E.symm j' : Finset F)), (φ ^ 2 - Polynomial.C r)).eval (dom i) := by
+      intro i
+      have hpt := congrFun hjj' i
+      dsimp only at hpt
+      exact sub_right_inj.mp hpt
+    have hΛeq := eq_of_eval_eq_of_natDegree_lt dom hdom (hΛdeg _ hTc) (hΛdeg _ hT'c) heq
+    have hsub : (E.symm j : Finset F) ⊆ (E.symm j' : Finset F) := by
+      intro r hrT
+      obtain ⟨hrne, hrQsq⟩ := Finset.mem_erase.mp (hTE hrT)
+      obtain ⟨i₀, hi₀⟩ := hwit r hrQsq
+      have hz : ((φ - Polynomial.C t)
+          * ∏ r' ∈ ((E.symm j : Finset F)), (φ ^ 2 - Polynomial.C r')).eval (dom i₀)
+          = 0 := by
+        rw [Polynomial.eval_mul, hvanish _ i₀ (by rw [hi₀]; exact hrT), mul_zero]
+      rw [hΛeq, Polynomial.eval_mul, mul_eq_zero] at hz
+      rcases hz with hz | hz
+      · exfalso
+        rw [Polynomial.eval_sub, Polynomial.eval_C, sub_eq_zero] at hz
+        exact hrne (by rw [← hi₀, hz])
+      · have hrec := hrecover _ i₀ hz
+        rwa [hi₀] at hrec
+    have hTeq : (E.symm j : Finset F) = (E.symm j' : Finset F) :=
+      Finset.eq_of_subset_of_card_le hsub (by rw [hT'c, hTc])
+    exact E.symm.injective (Subtype.ext hTeq)
+  · intro j
+    obtain ⟨hTE, hTc⟩ := hmemT _ (E.symm j).2
+    exact hclose _ hTE hTc
 
 /-- **`thm:explicit-pairs` — explicit certifying pairs, up to the choice of a pole**
 (tex `:5369`–`:5399`; statement-repaired).

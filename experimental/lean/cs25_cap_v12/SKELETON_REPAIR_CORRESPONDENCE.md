@@ -56,8 +56,8 @@ pigeonhole).
 | `prop:graded-rational-floor` (`:5209`) | `RSCap.prop_graded_rational_floor` | **repaired** (deep-band radius; pre-repair statement FALSE — `RSCap.prop_graded_rational_floor_false` proved) and **PROVED** (wrapper over the deep floor; census 4 → 3 for the file) |
 | `cor:ecfft-macroscopic` (`:5241`) | `RSCap.cor_ecfft_macroscopic` | **repaired** (`hΔhi : Δ ≤ 1/512` band bound + `hfB`/`hgB` ties), graded PLAUSIBLE, **no falsity claim**; still sorried |
 | `lem:inter` CA/MCA (`lem:inter`) | `RSCap.lem_inter_eca`, `RSCap.lem_inter_emca` | unchanged (already PROVED) |
-| `thm:explicit-head-floor`(i) (`:5333`) | `RSCap.thm_explicit_head_floor_even` | **repaired** (`hsmooth` restored per `:5334`; pre-repair statement FALSE — `RSCap.thm_explicit_head_floor_even_false` proved); still sorried |
-| `thm:explicit-head-floor`(ii) (`:5333`) | `RSCap.thm_explicit_head_floor_odd` | **repaired** (same `hsmooth`), same-class flag, graded PLAUSIBLE, **no falsity claim**; still sorried |
+| `thm:explicit-head-floor`(i) (`:5333`) | `RSCap.thm_explicit_head_floor_even` | **repaired twice** (first round: `hsmooth` restored per `:5334`, pre-repair statement FALSE — `RSCap.thm_explicit_head_floor_even_false` proved; second round 2026-07-19: the `hsmooth`-repaired statement was STILL FALSE twice over — char-2 antipodal collapse `RSCap.thm_explicit_head_floor_even_char2_false` and ℕ-truncation `K = 0` `RSCap.thm_explicit_head_floor_even_deg_false`, both proved; repaired with `h2 : (2 : F) ≠ 0` + `hK : 1 ≤ K`), and now **PROVED** (`rational_locator_expansion` at `f = φ²`, `g = 1`; see `experimental/notes/audits/headfloor_second_repairs.md`) |
+| `thm:explicit-head-floor`(ii) (`:5333`) | `RSCap.thm_explicit_head_floor_odd` | **repaired twice** (first round: same `hsmooth`; second round 2026-07-19: same-class `h2 : (2 : F) ≠ 0`, graded PLAUSIBLE, **no separate falsity claim**; `1 ≤ K` derivable for odd `m` and derived in-proof), and now **PROVED** (one-head shift of the even discharge) |
 | `thm:explicit-pairs` (`:5369`) | `RSCap.thm_explicit_pairs` | **repaired** (`hL₀ : ⌈(q−n)/K⌉ ≤ L₀` per `:5370`; pre-repair statement FALSE — `RSCap.thm_explicit_pairs_false` proved); still sorried |
 | `Syn` twist/syndromes (`:1550`–`:1560`) | `RSCap.synTwist`, `RSCap.rsSyndrome` | new defs (repair input) |
 | `lem:regular-exact-agreement-eliminant` (`:2112`) | `RSCap.lem_regular_exact_agreement_eliminant` | **repaired** (`u`/`v` tied to `rsSyndrome dom f/g`), graded PLAUSIBLE, **no falsity claim**; still sorried |
@@ -68,8 +68,9 @@ pigeonhole).
 
 ## Falsity findings (all machine-checked; none sorried)
 
-All five defects are **formalization defects, not paper defects** — in each case
-the quoted paper line carries the missing constraint.
+All seven defects (five from the 2026-07-18 packet, two from the 2026-07-19
+second-round head-floor packet) are **formalization defects, not paper
+defects** — in each case the quoted paper line carries the missing constraint.
 
 1. **`lem_quotient_remainder_prefix` (pre-repair): universally quantified
    certificate weight.**  `wₒ` was an implicit binder appearing only in the
@@ -123,6 +124,30 @@ the quoted paper line carries the missing constraint.
    `|Ω| = 5`.  Repaired with `hL₀ : ⌈(q−n)/K⌉ ≤ L₀` (the Markov +
    Cauchy–Schwarz bound survives enlarging `L₀`; at `q − n ≤ 2K` the target
    ceiling is ≤ 1 and any nonempty family reaches it).
+6. **`thm_explicit_head_floor_even` (post-`hsmooth`, second round): antipodal
+   partition never formalized.**  The paper's "so that `Q` is partitioned into
+   `N/2` antipodal classes `{y, −y}`" (`:5334`) is a consequence of `−Q = Q`,
+   `0 ∉ Q` only in characteristic ≠ 2; `hnegQ` encodes `−Q = Q` alone, trivially
+   true in char 2 with `j := i`.  Negation
+   `thm_explicit_head_floor_even_char2_false`: `F = GaloisField 2 3`, `φ = X`,
+   `c = 1`, `N = 4`, `m = 2`, `K = 1`, `dom` four distinct nonzero elements by
+   cardinality (`decide`-free on the field): char-2 squaring is injective
+   (Frobenius), so the word takes 4 distinct values and any constant codeword of
+   `RS[F, D, 1]` disagrees on ≥ 3 > 2 allowed points.  Repaired with
+   `h2 : (2 : F) ≠ 0`.  Supersedes the 2026-07-18 claim that the `ZMod 17`
+   instance "isolates the dropped hypothesis exactly".
+7. **`thm_explicit_head_floor_even` (post-`hsmooth`, second round):
+   ℕ-truncation admits `K = 0`.**  The paper's `cm ≤ K − 1 + 2c` (`:5334`) is
+   integer arithmetic (`K ≥ 1` at `m = 2`); the skeleton's ℕ `K - 1` admits
+   `K = 0` where `RS[F, D, 0] = {0}` cannot carry `C(2,1) = 2` distinct
+   codewords.  Negation `thm_explicit_head_floor_even_deg_false`: `ZMod 5`,
+   `dom = (1,2,3,4)`, `φ = X`, `K = 0` — injectivity of the list map fails on
+   the two forced-zero words, no distance argument needed.  Repaired with
+   `hK : 1 ≤ K`.  Cross-independence: the char-2 instance has `K = 1`, the
+   `K = 0` instance has char 5 — each repair separately necessary.  The odd
+   clause needs no `hK` (derivable from `m ≥ 3`) and gets `h2` by same-class
+   propagation (PLAUSIBLE, no falsity claim); both repaired clauses are now
+   **PROVED**, so the flags are non-blocking.
 
 ## PLAUSIBLE-graded repairs (no falsity claims)
 
@@ -173,12 +198,14 @@ the quoted paper line carries the missing constraint.
   the skeleton's abstraction chose.
 * Remaining sorries after this packet (12 package-wide, by build warning; **10
   after the ECFFT constructive-discharge packet of 2026-07-19**, which proved
-  `prop_rational_floor` and `cor_ecfft_onestep` with byte-identical statements):
+  `prop_rational_floor` and `cor_ecfft_onestep` with byte-identical statements;
+  **8 after the head-floor second-round packet of 2026-07-19**, which proved
+  `thm_explicit_head_floor_even` and `thm_explicit_head_floor_odd` with the
+  `h2`/`hK` repairs):
   `Fiber.lean` `lem_fiber_ii` (pre-existing, out of scope);
   `QuotientRemainder.lean` `lem_quotient_remainder_prefix`,
   `lem_heaviest_prefix_locator_floor`, `cor_first_grid_cap`;
   `ECFFT.lean` `cor_ecfft_macroscopic`; `InterleavingTransfer.lean`
-  `thm_explicit_head_floor_even`, `thm_explicit_head_floor_odd`,
   `thm_explicit_pairs`; `AperiodicHankel.lean`
   `lem_regular_exact_agreement_eliminant`,
   `thm_regular_closed_ball_hankel_packing`.
@@ -214,3 +241,19 @@ lake build
   reach a computable `Decidable` instance).
 * Tex citations verified against the base blob
   `origin/main:tex/cs25_cap_v12.tex` (line numbers as listed above).
+* **Head-floor second-round packet (2026-07-19, base `951ad20`):** baseline
+  `lake build` exit 0, census 10 (`InterleavingTransfer` 3); post-packet clean
+  rebuild (build artifacts removed) exit 0, census **8**
+  (`InterleavingTransfer` 1 = `thm_explicit_pairs`).  `#print axioms` on
+  `thm_explicit_head_floor_even_char2_false`,
+  `thm_explicit_head_floor_even_deg_false`, `thm_explicit_head_floor_even`,
+  `thm_explicit_head_floor_odd`: exactly
+  `[propext, Classical.choice, Quot.sound]`.  Controlled statement diff vs
+  `951ad20`: even inserts exactly `(h2 : (2 : F) ≠ 0) (hK : 1 ≤ K)`, odd
+  inserts exactly `(h2 : (2 : F) ≠ 0)`; the two new negation bodies match the
+  `951ad20` statements binder-for-binder.  The `GaloisField 2 3` certificate is
+  `decide`-free on the field (kernel `decide` only on `Fin`/ℕ side conditions);
+  `InterleavingTransfer` now imports `cs25_cap_v12.ECFFT` (cycle-free — only the
+  root imports `InterleavingTransfer`) for `rational_locator_expansion` and
+  `eq_of_eval_eq_of_natDegree_lt`.  Full walkthroughs:
+  `experimental/notes/audits/headfloor_second_repairs.md`.

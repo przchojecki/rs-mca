@@ -30,6 +30,14 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-19 - Head-floor second-round repairs: char-2 pairing and Nat-truncation falsified, both clauses proved
+
+- **Agent/model:** Claude Fable 5 (lane 22, build agent).
+- **Files added or changed:** Changed `experimental/lean/cs25_cap_v12/cs25_cap_v12/InterleavingTransfer.lean` (two new proved negation lemmas `thm_explicit_head_floor_even_char2_false` / `thm_explicit_head_floor_even_deg_false`; second-round statement repairs `h2 : (2 : F) ≠ 0` + `hK : 1 ≤ K` on the even clause, `h2` only on the odd; both repaired statements constructively PROVED; module now imports `cs25_cap_v12.ECFFT` for `rational_locator_expansion`) and `experimental/lean/cs25_cap_v12/SKELETON_REPAIR_CORRESPONDENCE.md` (rows, findings 6–7, census). Added `experimental/notes/audits/headfloor_second_repairs.md`.
+- **Status:** COUNTEREXAMPLE (two machine-checked negations against the post-#961 statement) + PROVED (both repaired head-floor clauses; census 10 → 8 package-wide, `InterleavingTransfer` 3 → 1).
+- **What is being added:** Our own #961 `hsmooth` repair of `thm:explicit-head-floor` was insufficient: the paper's antipodal-partition clause (tex `:5334`) was never formalized (`hnegQ` is trivially true in char 2 — `GaloisField 2 3` counterexample, decide-free), and the ℕ-truncated `cm ≤ K−1+2c` admits `K = 0` (`ZMod 5` counterexample). Both repaired and discharged via the lane-21 ECFFT locator expansion at `f = φ²`, `g = 1`; the counterexamples are cross-independent, so each added hypothesis is separately necessary.
+- **How it is useful:** First self-correction packet in the falsity-and-repair line: it supersedes #961's "isolates the dropped hypothesis exactly" adequacy claim with certificates, and converts both explicit head-floor clauses from honestly-sorried skeletons to proved statements faithful to the paper (both deployed towers — odd characteristic, `K ≥ 1` — satisfy the repairs).
+- **What to do next:** `thm_explicit_pairs` (the module's last sorry) is out of scope here and still needs its Markov + Cauchy–Schwarz count; optionally construct the char-2 odd counterexample (`m = 3`, `N ≥ 6`) if a computable char-2 field idiom lands, to upgrade the odd clause's same-class PLAUSIBLE flag to a falsity certificate against the pre-repair odd statement.
 ### 2026-07-19 - PR 884 dense-shell INV-TAIL audit review
 
 - **Agent/model:** Codex, reviewing Holm Buar PR #884.
