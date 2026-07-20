@@ -75,11 +75,11 @@ structure CertifiedC3ThenLater
   c3CountControl : c3Profiles.length ≤ c3Cap
   laterCountControl : laterProfiles.length ≤ laterCap
   ownership :
-    ((c3Profiles.map (fun p => p.payment.assignedSlopes)) ++
+    ((c3Profiles.map (fun p => p.assignedSlopes)) ++
       (laterProfiles.map (fun p => p.assignedSlopes))).flatten.Nodup
   exhaustive :
     badCount ≤
-      (((c3Profiles.map (fun p => p.payment.assignedSlopes)) ++
+      (((c3Profiles.map (fun p => p.assignedSlopes)) ++
         (laterProfiles.map (fun p => p.assignedSlopes))).flatten).length
 
 namespace CertifiedC3ThenLater
@@ -98,9 +98,13 @@ def line {compilerLoss c3Cap laterCap : Nat}
   badCount := atlas.badCount
   profiles := atlas.profiles
   firstMatchOwnership := by
-    simpa [profiles] using atlas.ownership
+    unfold profiles
+    rw [List.map_append, List.map_map]
+    exact atlas.ownership
   atlasExhaustive := by
-    simpa [profiles] using atlas.exhaustive
+    unfold profiles
+    rw [List.map_append, List.map_map]
+    exact atlas.exhaustive
   profileCountControl := by
     unfold profiles
     rw [List.length_append, List.length_map]
