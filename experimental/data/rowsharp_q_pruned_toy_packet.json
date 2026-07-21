@@ -1,0 +1,596 @@
+{
+ "rows": [
+  {
+   "p": 17,
+   "N": 16,
+   "m": 8,
+   "w": 1,
+   "method": "enum",
+   "raw_max": "758",
+   "raw_null": "758",
+   "sum_N2": "9743348",
+   "pruned_max": "757",
+   "pruned_null": "688",
+   "removed_C1": "70",
+   "removed_C2only": "0",
+   "cells_at_null": "70",
+   "tau": "12800/12870",
+   "R_raw": "12886/12870",
+   "R_pruned": "12869/12870",
+   "R_raw_f": 1.0012432012432013,
+   "R_pruned_f": 0.9999222999223,
+   "verdict_below_allowance": true
+  },
+  {
+   "p": 17,
+   "N": 16,
+   "m": 8,
+   "w": 2,
+   "method": "enum",
+   "raw_max": "54",
+   "raw_null": "54",
+   "sum_N2": "574020",
+   "pruned_max": "49",
+   "pruned_null": "48",
+   "removed_C1": "70",
+   "removed_C2only": "0",
+   "cells_at_null": "6",
+   "tau": "12800/12870",
+   "R_raw": "15606/12870",
+   "R_pruned": "14161/12870",
+   "R_raw_f": 1.2125874125874125,
+   "R_pruned_f": 1.1003108003108004,
+   "verdict_below_allowance": true
+  },
+  {
+   "p": 17,
+   "N": 16,
+   "m": 8,
+   "w": 3,
+   "method": "enum",
+   "raw_max": "7",
+   "raw_null": "6",
+   "sum_N2": "38356",
+   "pruned_max": "5",
+   "pruned_null": "0",
+   "removed_C1": "70",
+   "removed_C2only": "0",
+   "cells_at_null": "6",
+   "tau": "12800/12870",
+   "R_raw": "34391/12870",
+   "R_pruned": "24565/12870",
+   "R_raw_f": 2.672183372183372,
+   "R_pruned_f": 1.9087024087024087,
+   "verdict_below_allowance": true
+  },
+  {
+   "p": 41,
+   "N": 20,
+   "m": 10,
+   "w": 1,
+   "method": "enum",
+   "raw_max": "4516",
+   "raw_null": "4516",
+   "sum_N2": "832556056",
+   "pruned_max": "4509",
+   "pruned_null": "4260",
+   "removed_C1": "252",
+   "removed_C2only": "4",
+   "cells_at_null": "256",
+   "tau": "184500/184756",
+   "R_raw": "185156/184756",
+   "R_pruned": "184869/184756",
+   "R_raw_f": 1.0021650176448937,
+   "R_pruned_f": 1.0006116174846824,
+   "verdict_below_allowance": true
+  },
+  {
+   "p": 41,
+   "N": 20,
+   "m": 10,
+   "w": 2,
+   "method": "enum",
+   "raw_max": "133",
+   "raw_null": "66",
+   "sum_N2": "20390226",
+   "pruned_max": "133",
+   "pruned_null": "60",
+   "removed_C1": "252",
+   "removed_C2only": "4",
+   "cells_at_null": "6",
+   "tau": "184500/184756",
+   "R_raw": "223573/184756",
+   "R_pruned": "223573/184756",
+   "R_raw_f": 1.2100987248046071,
+   "R_pruned_f": 1.2100987248046071,
+   "verdict_below_allowance": true
+  },
+  {
+   "p": 41,
+   "N": 20,
+   "m": 10,
+   "w": 3,
+   "method": "enum",
+   "raw_max": "11",
+   "raw_null": "6",
+   "sum_N2": "744166",
+   "pruned_max": "11",
+   "pruned_null": "0",
+   "removed_C1": "252",
+   "removed_C2only": "4",
+   "cells_at_null": "6",
+   "tau": "184500/184756",
+   "R_raw": "758131/184756",
+   "R_pruned": "758131/184756",
+   "R_raw_f": 4.103417480352465,
+   "R_pruned_f": 4.103417480352465,
+   "verdict_below_allowance": true
+  },
+  {
+   "p": 101,
+   "N": 50,
+   "m": 25,
+   "w": 2,
+   "method": "dp",
+   "raw_max": "12392018052",
+   "raw_null": "12392018052",
+   "sum_N2": "1566477935492737080014204",
+   "pruned_max": "12392017800",
+   "pruned_null": "12392017800",
+   "removed_C1": "0",
+   "removed_C2only": "252",
+   "cells_at_null": "252",
+   "tau": "126410606437500/126410606437752",
+   "R_raw": "126410976148452/126410606437752",
+   "R_pruned": "126410973577800/126410606437752",
+   "R_raw_f": 1.0000029246810092,
+   "R_pruned_f": 1.0000029043452787,
+   "verdict_below_allowance": true
+  },
+  {
+   "p": 257,
+   "N": 64,
+   "m": 34,
+   "w": 1,
+   "method": "dp",
+   "raw_max": "6304622609083424",
+   "raw_null": "6304622609083424",
+   "sum_N2": "10215304424390627411534790353735040",
+   "pruned_max": "6304622609069747",
+   "pruned_null": "6304622043360704",
+   "removed_C1": "565722720",
+   "removed_C2only": "0",
+   "cells_at_null": "565722720",
+   "tau": "1620288009964624704/1620288010530347424",
+   "R_raw": "1620288010534439968/1620288010530347424",
+   "R_pruned": "1620288010530924979/1620288010530347424",
+   "R_raw_f": 1.0000000000025258,
+   "R_pruned_f": 1.0000000000003564,
+   "verdict_below_allowance": true
+  }
+ ],
+ "checks": [
+  {
+   "name": "(17,16,8) cell totals C1=70 C2only=0",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) classification == coset-DP inclusion-exclusion (per fiber)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) checksum sum_z N_w(z) == C(16,8)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) anchor max == 758",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) anchor null == 758",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) anchor sum N^2 == 9743348",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) SP mass = sumN2 - C(N,m) >= 0",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) printed max/mean ratio 1.0012",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) monotonicity 0 <= pruned(z) <= raw(z)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) mass identity sum pruned == C(N,m) - |C1 u C2|",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) G2 R_pruned <= R_raw",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) G2 R_pruned < allowance 8.4152",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 1) G3 pruned null < raw null",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) classification == coset-DP inclusion-exclusion (per fiber)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) checksum sum_z N_w(z) == C(16,8)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) anchor max == 54",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) anchor null == 54",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) anchor sum N^2 == 574020",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) SP mass = sumN2 - C(N,m) >= 0",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) printed max/mean ratio 1.2126",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) monotonicity 0 <= pruned(z) <= raw(z)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) mass identity sum pruned == C(N,m) - |C1 u C2|",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) G2 R_pruned <= R_raw",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) G2 R_pruned < allowance 8.4152",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 2) G3 pruned null < raw null",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) classification == coset-DP inclusion-exclusion (per fiber)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) checksum sum_z N_w(z) == C(16,8)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) anchor max == 7",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) anchor null == 6",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) anchor sum N^2 == 38356",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) SP mass = sumN2 - C(N,m) >= 0",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) printed max/mean ratio 2.6722",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) monotonicity 0 <= pruned(z) <= raw(z)",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) mass identity sum pruned == C(N,m) - |C1 u C2|",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) G2 R_pruned <= R_raw",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) G2 R_pruned < allowance 8.4152",
+   "ok": true
+  },
+  {
+   "name": "(17, 16, 8, 3) G3 pruned null < raw null",
+   "ok": true
+  },
+  {
+   "name": "(41,20,10) cell totals C1=252 C2only=4",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) classification == coset-DP inclusion-exclusion (per fiber)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) checksum sum_z N_w(z) == C(20,10)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) anchor max == 4516",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) anchor null == 4516",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) anchor sum N^2 == 832556056",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) SP mass = sumN2 - C(N,m) >= 0",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) printed max/mean ratio 1.0022",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) monotonicity 0 <= pruned(z) <= raw(z)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) mass identity sum pruned == C(N,m) - |C1 u C2|",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) G2 R_pruned <= R_raw",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) G2 R_pruned < allowance 8.4152",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 1) G3 pruned null < raw null",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) classification == coset-DP inclusion-exclusion (per fiber)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) checksum sum_z N_w(z) == C(20,10)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) anchor max == 133",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) anchor null == 66",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) anchor sum N^2 == 20390226",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) SP mass = sumN2 - C(N,m) >= 0",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) printed max/mean ratio 1.2101",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) monotonicity 0 <= pruned(z) <= raw(z)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) mass identity sum pruned == C(N,m) - |C1 u C2|",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) G2 R_pruned <= R_raw",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) G2 R_pruned < allowance 8.4152",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 2) G3 pruned null < raw null",
+   "ok": true
+  },
+  {
+   "name": "(41,20,10,2) mode-at-null: max fiber at (11,0)",
+   "ok": true
+  },
+  {
+   "name": "(41,20,10,2) mode-at-null: null = 66 (suppressed)",
+   "ok": true
+  },
+  {
+   "name": "(41,20,10,2) orbit line (mu_20*11, 0) uniform 133",
+   "ok": true
+  },
+  {
+   "name": "(41,20,10,2) argmax fiber classifier counts (0,0)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) classification == coset-DP inclusion-exclusion (per fiber)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) checksum sum_z N_w(z) == C(20,10)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) anchor max == 11",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) anchor null == 6",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) anchor sum N^2 == 744166",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) SP mass = sumN2 - C(N,m) >= 0",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) printed max/mean ratio 4.1034",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) monotonicity 0 <= pruned(z) <= raw(z)",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) mass identity sum pruned == C(N,m) - |C1 u C2|",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) G2 R_pruned <= R_raw",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) G2 R_pruned < allowance 8.4152",
+   "ok": true
+  },
+  {
+   "name": "(41, 20, 10, 3) G3 pruned null < raw null",
+   "ok": true
+  },
+  {
+   "name": "(101,50,25) cell totals C1=0 C2only=252",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) cell counts nonneg per fiber",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) all cell mass at null fiber (derived)",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) checksum sum_z N_w(z) == C(50,25)",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) anchor max == 12392018052",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) anchor null == 12392018052",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) anchor sum N^2 == 1566477935492737080014204",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) SP mass = sumN2 - C(N,m) >= 0",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) monotonicity 0 <= pruned(z) <= raw(z)",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) mass identity sum pruned == C(N,m) - |C1 u C2|",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) G2 R_pruned <= R_raw",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) G2 R_pruned < allowance 8.4152",
+   "ok": true
+  },
+  {
+   "name": "(101, 50, 25, 2) G3 pruned null < raw null",
+   "ok": true
+  },
+  {
+   "name": "(257,64,34) cell totals C1=565722720 C2only=0",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) cell counts nonneg per fiber",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) all cell mass at null fiber (derived)",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) checksum sum_z N_w(z) == C(64,34)",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) anchor max == 6304622609083424",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) anchor null == 6304622609083424",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) anchor sum N^2 == 10215304424390627411534790353735040",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) SP mass = sumN2 - C(N,m) >= 0",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) monotonicity 0 <= pruned(z) <= raw(z)",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) mass identity sum pruned == C(N,m) - |C1 u C2|",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) G2 R_pruned <= R_raw",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) G2 R_pruned < allowance 8.4152",
+   "ok": true
+  },
+  {
+   "name": "(257, 64, 34, 1) G3 pruned null < raw null",
+   "ok": true
+  }
+ ],
+ "mutations": {
+  "M1_wrong_cell": true,
+  "M2_depth": true,
+  "M3_bound": true,
+  "M4_domain": true
+ }
+}
