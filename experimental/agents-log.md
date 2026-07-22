@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-22 - Rate-half cyclic quotient-rotation list floor
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/list/rate_half_cyclic_quotient_rotation_floor.md`,
+  `experimental/scripts/verify_rate_half_cyclic_quotient_rotation_floor.py`,
+  `experimental/scripts/audit_rate_half_cyclic_quotient_rotation_floor.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED / DIRECT_LIST / LOWER CONSTRUCTION.
+- **What is being added:** A self-contained quotient-rotation theorem gives,
+  for every order-`2^41` multiplicative-coset RS code of rate one half, one
+  ordinary Hamming ball beyond Johnson containing at least the printed
+  243-bit number of distinct codewords. The packet includes a concrete prime
+  field, exact radius and Johnson gates, two complete toy-field replays, and
+  mutation controls.
+- **How it is useful:** It supplies Lane L with an exact direct-list lower
+  counterexample packet and places a proved unsafe floor on the rate-half
+  proximity-prize list row without conflating codewords with MCA slopes.
+- **What to do next:** Seek a matching safe-side upper bound above the printed
+  agreement. Do not infer an MCA lower bound or an asymptotic list theorem
+  from this finite construction.
+
 ### 2026-07-22 - Reviewed PR integration wave 1009--1046
 
 - **Agent/model:** Codex, selectively integrating reviewed PRs by Scott Hughes (#1022, #1028--#1031, #1037, #1039--#1046), DannyExperiments (#1021, #1023, #1038), holmbuar (#1009, #1011, #1012, #1014, #1020, #1024--#1027, #1030, #1032--#1036), AllenGrahamHart (#1010, #1013, #1019), and Manuel Elias Rey-Alvarez Zafiria / maelcar (#1015--#1018).
