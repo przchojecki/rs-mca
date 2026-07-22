@@ -34,7 +34,14 @@ python3 experimental/scripts/verify_selected_owner_cube_mean_boundary_v1.py --ch
 python3 experimental/scripts/verify_selected_owner_cube_mean_boundary_v1.py --tamper-selftest
 python3 experimental/scripts/verify_first_wall_mds_extension_inverse.py --check
 python3 experimental/scripts/verify_first_wall_mds_extension_inverse.py --tamper-selftest
+python3 experimental/scripts/verify_singleton_master_reductions.py --check
+python3 experimental/scripts/verify_singleton_master_reductions.py --tamper-selftest
 ```
+
+`verify_singleton_master_reductions.py` checks exact reductions, source
+counterexamples, finite recurrence regressions, upstream authority hashes, and
+the fail-closed status contract. It does not prove the open all-position
+single-insertion MASTER theorem (`SIM`) or unconditional `PDSP_2`.
 
 `experiment_rowsharp_q_prefix_atom_routes_v1.py --check` is a fast artifact
 replay. Use `--full --write --check` only when regenerating the route evidence,

@@ -30,6 +30,15 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-22 - Singleton-MASTER reductions and source route cuts
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/thresholds/singleton_master_reductions.md`, `experimental/scripts/verify_singleton_master_reductions.py`, `experimental/scripts/README.md`, and `experimental/data/certificates/singleton-master-reductions/`.
+- **Status:** PROVED REDUCTIONS / ROUTE CUT / OPEN GAP.
+- **What is being added:** The packet proves the insertion-position factorization, normalized derivative/Helmholtz sufficient criterion, exact terminal formula, scalar upper-cap lemma, and first-insertion source positivity. It also gives exact counterexamples to the cap-six and shifted-Jacobi source-entry strategies; all-position single-insertion MASTER (`SIM`) remains open.
+- **How it is useful:** It narrows the decorated dense-shell problem to a reachable-state source envelope plus homogeneous recovery theorem and prevents reuse of two false source facets. Live `K/M/L` ledger impact is zero.
+- **What to do next:** Prove a source-compatible normalized envelope for `S B_m` and an all-depth homogeneous recovery theorem under the ordinary transfer, then discharge `SIM` before promoting the conditional `SIM => PDSP_2` compiler.
+
 ### 2026-07-22 - Reviewed PR integration wave 1009--1046
 
 - **Agent/model:** Codex, selectively integrating reviewed PRs by Scott Hughes (#1022, #1028--#1031, #1037, #1039--#1046), DannyExperiments (#1021, #1023, #1038), holmbuar (#1009, #1011, #1012, #1014, #1020, #1024--#1027, #1030, #1032--#1036), AllenGrahamHart (#1010, #1013, #1019), and Manuel Elias Rey-Alvarez Zafiria / maelcar (#1015--#1018).

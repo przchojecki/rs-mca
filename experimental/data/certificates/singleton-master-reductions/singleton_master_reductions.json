@@ -1,0 +1,118 @@
+{
+  "claim_status": "PROVED_REDUCTIONS_ROUTE_CUT_OPEN_GAP",
+  "consumer_contract_sha256": "1122242eeea6229e7115a28b21c90d6011812100fbd7883acb759ddf158978fb",
+  "dependency_chain": [
+    "corrected source envelope plus homogeneous transfer preservation",
+    "all-position single-insertion MASTER (SIM)",
+    "conditional pair-decorated reduction",
+    "PDSP_2",
+    "|U|=2 dense-shell class-sign law"
+  ],
+  "downstream_consumer": "experimental/notes/thresholds/dense_shell_pair_reduction.md",
+  "finite_scans_status": "COMPUTED regressions; analytic note is load-bearing",
+  "gates": {
+    "artifact_manifest": {
+      "expected_entries": 4,
+      "extra_entries": [],
+      "listed_entries": 4,
+      "manifest_sha256": "4fa2e268f78303ae24f67889b1791b9377700d3a6946c5ab25f83e1d8a722230",
+      "mismatches": {},
+      "missing_entries": [],
+      "parse_errors": [],
+      "pass": true
+    },
+    "consumer_contract": {
+      "contract_sha256": "1122242eeea6229e7115a28b21c90d6011812100fbd7883acb759ddf158978fb",
+      "pass": true,
+      "sim_status": "OPEN",
+      "unconditional_sim": false
+    },
+    "first_insertion_positivity_regression": {
+      "argmin": "(9, 0.5, 10)",
+      "checked_coefficients": 8385,
+      "max_m": 9,
+      "minimum_coefficient": "0.000244140625",
+      "pass": true
+    },
+    "insertion_factorization": {
+      "checked_coordinates": 2856,
+      "max_error": "0",
+      "max_n": 7,
+      "pass": true
+    },
+    "normalized_criterion": {
+      "epsilon_cells": 1024,
+      "max_derivative_identity_error": "3.5527136788e-15",
+      "minimum_scalar_margin": "0.032088886238",
+      "pass": true
+    },
+    "scalar_upper_cap_regression": {
+      "analytic_margin_coupled": "169/1701",
+      "analytic_margin_phi_quarter": "190/1701",
+      "argmin": "(1, 0.5)",
+      "cells": 2048,
+      "coupled_exact_derivation": "56/81 - 59/243 - 22/63",
+      "minimum_test_family_value": "1.53911478809",
+      "pass": true,
+      "phi_quarter_exact_derivation": "112/243 - 22/63"
+    },
+    "source_m0_guardrails": {
+      "cap_six_gap_at_t0_float_diagnostic": "-1.99155677808",
+      "cap_six_rational_upper_bound": "-7/4",
+      "largest_possible_source_shift": "1/10",
+      "max_source_formula_error": "1.94289029309e-16",
+      "pass": true,
+      "shifted_gap_at_half": "-191/1600"
+    },
+    "terminal_coordinate": {
+      "argmin": "(9, 1, 0.5)",
+      "checked_values": 1485,
+      "max_error": "1.38777878078e-16",
+      "max_n": 9,
+      "minimum_terminal_coordinate": "0.00048828125",
+      "pass": true
+    },
+    "upstream_authority_hashes": {
+      "actual": {
+        "charge_interface": "e13be4f164ac741329c98e174b2261970c368081a1f725bd4b9ae7249e4e7270",
+        "ordinary_master_contract": "a0cfa97b006f316812ea4e8c9f7384e745a980691cdc91c14b35fe68a200dacb",
+        "ordinary_master_source": "5fc9f180b69fe87f5d2b055355577511672aff8ef222beb42ab9d2e628354368"
+      },
+      "expected": {
+        "charge_interface": "e13be4f164ac741329c98e174b2261970c368081a1f725bd4b9ae7249e4e7270",
+        "ordinary_master_contract": "a0cfa97b006f316812ea4e8c9f7384e745a980691cdc91c14b35fe68a200dacb",
+        "ordinary_master_source": "5fc9f180b69fe87f5d2b055355577511672aff8ef222beb42ab9d2e628354368"
+      },
+      "pass": true
+    }
+  },
+  "live_kml_ledger_impact": "ZERO",
+  "pass": true,
+  "proof_sha256": "e1bddbfbddf544705b78f42e00d579ded2ffe5a9d79092fd66047ddcc40dcf1c",
+  "provenance": {
+    "authority_sha256": {
+      "charge_interface": "e13be4f164ac741329c98e174b2261970c368081a1f725bd4b9ae7249e4e7270",
+      "ordinary_master_contract": "a0cfa97b006f316812ea4e8c9f7384e745a980691cdc91c14b35fe68a200dacb",
+      "ordinary_master_source": "5fc9f180b69fe87f5d2b055355577511672aff8ef222beb42ab9d2e628354368"
+    },
+    "command": "python3 experimental/scripts/verify_singleton_master_reductions.py --write-manifest --emit-cert",
+    "parameters": {
+      "factorization_cells": 16,
+      "factorization_max_n": 7,
+      "normalized_criterion_cells": 1024,
+      "scalar_upper_cap_cells": 2048,
+      "source_positivity_cells": 128,
+      "source_positivity_max_m": 9,
+      "terminal_cells": 32,
+      "terminal_max_n": 9
+    },
+    "python_version": "3.14.3",
+    "upstream_base": "fb6d9555339b43911c59c498373c43ed6c5cd391"
+  },
+  "schema": "singleton-master-reductions/v2",
+  "sim_status": "OPEN",
+  "source_sha256": "6415b67e355fb105ea35d91702913c70c6bb7fd9672d1cf8e921ac80e169ad75",
+  "unconditional_pdsp2": false,
+  "unconditional_sim": false,
+  "upstream_base": "fb6d9555339b43911c59c498373c43ed6c5cd391"
+}

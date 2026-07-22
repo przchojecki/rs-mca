@@ -1,0 +1,29 @@
+{
+  "schema": "singleton-master-reductions-consumer/v1",
+  "producer": "experimental/notes/thresholds/singleton_master_reductions.md",
+  "proved_results": [
+    "insertion-position factorization",
+    "normalized-monotonicity sufficient criterion",
+    "terminal singleton coordinate",
+    "scalar upper-cap transfer lemma",
+    "first-insertion source positivity",
+    "source cap-six and shifted-Jacobi counterexamples"
+  ],
+  "open_target": "all-position single-insertion MASTER (SIM)",
+  "dependency_chain": [
+    "corrected source envelope plus homogeneous transfer preservation",
+    "all-position single-insertion MASTER (SIM)",
+    "conditional pair-decorated reduction",
+    "PDSP_2",
+    "|U|=2 dense-shell class-sign law"
+  ],
+  "downstream_consumer": "experimental/notes/thresholds/dense_shell_pair_reduction.md",
+  "ordinary_master_source": "experimental/notes/thresholds/dense_shell_transfer_shape.md",
+  "ordinary_master_contract": "experimental/data/certificates/dense-shell-transfer-shape/consumer_contract.json",
+  "charge_interface": "experimental/notes/thresholds/dense_shell_class_charges.md",
+  "sim_status": "OPEN",
+  "unconditional_sim": false,
+  "unconditional_pdsp2": false,
+  "live_kml_ledger_impact": "ZERO",
+  "upstream_base": "fb6d9555339b43911c59c498373c43ed6c5cd391"
+}
