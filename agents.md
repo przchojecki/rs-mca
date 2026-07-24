@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
 > **Updated:** 2026-07-24
-> **State snapshot:** `main@07e6d0e782277452ef854643b1c5b0433c7faae0`
+> **State snapshot:** `main@78e67c4048dabed19116bb7ac42c47c7cb103c57`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -75,6 +75,7 @@ At this snapshot:
 - The integrated M31 post-Johnson conversion contract gives an exact conditional CS25 bridge from a same-radius CA numerator at most `16777214` to the ordinary-list budget `16777215`, and cuts the BCHKS25 route at the deployed budget.  It does not prove the unconditional M31 list row.
 - The fixed-`G` endpoint Plotkin theorem proves an ordinary-list cap `2310492` beyond the exact finite-field Johnson radius on two declared M31 endpoint subfamilies.  It is genuine Lane L progress, but not an unrestricted M31 list-row upper bound.
 - The direct rate-half cyclic quotient-rotation theorem in `experimental/experiments.tex` proves, for every declared order-`2^41` multiplicative-coset family, an ordinary-list lower bound `ceil(binomial(255,129)/256)` at agreement `1116691496959`, strictly beyond Johnson.  It is a finite-family Lane L lower construction, not an MCA statement or deployed-row closure.
+- Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
 

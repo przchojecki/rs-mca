@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-24 - Grande Finale v4 saturated-BC status repair
+
+- **Agent/model:** Codex, resolving issue #1070 reported by Holm Buar.
+- **Files added or changed:** `experimental/grande_finale.tex`, `agents.md`,
+  and `experimental/agents-log.md`.
+- **Status:** AUDIT / FIXED. No theorem, row bound, or endpoint changed.
+- **What is being added:** An explicit v3-to-v4 status map for
+  `prob:saturated-bc`. The one-pencil MCA clause is recorded as proved by the
+  moving-root corollary; the higher-dimensional MCA clause remains open under
+  the final spread-component, large-owner, and exception-routing inputs; and
+  the arbitrary-word LIST clause is mapped to row-sharp list completion.
+  `prob:spread-abundance` and `prob:next` are now marked as intermediate
+  formulations rather than additional terminal cells.
+- **How it is useful:** Repairs the live authority gap without banking an
+  archived problem or pretending that one-pencil BC pays higher-dimensional
+  cores. It also makes the audited-status theorem agree with the problems
+  actually consumed by the MCA and LIST completion certificates.
+- **What to do next:** Prove the four terminal inputs now printed in v4.
+  Static source review only; no Python, Sage, Lean, or TeX build was run.
+
 ### 2026-07-24 - PR #1051 one-file Lane L integration
 
 - **Agent/model:** Codex, integrating a theorem packet by AllenGrahamHart.

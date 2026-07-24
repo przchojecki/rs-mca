@@ -6760,6 +6760,11 @@ A set of $32$ explanations is a \emph{first-match primitive spread core} if it s
 A universal nonexistence theorem is false by \cref{prop:f17-spread}.  The finite MCA theorem requires the weaker and more natural abundance statement.
 
 \begin{problem}[deployed spread-abundance theorem]\label{prob:spread-abundance}
+\emph{Intermediate status.}
+This is the line-level abundance consequence required from the final
+spread-component routing problem \cref{prob:mca-spread-routing}; it is not an
+additional terminal input to the completion certificate.
+
 For either deployed domain, prove that if a support-wise MCA-bad received line contains one first-match primitive spread core, then its total number of bad challenge slopes is at most the row budget $B^*$.
 
 A stronger useful form would bound the number of slopes extending a fixed core by a quantity below $B^*-32$, with every failure routed to one canonical quotient, extension, rational-owner, clone, or near-sunflower certificate.
@@ -7501,6 +7506,12 @@ The theorem changes the spread-abundance target.  It is no longer necessary to c
 \]
 
 \begin{problem}[next spread theorem]\label{prob:next}
+\emph{Intermediate status.}
+This is the local correction-component form of the final
+\cref{prob:mca-spread-routing}.  It is retained to state the geometric
+alternatives exposed by \cref{thm:residual}, but is not a separate terminal
+input.
+
 Prove that every positive-dimensional correction component from \cref{thm:residual} either
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item yields a rational-owner, quotient, extension, field-drop, or quantified near-sunflower atom declared in \cref{thm:partial-relative,thm:owner-localization,cor:near-sunflower};
@@ -7519,14 +7530,42 @@ For Mersenne-31 it is enough that the total surviving spread contribution be at 
 \begin{theorem}[Audited theorem status]\label{thm:audited-status}
 All statements explicitly presented as theorems, propositions, lemmas, or corollaries in Parts~I--VI are unconditional under their displayed hypotheses.  In particular, the paper proves the complete support and profile compiler, the minimum-distance flag sharpening, the primitive-Q/Sidon implication and its shallow unconditional range, saturation, one-pencil moving-root BC, Q $\Rightarrow$ SP, the order-$32$ rank dictionary, dyadic descent, rational-atom extraction and coherence, owner localization, the seven-point component-free owner-pencil bound, the $58$-slope core-compatible bound, the complete correction-ray bound, and the displayed proper and clone-tolerant correction-space payments.
 
-No theorem in this paper proves either deployed adjacent MCA-safe row or either deployed adjacent list-safe row.  The open statements are exactly the problems recorded in \cref{prob:next,prob:large-owner,prob:mca-exception-routing,prob:list-completion}.
+No theorem in this paper proves either deployed adjacent MCA-safe row or
+either deployed adjacent list-safe row.  The terminal open inputs used by the
+completion certificates are exactly
+\cref{prob:mca-spread-routing,prob:large-owner,prob:mca-exception-routing,prob:list-completion}.
+The earlier \cref{prob:spread-abundance,prob:next} are intermediate
+formulations subsumed by \cref{prob:mca-spread-routing}, not additional
+terminal cells.
 \end{theorem}
+
+\begin{remark}[Status of the v3 saturated-BC problem]
+\label{rem:saturated-bc-status}
+The v3 problem labelled \texttt{prob:saturated-bc} is superseded in v4, not
+silently discharged.  Its primitive one-parameter MCA clause is proved by
+\cref{cor:bc-one-pencil}.  Its higher-dimensional MCA clause remains open and
+is represented jointly by
+\cref{prob:mca-spread-routing,prob:large-owner,prob:mca-exception-routing};
+in particular, v4 still requires exhaustive same-owner routing from every
+surviving balanced-core component into that endgame.  Its separate
+arbitrary-word list-interior clause is contained in
+\cref{prob:list-completion}.  Thus no archived problem is being banked as a
+live theorem, and no higher-dimensional balanced-core payment is claimed
+merely from the one-pencil moving-root bound.
+\end{remark}
 
 \section{The final MCA certificate}
 \label{sec:mca-final-certificate}
 The order-$32$ method replaces the old sum over many independently budgeted MCA cells by a maximum-type endgame.
 
 \begin{problem}[Complete spread-component routing]\label{prob:mca-spread-routing}
+This is the final v4 successor to the higher-dimensional MCA clause of the
+v3 \texttt{prob:saturated-bc}.  Together with
+\cref{prob:large-owner,prob:mca-exception-routing}, it must provide the
+exhaustive same-owner routing that the old balanced-core cell left open.  Its
+row-sharp conclusion subsumes the intermediate
+\cref{prob:spread-abundance,prob:next} for purposes of the final certificate.
+
 Prove that every positive-dimensional correction component surviving \cref{thm:residual} is routed, with the same received-line owner retained, into one of the following disjoint outcomes:
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item a rational-owner, quotient, extension, field-drop, or quantified near-sunflower atom;
@@ -7564,6 +7603,10 @@ For a list row retain the disjoint summed ledger
 Here $U_{\rm paid}$ is the exact first-match sum of all tangent, common-support, quotient, planted, field-drop, fixed-union, affine-span, common-zero, rank-flat, codimension-one, support-flag, minimum-distance, puncturing, and other certified cells; $U_Q$ is the row-sharp pruned boundary-prefix maximum; $U_{\rm list-int}$ is the high-nullity arbitrary-word interior codeword-ray term; $U_{\rm ext}$ is the exact extension projection payment; and $U_{\rm new}$ is zero unless an explicitly named residual cell survives.
 
 \begin{problem}[Row-sharp list completion]\label{prob:list-completion}
+This is the final v4 successor to the arbitrary-word list-interior clause of
+the v3 \texttt{prob:saturated-bc}; it also includes the remaining prefix and
+extension terms required by the v4 list ledger.
+
 For each deployed list row, prove exact integer bounds for the remaining high-nullity prefix fiber, arbitrary-word interior, and extension projection terms so that
 \[
  U_{\rm list}\le B^*.
