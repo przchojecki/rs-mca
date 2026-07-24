@@ -287,7 +287,7 @@ Dependencies:
 - PROVEN: the deployed fixed-remainder list floor \(6\,796\,405\).
 - PROVEN: the integrated seven-companion interlaced source fixture.
 - PROVEN HERE: the exact arithmetic compiler, the 479-degree support bound,
-  and the same-degree floor \(14\,189\).
+  and the same-degree floor \(15\,205\).
 - UNPROVEN: an exhaustive structured first-match predicate with cap
   \(7\,552\,794\).
 - UNPROVEN: the primitive cross-weight cap (4.1).
