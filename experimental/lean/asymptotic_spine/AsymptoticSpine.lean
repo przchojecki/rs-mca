@@ -28,6 +28,8 @@ import AsymptoticSpine.C8HighKappaOwner
 import AsymptoticSpine.ClosedLedgerExtension
 import AsymptoticSpine.C8ShallowClosureProducer
 import AsymptoticSpine.C8ChartExhaustion
+import AsymptoticSpine.KoalaBearMergedResidual
+import AsymptoticSpine.KoalaBearRankOrPencilS1
 import AsymptoticSpine.FullImageIdentityWindow
 import AsymptoticSpine.PrimitiveBoolean
 import AsymptoticSpine.C9ResidualMaxFiberProducer
