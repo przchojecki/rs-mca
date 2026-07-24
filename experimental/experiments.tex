@@ -50,7 +50,7 @@
 \title{Experiments for Smooth RS-MCA Proximity Thresholds\\
 \large Fresh-Eyes Threshold Memo, Missing Theorems, and Retained Locator Ledger}
 \author{RS-MCA experimental notes}
-\date{June 26, 2026}
+\date{July 24, 2026}
 
 \begin{document}
 \maketitle
@@ -65,14 +65,17 @@ should be organized around two local-limit problems, L1 arbitrary-word locator
 fibers and M1 all-line residue packing, plus extension-line MCA, Paper D
 conversion/radius audits, and exact protocol-ledger rewrites.
 
-The main new additions over the old \texttt{experiments.tex} are two compact
-bridge lemmas.  First, for ordinary column-distance interleaving, interleaved
-lists inject into common feasible supports, so a uniform base locator-fiber
-theorem gives the same polynomial exponent for all protocol arities; there is no
-automatic \(n^{\mu B}\) product loss.  Second, a list bound plus an MCA bound
-implies a concrete line-decoding bound with loss \(M+nL+1\).  The older BCHKS
-provenance notes, quotient-locator dictionaries, normal forms, arithmetic gates,
-and finite-threshold infrastructure are retained below whenever they still look
+The main new additions over the old \texttt{experiments.tex} are one direct
+Lane-L construction and two compact bridge lemmas.  The direct construction
+gives an exact ordinary Reed--Solomon list lower bound beyond the Johnson radius
+on every declared rate-half multiplicative-coset family.  For ordinary
+column-distance interleaving, interleaved lists inject into common feasible
+supports, so a uniform base locator-fiber theorem gives the same polynomial
+exponent for all protocol arities; there is no automatic \(n^{\mu B}\) product
+loss.  Finally, a list bound plus an MCA bound implies a concrete line-decoding
+bound with loss \(M+nL+1\).  The older BCHKS provenance notes,
+quotient-locator dictionaries, normal forms, arithmetic gates, and
+finite-threshold infrastructure are retained below whenever they still look
 useful.
 \end{abstract}
 
@@ -481,6 +484,198 @@ list numerators, MCA numerator, line-decoding numerator, field separation among
 tracked as \textsc{Proved} when the divisor, binomial, and subfield hypotheses
 are verified.
 \end{enumerate}
+
+\section{Direct Lane L Result: a Rate-Half Cyclic List Floor}
+\label{sec:rate-half-cyclic-quotient-rotation-floor}
+
+\textbf{Status: \textsc{Proved} / \textsc{Direct-list} / lower
+construction.}
+This section integrates the mathematical content of AllenGrahamHart's
+PR~\#1051 into this ledger.  It is a theorem about ordinary Reed--Solomon
+codewords in one Hamming ball.  It is not an MCA or CA statement, a list upper
+bound, an asymptotic theorem, or an adjacent deployed-row certificate.
+
+\subsection{Exact Lane L contract}
+
+\begin{description}
+\item[Row.]
+  \((\F_q,D,k=2^{40},n=2^{41},\rho=1/2)\), where
+  \(2^{41}\mid(q-1)\) and \(D\) is a multiplicative coset of size \(2^{41}\).
+\item[Object.] Ordinary \(\List\), not MCA.
+\item[Radius/agreement.]
+  \[
+    a=2^{40}+2^{34}-1=1116691496959,
+    \qquad
+    \delta=\frac{2^{40}-2^{34}+1}{2^{41}}.
+  \]
+\item[Johnson comparison.]
+  The radius is strictly beyond the exact Reed--Solomon Johnson radius:
+  \[
+    a^2<2^{41}(2^{40}-1).
+  \]
+\item[Bound.]
+  \[
+  L_C(\delta)\ge
+  \left\lceil\frac{\binom{255}{129}}{256}\right\rceil
+  =
+  11092230961998080258863221315535829014398723445840079610908300691051869570.
+  \]
+\item[Route.] \textsc{Direct-list}; no CA-to-list or MCA-to-list conversion.
+\item[CA or MCA input.] None.
+\item[Code shift.] \(C=\RS[\F_q,D,2^{40}]\); no \(C^+\) shift.
+\item[Status and impact.] \textsc{Proved} finite-family lower construction;
+  it refutes every smaller uniform list cap on the declared family.
+\end{description}
+
+\subsection{General quotient-rotation theorem}
+
+\begin{theorem}[cyclic quotient-rotation list floor]
+\label{thm:rate-half-cyclic-quotient-rotation-floor}
+Let \(\F_q\) be a finite field, let \(D\subseteq\F_q^\times\) be a
+multiplicative coset of even size \(n\), and put
+\[
+  C=\RS[\F_q,D,n/2].
+\]
+Suppose that \(c\mid n/2\), put \(N=n/c\), and choose integers
+\[
+  1\le d\le N/2-1,
+  \qquad
+  m=N/2+d,
+  \qquad
+  0<s<c.
+\]
+Then some received word has at least
+\begin{equation}
+\label{eq:rate-half-list-floor}
+  \left\lceil
+    \frac{\binom{N-1}{m}}{Nq^{d-1}}
+  \right\rceil
+\end{equation}
+distinct codewords agreeing with it at exactly
+\begin{equation}
+\label{eq:rate-half-exact-agreement}
+  \frac n2+dc+s
+\end{equation}
+positions.
+\end{theorem}
+
+\begin{proof}
+Write \(D=\gamma H\), where \(H\) is a multiplicative subgroup of order
+\(n\), and let
+\[
+  Q=D^c=\{x^c:x\in D\}.
+\]
+The power map \(D\to Q\) has fibers of size \(c\), so \(|Q|=N\).  There is a
+fixed nonzero \(\Delta\in\F_q\) such that \(y^N=\Delta\) for every \(y\in Q\).
+Fix one point \(b_0\in Q\), choose an \(s\)-subset of its \(c\)-point fiber,
+and let \(L_0(X)\) be the monic polynomial vanishing on those \(s\) points.
+
+For every \(m\)-subset \(A\subseteq Q\setminus\{b_0\}\), write
+\[
+  P_A(Y)=\prod_{b\in A}(Y-b)
+        =\sum_{j=0}^{m}a_j(A)Y^j
+\]
+and cyclically rotate its coefficient arc modulo \(Y^N-\Delta\):
+\begin{equation}
+\label{eq:rate-half-cyclic-rotation}
+\begin{split}
+  R_A(Y)
+  &=
+  \operatorname{rem}_{Y^N-\Delta}
+    \bigl(Y^{N-d}P_A(Y)\bigr)\\
+  &=
+  \sum_{j=0}^{d-1}a_j(A)Y^{N-d+j}
+  +\Delta\sum_{j=d}^{m}a_j(A)Y^{j-d}.
+\end{split}
+\end{equation}
+Set
+\[
+  L_A(X)=L_0(X)R_A(X^c).
+\]
+Because \(s<c\), the coefficient blocks created by multiplication by \(L_0\)
+do not overlap.  Every coefficient of \(L_A\) in degrees at least
+\(k=n/2\) is determined by \(a_0(A),\ldots,a_{d-1}(A)\), together with the
+fixed monic coefficient \(a_m(A)=1\).  Indeed, the terms with \(j<d\) lie
+strictly above the \(k\)-boundary, the term \(j=m\) begins at degree \(k\),
+and every term \(d\le j<m\) ends below degree \(k\).
+
+The constant coefficient \(a_0(A)\), up to its fixed sign, is the product of
+the \(m\) elements of \(A\).  Since \(Q\) is a multiplicative coset of a
+group of order \(N\), this product takes at most \(N\) values.  Each of
+\(a_1(A),\ldots,a_{d-1}(A)\) takes at most \(q\) values.  Hence the
+\(\binom{N-1}{m}\) choices of \(A\) occupy at most \(Nq^{d-1}\) high-degree
+prefixes.  One prefix fiber therefore has size at
+least~\eqref{eq:rate-half-list-floor}.
+
+Fix such a prefix fiber and let \(U\) be its common degree-\(\ge k\) part.
+For every member write \(L_A=U+E_A\), where \(\deg E_A<k\).  Then
+\(-E_A\in C\), and
+\[
+  U-(-E_A)=L_A.
+\]
+On \(D\), equation~\eqref{eq:rate-half-cyclic-rotation} gives
+\[
+  R_A(x^c)=(x^c)^{N-d}P_A(x^c).
+\]
+The factor \((x^c)^{N-d}\) is nonzero.  Thus \(L_A\) vanishes precisely on
+the \(mc\) points lying above \(A\) and the chosen \(s\) points above
+\(b_0\).  This proves the exact
+agreement~\eqref{eq:rate-half-exact-agreement}.  Distinct subsets \(A\)
+give distinct root sets, hence distinct locators \(L_A\) and distinct
+codewords \(-E_A\).
+\end{proof}
+
+\subsection{The declared post-Johnson specialization}
+
+Take
+\[
+  n=2^{41},
+  \qquad
+  c=2^{33},
+  \qquad
+  N=256,
+  \qquad
+  d=1,
+  \qquad
+  m=129,
+  \qquad
+  s=c-1.
+\]
+Theorem~\ref{thm:rate-half-cyclic-quotient-rotation-floor} gives the exact
+agreement and list lower bound in the Lane L contract.  The closed-ball radius
+is strictly beyond Johnson because the Johnson agreement is
+\(\sqrt{n(k-1)}\) and
+\[
+  (2^{40}+2^{34}-1)^2<2^{41}(2^{40}-1).
+\]
+The concrete prime
+\[
+  q_0=6597069766657=3\cdot2^{41}+1
+\]
+supplies one fully declared base field; a Pocklington certificate uses base
+\(5\), the complete factorization \(q_0-1=3\cdot2^{41}\), and the exact
+certificate conditions
+\[
+  5^{q_0-1}\equiv1\pmod {q_0},
+  \qquad
+  \gcd\!\left(5^{(q_0-1)/2}-1,q_0\right)=1,
+  \qquad
+  \gcd\!\left(5^{(q_0-1)/3}-1,q_0\right)=1.
+\]
+More generally, the theorem applies over every field satisfying
+\(2^{41}\mid(q-1)\) and every order-\(2^{41}\) multiplicative coset.
+
+The lower bound has \(243\) bits and exceeds \(2^{238}\).  Consequently, for
+every \(q<2^{256}\), it also exceeds \(q/2^{128}\).  This comparison records
+the Proximity Prize scale only; it does not convert the ordinary list into an
+MCA lower bound.
+
+\paragraph{Source and verification boundary.}
+The section is a one-file consolidation of the theorem and proof at source
+commit \texttt{0b339ebb0c92c1e7703c1e765f0ad9f819c3b9f7}.  The PR's two
+Python replay scripts and its separate per-PR log fragment are deliberately
+not imported.  No Python, Sage, Lean, or \TeX\ build is part of this
+consolidation.
 
 \section{Fresh Non-Claims}
 \label{sec:fresh-nonclaims}

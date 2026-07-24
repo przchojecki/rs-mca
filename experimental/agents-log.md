@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-24 - PR #1051 one-file Lane L integration
+
+- **Agent/model:** Codex, integrating a theorem packet by AllenGrahamHart.
+- **Files added or changed:** Consolidated the mathematical artifact solely
+  into `experimental/experiments.tex`; updated `agents.md` and this required
+  coordination log. The PR's standalone note, two Python scripts, and
+  per-PR log fragment were not imported.
+- **Status:** PROVED / DIRECT_LIST / LOWER CONSTRUCTION.
+- **What is being added:** A self-contained cyclic quotient-rotation theorem
+  for ordinary rate-half Reed--Solomon lists. On every declared
+  order-`2^41` multiplicative-coset family it gives at least
+  `ceil(binomial(255,129)/256)` distinct codewords at agreement
+  `1116691496959`, strictly beyond the exact finite-field Johnson radius.
+- **How it is useful:** This is an exact Lane L lower construction with a
+  uniform field/coset quantifier, an explicit concrete prime field, and no
+  MCA/CA conversion or `C^+` shift. It supplies a strong unsafe floor but
+  does not close a deployed M31 or KoalaBear row.
+- **What to do next:** Seek a matching or near-matching list upper bound on
+  the same rate-half family. The integration received static code/proof
+  review only; no Python, Sage, Lean, or TeX build was run.
+
 ### 2026-07-24 - Reviewed PR integration wave 1071--1086
 
 - **Agent/model:** Codex, selectively integrating reviewed PRs by Holm Buar

@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
 > **Updated:** 2026-07-24
-> **State snapshot:** `main@f6a20fa39f8b3ebbf98056726c69133c82309e51`
+> **State snapshot:** `main@07e6d0e782277452ef854643b1c5b0433c7faae0`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -71,7 +71,10 @@ At this snapshot:
 - The KoalaBear legacy M1 stack records local `U_paid=422354730332` and local remainder `274980305756664755`, but neither is banked in Grande Finale v4 because the source-bound owner/partition bridge is missing.
 - Under the latest corrected direct extension charge, positive extension dimension is excluded on Mersenne-31 and dimension at least two is excluded on KoalaBear. These are route cuts, not payments or nonexistence theorems.
 - The newly integrated M31 packets add local padding-bridge, masked-saturation, common-core add-back, rank-two/coloop, rooted-shell, C7--C9, and route-cut infrastructure.  These are not adjacent-row payments: source-bound owner/refund, rooted-shell completion, residual projection, and final finite-ledger terminals remain open.
+- The integrated M31 rank-seven chain proves master-denominator, split-divisor, one-pivot, and interlaced-source route cuts.  It leaves mixed-`G`, cross-cofactor, deep-fiber, and higher-rank incidence terminals open and moves no deployed row value.
 - The integrated M31 post-Johnson conversion contract gives an exact conditional CS25 bridge from a same-radius CA numerator at most `16777214` to the ordinary-list budget `16777215`, and cuts the BCHKS25 route at the deployed budget.  It does not prove the unconditional M31 list row.
+- The fixed-`G` endpoint Plotkin theorem proves an ordinary-list cap `2310492` beyond the exact finite-field Johnson radius on two declared M31 endpoint subfamilies.  It is genuine Lane L progress, but not an unrestricted M31 list-row upper bound.
+- The direct rate-half cyclic quotient-rotation theorem in `experimental/experiments.tex` proves, for every declared order-`2^41` multiplicative-coset family, an ordinary-list lower bound `ceil(binomial(255,129)/256)` at agreement `1116691496959`, strictly beyond Johnson.  It is a finite-family Lane L lower construction, not an MCA statement or deployed-row closure.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
 
@@ -85,6 +88,7 @@ At this snapshot:
 | `tex/cs25_cap_v13_2.tex` | **Foundation/unsafe authority:** exact unsafe endpoints, field/domain conventions, reductions, and certificate grammar. |
 | `RS_MCA_Paving_v9.2.tex` | **Fixed ePrint basis for unconditional paving results:** shortening, MDS circuit, exact finite, exponential-budget, and conditional Sidon-to-flatness results from ePrint 2026/1463. It does not solve the subexponential near-capacity frontier. |
 | `experimental/rs_mca_thresholds.tex` | **Exact-regime/exposition source:** staircases, below-half-distance results, syndrome geometry, and examples; not unrestricted near-capacity closure authority. |
+| `experimental/experiments.tex` | **Experimental theorem ledger:** integrated direct list constructions, bridge lemmas, provenance, and scoped nonclaims. Each result retains its printed row and status; the file is not a deployed-row closure authority. |
 | `experimental/proximity_prize_results_v4.tex` | **Current synthesis/index:** compact map of proved partial Prize results and status-preserving nonclaims. Follow its cited proof sources before banking any theorem or atom. |
 | `tex/RS_disproof_v3.tex`, `tex/slackMCA_v4.tex`, `tex/snarks_v5.tex` | Stable background for no-slack obstructions, reserve/quotient theory, and later protocol accounting. |
 | `archived/` predecessors | Provenance only. Never bank an archived owner or charge without an explicit source-bound bridge. |
@@ -170,7 +174,7 @@ Never describe this auxiliary `2^-100` row as an unresolved `2^-128` Prize row.
 
 Produce a theorem, conditional theorem, or exact computational certificate giving a better ordinary Reed--Solomon list-size bound at a radius beyond the Johnson radius. This lane is separate from MCA: the output unit is codewords in a Hamming ball around one received word.
 
-The current Mersenne-31 conversion packet supplies only a conditional CS25 bridge and a BCHKS25 route cut.  Lane L remains open for an unconditional bound, a stronger conditional input that can actually be discharged, or an exact counterexample.
+The current Mersenne-31 conversion packet supplies only a conditional CS25 bridge and a BCHKS25 route cut.  The fixed-`G` endpoint Plotkin theorem gives the scoped unconditional cap `2310492` beyond Johnson on two endpoint subfamilies.  The rate-half cyclic quotient-rotation theorem gives an exact finite-family lower construction of size `ceil(binomial(255,129)/256)` at agreement `1116691496959`.  Lane L remains open for a broader unconditional upper bound or a matching upper/lower bracket on a precisely declared family.
 
 Valid routes include:
 
