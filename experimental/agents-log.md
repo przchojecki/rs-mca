@@ -30,6 +30,41 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-24 - M31 rank-seven full-hyperplane recurrence frontier
+
+- **Agent/model:** Codex generated the packet; separate Codex proof and
+  arithmetic reviewers audited the full-hyperplane lemma, top-five compiler,
+  and exact tail-residue shortest path GREEN.
+- **Files added or changed:** Added
+  `experimental/notes/thresholds/m31_rank7_combined_domain_fixed_mismatch_recurrence_v1.md`,
+  its closed schema and certificate directory, primary and independent
+  Python verifiers, and Sage replay; updated `agents.md` and this log.
+- **Status:** PROVED LOCAL RANK-SEVEN CUMULATIVE HEAD / SHARP ROUTE CUT.
+  No v4 atom, official endpoint, or row value moved.
+- **What is being added:** The surviving master span has exact rank seven.
+  Every counted nonzero normalized-label class embeds into its full affine
+  hyperplane with exact direction rank six.  Complete-line and exact-lcm
+  source identities make every common direction zero a fixed mismatch, so
+  the no-common-zero recurrence applies after factor-and-pad.  A refined
+  top-five compiler and exact residue partition pay through `Q=147594`,
+  where the head is `15775917` with margin `15`.
+- **How it is useful:** At `Q=147595`, exactly one `k=4981` class remains.
+  Its current cap is `9806438`; cap `9806394` fails by one codeword, while
+  `9806393` closes.  The missing theorem is therefore a sharp 45-unit
+  source-compatible improvement or a stronger cross-line compatibility
+  argument.
+- **Verification:** Primary normal/optimized replay, hostile mutations,
+  independent heap replay, Sage exact-integer/finite-field replay, sealed
+  predecessor pins, the sealed exact provenance-migration record for the
+  rank-six and affected transitive weighted predecessors' status-only
+  canonical-source drift, and fresh proof/arithmetic review.  Historical
+  standalone aggregators are not declared fresh.
+- **What to do next:** Test whether the legal recurrence extremizer can be
+  realized by the combined source hyperplane.  Either exclude it using
+  cross-line/source compatibility and save 45 units, or record a rigorous
+  route cut showing that the current hypotheses permit it.  Do not promote
+  the local cumulative head to a v4 atom or global row theorem.
+
 ### 2026-07-24 - M31 v4 provenance, all-weight gate, and combined-domain rank-seven endpoint
 
 - **Agent/model:** Codex generated the packets; a separate Codex proof-audit

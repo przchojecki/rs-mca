@@ -89,13 +89,15 @@ At this snapshot:
   The deployed fixed-remainder source has at least `15205` companions at one
   MDS-admissible exchange degree, so structured removal must precede any such
   primitive cap.  Both required upper theorems remain open.
-- The combined-domain rank-seven theorem joins the `E0` and planted-root
-  tables into one ordinary rank-at-most-six RS list and pays every cumulative
-  deficit head through `Q=29554`.  The exact head is `15775891`, margin `41`.
-  The first unclosed head `Q=29555` is `207` over and is localized to
-  `k=4981..4986`; a source-compatible uniform subclass cap `14115290`
-  (improvement `238`) would pay it.  This moves the local rank-seven frontier,
-  not a v4 atom or official endpoint.
+- The strengthened combined-domain rank-seven theorem first excludes the
+  whole-family rank-at-most-six branch, then embeds every counted label in
+  the full exact-rank-six hyperplane of the surviving rank-seven span.  Its
+  fixed-mismatch recurrence plus exact top-five/tail-residue compiler pays
+  every cumulative deficit head through `Q=147594`; the exact head is
+  `15775917`, margin `15`.  The first unclosed head `Q=147595` is `61` over
+  and has one residual `k=4981` class.  Lowering its cap from `9806438` to
+  `9806393` (a sharp `45`) would pay it.  This moves the local rank-seven
+  frontier, not a v4 atom or official endpoint.
 - The integrated M31 post-Johnson conversion contract gives an exact conditional CS25 bridge from a same-radius CA numerator at most `16777214` to the ordinary-list budget `16777215`, and cuts the BCHKS25 route at the deployed budget.  It does not prove the unconditional M31 list row.
 - The fixed-`G` endpoint Plotkin theorem proves an ordinary-list cap `2310492` beyond the exact finite-field Johnson radius on two declared M31 endpoint subfamilies.  It is genuine Lane L progress, but not an unrestricted M31 list-row upper bound.
 - The direct rate-half cyclic quotient-rotation theorem in `experimental/experiments.tex` proves, for every declared order-`2^41` multiplicative-coset family, an ordinary-list lower bound `ceil(binomial(255,129)/256)` at agreement `1116691496959`, strictly beyond Johnson.  It is a finite-family Lane L lower construction, not an MCA statement or deployed-row closure.
@@ -111,7 +113,7 @@ At this snapshot:
 | `experimental/notes/thresholds/m31_list_v4_global_completion_compiler.md`, `experimental/data/certificates/m31-list-v4-global-completion-compiler-v2/manifest.json`, and `experimental/data/certificates/m31-list-v4-grande-finale-provenance-migration-v1/manifest.json` | **Live M31 LIST compiler authority:** five codeword-valued atoms, exact signed residual, source graph, and exact compatibility with the current Grande Finale status text. |
 | `experimental/notes/thresholds/m31_all_weight_anchor_exchange_pade_bijection_v1.md` and `experimental/notes/thresholds/m31_boundary_common_v_cross_g_route_cut_v1.md` | **Live direct M31 LIST residual:** boundary-anchor all-weight bijection and shallow common-unit full-locator census. |
 | `experimental/notes/thresholds/m31_all_weight_source_calibrated_ten_packet_gate_v1.md` | **Live all-weight additive route cut:** exact structured/primitive closure inequality, source floor, and the proof that a cross-weight cap of ten cannot close the source-compatible architecture. |
-| `experimental/notes/thresholds/m31_rank7_combined_domain_affine_johnson_endpoint_v1.md` | **Live rank-seven frontier:** common-agreement-safe combined-domain RS payment through `Q=29554` and exact six-dimension residual at `Q=29555`. |
+| `experimental/notes/thresholds/m31_rank7_combined_domain_fixed_mismatch_recurrence_v1.md` | **Live rank-seven frontier:** full-label-hyperplane fixed-mismatch recurrence and exact top-five/tail-residue payment through `Q=147594`, with one sharp 45-unit residual at `Q=147595`. |
 | `experimental/Conjectures_and_Barriers_RS_MCA_v4_1.tex` | **Direct problem/falsifier authority:** benchmark conjectures, exact compiler requirements, finite barriers, and separation of finite from conjectural asymptotic claims. |
 | `experimental/grande_finale.tex` | **Active conditional completion architecture:** proved local theorems, order-32/rational-atom reductions, owner localization, spread-core incidence bounds, and exact completion problems. Hypotheses/problems are not row bounds. |
 | `tex/cs25_cap_v13_2.tex` | **Foundation/unsafe authority:** exact unsafe endpoints, field/domain conventions, reductions, and certificate grammar. |
