@@ -1793,7 +1793,7 @@
     "experimental/lean/m31_quotient_band_mixing/lakefile.lean": "de4155851bc0ea8d1f4b36c9cc402d1807d1c17a0f1422b9a6ae88eca0373af3",
     "experimental/lean/m31_quotient_band_mixing/lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
     "experimental/notes/thresholds/m31_quotient_band_swap_census_t16_mixing.md": "62700108fa141c6b6033604d60db5533bae196c6377dd17f965cc23d3b5fd55a",
-    "experimental/scripts/verify_m31_quotient_band_swap_census_t16_mixing.py": "628bdd8776b6dbeaef269c4e3346ece48a9149008c405aaf0da1eacc8c2e2c33"
+    "experimental/scripts/verify_m31_quotient_band_swap_census_t16_mixing.py": "8fbdb900fd8211240f3ae3d3a5eeadfec738b65b2c1a7c0cb60c6380a003b0a8"
   },
   "partition_digest": "N/A; fixed local support profile, no row atom banked",
   "projection_and_unit": "479-subsets per first-32 quotient-locator coefficient target; no received-word, codeword, ray, or slope projection.",

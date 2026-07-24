@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "architecture": {
+      "const": "M31_BASE_FIELD_BOUNDARY_RANK7_MASTER_DENOMINATOR_V1"
+    },
+    "checks": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "fixed_g_slice_cut": {
+      "type": "object"
+    },
+    "harmonic_dual_lemma": {
+      "type": "object"
+    },
+    "harmonic_flank": {
+      "type": "object"
+    },
+    "impact": {
+      "additionalProperties": false,
+      "properties": {
+        "ledger_movement": {
+          "const": 0
+        },
+        "official_endpoint_movement": {
+          "const": 0
+        },
+        "pure_fixed_g_union_values_removed": {
+          "const": 26321
+        },
+        "rank7_closed": {
+          "const": false
+        },
+        "rank7_union_values_removed": {
+          "const": 26
+        },
+        "rank8_and_above_closed": {
+          "const": false
+        },
+        "row_closed": {
+          "const": false
+        }
+      },
+      "required": [
+        "ledger_movement",
+        "official_endpoint_movement",
+        "pure_fixed_g_union_values_removed",
+        "rank7_closed",
+        "rank7_union_values_removed",
+        "rank8_and_above_closed",
+        "row_closed"
+      ],
+      "type": "object"
+    },
+    "nonclaims": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 4,
+      "type": "array"
+    },
+    "parent_payload_sha256": {
+      "const": "914ee52fa6c4df6697268ca36d825f01361cad4a6a9d6d1c3f0edd822f379cd8"
+    },
+    "payload_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "residual_partition": {
+      "type": "object"
+    },
+    "row": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "m31-rank7-shallow-master-denominator-cut-summary-v1"
+    },
+    "source_bindings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "binding_id": {
+            "type": "string"
+          },
+          "internal_payload_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "binding_id",
+          "internal_payload_sha256",
+          "path",
+          "role",
+          "scope",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "minItems": 10,
+      "type": "array"
+    },
+    "status": {
+      "const": "PROVED_MASTER_NORMALIZATION_FIXED_G_AND_HARMONIC_FLANK_ROW_OPEN"
+    },
+    "theorem_id": {
+      "const": "M31_RANK7_SHALLOW_MASTER_DENOMINATOR_CUT_V1"
+    }
+  },
+  "required": [
+    "architecture",
+    "checks",
+    "fixed_g_slice_cut",
+    "harmonic_dual_lemma",
+    "harmonic_flank",
+    "impact",
+    "nonclaims",
+    "parent_payload_sha256",
+    "payload_sha256",
+    "residual_partition",
+    "row",
+    "schema",
+    "source_bindings",
+    "status",
+    "theorem_id"
+  ],
+  "title": "M31 rank-seven shallow master-denominator cut certificate",
+  "type": "object"
+}

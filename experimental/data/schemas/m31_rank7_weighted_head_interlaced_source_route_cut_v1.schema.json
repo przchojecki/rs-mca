@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "m31-rank7-weighted-head-interlaced-source-route-cut-v1",
+  "title": "M31 rank-seven weighted-head and interlaced-source route cut",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "architecture",
+    "boundary_layout",
+    "checks",
+    "common_unit",
+    "cofactor_pivot_theorem",
+    "cofactor_slice_marginal",
+    "dual_domain_per_label_compiler",
+    "endpoint_relaxation",
+    "impact",
+    "interlaced_H_selection",
+    "master_normalization",
+    "no_second_cofactor_pivot_witness",
+    "nonclaims",
+    "payload_sha256",
+    "recursive_full_line_compiler",
+    "row",
+    "schema",
+    "source_bindings",
+    "source_consequence",
+    "split_numerators",
+    "status",
+    "theorem_id",
+    "two_stage_pivot_johnson_theorem",
+    "v4_chronology",
+    "weighted_head_theorem"
+  ],
+  "properties": {
+    "architecture": {
+      "const": "M31_RANK7_WEIGHTED_HEAD_INTERLACED_SOURCE_V1"
+    },
+    "boundary_layout": {
+      "type": "object"
+    },
+    "checks": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "common_unit": {
+      "type": "object"
+    },
+    "cofactor_pivot_theorem": {
+      "type": "object"
+    },
+    "cofactor_slice_marginal": {
+      "type": "object"
+    },
+    "dual_domain_per_label_compiler": {
+      "type": "object"
+    },
+    "endpoint_relaxation": {
+      "type": "object"
+    },
+    "impact": {
+      "type": "object"
+    },
+    "interlaced_H_selection": {
+      "type": "object"
+    },
+    "master_normalization": {
+      "type": "object"
+    },
+    "no_second_cofactor_pivot_witness": {
+      "type": "object"
+    },
+    "nonclaims": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "string"
+      }
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "recursive_full_line_compiler": {
+      "type": "object"
+    },
+    "row": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "m31-rank7-weighted-head-interlaced-source-route-cut-v1"
+    },
+    "source_bindings": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "binding_id",
+          "path",
+          "role",
+          "sha256"
+        ],
+        "properties": {
+          "binding_id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "source_consequence": {
+      "type": "object"
+    },
+    "split_numerators": {
+      "type": "object"
+    },
+    "status": {
+      "const": "PROVED_WEIGHTED_HEAD_AND_SOURCE_OBSTRUCTION_ROW_OPEN"
+    },
+    "theorem_id": {
+      "const": "M31_RANK7_WEIGHTED_HEAD_INTERLACED_SOURCE_ROUTE_CUT_V1"
+    },
+    "two_stage_pivot_johnson_theorem": {
+      "type": "object"
+    },
+    "v4_chronology": {
+      "type": "object"
+    },
+    "weighted_head_theorem": {
+      "type": "object"
+    }
+  }
+}

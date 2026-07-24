@@ -1,0 +1,492 @@
+{
+  "B_star": 16777215,
+  "agreement": 1116023,
+  "aligned_T16_census": {
+    "48": {
+      "atoms_per_side": 3,
+      "collisions": 0,
+      "exhaustive_over": "C(28,3) x C(31,3) anchor/complement triples",
+      "nonblock_collisions": 0,
+      "recomputed_by_check": true,
+      "scale": "T16",
+      "status": "EMPTY",
+      "whole_T64_block_swaps": 0
+    },
+    "64": {
+      "atoms_per_side": 4,
+      "classification": "all 49 are whole-T64-block swaps (7 anchor x 7 complement); no non-block T16-aligned collision exists",
+      "collisions": 49,
+      "exhaustive_over": "C(28,4) x C(31,4) anchor/complement quadruples",
+      "nonblock_collisions": 0,
+      "recomputed_by_check": true,
+      "scale": "T16",
+      "status": "49 WHOLE-BLOCK / 0 NON-BLOCK",
+      "whole_T64_block_swaps": 49
+    }
+  },
+  "aligned_T8_recorded": {
+    "40": {
+      "anchor_subsets": 3819816,
+      "atoms_per_side": 5,
+      "collisions": 0,
+      "comp_subsets": 7028847,
+      "exhaustive_over": "C(56,5) x C(63,5) T8-fiber subsets",
+      "hit_log": "hits_d8_a5.txt",
+      "real_seconds": 1.22,
+      "recomputed_by_check": false,
+      "scale": "T8",
+      "status": "EMPTY"
+    },
+    "48": {
+      "anchor_subsets": 32468436,
+      "atoms_per_side": 6,
+      "collisions": 0,
+      "comp_subsets": 67945521,
+      "exhaustive_over": "C(56,6) x C(63,6) T8-fiber subsets",
+      "hit_log": "hits_d8_a6.txt",
+      "real_seconds": 12.56,
+      "recomputed_by_check": false,
+      "scale": "T8",
+      "status": "EMPTY"
+    },
+    "56": {
+      "anchor_subsets": 231917400,
+      "atoms_per_side": 7,
+      "collisions": 0,
+      "comp_subsets": 553270671,
+      "exhaustive_over": "C(56,7) x C(63,7) T8-fiber subsets",
+      "hit_log": "hits_d8_a7.txt",
+      "real_seconds": 835.79,
+      "recomputed_by_check": false,
+      "scale": "T8",
+      "status": "EMPTY"
+    }
+  },
+  "anchor": {
+    "classes": [
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      17
+    ],
+    "complement_size": 543,
+    "core31_rep_sha256": "17abbc61838956fdfefaef911613b56b22128f691536b11938f970a447e6a27f",
+    "core31_reps": [
+      63,
+      65,
+      127,
+      129,
+      191,
+      193,
+      255,
+      257,
+      319,
+      321,
+      383,
+      385,
+      447,
+      449,
+      511,
+      513,
+      575,
+      577,
+      639,
+      641,
+      703,
+      705,
+      767,
+      769,
+      831,
+      833,
+      895,
+      897,
+      959,
+      961,
+      1023
+    ],
+    "support_rep_sha256": "93c2fac819b08b6efc9ee4dd394207e9127c02a293cf78ce7967e2cf12b3f3c7",
+    "support_size": 479
+  },
+  "architecture": "DIRECT_PINNED_C2048_U0_V1_QUOTIENT_PROFILE",
+  "census_object": "depth-32 dyadic-fiber-aligned collision census, e in [34, 65], rooted at the 479-point band anchor",
+  "collision_criterion": "depth-32 collision <=> first 32 power sums of X = A\\B and Y = B\\A agree <=> top-32 nonleading coefficients of the monic locators P_A, P_B agree",
+  "cost_model": {
+    "largest_slice_e65_pairs_log10": 166.4,
+    "mitm_per_side_log10_max": 101.6,
+    "mitm_per_side_log10_min": 62.7,
+    "per_e": {
+      "34": {
+        "mitm_per_side_log10": 62.7,
+        "one_side_C479_log10": 52.1,
+        "one_side_years_log10": 35.6,
+        "pairs_log10": 106.2
+      },
+      "35": {
+        "mitm_per_side_log10": 62.7,
+        "one_side_C479_log10": 53.2,
+        "one_side_years_log10": 36.7,
+        "pairs_log10": 108.5
+      },
+      "36": {
+        "mitm_per_side_log10": 65.6,
+        "one_side_C479_log10": 54.3,
+        "one_side_years_log10": 37.8,
+        "pairs_log10": 110.7
+      },
+      "37": {
+        "mitm_per_side_log10": 65.6,
+        "one_side_C479_log10": 55.4,
+        "one_side_years_log10": 38.9,
+        "pairs_log10": 112.9
+      },
+      "38": {
+        "mitm_per_side_log10": 68.4,
+        "one_side_C479_log10": 56.5,
+        "one_side_years_log10": 40.0,
+        "pairs_log10": 115.1
+      },
+      "39": {
+        "mitm_per_side_log10": 68.4,
+        "one_side_C479_log10": 57.5,
+        "one_side_years_log10": 41.0,
+        "pairs_log10": 117.3
+      },
+      "40": {
+        "mitm_per_side_log10": 71.2,
+        "one_side_C479_log10": 58.6,
+        "one_side_years_log10": 42.1,
+        "pairs_log10": 119.4
+      },
+      "41": {
+        "mitm_per_side_log10": 71.2,
+        "one_side_C479_log10": 59.6,
+        "one_side_years_log10": 43.1,
+        "pairs_log10": 121.5
+      },
+      "42": {
+        "mitm_per_side_log10": 73.9,
+        "one_side_C479_log10": 60.6,
+        "one_side_years_log10": 44.1,
+        "pairs_log10": 123.6
+      },
+      "43": {
+        "mitm_per_side_log10": 73.9,
+        "one_side_C479_log10": 61.6,
+        "one_side_years_log10": 45.1,
+        "pairs_log10": 125.7
+      },
+      "44": {
+        "mitm_per_side_log10": 76.6,
+        "one_side_C479_log10": 62.6,
+        "one_side_years_log10": 46.1,
+        "pairs_log10": 127.8
+      },
+      "45": {
+        "mitm_per_side_log10": 76.6,
+        "one_side_C479_log10": 63.6,
+        "one_side_years_log10": 47.1,
+        "pairs_log10": 129.8
+      },
+      "46": {
+        "mitm_per_side_log10": 79.3,
+        "one_side_C479_log10": 64.6,
+        "one_side_years_log10": 48.1,
+        "pairs_log10": 131.8
+      },
+      "47": {
+        "mitm_per_side_log10": 79.3,
+        "one_side_C479_log10": 65.5,
+        "one_side_years_log10": 49.1,
+        "pairs_log10": 133.8
+      },
+      "48": {
+        "mitm_per_side_log10": 81.9,
+        "one_side_C479_log10": 66.5,
+        "one_side_years_log10": 50.0,
+        "pairs_log10": 135.8
+      },
+      "49": {
+        "mitm_per_side_log10": 81.9,
+        "one_side_C479_log10": 67.4,
+        "one_side_years_log10": 50.9,
+        "pairs_log10": 137.7
+      },
+      "50": {
+        "mitm_per_side_log10": 84.5,
+        "one_side_C479_log10": 68.4,
+        "one_side_years_log10": 51.9,
+        "pairs_log10": 139.6
+      },
+      "51": {
+        "mitm_per_side_log10": 84.5,
+        "one_side_C479_log10": 69.3,
+        "one_side_years_log10": 52.8,
+        "pairs_log10": 141.5
+      },
+      "52": {
+        "mitm_per_side_log10": 87.0,
+        "one_side_C479_log10": 70.2,
+        "one_side_years_log10": 53.7,
+        "pairs_log10": 143.4
+      },
+      "53": {
+        "mitm_per_side_log10": 87.0,
+        "one_side_C479_log10": 71.1,
+        "one_side_years_log10": 54.6,
+        "pairs_log10": 145.3
+      },
+      "54": {
+        "mitm_per_side_log10": 89.5,
+        "one_side_C479_log10": 72.0,
+        "one_side_years_log10": 55.5,
+        "pairs_log10": 147.2
+      },
+      "55": {
+        "mitm_per_side_log10": 89.5,
+        "one_side_C479_log10": 72.9,
+        "one_side_years_log10": 56.4,
+        "pairs_log10": 149.0
+      },
+      "56": {
+        "mitm_per_side_log10": 92.0,
+        "one_side_C479_log10": 73.8,
+        "one_side_years_log10": 57.3,
+        "pairs_log10": 150.8
+      },
+      "57": {
+        "mitm_per_side_log10": 92.0,
+        "one_side_C479_log10": 74.7,
+        "one_side_years_log10": 58.2,
+        "pairs_log10": 152.6
+      },
+      "58": {
+        "mitm_per_side_log10": 94.4,
+        "one_side_C479_log10": 75.5,
+        "one_side_years_log10": 59.0,
+        "pairs_log10": 154.4
+      },
+      "59": {
+        "mitm_per_side_log10": 94.4,
+        "one_side_C479_log10": 76.4,
+        "one_side_years_log10": 59.9,
+        "pairs_log10": 156.2
+      },
+      "60": {
+        "mitm_per_side_log10": 96.8,
+        "one_side_C479_log10": 77.2,
+        "one_side_years_log10": 60.7,
+        "pairs_log10": 157.9
+      },
+      "61": {
+        "mitm_per_side_log10": 96.8,
+        "one_side_C479_log10": 78.1,
+        "one_side_years_log10": 61.6,
+        "pairs_log10": 159.7
+      },
+      "62": {
+        "mitm_per_side_log10": 99.2,
+        "one_side_C479_log10": 78.9,
+        "one_side_years_log10": 62.4,
+        "pairs_log10": 161.4
+      },
+      "63": {
+        "mitm_per_side_log10": 99.2,
+        "one_side_C479_log10": 79.7,
+        "one_side_years_log10": 63.2,
+        "pairs_log10": 163.1
+      },
+      "64": {
+        "mitm_per_side_log10": 101.6,
+        "one_side_C479_log10": 80.5,
+        "one_side_years_log10": 64.0,
+        "pairs_log10": 164.8
+      },
+      "65": {
+        "mitm_per_side_log10": 101.6,
+        "one_side_C479_log10": 81.3,
+        "one_side_years_log10": 64.8,
+        "pairs_log10": 166.4
+      }
+    },
+    "smallest_slice_e34_pairs_log10": 106.2,
+    "smallest_slice_one_side_years_log10": 35.6,
+    "total_pairs_log10": 166.5
+  },
+  "domain": {
+    "Q_prime_size": 1022,
+    "intact_T16_classes": {
+      "anchor_side": 28,
+      "complement_side": 31,
+      "straddling": 3,
+      "total": 62
+    },
+    "intact_T64_classes": [
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      31
+    ],
+    "punctured_labels": [
+      778433895,
+      173262001
+    ],
+    "punctured_reps": [
+      1,
+      3
+    ],
+    "quotient_label_sha256": "082950c9e4f02d32329b2c49353c53a4b63c15aa54f461941fc78903be44fe55"
+  },
+  "field": {
+    "monic_T2048_scale": 1073741824,
+    "norm_one_generator": [
+      1717986917,
+      1288490189
+    ],
+    "p": 2147483647,
+    "p_power_32": "41855804344513474996659235398101492226513356497450298740932889847998693318143069882098996132602011303952349637025722282585533160693229396196872386718816372844518146497415885223313922264348563527038409009746582412510577609691239404142296725925022012935690228019787759005225367255740944911962461962241"
+  },
+  "identity_witnesses": [
+    {
+      "add_block": 19,
+      "kind": "whole_block_swap",
+      "power_sums_agree": true,
+      "prefix32_agree": true,
+      "remove_block": 5
+    },
+    {
+      "add_block": 21,
+      "kind": "whole_block_swap",
+      "power_sums_agree": true,
+      "prefix32_agree": true,
+      "remove_block": 7
+    },
+    {
+      "add_block": 23,
+      "kind": "whole_block_swap",
+      "power_sums_agree": true,
+      "prefix32_agree": true,
+      "remove_block": 9
+    },
+    {
+      "add_block": 19,
+      "kind": "non_block",
+      "power_sums_agree": false,
+      "prefix32_agree": false,
+      "remove_partial_blocks": [
+        5,
+        7
+      ]
+    },
+    {
+      "add_block": 21,
+      "kind": "non_block",
+      "power_sums_agree": false,
+      "prefix32_agree": false,
+      "remove_partial_blocks": [
+        9,
+        11
+      ]
+    }
+  ],
+  "min_weight_reformulation": "A depth-32 collision (X, Y) is a nonzero balanced +/-1 vector in the kernel over F_p of the 32 x 1022 power-sum matrix V = [q_r^k]_{k=1..32}; that kernel is a length-1022 F_p code of dimension >= 990. The minimum unrestricted deficiency is the minimum-weight balanced codeword of this structured code. Stated only as a reformulation; no hardness is claimed.",
+  "nonclaims": [
+    "The unrestricted (non-aligned) census over e in [34, 65] is not resolved; only the dyadic-fiber-aligned slice is exhaustive.",
+    "The T8-aligned sweeps at e in {40, 48, 56} are recorded long-run results, not re-verified by --check.",
+    "No uniform band upper bound, received word, first-match survivor, codeword, ray, or slope is claimed.",
+    "No row-global atom, adjacent-row closure, or endpoint movement is claimed; the packet is support-level on the pinned (u,v)=(0,1) profile."
+  ],
+  "object": "LIST",
+  "packet_file_sha256": {
+    "experimental/notes/thresholds/m31_aligned_collision_census_v1.md": "74025c87d21153cc64142b05c94203c4f8d74a93225e3ed6cf93cf4bf0dd1100",
+    "experimental/scripts/census_aligned.py": "09de1c97d25f14db854a093c647117d9bde277189d651e52911b433d35e55f44",
+    "experimental/scripts/census_atoms.c": "6861a9d45e676c7246c6ab9db28a9c7b8bc7ddf91e47935f9074d31fc192dc4f",
+    "experimental/scripts/gen_atoms.py": "818e680cedd87257ec47e5760086cba330b3290321a8f12d41e298059b09d4de",
+    "experimental/scripts/verify_m31_aligned_collision_census.py": "73f78fe1411da89e8c6809ff05579d07a9759aeaf82a62497032e0089fd06879"
+  },
+  "parity_fact": {
+    "aligned_deficiency_parity": "even",
+    "claim": "every dyadic fiber has even size (min size 2 at T2), so any union of whole fibers has even cardinality; hence a dyadic-fiber-aligned deficiency is even and no aligned exchange exists at odd e",
+    "min_fiber_size": 2,
+    "status": "PROVED"
+  },
+  "reachable_aligned": {
+    "34": [],
+    "35": [],
+    "36": [],
+    "37": [],
+    "38": [],
+    "39": [],
+    "40": [
+      "T8(a=5)"
+    ],
+    "41": [],
+    "42": [],
+    "43": [],
+    "44": [],
+    "45": [],
+    "46": [],
+    "47": [],
+    "48": [
+      "T16(a=3)",
+      "T8(a=6)"
+    ],
+    "49": [],
+    "50": [],
+    "51": [],
+    "52": [],
+    "53": [],
+    "54": [],
+    "55": [],
+    "56": [
+      "T8(a=7)"
+    ],
+    "57": [],
+    "58": [],
+    "59": [],
+    "60": [],
+    "61": [],
+    "62": [],
+    "63": [],
+    "64": [
+      "T16(a=4)"
+    ],
+    "65": []
+  },
+  "row": "Mersenne-31 list at 2^-100",
+  "sanity_gate": {
+    "block_pairs_49_all_collide": true,
+    "c_vs_python_d16_a4_hits": "49 (recorded; census_atoms.c vs census_aligned.py)",
+    "dyadic_census_14_6_2": [
+      14,
+      6,
+      2
+    ],
+    "e96_T16_witness_prefix_agreement": 47,
+    "eta_e192_anchor": "reproduced (prefix-32 of the t16_mixing_floor anchor)",
+    "power_sum_prefix32_equivalence": "confirmed on 5 witnesses",
+    "quotient_label_sha256_matches_integrated_series": true,
+    "quotient_label_two_routes": "pow and order-1024 recurrence agree",
+    "rooted_shell_family_49_441_1225": "closed form and direct agree",
+    "triple_T64_e192_prefix_agreement": 63
+  },
+  "schema": "m31-aligned-collision-census-v1",
+  "shell_arithmetic": {
+    "H192": "250306657071379809146712330966428990686412627706880861569476097211926513715638118988008071592368035074016933687250963576376001122774381719478502944898782144806538717279733256653844747778197374722693408393198745533043396789913740659616431432884514095828053347551969743776494179678510074205400",
+    "floor_4_H192_over_p32": 0
+  },
+  "status": "EXPERIMENTAL",
+  "workboard_item": "M1"
+}

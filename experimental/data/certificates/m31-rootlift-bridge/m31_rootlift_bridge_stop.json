@@ -1,0 +1,185 @@
+{
+  "architecture": "DIRECT",
+  "correct_census": {
+    "general_law": "N=sum_alpha L_alpha+F-Omega, where F is the unrooted free residue and Omega=sum_(g in rooted union)(m(g)-1)",
+    "one_anchor_specialization": "F=1 and Omega=489472=32*15296",
+    "reported_affine_specialization": "Omega-F=489471",
+    "status": "PROVED_IDENTITY_SPECIALIZATION_UNPROVED",
+    "uniform_law": "N=32*L+F-Omega"
+  },
+  "finite_rs_counterexample": {
+    "cross_root_collision": {
+      "alpha": 0,
+      "beta": 1,
+      "common_lift_coefficients": [
+        0,
+        36,
+        1
+      ],
+      "f_coefficients": [
+        36,
+        1
+      ],
+      "g_coefficients": [
+        0,
+        1
+      ]
+    },
+    "domain_size": 37,
+    "field": 37,
+    "partner_agreement": 1,
+    "partner_dimension": 1,
+    "partner_errors": 35,
+    "partner_length": 36,
+    "partner_radius": "35/36",
+    "selected_roots": 32,
+    "target_agreement": 2,
+    "target_dimension": 2,
+    "target_errors": 35,
+    "words": {
+      "A": {
+        "free_residue": 5,
+        "multiplicity_histogram": {
+          "1": 64,
+          "32": 1
+        },
+        "outside_values_at_32_36": [
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "overlap_excess": 31,
+        "rooted_union_size": 65,
+        "sum_partner_sizes": 96,
+        "target_list_size": 70,
+        "uniform_partner_size": 3
+      },
+      "B": {
+        "free_residue": 7,
+        "multiplicity_histogram": {
+          "1": 64,
+          "32": 1
+        },
+        "outside_values_at_32_36": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "overlap_excess": 31,
+        "rooted_union_size": 65,
+        "sum_partner_sizes": 96,
+        "target_list_size": 72,
+        "uniform_partner_size": 3
+      }
+    }
+  },
+  "nonclaims": [
+    "NO_DEPLOYED_M31_LIST_ROW_CLOSURE",
+    "NO_PROOF_THAT_THE_32_DEPLOYED_PARTNER_LISTS_HAVE_EQUAL_SIZE",
+    "NO_PROOF_OF_OMEGA_MINUS_F_EQUALS_489471",
+    "NO_MCA_BAD_SLOPE_NUMERATOR_USED_AS_A_LIST_BOUND",
+    "NO_ORDER32_QUOTIENT_FIBRE_RELABELED_AS_A_COORDINATE_ROOT",
+    "NO_CS25_INPUT_THEOREM_PROVED"
+  ],
+  "object": "LIST",
+  "partner_object": {
+    "deployed_partner_agreement": 1116022,
+    "deployed_partner_dimension": 1048575,
+    "deployed_partner_errors": 981129,
+    "deployed_partner_length": 2097151,
+    "deployed_partner_radius_den": 2097151,
+    "deployed_partner_radius_num": 981129,
+    "exact_bijection": "P_alpha bijects with target-list codewords whose normalized polynomial vanishes at alpha",
+    "lift_map": "lambda_alpha(f)=((X-alpha)f)|D",
+    "normalization": "choose A subset D with |A|=32 and h in C with h|A=U|A; replace U by U-h",
+    "normalization_interpolant_degree_bound": 32,
+    "partner_agreement": "a-1",
+    "partner_code": "C^-_alpha=RS_F(D_alpha,K-1), degree<K-1",
+    "partner_domain": "D_alpha=D\\{alpha}, length n-1",
+    "partner_errors": "R=(n-1)-(a-1)=n-a",
+    "partner_radius": "R/(n-1)",
+    "partner_received_word": "V_alpha(x)=U(x)/(x-alpha)",
+    "selected_roots": 32,
+    "target_code": "C=RS_F(D,K), degree<K, length n"
+  },
+  "provenance": {
+    "branch": "agent/l-rootlift-identity",
+    "fork_base_sha": "d968e1cb9a3a6dbcfba35ecf9f448b4a373a35bb",
+    "source_files_checked_by_verifier": false,
+    "source_paths_consulted": [
+      "experimental/notes/thresholds/m31_postjohnson_conversion_contract.md",
+      "experimental/notes/l1/m31_postjohnson_conversion_contract_s3.md",
+      "experimental/notes/thresholds/m31_fixed_g_universal_rs_embedding_v1.md",
+      "experimental/notes/thresholds/m31_chebyshev_order32_max_fiber_route_cut_v1.md",
+      "experimental/notes/thresholds/m31_whole_ball_source_separator_compiler.md",
+      "experimental/data/certificates/frontier-adjacent/m31_list_v1.packet.json"
+    ],
+    "steering_blob_observed": "b85f2d23fdca64ac3b36b815c85b9bc366970c35",
+    "steering_file": "agents.md",
+    "steering_files_are_gating_pins": false,
+    "upstream_sha": "71f64349a8fa8cbf05678a6e9d4e00e8e06d7de5"
+  },
+  "relation_to_existing_routes": {
+    "CS25": "independent: CS25 uses a full-domain CA source code at the same radius and a k-to-k+1 code shift; it has no 32-root puncture, free-residue term, or overlap census",
+    "fixed_G": "independent: the fixed-G ordinary-RS embedding maps one partner codeword to one target codeword and adds one anchor, giving L+1",
+    "order32": "arithmetic provenance only: n=32*65536 and a=17*65536+1911; the quotient sum-fibre route does not supply the coordinate-root lift or the offset 489471"
+  },
+  "routes_killed": [
+    "EXACT_NUMBER_AND_HISTORY_SEARCH",
+    "TWO_ENDPOINT_AFFINE_INTERPOLATION",
+    "ORDER32_QUOTIENT_FIBRE_INTERPRETATION",
+    "PUNCTURE_ONLY_ONE_ERROR_BOUND",
+    "MULTIPLICATION_BY_ROOT_DISJOINT_UNION",
+    "UNIFORM_COMMON_CORE_SUBTRACTION",
+    "FIXED_G_ORDINARY_RS_EMBEDDING",
+    "CS25_SAME_CODE_CONTAINMENT",
+    "CS25_LITERAL_C_MINUS_PARTNER",
+    "WHOLE_BALL_BOUNDARY_OR_FROZEN_FACE",
+    "PARTNER_SIZE_ONLY_CLOSURE"
+  ],
+  "row_arithmetic": {
+    "B_star": 16777215,
+    "B_star_remainder_mod_2^100": 1228036518998767348801905623041,
+    "agreement": 1116023,
+    "agreement_full_fibres": 17,
+    "agreement_remainder": 1911,
+    "baseline": 15296,
+    "budget_multiplier": 8,
+    "count_high": 16777217,
+    "count_low": 16777185,
+    "crude_rooted_high_count": 16777216,
+    "crude_rooted_low_count": 16777184,
+    "crude_rooted_max_without_overlap_credit": 524287,
+    "errors": 981129,
+    "excess_at_high": 2,
+    "fibre_size": 65536,
+    "floor_remainder": 30,
+    "k": 1048576,
+    "max_partner_by_floor": 539583,
+    "n": 2097152,
+    "offset": 489471,
+    "p": 2147483647,
+    "partner_high": 539584,
+    "partner_low": 539583,
+    "q": 21267647892944572736998860269687930881,
+    "root_count": 32,
+    "slack_at_low": 30,
+    "uniform_common_core_divisor": 31,
+    "uniform_common_core_quotient": 15789,
+    "uniform_common_core_remainder": 12,
+    "w": 67447
+  },
+  "schema": "m31-rootlift-bridge-stop-v1",
+  "status": [
+    "PROVED_EXACT_ROOT_LIFT_CENSUS_IDENTITY",
+    "COUNTEREXAMPLE_TO_PARTNER_SIZE_ONLY_COUNT_LAW",
+    "CONDITIONAL_ENDPOINT_ARITHMETIC",
+    "CERTIFIED_STOP_DEPLOYED_SPECIALIZATION"
+  ],
+  "terminal_verdict": "CERTIFIED STOP: the natural one-error root lift has an exact free-residue/overlap census, but no source proves Omega-F=489471, equality of the 32 partner lists on the deployed row, or whole-ball exhaustivity; partner-list size alone cannot yield the reported affine count law",
+  "workboard_item": "M1"
+}

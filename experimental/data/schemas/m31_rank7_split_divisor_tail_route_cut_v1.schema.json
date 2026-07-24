@@ -1,0 +1,171 @@
+{
+  "$defs": {
+    "sourceBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "binding_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "internal_payload_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "role": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "scope": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "binding_id",
+        "internal_payload_sha256",
+        "path",
+        "role",
+        "scope",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "rs-mca-m31-rank7-split-divisor-tail-route-cut-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adversarial_histogram": {
+      "type": "object"
+    },
+    "architecture": {
+      "const": "M31_BASE_FIELD_BOUNDARY_RANK7_SPLIT_DIVISOR_TAIL_V1"
+    },
+    "checks": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "cumulative_head_theorem": {
+      "type": "object"
+    },
+    "existing_inequality_audit": {
+      "type": "object"
+    },
+    "impact": {
+      "additionalProperties": false,
+      "properties": {
+        "current_inequality_route_cut": {
+          "const": true
+        },
+        "ledger_movement": {
+          "const": 0
+        },
+        "new_green_local_theorem": {
+          "const": true
+        },
+        "official_endpoint_movement": {
+          "const": 0
+        },
+        "rank7_closed": {
+          "const": false
+        },
+        "rank8_and_above_closed": {
+          "const": false
+        },
+        "row_closed": {
+          "const": false
+        }
+      },
+      "required": [
+        "current_inequality_route_cut",
+        "ledger_movement",
+        "new_green_local_theorem",
+        "official_endpoint_movement",
+        "rank7_closed",
+        "rank8_and_above_closed",
+        "row_closed"
+      ],
+      "type": "object"
+    },
+    "joint_harmonic_extremizer": {
+      "type": "object"
+    },
+    "missing_theorem": {
+      "type": "object"
+    },
+    "nonclaims": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 5,
+      "type": "array"
+    },
+    "parent_payload_sha256": {
+      "const": "8135b49370b491cc14defb6c9e62648148fa2420a3d0cc45084ba00410eca239"
+    },
+    "payload_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "prefix_fiber_source_family": {
+      "type": "object"
+    },
+    "row": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "m31-rank7-split-divisor-tail-route-cut-summary-v1"
+    },
+    "source_bindings": {
+      "items": {
+        "$ref": "#/$defs/sourceBinding"
+      },
+      "maxItems": 11,
+      "minItems": 11,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "status": {
+      "const": "PROVED_CUMULATIVE_HEAD_SCALAR_ROUTE_CUT_AND_TOY_REALIZATION_ROW_OPEN"
+    },
+    "theorem_id": {
+      "const": "M31_RANK7_SPLIT_DIVISOR_TAIL_ROUTE_CUT_V1"
+    },
+    "transition_scan": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "adversarial_histogram",
+    "architecture",
+    "checks",
+    "cumulative_head_theorem",
+    "existing_inequality_audit",
+    "impact",
+    "joint_harmonic_extremizer",
+    "missing_theorem",
+    "nonclaims",
+    "parent_payload_sha256",
+    "payload_sha256",
+    "prefix_fiber_source_family",
+    "row",
+    "schema",
+    "source_bindings",
+    "status",
+    "theorem_id",
+    "transition_scan"
+  ],
+  "title": "M31 rank-seven split-divisor tail route-cut certificate",
+  "type": "object"
+}

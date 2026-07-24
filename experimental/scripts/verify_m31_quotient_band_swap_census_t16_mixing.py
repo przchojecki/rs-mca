@@ -33,6 +33,10 @@ ANCHOR_CLASSES = [5, 7, 9, 11, 13, 15, 17]
 X16_MIN_REPS = [29, 15, 93, 21, 119, 95]
 Y16_MIN_REPS = [33, 71, 9, 107, 7, 113]
 
+# Upstream steering files are recorded for provenance, not gated.  `agents.md` is
+# rewritten by governance commits -- fb6d955 replaced the blob this packet froze --
+# so drift there must report, never fail.  The recorded blob stays in the payload.
+STEERING_SOURCES = frozenset({"agents.md"})
 SOURCE_PINS = {
     "agents.md": "30d8b9f1b4caa3c7504fe3d24fc7ce8da84de434",
     "experimental/grande_finale.tex":
@@ -466,6 +470,14 @@ def build_expected(repo_root: Path) -> dict[str, Any]:
     if present_source_count == len(SOURCE_PINS):
         for relative, expected_sha in SOURCE_PINS.items():
             actual_sha = git_blob_sha(repo_root / relative)
+            if relative in STEERING_SOURCES:
+                if actual_sha != expected_sha:
+                    print(
+                        f"NOTE steering source drifted: {relative} "
+                        f"recorded {expected_sha}, observed {actual_sha}"
+                    )
+                checked_source_pins[relative] = expected_sha
+                continue
             require(
                 actual_sha == expected_sha,
                 f"stale source pin for {relative}: "

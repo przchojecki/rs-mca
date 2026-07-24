@@ -24,6 +24,18 @@ MANIFEST_REL = CERT_REL / "manifest.json"
 HASHES_REL = CERT_REL / "hashes.json"
 ROUND1_ROW_REL = CERT_REL / "round1_row_manifest.json"
 LEAN_REL = Path("experimental/lean/kb_uq_boundary_prefix/KbUqBoundaryPrefix.lean")
+# Transport-only files: carried by the PR bundle, deliberately never imported
+# upstream.  `hashes.json` still records them, so the in-repo gate checks every
+# retained artifact and requires the omissions to be exactly this set.
+TRANSPORT_ONLY = frozenset({
+    "PR_BODY.md",
+    "experimental/agents-log-entry-gptpro-kb-uq-boundary-prefix.md",
+    "experimental/agents-log-kb-uq-boundary-prefix.patch",
+})
+# Upstream steering files are recorded for provenance, not gated.  `agents.md` is
+# rewritten by governance commits -- fb6d955 replaced the blob this packet froze --
+# so drift there must report, never fail.
+STEERING_SOURCES = frozenset({"agents.md"})
 
 EXPECTED = {
     "p": 2_130_706_433,
@@ -282,6 +294,14 @@ def validate_source_pins(root: Path, manifest: dict[str, Any]) -> tuple[int, int
         path = root / binding["path"]
         if path.is_file():
             actual = git_blob_sha1(path.read_bytes())
+            if binding["path"] in STEERING_SOURCES:
+                if actual != binding["blob"]:
+                    print(
+                        f"NOTE steering source drifted: {binding['path']} "
+                        f"recorded {binding['blob']}, observed {actual}"
+                    )
+                checked += 1
+                continue
             require(actual == binding["blob"], f"source blob drift: {binding['path']}")
             checked += 1
         else:
@@ -372,15 +392,20 @@ def validate_artifact_hashes(root: Path) -> None:
     require(data["excluded"] == [str(HASHES_REL)], "hash exclusion")
     files = data["files"]
     require(isinstance(files, dict) and files, "hash file inventory")
-    actual_files = {
-        str(path.relative_to(root))
-        for path in root.rglob("*")
-        if path.is_file() and path.relative_to(root) != HASHES_REL
-    }
-    require(set(files) == actual_files, "hash inventory does not equal packet files")
-    for rel, expected_hash in files.items():
+    # In-repo replay: `root` is the repository, not a standalone bundle, so an
+    # inventory-equality test is meaningless.  Gate every RETAINED artifact and
+    # require the omissions to be exactly the declared transport-only set -- that
+    # keeps full integrity coverage without re-importing PR transport files.
+    missing = {rel for rel in files if not (root / rel).is_file()}
+    require(
+        missing <= TRANSPORT_ONLY,
+        f"missing non-transport artifacts: {sorted(missing - TRANSPORT_ONLY)}",
+    )
+    retained = [rel for rel in files if rel not in missing]
+    require(retained, "no retained artifacts to gate")
+    for rel in retained:
         actual_hash = sha256_bytes((root / rel).read_bytes())
-        require(actual_hash == expected_hash, f"artifact hash mismatch: {rel}")
+        require(actual_hash == files[rel], f"artifact hash mismatch: {rel}")
 
 
 def validate_math(manifest: dict[str, Any]) -> None:
@@ -485,7 +510,7 @@ def validate_math(manifest: dict[str, Any]) -> None:
     require(str(field_a) == manifest["row_contract"]["field_cardinality"], "field decimal")
 
 
-def run_check(root: Path, *, with_math: bool = True, with_hashes: bool = False) -> None:
+def run_check(root: Path, *, with_math: bool = True, with_hashes: bool = True) -> None:
     manifest = validate_manifest(root)
     validate_frozen_row_manifest(root, manifest)
     checked, external = validate_source_pins(root, manifest)
@@ -519,10 +544,21 @@ def rewrite_hash_for(root: Path, rel: Path) -> None:
 
 
 def tamper_selftest(root: Path) -> None:
-    # This repository integration deliberately excludes PR transport files
-    # such as root PR_BODY.md and standalone agents-log patches.  Keep the
-    # semantic/math replay local to the retained packet artifacts.
-    run_check(root, with_math=True, with_hashes=False)
+    run_check(root, with_math=True, with_hashes=True)
+
+    # Artifact-integrity branch: mutate a retained artifact and require the
+    # hash gate to reject it.  The transport-only files stay absent throughout.
+    with tempfile.TemporaryDirectory(prefix="kb-uq-tamper-") as tmp:
+        tmp_root = Path(tmp) / "packet"
+        shutil.copytree(root, tmp_root)
+        with (tmp_root / NOTE_REL).open("a", encoding="utf-8") as handle:
+            handle.write("\nTAMPERED\n")
+        failed = False
+        try:
+            validate_artifact_hashes(tmp_root)
+        except VerificationError:
+            failed = True
+        require(failed, "artifact tamper was not detected")
 
     with tempfile.TemporaryDirectory(prefix="kb-uq-semantic-tamper-") as tmp:
         tmp_root = Path(tmp) / "packet"
@@ -538,7 +574,7 @@ def tamper_selftest(root: Path) -> None:
         except VerificationError:
             failed = True
         require(failed, "semantic manifest tamper was not detected")
-    print("PASS tamper-selftest: decisive integer mutation rejected")
+    print("PASS tamper-selftest: artifact hash and decisive integer mutations rejected")
 
 
 def parse_args() -> argparse.Namespace:

@@ -18,6 +18,6 @@
     "experimental/lean/kb_uq_boundary_prefix/lakefile.lean": "c35d2aef5445e70ec6f2d3e35474bdd0aeedc3dae8175552319f8ee811afa0cb",
     "experimental/lean/kb_uq_boundary_prefix/lean-toolchain": "efac0b94923b2d8b6840cd35be9177ad0fc5ab2332f4f4311c98712cee92fdee",
     "experimental/notes/frontier-adjacent/kb_uq_boundary_prefix_tangent_rooted_shell_v1.md": "09d6ced30841ce54c56f495dec6001b039af5e0cdc7c302af9b16cd03b08986a",
-    "experimental/scripts/verify_kb_uq_boundary_prefix_tangent_rooted_shell_v1.py": "36fa1a8282af1dd81cca01de8300f03f07e7bf4783931c718a0f33dfd41878b7"
+    "experimental/scripts/verify_kb_uq_boundary_prefix_tangent_rooted_shell_v1.py": "9fdf484435c140ae5761a660f33813d37474e91ae338ff94467b4bfb6c4214ae"
   }
 }

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "m31-rank7-effective-deficit-one-pivot-route-cut-summary-v1",
+  "title": "M31 rank-seven effective-deficit one-pivot route-cut certificate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "architecture",
+    "checks",
+    "endpoint_relaxation",
+    "fixed_g_rank7_consequence",
+    "frontier_scan",
+    "impact",
+    "missing_theorem",
+    "nonclaims",
+    "one_pivot_theorem",
+    "parent_payload_sha256",
+    "payload_sha256",
+    "row",
+    "schema",
+    "source_bindings",
+    "status",
+    "structural_route_cut",
+    "theorem_id"
+  ],
+  "properties": {
+    "architecture": {
+      "const": "M31_BASE_FIELD_BOUNDARY_RANK7_EFFECTIVE_DEFICIT_ONE_PIVOT_V1"
+    },
+    "checks": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "endpoint_relaxation": {
+      "type": "object"
+    },
+    "fixed_g_rank7_consequence": {
+      "type": "object"
+    },
+    "frontier_scan": {
+      "type": "object"
+    },
+    "impact": {
+      "type": "object"
+    },
+    "missing_theorem": {
+      "type": "object"
+    },
+    "nonclaims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "one_pivot_theorem": {
+      "type": "object"
+    },
+    "parent_payload_sha256": {
+      "const": "7d5df76a7188a66188cabfce710d4b4cb692be6a8e12428c99887ab882453625"
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "row": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "m31-rank7-effective-deficit-one-pivot-route-cut-summary-v1"
+    },
+    "source_bindings": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "binding_id",
+          "internal_payload_sha256",
+          "path",
+          "role",
+          "scope",
+          "sha256"
+        ],
+        "properties": {
+          "binding_id": {
+            "type": "string"
+          },
+          "internal_payload_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "status": {
+      "const": "PROVED_ONE_PIVOT_HEAD_AND_FIXED_G_CLOSURE_ROUTE_CUT_ROW_OPEN"
+    },
+    "structural_route_cut": {
+      "type": "object"
+    },
+    "theorem_id": {
+      "const": "M31_RANK7_EFFECTIVE_DEFICIT_ONE_PIVOT_ROUTE_CUT_V1"
+    }
+  }
+}

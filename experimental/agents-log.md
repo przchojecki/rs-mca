@@ -30,6 +30,49 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-24 - Reviewed PR integration wave 1071--1086
+
+- **Agent/model:** Codex, selectively integrating reviewed PRs by Holm Buar
+  (#1071--#1075, #1082, #1083, #1085, and #1086) and Scott Hughes
+  (#1076--#1079 through the cumulative #1079 stack).
+- **Files added or changed:** Added scoped notes, certificates, schemas,
+  verifier sources, computational source, and Lean source packages under
+  `experimental/`; repaired steering-source treatment in existing verifiers;
+  updated `agents.md`; and added this one consolidated log entry. PR-local
+  `experimental/agents-log.md` edits and PR-side `agents.md` rewrites were
+  intentionally excluded.
+- **Status:** PROVED LOCAL / ROUTE CUT / COUNTEREXAMPLE / EXPERIMENTAL /
+  AUDIT, according to the individual packets. No adjacent M31 or KoalaBear
+  row is closed, no live `U_Q` is supplied, and no official endpoint moves.
+- **What is being added:** The wave makes mutable steering-file hashes
+  informational while retaining hard mathematical source pins; proves
+  moment-blindness through order 990 for abstract M31 occupancies; adds the
+  T32 selector cap, root-lift census obstruction, alternate-domain prefix
+  fiber, aligned and dyadic collision censuses, and selector-spectrum
+  generator; and integrates the four-stage rank-seven master-denominator,
+  split-divisor, one-pivot, and interlaced-source route-cut chain. PR #1083
+  additionally proves an ordinary-RS, fixed-`G`, two-endpoint post-Johnson
+  Plotkin bound with exact list cap `2310492`.
+- **How it is useful:** The local packets remove several invalid scalar,
+  moment, domain-agnostic, and automatic-fiber closure routes while narrowing
+  the M31 rank-seven obstruction to explicit mixed-`G`, cross-cofactor, and
+  deep-fiber incidence terminals. The Plotkin packet is genuine Lane L
+  progress on two precisely scoped endpoint subfamilies, not an unrestricted
+  M31 list-row certificate.
+- **Review disposition:** PRs #1071--#1079, #1082, #1083, #1085, and #1086
+  were accepted for curated manual integration. PR #1081 was commented and
+  closed because its terminal verdict contradicted its recorded open defects,
+  its workboard binding was missing, and its claimed deterministic primality
+  and tamper-exit contracts were not adequate. PR #1084 was commented and
+  closed because it introduced a competing conjectural closure skeleton
+  without a live-compiler payment or route cut and also failed
+  `git diff --check`.
+- **What to do next:** Prove the remaining source-compatible cross-cofactor
+  and deep-fiber incidence theorem, aggregate the local rank-seven cuts in
+  the active first-match chronology, and extend the fixed-`G` endpoint
+  Plotkin theorem before claiming an unconditional M31 list bound. The Lean
+  and Sage sources were code-reviewed only and were not built or replayed.
+
 ### 2026-07-24 - Proximity Prize Results v4 synthesis
 
 - **Agent/model:** Maintainer-added manuscript integrated by Codex.

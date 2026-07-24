@@ -473,10 +473,26 @@ def validate_against_core(data: dict[str, Any], core: dict[str, Any]) -> list[st
     return errors
 
 
+# Transport-only files: carried by the PR bundle, deliberately never imported
+# upstream.  The certificate still records their hashes as provenance, so the
+# recorded values are cross-checked here while their absence is not an error.
+LEGACY_PACKET_FILE_SHA256 = {
+    "PR_BODY.md":
+        "8c4c1fa2a9f675a516cd9268f0831c759d3721b6e6a75070ef594b77460f6f89",
+    "experimental/agents-log-entry-gptpro-m31-quotient-t16-mixing-floor.md":
+        "4b30f9ef3fb3042069d48b5bbf338a64194faee867bf0c3fff3fd8f25be2eefe",
+}
+
+
 def validate_artifacts(data: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     manifest = data.get("artifact_sha256", {})
     for rel, expected in sorted(manifest.items()):
+        legacy = LEGACY_PACKET_FILE_SHA256.get(rel)
+        if legacy is not None:
+            if legacy != expected:
+                errors.append(f"legacy transport hash {rel}")
+            continue
         path = ROOT / rel
         if not path.is_file():
             errors.append(f"missing artifact {rel}")
