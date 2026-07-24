@@ -1,12 +1,17 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
 > **Updated:** 2026-07-24
-> **State snapshot:** `main@78e67c4048dabed19116bb7ac42c47c7cb103c57`
+> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
 
-Before starting, compare the snapshot with current `main`, then read the newest entry in `experimental/agents-log.md` and the live four-row completion packet. If the state changed, update the snapshot, authority table, and workboard before doing mathematics.
+Before starting, compare the snapshot with current `main`, then read the newest
+entry in `experimental/agents-log.md` and the live row-specific completion
+authority.  For Mersenne-31 LIST this is the v4 source adapter/global compiler
+and its exact provenance migration, not the historical four-row v1 contract.
+If the state changed, update the snapshot, authority table, and workboard
+before doing mathematics.
 
 ## 1. Mission and resolution standard
 
@@ -66,12 +71,31 @@ At this snapshot:
 - CAP25 v13.2 proves the unsafe endpoints and reusable foundation results.
 - Grande Finale v4 proves many local identities, order-32/rational-atom reductions, owner localization, and spread-core incidence bounds, but no adjacent safe row.
 - The live compiler returns `ARCHITECTURE_ROUTE_CUT_CURRENT_ARTIFACT_SET`, not `SAFE`.
+- For Mersenne-31 LIST, the exact v4 source adapter/global compiler supersedes
+  the four-row v1 LIST contract.  It has the five codeword-valued atoms
+  `U_paid,U_Q,U_list_int,U_ext,U_new`, banks only `U_paid=3730`, and leaves
+  the exact signed gate `Xi_46<=259880` open.  The `b13de8113` status-only
+  Grande Finale edit is covered by the exact provenance migration packet;
+  no atom or endpoint changed.
 - Every deployed `U_Q` remains `null`.
 - No row has complete active-architecture `U_paid`, exhaustive MCA balanced-core or list-interior payment, zero/exact residual, and chronology-correct add-back.
 - The KoalaBear legacy M1 stack records local `U_paid=422354730332` and local remainder `274980305756664755`, but neither is banked in Grande Finale v4 because the source-bound owner/partition bridge is missing.
 - Under the latest corrected direct extension charge, positive extension dimension is excluded on Mersenne-31 and dimension at least two is excluded on KoalaBear. These are route cuts, not payments or nonexistence theorems.
 - The newly integrated M31 packets add local padding-bridge, masked-saturation, common-core add-back, rank-two/coloop, rooted-shell, C7--C9, and route-cut infrastructure.  These are not adjacent-row payments: source-bound owner/refund, rooted-shell completion, residual projection, and final finite-ledger terminals remain open.
 - The integrated M31 rank-seven chain proves master-denominator, split-divisor, one-pivot, and interlaced-source route cuts.  It leaves mixed-`G`, cross-cofactor, deep-fiber, and higher-rank incidence terminals open and moves no deployed row value.
+- The exact all-weight boundary gate proves that a source-compatible
+  structured/primitive additive closure must have cross-weight per-degree cap
+  at most `9`; at cap `9` the structured owner must be at most `7552794`.
+  The deployed fixed-remainder source has at least `15205` companions at one
+  MDS-admissible exchange degree, so structured removal must precede any such
+  primitive cap.  Both required upper theorems remain open.
+- The combined-domain rank-seven theorem joins the `E0` and planted-root
+  tables into one ordinary rank-at-most-six RS list and pays every cumulative
+  deficit head through `Q=29554`.  The exact head is `15775891`, margin `41`.
+  The first unclosed head `Q=29555` is `207` over and is localized to
+  `k=4981..4986`; a source-compatible uniform subclass cap `14115290`
+  (improvement `238`) would pay it.  This moves the local rank-seven frontier,
+  not a v4 atom or official endpoint.
 - The integrated M31 post-Johnson conversion contract gives an exact conditional CS25 bridge from a same-radius CA numerator at most `16777214` to the ordinary-list budget `16777215`, and cuts the BCHKS25 route at the deployed budget.  It does not prove the unconditional M31 list row.
 - The fixed-`G` endpoint Plotkin theorem proves an ordinary-list cap `2310492` beyond the exact finite-field Johnson radius on two declared M31 endpoint subfamilies.  It is genuine Lane L progress, but not an unrestricted M31 list-row upper bound.
 - The direct rate-half cyclic quotient-rotation theorem in `experimental/experiments.tex` proves, for every declared order-`2^41` multiplicative-coset family, an ordinary-list lower bound `ceil(binomial(255,129)/256)` at agreement `1116691496959`, strictly beyond Johnson.  It is a finite-family Lane L lower construction, not an MCA statement or deployed-row closure.
@@ -83,7 +107,11 @@ At this snapshot:
 
 | File | Role |
 |---|---|
-| `experimental/notes/frontier-adjacent/four_row_exact_completion_compiler_v1.md` and `experimental/data/certificates/four-row-exact-completion-compiler-v1/four_row_exact_completion_compiler_v1.json` | **Live status authority:** current null atoms, route cuts, architecture IDs, exact row arithmetic, and replay contract. |
+| `experimental/notes/frontier-adjacent/four_row_exact_completion_compiler_v1.md` and `experimental/data/certificates/four-row-exact-completion-compiler-v1/four_row_exact_completion_compiler_v1.json` | **Historical cross-row status packet:** useful for legacy row arithmetic, but its M31 LIST contract is superseded because it has four atoms, the wrong unit, and no `U_ext`. |
+| `experimental/notes/thresholds/m31_list_v4_global_completion_compiler.md`, `experimental/data/certificates/m31-list-v4-global-completion-compiler-v2/manifest.json`, and `experimental/data/certificates/m31-list-v4-grande-finale-provenance-migration-v1/manifest.json` | **Live M31 LIST compiler authority:** five codeword-valued atoms, exact signed residual, source graph, and exact compatibility with the current Grande Finale status text. |
+| `experimental/notes/thresholds/m31_all_weight_anchor_exchange_pade_bijection_v1.md` and `experimental/notes/thresholds/m31_boundary_common_v_cross_g_route_cut_v1.md` | **Live direct M31 LIST residual:** boundary-anchor all-weight bijection and shallow common-unit full-locator census. |
+| `experimental/notes/thresholds/m31_all_weight_source_calibrated_ten_packet_gate_v1.md` | **Live all-weight additive route cut:** exact structured/primitive closure inequality, source floor, and the proof that a cross-weight cap of ten cannot close the source-compatible architecture. |
+| `experimental/notes/thresholds/m31_rank7_combined_domain_affine_johnson_endpoint_v1.md` | **Live rank-seven frontier:** common-agreement-safe combined-domain RS payment through `Q=29554` and exact six-dimension residual at `Q=29555`. |
 | `experimental/Conjectures_and_Barriers_RS_MCA_v4_1.tex` | **Direct problem/falsifier authority:** benchmark conjectures, exact compiler requirements, finite barriers, and separation of finite from conjectural asymptotic claims. |
 | `experimental/grande_finale.tex` | **Active conditional completion architecture:** proved local theorems, order-32/rational-atom reductions, owner localization, spread-core incidence bounds, and exact completion problems. Hypotheses/problems are not row bounds. |
 | `tex/cs25_cap_v13_2.tex` | **Foundation/unsafe authority:** exact unsafe endpoints, field/domain conventions, reductions, and certificate grammar. |

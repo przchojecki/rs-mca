@@ -1,0 +1,437 @@
+{
+  "$id": "rs-mca-m31-list-v4-grande-finale-provenance-migration-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_kind": {
+      "const": "EXACT_SOURCE_PROVENANCE_COMPATIBILITY_AND_MANIFEST_AUDIT"
+    },
+    "list_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture_id": {
+          "const": "GRANDE_FINALE_V4_M31_LIST_SOURCE_ADAPTER_V1"
+        },
+        "atom_order": {
+          "const": [
+            "U_paid",
+            "U_Q",
+            "U_list_int",
+            "U_ext",
+            "U_new"
+          ]
+        },
+        "b13de_list_change": {
+          "const": "STATUS_CLARIFICATION_ONLY"
+        },
+        "formula": {
+          "const": "U_list=U_paid+U_Q+U_list_int+U_ext+U_new"
+        },
+        "formula_occurrences_current": {
+          "const": 1
+        },
+        "formula_occurrences_prior": {
+          "const": 1
+        },
+        "formula_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "labels": {
+          "const": [
+            "sec:list-final-certificate",
+            "eq:list-final-ledger",
+            "prob:list-completion",
+            "thm:exact-completion-certificate"
+          ]
+        },
+        "labels_unchanged": {
+          "const": true
+        },
+        "owner_order": {
+          "const": [
+            "LOW_EXACT_WEIGHT_PACKING",
+            "HIGH_BOUNDARY_EXACT_CODEWORD",
+            "HIGH_INTERIOR_EXACT_CODEWORD"
+          ]
+        },
+        "partition_sha256": {
+          "const": "816f0702925f9734d230ffdfbf51a9d77aab2e1546918c722e1cc90227feafcc"
+        },
+        "quantifier": {
+          "const": "UNIFORM_OVER_ALL_RECEIVED_WORDS"
+        },
+        "unit": {
+          "const": "DISTINCT_CODEWORDS_PER_RECEIVED_WORD"
+        }
+      },
+      "required": [
+        "architecture_id",
+        "partition_sha256",
+        "atom_order",
+        "owner_order",
+        "formula",
+        "formula_sha256",
+        "formula_occurrences_current",
+        "formula_occurrences_prior",
+        "labels",
+        "labels_unchanged",
+        "b13de_list_change",
+        "unit",
+        "quantifier"
+      ],
+      "type": "object"
+    },
+    "manifest_audit": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_manifest_count": {
+          "const": 19
+        },
+        "all_non_grande_finale_bindings_fresh": {
+          "const": true
+        },
+        "all_payload_seals_valid": {
+          "const": true
+        },
+        "compatible_source_binding_count": {
+          "const": 19
+        },
+        "fresh_source_binding_count": {
+          "const": 265
+        },
+        "internal_payload_pin_count": {
+          "const": 40
+        },
+        "records": {
+          "items": {
+            "$ref": "#/$defs/manifestRecord"
+          },
+          "maxItems": 19,
+          "minItems": 19,
+          "type": "array"
+        },
+        "source_binding_count": {
+          "const": 284
+        }
+      },
+      "required": [
+        "affected_manifest_count",
+        "source_binding_count",
+        "fresh_source_binding_count",
+        "compatible_source_binding_count",
+        "internal_payload_pin_count",
+        "all_payload_seals_valid",
+        "all_non_grande_finale_bindings_fresh",
+        "records"
+      ],
+      "type": "object"
+    },
+    "migration_id": {
+      "const": "M31_LIST_V4_GRANDE_FINALE_PROVENANCE_MIGRATION_V1"
+    },
+    "nonclaims": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 5,
+      "minItems": 5,
+      "type": "array"
+    },
+    "payload_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "schema": {
+      "const": "rs-mca-m31-list-v4-grande-finale-provenance-migration-v1"
+    },
+    "scope_guards": {
+      "additionalProperties": false,
+      "properties": {
+        "compatibility_applies_to_other_paths": {
+          "const": false
+        },
+        "compatibility_applies_to_other_prior_hashes": {
+          "const": false
+        },
+        "ledger_movement": {
+          "const": 0
+        },
+        "new_atom_value_claimed": {
+          "const": false
+        },
+        "official_endpoint_movement": {
+          "const": 0
+        },
+        "original_manifests_resealed": {
+          "const": false
+        },
+        "route_cut_promoted_to_payment": {
+          "const": false
+        },
+        "row_closed": {
+          "const": false
+        },
+        "standalone_predecessor_verifiers_declared_fresh": {
+          "const": false
+        }
+      },
+      "required": [
+        "ledger_movement",
+        "official_endpoint_movement",
+        "row_closed",
+        "new_atom_value_claimed",
+        "route_cut_promoted_to_payment",
+        "compatibility_applies_to_other_paths",
+        "compatibility_applies_to_other_prior_hashes",
+        "original_manifests_resealed",
+        "standalone_predecessor_verifiers_declared_fresh"
+      ],
+      "type": "object"
+    },
+    "source_bindings": {
+      "items": {
+        "$ref": "#/$defs/sourceBinding"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array"
+    },
+    "source_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_delta": {
+          "const": 2077
+        },
+        "compatibility_scope": {
+          "const": "ONLY_THE_CANONICAL_GRANDE_FINALE_PATH_AND_ALLOWLISTED_BINDING_IDENTITIES"
+        },
+        "current_byte_count": {
+          "const": 330361
+        },
+        "current_sha256": {
+          "const": "336ba3c9a6d9483d0eab74677d6224aae23adf15d84891c6099f6d2f45cf226d"
+        },
+        "exact_insertion_deletion_count": {
+          "const": 5
+        },
+        "exact_prior_reconstruction": {
+          "const": true
+        },
+        "exact_replacement_count": {
+          "const": 1
+        },
+        "inverse_operation_count": {
+          "const": 6
+        },
+        "inverse_operations": {
+          "items": {
+            "$ref": "#/$defs/inverseOperation"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "type": "array"
+        },
+        "path": {
+          "const": "experimental/grande_finale.tex"
+        },
+        "prior_byte_count": {
+          "const": 328284
+        },
+        "prior_sha256": {
+          "const": "34618918de8fc1c1aac5642393f49019c60ff7041a9efeacbf0b8ea01eb3d8cd"
+        }
+      },
+      "required": [
+        "path",
+        "prior_sha256",
+        "current_sha256",
+        "prior_byte_count",
+        "current_byte_count",
+        "byte_delta",
+        "inverse_operation_count",
+        "exact_insertion_deletion_count",
+        "exact_replacement_count",
+        "inverse_operations",
+        "exact_prior_reconstruction",
+        "compatibility_scope"
+      ],
+      "type": "object"
+    },
+    "status": {
+      "const": "PROVED_EXACT_ANCESTOR_COMPATIBILITY_ROW_OPEN"
+    }
+  },
+  "required": [
+    "schema",
+    "migration_id",
+    "artifact_kind",
+    "status",
+    "payload_sha256",
+    "source_contract",
+    "list_contract",
+    "manifest_audit",
+    "scope_guards",
+    "nonclaims",
+    "source_bindings"
+  ],
+  "title": "M31 LIST v4 Grande Finale provenance migration",
+  "type": "object",
+  "$defs": {
+    "compatibleBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "binding_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "compatibility_class": {
+          "const": "EXACT_ANCESTOR_RECONSTRUCTION_ONLY"
+        },
+        "current_sha256": {
+          "const": "336ba3c9a6d9483d0eab74677d6224aae23adf15d84891c6099f6d2f45cf226d"
+        },
+        "path": {
+          "const": "experimental/grande_finale.tex"
+        },
+        "pinned_sha256": {
+          "const": "34618918de8fc1c1aac5642393f49019c60ff7041a9efeacbf0b8ea01eb3d8cd"
+        },
+        "role": {
+          "type": "string"
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "binding_id",
+        "role",
+        "scope",
+        "path",
+        "pinned_sha256",
+        "current_sha256",
+        "compatibility_class"
+      ],
+      "type": "object"
+    },
+    "inverseOperation": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_delta": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "current_fragment_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "kind": {
+          "enum": [
+            "EXACT_INSERTION_DELETION",
+            "EXACT_REPLACEMENT"
+          ]
+        },
+        "operation_id": {
+          "type": "string"
+        },
+        "prior_fragment_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "operation_id",
+        "kind",
+        "current_fragment_sha256",
+        "prior_fragment_sha256",
+        "byte_delta"
+      ],
+      "type": "object"
+    },
+    "manifestRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "compatible_binding": {
+          "$ref": "#/$defs/compatibleBinding"
+        },
+        "compatible_source_binding_count": {
+          "const": 1
+        },
+        "fresh_source_binding_count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "internal_payload_pin_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "path": {
+          "$ref": "#/$defs/sourcePath"
+        },
+        "payload_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_binding_count": {
+          "minimum": 2,
+          "type": "integer"
+        },
+        "status": {
+          "type": "string"
+        },
+        "validation": {
+          "const": "PASS_EXCEPT_EXACT_CANONICAL_GRANDE_FINALE_ANCESTOR"
+        }
+      },
+      "required": [
+        "path",
+        "manifest_sha256",
+        "payload_sha256",
+        "status",
+        "source_binding_count",
+        "fresh_source_binding_count",
+        "compatible_source_binding_count",
+        "internal_payload_pin_count",
+        "compatible_binding",
+        "validation"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "sourceBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "binding_id": {
+          "type": "string"
+        },
+        "path": {
+          "$ref": "#/$defs/sourcePath"
+        },
+        "role": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "binding_id",
+        "path",
+        "role",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "sourcePath": {
+      "pattern": "^(archived|docs|experimental|site|tex)/[^./][^/]*(/[^./][^/]*)*$",
+      "type": "string"
+    }
+  }
+}

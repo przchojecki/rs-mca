@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-mca-m31-all-weight-source-calibrated-ten-packet-gate-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "theorem_id",
+    "architecture_id",
+    "status",
+    "row_contract",
+    "parent_deep_tail",
+    "additive_gate",
+    "fixed_remainder_source",
+    "interlaced_regression_fixture",
+    "ledger_state",
+    "nonclaims",
+    "source_bindings",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {"const": "rs-mca-m31-all-weight-source-calibrated-ten-packet-gate-v1"},
+    "theorem_id": {"const": "M31_ALL_WEIGHT_SOURCE_CALIBRATED_TEN_PACKET_GATE_V1"},
+    "architecture_id": {"const": "DIRECT_BOUNDARY_CENSUS_GATE_OVER_GRANDE_FINALE_V4_M31_LIST_SOURCE_ADAPTER_V1"},
+    "status": {"const": "PROVED_EXACT_COMPILER_GATE_AND_ROUTE_CUT_TWO_INPUTS_OPEN_ROW_OPEN"},
+    "row_contract": {"type": "object"},
+    "parent_deep_tail": {"type": "object"},
+    "additive_gate": {"type": "object"},
+    "fixed_remainder_source": {"type": "object"},
+    "interlaced_regression_fixture": {"type": "object"},
+    "ledger_state": {"type": "object"},
+    "nonclaims": {"type": "object"},
+    "source_bindings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["binding_id", "path", "role", "sha256", "internal_payload_sha256"],
+        "properties": {
+          "binding_id": {"type": "string"},
+          "path": {"type": "string"},
+          "role": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "internal_payload_sha256": {
+            "oneOf": [
+              {"type": "null"},
+              {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            ]
+          }
+        }
+      }
+    },
+    "payload_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

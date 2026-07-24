@@ -30,6 +30,47 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-24 - M31 v4 provenance, all-weight gate, and combined-domain rank-seven endpoint
+
+- **Agent/model:** Codex generated the packets; a separate Codex proof-audit
+  agent reviewed all three packets GREEN after stable normal/optimized,
+  independent, Sage, and mutation replay.
+- **Files added or changed:** Added the three notes
+  `experimental/notes/thresholds/m31_list_v4_grande_finale_provenance_migration_v1.md`,
+  `experimental/notes/thresholds/m31_all_weight_source_calibrated_ten_packet_gate_v1.md`,
+  and
+  `experimental/notes/thresholds/m31_rank7_combined_domain_affine_johnson_endpoint_v1.md`;
+  their closed schemas, certificate directories, primary and independent
+  Python verifiers, and the combined-domain Sage replay; updated `agents.md`
+  and this coordination log.
+- **Status:** PROVED ARCHITECTURE BRIDGE / PROVED EXACT COMPILER GATE AND
+  ROUTE CUT / PROVED LOCAL RANK-SEVEN HEAD.  No v4 atom, official endpoint,
+  or row value moved.
+- **What is being added:** The provenance packet proves that the current
+  Grande Finale source is an exact status-only successor of the source sealed
+  by nineteen M31 LIST manifests.  The all-weight packet proves
+  `C+913682*c<=15775932`, forces source-compatible `c<=9`, and sharpens the
+  fixed-remainder same-degree floor to `15205`.  The combined-domain theorem
+  joins `(E0 minus S)` with `Z(P)` into one ordinary rank-at-most-six RS list
+  and advances the cumulative rank-seven deficit frontier from `Q=26193` to
+  `Q=29554`, where the exact head is `15775891` with margin `41`.
+- **How it is useful:** The first unclosed rank-seven head is now exactly
+  `Q=29555`, cap `15776139`, excess `207`, and only residual dimensions
+  `k=4981..4986` survive.  A uniform source-compatible combined-domain cap
+  `14115290`, just `238` below the generic affine-span cap, closes it.  The
+  argument assumes no quotient-support alignment and therefore does not
+  duplicate or rely on upstream PR #1087's ragged-support counterexample.
+- **Verification:** Provenance normal/optimized replay and all 44 mutations
+  pass.  The all-weight primary normal/optimized replay, 20 mutations, and
+  independent recomputation pass.  The combined-domain primary
+  normal/optimized replay, 22 mutations, independent Python replay, and Sage
+  exact-integer/symbolic replay pass.
+- **What to do next:** Classify the common-agreement source component on
+  `k=4981..4986` and prove the `14115290` cap, route it to a paid owner, or
+  record an explicit source-realizable primitive cut.  Do not use the stronger
+  no-common-zero recurrence without separately paying its common-agreement
+  branch.
+
 ### 2026-07-24 - Grande Finale v4 saturated-BC status repair
 
 - **Agent/model:** Codex, resolving issue #1070 reported by Holm Buar.

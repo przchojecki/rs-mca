@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-mca-m31-rank7-combined-domain-affine-johnson-endpoint-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "theorem_id",
+    "architecture_id",
+    "status",
+    "row_contract",
+    "combined_domain_lemma",
+    "exact_endpoint",
+    "first_unresolved_head",
+    "ledger_state",
+    "nonclaims",
+    "source_bindings",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rs-mca-m31-rank7-combined-domain-affine-johnson-endpoint-v1"
+    },
+    "theorem_id": {
+      "const": "M31_RANK7_COMBINED_DOMAIN_AFFINE_JOHNSON_ENDPOINT_V1"
+    },
+    "architecture_id": {
+      "const": "M31_RANK7_COMBINED_DOMAIN_AFFINE_JOHNSON_ENDPOINT_V1"
+    },
+    "status": {
+      "const": "PROVED_LOCAL_Q29554_HEAD_Q29555_ROUTE_CUT_ROW_OPEN"
+    },
+    "row_contract": {"type": "object"},
+    "combined_domain_lemma": {"type": "object"},
+    "exact_endpoint": {"type": "object"},
+    "first_unresolved_head": {"type": "object"},
+    "ledger_state": {"type": "object"},
+    "nonclaims": {"type": "object"},
+    "source_bindings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "binding_id",
+          "path",
+          "role",
+          "sha256",
+          "internal_payload_sha256"
+        ],
+        "properties": {
+          "binding_id": {"type": "string"},
+          "path": {"type": "string"},
+          "role": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "internal_payload_sha256": {
+            "oneOf": [
+              {"type": "null"},
+              {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            ]
+          }
+        }
+      }
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
