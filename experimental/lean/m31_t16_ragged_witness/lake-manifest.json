@@ -1,0 +1,13 @@
+{"version": "1.2.0",
+ "packagesDir": ".lake/packages",
+ "packages":
+ [{"type": "path",
+   "scope": "",
+   "name": "m31QuotientT16MixingFloor",
+   "manifestFile": "lake-manifest.json",
+   "inherited": false,
+   "dir": "../m31_quotient_t16_mixing_floor",
+   "configFile": "lakefile.lean"}],
+ "name": "m31T16RaggedWitness",
+ "lakeDir": ".lake",
+ "fixedToolchain": false}
