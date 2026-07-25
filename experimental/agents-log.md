@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-25 - M31 rank-seven source-basis overlap dichotomy
+
+- **Agent/model:** Codex generated the packet; separate Codex agents audited
+  the source-basis algebra, recurrence arithmetic, and existing-owner map.
+- **Files added or changed:** Added
+  `experimental/notes/thresholds/m31_rank7_source_basis_private_root_overlap_dichotomy_v1.md`,
+  its closed schema and certificate directory, primary and independent
+  Python verifiers, and Sage replay; updated `agents.md` and this log.
+- **Status:** PROVED LOCAL TWO-BRANCH PAYMENT / HIGH-OVERLAP ROUTE CUT.
+  `Q=147595`, every v4 atom, and the M31 LIST row remain open.
+- **What is being added:** Every positive common-direction-zero branch has
+  cap at most `444522`; every projective evaluation line of size at least
+  five supplies deficit at least `3273960`, above the required `3214704`.
+  The complete scalar survivor list is the all-singleton histogram and
+  `(2)`, `(2,2)`, `(3)`, `(3,2)`, `(4)`.  Exact-lcm coverage by any seven
+  actual source basis members then forces either one of those paid branches
+  or `deg gcd(G_i,G_j)>=16903` for some master-locator pair.
+- **How it is useful:** It replaces the broad 45-unit recurrence-stability
+  question by one explicit mixed-`G`, source-compatible high-overlap
+  component.  Existing fixed-`G`, common-zero, pairwise-CRT, and invariant
+  quotient owners do not pay that component.
+- **Verification:** Primary normal/optimized replay, 16 hostile mutations,
+  independent heap recurrence and histogram exhaustion, Sage exact
+  arithmetic and finite-field source controls, sealed predecessor pin, and
+  three read-only independent audits.
+- **What to do next:** For the forced pair, combine
+  `G_i=JA_i,G_j=JA_j`, `deg J>=16903`, the reduced determinant
+  `A_i b_j-A_j b_i`, and the complete exact `H_i,H_j` equations.  Prove an
+  additional incidence deficit of at least `112671` in the closest `(3,2)`
+  scalar survivor, route the component to a named owner with exact add-back,
+  or emit a genuine primitive source family.  Do not force an owner.
+
 ### 2026-07-24 - M31 rank-seven full-hyperplane recurrence frontier
 
 - **Agent/model:** Codex generated the packet; separate Codex proof and

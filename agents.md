@@ -1,6 +1,6 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
-> **Updated:** 2026-07-24
+> **Updated:** 2026-07-25
 > **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
 > **Supersedes:** all older priority lists in this file.
 
@@ -98,6 +98,14 @@ At this snapshot:
   and has one residual `k=4981` class.  Lowering its cap from `9806438` to
   `9806393` (a sharp `45`) would pay it.  This moves the local rank-seven
   frontier, not a v4 atom or official endpoint.
+- The source-basis stability successor pays every `Q=147595`, `k=4981`
+  branch having a common direction zero or a projective evaluation line of
+  size at least `5`.  Its exact recurrence scan leaves only the all-singleton
+  histogram and `(2)`, `(2,2)`, `(3)`, `(3,2)`, `(4)`.  Exact-lcm coverage
+  by any seven actual source basis members then forces every survivor into
+  `HIGH_PAIRWISE_MASTER_LOCATOR_OVERLAP`, with
+  `deg gcd(G_i,G_j)>=16903` for some pair.  No integrated owner pays that
+  mixed-`G` component, so `Q=147595` and the v4 ledger remain open.
 - The integrated M31 post-Johnson conversion contract gives an exact conditional CS25 bridge from a same-radius CA numerator at most `16777214` to the ordinary-list budget `16777215`, and cuts the BCHKS25 route at the deployed budget.  It does not prove the unconditional M31 list row.
 - The fixed-`G` endpoint Plotkin theorem proves an ordinary-list cap `2310492` beyond the exact finite-field Johnson radius on two declared M31 endpoint subfamilies.  It is genuine Lane L progress, but not an unrestricted M31 list-row upper bound.
 - The direct rate-half cyclic quotient-rotation theorem in `experimental/experiments.tex` proves, for every declared order-`2^41` multiplicative-coset family, an ordinary-list lower bound `ceil(binomial(255,129)/256)` at agreement `1116691496959`, strictly beyond Johnson.  It is a finite-family Lane L lower construction, not an MCA statement or deployed-row closure.
@@ -114,6 +122,7 @@ At this snapshot:
 | `experimental/notes/thresholds/m31_all_weight_anchor_exchange_pade_bijection_v1.md` and `experimental/notes/thresholds/m31_boundary_common_v_cross_g_route_cut_v1.md` | **Live direct M31 LIST residual:** boundary-anchor all-weight bijection and shallow common-unit full-locator census. |
 | `experimental/notes/thresholds/m31_all_weight_source_calibrated_ten_packet_gate_v1.md` | **Live all-weight additive route cut:** exact structured/primitive closure inequality, source floor, and the proof that a cross-weight cap of ten cannot close the source-compatible architecture. |
 | `experimental/notes/thresholds/m31_rank7_combined_domain_fixed_mismatch_recurrence_v1.md` | **Live rank-seven frontier:** full-label-hyperplane fixed-mismatch recurrence and exact top-five/tail-residue payment through `Q=147594`, with one sharp 45-unit residual at `Q=147595`. |
+| `experimental/notes/thresholds/m31_rank7_source_basis_private_root_overlap_dichotomy_v1.md` | **Live `Q=147595` source residual:** pays positive common-zero and size-at-least-five projective-line branches, exhausts the scalar collision histograms, and freezes the unpaid mixed-`G` terminal `deg gcd(G_i,G_j)>=16903`. |
 | `experimental/Conjectures_and_Barriers_RS_MCA_v4_1.tex` | **Direct problem/falsifier authority:** benchmark conjectures, exact compiler requirements, finite barriers, and separation of finite from conjectural asymptotic claims. |
 | `experimental/grande_finale.tex` | **Active conditional completion architecture:** proved local theorems, order-32/rational-atom reductions, owner localization, spread-core incidence bounds, and exact completion problems. Hypotheses/problems are not row bounds. |
 | `tex/cs25_cap_v13_2.tex` | **Foundation/unsafe authority:** exact unsafe endpoints, field/domain conventions, reductions, and certificate grammar. |
@@ -194,6 +203,21 @@ This is a codeword-count statement; the MCA ray compiler is inapplicable.
 #### M1. Resolve the binding primitive-fiber/list-interior problem
 
 The full-budget target is only about `8.4152` times the full-slice average, and the true allowance is smaller after other payments. Prove a realized-image, frozen-residual maximum or construct a received word exceeding the budget. Existing one-shell and rooted-shell packets are local reductions, not exhaustive row bounds.
+
+For the live rank-seven `Q=147595` subproblem, work only on the complete
+mixed-`G` source layer forced by
+
+```text
+HIGH_PAIRWISE_MASTER_LOCATOR_OVERLAP:
+some actual source-basis pair has deg gcd(G_i,G_j) >= 16903.
+```
+
+Combine the reduced pair determinant with the exact `H_i,H_j` and common
+unit.  Terminate in an existing owner with exact add-back, an additional
+agreement-incidence deficit (the closest `(3,2)` histogram needs `112671`),
+or an explicit source-compatible primitive component.  Another pairwise
+support relaxation or standalone folded-fiber computation is not this
+theorem.
 
 #### M2. Transfer the theorem or record a new floor
 
