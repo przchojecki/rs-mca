@@ -1,0 +1,173 @@
+{
+  "claims": {
+    "common_decic_invariance_criterion": "PROVED",
+    "component_rooted_source_label_quotient_precursor": "PROVED",
+    "conic_pair_matrix_rank_criterion": "PROVED",
+    "conic_quotient_differs_from_deck": "PROVED",
+    "dickson_normal_form_reduction": "PROVED",
+    "line_image_branch": "EXCLUDED",
+    "one_branch_point_conic_case": "EXCLUDED",
+    "reduced_conic_signature_classification": "PROVED",
+    "same_record_owner_payment": "OPEN",
+    "second_involution_matching": "OPEN",
+    "two_branch_point_conic_case": "EXCLUDED",
+    "two_free_pairs_determine_candidate": "PROVED",
+    "u2_cycle_union": "OPEN"
+  },
+  "conic_branch": {
+    "candidate_involution_seed_pairs": 2,
+    "common_points": 10,
+    "common_signature_edges": 5,
+    "conic_involution_orbits": 5,
+    "degree_sequence": [
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "free_edge_rows": 2,
+    "free_edges_per_active_row": 2,
+    "labeled_counts": {
+      "P2+C4": 45,
+      "P3+C3": 60,
+      "P6": 360
+    },
+    "labeled_total": 465,
+    "remaining_common_pair_gates": 5,
+    "unlabeled_graph_types": [
+      "P2+C4",
+      "P3+C3",
+      "P6"
+    ]
+  },
+  "dickson_normal_form_regression": {
+    "D4_coefficients_descending": [
+      1,
+      0,
+      -28,
+      0,
+      98
+    ],
+    "D5_coefficients_descending": [
+      1,
+      0,
+      -35,
+      0,
+      245,
+      0
+    ],
+    "field": "F_101",
+    "identity_checks": 200,
+    "parameter": 7,
+    "sampled_nonzero_inputs": 100,
+    "status": "PASS"
+  },
+  "involution_pair_matrix": {
+    "candidate_nondegenerate": true,
+    "candidate_preserves_common_root_set": true,
+    "common_decic_roots": 10,
+    "common_pair_tests": 5,
+    "field": 101,
+    "free_seed_matrix_rank": 2,
+    "free_seed_pairs": 2,
+    "free_seed_recovers_unique_candidate": true,
+    "minor_columns": 3,
+    "pair_rows": 7,
+    "tampered_pair_matrix_rank": 3,
+    "trace_zero_parameters": [
+      3,
+      5,
+      7
+    ],
+    "valid_pair_matrix_rank": 2
+  },
+  "line_branch": {
+    "available_free_roots_per_row": 2,
+    "conclusion": "EXCLUDED",
+    "every_row_meets_common_divisor": true,
+    "free_divisor_degree": 4,
+    "proportional_rows_have_identical_divisors": true,
+    "row_degree": 4,
+    "shared_root_forces_proportional_pencil_members": true
+  },
+  "payload_sha256": "9f76fcde92927817cde17505f273201b1ed025b3fdc8011aadb0d4360dd8b3dd",
+  "payment": "NONE",
+  "ramification": {
+    "deck_branch_forces_conic_branch": true,
+    "deck_branch_local_rhs_multiplicity": 4,
+    "one_branch_product": "nontrivial_translation",
+    "one_deck_branch_point_in_K": "EXCLUDED",
+    "remaining_common_support_points": 8,
+    "same_involution_contradicts_free_root_pairing": true,
+    "translation_order": 2130706433,
+    "two_deck_branch_points_in_K": "EXCLUDED",
+    "two_shared_branch_points_force_same_involution": true,
+    "unramified_conic_two_line_local_cap": 3,
+    "zero_deck_branch_points_in_K": "OPEN"
+  },
+  "reduced_dihedral_branch": {
+    "allowed_n": [
+      4,
+      5
+    ],
+    "common_source_image_caps": {
+      "2": 3,
+      "4": 2,
+      "5": 1
+    },
+    "commuting_branch": "reciprocal_normalizer",
+    "divisibility_candidates_by_fixed_count": {
+      "0": [
+        5,
+        10
+      ],
+      "2": [
+        4,
+        8
+      ]
+    },
+    "eliminated_unpaired_orders": [
+      8,
+      10
+    ],
+    "endpoint_neighbor_pairs_collapsed": 2,
+    "noncommuting_branch": "tame_dihedral",
+    "noncommuting_common_fiber_profiles": {
+      "4": {
+        "total_ramification_index": 4,
+        "totally_ramified_source_labels": 1,
+        "unramified_complete_fibers": [
+          4
+        ]
+      },
+      "5": {
+        "totally_ramified_source_labels": 0,
+        "unramified_complete_fibers": [
+          5
+        ]
+      }
+    },
+    "nonfixed_rotation_orbits_must_be_reflection_paired": true,
+    "reduced_common_support": 10,
+    "reduced_survivors_by_fixed_count": {
+      "0": [
+        5
+      ],
+      "2": [
+        4
+      ]
+    },
+    "rotation_fixed_points_in_support": [
+      0,
+      2
+    ],
+    "source_quotient_degrees": [
+      2,
+      4,
+      5
+    ]
+  },
+  "status": "PROVED_REDUCTION_TARGET_OPEN"
+}

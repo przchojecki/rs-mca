@@ -1,0 +1,563 @@
+{
+  "claims": {
+    "P3_PLUS_C3_status": "PROVED_IMPOSSIBLE",
+    "payment": "NONE",
+    "pole_graph_symmetry_quotient": "PROVED",
+    "pre_star_geometry_labeled_cases": 465,
+    "ramified_conic_branch": "PROVED_EXCLUDED",
+    "reduced_conic_labeled_cases": 405,
+    "reduced_conic_orders": [
+      "RECIPROCAL",
+      4,
+      5
+    ],
+    "second_involution_minor_elimination": "OPEN",
+    "surviving_signature_graphs": [
+      "P6",
+      "P2_PLUS_C4"
+    ]
+  },
+  "classification": [
+    {
+      "automorphism_group_size": 12,
+      "complete_full_row_sha256": "4c8d681a2e78476169bd2a3f9aef598c32b10a91b580a6737ad157def1652ed5",
+      "cycle_union_cases": 0,
+      "cycle_union_orbits": 0,
+      "free_pair_quotient": {
+        "cycle_union_cases": 0,
+        "cycle_union_orbits": 0,
+        "open_cases": 15,
+        "open_orbits": 3,
+        "orbit_size_histogram": {
+          "3": 1,
+          "6": 2
+        },
+        "orbits": 3,
+        "raw_endpoint_pairs": 15,
+        "reciprocal_open_cases": 9,
+        "reciprocal_open_orbits": 2,
+        "representative_digest_chain": "8f8b8e425ee31ef02bbd6045b3ae27f43ec98a3cfe97004312648183cb612a92",
+        "representative_digests": [
+          "c3b6adc035e237058c39d93cab83f2843590567730b042af1a2dc9ded5d54107",
+          "597cb9cadf7b4fd9c00bf648705905e0e8aff82631d0be81a640de29c2cd2b1f",
+          "a105c5610d1b78010268cdf45c52984e4dd7d7a2e14d760b06ba9a570875561a"
+        ]
+      },
+      "maximum_orbit_size": 12,
+      "minimum_orbit_size": 3,
+      "open_cases": 465,
+      "open_orbit_size_histogram": {
+        "12": 27,
+        "3": 3,
+        "6": 22
+      },
+      "open_orbits": 52,
+      "open_representative_digest_chain": "aed45feaa4ef3200b7d056af59e38eaa2511768e9041c8e8a3fb8d6b2baa8cf7",
+      "open_representative_digests": [
+        "c1771462b51c4a1d5768ca13c7558222ae05e5fbd3a9e43b57bead59fe797707",
+        "817632c6437b0b7b57e868784e0ed98b5cc7575256c9920eb60212d2f94a38d7",
+        "1463d9fb9d1032a64faca0b3360b9d2840b62c19ac158e09174ae9098a06d688",
+        "e09c2bc42abe5db8d3af0db186b3963b0f120d4ce68d3a9c56c6e8c61fa5bcd5",
+        "69d2bb939c42b44c0764cc725571007a4718dedd10a397ee22437756f2fc494b",
+        "6ed8bf4dfff45d4f29988dee7f05c20293417f97cdad00debd0a2580b7c4ce1a",
+        "c4c80f3a6e102de2935b1aa45e7fb8f67af680661bca1d25dde9449c8d27ed4d",
+        "447dfe951c71a0c5f834d33510594e404923f35abf78887923132579919d4f75",
+        "dfebbf201a0d60a180980633a70233f4ea324ae66de11bffb29c3da7f2398fcd",
+        "05d182b03f075438e1832c48741f23758ff1db9c52771429a83dd85413ac626d",
+        "9c8bc0abfcd818471971aed7480882c12456d74bc9b4f3ebab3073f8288ad294",
+        "4d51f671182236d02a4b3f80cdf5ae0fc8d11cd4f7a47ed226cbc300b22f6fd3",
+        "a1b1534de23f3333a1d0f1aaeedb1d79a376426c7d56e1bc96fbbf1ce68e2200",
+        "8fba95bf0540f10534bd5066cc3c5797b516f5eacf3113d8b59f7ab3492c6df7",
+        "0a7d3826d025314888ecc6baf5057f5039f53639b026f05fbb2e98751fb874a7",
+        "f24682fa05c31f81b1e34e010376aac3eb1b2f3aa867f1d588e7cae70e097304",
+        "1867d47734578c80644a86f614c3fd2a6493a1b76e683b8d5936e3d699b00cdc",
+        "8509297bd90588da339b324d150d7a5ae035c45a18b7e3b290a7de9fa30e40e4",
+        "2cecbaba8250f1dbf3680a60e53c0fdda290e40f6b52ebc8bd324ed257044699",
+        "065552eba1c5c6658aa6a3d461cb7493c705d71dfd27cae85325d391df89fe89",
+        "a5985f6c13a29834fd7fcbf597586a52309dcd9196bc064fa26f9715d718497d",
+        "d74848137a266cb1ffd6c2a4e875cdb00243e6ce618a8a39def3c7ed845e22b2",
+        "5ae2d879a07223f1e461cc83276a8bc5fbbae1129caf565d42a6c05afa8e4194",
+        "8e4ec16abee080befe86b935aa14b080185740e33986adfb1cf4425a1c9df4f8",
+        "d3f4d5b7d72f662f5f805ebffedb1072fe230a6462570b9e617b4e7a2186c444",
+        "3f6d4c59be5c2a56587fd72c04f4b3129415e2f6717f21f1cca93822b77b8247",
+        "b072971833e17ee3ffdb58cd75525bf45691fc78a2d21925bfb111467327d433",
+        "9b2ebea65c979d97ebd01726ca1b4f36f7a31e3bd026878947aa9bfee3394ce8",
+        "40b158971fc162611f92f69e1626bf30f61b84f6a9c139bbec10e47f18682263",
+        "b717a806b40863553811d3211642d65d1ea9843b381caa383d7ac7942c2d4e3d",
+        "46437e758fdb4675e7afc18799a3dc85fdb7dba464ab181b0383e6e264271429",
+        "ff903aa254980b49d1d1b85f657037f55813d4430db3be85eb4342f79c50a9f8",
+        "f320bcdde927b98ad6c860f60d4a53962b882ea90cc093d16a52588016ebb401",
+        "be7fe33dc9331361d110a85638c6788b04a4b22b6e6a64acaebb7efa2a7356c8",
+        "808bc538af316da528bbd9aa6e15673e9e6d11e3128f4e4e087dddc4d0550d3a",
+        "6d5e780a84aae173255642e36af6c2b6f24c6d7987a9e13c1a160f07357d0768",
+        "19f1ce9631931a29df0074648607adfb8a6e1352c2c916b30254a964c25c4afe",
+        "d4d366f42b6bc75e984e5989befe45fe81d682fdff2ebe59eddd1752ea0fab9a",
+        "b0fc5a9f3cfe64aab3b81389635977c8c036d6dbe84f0effb85ca23e3aa6eba2",
+        "ea33e83fed42156e1f8590889a7a33aacd9e7f94e3d8371b97822a95333525f7",
+        "3c54bd208ca306c275fc0881e134d8cae09629604b1ff49818d9797dafca35c2",
+        "0b749e6a141e00839cc00e3f6d7ef50d88034329993539c1314680738ebad2b9",
+        "a0c93d2fe6333d7f4e0bf96f4e5de06b9fa0c69eb4060315eacbb0524399236f",
+        "542360cbd5479d30013aa7a20f33a3c7b45dfb297d78d30e88db329a8e9a9435",
+        "25bce41f1bb80b9ba4a3f561c2788da2e7a92e9200a828082508c2a2789cd8f1",
+        "9a952750f894494cd9954209a285864f2d34098e56d3120576556a4f9b34e16c",
+        "309227da8099b82190ed628a8c85ed30b38385694561f18ac171c6047eff68de",
+        "9474a7958741be4e411ac1c0f4cf7dfbbbd2279373b733f92805334a317638e6",
+        "fee40650ff4dd831aebf44034367252ef46b08c4447424f76fdb0f03c91140e7",
+        "98589a3b04301e1a79bb57eda332011e6248dc4764a6e61649315b7639fca644",
+        "e0e437ee62922541b67a6f4eb1b8dcbe4587ae2e4b17c8aefd2e8fc97de0ef3b",
+        "5acbc706b2afcf6f9da7859f3fa0b011a8696da3ced29e7310f570dde4b2acbc"
+      ],
+      "open_signature_case_histogram": {
+        "P2_PLUS_C4": 45,
+        "P3_PLUS_C3": 60,
+        "P6": 360
+      },
+      "open_signature_orbit_histogram": {
+        "P2_PLUS_C4": 8,
+        "P3_PLUS_C3": 6,
+        "P6": 38
+      },
+      "orbit_size_sum": 465,
+      "orbits": 52,
+      "partition": [
+        6
+      ],
+      "post_star_geometry_open_cases": 405,
+      "post_star_geometry_open_orbits": 46,
+      "post_star_representative_digest_chain": "63889465c99395fe81c540def324f1d8ae4b27dcfc4e15316274f7bfb39a08ea",
+      "post_star_representative_digests": [
+        "817632c6437b0b7b57e868784e0ed98b5cc7575256c9920eb60212d2f94a38d7",
+        "1463d9fb9d1032a64faca0b3360b9d2840b62c19ac158e09174ae9098a06d688",
+        "e09c2bc42abe5db8d3af0db186b3963b0f120d4ce68d3a9c56c6e8c61fa5bcd5",
+        "69d2bb939c42b44c0764cc725571007a4718dedd10a397ee22437756f2fc494b",
+        "6ed8bf4dfff45d4f29988dee7f05c20293417f97cdad00debd0a2580b7c4ce1a",
+        "c4c80f3a6e102de2935b1aa45e7fb8f67af680661bca1d25dde9449c8d27ed4d",
+        "dfebbf201a0d60a180980633a70233f4ea324ae66de11bffb29c3da7f2398fcd",
+        "05d182b03f075438e1832c48741f23758ff1db9c52771429a83dd85413ac626d",
+        "9c8bc0abfcd818471971aed7480882c12456d74bc9b4f3ebab3073f8288ad294",
+        "4d51f671182236d02a4b3f80cdf5ae0fc8d11cd4f7a47ed226cbc300b22f6fd3",
+        "a1b1534de23f3333a1d0f1aaeedb1d79a376426c7d56e1bc96fbbf1ce68e2200",
+        "8fba95bf0540f10534bd5066cc3c5797b516f5eacf3113d8b59f7ab3492c6df7",
+        "0a7d3826d025314888ecc6baf5057f5039f53639b026f05fbb2e98751fb874a7",
+        "f24682fa05c31f81b1e34e010376aac3eb1b2f3aa867f1d588e7cae70e097304",
+        "1867d47734578c80644a86f614c3fd2a6493a1b76e683b8d5936e3d699b00cdc",
+        "8509297bd90588da339b324d150d7a5ae035c45a18b7e3b290a7de9fa30e40e4",
+        "2cecbaba8250f1dbf3680a60e53c0fdda290e40f6b52ebc8bd324ed257044699",
+        "065552eba1c5c6658aa6a3d461cb7493c705d71dfd27cae85325d391df89fe89",
+        "a5985f6c13a29834fd7fcbf597586a52309dcd9196bc064fa26f9715d718497d",
+        "d74848137a266cb1ffd6c2a4e875cdb00243e6ce618a8a39def3c7ed845e22b2",
+        "5ae2d879a07223f1e461cc83276a8bc5fbbae1129caf565d42a6c05afa8e4194",
+        "d3f4d5b7d72f662f5f805ebffedb1072fe230a6462570b9e617b4e7a2186c444",
+        "3f6d4c59be5c2a56587fd72c04f4b3129415e2f6717f21f1cca93822b77b8247",
+        "b072971833e17ee3ffdb58cd75525bf45691fc78a2d21925bfb111467327d433",
+        "40b158971fc162611f92f69e1626bf30f61b84f6a9c139bbec10e47f18682263",
+        "b717a806b40863553811d3211642d65d1ea9843b381caa383d7ac7942c2d4e3d",
+        "46437e758fdb4675e7afc18799a3dc85fdb7dba464ab181b0383e6e264271429",
+        "ff903aa254980b49d1d1b85f657037f55813d4430db3be85eb4342f79c50a9f8",
+        "f320bcdde927b98ad6c860f60d4a53962b882ea90cc093d16a52588016ebb401",
+        "be7fe33dc9331361d110a85638c6788b04a4b22b6e6a64acaebb7efa2a7356c8",
+        "808bc538af316da528bbd9aa6e15673e9e6d11e3128f4e4e087dddc4d0550d3a",
+        "6d5e780a84aae173255642e36af6c2b6f24c6d7987a9e13c1a160f07357d0768",
+        "19f1ce9631931a29df0074648607adfb8a6e1352c2c916b30254a964c25c4afe",
+        "b0fc5a9f3cfe64aab3b81389635977c8c036d6dbe84f0effb85ca23e3aa6eba2",
+        "ea33e83fed42156e1f8590889a7a33aacd9e7f94e3d8371b97822a95333525f7",
+        "3c54bd208ca306c275fc0881e134d8cae09629604b1ff49818d9797dafca35c2",
+        "0b749e6a141e00839cc00e3f6d7ef50d88034329993539c1314680738ebad2b9",
+        "a0c93d2fe6333d7f4e0bf96f4e5de06b9fa0c69eb4060315eacbb0524399236f",
+        "542360cbd5479d30013aa7a20f33a3c7b45dfb297d78d30e88db329a8e9a9435",
+        "9a952750f894494cd9954209a285864f2d34098e56d3120576556a4f9b34e16c",
+        "309227da8099b82190ed628a8c85ed30b38385694561f18ac171c6047eff68de",
+        "9474a7958741be4e411ac1c0f4cf7dfbbbd2279373b733f92805334a317638e6",
+        "fee40650ff4dd831aebf44034367252ef46b08c4447424f76fdb0f03c91140e7",
+        "98589a3b04301e1a79bb57eda332011e6248dc4764a6e61649315b7639fca644",
+        "e0e437ee62922541b67a6f4eb1b8dcbe4587ae2e4b17c8aefd2e8fc97de0ef3b",
+        "5acbc706b2afcf6f9da7859f3fa0b011a8696da3ced29e7310f570dde4b2acbc"
+      ],
+      "raw_cases": 465
+    },
+    {
+      "automorphism_group_size": 32,
+      "complete_full_row_sha256": "8cca5397bb713f13152cbd8f950f4c963d1caa91b58e49c8727f9aa29fed855b",
+      "cycle_union_cases": 31,
+      "cycle_union_orbits": 6,
+      "free_pair_quotient": {
+        "cycle_union_cases": 1,
+        "cycle_union_orbits": 1,
+        "open_cases": 14,
+        "open_orbits": 3,
+        "orbit_size_histogram": {
+          "1": 1,
+          "2": 1,
+          "4": 1,
+          "8": 1
+        },
+        "orbits": 4,
+        "raw_endpoint_pairs": 15,
+        "reciprocal_open_cases": 10,
+        "reciprocal_open_orbits": 2,
+        "representative_digest_chain": "677d5e598ecba053060aea9b64fd109f90f941f8ea3ec2eec576c5d812f7982a",
+        "representative_digests": [
+          "89a021ad9344b34810e917aedde8c732945c90ba0faad130343e0f3345f3d334",
+          "422c848a8dcb74401031a14949e53184ac9a605b4f185d3be6ffb40ae8a04e2e",
+          "c123439182a142369a224f0472234d9c19b1657c163db563201dc8fcf989c237",
+          "a503f759536a25e102e6eb842dded1fe93534298509099b579d6a3dbc31193ae"
+        ]
+      },
+      "maximum_orbit_size": 16,
+      "minimum_orbit_size": 1,
+      "open_cases": 434,
+      "open_orbit_size_histogram": {
+        "16": 20,
+        "2": 1,
+        "4": 4,
+        "8": 12
+      },
+      "open_orbits": 37,
+      "open_representative_digest_chain": "b2728d52062efcae7c7824395f2ef1db7ae75dddfa2cc1e0a6209b51dec3761f",
+      "open_representative_digests": [
+        "c48b2e5c06ea8904901ae0f444015e478b19d7f2f5b5fbf8da5c584b93e28376",
+        "34155f532a3c1b69f4d4bccf95a083fdbaaae231eab45de0ffe9863bc3c5d303",
+        "b9aa3198b7a4cb4cc9424adb641dedc10b1923bbffad30894f20113f4a333b11",
+        "d234050d2e146155151f1badf3a1deec548bcf1dfe352c26400a80d771f4b1a3",
+        "1c8386e3d3e626c1339b0801baea57911621a91a494093c3c3db24f433bb7cf8",
+        "a2750c023acf1974d87262510b85c71bde0035d168181b74c7bda1de79b06767",
+        "5511c7b014a9665916fc2db2a43ee711b9d2274c20f3127abdedc4a43bd5935c",
+        "e223079085866d60f2687ca833dc9f421835d98dd58a666c14a610cfd260a705",
+        "9522a06b2e1f14caf3afaea12d680b55a20262e6f8857ce9fa58e51ff473a6ec",
+        "64a5be53af53c645154d6fc53868f0ee97b8d1e2ec0fd83a41afb2e2c6de6c65",
+        "57458af2deba8f686f90d4f41dfc31ea944b574ebadc18a7ed0fda1428c2abeb",
+        "7cd6f9797372f37d40704bcf50d0c8d4b7132c0f8619297b696fa23e834b599e",
+        "21afe80985b67babd48743a4822976bde0e9c6bb79938a411c9de1155894d290",
+        "b0a63afd45901d257c68e7bcd535b01911535a7a539494b997b1c4f897b232b4",
+        "c24ea62b62f87417d333e48db78ae7e2b36b59b2e016ea9849b4e99a65b1a3b2",
+        "0594b0e99f0e7d4f0fb3f4d6badf6cc790a17dd3e99047a97b70d6d6bd8f833b",
+        "9125501d77e96f0bd7c69684f1ac8b370678e9afbd0b8468e29e628168e8f240",
+        "267f7c3c0df725e964263a8f0bbb53899a26cf60a130e22ac1868dba10d27073",
+        "67e2521f43676036ddea3051440d29d4cfd049f17955a970711932019fcc3b7c",
+        "b19e621052b82a08a443fc022f8a3a421bd97e6aaed9f8a786f423250d5be0cb",
+        "6d45d728f39e99f4d2c3f193a38a4fecfb3379cbc4660bb3d0c450a2705a4694",
+        "0ed281237017c008f66d55b2fea6b8f6df434362505a5b3d5a4bc9b68eaa9844",
+        "3cf171139db8c78e42ca5d9ed3b4a26d398bd6f733a1ac8f68e199aa48e62343",
+        "83ce20233ae0821684eb647778248f61dc7154458241297c06f57e4555d8a174",
+        "fe1a5e6dfab974d4250c4b8f8342bcce4ab6b8ad292c29145235cf03c4f9879c",
+        "e01ce4c85b630b1b21da8ca4e3bbf637a6f5d94e5c0695123ac410ce5cd35a60",
+        "e4a25ef5bcf6d39decb244886fad59e6a7e4018f821bb7a2db04a338876db9a1",
+        "dfdbeb8f4b656955ce7fd2aeaed90ea2bb40025ac5ef47618eeb49e1ae59c537",
+        "45bec3022e07164508d6d222bf7e2636c6bc22a2a5899786508b5431aae2c731",
+        "4ff3de55284236742aec26420bb023754d07d0b418e8700c853aefb9de2f1c55",
+        "88108605ba427646ec45173c907eda4383e13d02913c3c57f9c5e9b32db0bcef",
+        "5cb6b46819b0db1f3c1ef3f391390678f72f657c7179284f9fc1e74f412d0261",
+        "b7ff66748e0ce22093629132eba5b1ee523827ead873dc903902583af97d5ab0",
+        "7d3cd5e508826d2e9fdc163c8fd863463e0b95a1fbfcf54b066278a561729a08",
+        "daf6e96453480544885a80100f49ad27ac7a04ffa946c2d302588a4d66d5c4b1",
+        "2cd6fc667fd01b235d34d8a4ce74608ea0067da62d143841a095870f2d9b1ef4",
+        "f7bdd7348d1a4839dccadba9ca6ee8dafcf99b95e159e326cf9cab42e793e1c6"
+      ],
+      "open_signature_case_histogram": {
+        "P2_PLUS_C4": 42,
+        "P3_PLUS_C3": 56,
+        "P6": 336
+      },
+      "open_signature_orbit_histogram": {
+        "P2_PLUS_C4": 6,
+        "P3_PLUS_C3": 7,
+        "P6": 24
+      },
+      "orbit_size_sum": 465,
+      "orbits": 43,
+      "partition": [
+        4,
+        2
+      ],
+      "post_star_geometry_open_cases": 378,
+      "post_star_geometry_open_orbits": 30,
+      "post_star_representative_digest_chain": "ed01cdd3411d0924ae6fb87b90fa5d439360ee9e4eb00e667a879150c89eb6cf",
+      "post_star_representative_digests": [
+        "34155f532a3c1b69f4d4bccf95a083fdbaaae231eab45de0ffe9863bc3c5d303",
+        "b9aa3198b7a4cb4cc9424adb641dedc10b1923bbffad30894f20113f4a333b11",
+        "d234050d2e146155151f1badf3a1deec548bcf1dfe352c26400a80d771f4b1a3",
+        "1c8386e3d3e626c1339b0801baea57911621a91a494093c3c3db24f433bb7cf8",
+        "a2750c023acf1974d87262510b85c71bde0035d168181b74c7bda1de79b06767",
+        "5511c7b014a9665916fc2db2a43ee711b9d2274c20f3127abdedc4a43bd5935c",
+        "e223079085866d60f2687ca833dc9f421835d98dd58a666c14a610cfd260a705",
+        "64a5be53af53c645154d6fc53868f0ee97b8d1e2ec0fd83a41afb2e2c6de6c65",
+        "57458af2deba8f686f90d4f41dfc31ea944b574ebadc18a7ed0fda1428c2abeb",
+        "7cd6f9797372f37d40704bcf50d0c8d4b7132c0f8619297b696fa23e834b599e",
+        "21afe80985b67babd48743a4822976bde0e9c6bb79938a411c9de1155894d290",
+        "b0a63afd45901d257c68e7bcd535b01911535a7a539494b997b1c4f897b232b4",
+        "0594b0e99f0e7d4f0fb3f4d6badf6cc790a17dd3e99047a97b70d6d6bd8f833b",
+        "9125501d77e96f0bd7c69684f1ac8b370678e9afbd0b8468e29e628168e8f240",
+        "67e2521f43676036ddea3051440d29d4cfd049f17955a970711932019fcc3b7c",
+        "b19e621052b82a08a443fc022f8a3a421bd97e6aaed9f8a786f423250d5be0cb",
+        "6d45d728f39e99f4d2c3f193a38a4fecfb3379cbc4660bb3d0c450a2705a4694",
+        "0ed281237017c008f66d55b2fea6b8f6df434362505a5b3d5a4bc9b68eaa9844",
+        "3cf171139db8c78e42ca5d9ed3b4a26d398bd6f733a1ac8f68e199aa48e62343",
+        "83ce20233ae0821684eb647778248f61dc7154458241297c06f57e4555d8a174",
+        "fe1a5e6dfab974d4250c4b8f8342bcce4ab6b8ad292c29145235cf03c4f9879c",
+        "e01ce4c85b630b1b21da8ca4e3bbf637a6f5d94e5c0695123ac410ce5cd35a60",
+        "dfdbeb8f4b656955ce7fd2aeaed90ea2bb40025ac5ef47618eeb49e1ae59c537",
+        "45bec3022e07164508d6d222bf7e2636c6bc22a2a5899786508b5431aae2c731",
+        "4ff3de55284236742aec26420bb023754d07d0b418e8700c853aefb9de2f1c55",
+        "88108605ba427646ec45173c907eda4383e13d02913c3c57f9c5e9b32db0bcef",
+        "5cb6b46819b0db1f3c1ef3f391390678f72f657c7179284f9fc1e74f412d0261",
+        "daf6e96453480544885a80100f49ad27ac7a04ffa946c2d302588a4d66d5c4b1",
+        "2cd6fc667fd01b235d34d8a4ce74608ea0067da62d143841a095870f2d9b1ef4",
+        "f7bdd7348d1a4839dccadba9ca6ee8dafcf99b95e159e326cf9cab42e793e1c6"
+      ],
+      "raw_cases": 465
+    },
+    {
+      "automorphism_group_size": 72,
+      "complete_full_row_sha256": "1856b070029a0dd15eebe4917e3ae4fc1c332d0d7e671d9a42cbbe77b0805abe",
+      "cycle_union_cases": 0,
+      "cycle_union_orbits": 0,
+      "free_pair_quotient": {
+        "cycle_union_cases": 0,
+        "cycle_union_orbits": 0,
+        "open_cases": 15,
+        "open_orbits": 2,
+        "orbit_size_histogram": {
+          "6": 1,
+          "9": 1
+        },
+        "orbits": 2,
+        "raw_endpoint_pairs": 15,
+        "reciprocal_open_cases": 9,
+        "reciprocal_open_orbits": 1,
+        "representative_digest_chain": "7c3ff7863f6c8e9589bf50288a24d4a11995b4f25a2c52d7228072877eca4d08",
+        "representative_digests": [
+          "f2fc3276f918a22e5ebfbb8be2edfc19c340aa557c24a9294ed9d429b8a1cae8",
+          "d20a0a5f877002bbdf244bacbd7fc6c2b763c7ea654098e5a8a0f10094a88688"
+        ]
+      },
+      "maximum_orbit_size": 72,
+      "minimum_orbit_size": 6,
+      "open_cases": 465,
+      "open_orbit_size_histogram": {
+        "18": 3,
+        "36": 5,
+        "6": 1,
+        "72": 3,
+        "9": 1
+      },
+      "open_orbits": 13,
+      "open_representative_digest_chain": "b435ee0940bb9d3c64490e8b8e9d81ad8b73712f1b5a75d95c35baf6565a68a3",
+      "open_representative_digests": [
+        "b469e88ce61a68277446e37c49ac742288d203f5cf46dd9611c05663a9caf6bb",
+        "c29b98525a744f5c4b8b6dfa89833e602c768d1737c7a6d08b9dd15214155401",
+        "7ebc3289ee3984b38b91dd96411aeb653caf465aa5ba18f79ced972b010385ec",
+        "5d9c27b041135b4b9113d626f394613fe2fc457898dce7ed0648721468c77f0d",
+        "d70b3cde736c297f4786ce2099baebae8c85c2001b16014df2915e16d1f03bcc",
+        "23c467d0d4935ec6837abe5bcabdeaa04aa01fc70faf7c6db3aac435c3287259",
+        "99634c879c91154c23ddc3f64e34110425ca534b0bd660fd5a32cc9b204e255c",
+        "ec5d9064042bcbafd234781502922e0b1752f70db55aa00d3031de16c3b4cd94",
+        "7153b2bb9d310ac0c1117dcd29d9c9764290f3f5b53b8c467cf96f0b08d0ce24",
+        "2f8bdcc0b4ee114bd22bae520eb9afec32d941517096d0503e90afad163da1da",
+        "600b60ea3d7745caceacb9ad945ffd4b064ca01604b34f77a072b7f109dc6afa",
+        "ea804734e3049926f54758dcd5ed532f6082cd793b858b470164ddc64b2e4166",
+        "aa3130c276538d1a86b1d84e5dbaf7af3d202e391e5055ef2b09a4c3605d5b97"
+      ],
+      "open_signature_case_histogram": {
+        "P2_PLUS_C4": 45,
+        "P3_PLUS_C3": 60,
+        "P6": 360
+      },
+      "open_signature_orbit_histogram": {
+        "P2_PLUS_C4": 3,
+        "P3_PLUS_C3": 3,
+        "P6": 7
+      },
+      "orbit_size_sum": 465,
+      "orbits": 13,
+      "partition": [
+        3,
+        3
+      ],
+      "post_star_geometry_open_cases": 405,
+      "post_star_geometry_open_orbits": 10,
+      "post_star_representative_digest_chain": "1d87f457ee71993d2ab5f0993e00f4afe5412fedcf4b2a3e4ff106dd38ba0243",
+      "post_star_representative_digests": [
+        "c29b98525a744f5c4b8b6dfa89833e602c768d1737c7a6d08b9dd15214155401",
+        "7ebc3289ee3984b38b91dd96411aeb653caf465aa5ba18f79ced972b010385ec",
+        "5d9c27b041135b4b9113d626f394613fe2fc457898dce7ed0648721468c77f0d",
+        "23c467d0d4935ec6837abe5bcabdeaa04aa01fc70faf7c6db3aac435c3287259",
+        "99634c879c91154c23ddc3f64e34110425ca534b0bd660fd5a32cc9b204e255c",
+        "ec5d9064042bcbafd234781502922e0b1752f70db55aa00d3031de16c3b4cd94",
+        "2f8bdcc0b4ee114bd22bae520eb9afec32d941517096d0503e90afad163da1da",
+        "600b60ea3d7745caceacb9ad945ffd4b064ca01604b34f77a072b7f109dc6afa",
+        "ea804734e3049926f54758dcd5ed532f6082cd793b858b470164ddc64b2e4166",
+        "aa3130c276538d1a86b1d84e5dbaf7af3d202e391e5055ef2b09a4c3605d5b97"
+      ],
+      "raw_cases": 465
+    },
+    {
+      "automorphism_group_size": 384,
+      "complete_full_row_sha256": "ea4d685de08550532dcf628aea7b63ee54f20eb2c80ef9c9fbf0e55e55b96d0e",
+      "cycle_union_cases": 93,
+      "cycle_union_orbits": 6,
+      "free_pair_quotient": {
+        "cycle_union_cases": 3,
+        "cycle_union_orbits": 1,
+        "open_cases": 12,
+        "open_orbits": 1,
+        "orbit_size_histogram": {
+          "12": 1,
+          "3": 1
+        },
+        "orbits": 2,
+        "raw_endpoint_pairs": 15,
+        "reciprocal_open_cases": 12,
+        "reciprocal_open_orbits": 1,
+        "representative_digest_chain": "f1d6d8fe2965caa0d6bffcfed73135284e8cc71ef8165f322e474548cb7fa1d7",
+        "representative_digests": [
+          "4a6679b89b5d4b3c88505f4e7bc724d9ba5a80081e106915d2bc08716d1f9452",
+          "2a1a43201dad257af480c3a9db0e93fd866fbf710b8fb0f5f1f558f9ca1f2469"
+        ]
+      },
+      "maximum_orbit_size": 48,
+      "minimum_orbit_size": 3,
+      "open_cases": 372,
+      "open_orbit_size_histogram": {
+        "12": 1,
+        "24": 7,
+        "48": 4
+      },
+      "open_orbits": 12,
+      "open_representative_digest_chain": "789ee91f1fcfa0d4ae7146816890f3c4ce4fad92c22cf70b77cf5c86c13a509a",
+      "open_representative_digests": [
+        "276e52f0adfda449237fd5b1fd62d335b20717ecb85c2b939cf4e7d25b0a66ae",
+        "788ff6283fb84e55334f0cc7973b8a1331675d11fd484c300e672ccd2b68070f",
+        "2f531c1072d3fce22bc04e72638d402f12c7b729a00d28527ce0951588b83822",
+        "1acb93470061c43fc492eb7a68c296c3966e2a577d855b174ddc405dd190db80",
+        "6c7b79c4a8ce25434df76dd948ff4b63750fcb3a70f6d8792e14e30ab22ee19b",
+        "00f297e22a86cd3e1c49ff88c4df9a51db181e2535a99ec354439cb02674d474",
+        "993850a75bd11781ede2a3dd89a55c29fbd6f03eb92b6a0036f16d50bfe159a2",
+        "eb42f20589d30a35638c9a30fdeeac1ca5f1c0501c5e2291cf761cf095df67fb",
+        "c5389c7273543e1d02797ace9c7e779940191e43b3e3d86cf03751bad1d753eb",
+        "0214aabf285805264fa4adffe20bedb00e1e08cebe9c944c62624aafc60c8461",
+        "26408ac1464cb3f0f3d92badc24298649ca8d7f8ffae8d856ea4530b1f0a7fa8",
+        "e695cf0b0d2a5d9e0f77cbb37035526c792cc0146687b11064c4558260862bd8"
+      ],
+      "open_signature_case_histogram": {
+        "P2_PLUS_C4": 36,
+        "P3_PLUS_C3": 48,
+        "P6": 288
+      },
+      "open_signature_orbit_histogram": {
+        "P2_PLUS_C4": 2,
+        "P3_PLUS_C3": 2,
+        "P6": 8
+      },
+      "orbit_size_sum": 465,
+      "orbits": 18,
+      "partition": [
+        2,
+        2,
+        2
+      ],
+      "post_star_geometry_open_cases": 324,
+      "post_star_geometry_open_orbits": 10,
+      "post_star_representative_digest_chain": "a8aded99018f3e48e93020d37afc849c2c398df64b04d91507bbf80648353fb1",
+      "post_star_representative_digests": [
+        "276e52f0adfda449237fd5b1fd62d335b20717ecb85c2b939cf4e7d25b0a66ae",
+        "788ff6283fb84e55334f0cc7973b8a1331675d11fd484c300e672ccd2b68070f",
+        "1acb93470061c43fc492eb7a68c296c3966e2a577d855b174ddc405dd190db80",
+        "6c7b79c4a8ce25434df76dd948ff4b63750fcb3a70f6d8792e14e30ab22ee19b",
+        "00f297e22a86cd3e1c49ff88c4df9a51db181e2535a99ec354439cb02674d474",
+        "993850a75bd11781ede2a3dd89a55c29fbd6f03eb92b6a0036f16d50bfe159a2",
+        "c5389c7273543e1d02797ace9c7e779940191e43b3e3d86cf03751bad1d753eb",
+        "0214aabf285805264fa4adffe20bedb00e1e08cebe9c944c62624aafc60c8461",
+        "26408ac1464cb3f0f3d92badc24298649ca8d7f8ffae8d856ea4530b1f0a7fa8",
+        "e695cf0b0d2a5d9e0f77cbb37035526c792cc0146687b11064c4558260862bd8"
+      ],
+      "raw_cases": 465
+    }
+  ],
+  "complete_full_payload_sha256": "6cc74ac5eeea30f16dbd4b86e40af4563811dbfdec41150993cc684d7cb9d060",
+  "format": "q6-u2-conic-orbit-compact-certificate-v1",
+  "input_universe": {
+    "left_pairs": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "partitions": [
+      [
+        6
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        2,
+        2,
+        2
+      ]
+    ],
+    "sha256": "61e888729fcbbcd6f7bfa6e4d10c5315d38807b7484bcebbd1886d7d580234c3"
+  },
+  "payload_sha256": "77ca8743464cc82df30560ad93194636e15c91b25614624910e23fe3b7ac6cda",
+  "status": "PROVED_FINITE_REDUCTION_TARGET_OPEN"
+}

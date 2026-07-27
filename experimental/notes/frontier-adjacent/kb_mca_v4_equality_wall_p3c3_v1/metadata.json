@@ -1,0 +1,19 @@
+{
+  "B_star": "274980728111395087",
+  "agreement": 1116048,
+  "architecture": "source-bound normalized equality-wall split-scroll",
+  "atom_or_cell": "reduced Q=6, u=2 conic common-signature branch",
+  "direct_statement": "All 60 labeled P3+C3 common-signature graphs in the declared reduced source-derived universe are impossible.",
+  "impact": "ROUTE_REDUCTION_ONLY",
+  "object": "MCA",
+  "parent_branch": "review/kb-equality-wall-geometry-v3",
+  "parent_commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+  "partition_digest": null,
+  "partition_digest_reason": "Local normalized residual; no global chart partition is claimed.",
+  "projection_and_unit": "distinct affine bad slopes per received line",
+  "quantifier": "all 60 labeled P3+C3 graphs in the declared reduced universe",
+  "row": "KoalaBear MCA at 2^-128",
+  "stack_layer": "4/4",
+  "status": "PROVED_LOCAL_REDUCTION",
+  "workboard_item": "K3"
+}

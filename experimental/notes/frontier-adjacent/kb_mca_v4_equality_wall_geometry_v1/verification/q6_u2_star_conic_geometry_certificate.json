@@ -1,0 +1,158 @@
+{
+  "payload": {
+    "claims": {
+      "P3_PLUS_C3_candidate_is_nonsingular_for_distinct_labels": true,
+      "P3_PLUS_C3_endpoint_fibers_collide": true,
+      "five_star_vertices_determine_the_candidate_conic": true,
+      "remaining_signature_graphs": [
+        "P6",
+        "P2_PLUS_C4"
+      ]
+    },
+    "discriminant_factorization": {
+      "P2_PLUS_C4": "-4*x*y*z*(x - 1)*(x + 1)*(x - y)*(y - 1)*(y - z)*(z - 1)*(z + 1)*(x*y*z - 2*x*y + x*z + y*z - z)*(x*y*z + x*y + x*z - x - 2*y*z)",
+      "P3_PLUS_C3": "-2*x*y*z*(x - 1)*(x + 1)*(y - 1)*(y + 1)*(z - 1)*(z + 1)",
+      "P6": "4*x*y*(x - 1)**2*(x + 1)*(x - y)*(y - 1)*(y + 1)**2*(z - 1)*(z + 1)*(x*y*z + x*y + x*z - x - 2*y*z)"
+    },
+    "endpoint_second_intersections": {
+      "P2_PLUS_C4": {
+        "line_0_known_neighbor_1": "(x*y*z + x*y - 2*x*z + y*z - y)/(x*z - x + 2*y - z - 1)",
+        "line_1_known_neighbor_0": "(x*y*z + x*y - x*z + y*z)/(x*z + y)"
+      },
+      "P3_PLUS_C3": {
+        "common_image_point": "[1,0,0]",
+        "line_0_known_neighbor_1": "-1",
+        "line_2_known_neighbor_1": "0"
+      },
+      "P6": {
+        "line_0_known_neighbor_1": "-(x*y*z + x*y + 2*x*z - y*z + y)/(x*z - x - 2*y*z - z - 1)",
+        "line_5_known_neighbor_4": "x*(x*y + x*z - 2*y*z + y - z)/(x**2*y - x**2*z + x*y + x*z - 2*y*z)"
+      }
+    },
+    "fiber_ledger": {
+      "P3_PLUS_C3_status": "PROVED_IMPOSSIBLE",
+      "both_map_to_same_point": true,
+      "conic_quotient_degree": 2,
+      "endpoint_free_divisor_degrees": [
+        2,
+        2
+      ],
+      "endpoint_free_divisors_are_disjoint": true,
+      "endpoint_free_divisors_are_reduced": true
+    },
+    "graph_edges": {
+      "P2_PLUS_C4": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "P3_PLUS_C3": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "P6": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    "noncollision_gates": {
+      "P2_PLUS_C4": [
+        "x*y*z + x*y + x*z - x - 2*y*z",
+        "x*y*z - 2*x*y + x*z + y*z - z"
+      ],
+      "P3_PLUS_C3": [],
+      "P6": [
+        "x*y*z + x*y + x*z - x - 2*y*z",
+        "x*y + x*z - 2*y*z + y - z"
+      ]
+    },
+    "normalization": {
+      "conic_monomials": [
+        "A^2",
+        "A*B",
+        "A*C",
+        "B^2",
+        "B*C",
+        "C^2"
+      ],
+      "source_labels": [
+        "0",
+        "1",
+        "-1",
+        "x",
+        "y",
+        "z"
+      ],
+      "star_vertex": "[1,-(alpha_i+alpha_j),alpha_i*alpha_j]"
+    },
+    "rank_five_minor_witnesses": {
+      "P2_PLUS_C4": "x*y*z*(x + 1)*(x - z)**2*(y - 1)*(y + 1)**2*(z + 1)",
+      "P3_PLUS_C3": "-x*y*z*(x - 1)*(x - y)*(x - z)*(y - 1)*(y - z)*(z - 1)",
+      "P6": "-x*y*(x - 1)*(x + 1)*(x - z)*(y - 1)*(y + 1)**2*(z + 1)"
+    },
+    "sample_determinants_at_x2_y3_z4": {
+      "P2_PLUS_C4": -2903040,
+      "P3_PLUS_C3": -17280,
+      "P6": -414720
+    },
+    "schema": "q6-u2-star-conic-geometry-v1"
+  },
+  "payload_sha256": "3a6f83427bb61434d7c9c785729e0a4bfbcb7a319ad5704cb587b8951eb41236",
+  "runtime_metadata": {
+    "python_version": "3.14.3",
+    "sympy_version": "1.14.0"
+  }
+}

@@ -1,0 +1,439 @@
+{
+  "claims": {
+    "common_decic_gate_generator": "PROVED",
+    "conic_exclusion": "OPEN",
+    "deployed_gate_factorization": "OPEN",
+    "payment": "NONE",
+    "two_free_pairs_determine_candidate": "PROVED"
+  },
+  "endpoint_templates": [
+    {
+      "open_endpoint_orbits": 3,
+      "partition": [
+        6
+      ],
+      "reciprocal_open_orbits": 2,
+      "representatives": [
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            1
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "orbit_size": 6,
+          "reciprocal_compatible": false,
+          "shared_right_neighbors": 1
+        },
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            2
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "orbit_size": 6,
+          "reciprocal_compatible": true,
+          "shared_right_neighbors": 0
+        },
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            3
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "orbit_size": 3,
+          "reciprocal_compatible": true,
+          "shared_right_neighbors": 0
+        }
+      ]
+    },
+    {
+      "open_endpoint_orbits": 3,
+      "partition": [
+        4,
+        2
+      ],
+      "reciprocal_open_orbits": 2,
+      "representatives": [
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            1
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "orbit_size": 4,
+          "reciprocal_compatible": false,
+          "shared_right_neighbors": 1
+        },
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            2
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "orbit_size": 2,
+          "reciprocal_compatible": true,
+          "shared_right_neighbors": 0
+        },
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            4
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "orbit_size": 8,
+          "reciprocal_compatible": true,
+          "shared_right_neighbors": 0
+        }
+      ]
+    },
+    {
+      "open_endpoint_orbits": 2,
+      "partition": [
+        3,
+        3
+      ],
+      "reciprocal_open_orbits": 1,
+      "representatives": [
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            1
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "orbit_size": 6,
+          "reciprocal_compatible": false,
+          "shared_right_neighbors": 1
+        },
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            3
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "orbit_size": 9,
+          "reciprocal_compatible": true,
+          "shared_right_neighbors": 0
+        }
+      ]
+    },
+    {
+      "open_endpoint_orbits": 1,
+      "partition": [
+        2,
+        2,
+        2
+      ],
+      "reciprocal_open_orbits": 1,
+      "representatives": [
+        {
+          "cycle_union": false,
+          "endpoint_rows": [
+            0,
+            2
+          ],
+          "free_pole_edges": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "orbit_size": 12,
+          "reciprocal_compatible": true,
+          "shared_right_neighbors": 0
+        }
+      ]
+    }
+  ],
+  "finite_field_regression": {
+    "candidate_c_a_b": [
+      16,
+      0,
+      16
+    ],
+    "candidate_nondegenerate": true,
+    "deck_map": {
+      "denominator": [
+        0,
+        0,
+        1
+      ],
+      "numerator": [
+        1,
+        0,
+        0
+      ]
+    },
+    "field": 101,
+    "free_quadratics": [
+      [
+        1,
+        48,
+        1
+      ],
+      [
+        1,
+        64,
+        1
+      ]
+    ],
+    "invariance_minors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "invariant_common_labels": [
+      16,
+      19,
+      25,
+      97,
+      100
+    ],
+    "reciprocal_source_quintic_gate": {
+      "candidate_c_a_b": [
+        26,
+        0,
+        26
+      ],
+      "common_quintic_coefficients": [
+        1,
+        46,
+        75,
+        75,
+        46,
+        1
+      ],
+      "determinant_parameter": 70,
+      "endpoint_source_quadratics": [
+        [
+          1,
+          21,
+          1
+        ],
+        [
+          1,
+          47,
+          1
+        ]
+      ],
+      "fixed_common_labels": [
+        100
+      ],
+      "invariant_with_one_fixed_label": true,
+      "proportionality_minors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "transformed_quintic_coefficients": [
+        39,
+        77,
+        97,
+        97,
+        77,
+        39
+      ]
+    },
+    "tampered_common_labels": [
+      16,
+      19,
+      25,
+      97,
+      2
+    ],
+    "tampered_nonzero_minor_count": 5
+  },
+  "gate_schema": {
+    "candidate": "cross(pair_row_j,pair_row_k)=(c,a,b)",
+    "coefficient_gate_count": 10,
+    "common_decic": "product_k(psi_n-alpha_k*psi_d)",
+    "free_quadratic_coefficients": "[A_r,B_r,C_r]",
+    "invariance": "C_K(M(X,Y)) proportional to C_K(X,Y)",
+    "nondegeneracy": "a^2+b*c != 0",
+    "pair_row": "[C_r,B_r,-A_r]",
+    "reciprocal_source_gate": "endpoint source pairs determine J; A_K(J(X,Y)) proportional to A_K(X,Y); exactly one common label fixed"
+  },
+  "payload_sha256": "56dae2c4b6ebd339d4cfdd81fdae13d05114baa2037b34dd5e226bef020696da",
+  "status": "PROVED_GATE_REDUCTION_TARGET_OPEN",
+  "surviving_reduced_quotient_profiles": {
+    "order_4": {
+      "common_labels": "one total-ramification label plus one complete unramified four-fiber",
+      "degree": 4,
+      "normal_form": "D4(w,a)=w^4-4*a*w^2+2*a^2"
+    },
+    "order_5": {
+      "common_labels": "one complete unramified five-fiber",
+      "degree": 5,
+      "normal_form": "D5(w,a)=w^5-5*a*w^3+5*a^2*w"
+    },
+    "reciprocal": {
+      "common_labels": "one fixed label plus two reciprocal pairs",
+      "degree": 2,
+      "normal_form": "w + mu^2/w"
+    }
+  }
+}
