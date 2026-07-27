@@ -1,0 +1,647 @@
+{
+  "component_law": {
+    "deck_asymmetric_self_correspondence_degrees": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ],
+    "deck_pair_ledgers": [
+      {
+        "common": 10,
+        "one_sided_difference": 1,
+        "q_out": 1,
+        "symmetric_difference": 2,
+        "union": 12
+      },
+      {
+        "common": 9,
+        "one_sided_difference": 2,
+        "q_out": 2,
+        "symmetric_difference": 4,
+        "union": 13
+      },
+      {
+        "common": 8,
+        "one_sided_difference": 3,
+        "q_out": 3,
+        "symmetric_difference": 6,
+        "union": 14
+      },
+      {
+        "common": 7,
+        "one_sided_difference": 4,
+        "q_out": 4,
+        "symmetric_difference": 8,
+        "union": 15
+      },
+      {
+        "common": 6,
+        "one_sided_difference": 5,
+        "q_out": 5,
+        "symmetric_difference": 10,
+        "union": 16
+      },
+      {
+        "common": 5,
+        "one_sided_difference": 6,
+        "q_out": 6,
+        "symmetric_difference": 12,
+        "union": 17
+      },
+      {
+        "common": 4,
+        "one_sided_difference": 7,
+        "q_out": 7,
+        "symmetric_difference": 14,
+        "union": 18
+      },
+      {
+        "common": 3,
+        "one_sided_difference": 8,
+        "q_out": 8,
+        "symmetric_difference": 16,
+        "union": 19
+      },
+      {
+        "common": 2,
+        "one_sided_difference": 9,
+        "q_out": 9,
+        "symmetric_difference": 18,
+        "union": 20
+      },
+      {
+        "common": 1,
+        "one_sided_difference": 10,
+        "q_out": 10,
+        "symmetric_difference": 20,
+        "union": 21
+      }
+    ],
+    "double_count_forces_v_eq_2u": true,
+    "maximum_deck_asymmetric_self_subdegree": 20,
+    "moebius_component_excluded": true,
+    "odd_component_always": true,
+    "partitions_of_11": 56,
+    "remaining_deck_q_minimum": 6
+  },
+  "coordinate_law": {
+    "conic_evaluation_rank": 3,
+    "coordinate_law_checks": 480,
+    "lambda_samples": 40,
+    "reciprocal_evaluation_rank": 3
+  },
+  "design_census": {
+    "canonical_co12_triple_found": true,
+    "canonical_irreducible_infeasible": true,
+    "cyclic_guardrail_co12_triples": 0,
+    "cyclic_q6_core_replication": 5,
+    "cyclic_q6_difference_replication": 12,
+    "cyclic_q6_matching_sha256": "0c986f2b36239507fa88dbc50476ecc56b12a787f557730603baef560c771730",
+    "cyclic_q6_pair_intersection": 5,
+    "cyclic_q6_perfect_matching": true,
+    "cyclic_q6_split_pencil_algebra_supplied": false,
+    "guardrail_survives_combinatorial_cuts": true
+  },
+  "endpoint_arithmetic": {
+    "a": 12,
+    "active_roots": 60,
+    "complement_incidence": 5880,
+    "design_incidence": 1320,
+    "endpoint_bidegree_l": 22,
+    "endpoint_bidegree_t": 11,
+    "grid_total": 7200,
+    "inactive_roots": 9,
+    "regular_roots": 69,
+    "selected_parameters": 120,
+    "w1_bidegree_l": 98,
+    "w1_bidegree_t": 49
+  },
+  "facet_triples": {
+    "facet_triple_kernel": true,
+    "facet_triple_rank": 2,
+    "pencil_control_determinant_nonzero": true,
+    "pencil_control_rank": 3,
+    "pencil_triple_kernel": true,
+    "pencil_triple_rank": 2,
+    "ten_core_control_rank": 3
+  },
+  "field": 2130706433,
+  "outgoing_conjugate_ledger": {
+    "bezout_excluded_q": [
+      2,
+      3,
+      4
+    ],
+    "coordinate_conjugate_overlap_degrees": [
+      0,
+      2
+    ],
+    "excluded_q": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "fixed_pole_coordinate_divisor_multiplicity": 2,
+    "fixed_pole_even_fiber_squarefree_degree": "Q",
+    "fixed_pole_odd_even_proportionality": true,
+    "invariant_coordinate_source_factor": true,
+    "ledgers": [
+      {
+        "bezout_intersection": 16,
+        "fixed_point_floors": {
+          "0": 28,
+          "1": 28,
+          "2": 28
+        },
+        "impossible": true,
+        "minimum_forced_intersection": 28,
+        "q_out": 2
+      },
+      {
+        "bezout_intersection": 36,
+        "fixed_point_floors": {
+          "0": 54,
+          "1": 53,
+          "2": 52
+        },
+        "impossible": true,
+        "minimum_forced_intersection": 52,
+        "q_out": 3
+      },
+      {
+        "bezout_intersection": 64,
+        "fixed_point_floors": {
+          "0": 80,
+          "1": 78,
+          "2": 76
+        },
+        "impossible": true,
+        "minimum_forced_intersection": 76,
+        "q_out": 4
+      },
+      {
+        "bezout_intersection": 100,
+        "fixed_point_floors": {
+          "0": 106,
+          "1": 103,
+          "2": 100
+        },
+        "impossible": false,
+        "minimum_forced_intersection": 100,
+        "q_out": 5
+      },
+      {
+        "bezout_intersection": 144,
+        "fixed_point_floors": {
+          "0": 132,
+          "1": 128,
+          "2": 124
+        },
+        "impossible": false,
+        "minimum_forced_intersection": 124,
+        "q_out": 6
+      },
+      {
+        "bezout_intersection": 196,
+        "fixed_point_floors": {
+          "0": 158,
+          "1": 153,
+          "2": 148
+        },
+        "impossible": false,
+        "minimum_forced_intersection": 148,
+        "q_out": 7
+      },
+      {
+        "bezout_intersection": 256,
+        "fixed_point_floors": {
+          "0": 184,
+          "1": 178,
+          "2": 172
+        },
+        "impossible": false,
+        "minimum_forced_intersection": 172,
+        "q_out": 8
+      },
+      {
+        "bezout_intersection": 324,
+        "fixed_point_floors": {
+          "0": 210,
+          "1": 203,
+          "2": 196
+        },
+        "impossible": false,
+        "minimum_forced_intersection": 196,
+        "q_out": 9
+      },
+      {
+        "bezout_intersection": 400,
+        "fixed_point_floors": {
+          "0": 236,
+          "1": 228,
+          "2": 220
+        },
+        "impossible": false,
+        "minimum_forced_intersection": 220,
+        "q_out": 10
+      }
+    ],
+    "q5_anti_invariant_bidegree": [
+      5,
+      4
+    ],
+    "q5_branch_status": "EXCLUDED",
+    "q5_common_fixed_source_set_size": 5,
+    "q5_double_pole_label_count": 2,
+    "q5_graph_component_allowed": false,
+    "q5_invariant_bidegree": [
+      5,
+      5
+    ],
+    "q5_off_source_intersection_degree": 0,
+    "q5_quotient_resultant_degree": 45,
+    "q5_quotient_resultant_multiplicities": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5
+    ],
+    "q5_remaining_component_partitions": [
+      [
+        5
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "q5_remaining_source_set_size": 5,
+    "q5_requires_both_fixed_points_as_double_coordinate_poles": true,
+    "q5_residual_anti_invariant_bidegree": [
+      3,
+      4
+    ],
+    "q5_residual_resultant_degree": 35,
+    "q5_residual_resultant_multiplicities": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "q5_source_derivative_contradiction": true,
+    "q5_source_resultant_degree": 100,
+    "q5_source_resultant_multiplicities": [
+      10,
+      10,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "q5_total_bezout_intersection": 100,
+    "q6_exact_resultant_correction_degree_by_s": {
+      "0": 6,
+      "1": 5,
+      "2": 4,
+      "3": 3,
+      "4": 2,
+      "5": 1,
+      "6": 0
+    },
+    "q6_exact_resultant_correction_divisor": true,
+    "q6_excluded_invariant_coordinate_counts": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "q6_fixed_coordinate_pole_horizontal_factor": true,
+    "q6_graph_branch_fixed_coordinate_poles": 0,
+    "q6_graph_branch_initial_slack_cap": 12,
+    "q6_graph_branch_invariant_coordinate_count_maximum": 5,
+    "q6_graph_cross_incidence_bounds_by_s": {
+      "0": [
+        4,
+        9
+      ],
+      "1": [
+        4,
+        8
+      ],
+      "2": [
+        4,
+        7
+      ],
+      "3": [
+        4,
+        6
+      ],
+      "4": [
+        4,
+        5
+      ],
+      "5": [
+        4,
+        4
+      ]
+    },
+    "q6_graph_free_component_partitions": [
+      [
+        6
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        2,
+        2,
+        2
+      ]
+    ],
+    "q6_graph_remaining_invariant_coordinate_counts": [
+      0,
+      1
+    ],
+    "q6_graph_s5_cross_incidence": 4,
+    "q6_graph_s5_only_residual_quotient_source": "graph_rotation_orbit",
+    "q6_graph_s5_packet_possible": false,
+    "q6_invariant_coordinate_count_maximum": 6,
+    "q6_odd_factor_bidegree": [
+      "6-s",
+      5
+    ],
+    "q6_quotient_pole_capacity_margins_by_s": {
+      "2": 2,
+      "3": 9,
+      "4": 16,
+      "5": 23
+    },
+    "q6_quotient_resultant_residual_caps_by_s": {
+      "0": 6,
+      "1": 5,
+      "2": 4,
+      "3": 3,
+      "4": 2,
+      "5": 1,
+      "6": 0
+    },
+    "q6_remaining_invariant_coordinate_counts": [
+      0,
+      1,
+      6
+    ],
+    "q6_s1_fixed_coordinate_pole_allowed": false,
+    "q6_s6_complementary_pole_graph_diagonal_edges": 0,
+    "q6_s6_complementary_pole_graph_left_degree": 2,
+    "q6_s6_complementary_pole_graph_right_degree": 2,
+    "q6_s6_component_correction_status": "OPEN",
+    "q6_s6_component_edge_color_multiplicity_formula": "2*u",
+    "q6_s6_distinct_split_fibers_per_pencil_maximum": 10,
+    "q6_s6_horizontal_factor_degree": 5,
+    "q6_s6_horizontal_factor_source_pole_roots": 5,
+    "q6_s6_horizontal_fiber_classes": {
+      "K_pullback_degree": 10,
+      "eta_pullback_degree": 2,
+      "exchange_distinct_parameter_points": 12,
+      "ramification_allowed_over_K_eta": true
+    },
+    "q6_s6_horizontal_source_poles_in_label_intersection": 5,
+    "q6_s6_invariant_coordinate_eigenspace": "positive",
+    "q6_s6_invariant_label_count": 6,
+    "q6_s6_invariant_source_fiber_label_count": 6,
+    "q6_s6_invariant_source_label_symmetric_difference_maximum": 2,
+    "q6_s6_pole_cycle_component_compatibility": "OPEN",
+    "q6_s6_pole_cycle_half_length_partitions": [
+      [
+        6
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        2,
+        2,
+        2
+      ]
+    ],
+    "q6_s6_rectangular_grid_normal_form": true,
+    "q6_s6_residual_quotient_degree": 0,
+    "q6_s6_resultant_degree": 30,
+    "q6_s6_resultant_multiplicity_per_label": 5,
+    "q6_s6_resultant_source_labels": 6,
+    "q6_s6_saturated_pencil_partitions_active_domain": true,
+    "q6_s6_source_facet_common_size": 5,
+    "q6_s6_source_facet_exchange_size": 1,
+    "q6_s6_source_facet_matching_size": 6,
+    "q6_s6_split_fiber_occurrence_multiplicity_maximum": 22,
+    "q6_s6_split_pencil_common_core_degree": 5,
+    "q6_s6_split_pencil_one_sided_degree": 6,
+    "q6_s6_split_pencil_pair_count": 60,
+    "q6_s6_split_pencil_scalar_excludes": [
+      0,
+      1
+    ],
+    "q6_s6_split_pencil_source_locator_degree": 6,
+    "q6_sharp_global_residual_caps_by_s": {
+      "0": 12,
+      "1": 10,
+      "2": 8,
+      "3": 6,
+      "4": 4,
+      "5": 2,
+      "6": 0
+    },
+    "q6_total_bezout_intersection": 144,
+    "q6_weaker_pre_derivative_forced_floors_by_r": {
+      "0": 132,
+      "1": 128,
+      "2": 124
+    },
+    "q6_weaker_pre_derivative_slack_caps_by_r": {
+      "0": 12,
+      "1": 16,
+      "2": 20
+    },
+    "remaining_q": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "sharpened_intersection_floor_formula": "26*Q-24+2*s",
+    "source_derivative_excluded_q": [
+      5
+    ],
+    "source_factor_residual_formula": "2*Q^2-13*Q+12-s"
+  },
+  "payload_sha256": "396697687aa5baf19d8114b20858d4500b119c078f5f128b6c0e207ec8ff50bb",
+  "payment": "NONE",
+  "q1_cycle_ledger": {
+    "allowed_orders": [
+      2,
+      3,
+      4,
+      6,
+      12
+    ],
+    "canonical_fixture_full_residue_orders": [
+      3
+    ],
+    "flow_identity_checks": 15,
+    "full_nonzero_residue_classification": "OPEN",
+    "ledgers": [
+      {
+        "cycle_length": 2,
+        "dihedral_order": 4,
+        "n": 2,
+        "outer_poles": 6,
+        "outer_zeros": 30,
+        "source_cycles": 6
+      },
+      {
+        "cycle_length": 3,
+        "dihedral_order": 6,
+        "n": 3,
+        "outer_poles": 4,
+        "outer_zeros": 20,
+        "source_cycles": 4
+      },
+      {
+        "cycle_length": 4,
+        "dihedral_order": 8,
+        "n": 4,
+        "outer_poles": 3,
+        "outer_zeros": 15,
+        "source_cycles": 3
+      },
+      {
+        "cycle_length": 6,
+        "dihedral_order": 12,
+        "n": 6,
+        "outer_poles": 2,
+        "outer_zeros": 10,
+        "source_cycles": 2
+      },
+      {
+        "cycle_length": 12,
+        "dihedral_order": 24,
+        "n": 12,
+        "outer_poles": 1,
+        "outer_zeros": 5,
+        "source_cycles": 1
+      }
+    ],
+    "residue_formula_checks": 60
+  },
+  "q6_s6_component_correction": {
+    "algebraic_realizability_claimed": false,
+    "component_edge_color_counts": [
+      8,
+      4
+    ],
+    "component_first_degrees": [
+      4,
+      2
+    ],
+    "cycle_monochromatic": false,
+    "fixture_sha256": "5ac76bee3e64e4cdac1e17772b1a97995e489ae19b5f5d31d7d039cbafe6a1e5",
+    "left_color_transitions": 4,
+    "off_diagonal_migration": 4,
+    "pole_cycle_half_lengths": [
+      6
+    ],
+    "right_color_transitions": 4,
+    "transport_total_per_right_vertex": 5
+  },
+  "seed": 20260726,
+  "split_model": {
+    "active_roots": 8,
+    "graph_divides_identity": true,
+    "parameters": 16,
+    "pullback_identity_exact": true,
+    "synthetic_division_exact": true,
+    "vertex_formula_incidence_checks": 32
+  },
+  "tamper_mutations_rejected": 21,
+  "theorem_status": {
+    "block_coordinates_4_2": "PROVED",
+    "block_distinctness_4_4": "PROVED",
+    "bounded_self_correspondence_lift_9_5": "PROVED",
+    "cleaned_identity_3_1": "PROVED",
+    "component_law_7_1": "PROVED",
+    "descent_dichotomy_9_3": "PROVED",
+    "facet_collinearity_5_1": "PROVED",
+    "fixed_pole_odd_even_proportionality_9_18": "PROVED",
+    "invariant_coordinate_source_factor_9_19": "PROVED",
+    "one_triangle_target": "OPEN",
+    "pdcec": "OPEN",
+    "pencil_refinement_5_2": "PROVED",
+    "q1_coordinate_pencil_exclusion_9_12": "PROVED",
+    "q1_dihedral_factor_9_9": "PROVED",
+    "q1_residue_classification": "OPEN",
+    "q1_source_cycle_residue_9_10": "PROVED",
+    "q2_q4_outgoing_conjugate_exclusion_9_13": "PROVED",
+    "q5_exact_resultant_packet_9_14": "PROVED",
+    "q5_graph_component_exclusion_9_16": "PROVED",
+    "q5_invariant_anti_invariant_normal_form_9_15": "PROVED",
+    "q5_source_derivative_exclusion_9_17": "PROVED",
+    "q6_component_classification": "OPEN",
+    "q6_graph_cross_capacity_9_22": "PROVED",
+    "q6_intersection_budget": "PROVED",
+    "q6_low_degree_component_interpolation": "OPEN",
+    "q6_quotient_pole_capacity_9_23": "PROVED",
+    "q6_resultant_compression_9_20": "PROVED",
+    "q6_s6_component_edge_coloring_9_28": "PROVED",
+    "q6_s6_fixed_split_pencil_star_9_24": "PROVED",
+    "q6_s6_numeric_compatibility_route_cut_9_29": "PROVED",
+    "q6_s6_pencil_capacity_pole_cycles_9_26": "PROVED",
+    "q6_s6_rectangular_grid_9_21": "PROVED",
+    "q6_s6_source_facet_deck_9_27": "PROVED",
+    "q6_s6_source_label_near_coincidence_9_25": "PROVED",
+    "quadratic_descent_9_2": "PROVED",
+    "separation_4_1": "PROVED",
+    "sharpened_intersection_bound_9_19": "PROVED",
+    "two_template_collapse_6_1_6_2": "PROVED",
+    "uniform_deck_pair_intersection_9_7": "PROVED",
+    "vertex_formula_8_1": "PROVED"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "a12_ledger": [
+    {
+      "R": 65,
+      "deficit_at_h_max": 39,
+      "deficit_at_h_min": 772509,
+      "distinct_vertex_floor": 4,
+      "forced_min_weight_at_h_max": 1180920,
+      "forced_min_weight_at_h_min": 394145,
+      "h_max": 132382,
+      "h_min": 118077,
+      "residual_budget_at_h_max": 171661
+    },
+    {
+      "R": 66,
+      "deficit_at_h_max": 0,
+      "deficit_at_h_min": 586960,
+      "distinct_vertex_floor": 5,
+      "forced_min_weight_at_h_max": 1177326,
+      "forced_min_weight_at_h_min": 579694,
+      "h_max": 128749,
+      "h_min": 118077,
+      "residual_budget_at_h_max": 128065
+    },
+    {
+      "R": 67,
+      "deficit_at_h_max": 3,
+      "deficit_at_h_min": 401411,
+      "distinct_vertex_floor": 7,
+      "forced_min_weight_at_h_max": 1173819,
+      "forced_min_weight_at_h_min": 765243,
+      "h_max": 125245,
+      "h_min": 118077,
+      "residual_budget_at_h_max": 86017
+    },
+    {
+      "R": 68,
+      "deficit_at_h_max": 3,
+      "deficit_at_h_min": 215862,
+      "distinct_vertex_floor": 9,
+      "forced_min_weight_at_h_max": 1170438,
+      "forced_min_weight_at_h_min": 950792,
+      "h_max": 121864,
+      "h_min": 118077,
+      "residual_budget_at_h_max": 45445
+    },
+    {
+      "R": 69,
+      "deficit_at_h_max": 37,
+      "deficit_at_h_min": 30313,
+      "distinct_vertex_floor": 10,
+      "forced_min_weight_at_h_max": 1167139,
+      "forced_min_weight_at_h_min": 1136341,
+      "h_max": 118599,
+      "h_min": 118077,
+      "residual_budget_at_h_max": 6265
+    }
+  ],
+  "claims": {
+    "cap_68": "OPEN",
+    "mds_deficit": "(a-1)J-(R-a+1)(c+h)",
+    "one_step_expansion_dimension": "a+1",
+    "regular_code": "weighted GRS_a",
+    "regular_dimension": "a"
+  },
+  "constants": {
+    "J": 981105,
+    "a": 12,
+    "c": 67472,
+    "h_min": 118077
+  },
+  "finite_grs_regression": {
+    "R": 9,
+    "a": 5,
+    "combined_rank": 5,
+    "expanded_rank": 6,
+    "field": 101,
+    "grs_rank": 5,
+    "locator_rank": 5,
+    "pass": true
+  },
+  "payload_sha256": "30d0988909dbe022bb7df078e601fc36ec22fd4d17192789baaae1ad58349f2a",
+  "status": "PROVED_REDUCTION_OPEN_FINAL_CAP"
+}

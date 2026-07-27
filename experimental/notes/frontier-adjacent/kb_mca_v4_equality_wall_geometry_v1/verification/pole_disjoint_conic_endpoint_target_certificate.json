@@ -1,0 +1,55 @@
+{
+  "claims": {
+    "design_implies_two_templates": "FALSE",
+    "endpoint_1_design": "PROVED_UPSTREAM",
+    "endpoint_identity": "PROVED_UPSTREAM",
+    "same_record_owner_payment": "OPEN",
+    "source_coupled_endpoint_classification": "OPEN"
+  },
+  "design_only_counterexample": {
+    "block_size": 11,
+    "blocks": 120,
+    "construction": "translates_of_{0,...,10}_and_{0,2,...,20}_mod_60",
+    "contains_canonical_facet_family": false,
+    "maximum_ten_intersection_clique": 2,
+    "points": 60,
+    "replication_max": 22,
+    "replication_min": 22
+  },
+  "endpoint_arithmetic": {
+    "a": 12,
+    "active_roots": 60,
+    "coordinate_pole_degree": 24,
+    "inactive_roots": 9,
+    "locator_degree": 11,
+    "postcritical_degree": 59,
+    "quotient_lambda_degree": 98,
+    "quotient_t_degree": 58,
+    "regular_roots": 69,
+    "remainder_degree": 9,
+    "selected_parameters": 120,
+    "total_incidence": 1320,
+    "vertical_degree": 22
+  },
+  "expected_two_template_model": {
+    "block_size": 11,
+    "blocks": 120,
+    "facet_groups": 10,
+    "maximum_ten_intersection_clique": 12,
+    "points": 60,
+    "replication_max": 22,
+    "replication_min": 22
+  },
+  "payload_sha256": "b5dee1e7a6849c3cfe4656ae68259b24c56a3ecd2d1bc0e69e14ac7a78156048",
+  "small_analogue": {
+    "a": 4,
+    "active_roots": 8,
+    "block_size": 3,
+    "blocks": 16,
+    "inactive_roots": 1,
+    "q": 2,
+    "replication": 6,
+    "selected_roots": 9
+  },
+  "status": "TARGET_OPEN_DESIGN_ONLY_ROUTE_CUT_PROVED"
+}

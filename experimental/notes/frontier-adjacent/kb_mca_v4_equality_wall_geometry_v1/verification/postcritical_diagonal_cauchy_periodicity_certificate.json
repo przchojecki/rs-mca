@@ -1,0 +1,160 @@
+{
+  "boundary_convolution_ranks": [
+    {
+      "rank": 5,
+      "s": 2,
+      "source_dimension": 5,
+      "target_dimension": 5
+    },
+    {
+      "rank": 6,
+      "s": 3,
+      "source_dimension": 6,
+      "target_dimension": 10
+    },
+    {
+      "rank": 7,
+      "s": 4,
+      "source_dimension": 7,
+      "target_dimension": 15
+    },
+    {
+      "rank": 8,
+      "s": 5,
+      "source_dimension": 8,
+      "target_dimension": 20
+    },
+    {
+      "rank": 9,
+      "s": 6,
+      "source_dimension": 9,
+      "target_dimension": 25
+    },
+    {
+      "rank": 10,
+      "s": 7,
+      "source_dimension": 10,
+      "target_dimension": 30
+    }
+  ],
+  "claims": {
+    "a12_R69_generic_overload": "IMPOSSIBLE",
+    "a14_R67_R68_R69_generic_overload": "IMPOSSIBLE",
+    "active_owner_payment": "NONE",
+    "cap_68": "OPEN",
+    "common_root_same_record_adapter": "OPEN",
+    "coordinate_ratio_same_record_adapter": "OPEN",
+    "diagonal_cauchy_periodicity": "PROVED",
+    "full_rank_boundary_injectivity": "PROVED",
+    "selected_grid_section": "PROVED",
+    "subcritical_cohomology_vanishing": "PROVED"
+  },
+  "finite_field_regression": {
+    "a": 5,
+    "coefficient_columns": [
+      [
+        48,
+        91,
+        71,
+        61,
+        37
+      ],
+      [
+        76,
+        61,
+        4,
+        71,
+        82
+      ],
+      [
+        49,
+        100,
+        37,
+        79,
+        9
+      ],
+      [
+        62,
+        17,
+        93,
+        91,
+        75
+      ],
+      [
+        74,
+        4,
+        40,
+        72,
+        47
+      ]
+    ],
+    "coefficient_rank": 5,
+    "diagonal_nonzero_count": 5,
+    "local_transverse_count": 20,
+    "n": 4,
+    "off_diagonal_zero_count": 20,
+    "poles": [
+      13,
+      17,
+      23,
+      29,
+      31
+    ],
+    "prime": 101,
+    "sources": [
+      1,
+      2,
+      4,
+      7,
+      11
+    ]
+  },
+  "koalabear_rows": [
+    {
+      "R": 69,
+      "a": 12,
+      "minimum_overload": 61,
+      "n": 11,
+      "periods_removed": 5,
+      "reduced_first_degree": 9,
+      "reduced_second_degree_max": -1,
+      "reduced_second_degree_min": -9,
+      "vanishing_branch": "KUNNETH_VANISHING"
+    },
+    {
+      "R": 67,
+      "a": 14,
+      "minimum_overload": 57,
+      "n": 13,
+      "periods_removed": 4,
+      "reduced_first_degree": 11,
+      "reduced_second_degree_max": -1,
+      "reduced_second_degree_min": -11,
+      "vanishing_branch": "KUNNETH_VANISHING"
+    },
+    {
+      "R": 68,
+      "a": 14,
+      "minimum_overload": 58,
+      "n": 13,
+      "periods_removed": 4,
+      "reduced_first_degree": 12,
+      "reduced_second_degree_max": -2,
+      "reduced_second_degree_min": -12,
+      "vanishing_branch": "KUNNETH_VANISHING"
+    },
+    {
+      "R": 69,
+      "a": 14,
+      "minimum_overload": 59,
+      "n": 13,
+      "periods_removed": 4,
+      "reduced_first_degree": 13,
+      "reduced_second_degree_max": -3,
+      "reduced_second_degree_min": -13,
+      "vanishing_branch": "FULL_COEFFICIENT_RANK_INJECTIVITY"
+    }
+  ],
+  "payload_sha256": "135c2ba5887e72a759daf26fcb254706990c5b69037ede85ce8c175724e4e302",
+  "status": "PROVED_GENERIC_NONCANONICAL_OVERLOAD_EXCLUSION_SEMANTIC_PRECURSOR_ADAPTERS_OPEN"
+}

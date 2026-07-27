@@ -1,0 +1,119 @@
+{
+  "claims": {
+    "active_owner": "NONE",
+    "cap_68": "OPEN",
+    "coordinate_orbit_of_one_minor": "CUT",
+    "cremona_star_hypercohomology_equivalence": "PROVED_IN_NOTE",
+    "critical_kernel_identity": "PROVED",
+    "hilbert_support_inequality": "PROVED_IN_NOTE",
+    "known_block_line_planted_branch": "PROVED_SEPARATELY",
+    "koalabear_postcritical_interpolation": "OPEN",
+    "selected_record_semantic_or_interpolation": "OPEN",
+    "single_fixed_minor_strategy": "CUT",
+    "universal_postcritical_interpolation": "FALSE"
+  },
+  "critical_kernel_cases": [
+    {
+      "R": 6,
+      "a": 3,
+      "critical_defect": 1,
+      "critical_degree": 4,
+      "critical_rank": 14,
+      "kernel_identity": "PASS",
+      "point_count": 15,
+      "postcritical_defect": 0,
+      "postcritical_rank": 15,
+      "prime": 11,
+      "simultaneous_coordinate_kernel_dimension": 0
+    },
+    {
+      "R": 8,
+      "a": 4,
+      "critical_defect": 4,
+      "critical_degree": 5,
+      "critical_rank": 52,
+      "kernel_identity": "PASS",
+      "point_count": 56,
+      "postcritical_defect": 1,
+      "postcritical_rank": 55,
+      "prime": 13,
+      "simultaneous_coordinate_kernel_dimension": 1
+    }
+  ],
+  "fixed_minor_route_cut": [
+    {
+      "R": 6,
+      "a": 3,
+      "coordinate_minor_orbit_size": 3,
+      "first_orbit_failure": {
+        "best_rank": 14,
+        "selected": [
+          3,
+          4,
+          6,
+          7,
+          9,
+          10
+        ],
+        "sources": [
+          0,
+          1,
+          2
+        ]
+      },
+      "fixed_minor_failures_seen": 20,
+      "full_postcritical_defect": 0,
+      "full_postcritical_rank": 15,
+      "interpretation": "FIXED_MINOR_ORBIT_ROUTE_CUT",
+      "point_count": 15,
+      "prime": 11,
+      "status": "COORDINATE_ORBIT_FAILS",
+      "tested_until_three_orbit_failures": 237
+    },
+    {
+      "R": 8,
+      "a": 4,
+      "coordinate_minor_orbit_size": 12,
+      "first_orbit_failure": {
+        "best_rank": 55,
+        "selected": [
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12
+        ],
+        "sources": [
+          0,
+          1,
+          2,
+          5
+        ]
+      },
+      "fixed_minor_failures_seen": 14,
+      "full_postcritical_defect": 1,
+      "full_postcritical_rank": 55,
+      "interpretation": "GENUINE_PRCI_COUNTEREXAMPLE",
+      "point_count": 56,
+      "prime": 13,
+      "status": "COORDINATE_ORBIT_FAILS",
+      "tested_until_three_orbit_failures": 99
+    }
+  ],
+  "payload_sha256": "76e169088a7bdca2f7521a6428a94c9837b843421d33b35dbcf8dd23c06bf198",
+  "star_resolution": {
+    "d_range_rule": "n <= d <= 60",
+    "hilbert_identities_checked": 10160,
+    "maximum_betti_number_checked": 16397985361255383600,
+    "n_range": [
+      1,
+      16
+    ],
+    "parameter_pairs": 840,
+    "status": "PASS"
+  },
+  "status": "PROVED_REDUCTIONS_ROUTE_CUT_PRCI_OPEN"
+}

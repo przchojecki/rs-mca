@@ -1,0 +1,124 @@
+{
+  "finite_regression": {
+    "carrier_roots": [
+      49,
+      100,
+      16,
+      75,
+      70
+    ],
+    "carrier_rows": [
+      {
+        "complement_zero_indices": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "incidence": [
+          0
+        ],
+        "m": 1,
+        "x": 49
+      },
+      {
+        "complement_zero_indices": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "incidence": [
+          1
+        ],
+        "m": 1,
+        "x": 100
+      },
+      {
+        "complement_zero_indices": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "incidence": [
+          2
+        ],
+        "m": 1,
+        "x": 16
+      },
+      {
+        "complement_zero_indices": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "incidence": [
+          3
+        ],
+        "m": 1,
+        "x": 75
+      },
+      {
+        "complement_zero_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "incidence": [
+          4
+        ],
+        "m": 1,
+        "x": 70
+      }
+    ],
+    "descended_t_degree": 0,
+    "field": 101,
+    "interpolant_t_degree": 4,
+    "pass": true,
+    "selected_parameters": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "source_point": 50,
+    "source_quotient_degree": 3
+  },
+  "payload_sha256": "528cec0b3b74ca9eb2c3c47a4887ec8c7b679204707b5acec91742de45d009fc",
+  "resultant_budget_ledger": [
+    {
+      "carrier_size": 1166654,
+      "h": 118077,
+      "locator_degree": 185549,
+      "mds_deficit": 30313,
+      "resultant_degree_bound": 12833195,
+      "resultant_excess": 30314,
+      "selected_incidences": 12802881,
+      "source_budget": 1
+    },
+    {
+      "carrier_size": 1167176,
+      "h": 118599,
+      "locator_degree": 186071,
+      "mds_deficit": 37,
+      "resultant_degree_bound": 12845201,
+      "resultant_excess": 6302,
+      "selected_incidences": 12838899,
+      "source_budget": 6265
+    }
+  ],
+  "status": "PROVED_REDUCTION_OPEN_CAP",
+  "theorem": {
+    "active_owner": "NONE",
+    "cap_68": "OPEN",
+    "identity": "Pbar*Q-lambda*R_U=H_T*Lambda_Sigma*S",
+    "minimum_row": "eta=0 implies deg A=0 and deg B<=a-2",
+    "resultant_excess": "deg_X Res_t(Pbar,C)-R*D <= Delta_R+B_a(h)",
+    "t_degree": "deg_t S <= a-2",
+    "x_degree": "deg_X S <= n-s-1"
+  }
+}

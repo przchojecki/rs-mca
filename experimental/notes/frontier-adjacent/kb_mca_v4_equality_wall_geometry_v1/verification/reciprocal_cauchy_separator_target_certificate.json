@@ -1,0 +1,101 @@
+{
+  "claims": {
+    "a12_R69_conditional_reduction": "PROVED",
+    "active_owner": "NONE",
+    "cap_68": "OPEN",
+    "degree_d_unisolvence": "FALSE_IN_TESTED_GENERIC_CASES",
+    "reciprocal_cauchy_separation": "OPEN",
+    "separator_implication": "PROVED"
+  },
+  "field": 1000003,
+  "finite_profiles": [
+    {
+      "R": 6,
+      "a": 3,
+      "degree": 4,
+      "interpolation_defect": 1,
+      "interpolation_rank": 14,
+      "off_point_count": 5,
+      "off_point_rank_gain": 5,
+      "point_count": 15,
+      "separator_defect": 0,
+      "separator_rank": 15
+    },
+    {
+      "R": 7,
+      "a": 3,
+      "degree": 5,
+      "interpolation_defect": 0,
+      "interpolation_rank": 21,
+      "off_point_count": 5,
+      "off_point_rank_gain": 5,
+      "point_count": 21,
+      "separator_defect": 0,
+      "separator_rank": 21
+    },
+    {
+      "R": 8,
+      "a": 4,
+      "degree": 5,
+      "interpolation_defect": 2,
+      "interpolation_rank": 54,
+      "off_point_count": 5,
+      "off_point_rank_gain": 5,
+      "point_count": 56,
+      "separator_defect": 0,
+      "separator_rank": 56
+    },
+    {
+      "R": 9,
+      "a": 4,
+      "degree": 6,
+      "interpolation_defect": 7,
+      "interpolation_rank": 77,
+      "off_point_count": 5,
+      "off_point_rank_gain": 5,
+      "point_count": 84,
+      "separator_defect": 0,
+      "separator_rank": 84
+    },
+    {
+      "R": 10,
+      "a": 5,
+      "degree": 6,
+      "interpolation_defect": 3,
+      "interpolation_rank": 207,
+      "off_point_count": 5,
+      "off_point_rank_gain": 5,
+      "point_count": 210,
+      "separator_defect": 0,
+      "separator_rank": 210
+    },
+    {
+      "R": 11,
+      "a": 5,
+      "degree": 7,
+      "interpolation_defect": 20,
+      "interpolation_rank": 310,
+      "off_point_count": 5,
+      "off_point_rank_gain": 5,
+      "point_count": 330,
+      "separator_defect": 0,
+      "separator_rank": 330
+    }
+  ],
+  "koalabear_conditional_arithmetic": {
+    "conditional_closed_count": 240,
+    "conditional_closed_max": 118316,
+    "conditional_closed_min": 118077,
+    "endpoint_bezout_cap": 995271,
+    "endpoint_cremona_degree": 16869,
+    "endpoint_margin": 141070,
+    "endpoint_minimum_rows": 1136341,
+    "h_max": 118599,
+    "h_min": 118077,
+    "remaining_count": 283,
+    "remaining_max": 118599,
+    "remaining_min": 118317
+  },
+  "payload_sha256": "54858d14c8d7699114f856dacae5281988024e1de5486d50b7d337ad968cbd2a",
+  "status": "EXPERIMENTAL_RCS_OPEN_CONDITIONAL_REDUCTION_PROVED"
+}

@@ -1,0 +1,18 @@
+{
+  "agreement": 1116048,
+  "architecture": "normalized Q=6,u=2 equality-wall geometry",
+  "atom_or_cell": "normalized fixed-domain rank-16 equality-wall branch",
+  "b_star": "274980728111395087",
+  "direct_statement": "Reduce the normalized fixed-domain branch to the Q=6,u=2 plane/conic/quartic image-degree split.",
+  "impact": "ROUTE_REDUCTION_ONLY",
+  "object": "MCA",
+  "parent_branch": "review/kb-equality-wall-normalization-v4",
+  "parent_commit": "065f347a96c91ade7d80df8bf324f646329c623e",
+  "partition_digest": null,
+  "partition_digest_reason": "This is a local reduction inside the inherited declared residual.",
+  "projection_and_unit": "distinct affine bad slopes per received line",
+  "quantifier": "Every packet admitted by the parent normalization theorem.",
+  "row": "KoalaBear MCA at 2^-128",
+  "status": "PROVED_LOCAL_REDUCTION",
+  "workboard_item": "K3"
+}

@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "R": 4,
+      "a": 3,
+      "point_count": 6,
+      "prime": 7,
+      "status": "EXHAUSTIVE_NO_COUNTEREXAMPLE",
+      "tested": 35
+    },
+    {
+      "R": 5,
+      "a": 3,
+      "point_count": 10,
+      "prime": 11,
+      "status": "EXHAUSTIVE_NO_COUNTEREXAMPLE",
+      "tested": 9240
+    },
+    {
+      "R": 6,
+      "a": 4,
+      "point_count": 20,
+      "prime": 11,
+      "status": "EXHAUSTIVE_NO_COUNTEREXAMPLE",
+      "tested": 2310
+    },
+    {
+      "R": 7,
+      "a": 4,
+      "point_count": 35,
+      "prime": 11,
+      "status": "EXHAUSTIVE_NO_COUNTEREXAMPLE",
+      "tested": 330
+    },
+    {
+      "R": 8,
+      "a": 5,
+      "point_count": 70,
+      "prime": 13,
+      "status": "EXHAUSTIVE_NO_COUNTEREXAMPLE",
+      "tested": 1287
+    }
+  ],
+  "claim": {
+    "finite_counterexample": "NONE_IN_PRINTED_CASES",
+    "known_block_line_planted_branch": "PROVED_SEPARATELY",
+    "koalabear_postcritical_surjectivity": "OPEN",
+    "selected_record_semantic_or_interpolation": "OPEN",
+    "universal_postcritical_surjectivity": "FALSE"
+  },
+  "payload_sha256": "f5cab337274eec4b5b8c928ad91bd5984b07628d781bdb3732c58fdd6f08a8a5",
+  "status": "FINITE_EXHAUSTIVE_EVIDENCE_ONLY_KPRCI_OPEN_UNIVERSAL_FALSE",
+  "total_configurations": 13202
+}

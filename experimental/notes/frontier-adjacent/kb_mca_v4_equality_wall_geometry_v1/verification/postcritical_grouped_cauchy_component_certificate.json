@@ -1,0 +1,1182 @@
+{
+  "claims": {
+    "active_owner_payment": "NONE_NEEDED_FOR_LINE_BRANCH",
+    "boundary_injectivity": "PROVED",
+    "common_root_overload": "IMPOSSIBLE",
+    "common_vertical_factor_removal": "PROVED",
+    "complete_line_branch": "CLOSED",
+    "conic_cubic_large_circuit_branches": "OPEN",
+    "coordinate_ratio_overload": "IMPOSSIBLE",
+    "effective_source_pole_period": "PROVED",
+    "generic_overload": "IMPOSSIBLE",
+    "grouped_cauchy_normal_form": "PROVED",
+    "selected_grid_section": "PROVED",
+    "subcritical_vanishing": "PROVED"
+  },
+  "finite_field_grouped_fixture": {
+    "a": 6,
+    "b": 2,
+    "coefficient_rank": 2,
+    "common_root": 10,
+    "d": 1,
+    "effective_divisor_degree": 2,
+    "group_polynomials": [
+      [
+        1,
+        28,
+        39,
+        12,
+        38,
+        85
+      ],
+      [
+        61,
+        28,
+        66,
+        69,
+        8,
+        71
+      ]
+    ],
+    "group_weights": [
+      [
+        1,
+        1,
+        51
+      ],
+      [
+        1,
+        1,
+        31
+      ]
+    ],
+    "groups": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ]
+    ],
+    "off_block_checks": 6,
+    "poles": [
+      20,
+      30
+    ],
+    "prime": 101,
+    "quotient_polynomials": [
+      [
+        10,
+        79,
+        4,
+        80,
+        85
+      ],
+      [
+        4,
+        38,
+        78,
+        11,
+        71
+      ]
+    ],
+    "sources": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "u": 4,
+    "v": 1
+  },
+  "koalabear_rows": [
+    {
+      "R": 69,
+      "a": 12,
+      "case_count": 23,
+      "cases": [
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 10,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 51,
+          "u": 11,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 9,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 46,
+          "u": 11,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 41,
+          "u": 11,
+          "v": 3
+        },
+        {
+          "b": 5,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 7,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 36,
+          "u": 11,
+          "v": 4
+        },
+        {
+          "b": 6,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 31,
+          "u": 11,
+          "v": 5
+        },
+        {
+          "b": 7,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 5,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 26,
+          "u": 11,
+          "v": 6
+        },
+        {
+          "b": 8,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 21,
+          "u": 11,
+          "v": 7
+        },
+        {
+          "b": 9,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 3,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 16,
+          "u": 11,
+          "v": 8
+        },
+        {
+          "b": 10,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 11,
+          "u": 11,
+          "v": 9
+        },
+        {
+          "b": 11,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 1,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 6,
+          "u": 11,
+          "v": 10
+        },
+        {
+          "b": 12,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 1,
+          "u": 11,
+          "v": 11
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 51,
+          "u": 10,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 46,
+          "u": 10,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 41,
+          "u": 10,
+          "v": 3
+        },
+        {
+          "b": 5,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 36,
+          "u": 10,
+          "v": 4
+        },
+        {
+          "b": 6,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 31,
+          "u": 10,
+          "v": 5
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 7,
+          "reduced_negative_second_floor": 51,
+          "u": 9,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 3,
+          "reduced_first_degree": 7,
+          "reduced_negative_second_floor": 46,
+          "u": 9,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 7,
+          "reduced_negative_second_floor": 41,
+          "u": 9,
+          "v": 3
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 3,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 6,
+          "reduced_negative_second_floor": 51,
+          "u": 8,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 3,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 6,
+          "reduced_negative_second_floor": 46,
+          "u": 8,
+          "v": 2
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 4,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 5,
+          "reduced_negative_second_floor": 51,
+          "u": 7,
+          "v": 1
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 5,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 4,
+          "reduced_negative_second_floor": 51,
+          "u": 6,
+          "v": 1
+        }
+      ],
+      "minimum_overload": 61,
+      "minimum_reduced_negative_second_degree": 1,
+      "periods_removed": 5
+    },
+    {
+      "R": 67,
+      "a": 14,
+      "case_count": 27,
+      "cases": [
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 12,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 49,
+          "u": 13,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 11,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 45,
+          "u": 13,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 10,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 41,
+          "u": 13,
+          "v": 3
+        },
+        {
+          "b": 5,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 9,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 37,
+          "u": 13,
+          "v": 4
+        },
+        {
+          "b": 6,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 33,
+          "u": 13,
+          "v": 5
+        },
+        {
+          "b": 7,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 7,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 29,
+          "u": 13,
+          "v": 6
+        },
+        {
+          "b": 8,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 25,
+          "u": 13,
+          "v": 7
+        },
+        {
+          "b": 9,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 5,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 21,
+          "u": 13,
+          "v": 8
+        },
+        {
+          "b": 10,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 17,
+          "u": 13,
+          "v": 9
+        },
+        {
+          "b": 11,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 3,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 13,
+          "u": 13,
+          "v": 10
+        },
+        {
+          "b": 12,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 9,
+          "u": 13,
+          "v": 11
+        },
+        {
+          "b": 13,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 1,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 5,
+          "u": 13,
+          "v": 12
+        },
+        {
+          "b": 14,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 1,
+          "u": 13,
+          "v": 13
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 10,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 49,
+          "u": 12,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 45,
+          "u": 12,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 41,
+          "u": 12,
+          "v": 3
+        },
+        {
+          "b": 5,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 37,
+          "u": 12,
+          "v": 4
+        },
+        {
+          "b": 6,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 33,
+          "u": 12,
+          "v": 5
+        },
+        {
+          "b": 7,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 29,
+          "u": 12,
+          "v": 6
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 49,
+          "u": 11,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 5,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 45,
+          "u": 11,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 41,
+          "u": 11,
+          "v": 3
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 3,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 49,
+          "u": 10,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 3,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 45,
+          "u": 10,
+          "v": 2
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 4,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 7,
+          "reduced_negative_second_floor": 49,
+          "u": 9,
+          "v": 1
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 5,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 6,
+          "reduced_negative_second_floor": 49,
+          "u": 8,
+          "v": 1
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 6,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 5,
+          "reduced_negative_second_floor": 49,
+          "u": 7,
+          "v": 1
+        }
+      ],
+      "minimum_overload": 57,
+      "minimum_reduced_negative_second_degree": 1,
+      "periods_removed": 4
+    },
+    {
+      "R": 68,
+      "a": 14,
+      "case_count": 27,
+      "cases": [
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 12,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 50,
+          "u": 13,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 11,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 46,
+          "u": 13,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 10,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 42,
+          "u": 13,
+          "v": 3
+        },
+        {
+          "b": 5,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 9,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 38,
+          "u": 13,
+          "v": 4
+        },
+        {
+          "b": 6,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 34,
+          "u": 13,
+          "v": 5
+        },
+        {
+          "b": 7,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 7,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 30,
+          "u": 13,
+          "v": 6
+        },
+        {
+          "b": 8,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 26,
+          "u": 13,
+          "v": 7
+        },
+        {
+          "b": 9,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 5,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 22,
+          "u": 13,
+          "v": 8
+        },
+        {
+          "b": 10,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 18,
+          "u": 13,
+          "v": 9
+        },
+        {
+          "b": 11,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 3,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 14,
+          "u": 13,
+          "v": 10
+        },
+        {
+          "b": 12,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 10,
+          "u": 13,
+          "v": 11
+        },
+        {
+          "b": 13,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 1,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 6,
+          "u": 13,
+          "v": 12
+        },
+        {
+          "b": 14,
+          "branch": "KUNNETH_VANISHING",
+          "d": 0,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 2,
+          "u": 13,
+          "v": 13
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 10,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 50,
+          "u": 12,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 46,
+          "u": 12,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 42,
+          "u": 12,
+          "v": 3
+        },
+        {
+          "b": 5,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 38,
+          "u": 12,
+          "v": 4
+        },
+        {
+          "b": 6,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 34,
+          "u": 12,
+          "v": 5
+        },
+        {
+          "b": 7,
+          "branch": "KUNNETH_VANISHING",
+          "d": 1,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 30,
+          "u": 12,
+          "v": 6
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 50,
+          "u": 11,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 5,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 46,
+          "u": 11,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "KUNNETH_VANISHING",
+          "d": 2,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 42,
+          "u": 11,
+          "v": 3
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 3,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 50,
+          "u": 10,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "KUNNETH_VANISHING",
+          "d": 3,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 46,
+          "u": 10,
+          "v": 2
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 4,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 50,
+          "u": 9,
+          "v": 1
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 5,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 7,
+          "reduced_negative_second_floor": 50,
+          "u": 8,
+          "v": 1
+        },
+        {
+          "b": 2,
+          "branch": "KUNNETH_VANISHING",
+          "d": 6,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 6,
+          "reduced_negative_second_floor": 50,
+          "u": 7,
+          "v": 1
+        }
+      ],
+      "minimum_overload": 58,
+      "minimum_reduced_negative_second_degree": 2,
+      "periods_removed": 4
+    },
+    {
+      "R": 69,
+      "a": 14,
+      "case_count": 27,
+      "cases": [
+        {
+          "b": 2,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 12,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 51,
+          "u": 13,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 11,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 47,
+          "u": 13,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 10,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 43,
+          "u": 13,
+          "v": 3
+        },
+        {
+          "b": 5,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 9,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 39,
+          "u": 13,
+          "v": 4
+        },
+        {
+          "b": 6,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 35,
+          "u": 13,
+          "v": 5
+        },
+        {
+          "b": 7,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 7,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 31,
+          "u": 13,
+          "v": 6
+        },
+        {
+          "b": 8,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 27,
+          "u": 13,
+          "v": 7
+        },
+        {
+          "b": 9,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 5,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 23,
+          "u": 13,
+          "v": 8
+        },
+        {
+          "b": 10,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 19,
+          "u": 13,
+          "v": 9
+        },
+        {
+          "b": 11,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 3,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 15,
+          "u": 13,
+          "v": 10
+        },
+        {
+          "b": 12,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 11,
+          "u": 13,
+          "v": 11
+        },
+        {
+          "b": 13,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 1,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 7,
+          "u": 13,
+          "v": 12
+        },
+        {
+          "b": 14,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 0,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 13,
+          "reduced_negative_second_floor": 3,
+          "u": 13,
+          "v": 13
+        },
+        {
+          "b": 2,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 1,
+          "effective_divisor_degree": 10,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 51,
+          "u": 12,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 1,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 47,
+          "u": 12,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 1,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 43,
+          "u": 12,
+          "v": 3
+        },
+        {
+          "b": 5,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 1,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 39,
+          "u": 12,
+          "v": 4
+        },
+        {
+          "b": 6,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 1,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 35,
+          "u": 12,
+          "v": 5
+        },
+        {
+          "b": 7,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 1,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 12,
+          "reduced_negative_second_floor": 31,
+          "u": 12,
+          "v": 6
+        },
+        {
+          "b": 2,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 2,
+          "effective_divisor_degree": 8,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 51,
+          "u": 11,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 2,
+          "effective_divisor_degree": 5,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 47,
+          "u": 11,
+          "v": 2
+        },
+        {
+          "b": 4,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 2,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 11,
+          "reduced_negative_second_floor": 43,
+          "u": 11,
+          "v": 3
+        },
+        {
+          "b": 2,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 3,
+          "effective_divisor_degree": 6,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 51,
+          "u": 10,
+          "v": 1
+        },
+        {
+          "b": 3,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 3,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 10,
+          "reduced_negative_second_floor": 47,
+          "u": 10,
+          "v": 2
+        },
+        {
+          "b": 2,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 4,
+          "effective_divisor_degree": 4,
+          "reduced_first_degree": 9,
+          "reduced_negative_second_floor": 51,
+          "u": 9,
+          "v": 1
+        },
+        {
+          "b": 2,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 5,
+          "effective_divisor_degree": 2,
+          "reduced_first_degree": 8,
+          "reduced_negative_second_floor": 51,
+          "u": 8,
+          "v": 1
+        },
+        {
+          "b": 2,
+          "branch": "BOUNDARY_INDEPENDENT_COEFFICIENTS",
+          "d": 6,
+          "effective_divisor_degree": 0,
+          "reduced_first_degree": 7,
+          "reduced_negative_second_floor": 51,
+          "u": 7,
+          "v": 1
+        }
+      ],
+      "minimum_overload": 59,
+      "minimum_reduced_negative_second_degree": 3,
+      "periods_removed": 4
+    }
+  ],
+  "payload_sha256": "fbaeb79855224656038d8cbc44dcf28fd6954fb197e923a3b6a4db85b6a107ea",
+  "status": "PROVED_COMPLETE_POSTCRITICAL_OVERLOADED_LINE_EXCLUSION_HIGHER_SUPPORT_BRANCHES_OPEN"
+}

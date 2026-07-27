@@ -1,0 +1,49 @@
+{
+  "finite_regression": {
+    "carrier_roots": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "factorization_exact": true,
+    "field": 101,
+    "parameter_degrees": {
+      "C": 3,
+      "Pbar": 2
+    },
+    "residual_degrees": [
+      1,
+      1,
+      2
+    ],
+    "resultant_nonzero": true,
+    "resultant_scalar": 100,
+    "source_factorization_exact": true,
+    "source_points": [
+      10,
+      20,
+      30
+    ],
+    "splitting_degree": 3,
+    "x_degrees": {
+      "carrier": 7,
+      "predicted": 18,
+      "residual_product": 4,
+      "resultant": 18
+    }
+  },
+  "payload_sha256": "03cb345cfd8b514729712a8c3ed43f16916c69f0c7ec0e03fd4b79257c33530a",
+  "status": "PROVED_EXACT_FACTORIZATION_ROUTE_CUT",
+  "theorem": {
+    "active_owner": "NONE",
+    "cap_68": "OPEN",
+    "extra_divisor": "ONLY_RESIDUAL_SOURCE_MULTIPLIERS",
+    "next_target": "MINIMUM_ROW_COMPLEMENTARY_DEFECT_RIGIDITY",
+    "resultant": "Res(Pbar,C)=unit*R_U^(a-1)*product_j(Rtilde_j)",
+    "resultant_zero": "IMPOSSIBLE"
+  }
+}

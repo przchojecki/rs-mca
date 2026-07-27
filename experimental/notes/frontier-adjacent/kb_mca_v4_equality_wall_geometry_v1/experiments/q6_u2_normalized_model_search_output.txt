@@ -1,0 +1,11 @@
+status=NO_FIXTURE
+field=2130706433
+rows=6
+common_poles=10
+free_edge_poles=12
+required_owned_edges=4
+common_occurrence=2
+grs_crosscheck_trials=20000
+identical_zero_edge_branch=NO_FIXTURE
+distinct_zero_edge_branch=NO_FIXTURE
+distinct_common_pairs=21945

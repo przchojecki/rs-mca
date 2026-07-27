@@ -1,0 +1,265 @@
+{
+  "affine_normalized_exhaustive_census": {
+    "R": 8,
+    "a": 4,
+    "all_bad_count": 273,
+    "all_configurations": 6435,
+    "all_rank_counts": {
+      "54": 39,
+      "55": 234
+    },
+    "defect_block_pair_table": {
+      "defect_0_pairs_0": 474,
+      "defect_1_pairs_1": 18,
+      "defect_2_pairs_2": 3
+    },
+    "first_examples": {
+      "54": {
+        "coincident_complementary_block_pairs": [
+          {
+            "first_block": [
+              2,
+              3,
+              10,
+              11
+            ],
+            "scalar": 10,
+            "second_block": [
+              4,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "first_block": [
+              2,
+              4,
+              9,
+              11
+            ],
+            "scalar": 12,
+            "second_block": [
+              3,
+              6,
+              7,
+              10
+            ]
+          }
+        ],
+        "defect": 2,
+        "rank": 54,
+        "selected": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          9,
+          10,
+          11
+        ],
+        "sources": [
+          1,
+          5,
+          8,
+          12
+        ]
+      },
+      "55": {
+        "coincident_complementary_block_pairs": [
+          {
+            "first_block": [
+              3,
+              6,
+              7,
+              12
+            ],
+            "scalar": 10,
+            "second_block": [
+              5,
+              8,
+              9,
+              10
+            ]
+          }
+        ],
+        "defect": 1,
+        "rank": 55,
+        "selected": [
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12
+        ],
+        "sources": [
+          1,
+          2,
+          4,
+          11
+        ]
+      }
+    },
+    "normalization": "unique unused field value translated to zero",
+    "normalized_bad_count": 21,
+    "normalized_configurations": 495,
+    "normalized_rank_counts": {
+      "54": 3,
+      "55": 18
+    },
+    "point_count": 56,
+    "postcritical_degree": 6,
+    "prime": 13,
+    "unaccounted_postcritical_defects": 0
+  },
+  "claims": {
+    "active_owner": "NONE",
+    "cap_68": "OPEN",
+    "characteristic_13_counterexample": "PROVED",
+    "known_counterexamples_are_block_line_planted": "PROVED",
+    "koalabear_semantic_or_interpolation": "OPEN",
+    "universal_all_field_PRCI": "FALSE"
+  },
+  "larger_characteristic_exceptions": [
+    {
+      "coincident_complementary_block_pairs": [
+        {
+          "first_block": [
+            0,
+            2,
+            8,
+            14
+          ],
+          "scalar": 9,
+          "second_block": [
+            4,
+            9,
+            11,
+            12
+          ]
+        }
+      ],
+      "point_count": 56,
+      "postcritical_defect": 1,
+      "prime": 17,
+      "rank": 55,
+      "selected": [
+        0,
+        2,
+        4,
+        8,
+        9,
+        11,
+        12,
+        14
+      ],
+      "sources": [
+        1,
+        3,
+        10,
+        15
+      ]
+    },
+    {
+      "coincident_complementary_block_pairs": [
+        {
+          "first_block": [
+            0,
+            4,
+            10,
+            11
+          ],
+          "scalar": 17,
+          "second_block": [
+            1,
+            6,
+            7,
+            12
+          ]
+        }
+      ],
+      "point_count": 56,
+      "postcritical_defect": 1,
+      "prime": 19,
+      "rank": 55,
+      "selected": [
+        0,
+        1,
+        4,
+        6,
+        7,
+        10,
+        11,
+        12
+      ],
+      "sources": [
+        5,
+        13,
+        15,
+        18
+      ]
+    },
+    {
+      "coincident_complementary_block_pairs": [
+        {
+          "first_block": [
+            2,
+            11,
+            16,
+            21
+          ],
+          "scalar": 16,
+          "second_block": [
+            14,
+            17,
+            19,
+            20
+          ]
+        }
+      ],
+      "point_count": 56,
+      "postcritical_defect": 1,
+      "prime": 23,
+      "rank": 55,
+      "selected": [
+        2,
+        11,
+        14,
+        16,
+        17,
+        19,
+        20,
+        21
+      ],
+      "sources": [
+        6,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "payload_sha256": "0fbd77a1ce5074805e568b632a6694907a61d0475e71d145fa8a5da0ea861182",
+  "same_integer_configuration_by_characteristic": [
+    {
+      "point_count": 56,
+      "prime": 13,
+      "rank": 55
+    },
+    {
+      "point_count": 56,
+      "prime": 17,
+      "rank": 56
+    },
+    {
+      "point_count": 56,
+      "prime": 1000003,
+      "rank": 56
+    }
+  ],
+  "status": "UNIVERSAL_PRCI_FALSE_KOALABEAR_SPECIALIZATION_OPEN"
+}

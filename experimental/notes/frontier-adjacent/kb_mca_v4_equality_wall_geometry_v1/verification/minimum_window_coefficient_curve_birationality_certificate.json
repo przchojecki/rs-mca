@@ -1,0 +1,64 @@
+{
+  "payload_sha256": "a67425abc706a66e0ea43f97cf04ffdb8079bd4a566230d6d6010926e9435641",
+  "rows": [
+    {
+      "D": 185549,
+      "a": 12,
+      "covering_gcd": 1,
+      "forced_covering_degree": 1,
+      "h_min": 118077,
+      "n0": 16868,
+      "source_budget": 1,
+      "zero_slack_finite_floor": 10
+    },
+    {
+      "D": 186847,
+      "a": 13,
+      "covering_gcd": 1,
+      "forced_covering_degree": 1,
+      "h_min": 119375,
+      "n0": 15570,
+      "source_budget": 7,
+      "zero_slack_finite_floor": 5
+    },
+    {
+      "D": 187959,
+      "a": 14,
+      "covering_gcd": 1,
+      "forced_covering_degree": 1,
+      "h_min": 120487,
+      "n0": 14458,
+      "source_budget": 5,
+      "zero_slack_finite_floor": 8
+    },
+    {
+      "D": 188923,
+      "a": 15,
+      "covering_gcd": 1,
+      "forced_covering_degree": 1,
+      "h_min": 121451,
+      "n0": 13494,
+      "source_budget": 7,
+      "zero_slack_finite_floor": 7
+    },
+    {
+      "D": 189766,
+      "a": 16,
+      "covering_gcd": 1,
+      "forced_covering_degree": 1,
+      "h_min": 122294,
+      "n0": 12651,
+      "source_budget": 1,
+      "zero_slack_finite_floor": 14
+    }
+  ],
+  "status": "PROVED_ENDPOINT_BIRATIONALITY_OPEN_CAP",
+  "theorem": {
+    "active_owner": "NONE",
+    "cap_68": "OPEN",
+    "covering_divisors": "d_cov divides D and n0",
+    "endpoint_conclusion": "d_cov=1 for a=12,...,16",
+    "low_degree_cover": "EXCLUDED_AT_MINIMUM_WINDOWS",
+    "next_target": "BIRATIONAL_MINIMUM_ROW_COMPLEMENTARY_DEFECT_RIGIDITY"
+  }
+}

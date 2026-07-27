@@ -1,0 +1,652 @@
+{
+  "characteristic_13_noncanonical_threshold_census": {
+    "R": 9,
+    "a": 4,
+    "canonical_line_capacity": 8,
+    "line_relation_threshold": 9,
+    "line_signature_counts": {
+      "canonical_5_noncanonical_4": 442,
+      "canonical_8_noncanonical_4": 195,
+      "canonical_8_noncanonical_5": 78
+    },
+    "maximum_noncanonical_line_incidence": 5,
+    "point_count": 84,
+    "postcritical_degree": 7,
+    "prime": 13,
+    "rank_counts": {
+      "84": 715
+    },
+    "rank_deficient_configurations": 0,
+    "tested": 715
+  },
+  "characteristic_13_relation_space_census": {
+    "R": 8,
+    "a": 4,
+    "maximum_canonical_line_incidence": 8,
+    "maximum_coincident_block_count": 2,
+    "maximum_noncanonical_line_incidence": 4,
+    "non_block_line_quotient_maximum": 0,
+    "prime": 13,
+    "relation_signature_counts": {
+      "global_0_block_0": 474,
+      "global_1_block_1": 18,
+      "global_2_block_2": 3
+    },
+    "tested": 495
+  },
+  "claims": {
+    "a12_R69_block_line_overload": "IMPOSSIBLE",
+    "cap_68": "OPEN",
+    "coincident_distinct_blocks_are_pairwise_disjoint": "PROVED",
+    "known_relation_spaces_are_block_line_generated": "PROVED",
+    "non_block_line_relation_classification": "OPEN",
+    "same_record_payment": "OPEN"
+  },
+  "diagonal_cauchy_normal_form_regression": {
+    "a": 5,
+    "checked_pairs": 25,
+    "evaluation_matrix_rank": 5,
+    "expected_full_rank": 5,
+    "prime": 101
+  },
+  "higher_dimensional_planted_examples": [
+    {
+      "R": 10,
+      "a": 5,
+      "block_line_generated_dimension": 2,
+      "coincident_line_clusters": [
+        {
+          "block_count": 2,
+          "local_relation_dimension": 2,
+          "pairwise_disjoint": true,
+          "vertex_count": 10
+        }
+      ],
+      "global_relation_dimension": 2,
+      "non_block_line_quotient_dimension": 0,
+      "planted_blocks": [
+        [
+          0,
+          2,
+          3,
+          5,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          12,
+          15
+        ]
+      ],
+      "point_count": 210,
+      "prime": 17,
+      "rank": 208,
+      "selected": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        9,
+        11,
+        12,
+        15
+      ],
+      "sources": [
+        4,
+        7,
+        10,
+        13,
+        14
+      ]
+    },
+    {
+      "R": 12,
+      "a": 4,
+      "block_line_generated_dimension": 1,
+      "coincident_line_clusters": [
+        {
+          "block_count": 2,
+          "local_relation_dimension": 0,
+          "pairwise_disjoint": true,
+          "vertex_count": 8
+        },
+        {
+          "block_count": 3,
+          "local_relation_dimension": 1,
+          "pairwise_disjoint": true,
+          "vertex_count": 12
+        },
+        {
+          "block_count": 2,
+          "local_relation_dimension": 0,
+          "pairwise_disjoint": true,
+          "vertex_count": 8
+        },
+        {
+          "block_count": 2,
+          "local_relation_dimension": 0,
+          "pairwise_disjoint": true,
+          "vertex_count": 8
+        }
+      ],
+      "global_relation_dimension": 1,
+      "non_block_line_quotient_dimension": 0,
+      "planted_blocks": [
+        [
+          2,
+          4,
+          10,
+          13
+        ],
+        [
+          7,
+          9,
+          14,
+          16
+        ],
+        [
+          0,
+          6,
+          11,
+          12
+        ]
+      ],
+      "point_count": 220,
+      "prime": 17,
+      "rank": 219,
+      "selected": [
+        0,
+        2,
+        4,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16
+      ],
+      "sources": [
+        1,
+        5,
+        8,
+        15
+      ]
+    }
+  ],
+  "koalabear_block_line_capacity": [
+    {
+      "R": 65,
+      "a": 12,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 112,
+      "cubic_complete_intersection_support": 165,
+      "first_unclassified_circuit_support": 166,
+      "low_support_line_cutoff": 111,
+      "maximum_canonical_line_vertices": 60,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 4,
+      "minimum_overload_grs_dimension": 12,
+      "minimum_overload_grs_distance": 46,
+      "minimum_overload_grs_length": 57,
+      "minimum_overload_grs_total_weight_excess": 88,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 21,
+      "minimum_support_no_common_root_deficit": 88,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 57,
+      "postcritical_degree": 55,
+      "reducible_conic_component_load": 56
+    },
+    {
+      "R": 66,
+      "a": 12,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 114,
+      "cubic_complete_intersection_support": 168,
+      "first_unclassified_circuit_support": 169,
+      "low_support_line_cutoff": 113,
+      "maximum_canonical_line_vertices": 60,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 3,
+      "minimum_overload_grs_dimension": 12,
+      "minimum_overload_grs_distance": 47,
+      "minimum_overload_grs_length": 58,
+      "minimum_overload_grs_total_weight_excess": 88,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 22,
+      "minimum_support_no_common_root_deficit": 88,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 58,
+      "postcritical_degree": 56,
+      "reducible_conic_component_load": 57
+    },
+    {
+      "R": 67,
+      "a": 12,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 116,
+      "cubic_complete_intersection_support": 171,
+      "first_unclassified_circuit_support": 172,
+      "low_support_line_cutoff": 115,
+      "maximum_canonical_line_vertices": 60,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 2,
+      "minimum_overload_grs_dimension": 12,
+      "minimum_overload_grs_distance": 48,
+      "minimum_overload_grs_length": 59,
+      "minimum_overload_grs_total_weight_excess": 88,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 23,
+      "minimum_support_no_common_root_deficit": 88,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 59,
+      "postcritical_degree": 57,
+      "reducible_conic_component_load": 58
+    },
+    {
+      "R": 68,
+      "a": 12,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 118,
+      "cubic_complete_intersection_support": 174,
+      "first_unclassified_circuit_support": 175,
+      "low_support_line_cutoff": 117,
+      "maximum_canonical_line_vertices": 60,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 1,
+      "minimum_overload_grs_dimension": 12,
+      "minimum_overload_grs_distance": 49,
+      "minimum_overload_grs_length": 60,
+      "minimum_overload_grs_total_weight_excess": 88,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 24,
+      "minimum_support_no_common_root_deficit": 88,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 60,
+      "postcritical_degree": 58,
+      "reducible_conic_component_load": 59
+    },
+    {
+      "R": 69,
+      "a": 12,
+      "block_line_overload_possible": false,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 120,
+      "cubic_complete_intersection_support": 177,
+      "first_unclassified_circuit_support": 178,
+      "low_support_line_cutoff": 119,
+      "maximum_canonical_line_vertices": 60,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 0,
+      "minimum_overload_grs_dimension": 12,
+      "minimum_overload_grs_distance": 50,
+      "minimum_overload_grs_length": 61,
+      "minimum_overload_grs_total_weight_excess": 88,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 25,
+      "minimum_support_no_common_root_deficit": 88,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 61,
+      "postcritical_degree": 59,
+      "reducible_conic_component_load": 60
+    },
+    {
+      "R": 66,
+      "a": 13,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 112,
+      "cubic_complete_intersection_support": 165,
+      "first_unclassified_circuit_support": 166,
+      "low_support_line_cutoff": 111,
+      "maximum_canonical_line_vertices": 65,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 9,
+      "minimum_overload_grs_dimension": 13,
+      "minimum_overload_grs_distance": 45,
+      "minimum_overload_grs_length": 57,
+      "minimum_overload_grs_total_weight_excess": 108,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 12,
+      "minimum_support_no_common_root_deficit": 108,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 57,
+      "postcritical_degree": 55,
+      "reducible_conic_component_load": 56
+    },
+    {
+      "R": 67,
+      "a": 13,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 114,
+      "cubic_complete_intersection_support": 168,
+      "first_unclassified_circuit_support": 169,
+      "low_support_line_cutoff": 113,
+      "maximum_canonical_line_vertices": 65,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 8,
+      "minimum_overload_grs_dimension": 13,
+      "minimum_overload_grs_distance": 46,
+      "minimum_overload_grs_length": 58,
+      "minimum_overload_grs_total_weight_excess": 108,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 13,
+      "minimum_support_no_common_root_deficit": 108,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 58,
+      "postcritical_degree": 56,
+      "reducible_conic_component_load": 57
+    },
+    {
+      "R": 68,
+      "a": 13,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 116,
+      "cubic_complete_intersection_support": 171,
+      "first_unclassified_circuit_support": 172,
+      "low_support_line_cutoff": 115,
+      "maximum_canonical_line_vertices": 65,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 7,
+      "minimum_overload_grs_dimension": 13,
+      "minimum_overload_grs_distance": 47,
+      "minimum_overload_grs_length": 59,
+      "minimum_overload_grs_total_weight_excess": 108,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 14,
+      "minimum_support_no_common_root_deficit": 108,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 59,
+      "postcritical_degree": 57,
+      "reducible_conic_component_load": 58
+    },
+    {
+      "R": 69,
+      "a": 13,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 118,
+      "cubic_complete_intersection_support": 174,
+      "first_unclassified_circuit_support": 175,
+      "low_support_line_cutoff": 117,
+      "maximum_canonical_line_vertices": 65,
+      "maximum_disjoint_blocks": 5,
+      "maximum_forced_relation_dimension": 6,
+      "minimum_overload_grs_dimension": 13,
+      "minimum_overload_grs_distance": 48,
+      "minimum_overload_grs_length": 60,
+      "minimum_overload_grs_total_weight_excess": 108,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 15,
+      "minimum_support_no_common_root_deficit": 108,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 60,
+      "postcritical_degree": 58,
+      "reducible_conic_component_load": 59
+    },
+    {
+      "R": 67,
+      "a": 14,
+      "block_line_overload_possible": false,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 112,
+      "cubic_complete_intersection_support": 165,
+      "first_unclassified_circuit_support": 166,
+      "low_support_line_cutoff": 111,
+      "maximum_canonical_line_vertices": 56,
+      "maximum_disjoint_blocks": 4,
+      "maximum_forced_relation_dimension": 0,
+      "minimum_overload_grs_dimension": 14,
+      "minimum_overload_grs_distance": 44,
+      "minimum_overload_grs_length": 57,
+      "minimum_overload_grs_total_weight_excess": 130,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 2,
+      "minimum_support_no_common_root_deficit": 130,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 57,
+      "postcritical_degree": 55,
+      "reducible_conic_component_load": 56
+    },
+    {
+      "R": 68,
+      "a": 14,
+      "block_line_overload_possible": false,
+      "both_reducible_conic_components_can_be_canonical": false,
+      "conic_circuit_support": 114,
+      "cubic_complete_intersection_support": 168,
+      "first_unclassified_circuit_support": 169,
+      "low_support_line_cutoff": 113,
+      "maximum_canonical_line_vertices": 56,
+      "maximum_disjoint_blocks": 4,
+      "maximum_forced_relation_dimension": 0,
+      "minimum_overload_grs_dimension": 14,
+      "minimum_overload_grs_distance": 45,
+      "minimum_overload_grs_length": 58,
+      "minimum_overload_grs_total_weight_excess": 130,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 3,
+      "minimum_support_no_common_root_deficit": 130,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 58,
+      "postcritical_degree": 56,
+      "reducible_conic_component_load": 57
+    },
+    {
+      "R": 69,
+      "a": 14,
+      "block_line_overload_possible": false,
+      "both_reducible_conic_components_can_be_canonical": false,
+      "conic_circuit_support": 116,
+      "cubic_complete_intersection_support": 171,
+      "first_unclassified_circuit_support": 172,
+      "low_support_line_cutoff": 115,
+      "maximum_canonical_line_vertices": 57,
+      "maximum_disjoint_blocks": 4,
+      "maximum_forced_relation_dimension": 0,
+      "minimum_overload_grs_dimension": 14,
+      "minimum_overload_grs_distance": 46,
+      "minimum_overload_grs_length": 59,
+      "minimum_overload_grs_total_weight_excess": 130,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 4,
+      "minimum_support_no_common_root_deficit": 130,
+      "near_full_fiber_allowance": 1,
+      "overload_threshold": 59,
+      "postcritical_degree": 57,
+      "reducible_conic_component_load": 58
+    },
+    {
+      "R": 68,
+      "a": 15,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 112,
+      "cubic_complete_intersection_support": 165,
+      "first_unclassified_circuit_support": 166,
+      "low_support_line_cutoff": 111,
+      "maximum_canonical_line_vertices": 60,
+      "maximum_disjoint_blocks": 4,
+      "maximum_forced_relation_dimension": 4,
+      "minimum_overload_grs_dimension": 15,
+      "minimum_overload_grs_distance": 43,
+      "minimum_overload_grs_length": 57,
+      "minimum_overload_grs_total_weight_excess": 154,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 0,
+      "minimum_support_no_common_root_deficit": 154,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 57,
+      "postcritical_degree": 55,
+      "reducible_conic_component_load": 56
+    },
+    {
+      "R": 69,
+      "a": 15,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 114,
+      "cubic_complete_intersection_support": 168,
+      "first_unclassified_circuit_support": 169,
+      "low_support_line_cutoff": 113,
+      "maximum_canonical_line_vertices": 60,
+      "maximum_disjoint_blocks": 4,
+      "maximum_forced_relation_dimension": 3,
+      "minimum_overload_grs_dimension": 15,
+      "minimum_overload_grs_distance": 44,
+      "minimum_overload_grs_length": 58,
+      "minimum_overload_grs_total_weight_excess": 154,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 0,
+      "minimum_support_no_common_root_deficit": 154,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 58,
+      "postcritical_degree": 56,
+      "reducible_conic_component_load": 57
+    },
+    {
+      "R": 69,
+      "a": 16,
+      "block_line_overload_possible": true,
+      "both_reducible_conic_components_can_be_canonical": true,
+      "conic_circuit_support": 112,
+      "cubic_complete_intersection_support": 165,
+      "first_unclassified_circuit_support": 166,
+      "low_support_line_cutoff": 111,
+      "maximum_canonical_line_vertices": 64,
+      "maximum_disjoint_blocks": 4,
+      "maximum_forced_relation_dimension": 8,
+      "minimum_overload_grs_dimension": 16,
+      "minimum_overload_grs_distance": 42,
+      "minimum_overload_grs_length": 57,
+      "minimum_overload_grs_total_weight_excess": 180,
+      "minimum_roots_of_multiplicity_at_least_a_minus_2": 0,
+      "minimum_support_no_common_root_deficit": 180,
+      "near_full_fiber_allowance": 0,
+      "overload_threshold": 57,
+      "postcritical_degree": 55,
+      "reducible_conic_component_load": 56
+    }
+  ],
+  "larger_characteristic_examples": [
+    {
+      "block_line_generated_dimension": 1,
+      "coincident_line_clusters": [
+        {
+          "block_count": 2,
+          "local_relation_dimension": 1,
+          "pairwise_disjoint": true,
+          "vertex_count": 8
+        }
+      ],
+      "global_relation_dimension": 1,
+      "non_block_line_quotient_dimension": 0,
+      "point_count": 56,
+      "prime": 17,
+      "rank": 55,
+      "selected": [
+        0,
+        2,
+        4,
+        8,
+        9,
+        11,
+        12,
+        14
+      ],
+      "sources": [
+        1,
+        3,
+        10,
+        15
+      ]
+    },
+    {
+      "block_line_generated_dimension": 1,
+      "coincident_line_clusters": [
+        {
+          "block_count": 2,
+          "local_relation_dimension": 1,
+          "pairwise_disjoint": true,
+          "vertex_count": 8
+        }
+      ],
+      "global_relation_dimension": 1,
+      "non_block_line_quotient_dimension": 0,
+      "point_count": 56,
+      "prime": 19,
+      "rank": 55,
+      "selected": [
+        0,
+        1,
+        4,
+        6,
+        7,
+        10,
+        11,
+        12
+      ],
+      "sources": [
+        5,
+        13,
+        15,
+        18
+      ]
+    },
+    {
+      "block_line_generated_dimension": 1,
+      "coincident_line_clusters": [
+        {
+          "block_count": 2,
+          "local_relation_dimension": 1,
+          "pairwise_disjoint": true,
+          "vertex_count": 8
+        }
+      ],
+      "global_relation_dimension": 1,
+      "non_block_line_quotient_dimension": 0,
+      "point_count": 56,
+      "prime": 23,
+      "rank": 55,
+      "selected": [
+        2,
+        11,
+        14,
+        16,
+        17,
+        19,
+        20,
+        21
+      ],
+      "sources": [
+        6,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "payload_sha256": "e4e8ea76dc9dc40114df43cb4c9a0f3aee4beedcbff53f503bdf8f6f8bf7dae4",
+  "rich_line_guardrails": [
+    {
+      "R": 8,
+      "a": 4,
+      "canonical_rich_line_count": 69,
+      "maximum_canonical_line_incidence": 8,
+      "maximum_noncanonical_line_incidence": 3,
+      "noncanonical_rich_line_count": 30,
+      "prime": 13,
+      "rich_line_count": 99
+    },
+    {
+      "R": 10,
+      "a": 5,
+      "canonical_rich_line_count": 251,
+      "maximum_canonical_line_incidence": 10,
+      "maximum_noncanonical_line_incidence": 3,
+      "noncanonical_rich_line_count": 328,
+      "prime": 17,
+      "rich_line_count": 579
+    }
+  ],
+  "status": "KNOWN_POSTCRITICAL_RELATIONS_BLOCK_LINE_GENERATED_NON_BLOCK_LINE_CLASSIFICATION_OPEN"
+}

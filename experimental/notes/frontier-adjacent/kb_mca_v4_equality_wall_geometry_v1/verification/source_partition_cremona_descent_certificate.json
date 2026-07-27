@@ -1,0 +1,84 @@
+{
+  "endpoint_rows": [
+    {
+      "a": 12,
+      "cremona_degree_cap": 16869,
+      "h_min": 118077,
+      "n0": 16868,
+      "source_budget": 1
+    },
+    {
+      "a": 13,
+      "cremona_degree_cap": 15577,
+      "h_min": 119375,
+      "n0": 15570,
+      "source_budget": 7
+    },
+    {
+      "a": 14,
+      "cremona_degree_cap": 14463,
+      "h_min": 120487,
+      "n0": 14458,
+      "source_budget": 5
+    },
+    {
+      "a": 15,
+      "cremona_degree_cap": 13501,
+      "h_min": 121451,
+      "n0": 13494,
+      "source_budget": 7
+    },
+    {
+      "a": 16,
+      "cremona_degree_cap": 12652,
+      "h_min": 122294,
+      "n0": 12651,
+      "source_budget": 1
+    }
+  ],
+  "finite_regression": {
+    "coefficient_degrees": [
+      4,
+      3,
+      4,
+      3
+    ],
+    "cremona_degrees": [
+      2,
+      3,
+      2,
+      3
+    ],
+    "inverse_common_degree": 4,
+    "inverse_coordinate_quotients": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "residual_degrees": [
+      1,
+      0,
+      1,
+      0
+    ],
+    "selected_hypersurface_identity": true,
+    "source_factor_degrees": [
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "payload_sha256": "675e24dd7ca110ec3bb3033648c04989b982531eb2226b2e65281193a0908b74",
+  "status": "PROVED_CREMONA_DESCENT_OPEN_RIGIDITY",
+  "theorem": {
+    "active_owner": "NONE",
+    "cap_68": "OPEN",
+    "coordinates": "Psi_j=Lambda_(Sigma_j)*product_(k!=j) Rtilde_k",
+    "covering_degree": "PRESERVED",
+    "inverse": "Cr(Psi)_j=R_*^(a-2)*Qbar_j",
+    "next_target": "CREMONA_DESCENDED_SELECTED_VERTEX_RIGIDITY",
+    "selected_equation": "H_i(Psi)=R_*^(a-2)*pbar_i"
+  }
+}
