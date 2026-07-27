@@ -1,0 +1,51 @@
+{
+  "bound_owner": "DannyExperiments \u2014 experimental/notes/thresholds/agreement_weighted_transverse_secant.md (merged ea4eb078)",
+  "koalabear_mca": {
+    "B_star": 274980728111395087,
+    "R": 1048576,
+    "agreement": 1116048,
+    "extension_degree": 6,
+    "first_unpaid_nullity": 11,
+    "h": 67472,
+    "k": 1048576,
+    "max_paid_nullity": 10,
+    "n": 2097152,
+    "p": 2130706433,
+    "r": 981104,
+    "values": [
+      1048576,
+      8147918,
+      84416263,
+      983902549,
+      12232092309,
+      158406193634,
+      2109949210211,
+      28689347099870,
+      396280526311830,
+      5542092977392141,
+      78289526705722101,
+      1115145741750273207
+    ]
+  },
+  "our_contribution": [
+    "deployed evaluation of the merged bound at the active KoalaBear row",
+    "Lemma CF: column-farness implies the per-witness transversality hypothesis"
+  ],
+  "printed_comparison": {
+    "eq": "eq:active-fixed-union-mca",
+    "note": "printed larger ranges require direction rank-regularity; (D) requires none",
+    "printed_max_value": 2847909263951,
+    "printed_paid_range": "0 < nu <= 2"
+  },
+  "schema": "column-far-deployed-certificate-v1",
+  "source_commit": "b13de8113a03f06b6fc22bbd2f289a8abcdf7e95",
+  "source_sha256": {
+    "experimental/grande_finale.tex": "336ba3c9a6d9483d0eab74677d6224aae23adf15d84891c6099f6d2f45cf226d",
+    "experimental/notes/thresholds/agreement_weighted_transverse_secant.md": "75cb8733caf153c379336bb9ec672e9c0de1c20f6da2a70bf94a5adb92862fa9"
+  },
+  "theorem": {
+    "bound": "floor(binomial(R+nu,nu+1)/binomial(R+nu-t-1,nu))",
+    "hypothesis": "per-witness: {y0,y1} not subset span(H_supp(e_gamma)); implied by column-farness at radius r=t",
+    "unit": "distinct finite slopes per fixed syndrome line and fixed union"
+  }
+}

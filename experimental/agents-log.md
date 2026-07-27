@@ -3644,3 +3644,34 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-27 - Column-far deployed certificate (corollary of the merged transverse-secant bound)
+
+- **Agent/model:** Claude Fable 5 (planner), with Claude Opus 5 and OpenAI Codex
+  on the same campaign.
+- **Files added:** `experimental/notes/frontier-adjacent/column_far_deployed_certificate_v1.md`,
+  `experimental/notes/audits/column_far_deployed_certificate_v1_audit.md`,
+  `experimental/data/certificates/column-far-deployed-certificate-v1/column_far_deployed_certificate_v1.json`,
+  `experimental/scripts/verify_column_far_deployed_certificate_v1.py`,
+  `experimental/scripts/verify_column_far_deployed_certificate_v1_independent.py`.
+- **Status:** PROVED (corollary). The inequality is DannyExperiments', from
+  `experimental/notes/thresholds/agreement_weighted_transverse_secant.md`
+  (merged ea4eb078); this packet supplies only its deployed evaluation and the
+  column-far binding lemma.
+- **What is being added:** the finite deployed certificate that the source note
+  explicitly lists as one of the things it does not prove. At the active
+  KoalaBear MCA row every column-far fixed-union chart with `nu <= 10` is paid
+  (78289526705722101 <= B* = 274980728111395087); `nu = 11` is the first that is
+  not. Lemma CF shows column-farness at radius `r` implies the per-witness
+  transversality the bound needs, so it applies to every retained column-far
+  chart. The printed unconditional table pays `0 < nu <= 2` at this row and its
+  larger ranges need direction rank-regularity; this needs none.
+- **How it is useful:** extends the certified column-far range at the deployed
+  row from `nu <= 2` to `nu <= 10` using a theorem already in the repo, and
+  locates the exact crossing.
+- **What to do next:** the residual is unchanged and named in the source note —
+  aggregation across retained unions (witness-exhaustive atlas or subexponential
+  shadow cover), the non-column-far/sparse side, and column-far charts with
+  `nu >= 11`.
+- **Estimated CPU time:** under two seconds on one core for both replays; no
+  Modal, Sage, or floating point.
