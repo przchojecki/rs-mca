@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-mca-m31-rank7-proper-g-zero-excess-incidence-route-cut-v1",
+  "description": "Top-level manifest envelope only. The primary verifier closes every nested key/value, validates candidate source identities before candidate-selected I/O, safely hashes fixed bound sources, and checks all semantic invariants.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "theorem_id",
+    "architecture_id",
+    "status",
+    "row_contract",
+    "dangerous_class_reduction",
+    "proper_slice_bound",
+    "seven_basis_incidence",
+    "pair_factorization",
+    "abstract_support_sharpness",
+    "finite_field_counterfixture",
+    "remaining_terminal",
+    "ledger_state",
+    "nonclaims",
+    "source_bindings",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rs-mca-m31-rank7-proper-g-zero-excess-incidence-route-cut-v1"
+    },
+    "theorem_id": {
+      "const": "M31_RANK7_PROPER_G_ZERO_EXCESS_INCIDENCE_ROUTE_CUT_V1"
+    },
+    "architecture_id": {
+      "const": "M31_RANK7_PROPER_G_ZERO_EXCESS_INCIDENCE_ROUTE_CUT_V1"
+    },
+    "status": {
+      "const": "PROVED_LOCAL_DANGEROUS_CLASS_REDUCTION_PROPER_G_ZERO_EXCESS_ROUTE_CUT_Q147595_OPEN"
+    },
+    "row_contract": {"type": "object"},
+    "dangerous_class_reduction": {"type": "object"},
+    "proper_slice_bound": {"type": "object"},
+    "seven_basis_incidence": {"type": "object"},
+    "pair_factorization": {"type": "object"},
+    "abstract_support_sharpness": {"type": "object"},
+    "finite_field_counterfixture": {"type": "object"},
+    "remaining_terminal": {"type": "object"},
+    "ledger_state": {"type": "object"},
+    "nonclaims": {"type": "object"},
+    "source_bindings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "binding_id",
+          "path",
+          "role",
+          "sha256",
+          "internal_payload_sha256"
+        ],
+        "properties": {
+          "binding_id": {"type": "string"},
+          "path": {"type": "string"},
+          "role": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "internal_payload_sha256": {
+            "oneOf": [
+              {"type": "null"},
+              {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            ]
+          }
+        }
+      }
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

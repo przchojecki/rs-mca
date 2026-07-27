@@ -106,6 +106,20 @@ At this snapshot:
   `HIGH_PAIRWISE_MASTER_LOCATOR_OVERLAP`, with
   `deg gcd(G_i,G_j)>=16903` for some pair.  No integrated owner pays that
   mixed-`G` component, so `Q=147595` and the v4 ledger remain open.
+- The proper-`G` zero-excess successor sharpens that terminal.  A class
+  exceeding the closing cap must have `z=0`, full label multiplicity
+  `c=sigma=282544`, affine rank six, and at least `2157929` zero-excess
+  proper-`G` members.  Every proper fixed-`G` slice has cap at most
+  `119177`, with the `q>=4981` slices singletons.  Seven affinely
+  independent proper members force
+  `deg gcd(G_i,G_j)>=228652`, `deg gcd(H_i,H_j)>=282544`, and
+  `q_i+q_j<=131300` for some pair.  An exhaustive source-compatible
+  `GF(31)` family disproves a one-slice aggregate bound and every
+  universal aggregate multiplier strictly below the exact ratio
+  `60166/5505` under the listed gates.  It does not rule out every
+  field-uniform aggregation theorem.  The exact missing deployed theorem
+  remains a whole-family occupied-locator incidence bound of `2157928`;
+  no ledger value moves.
 - The integrated M31 post-Johnson conversion contract gives an exact conditional CS25 bridge from a same-radius CA numerator at most `16777214` to the ordinary-list budget `16777215`, and cuts the BCHKS25 route at the deployed budget.  It does not prove the unconditional M31 list row.
 - The fixed-`G` endpoint Plotkin theorem proves an ordinary-list cap `2310492` beyond the exact finite-field Johnson radius on two declared M31 endpoint subfamilies.  It is genuine Lane L progress, but not an unrestricted M31 list-row upper bound.
 - The direct rate-half cyclic quotient-rotation theorem in `experimental/experiments.tex` proves, for every declared order-`2^41` multiplicative-coset family, an ordinary-list lower bound `ceil(binomial(255,129)/256)` at agreement `1116691496959`, strictly beyond Johnson.  It is a finite-family Lane L lower construction, not an MCA statement or deployed-row closure.
@@ -123,6 +137,7 @@ At this snapshot:
 | `experimental/notes/thresholds/m31_all_weight_source_calibrated_ten_packet_gate_v1.md` | **Live all-weight additive route cut:** exact structured/primitive closure inequality, source floor, and the proof that a cross-weight cap of ten cannot close the source-compatible architecture. |
 | `experimental/notes/thresholds/m31_rank7_combined_domain_fixed_mismatch_recurrence_v1.md` | **Live rank-seven frontier:** full-label-hyperplane fixed-mismatch recurrence and exact top-five/tail-residue payment through `Q=147594`, with one sharp 45-unit residual at `Q=147595`. |
 | `experimental/notes/thresholds/m31_rank7_source_basis_private_root_overlap_dichotomy_v1.md` | **Live `Q=147595` source residual:** pays positive common-zero and size-at-least-five projective-line branches, exhausts the scalar collision histograms, and freezes the unpaid mixed-`G` terminal `deg gcd(G_i,G_j)>=16903`. |
+| `experimental/notes/thresholds/m31_rank7_proper_g_zero_excess_incidence_route_cut_v1.md` | **Current `Q=147595` primitive terminal:** exact positive/full/proper mass partition, sharp proper fixed-slice cap, `228652` source-basis overlap theorem, reduced determinant system, and a faithful finite-field falsifier of one-slice and factor-below-`60166/5505` aggregation. |
 | `experimental/Conjectures_and_Barriers_RS_MCA_v4_1.tex` | **Direct problem/falsifier authority:** benchmark conjectures, exact compiler requirements, finite barriers, and separation of finite from conjectural asymptotic claims. |
 | `experimental/grande_finale.tex` | **Active conditional completion architecture:** proved local theorems, order-32/rational-atom reductions, owner localization, spread-core incidence bounds, and exact completion problems. Hypotheses/problems are not row bounds. |
 | `tex/cs25_cap_v13_2.tex` | **Foundation/unsafe authority:** exact unsafe endpoints, field/domain conventions, reductions, and certificate grammar. |
@@ -208,16 +223,32 @@ For the live rank-seven `Q=147595` subproblem, work only on the complete
 mixed-`G` source layer forced by
 
 ```text
-HIGH_PAIRWISE_MASTER_LOCATOR_OVERLAP:
-some actual source-basis pair has deg gcd(G_i,G_j) >= 16903.
+PROPER_G_ZERO_EXCESS_CROSS_COFACTOR_INTERLACED_INCIDENCE:
+at least 2157929 zero-excess proper-G members;
+every q<=4980 fixed-G slice has size at most 119177;
+every q>=4981 fixed-G slice is a singleton;
+some actual proper source-basis pair has
+  deg gcd(G_i,G_j) >= 228652,
+  deg gcd(H_i,H_j) >= 282544,
+  q_i+q_j <= 131300.
 ```
 
-Combine the reduced pair determinant with the exact `H_i,H_j` and common
-unit.  Terminate in an existing owner with exact add-back, an additional
-agreement-incidence deficit (the closest `(3,2)` histogram needs `112671`),
-or an explicit source-compatible primitive component.  Another pairwise
-support relaxation or standalone folded-fiber computation is not this
-theorem.
+Use the complete occupied-locator `C_ij/T_ij`, common-`V`, and full-gcd
+system to prove
+
+```text
+119177*N_(1<=q<=4980) + N_(q>=4981) <= 2157928,
+```
+
+or extract at least `45` recurrence units with a chronology-valid,
+disjoint owner add-back.  The exact `GF(31)` source family rules out a
+one-slice argument and every universal multiplicative aggregate factor
+strictly below `60166/5505` from the listed gates.  It does not rule out a
+stronger field-uniform consequence of those gates.  Any successful theorem
+must print the new global consequence it uses, including where the
+deployed `w=67447`, `k=4981`, or corresponding degree ratios enter if they
+are essential.  Another selected-pair relaxation or standalone
+folded-fiber computation is not this theorem.
 
 #### M2. Transfer the theorem or record a new floor
 

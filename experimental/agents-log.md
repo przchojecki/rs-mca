@@ -30,6 +30,45 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-27 - M31 rank-seven proper-G zero-excess incidence route cut
+
+- **Agent/model:** Codex generated the packet; three separate Codex agents
+  audited the deployed implication, attempted the aggregate closure, and
+  constructed the finite-field falsifier.
+- **Files added or changed:** Added
+  `experimental/notes/thresholds/m31_rank7_proper_g_zero_excess_incidence_route_cut_v1.md`,
+  its top-level envelope schema and certificate directory, primary and
+  independent Python verifiers, and Sage replay; updated `agents.md` and
+  this log.
+- **Status:** PROVED LOCAL DANGEROUS-CLASS REDUCTION / SHARP PROPER-`G`
+  ROUTE CUT.  `Q=147595`, every v4 atom, and the M31 LIST row remain open.
+- **What is being added:** Any violating label class has at least
+  `2157929` zero-excess proper-`G` members.  A fixed proper locator has
+  at most `119177` such members and is a singleton for `q>=4981`.
+  Seven affinely independent proper members force one pair with
+  `deg gcd(G_i,G_j)>=228652`, common-`H` degree at least `282544`, and
+  `q_i+q_j<=131300`, together with the exact reduced determinant.
+  An exhaustive `GF(31)` family has `60166` proper members across `235`
+  locators while satisfying the source identities, and contains a pure
+  proper 29-member rank-seven subfamily below `p-1`.
+- **How it is useful:** It replaces the broad high-overlap terminal by the
+  exact missing whole-family inequality
+  `119177*N_(q<=4980)+N_(q>=4981)<=2157928`, and exactly disproves a
+  one-slice aggregation bound and every universal multiplicative
+  aggregate factor strictly below `60166/5505` under the listed gates.
+  It does not rule out every field-uniform aggregation theorem.
+- **Verification:** Primary normal/optimized replay, 44 phase-specific
+  hostile mutations
+  in both modes, independent heap recurrence and sharp-support replay,
+  Sage exact deployed arithmetic and all `65671` finite-field gcd checks,
+  sealed parent pins, and three read-only independent audits.
+- **What to do next:** Attack the complete occupied-locator incidence
+  using the deployed depth `w=67447`, residual dimension `k=4981`, and
+  all `C_ij/T_ij` equations.  Prove the printed aggregate inequality,
+  obtain a disjoint owner/refund worth at least 45 recurrence units, or
+  construct a deployed-parameter primitive family.  Do not return to a
+  selected-pair support relaxation.
+
 ### 2026-07-25 - M31 rank-seven source-basis overlap dichotomy
 
 - **Agent/model:** Codex generated the packet; separate Codex agents audited
