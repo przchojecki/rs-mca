@@ -1,0 +1,186 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0,
+    "first_open_slack": 134943
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "arithmetic": {
+    "c": 67472,
+    "carrier_size": 1894736,
+    "cylinder_projective_dimension": 778692,
+    "direct_cap_reserve_margin": 266743086774644456,
+    "direct_rank_at_most_two_cap": 4037126185931424,
+    "e": 134944,
+    "extra_gcd_degree": 0,
+    "incidence_cap_floor_remainder": 642920,
+    "incidence_cap_times_per_line": 270780212959932960,
+    "line_cap_implied_locator_count": 274861129987,
+    "line_cap_implied_slope_charge": 269667628935895635,
+    "line_cap_locator_margin": 1134011165,
+    "line_cap_reserve_margin": 1112584024680245,
+    "locator_degree": 981105,
+    "per_line_cap": 981105,
+    "r": 134943,
+    "required_locator_incidence_cap": 275995141152,
+    "source_size": 202416,
+    "sufficient_local_projective_line_cap": 130,
+    "x": 1
+  },
+  "counted_object": "SCALAR-UNPAID FULL-OUTSIDE SELECTED FINITE SLOPES AT THE FIRST RECIPROCAL EQUALITY WALL",
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "3ca9175475b752b2478e36e308594aa9a973c1f6fcd6d888a95068f0d89c7453",
+  "regressions": {
+    "locator_cylinder_route_cut": {
+      "adjugate_quotient_degree": 2,
+      "admitted_locator_count": 5,
+      "basis_indices": [
+        0,
+        1,
+        3
+      ],
+      "carrier_size": 12,
+      "complete_reciprocal_dimension": 3,
+      "constant_reconstruction_count": 5,
+      "determinant_quotient": 8,
+      "locator_degree": 8,
+      "locator_polynomial_span_dimension": 4,
+      "locator_residue_span_dimension": 3,
+      "locator_sets": [
+        [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          14,
+          16
+        ],
+        [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          15,
+          17
+        ],
+        [
+          6,
+          7,
+          8,
+          12,
+          13,
+          14,
+          16,
+          17
+        ],
+        [
+          6,
+          7,
+          9,
+          10,
+          13,
+          14,
+          15,
+          16
+        ]
+      ],
+      "maximum_weighted_projective_line_occupancy": 3,
+      "prime": 19,
+      "product_rank": 3,
+      "reciprocal_dimension_used": 3,
+      "source_degree": 4,
+      "source_size": 6
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_RECIPROCAL_KERNEL_PLANE_SWEEP_V1",
+      "hash": "230e5c422fad7e127bc0349ed7cdcda2159e7912a7c4779fc76755787e02fe44",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_reciprocal_kernel_plane_sweep_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_POST_RECIPROCAL_KERNEL_PLANE_SWEEP_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "342b412f7786f25034910332494310d6cf216cb848c561cdc4619000f0deb33b",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_reciprocal_kernel_plane_sweep_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_FIRST_GAP_OUTLIER_BASIS_RESIDUE_TRANSFORM_V1",
+      "hash": "fc223b29073f2c3473c583f45e4303076581429a09c506b52f6e2c5cf3408875",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_outlier_basis_residue_transform_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_SPLIT_LOCATOR_STAR_FLAT_INTERSECTION",
+      "hash": "b1d0ffe28b1f9ccdbc103510b68f540fd44856d7dcc9bf6715aeef471b0c1474",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/thresholds/split_locator_star_flat_intersection.md"
+    },
+    {
+      "binding_id": "SOURCE_04_KB_MCA_V4_EQUALITY_WALL_LOCATOR_CYLINDER_REDUCTION_V1",
+      "hash": "a1aa93c5009784d1f4ea0d2461803f6947d4999eb64222250d0cd772ee917dbb",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_locator_cylinder_reduction_v1.md"
+    }
+  ],
+  "status": "PROVED_EQUALITY_WALL_RANK_REDUCTION_R134943_REMAINS_OPEN_ON_RESIDUE_PLANE_LOCATOR_INCIDENCE",
+  "strict_substrata": {
+    "degree_min": 101208,
+    "equality_records": [
+      {
+        "c": 67472,
+        "e": 134944,
+        "h": 0,
+        "margin": 0,
+        "x": 1
+      }
+    ],
+    "maximum_strict_degree": 134943,
+    "minimum_strict_margin": 3,
+    "strict_stratum_count": 569109452,
+    "total_stratum_count": 569109453,
+    "x_min": -33735
+  },
+  "theorem": {
+    "actual_locators_form_a_residue_cylinder": true,
+    "complete_reciprocal_rank_at_most_two_is_directly_paid": true,
+    "first_open_slack_after_packet": 134943,
+    "rank_three_adjugate_reconstruction_is_constant": true,
+    "rank_three_cylinder_incidence_cap_status": "OPEN",
+    "rank_three_forces_complete_reciprocal_dimension_three": true,
+    "rank_three_forces_occupied_residue_dimension_three": true,
+    "rank_three_minor_is_kappa_times_source_locator_squared": true,
+    "residue_plane_is_not_a_polynomial_plane": true,
+    "strict_substrata_paid_by_upstream_sweep": true,
+    "uniform_weighted_line_cap_130_implies_payment": true,
+    "unique_equality_stratum_is_x1_e134944": true
+  },
+  "upstream_certificates": {
+    "post_sweep_histogram": {
+      "file_sha256": "71a4a3494f2ed47b1dc8ee2e779d9aff968803cb91664a5c65880d4dfdbd708a",
+      "path": "experimental/data/certificates/kb-mca-v4-post-reciprocal-kernel-plane-sweep-full-histogram-replay-v1/certificate.json",
+      "payload_sha256": "b6970ce42a1857654c2a4659a7ad918df1d38236618a017a39c62ba2e5b3f7e7"
+    },
+    "reciprocal_kernel_sweep": {
+      "file_sha256": "e204bb10e044779a2539856d80a4ee3c621041c971dfc84d06608e429c7c8e8c",
+      "path": "experimental/data/certificates/kb-mca-v4-reciprocal-kernel-plane-sweep-v1/certificate.json",
+      "payload_sha256": "dabd61e2242b5ec6ec5b19ce8966b8375cae5624091768b6c5cbc4dabdf4984c"
+    }
+  }
+}

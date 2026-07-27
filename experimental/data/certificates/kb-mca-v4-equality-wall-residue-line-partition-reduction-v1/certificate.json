@@ -1,0 +1,516 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0,
+    "first_open_slack": 134943
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "arithmetic": {
+    "actual_source_map_degree_excess_over_rational_threshold": 33737,
+    "additional_charge": 0,
+    "adjacent_unweighted_line_cap": 69,
+    "base_field_size": 2130706433,
+    "c": 67472,
+    "cap_68_global_occupied_point_cap": 142757331079,
+    "cap_68_reserve_margin": 292758501275736,
+    "cap_68_source_map_charge": 270487454459300144,
+    "cap_69_global_occupied_point_cap": 144888037513,
+    "cap_69_reserve_deficit": 3744367684655688,
+    "cap_69_source_map_charge": 274524580645231568,
+    "carrier_code_dimension": 846160,
+    "carrier_code_minimum_distance": 1048577,
+    "carrier_code_redundancy": 1048576,
+    "carrier_size": 1894736,
+    "coarse_maximum_exact_swap_component": 14,
+    "deep_error_support_threshold": 349525,
+    "e": 134944,
+    "extra_common_factor_degree": 0,
+    "first_open_slack": 134943,
+    "former_sufficient_line_cap": 130,
+    "frobenius_effective_multiplier_threshold": 9208,
+    "full_domain_source_unit_forbidden_parameter_cap": 130941546,
+    "full_domain_source_unit_parameter_avoidance_margin_over_base_field": 1999764887,
+    "generic_reciprocal_resultant_degree_cap": 269888,
+    "locator_degree": 981105,
+    "maximum_actual_record_circuit_size": 10,
+    "maximum_component_grs_quotient_degree_cap": 742192,
+    "maximum_exact_swap_component": 7,
+    "maximum_fundamental_edge_circuit_size": 9,
+    "minimal_m_record_circuit_selector_rank_cap_formula": "10-m",
+    "minimum_active_exchange": 67472,
+    "minimum_actual_record_circuit_size": 3,
+    "minimum_component_common_zero_size": 103967,
+    "minimum_component_k0_weight_on_moving_blocks": 202416,
+    "minimum_components_in_69_point_falsifier": 10,
+    "minimum_fundamental_circuits_in_69_point_packet": 60,
+    "minimum_pair_selector_secant_exchange_weight": 134944,
+    "occupied_direction_gcd_degree": 0,
+    "r": 134943,
+    "roots_outside_locator": 913631,
+    "selector_kernel_dimension": 8,
+    "simultaneous_genericization_degree_margin": 2130704087,
+    "simultaneous_genericization_packet_size": 69,
+    "simultaneous_genericization_pair_count": 2346,
+    "source_and_pair_forbidden_parameter_cap": 204762,
+    "source_map_image_cap_per_projective_direction": 1894736,
+    "source_map_occupied_point_cap": 142911842578,
+    "source_rational_degree_threshold": 101207,
+    "source_selector_secant_code_dimension_minus_one": 1048575,
+    "source_selector_secant_polynomial_degree_cap": 1048575,
+    "source_size": 202416,
+    "sufficient_unweighted_line_cap": 68,
+    "three_record_circuit_common_zero_floor": 423079,
+    "three_record_circuit_selector_rank_cap": 7,
+    "two_point_component_common_zero_size": 778687,
+    "two_point_component_grs_quotient_degree_cap": 67472,
+    "two_point_per_moving_block_weight_floor": 67472,
+    "unrestricted_one_root_pencil_count": 913632
+  },
+  "counted_object": "PROJECTIVE RESIDUE LINES IN THE SCALAR-UNPAID RANK-THREE EQUALITY PACKET AT R=134943",
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "e2f3159960425614b6cb6e3bf849b2d737a6f6525e8aeb37d266804acfb9ef17",
+  "regressions": {
+    "exact_swap_component_rank_precursor": {
+      "carrier_code_dimension": 846160,
+      "carrier_code_minimum_distance": 1048577,
+      "carrier_code_redundancy": 1048576,
+      "payment_status": "OPEN_SAME_OBJECT_OWNER_ADAPTER_REQUIRED",
+      "rows": [
+        {
+          "common_zero_size": 778687,
+          "component_size": 2,
+          "grs_quotient_degree_cap": 67472,
+          "minimum_nonzero_k0_weight_on_moving_blocks": 202416,
+          "moving_block_size": 269888,
+          "nonzero_k0_word_exists": true,
+          "selector_restriction_rank_cap": 7
+        },
+        {
+          "common_zero_size": 643743,
+          "component_size": 3,
+          "grs_quotient_degree_cap": 202416,
+          "minimum_nonzero_k0_weight_on_moving_blocks": 202416,
+          "moving_block_size": 404832,
+          "nonzero_k0_word_exists": true,
+          "selector_restriction_rank_cap": 7
+        },
+        {
+          "common_zero_size": 508799,
+          "component_size": 4,
+          "grs_quotient_degree_cap": 337360,
+          "minimum_nonzero_k0_weight_on_moving_blocks": 202416,
+          "moving_block_size": 539776,
+          "nonzero_k0_word_exists": true,
+          "selector_restriction_rank_cap": 7
+        },
+        {
+          "common_zero_size": 373855,
+          "component_size": 5,
+          "grs_quotient_degree_cap": 472304,
+          "minimum_nonzero_k0_weight_on_moving_blocks": 202416,
+          "moving_block_size": 674720,
+          "nonzero_k0_word_exists": true,
+          "selector_restriction_rank_cap": 7
+        },
+        {
+          "common_zero_size": 238911,
+          "component_size": 6,
+          "grs_quotient_degree_cap": 607248,
+          "minimum_nonzero_k0_weight_on_moving_blocks": 202416,
+          "moving_block_size": 809664,
+          "nonzero_k0_word_exists": true,
+          "selector_restriction_rank_cap": 7
+        },
+        {
+          "common_zero_size": 103967,
+          "component_size": 7,
+          "grs_quotient_degree_cap": 742192,
+          "minimum_nonzero_k0_weight_on_moving_blocks": 202416,
+          "moving_block_size": 944608,
+          "nonzero_k0_word_exists": true,
+          "selector_restriction_rank_cap": 7
+        }
+      ],
+      "selector_dimension": 8,
+      "two_point_per_moving_block_weight_floor": 67472
+    },
+    "nonprimitive_partition_cofactor": {
+      "c": 2,
+      "cofactor_gcd": [
+        0,
+        18,
+        1
+      ],
+      "cofactor_quotients": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0,
+          18,
+          1
+        ]
+      ],
+      "determinant_quotient": 1,
+      "partition_degree": 2,
+      "partition_roots": [
+        0,
+        1
+      ],
+      "pointwise_ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "prime": 19,
+      "source_degree": 4,
+      "source_product_identity_status": "NOT_SATISFIED_ALGEBRAIC_ROUTE_CUT_ONLY",
+      "source_size": 6
+    },
+    "one_root_pencils": [
+      {
+        "actual_locator_count": 4,
+        "carrier_size": 10,
+        "common_core_degree": 6,
+        "locator_degree": 7,
+        "polynomial_span_dimension": 2,
+        "prime": 17,
+        "residue_span_dimension": 2,
+        "source_and_selector_status": "FORGOTTEN_ROUTE_CUT_ONLY",
+        "source_size": 6
+      },
+      {
+        "actual_locator_count": 5,
+        "carrier_size": 12,
+        "common_core_degree": 7,
+        "locator_degree": 8,
+        "polynomial_span_dimension": 2,
+        "prime": 19,
+        "residue_span_dimension": 2,
+        "source_and_selector_status": "FORGOTTEN_ROUTE_CUT_ONLY",
+        "source_size": 6
+      },
+      {
+        "actual_locator_count": 5,
+        "carrier_size": 14,
+        "common_core_degree": 9,
+        "locator_degree": 10,
+        "polynomial_span_dimension": 2,
+        "prime": 23,
+        "residue_span_dimension": 2,
+        "source_and_selector_status": "FORGOTTEN_ROUTE_CUT_ONLY",
+        "source_size": 9
+      }
+    ],
+    "primitive_four_component_rank_three_line": {
+      "c": 2,
+      "carrier_size": 14,
+      "cofactor_gcd": [
+        1
+      ],
+      "complete_reciprocal_dimension": 3,
+      "coprime_exact_degree_reciprocal_parameter_count": 403,
+      "generic_exact_edges": [],
+      "generic_exact_swap_component_sizes": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "generic_nonzero_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "line_projective_point_count": 4,
+      "line_residue_dimension": 2,
+      "locator_degree": 10,
+      "minimum_exchange": 2,
+      "occupied_residue_dimension": 3,
+      "prime": 23,
+      "product_rank": 3,
+      "selected_coprime_exact_degree_reciprocal_parameter": [
+        1,
+        0,
+        0
+      ],
+      "selector_and_first_match_status": "NOT_CONSTRUCTED_ROUTE_CUT_ONLY",
+      "source_coordinate_collision_divisor": [
+        12,
+        10,
+        17
+      ],
+      "source_coordinate_collision_divisor_carrier_roots": 0,
+      "source_coordinate_collision_divisor_degree": 2,
+      "source_degree": 4,
+      "source_size": 6
+    },
+    "primitive_rank_three_line": {
+      "c": 2,
+      "carrier_size": 12,
+      "cofactor_gcd": [
+        1
+      ],
+      "cofactor_quotients": [
+        [
+          15,
+          1,
+          1
+        ],
+        [
+          1,
+          15,
+          9
+        ],
+        [
+          1,
+          3,
+          12
+        ]
+      ],
+      "common_core_size": 6,
+      "complete_reciprocal_dimension": 3,
+      "coprime_exact_degree_reciprocal_parameter_count": 260,
+      "determinantal_gcd": [
+        0,
+        13,
+        8,
+        3,
+        9,
+        4,
+        1
+      ],
+      "exact_swap_component_bound": 3,
+      "exact_swap_component_size": 3,
+      "exchange_size": 2,
+      "generic_exact_swap_component_bound": 2,
+      "generic_exact_swap_edges": 0,
+      "generic_nonzero_exchange_edges": 3,
+      "generic_reciprocal_resultant_degree_cap": 8,
+      "line_locator_indices": [
+        0,
+        1,
+        2
+      ],
+      "line_residue_dimension": 2,
+      "locator_degree": 8,
+      "prime": 19,
+      "selected_coprime_exact_degree_reciprocal_parameter": [
+        1,
+        0,
+        0
+      ],
+      "source_degree": 4,
+      "source_size": 6
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_EQUALITY_WALL_LOCATOR_CYLINDER_REDUCTION_V1",
+      "hash": "a1aa93c5009784d1f4ea0d2461803f6947d4999eb64222250d0cd772ee917dbb",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_locator_cylinder_reduction_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_RECIPROCAL_KERNEL_PLANE_SWEEP_V1",
+      "hash": "230e5c422fad7e127bc0349ed7cdcda2159e7912a7c4779fc76755787e02fe44",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_reciprocal_kernel_plane_sweep_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_FIRST_GAP_OUTLIER_BASIS_RESIDUE_TRANSFORM_V1",
+      "hash": "fc223b29073f2c3473c583f45e4303076581429a09c506b52f6e2c5cf3408875",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_outlier_basis_residue_transform_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_KB_MCA_V4_FIRST_GAP_SOURCE_INTERPOLATION_PENCIL_V1",
+      "hash": "2eee1da10088ee750c95808c5b24eeabfdd6a93a35dce95c248b6b68a4acec43",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_source_interpolation_pencil_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_KB_MCA_V4_FIRST_GAP_COMPLEMENT_LOCATOR_LINEARIZATION_V1",
+      "hash": "1fe99474fda8b4cb8ef9333ee1dd162aa1f775334524f67d84763fd864d0e520",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_complement_locator_linearization_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_EQUALITY_WALL_RESIDUE_LINE_PARTITION_REDUCTION_V1",
+      "hash": "5bdd85503498e05028c696ec7face878e8b11130b80ad3e84a87b3bc8e54bcec",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_residue_line_partition_reduction_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_06_KB_MCA_V4_NEXT_SLACK_SOURCE_PLANE_CLOSURE_V1",
+      "hash": "ce98775ddf1a746326eb6793870ed828a5801638f27007fab0f34a2ccc50b98f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_next_slack_source_plane_closure_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_07_KB_MCA_V4_C5_TWIST_FROBENIUS9208_ADAPTER_V1",
+      "hash": "92d785694df024fdc88eddc50d3fa39ac638cfe720d45e775e7c542b863cfd63",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_c5_twist_frobenius9208_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_08_KB_MCA_V4_TANGENT_DEEP_OWNER_ADAPTER_V1",
+      "hash": "f699360920758aa344d84006a87d2d4e328231463a1ebf907a3a62d1001b9d0a",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_owner_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_09_KB_MCA_V4_TANGENT_DEEP_SOURCE_RATIONAL_ADAPTER_V1",
+      "hash": "e4164f7f506885adee06c1c5e58739cf1990b4f8d31c6bdc23a9df015ca6e922",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_source_rational_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_10_KB_MCA_V4_TANGENT_SOURCE_ADAPTER_V1",
+      "hash": "2ca3653b066b7cb2e3b54f7db1ab407d05d72b77f45496f2d7cd8efcf59b1590",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_source_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_11_SPLIT_LOCATOR_STAR_FLAT_INTERSECTION",
+      "hash": "b1d0ffe28b1f9ccdbc103510b68f540fd44856d7dcc9bf6715aeef471b0c1474",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/thresholds/split_locator_star_flat_intersection.md"
+    },
+    {
+      "binding_id": "SOURCE_12_RANK16_FIXED_PAIR_ACTIVE_PENCIL_GRID_TAIL_CUT",
+      "hash": "4229a4859dd3ebec80e646428b8a0a7a1914b7f56638e386a7a7f33b5568080d",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/rank16-active-pencil-cap130/RANK16_FIXED_PAIR_ACTIVE_PENCIL_GRID_TAIL_CUT.md"
+    },
+    {
+      "binding_id": "SOURCE_13_RANK16_WEIGHTED_GRID_EXTACTIC_DPW_CAP130",
+      "hash": "166e3947422fab3024ca99e4022d6d61e7b0c64a416a16abc533f4bfa96e23e2",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/rank16-active-pencil-cap130/RANK16_WEIGHTED_GRID_EXTACTIC_DPW_CAP130.md"
+    },
+    {
+      "binding_id": "SOURCE_14_M1_KB_BRANCH3_ACTUAL_CORE_MDS_RANK_LADDER_V1",
+      "hash": "c56bcafd7d6ffb1c4b8c65ed13b1d7dcb16a7888955de2cfdfc9bd8cc203f0f0",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_branch3_actual_core_mds_rank_ladder_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_15_M1_KB_RANK9_PROJECTIVE_SOURCE_LOAD_V1",
+      "hash": "17c8ed633e2cea9b55a19710aac81e3c60cf58ed8039cd207f368685bf61de13",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_projective_source_load_v1.md"
+    }
+  ],
+  "status": "PROVED_EQUALITY_WALL_RESIDUE_LINE_PARTITION_REDUCTION_ACTIVE_COFACTOR_PRIMITIVITY_GENERIC_RECIPROCAL_CAP7_EQUALITY_H0_NO_GCD_BUDGET_COMPONENT_RANK7_PRECURSOR_SOURCE_SCALE_MOVING_BLOCK_MASS_CURRENT_OWNER_TYPE_SEPARATION_SIMULTANEOUS_69_POINT_NONEXACT_GENERICIZATION_UNIVERSAL_PAIR_SELECTOR_SECANT_QUOTIENT_EXACT_SOURCE_SELECTOR_SECANT_IDENTIFICATION_BOUNDED_STAR_CIRCUIT_NO_SINGLETON_PARTITION_MINIMAL_CIRCUIT_COLLECTIVE_RANK_PRECURSOR_SOURCE_MAP_DEDUP_CAP68_SUFFICIENT_R134943_REMAINS_OPEN_ON_BOUNDED_CIRCUIT_OWNER_EMISSION",
+  "theorem": {
+    "active_cofactor_primitivity_status": "PROVED",
+    "active_pair_exchange_at_least_c": true,
+    "actual_occupied_source_map_degree_exceeds_source_rational_threshold": true,
+    "actual_record_circuit_carrier_partition_has_no_singleton_atom": true,
+    "actual_record_circuit_has_between_3_and_10_records": true,
+    "apparent_source_partition_branch_is_empty": true,
+    "bare_residue_line_cap_130_is_false": true,
+    "base_reciprocal_coprime_exact_degree_direction_exists": true,
+    "bounded_circuit_owner_partition_emission_status": "OPEN",
+    "candidate_69_point_packet_emits_at_least_60_bounded_circuits": true,
+    "canonical_pair_secant_is_nonzero_on_every_exchange_coordinate": true,
+    "canonical_source_unit_parameter_avoids_all_source_and_pair_kernels": true,
+    "canonical_source_unit_parameter_avoids_all_vertex_carrier_zeros": true,
+    "cap_68_on_source_map_classes_is_sufficient": true,
+    "coarse_exact_swap_component_at_most_14": true,
+    "cofactor_gcd_degree_at_most_c": true,
+    "cofactor_gcd_divides_source_locator": true,
+    "cofactor_partition_is_projective_first_jet_locus": true,
+    "complete_reciprocal_dimension_is_three": true,
+    "component_grs_quotient_is_not_a_qualifying_source_rational_pair": true,
+    "component_owner_adapter_is_not_required_for_69_point_reduction": true,
+    "component_rank_defect_emits_nonzero_k0_grs_word": true,
+    "component_rank_precursor_matches_no_current_active_owner": true,
+    "component_rank_precursor_payment_status": "OPEN_OWNER_EMISSION_REQUIRED_SAME_OBJECT_IDENTITY_PROVED",
+    "equal_projective_source_maps_form_global_equivalence_classes": true,
+    "equality_graph_lifts_factor_as_common_zero_locator_times_source_product": true,
+    "equality_h_zero_removes_per_direction_gcd_budget": true,
+    "every_69_point_packet_has_simultaneously_nonexact_reciprocal_direction": true,
+    "every_component_kernel_word_has_source_scale_moving_block_mass": true,
+    "every_distinct_graph_line_pair_forces_selector_rank_at_most_7_on_intersection": true,
+    "every_nonbasis_star_edge_emits_canonical_fundamental_circuit": true,
+    "every_pair_has_nonzero_k0_secant_quotient_degree_at_most_exchange_minus_c": true,
+    "every_pair_source_plane_quotient_map_is_nonzero": true,
+    "exact_swap_component_at_most_7": true,
+    "first_open_slack_after_packet": 134943,
+    "generic_exact_swap_exchange_equals_e": true,
+    "generic_reciprocal_resultant_degree_below_field": true,
+    "generic_reciprocal_resultant_is_nonzero": true,
+    "line_congruence_determinant_ideal": "Lambda_Sigma",
+    "line_congruence_module_rank": 2,
+    "minimal_basis_row_degree_sum": 202416,
+    "minimal_m_record_circuit_has_m_minus_2_independent_selector_secants": true,
+    "minimal_m_record_circuit_selector_restriction_rank_at_most_10_minus_m": true,
+    "nontrivial_cofactor_gcd_would_be_source_partition": true,
+    "nontrivial_exact_swap_component_forces_selector_rank_at_most_7": true,
+    "nonzero_collision_divisor_line_has_pairwise_distinct_source_maps": true,
+    "occupied_source_product_pairs_are_coprime_exact_degree_e": true,
+    "off_collision_divisor_direction_map_is_injective": true,
+    "oriented_source_selector_secants_satisfy_exact_cocycle": true,
+    "pair_exact_locus_is_a_proper_linear_subspace": true,
+    "pair_exchange_dichotomy": true,
+    "pair_k0_secant_exchange_weight_at_least_exchange_plus_c": true,
+    "primitive_69_point_exclusion_status": "OPEN",
+    "primitive_cofactor_columns_generate_complete_module": true,
+    "primitive_hilbert_burch_presentation": true,
+    "primitive_large_exchange_incidence_status": "OPEN",
+    "projective_direction_source_map_deduplication": true,
+    "rank16_cap130_interface_is_not_imported": true,
+    "rank_three_primitive_line_can_have_four_large_exchange_components": true,
+    "rooted_secant_star_span_dimension_at_most_eight": true,
+    "same_owner_partition_payment_status": "NOT_NEEDED_SOURCE_VALID_BRANCH_EMPTY",
+    "simultaneous_pair_quotient_degree_at_most_exchange_minus_c": true,
+    "simultaneous_source_selector_coupling_status": "PROVED_EXACT_IDENTITY",
+    "source_coordinate_line_collision_divisor_degree_at_most_c": true,
+    "source_map_image_size_at_most_carrier": true,
+    "source_pair_quotient_equals_shortened_selector_secant_quotient": true,
+    "source_unit_identity_forces_cofactor_gcd_one": true,
+    "three_record_circuit_has_rank_at_most_7_on_at_least_423079_common_zeros": true,
+    "two_point_grs_quotient_is_below_source_rational_degree_threshold": true,
+    "two_point_kernel_word_hits_each_moving_block_at_least_c": true,
+    "unweighted_line_cap_68_is_sufficient": true,
+    "unweighted_line_cap_69_is_not_sufficient_by_incidence_sum": true,
+    "zero_collision_divisor_line_has_one_source_map_class": true
+  },
+  "upstream_certificates": {
+    "equality_wall_locator_cylinder": {
+      "file_sha256": "44eb48d7b63db1ec5222984293b707fa2f845c49753298d85711fe2fc835b3cb",
+      "path": "experimental/data/certificates/kb-mca-v4-equality-wall-locator-cylinder-reduction-v1/certificate.json",
+      "payload_sha256": "3ca9175475b752b2478e36e308594aa9a973c1f6fcd6d888a95068f0d89c7453"
+    }
+  }
+}

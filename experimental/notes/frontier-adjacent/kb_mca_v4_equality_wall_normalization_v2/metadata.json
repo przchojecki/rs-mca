@@ -1,0 +1,18 @@
+{
+  "agreement": 1116048,
+  "architecture": "normalized source-bound equality-wall split-scroll packet",
+  "atom_or_cell": "source-bound equality-wall residual",
+  "b_star": "274980728111395087",
+  "direct_statement": "Exclude the q=1 lower branch and splitting degrees 2 through 11 in the surviving exact-q=2 low-excess branch.",
+  "impact": "ROUTE_REDUCTION_ONLY",
+  "object": "MCA",
+  "parent_branch": "review/kb-equality-wall-prerequisites-v3",
+  "parent_commit": "702cd8e16673f2971ac1e7898603de2d7d087dfa",
+  "partition_digest": null,
+  "partition_digest_reason": "This is a local reduction inside the inherited declared residual.",
+  "projection_and_unit": "distinct affine bad slopes per received line",
+  "quantifier": "Every 69-record packet satisfying the inherited source-bound hypotheses.",
+  "row": "KoalaBear MCA at 2^-128",
+  "status": "PROVED_LOCAL_REDUCTION",
+  "workboard_item": "K3"
+}

@@ -1,0 +1,122 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "additional_charge": 0,
+    "first_open_slack": 134943
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "arithmetic": {
+    "additional_charge": 0,
+    "first_open_slack": 134943,
+    "graph_polynomial_space_dimension_cap": 9,
+    "kronecker_regression": {
+      "ambient_length": 11,
+      "computed_C_plus_CT_rank": 9,
+      "computed_C_rank": 7,
+      "coordinate_block_count": 2,
+      "expansion_defect": 2,
+      "field_modulus": 101,
+      "full_support": true,
+      "left_singular_block_lengths": [
+        3,
+        2
+      ],
+      "predicted_C_plus_CT_rank": 9,
+      "predicted_C_rank": 7
+    },
+    "locator_coefficient_rank_cap": 16,
+    "locator_pair_space_dimension_cap": 17,
+    "low_excess_cases": [
+      {
+        "exceptional_parameter_cap": 56,
+        "kernel_line_degree": 0,
+        "regular_floor_minus_polynomial_degree": 13,
+        "regular_selected_parameter_floor": 13,
+        "sufficient_regular_split_cap_for_total_68": 12
+      },
+      {
+        "exceptional_parameter_cap": 55,
+        "kernel_line_degree": 1,
+        "regular_floor_minus_polynomial_degree": 13,
+        "regular_selected_parameter_floor": 14,
+        "sufficient_regular_split_cap_for_total_68": 13
+      },
+      {
+        "exceptional_parameter_cap": 48,
+        "kernel_line_degree": 8,
+        "regular_floor_minus_polynomial_degree": 13,
+        "regular_selected_parameter_floor": 21,
+        "sufficient_regular_split_cap_for_total_68": 20
+      },
+      {
+        "exceptional_parameter_cap": 0,
+        "kernel_line_degree": 56,
+        "regular_floor_minus_polynomial_degree": 13,
+        "regular_selected_parameter_floor": 69,
+        "sufficient_regular_split_cap_for_total_68": 68
+      }
+    ],
+    "low_excess_kernel_line_degree_cap": 56,
+    "low_excess_kernel_rank_cap": 1,
+    "maximum_single_chain_length": 16,
+    "maximum_source_zero_descent_depth": 6,
+    "minimum_active_exchange": 67472,
+    "minimum_noncoordinate_records_after_coordinate_removal": 53,
+    "normalized_excess_lower_bound": 3912,
+    "normalized_excess_upper_bound": 846159,
+    "pushforward_maximum_splitting_degree": 7,
+    "source_pencil_degree": 134944,
+    "source_size": 202416,
+    "target_packet_size": 69
+  },
+  "counted_object": "HYPOTHETICAL 69-SOURCE-MAP-CLASS PRIMITIVE TRANSVERSAL EQUALITY-WALL LINE AFTER FIXED-DOMAIN NORMALIZATION",
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "38b74a0f63f2af538deb2106cfb9889106d1b33b08943aa2f503df22afc341e2",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_EQUALITY_WALL_FIXED_DOMAIN_RANK16_NORMALIZATION_V1",
+      "hash": "4fc089de28bbae25d5955d2559dc9cff803a1c197f72b3082ce67cdd3be6c1a3",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_fixed_domain_rank16_normalization_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_EQUALITY_WALL_KERNEL_KRONECKER_SOURCE_NORMALIZATION_V1",
+      "hash": "3ab523fccdd32656a5117bf62ede05963c1b0984ec748001c3a6a8b25ccaeffd",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_kernel_kronecker_source_normalization_v1.md"
+    }
+  ],
+  "status": "PROVED_SATURATED_KERNEL_EXCEPTIONAL_DIVISOR_SOURCE_ZERO_DEGREE_E_DESCENT_LOW_EXCESS_RANK_ONE_EXACT_COORDINATE_LEFT_KRONECKER_CLASSIFICATION_MONICITY_SOURCE_NORMALIZATION_RANK_ONE_SPLIT_SCROLL_COUNT_OPEN_R134943_UNCHANGED",
+  "theorem": {
+    "additional_charge_status": "ZERO",
+    "different_krylov_blocks_may_overlap_in_coordinate_support": true,
+    "exceptional_fiber_count_at_most_q_times_m_minus_r_minus_A": true,
+    "first_open_slack_after_packet": 134943,
+    "generic_kernel_is_a_saturated_vector_subbundle": true,
+    "kernel_splits_as_nonpositive_line_bundles": true,
+    "kronecker_chain_count_equals_expansion_defect": true,
+    "line_cap_68_status": "OPEN",
+    "low_excess_monic_leading_coefficient_equals_source_scalar": true,
+    "low_excess_positive_generic_kernel_has_rank_one": true,
+    "low_excess_regular_selected_floor_is_13_plus_a": true,
+    "low_excess_scroll_quotient_has_t_degree_at_most_a_minus_1": true,
+    "low_excess_source_image_size_at_most_a": true,
+    "one_chain_block_has_common_monic_normalizer": true,
+    "one_chain_source_identity_is_polynomial": true,
+    "one_chain_source_image_size_at_most_chain_length": true,
+    "rank_one_split_scroll_counting_status": "OPEN",
+    "regular_kronecker_part_is_coordinate_eigenlines": true,
+    "remaining_kronecker_blocks_are_left_singular_chains": true,
+    "small_expansion_pencil_has_no_right_singular_blocks": true,
+    "source_zero_descent_depth_at_most_six": true,
+    "source_zero_kernel_descends_by_exact_degree_e": true,
+    "source_zero_kernel_has_codimension_at_most_one": true
+  },
+  "upstream_certificates": {
+    "fixed_domain_rank16_normalization": {
+      "file_sha256": "823319e88230ee45cf5c718a0a2eba5cc88969d951d9ddcd90e57dc549a4e8e9",
+      "path": "experimental/data/certificates/kb-mca-v4-equality-wall-fixed-domain-rank16-normalization-v1/certificate.json",
+      "payload_sha256": "706fc1aaef763890b3ffbfbba1f750fb926ad412f2f0c66515ead393fb3318b0"
+    }
+  }
+}

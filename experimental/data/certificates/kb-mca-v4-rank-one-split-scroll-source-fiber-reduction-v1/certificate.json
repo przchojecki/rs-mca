@@ -1,0 +1,244 @@
+{
+  "all_gates_pass": true,
+  "constants": {
+    "carrier_offset": 981105,
+    "delta_floor": 3912,
+    "exact_surviving_low_excess_q": 2,
+    "half_degree": 67472,
+    "lower_excess_q": 1,
+    "max_kernel_splitting_degree": 16,
+    "pencil_degree": 134944,
+    "source_size": 202416
+  },
+  "gates": {
+    "a2_lower_range_contradiction": true,
+    "a3_contradiction": true,
+    "a3_regular_floor": true,
+    "all_minimum_residual_budgets": true,
+    "closed_delta_interval": true,
+    "constant_relations": true,
+    "eliminated_splitting_degrees": true,
+    "exact_q_one_lower_range": true,
+    "exact_q_two": true,
+    "kernel_degree_cap": true,
+    "monicity_refinement": true,
+    "source_fiber_minimum": true,
+    "surviving_splitting_degrees": true,
+    "surviving_windows": true
+  },
+  "proved": {
+    "a3_contradiction_margin": 5324766,
+    "a3_excluded": true,
+    "eliminated_splitting_degrees": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "exceptional_parameter_bound": "D_exc <= 16-a",
+    "excluded_delta_count": 114165,
+    "excluded_delta_interval": [
+      3912,
+      118076
+    ],
+    "incidence_bound": "54(c+h) <= (a-1)J, h=delta-g",
+    "lower_range_a2_contradiction_margin": 5293853,
+    "persistent_core_bound": "ag <= a(delta-e)+s-(a-1)",
+    "regular_parameter_bound": "R_reg >= 53+a",
+    "source_fiber_count": "a = |f(Sigma)|",
+    "source_scalar_roots": "simple roots exactly equal the projective source-map values"
+  },
+  "remaining": "a=12..16 low-excess windows and general-excess descent",
+  "source_rows": [
+    {
+      "a": 2,
+      "exceptional_parameter_cap": 14,
+      "first_moment_feasible": false,
+      "h_min": 33737,
+      "incidence_h_max": -49304,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 55
+    },
+    {
+      "a": 3,
+      "exceptional_parameter_cap": 13,
+      "first_moment_feasible": false,
+      "h_min": 67473,
+      "incidence_h_max": -31135,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 56
+    },
+    {
+      "a": 4,
+      "exceptional_parameter_cap": 12,
+      "first_moment_feasible": false,
+      "h_min": 84341,
+      "incidence_h_max": -12967,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 57
+    },
+    {
+      "a": 5,
+      "exceptional_parameter_cap": 11,
+      "first_moment_feasible": false,
+      "h_min": 94462,
+      "incidence_h_max": 5202,
+      "minimum_residual_budget": 2,
+      "regular_parameter_floor": 58
+    },
+    {
+      "a": 6,
+      "exceptional_parameter_cap": 10,
+      "first_moment_feasible": false,
+      "h_min": 101209,
+      "incidence_h_max": 23371,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 59
+    },
+    {
+      "a": 7,
+      "exceptional_parameter_cap": 9,
+      "first_moment_feasible": false,
+      "h_min": 106029,
+      "incidence_h_max": 41539,
+      "minimum_residual_budget": 5,
+      "regular_parameter_floor": 60
+    },
+    {
+      "a": 8,
+      "exceptional_parameter_cap": 8,
+      "first_moment_feasible": false,
+      "h_min": 109643,
+      "incidence_h_max": 59708,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 61
+    },
+    {
+      "a": 9,
+      "exceptional_parameter_cap": 7,
+      "first_moment_feasible": false,
+      "h_min": 112455,
+      "incidence_h_max": 77876,
+      "minimum_residual_budget": 7,
+      "regular_parameter_floor": 62
+    },
+    {
+      "a": 10,
+      "exceptional_parameter_cap": 6,
+      "first_moment_feasible": false,
+      "h_min": 114704,
+      "incidence_h_max": 96045,
+      "minimum_residual_budget": 7,
+      "regular_parameter_floor": 63
+    },
+    {
+      "a": 11,
+      "exceptional_parameter_cap": 5,
+      "first_moment_feasible": false,
+      "h_min": 116544,
+      "incidence_h_max": 114214,
+      "minimum_residual_budget": 6,
+      "regular_parameter_floor": 64
+    },
+    {
+      "a": 12,
+      "exceptional_parameter_cap": 4,
+      "first_moment_feasible": true,
+      "h_min": 118077,
+      "incidence_h_max": 132382,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 65
+    },
+    {
+      "a": 13,
+      "exceptional_parameter_cap": 3,
+      "first_moment_feasible": true,
+      "h_min": 119375,
+      "incidence_h_max": 134943,
+      "minimum_residual_budget": 7,
+      "regular_parameter_floor": 66
+    },
+    {
+      "a": 14,
+      "exceptional_parameter_cap": 2,
+      "first_moment_feasible": true,
+      "h_min": 120487,
+      "incidence_h_max": 134943,
+      "minimum_residual_budget": 5,
+      "regular_parameter_floor": 67
+    },
+    {
+      "a": 15,
+      "exceptional_parameter_cap": 1,
+      "first_moment_feasible": true,
+      "h_min": 121451,
+      "incidence_h_max": 134943,
+      "minimum_residual_budget": 7,
+      "regular_parameter_floor": 68
+    },
+    {
+      "a": 16,
+      "exceptional_parameter_cap": 0,
+      "first_moment_feasible": true,
+      "h_min": 122294,
+      "incidence_h_max": 134943,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 69
+    }
+  ],
+  "status": "proved partial exclusion; full cap 68 open",
+  "surviving_cases": [
+    {
+      "a": 12,
+      "exceptional_parameter_cap": 4,
+      "first_moment_feasible": true,
+      "h_min": 118077,
+      "incidence_h_max": 132382,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 65
+    },
+    {
+      "a": 13,
+      "exceptional_parameter_cap": 3,
+      "first_moment_feasible": true,
+      "h_min": 119375,
+      "incidence_h_max": 134943,
+      "minimum_residual_budget": 7,
+      "regular_parameter_floor": 66
+    },
+    {
+      "a": 14,
+      "exceptional_parameter_cap": 2,
+      "first_moment_feasible": true,
+      "h_min": 120487,
+      "incidence_h_max": 134943,
+      "minimum_residual_budget": 5,
+      "regular_parameter_floor": 67
+    },
+    {
+      "a": 15,
+      "exceptional_parameter_cap": 1,
+      "first_moment_feasible": true,
+      "h_min": 121451,
+      "incidence_h_max": 134943,
+      "minimum_residual_budget": 7,
+      "regular_parameter_floor": 68
+    },
+    {
+      "a": 16,
+      "exceptional_parameter_cap": 0,
+      "first_moment_feasible": true,
+      "h_min": 122294,
+      "incidence_h_max": 134943,
+      "minimum_residual_budget": 1,
+      "regular_parameter_floor": 69
+    }
+  ],
+  "theorem": "rank-one split-scroll source-fiber reduction"
+}
