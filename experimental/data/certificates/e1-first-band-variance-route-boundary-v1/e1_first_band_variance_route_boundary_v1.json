@@ -56,7 +56,7 @@
     {
       "binding_id": "route-cut-note",
       "path": "experimental/notes/e1/e1_first_band_variance_route_boundary_v1.md",
-      "sha256": "5a0c646beefda2a2da44c6631b185fbede265379eff51fbf16c779435d503d08",
+      "sha256": "ef1ace5afb3030fb26abb51f0f797cbdff91f536d0b0d253b66ba2133e46117c",
       "role": "human-readable theorem, fences and falsifier"
     },
     {
@@ -98,5 +98,22 @@
     "V=64": "15*N_max < 2^250",
     "V=60": "7*N_max < 2^250 < 8*N_max",
     "comment": "exact maxima, not bounds; no second horizon is extrapolated from these"
+  },
+  "sufficiency_vs_expiry": {
+    "formal_expiry": "V <= 48: threshold nonpositive, excludes nothing",
+    "first_insufficiency": {
+      "V": 64,
+      "profile": [
+        4,
+        7
+      ],
+      "threshold": 1517,
+      "unrestricted_max_M3": 1584,
+      "full_conductor_max_M3": 1524,
+      "conductor_reduction_rescues": false,
+      "closed_by": "exact resultant evaluation, bit lengths 240 and 239, both < 250"
+    },
+    "gap_levels": 8,
+    "note": "the majorant stops SUFFICING at V=64, sixteen units above where it stops EXCLUDING ANYTHING"
   }
 }

@@ -96,7 +96,21 @@ The method reaches the top of the first band and stops well above the bottom.
 For orientation — and this is context, not a claim of this packet — the
 majorant has been used to clear the levels `V = 68` and `V = 66` in our tree,
 with observed chamber maxima running `1188`–`1770` against thresholds `1947`
-and `1732`, i.e. margins of 5–39%. Continuing to `V = 52` would require
+and `1732`, i.e. margins of 5–39%.
+
+**Sufficiency ends well before expiry — a caveat on the above.** The theorem
+says the majorant *excludes nothing* below `V ~ 50`. It does not say the
+majorant *suffices* down to `V ~ 50`, and in fact it does not. At `V = 64`,
+threshold `1517`, the profile `(4,7)` has unrestricted maximum `M_3 = 1584` and
+**full-conductor maximum `M_3 = 1524`** — above the cutoff, with the
+proper-conductor reduction unable to rescue it, since the excess survives at
+full conductor. That profile is closed only by exact resultant evaluation
+(bit lengths 240 and 239, both below `2^250`). So the first level at which the
+majorant is *insufficient on its own* is `V = 64`, sixteen units above its
+formal expiry. Anyone planning around "the tool works until `V ~ 50`" is wrong
+by eight levels; `V ~ 50` is where it stops working *at all*.
+
+Continuing to `V = 52` would require
 chamber maxima below `228`, and below `V = 50` no positive threshold exists at
 all.
 
