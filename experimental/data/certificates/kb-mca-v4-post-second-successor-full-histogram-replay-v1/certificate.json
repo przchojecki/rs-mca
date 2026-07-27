@@ -1,0 +1,218 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "contracts": {
+    "complete_selector_rebuilt_after_seven_owner_deletion": true,
+    "full_histogram_recomputed_at_unchanged_reserve": true,
+    "legacy_selector_state_imported": false,
+    "second_successor_lower_strata_paid": true,
+    "second_successor_slack_paid_with_zero_additional_charge": true,
+    "second_successor_upper_stratum_paid": true
+  },
+  "counted_object": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE",
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "b0212943d8dfe070c0d36cc9105c52ca60b5380d47b07eb4c1f9e560ade99fd9",
+  "scan": {
+    "endpoint_records": [
+      {
+        "budget_minus_cap": "270758240850286582",
+        "carrier_size": 2020470,
+        "full_histogram_cap": "21972110289298",
+        "line_cap": 34,
+        "r": 9209,
+        "source_size": 76682,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": 29132
+      },
+      {
+        "budget_minus_cap": "19925961359568307",
+        "carrier_size": 1962209,
+        "full_histogram_cap": "250854251601007573",
+        "line_cap": 490553,
+        "r": 67470,
+        "source_size": 134943,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": 2
+      },
+      {
+        "budget_minus_cap": "-230925733388725336",
+        "carrier_size": 1962208,
+        "full_histogram_cap": "501705946349301216",
+        "line_cap": 981105,
+        "r": 67471,
+        "source_size": 134944,
+        "terminal": "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER",
+        "x_floor": 1
+      },
+      {
+        "budget_minus_cap": "-230923687913642779",
+        "carrier_size": 1962207,
+        "full_histogram_cap": "501703900874218659",
+        "line_cap": 981105,
+        "r": 67472,
+        "source_size": 134945,
+        "terminal": "PAID_NEXT_SLACK_SOURCE_PLANE_ZERO_CHARGE",
+        "x_floor": 1
+      },
+      {
+        "budget_minus_cap": "-230921642445857273",
+        "carrier_size": 1962206,
+        "full_histogram_cap": "501701855406433153",
+        "line_cap": 981105,
+        "r": 67473,
+        "source_size": 134946,
+        "terminal": "PAID_SUCCESSOR_UPPER_AND_LOWER_SOURCE_IMAGES_ZERO_CHARGE",
+        "x_floor": 0
+      },
+      {
+        "budget_minus_cap": "-230919596985368797",
+        "carrier_size": 1962205,
+        "full_histogram_cap": "501699809945944677",
+        "line_cap": 981105,
+        "r": 67474,
+        "source_size": 134947,
+        "terminal": "PAID_SECOND_SUCCESSOR_SOURCE_PLANES_AND_INTRINSIC_RELATIONS_ZERO_CHARGE",
+        "x_floor": 0
+      },
+      {
+        "budget_minus_cap": "-230917551532177327",
+        "carrier_size": 1962204,
+        "full_histogram_cap": "501697764492753207",
+        "line_cap": 981105,
+        "r": 67475,
+        "source_size": 134948,
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67475_TO_213050",
+        "x_floor": -1
+      },
+      {
+        "budget_minus_cap": "-893351646969",
+        "carrier_size": 1816629,
+        "full_histogram_cap": "270781106312222849",
+        "line_cap": 981105,
+        "r": 213050,
+        "source_size": 280523,
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67475_TO_213050",
+        "x_floor": -72788
+      },
+      {
+        "budget_minus_cap": "299103637240",
+        "carrier_size": 1816628,
+        "full_histogram_cap": "270779913856938640",
+        "line_cap": 981105,
+        "r": 213051,
+        "source_size": 280524,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": -72789
+      },
+      {
+        "budget_minus_cap": "265285472269153101",
+        "carrier_size": 1116048,
+        "full_histogram_cap": "5494740691422779",
+        "line_cap": 981105,
+        "r": 913631,
+        "source_size": 981104,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": -423079
+      }
+    ],
+    "intervals": [
+      [
+        9209,
+        67470,
+        "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE"
+      ],
+      [
+        67471,
+        67471,
+        "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER"
+      ],
+      [
+        67472,
+        67472,
+        "PAID_NEXT_SLACK_SOURCE_PLANE_ZERO_CHARGE"
+      ],
+      [
+        67473,
+        67473,
+        "PAID_SUCCESSOR_UPPER_AND_LOWER_SOURCE_IMAGES_ZERO_CHARGE"
+      ],
+      [
+        67474,
+        67474,
+        "PAID_SECOND_SUCCESSOR_SOURCE_PLANES_AND_INTRINSIC_RELATIONS_ZERO_CHARGE"
+      ],
+      [
+        67475,
+        213050,
+        "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67475_TO_213050"
+      ],
+      [
+        213051,
+        913631,
+        "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE"
+      ]
+    ],
+    "route_cut_count": 145576,
+    "route_cut_sha256": "2e33b72f2cb6055a6ca311486b8e6194e880cad12166cc5e38f89302bbb92a18",
+    "scan_count": 904423,
+    "scan_r_max": 913631,
+    "scan_r_min": 9209,
+    "scan_sha256": "466d02c6bc39edf8b1a6a7c1053e5f0975afbc1ae16a448c060083ab4ab80909",
+    "terminal_counts": {
+      "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER": 1,
+      "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE": 758843,
+      "PAID_NEXT_SLACK_SOURCE_PLANE_ZERO_CHARGE": 1,
+      "PAID_SECOND_SUCCESSOR_SOURCE_PLANES_AND_INTRINSIC_RELATIONS_ZERO_CHARGE": 1,
+      "PAID_SUCCESSOR_UPPER_AND_LOWER_SOURCE_IMAGES_ZERO_CHARGE": 1,
+      "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67475_TO_213050": 145576
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_POST_SUCCESSOR_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "12afac413dec3da7e04085756af2e7d0589b710a14c482239818833d73ab6a5a",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_successor_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_SECOND_SUCCESSOR_LOWER_SOURCE_PLANE_V1",
+      "hash": "0786c98c68cd130e25be76dd9dae94f870fd9fe004940f442f483fefe8dcb3e6",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_second_successor_lower_source_plane_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_SECOND_SUCCESSOR_UPPER_INTRINSIC_PLANE_DESCENT_V1",
+      "hash": "6509d9cbe7011ab829d165ec457f423f12c6e72f4cac37d9ad80f590467fea3f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_second_successor_upper_intrinsic_plane_descent_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_KB_MCA_V4_POST_SECOND_SUCCESSOR_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "01e9925d8ff463573ed22b83baf6183c8316c7ef5b793bc64a6c6526bdfa1742",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_second_successor_full_histogram_replay_v1.md"
+    }
+  ],
+  "status": "PROVED_POST_SECOND_SUCCESSOR_FULL_HISTOGRAM_REPLAY_OPEN_INTERVAL_67475_TO_213050_ROW_OPEN",
+  "upstream_certificates": {
+    "post_successor_histogram": {
+      "file_sha256": "1cbaeaa47d57d91f28eeee4c0f6dfcf01559f2e87716ec9941830648919058fa",
+      "path": "experimental/data/certificates/kb-mca-v4-post-successor-full-histogram-replay-v1/certificate.json",
+      "payload_sha256": "ae88f5c221aabda5df2c221c85b3b91a32b88a1179a0f289be1ad470a0c880eb"
+    },
+    "second_successor_lower_strata": {
+      "file_sha256": "93915b262dd4868b657e7265f381657ae2f79900619b049554dd3e9fbd2dc254",
+      "path": "experimental/data/certificates/kb-mca-v4-second-successor-lower-source-plane-v1/certificate.json",
+      "payload_sha256": "fdeb2f6101420ad6f0e5e4bec6bb5d917980ecfa7d84aee52e92f74a1265526a"
+    },
+    "second_successor_upper_stratum": {
+      "file_sha256": "a82267f490f2462781c7559ccecd6d987a6afa2eced3e4c377385b11374835f7",
+      "path": "experimental/data/certificates/kb-mca-v4-second-successor-upper-intrinsic-plane-descent-v1/certificate.json",
+      "payload_sha256": "3e7f870adb5f39d5766ffda0cdc3ee248a8f8e0892099734c442e035ed07c177"
+    }
+  }
+}

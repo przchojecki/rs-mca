@@ -1,0 +1,174 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "contracts": {
+    "complete_selector_rebuilt_after_seven_owner_deletion": true,
+    "first_gap_paid_by_source_pencil_owner": true,
+    "full_histogram_recomputed_at_unchanged_reserve": true,
+    "legacy_selector_state_imported": false,
+    "next_slack_paid_by_zero_charge_source_plane_theorem": true
+  },
+  "counted_object": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE",
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "53a70a678e6669ac4d3083ec0dcd0a29d86aa127997cfdf2f8c9318eb844c902",
+  "scan": {
+    "endpoint_records": [
+      {
+        "budget_minus_cap": "270758240850286582",
+        "carrier_size": 2020470,
+        "full_histogram_cap": "21972110289298",
+        "line_cap": 34,
+        "r": 9209,
+        "source_size": 76682,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": 29132
+      },
+      {
+        "budget_minus_cap": "19925961359568307",
+        "carrier_size": 1962209,
+        "full_histogram_cap": "250854251601007573",
+        "line_cap": 490553,
+        "r": 67470,
+        "source_size": 134943,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": 2
+      },
+      {
+        "budget_minus_cap": "-230925733388725336",
+        "carrier_size": 1962208,
+        "full_histogram_cap": "501705946349301216",
+        "line_cap": 981105,
+        "r": 67471,
+        "source_size": 134944,
+        "terminal": "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER",
+        "x_floor": 1
+      },
+      {
+        "budget_minus_cap": "-230923687913642779",
+        "carrier_size": 1962207,
+        "full_histogram_cap": "501703900874218659",
+        "line_cap": 981105,
+        "r": 67472,
+        "source_size": 134945,
+        "terminal": "PAID_NEXT_SLACK_SOURCE_PLANE_ZERO_CHARGE",
+        "x_floor": 1
+      },
+      {
+        "budget_minus_cap": "-230921642445857273",
+        "carrier_size": 1962206,
+        "full_histogram_cap": "501701855406433153",
+        "line_cap": 981105,
+        "r": 67473,
+        "source_size": 134946,
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67473_TO_213050",
+        "x_floor": 0
+      },
+      {
+        "budget_minus_cap": "-893351646969",
+        "carrier_size": 1816629,
+        "full_histogram_cap": "270781106312222849",
+        "line_cap": 981105,
+        "r": 213050,
+        "source_size": 280523,
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67473_TO_213050",
+        "x_floor": -72788
+      },
+      {
+        "budget_minus_cap": "299103637240",
+        "carrier_size": 1816628,
+        "full_histogram_cap": "270779913856938640",
+        "line_cap": 981105,
+        "r": 213051,
+        "source_size": 280524,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": -72789
+      },
+      {
+        "budget_minus_cap": "265285472269153101",
+        "carrier_size": 1116048,
+        "full_histogram_cap": "5494740691422779",
+        "line_cap": 981105,
+        "r": 913631,
+        "source_size": 981104,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": -423079
+      }
+    ],
+    "intervals": [
+      [
+        9209,
+        67470,
+        "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE"
+      ],
+      [
+        67471,
+        67471,
+        "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER"
+      ],
+      [
+        67472,
+        67472,
+        "PAID_NEXT_SLACK_SOURCE_PLANE_ZERO_CHARGE"
+      ],
+      [
+        67473,
+        213050,
+        "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67473_TO_213050"
+      ],
+      [
+        213051,
+        913631,
+        "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE"
+      ]
+    ],
+    "route_cut_count": 145578,
+    "route_cut_sha256": "b894cd6d06ac20df3f7a581566ca363df214e178c0cb5dd99111ad74fae2625d",
+    "scan_count": 904423,
+    "scan_r_max": 913631,
+    "scan_r_min": 9209,
+    "scan_sha256": "aabfbebaca345fde7ac1ee53487c973dce61bbdb1fe93069cc7f5e738cef51b4",
+    "terminal_counts": {
+      "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER": 1,
+      "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE": 758843,
+      "PAID_NEXT_SLACK_SOURCE_PLANE_ZERO_CHARGE": 1,
+      "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67473_TO_213050": 145578
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_POST_FIRST_GAP_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "78f11220fe50c4be82a9a96c8467343cc575c5a2c9bc79d43098def5f069b452",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_first_gap_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_CERTIFICATE",
+      "hash": "173081dad7e69db337ce5cbe101f29e5968244e38197fc1262185b5076252c3a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-post-first-gap-full-histogram-replay-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_NEXT_SLACK_SOURCE_PLANE_CLOSURE_V1",
+      "hash": "ce98775ddf1a746326eb6793870ed828a5801638f27007fab0f34a2ccc50b98f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_next_slack_source_plane_closure_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_CERTIFICATE",
+      "hash": "f3a6f113ed901fb881a20f081534e1910d4628328987f71644c9ace779b8b787",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-next-slack-source-plane-closure-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_04_KB_MCA_V4_POST_NEXT_SLACK_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "a842d715ec66047a4842bd212c76d4bdf7f9224016e87e6a6ede5ade8e84c715",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_next_slack_full_histogram_replay_v1.md"
+    }
+  ],
+  "status": "PROVED_POST_NEXT_SLACK_FULL_HISTOGRAM_REPLAY_HIGHER_SOURCE_GAP_OPEN_ROW_OPEN"
+}

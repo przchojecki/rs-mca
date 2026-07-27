@@ -1,0 +1,122 @@
+{
+  "active_ledger": {
+    "B_remaining": 274961102171022152,
+    "U_paid": 19625940372935,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_ADAPTER_V1",
+  "deployed_arithmetic": {
+    "agreement": 1116048,
+    "basis_cross_determinant_max": 134944,
+    "forced_common_root_degree": 981103,
+    "full_gcd_degree": 981103,
+    "j": 981104,
+    "k": 1048576,
+    "low_degree_cross_determinant_max": 134943,
+    "n": 2097152,
+    "off_source_domain_size": 1962208,
+    "r": 67471,
+    "reduced_degree": 67472,
+    "reduced_degree_lower": 67472,
+    "reduced_degree_upper": 67472,
+    "source_constraint_count": 134944,
+    "source_kernel_ambient_dimension": 134946,
+    "source_kernel_nullity_floor": 2,
+    "source_rational_limit": 67471,
+    "source_rs_redundancy_per_coordinate": 67471,
+    "source_size": 134944,
+    "t": 67472,
+    "x": 1
+  },
+  "finite_field_control": {
+    "degree": 2,
+    "field_prime": 17,
+    "interpolation_nullity": 2,
+    "interpolation_rank": 4,
+    "leading_coefficient_rank": 2,
+    "off_source_points_checked": 13,
+    "projective_image_sizes": [
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    "short_source_nullity": 3,
+    "short_source_points": [
+      0,
+      1,
+      2
+    ],
+    "short_source_rank": 3,
+    "source_locator_coefficients": [
+      0,
+      11,
+      11,
+      11,
+      1
+    ],
+    "source_points": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "threshold_sharp": true
+  },
+  "partition_sha256": "aede55b9409dd7c1407e626da09179ef48a00c52dc4a5cf272757cea1a804d4c",
+  "payload_sha256": "12ee94cc29fe136af4ae9c801fbb1c0ad8291d0be08cf4b51b0ce43c5c910afa",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_MANIFEST",
+      "hash": "65ccbe7efc060d4c72a9e29c898c89f12a0f2187592a4927d8d7d0bc26ab220a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-c5-twist-frobenius9208-adapter-v1/manifest.json"
+    },
+    {
+      "binding_id": "SOURCE_01_CERTIFICATE",
+      "hash": "79d6e0f6296ff75fd01bdc3bb10690fc24a84e60c8df38cbcebdc6567e747ff4",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-active-full-histogram-replay-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_02_M1_KB_RANK9_SOURCE_RATIONAL_OWNER_SPLICE_V1",
+      "hash": "2953a8f09f1b8135afa3f46be1820bfb4d3a8e548eddc3697deb36ee69eaf837",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_source_rational_owner_splice_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_M1_KB_BRANCH3_RANK9_RICH_PENCIL_ATLAS_V1",
+      "hash": "b5e1b60d087ca3d74ff6dbfc1d7a6b1fd70c4f90df99d350c8b717a3e19f3de7",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_branch3_rank9_rich_pencil_atlas_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_KB_MCA_V4_FIRST_GAP_SOURCE_INTERPOLATION_PENCIL_V1",
+      "hash": "2eee1da10088ee750c95808c5b24eeabfdd6a93a35dce95c248b6b68a4acec43",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_source_interpolation_pencil_v1.md"
+    }
+  ],
+  "status": "PROVED_FIRST_GAP_SOURCE_INTERPOLATION_PENCIL_DETERMINANT_PACKING_OPEN_ROW_OPEN",
+  "theorem": {
+    "common_zero_set_determines_graph_line": true,
+    "cross_determinant": "NONZERO_SCALAR_TIMES_SOURCE_LOCATOR",
+    "determinant_mass_paid": false,
+    "leading_coefficient_map_injective": true,
+    "off_source_evaluation_isomorphism": true,
+    "pair_global_source_kernel": true,
+    "qualifying_reduced_pair_exists": true,
+    "root_slope_parameter_unique": true,
+    "selector_independent": true,
+    "source_kernel_dimension": 2
+  }
+}

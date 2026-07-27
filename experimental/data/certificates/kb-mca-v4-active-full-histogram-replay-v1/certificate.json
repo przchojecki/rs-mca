@@ -1,0 +1,148 @@
+{
+  "active_ledger": {
+    "B_remaining": 274961102171022152,
+    "U_paid": 19625940372935,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_ADAPTER_V1",
+  "contracts": {
+    "complete_selector_rebuilt_after_active_owner_deletion": true,
+    "endpoint_owner_floor_r": 9209,
+    "full_histogram_recomputed_at_active_budget": true,
+    "legacy_degree_195_selector_state_imported": false,
+    "source_pair_and_translation_unchanged": true
+  },
+  "counted_object": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE",
+  "partition_sha256": "aede55b9409dd7c1407e626da09179ef48a00c52dc4a5cf272757cea1a804d4c",
+  "payload_sha256": "db2325464fb376d869426b42998a664039c312e93a8531a194d91534cb3d0dd5",
+  "scan": {
+    "endpoint_records": [
+      {
+        "budget_minus_cap": "274939130060732854",
+        "carrier_size": 2020470,
+        "full_histogram_cap": "21972110289298",
+        "line_cap": 34,
+        "r": 9209,
+        "source_size": 76682,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": 29132
+      },
+      {
+        "budget_minus_cap": "24106850570014579",
+        "carrier_size": 1962209,
+        "full_histogram_cap": "250854251601007573",
+        "line_cap": 490553,
+        "r": 67470,
+        "source_size": 134943,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": 2
+      },
+      {
+        "budget_minus_cap": "-226744844178279064",
+        "carrier_size": 1962208,
+        "full_histogram_cap": "501705946349301216",
+        "line_cap": 981105,
+        "r": 67471,
+        "source_size": 134944,
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_X1_DETERMINANT_SOURCE_PACKING_SLACK_67471_TO_209568",
+        "x_floor": 1
+      },
+      {
+        "budget_minus_cap": "-103475042116",
+        "carrier_size": 1820111,
+        "full_histogram_cap": "274961205646064268",
+        "line_cap": 981105,
+        "r": 209568,
+        "source_size": 277041,
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_X1_DETERMINANT_SOURCE_PACKING_SLACK_67471_TO_209568",
+        "x_floor": -71047
+      },
+      {
+        "budget_minus_cap": "1105071933958",
+        "carrier_size": 1820110,
+        "full_histogram_cap": "274959997099088194",
+        "line_cap": 981105,
+        "r": 209569,
+        "source_size": 277042,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": -71048
+      },
+      {
+        "budget_minus_cap": "269466361479599373",
+        "carrier_size": 1116048,
+        "full_histogram_cap": "5494740691422779",
+        "line_cap": 981105,
+        "r": 913631,
+        "source_size": 981104,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": -423079
+      }
+    ],
+    "intervals": [
+      [
+        9209,
+        67470,
+        "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE"
+      ],
+      [
+        67471,
+        209568,
+        "UNPAID_ACTIVE_FULL_OUTSIDE_X1_DETERMINANT_SOURCE_PACKING_SLACK_67471_TO_209568"
+      ],
+      [
+        209569,
+        913631,
+        "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE"
+      ]
+    ],
+    "route_cut_count": 142098,
+    "route_cut_sha256": "c3f1195278ba74f92cafd739c306ee45a967f80b72ac4b129c783aead7597fe0",
+    "scan_count": 904423,
+    "scan_r_max": 913631,
+    "scan_r_min": 9209,
+    "scan_sha256": "06e285e2a3c6c682e41420fa0544162a286737b0da4e78173d090b9504ccaa97",
+    "terminal_counts": {
+      "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE": 762325,
+      "UNPAID_ACTIVE_FULL_OUTSIDE_X1_DETERMINANT_SOURCE_PACKING_SLACK_67471_TO_209568": 142098
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_C5_TWIST_FROBENIUS9208_ADAPTER_V1",
+      "hash": "92d785694df024fdc88eddc50d3fa39ac638cfe720d45e775e7c542b863cfd63",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_c5_twist_frobenius9208_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_CERTIFICATE",
+      "hash": "57bfcbf9b4e27a908914ac2d885879ef44ec680b4b497d0bacd9bcfd8c4fd0c2",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-active-carrier-incidence-replay-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_02_M1_KB_RANK9_FULL_HISTOGRAM_INCIDENCE_CLOSURE_V1",
+      "hash": "43e3a4f63fe576283f7dba5360c0b06dbae3ae9818f062bb1a55c80f8b6c0a44",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_full_histogram_incidence_closure_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_VERIFY_M1_KB_RANK9_FULL_HISTOGRAM_INCIDENCE_CLOSURE_V1",
+      "hash": "1c71f9d7ec899e0f1ca0bc65566fbb04242116cfcfa6f086993a69e2bdef9bc4",
+      "hash_kind": "SHA256",
+      "path": "experimental/scripts/verify_m1_kb_rank9_full_histogram_incidence_closure_v1.py"
+    },
+    {
+      "binding_id": "SOURCE_04_M1_KB_RANK9_FULL_HISTOGRAM_INCIDENCE_CLOSURE_V1",
+      "hash": "85e8c98edde0d258a80b4012fd8d5d1a2e451358d097b33a8ac8a3d1ad402f39",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/m1-kb-rank9-full-histogram-incidence-closure-v1/m1_kb_rank9_full_histogram_incidence_closure_v1.json"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_ACTIVE_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "7b9b586a139fc4b7bf23b929352a6b4f5a8c931fa7e57f01dc2556ef81d8860d",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_active_full_histogram_replay_v1.md"
+    }
+  ],
+  "status": "PROVED_ACTIVE_FULL_HISTOGRAM_TWO_RANGE_CLOSURE_ZERO_ADDITIONAL_CHARGE_X1_GAP_OPEN_ROW_OPEN"
+}

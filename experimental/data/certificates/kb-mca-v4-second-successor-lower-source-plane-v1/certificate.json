@@ -1,0 +1,72 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "counted_object": "R=67474 FULL-OUTSIDE COEFFICIENT-RANK-TWO LINES WITH X=0",
+  "deployed_arithmetic": {
+    "carrier_size": 1962205,
+    "complement_size": 981104,
+    "direct_cap": 4180882818326970,
+    "forced_common_root_size": 981101,
+    "r": 67474,
+    "reduced_degree": 67474,
+    "reserve_margin": 266599330142248910,
+    "source_dimension": 3,
+    "source_size": 134947,
+    "x": 0,
+    "zero_locator_size": 981101
+  },
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "fdeb2f6101420ad6f0e5e4bec6bb5d917980ecfa7d84aee52e92f74a1265526a",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_NEXT_SLACK_SOURCE_PLANE_CLOSURE_V1",
+      "hash": "ce98775ddf1a746326eb6793870ed828a5801638f27007fab0f34a2ccc50b98f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_next_slack_source_plane_closure_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_POST_SUCCESSOR_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "12afac413dec3da7e04085756af2e7d0589b710a14c482239818833d73ab6a5a",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_successor_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_SECOND_SUCCESSOR_LOWER_SOURCE_PLANE_V1",
+      "hash": "0786c98c68cd130e25be76dd9dae94f870fd9fe004940f442f483fefe8dcb3e6",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_second_successor_lower_source_plane_v1.md"
+    }
+  ],
+  "status": "PROVED_SECOND_SUCCESSOR_LOWER_SOURCE_PLANE_PAYMENTS_DIMENSION_FIVE_UPPER_STRATUM_OPEN_ROW_OPEN",
+  "theorem": {
+    "base_span_at_most_two_directly_paid": true,
+    "forced_split_gcd_is_complete": true,
+    "full_base_span_post_c5_is_impossible": true,
+    "same_moving_root_containment": true,
+    "source_interpolation_dimension": 3,
+    "source_plane_theorem_uniformly_instantiated": true,
+    "source_size_is_2e_minus_1": true,
+    "whole_slack_paid": false,
+    "x0_stratum_paid": true,
+    "x1_lower_extra_gcd_descends_to_source_plane": true,
+    "x1_lower_same_moving_root_containment": true,
+    "x1_lower_stratum_paid": true,
+    "x1_upper_dimension_five_open": true
+  },
+  "upstream_certificates": {
+    "post_successor_histogram": {
+      "file_sha256": "1cbaeaa47d57d91f28eeee4c0f6dfcf01559f2e87716ec9941830648919058fa",
+      "path": "experimental/data/certificates/kb-mca-v4-post-successor-full-histogram-replay-v1/certificate.json",
+      "payload_sha256": "ae88f5c221aabda5df2c221c85b3b91a32b88a1179a0f289be1ad470a0c880eb"
+    },
+    "source_plane_theorem": {
+      "file_sha256": "f3a6f113ed901fb881a20f081534e1910d4628328987f71644c9ace779b8b787",
+      "path": "experimental/data/certificates/kb-mca-v4-next-slack-source-plane-closure-v1/certificate.json",
+      "payload_sha256": "e4d51dcaea7ba2591ca314ecd73248fe0a79e07244176dab8b20c78d8d1e4064"
+    }
+  }
+}

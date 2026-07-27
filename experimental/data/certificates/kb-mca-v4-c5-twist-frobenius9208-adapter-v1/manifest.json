@@ -1,0 +1,154 @@
+{
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_ADAPTER_V1",
+  "atoms": [
+    {
+      "atom_id": "U_paid",
+      "bankable": true,
+      "owner_ids": [
+        "SOURCE_COORDINATE_TANGENT_IMAGE",
+        "ACTIVE_V4_INTRINSIC_DEEP_MCA_WEIGHT_OWNER",
+        "ACTIVE_V4_PAIR_GLOBAL_BOUNDED_DEGREE_SOURCE_RATIONAL",
+        "ACTIVE_V4_PAIR_PROJECTIVE_BASE_C5_OR_RESIDUAL_BASE",
+        "ACTIVE_V4_PAIR_GLOBAL_SOURCE_SUBLINE_COMMON_LINEAR_GCD_TWIST",
+        "ACTIVE_V4_PAIR_GLOBAL_SOURCE_FROBENIUS_EFFECTIVE_MULTIPLIER_DEGREE_AT_MOST_9208"
+      ],
+      "value": 19625940372935
+    },
+    {
+      "atom_id": "U_Q",
+      "bankable": false,
+      "owner_ids": [
+        "ACTIVE_V4_BOUNDARY_PREFIX_Q"
+      ],
+      "value": null
+    },
+    {
+      "atom_id": "U_BC",
+      "bankable": false,
+      "owner_ids": [
+        "ACTIVE_V4_BALANCED_CORE"
+      ],
+      "value": null
+    },
+    {
+      "atom_id": "U_new",
+      "bankable": false,
+      "owner_ids": [
+        "UNPAID_V4_COMPLEMENT"
+      ],
+      "value": null
+    }
+  ],
+  "closure_state": {
+    "conditional_q_replayed": false,
+    "known_sum": 19625940372935,
+    "legacy_endpoint_gate_imported": false,
+    "legacy_recorded_U_paid": 422354730332,
+    "legacy_stack_imported": false,
+    "remaining_budget_after_known_sum": 274961102171022152,
+    "row_closed": false,
+    "unpaid_owner_ids": [
+      "ACTIVE_V4_BOUNDARY_PREFIX_Q",
+      "ACTIVE_V4_BALANCED_CORE",
+      "UNPAID_V4_COMPLEMENT"
+    ]
+  },
+  "partition_sha256": "aede55b9409dd7c1407e626da09179ef48a00c52dc4a5cf272757cea1a804d4c",
+  "payload_sha256": "af1d8321b288432df0e4e3851933a3bb1155aa6071b66f72decd9da0b929f79b",
+  "row_manifest_binding": {
+    "path": "experimental/data/certificates/kb-mca-v4-c5-twist-frobenius9208-adapter-v1/row_manifest.json",
+    "sha256": "2a819b51039aab8457e7d704f7e6f90a4dfb4c9bcc0d396cae9a072a8d8708a9"
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_RS_MCA_THRESHOLDS",
+      "hash": "ae662448b90d4db365feed6d8e826a5f7e7cc752b787ae7dc94af41c7c1d0a1e",
+      "hash_kind": "SHA256",
+      "path": "experimental/rs_mca_thresholds.tex"
+    },
+    {
+      "binding_id": "SOURCE_01_EXACTSPARSIFICATION",
+      "hash": "6c1d278b944b50e2f68d4c5794b5648ae09681e9819721b0d45769dd6b01f1ce",
+      "hash_kind": "SHA256",
+      "path": "experimental/lean/rs_mca_thresholds/RsMcaThresholds/ExactSparsification.lean"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_TANGENT_SOURCE_ADAPTER_V1",
+      "hash": "2ca3653b066b7cb2e3b54f7db1ab407d05d72b77f45496f2d7cd8efcf59b1590",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_source_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_M1_KB_BRANCH2_RANK_DEEP_OWNER_V1",
+      "hash": "28913b382293d3681e63b955862c1a372cd956dd6e2aa96e5ca4919c654114a8",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_branch2_rank_deep_owner_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_M1_KB_BRANCH3_DEEP_CCL_TDD_V1",
+      "hash": "07bb3f9bbb4918301205cc2f348ac1de496bee36de22a6d440b410e9d0906755",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_branch3_deep_ccl_tdd_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_TANGENT_DEEP_OWNER_ADAPTER_V1",
+      "hash": "f699360920758aa344d84006a87d2d4e328231463a1ebf907a3a62d1001b9d0a",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_owner_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_06_KBMCAV4TANGENTDEEPOWNERADAPTER",
+      "hash": "89f7e2f78a4a58346d2dfdae5643c2bcc7db16110f28ddc9abea87de7c5d7804",
+      "hash_kind": "SHA256",
+      "path": "experimental/lean/kb_mca_v4_tangent_deep_owner_adapter/KbMcaV4TangentDeepOwnerAdapter.lean"
+    },
+    {
+      "binding_id": "SOURCE_07_CORRESPONDENCE",
+      "hash": "3586b0987a54d61851e79ea7d4965cec2c7e1981027294f51f45b4e68510b5a0",
+      "hash_kind": "SHA256",
+      "path": "experimental/lean/kb_mca_v4_tangent_deep_owner_adapter/CORRESPONDENCE.md"
+    },
+    {
+      "binding_id": "SOURCE_08_M1_KB_RANK9_SOURCE_RATIONAL_OWNER_SPLICE_V1",
+      "hash": "2953a8f09f1b8135afa3f46be1820bfb4d3a8e548eddc3697deb36ee69eaf837",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_source_rational_owner_splice_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_09_KB_MCA_V4_TANGENT_DEEP_SOURCE_RATIONAL_ADAPTER_V1",
+      "hash": "e4164f7f506885adee06c1c5e58739cf1990b4f8d31c6bdc23a9df015ca6e922",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_source_rational_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_10_M1_KB_PROJECTIVE_BASE_PAIR_C5_OWNER_V1",
+      "hash": "15b4701e9112dba150e6e6052d2187bf7e4587b9f0cb1f04bd5ae59ebcba50c1",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_projective_base_pair_c5_owner_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_11_KB_MCA_V4_TANGENT_DEEP_SOURCE_RATIONAL_C5_ADAPTER_V1",
+      "hash": "c20f1cb58c59576a82dc72606c58cba79e8cfc7bee307a9a39abfc9dc3c92fb5",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_source_rational_c5_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_12_M1_KB_RANK9_ONE_SLACK_TWIST_SUBLINE_OWNER_V1",
+      "hash": "def5d35a055320b5ed962a95f949f38708699588ff4d373303a3ca5ca275d0bb",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_one_slack_twist_subline_owner_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_13_M1_KB_RANK9_BOUNDED_SLACK_EFFECTIVE_MULTIPLIER_FROBENIUS_OWNER_V1",
+      "hash": "e06f91ad6f69a8c7effced2857be906435571393d0c5076692efb7d20509010e",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_bounded_slack_effective_multiplier_frobenius_owner_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_14_KB_MCA_V4_C5_TWIST_FROBENIUS9208_ADAPTER_V1",
+      "hash": "92d785694df024fdc88eddc50d3fa39ac638cfe720d45e775e7c542b863cfd63",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_c5_twist_frobenius9208_adapter_v1.md"
+    }
+  ]
+}

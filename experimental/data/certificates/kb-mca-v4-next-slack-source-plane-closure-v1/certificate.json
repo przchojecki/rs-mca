@@ -1,0 +1,163 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "deployed_arithmetic": {
+    "agreement": 1116048,
+    "base_field_order": 2130706433,
+    "base_span_at_most_two_projective_point_cap": 2130706434,
+    "carrier_size": 1962207,
+    "common_zero_size": 981102,
+    "complement_size": 981105,
+    "current_remaining_reserve": 270780212960575880,
+    "direct_branch_cap": 4180887079739838,
+    "finite_image_domain_size": 1962207,
+    "full_gcd_degree": 981102,
+    "j": 981104,
+    "k": 1048576,
+    "n": 2097152,
+    "r": 67472,
+    "reduced_degree": 67473,
+    "reduced_degree_lower": 67473,
+    "reduced_degree_upper": 67473,
+    "reserve_margin": 266599325880836042,
+    "source_constraint_count": 134945,
+    "source_kernel_ambient_dimension": 134948,
+    "source_kernel_dimension": 3,
+    "source_kernel_nullity_floor": 3,
+    "source_parity_codimension": 67471,
+    "source_rational_limit": 67472,
+    "source_size": 134945,
+    "t": 67472,
+    "triple_reciprocal_columns": 134945,
+    "triple_reciprocal_rows": 202413,
+    "x": 1
+  },
+  "finite_controls": {
+    "exhaustive_coprime_family": {
+      "accepted_pairs": 100842,
+      "all_exact_degree_coprime_pairs_have_generic_reciprocal_dimension": true,
+      "family": "MONIC_DEGREE_3_LEFT_AND_DEGREE_AT_MOST_2_RIGHT_COPRIME_NO_COMMON_SOURCE_ZERO",
+      "field_prime": 7,
+      "source_degree": 3,
+      "source_dimension_reciprocal_dimension_histogram": {
+        "3,2": 100842
+      },
+      "source_size": 5
+    },
+    "projective_points": {
+      "base_span_projective_point_counts": {
+        "1": 1,
+        "2": 4,
+        "3": 13
+      },
+      "field_prime": 3
+    },
+    "rank_excess_degree_defect": {
+      "actual_reduced_degree": 2,
+      "field_prime": 17,
+      "reciprocal_kernel_dimension": 3,
+      "rejected_by_exact_degree_guard": true,
+      "required_reduced_degree": 4,
+      "source_degree": 4,
+      "source_plane": "SPAN_OF_1_X_X2",
+      "source_plane_dimension": 3,
+      "source_size": 7,
+      "translated_source_pair": [
+        "1",
+        "X2"
+      ]
+    }
+  },
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "e4d51dcaea7ba2591ca314ecd73248fe0a79e07244176dab8b20c78d8d1e4064",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_FIRST_GAP_SOURCE_INTERPOLATION_PENCIL_V1",
+      "hash": "2eee1da10088ee750c95808c5b24eeabfdd6a93a35dce95c248b6b68a4acec43",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_source_interpolation_pencil_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_FIRST_GAP_COMPLEMENT_LOCATOR_LINEARIZATION_V1",
+      "hash": "1fe99474fda8b4cb8ef9333ee1dd162aa1f775334524f67d84763fd864d0e520",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_complement_locator_linearization_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_FIRST_GAP_PROJECTIVE_RESIDUE_C5_RANK_DICHOTOMY_V1",
+      "hash": "83e9b35611d2ccf9386afd426d67968c2586cb499bde80b820da469281234823",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_projective_residue_c5_rank_dichotomy_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_KB_MCA_V4_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER_V1",
+      "hash": "7284520a931d1d95cd44aa753fcc8ed2ed33e2885b55330240c4a947bb7d2288",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_source_pencil_image_owner_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_KB_MCA_V4_POST_FIRST_GAP_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "78f11220fe50c4be82a9a96c8467343cc575c5a2c9bc79d43098def5f069b452",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_first_gap_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_NEXT_SLACK_SOURCE_PLANE_CLOSURE_V1",
+      "hash": "ce98775ddf1a746326eb6793870ed828a5801638f27007fab0f34a2ccc50b98f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_next_slack_source_plane_closure_v1.md"
+    }
+  ],
+  "status": "PROVED_NEXT_SLACK_SOURCE_PLANE_ZERO_CHARGE_CLOSURE_HIGHER_SLACKS_OPEN_ROW_OPEN",
+  "theorem": {
+    "base_span_at_most_two_directly_paid": true,
+    "base_span_dimensions": [
+      1,
+      2,
+      3
+    ],
+    "complete_next_slack_paid": true,
+    "direct_branch_uses_map_injectivity": false,
+    "full_base_span_rank_excess_polynomial_adjugate_zero": true,
+    "full_base_span_rank_excess_rational_normal_form": true,
+    "full_base_span_reciprocal_dimension_two_owned_by_c5": true,
+    "next_open_slack": 67473,
+    "next_slack": 67472,
+    "post_c5_full_base_span_empty": true,
+    "rank_excess_contradicts_coprime_exact_degree": true,
+    "row_closed": false,
+    "source_constraints_independent": true,
+    "source_residue_dimension": 3
+  },
+  "upstream_certificates": {
+    "first_gap_locator_linearization": {
+      "file_sha256": "0429ecc5dafc2fe8953020dc7a399dd3218e2a5f7b2e3f2e7b49cb404ba88a15",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-complement-locator-linearization-v1/certificate.json",
+      "payload_sha256": "2e324cf51a372b92741e6efeb114c8b8e458a2d20e47c8f5899d94470ea57963"
+    },
+    "first_gap_projective_rank": {
+      "file_sha256": "6b85c630f5d144fd66adfbe081c002fb60c06f14228dc40f3829e47db2b98313",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-projective-residue-c5-rank-dichotomy-v1/certificate.json",
+      "payload_sha256": "99bb10644bf532974e723e47c5875494598d5ed2ea5507c15d4111916272f92c"
+    },
+    "first_gap_source_interpolation": {
+      "file_sha256": "e976e7cba395b05cf6468a7cea16ad12ba813ed52c02aea00f49a382c26bdd3a",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-source-interpolation-pencil-v1/certificate.json",
+      "payload_sha256": "12ee94cc29fe136af4ae9c801fbb1c0ad8291d0be08cf4b51b0ce43c5c910afa"
+    },
+    "seven_owner_histogram": {
+      "file_sha256": "173081dad7e69db337ce5cbe101f29e5968244e38197fc1262185b5076252c3a",
+      "path": "experimental/data/certificates/kb-mca-v4-post-first-gap-full-histogram-replay-v1/certificate.json",
+      "payload_sha256": "2b7006af6a7249d121b19e806e0e6bb4bf3abb17d462ef2a0aa28aeeaf6b52cb"
+    },
+    "seven_owner_partition": {
+      "file_sha256": "741681ff61a41a5c43f88fe7362839bb361b60be8ad19b1d3c59f292a8bf79e6",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-source-pencil-image-owner-v1/manifest.json",
+      "payload_sha256": "0ba2155dea1a337b17fe23d7da303b5fa3b13d4958777b977a9e768842072bf5"
+    }
+  }
+}

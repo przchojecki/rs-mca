@@ -1,0 +1,276 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "counted_object": "SCALAR-UNPAID FULL-OUTSIDE COEFFICIENT-RANK-TWO SLOPES AT FIXED SLACK",
+  "interval_sweep": {
+    "first_open": {
+      "double_source_degree": 404832,
+      "maximum_c": 67472,
+      "maximum_degree": 134944,
+      "r": 134943,
+      "relation_product_degree": 202416,
+      "source_size": 202416,
+      "strict_degree_margin": 0,
+      "three_minor_degree": 404832
+    },
+    "last_paid": {
+      "carrier_size": 1894737,
+      "direct_cap": 4037128316637858,
+      "maximum_c": 67471,
+      "maximum_degree": 134943,
+      "r": 134942,
+      "source_size": 202415,
+      "strict_degree_margin": 1
+    },
+    "maximum_direct_cap": 4180880687620536,
+    "maximum_direct_cap_r": 67475,
+    "minimum_reserve_margin": 266599332272955344,
+    "minimum_strict_degree_margin": 1,
+    "paid_count": 67468,
+    "r_max": 134942,
+    "r_min": 67475,
+    "scan_sha256": "b0e5affc9425d8269c208d3a9261b24c914fd6d74be6e2c17a543bb228673ee2",
+    "start_strata": [
+      {
+        "c": 0,
+        "e": 67474,
+        "extra_gcd_degree": 0,
+        "source_dimension": 2,
+        "x": -1
+      },
+      {
+        "c": 0,
+        "e": 67474,
+        "extra_gcd_degree": 1,
+        "source_dimension": 2,
+        "x": 0
+      },
+      {
+        "c": 2,
+        "e": 67475,
+        "extra_gcd_degree": 0,
+        "source_dimension": 4,
+        "x": 0
+      },
+      {
+        "c": 0,
+        "e": 67474,
+        "extra_gcd_degree": 2,
+        "source_dimension": 2,
+        "x": 1
+      },
+      {
+        "c": 2,
+        "e": 67475,
+        "extra_gcd_degree": 1,
+        "source_dimension": 4,
+        "x": 1
+      },
+      {
+        "c": 4,
+        "e": 67476,
+        "extra_gcd_degree": 0,
+        "source_dimension": 6,
+        "x": 1
+      }
+    ]
+  },
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "dabd61e2242b5ec6ec5b19ce8966b8375cae5624091768b6c5cbc4dabdf4984c",
+  "regressions": {
+    "endpoint_cubic_relation": {
+      "accepted_source_pairs": 250,
+      "candidate_complements": 252,
+      "carrier_size": 10,
+      "complement_size": 5,
+      "degree": 5,
+      "evaluated_cubic_relation_rank_profile": {
+        "(3, 2, 2)": 2,
+        "(3, 2, 3)": 34,
+        "(4, 3, 4)": 6
+      },
+      "occupied_shift_profile": {
+        "(1, 0, 0, 0)": 117,
+        "(2, 0, 0, 0)": 91,
+        "(3, 0, 0, 0)": 34,
+        "(3, 1, 0, 2)": 2,
+        "(4, 1, 0, 2)": 6
+      },
+      "prime": 17,
+      "source_size": 7
+    },
+    "synthetic_saturated_kernel": {
+      "degree": 9,
+      "prime": 29,
+      "profile_count": 10,
+      "profiles": [
+        {
+          "base_span": 3,
+          "c": 1,
+          "left_factor_margin": 1,
+          "maximum_minor_quotient_degree": 1,
+          "maximum_pointwise_rank": 1,
+          "minimum_pointwise_rank": 1,
+          "relation_space_dimension": 1,
+          "right_factor_margin": 0,
+          "source_size": 17
+        },
+        {
+          "base_span": 3,
+          "c": 2,
+          "left_factor_margin": 1,
+          "maximum_minor_quotient_degree": 2,
+          "maximum_pointwise_rank": 1,
+          "minimum_pointwise_rank": 1,
+          "relation_space_dimension": 1,
+          "right_factor_margin": 1,
+          "source_size": 16
+        },
+        {
+          "base_span": 4,
+          "c": 2,
+          "left_factor_margin": 1,
+          "maximum_minor_quotient_degree": 2,
+          "maximum_pointwise_rank": 2,
+          "minimum_pointwise_rank": 2,
+          "relation_space_dimension": 4,
+          "right_factor_margin": 1,
+          "source_size": 16
+        },
+        {
+          "base_span": 3,
+          "c": 3,
+          "left_factor_margin": 2,
+          "maximum_minor_quotient_degree": 3,
+          "maximum_pointwise_rank": 1,
+          "minimum_pointwise_rank": 1,
+          "relation_space_dimension": 1,
+          "right_factor_margin": 1,
+          "source_size": 15
+        },
+        {
+          "base_span": 4,
+          "c": 3,
+          "left_factor_margin": 2,
+          "maximum_minor_quotient_degree": 3,
+          "maximum_pointwise_rank": 2,
+          "minimum_pointwise_rank": 2,
+          "relation_space_dimension": 5,
+          "right_factor_margin": 1,
+          "source_size": 15
+        },
+        {
+          "base_span": 5,
+          "c": 3,
+          "left_factor_margin": 2,
+          "maximum_minor_quotient_degree": 3,
+          "maximum_pointwise_rank": 3,
+          "minimum_pointwise_rank": 3,
+          "relation_space_dimension": 9,
+          "right_factor_margin": 1,
+          "source_size": 15
+        },
+        {
+          "base_span": 3,
+          "c": 4,
+          "left_factor_margin": 2,
+          "maximum_minor_quotient_degree": 4,
+          "maximum_pointwise_rank": 1,
+          "minimum_pointwise_rank": 1,
+          "relation_space_dimension": 1,
+          "right_factor_margin": 2,
+          "source_size": 14
+        },
+        {
+          "base_span": 4,
+          "c": 4,
+          "left_factor_margin": 2,
+          "maximum_minor_quotient_degree": 4,
+          "maximum_pointwise_rank": 2,
+          "minimum_pointwise_rank": 2,
+          "relation_space_dimension": 6,
+          "right_factor_margin": 2,
+          "source_size": 14
+        },
+        {
+          "base_span": 5,
+          "c": 4,
+          "left_factor_margin": 2,
+          "maximum_minor_quotient_degree": 4,
+          "maximum_pointwise_rank": 3,
+          "minimum_pointwise_rank": 3,
+          "relation_space_dimension": 11,
+          "right_factor_margin": 2,
+          "source_size": 14
+        },
+        {
+          "base_span": 6,
+          "c": 4,
+          "left_factor_margin": 2,
+          "maximum_minor_quotient_degree": 4,
+          "maximum_pointwise_rank": 4,
+          "minimum_pointwise_rank": 4,
+          "relation_space_dimension": 16,
+          "right_factor_margin": 2,
+          "source_size": 14
+        }
+      ]
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_SECOND_SUCCESSOR_UPPER_INTRINSIC_PLANE_DESCENT_V1",
+      "hash": "6509d9cbe7011ab829d165ec457f423f12c6e72f4cac37d9ad80f590467fea3f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_second_successor_upper_intrinsic_plane_descent_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_POST_SECOND_SUCCESSOR_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "01e9925d8ff463573ed22b83baf6183c8316c7ef5b793bc64a6c6526bdfa1742",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_second_successor_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_RECIPROCAL_KERNEL_PLANE_SWEEP_V1",
+      "hash": "230e5c422fad7e127bc0349ed7cdcda2159e7912a7c4779fc76755787e02fe44",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_reciprocal_kernel_plane_sweep_v1.md"
+    }
+  ],
+  "status": "PROVED_RECIPROCAL_KERNEL_PLANE_SWEEP_PAID_67475_TO_134942_ZERO_CHARGE_FIRST_OPEN_134943",
+  "theorem": {
+    "direct_cap_is_p_plus_one_times_carrier": true,
+    "extra_gcd_normalization_preserves_selected_slope": true,
+    "first_open_slack": 134943,
+    "minor_quotient_degree_at_most_c": true,
+    "moving_root_pair_span_at_most_two": true,
+    "paid_interval": [
+      67475,
+      134942
+    ],
+    "reciprocal_dimension_two_emits_c5_owner": true,
+    "reciprocal_product_matrix_rank_two": true,
+    "relation_products_do_not_wrap_when_e_gt_2c": true,
+    "saturated_kernel_pointwise_full_rank": true,
+    "saturated_kernel_rank_is_base_span_minus_two": true,
+    "saturated_kernel_row_degree_sum_at_most_c": true,
+    "source_constraints_independent": true,
+    "source_dimension_is_c_plus_two": true
+  },
+  "upstream_certificates": {
+    "cubic_relation_endpoint": {
+      "file_sha256": "a82267f490f2462781c7559ccecd6d987a6afa2eced3e4c377385b11374835f7",
+      "path": "experimental/data/certificates/kb-mca-v4-second-successor-upper-intrinsic-plane-descent-v1/certificate.json",
+      "payload_sha256": "3e7f870adb5f39d5766ffda0cdc3ee248a8f8e0892099734c442e035ed07c177"
+    },
+    "post_second_successor_histogram": {
+      "file_sha256": "98bccb6119c6bd3e66231c97873855413d4d9b3fb9678c97eb13ea2bd5d2375b",
+      "path": "experimental/data/certificates/kb-mca-v4-post-second-successor-full-histogram-replay-v1/certificate.json",
+      "payload_sha256": "b0212943d8dfe070c0d36cc9105c52ca60b5380d47b07eb4c1f9e560ade99fd9"
+    }
+  }
+}

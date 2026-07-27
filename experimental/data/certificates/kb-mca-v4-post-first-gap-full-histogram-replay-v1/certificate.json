@@ -1,0 +1,164 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "contracts": {
+    "complete_selector_rebuilt_after_seven_owner_deletion": true,
+    "first_gap_paid_by_source_pencil_owner": true,
+    "full_histogram_recomputed_at_seven_owner_budget": true,
+    "legacy_selector_state_imported": false,
+    "source_pair_and_translation_unchanged": true
+  },
+  "counted_object": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE",
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "2b7006af6a7249d121b19e806e0e6bb4bf3abb17d462ef2a0aa28aeeaf6b52cb",
+  "scan": {
+    "endpoint_records": [
+      {
+        "budget_minus_cap": "270758240850286582",
+        "carrier_size": 2020470,
+        "full_histogram_cap": "21972110289298",
+        "line_cap": 34,
+        "r": 9209,
+        "source_size": 76682,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": 29132
+      },
+      {
+        "budget_minus_cap": "19925961359568307",
+        "carrier_size": 1962209,
+        "full_histogram_cap": "250854251601007573",
+        "line_cap": 490553,
+        "r": 67470,
+        "source_size": 134943,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": 2
+      },
+      {
+        "budget_minus_cap": "-230925733388725336",
+        "carrier_size": 1962208,
+        "full_histogram_cap": "501705946349301216",
+        "line_cap": 981105,
+        "r": 67471,
+        "source_size": 134944,
+        "terminal": "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER",
+        "x_floor": 1
+      },
+      {
+        "budget_minus_cap": "-230923687913642779",
+        "carrier_size": 1962207,
+        "full_histogram_cap": "501703900874218659",
+        "line_cap": 981105,
+        "r": 67472,
+        "source_size": 134945,
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67472_TO_213050",
+        "x_floor": 1
+      },
+      {
+        "budget_minus_cap": "-893351646969",
+        "carrier_size": 1816629,
+        "full_histogram_cap": "270781106312222849",
+        "line_cap": 981105,
+        "r": 213050,
+        "source_size": 280523,
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67472_TO_213050",
+        "x_floor": -72788
+      },
+      {
+        "budget_minus_cap": "299103637240",
+        "carrier_size": 1816628,
+        "full_histogram_cap": "270779913856938640",
+        "line_cap": 981105,
+        "r": 213051,
+        "source_size": 280524,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": -72789
+      },
+      {
+        "budget_minus_cap": "265285472269153101",
+        "carrier_size": 1116048,
+        "full_histogram_cap": "5494740691422779",
+        "line_cap": 981105,
+        "r": 913631,
+        "source_size": 981104,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE",
+        "x_floor": -423079
+      }
+    ],
+    "intervals": [
+      [
+        9209,
+        67470,
+        "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE"
+      ],
+      [
+        67471,
+        67471,
+        "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER"
+      ],
+      [
+        67472,
+        213050,
+        "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67472_TO_213050"
+      ],
+      [
+        213051,
+        913631,
+        "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE"
+      ]
+    ],
+    "route_cut_count": 145579,
+    "route_cut_sha256": "8e68bd0b8fe3381881324e76b5a92d56e4160bb60f27f5d530f7e1699e3bb2fc",
+    "scan_count": 904423,
+    "scan_r_max": 913631,
+    "scan_r_min": 9209,
+    "scan_sha256": "ce849fe77a42ff173e51820cbdc1c252691ba8614fe9050f4550a7e643694b34",
+    "terminal_counts": {
+      "PAID_ACTIVE_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER": 1,
+      "PAID_ACTIVE_FULL_OUTSIDE_FULL_HISTOGRAM_CARRIER_INCIDENCE": 758843,
+      "UNPAID_ACTIVE_FULL_OUTSIDE_SOURCE_COUPLED_PACKING_SLACK_67472_TO_213050": 145579
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_FIRST_GAP_SOURCE_PENCIL_IMAGE_OWNER_V1",
+      "hash": "7284520a931d1d95cd44aa753fcc8ed2ed33e2885b55330240c4a947bb7d2288",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_source_pencil_image_owner_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_MANIFEST",
+      "hash": "741681ff61a41a5c43f88fe7362839bb361b60be8ad19b1d3c59f292a8bf79e6",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-source-pencil-image-owner-v1/manifest.json"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_ACTIVE_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "7b9b586a139fc4b7bf23b929352a6b4f5a8c931fa7e57f01dc2556ef81d8860d",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_active_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_VERIFY_KB_MCA_V4_ACTIVE_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "037b1be64a059189b682ccc8db6c79bc45f9dbfb701a1e13dc45f19ce8ec1592",
+      "hash_kind": "SHA256",
+      "path": "experimental/scripts/verify_kb_mca_v4_active_full_histogram_replay_v1.py"
+    },
+    {
+      "binding_id": "SOURCE_04_CERTIFICATE",
+      "hash": "79d6e0f6296ff75fd01bdc3bb10690fc24a84e60c8df38cbcebdc6567e747ff4",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-active-full-histogram-replay-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_POST_FIRST_GAP_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "78f11220fe50c4be82a9a96c8467343cc575c5a2c9bc79d43098def5f069b452",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_first_gap_full_histogram_replay_v1.md"
+    }
+  ],
+  "status": "PROVED_SEVEN_OWNER_FULL_HISTOGRAM_TWO_RANGE_CLOSURE_FIRST_GAP_OWNED_HIGHER_SOURCE_GAP_OPEN_ROW_OPEN"
+}

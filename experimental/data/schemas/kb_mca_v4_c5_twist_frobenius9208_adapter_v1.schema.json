@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "architecture_id": {
+      "const": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_ADAPTER_V1"
+    },
+    "partition_sha256": {
+      "const": "aede55b9409dd7c1407e626da09179ef48a00c52dc4a5cf272757cea1a804d4c"
+    },
+    "payload_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "architecture_id",
+    "partition_sha256",
+    "payload_sha256"
+  ],
+  "title": "KoalaBear active C5/base, twist, Frobenius-9208 adapter",
+  "type": "object"
+}

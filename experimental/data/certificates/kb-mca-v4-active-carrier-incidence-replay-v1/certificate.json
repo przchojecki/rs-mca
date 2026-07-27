@@ -1,0 +1,183 @@
+{
+  "active_ledger": {
+    "B_remaining": 274961102171022152,
+    "U_paid": 19625940372935,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_ADAPTER_V1",
+  "contracts": {
+    "complete_selector_rebuilt_after_active_owner_deletion": true,
+    "endpoint_owner_floor_r": 9209,
+    "legacy_degree_195_selector_state_imported": false,
+    "one_cut_formula_recomputed_at_active_budget": true,
+    "source_pair_and_translation_unchanged": true
+  },
+  "counted_object": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE",
+  "partition_sha256": "aede55b9409dd7c1407e626da09179ef48a00c52dc4a5cf272757cea1a804d4c",
+  "payload_sha256": "274181ebf4709a60a84c2e4fccb54fd69cb4fa84f4dd9905bd44f0d291759069",
+  "scan": {
+    "endpoint_records": [
+      {
+        "carrier_size": 2020470,
+        "coarse_cap": "1305700408804031517",
+        "line_cap": 34,
+        "low_deficit_cap": "21972110289298",
+        "one_cut_tail": "92203447047139719",
+        "r": 9209,
+        "source_size": 76682,
+        "tail_margin": "92181474936850421",
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_RICH_PENCIL_CARRIER_ONE_CUT",
+        "x_floor": 29132
+      },
+      {
+        "carrier_size": 1962213,
+        "coarse_cap": "1003429790774971728",
+        "line_cap": 245277,
+        "low_deficit_cap": "125429426992548046",
+        "one_cut_tail": "145798249349082493",
+        "r": 67466,
+        "source_size": 134939,
+        "tail_margin": "20368822356534447",
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_RICH_PENCIL_CARRIER_ONE_CUT",
+        "x_floor": 4
+      },
+      {
+        "carrier_size": 1962212,
+        "coarse_cap": "1003425188385670987",
+        "line_cap": 327035,
+        "low_deficit_cap": "167238042774200802",
+        "one_cut_tail": "145799065386533629",
+        "r": 67467,
+        "source_size": 134940,
+        "tail_margin": "-21438977387667173",
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_LOW_X_DETERMINANT_PACKING_SLACK_67467_TO_236112",
+        "x_floor": 3
+      },
+      {
+        "carrier_size": 1793567,
+        "coarse_cap": "446919542763003930",
+        "line_cap": 981105,
+        "low_deficit_cap": "244472023503267509",
+        "one_cut_tail": "244471606738847477",
+        "r": 236112,
+        "source_size": 303585,
+        "tail_margin": "-416764420032",
+        "terminal": "UNPAID_ACTIVE_FULL_OUTSIDE_LOW_X_DETERMINANT_PACKING_SLACK_67467_TO_236112",
+        "x_floor": -84319
+      },
+      {
+        "carrier_size": 1793566,
+        "coarse_cap": "446917300150441997",
+        "line_cap": 981105,
+        "low_deficit_cap": "244470933063831443",
+        "one_cut_tail": "244472004370538179",
+        "r": 236113,
+        "source_size": 303586,
+        "tail_margin": "1071306706736",
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_RICH_PENCIL_CARRIER_ONE_CUT",
+        "x_floor": -84320
+      },
+      {
+        "carrier_size": 1699331,
+        "coarse_cap": "274961723183429452",
+        "line_cap": 981105,
+        "low_deficit_cap": "158749290996401833",
+        "one_cut_tail": "274960992060957823",
+        "r": 330348,
+        "source_size": 397821,
+        "tail_margin": "116211701064555990",
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_RICH_PENCIL_CARRIER_ONE_CUT",
+        "x_floor": -131437
+      },
+      {
+        "carrier_size": 1699330,
+        "coarse_cap": "274960266930640177",
+        "line_cap": 981105,
+        "r": 330349,
+        "source_size": 397822,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_M2B_COARSE_CARRIER",
+        "x_floor": -131438
+      },
+      {
+        "carrier_size": 1116048,
+        "coarse_cap": "6250452705118696",
+        "line_cap": 981105,
+        "r": 913631,
+        "source_size": 981104,
+        "terminal": "PAID_ACTIVE_FULL_OUTSIDE_M2B_COARSE_CARRIER",
+        "x_floor": -423079
+      }
+    ],
+    "intervals": [
+      [
+        9209,
+        67466,
+        "PAID_ACTIVE_FULL_OUTSIDE_RICH_PENCIL_CARRIER_ONE_CUT"
+      ],
+      [
+        67467,
+        236112,
+        "UNPAID_ACTIVE_FULL_OUTSIDE_LOW_X_DETERMINANT_PACKING_SLACK_67467_TO_236112"
+      ],
+      [
+        236113,
+        330348,
+        "PAID_ACTIVE_FULL_OUTSIDE_RICH_PENCIL_CARRIER_ONE_CUT"
+      ],
+      [
+        330349,
+        913631,
+        "PAID_ACTIVE_FULL_OUTSIDE_M2B_COARSE_CARRIER"
+      ]
+    ],
+    "route_cut_sha256": "2a2027f144f17eb86b4dd2c7e4536bb5e8ab2f94709a638b5ac903e8e10c0e92",
+    "scan_count": 904423,
+    "scan_r_max": 913631,
+    "scan_r_min": 9209,
+    "scan_sha256": "3c70844959e180546ec6d59544399872adce53d874eeaea27f3349eda45859f3",
+    "terminal_counts": {
+      "PAID_ACTIVE_FULL_OUTSIDE_M2B_COARSE_CARRIER": 583283,
+      "PAID_ACTIVE_FULL_OUTSIDE_RICH_PENCIL_CARRIER_ONE_CUT": 152494,
+      "UNPAID_ACTIVE_FULL_OUTSIDE_LOW_X_DETERMINANT_PACKING_SLACK_67467_TO_236112": 168646
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_C5_TWIST_FROBENIUS9208_ADAPTER_V1",
+      "hash": "92d785694df024fdc88eddc50d3fa39ac638cfe720d45e775e7c542b863cfd63",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_c5_twist_frobenius9208_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_MANIFEST",
+      "hash": "65ccbe7efc060d4c72a9e29c898c89f12a0f2187592a4927d8d7d0bc26ab220a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-c5-twist-frobenius9208-adapter-v1/manifest.json"
+    },
+    {
+      "binding_id": "SOURCE_02_M1_KB_RANK9_FULL_OUTSIDE_CARRIER_INCIDENCE_SPLICE_V1",
+      "hash": "185e82a89adc22ae026161d85aef546f5d3b43747988a8c8c6688d89b2c0a744",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_full_outside_carrier_incidence_splice_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_VERIFY_M1_KB_RANK9_FULL_OUTSIDE_CARRIER_INCIDENCE_SPLICE_V1",
+      "hash": "381a538ee90f1260db49a2aaf12b848cfff2ed4690c8f95c364e197d5b8099eb",
+      "hash_kind": "SHA256",
+      "path": "experimental/scripts/verify_m1_kb_rank9_full_outside_carrier_incidence_splice_v1.py"
+    },
+    {
+      "binding_id": "SOURCE_04_M1_KB_RANK9_FULL_OUTSIDE_CARRIER_INCIDENCE_SPLICE_V1",
+      "hash": "d38c76c8429f95e917323b070e9dba72841bf44c50fefadf8de16a476f97c892",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/m1-kb-rank9-full-outside-carrier-incidence-splice-v1/m1_kb_rank9_full_outside_carrier_incidence_splice_v1.json"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_ACTIVE_CARRIER_INCIDENCE_REPLAY_V1",
+      "hash": "d8c09fd7193967d09c30b49b719ba460f27770c3ab465432eec5d83cf26e0139",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_active_carrier_incidence_replay_v1.md"
+    }
+  ],
+  "status": "PROVED_ACTIVE_TWO_RANGE_FULL_OUTSIDE_CLOSURE_ZERO_ADDITIONAL_CHARGE_INTERMEDIATE_GAP_OPEN_ROW_OPEN"
+}

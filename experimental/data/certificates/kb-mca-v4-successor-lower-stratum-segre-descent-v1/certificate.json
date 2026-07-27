@@ -1,0 +1,131 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "deployed_arithmetic": {
+    "agreement": 1116048,
+    "base_field_order": 2130706433,
+    "bezout_cap": 267576636738137856,
+    "bezout_degree_max": 64,
+    "bezout_margin": 3203576222438024,
+    "carrier_size": 1962206,
+    "coefficient_component_count_max": 6,
+    "complement_size": 981105,
+    "current_remaining_reserve": 270780212960575880,
+    "direct_cap": 4180884949033404,
+    "direct_margin": 266599328011542476,
+    "enlarged_source_dimension": 4,
+    "evaluation_extension_degree": 6,
+    "forced_common_zero_size": 981101,
+    "h_plus_ell": 1,
+    "intrinsic_gate_no_wrap_margin": 67471,
+    "j": 981104,
+    "k": 1048576,
+    "local_u": 67472,
+    "n": 2097152,
+    "plane_cap": 8361769898066808,
+    "plane_margin": 262418443062509072,
+    "r": 67473,
+    "reduced_degree_lower": 67473,
+    "reduced_degree_upper": 67474,
+    "source_pencil_dimension": 2,
+    "source_rational_limit": 67472,
+    "source_size": 134946,
+    "t": 67472,
+    "treated_reduced_degree": 67473,
+    "x": 1
+  },
+  "finite_controls": {
+    "extension_source": {
+      "base_prime": 7,
+      "base_projective_ambient_points": 400,
+      "base_rank_one_points": 10,
+      "enlarged_source_dimension": 4,
+      "extension_degree": 2,
+      "left": [
+        26,
+        3,
+        22
+      ],
+      "p_plus_one": 8,
+      "quotient_map_directions": 8,
+      "right": [
+        34,
+        29,
+        11
+      ],
+      "source_degree": 2,
+      "source_pencil_dimension": 2,
+      "source_size": 4
+    },
+    "quadrics": {
+      "base_prime": 7,
+      "nonsplit_quadric_points": 50,
+      "nonsplit_ruling_field_order": 49,
+      "projective_3_space_points": 400,
+      "split_quadric_points": 64,
+      "split_quotient_directions": 8
+    }
+  },
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "3793375905070c42d5df908488535bcf653e4f02006a54ea433e214a2f86164a",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_FIRST_GAP_SOURCE_INTERPOLATION_PENCIL_V1",
+      "hash": "2eee1da10088ee750c95808c5b24eeabfdd6a93a35dce95c248b6b68a4acec43",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_source_interpolation_pencil_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_POST_NEXT_SLACK_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "a842d715ec66047a4842bd212c76d4bdf7f9224016e87e6a6ede5ade8e84c715",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_next_slack_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_SUCCESSOR_LOWER_STRATUM_SEGRE_DESCENT_V1",
+      "hash": "5f50bf811e419de149d16be44becae4a79fb4f26b6cf5badf6b13e0b39a4a1ba",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_successor_lower_stratum_segre_descent_v1.md"
+    }
+  ],
+  "status": "PROVED_SUCCESSOR_LOWER_STRATUM_ZERO_CHARGE_PAYMENT_UPPER_COMPANION_PAID_SUCCESSOR_SLACK_CLOSED",
+  "theorem": {
+    "actual_complement_locator_on_segre_quadric": true,
+    "base_dimension_at_most_three_paid": true,
+    "coefficient_frobenius_preserves_lower_pencil": true,
+    "coefficient_frobenius_preserves_multiplier_ruling": true,
+    "descended_nonsplit_quadric_impossible": true,
+    "descended_split_quadric_paid": true,
+    "extra_gcd_enlarged_source_dimension": 4,
+    "forced_gcd_branch_directly_paid": true,
+    "full_base_non_descended_branch_paid": true,
+    "lower_pencil_intrinsic_inside_enlarged_space": true,
+    "lower_stratum_paid": true,
+    "multiplication_tensor_isomorphism": true,
+    "row_closed": true,
+    "slack_split_is_h0_ell1_or_h1_ell0": true,
+    "successor_slack": 67473,
+    "treated_degree_stratum": 67473,
+    "upper_remaining_packets": [],
+    "upper_span_four_paid": true,
+    "upper_span_three_paid": true,
+    "upper_span_three_spread_petal_payment_open": false,
+    "upper_stratum_paid": true
+  },
+  "upstream_certificates": {
+    "post_next_slack_histogram": {
+      "file_sha256": "bf4f024fd4ff3c76c77a259da1b2f5cd087d5ff46383dd45883c4b74c708f2a7",
+      "path": "experimental/data/certificates/kb-mca-v4-post-next-slack-full-histogram-replay-v1/certificate.json",
+      "payload_sha256": "53a70a678e6669ac4d3083ec0dcd0a29d86aa127997cfdf2f8c9318eb844c902"
+    },
+    "successor_upper_stratum": {
+      "file_sha256": "ee52ec9a7a9043e9c1ec9c908c84808b88158e9d270827f7b31bcbdb99dbbb6f",
+      "path": "experimental/data/certificates/kb-mca-v4-successor-upper-stratum-quadratic-adjugate-v1/certificate.json",
+      "payload_sha256": "492c931f1417ee417251ab6dfb8d54501ba253a5d6a58e89a78a16e6ec2629c6"
+    }
+  }
+}

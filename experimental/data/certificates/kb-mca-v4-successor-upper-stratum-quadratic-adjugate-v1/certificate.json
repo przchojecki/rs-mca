@@ -1,0 +1,826 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "deployed_arithmetic": {
+    "agreement": 1116048,
+    "balanced_source_partition_block_size": 67473,
+    "base_field_order": 2130706433,
+    "carrier_size": 1962206,
+    "common_zero_size": 981101,
+    "complement_size": 981105,
+    "current_remaining_reserve": 270780212960575880,
+    "determinant_degree_cap": 202422,
+    "direct_branch_cap": 4180884949033404,
+    "distinct_actual_locator_exchange_floor": 67472,
+    "double_root_degree": 269892,
+    "dual_rs_polynomial_degree": 67470,
+    "full_gcd_degree": 981101,
+    "full_source_exterior_spread_floor": 134945,
+    "j": 981104,
+    "k": 1048576,
+    "minor_quotient_degree": 2,
+    "n": 2097152,
+    "paired_direction_product_degree_cap": 67472,
+    "r": 67473,
+    "reduced_degree_lower": 67473,
+    "reduced_degree_upper": 67474,
+    "reserve_margin": 266599328011542476,
+    "source_kernel_dimension": 4,
+    "source_rational_limit": 67472,
+    "source_size": 134946,
+    "t": 67472,
+    "three_petal_pair_atom_floor": 67471,
+    "three_petal_private_atom_cap": 1,
+    "treated_reduced_degree": 67474,
+    "x": 1
+  },
+  "finite_controls": {
+    "actual_locator_triples": {
+      "branch_reciprocal_dimensions": {
+        "one_root_swap:dim3": 1680,
+        "one_root_swap:dim4": 1400,
+        "three_block_pencil:dim4": 840
+      },
+      "carrier_size": 8,
+      "classified_relations": {
+        "one_root_swap": 3080,
+        "three_block_pencil": 840
+      },
+      "degree": 5,
+      "field_prime": 19,
+      "fixed_divisor_examples": {
+        "one_root_swap_dim3": {
+          "exterior_locator_degrees": [
+            3,
+            3,
+            3
+          ],
+          "fixed_divisor_degrees": [
+            3,
+            3,
+            3
+          ],
+          "reciprocal_dimension": 3,
+          "zero_sets": [
+            [
+              8,
+              9
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              11,
+              12
+            ]
+          ]
+        },
+        "one_root_swap_dim4": {
+          "exterior_locator_degrees": [
+            2,
+            2,
+            2
+          ],
+          "fixed_divisor_degrees": [
+            2,
+            2,
+            2
+          ],
+          "reciprocal_dimension": 4,
+          "zero_sets": [
+            [
+              8,
+              9
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              8,
+              11
+            ]
+          ]
+        },
+        "three_block_pencil_dim4": {
+          "exterior_locator_degrees": [
+            2,
+            2,
+            2
+          ],
+          "fixed_divisor_degrees": [
+            2,
+            2,
+            2
+          ],
+          "reciprocal_dimension": 4,
+          "zero_sets": [
+            [
+              8,
+              10
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              10,
+              11
+            ]
+          ]
+        }
+      },
+      "independent_triples": 3220,
+      "primitive_three_petal_positive_control": {
+        "actual_locator_cyclic_coordinates": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            23,
+            25,
+            26
+          ],
+          [
+            26,
+            7,
+            19
+          ]
+        ],
+        "all_three_reduced_pairs_exact_degree_coprime": true,
+        "classification": {
+          "branch": "three_block_pencil",
+          "exterior_spread": 4,
+          "numerator_degree": 0,
+          "pair_atom_sizes": [
+            2,
+            2,
+            2
+          ],
+          "quotient_degree": -1,
+          "triple_common_size": 0,
+          "unique_atom_sizes": [
+            1,
+            1,
+            1
+          ],
+          "zero_coefficient_count": 0
+        },
+        "cyclic_multiplier_source_degree_cap": 4,
+        "cyclic_space_dimension": 2,
+        "degree": 5,
+        "field_prime": 29,
+        "j": 8,
+        "locator_rank": 3,
+        "occupied_space_quotient_dimension": 1,
+        "reciprocal_dimension": 3,
+        "same_moving_root_image_checks": 42,
+        "same_moving_root_image_containment": true,
+        "source_image_family_size": 30,
+        "source_left": [
+          24,
+          10,
+          6,
+          10,
+          13,
+          12,
+          22,
+          18
+        ],
+        "source_residue_dimension": 4,
+        "source_right": [
+          22,
+          9,
+          26,
+          28,
+          8,
+          13,
+          7,
+          20
+        ],
+        "source_size": 8,
+        "three_petal_floor_is_sharp": true,
+        "zero_locator_degree": 5,
+        "zero_sets": [
+          [
+            9,
+            13,
+            16,
+            17,
+            19
+          ],
+          [
+            8,
+            10,
+            16,
+            19,
+            21
+          ],
+          [
+            8,
+            9,
+            10,
+            17,
+            18
+          ]
+        ]
+      },
+      "rank_four_actual_locator_c5_guardrail": {
+        "actual_locator_count": 4,
+        "actual_locator_rank": 4,
+        "all_actual_reduced_pairs_exact_degree_coprime": true,
+        "degree": 5,
+        "field_prime": 29,
+        "j": 8,
+        "rank_four_extension_is_deleted_by_c5": true,
+        "source_left": [
+          23,
+          27,
+          27,
+          25,
+          2,
+          27,
+          1,
+          0
+        ],
+        "source_residue_dimension": 4,
+        "source_right": [
+          22,
+          16,
+          20,
+          6,
+          2,
+          10,
+          0,
+          1
+        ],
+        "source_size": 8,
+        "strong_three_locator_closure_is_false": true,
+        "triple_reciprocal_dimensions": [
+          3,
+          2,
+          3,
+          2
+        ],
+        "triple_relation_branches": {
+          "three_block_pencil": 2
+        },
+        "triple_relation_counts": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "triples": [
+          {
+            "classifications": [
+              {
+                "branch": "three_block_pencil",
+                "exterior_spread": 4,
+                "numerator_degree": 0,
+                "pair_atom_sizes": [
+                  2,
+                  2,
+                  2
+                ],
+                "quotient_degree": -1,
+                "triple_common_size": 0,
+                "unique_atom_sizes": [
+                  1,
+                  1,
+                  1
+                ],
+                "zero_coefficient_count": 0
+              }
+            ],
+            "reciprocal_dimension": 3,
+            "relation_count": 1,
+            "zero_sets": [
+              [
+                8,
+                9,
+                10,
+                17,
+                18
+              ],
+              [
+                8,
+                10,
+                16,
+                19,
+                21
+              ],
+              [
+                9,
+                13,
+                16,
+                17,
+                19
+              ]
+            ]
+          },
+          {
+            "classifications": [],
+            "reciprocal_dimension": 2,
+            "relation_count": 0,
+            "zero_sets": [
+              [
+                8,
+                9,
+                10,
+                17,
+                18
+              ],
+              [
+                8,
+                10,
+                16,
+                19,
+                21
+              ],
+              [
+                10,
+                12,
+                13,
+                16,
+                18
+              ]
+            ]
+          },
+          {
+            "classifications": [
+              {
+                "branch": "three_block_pencil",
+                "exterior_spread": 4,
+                "numerator_degree": 0,
+                "pair_atom_sizes": [
+                  2,
+                  2,
+                  2
+                ],
+                "quotient_degree": -1,
+                "triple_common_size": 0,
+                "unique_atom_sizes": [
+                  1,
+                  1,
+                  1
+                ],
+                "zero_coefficient_count": 0
+              }
+            ],
+            "reciprocal_dimension": 3,
+            "relation_count": 1,
+            "zero_sets": [
+              [
+                8,
+                9,
+                10,
+                17,
+                18
+              ],
+              [
+                9,
+                13,
+                16,
+                17,
+                19
+              ],
+              [
+                10,
+                12,
+                13,
+                16,
+                18
+              ]
+            ]
+          },
+          {
+            "classifications": [],
+            "reciprocal_dimension": 2,
+            "relation_count": 0,
+            "zero_sets": [
+              [
+                8,
+                10,
+                16,
+                19,
+                21
+              ],
+              [
+                9,
+                13,
+                16,
+                17,
+                19
+              ],
+              [
+                10,
+                12,
+                13,
+                16,
+                18
+              ]
+            ]
+          }
+        ],
+        "zero_locator_degree": 5
+      },
+      "relation_nullities": {
+        "0": 420,
+        "1": 1680,
+        "2": 1120
+      },
+      "source_size": 8,
+      "split_locator_count": 28,
+      "syzygy_triples": 2800,
+      "zero_locator_degree": 2
+    },
+    "deterministic_scan": {
+      "accepted_exact_coprime_pairs": 9189,
+      "all_four_rank_excess_count": 6,
+      "all_four_rank_excess_full_degree_one_syzygy_profile_histogram": {
+        "2,2,0,1": 6
+      },
+      "all_four_rank_excess_pencil_kernel_profile_histogram": {
+        "0,2,4,2,4,6": 6
+      },
+      "all_four_rank_excess_syzygy_generic_rank_histogram": {
+        "2": 6
+      },
+      "direct_source_rational_implication_fails": true,
+      "field_prime": 13,
+      "first_all_four_rank_excess": {
+        "full_degree_one_syzygy_profile": {
+          "common_slope_source_zeros": [],
+          "dimension": 2,
+          "lowered_pair_determinant_branch": "saturated",
+          "lowered_pair_determinant_quotient": [
+            7
+          ],
+          "slope_coordinate_rank": 2
+        },
+        "left": [
+          8,
+          10,
+          11,
+          9,
+          9,
+          12
+        ],
+        "linear_pencil_kernel_profile": {
+          "left_bounded_kernel_dimensions": [
+            2,
+            4,
+            6
+          ],
+          "right_bounded_kernel_dimensions": [
+            0,
+            2,
+            4
+          ]
+        },
+        "reciprocal_dimensions": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "right": [
+          7,
+          2,
+          4,
+          11,
+          9,
+          10
+        ],
+        "syzygy_matrix": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              1
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              11,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              10
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              11,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              11,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              10
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "syzygy_matrix_generic_rank": 2,
+        "syzygy_matrix_rank_histogram": {
+          "2": 13
+        }
+      },
+      "four_triple_reciprocal_dimension_signature_histogram": {
+        "2,2,2,3": 7215,
+        "2,2,2,4": 53,
+        "2,2,3,3": 1763,
+        "2,2,3,4": 14,
+        "2,3,3,3": 138,
+        "3,3,3,3": 6
+      },
+      "paired_direction_product_can_vanish": true,
+      "paired_direction_product_degree_histogram": {
+        "-1": 1,
+        "1": 5,
+        "2": 47,
+        "3": 687
+      },
+      "q_direction_unit_count": 377,
+      "random_seed": 55,
+      "rank_excess_example": {
+        "determinant_zero": true,
+        "left": [
+          5,
+          1,
+          10,
+          8,
+          3,
+          6
+        ],
+        "left_linear_syzygy": [
+          0,
+          3,
+          5,
+          12,
+          1,
+          0
+        ],
+        "reciprocal_dimension": 3,
+        "right": [
+          7,
+          0,
+          7,
+          4,
+          7,
+          10
+        ],
+        "right_linear_syzygy": [
+          3,
+          12,
+          0,
+          10,
+          1,
+          0
+        ],
+        "source_basis": [
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            4,
+            1,
+            5,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            5,
+            7,
+            12,
+            2,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "reciprocal_dimension_histogram": {
+        "2": 8449,
+        "3": 740
+      },
+      "saturated_bezout_nonzero_scalar_count": 740,
+      "saturated_bezout_quotient_histogram": {
+        "1": 59,
+        "10": 67,
+        "11": 55,
+        "12": 48,
+        "2": 79,
+        "3": 58,
+        "4": 63,
+        "5": 81,
+        "6": 57,
+        "7": 50,
+        "8": 60,
+        "9": 63
+      },
+      "selected_locator_outside_cyclic_plane_count": 740,
+      "source_degree": 5,
+      "source_plane_unit_outside_cyclic_plane_count": 740,
+      "source_size": 8,
+      "syzygy_direction_source_map_reduced_degree_histogram": {
+        "0": 1,
+        "1": 14,
+        "2": 76,
+        "3": 277,
+        "4": 372
+      },
+      "trials": 10000,
+      "v_direction_unit_count": 406
+    },
+    "strict_degree_boundary": {
+      "degree_gate_is_equality": true,
+      "determinant_degree_cap": 12,
+      "determinant_is_nonzero_source_locator_square_multiple": true,
+      "field_prime": 11,
+      "quotient": [
+        3
+      ],
+      "reciprocal_dimension": 3,
+      "source_degree": 4,
+      "source_size": 6,
+      "twice_source_size": 12
+    }
+  },
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "492c931f1417ee417251ab6dfb8d54501ba253a5d6a58e89a78a16e6ec2629c6",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_NEXT_SLACK_SOURCE_PLANE_CLOSURE_V1",
+      "hash": "ce98775ddf1a746326eb6793870ed828a5801638f27007fab0f34a2ccc50b98f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_next_slack_source_plane_closure_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_POST_NEXT_SLACK_FULL_HISTOGRAM_REPLAY_V1",
+      "hash": "a842d715ec66047a4842bd212c76d4bdf7f9224016e87e6a6ede5ade8e84c715",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_post_next_slack_full_histogram_replay_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_SUCCESSOR_UPPER_STRATUM_QUADRATIC_ADJUGATE_V1",
+      "hash": "5119ab57368e78343f85077168966702cb5dd46fce3c07d98d5ca7c7b46aab5b",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_successor_upper_stratum_quadratic_adjugate_v1.md"
+    }
+  ],
+  "status": "PROVED_SUCCESSOR_UPPER_STRATUM_QUADRATIC_ADJUGATE_SATURATED_BEZOUT_AND_ACTUAL_LOCATOR_PARTITION_TRICHOTOMY_COMPLETE_SPAN_THREE_AND_SPAN_FOUR_SOURCE_IMAGE_PAYMENT_UPPER_STRATUM_PAID_LOWER_STRATUM_SEPARATE",
+  "theorem": {
+    "actual_locator_venn_factor_identity": true,
+    "base_span_at_most_two_directly_paid": true,
+    "canonical_three_part_source_stratification": true,
+    "common_source_zero_forces_zero_lowered_pencil_determinant": true,
+    "degree_one_syzygy_space_identifies_with_lowered_multiplier_space": true,
+    "direct_source_rational_implication_is_false": true,
+    "distinct_actual_locator_exchange_floor": 67472,
+    "four_independent_post_c5_actual_locators_give_four_rank_excess_triples": true,
+    "four_syzygy_matrix_generic_rank": 2,
+    "four_syzygy_matrix_generic_rank_one_excluded": true,
+    "four_syzygy_matrix_generic_rank_three_excluded_by_cubic_cyclic_contradiction": true,
+    "four_syzygy_matrix_is_zero_diagonal_linear": true,
+    "left_syzygy_direction_row_degree_drop": 1,
+    "lower_degree_stratum_treated": false,
+    "lowered_multiplier_dimension_at_least_three_emits_degree_drop_two": true,
+    "lowered_multiplier_dimension_floor": 2,
+    "lowered_multiplier_dimension_two_gives_constant_left_factorization": true,
+    "lowered_pencil_determinant_is_zero_or_source_locator_multiple": true,
+    "lowered_pencil_slope_synchronization_open": false,
+    "nontransverse_span_four_emits_three_step_multiplier": true,
+    "nonzero_paired_product_source_zero_union_cap": 67472,
+    "nonzero_venn_numerator_exterior_spread_floor": 134945,
+    "occupied_actual_locator_span_at_most_two_directly_paid": true,
+    "occupied_span_four_directly_paid": true,
+    "occupied_span_three_directly_paid": true,
+    "paired_direction_product_can_be_zero": true,
+    "paired_syzygy_direction_degree_drop": 2,
+    "rank_excess_adjugate_quotient_degree": 2,
+    "rank_excess_determinant_zero": true,
+    "rank_two_collective_syzygy_payment_open": false,
+    "remaining_actual_locator_packets": [],
+    "right_syzygy_direction_column_degree_drop": 1,
+    "row_closed": false,
+    "saturated_bezout_degree_profile": {
+      "A": 67473,
+      "B": 67473,
+      "C": 67474,
+      "w": 67472
+    },
+    "saturated_bezout_normal_form": true,
+    "saturated_bezout_scalar_is_nonzero": true,
+    "selected_locator_outside_source_cyclic_plane": true,
+    "shift_is_injective_on_lowered_multiplier_space": true,
+    "source_constraints_independent": true,
+    "source_plane_unit_outside_reciprocal_cyclic_plane": true,
+    "source_residue_dimension": 4,
+    "span_three_cyclic_space_dimension": 2,
+    "span_three_lowered_multiplier_dimension_floor": 1,
+    "span_three_occupied_quotient_dimension": 1,
+    "span_three_same_locator_containment": true,
+    "span_three_source_image_cap": 4180884949033404,
+    "span_three_source_image_family_size": 2130706434,
+    "span_three_spread_petal_payment_open": false,
+    "successor_slack": 67473,
+    "surviving_adjugate_is_nonzero_rank_one": true,
+    "surviving_left_syzygy_degree": 1,
+    "surviving_right_syzygy_degree": 1,
+    "three_independent_actual_locators_enable_source_syzygy": true,
+    "three_step_cyclic_space_dimension": 3,
+    "three_step_multiplier_payment_open": false,
+    "three_step_multiplier_source_product_degree_cap": 67472,
+    "three_step_quotient_dimension": 1,
+    "three_step_same_locator_containment": true,
+    "three_step_source_image_cap": 4180884949033404,
+    "three_step_source_image_family_size": 2130706434,
+    "transverse_first_prolongation_cap": 4180884949033404,
+    "transverse_two_dimensional_first_prolongation_directly_paid": true,
+    "treated_degree_stratum": 67474,
+    "triple_reciprocal_dimension_two_owned_by_c5": true,
+    "upper_stratum_paid": true,
+    "zero_adjugate_contradicts_coprime_exact_degree": true,
+    "zero_coefficient_one_root_swap_excluded": true,
+    "zero_paired_product_forces_balanced_source_partition": true,
+    "zero_venn_numerator_pair_atom_floor": 67471,
+    "zero_venn_numerator_private_atom_cap": 1
+  },
+  "upstream_certificates": {
+    "next_slack_source_plane": {
+      "file_sha256": "f3a6f113ed901fb881a20f081534e1910d4628328987f71644c9ace779b8b787",
+      "path": "experimental/data/certificates/kb-mca-v4-next-slack-source-plane-closure-v1/certificate.json",
+      "payload_sha256": "e4d51dcaea7ba2591ca314ecd73248fe0a79e07244176dab8b20c78d8d1e4064"
+    },
+    "post_next_slack_histogram": {
+      "file_sha256": "bf4f024fd4ff3c76c77a259da1b2f5cd087d5ff46383dd45883c4b74c708f2a7",
+      "path": "experimental/data/certificates/kb-mca-v4-post-next-slack-full-histogram-replay-v1/certificate.json",
+      "payload_sha256": "53a70a678e6669ac4d3083ec0dcd0a29d86aa127997cfdf2f8c9318eb844c902"
+    }
+  }
+}

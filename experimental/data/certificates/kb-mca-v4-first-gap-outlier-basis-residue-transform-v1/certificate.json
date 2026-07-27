@@ -1,0 +1,156 @@
+{
+  "active_ledger": {
+    "B_remaining": 274961102171022152,
+    "U_paid": 19625940372935,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_ADAPTER_V1",
+  "deployed_arithmetic": {
+    "active_compiler_average_multiplicity_floor": 537696,
+    "active_excess_allowance": 2930589315151076074409054963728781743707264369983654,
+    "active_excess_allowance_quotient_by_ambient_subsets": 537676,
+    "admitted_basis_cardinality_sufficient_cap": 2987090124862857014844845210892819423095108344,
+    "ambient_basis_exclusion_sufficient_floor": 2463375631688084272017718236470881527833308172,
+    "ambient_eight_subset_count": 5450465756550941286862563447363700950928416516,
+    "basis_incidence_floor_per_slope": 10658592438443717273371372062592575,
+    "basis_rank": 8,
+    "carrier_size": 1962208,
+    "coarse_tail_cut": 537696,
+    "coarse_tail_remainder": 4689031792167053939299604056471215877091326838,
+    "complement_locator_degree": 981105,
+    "cylinder_projective_dimension": 846163,
+    "high_richness_basis_sufficient_cap": 10574958542039187159709442200025745704510,
+    "line_multiplicity_cap": 981105,
+    "r": 67471,
+    "shortened_carrier_size": 1962200,
+    "shortened_zero_locator_degree": 981095,
+    "source_residue_dimension": 2,
+    "source_size": 134944,
+    "x": 1
+  },
+  "finite_model": {
+    "basis_multiplicity_histogram": {
+      "0": 16,
+      "1": 10,
+      "4": 1,
+      "5": 1
+    },
+    "basis_richness_layer_cake": 5,
+    "basis_richness_tail": {
+      "3": 2,
+      "4": 2,
+      "5": 1
+    },
+    "basis_to_line_bijection": true,
+    "basis_weighted_excess": 5,
+    "bordered_minor_identities": true,
+    "carrier_size": 8,
+    "field": 17,
+    "independent_basis_count": 28,
+    "line_weighted_excess": 5,
+    "matroid_rank": 2,
+    "rich_line_count": 2,
+    "rich_threshold": 2,
+    "selected_slope_count": 9,
+    "shortened_locator_identity": true,
+    "shortened_locator_records_checked": 2
+  },
+  "partition_sha256": "aede55b9409dd7c1407e626da09179ef48a00c52dc4a5cf272757cea1a804d4c",
+  "payload_sha256": "555ab79b1222e463828984a9b43cd3ceb4915557c7d17ef46a8fcc9167846468",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_MANIFEST",
+      "hash": "65ccbe7efc060d4c72a9e29c898c89f12a0f2187592a4927d8d7d0bc26ab220a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-c5-twist-frobenius9208-adapter-v1/manifest.json"
+    },
+    {
+      "binding_id": "SOURCE_01_CERTIFICATE",
+      "hash": "e976e7cba395b05cf6468a7cea16ad12ba813ed52c02aea00f49a382c26bdd3a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-source-interpolation-pencil-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_02_CERTIFICATE",
+      "hash": "0429ecc5dafc2fe8953020dc7a399dd3218e2a5f7b2e3f2e7b49cb404ba88a15",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-complement-locator-linearization-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_03_M1_KB_BRANCH3_RANK9_RICH_PENCIL_ATLAS_V1",
+      "hash": "b5e1b60d087ca3d74ff6dbfc1d7a6b1fd70c4f90df99d350c8b717a3e19f3de7",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_branch3_rank9_rich_pencil_atlas_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_M1_KB_RANK9_ACTIVE_SOURCE_MATROID_REINDEX_V1",
+      "hash": "1e9de04e45b3937ff3bbb792ccdf0ee5a5d62e0d3f3601e4a23d898ae59efbbe",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_active_source_matroid_reindex_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_FIRST_GAP_OUTLIER_BASIS_RESIDUE_TRANSFORM_V1",
+      "hash": "fc223b29073f2c3473c583f45e4303076581429a09c506b52f6e2c5cf3408875",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_outlier_basis_residue_transform_v1.md"
+    }
+  ],
+  "source_coupled_f17_census": {
+    "K0_basis_count": 495,
+    "K0_rank": 4,
+    "all_layer_cake_identities": true,
+    "all_source_coset_representations": true,
+    "all_weighted_atlas_identities": true,
+    "canonical_selector_rule": "LEXICOGRAPHIC_COMPLEMENT_PER_SLOPE",
+    "carrier_size": 12,
+    "field": 17,
+    "maximum_admitted_rich_basis_case": {
+      "admitted_rich_bases": 20,
+      "basis_count": 495,
+      "case": "random_08",
+      "maximum_basis_multiplicity": 5,
+      "primitive_source_lines": 4,
+      "rich_selected_lines": 2,
+      "selected_slopes": 13,
+      "weighted_excess": 35
+    },
+    "maximum_basis_multiplicity_case": {
+      "admitted_rich_bases": 10,
+      "basis_count": 495,
+      "case": "random_00",
+      "maximum_basis_multiplicity": 7,
+      "primitive_source_lines": 2,
+      "rich_selected_lines": 2,
+      "selected_slopes": 10,
+      "weighted_excess": 30
+    },
+    "maximum_weighted_excess_case": {
+      "admitted_rich_bases": 20,
+      "basis_count": 495,
+      "case": "random_15",
+      "maximum_basis_multiplicity": 7,
+      "primitive_source_lines": 4,
+      "rich_selected_lines": 3,
+      "selected_slopes": 15,
+      "weighted_excess": 45
+    },
+    "source_cases_checked": 36,
+    "source_size": 4
+  },
+  "status": "PROVED_OUTLIER_BASIS_RESIDUE_TRANSFORM_WEIGHTED_INCIDENCE_OPEN_ROW_OPEN",
+  "theorem": {
+    "active_excess_allowance_is_exact": true,
+    "active_excess_gate_implies_slope_budget": true,
+    "basis_is_contained_in_common_zero_set": true,
+    "basis_richness_layer_cake_is_exact": true,
+    "bordered_minors_reconstruct_common_zero_set": true,
+    "cardinality_only_sufficient_gate_is_exact": true,
+    "determinant_mass_paid": false,
+    "each_basis_has_at_most_one_rich_line": true,
+    "eight_shortened_locator_identity": true,
+    "high_richness_tail_sufficient_gate_is_exact": true,
+    "independent_basis_reconstructs_unique_graph_line": true,
+    "line_weighted_excess_equals_basis_weighted_excess": true,
+    "source_residue_test_unchanged_under_shortening": true
+  }
+}

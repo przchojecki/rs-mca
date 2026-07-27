@@ -1,0 +1,186 @@
+{
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_ADAPTER_V1",
+  "bridge": {
+    "active_reproof": true,
+    "conditional_q_replayed": false,
+    "legacy_first_match_state_imported": false,
+    "legacy_full_stack_imported": false,
+    "method": "PAIR_GLOBAL_INTRINSIC_SOURCE_RATIONAL_IMAGE_INSERTION",
+    "predecessor_architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_OWNER_ADAPTER_V1",
+    "selector_data_imported": false
+  },
+  "partition": {
+    "atom_order": [
+      "U_paid",
+      "U_Q",
+      "U_BC",
+      "U_new"
+    ],
+    "chronology_stages": [
+      {
+        "atom_id": "U_paid",
+        "owner_id": "SOURCE_COORDINATE_TANGENT_IMAGE",
+        "paid": true,
+        "residual_input": "COMPLETE_BAD_FINITE_SLOPES",
+        "residual_output": "R1"
+      },
+      {
+        "atom_id": "U_paid",
+        "owner_id": "ACTIVE_V4_INTRINSIC_DEEP_MCA_WEIGHT_OWNER",
+        "paid": true,
+        "residual_input": "R1",
+        "residual_output": "R2"
+      },
+      {
+        "atom_id": "U_paid",
+        "owner_id": "ACTIVE_V4_PAIR_GLOBAL_BOUNDED_DEGREE_SOURCE_RATIONAL",
+        "paid": true,
+        "residual_input": "R2",
+        "residual_output": "R3"
+      },
+      {
+        "atom_id": "U_Q",
+        "owner_id": "ACTIVE_V4_BOUNDARY_PREFIX_Q",
+        "paid": false,
+        "residual_input": "R3",
+        "residual_output": "R4"
+      },
+      {
+        "atom_id": "U_BC",
+        "owner_id": "ACTIVE_V4_BALANCED_CORE",
+        "paid": false,
+        "residual_input": "R4",
+        "residual_output": "R5"
+      },
+      {
+        "atom_id": "U_new",
+        "owner_id": "UNPAID_V4_COMPLEMENT",
+        "paid": false,
+        "residual_input": "R5",
+        "residual_output": "EMPTY"
+      }
+    ],
+    "owner_order": [
+      "SOURCE_COORDINATE_TANGENT_IMAGE",
+      "ACTIVE_V4_INTRINSIC_DEEP_MCA_WEIGHT_OWNER",
+      "ACTIVE_V4_PAIR_GLOBAL_BOUNDED_DEGREE_SOURCE_RATIONAL",
+      "ACTIVE_V4_BOUNDARY_PREFIX_Q",
+      "ACTIVE_V4_BALANCED_CORE",
+      "UNPAID_V4_COMPLEMENT"
+    ],
+    "partition_digest_method": "SHA256_CANONICAL_JSON_OF_PARTITION_BODY",
+    "partition_sha256": "5f5ff58ad53c76fd522b4ee45dd9966c1f982fab788fa5de95b917945679760f",
+    "residual_rule": "ITERATED_EXACT_SET_DIFFERENCE",
+    "witness_exhaustive": true
+  },
+  "payload_sha256": "c2adad9d2384490750a3dc480d4f7985e7f8282ed4bb09feeeb8f3cb60e74b8d",
+  "row_contract": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "code": {
+      "dimension": 1048576,
+      "redundancy": 1048576
+    },
+    "domain": {
+      "cardinality": 2097152
+    },
+    "field": {
+      "base_prime": 2130706433,
+      "cardinality": "93571093019388561295270373781649880353786165192103559169",
+      "extension_degree": 6
+    },
+    "projection_and_unit": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE"
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_RS_MCA_THRESHOLDS",
+      "hash": "ae662448b90d4db365feed6d8e826a5f7e7cc752b787ae7dc94af41c7c1d0a1e",
+      "hash_kind": "SHA256",
+      "path": "experimental/rs_mca_thresholds.tex"
+    },
+    {
+      "binding_id": "SOURCE_01_EXACTSPARSIFICATION",
+      "hash": "6c1d278b944b50e2f68d4c5794b5648ae09681e9819721b0d45769dd6b01f1ce",
+      "hash_kind": "SHA256",
+      "path": "experimental/lean/rs_mca_thresholds/RsMcaThresholds/ExactSparsification.lean"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_TANGENT_SOURCE_ADAPTER_V1",
+      "hash": "2ca3653b066b7cb2e3b54f7db1ab407d05d72b77f45496f2d7cd8efcf59b1590",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_source_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_M1_KB_BRANCH2_RANK_DEEP_OWNER_V1",
+      "hash": "28913b382293d3681e63b955862c1a372cd956dd6e2aa96e5ca4919c654114a8",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_branch2_rank_deep_owner_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_M1_KB_BRANCH3_DEEP_CCL_TDD_V1",
+      "hash": "07bb3f9bbb4918301205cc2f348ac1de496bee36de22a6d440b410e9d0906755",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_branch3_deep_ccl_tdd_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_TANGENT_DEEP_OWNER_ADAPTER_V1",
+      "hash": "f699360920758aa344d84006a87d2d4e328231463a1ebf907a3a62d1001b9d0a",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_owner_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_06_KBMCAV4TANGENTDEEPOWNERADAPTER",
+      "hash": "89f7e2f78a4a58346d2dfdae5643c2bcc7db16110f28ddc9abea87de7c5d7804",
+      "hash_kind": "SHA256",
+      "path": "experimental/lean/kb_mca_v4_tangent_deep_owner_adapter/KbMcaV4TangentDeepOwnerAdapter.lean"
+    },
+    {
+      "binding_id": "SOURCE_07_CORRESPONDENCE",
+      "hash": "3586b0987a54d61851e79ea7d4965cec2c7e1981027294f51f45b4e68510b5a0",
+      "hash_kind": "SHA256",
+      "path": "experimental/lean/kb_mca_v4_tangent_deep_owner_adapter/CORRESPONDENCE.md"
+    },
+    {
+      "binding_id": "SOURCE_08_M1_KB_RANK9_SOURCE_RATIONAL_OWNER_SPLICE_V1",
+      "hash": "2953a8f09f1b8135afa3f46be1820bfb4d3a8e548eddc3697deb36ee69eaf837",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/m1/m1_kb_rank9_source_rational_owner_splice_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_09_KB_MCA_V4_TANGENT_DEEP_SOURCE_RATIONAL_ADAPTER_V1",
+      "hash": "e4164f7f506885adee06c1c5e58739cf1990b4f8d31c6bdc23a9df015ca6e922",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_source_rational_adapter_v1.md"
+    }
+  ],
+  "source_owners": {
+    "deep": {
+      "agreement": 1747627,
+      "charge": 349526,
+      "gate": {
+        "lhs": 1048575,
+        "relation": "<=",
+        "rhs": 1048576
+      },
+      "intrinsic_predicate": "EXISTS_EXACT_NONCONTAINED_WITNESS_WITH_ACTUAL_ERROR_WEIGHT_AT_MOST_DEEP_RADIUS",
+      "monotone_under_prior_deletions": true,
+      "radius": 349525
+    },
+    "source_rational": {
+      "cap": 2078733,
+      "compatible_map_unique": true,
+      "domain": "D_MINUS_SIGMA",
+      "floor": 18419,
+      "image_injectivity_used": false,
+      "pair_global": true,
+      "subset_stable": true,
+      "union_over_maps_or_translations_forbidden": true
+    },
+    "tangent": {
+      "canonical_translation": "PUBLIC_FIRST_COMMON_SP3",
+      "charge": 981104,
+      "translation_preserves_complete_bad_slope_set": true,
+      "union_over_alternative_translations_forbidden": true
+    }
+  }
+}

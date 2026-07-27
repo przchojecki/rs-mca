@@ -1,0 +1,149 @@
+{
+  "active_ledger": {
+    "B_remaining": 270780212960575880,
+    "U_paid": 4200515150819207,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+  "counted_object": "R=67474 X=1 E=67475 FULL-OUTSIDE COEFFICIENT-RANK-TWO LINES",
+  "deployed_arithmetic": {
+    "carrier_size": 1962205,
+    "complement_size": 981105,
+    "direct_cap": 4180882818326970,
+    "double_source_zero_degree": 269894,
+    "forced_common_root_size": 981100,
+    "lowered_dimension": 3,
+    "r": 67474,
+    "reduced_degree": 67475,
+    "relation_degree_cap": 3,
+    "relation_product_degree_cap": 67478,
+    "reserve_margin": 266599330142248910,
+    "source_dimension": 5,
+    "source_size": 134947,
+    "three_by_three_minor_degree_cap": 202425,
+    "twice_lowered_dimension_floor": 1,
+    "x": 1,
+    "zero_locator_size": 981100
+  },
+  "partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+  "payload_sha256": "3e7f870adb5f39d5766ffda0cdc3ee248a8f8e0892099734c442e035ed07c177",
+  "regressions": {
+    "exhaustive_pencil": {
+      "good_scalar_histogram": {
+        "3": 100800,
+        "4": 98400,
+        "5": 100800
+      },
+      "input_degree": 1,
+      "minimum_good_scalars": 3,
+      "prime": 5,
+      "qualifying_diagonal_pairs": 300000
+    },
+    "proper_span_guardrail": {
+      "accepted_source_pairs": 250,
+      "candidate_complements": 252,
+      "carrier_size": 10,
+      "complement_size": 5,
+      "degree": 5,
+      "evaluated_cubic_relation_rank_profile": {
+        "(3, 2, 2)": 2,
+        "(3, 2, 3)": 34,
+        "(4, 3, 4)": 6
+      },
+      "occupied_shift_profile": {
+        "(1, 0, 0, 0)": 117,
+        "(2, 0, 0, 0)": 91,
+        "(3, 0, 0, 0)": 34,
+        "(3, 1, 0, 2)": 2,
+        "(4, 1, 0, 2)": 6
+      },
+      "prime": 17,
+      "source_size": 7
+    },
+    "source_hierarchy": {
+      "accepted_source_pairs": 1000,
+      "degree": 5,
+      "dimension_histogram": {
+        "(5, 3, 1)": 999,
+        "(5, 3, 2)": 1
+      },
+      "prime": 13,
+      "prolongation_histogram": {
+        "(4, 2)": 1,
+        "(5, 1)": 999
+      },
+      "source_size": 7
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_KB_MCA_V4_TANGENT_DEEP_SOURCE_RATIONAL_ADAPTER_V1",
+      "hash": "e4164f7f506885adee06c1c5e58739cf1990b4f8d31c6bdc23a9df015ca6e922",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_source_rational_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_01_KB_MCA_V4_TANGENT_DEEP_SOURCE_RATIONAL_C5_ADAPTER_V1",
+      "hash": "c20f1cb58c59576a82dc72606c58cba79e8cfc7bee307a9a39abfc9dc3c92fb5",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_source_rational_c5_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_02_KB_MCA_V4_NEXT_SLACK_SOURCE_PLANE_CLOSURE_V1",
+      "hash": "ce98775ddf1a746326eb6793870ed828a5801638f27007fab0f34a2ccc50b98f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_next_slack_source_plane_closure_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_03_KB_MCA_V4_SECOND_SUCCESSOR_LOWER_SOURCE_PLANE_V1",
+      "hash": "0786c98c68cd130e25be76dd9dae94f870fd9fe004940f442f483fefe8dcb3e6",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_second_successor_lower_source_plane_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_KB_MCA_V4_SECOND_SUCCESSOR_UPPER_INTRINSIC_PLANE_DESCENT_V1",
+      "hash": "6509d9cbe7011ab829d165ec457f423f12c6e72f4cac37d9ad80f590467fea3f",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_second_successor_upper_intrinsic_plane_descent_v1.md"
+    }
+  ],
+  "status": "PROVED_SECOND_SUCCESSOR_UPPER_INTRINSIC_PLANE_PAYMENT_WHOLE_R67474_SLACK_PAID_ZERO_ADDITIONAL_CHARGE",
+  "theorem": {
+    "all_intrinsic_base_spans_paid": true,
+    "base_span_at_most_two_directly_paid": true,
+    "base_span_four_saturated_kernel_payment": true,
+    "base_span_three_cubic_relation_payment": true,
+    "exact_first_prolongation": true,
+    "full_base_span_five_descends_to_source_plane": true,
+    "full_base_span_five_post_c5_is_impossible": true,
+    "lower_companion_strata_paid_upstream": true,
+    "lower_cutoff_rank_one_emits_earlier_owner": true,
+    "lowered_source_dimension": 3,
+    "reciprocal_dimension_two_emits_c5_owner": true,
+    "reciprocal_rank_two_product_matrix": true,
+    "remaining_intrinsic_base_spans": [],
+    "resultant_pencil_nonzero": true,
+    "source_interpolation_dimension": 5,
+    "source_size_is_2e_minus_3": true,
+    "survivor_twice_lowered_dimension": 1,
+    "whole_slack_paid": true,
+    "whole_upper_stratum_paid": true
+  },
+  "upstream_certificates": {
+    "lower_source_plane": {
+      "file_sha256": "93915b262dd4868b657e7265f381657ae2f79900619b049554dd3e9fbd2dc254",
+      "path": "experimental/data/certificates/kb-mca-v4-second-successor-lower-source-plane-v1/certificate.json",
+      "payload_sha256": "fdeb2f6101420ad6f0e5e4bec6bb5d917980ecfa7d84aee52e92f74a1265526a"
+    },
+    "post_successor_histogram": {
+      "file_sha256": "1cbaeaa47d57d91f28eeee4c0f6dfcf01559f2e87716ec9941830648919058fa",
+      "path": "experimental/data/certificates/kb-mca-v4-post-successor-full-histogram-replay-v1/certificate.json",
+      "payload_sha256": "ae88f5c221aabda5df2c221c85b3b91a32b88a1179a0f289be1ad470a0c880eb"
+    },
+    "source_plane_theorem": {
+      "file_sha256": "f3a6f113ed901fb881a20f081534e1910d4628328987f71644c9ace779b8b787",
+      "path": "experimental/data/certificates/kb-mca-v4-next-slack-source-plane-closure-v1/certificate.json",
+      "payload_sha256": "e4d51dcaea7ba2591ca314ecd73248fe0a79e07244176dab8b20c78d8d1e4064"
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "active_ledger": {
+    "B_remaining": 274961102171022152,
+    "U_paid": 19625940372935,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_ADAPTER_V1",
+  "deployed_arithmetic": {
+    "base_field_order": 2130706433,
+    "base_projective_line_size": 2130706434,
+    "generic_reciprocal_kernel_dimension": 2,
+    "generic_reciprocal_rank": 134942,
+    "rank_excess_threshold": 3,
+    "reciprocal_constraint_columns": 134944,
+    "reciprocal_constraint_rows": 134942,
+    "residue_space_dimension": 134944,
+    "same_exact_residue_exchange_floor": 134945,
+    "same_projective_residue_exchange_floor": 134944,
+    "source_degree": 67472,
+    "source_residue_line_dimension": 2,
+    "source_size": 134944
+  },
+  "finite_controls": {
+    "f17_source_scan": {
+      "all_source_coordinates_replayed_in_reciprocal_kernel": true,
+      "field_prime": 17,
+      "locator_records": 792,
+      "minimum_reciprocal_kernel_dimension": 2,
+      "reciprocal_kernel_dimension_histogram": {
+        "2": 36
+      },
+      "source_cases_checked": 36,
+      "source_degree": 2
+    },
+    "projective_rational_points": {
+      "allowed_two_dimensional_intersection_sizes": [
+        0,
+        1,
+        4
+      ],
+      "ambient_projective_points": 91,
+      "base_projective_points": 13,
+      "base_rational_intersection_histogram": {
+        "1": 78,
+        "4": 13
+      },
+      "extension": "F9_over_F3",
+      "projective_lines_checked": 91,
+      "two_base_points_force_base_line": true
+    },
+    "rank_excess_locator_rows": [
+      {
+        "complement_locators": 56,
+        "distinct_projective_reciprocal_dimension_histogram": {
+          "2": 1120,
+          "3": 420
+        },
+        "field_prime": 23,
+        "j": 4,
+        "locator_pairs": 1540,
+        "maximum_low_swap_exchange": 1,
+        "minimum_large_exchange": null,
+        "rank_excess_branch_histogram": {
+          "LOW_DEGREE_EXACT_SWAP": 420
+        },
+        "rank_excess_rational_degree_histogram": {
+          "1": 420
+        },
+        "same_projective_minimum_exchange": null,
+        "same_projective_pairs": 0,
+        "source_degree": 3,
+        "source_size": 6
+      },
+      {
+        "complement_locators": 210,
+        "distinct_projective_reciprocal_dimension_histogram": {
+          "2": 9975,
+          "3": 9450,
+          "4": 2520
+        },
+        "field_prime": 31,
+        "j": 5,
+        "locator_pairs": 21945,
+        "maximum_low_swap_exchange": 2,
+        "minimum_large_exchange": null,
+        "rank_excess_branch_histogram": {
+          "LOW_DEGREE_EXACT_SWAP": 11970
+        },
+        "rank_excess_rational_degree_histogram": {
+          "1": 2520,
+          "2": 9450
+        },
+        "same_projective_minimum_exchange": null,
+        "same_projective_pairs": 0,
+        "source_degree": 4,
+        "source_size": 8
+      }
+    ],
+    "reciprocal_rank_examples": {
+      "field_prime": 17,
+      "generic_expected_rank": 4,
+      "normal": {
+        "kernel_dimension": 2,
+        "matrix_rank": 4,
+        "second_multiplier": [
+          5,
+          2,
+          1
+        ]
+      },
+      "rank_excess": {
+        "kernel_dimension": 3,
+        "matrix_rank": 3,
+        "rank_deficiency": 1,
+        "second_multiplier": [
+          10,
+          1
+        ]
+      },
+      "source_degree": 3,
+      "source_size": 6
+    }
+  },
+  "partition_sha256": "aede55b9409dd7c1407e626da09179ef48a00c52dc4a5cf272757cea1a804d4c",
+  "payload_sha256": "99bb10644bf532974e723e47c5875494598d5ed2ea5507c15d4111916272f92c",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_MANIFEST",
+      "hash": "65ccbe7efc060d4c72a9e29c898c89f12a0f2187592a4927d8d7d0bc26ab220a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-c5-twist-frobenius9208-adapter-v1/manifest.json"
+    },
+    {
+      "binding_id": "SOURCE_01_CERTIFICATE",
+      "hash": "e976e7cba395b05cf6468a7cea16ad12ba813ed52c02aea00f49a382c26bdd3a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-source-interpolation-pencil-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_02_CERTIFICATE",
+      "hash": "0429ecc5dafc2fe8953020dc7a399dd3218e2a5f7b2e3f2e7b49cb404ba88a15",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-complement-locator-linearization-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_03_KB_MCA_V4_TANGENT_DEEP_SOURCE_RATIONAL_C5_ADAPTER_V1",
+      "hash": "c20f1cb58c59576a82dc72606c58cba79e8cfc7bee307a9a39abfc9dc3c92fb5",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_tangent_deep_source_rational_c5_adapter_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_KB_MCA_V4_FIRST_GAP_SOURCE_INTERPOLATION_PENCIL_V1",
+      "hash": "2eee1da10088ee750c95808c5b24eeabfdd6a93a35dce95c248b6b68a4acec43",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_source_interpolation_pencil_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_FIRST_GAP_COMPLEMENT_LOCATOR_LINEARIZATION_V1",
+      "hash": "1fe99474fda8b4cb8ef9333ee1dd162aa1f775334524f67d84763fd864d0e520",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_complement_locator_linearization_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_06_KB_MCA_V4_FIRST_GAP_PROJECTIVE_RESIDUE_C5_RANK_DICHOTOMY_V1",
+      "hash": "83e9b35611d2ccf9386afd426d67968c2586cb499bde80b820da469281234823",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_projective_residue_c5_rank_dichotomy_v1.md"
+    }
+  ],
+  "status": "PROVED_PROJECTIVE_RESIDUE_C5_RANK_DICHOTOMY_RANK_PAYMENT_AND_PACKING_OPEN_ROW_OPEN",
+  "theorem": {
+    "base_rational_points_on_residue_line": "0_OR_1_OR_P_PLUS_1",
+    "determinant_excess_is_paid": false,
+    "dimension_two_and_source_rank_two_force_projective_descent": true,
+    "dimension_two_branch_is_owned_by_active_c5": true,
+    "one_point_branch_has_global_projective_exchange_floor": true,
+    "post_c5_dichotomy": "ONE_BASE_PROJECTIVE_RESIDUE_POINT_OR_RECIPROCAL_KERNEL_DIMENSION_AT_LEAST_3",
+    "rank_excess_has_base_rational_normal_form": true,
+    "rank_excess_is_paid": false,
+    "rank_excess_locator_pair_dichotomy": "EXCHANGE_AT_LEAST_2e_MINUS_d_OR_EXACT_d_ROOT_SWAP",
+    "reciprocal_degree_identity": "d=e-r+1",
+    "reciprocal_kernel_dimension_floor": 2,
+    "reciprocal_multiplier_kernel_is_base_defined": true,
+    "two_base_points_force_base_defined_residue_line": true
+  }
+}

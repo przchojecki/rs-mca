@@ -1,0 +1,487 @@
+{
+  "active_ledger": {
+    "B_remaining": 274961102171022152,
+    "U_paid": 19625940372935,
+    "additional_charge": 0
+  },
+  "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_ADAPTER_V1",
+  "deployed_arithmetic": {
+    "active_budget": 274961102171022152,
+    "carrier_size": 1962208,
+    "complement_locator_degree": 981105,
+    "cylinder_projective_dimension": 846163,
+    "cylinder_vector_dimension": 846164,
+    "fixed_dimensional_bound_budget_fitting": false,
+    "fixed_dimensional_bound_symbolic": "C(1962208,846163)",
+    "j": 981104,
+    "n": 2097152,
+    "residue_line_dimension": 2,
+    "source_degree": 67472,
+    "source_parity_codimension": 134942,
+    "source_residue_dimension": 134944,
+    "source_size": 134944,
+    "zero_locator_degree": 981103
+  },
+  "finite_censuses": [
+    {
+      "candidate_locator_count": 792,
+      "carrier_size": 12,
+      "complement_locator_degree": 7,
+      "cylinder_projective_dimension": 5,
+      "cylinder_vector_dimension": 6,
+      "field_prime": 17,
+      "fixed_dimensional_bound": 792,
+      "j": 6,
+      "maximum_exact_residue_occupancy": 1,
+      "maximum_projective_point_occupancy": 2,
+      "maximum_sampled_source_case": {
+        "base_zero_index": 420,
+        "case": "random_064",
+        "joint_candidate_count": 7,
+        "left_only_pass_count": 59,
+        "maximum_exact_residue_multiplicity": 1,
+        "maximum_projective_residue_multiplicity": 2,
+        "minimum_exact_residue_exchange": null,
+        "minimum_projective_residue_exchange": 4,
+        "projective_parameter_count": 6,
+        "residue_kernel_dimension": 2,
+        "residue_kernel_rank": 2,
+        "right_only_pass_count": 62
+      },
+      "maximum_sampled_source_compatible_candidates": 7,
+      "primitive_source_line_census": {
+        "higher_or_equal_lines_rejected": 17,
+        "lines_tested_until_witness": 18,
+        "maximum_coprime_exact_degree_source_line_occupancy": 12,
+        "rejected_by_reason": {
+          "COMMON_DIVISOR": 212,
+          "DEGREE_DEFECT": 3
+        },
+        "rejected_occupancy_histogram": {
+          "12": 7,
+          "13": 9,
+          "14": 1
+        },
+        "witness": {
+          "base_zero_set": [
+            4,
+            5,
+            6,
+            14,
+            15
+          ],
+          "multiplier_source_space_dimension": 2,
+          "occupied_bases_tested": 1,
+          "realizable": true,
+          "realized_candidate_count": 12,
+          "reduced_left_coefficients": [
+            0,
+            14,
+            1
+          ],
+          "reduced_pair_coprime": true,
+          "reduced_pair_exact_degree": true,
+          "reduced_right_coefficients": [
+            1
+          ],
+          "second_residue_coefficients": [
+            1,
+            0,
+            5,
+            14
+          ],
+          "target_line_occupancy": 12,
+          "target_line_rref": [
+            [
+              1,
+              0,
+              5,
+              14
+            ],
+            [
+              0,
+              1,
+              16,
+              4
+            ]
+          ]
+        }
+      },
+      "residue_line_dimension": 2,
+      "row": "F17_E2_J6",
+      "source_cases_checked": 100,
+      "source_degree": 2,
+      "source_parity_constraints": 2,
+      "source_size": 4,
+      "structured_cases": [
+        {
+          "base_zero_index": 512,
+          "case": "constant_monomial",
+          "joint_candidate_count": 2,
+          "left_only_pass_count": 44,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 2,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 2,
+          "right_only_pass_count": 40
+        },
+        {
+          "base_zero_index": 697,
+          "case": "disjoint_split",
+          "joint_candidate_count": 4,
+          "left_only_pass_count": 54,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 4,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 2,
+          "right_only_pass_count": 64
+        },
+        {
+          "base_zero_index": 90,
+          "case": "two_powers",
+          "joint_candidate_count": 5,
+          "left_only_pass_count": 54,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 5,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 2,
+          "right_only_pass_count": 43
+        },
+        {
+          "base_zero_index": 275,
+          "case": "dense_fixed",
+          "joint_candidate_count": 4,
+          "left_only_pass_count": 55,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 4,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 2,
+          "right_only_pass_count": 48
+        }
+      ],
+      "universal_extremizer_source_realization": {
+        "maximum_multiplier_source_space_dimension": 2,
+        "obstruction_counts": {
+          "COMMON_DIVISOR": 14
+        },
+        "obstruction_examples": {
+          "COMMON_DIVISOR": {
+            "base_zero_set": [
+              4,
+              5,
+              6,
+              7,
+              13
+            ],
+            "source_space_basis": [
+              [
+                4,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "source_space_gcd": [
+              4,
+              1
+            ],
+            "source_space_max_degree": 2
+          }
+        },
+        "occupied_bases_tested": 14,
+        "realizable": false,
+        "target_line_occupancy": 14,
+        "target_line_rref": [
+          [
+            1,
+            10,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "universal_residue_line_census": {
+        "maximizing_line_rref": [
+          [
+            1,
+            10,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            1,
+            2
+          ]
+        ],
+        "maximum_point_occupancy": 2,
+        "maximum_two_dimensional_subspace_occupancy": 14,
+        "occupied_projective_points": 775,
+        "projective_lines_checked": 69179
+      },
+      "zero_locator_degree": 5
+    },
+    {
+      "candidate_locator_count": 3003,
+      "carrier_size": 14,
+      "complement_locator_degree": 8,
+      "cylinder_projective_dimension": 6,
+      "cylinder_vector_dimension": 7,
+      "field_prime": 19,
+      "fixed_dimensional_bound": 3003,
+      "j": 7,
+      "maximum_exact_residue_occupancy": 2,
+      "maximum_projective_point_occupancy": 3,
+      "maximum_sampled_source_case": {
+        "base_zero_index": 2612,
+        "case": "random_027",
+        "joint_candidate_count": 14,
+        "left_only_pass_count": 157,
+        "maximum_exact_residue_multiplicity": 1,
+        "maximum_projective_residue_multiplicity": 2,
+        "minimum_exact_residue_exchange": null,
+        "minimum_projective_residue_exchange": 4,
+        "projective_parameter_count": 12,
+        "residue_kernel_dimension": 2,
+        "residue_kernel_rank": 2,
+        "right_only_pass_count": 172
+      },
+      "maximum_sampled_source_compatible_candidates": 14,
+      "residue_line_dimension": 2,
+      "row": "F19_E2_J7",
+      "source_cases_checked": 52,
+      "source_degree": 2,
+      "source_parity_constraints": 2,
+      "source_size": 4,
+      "structured_cases": [
+        {
+          "base_zero_index": 2256,
+          "case": "constant_monomial",
+          "joint_candidate_count": 10,
+          "left_only_pass_count": 188,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 10,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 2,
+          "right_only_pass_count": 159
+        },
+        {
+          "base_zero_index": 1880,
+          "case": "disjoint_split",
+          "joint_candidate_count": 7,
+          "left_only_pass_count": 148,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 2,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": 4,
+          "projective_parameter_count": 6,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 2,
+          "right_only_pass_count": 160
+        },
+        {
+          "base_zero_index": 1504,
+          "case": "two_powers",
+          "joint_candidate_count": 12,
+          "left_only_pass_count": 154,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 2,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": 4,
+          "projective_parameter_count": 10,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 2,
+          "right_only_pass_count": 155
+        },
+        {
+          "base_zero_index": 1128,
+          "case": "dense_fixed",
+          "joint_candidate_count": 10,
+          "left_only_pass_count": 151,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 2,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": 5,
+          "projective_parameter_count": 8,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 2,
+          "right_only_pass_count": 156
+        }
+      ],
+      "zero_locator_degree": 6
+    },
+    {
+      "candidate_locator_count": 11440,
+      "carrier_size": 16,
+      "complement_locator_degree": 9,
+      "cylinder_projective_dimension": 5,
+      "cylinder_vector_dimension": 6,
+      "field_prime": 23,
+      "fixed_dimensional_bound": 4368,
+      "j": 8,
+      "maximum_exact_residue_occupancy": 1,
+      "maximum_projective_point_occupancy": 1,
+      "maximum_sampled_source_case": {
+        "base_zero_index": 8016,
+        "case": "dense_fixed",
+        "joint_candidate_count": 2,
+        "left_only_pass_count": 27,
+        "maximum_exact_residue_multiplicity": 1,
+        "maximum_projective_residue_multiplicity": 1,
+        "minimum_exact_residue_exchange": null,
+        "minimum_projective_residue_exchange": null,
+        "projective_parameter_count": 2,
+        "residue_kernel_dimension": 2,
+        "residue_kernel_rank": 4,
+        "right_only_pass_count": 29
+      },
+      "maximum_sampled_source_compatible_candidates": 2,
+      "residue_line_dimension": 2,
+      "row": "F23_E3_J8",
+      "source_cases_checked": 20,
+      "source_degree": 3,
+      "source_parity_constraints": 4,
+      "source_size": 6,
+      "structured_cases": [
+        {
+          "base_zero_index": 2709,
+          "case": "constant_monomial",
+          "joint_candidate_count": 1,
+          "left_only_pass_count": 20,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 1,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 4,
+          "right_only_pass_count": 11
+        },
+        {
+          "base_zero_index": 4478,
+          "case": "disjoint_split",
+          "joint_candidate_count": 1,
+          "left_only_pass_count": 49,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 1,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 4,
+          "right_only_pass_count": 51
+        },
+        {
+          "base_zero_index": 6247,
+          "case": "two_powers",
+          "joint_candidate_count": 1,
+          "left_only_pass_count": 22,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 1,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 4,
+          "right_only_pass_count": 22
+        },
+        {
+          "base_zero_index": 8016,
+          "case": "dense_fixed",
+          "joint_candidate_count": 2,
+          "left_only_pass_count": 27,
+          "maximum_exact_residue_multiplicity": 1,
+          "maximum_projective_residue_multiplicity": 1,
+          "minimum_exact_residue_exchange": null,
+          "minimum_projective_residue_exchange": null,
+          "projective_parameter_count": 2,
+          "residue_kernel_dimension": 2,
+          "residue_kernel_rank": 4,
+          "right_only_pass_count": 29
+        }
+      ],
+      "zero_locator_degree": 7
+    }
+  ],
+  "partition_sha256": "aede55b9409dd7c1407e626da09179ef48a00c52dc4a5cf272757cea1a804d4c",
+  "payload_sha256": "2e324cf51a372b92741e6efeb114c8b8e458a2d20e47c8f5899d94470ea57963",
+  "source_bindings": [
+    {
+      "binding_id": "SOURCE_00_MANIFEST",
+      "hash": "65ccbe7efc060d4c72a9e29c898c89f12a0f2187592a4927d8d7d0bc26ab220a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-c5-twist-frobenius9208-adapter-v1/manifest.json"
+    },
+    {
+      "binding_id": "SOURCE_01_CERTIFICATE",
+      "hash": "79d6e0f6296ff75fd01bdc3bb10690fc24a84e60c8df38cbcebdc6567e747ff4",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-active-full-histogram-replay-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_02_CERTIFICATE",
+      "hash": "e976e7cba395b05cf6468a7cea16ad12ba813ed52c02aea00f49a382c26bdd3a",
+      "hash_kind": "SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-source-interpolation-pencil-v1/certificate.json"
+    },
+    {
+      "binding_id": "SOURCE_03_KB_MCA_V4_FIRST_GAP_SOURCE_INTERPOLATION_PENCIL_V1",
+      "hash": "2eee1da10088ee750c95808c5b24eeabfdd6a93a35dce95c248b6b68a4acec43",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_source_interpolation_pencil_v1.md"
+    },
+    {
+      "binding_id": "SOURCE_04_M1",
+      "hash": "f1674667f6b63b91fc8f708c8b20b10d9925326d018838258edb06429ea3d1dc",
+      "hash_kind": "SHA256",
+      "path": "experimental/m1.tex"
+    },
+    {
+      "binding_id": "SOURCE_05_KB_MCA_V4_FIRST_GAP_COMPLEMENT_LOCATOR_LINEARIZATION_V1",
+      "hash": "1fe99474fda8b4cb8ef9333ee1dd162aa1f775334524f67d84763fd864d0e520",
+      "hash_kind": "SHA256",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_first_gap_complement_locator_linearization_v1.md"
+    }
+  ],
+  "status": "PROVED_COMPLEMENT_LOCATOR_LINEARIZATION_GROWING_DIMENSIONAL_INCIDENCE_OPEN_ROW_OPEN",
+  "theorem": {
+    "candidate_iff_complement_residue_in_source_line": true,
+    "complement_identity": "L_Z*L_Y=L_V",
+    "determinant_mass_paid": false,
+    "fixed_dimensional_incidence_bound_applies": true,
+    "polynomial_preimage_is_linear_cylinder": true,
+    "quotient_tests_linearize": true,
+    "residue_line_admission_dichotomy": "RANK_EXCESS_OR_DEGREE_DEFECT_OR_COMMON_DIVISOR_OR_COPRIME_EXACT_DEGREE_REALIZATION",
+    "same_exact_residue_exchange_floor": "2e+1",
+    "same_projective_residue_exchange_floor": "2e",
+    "source_multiplier_map_injective": true,
+    "source_residue_space_dimension": 2,
+    "universal_toy_extremizer_realizability_exhausted": true
+  }
+}
