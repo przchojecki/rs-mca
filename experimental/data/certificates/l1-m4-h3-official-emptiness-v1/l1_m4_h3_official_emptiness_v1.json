@@ -1,0 +1,101 @@
+{
+  "schema": "rs-mca-l1-m4-h3-official-emptiness-v1",
+  "artifact_kind": "L1_M4_H3_OFFICIAL_STRATUM_EMPTINESS",
+  "status": "PROVED_EXHAUSTIVE_STRATUM_CLOSURE_FOUR_OFFICIAL_ROWS_DEPLOYED_UNTOUCHED_L1_OPEN",
+  "family": {
+    "definition": "n = 4*(p+1), p a Mersenne prime",
+    "rows": [
+      {
+        "p": 8191,
+        "exponent": 13,
+        "n": 32768
+      },
+      {
+        "p": 131071,
+        "exponent": 17,
+        "n": 524288
+      },
+      {
+        "p": 524287,
+        "exponent": 19,
+        "n": 2097152
+      },
+      {
+        "p": 2147483647,
+        "exponent": 31,
+        "n": 8589934592
+      }
+    ]
+  },
+  "deployed_row_fence": {
+    "deployed": {
+      "n": 2097152,
+      "p": 2130706433
+    },
+    "shares_only": "the integer n = 2097152",
+    "four_p_plus_one": 8522825736,
+    "family_p_at_that_n": 524287,
+    "in_family": false,
+    "note": "no claim in this packet touches the deployed row"
+  },
+  "stratification": {
+    "positive_splits": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "terminal_cases": [
+      "positive",
+      "nu0_zero_b",
+      "nu0_nonzero_b_h0",
+      "nu0_nonzero_b_h1",
+      "nu0_nonzero_b_h2",
+      "nu0_nonzero_b_h3"
+    ],
+    "exhaustive": true,
+    "argument_location": "note prose, not the script"
+  },
+  "identities": {
+    "I1": "8a^3 g(y_0) = b*Delta",
+    "I2": "4 y_0 Delta = -48 a^2 g(y_0)",
+    "I3": "4a^3 ( g(y_0) - y_0(3y_0^2+a) ) = -b*Delta",
+    "method": "grid-proof on 11x11 distinct values, total degree <= 7, exact Fraction"
+  },
+  "verification": {
+    "identity_checks": 363,
+    "official_prime_replay_checks": 1792,
+    "row_checks": 20,
+    "case_checks": 8,
+    "mutation_controls": 2,
+    "floating_point_used": false,
+    "strengthening": "in-tree replay runs at p=7,31,127; this export replays at the four official primes"
+  },
+  "non_claims": [
+    "nothing about the deployed KoalaBear rows",
+    "does not classify nonembedded m=4,h=2",
+    "does not treat m=8 or m=16 strata",
+    "does not treat width above p",
+    "does not close L1 or the mixed-petal amplification consumer",
+    "primitive shift-pair ledger and two-value classification remain open",
+    "no asymptotic statement: exact finite closure on four rows"
+  ],
+  "source_bindings": [
+    {
+      "binding_id": "closure-note",
+      "path": "experimental/notes/l1/l1_m4_h3_official_emptiness_v1.md",
+      "sha256": "fc4c362ff22d005094ae6f319f09824c893fcca60e60ee23c562f7c429429d19",
+      "role": "human-readable statement, row dictionary, fences and falsifier"
+    },
+    {
+      "binding_id": "python-verifier",
+      "path": "experimental/scripts/verify_l1_m4_h3_official_emptiness_v1.py",
+      "sha256": "260aaadc316a7eb7732fff9a7f416491c7ce467d7820fba4f427eefab0c5fcfa",
+      "role": "exact identity grid-proofs + official-prime modular replay + mutation controls"
+    }
+  ]
+}
