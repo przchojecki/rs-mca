@@ -1,0 +1,71 @@
+{
+  "schema": "rs-mca-rate-half-official-subtraction-v1",
+  "artifact_kind": "RATE_HALF_OFFICIAL_ROW_SUBTRACTION_AND_ROUTE_CUT",
+  "status": "CONCORDANCE_ON_DETERMINED_RANGE_PROVED_BRACKET_ABOVE_COMPILER_PROVED_MDS_ROUTE_CUT_BAND_OPEN",
+  "row": {
+    "n": 2199023255552,
+    "k": 1099511627776,
+    "rate": "1/2"
+  },
+  "subtraction": {
+    "quadratic_reach_B_Q": 389500552609,
+    "equals_tab_proth_rate_half": true,
+    "thm_official_reach": 549755813886,
+    "domination_gap": 160255261277,
+    "further_percent": 41.1,
+    "our_range_inside_his": true,
+    "residual_seam": [
+      549755813887,
+      549755813888,
+      549755813889
+    ],
+    "verdict": "determined-family claim is CONCORDANT with thm:official, not novel"
+  },
+  "bracket_above_compiler": {
+    "regime": "q >= 2^169",
+    "B_star": 2199023255552,
+    "n_minus_k_minus_1": 1099511627775,
+    "cor_target_applies": false,
+    "lower": 1108105756672,
+    "upper": 1649267441664,
+    "kind": "bracket, not determination; imports a published CA bound"
+  },
+  "mds_route_cut": {
+    "instance": "RS[F_5,{0,1,2,3},2]",
+    "n": 4,
+    "k": 2,
+    "radius": 1,
+    "ca_bad_finite_slopes": 4,
+    "distinct_columns": 4,
+    "mutation_control": true
+  },
+  "non_claims": [
+    "no novelty on 2^128 < q < 2^166.503 -- that range is inside thm:official",
+    "the three-value residual seam is not claimed",
+    "part 2 is a bracket, not a determination, and is not self-contained",
+    "does not close the rate-1/2 band",
+    "no claim at rates 1/4, 1/8, 1/16",
+    "no list-decoding claim",
+    "the n=2^21 extension-field adjacent targets are untouched"
+  ],
+  "subtracted_against": [
+    "thm:quadratic",
+    "cor:target",
+    "thm:official",
+    "tab:proth"
+  ],
+  "source_bindings": [
+    {
+      "binding_id": "subtraction-note",
+      "path": "experimental/notes/thresholds/rate_half_official_subtraction_v1.md",
+      "sha256": "90a2183ae0fbbd3b989e204f154a9b12221f3f7e092f0ef464b07b1728601043",
+      "role": "subtraction table, bracket, route cut, fences"
+    },
+    {
+      "binding_id": "python-verifier",
+      "path": "experimental/scripts/verify_rate_half_official_subtraction_v1.py",
+      "sha256": "da80f897389545ed8ad4d935991e8fe723e00c5b1b4d3fe39dbc4dfdd4c1341e",
+      "role": "exact integer subtraction + F_5 route-cut replay + mutation control"
+    }
+  ]
+}
