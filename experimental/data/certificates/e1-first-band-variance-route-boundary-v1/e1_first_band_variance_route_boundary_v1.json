@@ -1,0 +1,67 @@
+{
+  "schema": "rs-mca-e1-first-band-variance-route-boundary-v1",
+  "artifact_kind": "E1_FIRST_BAND_VARIANCE_ROUTE_CUT",
+  "status": "PROVED_ROUTE_CUT_TOOL_RELATIVE_NO_VARIANCE_LEVEL_DECIDED_FIRST_BAND_TARGET_OPEN",
+  "band": {
+    "N": 256,
+    "folded_profile": [
+      3,
+      4,
+      0
+    ],
+    "square_mass": 16
+  },
+  "moment_structure": {
+    "m1": 16,
+    "m2": "256 + V",
+    "m3": "4096 + 48*V + M_3"
+  },
+  "certified_thresholds": {
+    "68": 1947,
+    "66": 1732,
+    "64": 1517
+  },
+  "boundary": {
+    "affine_in_V": true,
+    "slope_bracket": [
+      107,
+      108
+    ],
+    "last_live_even_V": 50,
+    "threshold_at_V_50": 13,
+    "dead_even_V_range": [
+      2,
+      48
+    ],
+    "zero_crossing_approx": 49.9
+  },
+  "verification": {
+    "arithmetic": "exact rational (fractions.Fraction)",
+    "logarithms": "rigorous Taylor-remainder bounds, 40 terms",
+    "floating_point_used": false,
+    "thresholds_pinned": "two-sided (positive at M_3*, negative at M_3*+1)",
+    "mutation_controls": 2
+  },
+  "non_claims": [
+    "no variance level is decided by this packet",
+    "the V=68 and V=66 closures are cited as the source of the thresholds only, not reproduced here",
+    "no claim about folded profile (4,2,0), the later swap bands, or any N != 256",
+    "no claim that the cubic-Hermite majorant is the only or best route",
+    "the variance-36 exhibit is a full-conductor vector, not a certified collision"
+  ],
+  "attaches_to": "experimental/notes/roadmaps/e1_collision_norm_criterion.md",
+  "source_bindings": [
+    {
+      "binding_id": "route-cut-note",
+      "path": "experimental/notes/e1/e1_first_band_variance_route_boundary_v1.md",
+      "sha256": "bdd87c8e1d35465b7f916a9aa1a8340673a58da64fd67d61900e8a1a94156e00",
+      "role": "human-readable theorem, fences and falsifier"
+    },
+    {
+      "binding_id": "python-verifier",
+      "path": "experimental/scripts/verify_e1_first_band_variance_route_boundary_v1.py",
+      "sha256": "b096fbdae77e717a9ae613786a76fc98bcf2ffe698407c9ecbe91db9ad0766ae",
+      "role": "exact rational route-boundary verifier with mutation controls"
+    }
+  ]
+}
