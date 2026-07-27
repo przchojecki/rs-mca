@@ -19,7 +19,9 @@
   "certified_thresholds": {
     "68": 1947,
     "66": 1732,
-    "64": 1517
+    "64": 1517,
+    "62": 1302,
+    "60": 1087
   },
   "boundary": {
     "affine_in_V": true,
@@ -54,14 +56,47 @@
     {
       "binding_id": "route-cut-note",
       "path": "experimental/notes/e1/e1_first_band_variance_route_boundary_v1.md",
-      "sha256": "bdd87c8e1d35465b7f916a9aa1a8340673a58da64fd67d61900e8a1a94156e00",
+      "sha256": "5a0c646beefda2a2da44c6631b185fbede265379eff51fbf16c779435d503d08",
       "role": "human-readable theorem, fences and falsifier"
     },
     {
       "binding_id": "python-verifier",
       "path": "experimental/scripts/verify_e1_first_band_variance_route_boundary_v1.py",
-      "sha256": "b096fbdae77e717a9ae613786a76fc98bcf2ffe698407c9ecbe91db9ad0766ae",
+      "sha256": "8f55a100fec6b8af7c20e0073de207db32dece08244af55d1a38d114b6d0f9fc",
       "role": "exact rational route-boundary verifier with mutation controls"
     }
-  ]
+  ],
+  "out_of_sample_confirmation": {
+    "fitted": [
+      68,
+      66,
+      64
+    ],
+    "predicted_then_independently_produced": [
+      62,
+      60
+    ],
+    "values": {
+      "62": 1302,
+      "60": 1087
+    },
+    "all_pinned_two_sided": true,
+    "note": "the law was stated from V=68,66,64; V=62 and V=60 were closed later by a separate campaign and match exactly"
+  },
+  "escape_hatches": [
+    {
+      "kind": "emptiness",
+      "example": "profile (0,8) at V=64 retains zero census vectors"
+    },
+    {
+      "kind": "exact norm evaluation",
+      "example": "V=60 profile (4,2,2): majorant leaves 3 assignments, engines reduce to 6 vectors, FLINT/PARI dispose of the 2 primitive survivors",
+      "note": "this is the route actually in use"
+    }
+  ],
+  "exact_norm_headroom": {
+    "V=64": "15*N_max < 2^250",
+    "V=60": "7*N_max < 2^250 < 8*N_max",
+    "comment": "exact maxima, not bounds; no second horizon is extrapolated from these"
+  }
 }

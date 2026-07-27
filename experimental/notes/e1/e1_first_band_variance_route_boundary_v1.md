@@ -61,6 +61,18 @@ and a candidate is excluded when `margin > 0`.
 
    Each is pinned **two-sided** by the verifier: positive margin at `M_3^*`,
    negative margin at `M_3^* + 1`.
+
+   **Out-of-sample confirmation.** The affine law was stated from those three
+   thresholds. Two further levels were subsequently closed by a separate
+   descent campaign with no access to the law, producing
+
+   ```text
+   V = 62 -> M_3^* = 1302      V = 60 -> M_3^* = 1087
+   ```
+
+   which are exactly what it predicts. Both are now carried in the verifier and
+   pinned two-sided alongside the original three, so the law is checked against
+   data it was not fitted to.
 4. **The cut.** The boundary crosses zero near `V = 49.9`. Concretely:
 
    ```text
@@ -100,12 +112,33 @@ Two further orientation points:
   it is a witness that these two tools together stop short of the bottom of
   the band.
 
-**The escape hatch.** Not every exclusion needs the majorant. In our tree the
-profile `(0,8)` at `V = 64` is excluded by an exhaustive census that retains
-**zero** vectors — a geometric/parity emptiness, independent of any threshold.
-Arguments of that shape are not bound by this route cut. If the first band is
-to be cleared below `V ~ 50`, it will have to be on emptiness grounds rather
-than norm-majorant grounds.
+**The escape hatches.** Not every exclusion needs the majorant, and two ways
+around it are already demonstrated.
+
+1. *Emptiness.* The profile `(0,8)` at `V = 64` is excluded by an exhaustive
+   census that retains **zero** vectors — a geometric/parity emptiness,
+   independent of any threshold.
+
+2. *Exact norm evaluation* — and this is the one being used. Rather than bound
+   `M_3` and infer the norm, compute the resultant norm outright and compare it
+   to `2^250` directly, with the majorant kept only to triage the bulk. At
+   `V = 60` one profile is handled exactly this way: the `M_3 = 1087` cutoff
+   leaves precisely three assignments above threshold, two independent
+   actual-vector engines reduce those to six vectors, and exact FLINT/PARI
+   resultant arithmetic disposes of the two primitive survivors. Cheap majorant
+   everywhere it works; exact arithmetic only on the residue.
+
+Neither is bound by this route cut, because neither uses the majorant's
+inequality. **The cut says the majorant expires; it does not say the band is
+unreachable.**
+
+Worth recording alongside it: the exact route has its own frontier, and the
+headroom is already small. The observed exact maxima run `15*N_max < 2^250` at
+`V = 64` and `7*N_max < 2^250 < 8*N_max` at `V = 60` — under three bits. Those
+are exact maxima, not bounds, so there is no slack to recover by sharpening. We
+are deliberately **not** extrapolating a second horizon from a handful of
+profile-dependent norms; the point is only that the binding constraint has
+moved from the majorant's threshold to the exact norm's headroom.
 
 ## Non-claims
 

@@ -66,8 +66,15 @@ SHIPPED_LOG2_NUM = {
     (68, 1948): -530361,
 }
 
-# The three published exclusion thresholds.
-CERTIFIED_THRESHOLDS = {68: 1947, 66: 1732, 64: 1517}
+# The published exclusion thresholds.
+#
+# The first three were used to state the affine law.  The last two were
+# produced LATER and INDEPENDENTLY, by a separate descent campaign that had no
+# access to the law; they are exactly what it predicts, and are carried here as
+# an out-of-sample confirmation.  Both groups are pinned two-sided below.
+FITTED_THRESHOLDS = {68: 1947, 66: 1732, 64: 1517}
+OUT_OF_SAMPLE_THRESHOLDS = {62: 1302, 60: 1087}
+CERTIFIED_THRESHOLDS = {**FITTED_THRESHOLDS, **OUT_OF_SAMPLE_THRESHOLDS}
 
 SQUARE_MASS = 16          # m_1: the band's square mass, 3*2^2 + 4*1^2
 TAYLOR_TERMS = 40
@@ -192,7 +199,8 @@ def main() -> None:
 
     print(
         "E1_FIRST_BAND_VARIANCE_ROUTE_BOUNDARY_PASS "
-        f"certified={[CERTIFIED_THRESHOLDS[v] for v in (68, 66, 64)]} "
+        f"fitted={[FITTED_THRESHOLDS[v] for v in (68, 66, 64)]} "
+        f"out_of_sample={[OUT_OF_SAMPLE_THRESHOLDS[v] for v in (62, 60)]} "
         f"slope_in=(107,108) last_live_even_V=50 threshold_at_50={fifty} "
         f"dead_even_V={dead[0]}..{dead[-1]} mutations=2"
     )
