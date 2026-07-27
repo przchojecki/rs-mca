@@ -3644,3 +3644,33 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-27 - WCL register: first installment of closed-cell theorems
+
+- **Agent/model:** Claude Fable 5 acting for AllenGrahamHart.
+- **Files added:** `experimental/notes/wcl/wcl_first_installment_theorems.md`,
+  `experimental/data/certificates/wcl-first-installment-v1/wcl_first_installment_v1.json`,
+  `experimental/scripts/verify_wcl_first_installment.py`.
+- **Files changed:** `experimental/notes/wcl_slot_contributor_requests.md`
+  (three maintenance corrections; no request, cost, or cell status altered).
+- **Status:** PROVED (five finite theorems) / EXPERIMENTAL verifier.
+- **What is being added:** the theorems behind the two closed cells `(2,5)`
+  and `(2,6)`, plus the three supporting results the register's completeness
+  derivation names (weight-3 ambient, weight-4 ambient, Newton short-window).
+  The register previously cited these by SHA-pin to an external repo; it is now
+  self-contained.
+- **How it is useful:** a contributor evaluating CQ-1..CQ-4 can read the closed
+  cells' certificates in-tree rather than following a cross-repo pin, and the
+  scope note forecloses the one dangerous misreading (assuming an order-1024
+  weight-3/4 result exists).
+- **Maintenance folded in:** (1) the weight-3/4 exclusions are marked `ell = 1`
+  theorems at the point of citation, with `ell >= 2` attributed to the Newton
+  floor; (2) the CQ-3 GMP/FLINT gcd reduction is marked an unmeasured
+  projection with a benchmark named as the gating item; (3) CQ-2's two stage-0
+  repairs remain the listed gate.
+- **What to do next:** the ten open cells are unchanged. CQ-1 remains the
+  starter request; R2 (unit-ideal certificate at the three-variable `(1,5)`
+  ideal) remains the highest-leverage single item.
+- **Estimated CPU time:** the shipped re-checker runs in seconds; it validates
+  the certificate summaries and the level-scope claim, and deliberately does
+  not re-run the censuses.

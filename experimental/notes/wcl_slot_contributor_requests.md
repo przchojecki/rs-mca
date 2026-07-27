@@ -41,7 +41,10 @@ reduction: that bound holds **iff ten finite cells are empty**, where cell
 The completeness of the ten-cell list is not prose: the shipped verifier
 re-derives it from the pinned primitives (tower, window `[L+1, L+7]` with
 `L` the level DIMENSION, the Newton short-window theorem `w >= 2*ell+1`, the
-proved weight-3/4 ambient exclusions, the `1/32` mass threshold — minimum
+proved weight-3/4 ambient exclusions **at `ell = 1` only** (order 512,
+exponents in `[0,256)`; at `ell >= 2` weights 3 and 4 are removed by the
+Newton floor `w >= 2*ell+1`, NOT by an order-1024/2048 census -- no such
+census exists, is claimed, or is relied upon), the `1/32` mass threshold — minimum
 single-orbit breach factor 32x) with five mutation controls, including a
 simulated level-index/level-dimension conflation. Two sibling cells,
 `(2,5)` and `(2,6)`, are already CLOSED by audited certificates (norm-gcd
@@ -76,7 +79,7 @@ only; keep a gp/ECM-class stage in the loop for hard 150–450-bit cofactors
 |---|---|---:|---|---|
 | CQ-1 | (1,5) order-256 coset layer | 243,474 orbits | **7–25 CPU-h** | READY — the starter request; closes 10.6% of the (1,5) space outright |
 | CQ-2 | (1,5) full ambient | 2,296,920 orbits | **~445 CPU-h** total (~46% already banked by the auditing side; checkpoint manifest available on request — merging leaves ~238 CPU-h) | READY after two specified stage-0 repairs: re-shard the final aggregation; add an ECM stage for slow-factoring tail norms |
-| CQ-3 | (2,7) router space | 94,652,815 presentations (ambient 4.35e11; the router is the validated constraint-first form) | **~33,000 CPU-h** at the measured reference rate (1.25 s/orbit, pure-integer pipeline); the gcd stage is ~60% of cost — a GMP/FLINT gcd implementation is the known optimization target (expected substantial reduction, unmeasured) | Reference pipeline independently reconstructed and validated exactly mod q (6/6 self-checks; bit profile matches the banked pilot to ~1%); includes the saturation-screening stage |
+| CQ-3 | (2,7) router space | 94,652,815 presentations (ambient 4.35e11; the router is the validated constraint-first form) | **~33,000 CPU-h** at the measured reference rate (1.25 s/orbit, pure-integer pipeline); the gcd stage is ~60% of cost — a GMP/FLINT gcd implementation is the known optimization target — **the reduction is an UNMEASURED projection, not a measured rate**; a benchmark is the gating item before this request is priced | Reference pipeline independently reconstructed and validated exactly mod q (6/6 self-checks; bit profile matches the banked pilot to ~1%); includes the saturation-screening stage |
 | CQ-4 | (1,6) ambient | 185,569,028 orbits | **>= 36,000 CPU-h** (rate floor from the (1,5) reference rate; factor-stage growth uncalibrated beyond a 256-row sample) | Open to pilot bids: a 10k-orbit pilot (~2 CPU-h) would price the full run properly |
 
 **Explicitly NOT requested as compute** (do not burn cycles here):
@@ -102,7 +105,7 @@ honestly tiled (mergeable).
 |---|---|---|---|
 | R1 | Descent statements + Delta-integer certificates for (4,10) and (4,11) | The proved (4,9) quartic-divisor descent + straight-line lift are the pattern; the odd pattern `w = 2*ell+3` extends to (4,11) (degree-5 system), the even pattern to (4,10); 4-variable, degree <= 3 ideals | The only viable route at `ell = 4`; two of three descents already proved in the source tree |
 | R2 | Unit-ideal certificate at the three-variable (1,5) ideal | Prove the vanishing ideal has no official-admissible zero (algebra, not enumeration) | **A land retires every census request above** — the highest-leverage single item in this register |
-| R3 | Exclusion algebra at (1,7)/(1,8)/(2,8)/(2,9) | Extend the proved weight-3/4 ambient-exclusion pattern (affine-Galois quotient, then 2-adic valuation forcing on norms) to higher weight, possibly by structured subfamilies | These cells are provably out of compute reach; partial subfamily theorems shrink them permanently (the source tree's weight-5 subfamily work — 1.4% of (1,5) proved event-free — is the working example) |
+| R3 | Exclusion algebra at (1,7)/(1,8)/(2,8)/(2,9) | Extend the proved weight-3/4 ambient-exclusion pattern (affine-Galois quotient, then 2-adic valuation forcing on norms) to higher weight, possibly by structured subfamilies | These cells are provably out of compute reach; partial subfamily theorems shrink them permanently (the source tree's weight-5 subfamily work — 1.4% of (1,5) proved event-free — is the working example). **Theorems for the closed cells are now in-tree**: see `experimental/notes/wcl/wcl_first_installment_theorems.md`. |
 | R4 | Pocklington upgrade of the probable-prime classifications in the banked (1,5) subfamily certificates | Small, fully specified | Converts probable-prime-level exclusions to banking grade |
 
 ## 4. Non-claims (fence)

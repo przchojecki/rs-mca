@@ -1,0 +1,130 @@
+{
+  "ambient_excluded": [
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ]
+  ],
+  "channel": "experimental/notes/wcl_slot_contributor_requests.md (integrated contributor register)",
+  "nonclaims": [
+    "closes none of the ten open cells",
+    "survival sampling is not discharge",
+    "no cost estimate or compute request is changed",
+    "no order-1024 or order-2048 weight-3/4 result is claimed or relied upon"
+  ],
+  "note": "weight-3/4 ambient exclusions are ell=1 theorems; ell>=2 is covered by the Newton floor w>=2*ell+1, NOT by an order-1024/2048 census",
+  "schema": "wcl-first-installment-v1",
+  "source_repo": "github.com/AllenGrahamHart/rs-mca-prize-dag",
+  "theorems": [
+    {
+      "cell": [
+        2,
+        5
+      ],
+      "controls": "3/3 negative",
+      "events": 0,
+      "gcd_stack": 507,
+      "id": "ell2_weight5",
+      "max_gcd_bits": 9137,
+      "max_v2_observed": 18,
+      "method": "norm-gcd over Pocklington-certified primes",
+      "orbits": 1514,
+      "prime_graph_nodes": 282,
+      "prime_roots": 168,
+      "root_order": 1024,
+      "window": [
+        0,
+        512
+      ]
+    },
+    {
+      "batches": 3163,
+      "candidates": 404740,
+      "cell": [
+        2,
+        6
+      ],
+      "controls": "6/6 mutation",
+      "counterfixture": "split16 (v_2=16 instance NOT excluded; pins the gate as load-bearing)",
+      "double_zero_survivors": 510,
+      "events": 0,
+      "id": "ell2_weight6",
+      "max_v2_observed": 18,
+      "method": "recursive-norm census",
+      "prime_graph_nodes": 626,
+      "prime_roots": 443,
+      "root_order": 1024,
+      "window": [
+        0,
+        512
+      ]
+    },
+    {
+      "cell": [
+        1,
+        3
+      ],
+      "classes": 254,
+      "controls": "5/5 negative",
+      "crt_moduli": 14,
+      "events": 0,
+      "factor_roots": 439,
+      "id": "weight3_ambient",
+      "max_v2_observed": 18,
+      "method": "affine-Galois class census + CRT-exact resultants",
+      "prime_graph_nodes": 1498,
+      "root_order": 512,
+      "supports_covered": 11054080,
+      "window": [
+        0,
+        256
+      ]
+    },
+    {
+      "cell": [
+        1,
+        4
+      ],
+      "classes": 24979,
+      "controls": "5/5 ledger + 4/4 primes",
+      "crt_moduli": 17,
+      "events": 0,
+      "exactness": "resultants recomputed mod certified 31-bit split primes with product > 2*4^256; 0<=Res<=4^256 makes the modular equality exact",
+      "factor_records": 88086,
+      "factor_roots": 44599,
+      "id": "weight4_ambient",
+      "max_orbit": 516,
+      "max_v2_observed": 29,
+      "method": "affine-Galois class census + CRT-exact resultants",
+      "prime_graph_nodes": 154086,
+      "root_order": 512,
+      "section_keys": 1014080,
+      "window": [
+        0,
+        256
+      ]
+    },
+    {
+      "boundary_controls": 3,
+      "cell": null,
+      "controls": "6/6 negative",
+      "events": 0,
+      "finite_sets": 208373,
+      "id": "newton_short_window",
+      "max_v2_observed": null,
+      "method": "short-window theorem w >= 2*ell+1",
+      "paired_hits": 969,
+      "residual_slots": 6,
+      "root_order": null,
+      "window": null
+    }
+  ],
+  "window_bounds": [
+    1,
+    7
+  ]
+}
