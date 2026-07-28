@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
-> **Updated:** 2026-07-24
-> **State snapshot:** `main@78e67c4048dabed19116bb7ac42c47c7cb103c57`
+> **Updated:** 2026-07-28
+> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -76,6 +76,7 @@ At this snapshot:
 - The fixed-`G` endpoint Plotkin theorem proves an ordinary-list cap `2310492` beyond the exact finite-field Johnson radius on two declared M31 endpoint subfamilies.  It is genuine Lane L progress, but not an unrestricted M31 list-row upper bound.
 - The direct rate-half cyclic quotient-rotation theorem in `experimental/experiments.tex` proves, for every declared order-`2^41` multiplicative-coset family, an ordinary-list lower bound `ceil(binomial(255,129)/256)` at agreement `1116691496959`, strictly beyond Johnson.  It is a finite-family Lane L lower construction, not an MCA statement or deployed-row closure.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
+- The source-map packet is an **abstract interface route cut**, not a source-bound owner bridge.  It proves finite-set first-match/deduplication and collective 68/69 threshold mechanics for declared records with a fixed six-coordinate `F_(p^6)` slope encoding; it does not validate owner, branch, selector, packet, or rational-map evidence.  The true gate is a deployed complete source selector plus an iterative same-record owner deletion for **every surviving 69-class subset** (or a direct residual bound), together with separate closure of non-map equality branches and all `78107` later slacks through `213050`.  No ledger value moves.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
 
@@ -124,6 +125,16 @@ The factor `4807520` is only a full-budget calibration before other atoms consum
 #### K3. Pay MCA projection and residual geometry
 
 Produce exhaustive balanced-core coverage in units of distinct affine slopes. The moving-root theorem pays only charts proved to be genuine pencils. A line-by-line decomposition also needs an exact count of relevant lines. Higher-dimensional cores require a proved ray/slope compiler with exact multiplicities.
+
+The current equality-wall packet is a fail-closed **abstract syntax and
+threshold compiler**, not a source-bound bridge.  Its maximal next theorem
+requires a semantically validated complete selector for every residual
+received line.  On every rank-three residue line, every surviving
+`69`-class subset must emit a prior active owner for at least one class at the
+same received line, slope, and graph record, with deletion iterated until at
+most `68` classes remain, or a direct residual bound must pay.  Non-map
+equality branches and `r=134944,...,213050` require separate closure.  Do not
+infer any of this from local conic/quartic orbit counts.
 
 #### K4. Close algebraic routing and add-back
 

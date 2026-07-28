@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-28 - KoalaBear v4 abstract source-map packet route cut
+
+- **Agent/model:** Codex with independent source-inventory and verifier-design
+  subreviews.
+- **Files added or changed:** Added
+  `experimental/notes/frontier-adjacent/kb_mca_v4_source_map_class_compiler_v1.md`,
+  the certificate packet under
+  `experimental/data/certificates/kb-mca-v4-source-map-class-compiler-v1/`,
+  its top-level-closed schema, primary and independent Python verifiers, and a
+  Sage arithmetic replay; updated `agents.md` and this log.
+- **Status:** PROVED ABSTRACT FINITE-SET LEMMA / ROUTE CUT; semantic adapter
+  and KoalaBear row remain open.
+- **What is being added:** A fail-closed abstract compiler for declared
+  candidates under the active v4 ten-owner order.  It separates six-coordinate
+  extension-field slopes, projective residue directions, and opaque rational
+  source-map class identifiers; proves first-match and duplicate-witness
+  mechanics; derives the 68/69 terminal collectively per declared packet; and
+  forbids imported exclusions from the charged regression census.  It does
+  not validate mathematical membership in an owner, branch, or packet.
+- **How it is useful:** It prevents local orbit counts, the conditional
+  pencil-census threshold, a self-declared cap-68 label, or a one-fixed-union
+  payment from being promoted into the live ledger.  It freezes the actual
+  missing theorem as a deployed complete-selector validator plus iterative
+  same-record deletion for every surviving 69-class subset, with all 78,107
+  later slacks retained as open.
+- **What to do next:** Obtain fresh proof/code review of the repaired abstract
+  scope.  Then implement the deployed source-equation validator and attack the
+  recursive any-69 theorem; no ledger value moves until those semantic gates
+  and the remaining branches are proved.
+
 ### 2026-07-24 - Grande Finale v4 saturated-BC status repair
 
 - **Agent/model:** Codex, resolving issue #1070 reported by Holm Buar.

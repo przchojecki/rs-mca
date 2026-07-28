@@ -1,0 +1,96 @@
+{
+  "$id": "rs-mca-kb-v4-source-map-class-compiler-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_partition": {
+      "type": "object"
+    },
+    "architecture_id": {
+      "const": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1"
+    },
+    "artifact_kind": {
+      "const": "ABSTRACT_FIRST_MATCH_AND_TERMINAL_SCHEMA_ROUTE_CUT"
+    },
+    "audit": {
+      "type": "object"
+    },
+    "closure_state": {
+      "type": "object"
+    },
+    "compiler_id": {
+      "const": "KB_MCA_V4_SOURCE_MAP_CLASS_COMPILER_V1"
+    },
+    "exact_scope": {
+      "type": "object"
+    },
+    "nonclaims": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "partition_sha256": {
+      "const": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa"
+    },
+    "payload_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "producer_contract": {
+      "type": "object"
+    },
+    "regression_fixture": {
+      "type": "object"
+    },
+    "route_cuts": {
+      "type": "object"
+    },
+    "row_contract": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "rs-mca-kb-v4-source-map-class-compiler-v1"
+    },
+    "source_bindings": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "terminal_registry": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "upstream_bindings": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema",
+    "compiler_id",
+    "artifact_kind",
+    "architecture_id",
+    "partition_sha256",
+    "row_contract",
+    "active_partition",
+    "producer_contract",
+    "exact_scope",
+    "terminal_registry",
+    "regression_fixture",
+    "closure_state",
+    "route_cuts",
+    "source_bindings",
+    "upstream_bindings",
+    "audit",
+    "nonclaims",
+    "payload_sha256"
+  ],
+  "title": "KoalaBear v4 abstract first-match and terminal-schema route cut",
+  "type": "object"
+}
