@@ -1,0 +1,74 @@
+{
+  "schema": "rs-mca-e1-collision-norm-odd-part-v1",
+  "artifact_kind": "E1_COLLISION_NORM_ODD_PART_REDUCTION",
+  "status": "PROVED_REDUCTION_TRANSFERRED_NOT_NEW_SHARPENS_PRACTICAL_TEST_CLOSES_NOTHING",
+  "attribution": {
+    "idea_source": "experimental/notes/roadmaps/a3_good_reduction_lemma.md",
+    "quotes": [
+      "D_pt(n,h) = odd part of prod_{[R]} N(a(R))",
+      "p coprime to delta_0 and to the odd part of the constant m; the 2-power part is a unit"
+    ],
+    "novelty_claimed": "none for the idea; only its application to e1_collision_norm_criterion.md"
+  },
+  "applies_to": "experimental/notes/roadmaps/e1_collision_norm_criterion.md",
+  "statement": {
+    "hypothesis": "p == 1 mod N, hence p odd",
+    "reduction": "R = 2^mu * R_odd  =>  ( p | R  <==>  p | R_odd )",
+    "consequence": "the R < 2^250 exclusion test may be run on R_odd; never weaker, strictly stronger when mu > 0"
+  },
+  "measured_bite": {
+    "lane": "N=256 first band, folded profile (3,4,0), bottom level",
+    "vectors": 2994,
+    "distinct_norms": 895,
+    "whole_norms_at_or_above_2_250": 6,
+    "odd_parts_at_or_above_2_250": 0,
+    "maximum_valuation": 34,
+    "effect": "without the reduction the level does not close; with it, it does"
+  },
+  "margin": {
+    "binding_value": "largest odd part, 250 bits",
+    "ratio_2_250_over_max_odd": 1.1152,
+    "headroom_bits": 0.157,
+    "reading": "at this level the criterion clears the threshold by about 12%"
+  },
+  "witness": {
+    "norm_bits": 249,
+    "valuation": 1,
+    "odd_part_bits": 248,
+    "odd_part_is_prime": true,
+    "odd_part_mod_256": 1,
+    "factor_below_threshold": 5,
+    "note": "satisfies the lane row congruence p == 1 mod 256; excluded by size alone; NOT a collision"
+  },
+  "verification": {
+    "arithmetic": "exact integers",
+    "floating_point_used": false,
+    "reduction_checks": 924,
+    "monotone_checks": 4000,
+    "mutation_controls": 2,
+    "census_rerun": false,
+    "census_scope": "internal consistency and arithmetic only, not provenance"
+  },
+  "non_claims": [
+    "no novelty for the reduction itself -- it is A3's",
+    "closes no variance level, profile, row, or prize terminal",
+    "the motivating census is not exported, only its extremal data",
+    "nothing for folded profile (4,2,0), later swap bands, or N != 256",
+    "the witness is not a collision and not a counterexample",
+    "no claim that the odd-part test suffices where it has not been run"
+  ],
+  "source_bindings": [
+    {
+      "binding_id": "reduction-note",
+      "path": "experimental/notes/e1/e1_collision_norm_odd_part_reduction_v1.md",
+      "sha256": "89b935678861c850edfe418086dc6f4bd620e4f613e7aea07de135098712d553",
+      "role": "statement, attribution, margin datum, fences"
+    },
+    {
+      "binding_id": "python-verifier",
+      "path": "experimental/scripts/verify_e1_collision_norm_odd_part_v1.py",
+      "sha256": "4607b10043f01b5cf4db4196642863f0e6d638e6ca7d81703abc54d625ca424a",
+      "role": "exact reduction proof, monotonicity, census consistency, witness, mutations"
+    }
+  ]
+}
