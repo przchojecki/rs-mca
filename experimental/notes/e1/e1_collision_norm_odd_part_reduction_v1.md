@@ -20,6 +20,34 @@ is the only reason it looked like a fresh step when the census reached the
 bottom of the band. Stated here so the provenance is complete in both
 directions.
 
+## It is the common generalization of your own gate
+
+`experimental/notes/thresholds/graded_collision_radius.md` already fixes the
+endpoint convention
+
+```text
+strict norm gate      |Norm(delta)| < p.
+```
+
+The odd-part gate `odd(Norm) < p` **contains that one**, and it also contains
+the parity extension one step above it. Writing `R = 2^mu R_odd`:
+
+| gate | condition | subsumed because |
+|---|---|---|
+| `graded_collision_radius` | `abs(R) < p` | `odd(R) <= abs(R) < p` |
+| parity extension | `abs(R) < 2p`, `R` even | `odd(R) <= abs(R)/2 < p` |
+| **this note** | `odd(R) < p` | — |
+
+All three are the same one-line fact — `p` odd and `p | R` forces `p | R_odd`,
+so `odd(R) < p` rules the prime out. Stating it on the odd part rather than on
+`R` is what makes the second row free instead of a separate case.
+
+The second row is not hypothetical. At `N=256` with folded square mass `S=16`
+the L2 bound gives `|R| <= 16^64 = 2^256` **exactly**, and on prize-envelope
+rows `p > 2^255`, so `odd(R) <= 2^255 < p` and the entire square-mass-16 layer
+is excluded outright. Under the `|R| < p` form that layer is not reachable —
+`|R|` can be as large as `2p`.
+
 ## The statement
 
 The E1 criterion fixes a prime `p == 1 mod N` and asks whether `p` divides

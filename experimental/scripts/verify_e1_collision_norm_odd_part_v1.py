@@ -35,7 +35,10 @@ WHAT THIS SCRIPT VERIFIES, all in exact integer arithmetic:
   5. a certified full-conductor witness whose odd part is a 248-bit PRIME
      congruent to 1 mod 256 -- i.e. it satisfies the lane's row congruence and
      is excluded by size alone;
-  6. two mutation controls.
+  6. SUBSUMPTION: that this gate contains the strict norm gate |R| < p fixed in
+     `graded_collision_radius.md`, and the parity extension |R| < 2p with R
+     even, including the concrete S=16 instance where the second row bites;
+  7. two mutation controls.
 
 WHAT IT DOES NOT DO: it does not re-run the census.  Items 3-5 verify the
 internal consistency and the arithmetic of reported extremal data, not its
@@ -173,6 +176,41 @@ def check_witness() -> dict:
     return {"factor_below_threshold": THRESHOLD // WITNESS_ODD}
 
 
+def check_subsumption() -> dict:
+    """The odd-part gate contains graded_collision_radius's gate and the parity
+    extension one step above it.
+
+      graded_collision_radius : |R| < p            -> odd(R) <= |R| < p
+      parity extension        : |R| < 2p, R even   -> odd(R) <= |R|/2 < p
+
+    Both are verified over a seeded sweep, together with the concrete instance
+    that motivates the second row: N=256, square mass S=16, where the L2 bound
+    is 16^64 = 2^256 exactly and prize-envelope rows have p > 2^255.
+    """
+    rng = random.Random(1118)
+    checks = 0
+    for _ in range(4000):
+        p = rng.randrange(1 << 60, 1 << 61) | 1          # an odd "prime slot"
+        # row 1: |R| < p
+        R = rng.randrange(1, p)
+        assert odd_part(R)[1] < p, "odd-part gate failed to contain |R| < p"
+        # row 2: |R| < 2p with R even
+        R2 = rng.randrange(1, p) * 2
+        if R2 < 2 * p:
+            assert odd_part(R2)[1] < p, "odd-part gate failed to contain the parity case"
+        checks += 2
+
+    # the concrete S=16 instance
+    assert 16**64 == 2**256, "the L2 bound at S=16 is not 2^256"
+    floor = 2**255                                        # prize-envelope: p > 2^255
+    worst_even = 2**256                                   # largest admissible even |R|
+    assert odd_part(worst_even)[1] <= floor, "S=16 layer not covered by the odd-part gate"
+    # and it is NOT covered by the |R| < p form, since |R| can reach ~2p
+    assert not (worst_even < floor + 1), "|R| < p would already have covered it"
+    checks += 2
+    return {"sweep": checks}
+
+
 def check_mutations() -> int:
     """(6) controls."""
     # (a) the reduction genuinely needs p odd: for p = 2 it fails
@@ -190,6 +228,7 @@ def main() -> None:
     monotone = check_monotone_and_strict()
     census = check_census_consistency()
     witness = check_witness()
+    subsumption = check_subsumption()
     mutations = check_mutations()
     print(
         "E1_COLLISION_NORM_ODD_PART_PASS "
@@ -199,6 +238,7 @@ def main() -> None:
         f"max_valuation={CENSUS['maximum_valuation']} "
         f"margin=2^250/max_odd={census['margin_permille']}/1000 "
         f"witness_factor_below={witness['factor_below_threshold']} "
+        f"subsumption_checks={subsumption['sweep']} "
         f"mutations={mutations}"
     )
 

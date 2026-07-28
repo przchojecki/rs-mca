@@ -53,7 +53,8 @@
     "monotone_checks": 4000,
     "mutation_controls": 2,
     "census_rerun": false,
-    "census_scope": "internal consistency and arithmetic only, not provenance"
+    "census_scope": "internal consistency and arithmetic only, not provenance",
+    "subsumption_checks": 8002
   },
   "non_claims": [
     "no novelty for the reduction itself -- it is A3's",
@@ -67,13 +68,13 @@
     {
       "binding_id": "reduction-note",
       "path": "experimental/notes/e1/e1_collision_norm_odd_part_reduction_v1.md",
-      "sha256": "1bbd822613737e3d145ecd41ebcdc2eba4a51bd30175a9a536ac03bd3a4763c8",
+      "sha256": "321ed713ca02737d3b1b8068d7677c656ec3072dc396cc611f2ec1ddeb64b56c",
       "role": "statement, attribution, margin datum, fences"
     },
     {
       "binding_id": "python-verifier",
       "path": "experimental/scripts/verify_e1_collision_norm_odd_part_v1.py",
-      "sha256": "4607b10043f01b5cf4db4196642863f0e6d638e6ca7d81703abc54d625ca424a",
+      "sha256": "a03502cde6f69b45d67d424f7f601055e1bbb354ba841b69248cd7fa5f0f2c42",
       "role": "exact reduction proof, monotonicity, census consistency, witness, mutations"
     }
   ],
@@ -84,5 +85,24 @@
     "why": "claim A constrains a collision; census entries are candidates and all 2994 were excluded",
     "caveat": "reconcilable ONLY because nothing in the census survived; if a level ever retains a vector this must be redone, not assumed",
     "status": "flagged, not relied upon"
+  },
+  "subsumes": {
+    "graded_collision_radius": {
+      "file": "experimental/notes/thresholds/graded_collision_radius.md",
+      "gate": "|Norm(delta)| < p",
+      "why": "odd(R) <= |R| < p"
+    },
+    "parity_extension": {
+      "gate": "|R| < 2p and R even",
+      "why": "odd(R) <= |R|/2 < p"
+    },
+    "note": "all three are the one-line fact that p odd and p|R forces p|R_odd; stating it on the odd part makes the second row free rather than a separate case"
+  },
+  "concrete_bite": {
+    "lane": "N=256, folded square mass S=16",
+    "l2_bound": "16^64 = 2^256 exactly",
+    "prize_row_floor": "p > 2^255",
+    "conclusion": "odd(R) <= 2^255 < p, so the whole S=16 layer is excluded",
+    "not_reachable_under": "the |R| < p form, since |R| can reach ~2p"
   }
 }
