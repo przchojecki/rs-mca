@@ -11,6 +11,15 @@ observes only that `e1_collision_norm_criterion.md` does not apply it, and that
 applying it there is what makes the bottom of the `N=256` first band closable
 at all.
 
+**Second precedent, on our side, recorded for completeness.** Our own frontier
+note for this band has carried the same observation since 2026-07-27 — "local
+reciprocity leaves only the five cofactors `2,4,8,16,32` there, so every
+collision odd norm part must equal the row prime". So the reduction was
+anticipated on both sides before it was used; nobody cross-referenced it, which
+is the only reason it looked like a fresh step when the census reached the
+bottom of the band. Stated here so the provenance is complete in both
+directions.
+
 ## The statement
 
 The E1 criterion fixes a prime `p == 1 mod N` and asks whether `p` divides
@@ -54,6 +63,16 @@ the reduction that level does not close; with it, it does. The largest observed
 valuation is 34, so on individual vectors the reduction can recover up to 34
 bits — though at the binding maximiser it recovers only one, which was exactly
 enough.
+
+**A cross-check that is live rather than settled.** Our frontier note also
+records that local reciprocity limits an *actual collision*'s cofactor to
+`{2,4,8,16,32}`, i.e. valuation at most 5. The census above observes valuations
+up to 34. These do not conflict — the cofactor bound constrains a collision,
+whereas the census entries are candidates and all 2,994 were excluded — but they
+are reconcilable **only because nothing in the census survived**. If some level
+ever retains a vector, that reconciliation has to be redone rather than
+assumed. We have not seen the dependency stated anywhere, so we flag it rather
+than rely on it.
 
 ## The margin, which is the part worth your attention
 

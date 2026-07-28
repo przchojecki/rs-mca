@@ -8,7 +8,13 @@
       "D_pt(n,h) = odd part of prod_{[R]} N(a(R))",
       "p coprime to delta_0 and to the odd part of the constant m; the 2-power part is a unit"
     ],
-    "novelty_claimed": "none for the idea; only its application to e1_collision_norm_criterion.md"
+    "novelty_claimed": "none for the idea; only its application to e1_collision_norm_criterion.md",
+    "second_precedent": {
+      "side": "contributor tree (rs-mca-prize-dag)",
+      "since": "2026-07-27",
+      "quote": "local reciprocity leaves only the five cofactors 2,4,8,16,32 there, so every collision odd norm part must equal the row prime",
+      "note": "anticipated on both sides before use; nobody cross-referenced it, which is why it looked like a fresh step at the bottom of the band"
+    }
   },
   "applies_to": "experimental/notes/roadmaps/e1_collision_norm_criterion.md",
   "statement": {
@@ -61,7 +67,7 @@
     {
       "binding_id": "reduction-note",
       "path": "experimental/notes/e1/e1_collision_norm_odd_part_reduction_v1.md",
-      "sha256": "89b935678861c850edfe418086dc6f4bd620e4f613e7aea07de135098712d553",
+      "sha256": "1bbd822613737e3d145ecd41ebcdc2eba4a51bd30175a9a536ac03bd3a4763c8",
       "role": "statement, attribution, margin datum, fences"
     },
     {
@@ -70,5 +76,13 @@
       "sha256": "4607b10043f01b5cf4db4196642863f0e6d638e6ca7d81703abc54d625ca424a",
       "role": "exact reduction proof, monotonicity, census consistency, witness, mutations"
     }
-  ]
+  ],
+  "live_cross_check": {
+    "claim_A": "an actual collision has cofactor in {2,4,8,16,32}, i.e. valuation <= 5",
+    "claim_B": "the census observes valuations up to 34",
+    "conflict": false,
+    "why": "claim A constrains a collision; census entries are candidates and all 2994 were excluded",
+    "caveat": "reconcilable ONLY because nothing in the census survived; if a level ever retains a vector this must be redone, not assumed",
+    "status": "flagged, not relied upon"
+  }
 }
