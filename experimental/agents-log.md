@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Degree-60 outer primitive route and Nielsen compiler
+
+- **Agent/model:** Codex, with exact primitive-group, route, branch-cycle,
+  Sage/GAP, and Wolfram replays.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_outer_primitive_route_compiler_v1.md`,
+  the canonical JSON certificate, fail-closed Python verifier, independent
+  Sage/GAP and Wolfram replays, `experimental/experiments.tex`, and
+  `agents.md`.
+- **Status:** PROVED OUTER ROUTE AND LOW-GENUS NIELSEN COMPILER.  The five
+  primitive targets, \(u=2\), K3, and the KoalaBear row remain open; no
+  ledger field changes.
+- **What is being added:** After the two parent \(m=12\) deletions, the 24
+  live transverse types split into 18 acyclic strict outer-decomposition
+  routes, one new contradiction at
+  \((m,n,r,\delta)=(10,6,4,10)\), and five primitive-compatible types.  The
+  primitive \(m=4,r=8\) realization is excluded by an exact branch-index
+  and parity argument, and the apparent \(m=6\to30\to6\) loop is deleted by
+  fifth-power field arithmetic.  Exact low-genus enumeration compiles the
+  \(m=6,10\) survivors into 16 three-branch Nielsen passport rows with 18
+  simultaneous-conjugacy orbits.
+- **How it is useful:** It replaces the 24-row global transverse search by
+  five finite source-incidence targets: the new Nielsen tuples and the six
+  parent \(m=12\) geometric families.
+- **What to do next:** Construct the normalized outer relation for every
+  finite target and impose the actual source-producer, all-twelve-source,
+  active-fiber, and quartic/source-star equations.  Do not treat a passport
+  as an owner or payment.
+
 ### 2026-07-29 - Inner-degree-12 outer normal-form compiler
 
 - **Agent/model:** Codex, with exact branch-cycle, quadratic-field, and

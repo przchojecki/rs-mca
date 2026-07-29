@@ -150,6 +150,20 @@ At this snapshot:
   Dickson quintic with two explicit conic divided-difference factors.
   These are geometric affine forms, not challenge-field endpoint
   classifications.  No family is deleted or paid and no ledger value moves.
+- The global outer primitive-route compiler now classifies every transverse
+  type emitted by the source-pencil packet.  After the two parent `m=12`
+  deletions, the 24 live types split into 18 forced strict outer
+  decompositions, one new actual-producer contradiction at
+  `(m,n,r,delta)=(10,6,4,10)`, and exactly five primitive-compatible types:
+  `(6,10,3,8)`, `(6,10,6,4)`, `(10,6,5,8)`, `(12,5,2,24)`, and
+  `(12,5,4,12)`.  The apparent `m=6 -> 30 -> 6` loop is empty because a
+  degree-five right factor would be a fifth-power cover with a split
+  five-point `K`-fiber, contradicting `gcd(5,p^6-1)=1`; the normalized route
+  graph is acyclic.  Exact low-genus branch cycles compile the `m=6,10`
+  survivors into 16 three-branch Nielsen passport rows with 18
+  simultaneous-conjugacy orbits.  Together with the six parent `m=12`
+  families, these are finite source-incidence targets, not owners or
+  payments.  No ledger value moves.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -219,23 +233,20 @@ a necessary gate conditional on a future same-record parameter-to-carrier
 transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
 data, and slope semantics remain open.
 
-The next maximal equality-wall theorem is the source-coupled transverse
-outer compiler.  For every finite `(m,r,delta)` row emitted by the exact
-source-pencil packet, impose the inherited irreducible quartic/source-star
-incidence on the non-diagonal outer component and terminate it in an
-actual-producer contradiction, a strict coarser decomposition, or a
-same-record carrier/data/explaining-polynomial/slope owner.  A source-only
-rank calculation cannot close the prime-degree rows, as the exact deployed
-controls show.  The degree-five outer row at `m=12` has already lost its
-`r=1` and `r=3` types by the cyclic-cover and primitive-subdegree cuts; only
-`(r,delta)=(2,24),(4,12)` remain there, and the global transverse frontier
-has 24 types.  Its two surviving types are further compiled into six
-explicit geometric polynomial families.  The next `m=12` theorem must
-recover the actual outer coefficients from the canonical source pencil,
-prove any required challenge-field affine descent, and impose the inherited
-quartic/source-star incidence.  Do not resume the old primitive 985-chart
-atlas or the `u=3` component compiler while this transverse `u=2` interface
-is open.
+The next maximal equality-wall theorem is the source-coupled finite-target
+compiler.  Use the five primitive-compatible rows just printed, their exact
+16 `m=6,10` Nielsen passports, and the six parent `m=12` normal-form
+families.  For each target construct the normalized outer relation and
+impose simultaneously the actual source-producer divisibility, all-twelve
+source specializations, complete-source product identity, active split
+fiber, and inherited irreducible quartic/source-star incidence.  Terminate
+every target in an actual-producer contradiction, a strict coarser
+decomposition, a chronology-valid same-record
+carrier/data/explaining-polynomial/slope owner, or an explicit deployed-field
+unpaid primitive component.  A branch passport or geometric normal form is
+not a source-compatible endpoint component.  Do not resume the old
+primitive 985-chart atlas or the `u=3` component compiler while this finite
+transverse `u=2` interface is open.
 
 #### K4. Close algebraic routing and add-back
 
