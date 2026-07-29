@@ -699,6 +699,47 @@ request is now an overdetermined four-equation three-variable chart plus an
 exceptional locus carrying two equations independent of `d`. This remains a
 reduction, not a dimension or unit verdict.
 
+The conic and sixth coefficient supply a second independent linear
+eliminant. Put
+
+```text
+kappa=12q+366-176x,
+B_1=-q(120D+1062+86q)-528R_0,
+B_0=360DQ_0-360-1098q-191q^2+10q^3,
+M_1=3B_1+q kappa(4x-21),
+M_0=3B_0+12 kappa R_0.                              (28ag)
+```
+
+Cancellation of the common `d^4` term, followed by one reduction modulo
+`P_4`, gives the exact identity
+
+```text
+2(M_1d+M_0)
+ =2160E_6+3q Conic+2(kappa-132d)P_4.                (28ah)
+```
+
+Thus, with the conic and `P_4` retained, `E_6=0` is equivalent to
+`M_1d+M_0=0`. The complete generic coefficient core now has two linear
+equations in `d`:
+
+```text
+C_1d+C_0=0,       M_1d+M_0=0,
+Omega=C_1M_0-M_1C_0=0.                             (28ai)
+```
+
+There are three exact charts. If `C_1!=0`, reconstruct `d=-C_0/C_1` and
+retain `Omega=0`. If `C_1=0,M_1!=0`, retain `C_0=0` and reconstruct
+`d=-M_0/M_1`. Only the doubly singular chart keeps `d`, with
+
+```text
+C_1=M_1=C_0=M_0=P_4=Conic=Phi=0.                   (28aj)
+```
+
+Each rational chart also retains the denominator-cleared `P_4`, conic, and
+role equation, plus the reconstructed nonzero factors. This is an exact
+route reduction; `Omega=0` and the doubly singular equations are not unit
+or dimension verdicts.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -868,13 +909,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 396f5f8bf3114c8e032d88a40edd6e9f5fc4250d0d83d543087af92c67b8e16f
+sha256: 9c480ca3458bd3c4ca128dc9980b1e5e74c8233c585151e1f031b4ae9706a1de
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
