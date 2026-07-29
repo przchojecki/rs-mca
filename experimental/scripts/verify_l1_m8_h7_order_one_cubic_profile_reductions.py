@@ -735,6 +735,36 @@ def check_doubly_singular_quadratic_quotient() -> None:
             assert 27 * phi + c0 * row["q"] * p4 == u1 * row["d"] + u0
 
 
+def check_fully_proportional_parameters() -> None:
+    for ad, q, r0 in ((Q(2), Q(5), Q(7)), (Q(-1), Q(9), Q(2)), (Q(5, 2), Q(11), Q(-4))):
+        b = ad + 6
+        p = 40 * b * (b**2 - 6 * b + 27) + 42 * q * (11 * b + 15)
+        q_poly = 480 * b**2 + 12960 + 5544 * q
+        tc = 3240 + 3402 * q + 315 * q**2
+        n1 = q**2 * (
+            40 * ad**3 + 480 * ad**2 + (2520 + 462 * q) * ad + 6480 + 3402 * q
+        ) + 2880 * q * r0 * (ad + 6)
+        n0 = (
+            q * r0 * (480 * ad**2 + 5760 * ad + 30240 + 5544 * q)
+            + 17280 * r0**2
+            + q**2 * (3240 + 3402 * q + 315 * q**2)
+        )
+        assert n1 == q * (q * p + 2880 * b * r0)
+        assert n0 == q * r0 * q_poly + 17280 * r0**2 + q**2 * tc
+
+    for c2, c1, c0, role_r, q, ad, r0 in (
+        (Q(1), Q(2), Q(3), Q(5), Q(7), Q(4), Q(11)),
+        (Q(2), Q(-1), Q(5), Q(-3), Q(11), Q(-2), Q(7)),
+    ):
+        delta_phi = c1**2 - 4 * c2 * c0
+        role_s0 = -c1 * role_r / (2 * c0) - q * ad / 18
+        u1 = 9 * q * (c1 * role_r + 2 * c0 * role_s0) + c0 * q**2 * ad
+        u0 = 27 * (c2 * role_r**2 + c1 * role_r * role_s0 + c0 * role_s0**2) + 12 * c0 * q * r0
+        weld = c0**2 * (q**2 * ad**2 + 144 * q * r0) - 81 * delta_phi * role_r**2
+        assert u1 == 0
+        assert 12 * c0 * u0 == weld
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -840,6 +870,7 @@ def main() -> None:
     check_generic_linear_d_router()
     check_generic_double_linear_d_router()
     check_doubly_singular_quadratic_quotient()
+    check_fully_proportional_parameters()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -864,6 +895,8 @@ def main() -> None:
         "Omega=C_1M_0-M_1C_0=0",
         "9q^2 Conic=N_1d+N_0 mod P_4",
         "Xi=N_1U_0-U_1N_0=0",
+        "F_N:=6P^2-bPQ+2880b^2T_c=0",
+        "role-discriminant weld",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -884,6 +917,7 @@ def main() -> None:
         "generic_linear_d=1 "
         "generic_double_linear_d=1 "
         "doubly_singular_quotient=1 "
+        "fully_proportional_parameters=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

@@ -795,6 +795,45 @@ still retains `d`. The 21 choices of `(c_2,c_1,c_0)` are alternatives, not
 simultaneous equations. The fully proportional quotient locus remains an
 open packet, not a discarded denominator component.
 
+The fully proportional coefficients can themselves be solved explicitly.
+Put
+
+```text
+b=a_d+6=4x-15,
+P=40b(b^2-6b+27)+42q(11b+15),
+Q=480b^2+12960+5544q,
+T_c=3240+3402q+315q^2.                              (28ao)
+```
+
+The equations `N_1=N_0=0` imply `b!=0`: at `b=0`, one has
+`N_1=630q^3!=0`. They are exactly
+
+```text
+R_0=-qP/(2880b),
+F_N:=6P^2-bPQ+2880b^2T_c=0.                        (28ap)
+```
+
+For the selected role packet define
+
+```text
+delta_Phi=c_1^2-4c_2c_0.
+```
+
+The equations `U_1=U_0=0` are exactly
+
+```text
+S_0=-c_1R/(2c_0)-qa_d/18,
+
+c_0^2(q^2a_d^2+144qR_0)=81delta_Phi R^2.           (28aq)
+```
+
+The expression in parentheses is the discriminant of `P_4` as a quadratic
+in `d`. Thus the last proportional residue consists of the four earlier
+coefficient-zero equations, the reconstructions (28ap)--(28aq), `F_N=0`,
+and `P_4=0`. This is a role-discriminant weld, not a prime-field nonsquare
+contradiction: the coefficient variables live in the ambient quadratic
+field. Every arithmetic lift remains mandatory.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -964,13 +1003,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: ad8bf495f2b6777d6ed431a0125729a09e33f4f40caf03a45079660cbb35c89b
+sha256: 4f66ed0d825e051929b321c0067784d78681242db47522ce128f633849dc50e0
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
