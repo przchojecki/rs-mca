@@ -972,6 +972,40 @@ def check_fully_proportional_structural() -> None:
         assert original_residual - simplified_residual == -(a + x) * d_residual
 
 
+def check_fully_proportional_exceptional_structural() -> None:
+    for b, q, d_star, l_star, j_star, d_core, q0 in (
+        (Q(2), Q(5), Q(7), Q(3), Q(11), Q(13), Q(17)),
+        (Q(-1), Q(9), Q(4), Q(-5), Q(2), Q(7), Q(-3)),
+        (Q(5, 2), Q(11), Q(13), Q(17), Q(-7), Q(-3), Q(19)),
+    ):
+        x = (b + 15) / 4
+        a = -(b + 3) / 2
+        ell = (b**2 + 6 * b + 105 + 8 * q) / 16
+        g = -(d_star**2) * l_star / (720 * b * j_star)
+        h = ell - g
+        y = (ell - 2 * g) / a - x
+        l2 = 15 + q / 2
+        assert ell == l2 - x**2 - a * x
+        assert (l2 - x**2 - a * (2 * x + y)) / 2 == g
+        assert g + a * (x + y) == h
+
+        v = g + x * y + y**2
+        d_residual = d_core - y * v
+        q_original = 6 * g + a * x * (x + y) - 20 - 8 * q / 3 - d_core
+        q_simplified = a * g + x * ell - 20 - 8 * q / 3 - d_core
+        assert q_original == q_simplified
+        assert q0 - q_original == q0 - q_simplified
+
+        r0 = Q(23)
+        constants = 15 + 23 * q / 4 + q**2 / 8
+        w0 = y * (a + x) * v + constants
+        original_residual = r0 - (g * h - x * q0 - w0)
+        simplified_residual = (
+            r0 - g * (ell - g) + x * q0 + (a + x) * d_core + constants
+        )
+        assert original_residual - simplified_residual == -(a + x) * d_residual
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -1083,6 +1117,7 @@ def main() -> None:
     check_fully_proportional_q_quotient()
     check_fully_proportional_exceptional_e()
     check_fully_proportional_structural()
+    check_fully_proportional_exceptional_structural()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -1121,6 +1156,8 @@ def main() -> None:
         "X_E(b)=S_1^3X_*(b,-S_0/S_1)=0",
         "Z_D=Num(D_c-Y_cV_c)",
         "U(b)=Zhat_D(b)=Zhat_Q(b)=Zhat_R(b)=0",
+        "G_e=-D_*^2L_*/(720bJ_*)",
+        "V_E(b)=X_E(b)=Zhat_D^e(b)=Zhat_Q^e(b)=Zhat_R^e(b)=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1148,6 +1185,7 @@ def main() -> None:
         "fully_proportional_q_quotient=1 "
         "fully_proportional_exceptional_e=1 "
         "fully_proportional_structural=1 "
+        "fully_proportional_exceptional_structural=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

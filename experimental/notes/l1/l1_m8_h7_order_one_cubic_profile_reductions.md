@@ -1103,6 +1103,68 @@ with every printed denominator and saturation retained. This still requires
 the selected role-discriminant weld, `P_4`, and arithmetic-lift filters; it
 is not a common-root or emptiness verdict.
 
+The generic part of the exceptional `E_G=0` chart has a parallel structural
+compiler. Retain `a_2*S_1*J_*!=0`, write `V_E` for the coefficient polynomial
+`V(b)` in (28bl), and put
+
+```text
+D_e=D_*/(3600b),              Q_e=Q_*/(72D_*),
+G_e=-D_*^2L_*/(720bJ_*),      H_e=ell-G_e,
+Y_e=(ell-2G_e)/A-x,
+V_e=G_e+xY_e+Y_e^2,           R_e=-qP/(2880b).    (28bt)
+```
+
+Define the numerator-cleared polynomials
+
+```text
+Z_D^e=Num(D_e-Y_eV_e),
+
+Z_Q^e=Num(Q_e-A G_e-x ell+20+8q/3+D_e),
+
+Z_R^e=Num(R_e-G_e(ell-G_e)+xQ_e+(A+x)D_e
+          +15+23q/4+q^2/8).                       (28bu)
+```
+
+On `b(b+3)D_*J_*!=0`, the original structural definitions are jointly
+equivalent to the displayed reconstructions and
+`Z_D^e=Z_Q^e=Z_R^e=0`. The proof is the same reversible substitution as
+above: `6-2x=A` gives the simplified `Q_0`, while the original `R_0` residual
+minus the simplified one is `(A+x)(Y_eV_e-D_e)`.
+
+The rational functions `(D_e,Q_e,G_e,Y_e,V_e)` have
+numerator/denominator total-degree bounds
+
+```text
+(3/1), (5/3), (9/7), (9/8), (18/16).
+```
+
+Common denominators `A^3b^3J_*^3`, `bJ_*D_*`, and `b^2J_*^2D_*` have
+degrees 24, 10, and 17. Therefore
+
+```text
+deg(Z_D^e)<=27,      deg(Z_Q^e)<=13,
+deg(Z_R^e)<=21.                                      (28bv)
+```
+
+If `m_i=deg_q Z_i^e`, set
+
+```text
+Zhat_i^e(b)=S_1(b)^m_i Z_i^e(b,-S_0(b)/S_1(b)),
+                           i in {D,Q,R}.            (28bw)
+```
+
+The complete exceptional coefficient and structural endpoint on this chart
+is exactly
+
+```text
+V_E(b)=X_E(b)=Zhat_D^e(b)=Zhat_Q^e(b)=Zhat_R^e(b)=0,
+q=-S_0/S_1.                                        (28bx)
+```
+
+The `S_1=0`, `a_2=0`, and `J_*=0` charts remain, as do the selected role,
+`P_4`, saturation, and arithmetic-lift filters. No common-root or emptiness
+verdict is asserted.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -1272,13 +1334,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: fbdd8257798047230f83ed7ff04325ac450beb5b2c80c574f6ec3795e32a4b30
+sha256: f0a6ef84c254b6f6ecc4b2eb5ec468c4ecd604739713ae129939702d97e834de
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
