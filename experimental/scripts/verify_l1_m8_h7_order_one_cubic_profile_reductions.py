@@ -283,6 +283,118 @@ def check_role_weld() -> None:
         )
 
 
+def cyclo_add(
+    left: tuple[Q, Q, Q, Q], right: tuple[Q, Q, Q, Q]
+) -> tuple[Q, Q, Q, Q]:
+    return tuple(a + b for a, b in zip(left, right))
+
+
+def cyclo_scale(
+    value: tuple[Q, Q, Q, Q], scalar: Q
+) -> tuple[Q, Q, Q, Q]:
+    return tuple(scalar * item for item in value)
+
+
+def cyclo_mul(
+    left: tuple[Q, Q, Q, Q], right: tuple[Q, Q, Q, Q]
+) -> tuple[Q, Q, Q, Q]:
+    raw = [Q(0)] * 7
+    for i, a in enumerate(left):
+        for j, b in enumerate(right):
+            raw[i + j] += a * b
+    for degree in range(6, 3, -1):
+        raw[degree - 4] -= raw[degree]
+    return tuple(raw[:4])
+
+
+def cyclo_power(
+    value: tuple[Q, Q, Q, Q], exponent: int
+) -> tuple[Q, Q, Q, Q]:
+    out = (Q(1), Q(0), Q(0), Q(0))
+    for _ in range(exponent):
+        out = cyclo_mul(out, value)
+    return out
+
+
+def cyclo_homogeneous_eval(
+    coefficients: tuple[int, ...],
+    numerator: tuple[Q, Q, Q, Q],
+    denominator: tuple[Q, Q, Q, Q],
+) -> tuple[Q, Q, Q, Q]:
+    zero = (Q(0), Q(0), Q(0), Q(0))
+    out = zero
+    degree = len(coefficients) - 1
+    for exponent, coefficient in enumerate(coefficients):
+        term = cyclo_mul(
+            cyclo_power(numerator, exponent),
+            cyclo_power(denominator, degree - exponent),
+        )
+        out = cyclo_add(out, cyclo_scale(term, Q(coefficient)))
+    return out
+
+
+def check_galois_role_packets() -> None:
+    units = (1, 3, 5, 7)
+    packets = (
+        ((2, 6), (1, 0, 1)),
+        ((2, 4), (2, -2, 1)),
+        ((4, 2), (1, -2, 2)),
+        ((1, 2), (2, -4, 6, -4, 1)),
+        ((1, 3), (1, -4, 8, -4, 1)),
+        ((1, 4), (8, -16, 12, -4, 1)),
+        ((1, 5), (1, 0, 6, 0, 1)),
+        ((1, 6), (2, -4, 2, 0, 1)),
+        ((1, 7), (1, 0, 0, 0, 1)),
+        ((2, 1), (1, -4, 6, -4, 2)),
+        ((2, 3), (1, 0, 2, -4, 2)),
+        ((4, 1), (1, -4, 12, -16, 8)),
+    )
+
+    def orbit(pair: tuple[int, int]) -> frozenset[tuple[int, int]]:
+        return frozenset(
+            ((unit * pair[0]) % 8, (unit * pair[1]) % 8) for unit in units
+        )
+
+    all_pairs = {(a, b) for a in range(1, 8) for b in range(1, 8) if a != b}
+    all_orbits = {orbit(pair) for pair in all_pairs}
+    assert len(all_orbits) == 12
+    assert sorted(len(item) for item in all_orbits) == [2, 2, 2] + [4] * 9
+    assert {orbit(pair) for pair, _ in packets} == all_orbits
+
+    one = (Q(1), Q(0), Q(0), Q(0))
+    zero = (Q(0), Q(0), Q(0), Q(0))
+    zeta = (Q(0), Q(1), Q(0), Q(0))
+    packet_product = [Q(1)]
+    total_degree = 0
+    for (a, b), coefficients in packets:
+        numerator = cyclo_add(cyclo_power(zeta, b), cyclo_scale(one, Q(-1)))
+        denominator = cyclo_add(cyclo_power(zeta, a), cyclo_scale(one, Q(-1)))
+        assert cyclo_homogeneous_eval(coefficients, numerator, denominator) == zero
+        packet_product = poly_mul(packet_product, [Q(value) for value in coefficients])
+        total_degree += len(coefficients) - 1
+    assert total_degree == 42
+
+    a = [Q(1), Q(-1), Q(1)]
+    b = [Q(2), Q(-3), Q(-3), Q(2)]
+    a3, a6 = poly_power(a, 3), poly_power(a, 6)
+    b2, b4 = poly_power(b, 2), poly_power(b, 4)
+    high_factors = (
+        poly_add(b2, [50 * value for value in a3]),
+        poly_add(poly_add(b4, [-224 * value for value in poly_mul(b2, a3)]), [-578 * value for value in a6]),
+        poly_add(poly_add(b4, [-4 * value for value in poly_mul(b2, a3)]), [54 * value for value in a6]),
+        poly_add(
+            poly_add([125 * value for value in b4], [-2404 * value for value in poly_mul(b2, a3)]),
+            [13448 * value for value in a6],
+        ),
+    )
+    high_product = [Q(1)]
+    for factor in high_factors:
+        high_product = poly_mul(high_product, factor)
+    assert [value / packet_product[-1] for value in packet_product] == [
+        value / high_product[-1] for value in high_product
+    ]
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -379,6 +491,7 @@ def main() -> None:
     check_role_polynomial()
     check_role_factors()
     check_role_weld()
+    check_galois_role_packets()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -389,6 +502,8 @@ def main() -> None:
         "Lambda_321(lambda)",
         "B^4-224B^2A^3-578A^6",
         "B_0^4-224B_0^2A_0^3-578A_0^6",
+        "3*2+9*4=42",
+        "disjunction",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -400,6 +515,7 @@ def main() -> None:
         "L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS "
         "linear_samples=2 x0_samples=3 q6x2_samples=3 "
         "common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 "
+        "galois_role_packets=12 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

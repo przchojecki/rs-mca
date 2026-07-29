@@ -369,6 +369,61 @@ After (24)--(25), each line of (28d) gives one explicit system in
 `(g_1,y,r,d)`: equations (26), the conic, and that role equation. Clearing
 `S^6` or `S^12` is reversible on the inherited `B!=0` saturation.
 
+The role polynomial has a second exact rational factorization that lowers
+the degree of each branch. Let `zeta` be a primitive eighth root. The Galois
+group `{1,3,5,7}` acts on ordered exponent pairs by
+`(a,b)->(ka,kb) mod 8`, and the normalized role is
+
+```text
+lambda_(a,b)=(zeta^b-1)/(zeta^a-1),
+1<=a,b<=7, a!=b.                                  (28e)
+```
+
+The 42 ordered pairs split into three orbits of size two and nine of size
+four, represented by
+
+```text
+(2,6),(2,4),(4,2),
+(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(2,1),(2,3),(4,1).
+```
+
+Their orbit polynomials, in that order, are
+
+```text
+X^2+1,
+X^2-2X+2,
+2X^2-2X+1,
+X^4-4X^3+6X^2-4X+2,
+X^4-4X^3+8X^2-4X+1,
+X^4-4X^3+12X^2-16X+8,
+X^4+6X^2+1,
+X^4+2X^2-4X+2,
+X^4+1,
+2X^4-4X^3+6X^2-4X+1,
+2X^4-4X^3+2X^2+1,
+8X^4-16X^3+12X^2-4X+1.                          (28f)
+```
+
+Their degrees total `3*2+9*4=42`, and their product is a nonzero rational
+scalar multiple of both `Lambda_321` and (28a). For a degree-`e_j` packet
+`P_j`, put
+
+```text
+widehat P_j(R,S)=S^e_j P_j(1+R/S).                (28g)
+```
+
+On `R*S!=0`, the union of the four systems (28d) is equivalently the
+**disjunction** of the twelve systems
+
+```text
+widehat P_j(R,S)=0,  1<=j<=12.                    (28h)
+```
+
+Each branch consists of (26), the conic, and one degree-at-most-four role
+equation. The equations in (28h) are alternatives, never twelve
+simultaneous constraints. Irreducibility of the displayed packets is not
+needed or claimed.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -538,13 +593,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: d1ee8ac077aa36c55a0adbeed05ec80de61b10762a13be0349c5deb5cfe96b15
+sha256: f1b942208d4bbe086a8ad7c363136579e146bc6cd4bb15d9daeaff849aa25c2d
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
