@@ -847,6 +847,17 @@ def check_fully_proportional_coefficients() -> None:
             q0 - q**2 / 3
         )
 
+        l_star = 135 * b * (b**2 + 6 * b + 105 + 8 * q) - 6 * p
+        f_star = d_star * k_star - 30 * b * q_star
+        j_star = 150 * b * q_star - 3 * d_star**2 - 5 * p * d_star
+        x_star = q_star - 24 * d_star * q**2
+        theta_star = 5 * e_g * d_star**2 * l_star - 6 * j_star * f_star
+        assert l_g == l_star
+        assert f_g == f_star / (600 * b)
+        assert j_g == j_star / (5 * d_star)
+        assert theta == theta_star / (18000 * b * d_star)
+        assert x_star == q_star - 24 * d_star * q**2
+
 
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
@@ -986,6 +997,8 @@ def main() -> None:
         "302400z(9-z)(-200z^2+4239z-14175)",
         "D_*=3600bD !=0",
         "Theta_G:=E_GD L_G-J_GF_G=0",
+        "Theta_*=5E_GD_*^2L_*-6J_*F_*",
+        "F_b=E_G=X_*=J_*=L_*=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1009,6 +1022,7 @@ def main() -> None:
         "fully_proportional_parameters=1 "
         "fully_proportional_bivariate=1 "
         "fully_proportional_coefficients=1 "
+        "fully_proportional_bivariate_compiler=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 
