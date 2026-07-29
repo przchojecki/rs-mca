@@ -32,7 +32,8 @@ companion `3+3` exclusion. It proves algebraic reductions, not emptiness:
 3+2+1: an exact common-quadratic factor model with four retained variables
        and one degree-42 symbolic role polynomial; on the fully proportional
        generic chart, three explicit structural filters complete the
-       coefficient endpoint.
+       coefficient endpoint, while the last `J_*=0` coefficient chart is an
+       exact four-filter univariate endpoint.
 ```
 
 The upstream first-match-to-HNF owner bridge remains outside the note. None
@@ -1105,6 +1106,67 @@ leaders `1600` and `-130400`. Conversely, (28bl8) reconstructs `b^2=z` and
 necessary squaring branch. The equations `F_b=X_*=0`, the `J_*` split,
 structural filters, role packet, `P_4`, saturations, and lifts remain.
 
+The retained `J_*=L_*=0` coefficient chart has a separate affine router.
+Define
+
+```text
+B_J=96q^2+(216-32b)q+3b^2+18b+315,
+T_J=-280b^2+2241b+3465,
+M_J=29b^2+234b+81,
+R_J=3D_*+5P-3600bq^2.                            (28bl9)
+```
+
+Direct expansion gives the exact identities
+
+```text
+L_*=45bB_J+6E_G,
+R_J+5E_G=-75bB_J+3(T_Jq-5bM_J),
+J_*=-D_*R_J+150bX_*.                             (28bl10)
+```
+
+Thus `E_G=X_*=J_*=L_*=0`, together with the inherited `bD_*!=0`
+saturation, forces
+
+```text
+B_J=0,                 T_Jq=5bM_J.                (28bl11)
+```
+
+The coefficient `T_J` cannot vanish on this chart. If it did, then
+`M_J=0`, but
+
+```text
+29T_J+280M_J=9(14501b+13685).
+```
+
+A common zero would therefore have `b=-13685/14501`. The denominator is a
+unit at every official prime, while
+
+```text
+14501^2M_J(-13685/14501)=-23972710684
+```
+
+has residues `(3690,44145,312391,1797093080)`, all nonzero. Consequently
+
+```text
+q=5bM_J/T_J.                                      (28bl12)
+```
+
+After this reconstruction put
+
+```text
+Bhat_J=T_J^2B_J(b,5bM_J/T_J),
+Ehat_J=T_J^2E_G(b,5bM_J/T_J),
+Fhat_J=T_J^2F_b(b^2,5bM_J/T_J),
+Xhat_J=T_J^3X_*(b,5bM_J/T_J).                    (28bl13)
+```
+
+These are univariate polynomials of degrees at most `6,7,10,11`. Equations
+(28bl10) prove the converse as well: on `T_J!=0`, their simultaneous
+vanishing recovers `B_J=E_G=F_b=X_*=0`, then `L_*=R_J=J_*=0`. Hence this is
+an exact coefficient router, not merely a necessary projection. It still
+retains `G_2`, every structural and role equation, `P_4`, all saturations,
+and every arithmetic lift. No common-root or emptiness verdict is asserted.
+
 The generic coefficient endpoint also admits an exact structural compiler.
 Retain `E_G*a_2*rho_1!=0` and define
 
@@ -1244,9 +1306,10 @@ V_E(b)=X_E(b)=Zhat_D^e(b)=Zhat_Q^e(b)=Zhat_R^e(b)=0,
 q=-S_0/S_1.                                        (28bx)
 ```
 
-The `S_1=S_0=0` chart is reduced to the quartic pair (28bl8), while `J_*=0`
-remains, as do the selected role, `P_4`, saturation, and arithmetic-lift
-filters. The separate exceptional `a_2=0` chart is empty by
+The `S_1=S_0=0` chart is reduced to the quartic pair (28bl8), while the
+`J_*=0` coefficient chart is reduced to (28bl12)--(28bl13). The selected
+role, `P_4`, saturation, and arithmetic-lift filters remain. The separate
+exceptional `a_2=0` chart is empty by
 (28bl1)--(28bl5). No common-root verdict is asserted for the retained charts.
 
 ## Symmetric affine-color equation for 2+2+2
@@ -1418,13 +1481,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 82feb2820f1539b9c3da69ebbfbf0c6b84bfede5ae357303dc828d4d3cfabd0a
+sha256: bb5af22c100f06117b1a9165c0afaad86f09576e697571ae8c0bc7e6f75bef13
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
@@ -1445,10 +1508,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: 06e941be7bd231d993a63ebb83c0855f0798524a10e86249e9796f9b7a02f3c0
+sha256: 85ec64690ef625ec3f1e4f1815b95064ad85698d36e4a07826aa9ad6f51827ab
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: 9174a04da730f47d594c65dbc0f0d8d20aaa8a064cc225c51ef69e68d6baf1de
+sha256: b89c741dbe723d8ee49992f437b6973f9f0559e4cd68105428de24a72e0aef46
 ```
 
 Launch it with
@@ -1480,6 +1543,15 @@ most two. `ambient_status=EMPTY` excludes the chart over `F_(p^2)`;
 `ambient_status=HIT` returns the only factors that continue to `F_b=X_*=0`
 and the downstream filters. The checker independently reconstructs `A,H,K`
 and verifies the gcd, factorization, guard, and ambient-degree classification.
+The same row now reconstructs the four `J_*=L_*=0` affine-router filters
+`Bhat_J,Ehat_J,Fhat_J,Xhat_J`, certifies their common gcd by a four-way
+Bezout identity, factors that gcd, flags every factor dividing `T_J`, and
+lists exactly the remaining degree-one/two factors. An `EMPTY` ambient
+status excludes this coefficient chart; `HIT` returns only legal factors for
+the retained `G_2` and downstream equations; an identically-zero family is
+explicitly inconclusive. The checker independently reconstructs the five
+source polynomials and verifies the Bezout, factorization, guard, and
+ambient-degree classifications.
 This adds no containers, CPUs, memory, retries, or timeout to the request.
 
 None of the compute-request scripts was executed in the exporting
@@ -1491,8 +1563,8 @@ replay; no pending execution is counted as evidence.
 The exact-rational verifier's note path was also repaired from the repository
 root to `experimental/notes/l1`; the previous path would have failed before
 the algebraic checks. This source repair, the leading-chart arithmetic, the
-singular-affine identity, and the extended packet were syntax-checked but not
-executed in the exporting environment.
+singular-affine and `J_*=0` affine identities, and the extended packet were
+syntax-checked but not executed in the exporting environment.
 
 ## Boundary
 

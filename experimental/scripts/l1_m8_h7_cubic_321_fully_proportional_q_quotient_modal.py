@@ -183,8 +183,27 @@ def source_polynomials() -> dict[str, object]:
         42 * a_affine * n_affine
         + 163 * (z_affine + 27) ** 2 * c_affine
     )
-    v_exceptional = sp.expand(a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2)
     x_star = sp.expand(q_star - 24 * d_star * q**2)
+    j0_b = sp.expand(
+        96 * q**2 + (216 - 32 * b) * q + 3 * b**2 + 18 * b + 315
+    )
+    j0_t = sp.expand(-280 * b**2 + 2241 * b + 3465)
+    j0_m = sp.expand(29 * b**2 + 234 * b + 81)
+    j0_r = sp.expand(5 * b * j0_m)
+
+    def cleared_j0(expression: object, q_degree: int, degree_bound: int) -> object:
+        value = sp.cancel(j0_t**q_degree * expression.subs(q, j0_r / j0_t))
+        numerator, denominator = sp.fraction(value)
+        assert denominator == 1
+        polynomial = sp.Poly(sp.expand(numerator), b, domain=sp.ZZ)
+        assert polynomial.degree() <= degree_bound
+        return polynomial.as_expr()
+
+    j0_bhat = cleared_j0(j0_b, 2, 6)
+    j0_ehat = cleared_j0(e_g, 2, 7)
+    j0_fhat = cleared_j0(a2 * q**2 + a1 * q + a0, 2, 10)
+    j0_xhat = cleared_j0(x_star, 3, 11)
+    v_exceptional = sp.expand(a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2)
     g_exceptional = -(d_star**2) * l_star / (720 * b * j_star)
     y_exceptional = (ell - 2 * g_exceptional) / a - x
     v_structural_exceptional = (
@@ -256,6 +275,11 @@ def source_polynomials() -> dict[str, object]:
         "singular_affine_A": coefficients(a_affine, z_affine),
         "singular_affine_H": coefficients(h_affine, z_affine),
         "singular_affine_K": coefficients(k_affine, z_affine),
+        "j0_T": coefficients(j0_t),
+        "j0_Bhat": coefficients(j0_bhat),
+        "j0_Ehat": coefficients(j0_ehat),
+        "j0_Fhat": coefficients(j0_fhat),
+        "j0_Xhat": coefficients(j0_xhat),
         "V_E": v_exceptional_coefficients,
         "X_star_q_coefficients": x_star_q_coefficients,
         "Z_D_e_q_coefficients": numerator_q_coefficients(z_d_exceptional, 27),
@@ -489,6 +513,59 @@ def run_prime(prime: int) -> dict[str, object]:
         if singular_affine_gcd["ambient_quadratic_eligible_factors"]
         else "EMPTY"
     )
+
+    j0_labels = ("Bhat", "Ehat", "Fhat", "Xhat")
+    j0_sources = [polynomials[f"j0_{label}"] for label in j0_labels]
+    j0_t_source = polynomials["j0_T"]
+    assert all(isinstance(source, list) for source in j0_sources)
+    assert isinstance(j0_t_source, list)
+    j0_common_gcd = multi_gcd_certificate(j0_sources, prime)
+    if j0_common_gcd["status"] == "IDENTICALLY_ZERO_FAMILY":
+        j0_common_gcd["factorization"] = {"unit": 0, "factors": []}
+        j0_common_gcd["ambient_quadratic_eligible_factors"] = []
+        j0_common_gcd["ambient_status"] = "INCONCLUSIVE"
+    else:
+        j0_common = j0_common_gcd["gcd_coefficients_low_to_high"]
+        assert isinstance(j0_common, list)
+        j0_common_poly = sp.Poly(
+            sum(
+                (coefficient % prime) * b**index
+                for index, coefficient in enumerate(j0_common)
+            ),
+            b,
+            modulus=prime,
+        )
+        j0_unit, j0_raw_factors = sp.factor_list(j0_common_poly)
+        j0_factors = []
+        for factor, exponent in j0_raw_factors:
+            coefficients = [
+                int(value) % prime for value in reversed(factor.all_coeffs())
+            ]
+            j0_factors.append(
+                {
+                    "degree": factor.degree(),
+                    "exponent": int(exponent),
+                    "coefficients_low_to_high": coefficients,
+                    "t_zero_factor": divmod_poly(
+                        j0_t_source, coefficients, prime
+                    )[1]
+                    == [0],
+                }
+            )
+        j0_common_gcd["factorization"] = {
+            "unit": int(j0_unit) % prime,
+            "factors": j0_factors,
+        }
+        j0_common_gcd["ambient_quadratic_eligible_factors"] = [
+            factor
+            for factor in j0_factors
+            if factor["degree"] <= 2 and not factor["t_zero_factor"]
+        ]
+        j0_common_gcd["ambient_status"] = (
+            "HIT"
+            if j0_common_gcd["ambient_quadratic_eligible_factors"]
+            else "EMPTY"
+        )
     row = {
         "p": prime,
         "digest": digest,
@@ -512,6 +589,7 @@ def run_prime(prime: int) -> dict[str, object]:
         "structural_common_gcd": structural_common_gcd,
         "exceptional_structural_common_gcd": exceptional_structural_common_gcd,
         "exceptional_singular_affine_gcd": singular_affine_gcd,
+        "exceptional_j0_affine_common_gcd": j0_common_gcd,
         "seconds": round(time.monotonic() - started, 6),
     }
     print("L1_H7_C321_FULLY_PROPORTIONAL_Q_ROW " + json.dumps(row, sort_keys=True), flush=True)

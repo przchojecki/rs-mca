@@ -11,7 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LAUNCHER = HERE / "l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
-EXPECTED_LAUNCHER_SHA256 = "06e941be7bd231d993a63ebb83c0855f0798524a10e86249e9796f9b7a02f3c0"
+EXPECTED_LAUNCHER_SHA256 = "85ec64690ef625ec3f1e4f1815b95064ad85698d36e4a07826aa9ad6f51827ab"
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
 
@@ -167,8 +167,27 @@ def source_polynomials() -> dict[str, object]:
         42 * a_affine * n_affine
         + 163 * (z_affine + 27) ** 2 * c_affine
     )
-    v_exceptional = sp.expand(a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2)
     x_star = sp.expand(q_star - 24 * d_star * q**2)
+    j0_b = sp.expand(
+        96 * q**2 + (216 - 32 * b) * q + 3 * b**2 + 18 * b + 315
+    )
+    j0_t = sp.expand(-280 * b**2 + 2241 * b + 3465)
+    j0_m = sp.expand(29 * b**2 + 234 * b + 81)
+    j0_r = sp.expand(5 * b * j0_m)
+
+    def cleared_j0(expression: object, q_degree: int, degree_bound: int) -> object:
+        value = sp.cancel(j0_t**q_degree * expression.subs(q, j0_r / j0_t))
+        numerator, denominator = sp.fraction(value)
+        assert denominator == 1
+        polynomial = sp.Poly(sp.expand(numerator), b, domain=sp.ZZ)
+        assert polynomial.degree() <= degree_bound
+        return polynomial.as_expr()
+
+    j0_bhat = cleared_j0(j0_b, 2, 6)
+    j0_ehat = cleared_j0(e_g, 2, 7)
+    j0_fhat = cleared_j0(a2 * q**2 + a1 * q + a0, 2, 10)
+    j0_xhat = cleared_j0(x_star, 3, 11)
+    v_exceptional = sp.expand(a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2)
     g_exceptional = -(d_star**2) * l_star / (720 * b * j_star)
     y_exceptional = (ell - 2 * g_exceptional) / a - x
     v_structural_exceptional = (
@@ -245,6 +264,11 @@ def source_polynomials() -> dict[str, object]:
         "singular_affine_A": coefficients(a_affine, z_affine),
         "singular_affine_H": coefficients(h_affine, z_affine),
         "singular_affine_K": coefficients(k_affine, z_affine),
+        "j0_T": coefficients(j0_t),
+        "j0_Bhat": coefficients(j0_bhat),
+        "j0_Ehat": coefficients(j0_ehat),
+        "j0_Fhat": coefficients(j0_fhat),
+        "j0_Xhat": coefficients(j0_xhat),
         "V_E": v_exceptional_coefficients,
         "X_star_q_coefficients": x_star_q_coefficients,
         "Z_D_e_q_coefficients": numerator_q_coefficients(z_d_exceptional, 27),
@@ -444,6 +468,49 @@ def verify_exceptional_singular_affine_gcd(
     assert packet["ambient_status"] == ("HIT" if eligible else "EMPTY")
 
 
+def verify_exceptional_j0_affine_common_gcd(
+    packet: dict[str, object], polynomials: dict[str, object], prime: int
+) -> None:
+    labels = ("Bhat", "Ehat", "Fhat", "Xhat")
+    sources = [polynomials[f"j0_{label}"] for label in labels]
+    t_source = polynomials["j0_T"]
+    assert all(isinstance(source, list) for source in sources)
+    assert isinstance(t_source, list)
+    reduced = [mod_poly(source, prime) for source in sources]
+    if packet["status"] == "IDENTICALLY_ZERO_FAMILY":
+        assert all(source == [0] for source in reduced)
+        assert packet["factorization"] == {"unit": 0, "factors": []}
+        assert packet["ambient_quadratic_eligible_factors"] == []
+        assert packet["ambient_status"] == "INCONCLUSIVE"
+        return
+
+    assert packet["status"] in {"UNIT", "HIT"}
+    verify_multi_gcd_certificate(packet, reduced, prime)
+    common = mod_poly(packet["gcd_coefficients_low_to_high"], prime)
+    factorization = packet["factorization"]
+    factors = factorization["factors"]
+    product = [factorization["unit"] % prime]
+    for factor in factors:
+        coefficients = mod_poly(factor["coefficients_low_to_high"], prime)
+        assert coefficients[-1] == 1
+        assert len(coefficients) - 1 == factor["degree"]
+        assert factor["exponent"] >= 1
+        assert factor["t_zero_factor"] == (
+            divmod_poly(t_source, coefficients, prime)[1] == [0]
+        )
+        product = mod_poly(
+            multiply(product, power(coefficients, factor["exponent"])), prime
+        )
+    assert product == common
+    eligible = [
+        factor
+        for factor in factors
+        if factor["degree"] <= 2 and not factor["t_zero_factor"]
+    ]
+    assert packet["ambient_quadratic_eligible_factors"] == eligible
+    assert packet["ambient_status"] == ("HIT" if eligible else "EMPTY")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("certificate", type=Path)
@@ -515,6 +582,9 @@ def main() -> None:
         )
         verify_exceptional_singular_affine_gcd(
             row["exceptional_singular_affine_gcd"], polynomials, prime
+        )
+        verify_exceptional_j0_affine_common_gcd(
+            row["exceptional_j0_affine_common_gcd"], polynomials, prime
         )
         assert row["seconds"] >= 0
 

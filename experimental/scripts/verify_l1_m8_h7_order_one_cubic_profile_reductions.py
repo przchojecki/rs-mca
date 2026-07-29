@@ -1028,6 +1028,44 @@ def check_fully_proportional_exceptional_singular_affine() -> None:
     assert evaluate(n, Q(-27)) == 24948
 
 
+def check_fully_proportional_exceptional_j0_affine() -> None:
+    for b, q in ((Q(2), Q(5)), (Q(-1), Q(9)), (Q(5, 2), Q(11))):
+        p = 40 * b * (b**2 - 6 * b + 27) + 42 * q * (11 * b + 15)
+        d_star = (
+            3 * q * (40 * b**2 - 253 * b + 1155)
+            - 20 * b * (11 * b**2 + 81 * b + 414)
+        )
+        q_star = (
+            720 * b * (360 + 1098 * q + 191 * q**2 - 10 * q**3)
+            + (12 * q - 44 * b - 294) * q * p
+        )
+        k_star = 240 * b * q * (b - 6) - p
+        e_g = k_star - 720 * b * q**2
+        l_star = 135 * b * (b**2 + 6 * b + 105 + 8 * q) - 6 * p
+        x_star = q_star - 24 * d_star * q**2
+        j_star = 150 * b * q_star - 3 * d_star**2 - 5 * p * d_star
+        b_j = 96 * q**2 + (216 - 32 * b) * q + 3 * b**2 + 18 * b + 315
+        t_j = -280 * b**2 + 2241 * b + 3465
+        m_j = 29 * b**2 + 234 * b + 81
+        r_j = 3 * d_star + 5 * p - 3600 * b * q**2
+
+        assert l_star == 45 * b * b_j + 6 * e_g
+        assert r_j + 5 * e_g == -75 * b * b_j + 3 * (t_j * q - 5 * b * m_j)
+        assert j_star == -d_star * r_j + 150 * b * x_star
+        assert 29 * t_j + 280 * m_j == 9 * (14501 * b + 13685)
+
+    primes = (8191, 131071, 524287, 2147483647)
+    obstruction = 29 * 13685**2 - 234 * 13685 * 14501 + 81 * 14501**2
+    assert obstruction == -23972710684
+    assert tuple(obstruction % prime for prime in primes) == (
+        3690,
+        44145,
+        312391,
+        1797093080,
+    )
+    assert all(9 % prime and 14501 % prime for prime in primes)
+
+
 def check_fully_proportional_structural() -> None:
     for b, q, g, d_core, q0 in (
         (Q(2), Q(5), Q(7), Q(3), Q(11)),
@@ -1206,6 +1244,7 @@ def main() -> None:
     check_fully_proportional_exceptional_e()
     check_fully_proportional_exceptional_leading()
     check_fully_proportional_exceptional_singular_affine()
+    check_fully_proportional_exceptional_j0_affine()
     check_fully_proportional_structural()
     check_fully_proportional_exceptional_structural()
     check_affine_color_compiler()
@@ -1252,6 +1291,9 @@ def main() -> None:
         "(6740,100974,284891,1825899718)",
         "(z+27)E_1-66bE_0",
         "H(z)=N^2-163^2z(z+27)^2=0",
+        "R_J+5E_G=-75bB_J+3(T_Jq-5bM_J)",
+        "q=5bM_J/T_J",
+        "Bhat_J=T_J^2B_J",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1280,6 +1322,7 @@ def main() -> None:
         "fully_proportional_exceptional_e=1 "
         "fully_proportional_exceptional_leading=4 "
         "fully_proportional_exceptional_singular_affine=1 "
+        "fully_proportional_exceptional_j0_affine=1 "
         "fully_proportional_structural=1 "
         "fully_proportional_exceptional_structural=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
