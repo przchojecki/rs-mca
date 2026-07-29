@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from fractions import Fraction as Q
 from itertools import combinations
 from pathlib import Path
@@ -10,6 +11,20 @@ from pathlib import Path
 
 EXPERIMENTAL = Path(__file__).resolve().parents[1]
 NOTE = EXPERIMENTAL / "notes/l1/l1_m8_h7_order_one_cubic_profile_reductions.md"
+ROLE_PACKET_LAUNCHER = (
+    EXPERIMENTAL
+    / "scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
+)
+ROLE_PACKET_CHECKER = (
+    EXPERIMENTAL
+    / "scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py"
+)
+ROLE_PACKET_LAUNCHER_SHA256 = (
+    "c5ccd14b02e0b0119fbcbbaa20f7eae7214716c13a2e9b8158cce50674bb51af"
+)
+ROLE_PACKET_CHECKER_SHA256 = (
+    "92b6d6d9e42b15a9c476aea154bfabc57b652a5d54d203c15c79036f09051643"
+)
 
 
 def poly_add(left: list[Q], right: list[Q]) -> list[Q]:
@@ -464,6 +479,31 @@ def check_coefficient_field_degree_eight() -> None:
         assert prime**8 % order == 1
         assert all(prime**degree % order != 1 for degree in (1, 2, 4))
     assert {degree for degree in range(1, 9) if 8 % degree == 0} == {1, 2, 4, 8}
+
+
+def check_official_role_gcd_packet_sources() -> None:
+    launcher = ROLE_PACKET_LAUNCHER.read_text()
+    checker = ROLE_PACKET_CHECKER.read_text()
+    assert hashlib.sha256(launcher.encode()).hexdigest() == ROLE_PACKET_LAUNCHER_SHA256
+    assert hashlib.sha256(checker.encode()).hexdigest() == ROLE_PACKET_CHECKER_SHA256
+    for anchor in (
+        "def official_role_packets(prime: int)",
+        '"j0_role_L_template"',
+        '"j0_role_W_template"',
+        "role_family = [*j0_sources, role_l_source, role_w_source]",
+        'role_summary_status = "ALL_EMPTY"',
+        '"exceptional_j0_role_common_gcds"',
+        '"exceptional_j0_role_summary"',
+    ):
+        assert anchor in launcher
+    for anchor in (
+        f'EXPECTED_LAUNCHER_SHA256 = "{ROLE_PACKET_LAUNCHER_SHA256}"',
+        "def verify_exceptional_j0_role_common_gcds(",
+        "expected_roles = official_role_packets(prime)",
+        "assert len(packets) == len(expected_roles) == 21",
+        'expected_status = "ALL_EMPTY"',
+    ):
+        assert anchor in checker
 
 
 def scaled_quadratic_core(x: Q, y: Q, q: Q, d: Q) -> dict[str, Q]:
@@ -1293,6 +1333,7 @@ def main() -> None:
     check_galois_role_packets()
     check_official_frobenius_role_packets()
     check_coefficient_field_degree_eight()
+    check_official_role_gcd_packet_sources()
     check_scaled_quadratic_core()
     check_coefficient_matrix_router()
     check_singular_j0_univariate()
@@ -1379,6 +1420,7 @@ def main() -> None:
         "galois_role_packets=12 "
         "frobenius_role_packets=21 "
         "coefficient_field_degree=8 "
+        "official_role_gcd_packet=21 "
         "scaled_quadratic_core=1 "
         "coefficient_matrix_router=1 "
         "singular_j0_univariate=1 "

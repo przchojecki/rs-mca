@@ -109,6 +109,69 @@ def power_mod(
     return out
 
 
+def official_role_packets(prime: int) -> list[dict[str, object]]:
+    base = (
+        ("H1", (2, 2, 1)),
+        ("H2", (1, 0, 1)),
+        ("H3", (1, 2, 2)),
+    )
+    signed = (
+        (((1, 0), (0, 1), (1, 0)), 4),
+        (((2, -1), (0, 1), (1, 0)), 5),
+        (((3, 2), (0, 0), (1, 0)), 6),
+        (((4, 2), (2, 0), (1, 0)), 7),
+        (((3, 2), (2, 1), (1, 0)), 8),
+        (((2, 1), (2, 1), (1, 0)), 9),
+        (((2, 1), (2, 0), (2, 0)), 10),
+        (((2, 1), (2, 2), (2, 0)), 11),
+        (((2, 1), (4, 2), (4, 0)), 12),
+    )
+    square_root = pow(2, (prime + 1) // 4, prime)
+    assert square_root * square_root % prime == 2
+    packets = [
+        {"role_id": role_id, "coefficients_c0_c1_c2": list(coefficients)}
+        for role_id, coefficients in base
+    ]
+    for template, index in signed:
+        for sign, suffix in ((1, "+"), (-1, "-")):
+            coefficients = [
+                (rational + sign * radical * square_root) % prime
+                for rational, radical in template
+            ]
+            packets.append(
+                {
+                    "role_id": f"Q{index}{suffix}",
+                    "coefficients_c0_c1_c2": coefficients,
+                }
+            )
+    assert len(packets) == 21
+    assert len({packet["role_id"] for packet in packets}) == 21
+    assert len({tuple(packet["coefficients_c0_c1_c2"]) for packet in packets}) == 21
+    for packet in packets:
+        c0, c1, c2 = packet["coefficients_c0_c1_c2"]
+        delta = (c1**2 - 4 * c2 * c0) % prime
+        assert c0 and delta
+        assert pow(delta, (prime - 1) // 2, prime) == prime - 1
+        packet["delta"] = delta
+    return packets
+
+
+def instantiate_role_template(
+    template: list[dict[str, object]], coefficients: list[int], prime: int
+) -> list[int]:
+    out = [0]
+    for term in template:
+        exponents = term["role_exponents_c0_c1_c2"]
+        polynomial = term["coefficients_low_to_high"]
+        assert isinstance(exponents, list)
+        assert isinstance(polynomial, list)
+        scalar = 1
+        for value, exponent in zip(coefficients, exponents):
+            scalar = scalar * pow(value, exponent, prime) % prime
+        out = mod_poly(add(out, scale(polynomial, scalar)), prime)
+    return out
+
+
 def source_polynomials() -> dict[str, object]:
     import sympy as sp
 
@@ -200,6 +263,19 @@ def source_polynomials() -> dict[str, object]:
         + 23 * q / 4
         + q**2 / 8
     )
+    c0_role, c1_role, c2_role = sp.symbols("c0_role c1_role c2_role")
+    role_r_j0 = a * (3 * y_j0**2 + 2 * x * y_j0 + g_j0)
+    role_s_j0 = (y_j0 - a) * v_j0 - q_j0
+    role_delta = c1_role**2 - 4 * c2_role * c0_role
+    role_l_j0 = (
+        18 * c0_role * role_s_j0
+        + 9 * c1_role * role_r_j0
+        + c0_role * q * (b - 6)
+    )
+    role_w_j0 = (
+        c0_role**2 * (q**2 * (b - 6) ** 2 + 144 * q * r_core)
+        - 81 * role_delta * role_r_j0**2
+    )
     j0_b = sp.expand(
         96 * q**2 + (216 - 32 * b) * q + 3 * b**2 + 18 * b + 315
     )
@@ -266,6 +342,39 @@ def source_polynomials() -> dict[str, object]:
         poly = sp.Poly(expression, variable, domain=sp.ZZ)
         return [int(value) for value in reversed(poly.all_coeffs())]
 
+    def cleared_j0_role_template(
+        expression: object, q_degree: int, degree_bound: int, role_degree: int
+    ) -> list[dict[str, object]]:
+        value = sp.cancel(j0_t**q_degree * expression.subs(q, j0_r / j0_t))
+        numerator = sp.fraction(value)[0]
+        rational = sp.Poly(
+            numerator, b, c0_role, c1_role, c2_role, domain=sp.QQ
+        )
+        fixed_denominator, integral = rational.clear_denoms(convert=True)
+        content, primitive = integral.primitive()
+        for fixed_unit in (int(fixed_denominator), int(content)):
+            assert fixed_unit != 0
+            assert all(fixed_unit % prime != 0 for prime in PRIMES)
+        if primitive.LC() < 0:
+            primitive = -primitive
+        assert primitive.degree(b) <= degree_bound
+        role_poly = sp.Poly(
+            primitive.as_expr(), c0_role, c1_role, c2_role, domain=sp.ZZ[b]
+        )
+        template = []
+        for exponents, coefficient in role_poly.terms():
+            assert sum(exponents) == role_degree
+            template.append(
+                {
+                    "role_exponents_c0_c1_c2": list(exponents),
+                    "coefficients_low_to_high": coefficients(coefficient),
+                }
+            )
+        return template
+
+    j0_role_l_template = cleared_j0_role_template(role_l_j0, 6, 24, 1)
+    j0_role_w_template = cleared_j0_role_template(role_w_j0, 8, 34, 2)
+
     def numerator_q_coefficients(
         expression: object, total_degree_bound: int
     ) -> list[list[int]]:
@@ -316,6 +425,8 @@ def source_polynomials() -> dict[str, object]:
         "j0_Xhat": coefficients(j0_xhat),
         "j0_ZDhat": coefficients(j0_zdhat),
         "j0_ZRhat": coefficients(j0_zrhat),
+        "j0_role_L_template": j0_role_l_template,
+        "j0_role_W_template": j0_role_w_template,
         "V_E": v_exceptional_coefficients,
         "X_star_q_coefficients": x_star_q_coefficients,
         "Z_D_e_q_coefficients": numerator_q_coefficients(z_d_exceptional, 27),
@@ -630,6 +741,124 @@ def run_prime(prime: int) -> dict[str, object]:
         j0_common_gcd["cyclotomic_field_status"] = (
             "HIT" if j0_common_gcd["cyclotomic_field_factors"] else "EMPTY"
         )
+
+    role_l_template = polynomials["j0_role_L_template"]
+    role_w_template = polynomials["j0_role_W_template"]
+    assert isinstance(role_l_template, list)
+    assert isinstance(role_w_template, list)
+    role_common_gcds = []
+    for role in official_role_packets(prime):
+        role_id = role["role_id"]
+        role_coefficients = role["coefficients_c0_c1_c2"]
+        assert isinstance(role_id, str)
+        assert isinstance(role_coefficients, list)
+        role_l_source = instantiate_role_template(
+            role_l_template, role_coefficients, prime
+        )
+        role_w_source = instantiate_role_template(
+            role_w_template, role_coefficients, prime
+        )
+        role_family = [*j0_sources, role_l_source, role_w_source]
+        role_common_gcd = multi_gcd_certificate(role_family, prime)
+        role_common_gcd.update(role)
+        role_common_gcd["role_L_coefficients_low_to_high"] = role_l_source
+        role_common_gcd["role_W_coefficients_low_to_high"] = role_w_source
+        if role_common_gcd["status"] == "IDENTICALLY_ZERO_FAMILY":
+            role_common_gcd["factorization"] = {"unit": 0, "factors": []}
+            role_common_gcd["legal_factors"] = []
+            role_common_gcd["quadratic_subfield_factors"] = []
+            role_common_gcd["cyclotomic_field_factors"] = []
+            role_common_gcd["global_status"] = "INCONCLUSIVE"
+            role_common_gcd["quadratic_subfield_status"] = "INCONCLUSIVE"
+            role_common_gcd["cyclotomic_field_status"] = "INCONCLUSIVE"
+        else:
+            role_common = role_common_gcd["gcd_coefficients_low_to_high"]
+            assert isinstance(role_common, list)
+            role_common_poly = sp.Poly(
+                sum(
+                    (coefficient % prime) * b**index
+                    for index, coefficient in enumerate(role_common)
+                ),
+                b,
+                modulus=prime,
+            )
+            role_unit, role_raw_factors = sp.factor_list(role_common_poly)
+            role_factors = []
+            for factor, exponent in role_raw_factors:
+                coefficients = [
+                    int(value) % prime for value in reversed(factor.all_coeffs())
+                ]
+                role_factors.append(
+                    {
+                        "degree": factor.degree(),
+                        "exponent": int(exponent),
+                        "coefficients_low_to_high": coefficients,
+                        "t_zero_factor": divmod_poly(
+                            j0_t_source, coefficients, prime
+                        )[1]
+                        == [0],
+                    }
+                )
+            role_common_gcd["factorization"] = {
+                "unit": int(role_unit) % prime,
+                "factors": role_factors,
+            }
+            role_common_gcd["legal_factors"] = [
+                factor for factor in role_factors if not factor["t_zero_factor"]
+            ]
+            role_common_gcd["quadratic_subfield_factors"] = [
+                factor
+                for factor in role_common_gcd["legal_factors"]
+                if factor["degree"] <= 2
+            ]
+            role_common_gcd["cyclotomic_field_factors"] = [
+                factor
+                for factor in role_common_gcd["legal_factors"]
+                if factor["degree"] in CYCLOTOMIC_FIELD_DEGREES
+            ]
+            role_common_gcd["global_status"] = (
+                "HIT" if role_common_gcd["legal_factors"] else "EMPTY"
+            )
+            role_common_gcd["quadratic_subfield_status"] = (
+                "HIT"
+                if role_common_gcd["quadratic_subfield_factors"]
+                else "EMPTY"
+            )
+            role_common_gcd["cyclotomic_field_status"] = (
+                "HIT"
+                if role_common_gcd["cyclotomic_field_factors"]
+                else "EMPTY"
+            )
+        role_common_gcds.append(role_common_gcd)
+
+    role_hit_ids = [
+        packet["role_id"]
+        for packet in role_common_gcds
+        if packet["cyclotomic_field_status"] == "HIT"
+    ]
+    role_empty_ids = [
+        packet["role_id"]
+        for packet in role_common_gcds
+        if packet["cyclotomic_field_status"] == "EMPTY"
+    ]
+    role_inconclusive_ids = [
+        packet["role_id"]
+        for packet in role_common_gcds
+        if packet["cyclotomic_field_status"] == "INCONCLUSIVE"
+    ]
+    if role_inconclusive_ids:
+        role_summary_status = "INCONCLUSIVE"
+    elif role_hit_ids:
+        role_summary_status = "HIT"
+    else:
+        role_summary_status = "ALL_EMPTY"
+    role_summary = {
+        "status": role_summary_status,
+        "role_count": len(role_common_gcds),
+        "hit_role_ids": role_hit_ids,
+        "empty_role_ids": role_empty_ids,
+        "inconclusive_role_ids": role_inconclusive_ids,
+    }
     row = {
         "p": prime,
         "digest": digest,
@@ -659,6 +888,8 @@ def run_prime(prime: int) -> dict[str, object]:
         "exceptional_structural_common_gcd": exceptional_structural_common_gcd,
         "exceptional_singular_affine_gcd": singular_affine_gcd,
         "exceptional_j0_affine_common_gcd": j0_common_gcd,
+        "exceptional_j0_role_common_gcds": role_common_gcds,
+        "exceptional_j0_role_summary": role_summary,
         "seconds": round(time.monotonic() - started, 6),
     }
     print("L1_H7_C321_FULLY_PROPORTIONAL_Q_ROW " + json.dumps(row, sort_keys=True), flush=True)

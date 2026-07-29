@@ -1613,13 +1613,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 0c11e7f6275f81986f0f0e5df294c1498e6e7d8ac7be09cd5f9b828f978dbde7
+sha256: 8b0224fd837c02786982ed90e2e79b5d3b61b5f360551bf603af3c7bb787f50a
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 coefficient_field_degree=8 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_exceptional_j0_structural=1 fully_proportional_exceptional_j0_role_p4=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 coefficient_field_degree=8 official_role_gcd_packet=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_exceptional_j0_structural=1 fully_proportional_exceptional_j0_role_p4=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
@@ -1640,10 +1640,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: 59bb96e395c4eac8ada98417bc7e68f59c905cb7dcfec9219aad71578097119b
+sha256: c5ccd14b02e0b0119fbcbbaa20f7eae7214716c13a2e9b8158cce50674bb51af
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: d25dc17b956ace1f4faa97acc533fe99492089658eb5b103bcfc70711667a609
+sha256: 92b6d6d9e42b15a9c476aea154bfabc57b652a5d54d203c15c79036f09051643
 ```
 
 Launch it with
@@ -1690,7 +1690,27 @@ degree-one/two subset remains diagnostic, and an identically-zero family is
 explicitly inconclusive. The checker independently reconstructs the seven
 source polynomials and verifies the Bezout, factorization, guard, global, and
 field-degree classifications.
-This adds no containers, CPUs, memory, retries, or timeout to the request.
+For each of the 21 alternatives in (28i)--(28j), the packet now instantiates
+the exact `Lhat_Phi,What_Phi` templates from (28bl19)--(28bl23) and appends
+them to the six shared filters. It emits a separate eight-way Bezout
+certificate, complete monic-gcd factorization, `T_J`-guard classification,
+and exact degree-`1,2,4,8` official-field filter for every role. The
+alternatives are never intersected. The checker independently reconstructs
+the three rational roles and nine signed `sqrt(2)` pairs, verifies their
+nonzero nonsquare discriminants, re-instantiates both role polynomials, and
+replays all 21 certificates and classifications. `ALL_EMPTY` means all 21
+official role charts are empty for that row; `HIT` leaves the printed roles
+and eligible factors for saturation, both ambient `eta` roots where
+applicable, and arithmetic-lift replay; an identically-zero family makes the
+aggregate `INCONCLUSIVE`. This extension adds no containers, CPUs, memory,
+retries, or timeout to the request, although completion within the fixed
+60-second task ceiling is not measured.
+
+The exact-rational verifier source-binds both packet hashes and the separate
+role-family and aggregate-status interfaces to the already checked 21-role
+split, coefficient-field router, and role/`P_4` identities. That custody
+check is not a substitute for executing the packet and its independent
+certificate checker.
 
 None of the compute-request scripts was executed in the exporting
 environment: project policy

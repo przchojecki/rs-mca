@@ -11,7 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LAUNCHER = HERE / "l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
-EXPECTED_LAUNCHER_SHA256 = "59bb96e395c4eac8ada98417bc7e68f59c905cb7dcfec9219aad71578097119b"
+EXPECTED_LAUNCHER_SHA256 = "c5ccd14b02e0b0119fbcbbaa20f7eae7214716c13a2e9b8158cce50674bb51af"
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
 CYCLOTOMIC_FIELD_DEGREES = (1, 2, 4, 8)
@@ -91,6 +91,69 @@ def power_mod(
             out = multiply_mod(out, base, modulus, prime)
         base = multiply_mod(base, base, modulus, prime)
         exponent //= 2
+    return out
+
+
+def official_role_packets(prime: int) -> list[dict[str, object]]:
+    base = (
+        ("H1", (2, 2, 1)),
+        ("H2", (1, 0, 1)),
+        ("H3", (1, 2, 2)),
+    )
+    signed = (
+        (((1, 0), (0, 1), (1, 0)), 4),
+        (((2, -1), (0, 1), (1, 0)), 5),
+        (((3, 2), (0, 0), (1, 0)), 6),
+        (((4, 2), (2, 0), (1, 0)), 7),
+        (((3, 2), (2, 1), (1, 0)), 8),
+        (((2, 1), (2, 1), (1, 0)), 9),
+        (((2, 1), (2, 0), (2, 0)), 10),
+        (((2, 1), (2, 2), (2, 0)), 11),
+        (((2, 1), (4, 2), (4, 0)), 12),
+    )
+    square_root = pow(2, (prime + 1) // 4, prime)
+    assert square_root * square_root % prime == 2
+    packets = [
+        {"role_id": role_id, "coefficients_c0_c1_c2": list(coefficients)}
+        for role_id, coefficients in base
+    ]
+    for template, index in signed:
+        for sign, suffix in ((1, "+"), (-1, "-")):
+            coefficients = [
+                (rational + sign * radical * square_root) % prime
+                for rational, radical in template
+            ]
+            packets.append(
+                {
+                    "role_id": f"Q{index}{suffix}",
+                    "coefficients_c0_c1_c2": coefficients,
+                }
+            )
+    assert len(packets) == 21
+    assert len({packet["role_id"] for packet in packets}) == 21
+    assert len({tuple(packet["coefficients_c0_c1_c2"]) for packet in packets}) == 21
+    for packet in packets:
+        c0, c1, c2 = packet["coefficients_c0_c1_c2"]
+        delta = (c1**2 - 4 * c2 * c0) % prime
+        assert c0 and delta
+        assert pow(delta, (prime - 1) // 2, prime) == prime - 1
+        packet["delta"] = delta
+    return packets
+
+
+def instantiate_role_template(
+    template: list[dict[str, object]], coefficients: list[int], prime: int
+) -> list[int]:
+    out = [0]
+    for term in template:
+        exponents = term["role_exponents_c0_c1_c2"]
+        polynomial = term["coefficients_low_to_high"]
+        assert isinstance(exponents, list)
+        assert isinstance(polynomial, list)
+        scalar = 1
+        for value, exponent in zip(coefficients, exponents):
+            scalar = scalar * pow(value, exponent, prime) % prime
+        out = mod_poly(add(out, scale(polynomial, scalar)), prime)
     return out
 
 
@@ -184,6 +247,19 @@ def source_polynomials() -> dict[str, object]:
         + 23 * q / 4
         + q**2 / 8
     )
+    c0_role, c1_role, c2_role = sp.symbols("c0_role c1_role c2_role")
+    role_r_j0 = a * (3 * y_j0**2 + 2 * x * y_j0 + g_j0)
+    role_s_j0 = (y_j0 - a) * v_j0 - q_j0
+    role_delta = c1_role**2 - 4 * c2_role * c0_role
+    role_l_j0 = (
+        18 * c0_role * role_s_j0
+        + 9 * c1_role * role_r_j0
+        + c0_role * q * (b - 6)
+    )
+    role_w_j0 = (
+        c0_role**2 * (q**2 * (b - 6) ** 2 + 144 * q * r_core)
+        - 81 * role_delta * role_r_j0**2
+    )
     j0_b = sp.expand(
         96 * q**2 + (216 - 32 * b) * q + 3 * b**2 + 18 * b + 315
     )
@@ -255,6 +331,39 @@ def source_polynomials() -> dict[str, object]:
             )
         ]
 
+    def cleared_j0_role_template(
+        expression: object, q_degree: int, degree_bound: int, role_degree: int
+    ) -> list[dict[str, object]]:
+        value = sp.cancel(j0_t**q_degree * expression.subs(q, j0_r / j0_t))
+        numerator = sp.fraction(value)[0]
+        rational = sp.Poly(
+            numerator, b, c0_role, c1_role, c2_role, domain=sp.QQ
+        )
+        fixed_denominator, integral = rational.clear_denoms(convert=True)
+        content, primitive = integral.primitive()
+        for fixed_unit in (int(fixed_denominator), int(content)):
+            assert fixed_unit != 0
+            assert all(fixed_unit % prime != 0 for prime in PRIMES)
+        if primitive.LC() < 0:
+            primitive = -primitive
+        assert primitive.degree(b) <= degree_bound
+        role_poly = sp.Poly(
+            primitive.as_expr(), c0_role, c1_role, c2_role, domain=sp.ZZ[b]
+        )
+        template = []
+        for exponents, coefficient in role_poly.terms():
+            assert sum(exponents) == role_degree
+            template.append(
+                {
+                    "role_exponents_c0_c1_c2": list(exponents),
+                    "coefficients_low_to_high": coefficients(coefficient),
+                }
+            )
+        return template
+
+    j0_role_l_template = cleared_j0_role_template(role_l_j0, 6, 24, 1)
+    j0_role_w_template = cleared_j0_role_template(role_w_j0, 8, 34, 2)
+
     def numerator_q_coefficients(
         expression: object, total_degree_bound: int
     ) -> list[list[int]]:
@@ -305,6 +414,8 @@ def source_polynomials() -> dict[str, object]:
         "j0_Xhat": coefficients(j0_xhat),
         "j0_ZDhat": coefficients(j0_zdhat),
         "j0_ZRhat": coefficients(j0_zrhat),
+        "j0_role_L_template": j0_role_l_template,
+        "j0_role_W_template": j0_role_w_template,
         "V_E": v_exceptional_coefficients,
         "X_star_q_coefficients": x_star_q_coefficients,
         "Z_D_e_q_coefficients": numerator_q_coefficients(z_d_exceptional, 27),
@@ -567,6 +678,126 @@ def verify_exceptional_j0_affine_common_gcd(
     )
 
 
+def verify_exceptional_j0_role_common_gcds(
+    packets: list[dict[str, object]],
+    summary: dict[str, object],
+    polynomials: dict[str, object],
+    prime: int,
+) -> None:
+    labels = ("Bhat", "Ehat", "Fhat", "Xhat", "ZDhat", "ZRhat")
+    base_sources = [polynomials[f"j0_{label}"] for label in labels]
+    t_source = polynomials["j0_T"]
+    role_l_template = polynomials["j0_role_L_template"]
+    role_w_template = polynomials["j0_role_W_template"]
+    assert all(isinstance(source, list) for source in base_sources)
+    assert isinstance(t_source, list)
+    assert isinstance(role_l_template, list)
+    assert isinstance(role_w_template, list)
+    expected_roles = official_role_packets(prime)
+    assert len(packets) == len(expected_roles) == 21
+
+    for packet, expected_role in zip(packets, expected_roles):
+        assert packet["role_id"] == expected_role["role_id"]
+        assert (
+            packet["coefficients_c0_c1_c2"]
+            == expected_role["coefficients_c0_c1_c2"]
+        )
+        assert packet["delta"] == expected_role["delta"]
+        coefficients = expected_role["coefficients_c0_c1_c2"]
+        assert isinstance(coefficients, list)
+        role_l_source = instantiate_role_template(
+            role_l_template, coefficients, prime
+        )
+        role_w_source = instantiate_role_template(
+            role_w_template, coefficients, prime
+        )
+        assert packet["role_L_coefficients_low_to_high"] == role_l_source
+        assert packet["role_W_coefficients_low_to_high"] == role_w_source
+        family = [*base_sources, role_l_source, role_w_source]
+        reduced = [mod_poly(source, prime) for source in family]
+        if packet["status"] == "IDENTICALLY_ZERO_FAMILY":
+            assert all(source == [0] for source in reduced)
+            assert packet["factorization"] == {"unit": 0, "factors": []}
+            assert packet["legal_factors"] == []
+            assert packet["quadratic_subfield_factors"] == []
+            assert packet["cyclotomic_field_factors"] == []
+            assert packet["global_status"] == "INCONCLUSIVE"
+            assert packet["quadratic_subfield_status"] == "INCONCLUSIVE"
+            assert packet["cyclotomic_field_status"] == "INCONCLUSIVE"
+            continue
+
+        assert packet["status"] in {"UNIT", "HIT"}
+        verify_multi_gcd_certificate(packet, reduced, prime)
+        common = mod_poly(packet["gcd_coefficients_low_to_high"], prime)
+        factorization = packet["factorization"]
+        factors = factorization["factors"]
+        product = [factorization["unit"] % prime]
+        for factor in factors:
+            factor_coefficients = mod_poly(
+                factor["coefficients_low_to_high"], prime
+            )
+            assert factor_coefficients[-1] == 1
+            assert len(factor_coefficients) - 1 == factor["degree"]
+            assert factor["exponent"] >= 1
+            assert factor["t_zero_factor"] == (
+                divmod_poly(t_source, factor_coefficients, prime)[1] == [0]
+            )
+            product = mod_poly(
+                multiply(
+                    product,
+                    power(factor_coefficients, factor["exponent"]),
+                ),
+                prime,
+            )
+        assert product == common
+        legal = [factor for factor in factors if not factor["t_zero_factor"]]
+        quadratic = [factor for factor in legal if factor["degree"] <= 2]
+        cyclotomic = [
+            factor
+            for factor in legal
+            if factor["degree"] in CYCLOTOMIC_FIELD_DEGREES
+        ]
+        assert packet["legal_factors"] == legal
+        assert packet["quadratic_subfield_factors"] == quadratic
+        assert packet["cyclotomic_field_factors"] == cyclotomic
+        assert packet["global_status"] == ("HIT" if legal else "EMPTY")
+        assert packet["quadratic_subfield_status"] == (
+            "HIT" if quadratic else "EMPTY"
+        )
+        assert packet["cyclotomic_field_status"] == (
+            "HIT" if cyclotomic else "EMPTY"
+        )
+
+    hit_ids = [
+        packet["role_id"]
+        for packet in packets
+        if packet["cyclotomic_field_status"] == "HIT"
+    ]
+    empty_ids = [
+        packet["role_id"]
+        for packet in packets
+        if packet["cyclotomic_field_status"] == "EMPTY"
+    ]
+    inconclusive_ids = [
+        packet["role_id"]
+        for packet in packets
+        if packet["cyclotomic_field_status"] == "INCONCLUSIVE"
+    ]
+    if inconclusive_ids:
+        expected_status = "INCONCLUSIVE"
+    elif hit_ids:
+        expected_status = "HIT"
+    else:
+        expected_status = "ALL_EMPTY"
+    assert summary == {
+        "status": expected_status,
+        "role_count": 21,
+        "hit_role_ids": hit_ids,
+        "empty_role_ids": empty_ids,
+        "inconclusive_role_ids": inconclusive_ids,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("certificate", type=Path)
@@ -647,6 +878,12 @@ def main() -> None:
         )
         verify_exceptional_j0_affine_common_gcd(
             row["exceptional_j0_affine_common_gcd"], polynomials, prime
+        )
+        verify_exceptional_j0_role_common_gcds(
+            row["exceptional_j0_role_common_gcds"],
+            row["exceptional_j0_role_summary"],
+            polynomials,
+            prime,
         )
         assert row["seconds"] >= 0
 
