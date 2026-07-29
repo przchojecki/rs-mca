@@ -950,6 +950,49 @@ Here `Theta_*` has total degree at most 12 and `q`-degree at most six,
 while `F_b` has `q`-degree two. These are coefficient endpoints only; all
 substituted structural, role, `P_4`, and arithmetic equations remain.
 
+The generic pair has a final exact quotient reduction. Write
+
+```text
+F_b=a_2q^2+a_1q+a_0,
+a_2=63(1575-247b^2),
+a_1=9240b^2(9-b^2),
+a_0=400b^2(9-b^2)(b^2+27).                        (28be)
+```
+
+If `Theta_*=sum_(j=0)^6 theta_j(b)q^j`, define
+
+```text
+u_1=1, v_1=0,       u_2=-a_1, v_2=-a_0,
+u_j=-a_1u_(j-1)-a_2a_0u_(j-2),
+v_j=-a_1v_(j-1)-a_2a_0v_(j-2),       3<=j<=6.     (28bf)
+```
+
+Then `a_2^(j-1)q^j=u_jq+v_j mod F_b`. Put
+
+```text
+R_1=a_2^5theta_1+sum_(j=2)^6 a_2^(6-j)theta_j u_j,
+R_0=a_2^5theta_0+sum_(j=2)^6 a_2^(6-j)theta_j v_j.
+                                                               (28bg)
+```
+
+The exact remainder identity is
+
+```text
+a_2^5Theta_*=R_1q+R_0 mod F_b.                    (28bh)
+```
+
+On `a_2R_1!=0`, reconstruct `q=-R_0/R_1` and retain the univariate
+endpoint
+
+```text
+U(b)=a_2R_0^2-a_1R_0R_1+a_0R_1^2=0.              (28bi)
+```
+
+Here `deg_b R_1<=26`, `deg_b R_0<=28`, and `deg_b U<=58`. If `R_1=0`,
+retain `R_0=0` and `F_b=0`. If `a_2=0`, retain the explicit chart (28at)
+and evaluate `Theta_*` there. No nonzero-resultant, root, or emptiness
+verdict is asserted.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -1119,13 +1162,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 58d4457c97b5ba5c2b03f8b4d3dfc4e7777a73e9befab571ff764077c0f71858
+sha256: c7aa9af0b5fbf5abc67156743b11e416e1116afdb725c4fac5314686ff393162
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256

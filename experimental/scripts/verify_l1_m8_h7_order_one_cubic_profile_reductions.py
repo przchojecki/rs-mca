@@ -31,6 +31,10 @@ def poly_mul(left: list[Q], right: list[Q]) -> list[Q]:
     return out
 
 
+def poly_scale(poly: list[Q], scalar: Q) -> list[Q]:
+    return [scalar * value for value in poly]
+
+
 def poly_rem(poly: list[Q], divisor: list[Q]) -> list[Q]:
     out = poly[:]
     while len(out) >= len(divisor):
@@ -859,6 +863,60 @@ def check_fully_proportional_coefficients() -> None:
         assert x_star == q_star - 24 * d_star * q**2
 
 
+def check_fully_proportional_q_quotient() -> None:
+    q_poly = [Q(0), Q(1)]
+    for b in (Q(2), Q(-1), Q(5, 2)):
+        p = [40 * b * (b**2 - 6 * b + 27), 42 * (11 * b + 15)]
+        d_star = [
+            -20 * b * (11 * b**2 + 81 * b + 414),
+            3 * (40 * b**2 - 253 * b + 1155),
+        ]
+        kappa = [-44 * b - 294, Q(12)]
+        q_star = poly_add(
+            [720 * b * 360, 720 * b * 1098, 720 * b * 191, -720 * b * 10],
+            poly_mul(poly_mul(kappa, q_poly), p),
+        )
+        k_star = poly_add([Q(0), 240 * b * (b - 6)], poly_scale(p, Q(-1)))
+        e_g = poly_add(k_star, [Q(0), Q(0), -720 * b])
+        l_star = poly_add(
+            [135 * b * (b**2 + 6 * b + 105), 1080 * b],
+            poly_scale(p, Q(-6)),
+        )
+        f_star = poly_add(poly_mul(d_star, k_star), poly_scale(q_star, -30 * b))
+        j_star = poly_add(
+            poly_add(
+                poly_scale(q_star, 150 * b),
+                poly_scale(poly_mul(d_star, d_star), Q(-3)),
+            ),
+            poly_scale(poly_mul(p, d_star), Q(-5)),
+        )
+        theta = poly_add(
+            poly_scale(poly_mul(poly_mul(poly_mul(e_g, d_star), d_star), l_star), Q(5)),
+            poly_scale(poly_mul(j_star, f_star), Q(-6)),
+        )
+        theta += [Q(0)] * (7 - len(theta))
+
+        a2 = 63 * (1575 - 247 * b**2)
+        a1 = 9240 * b**2 * (9 - b**2)
+        a0 = 400 * b**2 * (9 - b**2) * (b**2 + 27)
+        assert a2 != 0
+        fb = [a0, a1, a2]
+        u = {1: Q(1), 2: -a1}
+        v = {1: Q(0), 2: -a0}
+        for degree in range(3, 7):
+            u[degree] = -a1 * u[degree - 1] - a2 * a0 * u[degree - 2]
+            v[degree] = -a1 * v[degree - 1] - a2 * a0 * v[degree - 2]
+            power = [Q(0)] * degree + [a2 ** (degree - 1)]
+            assert poly_rem(poly_add(power, [-v[degree], -u[degree]]), fb) == [Q(0)]
+
+        r1 = a2**5 * theta[1]
+        r0 = a2**5 * theta[0]
+        for degree in range(2, 7):
+            r1 += a2 ** (6 - degree) * theta[degree] * u[degree]
+            r0 += a2 ** (6 - degree) * theta[degree] * v[degree]
+        assert poly_rem(poly_add(poly_scale(theta, a2**5), [-r0, -r1]), fb) == [Q(0)]
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -967,6 +1025,7 @@ def main() -> None:
     check_fully_proportional_parameters()
     check_fully_proportional_bivariate()
     check_fully_proportional_coefficients()
+    check_fully_proportional_q_quotient()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -999,6 +1058,8 @@ def main() -> None:
         "Theta_G:=E_GD L_G-J_GF_G=0",
         "Theta_*=5E_GD_*^2L_*-6J_*F_*",
         "F_b=E_G=X_*=J_*=L_*=0",
+        "a_2^5Theta_*=R_1q+R_0 mod F_b",
+        "U(b)=a_2R_0^2-a_1R_0R_1+a_0R_1^2=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1023,6 +1084,7 @@ def main() -> None:
         "fully_proportional_bivariate=1 "
         "fully_proportional_coefficients=1 "
         "fully_proportional_bivariate_compiler=1 "
+        "fully_proportional_q_quotient=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 
