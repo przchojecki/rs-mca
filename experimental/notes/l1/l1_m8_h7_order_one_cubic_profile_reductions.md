@@ -834,6 +834,34 @@ and `P_4=0`. This is a role-discriminant weld, not a prime-field nonsquare
 contradiction: the coefficient variables live in the ambient quadratic
 field. Every arithmetic lift remains mandatory.
 
+The bivariate endpoint in (28ap) factors further. Put `z=b^2`. Then
+
+```text
+F_N=24F_b(z,q),
+
+F_b(z,q)=63(1575-247z)q^2
+          +9240z(9-z)q
+          +400z(9-z)(z+27).                        (28ar)
+```
+
+The inherited `bq!=0` saturation gives `z!=0`; also `z=9` would leave
+`-63*648q^2=0`, so `z!=9`. Away from `1575-247z=0`, the discriminant in
+`q` is
+
+```text
+302400z(9-z)(-200z^2+4239z-14175).                 (28as)
+```
+
+The vanishing-leading-coefficient chart is retained and solved exactly:
+
+```text
+z=1575/247,       q=-10(z+27)/231.                 (28at)
+```
+
+This is an ambient-field quadratic endpoint, not a square-condition
+verdict. The four coefficient-zero equations, role-discriminant weld,
+`P_4`, and all arithmetic filters remain.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -1003,13 +1031,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 4f66ed0d825e051929b321c0067784d78681242db47522ce128f633849dc50e0
+sha256: 2caad8ac1dd21e259fb4fa0b53c022035149bc783314894c8277135c3efb8f0d
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256

@@ -765,6 +765,34 @@ def check_fully_proportional_parameters() -> None:
         assert 12 * c0 * u0 == weld
 
 
+def check_fully_proportional_bivariate() -> None:
+    for b, q in ((Q(2), Q(5)), (Q(-1), Q(9)), (Q(5, 2), Q(11))):
+        p = 40 * b * (b**2 - 6 * b + 27) + 42 * q * (11 * b + 15)
+        q_poly = 480 * b**2 + 12960 + 5544 * q
+        tc = 3240 + 3402 * q + 315 * q**2
+        fn = 6 * p**2 - b * p * q_poly + 2880 * b**2 * tc
+        z = b**2
+        fb = (
+            63 * (1575 - 247 * z) * q**2
+            + 9240 * z * (9 - z) * q
+            + 400 * z * (9 - z) * (z + 27)
+        )
+        discriminant = (
+            (9240 * z * (9 - z)) ** 2
+            - 4 * 63 * (1575 - 247 * z) * 400 * z * (9 - z) * (z + 27)
+        )
+        expected_discriminant = 302400 * z * (9 - z) * (
+            -200 * z**2 + 4239 * z - 14175
+        )
+        assert fn == 24 * fb
+        assert discriminant == expected_discriminant
+
+    z = Q(1575, 247)
+    q = -Q(10, 231) * (z + 27)
+    assert 63 * (1575 - 247 * z) * q**2 == 0
+    assert 9240 * z * (9 - z) * q + 400 * z * (9 - z) * (z + 27) == 0
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -871,6 +899,7 @@ def main() -> None:
     check_generic_double_linear_d_router()
     check_doubly_singular_quadratic_quotient()
     check_fully_proportional_parameters()
+    check_fully_proportional_bivariate()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -897,6 +926,8 @@ def main() -> None:
         "Xi=N_1U_0-U_1N_0=0",
         "F_N:=6P^2-bPQ+2880b^2T_c=0",
         "role-discriminant weld",
+        "F_N=24F_b(z,q)",
+        "302400z(9-z)(-200z^2+4239z-14175)",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -918,6 +949,7 @@ def main() -> None:
         "generic_double_linear_d=1 "
         "doubly_singular_quotient=1 "
         "fully_proportional_parameters=1 "
+        "fully_proportional_bivariate=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 
