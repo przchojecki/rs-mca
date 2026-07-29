@@ -269,6 +269,20 @@ def check_role_factors() -> None:
     assert len(product) - 1 == 42
 
 
+def check_role_weld() -> None:
+    for r, s in ((Q(2), Q(3)), (Q(-5), Q(7)), (Q(11), Q(-4))):
+        lam = 1 + r / s
+        a = lam**2 - lam + 1
+        b = (lam + 1) * (2 * lam - 1) * (lam - 2)
+        a0 = s**2 + r * s + r**2
+        b0 = (2 * s + r) * (s + 2 * r) * (r - s)
+        assert a == a0 / s**2 and b == b0 / s**3
+        assert s**6 * (b**2 + 50 * a**3) == b0**2 + 50 * a0**3
+        assert s**12 * (b**4 - 224 * b**2 * a**3 - 578 * a**6) == (
+            b0**4 - 224 * b0**2 * a0**3 - 578 * a0**6
+        )
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -364,6 +378,7 @@ def main() -> None:
     check_common_quadratic()
     check_role_polynomial()
     check_role_factors()
+    check_role_weld()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -373,6 +388,7 @@ def main() -> None:
         "common monic quadratic",
         "Lambda_321(lambda)",
         "B^4-224B^2A^3-578A^6",
+        "B_0^4-224B_0^2A_0^3-578A_0^6",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -383,7 +399,7 @@ def main() -> None:
     print(
         "L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS "
         "linear_samples=2 x0_samples=3 q6x2_samples=3 "
-        "common_quadratic=1 role_polynomial=1 role_factors=4 "
+        "common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

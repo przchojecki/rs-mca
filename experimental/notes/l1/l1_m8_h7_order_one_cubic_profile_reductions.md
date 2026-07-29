@@ -342,6 +342,33 @@ seven affine-shape polynomial (32) under `T=B^2/A^3`; identity
 common-quadratic core has four rational role packets preserving all 42
 ordered roles with multiplicity.
 
+The role variable can be removed before elimination. In (27), put
+
+```text
+R=a(3y^2+2g_1y+g_2),  S=B,
+A_0=S^2+RS+R^2,
+B_0=(2S+R)(S+2R)(R-S).                             (28b)
+```
+
+Since `R*S!=0`, equation (27) is equivalent to `lambda=1+R/S`, and
+
+```text
+A(lambda)=A_0/S^2,  B(lambda)=B_0/S^3.             (28c)
+```
+
+Thus the four welded role equations are
+
+```text
+B_0^2+50A_0^3=0,
+B_0^4-224B_0^2A_0^3-578A_0^6=0,
+B_0^4-4B_0^2A_0^3+54A_0^6=0,
+125B_0^4-2404B_0^2A_0^3+13448A_0^6=0.             (28d)
+```
+
+After (24)--(25), each line of (28d) gives one explicit system in
+`(g_1,y,r,d)`: equations (26), the conic, and that role equation. Clearing
+`S^6` or `S^12` is reversible on the inherited `B!=0` saturation.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -511,13 +538,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 03d0d3334358cfbb3520c832e346d409d01366d4cc7d4a11bebaad8d1cb19987
+sha256: d1ee8ac077aa36c55a0adbeed05ec80de61b10762a13be0349c5deb5cfe96b15
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
