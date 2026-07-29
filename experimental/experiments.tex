@@ -3113,6 +3113,127 @@ cap \(B_r\) over each fixed core, proves \textup{(M31.20)}.  Substitution
 gives \textup{(M31.21)}.
 \end{proof}
 
+The canonical proper-\(G\) source equations sharpen the scalar on every top
+edge.  We record the resulting source-sensitive coloring before stating the
+remaining aggregate.
+
+\begin{corollary}[top-pair source-head saturation]
+\label{cor:m31-top-pair-source-head}
+Retain the proper-\(G\), zero-excess source normal form.  Thus
+\[
+ \begin{gathered}
+ \deg P=g=354972,\qquad \deg L_S=\sigma=282544,\qquad
+ d=g-w=287525,\\
+ G_i\mid P,\qquad Q_i=P/G_i,\qquad f_i=Q_i b_i,\qquad
+ \deg b_i<\deg G_i-w,\\
+ H_i=\gcd(L_0,Y-f_i),\qquad \deg H_i=\deg G_i,\qquad
+ L_S\mid H_i,\\
+ f_i=f_*+L_Sa_i,\qquad \deg a_i<k.
+ \end{gathered}                                                \tag{M31.22}
+\]
+Put
+\[
+ \gamma_i=[X^{d-1}]f_i.                                      \tag{M31.23}
+\]
+For a top pair \(i,j\), let
+\[
+ C_{ij}=\gcd(Q_i,Q_j),\qquad K_{ij}=\gcd(H_i,H_j),
+\]
+and write
+\[
+ J^G_{ij}=\gcd(G_i,G_j),\qquad
+ G_i=J^G_{ij}A_i^G,\qquad G_j=J^G_{ij}A_j^G.
+\]
+Then
+\[
+ A_i^Gb_j-A_j^Gb_i=(\gamma_j-\gamma_i)K_{ij},                 \tag{M31.24}
+\]
+so \(\gamma_i\ne\gamma_j\), and
+\[
+ a_j-a_i=(\gamma_j-\gamma_i)
+             C_{ij}\frac{K_{ij}}{L_S}.                        \tag{M31.25}
+\]
+The monic product in \textup{(M31.25)} is the degree-\(4980\) common
+residual-support locator.
+
+Every fixed head fiber therefore has size at most
+\[
+ \left\lfloor
+ \frac{1053557\cdot67449}{72428^2-1053557\cdot4979}
+ \right\rfloor
+ =
+ \left\lfloor\frac{71061366093}{154881}\right\rfloor
+ =458812.                                                     \tag{M31.26}
+\]
+Consequently a violating proper family uses at least five head values and
+contains at least
+\[
+ 2157929-458812=1699117                                      \tag{M31.27}
+\]
+members with \(\deg f_i=d-1\).
+
+One nonzero-head member has at least \(107897\) top neighbors.  It realizes
+at least \(2238863\) degree-\(4979\) cores and at least
+\[
+ \frac{107897\cdot4980}{15}=35821804                          \tag{M31.28}
+\]
+distinct pairs consisting of such a core and a neighbor head value.
+\end{corollary}
+
+\begin{proof}
+Put \(c=\deg C_{ij}\).  The planted common support has size \(c\), so top
+intersection equality makes the external common support have size
+\(t-c\).  Since both \(H_i,H_j\) contain \(L_S\),
+\[
+ \deg K_{ij}=\sigma+t-c.                                     \tag{M31.29}
+\]
+The proper-\(G\) reduced determinant theorem says that \(K_{ij}\) divides
+\[
+ D_{ij}=A_i^Gb_j-A_j^Gb_i.
+\]
+If \(q_i=\deg Q_i\), then
+\[
+ \deg A_i^G=q_j-c,\qquad
+ \deg b_i\le g-q_i-w-1,
+\]
+and symmetrically for \(j\).  Hence
+\[
+ \deg D_{ij}\le g-w-c-1=d-c-1=\sigma+t-c.                    \tag{M31.30}
+\]
+The determinant is nonzero.  Equations \textup{(M31.29)}--\textup{(M31.30)}
+force equality and make \(D_{ij}\) a scalar multiple of the monic
+\(K_{ij}\).  Monicity of \(Q_i,Q_j,A_i^G,A_j^G\) identifies the leading
+coefficient of \(D_{ij}\) as \(\gamma_j-\gamma_i\), proving
+\textup{(M31.24)}.  The source identities
+\[
+ D_{ij}=L_ST_{ij},\qquad a_i-a_j=-C_{ij}T_{ij}
+\]
+then prove \textup{(M31.25)}.
+
+Members with one fixed \(\gamma\) have no top pairs.  Their degree-\(m\)
+combined supports therefore have pairwise intersection at most \(4979\).
+The constant-weight Cauchy bound gives \textup{(M31.26)}; the division
+remainder is \(104721\).  Four fibers are too small for \(2157929\), and
+the zero-head fiber has at most \(458812\) members, proving
+\textup{(M31.27)}.
+
+More than one tenth of all unordered pairs are top pairs, and every one has
+a nonzero-head endpoint.  Summing top degrees over the nonzero-head vertices
+therefore gives one degree strictly larger than
+\((M-1)/20\ge107896.4\).  The preceding projective and core-shadow bounds
+give \(7707\) directions and \(2238863\) cores.
+
+Finally fix a degree-\(4979\) core \(R\) and a neighbor head value.  Equation
+\textup{(M31.25)} fixes the nonzero scalar \(c=\gamma_j-\gamma_i\), while
+the direction is \(R(X-\alpha)\).  All such neighbors lie on the affine
+codeword line
+\[
+ a_i+cRX+\langle R\rangle.
+\]
+The affine-span line cap is \(15\).  Counting the \(4980\) cores of every
+one of the \(107897\) neighbors proves \textup{(M31.28)}.
+\end{proof}
+
 The corollary is a route reduction, not payment of \(Q=147595\).  It gives
 no upper bound for the middle band or for the local decorated-neighbor
 degree, no active \(U_Q\), \(U_{\rm list\mbox{-}int}\), or \(U_{\rm sp}\)
@@ -3124,7 +3245,10 @@ common-zero-free geometry alone cannot prove the suggested divisor cap
 or an owner-preserving injection of all such decorated neighbors into already
 paid cells with exact add-back.  Corollary~\ref{cor:m31-top-neighbor-core-shadow}
 pays every fixed one-root-swap core but gives no upper bound on how many cores
-one received word can realize.
+one received word can realize.  Corollary~\ref{cor:m31-top-pair-source-head}
+further shows that the edge scalar is a source-head difference and pays each
+head fiber, but it neither bounds the head spectrum nor sums the colored
+core shadows.
 
 \section{Non-Claims}
 \label{sec:nonclaims}
