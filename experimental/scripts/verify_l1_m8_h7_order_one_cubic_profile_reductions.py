@@ -450,6 +450,57 @@ def check_official_frobenius_role_packets() -> None:
                 assert pow(discriminant, (prime - 1) // 2, prime) == prime - 1
 
 
+def scaled_quadratic_core(x: Q, y: Q, q: Q, d: Q) -> dict[str, Q]:
+    a = 6 - 2 * x
+    u = x + y
+    l2 = 15 + q / 2
+    l3 = 20 + q * (d + 8) / 3
+    l4 = 15 + q * (d**2 + 7 * d + 23) / 4 + q**2 / 8
+    k6 = (
+        1
+        + q * (10 * d**4 + 62 * d**3 + 163 * d**2 + 237 * d + 213) / 60
+        + q**2 * (13 * d**2 + 55 * d + 76) / 72
+        + q**3 / 48
+    )
+    g2 = (l2 - x**2 - a * (2 * x + y)) / 2
+    v = g2 + x * y + y**2
+    s = l3 + 2 * y * v - 2 * x * g2 - a * (v + x * u + g2)
+    r = a * (3 * y**2 + 2 * x * y + g2)
+    delta = y * v
+    l5 = -6 * d * k6 / (q - d)
+    c4 = g2**2 + a * u * g2 + v * (a * (x - y) - 2 * x * y) + s * x - l4
+    c5 = v * (g2 * (a - 2 * y) - a * y * u) + s * g2 - l5
+    e6 = delta * ((y - a) * v - s) - k6
+    e4 = delta * (g2**2 + a * u * g2 - y * (a + x) * v - l4) - x * k6
+    e5 = (q - d) * (y**2 * v**2 * (g2 + a * u) + g2 * k6) - 6 * d * k6 * delta
+    rd = delta * r
+    sd = y * (y - a) * v**2 - k6
+    return locals()
+
+
+def check_scaled_quadratic_core() -> None:
+    for values in (
+        (Q(2), Q(3), Q(5), Q(7)),
+        (Q(-1), Q(4), Q(9), Q(2)),
+        (Q(5, 2), Q(-3, 2), Q(11), Q(-4)),
+    ):
+        z = scaled_quadratic_core(*values)
+        assert z["e4"] == z["delta"] * z["c4"] + z["x"] * z["e6"]
+        assert z["e5"] == -(z["q"] - z["d"]) * (
+            z["delta"] * z["c5"] + z["g2"] * z["e6"]
+        )
+        assert z["sd"] == z["delta"] * z["s"] + z["e6"]
+        for alpha, beta, gamma in ((Q(1), Q(2), Q(3)), (Q(2), Q(-1), Q(5))):
+            transported = alpha * z["rd"] ** 2 + beta * z["rd"] * z["sd"] + gamma * z["sd"] ** 2
+            original = z["delta"] ** 2 * (
+                alpha * z["r"] ** 2 + beta * z["r"] * z["s"] + gamma * z["s"] ** 2
+            )
+            correction = z["e6"] * (
+                beta * z["rd"] + gamma * (2 * z["delta"] * z["s"] + z["e6"])
+            )
+            assert transported == original + correction
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -548,6 +599,7 @@ def main() -> None:
     check_role_weld()
     check_galois_role_packets()
     check_official_frobenius_role_packets()
+    check_scaled_quadratic_core()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -561,6 +613,7 @@ def main() -> None:
         "3*2+9*4=42",
         "disjunction",
         "lambda^p=(beta/gamma)lambda",
+        "E_5=(q-d)(Y^2V^2(G_2+AU)+G_2K_6)-6dK_6D=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -574,6 +627,7 @@ def main() -> None:
         "common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 "
         "galois_role_packets=12 "
         "frobenius_role_packets=21 "
+        "scaled_quadratic_core=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

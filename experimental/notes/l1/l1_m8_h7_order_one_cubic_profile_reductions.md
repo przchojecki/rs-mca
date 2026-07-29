@@ -463,6 +463,48 @@ Since the role is nonzero and `beta!=gamma`, it cannot lie in `F_p`.
 Consequently the 21 factors are exactly the Frobenius-pair packets. Changing
 `s` to `-s` merely swaps the two factors on each line.
 
+The official quadratic systems admit a compact dimensionless form. Put
+
+```text
+x=dg_1, Y=dy, q=dr, A=6-2x, U=x+Y,
+L_2=15+q/2,
+L_3=20+q(d+8)/3,
+L_4=15+q(d^2+7d+23)/4+q^2/8,
+K_6=1+q(10d^4+62d^3+163d^2+237d+213)/60
+       +q^2(13d^2+55d+76)/72+q^3/48.              (28l)
+```
+
+The scaled triangular variables are
+
+```text
+G_2=(L_2-x^2-A(2x+Y))/2,
+V=G_2+xY+Y^2,
+S=L_3+2YV-2xG_2-A(V+xU+G_2),
+R=A(3Y^2+2xY+G_2),
+D=YV.                                                (28m)
+```
+
+Here `S=d^3B` and `R` is `d^3` times the role numerator in (28b). On the
+inherited `d(q-d)K_6!=0` saturation, equations (26) are equivalent to
+
+```text
+E_6=D((Y-A)V-S)-K_6=0,
+E_4=D(G_2^2+AU G_2-Y(A+x)V-L_4)-xK_6=0,
+E_5=(q-d)(Y^2V^2(G_2+AU)+G_2K_6)-6dK_6D=0.         (28n)
+```
+
+The first line forces `D=YV!=0`. Define
+
+```text
+R_D=DR,        S_D=Y(Y-A)V^2-K_6.                  (28o)
+```
+
+Then `E_6=0` gives `(R_D,S_D)=D(R,S)`. Hence each of the 21 official role
+branches is exactly the conic, (28n), and one homogeneous quadratic
+`Phi(R_D,S_D)=0`, all in `(x,Y,q,d)`. This is the preferred printed input
+for a future proof-producing elimination; it does not restore `lambda`,
+`B`, or a color-field extension variable.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -632,13 +674,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 979f2b4f892b9ccd5d278e6fb441acc62df5708c81a5e4b06167da836393d64f
+sha256: 9be5edf59a41910a789083bf737c1b067ffb8152c8fc23f51e3f9221caaf536c
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
