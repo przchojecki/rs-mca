@@ -1185,7 +1185,33 @@ python3 experimental/scripts/check_l1_m8_h7_cubic_222_norm_certificate.py PATH
 sha256: 9ba5e7ee7a66d459453f5aba312fff5649c7ee37c12264b39d29304ebc8d244f
 ```
 
-Neither script was executed in the exporting environment: project policy
+The source-complete fully proportional quotient request is
+
+```text
+experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
+sha256: 3d188f70b21bc60990fceda4478e5d9b2d316e50a9c0c154bf39803224bd8cb6
+
+experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
+sha256: 02900581a1574e7edcca6424a1fc816e957b9b182b18ae2c197aeebba6469f4f
+```
+
+Launch it with
+
+```text
+modal run experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py --output PATH
+```
+
+and validate with the checker, adding `--require-complete` for a complete
+four-prime packet. Each prime is a separate one-CPU, 512 MB, 60-second task;
+the driver uses no retries and atomically checkpoints every returned row.
+It factors `U`, certifies `gcd(R_1,R_0)` and the fixed `a_2=0` chart by
+Bezout identities, and reports every degree-one/two factor eligible for the
+ambient quadratic field. Expected cost is below `$0.01`. Returned factors
+remain candidates until all structural, role, `P_4`, and lift filters are
+replayed.
+
+None of the compute-request scripts was executed in the exporting
+environment: project policy
 sends computation to Modal, and the configured Modal workspace is currently
 spend-blocked. The written proofs and scripts are available for independent
 replay; no pending execution is counted as evidence.
