@@ -501,6 +501,48 @@ def check_scaled_quadratic_core() -> None:
             assert transported == original + correction
 
 
+def check_coefficient_matrix_router() -> None:
+    for values in (
+        (Q(2), Q(3), Q(5), Q(7)),
+        (Q(-1), Q(4), Q(9), Q(2)),
+        (Q(5, 2), Q(-3, 2), Q(11), Q(-4)),
+    ):
+        z = scaled_quadratic_core(*values)
+        h = z["g2"] + z["a"] * z["u"]
+        w = z["y"] * (z["a"] + z["x"]) * z["v"] + z["l4"]
+        j = (z["q"] - z["d"]) * z["g2"] - 6 * z["d"] * z["delta"]
+        determinant = z["g2"] * j + z["x"] * (z["q"] - z["d"]) * z["delta"]
+        assert j * z["e4"] + z["x"] * z["e5"] == z["delta"] * (
+            determinant * h - w * j
+        )
+
+    for y, q, d in ((Q(3), Q(5), Q(7)), (Q(-2), Q(11), Q(4))):
+        z = scaled_quadratic_core(Q(0), y, q, d)
+        c0 = (
+            96 * y**3
+            - 144 * y**2
+            + (720 + 24 * q) * y
+            + q**2
+            + 4 * q * (d**2 + 7 * d + 8)
+            - 660
+        )
+        assert c0 == -16 * z["e4"] / z["delta"]
+        h = z["g2"] + z["a"] * z["u"]
+        j = (q - d) * z["g2"] - 6 * d * z["delta"]
+        m = 6 * z["g2"] - z["l3"] - z["delta"]
+        f5 = (q - d) * z["delta"] * h + j * m
+        assert z["delta"] * f5 == z["e5"] + j * z["e6"]
+
+    for q, d in ((Q(5), Q(7)), (Q(11), Q(-4))):
+        ell = 15 + q / 2
+        v = ell * (ell + 36) / 36
+        l4 = 15 + q * (d**2 + 7 * d + 23) / 4 + q**2 / 8
+        fj = d * (q**2 + 132 * q + 2916) + 144 * q
+        fw = q**3 + 126 * q**2 + (5364 - 504 * d - 72 * d**2) * q + 87480
+        assert fj == 144 * (q - d + d * v)
+        assert fw == -288 * (l4 - ell * v)
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -600,6 +642,7 @@ def main() -> None:
     check_galois_role_packets()
     check_official_frobenius_role_packets()
     check_scaled_quadratic_core()
+    check_coefficient_matrix_router()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -614,6 +657,7 @@ def main() -> None:
         "disjunction",
         "lambda^p=(beta/gamma)lambda",
         "E_5=(q-d)(Y^2V^2(G_2+AU)+G_2K_6)-6dK_6D=0",
+        "Delta K_6+(q-d)D^2W=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -628,6 +672,7 @@ def main() -> None:
         "galois_role_packets=12 "
         "frobenius_role_packets=21 "
         "scaled_quadratic_core=1 "
+        "coefficient_matrix_router=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

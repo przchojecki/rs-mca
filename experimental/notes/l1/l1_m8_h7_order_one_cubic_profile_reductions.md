@@ -505,6 +505,55 @@ branches is exactly the conic, (28n), and one homogeneous quadratic
 for a future proof-producing elimination; it does not restore `lambda`,
 `B`, or a color-field extension variable.
 
+The two middle equations have a further exact determinant router. Define
+
+```text
+H=G_2+AU,
+W=Y(A+x)V+L_4,
+J=(q-d)G_2-6dD,
+Delta=G_2J+x(q-d)D.                                 (28p)
+```
+
+Then `E_4=E_5=0` is the linear system
+
+```text
+D G_2H-xK_6=DW,
+(q-d)D^2H+JK_6=0,                                  (28q)
+```
+
+with determinant `D Delta`. On `Delta!=0`, it is equivalent to
+
+```text
+Delta H-WJ=0,
+Delta K_6+(q-d)D^2W=0.                             (28r)
+```
+
+On `Delta=0`, consistency gives `WJ=0`. The complete singular split is
+
+```text
+J=0:   x=H=W=0;
+J!=0:  W=0 and (q-d)D^2H+JK_6=0.                  (28s)
+```
+
+No determinant component is saturated away. On the `x=0` chart, the fourth
+equation is the cubic
+
+```text
+96Y^3-144Y^2+(720+24q)Y
+ +q^2+4q(d^2+7d+8)-660=0.                          (28t)
+```
+
+In the singular `J=0` subbranch, `H=W=0` reduces the coefficient matrix to
+
+```text
+d(q^2+132q+2916)+144q=0,
+q^3+126q^2+(5364-504d-72d^2)q+87480=0,             (28u)
+```
+
+together with the h=7 conic. This is a small bivariate endpoint, not an
+emptiness claim: `E_6`, one role equation, and every arithmetic lift filter
+remain mandatory.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -674,13 +723,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 9be5edf59a41910a789083bf737c1b067ffb8152c8fc23f51e3f9221caaf536c
+sha256: b8e47fea42f026d9c2b18e237320156de5fe374458ea23c3947eb73d5053a86a
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
