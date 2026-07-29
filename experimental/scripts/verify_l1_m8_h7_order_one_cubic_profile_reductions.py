@@ -395,6 +395,61 @@ def check_galois_role_packets() -> None:
     ]
 
 
+def quadratic_ext_mul(left: tuple[int, int], right: tuple[int, int]) -> tuple[int, int]:
+    return (
+        left[0] * right[0] + 2 * left[1] * right[1],
+        left[0] * right[1] + left[1] * right[0],
+    )
+
+
+def quadratic_ext_poly_mul(
+    left: tuple[tuple[int, int], ...], right: tuple[tuple[int, int], ...]
+) -> tuple[tuple[int, int], ...]:
+    out = [(0, 0)] * (len(left) + len(right) - 1)
+    for i, a in enumerate(left):
+        for j, b in enumerate(right):
+            product = quadratic_ext_mul(a, b)
+            out[i + j] = (out[i + j][0] + product[0], out[i + j][1] + product[1])
+    return tuple(out)
+
+
+def check_official_frobenius_role_packets() -> None:
+    signed_quadratics = (
+        (((1, 0), (0, 1), (1, 0)), (1, 0, 0, 0, 1), 1),
+        (((2, -1), (0, 1), (1, 0)), (2, 4, 2, 0, 1), 1),
+        (((3, 2), (0, 0), (1, 0)), (1, 0, 6, 0, 1), 1),
+        (((4, 2), (2, 0), (1, 0)), (8, 16, 12, 4, 1), 1),
+        (((3, 2), (2, 1), (1, 0)), (1, 4, 8, 4, 1), 1),
+        (((2, 1), (2, 1), (1, 0)), (2, 4, 6, 4, 1), 1),
+        (((2, 1), (2, 0), (2, 0)), (1, 4, 6, 4, 2), 2),
+        (((2, 1), (2, 2), (2, 0)), (1, 0, 2, 4, 2), 2),
+        (((2, 1), (4, 2), (4, 0)), (1, 4, 12, 16, 8), 2),
+    )
+    for plus, expected, scalar in signed_quadratics:
+        minus = tuple((a, -b) for a, b in plus)
+        product = quadratic_ext_poly_mul(plus, minus)
+        assert product == tuple((scalar * value, 0) for value in expected)
+
+    base_quadratics = ((2, 2, 1), (1, 0, 1), (1, 2, 2))
+    assert 2 * (len(base_quadratics) + 2 * len(signed_quadratics)) == 42
+    for prime in (8191, 131071, 524287, 2147483647):
+        assert prime % 8 == 7
+        square_root = pow(2, (prime + 1) // 4, prime)
+        assert square_root * square_root % prime == 2
+        for coefficients in base_quadratics:
+            discriminant = (coefficients[1] ** 2 - 4 * coefficients[0] * coefficients[2]) % prime
+            assert pow(discriminant, (prime - 1) // 2, prime) == prime - 1
+        for plus, _, _ in signed_quadratics:
+            for sign in (1, -1):
+                coefficients = [
+                    (a + sign * b * square_root) % prime for a, b in plus
+                ]
+                discriminant = (
+                    coefficients[1] ** 2 - 4 * coefficients[0] * coefficients[2]
+                ) % prime
+                assert pow(discriminant, (prime - 1) // 2, prime) == prime - 1
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -492,6 +547,7 @@ def main() -> None:
     check_role_factors()
     check_role_weld()
     check_galois_role_packets()
+    check_official_frobenius_role_packets()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -504,6 +560,7 @@ def main() -> None:
         "B_0^4-224B_0^2A_0^3-578A_0^6",
         "3*2+9*4=42",
         "disjunction",
+        "lambda^p=(beta/gamma)lambda",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -516,6 +573,7 @@ def main() -> None:
         "linear_samples=2 x0_samples=3 q6x2_samples=3 "
         "common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 "
         "galois_role_packets=12 "
+        "frobenius_role_packets=21 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

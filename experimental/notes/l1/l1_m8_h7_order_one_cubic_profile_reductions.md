@@ -424,6 +424,45 @@ equation. The equations in (28h) are alternatives, never twelve
 simultaneous constraints. Irreducibility of the displayed packets is not
 needed or claimed.
 
+On the four official characteristics, every role equation can be made
+quadratic over the base field. Indeed `p=7 mod 8`, so fix `s in F_p` with
+`s^2=2`. In the shifted variable `T=lambda-1`, the three rational
+quadratics are
+
+```text
+T^2+2T+2,       T^2+1,       2T^2+2T+1.            (28i)
+```
+
+The nine quartics in (28f) split into the following conjugate pairs:
+
+```text
+T^2+sT+1,                       T^2-sT+1,
+T^2+sT+2-s,                     T^2-sT+2+s,
+T^2+3+2s,                       T^2+3-2s,
+T^2+2T+4+2s,                    T^2+2T+4-2s,
+T^2+(2+s)T+3+2s,                T^2+(2-s)T+3-2s,
+T^2+(2+s)T+2+s,                 T^2+(2-s)T+2-s,
+2T^2+2T+2+s,                    2T^2+2T+2-s,
+2T^2+(2+2s)T+2+s,               2T^2+(2-2s)T+2-s,
+4T^2+(4+2s)T+2+s,               4T^2+(4-2s)T+2-s.   (28j)
+```
+
+For the first six lines, each pair product equals `P_j(1+T)`; for the last
+three it equals `2P_j(1+T)`. The scalar two is a unit. Thus the complete
+role layer is also the disjunction of 21 systems obtained by homogenizing
+(28i)--(28j) at `T=R/S`.
+
+These quadratics are irreducible over every official `F_p`. For a normalized
+role `lambda=(gamma-1)/(beta-1)`, Frobenius inversion gives
+
+```text
+lambda^p=(beta/gamma)lambda.                         (28k)
+```
+
+Since the role is nonzero and `beta!=gamma`, it cannot lie in `F_p`.
+Consequently the 21 factors are exactly the Frobenius-pair packets. Changing
+`s` to `-s` merely swaps the two factors on each line.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -593,13 +632,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: f1b942208d4bbe086a8ad7c363136579e146bc6cd4bb15d9daeaff849aa25c2d
+sha256: 979f2b4f892b9ccd5d278e6fb441acc62df5708c81a5e4b06167da836393d64f
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
