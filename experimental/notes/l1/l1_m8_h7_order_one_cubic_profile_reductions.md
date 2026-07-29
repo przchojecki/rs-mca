@@ -1579,19 +1579,47 @@ Indeed `M_5` gives `p=-delta/alpha`; substitution proves both directions.
 The exceptional loci deleted by `alpha` are exactly the inherited `q=d`
 saturation and the separately owned `x=0`, `q=-6x^2` branches.
 
+## Coefficient-field degree-eight router
+
+For each official row, write
+
+```text
+p=2^t-1,  t in {13,17,19,31},  n=8(p+1)=2^(t+3).
+```
+
+Direct reduction modulo `n` gives
+
+```text
+p^2=1-n/4,  p^4=1-n/2,  p^8=1 mod n,
+```
+
+while none of `p,p^2,p^4` is one. Hence `ord_n(p)=8`. The shifted-value
+gate gives `P=(W+1/d)L | W^n-1`, so all normalized roots, `d`, and every
+coefficient of a monic color-fiber factor of `L` lie in `F_(p^8)`. In
+particular, for `G=W^3+g_1W^2+...`,
+
+```text
+b=4dg_1-15 in F_(p^8).
+```
+
+An irreducible polynomial over `F_p` has a root in `F_(p^8)` exactly when
+its degree divides eight. Thus the exact official-eligible factor degrees
+are `{1,2,4,8}`. This is a generated-field normalization result; it is not a
+gcd verdict or a claim that the ambient evaluation field has degree eight.
+
 ## Verification
 
 The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: b103bf22b73736dd51f97a03db83c07de681a20805448749cd98e96c7e13c7a6
+sha256: 0c11e7f6275f81986f0f0e5df294c1498e6e7d8ac7be09cd5f9b828f978dbde7
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_exceptional_j0_structural=1 fully_proportional_exceptional_j0_role_p4=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 coefficient_field_degree=8 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_exceptional_j0_structural=1 fully_proportional_exceptional_j0_role_p4=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
@@ -1612,10 +1640,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: 4490ec4cfdbbf36c45c4bdaa50177b1e8b26879ab513822d20af1e644702e56a
+sha256: 59bb96e395c4eac8ada98417bc7e68f59c905cb7dcfec9219aad71578097119b
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: f1074ddb54f89bee37c2f89bf086b76c4d4a017745968c27937339ccf11a89b3
+sha256: d25dc17b956ace1f4faa97acc533fe99492089658eb5b103bcfc70711667a609
 ```
 
 Launch it with
@@ -1628,10 +1656,10 @@ and validate with the checker, adding `--require-complete` for a complete
 four-prime packet. Each prime is a separate one-CPU, 512 MB, 60-second task;
 the driver uses no retries and atomically checkpoints every returned row.
 It factors `U`, certifies `gcd(rho_1,rho_0)` and the fixed `a_2=0` chart by
-Bezout identities, reports every factor, and separately reports the
-degree-one/two subset as a quadratic-subfield diagnostic. The role root
-`eta` lies in `F_(p^2)`, but the proved dependency chain does not bound the
-field degree of `b`; the diagnostic therefore cannot close a chart. The
+Bezout identities, reports every factor, separately reports the exact
+degree-`1,2,4,8` cyclotomic-field subset, and reports the degree-one/two
+subset as a quadratic-subfield diagnostic. The role root `eta` lies in
+`F_(p^2)`, while the coefficient-field router proves `b in F_(p^8)`. The
 packet also reconstructs the primitive integer
 numerators `Z_D,Z_Q,Z_R`, checks their degree bounds, computes the three
 `Zhat_i` remainders modulo `U`, and certifies
@@ -1646,20 +1674,22 @@ and certifies their five-way gcd. A unit five-way gcd excludes the generic
 returns remain open. Finally the row certifies and factors `gcd(H,K)` for the
 simultaneous `S_1=S_0=0` chart, flags factors on the separately excluded
 `A=0` chart, and lists every remaining legal irreducible factor regardless of
-degree. `global_status=EMPTY` excludes the chart only when no legal factor
-remains; `quadratic_subfield_status` is diagnostic. The checker independently
-reconstructs `A,H,K` and verifies the gcd, factorization, guard, global, and
-quadratic-subfield classifications.
+degree. `global_status=EMPTY` excludes the chart when no legal factor remains;
+more sharply, `cyclotomic_field_status=EMPTY` excludes the official chart
+when no legal factor has degree dividing eight. `quadratic_subfield_status`
+is diagnostic. The checker independently reconstructs `A,H,K` and verifies
+the gcd, factorization, guard, global, and field-degree classifications.
 The same row now reconstructs the six `J_*=L_*=0` coefficient-and-structural
 filters `Bhat_J,Ehat_J,Fhat_J,Xhat_J,Zhat_D^j,Zhat_R^j`, certifies their
 common gcd by a six-way Bezout identity, factors that gcd, flags every factor
-dividing `T_J`, and lists every remaining legal factor. An `EMPTY` global
-status excludes this complete coefficient-and-structural chart; `HIT` returns
-all legal factors for role, `P_4`, saturation, and lift replay. The separately
-reported degree-one/two subset remains diagnostic, and an identically-zero
-family is explicitly inconclusive. The checker independently reconstructs the
-seven source polynomials and verifies the Bezout, factorization, guard,
-global, and quadratic-subfield classifications.
+dividing `T_J`, and lists every remaining legal factor plus the exact
+degree-`1,2,4,8` official subset. An `EMPTY` cyclotomic-field status excludes
+this official coefficient-and-structural chart; `HIT` returns all eligible
+factors for role, `P_4`, saturation, and lift replay. The separately reported
+degree-one/two subset remains diagnostic, and an identically-zero family is
+explicitly inconclusive. The checker independently reconstructs the seven
+source polynomials and verifies the Bezout, factorization, guard, global, and
+field-degree classifications.
 This adds no containers, CPUs, memory, retries, or timeout to the request.
 
 None of the compute-request scripts was executed in the exporting

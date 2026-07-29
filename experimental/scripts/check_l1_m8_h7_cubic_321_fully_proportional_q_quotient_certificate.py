@@ -11,9 +11,10 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LAUNCHER = HERE / "l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
-EXPECTED_LAUNCHER_SHA256 = "4490ec4cfdbbf36c45c4bdaa50177b1e8b26879ab513822d20af1e644702e56a"
+EXPECTED_LAUNCHER_SHA256 = "59bb96e395c4eac8ada98417bc7e68f59c905cb7dcfec9219aad71578097119b"
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
+CYCLOTOMIC_FIELD_DEGREES = (1, 2, 4, 8)
 
 
 def trim(poly: list[int]) -> list[int]:
@@ -496,11 +497,18 @@ def verify_exceptional_singular_affine_gcd(
     assert product == common
     legal = [factor for factor in factors if not factor["a2_zero_factor"]]
     quadratic = [factor for factor in legal if factor["degree"] <= 2]
+    cyclotomic = [
+        factor for factor in legal if factor["degree"] in CYCLOTOMIC_FIELD_DEGREES
+    ]
     assert packet["legal_factors"] == legal
     assert packet["quadratic_subfield_factors"] == quadratic
+    assert packet["cyclotomic_field_factors"] == cyclotomic
     assert packet["global_status"] == ("HIT" if legal else "EMPTY")
     assert packet["quadratic_subfield_status"] == (
         "HIT" if quadratic else "EMPTY"
+    )
+    assert packet["cyclotomic_field_status"] == (
+        "HIT" if cyclotomic else "EMPTY"
     )
 
 
@@ -518,8 +526,10 @@ def verify_exceptional_j0_affine_common_gcd(
         assert packet["factorization"] == {"unit": 0, "factors": []}
         assert packet["legal_factors"] == []
         assert packet["quadratic_subfield_factors"] == []
+        assert packet["cyclotomic_field_factors"] == []
         assert packet["global_status"] == "INCONCLUSIVE"
         assert packet["quadratic_subfield_status"] == "INCONCLUSIVE"
+        assert packet["cyclotomic_field_status"] == "INCONCLUSIVE"
         return
 
     assert packet["status"] in {"UNIT", "HIT"}
@@ -542,11 +552,18 @@ def verify_exceptional_j0_affine_common_gcd(
     assert product == common
     legal = [factor for factor in factors if not factor["t_zero_factor"]]
     quadratic = [factor for factor in legal if factor["degree"] <= 2]
+    cyclotomic = [
+        factor for factor in legal if factor["degree"] in CYCLOTOMIC_FIELD_DEGREES
+    ]
     assert packet["legal_factors"] == legal
     assert packet["quadratic_subfield_factors"] == quadratic
+    assert packet["cyclotomic_field_factors"] == cyclotomic
     assert packet["global_status"] == ("HIT" if legal else "EMPTY")
     assert packet["quadratic_subfield_status"] == (
         "HIT" if quadratic else "EMPTY"
+    )
+    assert packet["cyclotomic_field_status"] == (
+        "HIT" if cyclotomic else "EMPTY"
     )
 
 
@@ -601,6 +618,12 @@ def main() -> None:
             assert row["U_degree"] == len(u_mod) - 1
         quadratic = [factor for factor in factors if factor["degree"] <= 2]
         assert row["quadratic_subfield_factors"] == quadratic
+        cyclotomic = [
+            factor
+            for factor in factors
+            if factor["degree"] in CYCLOTOMIC_FIELD_DEGREES
+        ]
+        assert row["cyclotomic_field_factors"] == cyclotomic
         verify_gcd_certificate(
             row["affine_remainder_gcd"],
             polynomials["rho_1"],

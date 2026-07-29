@@ -454,6 +454,18 @@ def check_official_frobenius_role_packets() -> None:
                 assert pow(discriminant, (prime - 1) // 2, prime) == prime - 1
 
 
+def check_coefficient_field_degree_eight() -> None:
+    rows = ((13, 8191), (17, 131071), (19, 524287), (31, 2147483647))
+    for exponent, prime in rows:
+        assert prime == 2**exponent - 1
+        order = 2 ** (exponent + 3)
+        assert prime**2 % order == 1 - order // 4
+        assert prime**4 % order == 1 - order // 2
+        assert prime**8 % order == 1
+        assert all(prime**degree % order != 1 for degree in (1, 2, 4))
+    assert {degree for degree in range(1, 9) if 8 % degree == 0} == {1, 2, 4, 8}
+
+
 def scaled_quadratic_core(x: Q, y: Q, q: Q, d: Q) -> dict[str, Q]:
     a = 6 - 2 * x
     u = x + y
@@ -1280,6 +1292,7 @@ def main() -> None:
     check_role_weld()
     check_galois_role_packets()
     check_official_frobenius_role_packets()
+    check_coefficient_field_degree_eight()
     check_scaled_quadratic_core()
     check_coefficient_matrix_router()
     check_singular_j0_univariate()
@@ -1350,6 +1363,8 @@ def main() -> None:
         "Bhat_J=Ehat_J=Fhat_J=Xhat_J=Zhat_D^j=Zhat_R^j=0",
         "L_Phi=18c_0S_role+9c_1R_role+c_0q(b-6)=0",
         "d=3(eta R_role-S_role)/q",
+        "ord_n(p)=8",
+        "{1,2,4,8}",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1363,6 +1378,7 @@ def main() -> None:
         "common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 "
         "galois_role_packets=12 "
         "frobenius_role_packets=21 "
+        "coefficient_field_degree=8 "
         "scaled_quadratic_core=1 "
         "coefficient_matrix_router=1 "
         "singular_j0_univariate=1 "

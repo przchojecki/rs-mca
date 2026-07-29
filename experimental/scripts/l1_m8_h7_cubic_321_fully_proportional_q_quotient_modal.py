@@ -13,6 +13,7 @@ import modal
 
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
+CYCLOTOMIC_FIELD_DEGREES = (1, 2, 4, 8)
 
 app = modal.App(APP_NAME)
 image = modal.Image.debian_slim(python_version="3.12").pip_install("sympy==1.14.0")
@@ -546,11 +547,19 @@ def run_prime(prime: int) -> dict[str, object]:
         for factor in singular_affine_gcd["legal_factors"]
         if factor["degree"] <= 2
     ]
+    singular_affine_gcd["cyclotomic_field_factors"] = [
+        factor
+        for factor in singular_affine_gcd["legal_factors"]
+        if factor["degree"] in CYCLOTOMIC_FIELD_DEGREES
+    ]
     singular_affine_gcd["global_status"] = (
         "HIT" if singular_affine_gcd["legal_factors"] else "EMPTY"
     )
     singular_affine_gcd["quadratic_subfield_status"] = (
         "HIT" if singular_affine_gcd["quadratic_subfield_factors"] else "EMPTY"
+    )
+    singular_affine_gcd["cyclotomic_field_status"] = (
+        "HIT" if singular_affine_gcd["cyclotomic_field_factors"] else "EMPTY"
     )
 
     j0_labels = ("Bhat", "Ehat", "Fhat", "Xhat", "ZDhat", "ZRhat")
@@ -563,8 +572,10 @@ def run_prime(prime: int) -> dict[str, object]:
         j0_common_gcd["factorization"] = {"unit": 0, "factors": []}
         j0_common_gcd["legal_factors"] = []
         j0_common_gcd["quadratic_subfield_factors"] = []
+        j0_common_gcd["cyclotomic_field_factors"] = []
         j0_common_gcd["global_status"] = "INCONCLUSIVE"
         j0_common_gcd["quadratic_subfield_status"] = "INCONCLUSIVE"
+        j0_common_gcd["cyclotomic_field_status"] = "INCONCLUSIVE"
     else:
         j0_common = j0_common_gcd["gcd_coefficients_low_to_high"]
         assert isinstance(j0_common, list)
@@ -605,11 +616,19 @@ def run_prime(prime: int) -> dict[str, object]:
             for factor in j0_common_gcd["legal_factors"]
             if factor["degree"] <= 2
         ]
+        j0_common_gcd["cyclotomic_field_factors"] = [
+            factor
+            for factor in j0_common_gcd["legal_factors"]
+            if factor["degree"] in CYCLOTOMIC_FIELD_DEGREES
+        ]
         j0_common_gcd["global_status"] = (
             "HIT" if j0_common_gcd["legal_factors"] else "EMPTY"
         )
         j0_common_gcd["quadratic_subfield_status"] = (
             "HIT" if j0_common_gcd["quadratic_subfield_factors"] else "EMPTY"
+        )
+        j0_common_gcd["cyclotomic_field_status"] = (
+            "HIT" if j0_common_gcd["cyclotomic_field_factors"] else "EMPTY"
         )
     row = {
         "p": prime,
@@ -622,6 +641,11 @@ def run_prime(prime: int) -> dict[str, object]:
         },
         "quadratic_subfield_factors": [
             factor for factor in factors if factor["degree"] <= 2
+        ],
+        "cyclotomic_field_factors": [
+            factor
+            for factor in factors
+            if factor["degree"] in CYCLOTOMIC_FIELD_DEGREES
         ],
         "affine_remainder_gcd": gcd_certificate(
             polynomials["rho_1"], polynomials["rho_0"], prime
