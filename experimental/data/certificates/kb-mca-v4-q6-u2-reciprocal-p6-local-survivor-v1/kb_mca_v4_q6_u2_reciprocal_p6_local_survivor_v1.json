@@ -1,0 +1,138 @@
+{
+  "format": "kb-mca-v4-q6-u2-reciprocal-p6-local-survivor-v1",
+  "status": "PROVED_LOCAL_SOURCE_FACET_SURVIVOR",
+  "row": {
+    "field_characteristic": 2130706433,
+    "field_extension_degree": 6,
+    "agreement": 1116048,
+    "B_star": 274980728111395087,
+    "object": "MCA",
+    "workboard_item": "K3"
+  },
+  "scope": {
+    "pole_partition": [
+      6
+    ],
+    "endpoint_rows": [
+      0,
+      2
+    ],
+    "right_label_permutation": [
+      3,
+      4,
+      5,
+      0,
+      2,
+      1
+    ],
+    "signature_graph": "P6",
+    "signature_path": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      2
+    ],
+    "quotient_profile": "RECIPROCAL",
+    "terminal": "UNROUTED_LOCAL_COMPONENT",
+    "owner_id": null,
+    "ledger_movement": 0,
+    "active_ledger": {
+      "U_paid": null,
+      "U_Q": null,
+      "U_BC": null,
+      "U_new": null
+    }
+  },
+  "witness": {
+    "quadratic_subfield": {
+      "generator": "omega",
+      "omega_square": 1923159404
+    },
+    "alpha_noninvariant": [
+      1706416115,
+      294572568,
+      2122972579,
+      1628586834,
+      1566096308,
+      2054706456
+    ],
+    "invariant_extra_label": 0,
+    "common_parameter_multipliers": [
+      0,
+      1168433532,
+      962272901,
+      914561315,
+      1216145118
+    ],
+    "free_parameter_multipliers": {
+      "0": 1,
+      "2": 1646993078
+    },
+    "factor_sequence_multipliers": [
+      1,
+      0,
+      1168433532,
+      962272901,
+      914561315,
+      1216145118,
+      1646993078
+    ],
+    "S_coefficient_multipliers": [
+      190235001,
+      50728375,
+      237946587
+    ],
+    "P_coefficients": [
+      1619401242,
+      901515189,
+      1468071313
+    ],
+    "weighted_GRS_scale_coefficients": [
+      1,
+      0,
+      0
+    ],
+    "common_source_locator_coefficients": [
+      1,
+      735731088,
+      2104711620,
+      2104711620,
+      735731088,
+      1
+    ]
+  },
+  "claims": {
+    "deployed_characteristic": true,
+    "source_labels_live_in_F_p6": true,
+    "source_facet_and_deck_equations": true,
+    "weighted_GRS_reconstruction": true,
+    "degree_2_GRS_interpolation": true,
+    "smooth_conic_image": true,
+    "exact_P6_signature": true,
+    "reduced_common_decic": true,
+    "reciprocal_profile": true,
+    "active_first_match_record": false,
+    "same_record_owner_supplied": false,
+    "row_payment": false
+  },
+  "nonclaims": [
+    "received-line witness",
+    "bad-slope witness",
+    "survival of every earlier first-match cell",
+    "active owner payment",
+    "cap-68 refutation",
+    "KoalaBear MCA counterexample",
+    "row closure"
+  ],
+  "source_base_commit": "93fba1be3f3299b0ba4708d88715377bbb656e45",
+  "upstream_prs_checked": [
+    1121,
+    1122,
+    1123,
+    1124,
+    1125
+  ],
+  "payload_sha256": "a3231f7903e255b254b202a269aca1740aec666cd04c13940711e83d29e8ce1b"
+}

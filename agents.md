@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
 > **Updated:** 2026-07-29
-> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
+> **State snapshot:** `main@93fba1be3f3299b0ba4708d88715377bbb656e45`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -79,6 +79,17 @@ At this snapshot:
 - On the pinned M31 quotient profile, the proposed rooted-shell cap `1233` is refuted by an explicit deficiency-192 packet of size `1237`; a ragged non-`T16` collision and the signed-`T8` census further cut alignment-only routes.  The canonical-remainder inequality `|F_eta|<=1716*r(eta)+5577` forces at least `9774` represented remainders in any unsafe support fiber, but supplies no received-word or row-list projection.
 - The cumulative M31 rank-seven compiler now reaches `Q=147594` locally.  Its adjacent `Q=147595`, `k=4981` survivor is reduced to a varying proper-`G`, zero-excess cross-cofactor incidence terminal requiring an aggregate cap `2157928`; no v4 atom, higher-rank theorem, or row closure follows.
 - The KoalaBear equality-wall PR stack proves local normalization, a `Q=6,u=2` geometry reduction, and exclusion of 60 labelled `P3+C3` cases, but retains 405 labelled conic cases and lacks global ownership/add-back.  The separate column-far transverse-secant certificate is per fixed union only.  No large `U_paid` claimed by an abstract candidate-record compiler is banked; the live active value remains `null`.
+- The exact deployed-field reciprocal-`P6` packet exhibits a local
+  `Q=6,u=2` source-facet survivor satisfying the split-pole, weighted-GRS,
+  endpoint-deck, and reciprocal gates.  Direct elimination from those gates
+  alone is therefore unavailable.  The packet is not an active received-line
+  record, does not exclude earlier owners, and moves no ledger quantity.
+- The exact source-fiber follow-up deletes that committed local witness from
+  the actual endpoint producer: at the five common invariant sources and the
+  extra invariant source `eta=0`, its specialized quartic is coprime to the
+  complete source polynomial, whereas every actual outgoing component must
+  divide every specialized source fiber.  This is witness-specific and moves
+  no ledger quantity; it does not eliminate all reciprocal-`P6` components.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -129,6 +140,16 @@ The factor `4807520` is only a full-budget calibration before other atoms consum
 #### K3. Pay MCA projection and residual geometry
 
 Produce exhaustive balanced-core coverage in units of distinct affine slopes. The moving-root theorem pays only charts proved to be genuine pencils. A line-by-line decomposition also needs an exact count of relevant lines. Higher-dimensional cores require a proved ray/slope compiler with exact multiplicities.
+
+For the normalized equality-wall conic branch, the exact reciprocal-`P6`
+local witness is now deleted by the mandatory all-twelve-source-fiber
+divisibility gate.  The next maximal theorem must impose that source-global
+gate uniformly in the exhaustive component compiler, beginning with the
+single-endpoint-orbit `2+2+2` pole partition and retaining all ten signature
+representatives.  Every survivor must then be deleted by the actual producer
+or routed to a chronology-valid same-record owner carrying the affine slope.
+The other pole partitions, reciprocal endpoint orbits, `D4`/`D5`,
+`P2+C4`, and simple/repeated quartic branches remain in scope.
 
 #### K4. Close algebraic routing and add-back
 
