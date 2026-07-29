@@ -554,6 +554,49 @@ together with the h=7 conic. This is a small bivariate endpoint, not an
 emptiness claim: `E_6`, one role equation, and every arithmetic lift filter
 remain mandatory.
 
+The first equation in (28u) is linear in `d` after putting
+
+```text
+A(q)=q^2+132q+2916,       T(q)=-144q.               (28v)
+```
+
+On the inherited `q!=0` saturation it forces `A(q)!=0` and
+`d=T(q)/A(q)`. Define
+
+```text
+B(q)=q^3+126q^2+5364q+87480,
+
+P_W(q)=A(q)^2B(q)+72576q^2A(q)-1492992q^3,
+
+P_C(q)=35q^2A(q)^4
+ +14q(11T(q)^2A(q)^2+27T(q)A(q)^3+27A(q)^4)
+ +120(T(q)^4+4T(q)^3A(q)+7T(q)^2A(q)^2
+       +6T(q)A(q)^3+3A(q)^4).                      (28w)
+```
+
+Then `P_W` is monic of degree seven, `P_C` has degree ten and leader 35,
+and the coefficient endpoint `(conic,F_J,F_W)` is exactly
+
+```text
+P_W(q)=P_C(q)=0,       d=-144q/A(q).                (28x)
+```
+
+Thus a unit `gcd_Fp(P_W,P_C)` excludes this singular coefficient chamber.
+The source-pinned certificate packet is
+
+```text
+experimental/scripts/l1_m8_h7_cubic_321_singular_j0_gcd_modal.py
+sha256: 39ccbf6493dc3a421935dbbd0b1e31e761c4e13b2c3f48eaa3c6b87d44a987e0
+
+experimental/scripts/check_l1_m8_h7_cubic_321_singular_j0_gcd_certificate.py
+sha256: a653511eb927b1627258d7c2e25e6b46439827140d1fabab743a2404e771469c
+```
+
+The one-container worker is capped at 0.125 CPU, 128 MB, and 30 seconds and
+emits extended-Euclidean coefficients for all four rows. It was not run:
+the configured Modal workspace is spend-blocked. The checker accepts exact
+HIT packets but requires `--require-all-unit` for an exclusion certificate.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -723,13 +766,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: b8e47fea42f026d9c2b18e237320156de5fe374458ea23c3947eb73d5053a86a
+sha256: 1f0698660641128900f0748700895a82aee18e6b09e81931013fdeabc694d885
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256

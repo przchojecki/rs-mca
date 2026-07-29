@@ -543,6 +543,29 @@ def check_coefficient_matrix_router() -> None:
         assert fw == -288 * (l4 - ell * v)
 
 
+def check_singular_j0_univariate() -> None:
+    for q in (Q(1), Q(5), Q(-7), Q(11, 3)):
+        a = q**2 + 132 * q + 2916
+        t = -144 * q
+        d = t / a
+        b = q**3 + 126 * q**2 + 5364 * q + 87480
+        p_w = a**2 * b + 72576 * q**2 * a - 1492992 * q**3
+        p_c = (
+            35 * q**2 * a**4
+            + 14 * q * (11 * t**2 * a**2 + 27 * t * a**3 + 27 * a**4)
+            + 120 * (t**4 + 4 * t**3 * a + 7 * t**2 * a**2 + 6 * t * a**3 + 3 * a**4)
+        )
+        f_w = b - 504 * d * q - 72 * d**2 * q
+        conic = (
+            35 * q**2
+            + 14 * q * (11 * d**2 + 27 * d + 27)
+            + 120 * (d**4 + 4 * d**3 + 7 * d**2 + 6 * d + 3)
+        )
+        assert d * a + 144 * q == 0
+        assert p_w == a**2 * f_w
+        assert p_c == a**4 * conic
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -643,6 +666,7 @@ def main() -> None:
     check_official_frobenius_role_packets()
     check_scaled_quadratic_core()
     check_coefficient_matrix_router()
+    check_singular_j0_univariate()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -658,6 +682,7 @@ def main() -> None:
         "lambda^p=(beta/gamma)lambda",
         "E_5=(q-d)(Y^2V^2(G_2+AU)+G_2K_6)-6dK_6D=0",
         "Delta K_6+(q-d)D^2W=0",
+        "P_W(q)=P_C(q)=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -673,6 +698,7 @@ def main() -> None:
         "frobenius_role_packets=21 "
         "scaled_quadratic_core=1 "
         "coefficient_matrix_router=1 "
+        "singular_j0_univariate=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 
