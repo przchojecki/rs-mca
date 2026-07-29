@@ -30,7 +30,9 @@ companion `3+3` exclusion. It proves algebraic reductions, not emptiness:
        both exceptional slopes reduce to fixed norm polynomials;
        the generic core has an exact seven-shape affine-color equation;
 3+2+1: an exact common-quadratic factor model with four retained variables
-       and one degree-42 symbolic role polynomial.
+       and one degree-42 symbolic role polynomial; on the fully proportional
+       generic chart, three explicit structural filters complete the
+       coefficient endpoint.
 ```
 
 The upstream first-match-to-HNF owner bridge remains outside the note. None
@@ -1020,6 +1022,87 @@ Their degrees are at most 16 and 23. If `S_1=0`, retain
 `E_G=X_*=0`. The `J_*` split, structural equations, role packet, `P_4`,
 and arithmetic filters remain on every chart.
 
+The generic coefficient endpoint also admits an exact structural compiler.
+Retain `E_G*a_2*rho_1!=0` and define
+
+```text
+x=(b+15)/4,                   A=-(b+3)/2,
+ell=(b^2+6b+105+8q)/16,
+
+D_c=D_*/(3600b),              Q_c=Q_*/(72D_*),
+G_c=-F_*/(600bE_G),           H_c=ell-G_c,
+Y_c=(ell-2G_c)/A-x,
+V_c=G_c+xY_c+Y_c^2,           R_c=-qP/(2880b).    (28bm)
+```
+
+For a rational function, let `Num` denote its numerator after clearing fixed
+numerical units and cancelling common factors. Put
+
+```text
+Z_D=Num(D_c-Y_cV_c),
+
+Z_Q=Num(Q_c-A G_c-x ell+20+8q/3+D_c),
+
+Z_R=Num(R_c-G_c(ell-G_c)+xQ_c+(A+x)D_c
+        +15+23q/4+q^2/8).                         (28bn)
+```
+
+On the inherited `b(b+3)D_*E_G!=0` saturation, the original definitions of
+`G_2,H,Y,V,D,Q_0,R_0,W_0` are jointly equivalent to
+
+```text
+G_2=G_c, H=H_c, Y=Y_c, V=V_c,
+D=D_c, Q_0=Q_c, R_0=R_c, Z_D=Z_Q=Z_R=0.          (28bo)
+```
+
+Indeed `H_c+G_c=ell` and `H_c=G_c+A(x+Y_c)` recover the original `G_2`
+definition. Since `6-2x=A`, the original `Q_0` equation becomes
+
+```text
+Q_0=A G_c+x ell-20-8q/3-D_c.                     (28bp)
+```
+
+On `Z_D=0`, the original `W_0` is
+`(A+x)D_c+15+23q/4+q^2/8`; substituting this and `H_c=ell-G_c` gives
+`Z_R=0`. Before imposing `Z_D`, the original `R_0` residual minus the
+simplified residual in (28bn) is exactly
+`(A+x)(Y_cV_c-D_c)`, so the joint equivalence is reversible.
+
+The rational functions `(D_c,Q_c,G_c,Y_c,V_c)` have numerator/denominator
+degree bounds
+
+```text
+(3/1), (5/3), (6/4), (6/5), (12/10),
+```
+
+respectively. A degree-15 common denominator for `Z_D` gives numerator degree
+at most 18. Common denominators `bE_GD_*` and `b^2E_G^2D_*` for `Z_Q,Z_R`
+have degrees 7 and 11; termwise collection gives numerator degrees at most
+10 and 15. Therefore
+
+```text
+deg(Z_D)<=18,       deg(Z_Q)<=10,       deg(Z_R)<=15. (28bq)
+```
+
+On `rho_1!=0`, let `m_i=deg_q Z_i` and set
+
+```text
+Zhat_i(b)=rho_1(b)^m_i Z_i(b,-rho_0(b)/rho_1(b)),
+                         i in {D,Q,R}.             (28br)
+```
+
+These are univariate polynomials. Thus the complete generic coefficient and
+structural endpoint is exactly
+
+```text
+U(b)=Zhat_D(b)=Zhat_Q(b)=Zhat_R(b)=0,
+q=-rho_0/rho_1,                                  (28bs)
+```
+
+with every printed denominator and saturation retained. This still requires
+the selected role-discriminant weld, `P_4`, and arithmetic-lift filters; it
+is not a common-root or emptiness verdict.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -1189,13 +1272,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: b81b96313de8fff28e90abf3f3739758ceb26642c4373688eb9807a93acde887
+sha256: fbdd8257798047230f83ed7ff04325ac450beb5b2c80c574f6ec3795e32a4b30
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
