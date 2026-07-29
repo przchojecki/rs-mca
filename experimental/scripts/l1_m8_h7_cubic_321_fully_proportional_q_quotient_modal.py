@@ -167,6 +167,32 @@ def source_polynomials() -> dict[str, object]:
         + q**2 / 8
     )
 
+    e2 = -720 * b
+    e1 = 240 * b**2 - 1902 * b - 630
+    e0 = -40 * b * (b**2 - 6 * b + 27)
+    s1 = sp.expand(a2 * e1 - e2 * a1)
+    s0 = sp.expand(a2 * e0 - e2 * a0)
+    v_exceptional = sp.expand(a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2)
+    x_star = sp.expand(q_star - 24 * d_star * q**2)
+    g_exceptional = -(d_star**2) * l_star / (720 * b * j_star)
+    y_exceptional = (ell - 2 * g_exceptional) / a - x
+    v_structural_exceptional = (
+        g_exceptional + x * y_exceptional + y_exceptional**2
+    )
+    z_d_exceptional = d_core - y_exceptional * v_structural_exceptional
+    z_q_exceptional = (
+        q_core - a * g_exceptional - x * ell + 20 + 8 * q / 3 + d_core
+    )
+    z_r_exceptional = (
+        r_core
+        - g_exceptional * (ell - g_exceptional)
+        + x * q_core
+        + (a + x) * d_core
+        + 15
+        + 23 * q / 4
+        + q**2 / 8
+    )
+
     leading_relation = 247 * b**2 - 1575
     leading_q = -sp.Rational(10, 231) * (b**2 + 27)
     leading_value = sp.cancel(theta.subs(q, leading_q))
@@ -196,6 +222,13 @@ def source_polynomials() -> dict[str, object]:
             coefficients(q_poly.nth(index)) for index in range(q_poly.degree() + 1)
         ]
 
+    x_star_q_coefficients = numerator_q_coefficients(x_star, 5)
+    while len(x_star_q_coefficients) < 4:
+        x_star_q_coefficients.append([0])
+    assert len(x_star_q_coefficients) == 4
+    v_exceptional_coefficients = coefficients(v_exceptional)
+    assert len(v_exceptional_coefficients) - 1 <= 16
+
     return {
         "U": coefficients(univariate),
         "rho_1": coefficients(rho1),
@@ -207,6 +240,13 @@ def source_polynomials() -> dict[str, object]:
         "Z_D_q_coefficients": numerator_q_coefficients(z_d, 18),
         "Z_Q_q_coefficients": numerator_q_coefficients(z_q, 10),
         "Z_R_q_coefficients": numerator_q_coefficients(z_r, 15),
+        "S_1": coefficients(s1),
+        "S_0": coefficients(s0),
+        "V_E": v_exceptional_coefficients,
+        "X_star_q_coefficients": x_star_q_coefficients,
+        "Z_D_e_q_coefficients": numerator_q_coefficients(z_d_exceptional, 27),
+        "Z_Q_e_q_coefficients": numerator_q_coefficients(z_q_exceptional, 13),
+        "Z_R_e_q_coefficients": numerator_q_coefficients(z_r_exceptional, 21),
     }
 
 
@@ -341,6 +381,45 @@ def run_prime(prime: int) -> dict[str, object]:
         structural_common_gcd["filter_remainders_low_to_high"] = (
             structural_remainders
         )
+
+    v_exceptional_source = polynomials["V_E"]
+    s1_source = polynomials["S_1"]
+    s0_source = polynomials["S_0"]
+    assert isinstance(v_exceptional_source, list)
+    assert isinstance(s1_source, list)
+    assert isinstance(s0_source, list)
+    v_exceptional_mod = mod_poly(v_exceptional_source, prime)
+    if v_exceptional_mod == [0]:
+        exceptional_structural_common_gcd: dict[str, object] = {
+            "status": "V_E_IDENTICALLY_ZERO"
+        }
+    else:
+        exceptional_remainders = {}
+        x_star_q_coefficients = polynomials["X_star_q_coefficients"]
+        assert isinstance(x_star_q_coefficients, list)
+        exceptional_remainders["X_E"] = quotient_filter_remainder(
+            x_star_q_coefficients,
+            s1_source,
+            s0_source,
+            v_exceptional_source,
+            prime,
+        )
+        for label in ("D", "Q", "R"):
+            q_coefficients = polynomials[f"Z_{label}_e_q_coefficients"]
+            assert isinstance(q_coefficients, list)
+            exceptional_remainders[label] = quotient_filter_remainder(
+                q_coefficients,
+                s1_source,
+                s0_source,
+                v_exceptional_source,
+                prime,
+            )
+        exceptional_structural_common_gcd = multi_gcd_certificate(
+            [v_exceptional_source, *exceptional_remainders.values()], prime
+        )
+        exceptional_structural_common_gcd["filter_remainders_low_to_high"] = (
+            exceptional_remainders
+        )
     row = {
         "p": prime,
         "digest": digest,
@@ -362,6 +441,7 @@ def run_prime(prime: int) -> dict[str, object]:
             prime,
         ),
         "structural_common_gcd": structural_common_gcd,
+        "exceptional_structural_common_gcd": exceptional_structural_common_gcd,
         "seconds": round(time.monotonic() - started, 6),
     }
     print("L1_H7_C321_FULLY_PROPORTIONAL_Q_ROW " + json.dumps(row, sort_keys=True), flush=True)

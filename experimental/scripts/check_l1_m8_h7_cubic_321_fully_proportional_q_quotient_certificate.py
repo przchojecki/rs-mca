@@ -11,7 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LAUNCHER = HERE / "l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
-EXPECTED_LAUNCHER_SHA256 = "6473b8cb333c63473a344acbc414c4b919380aef219b3035a037445ff3eea80c"
+EXPECTED_LAUNCHER_SHA256 = "12d8ef0946ebcb90b3ec877cb6b4af017e4c4e4d110a6ef57fae42c1fa33f9e8"
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
 
@@ -151,6 +151,32 @@ def source_polynomials() -> dict[str, object]:
         + q**2 / 8
     )
 
+    e2 = -720 * b
+    e1 = 240 * b**2 - 1902 * b - 630
+    e0 = -40 * b * (b**2 - 6 * b + 27)
+    s1 = sp.expand(a2 * e1 - e2 * a1)
+    s0 = sp.expand(a2 * e0 - e2 * a0)
+    v_exceptional = sp.expand(a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2)
+    x_star = sp.expand(q_star - 24 * d_star * q**2)
+    g_exceptional = -(d_star**2) * l_star / (720 * b * j_star)
+    y_exceptional = (ell - 2 * g_exceptional) / a - x
+    v_structural_exceptional = (
+        g_exceptional + x * y_exceptional + y_exceptional**2
+    )
+    z_d_exceptional = d_core - y_exceptional * v_structural_exceptional
+    z_q_exceptional = (
+        q_core - a * g_exceptional - x * ell + 20 + 8 * q / 3 + d_core
+    )
+    z_r_exceptional = (
+        r_core
+        - g_exceptional * (ell - g_exceptional)
+        + x * q_core
+        + (a + x) * d_core
+        + 15
+        + 23 * q / 4
+        + q**2 / 8
+    )
+
     leading_relation = 247 * b**2 - 1575
     leading_q = -sp.Rational(10, 231) * (b**2 + 27)
     leading_numerator = sp.Poly(
@@ -183,6 +209,13 @@ def source_polynomials() -> dict[str, object]:
             coefficients(q_poly.nth(index)) for index in range(q_poly.degree() + 1)
         ]
 
+    x_star_q_coefficients = numerator_q_coefficients(x_star, 5)
+    while len(x_star_q_coefficients) < 4:
+        x_star_q_coefficients.append([0])
+    assert len(x_star_q_coefficients) == 4
+    v_exceptional_coefficients = coefficients(v_exceptional)
+    assert len(v_exceptional_coefficients) - 1 <= 16
+
     return {
         "U": coefficients(univariate),
         "rho_1": coefficients(rho1),
@@ -194,6 +227,13 @@ def source_polynomials() -> dict[str, object]:
         "Z_D_q_coefficients": numerator_q_coefficients(z_d, 18),
         "Z_Q_q_coefficients": numerator_q_coefficients(z_q, 10),
         "Z_R_q_coefficients": numerator_q_coefficients(z_r, 15),
+        "S_1": coefficients(s1),
+        "S_0": coefficients(s0),
+        "V_E": v_exceptional_coefficients,
+        "X_star_q_coefficients": x_star_q_coefficients,
+        "Z_D_e_q_coefficients": numerator_q_coefficients(z_d_exceptional, 27),
+        "Z_Q_e_q_coefficients": numerator_q_coefficients(z_q_exceptional, 13),
+        "Z_R_e_q_coefficients": numerator_q_coefficients(z_r_exceptional, 21),
     }
 
 
@@ -255,6 +295,25 @@ def quotient_filter_remainder(
     return out
 
 
+def verify_multi_gcd_certificate(
+    packet: dict[str, object], family: list[list[int]], prime: int
+) -> None:
+    common = mod_poly(packet["gcd_coefficients_low_to_high"], prime)
+    bezout = packet["bezout_coefficients_low_to_high"]
+    assert common != [0] and common[-1] == 1
+    assert len(common) - 1 == packet["gcd_degree"]
+    assert len(bezout) == len(family)
+    combination = [0]
+    for coefficient, polynomial in zip(bezout, family):
+        assert divmod_poly(polynomial, common, prime)[1] == [0]
+        combination = mod_poly(
+            add(combination, multiply(mod_poly(coefficient, prime), polynomial)),
+            prime,
+        )
+    assert combination == common
+    assert packet["status"] == ("UNIT" if common == [1] else "HIT")
+
+
 def verify_structural_common_gcd(
     packet: dict[str, object], polynomials: dict[str, object], prime: int
 ) -> None:
@@ -280,20 +339,54 @@ def verify_structural_common_gcd(
     assert packet["filter_remainders_low_to_high"] == remainders
 
     family = [u_mod, remainders["D"], remainders["Q"], remainders["R"]]
-    common = mod_poly(packet["gcd_coefficients_low_to_high"], prime)
-    bezout = packet["bezout_coefficients_low_to_high"]
-    assert common != [0] and common[-1] == 1
-    assert len(common) - 1 == packet["gcd_degree"]
-    assert len(bezout) == len(family)
-    combination = [0]
-    for coefficient, polynomial in zip(bezout, family):
-        assert divmod_poly(polynomial, common, prime)[1] == [0]
-        combination = mod_poly(
-            add(combination, multiply(mod_poly(coefficient, prime), polynomial)),
+    verify_multi_gcd_certificate(packet, family, prime)
+
+
+def verify_exceptional_structural_common_gcd(
+    packet: dict[str, object], polynomials: dict[str, object], prime: int
+) -> None:
+    v_exceptional_source = polynomials["V_E"]
+    s1_source = polynomials["S_1"]
+    s0_source = polynomials["S_0"]
+    assert isinstance(v_exceptional_source, list)
+    assert isinstance(s1_source, list)
+    assert isinstance(s0_source, list)
+    v_exceptional_mod = mod_poly(v_exceptional_source, prime)
+    if packet["status"] == "V_E_IDENTICALLY_ZERO":
+        assert v_exceptional_mod == [0]
+        return
+    assert v_exceptional_mod != [0]
+
+    remainders = {}
+    x_star_q_coefficients = polynomials["X_star_q_coefficients"]
+    assert isinstance(x_star_q_coefficients, list)
+    remainders["X_E"] = quotient_filter_remainder(
+        x_star_q_coefficients,
+        s1_source,
+        s0_source,
+        v_exceptional_source,
+        prime,
+    )
+    for label in ("D", "Q", "R"):
+        q_coefficients = polynomials[f"Z_{label}_e_q_coefficients"]
+        assert isinstance(q_coefficients, list)
+        remainders[label] = quotient_filter_remainder(
+            q_coefficients,
+            s1_source,
+            s0_source,
+            v_exceptional_source,
             prime,
         )
-    assert combination == common
-    assert packet["status"] == ("UNIT" if common == [1] else "HIT")
+    assert packet["filter_remainders_low_to_high"] == remainders
+
+    family = [
+        v_exceptional_mod,
+        remainders["X_E"],
+        remainders["D"],
+        remainders["Q"],
+        remainders["R"],
+    ]
+    verify_multi_gcd_certificate(packet, family, prime)
 
 
 def main() -> None:
@@ -361,6 +454,9 @@ def main() -> None:
         )
         verify_structural_common_gcd(
             row["structural_common_gcd"], polynomials, prime
+        )
+        verify_exceptional_structural_common_gcd(
+            row["exceptional_structural_common_gcd"], polynomials, prime
         )
         assert row["seconds"] >= 0
 

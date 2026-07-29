@@ -1361,10 +1361,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: 6473b8cb333c63473a344acbc414c4b919380aef219b3035a037445ff3eea80c
+sha256: 12d8ef0946ebcb90b3ec877cb6b4af017e4c4e4d110a6ef57fae42c1fa33f9e8
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: 987ad970d278f510bbfc45453ce506b4100c9a749c56123aadf34a5fe3186c4e
+sha256: d234633b7b3e813eebc43f0240a29874c82ef6e6ba47f1fc889ba09b75afd63f
 ```
 
 Launch it with
@@ -1385,7 +1385,12 @@ numerators `Z_D,Z_Q,Z_R`, checks their degree bounds, computes the three
 is below `$0.01`. A unit four-way gcd excludes the generic coefficient and
 structural chart for that prime. Only factors of a nonunit gcd remain
 candidates for the role, `P_4`, saturation, and lift filters; an explicit
-`U_IDENTICALLY_ZERO` row is non-conclusive.
+`U_IDENTICALLY_ZERO` row is non-conclusive. The same row also reconstructs
+`V_E,X_E,Zhat_D^e,Zhat_Q^e,Zhat_R^e`, reduces the last four modulo `V_E`,
+and certifies their five-way gcd. A unit five-way gcd excludes the generic
+`a_2*S_1*J_*!=0` exceptional chart; nonunit and `V_E_IDENTICALLY_ZERO`
+returns remain open. This adds no containers, CPUs, memory, retries, or
+timeout to the request.
 
 None of the compute-request scripts was executed in the exporting
 environment: project policy
