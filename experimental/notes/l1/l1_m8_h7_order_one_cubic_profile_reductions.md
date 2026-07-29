@@ -1019,8 +1019,54 @@ X_E(b)=S_1^3X_*(b,-S_0/S_1)=0.                   (28bl)
 
 Their degrees are at most 16 and 23. If `S_1=0`, retain
 `S_0=F_b=X_*=0`; if `a_2=0`, retain the fixed chart (28at) with
-`E_G=X_*=0`. The `J_*` split, structural equations, role packet, `P_4`,
-and arithmetic filters remain on every chart.
+`E_G=X_*=0` at the router stage. The `J_*` split, structural equations, role
+packet, `P_4`, and arithmetic filters remain on every chart not excluded
+below.
+
+The fixed exceptional leading chart is empty in every official
+characteristic. On (28at), put `z=b^2` and collect (28bj) as an affine
+equation in `b`:
+
+```text
+E_G=C_b b+C_0,
+C_b=-720q^2-1902q-40(z+27),
+C_0=240zq+240z-630q.                              (28bl1)
+```
+
+Substitution of `z=1575/247` and `q=-10(z+27)/231` gives
+
+```text
+C_b=-8244*3950060/(61009*5929),
+C_0=3233714400/(61009*231).                       (28bl2)
+```
+
+All displayed denominators and `C_b` are units at the four official primes.
+Consequently `E_G=0` forces
+
+```text
+b=115275930/45228187.                              (28bl3)
+```
+
+The denominator is a unit because `45228187=229*197503`; the residues of
+`197503` at the two smaller official primes are `919` and `66432`, and it is
+smaller than the other two. Combining (28bl3) with `b^2=1575/247` would force
+
+```text
+W=247*115275930^2-1575*45228187^2
+ =60466872820654125=0.                             (28bl4)
+```
+
+Instead,
+
+```text
+W mod (8191,131071,524287,2147483647)
+ =(6740,100974,284891,1825899718).                 (28bl5)
+```
+
+Every residue is nonzero. Thus `E_G=0` already excludes the complete fixed
+`a_2=0` exceptional chart; its additional `X_*=0`, structural, role, `P_4`,
+and lift equations are unnecessary for this branch. This argument does not
+exclude the ordinary `a_2=0` chart with `E_G!=0`.
 
 The generic coefficient endpoint also admits an exact structural compiler.
 Retain `E_G*a_2*rho_1!=0` and define
@@ -1161,9 +1207,10 @@ V_E(b)=X_E(b)=Zhat_D^e(b)=Zhat_Q^e(b)=Zhat_R^e(b)=0,
 q=-S_0/S_1.                                        (28bx)
 ```
 
-The `S_1=0`, `a_2=0`, and `J_*=0` charts remain, as do the selected role,
-`P_4`, saturation, and arithmetic-lift filters. No common-root or emptiness
-verdict is asserted.
+The `S_1=0` and `J_*=0` charts remain, as do the selected role, `P_4`,
+saturation, and arithmetic-lift filters. The separate exceptional `a_2=0`
+chart is empty by (28bl1)--(28bl5). No common-root verdict is asserted for
+the retained charts.
 
 ## Symmetric affine-color equation for 2+2+2
 
@@ -1334,13 +1381,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: f0a6ef84c254b6f6ecc4b2eb5ec468c4ecd604739713ae129939702d97e834de
+sha256: 8a07454eed5a1171fe364d34ba3f4b5be8d622e5e7bdba625ebd4766dcb15756
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
@@ -1397,6 +1444,11 @@ environment: project policy
 sends computation to Modal, and the configured Modal workspace is currently
 spend-blocked. The written proofs and scripts are available for independent
 replay; no pending execution is counted as evidence.
+
+The exact-rational verifier's note path was also repaired from the repository
+root to `experimental/notes/l1`; the previous path would have failed before
+the algebraic checks. This source repair and the new leading-chart arithmetic
+were syntax-checked but not executed in the exporting environment.
 
 ## Boundary
 

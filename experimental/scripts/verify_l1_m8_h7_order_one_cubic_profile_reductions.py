@@ -8,8 +8,8 @@ from itertools import combinations
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
-NOTE = ROOT / "notes/l1/l1_m8_h7_order_one_cubic_profile_reductions.md"
+EXPERIMENTAL = Path(__file__).resolve().parents[1]
+NOTE = EXPERIMENTAL / "notes/l1/l1_m8_h7_order_one_cubic_profile_reductions.md"
 
 
 def poly_add(left: list[Q], right: list[Q]) -> list[Q]:
@@ -940,6 +940,38 @@ def check_fully_proportional_exceptional_e() -> None:
         assert a2 * s1**2 * exceptional == e2 * v
 
 
+def check_fully_proportional_exceptional_leading() -> None:
+    primes = (8191, 131071, 524287, 2147483647)
+    expected = (6740, 100974, 284891, 1825899718)
+    z = Q(1575, 247)
+    q = -Q(10, 231) * (z + 27)
+    c_b = -720 * q**2 - 1902 * q - 40 * (z + 27)
+    c_0 = 240 * z * q + 240 * z - 630 * q
+
+    assert z + 27 == Q(8244, 247)
+    assert c_b == -Q(8244 * 3950060, 61009 * 5929)
+    assert c_0 == Q(3233714400, 61009 * 231)
+    forced_b = -c_0 / c_b
+    assert forced_b == Q(115275930, 45228187)
+    assert 45228187 == 229 * 197503
+
+    obstruction = 247 * 115275930**2 - 1575 * 45228187**2
+    assert obstruction == 60466872820654125
+    assert tuple(obstruction % prime for prime in primes) == expected
+
+    for prime in primes:
+        z_mod = 1575 * pow(247, -1, prime) % prime
+        q_mod = -10 * (z_mod + 27) * pow(231, -1, prime) % prime
+        c_b_mod = (
+            -720 * q_mod**2 - 1902 * q_mod - 40 * (z_mod + 27)
+        ) % prime
+        c_0_mod = (240 * z_mod * q_mod + 240 * z_mod - 630 * q_mod) % prime
+        assert c_b_mod and 45228187 % prime
+        b_mod = -c_0_mod * pow(c_b_mod, -1, prime) % prime
+        assert b_mod == 115275930 * pow(45228187, -1, prime) % prime
+        assert (b_mod**2 - z_mod) % prime
+
+
 def check_fully_proportional_structural() -> None:
     for b, q, g, d_core, q0 in (
         (Q(2), Q(5), Q(7), Q(3), Q(11)),
@@ -1116,6 +1148,7 @@ def main() -> None:
     check_fully_proportional_coefficients()
     check_fully_proportional_q_quotient()
     check_fully_proportional_exceptional_e()
+    check_fully_proportional_exceptional_leading()
     check_fully_proportional_structural()
     check_fully_proportional_exceptional_structural()
     check_affine_color_compiler()
@@ -1158,6 +1191,8 @@ def main() -> None:
         "U(b)=Zhat_D(b)=Zhat_Q(b)=Zhat_R(b)=0",
         "G_e=-D_*^2L_*/(720bJ_*)",
         "V_E(b)=X_E(b)=Zhat_D^e(b)=Zhat_Q^e(b)=Zhat_R^e(b)=0",
+        "W=247*115275930^2-1575*45228187^2",
+        "(6740,100974,284891,1825899718)",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1184,6 +1219,7 @@ def main() -> None:
         "fully_proportional_bivariate_compiler=1 "
         "fully_proportional_q_quotient=1 "
         "fully_proportional_exceptional_e=1 "
+        "fully_proportional_exceptional_leading=4 "
         "fully_proportional_structural=1 "
         "fully_proportional_exceptional_structural=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
