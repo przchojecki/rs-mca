@@ -566,6 +566,58 @@ def check_singular_j0_univariate() -> None:
         assert p_c == a**4 * conic
 
 
+def check_singular_jnonzero_charts() -> None:
+    for values in (
+        (Q(2), Q(3), Q(5), Q(7)),
+        (Q(-1), Q(4), Q(9), Q(2)),
+        (Q(5, 2), Q(-3, 2), Q(11), Q(-4)),
+    ):
+        row = scaled_quadratic_core(*values)
+        h = row["g2"] + row["a"] * row["u"]
+        w = row["y"] * (row["a"] + row["x"]) * row["v"] + row["l4"]
+        j = (row["q"] - row["d"]) * row["g2"] - 6 * row["d"] * row["delta"]
+        determinant = row["g2"] * j + row["x"] * (row["q"] - row["d"]) * row["delta"]
+        q6 = (row["y"] - row["a"]) * row["v"] - row["s"]
+        n = row["g2"] ** 2 + row["x"] * row["delta"]
+        z = n + 6 * row["delta"] * row["g2"]
+        p = (
+            3 * row["x"] * (6 * row["g2"] + row["a"] * row["x"] * row["u"] - 20 - row["delta"])
+            - 8 * row["q"] * row["x"]
+            - 3 * row["g2"] * h
+        )
+        e4_on_w0 = row["delta"] * row["g2"] * h - row["x"] * row["k6"]
+        assert q6 == 6 * row["g2"] + row["a"] * row["x"] * row["u"] - row["l3"] - row["delta"]
+        assert p - row["q"] * row["x"] * row["d"] == 3 * (
+            row["x"] * q6 - row["g2"] * h
+        )
+        assert determinant == row["q"] * n - row["d"] * z
+        assert row["x"] * row["e6"] == row["delta"] * (
+            row["x"] * q6 - row["g2"] * h
+        ) + e4_on_w0
+        assert row["e4"] == e4_on_w0 - row["delta"] * w
+
+    for q, d in ((Q(5), Q(7)), (Q(11), Q(-4))):
+        y = (q + 30) / 12
+        row = scaled_quadratic_core(Q(0), y, q, d)
+        p_w = q**3 + 126 * q**2 + (4356 + 504 * d + 72 * d**2) * q + 31320
+        p_f = (
+            576 * q * d**2
+            + (q**3 + 90 * q**2 + 7164 * q + 57240) * d
+            + 144 * q**2
+            + 4320 * q
+        )
+        p_l = (q**3 + 90 * q**2 + 3132 * q + 57240) * d - (
+            8 * q**3 + 864 * q**2 + 30528 * q + 250560
+        )
+        f0 = (q - d) * y + d * y**3 + d * row["l3"]
+        w = y * (row["a"] + row["x"]) * row["v"] + row["l4"]
+        assert row["g2"] == 0
+        assert p_w == 288 * w
+        assert p_f == 1728 * f0
+        assert p_f == 8 * p_w + p_l
+        assert row["e6"] == -(row["k6"] + y**6 + row["l3"] * y**3)
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -667,6 +719,7 @@ def main() -> None:
     check_scaled_quadratic_core()
     check_coefficient_matrix_router()
     check_singular_j0_univariate()
+    check_singular_jnonzero_charts()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -683,6 +736,8 @@ def main() -> None:
         "E_5=(q-d)(Y^2V^2(G_2+AU)+G_2K_6)-6dK_6D=0",
         "Delta K_6+(q-d)D^2W=0",
         "P_W(q)=P_C(q)=0",
+        "q^2xN-PZ=0",
+        "primitive shift-pair coefficient ledger",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -699,6 +754,7 @@ def main() -> None:
         "scaled_quadratic_core=1 "
         "coefficient_matrix_router=1 "
         "singular_j0_univariate=1 "
+        "singular_jnonzero_charts=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

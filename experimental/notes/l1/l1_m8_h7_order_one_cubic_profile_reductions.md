@@ -597,6 +597,65 @@ emits extended-Euclidean coefficients for all four rows. It was not run:
 the configured Modal workspace is spend-blocked. The checker accepts exact
 HIT packets but requires `--require-all-unit` for an exclusion certificate.
 
+The other determinant-singular chamber also admits an exact reduction before
+any elimination. Retain the notation in (28q)--(28t), take `Delta=0` and
+`J!=0`, and put
+
+```text
+N=G_2^2+xD,
+Z=N+6DG_2,
+P=3x(6G_2+AxU-20-D)-8qx-3G_2H.                    (28y)
+```
+
+The singular equations force `H!=0` and
+
+```text
+x=0  if and only if  G_2=0.                         (28z)
+```
+
+On the `x=0` chart one has
+
+```text
+Y=(q+30)/12,       V=Y^2,       D=Y^3,
+
+P_W^+=q^3+126q^2+(4356+504d+72d^2)q+31320=0,
+
+(q^3+90q^2+3132q+57240)d
+ =8q^3+864q^2+30528q+250560,
+
+K_6+Y^6+L_3Y^3=0.                                  (28aa)
+```
+
+These three equations, the conic, and one role equation are equivalent to
+the complete coefficient core on this chart. If the coefficient of `d` in
+(28aa) vanishes, the right side must vanish as well; that exceptional chart
+is not divided away.
+
+On `x!=0`, also `G_2NZ!=0`. The identities
+
+```text
+(Y-A)V-S=6G_2+AxU-L_3-D,
+Delta=qN-dZ
+```
+
+turn the sixth coefficient and determinant equations into
+
+```text
+d=P/(qx),       q^2xN-PZ=0.                         (28ab)
+```
+
+After this substitution, clear `(qx)^2` from `W`, `(qx)^4` from
+`DG_2H-xK_6` and the conic, and `(qx)^8` from the quadratic role equation.
+Together with the last equation of (28ab), these are five equations in only
+`(x,Y,q)`. Saturate by `qxG_2NZP(q^2x-P)` and all inherited factors. This is
+an exact three-variable primitive shift-pair coefficient ledger, not a unit
+verdict.
+
+Although each official role packet is irreducible over `F_p`, the variables
+`q,d,x,Y` are not forced into `F_p`; they live in the ambient quadratic
+field. Thus role irreducibility alone does not delete either chart. The
+unrun singular-`J=0` gcd packet remains logically independent.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -766,13 +825,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 1f0698660641128900f0748700895a82aee18e6b09e81931013fdeabc694d885
+sha256: 60d9dcf59900c1cc9b402cf4dc1f8d93ce92176e0cee6bd45116efa98564d54a
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
