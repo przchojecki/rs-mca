@@ -440,19 +440,62 @@ Each of the four rational color packets is now an explicit system in only
 `(x,q,d)`: the conic, substituted `D_b`,
 `alpha B_6-A_6 beta=0`, and one factor of (36).
 
+There is also a denominator-free quotient weld. With `p=b-12`, define
+
+```text
+C=d^2+3d+3,
+a=3x^2-q/2,
+h=3qC/4+q^2/8.
+```
+
+Then `D_b=0` is exactly `p^2+ap-h=0`. If
+`p^n=U_np+V_n` in this quadratic quotient, the recurrence is
+
+```text
+(U_0,V_0)=(0,1), (U_1,V_1)=(1,0),
+U_(n+1)=V_n-aU_n,  V_(n+1)=hU_n.                  (38)
+```
+
+It turns each factor `F_i` in (36) into a unique remainder
+`c_(i,1)p+c_(i,0)`. In particular,
+
+```text
+12P=(-60x^4-8qx^2+8q(d+2)x+4qC+q^2)p
+    -12xq(d+2)(x^2+q/6) mod D_b.                  (39)
+```
+
+Put
+
+```text
+delta=12alpha+(q-d)B_5+6dG,
+gamma=12A_6+B_6.                                   (40)
+```
+
+On `alpha!=0`, packet `i` is equivalent to the conic and
+
+```text
+delta^2-a alpha delta-h alpha^2=0,
+alpha gamma-A_6 delta=0,
+alpha c_(i,0)-c_(i,1)delta=0.                      (41)
+```
+
+Indeed `M_5` gives `p=-delta/alpha`; substitution proves both directions.
+The exceptional loci deleted by `alpha` are exactly the inherited `q=d`
+saturation and the separately owned `x=0`, `q=-6x^2` branches.
+
 ## Verification
 
 The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: a743b87673f6ee07bbb35e97880ee7386ce89873311903922b54766ba63d2d9b
+sha256: 14f540187eba8a0ef5aa4198cee1d7cd8bddd788351df49fc52bcdbffdafd840
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 affine_color_shapes=7 affine_formula=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256

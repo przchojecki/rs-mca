@@ -51,6 +51,20 @@ def poly_gcd(left: list[Q], right: list[Q]) -> list[Q]:
     return [value / leader for value in a]
 
 
+def reduce_quadratic(poly: list[Q], a: Q, h: Q) -> tuple[Q, Q]:
+    u = [Q(0), Q(1)]
+    v = [Q(1), Q(0)]
+    coefficient = Q(0)
+    constant = Q(0)
+    for degree, value in enumerate(poly):
+        while len(u) <= degree:
+            u.append(v[-1] - a * u[-1])
+            v.append(h * u[-2])
+        coefficient += value * u[degree]
+        constant += value * v[degree]
+    return coefficient, constant
+
+
 def evaluate(poly: list[Q], value: Q) -> Q:
     out = Q(0)
     for coefficient in reversed(poly):
@@ -280,6 +294,31 @@ def check_affine_color_compiler() -> None:
     assert (-4) ** 2 - 4 * 54 == -200
     assert 2404**2 - 4 * 125 * 13448 == -(2 * 486) ** 2
 
+    x, q, d = Q(2), Q(5), Q(3)
+    c = d**2 + 3 * d + 3
+    quotient_a = 3 * x**2 - q / 2
+    quotient_h = 3 * q * c / 4 + q**2 / 8
+    z = x**2 + q / 6
+    p_poly = [Q(0), Q(1)]
+    ell_poly = [z, Q(-2, 3)]
+    eta_poly = [-q * (d + 2) / 6, -x]
+    p_image = poly_add(
+        poly_add(
+            poly_mul(poly_mul(ell_poly, ell_poly), p_poly),
+            [6 * x * value for value in poly_mul(ell_poly, eta_poly)],
+        ),
+        [-(4 * x**2 / 3) * value for value in poly_mul(p_poly, p_poly)],
+    )
+    coefficient, constant = reduce_quadratic(p_image, quotient_a, quotient_h)
+    expected_coefficient = (
+        -60 * x**4 - 8 * q * x**2 + 8 * q * (d + 2) * x + 4 * q * c + q**2
+    )
+    expected_constant = -12 * x * q * (d + 2) * z
+    assert (12 * coefficient, 12 * constant) == (
+        expected_coefficient,
+        expected_constant,
+    )
+
     for lam in (Q(2), Q(-1), Q(3, 2)):
         e1, e2, e3 = 1 + lam, lam, Q(0)
         p = e2 - e1**2 / 3
@@ -307,6 +346,7 @@ def main() -> None:
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
+        "delta^2-a alpha delta-h alpha^2=0",
         "LOCAL_ONLY",
     ):
         assert anchor in note
@@ -314,7 +354,7 @@ def main() -> None:
         "L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS "
         "linear_samples=2 x0_samples=3 q6x2_samples=3 "
         "common_quadratic=1 role_polynomial=1 "
-        "affine_color_shapes=7 affine_formula=1"
+        "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 
 
