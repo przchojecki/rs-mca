@@ -246,7 +246,17 @@ def check_affine_color_compiler() -> None:
     unoriented = {color_orbit(subset, True) for subset in subsets}
     assert len(subsets) == 56
     assert len(cyclic) == 7 and all(len(item) == 8 for item in cyclic)
-    assert len(unoriented) == 5
+    assert len(unoriented) == 5  # Euclidean classes; affine chirality remains.
+
+    theta = [Q(1)]
+    for factor in (
+        [Q(50), Q(1)],
+        [Q(-578), Q(-224), Q(1)],
+        [Q(54), Q(-4), Q(1)],
+        [Q(13448), Q(-2404), Q(125)],
+    ):
+        theta = poly_mul(theta, factor)
+    assert len(theta) - 1 == 7
 
     for lam in (Q(2), Q(-1), Q(3, 2)):
         e1, e2, e3 = 1 + lam, lam, Q(0)
@@ -273,13 +283,14 @@ def main() -> None:
         "common monic quadratic",
         "Lambda_321(lambda)",
         "K_8(P,Q)",
+        "Theta_8(T)",
         "LOCAL_ONLY",
     ):
         assert anchor in note
     print(
         "L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS "
         "linear_samples=2 x0_samples=3 q6x2_samples=3 "
-        "common_quadratic=1 role_polynomial=1 affine_color_shapes=5"
+        "common_quadratic=1 role_polynomial=1 affine_color_shapes=7"
     )
 
 

@@ -28,7 +28,7 @@ companion `3+3` exclusion. It proves algebraic reductions, not emptiness:
 ```text
 2+2+2: one quadratic and two linear remainders in one variable;
        both exceptional slopes reduce to fixed norm polynomials;
-       the generic core has an exact five-shape affine-color equation;
+       the generic core has an exact seven-shape affine-color equation;
 3+2+1: an exact common-quadratic factor model with four retained variables
        and one degree-42 symbolic role polynomial.
 ```
@@ -359,19 +359,37 @@ Res_T(T^3-s_1T^2+s_2T-s_3, Z-f(T))
 ```
 
 Thus `K_8(P,Q)=0` is an exact necessary color equation in the existing
-symmetric variables. The 56 color triples have seven rotation orbits and
-five unoriented affine shapes, with gap types
+symmetric variables. The 56 color triples have seven oriented affine
+shapes, with cyclic gap types
 
 ```text
-(1,1,6), (1,2,5), (1,3,4), (2,2,4), (2,3,3).
+(1,1,6),
+(1,2,5), (1,5,2),
+(1,3,4), (1,4,3),
+(2,2,4),
+(2,3,3).
 ```
 
-Accordingly the primitive characteristic-zero squarefree radical of (29),
-as a binary form in `P^3,Q^2`, has degree five. The safe cross-characteristic
-equation remains the full resultant (29); reduction can merge factors. On
-the generic fifth-slope branch, eliminating `b` now leaves the conic,
-substituted `D_b`, compatibility of `M_5,M_6`, and (29): four equations in
-`(x,q,d)`. This is a reduction, not an emptiness verdict.
+For `T=-27Q^2/P^3`, direct substitution gives the exact color polynomial
+
+```text
+Theta_8(T)=(T+50)(T^2-224T-578)(T^2-4T+54)
+           (125T^2-2404T+13448).                  (32)
+```
+
+The three isosceles values are `-50` and `112+/-81sqrt(2)`. The two
+scalene reflection pairs give `2+/-5sqrt(-2)` and
+`(1202+/-486sqrt(-1))/125`. Reflection conjugates, rather than identifies,
+these scalene affine invariants. Thus the primitive characteristic-zero
+squarefree radical of (29), as a binary form in `P^3,Q^2`, has degree seven;
+its homogeneous form is `P^21 Theta_8(-27Q^2/P^3)` and includes `P=0`.
+
+This repairs an earlier draft that incorrectly counted the five Euclidean
+reflection classes as affine classes. The safe cross-characteristic equation
+remains the full resultant (29); reduction can merge factors. On the generic
+fifth-slope branch, eliminating `b` now leaves the conic, substituted `D_b`,
+compatibility of `M_5,M_6`, and (29): four equations in `(x,q,d)`. This is a
+reduction, not an emptiness verdict.
 
 ## Verification
 
@@ -379,13 +397,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: c2b0faa609239f7ab10b3c4198abb584eb2fd20b10600c6bc2fa47d5a2f7e24b
+sha256: 478c99f198698a94e60615924a082fb05ab2dd6168e108dbc777bbbcb4f7f687
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 affine_color_shapes=5
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 affine_color_shapes=7
 ```
 
 The bounded compute-request launcher has SHA-256
