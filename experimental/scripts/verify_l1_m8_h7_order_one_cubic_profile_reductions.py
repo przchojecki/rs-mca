@@ -51,6 +51,13 @@ def poly_gcd(left: list[Q], right: list[Q]) -> list[Q]:
     return [value / leader for value in a]
 
 
+def poly_power(poly: list[Q], exponent: int) -> list[Q]:
+    out = [Q(1)]
+    for _ in range(exponent):
+        out = poly_mul(out, poly)
+    return out
+
+
 def reduce_quadratic(poly: list[Q], a: Q, h: Q) -> tuple[Q, Q]:
     u = [Q(0), Q(1)]
     v = [Q(1), Q(0)]
@@ -241,6 +248,27 @@ def check_role_polynomial() -> None:
     assert 7 * 7 == 49 and 49 - 7 == 42 and 7 * 6 == 42
 
 
+def check_role_factors() -> None:
+    a = [Q(1), Q(-1), Q(1)]
+    b = [Q(2), Q(-3), Q(-3), Q(2)]
+    a3, a6 = poly_power(a, 3), poly_power(a, 6)
+    b2, b4 = poly_power(b, 2), poly_power(b, 4)
+    factors = (
+        poly_add(b2, [50 * value for value in a3]),
+        poly_add(poly_add(b4, [-224 * value for value in poly_mul(b2, a3)]), [-578 * value for value in a6]),
+        poly_add(poly_add(b4, [-4 * value for value in poly_mul(b2, a3)]), [54 * value for value in a6]),
+        poly_add(
+            poly_add([125 * value for value in b4], [-2404 * value for value in poly_mul(b2, a3)]),
+            [13448 * value for value in a6],
+        ),
+    )
+    assert tuple(len(factor) - 1 for factor in factors) == (6, 12, 12, 12)
+    product = [Q(1)]
+    for factor in factors:
+        product = poly_mul(product, factor)
+    assert len(product) - 1 == 42
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -335,6 +363,7 @@ def main() -> None:
     check_q6x2()
     check_common_quadratic()
     check_role_polynomial()
+    check_role_factors()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -343,6 +372,7 @@ def main() -> None:
         "R_12(d)",
         "common monic quadratic",
         "Lambda_321(lambda)",
+        "B^4-224B^2A^3-578A^6",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -353,7 +383,7 @@ def main() -> None:
     print(
         "L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS "
         "linear_samples=2 x0_samples=3 q6x2_samples=3 "
-        "common_quadratic=1 role_polynomial=1 "
+        "common_quadratic=1 role_polynomial=1 role_factors=4 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

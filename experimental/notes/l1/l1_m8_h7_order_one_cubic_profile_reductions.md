@@ -320,6 +320,28 @@ Adjoin `Lambda_321(lambda)=0` to (24)--(27), perform the common-quadratic
 elimination once with symbolic `lambda`, and factor retained lambda
 components only afterward.
 
+The role polynomial itself has a small rational factorization. Put
+
+```text
+A=lambda^2-lambda+1,
+B=(lambda+1)(2lambda-1)(lambda-2).
+```
+
+Then `Lambda_321` is a nonzero rational scalar multiple of
+
+```text
+(B^2+50A^3)
+(B^4-224B^2A^3-578A^6)
+(B^4-4B^2A^3+54A^6)
+(125B^4-2404B^2A^3+13448A^6).                     (28a)
+```
+
+The factor degrees are `6,12,12,12`. This is the homogenization of the
+seven affine-shape polynomial (32) under `T=B^2/A^3`; identity
+`4A^3-B^2=27lambda^2(lambda-1)^2` prevents an extra `A=B=0` root. Thus the
+common-quadratic core has four rational role packets preserving all 42
+ordered roles with multiplicity.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -489,13 +511,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 14f540187eba8a0ef5aa4198cee1d7cd8bddd788351df49fc52bcdbffdafd840
+sha256: 03d0d3334358cfbb3520c832e346d409d01366d4cc7d4a11bebaad8d1cb19987
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
