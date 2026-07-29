@@ -1068,6 +1068,43 @@ Every residue is nonzero. Thus `E_G=0` already excludes the complete fixed
 and lift equations are unnecessary for this branch. This argument does not
 exclude the ordinary `a_2=0` chart with `E_G!=0`.
 
+The simultaneous `S_1=S_0=0` chart also has a denominator-safe univariate
+router. Put `z=b^2` and
+
+```text
+A=1575-247z,
+C=-800z^2+8929z-11025,
+N=40z^2+51z-2835,
+
+E_0=42Ab+(z+27)C,
+E_1=15A(8z-21)+b(-52800z^2+710097z-1497825).
+                                                               (28bl6)
+```
+
+Direct expansion gives `S_0=360bE_0`, `S_1=126E_1`, and, on `z=b^2`,
+
+```text
+(z+27)E_1-66bE_0
+ =-3A(163b(z+27)-N).                              (28bl7)
+```
+
+The declared chart has `bA!=0`. Thus `S_1=S_0=0` forces
+`163b(z+27)=N`. The divisor `z+27` cannot vanish: `N(-27)=24948` has
+residues `(375,24948,24948,24948)` at the four official primes. Consequently
+the chart is equivalent to
+
+```text
+H(z)=N^2-163^2z(z+27)^2=0,
+K(z)=42AN+163(z+27)^2C=0,
+b=N/(163(z+27)).                                  (28bl8)
+```
+
+Both `H` and `K` have degree four in every official characteristic, with
+leaders `1600` and `-130400`. Conversely, (28bl8) reconstructs `b^2=z` and
+`E_0=0`; (28bl7) then recovers `E_1=0`. This proves equivalence without a
+necessary squaring branch. The equations `F_b=X_*=0`, the `J_*` split,
+structural filters, role packet, `P_4`, saturations, and lifts remain.
+
 The generic coefficient endpoint also admits an exact structural compiler.
 Retain `E_G*a_2*rho_1!=0` and define
 
@@ -1207,10 +1244,10 @@ V_E(b)=X_E(b)=Zhat_D^e(b)=Zhat_Q^e(b)=Zhat_R^e(b)=0,
 q=-S_0/S_1.                                        (28bx)
 ```
 
-The `S_1=0` and `J_*=0` charts remain, as do the selected role, `P_4`,
-saturation, and arithmetic-lift filters. The separate exceptional `a_2=0`
-chart is empty by (28bl1)--(28bl5). No common-root verdict is asserted for
-the retained charts.
+The `S_1=S_0=0` chart is reduced to the quartic pair (28bl8), while `J_*=0`
+remains, as do the selected role, `P_4`, saturation, and arithmetic-lift
+filters. The separate exceptional `a_2=0` chart is empty by
+(28bl1)--(28bl5). No common-root verdict is asserted for the retained charts.
 
 ## Symmetric affine-color equation for 2+2+2
 
@@ -1381,13 +1418,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 8a07454eed5a1171fe364d34ba3f4b5be8d622e5e7bdba625ebd4766dcb15756
+sha256: 82feb2820f1539b9c3da69ebbfbf0c6b84bfede5ae357303dc828d4d3cfabd0a
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
@@ -1408,10 +1445,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: 12d8ef0946ebcb90b3ec877cb6b4af017e4c4e4d110a6ef57fae42c1fa33f9e8
+sha256: 06e941be7bd231d993a63ebb83c0855f0798524a10e86249e9796f9b7a02f3c0
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: d234633b7b3e813eebc43f0240a29874c82ef6e6ba47f1fc889ba09b75afd63f
+sha256: 9174a04da730f47d594c65dbc0f0d8d20aaa8a064cc225c51ef69e68d6baf1de
 ```
 
 Launch it with
@@ -1436,8 +1473,14 @@ candidates for the role, `P_4`, saturation, and lift filters; an explicit
 `V_E,X_E,Zhat_D^e,Zhat_Q^e,Zhat_R^e`, reduces the last four modulo `V_E`,
 and certifies their five-way gcd. A unit five-way gcd excludes the generic
 `a_2*S_1*J_*!=0` exceptional chart; nonunit and `V_E_IDENTICALLY_ZERO`
-returns remain open. This adds no containers, CPUs, memory, retries, or
-timeout to the request.
+returns remain open. Finally the row certifies and factors `gcd(H,K)` for the
+simultaneous `S_1=S_0=0` chart, flags factors on the separately excluded
+`A=0` chart, and lists exactly the remaining irreducible factors of degree at
+most two. `ambient_status=EMPTY` excludes the chart over `F_(p^2)`;
+`ambient_status=HIT` returns the only factors that continue to `F_b=X_*=0`
+and the downstream filters. The checker independently reconstructs `A,H,K`
+and verifies the gcd, factorization, guard, and ambient-degree classification.
+This adds no containers, CPUs, memory, retries, or timeout to the request.
 
 None of the compute-request scripts was executed in the exporting
 environment: project policy
@@ -1447,8 +1490,9 @@ replay; no pending execution is counted as evidence.
 
 The exact-rational verifier's note path was also repaired from the repository
 root to `experimental/notes/l1`; the previous path would have failed before
-the algebraic checks. This source repair and the new leading-chart arithmetic
-were syntax-checked but not executed in the exporting environment.
+the algebraic checks. This source repair, the leading-chart arithmetic, the
+singular-affine identity, and the extended packet were syntax-checked but not
+executed in the exporting environment.
 
 ## Boundary
 

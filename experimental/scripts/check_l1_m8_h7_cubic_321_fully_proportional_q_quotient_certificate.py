@@ -11,7 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LAUNCHER = HERE / "l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
-EXPECTED_LAUNCHER_SHA256 = "12d8ef0946ebcb90b3ec877cb6b4af017e4c4e4d110a6ef57fae42c1fa33f9e8"
+EXPECTED_LAUNCHER_SHA256 = "06e941be7bd231d993a63ebb83c0855f0798524a10e86249e9796f9b7a02f3c0"
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
 
@@ -156,6 +156,17 @@ def source_polynomials() -> dict[str, object]:
     e0 = -40 * b * (b**2 - 6 * b + 27)
     s1 = sp.expand(a2 * e1 - e2 * a1)
     s0 = sp.expand(a2 * e0 - e2 * a0)
+    z_affine = sp.symbols("z_affine")
+    a_affine = 1575 - 247 * z_affine
+    c_affine = -800 * z_affine**2 + 8929 * z_affine - 11025
+    n_affine = 40 * z_affine**2 + 51 * z_affine - 2835
+    h_affine = sp.expand(
+        n_affine**2 - 163**2 * z_affine * (z_affine + 27) ** 2
+    )
+    k_affine = sp.expand(
+        42 * a_affine * n_affine
+        + 163 * (z_affine + 27) ** 2 * c_affine
+    )
     v_exceptional = sp.expand(a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2)
     x_star = sp.expand(q_star - 24 * d_star * q**2)
     g_exceptional = -(d_star**2) * l_star / (720 * b * j_star)
@@ -183,10 +194,12 @@ def source_polynomials() -> dict[str, object]:
         sp.fraction(sp.cancel(theta.subs(q, leading_q)))[0], b, domain=sp.ZZ
     )
 
-    def coefficients(expression: object) -> list[int]:
+    def coefficients(expression: object, variable: object = b) -> list[int]:
         return [
             int(value)
-            for value in reversed(sp.Poly(expression, b, domain=sp.ZZ).all_coeffs())
+            for value in reversed(
+                sp.Poly(expression, variable, domain=sp.ZZ).all_coeffs()
+            )
         ]
 
     def numerator_q_coefficients(
@@ -229,6 +242,9 @@ def source_polynomials() -> dict[str, object]:
         "Z_R_q_coefficients": numerator_q_coefficients(z_r, 15),
         "S_1": coefficients(s1),
         "S_0": coefficients(s0),
+        "singular_affine_A": coefficients(a_affine, z_affine),
+        "singular_affine_H": coefficients(h_affine, z_affine),
+        "singular_affine_K": coefficients(k_affine, z_affine),
         "V_E": v_exceptional_coefficients,
         "X_star_q_coefficients": x_star_q_coefficients,
         "Z_D_e_q_coefficients": numerator_q_coefficients(z_d_exceptional, 27),
@@ -389,6 +405,45 @@ def verify_exceptional_structural_common_gcd(
     verify_multi_gcd_certificate(packet, family, prime)
 
 
+def verify_exceptional_singular_affine_gcd(
+    packet: dict[str, object], polynomials: dict[str, object], prime: int
+) -> None:
+    h_source = polynomials["singular_affine_H"]
+    k_source = polynomials["singular_affine_K"]
+    a_source = polynomials["singular_affine_A"]
+    assert isinstance(h_source, list)
+    assert isinstance(k_source, list)
+    assert isinstance(a_source, list)
+    assert len(mod_poly(h_source, prime)) - 1 == 4
+    assert len(mod_poly(k_source, prime)) - 1 == 4
+    assert packet["status"] in {"UNIT", "HIT"}
+    verify_gcd_certificate(packet, h_source, k_source, prime)
+
+    common = mod_poly(packet["gcd_coefficients_low_to_high"], prime)
+    factorization = packet["factorization"]
+    factors = factorization["factors"]
+    product = [factorization["unit"] % prime]
+    for factor in factors:
+        coefficients = mod_poly(factor["coefficients_low_to_high"], prime)
+        assert coefficients[-1] == 1
+        assert len(coefficients) - 1 == factor["degree"]
+        assert factor["exponent"] >= 1
+        assert factor["a2_zero_factor"] == (
+            divmod_poly(a_source, coefficients, prime)[1] == [0]
+        )
+        product = mod_poly(
+            multiply(product, power(coefficients, factor["exponent"])), prime
+        )
+    assert product == common
+    eligible = [
+        factor
+        for factor in factors
+        if factor["degree"] <= 2 and not factor["a2_zero_factor"]
+    ]
+    assert packet["ambient_quadratic_eligible_factors"] == eligible
+    assert packet["ambient_status"] == ("HIT" if eligible else "EMPTY")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("certificate", type=Path)
@@ -457,6 +512,9 @@ def main() -> None:
         )
         verify_exceptional_structural_common_gcd(
             row["exceptional_structural_common_gcd"], polynomials, prime
+        )
+        verify_exceptional_singular_affine_gcd(
+            row["exceptional_singular_affine_gcd"], polynomials, prime
         )
         assert row["seconds"] >= 0
 

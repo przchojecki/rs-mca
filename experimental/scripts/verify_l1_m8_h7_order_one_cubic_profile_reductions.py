@@ -972,6 +972,62 @@ def check_fully_proportional_exceptional_leading() -> None:
         assert (b_mod**2 - z_mod) % prime
 
 
+def check_fully_proportional_exceptional_singular_affine() -> None:
+    b = [Q(0), Q(1)]
+    z = poly_mul(b, b)
+    z_plus_27 = poly_add(z, [Q(27)])
+    a = poly_add([Q(1575)], poly_scale(z, Q(-247)))
+    c = poly_add(
+        poly_add(poly_scale(poly_mul(z, z), Q(-800)), poly_scale(z, Q(8929))),
+        [Q(-11025)],
+    )
+    n = poly_add(
+        poly_add(poly_scale(poly_mul(z, z), Q(40)), poly_scale(z, Q(51))),
+        [Q(-2835)],
+    )
+    q_coefficient = poly_add(
+        poly_add(
+            poly_scale(poly_mul(z, z), Q(-52800)),
+            poly_scale(z, Q(710097)),
+        ),
+        [Q(-1497825)],
+    )
+    e0 = poly_add(poly_scale(poly_mul(a, b), Q(42)), poly_mul(z_plus_27, c))
+    e1 = poly_add(
+        poly_scale(poly_mul(a, poly_add(poly_scale(z, Q(8)), [Q(-21)])), Q(15)),
+        poly_mul(b, q_coefficient),
+    )
+    r = poly_add(
+        poly_scale(poly_mul(b, z_plus_27), Q(163)), poly_scale(n, Q(-1))
+    )
+    assert poly_add(
+        poly_mul(z_plus_27, e1), poly_scale(poly_mul(b, e0), Q(-66))
+    ) == poly_scale(poly_mul(a, r), Q(-3))
+
+    z = [Q(0), Q(1)]
+    z_plus_27 = poly_add(z, [Q(27)])
+    a = poly_add([Q(1575)], poly_scale(z, Q(-247)))
+    c = poly_add(
+        poly_add(poly_scale(poly_mul(z, z), Q(-800)), poly_scale(z, Q(8929))),
+        [Q(-11025)],
+    )
+    n = poly_add(
+        poly_add(poly_scale(poly_mul(z, z), Q(40)), poly_scale(z, Q(51))),
+        [Q(-2835)],
+    )
+    h = poly_add(
+        poly_mul(n, n),
+        poly_scale(poly_mul(z, poly_mul(z_plus_27, z_plus_27)), Q(-(163**2))),
+    )
+    k = poly_add(
+        poly_scale(poly_mul(a, n), Q(42)),
+        poly_scale(poly_mul(poly_mul(z_plus_27, z_plus_27), c), Q(163)),
+    )
+    assert len(h) - 1 == len(k) - 1 == 4
+    assert h[-1] == 1600 and k[-1] == -130400
+    assert evaluate(n, Q(-27)) == 24948
+
+
 def check_fully_proportional_structural() -> None:
     for b, q, g, d_core, q0 in (
         (Q(2), Q(5), Q(7), Q(3), Q(11)),
@@ -1149,6 +1205,7 @@ def main() -> None:
     check_fully_proportional_q_quotient()
     check_fully_proportional_exceptional_e()
     check_fully_proportional_exceptional_leading()
+    check_fully_proportional_exceptional_singular_affine()
     check_fully_proportional_structural()
     check_fully_proportional_exceptional_structural()
     check_affine_color_compiler()
@@ -1193,6 +1250,8 @@ def main() -> None:
         "V_E(b)=X_E(b)=Zhat_D^e(b)=Zhat_Q^e(b)=Zhat_R^e(b)=0",
         "W=247*115275930^2-1575*45228187^2",
         "(6740,100974,284891,1825899718)",
+        "(z+27)E_1-66bE_0",
+        "H(z)=N^2-163^2z(z+27)^2=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1220,6 +1279,7 @@ def main() -> None:
         "fully_proportional_q_quotient=1 "
         "fully_proportional_exceptional_e=1 "
         "fully_proportional_exceptional_leading=4 "
+        "fully_proportional_exceptional_singular_affine=1 "
         "fully_proportional_structural=1 "
         "fully_proportional_exceptional_structural=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
