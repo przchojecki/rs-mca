@@ -3012,14 +3012,48 @@ constant.  A common nonconstant divisor of \(C_i,C_j\) would divide that
 constant, proving primitivity.
 \end{proof}
 
+The projective compression in the corollary does not permit the decorated
+equation to be discarded.  The following exact counterfixture rules out a
+geometry-only divisor bound.
+
+\begin{proposition}[one-root-swap route cut]
+\label{prop:m31-fixed-support-divisor-route-cut}
+Let \(S\subseteq\F\) have size \(m=72428\), and assume that \(\F\) contains
+that many distinct elements.  Choose a \(4979\)-subset \(R_0\subset S\), and
+let \(R\) be its monic locator.  Then
+\[
+ \mathcal V=\langle RX,R,1,X,X^2,X^3\rangle                 \tag{M31.17}
+\]
+is six-dimensional and has no common zero, but contains \(67449\)
+projectively distinct monic degree-\(4980\) divisors of the locator of
+\(S\).
+\end{proposition}
+
+\begin{proof}
+The six generators have distinct degrees
+\(4980,4979,0,1,2,3\), and the constant polynomial makes common-zero-freeness
+literal.  For every \(a\in S\setminus R_0\),
+\[
+ J_a=R(X-a)=RX-aR
+\]
+lies in \(\mathcal V\), is monic of degree \(4980\), and divides the locator
+of \(S\).  The \(J_a\) are projectively distinct because they are distinct
+and monic.  Their number is
+\[
+ |S|-|R_0|=72428-4979=67449.
+\]
+\end{proof}
+
 The corollary is a route reduction, not payment of \(Q=147595\).  It gives
 no upper bound for the middle band or for the local decorated-neighbor
 degree, no active \(U_Q\), \(U_{\rm list\mbox{-}int}\), or \(U_{\rm sp}\)
 integer, no rank-at-least-eight theorem, and no adjacent-row or Prize
-closure.  Its exact next theorem is the local bound \(215792\), or an
-equivalent fixed-support divisor-direction cap \(15413\), or an
-owner-preserving injection of all such decorated neighbors into already paid
-cells with exact add-back.
+closure.  The proposition shows that fixed-support, six-dimensional,
+common-zero-free geometry alone cannot prove the suggested divisor cap
+\(15413\).  The exact next theorem is the local decorated-neighbor bound
+\(215792\), a divisor-direction bound retaining the received-word/Pade
+equations, or an owner-preserving injection of all such decorated neighbors
+into already paid cells with exact add-back.
 
 \section{Non-Claims}
 \label{sec:nonclaims}

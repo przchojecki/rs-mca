@@ -46,9 +46,12 @@ Keep entries concise and link to the relevant files.
   six-dimensional direction space.
 - **How it is useful:** It replaces the prior nineteen-slice scalar terminal
   by one source-bound local Pad\'e/shift-pair threshold. A cap `215792` for
-  that exact neighbor stratum eliminates the `Q=147595` residual.
+  that exact neighbor stratum eliminates the `Q=147595` residual. An explicit
+  one-root-swap pencil with `67449` divisor directions also proves that the
+  compressed `15413` target is false if the received-word/decorated equations
+  are omitted.
 - **What to do next:** Prove the local decorated-neighbor cap or give an
-  equivalent fixed-support divisor cap `15413`, or give an owner-preserving
+  equivalent target-sensitive divisor cap, or give an owner-preserving
   projection and exact add-back. Static proof review only; no verifier, Sage,
   TeX build, or numerical computation was run.
 
