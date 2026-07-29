@@ -30,6 +30,44 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Reviewed PR integration wave 1087--1120
+
+- **Agent/model:** Codex, selectively integrating static-review results from
+  PRs by Holm Buar, Scott Hughes, AllenGrahamHart, and Vadim Avdeev.
+- **Files added or changed:** Consolidated the accepted mathematical content
+  into `experimental/experiments.tex`, updated the live snapshot and status
+  bullets in `agents.md`, and added this single aggregate coordination entry.
+  No PR-local note, script, formalization, generated artifact, or separate log
+  fragment was imported.
+- **Status:** PROVED LOCAL / ROUTE CUT / COUNTEREXAMPLE / EXPERIMENTAL /
+  AUDIT, according to the individual packet. No adjacent M31 or KoalaBear row
+  is closed, no live `U_Q` or active `U_paid` is supplied, and no official
+  endpoint moves.
+- **What is being added:** The wave records a ragged M31 support collision,
+  signed-`T8` census bounds, a refutation of the proposed rooted-shell cap
+  `1233`, the canonical-remainder barrier, and the cumulative rank-seven
+  terminal at `Q=147595`; exact Hahn-relaxation and complementarity route
+  cuts; a declared-field rate-half ordinary-list lower construction and
+  interpolation-packing upper bracket; and scoped KoalaBear pencil,
+  fixed-union, equality-wall, WCL, field-pin, and local split-profile results.
+- **Review disposition:** PRs #1087--#1118 and #1120 contribute scoped
+  statements or explicit supersession/counterexample status to the one-file
+  ledger. PR #1119 is not banked as an accounting result because its abstract
+  compiler accepts candidate-supplied predicates and its claimed KoalaBear
+  `U_paid` conflicts with the live compiler's `null`; its useful inherited
+  equality-wall material is already represented by PRs #1114--#1117.
+- **How it is useful:** The consolidation preserves the strongest exact local
+  statements while making their projection, exhaustiveness, and ownership
+  limits explicit. It removes the false shell-cap route, delimits the
+  pairwise-Hahn and pencil-census routes, and states the smallest remaining
+  rank-seven aggregate incidence terminal without promoting local evidence to
+  a deployed-row payment.
+- **What to do next:** Prove the varying-proper-`G` aggregate cap `2157928`,
+  export and independently verify any census needed by the equality-wall
+  stack, and supply active-partition ownership/add-back before banking a row
+  atom. This integration used static source and code review only; no Python,
+  Sage, Lean, or document build was run.
+
 ### 2026-07-24 - Grande Finale v4 saturated-BC status repair
 
 - **Agent/model:** Codex, resolving issue #1070 reported by Holm Buar.

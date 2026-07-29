@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
-> **Updated:** 2026-07-24
-> **State snapshot:** `main@78e67c4048dabed19116bb7ac42c47c7cb103c57`
+> **Updated:** 2026-07-29
+> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -75,6 +75,11 @@ At this snapshot:
 - The integrated M31 post-Johnson conversion contract gives an exact conditional CS25 bridge from a same-radius CA numerator at most `16777214` to the ordinary-list budget `16777215`, and cuts the BCHKS25 route at the deployed budget.  It does not prove the unconditional M31 list row.
 - The fixed-`G` endpoint Plotkin theorem proves an ordinary-list cap `2310492` beyond the exact finite-field Johnson radius on two declared M31 endpoint subfamilies.  It is genuine Lane L progress, but not an unrestricted M31 list-row upper bound.
 - The direct rate-half cyclic quotient-rotation theorem in `experimental/experiments.tex` proves, for every declared order-`2^41` multiplicative-coset family, an ordinary-list lower bound `ceil(binomial(255,129)/256)` at agreement `1116691496959`, strictly beyond Johnson.  It is a finite-family Lane L lower construction, not an MCA statement or deployed-row closure.
+- The July 24--29 PR integration sharpens that rate-half Lane L construction on the declared field `q=3*2^41+1`: the zero-remainder boundary gives a lower endpoint with certified bit length at least `1466604010422`, while interpolation packing gives an upper endpoint with bit length at most `2095944040454`.  This is a finite-family ordinary-list bracket, not a deployed-row theorem.
+- On the pinned M31 quotient profile, the proposed rooted-shell cap `1233` is refuted by an explicit deficiency-192 packet of size `1237`; a ragged non-`T16` collision and the signed-`T8` census further cut alignment-only routes.  The canonical-remainder inequality `|F_eta|<=1716*r(eta)+5577` forces at least `9774` represented remainders in any unsafe support fiber, but supplies no received-word or row-list projection.
+- The cumulative M31 rank-seven compiler now reaches `Q=147594` locally.  Its adjacent `Q=147595`, `k=4981` survivor is reduced to a varying proper-`G`, zero-excess cross-cofactor incidence terminal requiring an aggregate cap `2157928`; no v4 atom, higher-rank theorem, or row closure follows.
+- The KoalaBear equality-wall PR stack proves local normalization, a `Q=6,u=2` geometry reduction, and exclusion of 60 labelled `P3+C3` cases, but retains 405 labelled conic cases and lacks global ownership/add-back.  The separate column-far transverse-secant certificate is per fixed union only.  No large `U_paid` claimed by an abstract candidate-record compiler is banked; the live active value remains `null`.
+- The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
