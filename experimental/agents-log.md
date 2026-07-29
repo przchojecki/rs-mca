@@ -30,6 +30,194 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Degree-60 source-pencil rank compiler and transverse route cut
+
+- **Agent/model:** Codex, with the mathematical design challenged by a
+  separate agent, exact arithmetic independently replayed in Sage/GAP and
+  through the Wolfram plugin, and fresh proof and certificate reviews
+  returned GREEN before publication.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON certificate,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED EXACT PER-RECORD COMPILER / SAME-FIBER ROUTE CUT.  The
+  transverse outer rows, \(u=2\), K3, and the KoalaBear row remain open; no
+  ledger field changes.
+- **What is being added:** The six surviving decomposition profiles have
+  \(32099\) canonical raw source templates per supplied endpoint record.
+  Exact coefficient ranks and active symmetric-power syndromes decide every
+  template, with a reduced \(49\times5\), 44-syndrome test in degree twelve.
+  After strict right-factor routing, a bidegree-\((4,4)\) actual component
+  cannot lie in the terminal same-fiber divisor: the complete primitive
+  catalogues in degrees \(2,3,4,6,10,12\) have no subdegree four.  Every
+  survivor therefore emits a non-diagonal outer correspondence satisfying
+  \(\delta r=4m\) and \(\delta\le m^2\).
+- **How it is useful:** It replaces generic rational-map discovery by a
+  deterministic source-bound compiler and identifies the precise remaining
+  geometric object.  Exact deployed-field divisor controls show that
+  source/active divisor gates alone cannot delete the prime-degree
+  \(m=2,3\) rows.  The controls are not actual endpoint components or
+  received-line witnesses.
+- **What to do next:** Build one source-coupled transverse outer compiler for
+  the finite \((m,r,\delta)\) rows.  Impose the inherited quartic/source-star
+  incidence and terminate every row in an actual-producer contradiction,
+  strict coarser decomposition, or chronology-valid
+  carrier/data/explaining-polynomial/slope owner.
+
+### 2026-07-29 - Degree-60 decomposition source-fiber adapter
+
+- **Agent/model:** Codex, with the divisor/profile statement audited by a
+  separate agent, exact arithmetic replayed independently in Sage and through
+  the Wolfram plugin, and the degree-thirty refinement separately checked.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON certificate,
+  the rejected parameter/carrier argument in `experimental/dead_ends/`,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED SOURCE-FIBER ADAPTER / DEGREE-FIVE DELETION /
+  DEGREE-THIRTY-TO-SIX REFINEMENT. The \(u=2\) branch and KoalaBear row remain
+  open, and no ledger field changes.
+- **What is being added:** For every geometric decomposition
+  \(f=F\circ h\), the sixty simple active zeros are complete unramified
+  \(h\)-fibers.  The twelve order-five source poles split exactly into
+  complete unramified fibers and index-five exceptional fibers, giving the
+  eight-row profile table and an exact binary source-pencil equivalence.
+  The \(m=5\) profile is impossible over \(K=\mathbf F_{p^6}\): its two
+  split branch points give a fifth-power normal form, while fifth powering
+  is bijective on \(K\) and cannot have a reduced five-point \(K\)-fiber.
+  The \(m=30\) profile factors through an inner degree-six map, and the
+  \(m=12\) profile has one canonical pencil membership test.  Only
+  \(m=2,4\) divide \(2^{21}\), but this is explicitly conditional on an
+  unproved same-record parameter-to-carrier bridge.
+- **How it is useful:** It terminates two of the eight decomposition rows and
+  distinguishes a locator-level complete-fiber theorem from the still-open
+  received-data, explaining-polynomial, and slope-projection semantics.  It
+  preserves the failed prime-field argument as a dead end, and prevents a
+  parameter-line decomposition from being mislabeled as a carrier quotient
+  payment.
+- **What to do next:** Run one exhaustive source-pencil compiler over the
+  exact partitions for \(m=2,3,4,6,10\) and the canonical \(m=12\) pencil.
+  Terminate each candidate geometrically or emit an explicit survivor, then
+  require a separate same-record carrier/data/slope bridge.  Do not start
+  \(u=3\) or move the ledger.
+
+### 2026-07-29 - Degree-60 primitive-subdegree-four \(u=2\) route cut
+
+- **Agent/model:** Codex, with the complete-source quartic defect lemma
+  isolated by a separate agent, the primitive catalogue replayed through
+  Sage/GAP, all nine explicit groups independently recomputed with the
+  Wolfram plugin, and fresh adversarial proof and certificate audits returned
+  GREEN before publication.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED CLASSIFICATION-BACKED ROUTE CUT. The primitive residual
+  birational-quartic \(Q=6,s=6,u=2\) branch is empty. The decomposable
+  \(u=2\) branch and the KoalaBear row remain open, and no ledger field
+  changes.
+- **What is being added:** Complete-source saturation puts all quartic pole
+  units on the twelve-line source star and leaves at most three units of
+  repeated-vertex defect. After the proved line/conic exclusions, every
+  residual actual birational-quartic \(u=2\) component also gives a
+  subdegree-four component of the degree-\(60\) endpoint self-correspondence,
+  while none of the nine primitive degree-\(60\) groups has subdegree four.
+  Thus every residual survivor forces geometric functional decomposition.
+  Exact pole orders and Riemann--Hurwitz leave eight possible inner degrees.
+- **How it is useful:** It replaces the primitive \(985\)-orbit quartic
+  eliminant and separate repeated/ramified charts by a finite source-bound
+  decomposition adapter. The Wolfram replay independently confirms all nine
+  stabilizer-orbit rows from explicit generators.
+- **What to do next:** For inner degrees
+  \(2,3,4,5,6,10,12,30\), prove domain compatibility and descent of the
+  received data, explaining polynomial, and slope projection, or delete the
+  actual producer. Do not call geometric decomposition itself a paid owner.
+
+### 2026-07-29 - Complete-source exclusion of the \(Q=6,s=6,u=2\) conic
+
+- **Agent/model:** Codex, with the divisor argument generated separately
+  from the exact Python ledger and Sage normal-form replay, and submitted to
+  a fresh adversarial proof reviewer.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.md`,
+  the matching exact Python verifier, Sage replay, canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED COMPLETE-SOURCE REDUCED-CONIC EXCLUSION. The
+  \(Q=6,s=6,u=2\) conic-image branch closes after combining with the
+  retained ramified-common exclusions. The KoalaBear row remains open and
+  no ledger field changes.
+- **What is being added:** The twelve actual quartic source rows saturate
+  twice the complete degree-24 source divisor. This forces the complete
+  divisor to be invariant under the conic involution. The reciprocal profile
+  then contains forbidden simple involution-fixed poles; exact order-four
+  and order-five orbit residues exclude every possible deck-branch count
+  \(r=0,1,2\).
+- **How it is useful:** The exclusion is independent of pole partition,
+  signature graph, right-label identification, and the
+  \(\mathcal L=\mathcal I\)/one-swap split. It therefore bypasses the much
+  larger source-semantic component census and deletes all ten graph controls
+  in the \(2+2+2\) sector at one pre-signature terminal.
+- **What to do next:** Apply the complete-source identity to the actual
+  \(u=2\) birational-quartic coefficient map. Keep simple and repeated
+  quartic charts exhaustive; route any survivor only through a
+  chronology-valid same-record owner. Defer \(u=3\) until this branch
+  stabilizes.
+
+### 2026-07-29 - Reciprocal-P6 active source-fiber deletion
+
+- **Agent/model:** Codex, with the producer gate isolated by a fresh
+  subagent and an independent Sage implementation.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_reciprocal_p6_source_fiber_obstruction_v1.md`,
+  the matching exact Python verifier, Sage replay, canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED WITNESS-SPECIFIC ACTIVE SOURCE-FIBER DELETION. The
+  KoalaBear row remains open and no ledger field changes.
+- **What is being added:** Every actual outgoing component must divide all
+  twelve specialized source fibers of the endpoint producer. The exact
+  reciprocal-\(P_6\) component in PR #1126 has gcd degree zero with the
+  complete source polynomial at the five common invariant sources and at
+  \(\eta=0\), so that committed local witness cannot lift to an actual
+  endpoint component. The exact gcd histogram is `{0: 6, 4: 6}`.
+- **How it is useful:** It supplies the active source-semantic deletion asked
+  for by the parent route cut and identifies a mandatory first gate for every
+  future conic compiler. It does not invalidate the parent's local
+  consistency claim, eliminate every reciprocal-\(P_6\) component, supply an
+  owner, or prove cap 68.
+- **What to do next:** Impose the all-twelve-source divisibility gate
+  uniformly in the exhaustive \(2+2+2\) component compiler, then classify
+  every surviving reciprocal, \(D_4\), \(D_5\), \(P_6\), and
+  \(P_2\sqcup C_4\) component by actual-producer deletion or a
+  chronology-valid same-record owner.
+
+### 2026-07-29 - KoalaBear reciprocal-P6 local survivor route cut
+
+- **Agent/model:** Codex, with an independent algebra replay by a fresh
+  subagent and a separate Sage implementation.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_reciprocal_p6_local_survivor_route_cut_v1.md`,
+  the matching Python verifier, Sage replay, canonical JSON certificate,
+  preserved false-positive note under `experimental/dead_ends/`,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED LOCAL SOURCE-FACET SURVIVOR / ROUTE CUT. The active row
+  remains open and no ledger field changes.
+- **What is being added:** An exact
+  \(\mathbf F_{p^2}\subset\mathbf F_{p^6}\) reciprocal-\(P_6\) component for
+  the normalized KoalaBear \(Q=6,u=2\) local equations. It passes the
+  split-pole, exact-gcd-graph, endpoint-deck, reciprocal-involution,
+  degree-two reconstruction, twelve weighted-GRS, and twelve-source-label
+  checks. An earlier base-field resultant candidate is explicitly rejected
+  and preserved because it failed the three nonanchor \(P\)-equations.
+- **How it is useful:** It closes the direct-local-elimination route: the
+  extracted source-facet and reciprocal gates alone do not make the
+  reciprocal-\(P_6\) branch empty. It does not supply a received line, bad
+  slope, active first-match survivor, owner exclusion, or row counterexample.
+- **What to do next:** Bind this exact local component to the active
+  received-line/selector producer. Prove that the omitted semantics delete it
+  or emit a chronology-valid same-record owner carrying its actual slope.
+  Continue to retain the other reciprocal, \(D_4/D_5\), \(P_2+C_4\), and
+  quartic branches in the exhaustive K3 scope.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
