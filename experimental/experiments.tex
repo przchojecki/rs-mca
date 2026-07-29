@@ -2956,6 +2956,32 @@ source-star, received-data, or slope semantics.  Consequently they prove
 that another source-only rank calculation cannot close the prime-degree
 rows, while moving no ledger quantity.
 
+The inner-degree-twelve outer row admits a further exact geometric cut.  In
+this row the outer map \(F\) has degree five, one \(K\)-rational pole of
+order five, and five distinct simple \(K\)-rational zeros.  The transverse
+ledger initially gives
+\[
+  (r,\delta)=(1,48),(2,24),(3,16),(4,12).
+\]
+Because degree five is prime, the geometric monodromy of \(F\) is
+primitive.  Its complete subdegree rows are
+\((1,1,1,1,1)\), \((1,2,2)\), and \((1,4)\), with repetitions among the five
+primitive groups, so no geometric component has subdegree three.  If a
+non-diagonal subdegree-one component existed, it would be the graph of a
+nontrivial deck transformation.  The degree-five cover would then be tame
+cyclic, with exactly two total branch points.  The unique rational pole
+makes the second point rational as well, and a rational domain normalization
+gives
+\[
+  F(x)=a x^5+b,\qquad a\ne0.
+\]
+But \(\gcd(5,p^6-1)=1\), so fifth powering permutes \(K\); this form has at
+most one distinct \(K\)-rational zero, contrary to the five imported outer
+zeros.  Hence the \(r=1\) and \(r=3\) types are empty, and only
+\((r,\delta)=(2,24),(4,12)\) remain at \(m=12\).  The global transverse
+frontier falls from \(26\) to \(24\) types.  Neither survivor is paid or
+deleted, and no ledger quantity moves.
+
 The abstract compiler proposed in PR \#1119 proves only the taut finite-set
 fact that least-owner selection partitions candidate-supplied records and the
 arithmetic distinction between \(68\) and \(69\) declared source-map classes.

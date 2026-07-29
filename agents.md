@@ -131,6 +131,16 @@ At this snapshot:
   alone cannot delete those rows.  The controls are not actual component or
   received-line records; the transverse rows are unpaid and no ledger value
   moves.
+- The inner-degree-`12` transverse row is now cut from four types to two.
+  Its degree-five outer map has one `K`-rational total pole and five distinct
+  simple `K`-rational zeros.  Primitive degree-five monodromy has no
+  subdegree three, excluding `(r,delta)=(3,16)`.  A subdegree-one component
+  would make the outer cover cyclic; its two rational total branch points
+  give a `K`-normal form `a*x^5+b`, impossible because fifth powering is
+  bijective on `K=F_(p^6)` and the outer zero fiber has five rational points.
+  Thus only `(2,24)` and `(4,12)` remain at `m=12`.  These survivors are
+  unpaid; inner degree `12`, `u=2`, K3, and the row remain open, with zero
+  ledger movement.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -207,8 +217,11 @@ incidence on the non-diagonal outer component and terminate it in an
 actual-producer contradiction, a strict coarser decomposition, or a
 same-record carrier/data/explaining-polynomial/slope owner.  A source-only
 rank calculation cannot close the prime-degree rows, as the exact deployed
-controls show.  Do not resume the old primitive 985-chart atlas or the
-`u=3` component compiler while this transverse `u=2` interface is open.
+controls show.  The degree-five outer row at `m=12` has already lost its
+`r=1` and `r=3` types by the cyclic-cover and primitive-subdegree cuts; only
+`(r,delta)=(2,24),(4,12)` remain there, and the global transverse frontier
+has 24 types.  Do not resume the old primitive 985-chart atlas or the `u=3`
+component compiler while this transverse `u=2` interface is open.
 
 #### K4. Close algebraic routing and add-back
 

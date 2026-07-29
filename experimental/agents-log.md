@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Inner-degree-12 outer-subdegree route cut
+
+- **Agent/model:** Codex, with the proof isolated and independently checked
+  against the exact source-pencil compiler interface.
+- **Files added or changed:**
+  experimental/notes/frontier-adjacent/kb_mca_v4_m12_outer_subdegree_route_cut_v1.md,
+  the canonical JSON certificate, its fail-closed Python verifier,
+  experimental/experiments.tex, and agents.md.
+- **Status:** PROVED INNER-DEGREE-12 ROUTE CUT.  The two surviving types,
+  inner degree \(12\), \(u=2\), K3, and the KoalaBear row remain open; no
+  ledger field changes.
+- **What is being added:** The degree-five outer row initially has types
+  \((r,\delta)=(1,48),(2,24),(3,16),(4,12)\).  Complete primitive
+  degree-five subdegrees exclude \(r=3\).  The \(r=1\) component would make
+  the cover cyclic and force a \(K\)-normal form \(a x^5+b\), incompatible
+  with five distinct simple \(K\)-rational zeros because fifth powering
+  permutes \(K=\mathbf F_{p^6}\).  Only \((2,24)\) and \((4,12)\) survive.
+- **How it is useful:** It deletes two exact transverse types without a
+  record census or carrier hypothesis and reduces the global transverse
+  frontier from \(26\) to \(24\) types.
+- **What to do next:** Impose the inherited quartic/source-star incidence on
+  the two survivors and terminate each in an actual-producer contradiction,
+  a strict coarser decomposition, or a same-record
+  carrier/data/explaining-polynomial/slope owner.
+
 ### 2026-07-29 - Degree-60 source-pencil rank compiler and transverse route cut
 
 - **Agent/model:** Codex, with the mathematical design challenged by a
