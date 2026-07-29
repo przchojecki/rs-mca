@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Cubic 3+2+1 J-zero outer-lift compiler
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/experiments.tex` and this
+  coordination entry.
+- **Status:** PROVED / LOCAL_ONLY. No adjacent row, live atom, or official
+  endpoint moves.
+- **What is being added:** A self-contained follow-up to the manually
+  integrated PR #1120 packet. For every retained exceptional `J=0` candidate,
+  the outer cyclotomic and order-one Frobenius obligations reduce exactly to
+  at most 42 normalized colour roles, eight global colours, one norm test,
+  and one modular-power congruence modulo a degree-six polynomial.
+- **How it is useful:** It removes a degree-`n` construction from the local
+  `m=8,h=7` cubic `3+2+1` route while preserving every inherited guard and
+  keeping the independent inner lift explicit.
+- **What to do next:** Compile all inherited guards into the retained
+  univariate role factors, then replay the source-bound gcd packet when funded.
+  This contribution is a static algebraic proof; no Python, Sage, Modal, or
+  TeX build was run.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
