@@ -862,6 +862,58 @@ This is an ambient-field quadratic endpoint, not a square-condition
 verdict. The four coefficient-zero equations, role-discriminant weld,
 `P_4`, and all arithmetic filters remain.
 
+The four coefficient-zero equations also admit an exact parameter router.
+Put
+
+```text
+a=b-6,                 kappa=12q-44b-294,
+ell=(b^2+6b+105+8q)/16,
+
+D_*=3q(40b^2-253b+1155)-20b(11b^2+81b+414),
+Q_*=720b(360+1098q+191q^2-10q^3)+kappa qP,
+K_*=240bqa-P.                                         (28au)
+```
+
+Then `M_1=M_0=0` is exactly
+
+```text
+D_*=3600bD !=0,       Q_*=72D_*Q_0.                (28av)
+```
+
+The original scaled definitions independently give
+
+```text
+H+G_2=ell,             A=-(b+3)/2 !=0.             (28aw)
+```
+
+Define
+
+```text
+E_G=K_*-720bq^2,             F_G=6D(K_*-2160bQ_0),
+J_G=2160b(Q_0-D)-P,          L_G=2160b ell-6P.     (28ax)
+```
+
+After (28av)--(28aw), `C_1=C_0=0` is exactly
+
+```text
+E_GG_2+F_G=0,          J_GG_2+D L_G=0.             (28ay)
+```
+
+Thus on `E_G!=0`, reconstruct `G_2=-F_G/E_G` and retain the bivariate
+compatibility equation
+
+```text
+Theta_G:=E_GD L_G-J_GF_G=0.                        (28az)
+```
+
+Then `H=ell-G_2` and `Y=(ell-2G_2)/A-x`. On `E_G=0`, the first equation
+in (28ay) forces `Q_0=q^2/3`, equivalently
+`Q_*-24D_*q^2=0`. If `J_G!=0`, use `G_2=-D L_G/J_G`; if `J_G=0`, retain
+`L_G=0` and `G_2`. This last doubly exceptional chart is not discarded.
+Every chart remains coupled to (28ar), the structural equations, the role
+discriminant, `P_4`, and all arithmetic lift filters. No chart is declared
+empty.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -1031,13 +1083,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 2caad8ac1dd21e259fb4fa0b53c022035149bc783314894c8277135c3efb8f0d
+sha256: 2fad43e2b818ca3568787fcb6077b10aab509b866d0612e4e9bb34b35acaa7d5
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256

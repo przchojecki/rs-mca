@@ -793,6 +793,61 @@ def check_fully_proportional_bivariate() -> None:
     assert 9240 * z * (9 - z) * q + 400 * z * (9 - z) * (z + 27) == 0
 
 
+def check_fully_proportional_coefficients() -> None:
+    for b, q in ((Q(2), Q(5)), (Q(-1), Q(9)), (Q(5, 2), Q(11))):
+        a = b - 6
+        kappa = 12 * q - 44 * b - 294
+        p = 40 * b * (b**2 - 6 * b + 27) + 42 * q * (11 * b + 15)
+        r0 = -q * p / (2880 * b)
+        d_star = (
+            3 * q * (40 * b**2 - 253 * b + 1155)
+            - 20 * b * (11 * b**2 + 81 * b + 414)
+        )
+        assert d_star != 0
+        d_core = d_star / (3600 * b)
+
+        b1 = -q * (120 * d_core + 1062 + 86 * q) - 528 * r0
+        assert 3 * b1 + q * kappa * a == 0
+
+        q_star = (
+            720 * b * (360 + 1098 * q + 191 * q**2 - 10 * q**3)
+            + kappa * q * p
+        )
+        q0 = q_star / (72 * d_star)
+        b0 = 360 * d_core * q0 - 360 - 1098 * q - 191 * q**2 + 10 * q**3
+        assert 3 * b0 + 12 * kappa * r0 == 0
+
+        ell = (b**2 + 6 * b + 105 + 8 * q) / 16
+        x = (b + 15) / 4
+        aa = -(b + 3) / 2
+        y = Q(7, 3)
+        g_struct = (15 + q / 2 - x**2 - aa * (2 * x + y)) / 2
+        h_struct = g_struct + aa * (x + y)
+        assert h_struct + g_struct == ell
+
+        k_star = 240 * b * q * a - p
+        e_g = k_star - 720 * b * q**2
+        f_g = 6 * d_core * (k_star - 2160 * b * q0)
+        j_g = 2160 * b * (q0 - d_core) - p
+        l_g = 2160 * b * ell - 6 * p
+
+        g = Q(13, 7)
+        h = ell - g
+        t = g + 6 * d_core
+        c1 = q * t * a - 9 * d_core * h - 3 * q**2 * g - 9 * t * q0
+        c0 = 9 * q * (d_core * h + g * q0) + 12 * t * r0
+        assert 240 * b * (c1 + c0 / q) == e_g * g + f_g
+        assert 240 * b * c0 / q == j_g * g + d_core * l_g
+
+        assert e_g != 0
+        g_generic = -f_g / e_g
+        theta = e_g * d_core * l_g - j_g * f_g
+        assert e_g * (j_g * g_generic + d_core * l_g) == theta
+        assert q_star - 24 * d_star * q**2 == 72 * d_star * (
+            q0 - q**2 / 3
+        )
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -900,6 +955,7 @@ def main() -> None:
     check_doubly_singular_quadratic_quotient()
     check_fully_proportional_parameters()
     check_fully_proportional_bivariate()
+    check_fully_proportional_coefficients()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -928,6 +984,8 @@ def main() -> None:
         "role-discriminant weld",
         "F_N=24F_b(z,q)",
         "302400z(9-z)(-200z^2+4239z-14175)",
+        "D_*=3600bD !=0",
+        "Theta_G:=E_GD L_G-J_GF_G=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -950,6 +1008,7 @@ def main() -> None:
         "doubly_singular_quotient=1 "
         "fully_proportional_parameters=1 "
         "fully_proportional_bivariate=1 "
+        "fully_proportional_coefficients=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 
