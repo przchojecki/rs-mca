@@ -30,6 +30,39 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - LIST balanced-pencil anchor determinant atlas
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_balanced_pencil_anchor_determinant_atlas_v1.md`
+  and this log entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No deployed `U_list_int`, row
+  bound, or endpoint is supplied.
+- **What is being added:** For every arbitrary-word exact shell in the
+  balanced interpolation-module band, one fixed anchor turns the primitive
+  coefficient body into an affine determinant coordinate. The determinant
+  recovers the common-complement owner by gcd, and every fixed owner obeys an
+  exact projective-dimension/root-matroid bound. The top-intersection chamber
+  is the existing one-parameter moving-root pencil. A Bezout-dual module
+  vector additionally puts all owners in one Pade family
+  `W(P-P_0)=gamma Delta_0L_0`, with a residue multiplier that is a unit
+  modulo the anchor denominator. Euclidean division sharpens this to the
+  exact primitive graph `W_Delta=W_0+rem(Delta J,W_0)`, with content guard
+  `gcd(Delta,1-quo(Delta J,W_0))=1`. Each fixed owner also receives two
+  exact ceilings: the root-matroid basis bound and an independent rank-free
+  local Johnson packing on `(j+1)`-subsets.
+- **How it is useful:** It gives a direct LIST-side bridge from the balanced
+  `U_list_int` interior to the BC split-pencil hierarchy and closes
+  coefficient multiplicity plus fixed-owner split multiplicity. It also
+  prints the route boundary: the owner count can be exponential, so fixed
+  pencils cannot be summed into a row payment without a new Pade/first-owner
+  coalescence theorem. Equivalently, the remaining theorem is a row-sharp
+  count or typed Q transport for the displayed primitive remainder graph.
+- **What to do next:** Bound the realized common-complement image for one
+  received word, construct a chronology-valid owner map across those gcd
+  charts, or falsify that aggregate route. The proof is analytic; no Python,
+  Sage, Lean, Modal, or document build was run.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
