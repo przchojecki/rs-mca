@@ -32,8 +32,8 @@ companion `3+3` exclusion. It proves algebraic reductions, not emptiness:
 3+2+1: an exact common-quadratic factor model with four retained variables
        and one degree-42 symbolic role polynomial; on the fully proportional
        generic chart, three explicit structural filters complete the
-       coefficient endpoint, while the last `J_*=0` coefficient-and-
-       structural chart is an exact six-filter univariate endpoint.
+       coefficient endpoint, while each last `J_*=0` role packet is an exact
+       eight-filter univariate endpoint with `P_4` reconstructed.
 ```
 
 The upstream first-match-to-HNF owner bridge remains outside the note. None
@@ -1215,6 +1215,62 @@ Bhat_J=Ehat_J=Fhat_J=Xhat_J=Zhat_D^j=Zhat_R^j=0. (28bl18)
 The selected role equation, `P_4`, all saturations, and arithmetic lifts
 remain. No common-root or emptiness verdict is asserted.
 
+The role and `P_4` layer is also univariate after this reconstruction. For
+one fixed alternative official packet write
+
+```text
+Phi(X,Y)=c_2X^2+c_1XY+c_0Y^2,
+delta_Phi=c_1^2-4c_2c_0,
+
+R_role=A(3Y_j^2+2xY_j+G_j),
+S_role=(Y_j-A)V_j-Q_j.                            (28bl19)
+```
+
+The two fully proportional role coefficients are exactly
+
+```text
+L_Phi=18c_0S_role+9c_1R_role+c_0q(b-6)=0,
+
+W_Phi=c_0^2(q^2(b-6)^2+144qR_j)
+       -81delta_Phi R_role^2=0,                   (28bl20)
+
+R_j=-qP/(2880b).
+```
+
+Uncancelled numerators have `(deg,deg_q)` at most `(12,6)` and `(18,8)`.
+After `q=5bM_J/T_J`, they become univariate filters
+
+```text
+deg Lhat_Phi<=24,          deg What_Phi<=34.       (28bl21)
+```
+
+Let `eta` be either ambient root of
+
+```text
+c_0eta^2+c_1eta+c_2=0.
+```
+
+On the two role filters, reconstruct
+
+```text
+d=3(eta R_role-S_role)/q.                         (28bl22)
+```
+
+This automatically pays `P_4`. Indeed the exact quotient identity is
+
+```text
+27Phi(R_role,S_role+qd/3)+c_0qP_4=U_1d+U_0,       (28bl23)
+```
+
+and (28bl20) is equivalent to `U_1=U_0=0`. Formula (28bl22) makes the
+first term vanish, so `P_4=0`. Conversely every original role/`P_4`
+solution determines one of the two roots `eta` and recovers (28bl22).
+
+Thus each of the 21 alternative official role packets leaves an exact
+eight-filter b-only endpoint, followed by two reconstructed `eta,d`
+branches. The packets are alternatives, not simultaneous equations. Every
+inherited saturation on `d` and every arithmetic lift remain mandatory.
+
 The generic coefficient endpoint also admits an exact structural compiler.
 Retain `E_G*a_2*rho_1!=0` and define
 
@@ -1354,9 +1410,9 @@ V_E(b)=X_E(b)=Zhat_D^e(b)=Zhat_Q^e(b)=Zhat_R^e(b)=0,
 q=-S_0/S_1.                                        (28bx)
 ```
 
-The `S_1=S_0=0` chart is reduced to the quartic pair (28bl8), while the
-`J_*=0` coefficient-and-structural chart is reduced to (28bl18). The
-selected role, `P_4`, saturation, and arithmetic-lift filters remain. The
+The `S_1=S_0=0` chart is reduced to the quartic pair (28bl8), while each
+`J_*=0` role packet is reduced through `P_4` by (28bl19)--(28bl23).
+Reconstructed-variable saturations and arithmetic-lift filters remain. The
 separate exceptional `a_2=0` chart is empty by
 (28bl1)--(28bl5). No common-root verdict is asserted for the retained charts.
 
@@ -1529,13 +1585,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 446123cea29919792b819e5b23459df6a4a8e6f62018b6402debc2bcf06febc0
+sha256: b103bf22b73736dd51f97a03db83c07de681a20805448749cd98e96c7e13c7a6
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_exceptional_j0_structural=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_exceptional_j0_structural=1 fully_proportional_exceptional_j0_role_p4=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
@@ -1611,8 +1667,9 @@ replay; no pending execution is counted as evidence.
 The exact-rational verifier's note path was also repaired from the repository
 root to `experimental/notes/l1`; the previous path would have failed before
 the algebraic checks. This source repair, the leading-chart arithmetic, the
-singular-affine, `J_*=0` affine and structural identities, and the extended
-packet were syntax-checked but not executed in the exporting environment.
+singular-affine, `J_*=0` affine, structural, and role/`P_4` identities, and
+the extended packet were syntax-checked but not executed in the exporting
+environment.
 
 ## Boundary
 

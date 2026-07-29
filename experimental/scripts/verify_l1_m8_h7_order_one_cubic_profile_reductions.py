@@ -1092,6 +1092,30 @@ def check_fully_proportional_exceptional_j0_structural() -> None:
         assert original - simplified == (a + x) * (y * v - d_core)
 
 
+def check_fully_proportional_exceptional_j0_role_p4() -> None:
+    for role_r, q, r0, c2, c1, c0 in (
+        (Q(2), Q(7), Q(11), Q(1), Q(2), Q(3)),
+        (Q(-1), Q(-4), Q(5), Q(2), Q(-1), Q(5)),
+    ):
+        ad = Q(13, 2)
+        delta = c1**2 - 4 * c2 * c0
+        role_s = -c1 * role_r / (2 * c0) - q * ad / 18
+        u1 = 9 * q * (c1 * role_r + 2 * c0 * role_s) + c0 * q**2 * ad
+        u0 = 27 * (
+            c2 * role_r**2 + c1 * role_r * role_s + c0 * role_s**2
+        ) + 12 * c0 * q * r0
+        linear = 18 * c0 * role_s + 9 * c1 * role_r + c0 * q * ad
+        weld = c0**2 * (q**2 * ad**2 + 144 * q * r0) - 81 * delta * role_r**2
+        assert u1 == q * linear == 0
+        assert 12 * c0 * u0 == weld
+
+        d = Q(17, 3)
+        p4 = -3 * q * d**2 + q * ad * d + 12 * r0
+        s_d = role_s + q * d / 3
+        phi = c2 * role_r**2 + c1 * role_r * s_d + c0 * s_d**2
+        assert 27 * phi + c0 * q * p4 == u1 * d + u0
+
+
 def check_fully_proportional_structural() -> None:
     for b, q, g, d_core, q0 in (
         (Q(2), Q(5), Q(7), Q(3), Q(11)),
@@ -1272,6 +1296,7 @@ def main() -> None:
     check_fully_proportional_exceptional_singular_affine()
     check_fully_proportional_exceptional_j0_affine()
     check_fully_proportional_exceptional_j0_structural()
+    check_fully_proportional_exceptional_j0_role_p4()
     check_fully_proportional_structural()
     check_fully_proportional_exceptional_structural()
     check_affine_color_compiler()
@@ -1323,6 +1348,8 @@ def main() -> None:
         "Bhat_J=T_J^2B_J",
         "Z_D^j=Num(D_j-Y_jV_j)",
         "Bhat_J=Ehat_J=Fhat_J=Xhat_J=Zhat_D^j=Zhat_R^j=0",
+        "L_Phi=18c_0S_role+9c_1R_role+c_0q(b-6)=0",
+        "d=3(eta R_role-S_role)/q",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1353,6 +1380,7 @@ def main() -> None:
         "fully_proportional_exceptional_singular_affine=1 "
         "fully_proportional_exceptional_j0_affine=1 "
         "fully_proportional_exceptional_j0_structural=1 "
+        "fully_proportional_exceptional_j0_role_p4=1 "
         "fully_proportional_structural=1 "
         "fully_proportional_exceptional_structural=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
