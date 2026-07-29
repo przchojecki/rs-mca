@@ -51,7 +51,8 @@ Keep entries concise and link to the relevant files.
   has size at most `458812`, any violating family uses at least five heads,
   at least `1699117` members have full source degree, and one full-head anchor
   forces at least `35821804` distinct `(degree-4979 core, neighbor head)`
-  cells.
+  cells. The unrestricted `215793`-neighbor anchor gives the stronger
+  `71643276` colored-cell floor.
 - **How it is useful:** It replaces the prior nineteen-slice scalar terminal
   by one source-bound local Pad\'e/shift-pair threshold. A cap `215792` for
   that exact neighbor stratum eliminates the `Q=147595` residual. An explicit
@@ -60,7 +61,9 @@ Keep entries concise and link to the relevant files.
   are omitted. The fixed-core theorem pays that counterfixture once actual
   list semantics are restored. The source-head identity removes a further
   free scalar and localizes the remaining problem to cross-head/core
-  aggregation rather than an uncolored support count.
+  aggregation rather than an uncolored support count. The source head is an
+  evaluation-at-infinity coordinate, but the existing deletion recurrence
+  pays only one fixed infinity label and therefore is not an all-head owner.
 - **What to do next:** Combine the core-shadow hierarchy with the
   planted/external support split or the decorated Pad\'e equation to prove the
   local neighbor cap, or give an owner-preserving projection and exact
