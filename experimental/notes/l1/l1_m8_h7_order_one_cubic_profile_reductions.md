@@ -1612,10 +1612,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: 2b33e8c0598283eecb4531df80f052dffe409d25e840c6d519b9d1d0aabb2f70
+sha256: 4490ec4cfdbbf36c45c4bdaa50177b1e8b26879ab513822d20af1e644702e56a
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: 0d07d97174bfca96ec09bd2157fcdaea0a554a961ea954f9eed329a9f48ec61a
+sha256: f1074ddb54f89bee37c2f89bf086b76c4d4a017745968c27937339ccf11a89b3
 ```
 
 Launch it with
@@ -1628,8 +1628,11 @@ and validate with the checker, adding `--require-complete` for a complete
 four-prime packet. Each prime is a separate one-CPU, 512 MB, 60-second task;
 the driver uses no retries and atomically checkpoints every returned row.
 It factors `U`, certifies `gcd(rho_1,rho_0)` and the fixed `a_2=0` chart by
-Bezout identities, and reports every degree-one/two factor eligible for the
-ambient quadratic field. It also reconstructs the primitive integer
+Bezout identities, reports every factor, and separately reports the
+degree-one/two subset as a quadratic-subfield diagnostic. The role root
+`eta` lies in `F_(p^2)`, but the proved dependency chain does not bound the
+field degree of `b`; the diagnostic therefore cannot close a chart. The
+packet also reconstructs the primitive integer
 numerators `Z_D,Z_Q,Z_R`, checks their degree bounds, computes the three
 `Zhat_i` remainders modulo `U`, and certifies
 `gcd(U,Zhat_D,Zhat_Q,Zhat_R)` with one four-way Bezout identity. Expected cost
@@ -1642,20 +1645,21 @@ and certifies their five-way gcd. A unit five-way gcd excludes the generic
 `a_2*S_1*J_*!=0` exceptional chart; nonunit and `V_E_IDENTICALLY_ZERO`
 returns remain open. Finally the row certifies and factors `gcd(H,K)` for the
 simultaneous `S_1=S_0=0` chart, flags factors on the separately excluded
-`A=0` chart, and lists exactly the remaining irreducible factors of degree at
-most two. `ambient_status=EMPTY` excludes the chart over `F_(p^2)`;
-`ambient_status=HIT` returns the only factors that continue to `F_b=X_*=0`
-and the downstream filters. The checker independently reconstructs `A,H,K`
-and verifies the gcd, factorization, guard, and ambient-degree classification.
+`A=0` chart, and lists every remaining legal irreducible factor regardless of
+degree. `global_status=EMPTY` excludes the chart only when no legal factor
+remains; `quadratic_subfield_status` is diagnostic. The checker independently
+reconstructs `A,H,K` and verifies the gcd, factorization, guard, global, and
+quadratic-subfield classifications.
 The same row now reconstructs the six `J_*=L_*=0` coefficient-and-structural
 filters `Bhat_J,Ehat_J,Fhat_J,Xhat_J,Zhat_D^j,Zhat_R^j`, certifies their
 common gcd by a six-way Bezout identity, factors that gcd, flags every factor
-dividing `T_J`, and lists exactly the remaining degree-one/two factors. An
-`EMPTY` ambient status excludes this complete coefficient-and-structural
-chart; `HIT` returns only legal factors for role, `P_4`, saturation, and lift
-replay; an identically-zero family is explicitly inconclusive. The checker
-independently reconstructs the seven source polynomials and verifies the
-Bezout, factorization, guard, and ambient-degree classifications.
+dividing `T_J`, and lists every remaining legal factor. An `EMPTY` global
+status excludes this complete coefficient-and-structural chart; `HIT` returns
+all legal factors for role, `P_4`, saturation, and lift replay. The separately
+reported degree-one/two subset remains diagnostic, and an identically-zero
+family is explicitly inconclusive. The checker independently reconstructs the
+seven source polynomials and verifies the Bezout, factorization, guard,
+global, and quadratic-subfield classifications.
 This adds no containers, CPUs, memory, retries, or timeout to the request.
 
 None of the compute-request scripts was executed in the exporting

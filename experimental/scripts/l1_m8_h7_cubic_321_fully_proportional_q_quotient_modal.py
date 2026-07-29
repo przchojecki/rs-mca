@@ -538,15 +538,19 @@ def run_prime(prime: int) -> dict[str, object]:
         "unit": int(common_unit) % prime,
         "factors": common_factors,
     }
-    singular_affine_gcd["ambient_quadratic_eligible_factors"] = [
-        factor
-        for factor in common_factors
-        if factor["degree"] <= 2 and not factor["a2_zero_factor"]
+    singular_affine_gcd["legal_factors"] = [
+        factor for factor in common_factors if not factor["a2_zero_factor"]
     ]
-    singular_affine_gcd["ambient_status"] = (
-        "HIT"
-        if singular_affine_gcd["ambient_quadratic_eligible_factors"]
-        else "EMPTY"
+    singular_affine_gcd["quadratic_subfield_factors"] = [
+        factor
+        for factor in singular_affine_gcd["legal_factors"]
+        if factor["degree"] <= 2
+    ]
+    singular_affine_gcd["global_status"] = (
+        "HIT" if singular_affine_gcd["legal_factors"] else "EMPTY"
+    )
+    singular_affine_gcd["quadratic_subfield_status"] = (
+        "HIT" if singular_affine_gcd["quadratic_subfield_factors"] else "EMPTY"
     )
 
     j0_labels = ("Bhat", "Ehat", "Fhat", "Xhat", "ZDhat", "ZRhat")
@@ -557,8 +561,10 @@ def run_prime(prime: int) -> dict[str, object]:
     j0_common_gcd = multi_gcd_certificate(j0_sources, prime)
     if j0_common_gcd["status"] == "IDENTICALLY_ZERO_FAMILY":
         j0_common_gcd["factorization"] = {"unit": 0, "factors": []}
-        j0_common_gcd["ambient_quadratic_eligible_factors"] = []
-        j0_common_gcd["ambient_status"] = "INCONCLUSIVE"
+        j0_common_gcd["legal_factors"] = []
+        j0_common_gcd["quadratic_subfield_factors"] = []
+        j0_common_gcd["global_status"] = "INCONCLUSIVE"
+        j0_common_gcd["quadratic_subfield_status"] = "INCONCLUSIVE"
     else:
         j0_common = j0_common_gcd["gcd_coefficients_low_to_high"]
         assert isinstance(j0_common, list)
@@ -591,15 +597,19 @@ def run_prime(prime: int) -> dict[str, object]:
             "unit": int(j0_unit) % prime,
             "factors": j0_factors,
         }
-        j0_common_gcd["ambient_quadratic_eligible_factors"] = [
-            factor
-            for factor in j0_factors
-            if factor["degree"] <= 2 and not factor["t_zero_factor"]
+        j0_common_gcd["legal_factors"] = [
+            factor for factor in j0_factors if not factor["t_zero_factor"]
         ]
-        j0_common_gcd["ambient_status"] = (
-            "HIT"
-            if j0_common_gcd["ambient_quadratic_eligible_factors"]
-            else "EMPTY"
+        j0_common_gcd["quadratic_subfield_factors"] = [
+            factor
+            for factor in j0_common_gcd["legal_factors"]
+            if factor["degree"] <= 2
+        ]
+        j0_common_gcd["global_status"] = (
+            "HIT" if j0_common_gcd["legal_factors"] else "EMPTY"
+        )
+        j0_common_gcd["quadratic_subfield_status"] = (
+            "HIT" if j0_common_gcd["quadratic_subfield_factors"] else "EMPTY"
         )
     row = {
         "p": prime,
@@ -610,7 +620,7 @@ def run_prime(prime: int) -> dict[str, object]:
             "unit": int(unit) % prime,
             "factors": factors,
         },
-        "quadratic_field_eligible_factors": [
+        "quadratic_subfield_factors": [
             factor for factor in factors if factor["degree"] <= 2
         ],
         "affine_remainder_gcd": gcd_certificate(

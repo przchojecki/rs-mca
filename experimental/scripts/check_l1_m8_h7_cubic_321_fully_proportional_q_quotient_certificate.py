@@ -11,7 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LAUNCHER = HERE / "l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
-EXPECTED_LAUNCHER_SHA256 = "2b33e8c0598283eecb4531df80f052dffe409d25e840c6d519b9d1d0aabb2f70"
+EXPECTED_LAUNCHER_SHA256 = "4490ec4cfdbbf36c45c4bdaa50177b1e8b26879ab513822d20af1e644702e56a"
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
 
@@ -494,13 +494,14 @@ def verify_exceptional_singular_affine_gcd(
             multiply(product, power(coefficients, factor["exponent"])), prime
         )
     assert product == common
-    eligible = [
-        factor
-        for factor in factors
-        if factor["degree"] <= 2 and not factor["a2_zero_factor"]
-    ]
-    assert packet["ambient_quadratic_eligible_factors"] == eligible
-    assert packet["ambient_status"] == ("HIT" if eligible else "EMPTY")
+    legal = [factor for factor in factors if not factor["a2_zero_factor"]]
+    quadratic = [factor for factor in legal if factor["degree"] <= 2]
+    assert packet["legal_factors"] == legal
+    assert packet["quadratic_subfield_factors"] == quadratic
+    assert packet["global_status"] == ("HIT" if legal else "EMPTY")
+    assert packet["quadratic_subfield_status"] == (
+        "HIT" if quadratic else "EMPTY"
+    )
 
 
 def verify_exceptional_j0_affine_common_gcd(
@@ -515,8 +516,10 @@ def verify_exceptional_j0_affine_common_gcd(
     if packet["status"] == "IDENTICALLY_ZERO_FAMILY":
         assert all(source == [0] for source in reduced)
         assert packet["factorization"] == {"unit": 0, "factors": []}
-        assert packet["ambient_quadratic_eligible_factors"] == []
-        assert packet["ambient_status"] == "INCONCLUSIVE"
+        assert packet["legal_factors"] == []
+        assert packet["quadratic_subfield_factors"] == []
+        assert packet["global_status"] == "INCONCLUSIVE"
+        assert packet["quadratic_subfield_status"] == "INCONCLUSIVE"
         return
 
     assert packet["status"] in {"UNIT", "HIT"}
@@ -537,13 +540,14 @@ def verify_exceptional_j0_affine_common_gcd(
             multiply(product, power(coefficients, factor["exponent"])), prime
         )
     assert product == common
-    eligible = [
-        factor
-        for factor in factors
-        if factor["degree"] <= 2 and not factor["t_zero_factor"]
-    ]
-    assert packet["ambient_quadratic_eligible_factors"] == eligible
-    assert packet["ambient_status"] == ("HIT" if eligible else "EMPTY")
+    legal = [factor for factor in factors if not factor["t_zero_factor"]]
+    quadratic = [factor for factor in legal if factor["degree"] <= 2]
+    assert packet["legal_factors"] == legal
+    assert packet["quadratic_subfield_factors"] == quadratic
+    assert packet["global_status"] == ("HIT" if legal else "EMPTY")
+    assert packet["quadratic_subfield_status"] == (
+        "HIT" if quadratic else "EMPTY"
+    )
 
 
 def main() -> None:
@@ -595,8 +599,8 @@ def main() -> None:
                 )
             assert product == u_mod
             assert row["U_degree"] == len(u_mod) - 1
-        eligible = [factor for factor in factors if factor["degree"] <= 2]
-        assert row["quadratic_field_eligible_factors"] == eligible
+        quadratic = [factor for factor in factors if factor["degree"] <= 2]
+        assert row["quadratic_subfield_factors"] == quadratic
         verify_gcd_certificate(
             row["affine_remainder_gcd"],
             polynomials["rho_1"],
