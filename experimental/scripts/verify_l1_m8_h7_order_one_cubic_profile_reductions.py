@@ -1066,6 +1066,32 @@ def check_fully_proportional_exceptional_j0_affine() -> None:
     assert all(9 % prime and 14501 % prime for prime in primes)
 
 
+def check_fully_proportional_exceptional_j0_structural() -> None:
+    for b, q in ((Q(2), Q(5)), (Q(-1), Q(9)), (Q(5, 2), Q(11))):
+        x = (b + 15) / 4
+        a = -(b + 3) / 2
+        ell = (b**2 + 6 * b + 105 + 8 * q) / 16
+        p = 40 * b * (b**2 - 6 * b + 27) + 42 * q * (11 * b + 15)
+        d_star = (
+            3 * q * (40 * b**2 - 253 * b + 1155)
+            - 20 * b * (11 * b**2 + 81 * b + 414)
+        )
+        d_core = d_star / (3600 * b)
+        q0 = q**2 / 3
+        g = (q0 - x * ell + 20 + 8 * q / 3 + d_core) / a
+        h = ell - g
+        y = (ell - 2 * g) / a - x
+        v = g + x * y + y**2
+        r0 = -q * p / (2880 * b)
+        constant = 15 + 23 * q / 4 + q**2 / 8
+
+        assert q0 == a * g + x * ell - 20 - 8 * q / 3 - d_core
+        assert h + g == ell and h == g + a * (x + y)
+        original = r0 - g * h + x * q0 + y * (a + x) * v + constant
+        simplified = r0 - g * h + x * q0 + (a + x) * d_core + constant
+        assert original - simplified == (a + x) * (y * v - d_core)
+
+
 def check_fully_proportional_structural() -> None:
     for b, q, g, d_core, q0 in (
         (Q(2), Q(5), Q(7), Q(3), Q(11)),
@@ -1245,6 +1271,7 @@ def main() -> None:
     check_fully_proportional_exceptional_leading()
     check_fully_proportional_exceptional_singular_affine()
     check_fully_proportional_exceptional_j0_affine()
+    check_fully_proportional_exceptional_j0_structural()
     check_fully_proportional_structural()
     check_fully_proportional_exceptional_structural()
     check_affine_color_compiler()
@@ -1294,6 +1321,8 @@ def main() -> None:
         "R_J+5E_G=-75bB_J+3(T_Jq-5bM_J)",
         "q=5bM_J/T_J",
         "Bhat_J=T_J^2B_J",
+        "Z_D^j=Num(D_j-Y_jV_j)",
+        "Bhat_J=Ehat_J=Fhat_J=Xhat_J=Zhat_D^j=Zhat_R^j=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1323,6 +1352,7 @@ def main() -> None:
         "fully_proportional_exceptional_leading=4 "
         "fully_proportional_exceptional_singular_affine=1 "
         "fully_proportional_exceptional_j0_affine=1 "
+        "fully_proportional_exceptional_j0_structural=1 "
         "fully_proportional_structural=1 "
         "fully_proportional_exceptional_structural=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"

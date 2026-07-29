@@ -11,7 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LAUNCHER = HERE / "l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
-EXPECTED_LAUNCHER_SHA256 = "85ec64690ef625ec3f1e4f1815b95064ad85698d36e4a07826aa9ad6f51827ab"
+EXPECTED_LAUNCHER_SHA256 = "2b33e8c0598283eecb4531df80f052dffe409d25e840c6d519b9d1d0aabb2f70"
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
 
@@ -168,6 +168,21 @@ def source_polynomials() -> dict[str, object]:
         + 163 * (z_affine + 27) ** 2 * c_affine
     )
     x_star = sp.expand(q_star - 24 * d_star * q**2)
+    q_j0 = q**2 / 3
+    g_j0 = (q_j0 - x * ell + 20 + 8 * q / 3 + d_core) / a
+    h_j0 = ell - g_j0
+    y_j0 = (ell - 2 * g_j0) / a - x
+    v_j0 = g_j0 + x * y_j0 + y_j0**2
+    z_d_j0 = d_core - y_j0 * v_j0
+    z_r_j0 = (
+        r_core
+        - g_j0 * h_j0
+        + x * q_j0
+        + (a + x) * d_core
+        + 15
+        + 23 * q / 4
+        + q**2 / 8
+    )
     j0_b = sp.expand(
         96 * q**2 + (216 - 32 * b) * q + 3 * b**2 + 18 * b + 315
     )
@@ -183,10 +198,28 @@ def source_polynomials() -> dict[str, object]:
         assert polynomial.degree() <= degree_bound
         return polynomial.as_expr()
 
+    def cleared_j0_rational_numerator(
+        expression: object, q_degree: int, degree_bound: int
+    ) -> object:
+        value = sp.cancel(j0_t**q_degree * expression.subs(q, j0_r / j0_t))
+        numerator = sp.fraction(value)[0]
+        rational = sp.Poly(numerator, b, domain=sp.QQ)
+        fixed_denominator, integral = rational.clear_denoms(convert=True)
+        content, primitive = integral.primitive()
+        for fixed_unit in (int(fixed_denominator), int(content)):
+            assert fixed_unit != 0
+            assert all(fixed_unit % prime != 0 for prime in PRIMES)
+        if primitive.LC() < 0:
+            primitive = -primitive
+        assert primitive.degree() <= degree_bound
+        return primitive.as_expr()
+
     j0_bhat = cleared_j0(j0_b, 2, 6)
     j0_ehat = cleared_j0(e_g, 2, 7)
     j0_fhat = cleared_j0(a2 * q**2 + a1 * q + a0, 2, 10)
     j0_xhat = cleared_j0(x_star, 3, 11)
+    j0_zdhat = cleared_j0_rational_numerator(z_d_j0, 6, 24)
+    j0_zrhat = cleared_j0_rational_numerator(z_r_j0, 4, 16)
     v_exceptional = sp.expand(a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2)
     g_exceptional = -(d_star**2) * l_star / (720 * b * j_star)
     y_exceptional = (ell - 2 * g_exceptional) / a - x
@@ -269,6 +302,8 @@ def source_polynomials() -> dict[str, object]:
         "j0_Ehat": coefficients(j0_ehat),
         "j0_Fhat": coefficients(j0_fhat),
         "j0_Xhat": coefficients(j0_xhat),
+        "j0_ZDhat": coefficients(j0_zdhat),
+        "j0_ZRhat": coefficients(j0_zrhat),
         "V_E": v_exceptional_coefficients,
         "X_star_q_coefficients": x_star_q_coefficients,
         "Z_D_e_q_coefficients": numerator_q_coefficients(z_d_exceptional, 27),
@@ -471,7 +506,7 @@ def verify_exceptional_singular_affine_gcd(
 def verify_exceptional_j0_affine_common_gcd(
     packet: dict[str, object], polynomials: dict[str, object], prime: int
 ) -> None:
-    labels = ("Bhat", "Ehat", "Fhat", "Xhat")
+    labels = ("Bhat", "Ehat", "Fhat", "Xhat", "ZDhat", "ZRhat")
     sources = [polynomials[f"j0_{label}"] for label in labels]
     t_source = polynomials["j0_T"]
     assert all(isinstance(source, list) for source in sources)

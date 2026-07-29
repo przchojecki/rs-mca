@@ -32,8 +32,8 @@ companion `3+3` exclusion. It proves algebraic reductions, not emptiness:
 3+2+1: an exact common-quadratic factor model with four retained variables
        and one degree-42 symbolic role polynomial; on the fully proportional
        generic chart, three explicit structural filters complete the
-       coefficient endpoint, while the last `J_*=0` coefficient chart is an
-       exact four-filter univariate endpoint.
+       coefficient endpoint, while the last `J_*=0` coefficient-and-
+       structural chart is an exact six-filter univariate endpoint.
 ```
 
 The upstream first-match-to-HNF owner bridge remains outside the note. None
@@ -1167,6 +1167,54 @@ an exact coefficient router, not merely a necessary projection. It still
 retains `G_2`, every structural and role equation, `P_4`, all saturations,
 and every arithmetic lift. No common-root or emptiness verdict is asserted.
 
+The original structural equations reconstruct that retained `G_2`. On this
+chart, `X_*=0` gives `Q_0=q^2/3`. Put
+
+```text
+D_j=D_*/(3600b),                 Q_j=q^2/3,
+G_j=(Q_j-x ell+20+8q/3+D_j)/A,
+H_j=ell-G_j,
+Y_j=(ell-2G_j)/A-x,
+V_j=G_j+xY_j+Y_j^2,              R_j=-qP/(2880b). (28bl14)
+```
+
+The formula for `G_j` is the original `Q_0` definition, using
+`6-2x=A`; division is legal on the inherited `A!=0` saturation. Define
+
+```text
+Z_D^j=Num(D_j-Y_jV_j),
+
+Z_R^j=Num(R_j-G_j(ell-G_j)+xQ_j+(A+x)D_j
+           +15+23q/4+q^2/8).                    (28bl15)
+```
+
+These two equations are jointly equivalent to all remaining structural
+definitions. Before `Z_D^j=0`, the original `R_0` residual minus the second
+line of (28bl15) is exactly `(A+x)(Y_jV_j-D_j)`, so the simplification is
+reversible. Uncancelled representatives satisfy
+
+```text
+(deg,deg_q) Z_D^j <=(12,6),
+(deg,deg_q) Z_R^j <=(8,4).                         (28bl16)
+```
+
+After (28bl12), set
+
+```text
+Zhat_i^j=T_J^m Z_i^j(b,5bM_J/T_J),
+             m=deg_q Z_i^j, i in {D,R}.           (28bl17)
+```
+
+Then `deg Zhat_D^j<=24` and `deg Zhat_R^j<=16`. The complete coefficient
+and structural endpoint is exactly
+
+```text
+Bhat_J=Ehat_J=Fhat_J=Xhat_J=Zhat_D^j=Zhat_R^j=0. (28bl18)
+```
+
+The selected role equation, `P_4`, all saturations, and arithmetic lifts
+remain. No common-root or emptiness verdict is asserted.
+
 The generic coefficient endpoint also admits an exact structural compiler.
 Retain `E_G*a_2*rho_1!=0` and define
 
@@ -1307,9 +1355,9 @@ q=-S_0/S_1.                                        (28bx)
 ```
 
 The `S_1=S_0=0` chart is reduced to the quartic pair (28bl8), while the
-`J_*=0` coefficient chart is reduced to (28bl12)--(28bl13). The selected
-role, `P_4`, saturation, and arithmetic-lift filters remain. The separate
-exceptional `a_2=0` chart is empty by
+`J_*=0` coefficient-and-structural chart is reduced to (28bl18). The
+selected role, `P_4`, saturation, and arithmetic-lift filters remain. The
+separate exceptional `a_2=0` chart is empty by
 (28bl1)--(28bl5). No common-root verdict is asserted for the retained charts.
 
 ## Symmetric affine-color equation for 2+2+2
@@ -1481,13 +1529,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: bb5af22c100f06117b1a9165c0afaad86f09576e697571ae8c0bc7e6f75bef13
+sha256: 446123cea29919792b819e5b23459df6a4a8e6f62018b6402debc2bcf06febc0
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 fully_proportional_exceptional_leading=4 fully_proportional_exceptional_singular_affine=1 fully_proportional_exceptional_j0_affine=1 fully_proportional_exceptional_j0_structural=1 fully_proportional_structural=1 fully_proportional_exceptional_structural=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
@@ -1508,10 +1556,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: 85ec64690ef625ec3f1e4f1815b95064ad85698d36e4a07826aa9ad6f51827ab
+sha256: 2b33e8c0598283eecb4531df80f052dffe409d25e840c6d519b9d1d0aabb2f70
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: b89c741dbe723d8ee49992f437b6973f9f0559e4cd68105428de24a72e0aef46
+sha256: 0d07d97174bfca96ec09bd2157fcdaea0a554a961ea954f9eed329a9f48ec61a
 ```
 
 Launch it with
@@ -1543,15 +1591,15 @@ most two. `ambient_status=EMPTY` excludes the chart over `F_(p^2)`;
 `ambient_status=HIT` returns the only factors that continue to `F_b=X_*=0`
 and the downstream filters. The checker independently reconstructs `A,H,K`
 and verifies the gcd, factorization, guard, and ambient-degree classification.
-The same row now reconstructs the four `J_*=L_*=0` affine-router filters
-`Bhat_J,Ehat_J,Fhat_J,Xhat_J`, certifies their common gcd by a four-way
-Bezout identity, factors that gcd, flags every factor dividing `T_J`, and
-lists exactly the remaining degree-one/two factors. An `EMPTY` ambient
-status excludes this coefficient chart; `HIT` returns only legal factors for
-the retained `G_2` and downstream equations; an identically-zero family is
-explicitly inconclusive. The checker independently reconstructs the five
-source polynomials and verifies the Bezout, factorization, guard, and
-ambient-degree classifications.
+The same row now reconstructs the six `J_*=L_*=0` coefficient-and-structural
+filters `Bhat_J,Ehat_J,Fhat_J,Xhat_J,Zhat_D^j,Zhat_R^j`, certifies their
+common gcd by a six-way Bezout identity, factors that gcd, flags every factor
+dividing `T_J`, and lists exactly the remaining degree-one/two factors. An
+`EMPTY` ambient status excludes this complete coefficient-and-structural
+chart; `HIT` returns only legal factors for role, `P_4`, saturation, and lift
+replay; an identically-zero family is explicitly inconclusive. The checker
+independently reconstructs the seven source polynomials and verifies the
+Bezout, factorization, guard, and ambient-degree classifications.
 This adds no containers, CPUs, memory, retries, or timeout to the request.
 
 None of the compute-request scripts was executed in the exporting
@@ -1563,8 +1611,8 @@ replay; no pending execution is counted as evidence.
 The exact-rational verifier's note path was also repaired from the repository
 root to `experimental/notes/l1`; the previous path would have failed before
 the algebraic checks. This source repair, the leading-chart arithmetic, the
-singular-affine and `J_*=0` affine identities, and the extended packet were
-syntax-checked but not executed in the exporting environment.
+singular-affine, `J_*=0` affine and structural identities, and the extended
+packet were syntax-checked but not executed in the exporting environment.
 
 ## Boundary
 
