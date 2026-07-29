@@ -141,6 +141,15 @@ At this snapshot:
   Thus only `(2,24)` and `(4,12)` remain at `m=12`.  These survivors are
   unpaid; inner degree `12`, `u=2`, K3, and the row remain open, with zero
   ledger movement.
+- The two surviving inner-degree-`12` types now have a complete geometric
+  outer normal-form compiler.  The actual bidegree-`(2,4)` model and the
+  degree-`12` map to the `r=4` outer component force outer genus at most one.
+  Complete tame quintic branch cycles leave five `A5`/`S5` profiles and
+  exclude polynomial `AGL(1,5)`.  Exact critical-value integration gives
+  four rigid `r=4` forms and one one-parameter form; the `r=2` row is a
+  Dickson quintic with two explicit conic divided-difference factors.
+  These are geometric affine forms, not challenge-field endpoint
+  classifications.  No family is deleted or paid and no ledger value moves.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -220,8 +229,13 @@ rank calculation cannot close the prime-degree rows, as the exact deployed
 controls show.  The degree-five outer row at `m=12` has already lost its
 `r=1` and `r=3` types by the cyclic-cover and primitive-subdegree cuts; only
 `(r,delta)=(2,24),(4,12)` remain there, and the global transverse frontier
-has 24 types.  Do not resume the old primitive 985-chart atlas or the `u=3`
-component compiler while this transverse `u=2` interface is open.
+has 24 types.  Its two surviving types are further compiled into six
+explicit geometric polynomial families.  The next `m=12` theorem must
+recover the actual outer coefficients from the canonical source pencil,
+prove any required challenge-field affine descent, and impose the inherited
+quartic/source-star incidence.  Do not resume the old primitive 985-chart
+atlas or the `u=3` component compiler while this transverse `u=2` interface
+is open.
 
 #### K4. Close algebraic routing and add-back
 

@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Inner-degree-12 outer normal-form compiler
+
+- **Agent/model:** Codex, with exact branch-cycle, quadratic-field, and
+  critical-value integration replays.
+- **Files added or changed:**
+  experimental/notes/frontier-adjacent/kb_mca_v4_m12_outer_normal_form_compiler_v1.md,
+  the canonical JSON certificate, its fail-closed Python verifier,
+  experimental/experiments.tex, and agents.md.
+- **Status:** PROVED GEOMETRIC NORMAL-FORM COMPILER.  No family,
+  inner-degree-12 type, \(u=2\) branch, K3 item, or row is closed; no ledger
+  field changes.
+- **What is being added:** The \(r=4\) survivor has outer genus at most one.
+  A complete tame \(S_5\) branch-cycle replay leaves five \(A_5/S_5\)
+  profiles and excludes \(\operatorname{AGL}(1,5)\).  The \(r=2\) row is
+  Dickson/dihedral.  Exact integration compiles both survivors into five
+  rigid affine classes and one one-parameter family.
+- **How it is useful:** It replaces arbitrary degree-five outer-map search
+  by six printed geometric families and exposes one precise missing
+  interface: challenge-field affine classification of the outer
+  coefficients recovered from the canonical source pencil.
+- **What to do next:** Build that fail-closed coefficient classifier without
+  silently descending geometric normalizations, then impose the split
+  active-zero fiber and actual quartic/source-star incidence.
+
 ### 2026-07-29 - Inner-degree-12 outer-subdegree route cut
 
 - **Agent/model:** Codex, with the proof isolated and independently checked

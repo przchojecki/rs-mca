@@ -2982,6 +2982,49 @@ zeros.  Hence the \(r=1\) and \(r=3\) types are empty, and only
 frontier falls from \(26\) to \(24\) types.  Neither survivor is paid or
 deleted, and no ledger quantity moves.
 
+The two inner-degree-twelve survivors admit a complete geometric outer
+normal-form compiler.  The actual component is birational to a
+bidegree-\((2,4)\) curve, so its normalization has genus at most three.
+For the \(r=4,\delta=12\) row, Riemann--Hurwitz forces the outer component
+to have genus at most one.  Exact enumeration of all tame degree-five branch
+tuples leaves five profiles:
+\[
+\begin{array}{c|c|c}
+G_{\rm geom}&\text{finite cycle types}&g(C)\\ \hline
+A_5&(3),(2,2)&0\\
+A_5&(3),(3)&1\\
+S_5&(2),(3,2)&0\\
+S_5&(2),(4)&0\\
+S_5&(2),(2),(2,2)&1.
+\end{array}
+\]
+No tame polynomial tuple has geometric group
+\(\operatorname{AGL}(1,5)\); the remaining \(S_5\) profiles have genus two
+or three and are excluded.
+
+The \(r=2\) row has dihedral monodromy and is geometrically affine-equivalent
+to the Dickson quintic
+\[
+  x^5-5ax^3+5a^2x.
+\]
+Its divided difference splits into the two explicit bidegree-\((2,2)\)
+components over \(\sqrt5\).  Critical-value integration gives the five
+\(r=4\) normal forms
+\[
+\begin{gathered}
+x^3(12x^2-15(1+\tau)x+20\tau),\quad
+  3\tau^2+4\tau+3=0,\\
+x^3(6x^2-15x+10),\qquad x^3(x-1)^2,\qquad
+x^4(5-4x),\\
+x^2(x-1)^2(2x-5\tau),
+\end{gathered}
+\]
+where the last parameter lies on the open locus with the printed branch
+profile.  Thus arbitrary outer-quintic search is replaced by five rigid
+affine classes and one one-parameter family.  The normalizations are
+geometric: no challenge-field coefficient classifier, family deletion,
+owner, payment, or ledger movement is claimed.
+
 The abstract compiler proposed in PR \#1119 proves only the taut finite-set
 fact that least-owner selection partitions candidate-supplied records and the
 arithmetic distinction between \(68\) and \(69\) declared source-map classes.
