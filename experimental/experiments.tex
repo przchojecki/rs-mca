@@ -2815,6 +2815,460 @@ add-back is supplied.  The mathematical gains are exact local theorems,
 counterexamples to overstrong intermediate claims, sharper terminals, and
 finite-family Lane-L results.
 
+\section{M31 rank-seven two-block and decorated-shift router}
+\label{sec:m31-rank7-two-block-router}
+
+\textbf{Status: \textsc{Proved local} / \textsc{List} / route cut.}
+This section sharpens the varying proper-\(G\), zero-excess terminal at
+\(Q=147595\) recorded above.  It retains both pieces of the combined-domain
+agreement support.  The resulting theorem replaces the weak picture of
+nineteen near-maximal fixed-\(G\) slices by a collective middle-band locator
+family and then forces a dense primitive decorated shift-pair stratum.
+
+Put
+\[
+ \begin{gathered}
+ g=354972,\qquad E=698585,\qquad N=g+E=1053557,\\
+ k=4981,\qquad t=k-1=4980,\qquad
+ m=72428,\qquad w=m-k=67447.
+ \end{gathered}                                                   \tag{M31.1}
+\]
+Let \(\Omega=P_0\mathbin{\dot\cup}E_0\) be a domain with
+\(|P_0|=g\) and \(|E_0|=E\).  Fix a received table on \(\Omega\), and let
+\(a_i\in\F[X]_{<k}\) be distinct polynomials whose exact agreement supports
+have the form
+\[
+ S_i=A_i\mathbin{\dot\cup}B_i,
+ \qquad |A_i|=q_i,qquad |B_i|=m-q_i,                         \tag{M31.2}
+\]
+with \(A_i\subseteq P_0\) and \(B_i\subseteq E_0\).
+
+\begin{theorem}[two-block confinement and dense top stratum]
+\label{thm:m31-rank7-two-block-dense-top}
+For every family satisfying \textup{(M31.1)}--\textup{(M31.2)},
+\[
+ |A_i\cap A_j|+|B_i\cap B_j|\le t\qquad(i\ne j).              \tag{M31.3}
+\]
+Consequently
+\[
+ \#\{i:q_i\le4980\}\le40,
+ \qquad
+ \#\{i:q_i\ge67448\}\le7.                                  \tag{M31.4}
+\]
+If the family has size \(M\), and \(Q_1=\sum_iq_i\), then
+\[
+ (NQ_1-Mmg)^2
+ \le gE\bigl(MN(m-t)+M^2(Nt-m^2)\bigr),                       \tag{M31.5}
+\]
+where
+\[
+ Nt-m^2=898676.                                                  \tag{M31.6}
+\]
+
+If \(M\ge2157929\), then
+\[
+ 23945<\frac{Q_1}{M}<24860,                                    \tag{M31.7}
+\]
+and more than one tenth of all unordered pairs satisfy
+\[
+ |S_i\cap S_j|=t.                                               \tag{M31.8}
+\]
+In particular, one member has at least \(215793\) neighbors satisfying
+\textup{(M31.8)}.
+\end{theorem}
+
+\begin{proof}
+For distinct members, every point in the disjoint union
+\((A_i\cap A_j)\mathbin{\dot\cup}(B_i\cap B_j)\) is a root of
+the nonzero polynomial \(a_i-a_j\), whose degree is below \(k\).  This proves
+\textup{(M31.3)}.
+
+We first use the following constant-weight consequence of Cauchy--Schwarz.
+If \(M'\) subsets of size \(d\) in an \(R\)-point universe have pairwise
+intersection at most \(t\), and \(d^2>Rt\), then
+\[
+ M'\le \frac{R(d-t)}{d^2-Rt}.                                  \tag{M31.9}
+\]
+Indeed, if \(r_x\) are the point loads, then
+\(\sum_xr_x=M'd\),
+\(\sum_x\binom{r_x}{2}\le\binom{M'}2t\), and
+\(\sum_xr_x^2\ge M'^2d^2/R\).
+
+For \(q_i\le4980\), choose \(67448\) points from each \(B_i\) and use
+\((R,d,t)=(698585,67448,4980)\).  The numerator and denominator in
+\textup{(M31.9)} are
+\[
+ 43637207780,qquad1070279404,
+\]
+whose integer quotient is \(40\).  For \(q_i\ge67448\), choose the same
+number of points from each \(A_i\) and use \(R=354972\).  The corresponding
+integers are
+\[
+ 22174390896,qquad2781472144,
+\]
+whose quotient is \(7\).  This proves \textup{(M31.4)}.
+
+Let \(x_\alpha\) and \(y_\beta\) be the planted and external point loads.
+Then
+\[
+ \sum_\alpha x_\alpha=Q_1,
+ \qquad \sum_\beta y_\beta=Mm-Q_1.
+\]
+Summing \textup{(M31.3)} over pairs and applying Cauchy--Schwarz in the two
+blocks gives
+\[
+ \frac{Q_1^2}{g}+\frac{(Mm-Q_1)^2}{E}-Mm\le M(M-1)t.           \tag{M31.10}
+\]
+Completing the square with
+\[
+ \frac{q^2}{g}+\frac{(m-q)^2}{E}
+ =\frac{m^2}{N}+\frac{N}{gE}\left(q-\frac{mg}{N}\right)^2
+\]
+proves \textup{(M31.5)}.  At \(M=2157929\), the center lies strictly between
+\(24402\) and \(24403\), while the squared half-width in
+\textup{(M31.5)} is strictly below \(457^2\).  The half-width decreases with
+\(M\), proving \textup{(M31.7)}.
+
+For the final assertion let \(I_{ij}=|S_i\cap S_j|\) and sum the integral
+deficits \(t-I_{ij}\).  Cauchy--Schwarz on the whole \(N\)-point domain gives
+\[
+ \sum_{i<j}(t-I_{ij})
+ \le\frac12\left(\frac{M^2(Nt-m^2)}N+M(m-t)\right).            \tag{M31.11}
+\]
+At \(M=2157929\), exact cross multiplication gives
+\[
+ 10\bigl(M\cdot898676+N(m-t)\bigr)<9N(M-1).                   \tag{M31.12}
+\]
+The ratio decreases with \(M\).  Thus fewer than nine tenths of all pairs
+can have positive integral deficit, proving \textup{(M31.8)}.  The average
+degree of the top-pair graph is strictly larger than
+\((M-1)/10\ge215792.8\), so one vertex has degree at least \(215793\).
+\end{proof}
+
+The source terminal has one additional rigidity.  In its notation,
+\(A_i=Z(Q_i)\), \(B_i=Z(H_i)\setminus S\), and two members with the same
+fixed \(G\) have the same \(Q=P/G\).  Their difference is
+\(L_S(a_i-a_j)\), divisible by \(Q\).  Since
+\(\gcd(Q,L_S)=1\), every slice with \(q_i=\deg Q\ge k\) is a singleton.
+Combining this with \textup{(M31.4)} gives the following source-bound form.
+
+\begin{corollary}[exact successor to the proper-\(G\) terminal]
+\label{cor:m31-rank7-proper-g-dense-top}
+A proper-\(G\), zero-excess class of size at least \(2157929\) contains at
+least
+\[
+ 2157929-40-7=2157882                                        \tag{M31.13}
+\]
+distinct proper locators with \(4981\le q_i\le67447\), and obeys the mean
+constraint \textup{(M31.5)}.
+
+Moreover, interpolate the combined received table by \(U\), and write
+\[
+ U-a_i=L_iC_i,
+\]
+where \(L_i\) is the monic locator of \(S_i\).  For every top pair in
+\textup{(M31.8)}, put \(J=\gcd(L_i,L_j)\), \(L_i=JA\), and \(L_j=JB\).  Then
+\[
+ \deg J=4980,qquad \deg A=\deg B=67448,qquad
+ \gcd(A,B)=1,                                                 \tag{M31.14}
+\]
+and
+\[
+ AC_i-BC_j=c\in\F^\times.                                    \tag{M31.15}
+\]
+In particular \(\gcd(C_i,C_j)=1\).  Hence one member has at least
+\(215793\) neighbors in the primitive first-above-threshold decorated
+shift-pair stratum.  A source-bound local cap \(215792\) for this exact
+stratum eliminates the terminal.
+
+For that fixed member, at most \(14\) top neighbors share one projective
+difference direction.  Indeed, after monic normalization a common direction
+has the form \(J\) with \(\deg J=4980\).  All members on the affine line
+\(a_i+cJ\) agree at the roots of \(J\), while their remaining
+\(m-t=67448\) agreement sets are pairwise disjoint in the other
+\(N-t=1048577\) coordinates.  Thus the line contains at most
+\[
+ \left\lfloor\frac{N-t}{m-t}\right\rfloor=15
+\]
+class members, including the anchor.  The violating class therefore forces
+at least
+\[
+ \left\lceil\frac{215793}{14}\right\rceil=15414               \tag{M31.16}
+\]
+distinct projective directions, each represented by a monic degree-\(4980\)
+divisor of the anchor agreement locator in the six-dimensional direction
+space.  A fixed-support divisor-direction cap \(15413\) is another sufficient
+form of the successor theorem.
+\end{corollary}
+
+\begin{proof}
+Only \textup{(M31.15)} remains.  Subtract the two interpolation factorizations:
+\[
+ J(AC_i-BC_j)=a_j-a_i.
+\]
+The right side is nonzero, has degree below \(k=4981\), and is divisible by
+the degree-\(4980\) polynomial \(J\).  Its quotient is therefore a nonzero
+constant.  A common nonconstant divisor of \(C_i,C_j\) would divide that
+constant, proving primitivity.
+\end{proof}
+
+The projective compression in the corollary does not permit the decorated
+equation to be discarded.  The following exact counterfixture rules out a
+geometry-only divisor bound.
+
+\begin{proposition}[one-root-swap route cut]
+\label{prop:m31-fixed-support-divisor-route-cut}
+Let \(S\subseteq\F\) have size \(m=72428\), and assume that \(\F\) contains
+that many distinct elements.  Choose a \(4979\)-subset \(R_0\subset S\), and
+let \(R\) be its monic locator.  Then
+\[
+ \mathcal V=\langle RX,R,1,X,X^2,X^3\rangle                 \tag{M31.17}
+\]
+is six-dimensional and has no common zero, but contains \(67449\)
+projectively distinct monic degree-\(4980\) divisors of the locator of
+\(S\).
+\end{proposition}
+
+\begin{proof}
+The six generators have distinct degrees
+\(4980,4979,0,1,2,3\), and the constant polynomial makes common-zero-freeness
+literal.  For every \(a\in S\setminus R_0\),
+\[
+ J_a=R(X-a)=RX-aR
+\]
+lies in \(\mathcal V\), is monic of degree \(4980\), and divides the locator
+of \(S\).  The \(J_a\) are projectively distinct because they are distinct
+and monic.  Their number is
+\[
+ |S|-|R_0|=72428-4979=67449.
+\]
+\end{proof}
+
+The support-only pencil is sharply smaller when its members must be actual
+codewords agreeing with one received table.  The recursive affine-span
+Reed--Solomon list compiler in \emph{Grande Finale} v4 gives the following
+uniform payment.
+
+\begin{corollary}[fixed-core actual-list payment]
+\label{cor:m31-top-neighbor-core-shadow}
+Retain \textup{(M31.1)} and fix one listed anchor \(a_0\).  For every top
+neighbor write
+\[
+ a_j-a_0=c_jJ_j,\qquad c_j\in\F^\times,\qquad \deg J_j=t=4980.       \tag{M31.18}
+\]
+For \(0\le r\le t\), fix a monic degree-\(t-r\) divisor \(R\) of the anchor
+agreement locator.  The number of top neighbors for which \(R\mid J_j\) is
+at most
+\[
+ B_r=
+ \left\lfloor
+  \frac{\binom{N-k+r+1}{r+1}}{\binom{w+r+1}{r+1}}
+ \right\rfloor-1.                                             \tag{M31.19}
+\]
+In particular \(B_0=14\) and \(B_1=240\).  Hence a fixed degree-\(4979\)
+one-root-swap core supports at most \(240\) actual top neighbors, including
+all scalar labels.  If the anchor has \(d\) top neighbors and
+\(\mathcal S_{t-r}\) is the set of degree-\(t-r\) core divisors occurring in
+their directions, then
+\[
+ |\mathcal S_{t-r}|
+ \ge \left\lceil\frac{d\binom tr}{B_r}\right\rceil             \tag{M31.20}
+\]
+whenever \(B_r>0\).  The dense anchor in
+Corollary~\ref{cor:m31-rank7-proper-g-dense-top} therefore satisfies
+\[
+ |\mathcal S_{4979}|
+ \ge \left\lceil\frac{215793\cdot4980}{240}\right\rceil
+ =4477705.                                                     \tag{M31.21}
+\]
+\end{corollary}
+
+\begin{proof}
+If \(R\mid J_j\), write \(J_j=RP_j\), where \(P_j\) is monic of degree
+\(r\).  All corresponding neighbors lie in the affine codeword flat
+\[
+ a_0+R\F[X]_{\le r}.
+\]
+Its direction rank is \(r+1\), and every direction polynomial has degree at
+most \((t-r)+r=t=k-1\).  The recursive affine-span compiler, with agreement
+threshold \(m=k+w\), bounds the listed population of this flat by
+\[
+ \left\lfloor
+  \frac{\binom{N-k+r+1}{r+1}}{\binom{w+r+1}{r+1}}
+ \right\rfloor.
+\]
+The anchor is one of those words, so deleting it proves \textup{(M31.19)}.
+For \(r=0\) the total flat cap is
+\(\lfloor1048577/67448\rfloor=15\).  For \(r=1\),
+\[
+ 241\cdot67449\cdot67448
+ \le1048578\cdot1048577
+ <242\cdot67449\cdot67448,
+\]
+so the total flat cap is \(241\).  This gives \(B_0=14\) and \(B_1=240\).
+
+Every squarefree degree-\(t\) locator \(J_j\) has exactly \(\binom tr\)
+monic degree-\(t-r\) divisors.  Counting incidences \((j,R)\), and using the
+cap \(B_r\) over each fixed core, proves \textup{(M31.20)}.  Substitution
+gives \textup{(M31.21)}.
+\end{proof}
+
+The canonical proper-\(G\) source equations sharpen the scalar on every top
+edge.  We record the resulting source-sensitive coloring before stating the
+remaining aggregate.
+
+\begin{corollary}[top-pair source-head saturation]
+\label{cor:m31-top-pair-source-head}
+Retain the proper-\(G\), zero-excess source normal form.  Thus
+\[
+ \begin{gathered}
+ \deg P=g=354972,\qquad \deg L_S=\sigma=282544,\qquad
+ d=g-w=287525,\\
+ G_i\mid P,\qquad Q_i=P/G_i,\qquad f_i=Q_i b_i,\qquad
+ \deg b_i<\deg G_i-w,\\
+ H_i=\gcd(L_0,Y-f_i),\qquad \deg H_i=\deg G_i,\qquad
+ L_S\mid H_i,\\
+ f_i=f_*+L_Sa_i,\qquad \deg a_i<k.
+ \end{gathered}                                                \tag{M31.22}
+\]
+Put
+\[
+ \gamma_i=[X^{d-1}]f_i.                                      \tag{M31.23}
+\]
+For a top pair \(i,j\), let
+\[
+ C_{ij}=\gcd(Q_i,Q_j),\qquad K_{ij}=\gcd(H_i,H_j),
+\]
+and write
+\[
+ J^G_{ij}=\gcd(G_i,G_j),\qquad
+ G_i=J^G_{ij}A_i^G,\qquad G_j=J^G_{ij}A_j^G.
+\]
+Then
+\[
+ A_i^Gb_j-A_j^Gb_i=(\gamma_j-\gamma_i)K_{ij},                 \tag{M31.24}
+\]
+so \(\gamma_i\ne\gamma_j\), and
+\[
+ a_j-a_i=(\gamma_j-\gamma_i)
+             C_{ij}\frac{K_{ij}}{L_S}.                        \tag{M31.25}
+\]
+The monic product in \textup{(M31.25)} is the degree-\(4980\) common
+residual-support locator.
+
+Every fixed head fiber therefore has size at most
+\[
+ \left\lfloor
+ \frac{1053557\cdot67449}{72428^2-1053557\cdot4979}
+ \right\rfloor
+ =
+ \left\lfloor\frac{71061366093}{154881}\right\rfloor
+ =458812.                                                     \tag{M31.26}
+\]
+Consequently a violating proper family uses at least five head values and
+contains at least
+\[
+2157929-458812=1699117                                      \tag{M31.27}
+\]
+members with \(\deg f_i=d-1\).
+
+The original \(215793\)-neighbor dense anchor, with no condition on its own
+head, realizes at least
+\[
+ \frac{215793\cdot4980}{15}=71643276
+\]
+distinct pairs consisting of a degree-\(4979\) core and a neighbor head
+value.
+
+One nonzero-head member has at least \(107897\) top neighbors.  It realizes
+at least \(2238863\) degree-\(4979\) cores and at least
+\[
+ \frac{107897\cdot4980}{15}=35821804                          \tag{M31.28}
+\]
+distinct pairs consisting of such a core and a neighbor head value.
+\end{corollary}
+
+\begin{proof}
+Put \(c=\deg C_{ij}\).  The planted common support has size \(c\), so top
+intersection equality makes the external common support have size
+\(t-c\).  Since both \(H_i,H_j\) contain \(L_S\),
+\[
+ \deg K_{ij}=\sigma+t-c.                                     \tag{M31.29}
+\]
+The proper-\(G\) reduced determinant theorem says that \(K_{ij}\) divides
+\[
+ D_{ij}=A_i^Gb_j-A_j^Gb_i.
+\]
+If \(q_i=\deg Q_i\), then
+\[
+ \deg A_i^G=q_j-c,\qquad
+ \deg b_i\le g-q_i-w-1,
+\]
+and symmetrically for \(j\).  Hence
+\[
+ \deg D_{ij}\le g-w-c-1=d-c-1=\sigma+t-c.                    \tag{M31.30}
+\]
+The determinant is nonzero.  Equations \textup{(M31.29)}--\textup{(M31.30)}
+force equality and make \(D_{ij}\) a scalar multiple of the monic
+\(K_{ij}\).  Monicity of \(Q_i,Q_j,A_i^G,A_j^G\) identifies the leading
+coefficient of \(D_{ij}\) as \(\gamma_j-\gamma_i\), proving
+\textup{(M31.24)}.  The source identities
+\[
+ D_{ij}=L_ST_{ij},\qquad a_i-a_j=-C_{ij}T_{ij}
+\]
+then prove \textup{(M31.25)}.
+
+Members with one fixed \(\gamma\) have no top pairs.  Their degree-\(m\)
+combined supports therefore have pairwise intersection at most \(4979\).
+The constant-weight Cauchy bound gives \textup{(M31.26)}; the division
+remainder is \(104721\).  Four fibers are too small for \(2157929\), and
+the zero-head fiber has at most \(458812\) members, proving
+\textup{(M31.27)}.
+
+More than one tenth of all unordered pairs are top pairs, and every one has
+a nonzero-head endpoint.  Summing top degrees over the nonzero-head vertices
+therefore gives one degree strictly larger than
+\((M-1)/20\ge107896.4\).  The preceding projective and core-shadow bounds
+give \(7707\) directions and \(2238863\) cores.
+
+Finally fix a degree-\(4979\) core \(R\) and a neighbor head value.  Equation
+\textup{(M31.25)} fixes the nonzero scalar \(c=\gamma_j-\gamma_i\), while
+the direction is \(R(X-\alpha)\).  All such neighbors lie on the affine
+codeword line
+\[
+ a_i+cRX+\langle R\rangle.
+\]
+The affine-span line cap is \(15\).  Counting the \(4980\) cores first for
+the original \(215793\)-neighbor anchor gives \(71643276\) colored cells;
+applying the same count to the \(107897\)-neighbor nonzero-head anchor proves
+\textup{(M31.28)}.
+\end{proof}
+
+The head coordinate is the homogenized evaluation-at-infinity functional on
+the degree-below-\(d\) polynomial space.  This observation does not activate
+the existing full-projective-line deletion owner.  After adjoining infinity,
+one fixed received label pays only the single fiber
+\(\{i:\gamma_i=u_\infty\}\).  Changing \(u_\infty\) changes the received
+word, so separate applications for different head values cannot be summed as
+one first-match ledger.  A new theorem must couple the infinity coordinate to
+the finite source data or first-own the weighted head/core spectrum directly.
+
+The corollary is a route reduction, not payment of \(Q=147595\).  It gives
+no upper bound for the middle band or for the local decorated-neighbor
+degree, no active \(U_Q\), \(U_{\rm list\mbox{-}int}\), or \(U_{\rm sp}\)
+integer, no rank-at-least-eight theorem, and no adjacent-row or Prize
+closure.  The proposition shows that fixed-support, six-dimensional,
+common-zero-free geometry alone cannot prove the suggested divisor cap
+\(15413\).  The exact next theorem is the local decorated-neighbor bound
+\(215792\), a cross-core aggregate using the planted/external or Pad\'e data,
+or an owner-preserving injection of all such decorated neighbors into already
+paid cells with exact add-back.  Corollary~\ref{cor:m31-top-neighbor-core-shadow}
+pays every fixed one-root-swap core but gives no upper bound on how many cores
+one received word can realize.  Corollary~\ref{cor:m31-top-pair-source-head}
+further shows that the edge scalar is a source-head difference and pays each
+head fiber, but it neither bounds the head spectrum nor sums the colored
+core shadows.
+
 \section{Non-Claims}
 \label{sec:nonclaims}
 
