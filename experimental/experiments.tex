@@ -3057,6 +3057,43 @@ empty, the transverse frontier falls from \(24\) to \(22\) types, and the
 live inner degrees are \(2,3,4,6,10\).  No \(u=2\), K3, row, owner, or
 ledger closure follows.
 
+\paragraph{Inner degree 10 routes strictly to lower degrees.}
+For the six original blocks of size \(10\), the complete primitive
+degree-\(10\) catalogue has simple socle \(A_5\), \(A_6\), or \(A_{10}\).
+If the block kernel is trivial, the outer point-stabilizer order bound
+\(120\) leaves only the inner groups \(A_5\) and \(S_5\).  The global
+degree-\(60\) action is then the \(A_6\) or \(S_6\) action on flags
+\[
+  (i,A),\qquad i\in\{1,\ldots,6\},\quad
+  A\subseteq\{1,\ldots,6\}\setminus\{i\},\quad |A|=2.
+\]
+An exact permutation replay gives point-stabilizer subdegrees
+\[
+  1,2,3,3,3,\underbrace{6,\ldots,6}_{8}
+  \quad\hbox{for }A_6
+\]
+and
+\[
+  1,2,3,3,3,\underbrace{6,\ldots,6}_{6},12
+  \quad\hbox{for }S_6.
+\]
+Neither contains the actual transverse subdegree four.
+
+Otherwise \(D=[N,N]\) is subdirect in six copies of one of the three simple
+socles.  Scott's lemma and outer primitivity make its strip supports a
+uniform invariant partition, with support size \(t\in\{1,2,3,6\}\).
+For \(t=1\), an independent factor gives an orbit of size \(10\) in another
+block, contradicting the actual size-four suborbit.  For \(t>1\), all socle
+automorphisms are realized in the catalogue's degree-\(10\) actions and the
+socle centralizer is trivial.  Untwisting the strips therefore produces
+preserved columns of size \(t\).  Monodromy/intermediate-field
+correspondence and Luroth's theorem give a second decomposition of inner
+degree \(t\in\{2,3,6\}\).  Thus \(m=10\) has no independent terminal
+producer: its four types route strictly to lower live rows.  The transverse
+frontier falls from \(22\) to \(18\) types in inner degrees \(2,3,4,6\).
+No destination row is deleted or paid, and no \(u=2\), K3, KoalaBear-row,
+owner, or ledger closure follows.
+
 The abstract compiler proposed in PR \#1119 proves only the taut finite-set
 fact that least-owner selection partitions candidate-supplied records and the
 arithmetic distinction between \(68\) and \(69\) declared source-map classes.

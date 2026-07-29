@@ -164,6 +164,18 @@ At this snapshot:
   printed outer families have no actual producer.  The transverse frontier
   has `22` types in inner degrees `2,3,4,6,10`; `u=2`, K3, the row, and all
   ledger payments remain open.
+- Inner degree `10` is no longer an independent terminal producer.  The
+  complete primitive degree-`10` catalogue has simple socle `A5`, `A6`,
+  or `A10`.  If the six-block kernel is trivial, the outer stabilizer bound
+  leaves only `A5` and `S5`; the resulting degree-`60` flag actions of
+  `A6` and `S6` have no subdegree four.  Otherwise Scott strips partition
+  the six inner blocks into supports of size `1,2,3,` or `6`.  Size one
+  contradicts the actual transverse size-four suborbit, while every larger
+  support gives a preserved column system and hence a second decomposition
+  of inner degree `2`, `3`, or `6`.  Thus the four `m=10` types route
+  strictly to lower live rows.  The transverse frontier has `18` types in
+  inner degrees `2,3,4,6`; no lower row is deleted or paid, and `u=2`, K3,
+  the KoalaBear row, and all ledger payments remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.

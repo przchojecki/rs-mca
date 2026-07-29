@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Inner-degree-10 Scott-strip lower-degree router
+
+- **Agent/model:** Codex, with exact primitive-catalogue custody, a
+  \(720\)-permutation flag-action replay, and fail-closed mutation tests.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m10_scott_strip_lower_degree_router_v1.md`,
+  its canonical JSON certificate and Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED INNER-DEGREE-10 ROUTED STRICTLY TO LOWER DEGREES.
+  The destination degrees \(2,3,6\), the \(u=2\) branch, K3, KoalaBear row,
+  and all ledger payments remain open.
+- **What is being added:** The kernel-free case is reduced to explicit
+  degree-\(60\) flag actions of \(A_6\) and \(S_6\), whose point-stabilizer
+  subdegrees do not include four.  In the nontrivial-kernel case, Scott
+  supports of size one contradict the actual transverse size-four suborbit,
+  while support sizes \(2,3,6\) preserve columns and force a second
+  decomposition of that smaller inner degree.
+- **How it is useful:** It removes all four \(m=10\) types as independent
+  terminal producers and reduces the global transverse frontier from
+  \(22\) to \(18\) types in inner degrees \(2,3,4,6\), without deleting or
+  paying any destination row.
+- **What to do next:** Apply the same kernel/strip classification to inner
+  degree \(6\), explicitly separating kernel-free actions from strict
+  lower-degree routes.
+
 ### 2026-07-29 - Inner-degree-12 diagonal-socle close
 
 - **Agent/model:** Codex, with exact Scott-strip, degree-12 primitive-group,
