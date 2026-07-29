@@ -150,6 +150,20 @@ At this snapshot:
   Dickson quintic with two explicit conic divided-difference factors.
   These are geometric affine forms, not challenge-field endpoint
   classifications.  No family is deleted or paid and no ledger value moves.
+- The complete inner-degree-`12` row is now empty.  For the five original
+  blocks of size `12`, the derived block kernel is a subdirect product of
+  the five simple inner socles.  Scott's lemma and the primitive outer
+  degree-`5` action leave the independent product and one full diagonal
+  strip; the actual size-`4` suborbit excludes the independent product.
+  The exact degree-`12` point-stabilizer orbits, including a paired-generator
+  replay of the two inequivalent `M12` actions, force `r=4` and equivalent
+  socle actions on all five blocks.  Their diagonal normalizer preserves
+  twelve secondary blocks of size `5`, hence forces another geometric
+  decomposition with inner degree `5`, which the source-fiber adapter
+  already deletes over `K=F_(p^6)`.  Thus both remaining types and all six
+  printed outer families have no actual producer.  The transverse frontier
+  has `22` types in inner degrees `2,3,4,6,10`; `u=2`, K3, the row, and all
+  ledger payments remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -220,22 +234,18 @@ transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
 data, and slope semantics remain open.
 
 The next maximal equality-wall theorem is the source-coupled transverse
-outer compiler.  For every finite `(m,r,delta)` row emitted by the exact
+outer compiler on the remaining `22` types in inner degrees
+`m in {2,3,4,6,10}`.  For every finite `(m,r,delta)` row emitted by the exact
 source-pencil packet, impose the inherited irreducible quartic/source-star
 incidence on the non-diagonal outer component and terminate it in an
 actual-producer contradiction, a strict coarser decomposition, or a
 same-record carrier/data/explaining-polynomial/slope owner.  A source-only
 rank calculation cannot close the prime-degree rows, as the exact deployed
-controls show.  The degree-five outer row at `m=12` has already lost its
-`r=1` and `r=3` types by the cyclic-cover and primitive-subdegree cuts; only
-`(r,delta)=(2,24),(4,12)` remain there, and the global transverse frontier
-has 24 types.  Its two surviving types are further compiled into six
-explicit geometric polynomial families.  The next `m=12` theorem must
-recover the actual outer coefficients from the canonical source pencil,
-prove any required challenge-field affine descent, and impose the inherited
-quartic/source-star incidence.  Do not resume the old primitive 985-chart
-atlas or the `u=3` component compiler while this transverse `u=2` interface
-is open.
+controls show.  Inner degree `12` is no longer a live target: its diagonal
+socle forces a secondary inner-degree-`5` decomposition, contradicting the
+universal source-fiber adapter.  Do not resume its six-family coefficient
+classifier, the old primitive 985-chart atlas, or the `u=3` component
+compiler while the remaining transverse `u=2` interface is open.
 
 #### K4. Close algebraic routing and add-back
 

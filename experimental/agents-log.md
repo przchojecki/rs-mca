@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Inner-degree-12 diagonal-socle close
+
+- **Agent/model:** Codex, with exact Scott-strip, degree-12 primitive-group,
+  paired-`M12`, and source-custody replays.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m12_diagonal_socle_degree5_close_v1.md`,
+  its canonical JSON certificate and fail-closed Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED INNER-DEGREE-12 ROW EMPTY.  The \(u=2\) branch, K3,
+  KoalaBear row, and all ledger payments remain open.
+- **What is being added:** The derived block kernel is forced to be one full
+  diagonal simple socle; the actual size-four suborbit deletes the Dickson
+  \(r=2\) row and synchronizes all five degree-12 actions.  The diagonal
+  normalizer then preserves twelve blocks of size five, forcing a secondary
+  inner-degree-five decomposition that the universal source-fiber adapter
+  already excludes over the challenge field.
+- **How it is useful:** It deletes both remaining \(m=12\) transverse types,
+  makes all six printed outer families producer-free, and reduces the global
+  transverse frontier from \(24\) to \(22\) types in inner degrees
+  \(2,3,4,6,10\), without a record census or ledger payment.
+- **What to do next:** Apply source-coupled actual-producer deletion or
+  same-record ownership to the remaining \(22\) transverse types; do not
+  continue the superseded \(m=12\) coefficient classifier.
+
 ### 2026-07-29 - Inner-degree-12 outer normal-form compiler
 
 - **Agent/model:** Codex, with exact branch-cycle, quadratic-field, and
