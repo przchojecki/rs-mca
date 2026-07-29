@@ -391,19 +391,68 @@ fifth-slope branch, eliminating `b` now leaves the conic, substituted `D_b`,
 compatibility of `M_5,M_6`, and (29): four equations in `(x,q,d)`. This is a
 reduction, not an emptiness verdict.
 
+The invariants in (30) themselves have a small closed form. Put
+
+```text
+z=x^2+q/6,
+p=b-12,
+eta=-xp-q(d+2)/6,
+ell=z-2p/3.                                        (33)
+```
+
+Then
+
+```text
+P=ell^2p+6x ell eta-(4/3)x^2p^2,
+
+Q=-8x^3(eta^2+2p^3/27)-4x^2 ell p eta
+  -(4/3)x ell^2p^2+ell^3 eta.                      (34)
+```
+
+Indeed, after centering the `u_i`, their invariants are `p,eta`, and the
+value map becomes `Av^2+Lv` with `A=-2x`, `L=ell`. For any centered triple,
+the image invariants are
+
+```text
+P=L^2p-3AL eta-A^2p^2/3,
+Q=A^3(eta^2+2p^3/27)-A^2Lp eta
+  +(2/3)AL^2p^2+L^3 eta.                           (35)
+```
+
+Substituting (34) in (32) gives four rational homogeneous color factors:
+
+```text
+50P^3-27Q^2,
+729Q^4+6048P^3Q^2-578P^6,
+729Q^4+108P^3Q^2+54P^6,
+91125Q^4+64908P^3Q^2+13448P^6.                    (36)
+```
+
+Off the exceptional slopes, write
+
+```text
+alpha=-(q-d)xz,
+beta=(q-d)B_5+6dG,
+b=-beta/alpha.                                    (37)
+```
+
+Each of the four rational color packets is now an explicit system in only
+`(x,q,d)`: the conic, substituted `D_b`,
+`alpha B_6-A_6 beta=0`, and one factor of (36).
+
 ## Verification
 
 The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 478c99f198698a94e60615924a082fb05ab2dd6168e108dbc777bbbcb4f7f687
+sha256: a743b87673f6ee07bbb35e97880ee7386ce89873311903922b54766ba63d2d9b
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 affine_color_shapes=7
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 affine_color_shapes=7 affine_formula=1
 ```
 
 The bounded compute-request launcher has SHA-256

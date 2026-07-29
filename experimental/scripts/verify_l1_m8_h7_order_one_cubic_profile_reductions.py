@@ -258,6 +258,28 @@ def check_affine_color_compiler() -> None:
         theta = poly_mul(theta, factor)
     assert len(theta) - 1 == 7
 
+    roots = (Q(-2), Q(-1), Q(3))
+    p = roots[0] * roots[1] + roots[0] * roots[2] + roots[1] * roots[2]
+    eta = roots[0] * roots[1] * roots[2]
+    a, ell = Q(2), Q(3)
+    values = tuple(a * value**2 + ell * value for value in roots)
+    e1 = sum(values)
+    e2 = values[0] * values[1] + values[0] * values[2] + values[1] * values[2]
+    e3 = values[0] * values[1] * values[2]
+    p_direct = e2 - e1**2 / 3
+    q_direct = e3 - e1 * e2 / 3 + 2 * e1**3 / 27
+    p_formula = ell**2 * p - 3 * a * ell * eta - a**2 * p**2 / 3
+    q_formula = (
+        a**3 * (eta**2 + 2 * p**3 / 27)
+        - a**2 * ell * p * eta
+        + 2 * a * ell**2 * p**2 / 3
+        + ell**3 * eta
+    )
+    assert (p_direct, q_direct) == (p_formula, q_formula)
+    assert 224**2 + 4 * 578 == 4 * 81**2 * 2
+    assert (-4) ** 2 - 4 * 54 == -200
+    assert 2404**2 - 4 * 125 * 13448 == -(2 * 486) ** 2
+
     for lam in (Q(2), Q(-1), Q(3, 2)):
         e1, e2, e3 = 1 + lam, lam, Q(0)
         p = e2 - e1**2 / 3
@@ -284,13 +306,15 @@ def main() -> None:
         "Lambda_321(lambda)",
         "K_8(P,Q)",
         "Theta_8(T)",
+        "alpha B_6-A_6 beta=0",
         "LOCAL_ONLY",
     ):
         assert anchor in note
     print(
         "L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS "
         "linear_samples=2 x0_samples=3 q6x2_samples=3 "
-        "common_quadratic=1 role_polynomial=1 affine_color_shapes=7"
+        "common_quadratic=1 role_polynomial=1 "
+        "affine_color_shapes=7 affine_formula=1"
     )
 
 
