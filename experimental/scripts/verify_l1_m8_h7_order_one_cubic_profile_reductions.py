@@ -917,6 +917,29 @@ def check_fully_proportional_q_quotient() -> None:
         assert poly_rem(poly_add(poly_scale(theta, a2**5), [-r0, -r1]), fb) == [Q(0)]
 
 
+def check_fully_proportional_exceptional_e() -> None:
+    for b in (Q(2), Q(-1), Q(5, 2)):
+        a2 = 63 * (1575 - 247 * b**2)
+        a1 = 9240 * b**2 * (9 - b**2)
+        a0 = 400 * b**2 * (9 - b**2) * (b**2 + 27)
+        e2 = -720 * b
+        e1 = 240 * b**2 - 1902 * b - 630
+        e0 = -40 * b * (b**2 - 6 * b + 27)
+        s1 = a2 * e1 - e2 * a1
+        s0 = a2 * e0 - e2 * a0
+        assert a2 != 0 and s1 != 0
+        for q in (Q(3), Q(-2), Q(7, 5)):
+            fb = a2 * q**2 + a1 * q + a0
+            exceptional = e2 * q**2 + e1 * q + e0
+            assert a2 * exceptional - e2 * fb == s1 * q + s0
+        q = -s0 / s1
+        v = a2 * s0**2 - a1 * s0 * s1 + a0 * s1**2
+        fb = a2 * q**2 + a1 * q + a0
+        exceptional = e2 * q**2 + e1 * q + e0
+        assert s1**2 * fb == v
+        assert a2 * s1**2 * exceptional == e2 * v
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -1026,6 +1049,7 @@ def main() -> None:
     check_fully_proportional_bivariate()
     check_fully_proportional_coefficients()
     check_fully_proportional_q_quotient()
+    check_fully_proportional_exceptional_e()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -1060,6 +1084,8 @@ def main() -> None:
         "F_b=E_G=X_*=J_*=L_*=0",
         "a_2^5Theta_*=R_1q+R_0 mod F_b",
         "U(b)=a_2R_0^2-a_1R_0R_1+a_0R_1^2=0",
+        "a_2E_G-e_2F_b=S_1q+S_0",
+        "X_E(b)=S_1^3X_*(b,-S_0/S_1)=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -1085,6 +1111,7 @@ def main() -> None:
         "fully_proportional_coefficients=1 "
         "fully_proportional_bivariate_compiler=1 "
         "fully_proportional_q_quotient=1 "
+        "fully_proportional_exceptional_e=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

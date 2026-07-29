@@ -993,6 +993,33 @@ retain `R_0=0` and `F_b=0`. If `a_2=0`, retain the explicit chart (28at)
 and evaluate `Theta_*` there. No nonzero-resultant, root, or emptiness
 verdict is asserted.
 
+The parallel `E_G=0` coefficient chart is also quadratic in `q`. Write
+
+```text
+E_G=e_2q^2+e_1q+e_0,
+e_2=-720b,
+e_1=240b^2-1902b-630,
+e_0=-40b(b^2-6b+27).                              (28bj)
+```
+
+Define `S_1=a_2e_1-e_2a_1` and `S_0=a_2e_0-e_2a_0`. Then
+
+```text
+a_2E_G-e_2F_b=S_1q+S_0.                           (28bk)
+```
+
+On `a_2S_1!=0`, reconstruct `q=-S_0/S_1` and retain
+
+```text
+V(b)=a_2S_0^2-a_1S_0S_1+a_0S_1^2=0,
+X_E(b)=S_1^3X_*(b,-S_0/S_1)=0.                   (28bl)
+```
+
+Their degrees are at most 16 and 23. If `S_1=0`, retain
+`S_0=F_b=X_*=0`; if `a_2=0`, retain the fixed chart (28at) with
+`E_G=X_*=0`. The `J_*` split, structural equations, role packet, `P_4`,
+and arithmetic filters remain on every chart.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -1162,13 +1189,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: c7aa9af0b5fbf5abc67156743b11e416e1116afdb725c4fac5314686ff393162
+sha256: a2daa235ea78400a65737aa0b32166390dab0c5d2b85d679d8cd155d5b196474
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 fully_proportional_parameters=1 fully_proportional_bivariate=1 fully_proportional_coefficients=1 fully_proportional_bivariate_compiler=1 fully_proportional_q_quotient=1 fully_proportional_exceptional_e=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
