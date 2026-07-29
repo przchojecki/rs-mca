@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Exact M31 quotient-rotation product spectrum
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `experimental/experiments.tex` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / DIRECT-LIST / LOWER FLOOR / ROUTE CUT.
+- **What is being added:** Specializes the integrated cyclic
+  quotient-rotation theorem to the Mersenne-31 adjacent list stress row and
+  computes all 32 product classes exactly by Ramanujan sums.  The maximum is
+  `8,287,155` codewords at agreement `1,116,023`, 201 above the averaging
+  floor but still `8,490,060` below the `2^-100` budget.
+- **How it is useful:** Removes the possibility that the construction's
+  32-way product averaging hid an adjacent-row counterexample.  It is a
+  direct ordinary-list lower floor and scoped route cut, not a `U_Q` payment,
+  MCA statement, or `2^-128` Prize-row result.
+- **What to do next:** Return to the unrestricted attained-prefix/interior
+  maximum or find a genuinely different construction whose codewords share
+  one received word; do not sum distinct product classes, which have distinct
+  high locator prefixes.  The stdlib-only verifier
+  `experimental/scripts/verify_m31_quotient_rotation_product_spectrum.py`
+  independently replays the spectrum by subset-product DP and Ramanujan sums;
+  both routes and the exact row arithmetic pass.  No Sage, Modal, Lean, or TeX
+  build was run.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from

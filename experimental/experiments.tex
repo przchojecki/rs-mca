@@ -632,6 +632,100 @@ give distinct root sets, hence distinct locators \(L_A\) and distinct
 codewords \(-E_A\).
 \end{proof}
 
+\subsection{Exact Mersenne--31 adjacent product spectrum}
+
+\textbf{Status: \textsc{Proved} / \textsc{Direct-list} / lower floor and
+route cut.}
+The general construction has one finite specialization at the Mersenne--31
+adjacent list stress row for which the averaging loss can be removed exactly.
+This is the auxiliary target $2^{-100}$, not a $2^{-128}$ Prize row.
+
+\begin{theorem}[Mersenne--31 quotient-rotation product spectrum]
+\label{thm:m31-quotient-rotation-spectrum}
+Let $p=2^{31}-1$, let $\F=\F_{p^4}$, let $D\subseteq\F^\times$ be any
+multiplicative coset of size $n=2^{21}$, and put
+$C=\RS[\F,D,k]$ with $k=2^{20}$.  Specialize
+Theorem~\ref{thm:rate-half-cyclic-quotient-rotation-floor} by
+\[
+ c=2^{16},\qquad N=32,\qquad d=1,\qquad m=17,
+ \qquad s=1911.
+\]
+Fix the $s$ partial roots over one quotient point.  The $32$ product classes
+of the resulting $17$-subsets have the exact size spectrum
+\[
+ \begin{array}{c|c|c}
+ \text{normalized product residue}&\text{number of residues}&\text{class size}\\
+ \hline
+ r\ \text{odd}&16&8{,}287{,}155\\
+ r\equiv2\pmod4&8&8{,}286{,}755\\
+ v_2(r)=2\ \text{or}\ r=16&5&8{,}286{,}751\\
+ v_2(r)=3\ \text{or}\ r=0&3&8{,}286{,}750.
+ \end{array}
+\]
+Consequently some received word has at least $8{,}287{,}155$ distinct
+codewords agreeing in exactly
+\[
+ 2^{20}+2^{16}+1911=1{,}116{,}023
+\]
+positions.  This sharpens the average product-fiber floor
+\[
+ \left\lceil\frac{\binom{31}{17}}{32}\right\rceil
+ =8{,}286{,}954
+\]
+by $201$, but it does not refute the adjacent stress-row target:
+\[
+ 16{,}777{,}215-8{,}287{,}155=8{,}490{,}060,
+ \qquad
+ 16{,}777{,}215-2\cdot8{,}287{,}155=202{,}905>0.
+\]
+\end{theorem}
+
+\begin{proof}
+Normalize the quotient coset by the distinguished point, and write its other
+$31$ elements as $\zeta^j$, $1\le j<32$.  For a $17$-subset $A$, the
+$d=1$ high locator prefix consists of one fixed monic block and the disjoint
+block $a_0(A)L_0$, where $L_0$ is the fixed partial-root locator and
+$a_0(A)=-\prod_{b\in A}b$.  Since $L_0$ is monic, two members have the same
+high prefix exactly when their products agree.
+
+Let $C_r$ count the subsets with normalized product $\zeta^r$.  Fourier
+inversion gives
+\[
+ C_r=\frac1{32}\sum_{t=0}^{31}\zeta^{-rt}[y^{17}]
+       \prod_{j=1}^{31}(1+y\zeta^{tj}).
+\]
+The $t=0$ coefficient is $\binom{31}{17}=265{,}182{,}525$.  If $t$ has
+order $o\in\{2,4,8,16,32\}$ and $g=32/o$, then
+\[
+ \prod_{j=1}^{31}(1+y\zeta^{tj})=\frac{(1-y^o)^g}{1+y},
+\]
+whose degree-$17$ coefficient, for increasing $o$, is
+\[
+ -6435,\quad -35,\quad -3,\quad 1,\quad -1.
+\]
+Grouping by the order of $t$ yields
+\[
+ C_r=\frac1{32}\bigl(265{,}182{,}525
+ -6435c_2(r)-35c_4(r)-3c_8(r)+c_{16}(r)-c_{32}(r)\bigr),
+\]
+where $c_q$ is the Ramanujan sum.  For $q=2^j$, this sum is $q/2$ when
+$q\mid r$, is $-q/2$ when $q/2\mid r$ but $q\nmid r$, and is zero otherwise.
+Substitution gives the displayed spectrum; its weighted total is
+\[
+16(8{,}287{,}155)+8(8{,}286{,}755)+5(8{,}286{,}751)
++3(8{,}286{,}750)=\binom{31}{17}.
+\]
+The general quotient-rotation proof now supplies the common received word,
+the distinct codewords, and exact agreement.  The final comparisons are
+direct integer subtraction.
+\end{proof}
+
+This theorem computes the maximum \emph{inside the displayed structured
+construction}.  Other locators may enlarge the same received-word list.  It
+is not a list upper bound, a deployed $U_Q$, an MCA slope statement, or an
+adjacent-row certificate.  Distinct product classes have distinct high
+prefixes and therefore cannot be added as codewords around one received word.
+
 \subsection{The declared post-Johnson specialization}
 
 Take
