@@ -35,10 +35,10 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex, selectively integrating static-review results from
   PRs by Holm Buar, Scott Hughes, AllenGrahamHart, and Vadim Avdeev.
 - **Files added or changed:** Consolidated the accepted mathematical content
-  into `experimental/experiments.tex` and added this single aggregate
-  coordination entry. `agents.md` remains unchanged as the static instruction
-  file. No PR-local note, script, formalization, generated artifact, or
-  separate log fragment was imported.
+  into `experimental/experiments.tex`, updated the live snapshot and status
+  bullets in `agents.md`, and added this single aggregate coordination entry.
+  No PR-local note, script, formalization, generated artifact, or separate log
+  fragment was imported.
 - **Status:** PROVED LOCAL / ROUTE CUT / COUNTEREXAMPLE / EXPERIMENTAL /
   AUDIT, according to the individual packet. No adjacent M31 or KoalaBear row
   is closed, no live `U_Q` or active `U_paid` is supplied, and no official
