@@ -1,0 +1,4692 @@
+{
+  "conclusion": {
+    "K3_closed": false,
+    "forced_strict_outer_decomposition_type_count": 18,
+    "ledger_movement": 0,
+    "live_input_type_count": 24,
+    "m12_closed": false,
+    "m12_imported_geometric_family_count": 6,
+    "new_actual_producer_contradiction": [
+      10,
+      4,
+      10
+    ],
+    "new_actual_producer_contradiction_type_count": 1,
+    "new_m6_m10_nielsen_passport_count": 16,
+    "new_m6_m10_simultaneous_conjugacy_orbit_count": 18,
+    "original_transverse_type_count": 26,
+    "parent_deleted_type_count": 2,
+    "primitive_outer_survivor_type_count": 5,
+    "primitive_outer_survivors": [
+      [
+        6,
+        3,
+        8
+      ],
+      [
+        6,
+        6,
+        4
+      ],
+      [
+        10,
+        5,
+        8
+      ],
+      [
+        12,
+        2,
+        24
+      ],
+      [
+        12,
+        4,
+        12
+      ]
+    ],
+    "row_closed": false,
+    "terminal": "ONE_NEW_EMPTY_EIGHTEEN_ACYCLIC_DECOMPOSITION_ROUTES_AND_FIVE_FINITE_PRIMITIVE_TARGETS",
+    "u2_closed": false
+  },
+  "decomposed_outer_component_lemma": {
+    "cover_bound": "epsilon<=e^2",
+    "new_empty_row": {
+      "delta": 10,
+      "m": 10,
+      "n": 6,
+      "r": 4,
+      "right_degree_three_same_fiber": "r=4>e-1=2",
+      "right_degree_three_transverse": "G has degree two, so rprime=1 and epsilon=e*r=12>e^2=9",
+      "right_degree_two": "mprime=20 is source-profile impossible",
+      "terminal": "ACTUAL_PRODUCER_CONTRADICTION"
+    },
+    "same_fiber_bound": "if Cprime is diagonal then C is a same-s-fiber component and r<=e-1",
+    "setup": "F=G composed s with e=deg(s); C has bidegree (r,r); Cprime is the image under s times s",
+    "source_profile_gate": "the coarsened inner degree m*e must occur in the exhaustive source-profile table",
+    "transverse_degree_identity": "epsilon*rprime=e*r"
+  },
+  "independent_replays": {
+    "live_wolfram_plugin": {
+      "field_residues_and_gcd": [
+        3,
+        4,
+        1
+      ],
+      "m10_component_genera": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "m10_r4_three_exits_impossible": [
+        true,
+        true,
+        true
+      ],
+      "m4_A6_multiset_count": 0,
+      "m4_S6_multiset_count": 1,
+      "m4_S6_unique_product_sign": -1,
+      "m6_component_genera": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "partition_identity": "26-2=18+1+5"
+    },
+    "sage_gap": {
+      "exact_primitive_group_count": 32,
+      "gap_version": "4.14.0",
+      "generating_nielsen_passport_count": 16,
+      "necessary_low_genus_class_profile_count": 25,
+      "path": "experimental/scripts/replay_kb_mca_v4_degree60_outer_primitive_route_compiler_v1.sage",
+      "sage_version": "10.9",
+      "sha256": "6ab9eac0952bc8315b4a110401a55441abbdc25fa3698b4c11d6d7c14c7abd13",
+      "simultaneous_conjugacy_orbit_count": 18
+    },
+    "wolfram": {
+      "path": "experimental/scripts/replay_kb_mca_v4_degree60_outer_primitive_route_compiler_v1.wl",
+      "scope": "independent exact integer, permutation-index, genus, field, and route arithmetic",
+      "sha256": "3b6d5c84e682a7ffb50de214fa87d85c082a35b2062c6df23796c6cc0a74676a"
+    }
+  },
+  "live_row_classification": [
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 4,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*1=2*2",
+              "image_inner_degree": 4,
+              "image_r": 1
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*2=2*2",
+              "image_inner_degree": 4,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 1,
+              "degree_identity": "1*4=2*2",
+              "image_inner_degree": 4,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 6,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*1=3*2",
+              "image_inner_degree": 6,
+              "image_r": 1
+            },
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*2=3*2",
+              "image_inner_degree": 6,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*3=3*2",
+              "image_inner_degree": 6,
+              "image_r": 3
+            },
+            {
+              "cover_degree": 1,
+              "degree_identity": "1*6=3*2",
+              "image_inner_degree": 6,
+              "image_r": 6
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 10,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 10,
+              "degree_identity": "10*1=5*2",
+              "image_inner_degree": 10,
+              "image_r": 1
+            },
+            {
+              "cover_degree": 5,
+              "degree_identity": "5*2=5*2",
+              "image_inner_degree": 10,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*5=5*2",
+              "image_inner_degree": 10,
+              "image_r": 5
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 6,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*2=6*2",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*4=6*2",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 10,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 15,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 30,
+              "degree_identity": "30*1=15*2",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 4,
+      "m": 2,
+      "n": 30,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 2,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 4,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*2=2*4",
+              "image_inner_degree": 4,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*4=2*4",
+              "image_inner_degree": 4,
+              "image_r": 4
+            },
+            {
+              "cover_degree": 1,
+              "degree_identity": "1*8=2*4",
+              "image_inner_degree": 4,
+              "image_r": 8
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 6,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*2=3*4",
+              "image_inner_degree": 6,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*3=3*4",
+              "image_inner_degree": 6,
+              "image_r": 3
+            },
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*4=3*4",
+              "image_inner_degree": 6,
+              "image_r": 4
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*6=3*4",
+              "image_inner_degree": 6,
+              "image_r": 6
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 10,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 20,
+              "degree_identity": "20*1=5*4",
+              "image_inner_degree": 10,
+              "image_r": 1
+            },
+            {
+              "cover_degree": 10,
+              "degree_identity": "10*2=5*4",
+              "image_inner_degree": 10,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*5=5*4",
+              "image_inner_degree": 10,
+              "image_r": 5
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 6,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 12,
+              "degree_identity": "12*2=6*4",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*4=6*4",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 10,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 15,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 60,
+              "degree_identity": "60*1=15*4",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 2,
+      "m": 2,
+      "n": 30,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 4,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 4,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*4=2*8",
+              "image_inner_degree": 4,
+              "image_r": 4
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*8=2*8",
+              "image_inner_degree": 4,
+              "image_r": 8
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 6,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 8,
+              "degree_identity": "8*3=3*8",
+              "image_inner_degree": 6,
+              "image_r": 3
+            },
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*4=3*8",
+              "image_inner_degree": 6,
+              "image_r": 4
+            },
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*6=3*8",
+              "image_inner_degree": 6,
+              "image_r": 6
+            },
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*8=3*8",
+              "image_inner_degree": 6,
+              "image_r": 8
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 10,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 20,
+              "degree_identity": "20*2=5*8",
+              "image_inner_degree": 10,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 8,
+              "degree_identity": "8*5=5*8",
+              "image_inner_degree": 10,
+              "image_r": 5
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 6,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 24,
+              "degree_identity": "24*2=6*8",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 12,
+              "degree_identity": "12*4=6*8",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 10,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 15,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 120,
+              "degree_identity": "120*1=15*8",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 1,
+      "m": 2,
+      "n": 30,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 8,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 6,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*1=2*2",
+              "image_inner_degree": 6,
+              "image_r": 1
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*2=2*2",
+              "image_inner_degree": 6,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 1,
+              "degree_identity": "1*4=2*2",
+              "image_inner_degree": 6,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 4,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*2=4*2",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*4=4*2",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 15,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 10,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 20,
+              "degree_identity": "20*1=10*2",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 6,
+      "m": 3,
+      "n": 20,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 2,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 6,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*2=2*3",
+              "image_inner_degree": 6,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*3=2*3",
+              "image_inner_degree": 6,
+              "image_r": 3
+            },
+            {
+              "cover_degree": 1,
+              "degree_identity": "1*6=2*3",
+              "image_inner_degree": 6,
+              "image_r": 6
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 4,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*2=4*3",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*4=4*3",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 15,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 10,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 30,
+              "degree_identity": "30*1=10*3",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 4,
+      "m": 3,
+      "n": 20,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 3,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 6,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*2=2*4",
+              "image_inner_degree": 6,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*4=2*4",
+              "image_inner_degree": 6,
+              "image_r": 4
+            },
+            {
+              "cover_degree": 1,
+              "degree_identity": "1*8=2*4",
+              "image_inner_degree": 6,
+              "image_r": 8
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 4,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 8,
+              "degree_identity": "8*2=4*4",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*4=4*4",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 15,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 10,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 40,
+              "degree_identity": "40*1=10*4",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 3,
+      "m": 3,
+      "n": 20,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 4,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 6,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*3=2*6",
+              "image_inner_degree": 6,
+              "image_r": 3
+            },
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*4=2*6",
+              "image_inner_degree": 6,
+              "image_r": 4
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*6=2*6",
+              "image_inner_degree": 6,
+              "image_r": 6
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 4,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 12,
+              "degree_identity": "12*2=4*6",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*4=4*6",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 15,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 10,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 60,
+              "degree_identity": "60*1=10*6",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 2,
+      "m": 3,
+      "n": 20,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 6,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 6,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*6=2*12",
+              "image_inner_degree": 6,
+              "image_r": 6
+            },
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*8=2*12",
+              "image_inner_degree": 6,
+              "image_r": 8
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 4,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 12,
+              "degree_identity": "12*4=4*12",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 15,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 10,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 1,
+      "m": 3,
+      "n": 20,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 12,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 16,
+      "m": 4,
+      "n": 15,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 1,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*2=3*2",
+              "image_inner_degree": 12,
+              "image_r": 2
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 8,
+      "m": 4,
+      "n": 15,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 2,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*2=3*4",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*4=3*4",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 4,
+      "m": 4,
+      "n": 15,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 4,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*4=3*8",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 2,
+      "m": 4,
+      "n": 15,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": "M4_R8_PRIMITIVE_OUTER_BRANCH_CYCLE_CONTRADICTION",
+      "r": 8,
+      "raw_primitive_matches": [
+        {
+          "order": 360,
+          "primitive_group_index": 2,
+          "structure": "A6"
+        },
+        {
+          "order": 720,
+          "primitive_group_index": 3,
+          "structure": "S6"
+        }
+      ],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 1,
+              "degree_identity": "1*2=2*1",
+              "image_inner_degree": 12,
+              "image_r": 2
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": "M6_DEGREE5_OUTER_RIGHT_FACTOR_FIFTH_POWER_SPLIT_FIBER_CONTRADICTION",
+          "new_inner_degree": 30,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 24,
+      "m": 6,
+      "n": 10,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 1,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*2=2*2",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 1,
+              "degree_identity": "1*4=2*2",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": "M6_DEGREE5_OUTER_RIGHT_FACTOR_FIFTH_POWER_SPLIT_FIBER_CONTRADICTION",
+          "new_inner_degree": 30,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 12,
+      "m": 6,
+      "n": 10,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 2,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*2=2*3",
+              "image_inner_degree": 12,
+              "image_r": 2
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": "M6_DEGREE5_OUTER_RIGHT_FACTOR_FIFTH_POWER_SPLIT_FIBER_CONTRADICTION",
+          "new_inner_degree": 30,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 8,
+      "m": 6,
+      "n": 10,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [
+        {
+          "order": 60,
+          "primitive_group_index": 1,
+          "structure": "A5"
+        },
+        {
+          "order": 120,
+          "primitive_group_index": 2,
+          "structure": "S5"
+        }
+      ],
+      "profile_filter": null,
+      "r": 3,
+      "raw_primitive_matches": [
+        {
+          "order": 60,
+          "primitive_group_index": 1,
+          "structure": "A5"
+        },
+        {
+          "order": 120,
+          "primitive_group_index": 2,
+          "structure": "S5"
+        }
+      ],
+      "terminal": "PRIMITIVE_OUTER_COMPATIBLE_SURVIVOR"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*2=2*4",
+              "image_inner_degree": 12,
+              "image_r": 2
+            },
+            {
+              "cover_degree": 2,
+              "degree_identity": "2*4=2*4",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": "M6_DEGREE5_OUTER_RIGHT_FACTOR_FIFTH_POWER_SPLIT_FIBER_CONTRADICTION",
+          "new_inner_degree": 30,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 6,
+      "m": 6,
+      "n": 10,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 4,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*4=2*6",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": "M6_DEGREE5_OUTER_RIGHT_FACTOR_FIFTH_POWER_SPLIT_FIBER_CONTRADICTION",
+          "new_inner_degree": 30,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 4,
+      "m": 6,
+      "n": 10,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [
+        {
+          "order": 60,
+          "primitive_group_index": 1,
+          "structure": "A5"
+        },
+        {
+          "order": 120,
+          "primitive_group_index": 2,
+          "structure": "S5"
+        }
+      ],
+      "profile_filter": null,
+      "r": 6,
+      "raw_primitive_matches": [
+        {
+          "order": 60,
+          "primitive_group_index": 1,
+          "structure": "A5"
+        },
+        {
+          "order": 120,
+          "primitive_group_index": 2,
+          "structure": "S5"
+        }
+      ],
+      "terminal": "PRIMITIVE_OUTER_COMPATIBLE_SURVIVOR"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 12,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 4,
+              "degree_identity": "4*4=2*8",
+              "image_inner_degree": 12,
+              "image_r": 4
+            }
+          ],
+          "viable": true
+        },
+        {
+          "field_obstruction": "M6_DEGREE5_OUTER_RIGHT_FACTOR_FIFTH_POWER_SPLIT_FIBER_CONTRADICTION",
+          "new_inner_degree": 30,
+          "outer_right_degree": 5,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 3,
+      "m": 6,
+      "n": 10,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 8,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 3,
+              "degree_identity": "3*1=3*1",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 40,
+      "m": 10,
+      "n": 6,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 1,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": true,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": true,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [
+            {
+              "cover_degree": 6,
+              "degree_identity": "6*1=3*2",
+              "image_inner_degree": 30,
+              "image_r": 1
+            }
+          ],
+          "viable": true
+        }
+      ],
+      "delta": 20,
+      "m": 10,
+      "n": 6,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 2,
+      "raw_primitive_matches": [],
+      "terminal": "FORCED_STRICT_OUTER_DECOMPOSITION"
+    },
+    {
+      "decomposable_realization_possible": false,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 10,
+      "m": 10,
+      "n": 6,
+      "outer_primitivity_forced": false,
+      "primitive_matches": [],
+      "profile_filter": null,
+      "r": 4,
+      "raw_primitive_matches": [],
+      "terminal": "ACTUAL_PRODUCER_CONTRADICTION"
+    },
+    {
+      "decomposable_realization_possible": false,
+      "decomposition_analysis": [
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 20,
+          "outer_right_degree": 2,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": false,
+          "transverse_image_targets": [],
+          "viable": false
+        },
+        {
+          "field_obstruction": null,
+          "new_inner_degree": 30,
+          "outer_right_degree": 3,
+          "same_right_fiber_possible": false,
+          "source_profile_admitted": true,
+          "transverse_image_targets": [],
+          "viable": false
+        }
+      ],
+      "delta": 8,
+      "m": 10,
+      "n": 6,
+      "outer_primitivity_forced": true,
+      "primitive_matches": [
+        {
+          "order": 60,
+          "primitive_group_index": 1,
+          "structure": "A5"
+        },
+        {
+          "order": 120,
+          "primitive_group_index": 2,
+          "structure": "S5"
+        },
+        {
+          "order": 360,
+          "primitive_group_index": 3,
+          "structure": "A6"
+        },
+        {
+          "order": 720,
+          "primitive_group_index": 4,
+          "structure": "S6"
+        }
+      ],
+      "profile_filter": null,
+      "r": 5,
+      "raw_primitive_matches": [
+        {
+          "order": 60,
+          "primitive_group_index": 1,
+          "structure": "A5"
+        },
+        {
+          "order": 120,
+          "primitive_group_index": 2,
+          "structure": "S5"
+        },
+        {
+          "order": 360,
+          "primitive_group_index": 3,
+          "structure": "A6"
+        },
+        {
+          "order": 720,
+          "primitive_group_index": 4,
+          "structure": "S6"
+        }
+      ],
+      "terminal": "PRIMITIVE_OUTER_COMPATIBLE_SURVIVOR"
+    },
+    {
+      "decomposable_realization_possible": false,
+      "decomposition_analysis": [],
+      "delta": 24,
+      "m": 12,
+      "n": 5,
+      "outer_primitivity_forced": true,
+      "primitive_matches": [
+        {
+          "order": 10,
+          "primitive_group_index": 2,
+          "structure": "D10"
+        }
+      ],
+      "profile_filter": null,
+      "r": 2,
+      "raw_primitive_matches": [
+        {
+          "order": 10,
+          "primitive_group_index": 2,
+          "structure": "D10"
+        }
+      ],
+      "terminal": "PRIMITIVE_OUTER_COMPATIBLE_SURVIVOR"
+    },
+    {
+      "decomposable_realization_possible": false,
+      "decomposition_analysis": [],
+      "delta": 12,
+      "m": 12,
+      "n": 5,
+      "outer_primitivity_forced": true,
+      "primitive_matches": [
+        {
+          "order": 60,
+          "primitive_group_index": 4,
+          "structure": "A5"
+        },
+        {
+          "order": 120,
+          "primitive_group_index": 5,
+          "structure": "S5"
+        }
+      ],
+      "profile_filter": "M12_TAME_POLYNOMIAL_BRANCH_LEDGER_EXCLUDES_F20",
+      "r": 4,
+      "raw_primitive_matches": [
+        {
+          "order": 20,
+          "primitive_group_index": 3,
+          "structure": "C5 : C4"
+        },
+        {
+          "order": 60,
+          "primitive_group_index": 4,
+          "structure": "A5"
+        },
+        {
+          "order": 120,
+          "primitive_group_index": 5,
+          "structure": "S5"
+        }
+      ],
+      "terminal": "PRIMITIVE_OUTER_COMPATIBLE_SURVIVOR"
+    }
+  ],
+  "m4_r8_primitive_branch_cycle_exclusion": {
+    "A6_necessary_class_multisets": [],
+    "S6_necessary_class_multisets": [
+      [
+        {
+          "count": 2,
+          "natural_cycle_type": [
+            5,
+            1
+          ]
+        },
+        {
+          "count": 1,
+          "natural_cycle_type": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ]
+    ],
+    "S6_product_one_possible": false,
+    "S6_unique_multiset_product_sign": -1,
+    "actual_curve_genus_upper_bound": 3,
+    "allowed_r8_total_indices": [
+      238,
+      240,
+      242
+    ],
+    "candidate_r": 8,
+    "class_index_table": [
+      {
+        "degree_fifteen_index": 12,
+        "natural_cycle_type": [
+          6
+        ],
+        "natural_sign": -1,
+        "r8_orbital_index": 100
+      },
+      {
+        "degree_fifteen_index": 12,
+        "natural_cycle_type": [
+          5,
+          1
+        ],
+        "natural_sign": 1,
+        "r8_orbital_index": 96
+      },
+      {
+        "degree_fifteen_index": 10,
+        "natural_cycle_type": [
+          4,
+          2
+        ],
+        "natural_sign": 1,
+        "r8_orbital_index": 90
+      },
+      {
+        "degree_fifteen_index": 10,
+        "natural_cycle_type": [
+          4,
+          1,
+          1
+        ],
+        "natural_sign": -1,
+        "r8_orbital_index": 90
+      },
+      {
+        "degree_fifteen_index": 10,
+        "natural_cycle_type": [
+          3,
+          3
+        ],
+        "natural_sign": 1,
+        "r8_orbital_index": 80
+      },
+      {
+        "degree_fifteen_index": 10,
+        "natural_cycle_type": [
+          3,
+          2,
+          1
+        ],
+        "natural_sign": -1,
+        "r8_orbital_index": 94
+      },
+      {
+        "degree_fifteen_index": 8,
+        "natural_cycle_type": [
+          3,
+          1,
+          1,
+          1
+        ],
+        "natural_sign": 1,
+        "r8_orbital_index": 76
+      },
+      {
+        "degree_fifteen_index": 6,
+        "natural_cycle_type": [
+          2,
+          2,
+          2
+        ],
+        "natural_sign": -1,
+        "r8_orbital_index": 60
+      },
+      {
+        "degree_fifteen_index": 6,
+        "natural_cycle_type": [
+          2,
+          2,
+          1,
+          1
+        ],
+        "natural_sign": 1,
+        "r8_orbital_index": 60
+      },
+      {
+        "degree_fifteen_index": 4,
+        "natural_cycle_type": [
+          2,
+          1,
+          1,
+          1,
+          1
+        ],
+        "natural_sign": -1,
+        "r8_orbital_index": 48
+      },
+      {
+        "degree_fifteen_index": 0,
+        "natural_cycle_type": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "natural_sign": 1,
+        "r8_orbital_index": 0
+      }
+    ],
+    "degree_fifteen_total_index": 28,
+    "delta": 2,
+    "inner_degree": 4,
+    "outer_component_genus_upper_bound": 2,
+    "outer_degree": 15,
+    "outer_group_candidates": [
+      "A6",
+      "S6"
+    ],
+    "outer_pole_cycle_type": [
+      5,
+      5,
+      5
+    ],
+    "r8_orbital_degree": 120,
+    "terminal": "M4_R8_PRIMITIVE_OUTER_BRANCH_CYCLE_CONTRADICTION",
+    "underlying_natural_pole_cycle_type": [
+      5,
+      1
+    ]
+  },
+  "m6_degree_five_outer_right_factor_exclusion": {
+    "contradiction": "a split simple five-point K-fiber of s_5 is impossible",
+    "coordinate_scope": "the source coordinate z=H0/H1 is K-rational; only a geometric target normalization of s_5 is used",
+    "field_arithmetic": {
+      "extension_degree": 6,
+      "fifth_power_permutates_K": true,
+      "gcd_5_q_minus_1": 1,
+      "p": 2130706433
+    },
+    "normal_form": "c*z^5 after the K-rational source coordinate and a geometric target change",
+    "outer_poles": "two K-rational poles of F, each of order five",
+    "outer_zeros": "ten distinct simple K-rational zeros of F",
+    "pole_consequence": "G_2 has two simple poles and s_5 is totally ramified above each",
+    "setup": "m=6, deg(F)=10, F=G_2 composed s_5",
+    "terminal": "M6_DEGREE5_OUTER_RIGHT_FACTOR_DELETED"
+  },
+  "nonclaims": [
+    "A forced outer decomposition is a recursive route, not a payment.",
+    "The former m=6 to m=30 to m=6 loop is deleted by the exact split-fiber fifth-power contradiction.",
+    "The m=4,r=8 primitive realization is empty, but the row itself routes through outer decomposition.",
+    "No primitive survivor is deleted or assigned to an owner.",
+    "The Nielsen passports and generating tuples do not prove a challenge-field normal form or source compatibility.",
+    "No parameter-to-carrier, received-data, explaining-polynomial, or slope bridge is proved.",
+    "No u=2, K3, or KoalaBear row closure is claimed.",
+    "No ledger quantity moves."
+  ],
+  "parent_deleted_rows": [
+    {
+      "delta": 48,
+      "m": 12,
+      "n": 5,
+      "r": 1
+    },
+    {
+      "delta": 16,
+      "m": 12,
+      "n": 5,
+      "r": 3
+    }
+  ],
+  "parent_stack": {
+    "head_commit": "f7a42415bdb24c7e626b76394558bad100c5a874",
+    "m12_normal_forms": {
+      "blob_oid": "8e0ecd7f5b008900ada67dbf80848e8dbbff8416",
+      "commit": "f7a42415bdb24c7e626b76394558bad100c5a874",
+      "imported_terminal": "M12_SIX_GEOMETRIC_OUTER_FAMILIES_UNPAID",
+      "path": "data/certificates/kb-mca-v4-m12-outer-normal-form-compiler-v1/kb_mca_v4_m12_outer_normal_form_compiler_v1.json",
+      "payload_sha256": "7eb4f4053f90cb4ca0d0f3379fa3f8f33522ae0ec9b3dc67f5c7e602150d22f0"
+    },
+    "m12_subdegree_cut": {
+      "blob_oid": "6ea55700f303869a850c79c66c331842e0eed385",
+      "commit": "e368e5c8fc101ae0040b47265c2cd167e70dadd2",
+      "deleted_types": [
+        [
+          12,
+          1,
+          48
+        ],
+        [
+          12,
+          3,
+          16
+        ]
+      ],
+      "path": "data/certificates/kb-mca-v4-m12-outer-subdegree-route-cut-v1/kb_mca_v4_m12_outer_subdegree_route_cut_v1.json",
+      "payload_sha256": "4349f6ca07b991fe78b90c66feb1fdcb1df582ac19d34c50d354c3c91c9e6b63"
+    },
+    "source_compiler": {
+      "blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477",
+      "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+      "imported_transverse_type_count": 26,
+      "path": "data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json",
+      "payload_sha256": "6d4bc83e40e491f02f7d265b021628ffb7d52b1978c0655f83e5a9d3e0a9f4bb"
+    }
+  },
+  "payload_sha256": "950a27db41145134227f4ddd5d9ed8ff27f0e23c62b83edce542c8498a1aa69b",
+  "primitive_outer_catalogue": [
+    {
+      "degree": 30,
+      "groups": [
+        {
+          "non_diagonal_subdegrees": [
+            29
+          ],
+          "order": 12180,
+          "primitive_group_index": 1,
+          "structure": "PSL(2,29)",
+          "subdegrees": [
+            1,
+            29
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            29
+          ],
+          "order": 24360,
+          "primitive_group_index": 2,
+          "structure": "PSL(2,29) : C2",
+          "subdegrees": [
+            1,
+            29
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            29
+          ],
+          "order": 132626429906095529318154240000000,
+          "primitive_group_index": 3,
+          "structure": "A30",
+          "subdegrees": [
+            1,
+            29
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            29
+          ],
+          "order": 265252859812191058636308480000000,
+          "primitive_group_index": 4,
+          "structure": "S30",
+          "subdegrees": [
+            1,
+            29
+          ]
+        }
+      ],
+      "primitive_group_count": 4
+    },
+    {
+      "degree": 20,
+      "groups": [
+        {
+          "non_diagonal_subdegrees": [
+            19
+          ],
+          "order": 3420,
+          "primitive_group_index": 1,
+          "structure": "PSL(2,19)",
+          "subdegrees": [
+            1,
+            19
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            19
+          ],
+          "order": 6840,
+          "primitive_group_index": 2,
+          "structure": "PSL(2,19) : C2",
+          "subdegrees": [
+            1,
+            19
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            19
+          ],
+          "order": 1216451004088320000,
+          "primitive_group_index": 3,
+          "structure": "A20",
+          "subdegrees": [
+            1,
+            19
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            19
+          ],
+          "order": 2432902008176640000,
+          "primitive_group_index": 4,
+          "structure": "S20",
+          "subdegrees": [
+            1,
+            19
+          ]
+        }
+      ],
+      "primitive_group_count": 4
+    },
+    {
+      "degree": 15,
+      "groups": [
+        {
+          "non_diagonal_subdegrees": [
+            14
+          ],
+          "order": 2520,
+          "primitive_group_index": 1,
+          "structure": "A7",
+          "subdegrees": [
+            1,
+            14
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            6,
+            8
+          ],
+          "order": 360,
+          "primitive_group_index": 2,
+          "structure": "A6",
+          "subdegrees": [
+            1,
+            6,
+            8
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            6,
+            8
+          ],
+          "order": 720,
+          "primitive_group_index": 3,
+          "structure": "S6",
+          "subdegrees": [
+            1,
+            6,
+            8
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            14
+          ],
+          "order": 20160,
+          "primitive_group_index": 4,
+          "structure": "A8",
+          "subdegrees": [
+            1,
+            14
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            14
+          ],
+          "order": 653837184000,
+          "primitive_group_index": 5,
+          "structure": "A15",
+          "subdegrees": [
+            1,
+            14
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            14
+          ],
+          "order": 1307674368000,
+          "primitive_group_index": 6,
+          "structure": "S15",
+          "subdegrees": [
+            1,
+            14
+          ]
+        }
+      ],
+      "primitive_group_count": 6
+    },
+    {
+      "degree": 10,
+      "groups": [
+        {
+          "non_diagonal_subdegrees": [
+            3,
+            6
+          ],
+          "order": 60,
+          "primitive_group_index": 1,
+          "structure": "A5",
+          "subdegrees": [
+            1,
+            3,
+            6
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            3,
+            6
+          ],
+          "order": 120,
+          "primitive_group_index": 2,
+          "structure": "S5",
+          "subdegrees": [
+            1,
+            3,
+            6
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            9
+          ],
+          "order": 360,
+          "primitive_group_index": 3,
+          "structure": "A6",
+          "subdegrees": [
+            1,
+            9
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            9
+          ],
+          "order": 720,
+          "primitive_group_index": 4,
+          "structure": "A6 : C2",
+          "subdegrees": [
+            1,
+            9
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            9
+          ],
+          "order": 720,
+          "primitive_group_index": 5,
+          "structure": "S6",
+          "subdegrees": [
+            1,
+            9
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            9
+          ],
+          "order": 720,
+          "primitive_group_index": 6,
+          "structure": "A6 . C2",
+          "subdegrees": [
+            1,
+            9
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            9
+          ],
+          "order": 1440,
+          "primitive_group_index": 7,
+          "structure": "(A6 : C2) : C2",
+          "subdegrees": [
+            1,
+            9
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            9
+          ],
+          "order": 1814400,
+          "primitive_group_index": 8,
+          "structure": "A10",
+          "subdegrees": [
+            1,
+            9
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            9
+          ],
+          "order": 3628800,
+          "primitive_group_index": 9,
+          "structure": "S10",
+          "subdegrees": [
+            1,
+            9
+          ]
+        }
+      ],
+      "primitive_group_count": 9
+    },
+    {
+      "degree": 6,
+      "groups": [
+        {
+          "non_diagonal_subdegrees": [
+            5
+          ],
+          "order": 60,
+          "primitive_group_index": 1,
+          "structure": "A5",
+          "subdegrees": [
+            1,
+            5
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            5
+          ],
+          "order": 120,
+          "primitive_group_index": 2,
+          "structure": "S5",
+          "subdegrees": [
+            1,
+            5
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            5
+          ],
+          "order": 360,
+          "primitive_group_index": 3,
+          "structure": "A6",
+          "subdegrees": [
+            1,
+            5
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            5
+          ],
+          "order": 720,
+          "primitive_group_index": 4,
+          "structure": "S6",
+          "subdegrees": [
+            1,
+            5
+          ]
+        }
+      ],
+      "primitive_group_count": 4
+    },
+    {
+      "degree": 5,
+      "groups": [
+        {
+          "non_diagonal_subdegrees": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "order": 5,
+          "primitive_group_index": 1,
+          "structure": "C5",
+          "subdegrees": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            2,
+            2
+          ],
+          "order": 10,
+          "primitive_group_index": 2,
+          "structure": "D10",
+          "subdegrees": [
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            4
+          ],
+          "order": 20,
+          "primitive_group_index": 3,
+          "structure": "C5 : C4",
+          "subdegrees": [
+            1,
+            4
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            4
+          ],
+          "order": 60,
+          "primitive_group_index": 4,
+          "structure": "A5",
+          "subdegrees": [
+            1,
+            4
+          ]
+        },
+        {
+          "non_diagonal_subdegrees": [
+            4
+          ],
+          "order": 120,
+          "primitive_group_index": 5,
+          "structure": "S5",
+          "subdegrees": [
+            1,
+            4
+          ]
+        }
+      ],
+      "primitive_group_count": 5
+    }
+  ],
+  "primitive_outer_lemma": {
+    "conclusion": "geometric monodromy is primitive of degree n and the bidegree r of C is a non-diagonal point-stabilizer subdegree",
+    "contrapositive_terminal": "FORCED_STRICT_OUTER_DECOMPOSITION",
+    "hypothesis": "F is geometrically indecomposable of degree n and C is a geometrically irreducible non-diagonal component of F(Y)=F(Z)"
+  },
+  "primitive_survivor_low_genus_nielsen_ledger": {
+    "all_survivors_have_three_branch_values": true,
+    "exhaustive_method": "enumerate every nonidentity primitive-group conjugacy class; impose point-index sum 2*n-2, the required pole class, and component genus at most one; then enumerate every product-one generating tuple and quotient by simultaneous conjugacy",
+    "genus_input": "g(Gamma)<=3 and delta>=4 force component genus at most one",
+    "m10_passports": [
+      {
+        "component_degree": 30,
+        "component_genus": 0,
+        "component_indices": [
+          24,
+          14,
+          20
+        ],
+        "gap_conjugacy_class_indices": [
+          3,
+          2,
+          5
+        ],
+        "group_order": 60,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 0,
+            "component_indices": [
+              24,
+              14,
+              20
+            ],
+            "generated_group_order": 60,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  2,
+                  3,
+                  4,
+                  6,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  6
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  4,
+                  6
+                ],
+                [
+                  2,
+                  5,
+                  3
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "point_indices": [
+              4,
+              2,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "point_indices": [
+          4,
+          2,
+          4
+        ],
+        "primitive_group_index": 1,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "A5",
+        "subdegree": 5
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 0,
+        "component_indices": [
+          24,
+          14,
+          20
+        ],
+        "gap_conjugacy_class_indices": [
+          4,
+          2,
+          5
+        ],
+        "group_order": 60,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 0,
+            "component_indices": [
+              24,
+              14,
+              20
+            ],
+            "generated_group_order": 60,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  2,
+                  4,
+                  5,
+                  3,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  3
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  5,
+                  3
+                ],
+                [
+                  2,
+                  6,
+                  4
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "point_indices": [
+              4,
+              2,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "point_indices": [
+          4,
+          2,
+          4
+        ],
+        "primitive_group_index": 1,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "A5",
+        "subdegree": 5
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 1,
+        "component_indices": [
+          24,
+          21,
+          15
+        ],
+        "gap_conjugacy_class_indices": [
+          4,
+          2,
+          5
+        ],
+        "group_order": 120,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              21,
+              15
+            ],
+            "generated_group_order": 120,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  2,
+                  3,
+                  4,
+                  6,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  4,
+                  2,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  5,
+                  6
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                4,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                2
+              ]
+            ],
+            "point_indices": [
+              4,
+              3,
+              3
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            4,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ],
+        "point_indices": [
+          4,
+          3,
+          3
+        ],
+        "primitive_group_index": 2,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "S5",
+        "subdegree": 5
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 1,
+        "component_indices": [
+          24,
+          14,
+          22
+        ],
+        "gap_conjugacy_class_indices": [
+          6,
+          2,
+          5
+        ],
+        "group_order": 360,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              14,
+              22
+            ],
+            "generated_group_order": 360,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  3
+                ],
+                [
+                  4,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  5,
+                  4,
+                  6
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            "point_indices": [
+              4,
+              2,
+              4
+            ],
+            "product_one": true
+          },
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              14,
+              22
+            ],
+            "generated_group_order": 360,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  2,
+                  3,
+                  4,
+                  6,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  5,
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            "point_indices": [
+              4,
+              2,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            4,
+            2
+          ]
+        ],
+        "point_indices": [
+          4,
+          2,
+          4
+        ],
+        "primitive_group_index": 3,
+        "simultaneous_conjugacy_orbit_count": 2,
+        "structure": "A6",
+        "subdegree": 5
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 1,
+        "component_indices": [
+          24,
+          16,
+          20
+        ],
+        "gap_conjugacy_class_indices": [
+          6,
+          3,
+          4
+        ],
+        "group_order": 360,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              16,
+              20
+            ],
+            "generated_group_order": 360,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  3,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  5,
+                  4
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                3,
+                1,
+                1,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "point_indices": [
+              4,
+              2,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            3,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "point_indices": [
+          4,
+          2,
+          4
+        ],
+        "primitive_group_index": 3,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "A6",
+        "subdegree": 5
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 1,
+        "component_indices": [
+          24,
+          14,
+          22
+        ],
+        "gap_conjugacy_class_indices": [
+          7,
+          2,
+          5
+        ],
+        "group_order": 360,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              14,
+              22
+            ],
+            "generated_group_order": 360,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  6,
+                  4,
+                  5
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            "point_indices": [
+              4,
+              2,
+              4
+            ],
+            "product_one": true
+          },
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              14,
+              22
+            ],
+            "generated_group_order": 360,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  6,
+                  5,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                2,
+                1,
+                1
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            "point_indices": [
+              4,
+              2,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            4,
+            2
+          ]
+        ],
+        "point_indices": [
+          4,
+          2,
+          4
+        ],
+        "primitive_group_index": 3,
+        "simultaneous_conjugacy_orbit_count": 2,
+        "structure": "A6",
+        "subdegree": 5
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 1,
+        "component_indices": [
+          24,
+          16,
+          20
+        ],
+        "gap_conjugacy_class_indices": [
+          7,
+          3,
+          4
+        ],
+        "group_order": 360,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              16,
+              20
+            ],
+            "generated_group_order": 360,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  3,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  5,
+                  2
+                ],
+                [
+                  3,
+                  6,
+                  4
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                3,
+                1,
+                1,
+                1
+              ],
+              [
+                3,
+                3
+              ]
+            ],
+            "point_indices": [
+              4,
+              2,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            3,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "point_indices": [
+          4,
+          2,
+          4
+        ],
+        "primitive_group_index": 3,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "A6",
+        "subdegree": 5
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 0,
+        "component_indices": [
+          24,
+          9,
+          25
+        ],
+        "gap_conjugacy_class_indices": [
+          10,
+          2,
+          11
+        ],
+        "group_order": 720,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 0,
+            "component_indices": [
+              24,
+              9,
+              25
+            ],
+            "generated_group_order": 720,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  6
+                ]
+              ],
+              [
+                [
+                  1,
+                  6,
+                  5,
+                  4,
+                  3,
+                  2
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                6
+              ]
+            ],
+            "point_indices": [
+              4,
+              1,
+              5
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            6
+          ]
+        ],
+        "point_indices": [
+          4,
+          1,
+          5
+        ],
+        "primitive_group_index": 4,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "S6",
+        "subdegree": 5
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 1,
+        "component_indices": [
+          24,
+          15,
+          21
+        ],
+        "gap_conjugacy_class_indices": [
+          10,
+          4,
+          6
+        ],
+        "group_order": 720,
+        "m": 10,
+        "orbit_witnesses": [
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              15,
+              21
+            ],
+            "generated_group_order": 720,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  6
+                ]
+              ],
+              [
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  4,
+                  6
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                1
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                3,
+                2,
+                1
+              ]
+            ],
+            "point_indices": [
+              4,
+              3,
+              3
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 6,
+        "point_cycle_types": [
+          [
+            5,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ],
+        "point_indices": [
+          4,
+          3,
+          3
+        ],
+        "primitive_group_index": 4,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "S6",
+        "subdegree": 5
+      }
+    ],
+    "m6_passports": [
+      {
+        "component_degree": 30,
+        "component_genus": 0,
+        "component_indices": [
+          24,
+          20,
+          14
+        ],
+        "gap_conjugacy_class_indices": [
+          4,
+          2,
+          3
+        ],
+        "group_order": 60,
+        "m": 6,
+        "orbit_witnesses": [
+          {
+            "component_genus": 0,
+            "component_indices": [
+              24,
+              20,
+              14
+            ],
+            "generated_group_order": 60,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  8,
+                  10,
+                  7
+                ],
+                [
+                  3,
+                  9,
+                  6,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  7,
+                  6
+                ],
+                [
+                  2,
+                  9,
+                  8
+                ],
+                [
+                  3,
+                  4,
+                  10
+                ]
+              ],
+              [
+                [
+                  1,
+                  9
+                ],
+                [
+                  3,
+                  8
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  6,
+                  10
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                5
+              ],
+              [
+                3,
+                3,
+                3,
+                1
+              ],
+              [
+                2,
+                2,
+                2,
+                2,
+                1,
+                1
+              ]
+            ],
+            "point_indices": [
+              8,
+              6,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 10,
+        "point_cycle_types": [
+          [
+            5,
+            5
+          ],
+          [
+            3,
+            3,
+            3,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            1,
+            1
+          ]
+        ],
+        "point_indices": [
+          8,
+          6,
+          4
+        ],
+        "primitive_group_index": 1,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "A5",
+        "subdegree": 3
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 0,
+        "component_indices": [
+          24,
+          20,
+          14
+        ],
+        "gap_conjugacy_class_indices": [
+          5,
+          2,
+          3
+        ],
+        "group_order": 60,
+        "m": 6,
+        "orbit_witnesses": [
+          {
+            "component_genus": 0,
+            "component_indices": [
+              24,
+              20,
+              14
+            ],
+            "generated_group_order": 60,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  9,
+                  10,
+                  6
+                ],
+                [
+                  3,
+                  5,
+                  4,
+                  8,
+                  7
+                ]
+              ],
+              [
+                [
+                  1,
+                  6,
+                  5
+                ],
+                [
+                  2,
+                  3,
+                  8
+                ],
+                [
+                  4,
+                  10,
+                  9
+                ]
+              ],
+              [
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  5,
+                  10
+                ],
+                [
+                  7,
+                  8
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                5
+              ],
+              [
+                3,
+                3,
+                3,
+                1
+              ],
+              [
+                2,
+                2,
+                2,
+                2,
+                1,
+                1
+              ]
+            ],
+            "point_indices": [
+              8,
+              6,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 10,
+        "point_cycle_types": [
+          [
+            5,
+            5
+          ],
+          [
+            3,
+            3,
+            3,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            1,
+            1
+          ]
+        ],
+        "point_indices": [
+          8,
+          6,
+          4
+        ],
+        "primitive_group_index": 1,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "A5",
+        "subdegree": 3
+      },
+      {
+        "component_degree": 60,
+        "component_genus": 0,
+        "component_indices": [
+          48,
+          40,
+          30
+        ],
+        "gap_conjugacy_class_indices": [
+          4,
+          2,
+          3
+        ],
+        "group_order": 60,
+        "m": 6,
+        "orbit_witnesses": [
+          {
+            "component_genus": 0,
+            "component_indices": [
+              48,
+              40,
+              30
+            ],
+            "generated_group_order": 60,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  8,
+                  10,
+                  7
+                ],
+                [
+                  3,
+                  9,
+                  6,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  7,
+                  6
+                ],
+                [
+                  2,
+                  9,
+                  8
+                ],
+                [
+                  3,
+                  4,
+                  10
+                ]
+              ],
+              [
+                [
+                  1,
+                  9
+                ],
+                [
+                  3,
+                  8
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  6,
+                  10
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                5
+              ],
+              [
+                3,
+                3,
+                3,
+                1
+              ],
+              [
+                2,
+                2,
+                2,
+                2,
+                1,
+                1
+              ]
+            ],
+            "point_indices": [
+              8,
+              6,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 10,
+        "point_cycle_types": [
+          [
+            5,
+            5
+          ],
+          [
+            3,
+            3,
+            3,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            1,
+            1
+          ]
+        ],
+        "point_indices": [
+          8,
+          6,
+          4
+        ],
+        "primitive_group_index": 1,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "A5",
+        "subdegree": 6
+      },
+      {
+        "component_degree": 60,
+        "component_genus": 0,
+        "component_indices": [
+          48,
+          40,
+          30
+        ],
+        "gap_conjugacy_class_indices": [
+          5,
+          2,
+          3
+        ],
+        "group_order": 60,
+        "m": 6,
+        "orbit_witnesses": [
+          {
+            "component_genus": 0,
+            "component_indices": [
+              48,
+              40,
+              30
+            ],
+            "generated_group_order": 60,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  9,
+                  10,
+                  6
+                ],
+                [
+                  3,
+                  5,
+                  4,
+                  8,
+                  7
+                ]
+              ],
+              [
+                [
+                  1,
+                  6,
+                  5
+                ],
+                [
+                  2,
+                  3,
+                  8
+                ],
+                [
+                  4,
+                  10,
+                  9
+                ]
+              ],
+              [
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  5,
+                  10
+                ],
+                [
+                  7,
+                  8
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                5
+              ],
+              [
+                3,
+                3,
+                3,
+                1
+              ],
+              [
+                2,
+                2,
+                2,
+                2,
+                1,
+                1
+              ]
+            ],
+            "point_indices": [
+              8,
+              6,
+              4
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 10,
+        "point_cycle_types": [
+          [
+            5,
+            5
+          ],
+          [
+            3,
+            3,
+            3,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            1,
+            1
+          ]
+        ],
+        "point_indices": [
+          8,
+          6,
+          4
+        ],
+        "primitive_group_index": 1,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "A5",
+        "subdegree": 6
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 1,
+        "component_indices": [
+          24,
+          12,
+          24
+        ],
+        "gap_conjugacy_class_indices": [
+          7,
+          2,
+          5
+        ],
+        "group_order": 120,
+        "m": 6,
+        "orbit_witnesses": [
+          {
+            "component_genus": 1,
+            "component_indices": [
+              24,
+              12,
+              24
+            ],
+            "generated_group_order": 120,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  8,
+                  10,
+                  7
+                ],
+                [
+                  3,
+                  9,
+                  6,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  1,
+                  7
+                ],
+                [
+                  2,
+                  9
+                ],
+                [
+                  3,
+                  10
+                ]
+              ],
+              [
+                [
+                  1,
+                  10,
+                  5,
+                  4,
+                  6,
+                  9
+                ],
+                [
+                  2,
+                  3,
+                  8
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                5
+              ],
+              [
+                2,
+                2,
+                2,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                6,
+                3,
+                1
+              ]
+            ],
+            "point_indices": [
+              8,
+              3,
+              7
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 10,
+        "point_cycle_types": [
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            6,
+            3,
+            1
+          ]
+        ],
+        "point_indices": [
+          8,
+          3,
+          7
+        ],
+        "primitive_group_index": 2,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "S5",
+        "subdegree": 3
+      },
+      {
+        "component_degree": 30,
+        "component_genus": 0,
+        "component_indices": [
+          24,
+          12,
+          22
+        ],
+        "gap_conjugacy_class_indices": [
+          7,
+          2,
+          6
+        ],
+        "group_order": 120,
+        "m": 6,
+        "orbit_witnesses": [
+          {
+            "component_genus": 0,
+            "component_indices": [
+              24,
+              12,
+              22
+            ],
+            "generated_group_order": 120,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  8,
+                  10,
+                  7
+                ],
+                [
+                  3,
+                  9,
+                  6,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  3,
+                  4
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  8,
+                  9
+                ]
+              ],
+              [
+                [
+                  1,
+                  7,
+                  9,
+                  2
+                ],
+                [
+                  3,
+                  6,
+                  10,
+                  8
+                ],
+                [
+                  4,
+                  5
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                5
+              ],
+              [
+                2,
+                2,
+                2,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                4,
+                4,
+                2
+              ]
+            ],
+            "point_indices": [
+              8,
+              3,
+              7
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 10,
+        "point_cycle_types": [
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "point_indices": [
+          8,
+          3,
+          7
+        ],
+        "primitive_group_index": 2,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "S5",
+        "subdegree": 3
+      },
+      {
+        "component_degree": 60,
+        "component_genus": 1,
+        "component_indices": [
+          48,
+          27,
+          45
+        ],
+        "gap_conjugacy_class_indices": [
+          7,
+          2,
+          6
+        ],
+        "group_order": 120,
+        "m": 6,
+        "orbit_witnesses": [
+          {
+            "component_genus": 1,
+            "component_indices": [
+              48,
+              27,
+              45
+            ],
+            "generated_group_order": 120,
+            "generators_in_point_action_cycles": [
+              [
+                [
+                  1,
+                  2,
+                  8,
+                  10,
+                  7
+                ],
+                [
+                  3,
+                  9,
+                  6,
+                  4,
+                  5
+                ]
+              ],
+              [
+                [
+                  3,
+                  4
+                ],
+                [
+                  6,
+                  7
+                ],
+                [
+                  8,
+                  9
+                ]
+              ],
+              [
+                [
+                  1,
+                  7,
+                  9,
+                  2
+                ],
+                [
+                  3,
+                  6,
+                  10,
+                  8
+                ],
+                [
+                  4,
+                  5
+                ]
+              ]
+            ],
+            "point_cycle_types": [
+              [
+                5,
+                5
+              ],
+              [
+                2,
+                2,
+                2,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                4,
+                4,
+                2
+              ]
+            ],
+            "point_indices": [
+              8,
+              3,
+              7
+            ],
+            "product_one": true
+          }
+        ],
+        "outer_degree": 10,
+        "point_cycle_types": [
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "point_indices": [
+          8,
+          3,
+          7
+        ],
+        "primitive_group_index": 2,
+        "simultaneous_conjugacy_orbit_count": 1,
+        "structure": "S5",
+        "subdegree": 6
+      }
+    ],
+    "passport_count": 16,
+    "scope": "primitive-compatible m=6 and m=10 rows after the exact outer-subdegree route compiler",
+    "simultaneous_conjugacy_orbit_count": 18,
+    "terminal": "FINITE_PRIMITIVE_NIELSEN_TARGETS_UNPAID"
+  },
+  "route_graph": {
+    "admitted_edges": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        10
+      ],
+      [
+        2,
+        12
+      ],
+      [
+        2,
+        30
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        3,
+        12
+      ],
+      [
+        3,
+        30
+      ],
+      [
+        4,
+        12
+      ],
+      [
+        6,
+        12
+      ],
+      [
+        10,
+        30
+      ],
+      [
+        30,
+        6
+      ]
+    ],
+    "deleted_loop_terminal": "M6_DEGREE5_OUTER_RIGHT_FACTOR_DELETED",
+    "field_deleted_edges": [
+      [
+        6,
+        30
+      ]
+    ],
+    "nontrivial_strongly_connected_components": [],
+    "route_graph_acyclic": true,
+    "source_profile_impossible_targets": [
+      [
+        2,
+        20
+      ],
+      [
+        3,
+        15
+      ],
+      [
+        4,
+        20
+      ],
+      [
+        10,
+        20
+      ]
+    ]
+  },
+  "schema": "kb-mca-v4-degree60-outer-primitive-route-compiler-v1",
+  "statement": {
+    "B_star": "274980728111395087",
+    "agreement": 1116048,
+    "component_u": 2,
+    "endpoint_degree": 60,
+    "ledger_movement": 0,
+    "object": "MCA",
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_OUTER_PRIMITIVE_ROUTE_AND_LOW_GENUS_NIELSEN_COMPILER_ROW_OPEN",
+    "workboard_item": "K3"
+  },
+  "strict_outer_decomposition_routes": [
+    {
+      "from_inner_degree": 2,
+      "outer_degree": 30,
+      "proper_outer_right_degrees": [
+        2,
+        3,
+        5,
+        6,
+        10,
+        15
+      ],
+      "targets": [
+        {
+          "field_compatible": true,
+          "new_inner_degree": 4,
+          "outer_right_degree": 2,
+          "source_profile_admitted": true,
+          "terminal": "REENTER_INNER_DEGREE_4"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 6,
+          "outer_right_degree": 3,
+          "source_profile_admitted": true,
+          "terminal": "REENTER_INNER_DEGREE_6"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 10,
+          "outer_right_degree": 5,
+          "source_profile_admitted": true,
+          "terminal": "REENTER_INNER_DEGREE_10"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 12,
+          "outer_right_degree": 6,
+          "source_profile_admitted": true,
+          "terminal": "REENTER_INNER_DEGREE_12"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 20,
+          "outer_right_degree": 10,
+          "source_profile_admitted": false,
+          "terminal": "SOURCE_PROFILE_IMPOSSIBLE"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 30,
+          "outer_right_degree": 15,
+          "source_profile_admitted": true,
+          "terminal": "M30_REFINES_TO_M6"
+        }
+      ]
+    },
+    {
+      "from_inner_degree": 3,
+      "outer_degree": 20,
+      "proper_outer_right_degrees": [
+        2,
+        4,
+        5,
+        10
+      ],
+      "targets": [
+        {
+          "field_compatible": true,
+          "new_inner_degree": 6,
+          "outer_right_degree": 2,
+          "source_profile_admitted": true,
+          "terminal": "REENTER_INNER_DEGREE_6"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 12,
+          "outer_right_degree": 4,
+          "source_profile_admitted": true,
+          "terminal": "REENTER_INNER_DEGREE_12"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 15,
+          "outer_right_degree": 5,
+          "source_profile_admitted": false,
+          "terminal": "SOURCE_PROFILE_IMPOSSIBLE"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 30,
+          "outer_right_degree": 10,
+          "source_profile_admitted": true,
+          "terminal": "M30_REFINES_TO_M6"
+        }
+      ]
+    },
+    {
+      "from_inner_degree": 4,
+      "outer_degree": 15,
+      "proper_outer_right_degrees": [
+        3,
+        5
+      ],
+      "targets": [
+        {
+          "field_compatible": true,
+          "new_inner_degree": 12,
+          "outer_right_degree": 3,
+          "source_profile_admitted": true,
+          "terminal": "REENTER_INNER_DEGREE_12"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 20,
+          "outer_right_degree": 5,
+          "source_profile_admitted": false,
+          "terminal": "SOURCE_PROFILE_IMPOSSIBLE"
+        }
+      ]
+    },
+    {
+      "from_inner_degree": 6,
+      "outer_degree": 10,
+      "proper_outer_right_degrees": [
+        2,
+        5
+      ],
+      "targets": [
+        {
+          "field_compatible": true,
+          "new_inner_degree": 12,
+          "outer_right_degree": 2,
+          "source_profile_admitted": true,
+          "terminal": "REENTER_INNER_DEGREE_12"
+        },
+        {
+          "field_compatible": false,
+          "new_inner_degree": 30,
+          "outer_right_degree": 5,
+          "source_profile_admitted": true,
+          "terminal": "M6_DEGREE5_OUTER_RIGHT_FACTOR_DELETED"
+        }
+      ]
+    },
+    {
+      "from_inner_degree": 10,
+      "outer_degree": 6,
+      "proper_outer_right_degrees": [
+        2,
+        3
+      ],
+      "targets": [
+        {
+          "field_compatible": true,
+          "new_inner_degree": 20,
+          "outer_right_degree": 2,
+          "source_profile_admitted": false,
+          "terminal": "SOURCE_PROFILE_IMPOSSIBLE"
+        },
+        {
+          "field_compatible": true,
+          "new_inner_degree": 30,
+          "outer_right_degree": 3,
+          "source_profile_admitted": true,
+          "terminal": "M30_REFINES_TO_M6"
+        }
+      ]
+    },
+    {
+      "from_inner_degree": 12,
+      "outer_degree": 5,
+      "proper_outer_right_degrees": [],
+      "targets": []
+    }
+  ]
+}

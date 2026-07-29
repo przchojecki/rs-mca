@@ -1,0 +1,424 @@
+{
+  "schema": "kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1",
+  "payload_sha256": "638190df24415e5609fa9c2f50dde8fd22bd150f60e7bef5cd1496cb22d75b4e",
+  "statement": {
+    "row": "KoalaBear MCA at 2^-128",
+    "agreement": 1116048,
+    "B_star": "274980728111395087",
+    "object": "MCA",
+    "deployed_prime": 2130706433,
+    "challenge_field": "F_{p^6}",
+    "challenge_field_cardinality": "93571093019388561295270373781649880353786165192103559169",
+    "deployed_domain_cardinality": 2097152,
+    "deployed_domain_structure": "order-2^21 multiplicative subgroup of F_p^x",
+    "endpoint_degree": 60,
+    "active_root_count": 60,
+    "active_roots_squarefree": true,
+    "active_roots_are_challenge_field_parameter_values": true,
+    "source_root_count": 12,
+    "source_roots_are_challenge_field_parameter_values": true,
+    "source_pole_order": 5,
+    "active_source_disjoint": true,
+    "endpoint_parameter_line_identified_with_carrier_domain": false,
+    "decomposition_scope": "every geometric decomposition f=F composed with h forced by the residual actual Q=6,s=6,u=2 component theorem"
+  },
+  "parent_stack": {
+    "head_commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-primitive-subdegree4-route-cut-v1/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.json",
+    "certificate_blob_oid": "7e8a79db97dc56125f25d9a190c3b0c3adca158a",
+    "certificate_payload_sha256": "21a8ca7800745c2c94876d48473801e84f4d9c8f9e6ce5b53e8b8bd66b699962",
+    "imported_terminal": "ROUTED_TO_GEOMETRIC_FUNCTIONAL_DECOMPOSITION_ADAPTER"
+  },
+  "divisor_adapter": {
+    "homogeneous_no_cancellation": true,
+    "active_outer_zeros_simple": true,
+    "active_inner_ramification_indices": [
+      1
+    ],
+    "active_fiber_count_formula": "n=60/m",
+    "active_fiber_size_formula": "m",
+    "active_factorization": "V_act is proportional to product_n Z_nu(H0,H1), with squarefree pairwise-coprime degree-m factors",
+    "outer_pole_orders": [
+      1,
+      5
+    ],
+    "order_five_outer_pole_inner_ramification_indices": [
+      1
+    ],
+    "order_five_outer_pole_source_fiber_size_formula": "m",
+    "simple_outer_pole_inner_ramification_indices": [
+      5
+    ],
+    "simple_outer_pole_source_fiber_size_formula": "m/5",
+    "source_factorization": "A is proportional to product_a L_i(H0,H1) times product_b R_j, where M_j(H0,H1)=c_j R_j^5",
+    "outer_pole_degree_equation": "5a+b=n",
+    "forced_ramification_formula": "4bm/5",
+    "riemann_hurwitz_budget_formula": "2m-2",
+    "source_point_count_formula": "am+b(m/5)=12",
+    "locator_level_only": true,
+    "received_data_descent_proved": false,
+    "explaining_polynomial_descent_proved": false,
+    "slope_projection_descent_proved": false
+  },
+  "binary_source_pencil_equivalence": {
+    "source_partition": "a blocks S_i of size m and b blocks R_j of size m/5",
+    "pencil_dimension": 2,
+    "pencil_forms_degree": "m",
+    "pencil_coprime": true,
+    "complete_source_condition": "A_{S_i} belongs to W",
+    "exceptional_source_condition": "A_{R_j}^5 belongs to W",
+    "active_condition": "V_act belongs to Sym^n(W)",
+    "outer_denominator": "Q=product_i ell_i^5 times product_j mu_j",
+    "outer_denominator_degree_identity": "5a+b=n",
+    "composition_reconstruction": "f=(P/Q) composed with [H0:H1]",
+    "self_correspondence_factor": "H0(T)H1(W)-H1(T)H0(W) divides numerator(f(T)-f(W))",
+    "equivalence_proved": true,
+    "carrier_owner_implied": false
+  },
+  "challenge_field_right_component_descent": {
+    "challenge_field": "K=F_{p^6}",
+    "input": "two distinct reduced active fibers whose points are individually K-rational",
+    "construction": "h_0=L_0/L_infinity is a K-rational target transform of h",
+    "outer_map_descent": "F_0 is fixed by Gal(Kbar/K) because substitution Y to h_0(T) is injective",
+    "right_component_defined_over_K_up_to_target_PGL2": true,
+    "outer_component_defined_over_K_after_same_transform": true,
+    "carrier_domain_action_implied": false
+  },
+  "profiles": [
+    {
+      "inner_degree": 2,
+      "outer_degree": 30,
+      "order_five_outer_poles": 6,
+      "simple_outer_poles": 0,
+      "active_fibers": 30,
+      "active_points": 60,
+      "complete_source_fibers": 6,
+      "complete_source_points": 12,
+      "exceptional_source_fibers": 0,
+      "exceptional_source_points": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 2,
+      "riemann_hurwitz_slack": 2,
+      "divides_full_domain_cardinality": true,
+      "source_partition_count": 10395,
+      "terminal": "CONDITIONAL_CARRIER_CARDINALITY_COMPATIBLE_PARAMETER_TO_CARRIER_BRIDGE_OPEN"
+    },
+    {
+      "inner_degree": 3,
+      "outer_degree": 20,
+      "order_five_outer_poles": 4,
+      "simple_outer_poles": 0,
+      "active_fibers": 20,
+      "active_points": 60,
+      "complete_source_fibers": 4,
+      "complete_source_points": 12,
+      "exceptional_source_fibers": 0,
+      "exceptional_source_points": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 4,
+      "riemann_hurwitz_slack": 4,
+      "divides_full_domain_cardinality": false,
+      "source_partition_count": 15400,
+      "terminal": "SAME_DEGREE_CARRIER_FOLD_3_CARDINALITY_INCOMPATIBLE_BRIDGE_OR_DELETION_OPEN"
+    },
+    {
+      "inner_degree": 4,
+      "outer_degree": 15,
+      "order_five_outer_poles": 3,
+      "simple_outer_poles": 0,
+      "active_fibers": 15,
+      "active_points": 60,
+      "complete_source_fibers": 3,
+      "complete_source_points": 12,
+      "exceptional_source_fibers": 0,
+      "exceptional_source_points": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 6,
+      "riemann_hurwitz_slack": 6,
+      "divides_full_domain_cardinality": true,
+      "source_partition_count": 5775,
+      "terminal": "CONDITIONAL_CARRIER_CARDINALITY_COMPATIBLE_PARAMETER_TO_CARRIER_BRIDGE_OPEN"
+    },
+    {
+      "inner_degree": 5,
+      "outer_degree": 12,
+      "order_five_outer_poles": 2,
+      "simple_outer_poles": 2,
+      "active_fibers": 12,
+      "active_points": 60,
+      "complete_source_fibers": 2,
+      "complete_source_points": 10,
+      "exceptional_source_fibers": 2,
+      "exceptional_source_points": 2,
+      "forced_ramification": 8,
+      "riemann_hurwitz_budget": 8,
+      "riemann_hurwitz_slack": 0,
+      "divides_full_domain_cardinality": false,
+      "source_partition_count": 8316,
+      "terminal": "DELETED_CHALLENGE_FIELD_FIFTH_POWER_FIBER_CONTRADICTION"
+    },
+    {
+      "inner_degree": 6,
+      "outer_degree": 10,
+      "order_five_outer_poles": 2,
+      "simple_outer_poles": 0,
+      "active_fibers": 10,
+      "active_points": 60,
+      "complete_source_fibers": 2,
+      "complete_source_points": 12,
+      "exceptional_source_fibers": 0,
+      "exceptional_source_points": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 10,
+      "riemann_hurwitz_slack": 10,
+      "divides_full_domain_cardinality": false,
+      "source_partition_count": 462,
+      "terminal": "SAME_DEGREE_CARRIER_FOLD_6_CARDINALITY_INCOMPATIBLE_BRIDGE_OR_DELETION_OPEN"
+    },
+    {
+      "inner_degree": 10,
+      "outer_degree": 6,
+      "order_five_outer_poles": 1,
+      "simple_outer_poles": 1,
+      "active_fibers": 6,
+      "active_points": 60,
+      "complete_source_fibers": 1,
+      "complete_source_points": 10,
+      "exceptional_source_fibers": 1,
+      "exceptional_source_points": 2,
+      "forced_ramification": 8,
+      "riemann_hurwitz_budget": 18,
+      "riemann_hurwitz_slack": 10,
+      "divides_full_domain_cardinality": false,
+      "source_partition_count": 66,
+      "terminal": "SAME_DEGREE_CARRIER_FOLD_10_CARDINALITY_INCOMPATIBLE_BRIDGE_OR_DELETION_OPEN"
+    },
+    {
+      "inner_degree": 12,
+      "outer_degree": 5,
+      "order_five_outer_poles": 1,
+      "simple_outer_poles": 0,
+      "active_fibers": 5,
+      "active_points": 60,
+      "complete_source_fibers": 1,
+      "complete_source_points": 12,
+      "exceptional_source_fibers": 0,
+      "exceptional_source_points": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 22,
+      "riemann_hurwitz_slack": 22,
+      "divides_full_domain_cardinality": false,
+      "source_partition_count": 1,
+      "terminal": "CANONICAL_PENCIL_MEMBERSHIP_TEST_OPEN_SAME_DEGREE_CARRIER_FOLD_INCOMPATIBLE"
+    },
+    {
+      "inner_degree": 30,
+      "outer_degree": 2,
+      "order_five_outer_poles": 0,
+      "simple_outer_poles": 2,
+      "active_fibers": 2,
+      "active_points": 60,
+      "complete_source_fibers": 0,
+      "complete_source_points": 0,
+      "exceptional_source_fibers": 2,
+      "exceptional_source_points": 12,
+      "forced_ramification": 48,
+      "riemann_hurwitz_budget": 58,
+      "riemann_hurwitz_slack": 10,
+      "divides_full_domain_cardinality": false,
+      "source_partition_count": 462,
+      "terminal": "ROUTED_TO_INNER_DEGREE_6_BY_FIFTH_POWER_EXTRACTION"
+    }
+  ],
+  "excluded_profile_degrees": [
+    15,
+    20
+  ],
+  "conditional_carrier_compatibility": {
+    "endpoint_variable": "challenge-field parameter T",
+    "carrier_variable": "evaluation coordinate X",
+    "endpoint_parameter_line_identified_with_carrier_domain": false,
+    "same_record_parameter_to_carrier_bridge_proved": false,
+    "carrier_domain_cardinality": 2097152,
+    "carrier_domain_prime_factorization": "2^21",
+    "conditional_statement": "if h is transported to a same-degree complete m-fold map on D, then m divides |D|",
+    "same_degree_cardinality_compatible_inner_degrees": [
+      2,
+      4
+    ],
+    "same_degree_cardinality_incompatible_inner_degrees": [
+      3,
+      5,
+      6,
+      10,
+      12,
+      30
+    ],
+    "actual_producer_deletion_implied": false,
+    "carrier_owner_implied": false,
+    "open_semantic_gates": [
+      "parameter_to_carrier_same_record_transport",
+      "declared_polynomial_or_retained_fold_form",
+      "complete_fibers_on_the_entire_evaluation_domain",
+      "received_data_descent",
+      "explaining_polynomial_descent",
+      "slope_projection_descent",
+      "chronology_valid_same_record_owner"
+    ]
+  },
+  "degree_five_deletion": {
+    "profile_inner_degree": 5,
+    "simple_outer_poles": 2,
+    "totally_ramified_points": 2,
+    "totally_ramified_points_in_challenge_field": true,
+    "ramification_index": 5,
+    "forced_ramification": 8,
+    "riemann_hurwitz_budget": 8,
+    "riemann_hurwitz_saturated": true,
+    "right_component_K_descent": "ratio of two reduced split active-fiber locators",
+    "K_rational_normal_form": "K-source-and-target-conjugate to c z^5",
+    "active_fiber_points_in_K": 5,
+    "active_fiber_reduced": true,
+    "p_mod_5": 3,
+    "q": "93571093019388561295270373781649880353786165192103559169",
+    "q_mod_5": 4,
+    "gcd_5_q_minus_1": 1,
+    "fifth_power_map_on_K_is_bijective": true,
+    "reduced_five_point_K_fiber_possible": false,
+    "actual_producer_empty": true
+  },
+  "degree_thirty_refinement": {
+    "profile_inner_degree": 30,
+    "simple_outer_poles": 2,
+    "exceptional_source_points_per_fiber": 6,
+    "exceptional_ramification_index": 5,
+    "pullback_divisors": "h^*[0]=5R_0 and h^*[infinity]=5R_infinity after target normalization",
+    "reduced_divisor_degrees": [
+      6,
+      6
+    ],
+    "fifth_power_extraction": "h=p_5 composed with r up to target scaling",
+    "power_map_degree": 5,
+    "refined_inner_degree": 6,
+    "terminal": "ROUTED_TO_INNER_DEGREE_6_BY_FIFTH_POWER_EXTRACTION",
+    "actual_degree_six_producer_deleted": false
+  },
+  "degree_twelve_canonical_pencil": {
+    "profile_inner_degree": 12,
+    "source_partition_count": 1,
+    "source_pencil_form": "W=<A,N>",
+    "leading_outer_coefficient_normalized_to_one_over_K": true,
+    "residue_equation": "N_0^5=V_act mod A",
+    "split_residue_algebra": "K[T]/(A) is isomorphic to K^12",
+    "fifth_power_on_residue_algebra_bijective": true,
+    "normalized_residue_candidate_unique": true,
+    "all_degree_twelve_lifts": "N=N_0+cA",
+    "pencil_independent_of_lift": true,
+    "terminal_membership_test": "V_act in span_K{A^5,A^4N_0,A^3N_0^2,A^2N_0^3,AN_0^4,N_0^5}",
+    "producer_deleted_unconditionally": false,
+    "carrier_owner_implied": false
+  },
+  "degree_two_parameter_carrier_gate": {
+    "profile_inner_degree": 2,
+    "deck_involution_defined_over_K": true,
+    "deck_involution_defined_over_F_p_proved": false,
+    "deck_action_on_carrier_D_proved": false,
+    "conditional_prime_field_stabilizer_theorem": "gamma(D)=D implies gamma(x)=kappa x or kappa/x with kappa in D",
+    "conditional_involution_types": [
+      "POWER_PAIR_x_to_minus_x",
+      "RECIPROCAL_PAIR_x_to_kappa_over_x"
+    ],
+    "reciprocal_uniformity_condition": "kappa in D minus D^2",
+    "parameter_to_carrier_same_record_bridge_open": true,
+    "received_data_descent_proved": false,
+    "slope_projection_descent_proved": false
+  },
+  "source_bindings": [
+    {
+      "binding_id": "KB_DECOMPOSITION_ADAPTER::source_geometry",
+      "commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/proof/pole_disjoint_conic_facet_collinearity_reduction.md",
+      "blob_oid": "356ff4b47d0bb429d11ea10382762a6e95b5ce24",
+      "role": "degree-60 endpoint parameter line, K-rational active/source locators, and actual component descent"
+    },
+    {
+      "binding_id": "KB_DECOMPOSITION_ADAPTER::foundation_domain",
+      "commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+      "path": "tex/cs25_cap_v13_2.tex",
+      "blob_oid": "5ceff5dbc4b1ac4cef53eae7eada32046e4bafeb",
+      "role": "deployed p, D subgroup of F_p^x, and |D|=2^21"
+    },
+    {
+      "binding_id": "KB_DECOMPOSITION_ADAPTER::active_v4_owner",
+      "commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+      "path": "experimental/grande_finale.tex",
+      "blob_oid": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
+      "role": "complete-fiber owner and quotient-remainder semantic contract"
+    },
+    {
+      "binding_id": "KB_DECOMPOSITION_ADAPTER::workboard",
+      "commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+      "path": "agents.md",
+      "blob_oid": "b0411aaa46462e38a77bf6146171d683813dbd76",
+      "role": "K3 source-bound decomposition adapter target"
+    }
+  ],
+  "independent_replays": {
+    "sage": {
+      "path": "experimental/scripts/verify_kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.sage",
+      "sha256": "588febe400ad8fbf6f93736339231b661337a130e4b2428773accac52da8f33b"
+    },
+    "wolfram": {
+      "path": "experimental/scripts/verify_kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.wl",
+      "sha256": "7ee2dd43a16069dd57f8a82f2b49a7f28180b4f15f5761e66789743962892a99"
+    }
+  },
+  "conclusion": {
+    "profile_count": 8,
+    "deleted_inner_degrees": [
+      5
+    ],
+    "conditional_same_degree_carrier_compatible": [
+      2,
+      4
+    ],
+    "direct_producer_exclusion_open": [
+      3,
+      6,
+      10,
+      12
+    ],
+    "canonical_single_pencil_test_open": [
+      12
+    ],
+    "refined_to_earlier_inner_degree": [
+      {
+        "from": 30,
+        "to": 6
+      }
+    ],
+    "u2_branch_closed": false,
+    "u3_authorized": false,
+    "parameter_to_carrier_same_record_bridge_proved": false,
+    "row_closed": false,
+    "ledger_movement": 0,
+    "status": "PROVED_SOURCE_FIBER_ADAPTER_DEGREE5_DELETION_DEGREE30_REFINEMENT_ROW_OPEN",
+    "next_maximal_attack": "run the exact binary source-pencil compiler for m=2,3,4,6,10 and the canonical membership test for m=12, then require a same-record parameter-to-carrier/data/slope bridge for every survivor"
+  },
+  "nonclaims": [
+    "no identification of the endpoint parameter line with the evaluation carrier domain",
+    "no full-domain fold proved for inner degree 2",
+    "no full-domain fold proved for inner degree 4",
+    "no actual-producer deletion for inner degrees 3,6,10,12",
+    "no deletion of the inner-degree-30 producer beyond its exact refinement to inner degree 6",
+    "no received-data descent",
+    "no explaining-polynomial descent",
+    "no slope-projection descent",
+    "no chronology-valid quotient payment",
+    "no u=2 closure",
+    "no u=3 theorem",
+    "no cap-68 theorem",
+    "no ledger movement",
+    "no KoalaBear row closure"
+  ]
+}
