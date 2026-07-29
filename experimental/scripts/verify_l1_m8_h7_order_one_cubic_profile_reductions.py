@@ -618,6 +618,41 @@ def check_singular_jnonzero_charts() -> None:
         assert row["e6"] == -(row["k6"] + y**6 + row["l3"] * y**3)
 
 
+def check_generic_linear_d_router() -> None:
+    for values in (
+        (Q(2), Q(3), Q(5), Q(7)),
+        (Q(-1), Q(4), Q(9), Q(2)),
+        (Q(5, 2), Q(-3, 2), Q(11), Q(-4)),
+    ):
+        row = scaled_quadratic_core(*values)
+        h = row["g2"] + row["a"] * row["u"]
+        w = row["y"] * (row["a"] + row["x"]) * row["v"] + row["l4"]
+        j = (row["q"] - row["d"]) * row["g2"] - 6 * row["d"] * row["delta"]
+        q6 = (row["y"] - row["a"]) * row["v"] - row["s"]
+        f4 = row["g2"] * h - row["x"] * q6 - w
+        f5 = (row["q"] - row["d"]) * row["delta"] * h + j * q6
+        t = row["g2"] + 6 * row["delta"]
+        q0 = 6 * row["g2"] + row["a"] * row["x"] * row["u"] - 20 - 8 * row["q"] / 3 - row["delta"]
+        w0 = row["y"] * (row["a"] + row["x"]) * row["v"] + 15 + 23 * row["q"] / 4 + row["q"] ** 2 / 8
+        r0 = row["g2"] * h - row["x"] * q0 - w0
+        p4 = -3 * row["q"] * row["d"] ** 2 + row["q"] * (4 * row["x"] - 21) * row["d"] + 12 * r0
+        p5 = (
+            row["q"] * t * row["d"] ** 2
+            - (3 * row["delta"] * h + row["q"] ** 2 * row["g2"] + 3 * t * q0) * row["d"]
+            + 3 * row["q"] * (row["delta"] * h + row["g2"] * q0)
+        )
+        c1 = row["q"] * t * (4 * row["x"] - 21) - 9 * row["delta"] * h - 3 * row["q"] ** 2 * row["g2"] - 9 * t * q0
+        c0 = 9 * row["q"] * (row["delta"] * h + row["g2"] * q0) + 12 * t * r0
+        assert q6 == q0 - row["q"] * row["d"] / 3
+        assert w == w0 + row["q"] * (row["d"] ** 2 + 7 * row["d"]) / 4
+        assert j == row["q"] * row["g2"] - row["d"] * t
+        assert row["e4"] == row["delta"] * f4 + row["x"] * row["e6"]
+        assert row["e5"] == row["delta"] * f5 - j * row["e6"]
+        assert p4 == 12 * f4
+        assert p5 == 3 * f5
+        assert 3 * p5 + t * p4 == c1 * row["d"] + c0
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -720,6 +755,7 @@ def main() -> None:
     check_coefficient_matrix_router()
     check_singular_j0_univariate()
     check_singular_jnonzero_charts()
+    check_generic_linear_d_router()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -738,6 +774,8 @@ def main() -> None:
         "P_W(q)=P_C(q)=0",
         "q^2xN-PZ=0",
         "primitive shift-pair coefficient ledger",
+        "3P_5+TP_4=C_1d+C_0",
+        "C_1=C_0=P_4=E_6=Conic=Phi=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -755,6 +793,7 @@ def main() -> None:
         "coefficient_matrix_router=1 "
         "singular_j0_univariate=1 "
         "singular_jnonzero_charts=1 "
+        "generic_linear_d=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 

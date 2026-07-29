@@ -656,6 +656,49 @@ Although each official role packet is irreducible over `F_p`, the variables
 field. Thus role irreducibility alone does not delete either chart. The
 unrun singular-`J=0` gcd packet remains logically independent.
 
+The generic `Delta!=0` branch has a second exact hand eliminant. Define
+
+```text
+T=G_2+6D,
+Q_0=6G_2+AxU-20-8q/3-D,
+W_0=Y(A+x)V+15+23q/4+q^2/8,
+R_0=G_2H-xQ_0-W_0.                                  (28ac)
+```
+
+Then `Q_6=(Y-A)V-S=Q_0-qd/3`, `W=W_0+q(d^2+7d)/4`, and
+`J=qG_2-dT`. On `E_6=0`, the fourth and fifth coefficients are equivalent
+to the two quadratics
+
+```text
+P_4=-3qd^2+q(4x-21)d+12R_0=0,
+
+P_5=qTd^2-(3DH+q^2G_2+3TQ_0)d
+       +3q(DH+G_2Q_0)=0.                            (28ad)
+```
+
+Their leading terms cancel exactly:
+
+```text
+3P_5+TP_4=C_1d+C_0,                                 (28ae)
+
+C_1=qT(4x-21)-9DH-3q^2G_2-9TQ_0,
+C_0=9q(DH+G_2Q_0)+12TR_0.
+```
+
+Consequently the `C_1!=0` chart has `d=-C_0/C_1`; after clearing powers of
+`C_1`, it consists of `P_4`, `E_6`, the conic, and one role equation in only
+`(x,Y,q)`. Saturate the reconstructed forms of `d,q-d,Delta,W` and every
+inherited factor. The `C_1=0` chart is not discarded: it retains
+
+```text
+C_1=C_0=P_4=E_6=Conic=Phi=0                         (28af)
+```
+
+in `(x,Y,q,d)`, with `Delta*W!=0`. Thus the former generic four-variable
+request is now an overdetermined four-equation three-variable chart plus an
+exceptional locus carrying two equations independent of `d`. This remains a
+reduction, not a dimension or unit verdict.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -825,13 +868,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 60d9dcf59900c1cc9b402cf4dc1f8d93ce92176e0cee6bd45116efa98564d54a
+sha256: 396f5f8bf3114c8e032d88a40edd6e9f5fc4250d0d83d543087af92c67b8e16f
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256
