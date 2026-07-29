@@ -99,6 +99,21 @@ At this snapshot:
   conic-image branch, independently of pole partition and signature.  It
   moves no ledger quantity; the birational-quartic `u=2` image and `u=3`
   remain open.
+- The degree-60 primitive-subdegree-four route cut now removes the primitive
+  part of the residual `u=2` branch.  Complete-source saturation sends all
+  24 pole multiplicity units of a birational quartic to vertices of the
+  complete twelve-line source star; the rational-quartic genus budget leaves
+  at least 21 distinct vertices and only up to three weight-two vertices or
+  one weight-three vertex.  After the proved line/conic exclusions, every
+  residual actual birational-quartic `u=2` component gives a bidegree-`(4,4)`
+  self-correspondence component and hence geometric
+  monodromy subdegree four.  The exhaustive nine-group primitive
+  degree-60 catalogue has no such subdegree, so every residual survivor
+  forces a geometric functional decomposition of the endpoint map.  The
+  eight possible inner degrees are `2,3,4,5,6,10,12,30`; turning those
+  decompositions into domain-compatible same-record owners or
+  actual-producer deletions remains open.  This is a route cut with zero
+  ledger movement, not `u=2` or row closure.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -152,12 +167,18 @@ Produce exhaustive balanced-core coverage in units of distinct affine slopes. Th
 
 The complete `Q=6,s=6,u=2` conic-image branch is now excluded by the
 all-twelve-source saturation theorem, before any signature-specific
-eliminant or right-label assignment.  The next maximal equality-wall theorem
-is the actual-source `u=2` birational-quartic image: impose the same complete
-source divisor identity on the rational quartic coefficient map and terminate
-every simple/repeated quartic chart in actual-producer deletion or a
-chronology-valid same-record owner.  Only after that branch stabilizes should
-the `u=3` component compiler resume.
+eliminant or right-label assignment.  The primitive part of the remaining
+`u=2` branch is also cut: the complete-source quartic defect theorem folds
+simple/repeated/ramified charts into five defect types, and the exact
+degree-60 primitive-group classification forces every residual actual
+survivor into geometric functional decomposition.  The next maximal
+equality-wall theorem is therefore the source-bound decomposition adapter on
+inner degrees
+`2,3,4,5,6,10,12,30`: either certify a uniform fold preserving the evaluation
+domain, received data, explaining polynomial, and slope projection, or
+delete the actual producer.  Do not resume the old primitive 985-chart atlas.
+Only after all eight decomposition rows terminate should the `u=3` component
+compiler resume.
 
 #### K4. Close algebraic routing and add-back
 

@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Degree-60 primitive-subdegree-four \(u=2\) route cut
+
+- **Agent/model:** Codex, with the complete-source quartic defect lemma
+  isolated by a separate agent, the primitive catalogue replayed through
+  Sage/GAP, all nine explicit groups independently recomputed with the
+  Wolfram plugin, and fresh adversarial proof and certificate audits returned
+  GREEN before publication.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED CLASSIFICATION-BACKED ROUTE CUT. The primitive residual
+  birational-quartic \(Q=6,s=6,u=2\) branch is empty. The decomposable
+  \(u=2\) branch and the KoalaBear row remain open, and no ledger field
+  changes.
+- **What is being added:** Complete-source saturation puts all quartic pole
+  units on the twelve-line source star and leaves at most three units of
+  repeated-vertex defect. After the proved line/conic exclusions, every
+  residual actual birational-quartic \(u=2\) component also gives a
+  subdegree-four component of the degree-\(60\) endpoint self-correspondence,
+  while none of the nine primitive degree-\(60\) groups has subdegree four.
+  Thus every residual survivor forces geometric functional decomposition.
+  Exact pole orders and Riemann--Hurwitz leave eight possible inner degrees.
+- **How it is useful:** It replaces the primitive \(985\)-orbit quartic
+  eliminant and separate repeated/ramified charts by a finite source-bound
+  decomposition adapter. The Wolfram replay independently confirms all nine
+  stabilizer-orbit rows from explicit generators.
+- **What to do next:** For inner degrees
+  \(2,3,4,5,6,10,12,30\), prove domain compatibility and descent of the
+  received data, explaining polynomial, and slope projection, or delete the
+  actual producer. Do not call geometric decomposition itself a paid owner.
+
 ### 2026-07-29 - Complete-source exclusion of the \(Q=6,s=6,u=2\) conic
 
 - **Agent/model:** Codex, with the divisor argument generated separately
