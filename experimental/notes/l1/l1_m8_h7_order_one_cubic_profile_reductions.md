@@ -309,7 +309,15 @@ L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q
 The bounded compute-request launcher has SHA-256
 
 ```text
-7cbc6e073a88eb74af42b02998b37c5919a8547c0b09770bd6aa147bf39de64f
+d3b4aacf170e13fecdf36718f8566bd597beacf4965aa1584077dbe61db9f695
+```
+
+Pass `--output PATH` to bank the eight-row remote return. Validate an
+all-unit certificate with
+
+```text
+python3 experimental/scripts/check_l1_m8_h7_cubic_222_norm_certificate.py PATH
+sha256: 9ba5e7ee7a66d459453f5aba312fff5649c7ee37c12264b39d29304ebc8d244f
 ```
 
 Neither script was executed in the exporting environment: project policy

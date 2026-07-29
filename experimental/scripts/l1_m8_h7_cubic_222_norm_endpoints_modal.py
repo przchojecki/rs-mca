@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 import time
+from pathlib import Path
 
 import modal
 
@@ -176,5 +177,11 @@ def run_all() -> dict[str, object]:
 
 
 @app.local_entrypoint()
-def main() -> None:
-    print(json.dumps(run_all.remote(), indent=2, sort_keys=True))
+def main(output: str = "") -> None:
+    result = run_all.remote()
+    result["launcher_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    rendered = json.dumps(result, indent=2, sort_keys=True) + "\n"
+    if output:
+        Path(output).write_text(rendered)
+        print(f"L1_H7_C222_NORM_CERTIFICATE {output}")
+    print(rendered, end="")
