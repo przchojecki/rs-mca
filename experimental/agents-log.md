@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Reciprocal-P6 active source-fiber deletion
+
+- **Agent/model:** Codex, with the producer gate isolated by a fresh
+  subagent and an independent Sage implementation.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_reciprocal_p6_source_fiber_obstruction_v1.md`,
+  the matching exact Python verifier, Sage replay, canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED WITNESS-SPECIFIC ACTIVE SOURCE-FIBER DELETION. The
+  KoalaBear row remains open and no ledger field changes.
+- **What is being added:** Every actual outgoing component must divide all
+  twelve specialized source fibers of the endpoint producer. The exact
+  reciprocal-\(P_6\) component in PR #1126 has gcd degree zero with the
+  complete source polynomial at the five common invariant sources and at
+  \(\eta=0\), so that committed local witness cannot lift to an actual
+  endpoint component. The exact gcd histogram is `{0: 6, 4: 6}`.
+- **How it is useful:** It supplies the active source-semantic deletion asked
+  for by the parent route cut and identifies a mandatory first gate for every
+  future conic compiler. It does not invalidate the parent's local
+  consistency claim, eliminate every reciprocal-\(P_6\) component, supply an
+  owner, or prove cap 68.
+- **What to do next:** Impose the all-twelve-source divisibility gate
+  uniformly in the exhaustive \(2+2+2\) component compiler, then classify
+  every surviving reciprocal, \(D_4\), \(D_5\), \(P_6\), and
+  \(P_2\sqcup C_4\) component by actual-producer deletion or a
+  chronology-valid same-record owner.
+
 ### 2026-07-29 - KoalaBear reciprocal-P6 local survivor route cut
 
 - **Agent/model:** Codex, with an independent algebra replay by a fresh

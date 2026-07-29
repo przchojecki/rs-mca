@@ -1,0 +1,764 @@
+{
+  "H": {
+    "P_coefficients": [
+      1619401242,
+      901515189,
+      1468071313
+    ],
+    "S_coefficient_multipliers": [
+      190235001,
+      50728375,
+      237946587
+    ],
+    "formula": "X^4-S(T)X^3+(2+P(T))X^2-S(T)X+1"
+  },
+  "claims": {
+    "all_reciprocal_P6_components_eliminated": false,
+    "all_twelve_source_fibers_checked": true,
+    "parent_local_survivor_remains_valid": true,
+    "parent_witness_is_active_producer_component": false,
+    "row_payment": false,
+    "same_record_owner_supplied": false,
+    "source_fiber_gate_is_assignment_independent": true,
+    "source_fiber_gate_is_projectively_invariant": true,
+    "source_fiber_gate_is_scale_independent": true
+  },
+  "complete_source_polynomial_coefficients": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      669471056,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1628910641,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      111738231,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      2016274063,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      296498720,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      71920616,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      260339237,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      295914055,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      80009192,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1551655886,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      2015912393,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "dependency": {
+    "manual_integration_commit": "0f7476f0fcbc5d1a1d3eed0c03221aaa48f5767d",
+    "parent_commit": "0f6c23f5c4f02ee9f9e8f340f833abc0096cf254",
+    "parent_format": "kb-mca-v4-q6-u2-reciprocal-p6-local-survivor-v1",
+    "parent_payload_sha256": "a3231f7903e255b254b202a269aca1740aec666cd04c13940711e83d29e8ce1b",
+    "parent_pr": 1126,
+    "source_reduction_commit": "44542e91e459364a521870ed2ebde7f6fe5055bf"
+  },
+  "field": {
+    "encoding": "[constant_coefficient,omega_coefficient]",
+    "omega_square": 1923159404,
+    "quadratic_subfield_generator": "omega"
+  },
+  "format": "kb-mca-v4-q6-u2-reciprocal-p6-source-fiber-obstruction-v1",
+  "nonclaims": [
+    "elimination of every reciprocal P6 component",
+    "received-line witness",
+    "bad-slope witness",
+    "survival or deletion of every earlier first-match cell",
+    "active owner payment",
+    "cap-68 proof or refutation",
+    "KoalaBear MCA row closure"
+  ],
+  "obstruction": {
+    "active_ledger": {
+      "U_BC": null,
+      "U_Q": null,
+      "U_new": null,
+      "U_paid": null
+    },
+    "failing_source_count": 6,
+    "fatal_source_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "fatal_source_roles": [
+      "COMMON_INVARIANT_SOURCE",
+      "EXTRA_INVARIANT_SOURCE_ETA"
+    ],
+    "gcd_degree_histogram": {
+      "0": 6,
+      "4": 6
+    },
+    "ledger_movement": 0,
+    "owner_id": null,
+    "passing_source_count": 6,
+    "terminal": "DELETED_BY_ACTIVE_SOURCE_FIBER_DIVISIBILITY",
+    "witness_lifts_to_active_producer": false
+  },
+  "payload_sha256": "7f001fbba8369db661cfd4a4bb3f4f3c25b0f04732d049a8edc254ba5ef105fc",
+  "producer_gate": {
+    "H_bidegree": [
+      2,
+      4
+    ],
+    "H_is_monic_in_X": true,
+    "affine_gcd_is_complete_projective_test": true,
+    "complete_source_divisor_model": "B(X)~prod_beta(X^2-beta) over all 12 source labels",
+    "complete_source_polynomial_degree": 24,
+    "complete_source_polynomial_squarefree": false,
+    "component_hypothesis": "H divides F_out divides M",
+    "individual_noninvariant_coordinate_warning": "an individual z_i need not be one complete deck fiber",
+    "necessary_divisibility": "H(alpha_i,X) divides B(X) for every source alpha_i",
+    "only_repeated_root": "[0:1] from z_eta(X)=X^2",
+    "producer": "M(T,X)=sum_i kappa_i L_i(T) B(X)/z_i(X)",
+    "source_specialization": "M(alpha_i,X)=kappa_i B(X)/z_i(X)"
+  },
+  "row": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "field_characteristic": 2130706433,
+    "field_extension_degree": 6,
+    "object": "MCA",
+    "workboard_item": "K3"
+  },
+  "source_rows": [
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1753253220
+        ],
+        [
+          55250935,
+          0
+        ],
+        [
+          0,
+          1753253220
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 0,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        2130706432,
+        0
+      ],
+      "passes_necessary_source_fiber_gate": false,
+      "role": "COMMON_INVARIANT_SOURCE"
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          1798238540,
+          60493388
+        ],
+        [
+          2086006594,
+          2027754234
+        ],
+        [
+          1798238540,
+          60493388
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 0,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        657937426,
+        1329463970
+      ],
+      "passes_necessary_source_fiber_gate": false,
+      "role": "COMMON_INVARIANT_SOURCE"
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          332467893,
+          60493388
+        ],
+        [
+          2086006594,
+          102952199
+        ],
+        [
+          332467893,
+          60493388
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 0,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        657937426,
+        801242463
+      ],
+      "passes_necessary_source_fiber_gate": false,
+      "role": "COMMON_INVARIANT_SOURCE"
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          476089029,
+          2089064810
+        ],
+        [
+          1096142339,
+          822895311
+        ],
+        [
+          476089029,
+          2089064810
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 0,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        39550247,
+        1475945685
+      ],
+      "passes_necessary_source_fiber_gate": false,
+      "role": "COMMON_INVARIANT_SOURCE"
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          1654617404,
+          2089064810
+        ],
+        [
+          1096142339,
+          1307811122
+        ],
+        [
+          1654617404,
+          2089064810
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 0,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        39550247,
+        654760748
+      ],
+      "passes_necessary_source_fiber_gate": false,
+      "role": "COMMON_INVARIANT_SOURCE"
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1940471432
+        ],
+        [
+          1619401244,
+          0
+        ],
+        [
+          0,
+          1940471432
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 0,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        0,
+        0
+      ],
+      "passes_necessary_source_fiber_gate": false,
+      "role": "EXTRA_INVARIANT_SOURCE_ETA"
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          2130706432
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          2130706432
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 4,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          2130706432
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          2130706432
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        1706416115,
+        0
+      ],
+      "passes_necessary_source_fiber_gate": true,
+      "role": "NONINVARIANT_ROW_SOURCE",
+      "row": 0
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          962272901
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          962272901
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 4,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          962272901
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          962272901
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        294572568,
+        0
+      ],
+      "passes_necessary_source_fiber_gate": true,
+      "role": "NONINVARIANT_ROW_SOURCE",
+      "row": 1
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1398274670
+        ],
+        [
+          85229673,
+          0
+        ],
+        [
+          0,
+          1398274670
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 4,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1398274670
+        ],
+        [
+          85229673,
+          0
+        ],
+        [
+          0,
+          1398274670
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        2122972579,
+        0
+      ],
+      "passes_necessary_source_fiber_gate": true,
+      "role": "NONINVARIANT_ROW_SOURCE",
+      "row": 2
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          2051605939,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 4,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          2051605939,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        1628586834,
+        0
+      ],
+      "passes_necessary_source_fiber_gate": true,
+      "role": "NONINVARIANT_ROW_SOURCE",
+      "row": 3
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          253872217
+        ],
+        [
+          1979376506,
+          0
+        ],
+        [
+          0,
+          253872217
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 4,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          253872217
+        ],
+        [
+          1979376506,
+          0
+        ],
+        [
+          0,
+          253872217
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        1566096308,
+        0
+      ],
+      "passes_necessary_source_fiber_gate": true,
+      "role": "NONINVARIANT_ROW_SOURCE",
+      "row": 4
+    },
+    {
+      "H_row_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          814831581,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "gcd_degree": 4,
+      "gcd_with_complete_source_polynomial_coefficients": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          814831581,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "label": [
+        2054706456,
+        0
+      ],
+      "passes_necessary_source_fiber_gate": true,
+      "role": "NONINVARIANT_ROW_SOURCE",
+      "row": 5
+    }
+  ],
+  "status": "PROVED_WITNESS_SPECIFIC_ACTIVE_SOURCE_FIBER_DELETION",
+  "upstream_prs_checked": [
+    1121,
+    1122,
+    1123,
+    1124,
+    1125,
+    1126
+  ]
+}
