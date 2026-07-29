@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
 > **Updated:** 2026-07-29
-> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
+> **State snapshot:** `main@93fba1be3f3299b0ba4708d88715377bbb656e45`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -79,6 +79,41 @@ At this snapshot:
 - On the pinned M31 quotient profile, the proposed rooted-shell cap `1233` is refuted by an explicit deficiency-192 packet of size `1237`; a ragged non-`T16` collision and the signed-`T8` census further cut alignment-only routes.  The canonical-remainder inequality `|F_eta|<=1716*r(eta)+5577` forces at least `9774` represented remainders in any unsafe support fiber, but supplies no received-word or row-list projection.
 - The cumulative M31 rank-seven compiler now reaches `Q=147594` locally.  Its adjacent `Q=147595`, `k=4981` survivor is reduced to a varying proper-`G`, zero-excess cross-cofactor incidence terminal requiring an aggregate cap `2157928`; no v4 atom, higher-rank theorem, or row closure follows.
 - The KoalaBear equality-wall PR stack proves local normalization, a `Q=6,u=2` geometry reduction, and exclusion of 60 labelled `P3+C3` cases, but retains 405 labelled conic cases and lacks global ownership/add-back.  The separate column-far transverse-secant certificate is per fixed union only.  No large `U_paid` claimed by an abstract candidate-record compiler is banked; the live active value remains `null`.
+- The exact deployed-field reciprocal-`P6` packet exhibits a local
+  `Q=6,u=2` source-facet survivor satisfying the split-pole, weighted-GRS,
+  endpoint-deck, and reciprocal gates.  Direct elimination from those gates
+  alone is therefore unavailable.  The packet is not an active received-line
+  record, does not exclude earlier owners, and moves no ledger quantity.
+- The exact source-fiber follow-up deletes that committed local witness from
+  the actual endpoint producer: at the five common invariant sources and the
+  extra invariant source `eta=0`, its specialized quartic is coprime to the
+  complete source polynomial, whereas every actual outgoing component must
+  divide every specialized source fiber.  This is witness-specific and moves
+  no ledger quantity; it does not eliminate all reciprocal-`P6` components.
+- The complete-source saturation theorem upgrades that witness-specific gate
+  uniformly.  The twelve actual quartic source rows sum to twice the complete
+  degree-24 source divisor, forcing that divisor to be invariant under the
+  conic involution.  Exact fixed-point/orbit multiplicities then exclude all
+  reciprocal, `D4`, and `D5` reduced profiles.  Together with the retained
+  ramified-common exclusions, this closes the complete `Q=6,s=6,u=2`
+  conic-image branch, independently of pole partition and signature.  It
+  moves no ledger quantity; the birational-quartic `u=2` image and `u=3`
+  remain open.
+- The degree-60 primitive-subdegree-four route cut now removes the primitive
+  part of the residual `u=2` branch.  Complete-source saturation sends all
+  24 pole multiplicity units of a birational quartic to vertices of the
+  complete twelve-line source star; the rational-quartic genus budget leaves
+  at least 21 distinct vertices and only up to three weight-two vertices or
+  one weight-three vertex.  After the proved line/conic exclusions, every
+  residual actual birational-quartic `u=2` component gives a bidegree-`(4,4)`
+  self-correspondence component and hence geometric
+  monodromy subdegree four.  The exhaustive nine-group primitive
+  degree-60 catalogue has no such subdegree, so every residual survivor
+  forces a geometric functional decomposition of the endpoint map.  The
+  eight possible inner degrees are `2,3,4,5,6,10,12,30`; turning those
+  decompositions into domain-compatible same-record owners or
+  actual-producer deletions remains open.  This is a route cut with zero
+  ledger movement, not `u=2` or row closure.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -129,6 +164,34 @@ The factor `4807520` is only a full-budget calibration before other atoms consum
 #### K3. Pay MCA projection and residual geometry
 
 Produce exhaustive balanced-core coverage in units of distinct affine slopes. The moving-root theorem pays only charts proved to be genuine pencils. A line-by-line decomposition also needs an exact count of relevant lines. Higher-dimensional cores require a proved ray/slope compiler with exact multiplicities.
+
+The complete `Q=6,s=6,u=2` conic-image branch is now excluded by the
+all-twelve-source saturation theorem, before any signature-specific
+eliminant or right-label assignment.  The primitive part of the remaining
+`u=2` branch is also cut: the complete-source quartic defect theorem folds
+simple/repeated/ramified charts into five defect types, and the exact
+degree-60 primitive-group classification forces every residual actual
+survivor into geometric functional decomposition.  The exact source-fiber
+adapter now proves that the sixty active roots are complete unramified inner
+fibers and splits the twelve source poles into complete and index-five
+exceptional fibers.  It deletes inner degree `5` over
+`K=F_{p^6}` by the split fifth-power-fiber contradiction, routes inner
+degree `30` to inner degree `6` by fifth-power extraction, and reduces the
+inner-degree-`12` row to one canonical binary-pencil membership test.  The
+endpoint parameter line is not the evaluation carrier: `m | 2^21` is only
+a necessary gate conditional on a future same-record parameter-to-carrier
+transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
+data, and slope semantics remain open.
+
+The next maximal equality-wall theorem is one exhaustive source-pencil
+compiler.  Enumerate every exact source partition for inner degrees
+`2,3,4,6,10`, use the canonical pencil for degree `12`, and terminate every
+candidate in geometric inconsistency, a smaller inner-degree row, or an
+explicit parameter-line survivor.  For each survivor, demand a separate
+same-record theorem transporting the pencil to a declared complete carrier
+fold and descending received data, the explaining polynomial, and slopes.
+Do not resume the old primitive 985-chart atlas or the `u=3` component
+compiler until these six rows terminate.
 
 #### K4. Close algebraic routing and add-back
 

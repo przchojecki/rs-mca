@@ -1,0 +1,285 @@
+{
+  "schema": "kb-mca-v4-degree60-primitive-subdegree4-route-cut-v1",
+  "payload_sha256": "21a8ca7800745c2c94876d48473801e84f4d9c8f9e6ce5b53e8b8bd66b699962",
+  "statement": {
+    "row": "KoalaBear MCA at 2^-128",
+    "agreement": 1116048,
+    "B_star": "274980728111395087",
+    "deployed_characteristic": 2130706433,
+    "endpoint_degree": 60,
+    "component_u": 2,
+    "downstairs_component_bidegree": [
+      4,
+      4
+    ],
+    "required_subdegree": 4,
+    "classification_scope": "geometric primitive monodromy over the algebraic closure"
+  },
+  "parent_stack": {
+    "head_commit": "ad109774f7d9bc320e7e0c046ba83471f39d5cd9",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-q6-u2-complete-source-conic-exclusion-v1/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.json",
+    "certificate_blob_oid": "61afd4534740c5ccabc6196919126c80c361e4c5",
+    "certificate_payload_sha256": "30a5d45895957f774ef972118e227fa54522fc27a48ee0e2a99a0d5a012a5451"
+  },
+  "complete_source_quartic_defect_gate": {
+    "complete_source_degree": 24,
+    "allowed_pole_multiplicities": [
+      1,
+      2
+    ],
+    "local_source_rows_per_pole": 2,
+    "local_row_order_equals_pole_order": true,
+    "all_pole_units_map_to_twelve_line_star_vertices": true,
+    "rational_plane_quartic_arithmetic_genus": 3,
+    "delta_lower_bound": "delta_v >= binomial(w_v,2)",
+    "minimum_distinct_star_vertices": 21,
+    "maximum_weight": 3,
+    "allowed_nonsimple_weight_histograms": [
+      {
+        "weight_two_vertices": 1,
+        "weight_three_vertices": 0,
+        "defect_cost": 1
+      },
+      {
+        "weight_two_vertices": 2,
+        "weight_three_vertices": 0,
+        "defect_cost": 2
+      },
+      {
+        "weight_two_vertices": 3,
+        "weight_three_vertices": 0,
+        "defect_cost": 3
+      },
+      {
+        "weight_two_vertices": 0,
+        "weight_three_vertices": 1,
+        "defect_cost": 3
+      }
+    ]
+  },
+  "catalogue": {
+    "system": "GAP PrimGrp",
+    "sage_version": "10.9",
+    "gap_version": "4.14.0",
+    "installed_primgrp_version": "3.4.4",
+    "degree": 60,
+    "complete_group_count": 9,
+    "catalogue_completeness_import": "all primitive permutation groups of degree below 4096, up to permutation isomorphism",
+    "stable_identifier": "PrimitiveGroup(60,i)"
+  },
+  "wolfram_replay": {
+    "path": "experimental/scripts/verify_kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.wl",
+    "sha256": "4b04708216bb6525840a6d6cf42335ff4497afa13fa5fee73116f9f3b247cc5f",
+    "scope": "independent reconstruction of the nine explicit permutation groups and recomputation of orders and point-stabilizer orbits; catalogue completeness remains imported"
+  },
+  "primitive_degree_60_groups": [
+    {
+      "primitive_group_id": 1,
+      "structure": "A5 x A5",
+      "order": "3600",
+      "subdegrees": [
+        1,
+        12,
+        12,
+        15,
+        20
+      ],
+      "primitive": true,
+      "transitive": true
+    },
+    {
+      "primitive_group_id": 2,
+      "structure": "A5 : S5",
+      "order": "7200",
+      "subdegrees": [
+        1,
+        15,
+        20,
+        24
+      ],
+      "primitive": true,
+      "transitive": true
+    },
+    {
+      "primitive_group_id": 3,
+      "structure": "(A5 x A5) : C2",
+      "order": "7200",
+      "subdegrees": [
+        1,
+        15,
+        20,
+        24
+      ],
+      "primitive": true,
+      "transitive": true
+    },
+    {
+      "primitive_group_id": 4,
+      "structure": "(A5 x A5) : C2",
+      "order": "7200",
+      "subdegrees": [
+        1,
+        12,
+        12,
+        15,
+        20
+      ],
+      "primitive": true,
+      "transitive": true
+    },
+    {
+      "primitive_group_id": 5,
+      "structure": "(A5 x A5) : (C2 x C2)",
+      "order": "14400",
+      "subdegrees": [
+        1,
+        15,
+        20,
+        24
+      ],
+      "primitive": true,
+      "transitive": true
+    },
+    {
+      "primitive_group_id": 6,
+      "structure": "PSL(2,59)",
+      "order": "102660",
+      "subdegrees": [
+        1,
+        59
+      ],
+      "primitive": true,
+      "transitive": true
+    },
+    {
+      "primitive_group_id": 7,
+      "structure": "PSL(2,59) : C2",
+      "order": "205320",
+      "subdegrees": [
+        1,
+        59
+      ],
+      "primitive": true,
+      "transitive": true
+    },
+    {
+      "primitive_group_id": 8,
+      "structure": "A60",
+      "order": "4160493556370695072138170591611682190377086303180622976224638848204800000000000000",
+      "subdegrees": [
+        1,
+        59
+      ],
+      "primitive": true,
+      "transitive": true
+    },
+    {
+      "primitive_group_id": 9,
+      "structure": "S60",
+      "order": "8320987112741390144276341183223364380754172606361245952449277696409600000000000000",
+      "subdegrees": [
+        1,
+        59
+      ],
+      "primitive": true,
+      "transitive": true
+    }
+  ],
+  "functional_decomposition_profiles": [
+    {
+      "inner_degree": 2,
+      "outer_degree": 30,
+      "order_five_outer_poles": 6,
+      "simple_outer_poles": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 2
+    },
+    {
+      "inner_degree": 3,
+      "outer_degree": 20,
+      "order_five_outer_poles": 4,
+      "simple_outer_poles": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 4
+    },
+    {
+      "inner_degree": 4,
+      "outer_degree": 15,
+      "order_five_outer_poles": 3,
+      "simple_outer_poles": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 6
+    },
+    {
+      "inner_degree": 5,
+      "outer_degree": 12,
+      "order_five_outer_poles": 2,
+      "simple_outer_poles": 2,
+      "forced_ramification": 8,
+      "riemann_hurwitz_budget": 8
+    },
+    {
+      "inner_degree": 6,
+      "outer_degree": 10,
+      "order_five_outer_poles": 2,
+      "simple_outer_poles": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 10
+    },
+    {
+      "inner_degree": 10,
+      "outer_degree": 6,
+      "order_five_outer_poles": 1,
+      "simple_outer_poles": 1,
+      "forced_ramification": 8,
+      "riemann_hurwitz_budget": 18
+    },
+    {
+      "inner_degree": 12,
+      "outer_degree": 5,
+      "order_five_outer_poles": 1,
+      "simple_outer_poles": 0,
+      "forced_ramification": 0,
+      "riemann_hurwitz_budget": 22
+    },
+    {
+      "inner_degree": 30,
+      "outer_degree": 2,
+      "order_five_outer_poles": 0,
+      "simple_outer_poles": 2,
+      "forced_ramification": 48,
+      "riemann_hurwitz_budget": 58
+    }
+  ],
+  "excluded_inner_degrees": [
+    15,
+    20
+  ],
+  "conclusion": {
+    "primitive_u2_branch_empty": true,
+    "terminal": "ROUTED_TO_GEOMETRIC_FUNCTIONAL_DECOMPOSITION_ADAPTER",
+    "next_gate": "SOURCE_BOUND_FUNCTIONAL_DECOMPOSITION_OWNER_OR_DELETION",
+    "u2_branch_closed": false,
+    "row_closed": false,
+    "ledger_movement": 0
+  },
+  "dependencies": {
+    "imported_component_descent": "Corollary 9.5 of pole_disjoint_conic_facet_collinearity_reduction.md",
+    "source_commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+    "source_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/proof/pole_disjoint_conic_facet_collinearity_reduction.md",
+    "source_blob_oid": "356ff4b47d0bb429d11ea10382762a6e95b5ce24",
+    "manual_integration_commit": "0f7476f0fcbc5d1a1d3eed0c03221aaa48f5767d",
+    "classification": "GAP PrimGrp exhaustive primitive permutation group catalogue",
+    "classical_dictionary": "irreducible self-correspondence factors are point-stabilizer suborbits; rational-map indecomposability is equivalent to primitive geometric monodromy"
+  },
+  "nonclaims": [
+    "no exclusion of geometrically decomposable endpoint maps",
+    "no domain-compatible witness-data descent",
+    "no chronology-valid same-record quotient owner",
+    "no u=2 branch closure",
+    "no u=3 theorem",
+    "no cap-68 theorem",
+    "no ledger movement",
+    "no KoalaBear row closure"
+  ]
+}
