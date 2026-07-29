@@ -740,6 +740,61 @@ role equation, plus the reconstructed nonzero factors. This is an exact
 route reduction; `Omega=0` and the doubly singular equations are not unit
 or dimension verdicts.
 
+The doubly singular coefficient locus itself has a final quadratic-quotient
+reduction. Put
+
+```text
+a_d=4x-21,       alpha=a_d/3,       beta=4R_0/q.
+```
+
+Since `q!=0`, `P_4=0` is exactly `d^2=alpha d+beta`. Reducing the conic in
+this quotient gives
+
+```text
+9q^2 Conic=N_1d+N_0 mod P_4,                       (28ak)
+
+N_1=q^2(40a_d^3+480a_d^2+(2520+462q)a_d+6480+3402q)
+       +2880qR_0(a_d+6),
+
+N_0=qR_0(480a_d^2+5760a_d+30240+5544q)
+       +17280R_0^2+q^2(3240+3402q+315q^2).
+```
+
+For one official role packet write
+
+```text
+Phi(X,Y)=c_2X^2+c_1XY+c_0Y^2,
+S_0=(Y-A)V-Q_0.
+```
+
+The packet is irreducible, hence `c_0!=0`. On `E_6=0`, homogeneity and
+`S=S_0+qd/3` give the exact remainder
+
+```text
+27Phi(R,S_0+qd/3)+c_0qP_4=U_1d+U_0,                (28al)
+
+U_1=9q(c_1R+2c_0S_0)+c_0q^2a_d,
+U_0=27(c_2R^2+c_1RS_0+c_0S_0^2)+12c_0qR_0.
+```
+
+Thus the doubly singular core has two further linear equations in `d` and
+the packet-specific parameter determinant
+
+```text
+Xi=N_1U_0-U_1N_0=0.                                (28am)
+```
+
+If `N_1!=0`, reconstruct `d=-N_0/N_1`; if `N_1=0,U_1!=0`, retain `N_0=0`
+and reconstruct `d=-U_0/U_1`. Only
+
+```text
+N_1=U_1=N_0=U_0=0                                  (28an)
+```
+
+still retains `d`. The 21 choices of `(c_2,c_1,c_0)` are alternatives, not
+simultaneous equations. The fully proportional quotient locus remains an
+open packet, not a discarded denominator component.
+
 ## Symmetric affine-color equation for 2+2+2
 
 The same role polynomial imposes the three-color condition on the symmetric
@@ -909,13 +964,13 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 9c480ca3458bd3c4ca128dc9980b1e5e74c8233c585151e1f031b4ae9706a1de
+sha256: ad8bf495f2b6777d6ed431a0125729a09e33f4f40caf03a45079660cbb35c89b
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 role_factors=4 role_weld=1 galois_role_packets=12 frobenius_role_packets=21 scaled_quadratic_core=1 coefficient_matrix_router=1 singular_j0_univariate=1 singular_jnonzero_charts=1 generic_linear_d=1 generic_double_linear_d=1 doubly_singular_quotient=1 affine_color_shapes=7 affine_formula=1 quotient_weld=1
 ```
 
 The bounded compute-request launcher has SHA-256

@@ -692,6 +692,49 @@ def check_generic_double_linear_d_router() -> None:
         )
 
 
+def check_doubly_singular_quadratic_quotient() -> None:
+    role_coefficients = ((Q(1), Q(2), Q(3)), (Q(2), Q(-1), Q(5)))
+    for values in (
+        (Q(2), Q(3), Q(5), Q(7)),
+        (Q(-1), Q(4), Q(9), Q(2)),
+        (Q(5, 2), Q(-3, 2), Q(11), Q(-4)),
+    ):
+        row = scaled_quadratic_core(*values)
+        h = row["g2"] + row["a"] * row["u"]
+        q0 = 6 * row["g2"] + row["a"] * row["x"] * row["u"] - 20 - 8 * row["q"] / 3 - row["delta"]
+        w0 = row["y"] * (row["a"] + row["x"]) * row["v"] + 15 + 23 * row["q"] / 4 + row["q"] ** 2 / 8
+        r0 = row["g2"] * h - row["x"] * q0 - w0
+        role_s0 = (row["y"] - row["a"]) * row["v"] - q0
+        ad = 4 * row["x"] - 21
+        alpha = ad / 3
+        beta = 4 * r0 / row["q"]
+        p4 = -3 * row["q"] * row["d"] ** 2 + row["q"] * ad * row["d"] + 12 * r0
+        conic = (
+            35 * row["q"] ** 2
+            + 14 * row["q"] * (11 * row["d"] ** 2 + 27 * row["d"] + 27)
+            + 120 * (row["d"] ** 4 + 4 * row["d"] ** 3 + 7 * row["d"] ** 2 + 6 * row["d"] + 3)
+        )
+        n1 = row["q"] ** 2 * (
+            40 * ad**3 + 480 * ad**2 + (2520 + 462 * row["q"]) * ad + 6480 + 3402 * row["q"]
+        ) + 2880 * row["q"] * r0 * (ad + 6)
+        n0 = (
+            row["q"] * r0 * (480 * ad**2 + 5760 * ad + 30240 + 5544 * row["q"])
+            + 17280 * r0**2
+            + row["q"] ** 2 * (3240 + 3402 * row["q"] + 315 * row["q"] ** 2)
+        )
+        q_c = 120 * (row["d"] ** 2 + alpha * row["d"] + alpha**2 + beta) + 480 * (
+            row["d"] + alpha
+        ) + 840 + 154 * row["q"]
+        assert 9 * row["q"] ** 2 * conic == n1 * row["d"] + n0 - 3 * row["q"] * q_c * p4
+
+        for c2, c1, c0 in role_coefficients:
+            role_s = role_s0 + row["q"] * row["d"] / 3
+            phi = c2 * row["r"] ** 2 + c1 * row["r"] * role_s + c0 * role_s**2
+            u1 = 9 * row["q"] * (c1 * row["r"] + 2 * c0 * role_s0) + c0 * row["q"] ** 2 * ad
+            u0 = 27 * (c2 * row["r"] ** 2 + c1 * row["r"] * role_s0 + c0 * role_s0**2) + 12 * c0 * row["q"] * r0
+            assert 27 * phi + c0 * row["q"] * p4 == u1 * row["d"] + u0
+
+
 def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
     rotations = {
         frozenset((value + shift) % 8 for value in subset) for shift in range(8)
@@ -796,6 +839,7 @@ def main() -> None:
     check_singular_jnonzero_charts()
     check_generic_linear_d_router()
     check_generic_double_linear_d_router()
+    check_doubly_singular_quadratic_quotient()
     check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
@@ -818,6 +862,8 @@ def main() -> None:
         "C_1=C_0=P_4=E_6=Conic=Phi=0",
         "2(M_1d+M_0)",
         "Omega=C_1M_0-M_1C_0=0",
+        "9q^2 Conic=N_1d+N_0 mod P_4",
+        "Xi=N_1U_0-U_1N_0=0",
         "K_8(P,Q)",
         "Theta_8(T)",
         "alpha B_6-A_6 beta=0",
@@ -837,6 +883,7 @@ def main() -> None:
         "singular_jnonzero_charts=1 "
         "generic_linear_d=1 "
         "generic_double_linear_d=1 "
+        "doubly_singular_quotient=1 "
         "affine_color_shapes=7 affine_formula=1 quotient_weld=1"
     )
 
