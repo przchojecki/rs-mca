@@ -909,12 +909,12 @@ def check_fully_proportional_q_quotient() -> None:
             power = [Q(0)] * degree + [a2 ** (degree - 1)]
             assert poly_rem(poly_add(power, [-v[degree], -u[degree]]), fb) == [Q(0)]
 
-        r1 = a2**5 * theta[1]
-        r0 = a2**5 * theta[0]
+        rho1 = a2**5 * theta[1]
+        rho0 = a2**5 * theta[0]
         for degree in range(2, 7):
-            r1 += a2 ** (6 - degree) * theta[degree] * u[degree]
-            r0 += a2 ** (6 - degree) * theta[degree] * v[degree]
-        assert poly_rem(poly_add(poly_scale(theta, a2**5), [-r0, -r1]), fb) == [Q(0)]
+            rho1 += a2 ** (6 - degree) * theta[degree] * u[degree]
+            rho0 += a2 ** (6 - degree) * theta[degree] * v[degree]
+        assert poly_rem(poly_add(poly_scale(theta, a2**5), [-rho0, -rho1]), fb) == [Q(0)]
 
 
 def check_fully_proportional_exceptional_e() -> None:
@@ -1082,8 +1082,8 @@ def main() -> None:
         "Theta_G:=E_GD L_G-J_GF_G=0",
         "Theta_*=5E_GD_*^2L_*-6J_*F_*",
         "F_b=E_G=X_*=J_*=L_*=0",
-        "a_2^5Theta_*=R_1q+R_0 mod F_b",
-        "U(b)=a_2R_0^2-a_1R_0R_1+a_0R_1^2=0",
+        "a_2^5Theta_*=rho_1q+rho_0 mod F_b",
+        "U(b)=a_2rho_0^2-a_1rho_0rho_1+a_0rho_1^2=0",
         "a_2E_G-e_2F_b=S_1q+S_0",
         "X_E(b)=S_1^3X_*(b,-S_0/S_1)=0",
         "K_8(P,Q)",

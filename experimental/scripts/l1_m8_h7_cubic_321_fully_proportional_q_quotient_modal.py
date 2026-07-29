@@ -119,13 +119,13 @@ def source_polynomials() -> dict[str, list[int]]:
     for degree in range(3, 7):
         u[degree] = sp.expand(-a1 * u[degree - 1] - a2 * a0 * u[degree - 2])
         v[degree] = sp.expand(-a1 * v[degree - 1] - a2 * a0 * v[degree - 2])
-    r1 = a2**5 * theta_coefficients[1]
-    r0 = a2**5 * theta_coefficients[0]
+    rho1 = a2**5 * theta_coefficients[1]
+    rho0 = a2**5 * theta_coefficients[0]
     for degree in range(2, 7):
-        r1 += a2 ** (6 - degree) * theta_coefficients[degree] * u[degree]
-        r0 += a2 ** (6 - degree) * theta_coefficients[degree] * v[degree]
-    r1, r0 = sp.expand(r1), sp.expand(r0)
-    univariate = sp.expand(a2 * r0**2 - a1 * r0 * r1 + a0 * r1**2)
+        rho1 += a2 ** (6 - degree) * theta_coefficients[degree] * u[degree]
+        rho0 += a2 ** (6 - degree) * theta_coefficients[degree] * v[degree]
+    rho1, rho0 = sp.expand(rho1), sp.expand(rho0)
+    univariate = sp.expand(a2 * rho0**2 - a1 * rho0 * rho1 + a0 * rho1**2)
 
     leading_relation = 247 * b**2 - 1575
     leading_q = -sp.Rational(10, 231) * (b**2 + 27)
@@ -138,8 +138,8 @@ def source_polynomials() -> dict[str, list[int]]:
 
     return {
         "U": coefficients(univariate),
-        "R_1": coefficients(r1),
-        "R_0": coefficients(r0),
+        "rho_1": coefficients(rho1),
+        "rho_0": coefficients(rho0),
         "leading_relation": coefficients(leading_relation),
         "leading_theta_numerator": [
             int(value) for value in reversed(leading_numerator.all_coeffs())
@@ -211,7 +211,7 @@ def run_prime(prime: int) -> dict[str, object]:
             factor for factor in factors if factor["degree"] <= 2
         ],
         "affine_remainder_gcd": gcd_certificate(
-            polynomials["R_1"], polynomials["R_0"], prime
+            polynomials["rho_1"], polynomials["rho_0"], prime
         ),
         "leading_chart_gcd": gcd_certificate(
             polynomials["leading_relation"],

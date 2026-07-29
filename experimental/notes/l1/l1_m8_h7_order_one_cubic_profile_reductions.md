@@ -970,26 +970,26 @@ v_j=-a_1v_(j-1)-a_2a_0v_(j-2),       3<=j<=6.     (28bf)
 Then `a_2^(j-1)q^j=u_jq+v_j mod F_b`. Put
 
 ```text
-R_1=a_2^5theta_1+sum_(j=2)^6 a_2^(6-j)theta_j u_j,
-R_0=a_2^5theta_0+sum_(j=2)^6 a_2^(6-j)theta_j v_j.
+rho_1=a_2^5theta_1+sum_(j=2)^6 a_2^(6-j)theta_j u_j,
+rho_0=a_2^5theta_0+sum_(j=2)^6 a_2^(6-j)theta_j v_j.
                                                                (28bg)
 ```
 
 The exact remainder identity is
 
 ```text
-a_2^5Theta_*=R_1q+R_0 mod F_b.                    (28bh)
+a_2^5Theta_*=rho_1q+rho_0 mod F_b.                (28bh)
 ```
 
-On `a_2R_1!=0`, reconstruct `q=-R_0/R_1` and retain the univariate
+On `a_2rho_1!=0`, reconstruct `q=-rho_0/rho_1` and retain the univariate
 endpoint
 
 ```text
-U(b)=a_2R_0^2-a_1R_0R_1+a_0R_1^2=0.              (28bi)
+U(b)=a_2rho_0^2-a_1rho_0rho_1+a_0rho_1^2=0.       (28bi)
 ```
 
-Here `deg_b R_1<=26`, `deg_b R_0<=28`, and `deg_b U<=58`. If `R_1=0`,
-retain `R_0=0` and `F_b=0`. If `a_2=0`, retain the explicit chart (28at)
+Here `deg_b rho_1<=26`, `deg_b rho_0<=28`, and `deg_b U<=58`. If
+`rho_1=0`, retain `rho_0=0` and `F_b=0`. If `a_2=0`, retain the explicit chart (28at)
 and evaluate `Theta_*` there. No nonzero-resultant, root, or emptiness
 verdict is asserted.
 
@@ -1189,7 +1189,7 @@ The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: a2daa235ea78400a65737aa0b32166390dab0c5d2b85d679d8cd155d5b196474
+sha256: b81b96313de8fff28e90abf3f3739758ceb26642c4373688eb9807a93acde887
 ```
 
 Its expected marker is
@@ -1216,10 +1216,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: 3d188f70b21bc60990fceda4478e5d9b2d316e50a9c0c154bf39803224bd8cb6
+sha256: da4a07ffc86c585dd9c915cf84ec29d8f5bdfdfe32704f1d00ff5215ea58bd0a
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: 02900581a1574e7edcca6424a1fc816e957b9b182b18ae2c197aeebba6469f4f
+sha256: 45652f3958718c05d45aacc128cb414d2196bfe93f6e66cc401bcbf81aea1a97
 ```
 
 Launch it with
@@ -1231,7 +1231,7 @@ modal run experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_
 and validate with the checker, adding `--require-complete` for a complete
 four-prime packet. Each prime is a separate one-CPU, 512 MB, 60-second task;
 the driver uses no retries and atomically checkpoints every returned row.
-It factors `U`, certifies `gcd(R_1,R_0)` and the fixed `a_2=0` chart by
+It factors `U`, certifies `gcd(rho_1,rho_0)` and the fixed `a_2=0` chart by
 Bezout identities, and reports every degree-one/two factor eligible for the
 ambient quadratic field. Expected cost is below `$0.01`. Returned factors
 remain candidates until all structural, role, `P_4`, and lift filters are

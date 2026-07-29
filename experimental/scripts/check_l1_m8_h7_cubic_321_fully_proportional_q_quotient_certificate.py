@@ -11,7 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LAUNCHER = HERE / "l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py"
-EXPECTED_LAUNCHER_SHA256 = "3d188f70b21bc60990fceda4478e5d9b2d316e50a9c0c154bf39803224bd8cb6"
+EXPECTED_LAUNCHER_SHA256 = "da4a07ffc86c585dd9c915cf84ec29d8f5bdfdfe32704f1d00ff5215ea58bd0a"
 APP_NAME = "l1-m8-h7-cubic-321-fully-proportional-q-quotient"
 PRIMES = (8191, 131071, 524287, 2147483647)
 
@@ -99,13 +99,13 @@ def source_polynomials() -> dict[str, list[int]]:
     for degree in range(3, 7):
         u[degree] = sp.expand(-a1 * u[degree - 1] - a2 * a0 * u[degree - 2])
         v[degree] = sp.expand(-a1 * v[degree - 1] - a2 * a0 * v[degree - 2])
-    r1 = a2**5 * theta_coefficients[1]
-    r0 = a2**5 * theta_coefficients[0]
+    rho1 = a2**5 * theta_coefficients[1]
+    rho0 = a2**5 * theta_coefficients[0]
     for degree in range(2, 7):
-        r1 += a2 ** (6 - degree) * theta_coefficients[degree] * u[degree]
-        r0 += a2 ** (6 - degree) * theta_coefficients[degree] * v[degree]
-    r1, r0 = sp.expand(r1), sp.expand(r0)
-    univariate = sp.expand(a2 * r0**2 - a1 * r0 * r1 + a0 * r1**2)
+        rho1 += a2 ** (6 - degree) * theta_coefficients[degree] * u[degree]
+        rho0 += a2 ** (6 - degree) * theta_coefficients[degree] * v[degree]
+    rho1, rho0 = sp.expand(rho1), sp.expand(rho0)
+    univariate = sp.expand(a2 * rho0**2 - a1 * rho0 * rho1 + a0 * rho1**2)
     leading_relation = 247 * b**2 - 1575
     leading_q = -sp.Rational(10, 231) * (b**2 + 27)
     leading_numerator = sp.Poly(
@@ -120,8 +120,8 @@ def source_polynomials() -> dict[str, list[int]]:
 
     return {
         "U": coefficients(univariate),
-        "R_1": coefficients(r1),
-        "R_0": coefficients(r0),
+        "rho_1": coefficients(rho1),
+        "rho_0": coefficients(rho0),
         "leading_relation": coefficients(leading_relation),
         "leading_theta_numerator": [
             int(value) for value in reversed(leading_numerator.all_coeffs())
@@ -209,7 +209,10 @@ def main() -> None:
         eligible = [factor for factor in factors if factor["degree"] <= 2]
         assert row["quadratic_field_eligible_factors"] == eligible
         verify_gcd_certificate(
-            row["affine_remainder_gcd"], polynomials["R_1"], polynomials["R_0"], prime
+            row["affine_remainder_gcd"],
+            polynomials["rho_1"],
+            polynomials["rho_0"],
+            prime,
         )
         verify_gcd_certificate(
             row["leading_chart_gcd"],
