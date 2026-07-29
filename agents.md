@@ -81,6 +81,19 @@ At this snapshot:
 - The KoalaBear equality-wall PR stack proves local normalization, a `Q=6,u=2` geometry reduction, and exclusion of 60 labelled `P3+C3` cases, but retains 405 labelled conic cases and lacks global ownership/add-back.  The separate column-far transverse-secant certificate is per fixed union only.  No large `U_paid` claimed by an abstract candidate-record compiler is banked; the live active value remains `null`.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
+- The equality-wall ternary-secant/circuit route cut gives an exact abstract
+  `69`-record q-ary carrier family with the listed KoalaBear-scale support
+  cardinality,
+  affine/secant rank eight, pair distance at least `1053746`, pair exchange
+  at least `121284`, all `3280` projective ternary secants of distance at
+  least `1052958`, sixty canonical bounded circuits, no singleton atoms,
+  and every printed circuit restriction-rank inequality.  It rules out
+  cap-68 proofs using only those explicitly verified weakened inputs.  It
+  does not certify the distance of every arbitrary word in the secant span,
+  is not an actual GRS evaluation subcode, and moves no ledger value.  The
+  remaining 405-case K3 theorem must use the full-span GRS statement,
+  actual polynomial evaluation/locator structure,
+  source-quotient/Hilbert--Burch identities, or same-record owner semantics.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
 
@@ -129,6 +142,16 @@ The factor `4807520` is only a full-budget calibration before other atoms consum
 #### K3. Pay MCA projection and residual geometry
 
 Produce exhaustive balanced-core coverage in units of distinct affine slopes. The moving-root theorem pays only charts proved to be genuine pencils. A line-by-line decomposition also needs an exact count of relevant lines. Higher-dimensional cores require a proved ray/slope compiler with exact multiplicities.
+
+The equality-wall ternary-secant/circuit route cut shows that support
+cardinality, selected-pair and projective-ternary distance thresholds, pair
+exchange, affine/secant rank eight, bounded circuits, no-singleton atoms, and
+the circuit restriction-rank bounds do not imply cap `68` and do not
+constitute source-bound owner evidence.  The maximal next attack must cover
+the full 405-case residual and consume the full arbitrary-coefficient GRS
+span, actual low-degree evaluation, locator/source-quotient/Hilbert--Burch
+structure, or deployed same-record owner semantics; do not launch another
+standalone coarse circuit-packing calculation.
 
 #### K4. Close algebraic routing and add-back
 

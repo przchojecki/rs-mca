@@ -1,0 +1,96 @@
+{
+  "$id": "rs-mca-kb-v4-equality-wall-ternary-secant-circuit-route-cut-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "architecture_id": {
+      "const": null
+    },
+    "abstract_carrier_profile": {
+      "type": "object"
+    },
+    "artifact_kind": {
+      "const": "EXACT_ABSTRACT_COUNTERMODEL_TO_PAIRWISE_AND_TERNARY_SECANT_CIRCUIT_CAP68_INFERENCE"
+    },
+    "audit": {
+      "type": "object"
+    },
+    "closure_state": {
+      "type": "object"
+    },
+    "construction": {
+      "type": "object"
+    },
+    "exact_results": {
+      "type": "object"
+    },
+    "omitted_load_bearing_structure": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "partition_sha256": {
+      "const": null
+    },
+    "payload_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "route_cut": {
+      "type": "object"
+    },
+    "row_contract": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "rs-mca-kb-v4-equality-wall-ternary-secant-circuit-route-cut-v1"
+    },
+    "source_bindings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "status": {
+      "const": "PROVED_TERNARY_SECANT_CIRCUIT_ROUTE_CUT_ROW_OPEN"
+    },
+    "workboard_item": {
+      "const": "K3"
+    }
+  },
+  "required": [
+    "schema",
+    "status",
+    "artifact_kind",
+    "architecture_id",
+    "partition_sha256",
+    "workboard_item",
+    "row_contract",
+    "abstract_carrier_profile",
+    "construction",
+    "exact_results",
+    "route_cut",
+    "omitted_load_bearing_structure",
+    "closure_state",
+    "audit",
+    "source_bindings",
+    "payload_sha256"
+  ],
+  "title": "KoalaBear equality-wall ternary-secant/circuit route cut v1",
+  "type": "object"
+}

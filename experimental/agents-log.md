@@ -30,6 +30,44 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - KoalaBear equality-wall ternary-secant/circuit route cut
+
+- **Agent/model:** Codex, with independent source-chain, constant-weight,
+  upstream-duplicate, and Sage audits.
+- **Files added or changed:** Added
+  `experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_ternary_secant_circuit_route_cut_v1.md`,
+  its exact certificate, README, top-level-closed schema, primary Python
+  verifier, and independent Sage replay; updated `agents.md` and this log.
+  Preserved the rejected weaker sign construction under
+  `experimental/dead_ends/kb_mca_v4_circuit_only_route_cut_v0/`.
+- **Status:** PROVED ROUTE CUT; KoalaBear row open and no ledger movement.
+- **What is being added:** An exact 225-coordinate-type abstract q-ary
+  carrier family with 69 constant-support records, affine/secant rank eight,
+  full vertex-function rank nine, minimum pair secant distance `1053746`,
+  minimum directed exchange `121284`, all `3280` projective ternary secants
+  of distance at least `1052958`, sixty canonical bounded circuits, no
+  singleton atoms, and every required circuit restriction-rank inequality.
+  The \(\mathbf F_p\)-valued model is viewed inside
+  \(\mathbf F_{p^6}\) by scalar extension, preserving the checked weights
+  and base-field ranks.  Its architecture, exhaustive partition, active
+  `U_paid`, and post-payment remaining budget are explicitly null.
+- **How it is useful:** It proves that those explicitly listed pairwise and
+  ternary distance checks, exchange, affine rank, bounded circuits,
+  no-singleton atoms, and restriction-rank numerology still do not imply cap
+  68 or constitute source-bound owner evidence.  It also records why the
+  tempting binary Plotkin cap
+  is invalid: q-ary secants may differ on common support.  The packet does
+  not certify every arbitrary coefficient in the full secant span and does
+  not construct an actual GRS evaluation subcode, locator/source
+  polynomials, selector, slope, or source-bound owner evidence.
+- **What to do next:** Fresh mathematical, code/certificate, and upstream
+  topology reviews are GREEN for this narrow route cut.  Attack the full
+  405-case residual through the arbitrary-coefficient GRS span or actual
+  polynomial/source theorem: use the low-degree GRS embedding, split
+  locators, source-quotient cocycle, primitive Hilbert--Burch module, or a
+  same-record active owner.  Do not repeat a standalone coarse
+  circuit-packing calculation.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
