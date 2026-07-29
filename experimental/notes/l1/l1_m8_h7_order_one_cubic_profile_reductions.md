@@ -1299,10 +1299,10 @@ The source-complete fully proportional quotient request is
 
 ```text
 experimental/scripts/l1_m8_h7_cubic_321_fully_proportional_q_quotient_modal.py
-sha256: da4a07ffc86c585dd9c915cf84ec29d8f5bdfdfe32704f1d00ff5215ea58bd0a
+sha256: 6473b8cb333c63473a344acbc414c4b919380aef219b3035a037445ff3eea80c
 
 experimental/scripts/check_l1_m8_h7_cubic_321_fully_proportional_q_quotient_certificate.py
-sha256: 45652f3958718c05d45aacc128cb414d2196bfe93f6e66cc401bcbf81aea1a97
+sha256: 987ad970d278f510bbfc45453ce506b4100c9a749c56123aadf34a5fe3186c4e
 ```
 
 Launch it with
@@ -1316,9 +1316,14 @@ four-prime packet. Each prime is a separate one-CPU, 512 MB, 60-second task;
 the driver uses no retries and atomically checkpoints every returned row.
 It factors `U`, certifies `gcd(rho_1,rho_0)` and the fixed `a_2=0` chart by
 Bezout identities, and reports every degree-one/two factor eligible for the
-ambient quadratic field. Expected cost is below `$0.01`. Returned factors
-remain candidates until all structural, role, `P_4`, and lift filters are
-replayed.
+ambient quadratic field. It also reconstructs the primitive integer
+numerators `Z_D,Z_Q,Z_R`, checks their degree bounds, computes the three
+`Zhat_i` remainders modulo `U`, and certifies
+`gcd(U,Zhat_D,Zhat_Q,Zhat_R)` with one four-way Bezout identity. Expected cost
+is below `$0.01`. A unit four-way gcd excludes the generic coefficient and
+structural chart for that prime. Only factors of a nonunit gcd remain
+candidates for the role, `P_4`, saturation, and lift filters; an explicit
+`U_IDENTICALLY_ZERO` row is non-conclusive.
 
 None of the compute-request scripts was executed in the exporting
 environment: project policy

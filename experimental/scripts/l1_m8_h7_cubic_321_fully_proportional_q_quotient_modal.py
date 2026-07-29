@@ -89,7 +89,26 @@ def xgcd(
     )
 
 
-def source_polynomials() -> dict[str, list[int]]:
+def multiply_mod(
+    left: list[int], right: list[int], modulus: list[int], prime: int
+) -> list[int]:
+    return divmod_poly(multiply(left, right), modulus, prime)[1]
+
+
+def power_mod(
+    poly: list[int], exponent: int, modulus: list[int], prime: int
+) -> list[int]:
+    out = [1]
+    base = mod_poly(poly, prime)
+    while exponent:
+        if exponent & 1:
+            out = multiply_mod(out, base, modulus, prime)
+        base = multiply_mod(base, base, modulus, prime)
+        exponent //= 2
+    return out
+
+
+def source_polynomials() -> dict[str, object]:
     import sympy as sp
 
     b, q = sp.symbols("b q")
@@ -127,6 +146,27 @@ def source_polynomials() -> dict[str, list[int]]:
     rho1, rho0 = sp.expand(rho1), sp.expand(rho0)
     univariate = sp.expand(a2 * rho0**2 - a1 * rho0 * rho1 + a0 * rho1**2)
 
+    x = (b + 15) / 4
+    a = -(b + 3) / 2
+    ell = (b**2 + 6 * b + 105 + 8 * q) / 16
+    d_core = d_star / (3600 * b)
+    q_core = q_star / (72 * d_star)
+    g_core = -f_star / (600 * b * e_g)
+    y_core = (ell - 2 * g_core) / a - x
+    v_core = g_core + x * y_core + y_core**2
+    r_core = -q * p / (2880 * b)
+    z_d = d_core - y_core * v_core
+    z_q = q_core - a * g_core - x * ell + 20 + 8 * q / 3 + d_core
+    z_r = (
+        r_core
+        - g_core * (ell - g_core)
+        + x * q_core
+        + (a + x) * d_core
+        + 15
+        + 23 * q / 4
+        + q**2 / 8
+    )
+
     leading_relation = 247 * b**2 - 1575
     leading_q = -sp.Rational(10, 231) * (b**2 + 27)
     leading_value = sp.cancel(theta.subs(q, leading_q))
@@ -136,6 +176,26 @@ def source_polynomials() -> dict[str, list[int]]:
         poly = sp.Poly(expression, b, domain=sp.ZZ)
         return [int(value) for value in reversed(poly.all_coeffs())]
 
+    def numerator_q_coefficients(
+        expression: object, total_degree_bound: int
+    ) -> list[list[int]]:
+        numerator = sp.fraction(sp.cancel(expression))[0]
+        rational = sp.Poly(numerator, b, q, domain=sp.QQ)
+        if rational.is_zero:
+            return [[0]]
+        denominator, integral = rational.clear_denoms(convert=True)
+        content, primitive = integral.primitive()
+        for fixed_unit in (int(denominator), int(content)):
+            assert fixed_unit != 0
+            assert all(fixed_unit % prime != 0 for prime in PRIMES)
+        if primitive.LC() < 0:
+            primitive = -primitive
+        assert primitive.total_degree() <= total_degree_bound
+        q_poly = sp.Poly(primitive.as_expr(), q, domain=sp.ZZ[b])
+        return [
+            coefficients(q_poly.nth(index)) for index in range(q_poly.degree() + 1)
+        ]
+
     return {
         "U": coefficients(univariate),
         "rho_1": coefficients(rho1),
@@ -144,10 +204,13 @@ def source_polynomials() -> dict[str, list[int]]:
         "leading_theta_numerator": [
             int(value) for value in reversed(leading_numerator.all_coeffs())
         ],
+        "Z_D_q_coefficients": numerator_q_coefficients(z_d, 18),
+        "Z_Q_q_coefficients": numerator_q_coefficients(z_q, 10),
+        "Z_R_q_coefficients": numerator_q_coefficients(z_r, 15),
     }
 
 
-def input_digest(polynomials: dict[str, list[int]]) -> str:
+def input_digest(polynomials: dict[str, object]) -> str:
     payload = {"primes": PRIMES, "polynomials": polynomials}
     encoded = json.dumps(payload, separators=(",", ":"), sort_keys=True).encode()
     return hashlib.sha256(encoded).hexdigest()
@@ -167,6 +230,58 @@ def gcd_certificate(left: list[int], right: list[int], prime: int) -> dict[str, 
     }
 
 
+def quotient_filter_remainder(
+    q_coefficients: list[list[int]],
+    rho1: list[int],
+    rho0: list[int],
+    univariate: list[int],
+    prime: int,
+) -> list[int]:
+    modulus = mod_poly(univariate, prime)
+    assert modulus != [0]
+    degree = len(q_coefficients) - 1
+    negative_rho0 = mod_poly(scale(rho0, -1), prime)
+    out = [0]
+    for exponent, coefficient in enumerate(q_coefficients):
+        term = divmod_poly(mod_poly(coefficient, prime), modulus, prime)[1]
+        term = multiply_mod(
+            term,
+            power_mod(negative_rho0, exponent, modulus, prime),
+            modulus,
+            prime,
+        )
+        term = multiply_mod(
+            term,
+            power_mod(rho1, degree - exponent, modulus, prime),
+            modulus,
+            prime,
+        )
+        out = divmod_poly(add(out, term), modulus, prime)[1]
+    return out
+
+
+def multi_gcd_certificate(polynomials: list[list[int]], prime: int) -> dict[str, object]:
+    reduced = [mod_poly(poly, prime) for poly in polynomials]
+    if all(poly == [0] for poly in reduced):
+        return {"status": "IDENTICALLY_ZERO_FAMILY"}
+    common = reduced[0]
+    bezout = [[1]]
+    for poly in reduced[1:]:
+        next_common, left_coefficient, right_coefficient = xgcd(common, poly, prime)
+        bezout = [
+            mod_poly(multiply(left_coefficient, coefficient), prime)
+            for coefficient in bezout
+        ]
+        bezout.append(right_coefficient)
+        common = next_common
+    return {
+        "status": "UNIT" if common == [1] else "HIT",
+        "gcd_degree": len(common) - 1,
+        "gcd_coefficients_low_to_high": common,
+        "bezout_coefficients_low_to_high": bezout,
+    }
+
+
 @app.function(image=image, cpu=1.0, memory=512, timeout=60, max_containers=4)
 def run_prime(prime: int) -> dict[str, object]:
     import sympy as sp
@@ -174,9 +289,18 @@ def run_prime(prime: int) -> dict[str, object]:
     started = time.monotonic()
     polynomials = source_polynomials()
     digest = input_digest(polynomials)
+    u_source = polynomials["U"]
+    rho1_source = polynomials["rho_1"]
+    rho0_source = polynomials["rho_0"]
+    assert isinstance(u_source, list)
+    assert isinstance(rho1_source, list)
+    assert isinstance(rho0_source, list)
     b = sp.symbols("b")
     u_poly = sp.Poly(
-        sum((coefficient % prime) * b**index for index, coefficient in enumerate(polynomials["U"])),
+        sum(
+            (coefficient % prime) * b**index
+            for index, coefficient in enumerate(u_source)
+        ),
         b,
         modulus=prime,
     )
@@ -198,6 +322,25 @@ def run_prime(prime: int) -> dict[str, object]:
                     "coefficients_low_to_high": coefficients,
                 }
             )
+    u_mod = mod_poly(u_source, prime)
+    if u_mod == [0]:
+        structural_common_gcd: dict[str, object] = {
+            "status": "U_IDENTICALLY_ZERO"
+        }
+    else:
+        structural_remainders = {}
+        for label in ("D", "Q", "R"):
+            q_coefficients = polynomials[f"Z_{label}_q_coefficients"]
+            assert isinstance(q_coefficients, list)
+            structural_remainders[label] = quotient_filter_remainder(
+                q_coefficients, rho1_source, rho0_source, u_source, prime
+            )
+        structural_common_gcd = multi_gcd_certificate(
+            [u_source, *structural_remainders.values()], prime
+        )
+        structural_common_gcd["filter_remainders_low_to_high"] = (
+            structural_remainders
+        )
     row = {
         "p": prime,
         "digest": digest,
@@ -218,6 +361,7 @@ def run_prime(prime: int) -> dict[str, object]:
             polynomials["leading_theta_numerator"],
             prime,
         ),
+        "structural_common_gcd": structural_common_gcd,
         "seconds": round(time.monotonic() - started, 6),
     }
     print("L1_H7_C321_FULLY_PROPORTIONAL_Q_ROW " + json.dumps(row, sort_keys=True), flush=True)
