@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Complete-source exclusion of the \(Q=6,s=6,u=2\) conic
+
+- **Agent/model:** Codex, with the divisor argument generated separately
+  from the exact Python ledger and Sage normal-form replay, and submitted to
+  a fresh adversarial proof reviewer.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.md`,
+  the matching exact Python verifier, Sage replay, canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED COMPLETE-SOURCE REDUCED-CONIC EXCLUSION. The
+  \(Q=6,s=6,u=2\) conic-image branch closes after combining with the
+  retained ramified-common exclusions. The KoalaBear row remains open and
+  no ledger field changes.
+- **What is being added:** The twelve actual quartic source rows saturate
+  twice the complete degree-24 source divisor. This forces the complete
+  divisor to be invariant under the conic involution. The reciprocal profile
+  then contains forbidden simple involution-fixed poles; exact order-four
+  and order-five orbit residues exclude every possible deck-branch count
+  \(r=0,1,2\).
+- **How it is useful:** The exclusion is independent of pole partition,
+  signature graph, right-label identification, and the
+  \(\mathcal L=\mathcal I\)/one-swap split. It therefore bypasses the much
+  larger source-semantic component census and deletes all ten graph controls
+  in the \(2+2+2\) sector at one pre-signature terminal.
+- **What to do next:** Apply the complete-source identity to the actual
+  \(u=2\) birational-quartic coefficient map. Keep simple and repeated
+  quartic charts exhaustive; route any survivor only through a
+  chronology-valid same-record owner. Defer \(u=3\) until this branch
+  stabilizes.
+
 ### 2026-07-29 - Reciprocal-P6 active source-fiber deletion
 
 - **Agent/model:** Codex, with the producer gate isolated by a fresh
