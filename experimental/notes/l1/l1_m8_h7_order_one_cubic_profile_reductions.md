@@ -291,19 +291,46 @@ together with the conic. After (24)--(25), these are five equations in only
 `(g_1,y,r,d)` for each fixed role value `lambda`. The seven cyclic color-set
 orbits and six multiplicity-role assignments give at most 42 role packets.
 
+## One polynomial for all 3+2+1 roles
+
+The 42 role inputs need not be specialized separately. Put
+
+```text
+C(U)=(U^8-1)/(U-1)=U^7+...+U+1
+```
+
+and define
+
+```text
+R(lambda)=Res_U(C(U),C(1+lambda(U-1))),
+Lambda_321(lambda)=R(lambda)/(lambda-1)^7.          (28)
+```
+
+The seven roots of `C` are the nontrivial eighth roots. For fixed `u`, the
+seven roots in `lambda` correspond to the seven possible nontrivial colors
+`v=1+lambda(u-1)`. The forbidden diagonal choice `v=u` gives one simple
+root `lambda=1`; separability makes its total multiplicity exactly seven.
+Thus `R` has degree 49 and `Lambda_321` has degree 42. After squarefree
+reduction its roots are exactly all distinct ordered role ratios modulo
+common color scaling.
+
+Adjoin `Lambda_321(lambda)=0` to (24)--(27), perform the common-quadratic
+elimination once with symbolic `lambda`, and factor retained lambda
+components only afterward.
+
 ## Verification
 
 The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 251f29de263d1302ddce657a89e11b7c93ad0ccef4b62ee3b2f5e0e6991dff8e
+sha256: 4124a850994b029403317f818e874616d7b3831b709e4aa7aa5f4ebfbbda9abb
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1
 ```
 
 The bounded compute-request launcher has SHA-256

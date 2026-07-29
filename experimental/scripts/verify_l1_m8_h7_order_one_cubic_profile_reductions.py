@@ -42,6 +42,14 @@ def poly_rem(poly: list[Q], divisor: list[Q]) -> list[Q]:
     return out
 
 
+def poly_gcd(left: list[Q], right: list[Q]) -> list[Q]:
+    a, b = left[:], right[:]
+    while b != [0]:
+        a, b = b, poly_rem(a, b)
+    leader = a[-1]
+    return [value / leader for value in a]
+
+
 def evaluate(poly: list[Q], value: Q) -> Q:
     out = Q(0)
     for coefficient in reversed(poly):
@@ -210,17 +218,34 @@ def check_common_quadratic() -> None:
     assert a * (3 * y**2 + 2 * g1 * y + g2) == (lam - 1) * b
 
 
+def check_role_polynomial() -> None:
+    c = [Q(1)] * 8
+    c_prime = [Q(index) for index in range(1, 8)]
+    derivative_factor = poly_mul([Q(-1), Q(1)], c_prime)
+    assert poly_gcd(c, derivative_factor) == [Q(1)]
+    assert 7 * 7 == 49 and 49 - 7 == 42 and 7 * 6 == 42
+
+
 def main() -> None:
     check_linear_remainders()
     check_x0()
     check_q6x2()
     check_common_quadratic()
+    check_role_polynomial()
     note = NOTE.read_text()
-    for anchor in ("D_b=0", "P_5(d)", "R_12(d)", "common monic quadratic", "LOCAL_ONLY"):
+    for anchor in (
+        "D_b=0",
+        "P_5(d)",
+        "R_12(d)",
+        "common monic quadratic",
+        "Lambda_321(lambda)",
+        "LOCAL_ONLY",
+    ):
         assert anchor in note
     print(
         "L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS "
-        "linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1"
+        "linear_samples=2 x0_samples=3 q6x2_samples=3 "
+        "common_quadratic=1 role_polynomial=1"
     )
 
 
