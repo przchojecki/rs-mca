@@ -48,8 +48,11 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Return to the unrestricted attained-prefix/interior
   maximum or find a genuinely different construction whose codewords share
   one received word; do not sum distinct product classes, which have distinct
-  high locator prefixes.  Static proof review only; no Python, Sage, Modal,
-  Lean, or TeX build was run.
+  high locator prefixes.  The stdlib-only verifier
+  `experimental/scripts/verify_m31_quotient_rotation_product_spectrum.py`
+  independently replays the spectrum by subset-product DP and Ramanujan sums;
+  both routes and the exact row arithmetic pass.  No Sage, Modal, Lean, or TeX
+  build was run.
 
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
