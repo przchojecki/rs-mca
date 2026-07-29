@@ -11,7 +11,7 @@ partition_digest: N/A
 atom_or_cell: L1 next-to-maximal order-one cubic 2+2+2 and 3+2+1 strata
 quantifier: every saturated HNF packet in either declared multiplicity profile
 projection_and_unit: split-pencil HNF passports
-claimed_bound: necessary finite or four-variable endpoints; no zero-packet claim
+claimed_bound: necessary finite or overdetermined low-variable endpoints; no zero-packet claim
 status: PROVED
 impact: LOCAL_ONLY
 falsifier: a packet in either profile violating one of the printed factor or coefficient identities
@@ -28,7 +28,9 @@ companion `3+3` exclusion. It proves algebraic reductions, not emptiness:
 ```text
 2+2+2: one quadratic and two linear remainders in one variable;
        both exceptional slopes reduce to fixed norm polynomials;
-3+2+1: an exact common-quadratic factor model with four retained variables.
+       the generic core has an exact five-shape affine-color equation;
+3+2+1: an exact common-quadratic factor model with four retained variables
+       and one degree-42 symbolic role polynomial.
 ```
 
 The upstream first-match-to-HNF owner bridge remains outside the note. None
@@ -318,19 +320,72 @@ Adjoin `Lambda_321(lambda)=0` to (24)--(27), perform the common-quadratic
 elimination once with symbolic `lambda`, and factor retained lambda
 components only afterward.
 
+## Symmetric affine-color equation for 2+2+2
+
+The same role polynomial imposes the three-color condition on the symmetric
+`2+2+2` core without restoring the individual `u_i`. Put
+
+```text
+A(lambda)=lambda^2-lambda+1,
+B(lambda)=(lambda+1)(2lambda-1)(lambda-2),
+
+K_8(P,Q)=Res_lambda(
+  Lambda_321(lambda),
+  27A(lambda)^3Q^2+B(lambda)^2P^3).                (29)
+```
+
+For any three values with elementary symmetric functions `E_1,E_2,E_3`,
+define their depressed-cubic invariants
+
+```text
+P=E_2-E_1^2/3,
+Q=E_3-E_1E_2/3+2E_1^3/27.                         (30)
+```
+
+For the normalized ordered triple `(0,1,lambda)`, these equal
+`-A(lambda)/3` and `B(lambda)/27`; hence (29) vanishes. In the factor model
+(11), the three values
+
+```text
+f(u_i),  f(T)=T^3-2UT^2+(U^2+V)T-UV,
+```
+
+differ from the three colors by one common scale and translation. Their
+`E_i` are obtained without choosing the roots from
+
+```text
+Res_T(T^3-s_1T^2+s_2T-s_3, Z-f(T))
+  =Z^3-E_1Z^2+E_2Z-E_3.                            (31)
+```
+
+Thus `K_8(P,Q)=0` is an exact necessary color equation in the existing
+symmetric variables. The 56 color triples have seven rotation orbits and
+five unoriented affine shapes, with gap types
+
+```text
+(1,1,6), (1,2,5), (1,3,4), (2,2,4), (2,3,3).
+```
+
+Accordingly the primitive characteristic-zero squarefree radical of (29),
+as a binary form in `P^3,Q^2`, has degree five. The safe cross-characteristic
+equation remains the full resultant (29); reduction can merge factors. On
+the generic fifth-slope branch, eliminating `b` now leaves the conic,
+substituted `D_b`, compatibility of `M_5,M_6`, and (29): four equations in
+`(x,q,d)`. This is a reduction, not an emptiness verdict.
+
 ## Verification
 
 The exact-rational identity checker is
 
 ```text
 experimental/scripts/verify_l1_m8_h7_order_one_cubic_profile_reductions.py
-sha256: 4124a850994b029403317f818e874616d7b3831b709e4aa7aa5f4ebfbbda9abb
+sha256: c2b0faa609239f7ab10b3c4198abb584eb2fd20b10600c6bc2fa47d5a2f7e24b
 ```
 
 Its expected marker is
 
 ```text
-L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1
+L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS linear_samples=2 x0_samples=3 q6x2_samples=3 common_quadratic=1 role_polynomial=1 affine_color_shapes=5
 ```
 
 The bounded compute-request launcher has SHA-256

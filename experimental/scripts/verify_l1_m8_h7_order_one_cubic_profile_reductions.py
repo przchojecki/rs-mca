@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from fractions import Fraction as Q
+from itertools import combinations
 from pathlib import Path
 
 
@@ -226,12 +227,44 @@ def check_role_polynomial() -> None:
     assert 7 * 7 == 49 and 49 - 7 == 42 and 7 * 6 == 42
 
 
+def color_orbit(subset: frozenset[int], reflect: bool) -> frozenset[frozenset[int]]:
+    rotations = {
+        frozenset((value + shift) % 8 for value in subset) for shift in range(8)
+    }
+    if reflect:
+        mirrored = frozenset((-value) % 8 for value in subset)
+        rotations.update(
+            frozenset((value + shift) % 8 for value in mirrored)
+            for shift in range(8)
+        )
+    return frozenset(rotations)
+
+
+def check_affine_color_compiler() -> None:
+    subsets = [frozenset(values) for values in combinations(range(8), 3)]
+    cyclic = {color_orbit(subset, False) for subset in subsets}
+    unoriented = {color_orbit(subset, True) for subset in subsets}
+    assert len(subsets) == 56
+    assert len(cyclic) == 7 and all(len(item) == 8 for item in cyclic)
+    assert len(unoriented) == 5
+
+    for lam in (Q(2), Q(-1), Q(3, 2)):
+        e1, e2, e3 = 1 + lam, lam, Q(0)
+        p = e2 - e1**2 / 3
+        q = e3 - e1 * e2 / 3 + 2 * e1**3 / 27
+        a = lam**2 - lam + 1
+        b = (lam + 1) * (2 * lam - 1) * (lam - 2)
+        assert p == -a / 3 and q == b / 27
+        assert 27 * a**3 * q**2 + b**2 * p**3 == 0
+
+
 def main() -> None:
     check_linear_remainders()
     check_x0()
     check_q6x2()
     check_common_quadratic()
     check_role_polynomial()
+    check_affine_color_compiler()
     note = NOTE.read_text()
     for anchor in (
         "D_b=0",
@@ -239,13 +272,14 @@ def main() -> None:
         "R_12(d)",
         "common monic quadratic",
         "Lambda_321(lambda)",
+        "K_8(P,Q)",
         "LOCAL_ONLY",
     ):
         assert anchor in note
     print(
         "L1_M8_H7_ORDER_ONE_CUBIC_PROFILE_REDUCTIONS_PASS "
         "linear_samples=2 x0_samples=3 q6x2_samples=3 "
-        "common_quadratic=1 role_polynomial=1"
+        "common_quadratic=1 role_polynomial=1 affine_color_shapes=5"
     )
 
 
