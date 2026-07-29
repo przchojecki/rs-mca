@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - KoalaBear reciprocal-P6 local survivor route cut
+
+- **Agent/model:** Codex, with an independent algebra replay by a fresh
+  subagent and a separate Sage implementation.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_reciprocal_p6_local_survivor_route_cut_v1.md`,
+  the matching Python verifier, Sage replay, canonical JSON certificate,
+  preserved false-positive note under `experimental/dead_ends/`,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED LOCAL SOURCE-FACET SURVIVOR / ROUTE CUT. The active row
+  remains open and no ledger field changes.
+- **What is being added:** An exact
+  \(\mathbf F_{p^2}\subset\mathbf F_{p^6}\) reciprocal-\(P_6\) component for
+  the normalized KoalaBear \(Q=6,u=2\) local equations. It passes the
+  split-pole, exact-gcd-graph, endpoint-deck, reciprocal-involution,
+  degree-two reconstruction, twelve weighted-GRS, and twelve-source-label
+  checks. An earlier base-field resultant candidate is explicitly rejected
+  and preserved because it failed the three nonanchor \(P\)-equations.
+- **How it is useful:** It closes the direct-local-elimination route: the
+  extracted source-facet and reciprocal gates alone do not make the
+  reciprocal-\(P_6\) branch empty. It does not supply a received line, bad
+  slope, active first-match survivor, owner exclusion, or row counterexample.
+- **What to do next:** Bind this exact local component to the active
+  received-line/selector producer. Prove that the omitted semantics delete it
+  or emit a chronology-valid same-record owner carrying its actual slope.
+  Continue to retain the other reciprocal, \(D_4/D_5\), \(P_2+C_4\), and
+  quartic branches in the exhaustive K3 scope.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
