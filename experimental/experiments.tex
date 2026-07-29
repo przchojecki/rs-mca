@@ -3044,6 +3044,75 @@ and monic.  Their number is
 \]
 \end{proof}
 
+The support-only pencil is sharply smaller when its members must be actual
+codewords agreeing with one received table.  The recursive affine-span
+Reed--Solomon list compiler in \emph{Grande Finale} v4 gives the following
+uniform payment.
+
+\begin{corollary}[fixed-core actual-list payment]
+\label{cor:m31-top-neighbor-core-shadow}
+Retain \textup{(M31.1)} and fix one listed anchor \(a_0\).  For every top
+neighbor write
+\[
+ a_j-a_0=c_jJ_j,\qquad c_j\in\F^\times,\qquad \deg J_j=t=4980.       \tag{M31.18}
+\]
+For \(0\le r\le t\), fix a monic degree-\(t-r\) divisor \(R\) of the anchor
+agreement locator.  The number of top neighbors for which \(R\mid J_j\) is
+at most
+\[
+ B_r=
+ \left\lfloor
+  \frac{\binom{N-k+r+1}{r+1}}{\binom{w+r+1}{r+1}}
+ \right\rfloor-1.                                             \tag{M31.19}
+\]
+In particular \(B_0=14\) and \(B_1=240\).  Hence a fixed degree-\(4979\)
+one-root-swap core supports at most \(240\) actual top neighbors, including
+all scalar labels.  If the anchor has \(d\) top neighbors and
+\(\mathcal S_{t-r}\) is the set of degree-\(t-r\) core divisors occurring in
+their directions, then
+\[
+ |\mathcal S_{t-r}|
+ \ge \left\lceil\frac{d\binom tr}{B_r}\right\rceil             \tag{M31.20}
+\]
+whenever \(B_r>0\).  The dense anchor in
+Corollary~\ref{cor:m31-rank7-proper-g-dense-top} therefore satisfies
+\[
+ |\mathcal S_{4979}|
+ \ge \left\lceil\frac{215793\cdot4980}{240}\right\rceil
+ =4477705.                                                     \tag{M31.21}
+\]
+\end{corollary}
+
+\begin{proof}
+If \(R\mid J_j\), write \(J_j=RP_j\), where \(P_j\) is monic of degree
+\(r\).  All corresponding neighbors lie in the affine codeword flat
+\[
+ a_0+R\F[X]_{\le r}.
+\]
+Its direction rank is \(r+1\), and every direction polynomial has degree at
+most \((t-r)+r=t=k-1\).  The recursive affine-span compiler, with agreement
+threshold \(m=k+w\), bounds the listed population of this flat by
+\[
+ \left\lfloor
+  \frac{\binom{N-k+r+1}{r+1}}{\binom{w+r+1}{r+1}}
+ \right\rfloor.
+\]
+The anchor is one of those words, so deleting it proves \textup{(M31.19)}.
+For \(r=0\) the total flat cap is
+\(\lfloor1048577/67448\rfloor=15\).  For \(r=1\),
+\[
+ 241\cdot67449\cdot67448
+ \le1048578\cdot1048577
+ <242\cdot67449\cdot67448,
+\]
+so the total flat cap is \(241\).  This gives \(B_0=14\) and \(B_1=240\).
+
+Every squarefree degree-\(t\) locator \(J_j\) has exactly \(\binom tr\)
+monic degree-\(t-r\) divisors.  Counting incidences \((j,R)\), and using the
+cap \(B_r\) over each fixed core, proves \textup{(M31.20)}.  Substitution
+gives \textup{(M31.21)}.
+\end{proof}
+
 The corollary is a route reduction, not payment of \(Q=147595\).  It gives
 no upper bound for the middle band or for the local decorated-neighbor
 degree, no active \(U_Q\), \(U_{\rm list\mbox{-}int}\), or \(U_{\rm sp}\)
@@ -3051,9 +3120,11 @@ integer, no rank-at-least-eight theorem, and no adjacent-row or Prize
 closure.  The proposition shows that fixed-support, six-dimensional,
 common-zero-free geometry alone cannot prove the suggested divisor cap
 \(15413\).  The exact next theorem is the local decorated-neighbor bound
-\(215792\), a divisor-direction bound retaining the received-word/Pade
-equations, or an owner-preserving injection of all such decorated neighbors
-into already paid cells with exact add-back.
+\(215792\), a cross-core aggregate using the planted/external or Pad\'e data,
+or an owner-preserving injection of all such decorated neighbors into already
+paid cells with exact add-back.  Corollary~\ref{cor:m31-top-neighbor-core-shadow}
+pays every fixed one-root-swap core but gives no upper bound on how many cores
+one received word can realize.
 
 \section{Non-Claims}
 \label{sec:nonclaims}
