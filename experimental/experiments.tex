@@ -2612,6 +2612,94 @@ provenance from the contributing packet, not a fresh execution claim.
   Unrun Modal, Python, Sage, and gcd requests are not treated as evidence.
 \end{description}
 
+\subsection{An exact outer-lift compiler for the retained cubic
+\texorpdfstring{\(3+2+1\)}{3+2+1} endpoint}
+
+The following local theorem removes the apparent degree-\(n\) outer
+cyclotomic calculation from the exceptional \(J=0\) endpoint retained from
+PR~\#1120.  It is a compiler for a candidate that has already passed the
+coefficient and role reductions, not an existence or emptiness assertion.
+
+\begin{theorem}[degree-six outer replay]
+\label{thm:h7-j0-outer-lift}
+Let \(p\in\{8191,131071,524287,2147483647\}\), put
+\(n=8(p+1)\), and work over \(K=\F_{p^8}\).  Suppose a retained
+common-quadratic packet supplies \(d,B,a,u,v,y\in K\), with \(dB\ne0\), and
+distinct \(\beta,\gamma\in\mu_8(K)\setminus\{1\}\).  Set
+\[
+ Q(W)=W^2+uW+v,\qquad
+ G(W)=Q(W)(W-y),\qquad
+ F(W)=G(W)+aQ(W)+B,
+\]
+and \(L=FG\).  Assume the inherited exact-fibre guards make
+\(F,Q,W-y\) pairwise coprime and make \(W+1/d\) coprime to \(L\).  If
+\[
+ \lambda=\frac{\gamma-1}{\beta-1},
+ \qquad aQ(y)=(\lambda-1)B,
+ \qquad E(W)=1+\frac{\beta-1}{B}F(W),                 \tag{48}
+\]
+then
+\[
+ L(W)\mid E(W)^8-1.                                  \tag{49}
+\]
+Consequently the complete outer replay consists of the tests
+\[
+ \zeta=d^{p+1},\qquad \zeta^8=1,\qquad
+ W^{p+1}\equiv\tau E(W)\pmod {L(W)}                  \tag{50}
+\]
+for some \(\tau\in\mu_8(K)\).  Whenever (50) holds,
+\[
+ (W+1/d)L(W)\mid W^n-1,
+ \qquad (d+1)^p=1+\zeta/d.                           \tag{51}
+\]
+If the role parameter is stored as
+\(\eta=1/(\lambda-1)\), every actual ordered colour assignment occurs in
+the finite search
+\[
+ (\beta,\gamma)\in(\mu_8\setminus\{1\})^2,
+ \quad \beta\ne\gamma,
+ \quad \eta=\frac{\beta-1}{\gamma-\beta},            \tag{52}
+\]
+which has at most \(7\cdot6=42\) pairs.  Thus (50) requires only modular
+powering modulo the degree-six polynomial \(L\); it never constructs
+\(W^n-1\).
+\end{theorem}
+
+\begin{proof}
+Equation (48) gives \(E-1=(\beta-1)F/B\).  Also
+\(F-B=G+aQ\) is divisible by \(Q\), so \(E-\beta\) is divisible by
+\(Q\).  At \(W=y\), the middle identity in (48) gives
+\[
+ E(y)=1+(\beta-1)\frac{B+aQ(y)}{B}
+     =1+(\beta-1)\lambda=\gamma;
+\]
+hence \(E-\gamma\) is divisible by \(W-y\).  The three pairwise-coprime
+factors \(F,Q,W-y\), whose product is \(L\), therefore divide
+\(E^8-1\), proving (49).
+
+Modulo \(L\), (49)--(50) imply
+\[
+ W^n-1=(W^{p+1})^8-1=(\tau E)^8-1=E^8-1=0.
+\]
+The removed root also satisfies
+\[
+ (-1/d)^n=d^{-8(p+1)}=\zeta^{-8}=1.
+\]
+The split-root coprimality guard now gives the first assertion in (51).
+Finally \(d^p=d^{p+1}/d=\zeta/d\), and Frobenius in characteristic \(p\)
+gives the second assertion.  The relation in (52) is just
+\(1/(\lambda-1)=(\beta-1)/(\gamma-\beta)\); the count follows by choosing
+two distinct nonidentity eighth roots.  This also proves that the finite
+enumeration loses no normalized ordered colour assignment.
+\end{proof}
+
+The theorem does not assert that a common root survives the inherited
+denominator, squarefreeness, exact-fibre, or split-root guards, nor that (50)
+holds for any candidate.  It also does not discharge the independent global
+inner lift.  Its exact impact is to replace the outer degree-\(n\) obligation
+by one norm test, at most \(42\) role assignments and eight values of
+\(\tau\), and a degree-six modular-power congruence.
+
 \subsection{Pinned M31 quotient-fiber consequences}
 
 The support-level picture is now more sharply delimited.  PR \#1087 gives a
