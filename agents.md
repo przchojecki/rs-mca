@@ -171,14 +171,27 @@ eliminant or right-label assignment.  The primitive part of the remaining
 `u=2` branch is also cut: the complete-source quartic defect theorem folds
 simple/repeated/ramified charts into five defect types, and the exact
 degree-60 primitive-group classification forces every residual actual
-survivor into geometric functional decomposition.  The next maximal
-equality-wall theorem is therefore the source-bound decomposition adapter on
-inner degrees
-`2,3,4,5,6,10,12,30`: either certify a uniform fold preserving the evaluation
-domain, received data, explaining polynomial, and slope projection, or
-delete the actual producer.  Do not resume the old primitive 985-chart atlas.
-Only after all eight decomposition rows terminate should the `u=3` component
-compiler resume.
+survivor into geometric functional decomposition.  The exact source-fiber
+adapter now proves that the sixty active roots are complete unramified inner
+fibers and splits the twelve source poles into complete and index-five
+exceptional fibers.  It deletes inner degree `5` over
+`K=F_{p^6}` by the split fifth-power-fiber contradiction, routes inner
+degree `30` to inner degree `6` by fifth-power extraction, and reduces the
+inner-degree-`12` row to one canonical binary-pencil membership test.  The
+endpoint parameter line is not the evaluation carrier: `m | 2^21` is only
+a necessary gate conditional on a future same-record parameter-to-carrier
+transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
+data, and slope semantics remain open.
+
+The next maximal equality-wall theorem is one exhaustive source-pencil
+compiler.  Enumerate every exact source partition for inner degrees
+`2,3,4,6,10`, use the canonical pencil for degree `12`, and terminate every
+candidate in geometric inconsistency, a smaller inner-degree row, or an
+explicit parameter-line survivor.  For each survivor, demand a separate
+same-record theorem transporting the pencil to a declared complete carrier
+fold and descending received data, the explaining polynomial, and slopes.
+Do not resume the old primitive 985-chart atlas or the `u=3` component
+compiler until these six rows terminate.
 
 #### K4. Close algebraic routing and add-back
 

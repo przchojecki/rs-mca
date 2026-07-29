@@ -2872,6 +2872,41 @@ decomposable branch: each row still needs a source-bound proof that all
 witness data descend through a domain-compatible fold, or an
 actual-producer deletion.  The result moves no ledger quantity.
 
+The source-bound decomposition adapter makes this finite branch sharper.
+For \(m=\deg h\) and \(n=60/m\), every outer zero is simple and its
+pullback is a complete unramified \(m\)-point active fiber.  If \(a\) outer
+poles have order five and \(b\) are simple, then
+\[
+  5a+b=n,\qquad
+  \frac{4bm}{5}\le2m-2,
+\]
+and the source divisor consists of \(am\) complete-fiber points plus
+\(bm/5\) index-five exceptional points.  Exact enumeration gives
+\[
+\begin{array}{c|rrrrrrrr}
+m&2&3&4&5&6&10&12&30\\ \hline
+\text{complete source points}&12&12&12&10&12&10&12&0\\
+\text{exceptional source points}&0&0&0&2&0&2&0&12.
+\end{array}
+\]
+The endpoint parameter line is not the deployed carrier domain.  If a
+separate same-record theorem transports \(h\) to a complete \(m\)-fold map
+on the carrier, then \(m\mid2^{21}\), so only \(m=2,4\) pass that
+conditional necessary gate.  The \(m=5\) row is empty for a different
+reason.  Riemann--Hurwitz forces two split total branch points, and two
+split active fibers descend a target transform of \(h\) to
+\(K=\mathbf F_{p^6}\).  After \(K\)-rational source and target
+normalization, \(h=cz^5\).  But
+\(\gcd(5,p^6-1)=1\), so fifth powering is bijective on \(K\) and cannot
+have a reduced five-point \(K\)-rational active fiber.  In the \(m=30\)
+row the two exceptional pole fibers give \(h=p_5\circ r\) with
+\(\deg r=6\), so that row routes to \(m=6\).  The source conditions are
+equivalent to membership in an exact binary degree-\(m\) pencil; for
+\(m=12\) this yields one canonical pencil and one explicit membership
+test.  The remaining live degrees are \(2,3,4,6,10,12\).  No
+parameter-to-carrier transport, data descent, slope payment, or ledger
+movement follows from this divisor adapter alone.
+
 The abstract compiler proposed in PR \#1119 proves only the taut finite-set
 fact that least-owner selection partitions candidate-supplied records and the
 arithmetic distinction between \(68\) and \(69\) declared source-map classes.

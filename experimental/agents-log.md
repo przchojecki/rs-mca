@@ -30,6 +30,43 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Degree-60 decomposition source-fiber adapter
+
+- **Agent/model:** Codex, with the divisor/profile statement audited by a
+  separate agent, exact arithmetic replayed independently in Sage and through
+  the Wolfram plugin, and the degree-thirty refinement separately checked.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON certificate,
+  the rejected parameter/carrier argument in `experimental/dead_ends/`,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED SOURCE-FIBER ADAPTER / DEGREE-FIVE DELETION /
+  DEGREE-THIRTY-TO-SIX REFINEMENT. The \(u=2\) branch and KoalaBear row remain
+  open, and no ledger field changes.
+- **What is being added:** For every geometric decomposition
+  \(f=F\circ h\), the sixty simple active zeros are complete unramified
+  \(h\)-fibers.  The twelve order-five source poles split exactly into
+  complete unramified fibers and index-five exceptional fibers, giving the
+  eight-row profile table and an exact binary source-pencil equivalence.
+  The \(m=5\) profile is impossible over \(K=\mathbf F_{p^6}\): its two
+  split branch points give a fifth-power normal form, while fifth powering
+  is bijective on \(K\) and cannot have a reduced five-point \(K\)-fiber.
+  The \(m=30\) profile factors through an inner degree-six map, and the
+  \(m=12\) profile has one canonical pencil membership test.  Only
+  \(m=2,4\) divide \(2^{21}\), but this is explicitly conditional on an
+  unproved same-record parameter-to-carrier bridge.
+- **How it is useful:** It terminates two of the eight decomposition rows and
+  distinguishes a locator-level complete-fiber theorem from the still-open
+  received-data, explaining-polynomial, and slope-projection semantics.  It
+  preserves the failed prime-field argument as a dead end, and prevents a
+  parameter-line decomposition from being mislabeled as a carrier quotient
+  payment.
+- **What to do next:** Run one exhaustive source-pencil compiler over the
+  exact partitions for \(m=2,3,4,6,10\) and the canonical \(m=12\) pencil.
+  Terminate each candidate geometrically or emit an explicit survivor, then
+  require a separate same-record carrier/data/slope bridge.  Do not start
+  \(u=3\) or move the ledger.
+
 ### 2026-07-29 - Degree-60 primitive-subdegree-four \(u=2\) route cut
 
 - **Agent/model:** Codex, with the complete-source quartic defect lemma
