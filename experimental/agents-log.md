@@ -30,6 +30,40 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Degree-60 source-pencil rank compiler and transverse route cut
+
+- **Agent/model:** Codex, with the mathematical design challenged by a
+  separate agent, exact arithmetic independently replayed in Sage/GAP and
+  through the Wolfram plugin, and fresh proof and certificate reviews
+  returned GREEN before publication.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON certificate,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED EXACT PER-RECORD COMPILER / SAME-FIBER ROUTE CUT.  The
+  transverse outer rows, \(u=2\), K3, and the KoalaBear row remain open; no
+  ledger field changes.
+- **What is being added:** The six surviving decomposition profiles have
+  \(32099\) canonical raw source templates per supplied endpoint record.
+  Exact coefficient ranks and active symmetric-power syndromes decide every
+  template, with a reduced \(49\times5\), 44-syndrome test in degree twelve.
+  After strict right-factor routing, a bidegree-\((4,4)\) actual component
+  cannot lie in the terminal same-fiber divisor: the complete primitive
+  catalogues in degrees \(2,3,4,6,10,12\) have no subdegree four.  Every
+  survivor therefore emits a non-diagonal outer correspondence satisfying
+  \(\delta r=4m\) and \(\delta\le m^2\).
+- **How it is useful:** It replaces generic rational-map discovery by a
+  deterministic source-bound compiler and identifies the precise remaining
+  geometric object.  Exact deployed-field divisor controls show that
+  source/active divisor gates alone cannot delete the prime-degree
+  \(m=2,3\) rows.  The controls are not actual endpoint components or
+  received-line witnesses.
+- **What to do next:** Build one source-coupled transverse outer compiler for
+  the finite \((m,r,\delta)\) rows.  Impose the inherited quartic/source-star
+  incidence and terminate every row in an actual-producer contradiction,
+  strict coarser decomposition, or chronology-valid
+  carrier/data/explaining-polynomial/slope owner.
+
 ### 2026-07-29 - Degree-60 decomposition source-fiber adapter
 
 - **Agent/model:** Codex, with the divisor/profile statement audited by a

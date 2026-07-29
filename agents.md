@@ -114,6 +114,23 @@ At this snapshot:
   decompositions into domain-compatible same-record owners or
   actual-producer deletions remains open.  This is a route cut with zero
   ledger movement, not `u=2` or row closure.
+- The source-pencil rank compiler now makes the surviving decomposable
+  branch exact per supplied endpoint record.  The `2,3,4,6,10` source rows
+  have `10395,15400,5775,462,66` canonical partitions, respectively, and
+  the degree-`12` row has one reduced `49 x 5` pencil-membership test: there
+  are `32099` raw templates per record, not a finite census of all endpoint
+  records.  Exact source-rank and active-syndrome tests replace generic
+  rational-map search.  After routing through proper right factors, the
+  complete primitive catalogues in degrees `2,3,4,6,10,12` have no
+  subdegree four, so an actual bidegree-`(4,4)` component cannot remain in
+  the same-inner-fiber divisor.  Every survivor instead emits an explicit
+  `TRANSVERSE_OUTER_CORRESPONDENCE(r,delta)` with `delta*r=4m` and
+  `delta<=m^2`.  Deployed
+  divisor-interface controls include indecomposable degree-`2` and
+  degree-`3` examples, proving that the imported source/active divisor gates
+  alone cannot delete those rows.  The controls are not actual component or
+  received-line records; the transverse rows are unpaid and no ledger value
+  moves.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -183,15 +200,15 @@ a necessary gate conditional on a future same-record parameter-to-carrier
 transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
 data, and slope semantics remain open.
 
-The next maximal equality-wall theorem is one exhaustive source-pencil
-compiler.  Enumerate every exact source partition for inner degrees
-`2,3,4,6,10`, use the canonical pencil for degree `12`, and terminate every
-candidate in geometric inconsistency, a smaller inner-degree row, or an
-explicit parameter-line survivor.  For each survivor, demand a separate
-same-record theorem transporting the pencil to a declared complete carrier
-fold and descending received data, the explaining polynomial, and slopes.
-Do not resume the old primitive 985-chart atlas or the `u=3` component
-compiler until these six rows terminate.
+The next maximal equality-wall theorem is the source-coupled transverse
+outer compiler.  For every finite `(m,r,delta)` row emitted by the exact
+source-pencil packet, impose the inherited irreducible quartic/source-star
+incidence on the non-diagonal outer component and terminate it in an
+actual-producer contradiction, a strict coarser decomposition, or a
+same-record carrier/data/explaining-polynomial/slope owner.  A source-only
+rank calculation cannot close the prime-degree rows, as the exact deployed
+controls show.  Do not resume the old primitive 985-chart atlas or the
+`u=3` component compiler while this transverse `u=2` interface is open.
 
 #### K4. Close algebraic routing and add-back
 
