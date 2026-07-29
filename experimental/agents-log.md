@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Inner-degree-6 Scott-Cartesian degree-two router
+
+- **Agent/model:** Codex, with exact transitive-group custody and explicit
+  reconstruction of four wreath chains.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m6_scott_cartesian_degree2_router_v1.md`,
+  its canonical JSON certificate and fail-closed Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED INNER-DEGREE-6 ROUTED TO DEGREE 2 OR EXCLUDED DEGREE 5.
+  Degree (2), the (u=2) branch, K3, KoalaBear row, and all payments
+  remain open.
+- **What is being added:** Every kernel-free primitive degree-six endpoint
+  chain has an intermediate block of size five.  For nontrivial kernel, the
+  quartic orbit forces Scott-compatible columns of size five or ten; the
+  size-ten column has a forbidden same-fiber subdegree four and factors to
+  degree two or five.
+- **How it is useful:** It removes all six (m=6) types as independent
+  producers and reduces the transverse frontier from (18) to (12)
+  types in degrees (2,3,4).
+- **What to do next:** Classify inner degree (4) using the actual quartic
+  suborbit before expanding endpoint records.
+
 ### 2026-07-29 - Inner-degree-10 Scott-strip lower-degree router
 
 - **Agent/model:** Codex, with exact primitive-catalogue custody, a

@@ -176,6 +176,17 @@ At this snapshot:
   strictly to lower live rows.  The transverse frontier has `18` types in
   inner degrees `2,3,4,6`; no lower row is deleted or paid, and `u=2`, K3,
   the KoalaBear row, and all ledger payments remain open.
+- Inner degree `6` is no longer an independent terminal producer.  A
+  kernel-free ten-block action must be one of four degree-`10` wreath
+  groups or `A10,S10`; the latter point stabilizers have no primitive
+  degree-`6` quotient, while every wreath chain has an intermediate block
+  of size `5`, already excluded over the challenge field.  With nontrivial
+  kernel, Scott-compatible synchronized classes have size `5` or `10`.
+  Size `5` is excluded; size `10` puts the actual quartic suborbit inside
+  one degree-`10` column fiber, forcing a proper right factor of degree `2`
+  or `5`.  Thus every `m=6` producer dies or routes to `m=2`.  The
+  transverse frontier has `12` types in inner degrees `2,3,4`; degree `2`,
+  `u=2`, K3, the KoalaBear row, and every ledger payment remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
