@@ -2815,6 +2815,192 @@ add-back is supplied.  The mathematical gains are exact local theorems,
 counterexamples to overstrong intermediate claims, sharper terminals, and
 finite-family Lane-L results.
 
+\section{M31 rank-seven two-block and decorated-shift router}
+\label{sec:m31-rank7-two-block-router}
+
+\textbf{Status: \textsc{Proved local} / \textsc{List} / route cut.}
+This section sharpens the varying proper-\(G\), zero-excess terminal at
+\(Q=147595\) recorded above.  It retains both pieces of the combined-domain
+agreement support.  The resulting theorem replaces the weak picture of
+nineteen near-maximal fixed-\(G\) slices by a collective middle-band locator
+family and then forces a dense primitive decorated shift-pair stratum.
+
+Put
+\[
+ \begin{gathered}
+ g=354972,\qquad E=698585,\qquad N=g+E=1053557,\\
+ k=4981,\qquad t=k-1=4980,\qquad
+ m=72428,\qquad w=m-k=67447.
+ \end{gathered}                                                   \tag{M31.1}
+\]
+Let \(\Omega=P_0\mathbin{\dot\cup}E_0\) be a domain with
+\(|P_0|=g\) and \(|E_0|=E\).  Fix a received table on \(\Omega\), and let
+\(a_i\in\F[X]_{<k}\) be distinct polynomials whose exact agreement supports
+have the form
+\[
+ S_i=A_i\mathbin{\dot\cup}B_i,
+ \qquad |A_i|=q_i,qquad |B_i|=m-q_i,                         \tag{M31.2}
+\]
+with \(A_i\subseteq P_0\) and \(B_i\subseteq E_0\).
+
+\begin{theorem}[two-block confinement and dense top stratum]
+\label{thm:m31-rank7-two-block-dense-top}
+For every family satisfying \textup{(M31.1)}--\textup{(M31.2)},
+\[
+ |A_i\cap A_j|+|B_i\cap B_j|\le t\qquad(i\ne j).              \tag{M31.3}
+\]
+Consequently
+\[
+ \#\{i:q_i\le4980\}\le40,
+ \qquad
+ \#\{i:q_i\ge67448\}\le7.                                  \tag{M31.4}
+\]
+If the family has size \(M\), and \(Q_1=\sum_iq_i\), then
+\[
+ (NQ_1-Mmg)^2
+ \le gE\bigl(MN(m-t)+M^2(Nt-m^2)\bigr),                       \tag{M31.5}
+\]
+where
+\[
+ Nt-m^2=898676.                                                  \tag{M31.6}
+\]
+
+If \(M\ge2157929\), then
+\[
+ 23945<\frac{Q_1}{M}<24860,                                    \tag{M31.7}
+\]
+and more than one tenth of all unordered pairs satisfy
+\[
+ |S_i\cap S_j|=t.                                               \tag{M31.8}
+\]
+In particular, one member has at least \(215793\) neighbors satisfying
+\textup{(M31.8)}.
+\end{theorem}
+
+\begin{proof}
+For distinct members, every point in the disjoint union
+\((A_i\cap A_j)\mathbin{\dot\cup}(B_i\cap B_j)\) is a root of
+the nonzero polynomial \(a_i-a_j\), whose degree is below \(k\).  This proves
+\textup{(M31.3)}.
+
+We first use the following constant-weight consequence of Cauchy--Schwarz.
+If \(M'\) subsets of size \(d\) in an \(R\)-point universe have pairwise
+intersection at most \(t\), and \(d^2>Rt\), then
+\[
+ M'\le \frac{R(d-t)}{d^2-Rt}.                                  \tag{M31.9}
+\]
+Indeed, if \(r_x\) are the point loads, then
+\(\sum_xr_x=M'd\),
+\(\sum_x\binom{r_x}{2}\le\binom{M'}2t\), and
+\(\sum_xr_x^2\ge M'^2d^2/R\).
+
+For \(q_i\le4980\), choose \(67448\) points from each \(B_i\) and use
+\((R,d,t)=(698585,67448,4980)\).  The numerator and denominator in
+\textup{(M31.9)} are
+\[
+ 43637207780,qquad1070279404,
+\]
+whose integer quotient is \(40\).  For \(q_i\ge67448\), choose the same
+number of points from each \(A_i\) and use \(R=354972\).  The corresponding
+integers are
+\[
+ 22174390896,qquad2781472144,
+\]
+whose quotient is \(7\).  This proves \textup{(M31.4)}.
+
+Let \(x_\alpha\) and \(y_\beta\) be the planted and external point loads.
+Then
+\[
+ \sum_\alpha x_\alpha=Q_1,
+ \qquad \sum_\beta y_\beta=Mm-Q_1.
+\]
+Summing \textup{(M31.3)} over pairs and applying Cauchy--Schwarz in the two
+blocks gives
+\[
+ \frac{Q_1^2}{g}+\frac{(Mm-Q_1)^2}{E}-Mm\le M(M-1)t.           \tag{M31.10}
+\]
+Completing the square with
+\[
+ \frac{q^2}{g}+\frac{(m-q)^2}{E}
+ =\frac{m^2}{N}+\frac{N}{gE}\left(q-\frac{mg}{N}\right)^2
+\]
+proves \textup{(M31.5)}.  At \(M=2157929\), the center lies strictly between
+\(24402\) and \(24403\), while the squared half-width in
+\textup{(M31.5)} is strictly below \(457^2\).  The half-width decreases with
+\(M\), proving \textup{(M31.7)}.
+
+For the final assertion let \(I_{ij}=|S_i\cap S_j|\) and sum the integral
+deficits \(t-I_{ij}\).  Cauchy--Schwarz on the whole \(N\)-point domain gives
+\[
+ \sum_{i<j}(t-I_{ij})
+ \le\frac12\left(\frac{M^2(Nt-m^2)}N+M(m-t)\right).            \tag{M31.11}
+\]
+At \(M=2157929\), exact cross multiplication gives
+\[
+ 10\bigl(M\cdot898676+N(m-t)\bigr)<9N(M-1).                   \tag{M31.12}
+\]
+The ratio decreases with \(M\).  Thus fewer than nine tenths of all pairs
+can have positive integral deficit, proving \textup{(M31.8)}.  The average
+degree of the top-pair graph is strictly larger than
+\((M-1)/10\ge215792.8\), so one vertex has degree at least \(215793\).
+\end{proof}
+
+The source terminal has one additional rigidity.  In its notation,
+\(A_i=Z(Q_i)\), \(B_i=Z(H_i)\setminus S\), and two members with the same
+fixed \(G\) have the same \(Q=P/G\).  Their difference is
+\(L_S(a_i-a_j)\), divisible by \(Q\).  Since
+\(\gcd(Q,L_S)=1\), every slice with \(q_i=\deg Q\ge k\) is a singleton.
+Combining this with \textup{(M31.4)} gives the following source-bound form.
+
+\begin{corollary}[exact successor to the proper-\(G\) terminal]
+\label{cor:m31-rank7-proper-g-dense-top}
+A proper-\(G\), zero-excess class of size at least \(2157929\) contains at
+least
+\[
+ 2157929-40-7=2157882                                        \tag{M31.13}
+\]
+distinct proper locators with \(4981\le q_i\le67447\), and obeys the mean
+constraint \textup{(M31.5)}.
+
+Moreover, interpolate the combined received table by \(U\), and write
+\[
+ U-a_i=L_iC_i,
+\]
+where \(L_i\) is the monic locator of \(S_i\).  For every top pair in
+\textup{(M31.8)}, put \(J=\gcd(L_i,L_j)\), \(L_i=JA\), and \(L_j=JB\).  Then
+\[
+ \deg J=4980,qquad \deg A=\deg B=67448,qquad
+ \gcd(A,B)=1,                                                 \tag{M31.14}
+\]
+and
+\[
+ AC_i-BC_j=c\in\F^\times.                                    \tag{M31.15}
+\]
+In particular \(\gcd(C_i,C_j)=1\).  Hence one member has at least
+\(215793\) neighbors in the primitive first-above-threshold decorated
+shift-pair stratum.  A source-bound local cap \(215792\) for this exact
+stratum eliminates the terminal.
+\end{corollary}
+
+\begin{proof}
+Only \textup{(M31.15)} remains.  Subtract the two interpolation factorizations:
+\[
+ J(AC_i-BC_j)=a_j-a_i.
+\]
+The right side is nonzero, has degree below \(k=4981\), and is divisible by
+the degree-\(4980\) polynomial \(J\).  Its quotient is therefore a nonzero
+constant.  A common nonconstant divisor of \(C_i,C_j\) would divide that
+constant, proving primitivity.
+\end{proof}
+
+The corollary is a route reduction, not payment of \(Q=147595\).  It gives
+no upper bound for the middle band or for the local decorated-neighbor
+degree, no active \(U_Q\), \(U_{\rm list\mbox{-}int}\), or \(U_{\rm sp}\)
+integer, no rank-at-least-eight theorem, and no adjacent-row or Prize
+closure.  Its exact next theorem is the local bound \(215792\), or an
+owner-preserving injection of all such decorated neighbors into already paid
+cells with exact add-back.
+
 \section{Non-Claims}
 \label{sec:nonclaims}
 

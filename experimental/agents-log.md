@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - M31 rank-seven two-block and decorated-shift router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/experiments.tex` and
+  `experimental/agents-log.md`.
+- **Status:** PROVED LOCAL / ROUTE CUT. No row atom or endpoint moves.
+- **What is being added:** The exact proper-`G` zero-excess terminal is
+  sharpened by retaining planted and external agreement incidences. The
+  low- and high-`q` tails have aggregate caps `40` and `7`; a violating class
+  has at least `2157882` distinct middle-band locators and forces one member
+  with at least `215793` primitive decorated top-shift neighbors.
+- **How it is useful:** It replaces the prior nineteen-slice scalar terminal
+  by one source-bound local Pad\'e/shift-pair threshold. A cap `215792` for
+  that exact neighbor stratum eliminates the `Q=147595` residual.
+- **What to do next:** Prove the local decorated-neighbor cap or give an
+  owner-preserving projection and exact add-back. Static proof review only;
+  no verifier, Sage, TeX build, or numerical computation was run.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
