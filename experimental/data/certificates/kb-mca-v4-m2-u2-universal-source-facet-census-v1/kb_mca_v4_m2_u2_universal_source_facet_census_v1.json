@@ -1,9 +1,46 @@
 {
+  "component_color_profile_cut": {
+    "colored_edge_count": 4,
+    "component_source_degree": 2,
+    "every_J_label_occurs_over_K": true,
+    "left_pole_graph_degree": 2,
+    "maximum_deficit": 2,
+    "outside_K_deficit_is_left_colored_degree": true,
+    "surviving_profile_count": 3,
+    "surviving_profiles": [
+      [
+        2,
+        2,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ]
+    ],
+    "uses_stabilizer_symmetry": false,
+    "uses_zero_migration_condition": false
+  },
   "conclusion": {
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS",
+    "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_COLOR_AND_INTERPOLATION_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "nonclaims": [
@@ -22,13 +59,21 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "a72b8699c4eccc7b5428c78ca539733eec6ac2055dbfa73c8b7d508bba7ed3bf",
+  "payload_sha256": "17b8e640ed4e8e55f81864067c50dc40db86798abbc90bd58f3472eae098b902",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "coordinate_order_two": true,
     "coordinate_pairing_transferred_to_trivial": false,
     "diagonal_order_two": true,
     "trivial_stabilizer_r8_delta1": true
+  },
+  "source_facet_parent": {
+    "certificate_blob_oid": "91643b5b9020f52764a77cfbc8aa6279ce2d5ef8",
+    "certificate_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/verification/pole_disjoint_conic_facet_collinearity_certificate.json",
+    "certificate_payload_sha256": "396697687aa5baf19d8114b20858d4500b119c078f5f128b6c0e207ec8ff50bb",
+    "commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+    "theorem_blob_oid": "356ff4b47d0bb429d11ea10382762a6e95b5ce24",
+    "theorem_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/proof/pole_disjoint_conic_facet_collinearity_reduction.md"
   },
   "source_reduction_parent": {
     "certificate_blob_oid": "61afd4534740c5ccabc6196919126c80c361e4c5",

@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census, one of five exhaustive K-fiber degree profiles, and the same exact 45-by-12 source-row interpolation gate.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, and every survivor passes the same exact 45-by-12 source-row interpolation gate.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact category census (10,10,4), five exhaustive K-fiber degree profiles on the six J labels, and stabilizer-independent 45-by-12 source-row interpolation applicability
-status: PROVED_INTERFACE_ORDER_TWO_AND_TRIVIAL_TYPES_OPEN_K3_OPEN
-impact: GIVES_THE_FIRST_EXACT_SOURCE_FACET_AND_INTERPOLATION_INTERFACE_FOR_THE_TRIVIAL_STABILIZER_TYPE
-falsifier: an actual degree-two source component outside the category census or five profiles, failure of the shared source-row interpolation equivalence for the trivial-stabilizer branch, or use of coordinate involution pairing there
+claimed_bound: exact category census (10,10,4), exactly three component-color-compatible K-fiber profiles on the six J labels, and stabilizer-independent 45-by-12 source-row interpolation applicability
+status: PROVED_FACET_COLOR_AND_INTERPOLATION_INTERFACES_ORDER_TWO_AND_TRIVIAL_TYPES_OPEN_K3_OPEN
+impact: GIVES_THE_FIRST_EXACT_SOURCE_FACET_COLOR_AND_INTERPOLATION_INTERFACE_FOR_THE_TRIVIAL_STABILIZER_TYPE
+falsifier: an actual degree-two source component outside the category census or three color-compatible profiles, failure of the shared source-row interpolation equivalence for the trivial-stabilizer branch, or use of coordinate involution pairing there
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -28,11 +28,12 @@ uses only the common-five source facet and quartic source-row degrees.
 
 Consequently the residual trivial-stabilizer type `(r,delta)=(8,1)` is not
 source-combinatorially unconstrained. Its ten stars over the five common
-`K` fibers have one of five exact degree profiles and must next pass the
-shared `45 x 12` source-row interpolation gate.
+`K` fibers first have one of five integer profiles; exact component edge
+coloring removes two, leaving three profiles that must next pass the shared
+`45 x 12` source-row interpolation gate.
 
-No profile is deleted here. No owner, payment, K3 value, or row bound is
-booked.
+Two raw profiles are deleted here. No surviving profile, component type,
+owner, payment, K3 value, or row bound is deleted or booked.
 
 ## 1. Universal category census
 
@@ -61,7 +62,7 @@ J-J=10,       I-I=10,       I-J=4.                  (1.1)
 
 This proof does not use a component stabilizer.
 
-## 2. Five exact K-fiber profiles
+## 2. Five raw K-fiber profiles
 
 For `j in J`, let `d_j` be its incidence degree among the ten `J-J` stars
 over `K`. The four `I-J` stars supply exactly four `J` incidences outside
@@ -95,7 +96,30 @@ The coordinate involution separately narrows (2.2) to its two paired
 profiles. No such pairing is transferred to the diagonal or
 trivial-stabilizer type.
 
-## 3. Universal source-row gate
+## 3. Component-color profile cut
+
+Corollary 9.28 colors a pole-graph edge `(j,ell)` by the selected component
+exactly when that component contains the exchanged `J` root at the opposite
+point of the deck pair. A source-degree-two component colors exactly four
+edges. Therefore
+
+```text
+c_j=4-d_j=the colored degree of the left vertex j.
+```
+
+The pole graph is two-regular on the left, so `0<=c_j<=2`. The only deficit
+partitions are `2+2`, `2+1+1`, and `1+1+1+1`, leaving exactly
+
+```text
+(2,2,4,4,4,4),
+(2,3,3,4,4,4),
+(3,3,3,3,4,4).
+```
+
+Every `J` label consequently occurs at least twice over `K`. This uses
+neither stabilizer symmetry nor the open zero-migration condition.
+
+## 4. Universal source-row gate
 
 The pinned complete-source reduction applies before any stabilizer or conic
 invariance argument. Every residual `u=2` outgoing component is represented
@@ -115,16 +139,18 @@ Therefore the gate applies to all three stabilizer rows
 This is an applicability theorem, not a claim that the matrix always lacks
 a full-support kernel.
 
-## 4. Scope and next action
+## 5. Scope and next action
 
-Proved: the universal category census, the five exhaustive integer profiles,
-their applicability to the trivial-stabilizer type, and the universal scope
-of the exact source-row interpolation gate.
+Proved: the universal category census, the five exhaustive raw integer
+profiles, the exact three-profile component-color cut, applicability to the
+trivial-stabilizer type, and the universal scope of the exact source-row
+interpolation gate.
 
 Not proved: a stabilizer action in the trivial branch, realization or
-deletion of any profile, universal failure of the shared source-row kernel,
-an owner, payment, K3, the KoalaBear row, or a Prize result.
+deletion of any of the three surviving profiles, universal failure of the
+shared source-row kernel, an owner, payment, K3, the KoalaBear row, or a
+Prize result.
 
-For the `(8,1)` type, route all five profiles through the `45 x 12` source
+For the `(8,1)` type, route all three profiles through the `45 x 12` source
 interpolation gate and complete-source defect budget. Retain exact degree,
 irreducibility, deck distinction, and outer-factor side conditions.

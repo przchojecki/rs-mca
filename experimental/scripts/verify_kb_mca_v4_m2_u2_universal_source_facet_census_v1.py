@@ -54,6 +54,14 @@ SOURCE_REDUCTION_PARENT = {
     "certificate_payload_sha256": "30a5d45895957f774ef972118e227fa54522fc27a48ee0e2a99a0d5a012a5451",
     "terminal": "DELETED_BY_COMPLETE_SOURCE_DIVISOR_PROFILE_OBSTRUCTION",
 }
+SOURCE_FACET_PARENT = {
+    "commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+    "theorem_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/proof/pole_disjoint_conic_facet_collinearity_reduction.md",
+    "theorem_blob_oid": "356ff4b47d0bb429d11ea10382762a6e95b5ce24",
+    "certificate_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/verification/pole_disjoint_conic_facet_collinearity_certificate.json",
+    "certificate_blob_oid": "91643b5b9020f52764a77cfbc8aa6279ce2d5ef8",
+    "certificate_payload_sha256": "396697687aa5baf19d8114b20858d4500b119c078f5f128b6c0e207ec8ff50bb",
+}
 
 
 def canonical_json(value: Any) -> str:
@@ -163,6 +171,57 @@ def load_source_reduction_parent() -> dict[str, Any]:
     return data
 
 
+def load_source_facet_parent() -> dict[str, Any]:
+    require(
+        git_output(
+            "rev-parse",
+            f"{SOURCE_FACET_PARENT['commit']}:"
+            f"{SOURCE_FACET_PARENT['theorem_path']}",
+        )
+        == SOURCE_FACET_PARENT["theorem_blob_oid"],
+        "source-facet theorem blob",
+    )
+    require(
+        git_output(
+            "rev-parse",
+            f"{SOURCE_FACET_PARENT['commit']}:"
+            f"{SOURCE_FACET_PARENT['certificate_path']}",
+        )
+        == SOURCE_FACET_PARENT["certificate_blob_oid"],
+        "source-facet certificate blob",
+    )
+    data = parse_json(
+        git_output(
+            "show",
+            f"{SOURCE_FACET_PARENT['commit']}:"
+            f"{SOURCE_FACET_PARENT['certificate_path']}",
+        ),
+        SOURCE_FACET_PARENT["certificate_path"],
+    )
+    require(
+        data.get("payload_sha256")
+        == SOURCE_FACET_PARENT["certificate_payload_sha256"],
+        "source-facet payload",
+    )
+    require(payload_hash(data) == data.get("payload_sha256"),
+            "source-facet seal")
+    require(
+        data["theorem_status"]["q6_s6_component_edge_coloring_9_28"]
+        == "PROVED",
+        "component edge coloring status",
+    )
+    require(
+        data["outgoing_conjugate_ledger"]["q6_s6_component_edge_color_multiplicity_formula"]
+        == "2*u",
+        "component color multiplicity",
+    )
+    require(
+        data["outgoing_conjugate_ledger"]["q6_s6_complementary_pole_graph_left_degree"] == 2,
+        "left pole-graph degree",
+    )
+    return data
+
+
 def profile_replay() -> dict[str, Any]:
     profiles = sorted({
         tuple(sorted(4 - deficit for deficit in deficits))
@@ -191,12 +250,42 @@ def profile_replay() -> dict[str, Any]:
     }
 
 
+def component_color_replay() -> dict[str, Any]:
+    profiles = sorted({
+        tuple(sorted(4 - deficit for deficit in deficits))
+        for deficits in product(range(3), repeat=6)
+        if sum(deficits) == 4
+    })
+    expected = [
+        (2, 2, 4, 4, 4, 4),
+        (2, 3, 3, 4, 4, 4),
+        (3, 3, 3, 3, 4, 4),
+    ]
+    require(profiles == expected, "three color-surviving profiles")
+    require(all(min(profile) >= 2 for profile in profiles),
+            "all J labels occur over K")
+    return {
+        "component_source_degree": 2,
+        "colored_edge_count": 4,
+        "left_pole_graph_degree": 2,
+        "outside_K_deficit_is_left_colored_degree": True,
+        "maximum_deficit": 2,
+        "surviving_profiles": [list(profile) for profile in profiles],
+        "surviving_profile_count": len(profiles),
+        "every_J_label_occurs_over_K": True,
+        "uses_zero_migration_condition": False,
+        "uses_stabilizer_symmetry": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
         "parent": PARENT,
         "source_reduction_parent": SOURCE_REDUCTION_PARENT,
+        "source_facet_parent": SOURCE_FACET_PARENT,
         "universal_source_facet": profile_replay(),
+        "component_color_profile_cut": component_color_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -220,7 +309,7 @@ def expected_certificate() -> dict[str, Any]:
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS",
+            "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_COLOR_AND_INTERPOLATION_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -250,10 +339,14 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["universal_source_interpolation"].__setitem__("actual_source_bidegree", [4, 4]),
         lambda x: x["universal_source_interpolation"].__setitem__("uses_stabilizer_symmetry", True),
         lambda x: x["universal_source_interpolation"].__setitem__("applies_to_trivial_stabilizer", False),
+        lambda x: x["component_color_profile_cut"].__setitem__("colored_edge_count", 3),
+        lambda x: x["component_color_profile_cut"].__setitem__("maximum_deficit", 3),
+        lambda x: x["component_color_profile_cut"]["surviving_profiles"].pop(),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
         lambda x: x["source_reduction_parent"].__setitem__("certificate_payload_sha256", "0" * 64),
+        lambda x: x["source_facet_parent"].__setitem__("certificate_payload_sha256", "0" * 64),
         lambda x: x.__setitem__("payload_sha256", "0" * 64),
     ]
     rejected = 0
@@ -277,6 +370,7 @@ def main() -> None:
 
     load_parent()
     load_source_reduction_parent()
+    load_source_facet_parent()
     expected = expected_certificate()
     if args.write:
         CERTIFICATE.parent.mkdir(parents=True, exist_ok=True)
@@ -290,7 +384,8 @@ def main() -> None:
     rejected = tamper_selftest(data) if args.tamper_selftest else 0
     print(
         "KB_MCA_V4_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS_PASS "
-        f"profiles={data['universal_source_facet']['profile_count']} "
+        f"raw_profiles={data['universal_source_facet']['profile_count']} "
+        f"surviving_profiles={data['component_color_profile_cut']['surviving_profile_count']} "
         f"tamper_rejected={rejected}"
     )
 
