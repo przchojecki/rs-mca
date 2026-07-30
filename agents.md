@@ -285,6 +285,11 @@ At this snapshot:
   the branch preimages to be the roots of
   `z^2-b*d*z+b^2+d^2-4`, `d^2=a+2`.  Hence source genus zero is exactly
   `b^2=a+2`, and genus one is its complement.  Both regimes remain live.
+- The common six-pole divisor deletes the residual `n=6` profile.  Two
+  unramified Dickson-six fiber structures have only the standard projective
+  normalizer and the exceptional fibers `c=27/8,756/125`; every case
+  contradicts the forced source-cover branch pair.  The full-V4 dihedral
+  frontier is now only `n=3`.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -380,7 +385,8 @@ coefficient realization rather than further multiplicity counting.  That
 realization is reduced to two printed one-variable families; exceptional
 factorization is now fully classified and deletes nothing.  The
 second-endpoint branch twist and source genus are also exact.  The common
-degree-30 function and six-pole/source-locator equations remain.
+six-pole divisor deletes `n=6`; only the `n=3` common degree-30 function and
+six-pole/source-locator equations remain.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every

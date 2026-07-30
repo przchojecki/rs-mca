@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-30 - Residual degree-six common-pole exclusion
+
+- **Agent/model:** Codex, with exact projective binary-sextic classification
+  and quadratic-field resultants.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree6_common_pole_exclusion_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED DEGREE-SIX PROFILE EMPTY. The `n=3` profile, full-V4
+  type, K3, and every payment remain open.
+- **What is being added:** The common six-pole divisor and forced branch
+  twist are incompatible in every standard and exceptional Dickson-six
+  projective class.
+- **How it is useful:** It removes one of the final two full-V4 dihedral
+  profiles without a speculative source-locator assumption.
+- **What to do next:** Classify two simultaneous pairs of generic cubic
+  fibers and impose the degree-ten common outer map and complete locators.
+
 ### 2026-07-29 - Residual source-cover twist classifier
 
 - **Agent/model:** Codex, with exact quadratic square-class and branch-place
