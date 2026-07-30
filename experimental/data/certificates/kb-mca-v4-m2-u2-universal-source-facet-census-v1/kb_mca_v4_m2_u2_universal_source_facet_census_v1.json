@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_AND_C2_112_FINITE_RECONSTRUCTION_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_AND_C2_112_Q_SLICE_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -154,6 +154,32 @@
     "sign_count": 2,
     "source_deck_conjugates_identified": true,
     "source_form_unique_after_passing": true
+  },
+  "diagonal_c2_112_q_slice_resultant": {
+    "aligned_target_quadratic": "tau^*P_J1",
+    "forced_multiplicity_per_q_root": 2,
+    "full_colored_quotient_still_required": true,
+    "mixed_incidence_patterns": [
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "near_target_quadratic": "tau^*chi_Omega",
+    "necessary_only": true,
+    "norm_T_degree": 4,
+    "q_degree": 2,
+    "resultant_W_degree": 8,
+    "resultant_divisor": "w^4*k1^2*k2^2",
+    "row_112_deleted": false
   },
   "diagonal_c2_112_ramified_complete_source_repair": {
     "geometric_source_ramification_retained": true,
@@ -449,6 +475,7 @@
     "no colored quotient descent for the biquadratic or exceptional (1,1,2) branch",
     "no geometric exclusion of forced source ramification in saturated (1,1,2)",
     "no realization claim for any reconstructed saturated (1,1,2) source form",
+    "no sufficiency of the q-slice resultant for either full colored quotient identity",
     "no component, type, owner, payment, K3, row, or Prize close"
   ],
   "parent": {
@@ -462,7 +489,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "b290c08228370fad83a8f91ae47684e6a1f53a49104b545135f526075173c472",
+  "payload_sha256": "66b83997ed25269d8d79e5d77291dcb3638835356cb895b827f90c9f287a86cf",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "aligned_c6_deleted": true,
@@ -472,6 +499,7 @@
     "minimally_mixed_c2_capacity_refined": true,
     "partition_preserving_diagonal_subcase_deleted": true,
     "row_112_internal_star_reconstructed": true,
+    "row_112_q_slice_resultant_compiled": true,
     "row_112_ramified_complete_source_repaired": true,
     "row_112_saturated_defect_classified": true,
     "row_112_source_line_colored_quotient_compiled": true,

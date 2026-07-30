@@ -1297,6 +1297,40 @@ def diagonal_c2_112_internal_star_reconstruction_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_c2_112_q_slice_resultant_replay() -> dict[str, Any]:
+    expected = Counter({"w": 4, "k1": 2, "k2": 2})
+    patterns = []
+    for multiplicity in range(3):
+        first_root = Counter({
+            "w": 2,
+            "k1": multiplicity,
+            "k2": 2 - multiplicity,
+        })
+        second_root = Counter({
+            "w": 2,
+            "k1": 2 - multiplicity,
+            "k2": multiplicity,
+        })
+        require(first_root + second_root == expected,
+                "c2 112 q-slice resultant divisor")
+        require(sum(first_root.values()) == sum(second_root.values()) == 4,
+                "c2 112 q-slice root degree")
+        patterns.append([multiplicity, 2 - multiplicity])
+    return {
+        "q_degree": 2,
+        "norm_T_degree": 4,
+        "resultant_W_degree": 8,
+        "forced_multiplicity_per_q_root": 2,
+        "mixed_incidence_patterns": patterns,
+        "resultant_divisor": "w^4*k1^2*k2^2",
+        "aligned_target_quadratic": "tau^*P_J1",
+        "near_target_quadratic": "tau^*chi_Omega",
+        "necessary_only": True,
+        "full_colored_quotient_still_required": True,
+        "row_112_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -1316,6 +1350,7 @@ def expected_certificate() -> dict[str, Any]:
         "diagonal_c2_112_source_line_odd_incidence": diagonal_c2_112_source_line_odd_incidence_replay(),
         "diagonal_c2_112_ramified_complete_source_repair": diagonal_c2_112_ramified_complete_source_repair_replay(),
         "diagonal_c2_112_internal_star_reconstruction": diagonal_c2_112_internal_star_reconstruction_replay(),
+        "diagonal_c2_112_q_slice_resultant": diagonal_c2_112_q_slice_resultant_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -1344,13 +1379,14 @@ def expected_certificate() -> dict[str, Any]:
             "row_112_source_line_odd_incidence_compiled": True,
             "row_112_ramified_complete_source_repaired": True,
             "row_112_internal_star_reconstructed": True,
+            "row_112_q_slice_resultant_compiled": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_AND_C2_112_FINITE_RECONSTRUCTION_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_AND_C2_112_Q_SLICE_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -1363,6 +1399,7 @@ def expected_certificate() -> dict[str, Any]:
             "no colored quotient descent for the biquadratic or exceptional (1,1,2) branch",
             "no geometric exclusion of forced source ramification in saturated (1,1,2)",
             "no realization claim for any reconstructed saturated (1,1,2) source form",
+            "no sufficiency of the q-slice resultant for either full colored quotient identity",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -1485,6 +1522,10 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_112_internal_star_reconstruction"].__setitem__("continuous_coefficient_family_remaining", True),
         lambda x: x["diagonal_c2_112_internal_star_reconstruction"].__setitem__("candidates_claimed_realizable", True),
         lambda x: x["scope"].__setitem__("row_112_internal_star_reconstructed", False),
+        lambda x: x["diagonal_c2_112_q_slice_resultant"].__setitem__("resultant_W_degree", 7),
+        lambda x: x["diagonal_c2_112_q_slice_resultant"].__setitem__("resultant_divisor", "wrong"),
+        lambda x: x["diagonal_c2_112_q_slice_resultant"].__setitem__("necessary_only", False),
+        lambda x: x["scope"].__setitem__("row_112_q_slice_resultant_compiled", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1549,6 +1590,7 @@ def main() -> None:
         f"c2_112_ramified_dims={data['diagonal_c2_112_ramified_complete_source_repair']['repaired_dimensions']['positive']}/"
         f"{data['diagonal_c2_112_ramified_complete_source_repair']['repaired_dimensions']['negative']} "
         f"c2_112_max_reconstructions={data['diagonal_c2_112_internal_star_reconstruction']['maximum_source_deck_pairs_per_packet']} "
+        f"c2_112_qslice_patterns={len(data['diagonal_c2_112_q_slice_resultant']['mixed_incidence_patterns'])} "
         f"tamper_rejected={rejected}"
     )
 
