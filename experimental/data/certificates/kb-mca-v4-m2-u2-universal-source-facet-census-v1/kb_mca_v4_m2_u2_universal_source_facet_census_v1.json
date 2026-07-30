@@ -1,4 +1,22 @@
 {
+  "colored_source_resultant_split": {
+    "I_resultant_identity": "C_H*Res_T(P_I,H) is proportional to D_R^2",
+    "J_resultant_identity": "Res_T(P_J,H) is proportional to D_K^2*C_H",
+    "P_I_degree": 6,
+    "P_J_degree": 6,
+    "colored_divisor_degree": 4,
+    "colored_divisor_divides_L_complement_pullback": true,
+    "colored_divisor_squarefree": true,
+    "common_K_pullback_degree": 10,
+    "four_root_divisors_checked": 495,
+    "left_deficit_recovery": "c_j=deg gcd(C_H,bZ_j)",
+    "partial_resultant_degrees": {
+      "I": 24,
+      "J": 24
+    },
+    "remaining_pullback_degree": 14,
+    "uses_stabilizer_symmetry": false
+  },
   "component_color_profile_cut": {
     "colored_edge_count": 4,
     "component_source_degree": 2,
@@ -40,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_COLOR_AND_INTERPOLATION_INTERFACES",
+    "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_COLOR_INTERPOLATION_AND_RESULTANT_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "nonclaims": [
@@ -59,7 +77,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "17b8e640ed4e8e55f81864067c50dc40db86798abbc90bd58f3472eae098b902",
+  "payload_sha256": "677782fc5ad5f028595f4b71b3383252bc104fd8cbf569c58ade300383421461",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "coordinate_order_two": true,

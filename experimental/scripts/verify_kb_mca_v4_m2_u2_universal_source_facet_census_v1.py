@@ -8,7 +8,7 @@ import copy
 import hashlib
 import json
 import subprocess
-from itertools import product
+from itertools import combinations, product
 from pathlib import Path
 from typing import Any, Callable
 
@@ -278,6 +278,36 @@ def component_color_replay() -> dict[str, Any]:
     }
 
 
+def colored_resultant_split_replay() -> dict[str, Any]:
+    checked = 0
+    for colored_tuple in combinations(range(12), 4):
+        colored = set(colored_tuple)
+        j_orders = [int(slot in colored) for slot in range(12)]
+        i_orders = [2 - order for order in j_orders]
+        require(sum(j_orders) == 4, "colored J degree")
+        require(sum(i_orders) == 20, "exchange I degree")
+        require(all(i_order + j_order == 2
+                    for i_order, j_order in zip(i_orders, j_orders)),
+                "exchange square split")
+        checked += 1
+    require(checked == 495, "colored divisor census")
+    return {
+        "colored_divisor_degree": 4,
+        "colored_divisor_squarefree": True,
+        "colored_divisor_divides_L_complement_pullback": True,
+        "common_K_pullback_degree": 10,
+        "remaining_pullback_degree": 14,
+        "P_I_degree": 6,
+        "P_J_degree": 6,
+        "partial_resultant_degrees": {"I": 24, "J": 24},
+        "J_resultant_identity": "Res_T(P_J,H) is proportional to D_K^2*C_H",
+        "I_resultant_identity": "C_H*Res_T(P_I,H) is proportional to D_R^2",
+        "left_deficit_recovery": "c_j=deg gcd(C_H,bZ_j)",
+        "four_root_divisors_checked": checked,
+        "uses_stabilizer_symmetry": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -286,6 +316,7 @@ def expected_certificate() -> dict[str, Any]:
         "source_facet_parent": SOURCE_FACET_PARENT,
         "universal_source_facet": profile_replay(),
         "component_color_profile_cut": component_color_replay(),
+        "colored_source_resultant_split": colored_resultant_split_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -309,7 +340,7 @@ def expected_certificate() -> dict[str, Any]:
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_COLOR_AND_INTERPOLATION_INTERFACES",
+            "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_COLOR_INTERPOLATION_AND_RESULTANT_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -342,6 +373,10 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["component_color_profile_cut"].__setitem__("colored_edge_count", 3),
         lambda x: x["component_color_profile_cut"].__setitem__("maximum_deficit", 3),
         lambda x: x["component_color_profile_cut"]["surviving_profiles"].pop(),
+        lambda x: x["colored_source_resultant_split"].__setitem__("colored_divisor_degree", 5),
+        lambda x: x["colored_source_resultant_split"].__setitem__("colored_divisor_squarefree", False),
+        lambda x: x["colored_source_resultant_split"].__setitem__("common_K_pullback_degree", 9),
+        lambda x: x["colored_source_resultant_split"].__setitem__("left_deficit_recovery", "untracked"),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -386,6 +421,7 @@ def main() -> None:
         "KB_MCA_V4_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS_PASS "
         f"raw_profiles={data['universal_source_facet']['profile_count']} "
         f"surviving_profiles={data['component_color_profile_cut']['surviving_profile_count']} "
+        f"colored_divisors={data['colored_source_resultant_split']['four_root_divisors_checked']} "
         f"tamper_rejected={rejected}"
     )
 

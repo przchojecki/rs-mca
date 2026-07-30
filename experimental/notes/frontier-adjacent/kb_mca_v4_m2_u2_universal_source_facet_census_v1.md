@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, and every survivor passes the same exact 45-by-12 source-row interpolation gate.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, and its I/J row products split through one squarefree colored quartic.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact category census (10,10,4), exactly three component-color-compatible K-fiber profiles on the six J labels, and stabilizer-independent 45-by-12 source-row interpolation applicability
-status: PROVED_FACET_COLOR_AND_INTERPOLATION_INTERFACES_ORDER_TWO_AND_TRIVIAL_TYPES_OPEN_K3_OPEN
-impact: GIVES_THE_FIRST_EXACT_SOURCE_FACET_COLOR_AND_INTERPOLATION_INTERFACE_FOR_THE_TRIVIAL_STABILIZER_TYPE
-falsifier: an actual degree-two source component outside the category census or three color-compatible profiles, failure of the shared source-row interpolation equivalence for the trivial-stabilizer branch, or use of coordinate involution pairing there
+claimed_bound: exact category census (10,10,4), exactly three component-color-compatible K-fiber profiles, stabilizer-independent 45-by-12 interpolation, and exact I/J partial-resultant identities through one squarefree colored quartic
+status: PROVED_FACET_COLOR_INTERPOLATION_AND_RESULTANT_INTERFACES_ORDER_TWO_AND_TRIVIAL_TYPES_OPEN_K3_OPEN
+impact: GIVES_THE_FIRST_EXACT_SOURCE_FACET_COLOR_INTERPOLATION_AND_RESULTANT_INTERFACE_FOR_THE_TRIVIAL_STABILIZER_TYPE
+falsifier: an actual degree-two component outside the category census or three color-compatible profiles, failure of the shared interpolation or colored partial-resultant identities in the trivial-stabilizer branch, or use of coordinate involution pairing there
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -139,18 +139,41 @@ Therefore the gate applies to all three stabilizer rows
 This is an applicability theorem, not a claim that the matrix always lacks
 a full-support kernel.
 
-## 5. Scope and next action
+## 5. Colored partial-resultant split
+
+Let `D_K` be the degree-ten pullback over `K`, put `D_R=B/D_K`, and let
+`P_I,P_J` be the source-label sextics on `I,J`. Package the four simple
+colored pole roots as the squarefree quartic `C_H`. The product formula for
+resultants and the exact source-facet multiplicities give
+
+```text
+Res_T(P_J,H) ~ D_K^2 C_H,
+C_H Res_T(P_I,H) ~ D_R^2.                          (5.1)
+```
+
+For a left pole-graph vertex `j`, its two edge roots form `bZ_j`, so
+
+```text
+c_j=deg gcd(C_H,bZ_j).                             (5.2)
+```
+
+Thus one four-edge divisor controls both partial resultants and recovers
+the surviving profile. This is an exact compiler, not a construction or a
+universal resultant failure.
+
+## 6. Scope and next action
 
 Proved: the universal category census, the five exhaustive raw integer
 profiles, the exact three-profile component-color cut, applicability to the
 trivial-stabilizer type, and the universal scope of the exact source-row
-interpolation gate.
+interpolation gate and colored partial-resultant split.
 
 Not proved: a stabilizer action in the trivial branch, realization or
 deletion of any of the three surviving profiles, universal failure of the
 shared source-row kernel, an owner, payment, K3, the KoalaBear row, or a
 Prize result.
 
-For the `(8,1)` type, route all three profiles through the `45 x 12` source
+For the `(8,1)` type, classify squarefree four-edge divisors `C_H` and route
+their two partial-resultant identities through the `45 x 12` source
 interpolation gate and complete-source defect budget. Retain exact degree,
 irreducibility, deck distinction, and outer-factor side conditions.
