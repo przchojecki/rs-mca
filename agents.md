@@ -280,6 +280,11 @@ At this snapshot:
   nodes; for `b=a` it has one node and one tacnode of delta two.  No allowed
   parameter dies by factorization or genus, so the residual gate is now the
   six-pole and complete-source locator realization.
+- The relative second-endpoint source cover is classified without setting
+  its projective twist to one.  Equality of quadratic square classes forces
+  the branch preimages to be the roots of
+  `z^2-b*d*z+b^2+d^2-4`, `d^2=a+2`.  Hence source genus zero is exactly
+  `b^2=a+2`, and genus one is its complement.  Both regimes remain live.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -374,7 +379,8 @@ graphs are now exact and defect zero, so the next gate is quartic
 coefficient realization rather than further multiplicity counting.  That
 realization is reduced to two printed one-variable families; exceptional
 factorization is now fully classified and deletes nothing.  The
-six-pole/source-locator equations remain.
+second-endpoint branch twist and source genus are also exact.  The common
+degree-30 function and six-pole/source-locator equations remain.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every

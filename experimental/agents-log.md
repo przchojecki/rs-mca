@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Residual source-cover twist classifier
+
+- **Agent/model:** Codex, with exact quadratic square-class and branch-place
+  parity analysis.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_residual_source_cover_twist_classifier_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED SOURCE-COVER TWIST CLASSIFIER. The profiles `n=3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** The relative endpoint branch preimages and source
+  genus are exact: genus zero iff `b^2=a+2`, genus one otherwise.
+- **How it is useful:** It removes an untracked projective twist from the
+  source-cover branch analysis without conflating the endpoint coordinates.
+- **What to do next:** Impose the common degree-30 function and six exact
+  order-five pole fibers through the forced branch matching.
+
 ### 2026-07-29 - Residual quartic singularity atlas
 
 - **Agent/model:** Codex, with quadratic-function-field square classes and
