@@ -399,10 +399,14 @@ the bidegree-`(2,4)` component is equivalent to a full-support kernel of the
 `38 x 12` matrix with columns `(E_i,alpha_i E_i)`. A pinned split `s=6`
 packet satisfies the inherited invariant/noninvariant locator ownership,
 two-regular pole graph, and four-edge component-color interfaces but has
-stacked rank twelve, so abstract source/locator realizability does not imply
-endpoint realization. The universal admissible-ownership rank exclusion, or
-reconstruction of a surviving cofactor into a same-record owner, remains
-open. No quotient payment is booked.
+stacked rank twelve. More locally, every full-support kernel induces a
+multiplicative transport on the source-star graph whose cycle holonomies
+must be one; the packet's six canonical square holonomies are
+`11,26,17,2,41,31 mod 47`, all nonidentity. Thus abstract source/locator
+realizability does not imply endpoint realization. The universal
+admissible-ownership holonomy/rank exclusion, or reconstruction of a
+surviving cofactor into a same-record owner, remains open. No quotient
+payment is booked.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every

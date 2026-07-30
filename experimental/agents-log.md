@@ -4252,12 +4252,16 @@ Keep entries concise and link to the relevant files.
   component is equivalent to a full-support kernel in one explicit
   `38 x 12` source-cofactor matrix. A pinned `F_47` `s=6` locator packet
   satisfies the inherited ownership, pole-graph, and four-edge color gates
-  but has a nonzero rank-twelve minor.
+  but has a nonzero rank-twelve minor. Every full-support kernel also induces
+  an exact multiplicative source-star transport with cycle holonomy one; the
+  packet's six canonical square products are
+  `11,26,17,2,41,31 mod 47`, all nonidentity.
 - **How it is useful:** Replaces the open-ended fixed-active-pencil
   instruction by one necessary-and-sufficient endpoint interpolation gate
-  and proves that the abstract geometric realization need not extend to an
-  endpoint source form.
+  and a local four-edge obstruction, and proves that the abstract geometric
+  realization need not extend to an endpoint source form.
 - **What to do next:** Classify admissible locator ownerships modulo the two
-  `K_(2,2,2)` star automorphisms and source deck involution, then exclude
-  every full-support kernel over the deployed field or reconstruct a
-  surviving cofactor into the fixed active/block record and owner chronology.
+  `K_(2,2,2)` star automorphisms and source deck involution, first prove one
+  nonidentity cycle in every case and fall back to the full stacked-rank gate,
+  or reconstruct a surviving cofactor into the fixed active/block record and
+  owner chronology.

@@ -289,6 +289,52 @@ def exact_replay() -> dict[str, Any]:
     selected = list(range(11)) + [19]
     minor = determinant([stacked[row] for row in selected])
     require(minor == 7, "pinned determinant")
+
+    owner_by_root = {
+        root: owner
+        for owner, roots in enumerate(OWNED)
+        for root in roots
+    }
+    edge_root = {frozenset(labels): root for root, labels in stars.items()}
+    require(len(edge_root) == 24, "distinct star edges")
+
+    def transport(source: int, target: int) -> int:
+        root = edge_root[frozenset((source, target))]
+        owner = owner_by_root[root]
+        require(owner not in (source, target), "transport locator avoidance")
+        numerator = (
+            -(ALPHAS[source] - ALPHAS[owner])
+            * evaluate(cofactors[source], root)
+        ) % P
+        denominator = (
+            (ALPHAS[target] - ALPHAS[owner])
+            * evaluate(cofactors[target], root)
+        ) % P
+        require(numerator != 0 and denominator != 0, "nonzero edge transport")
+        return numerator * inverse(denominator) % P
+
+    square_holonomies = []
+    for component in (
+        [(0, 11), (2, 9), (4, 7)],
+        [(1, 10), (3, 8), (5, 6)],
+    ):
+        for first_part, second_part in (
+            (component[0], component[1]),
+            (component[0], component[2]),
+            (component[1], component[2]),
+        ):
+            cycle = [
+                first_part[0], second_part[0],
+                first_part[1], second_part[1],
+            ]
+            product = 1
+            for index, source in enumerate(cycle):
+                product = product * transport(source, cycle[(index + 1) % 4]) % P
+            square_holonomies.append(product)
+    require(square_holonomies == [11, 26, 17, 2, 41, 31],
+            "canonical square holonomies")
+    require(all(value != 1 for value in square_holonomies),
+            "nonidentity square holonomies")
     return {
         "field": P,
         "cubic_pole_values": [7, 18],
@@ -304,6 +350,8 @@ def exact_replay() -> dict[str, Any]:
         "stacked_rank": 12,
         "minor_rows": selected,
         "minor_determinant": minor,
+        "canonical_square_holonomies": square_holonomies,
+        "all_canonical_squares_nonidentity": True,
     }
 
 
@@ -318,16 +366,18 @@ def build_certificate() -> dict[str, Any]:
             "kernel_equations": ["sum_i w_i*E_i=0", "sum_i alpha_i*w_i*E_i=0"],
             "support_requirement": "all twelve w_i are nonzero",
             "equivalence": "H divides M iff the stacked matrix has a full-support kernel",
+            "star_transport": "rho_(a->b)(x)=-((alpha_a-alpha_c)E_a(x))/((alpha_b-alpha_c)E_b(x))",
+            "cycle_gate": "every directed star cycle has transport product one",
         },
         "fixture": exact_replay(),
         "conclusion": {
             "terminal": "M2_R2_DIHEDRAL_DEGREE3_ENDPOINT_COFACTOR_INTERPOLATION_COMPILER",
             "deleted_fixture": True,
             "row_status": "OPEN",
-            "next_gate": "exclude full-support kernels for every admissible s=6 ownership or reconstruct an actual owner",
+            "next_gate": "prove nonidentity holonomy or exclude full-support kernels for every admissible s=6 ownership, or reconstruct an actual owner",
         },
         "nonclaims": [
-            "no universal locator-ownership exclusion",
+            "no universal locator-ownership holonomy or rank exclusion",
             "no deployed endpoint-record deletion",
             "no carrier, data, explaining-polynomial, or slope owner",
             "no payment, K3, KoalaBear, endpoint, or Prize close",
@@ -359,6 +409,7 @@ def tamper_selftest(original: dict[str, Any]) -> int:
         ("equation", lambda row: row["interpolation"]["kernel_equations"].pop()),
         ("support", lambda row: row["interpolation"].__setitem__("support_requirement", "optional")),
         ("equivalence", lambda row: row["interpolation"].__setitem__("equivalence", "necessary only")),
+        ("cycle_gate", lambda row: row["interpolation"].__setitem__("cycle_gate", "optional")),
         ("field", lambda row: row["fixture"].__setitem__("field", 43)),
         ("poles", lambda row: row["fixture"].__setitem__("cubic_pole_values", [7, 19])),
         ("labels", lambda row: row["fixture"]["source_labels"].pop()),
@@ -373,6 +424,7 @@ def tamper_selftest(original: dict[str, Any]) -> int:
         ("rank2", lambda row: row["fixture"].__setitem__("stacked_rank", 11)),
         ("minor_rows", lambda row: row["fixture"]["minor_rows"].pop()),
         ("det", lambda row: row["fixture"].__setitem__("minor_determinant", 0)),
+        ("holonomy", lambda row: row["fixture"]["canonical_square_holonomies"].__setitem__(0, 1)),
         ("terminal", lambda row: row["conclusion"].__setitem__("terminal", "K3_CLOSED")),
         ("row", lambda row: row["conclusion"].__setitem__("row_status", "CLOSED")),
         ("nonclaim", lambda row: row["nonclaims"].pop()),

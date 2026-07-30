@@ -1,11 +1,20 @@
 {
   "conclusion": {
     "deleted_fixture": true,
-    "next_gate": "exclude full-support kernels for every admissible s=6 ownership or reconstruct an actual owner",
+    "next_gate": "prove nonidentity holonomy or exclude full-support kernels for every admissible s=6 ownership, or reconstruct an actual owner",
     "row_status": "OPEN",
     "terminal": "M2_R2_DIHEDRAL_DEGREE3_ENDPOINT_COFACTOR_INTERPOLATION_COMPILER"
   },
   "fixture": {
+    "all_canonical_squares_nonidentity": true,
+    "canonical_square_holonomies": [
+      11,
+      26,
+      17,
+      2,
+      41,
+      31
+    ],
     "complete_source_roots": [
       3,
       6,
@@ -160,6 +169,7 @@
   },
   "interpolation": {
     "cofactor_fibers": "E_i(X)=B(X)/(z_i(X)*H(alpha_i,X))",
+    "cycle_gate": "every directed star cycle has transport product one",
     "endpoint_form": "M(T,X)=sum_i kappa_i*L_i(T)*B(X)/z_i(X)",
     "equivalence": "H divides M iff the stacked matrix has a full-support kernel",
     "kernel_equations": [
@@ -170,10 +180,11 @@
       38,
       12
     ],
+    "star_transport": "rho_(a->b)(x)=-((alpha_a-alpha_c)E_a(x))/((alpha_b-alpha_c)E_b(x))",
     "support_requirement": "all twelve w_i are nonzero"
   },
   "nonclaims": [
-    "no universal locator-ownership exclusion",
+    "no universal locator-ownership holonomy or rank exclusion",
     "no deployed endpoint-record deletion",
     "no carrier, data, explaining-polynomial, or slope owner",
     "no payment, K3, KoalaBear, endpoint, or Prize close"
@@ -185,6 +196,6 @@
     "commit": "fce150e3323ce37f261b21c19685f4613552dd42",
     "imported_terminal": "M2_R2_DIHEDRAL_DEGREE3_GEOMETRIC_REALIZATION_FENCE"
   },
-  "payload_sha256": "bf5cfd6b06a9dcfa56601023ed497cdba1f7a37bc3fa47f4cff4855b6fa86a66",
+  "payload_sha256": "c3d18d3bd47908726021a4b05964b45610ebe454355629494b4fdfcc356c63fc",
   "schema": "kb-mca-v4-m2-r2-dihedral-degree3-endpoint-cofactor-interpolation-compiler-v1"
 }
