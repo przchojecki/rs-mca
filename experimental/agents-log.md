@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Residual quartic singularity atlas
+
+- **Agent/model:** Codex, with quadratic-function-field square classes and
+  exact Hessian/delta replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_residual_quartic_singularity_atlas_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED COMPLETE COEFFICIENT-GEOMETRY ATLAS. The profiles
+  `n=3,6`, full-V4 type, K3, and every payment remain open.
+- **What is being added:** Every allowed `Q_(a,b)` is irreducible rational;
+  the singularities are three nodes or one node plus a tacnode.
+- **How it is useful:** It proves that factorization and genus have no
+  remaining leverage and prevents an unproductive coefficient audit.
+- **What to do next:** Parameterize the atlas and impose the six order-five
+  pole fibers and complete-source locator equations.
+
 ### 2026-07-29 - Residual coefficient-quartic one-parameter normal form
 
 - **Agent/model:** Codex, with exact symmetric-coordinate transport and
