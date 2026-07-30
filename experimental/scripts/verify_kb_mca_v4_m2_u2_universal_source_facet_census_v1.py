@@ -43,6 +43,17 @@ PARENT = {
     "certificate_payload_sha256": "f0b751301e56989bf6fbf19cf15e5ff8faa0d7d86e76278306950a488cdf5156",
     "terminal": "M2_R4_ORDER_TWO_SOURCE_SUBFIELD_AND_COEFFICIENT_COMPILERS",
 }
+SOURCE_REDUCTION_PARENT = {
+    "commit": "ad109774f7d9bc320e7e0c046ba83471f39d5cd9",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.md",
+    "note_blob_oid": "bd4ca8c756c22f6f475cb06c142de4c981d6b320",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.py",
+    "verifier_blob_oid": "c5e7338fc03acdd245c60291aea27b0cde521645",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-q6-u2-complete-source-conic-exclusion-v1/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.json",
+    "certificate_blob_oid": "61afd4534740c5ccabc6196919126c80c361e4c5",
+    "certificate_payload_sha256": "30a5d45895957f774ef972118e227fa54522fc27a48ee0e2a99a0d5a012a5451",
+    "terminal": "DELETED_BY_COMPLETE_SOURCE_DIVISOR_PROFILE_OBSTRUCTION",
+}
 
 
 def canonical_json(value: Any) -> str:
@@ -107,6 +118,51 @@ def load_parent() -> dict[str, Any]:
     return data
 
 
+def load_source_reduction_parent() -> dict[str, Any]:
+    for path_key, blob_key in (
+        ("note_path", "note_blob_oid"),
+        ("verifier_path", "verifier_blob_oid"),
+        ("certificate_path", "certificate_blob_oid"),
+    ):
+        require(
+            git_output(
+                "rev-parse",
+                f"{SOURCE_REDUCTION_PARENT['commit']}:"
+                f"{SOURCE_REDUCTION_PARENT[path_key]}",
+            )
+            == SOURCE_REDUCTION_PARENT[blob_key],
+            f"source-reduction blob {SOURCE_REDUCTION_PARENT[path_key]}",
+        )
+    data = parse_json(
+        git_output(
+            "show",
+            f"{SOURCE_REDUCTION_PARENT['commit']}:"
+            f"{SOURCE_REDUCTION_PARENT['certificate_path']}",
+        ),
+        SOURCE_REDUCTION_PARENT["certificate_path"],
+    )
+    require(
+        data.get("payload_sha256")
+        == SOURCE_REDUCTION_PARENT["certificate_payload_sha256"],
+        "source-reduction payload",
+    )
+    require(payload_hash(data) == data.get("payload_sha256"),
+            "source-reduction seal")
+    require(data["conclusion"]["terminal"] == SOURCE_REDUCTION_PARENT["terminal"],
+            "source-reduction terminal")
+    saturation = data["complete_source_saturation"]
+    require(saturation["component_source_degree"] == 2, "source degree")
+    require(saturation["row_binary_degree"] == 4, "source-row degree")
+    require(saturation["source_count"] == 12, "source-row count")
+    require(saturation["left_total_degree"] == 48, "source-row total degree")
+    require(
+        saturation["product_identity"]
+        == "product_i H(alpha_i,-) is proportional to B^2",
+        "source product identity",
+    )
+    return data
+
+
 def profile_replay() -> dict[str, Any]:
     profiles = sorted({
         tuple(sorted(4 - deficit for deficit in deficits))
@@ -139,7 +195,20 @@ def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
         "parent": PARENT,
+        "source_reduction_parent": SOURCE_REDUCTION_PARENT,
         "universal_source_facet": profile_replay(),
+        "universal_source_interpolation": {
+            "actual_source_bidegree": [2, 4],
+            "source_count": 12,
+            "row_binary_degree": 4,
+            "matrix_rows": 45,
+            "matrix_columns": 12,
+            "kernel_condition": "full support",
+            "complete_source_product": "product_i q_i is proportional to B^2",
+            "stabilizer_types_r_delta": [[2, 4], [4, 2], [8, 1]],
+            "uses_stabilizer_symmetry": False,
+            "applies_to_trivial_stabilizer": True,
+        },
         "scope": {
             "coordinate_order_two": True,
             "diagonal_order_two": True,
@@ -177,9 +246,14 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["universal_source_facet"].__setitem__("uses_stabilizer_symmetry", True),
         lambda x: x["scope"].__setitem__("trivial_stabilizer_r8_delta1", False),
         lambda x: x["scope"].__setitem__("coordinate_pairing_transferred_to_trivial", True),
+        lambda x: x["universal_source_interpolation"].__setitem__("matrix_rows", 44),
+        lambda x: x["universal_source_interpolation"].__setitem__("actual_source_bidegree", [4, 4]),
+        lambda x: x["universal_source_interpolation"].__setitem__("uses_stabilizer_symmetry", True),
+        lambda x: x["universal_source_interpolation"].__setitem__("applies_to_trivial_stabilizer", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
+        lambda x: x["source_reduction_parent"].__setitem__("certificate_payload_sha256", "0" * 64),
         lambda x: x.__setitem__("payload_sha256", "0" * 64),
     ]
     rejected = 0
@@ -202,6 +276,7 @@ def main() -> None:
     args = parser.parse_args()
 
     load_parent()
+    load_source_reduction_parent()
     expected = expected_certificate()
     if args.write:
         CERTIFICATE.parent.mkdir(parents=True, exist_ok=True)

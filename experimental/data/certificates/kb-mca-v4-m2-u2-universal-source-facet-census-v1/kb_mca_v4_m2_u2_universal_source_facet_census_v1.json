@@ -22,13 +22,24 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "e9938cade2f481c98f0899f2b67971cabbe8df5fa74c0f5518b9f24c0d8513c7",
+  "payload_sha256": "a72b8699c4eccc7b5428c78ca539733eec6ac2055dbfa73c8b7d508bba7ed3bf",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "coordinate_order_two": true,
     "coordinate_pairing_transferred_to_trivial": false,
     "diagonal_order_two": true,
     "trivial_stabilizer_r8_delta1": true
+  },
+  "source_reduction_parent": {
+    "certificate_blob_oid": "61afd4534740c5ccabc6196919126c80c361e4c5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-q6-u2-complete-source-conic-exclusion-v1/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.json",
+    "certificate_payload_sha256": "30a5d45895957f774ef972118e227fa54522fc27a48ee0e2a99a0d5a012a5451",
+    "commit": "ad109774f7d9bc320e7e0c046ba83471f39d5cd9",
+    "note_blob_oid": "bd4ca8c756c22f6f475cb06c142de4c981d6b320",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.md",
+    "terminal": "DELETED_BY_COMPLETE_SOURCE_DIVISOR_PROFILE_OBSTRUCTION",
+    "verifier_blob_oid": "c5e7338fc03acdd245c60291aea27b0cde521645",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.py"
   },
   "universal_source_facet": {
     "J_incidence_outside_K": 4,
@@ -83,6 +94,34 @@
       ]
     ],
     "ramification_counted_by_divisor_multiplicity": true,
+    "uses_stabilizer_symmetry": false
+  },
+  "universal_source_interpolation": {
+    "actual_source_bidegree": [
+      2,
+      4
+    ],
+    "applies_to_trivial_stabilizer": true,
+    "complete_source_product": "product_i q_i is proportional to B^2",
+    "kernel_condition": "full support",
+    "matrix_columns": 12,
+    "matrix_rows": 45,
+    "row_binary_degree": 4,
+    "source_count": 12,
+    "stabilizer_types_r_delta": [
+      [
+        2,
+        4
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        8,
+        1
+      ]
+    ],
     "uses_stabilizer_symmetry": false
   }
 }

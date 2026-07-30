@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census and one of five exhaustive K-fiber degree profiles.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census, one of five exhaustive K-fiber degree profiles, and the same exact 45-by-12 source-row interpolation gate.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact category census (10,10,4) and five exhaustive K-fiber degree profiles on the six J labels
+claimed_bound: exact category census (10,10,4), five exhaustive K-fiber degree profiles on the six J labels, and stabilizer-independent 45-by-12 source-row interpolation applicability
 status: PROVED_INTERFACE_ORDER_TWO_AND_TRIVIAL_TYPES_OPEN_K3_OPEN
-impact: GIVES_THE_FIRST_EXACT_SOURCE_FACET_INTERFACE_FOR_THE_TRIVIAL_STABILIZER_TYPE
-falsifier: an actual degree-two source component outside the category census or five profiles, or use of coordinate involution pairing in the trivial-stabilizer branch
+impact: GIVES_THE_FIRST_EXACT_SOURCE_FACET_AND_INTERPOLATION_INTERFACE_FOR_THE_TRIVIAL_STABILIZER_TYPE
+falsifier: an actual degree-two source component outside the category census or five profiles, failure of the shared source-row interpolation equivalence for the trivial-stabilizer branch, or use of coordinate involution pairing there
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -95,10 +95,31 @@ The coordinate involution separately narrows (2.2) to its two paired
 profiles. No such pairing is transferred to the diagonal or
 trivial-stabilizer type.
 
-## 3. Scope and next action
+## 3. Universal source-row gate
+
+The pinned complete-source reduction applies before any stabilizer or conic
+invariance argument. Every residual `u=2` outgoing component is represented
+by an irreducible bidegree-`(2,4)` source form with twelve nonzero quartic
+rows, and their product is proportional to `B^2`.
+
+The parent coefficient packet proves algebraically that twelve proposed
+projective quartic rows come from such a bidegree-at-most-`(2,4)` form if
+and only if the associated `45 x 12` matrix has a full-support kernel. No
+step in that interpolation equivalence uses a component stabilizer.
+Therefore the gate applies to all three stabilizer rows
+
+```text
+(r,delta)=(2,4), (4,2), (8,1).
+```
+
+This is an applicability theorem, not a claim that the matrix always lacks
+a full-support kernel.
+
+## 4. Scope and next action
 
 Proved: the universal category census, the five exhaustive integer profiles,
-and their applicability to the trivial-stabilizer type.
+their applicability to the trivial-stabilizer type, and the universal scope
+of the exact source-row interpolation gate.
 
 Not proved: a stabilizer action in the trivial branch, realization or
 deletion of any profile, universal failure of the shared source-row kernel,
