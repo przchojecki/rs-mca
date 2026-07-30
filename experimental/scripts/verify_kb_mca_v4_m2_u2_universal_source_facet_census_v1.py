@@ -308,6 +308,74 @@ def colored_resultant_split_replay() -> dict[str, Any]:
     }
 
 
+def coordinate_colored_quotient_replay() -> dict[str, Any]:
+    fibers = tuple((2 * index, 2 * index + 1) for index in range(6))
+    invariant = []
+    for subset in combinations(range(12), 4):
+        chosen = set(subset)
+        if all((left in chosen) == (right in chosen) for left, right in fibers):
+            invariant.append(chosen)
+    require(len(invariant) == 15, "coordinate quotient quadratics")
+    require(
+        all(sum({left, right} <= chosen for left, right in fibers) == 2
+            for chosen in invariant),
+        "two complete right fibers",
+    )
+
+    modulus = 101
+
+    def value(coefficients: list[int], point: int) -> int:
+        return sum(coefficient * pow(point, degree, modulus)
+                   for degree, coefficient in enumerate(coefficients)) % modulus
+
+    coefficients = {
+        "A2": [3, 5, 7], "A0": [11, 13, 17], "B1": [19, 23],
+        "A1": [29, 31, 37], "B2": [41, 43], "B0": [47, 53],
+    }
+    pair_checks = 0
+    for t, x in ((2, 3), (5, 7), (11, 13), (17, 19)):
+        w = x * x % modulus
+        y = t * t % modulus
+        positive_base = (value(coefficients["A2"], w) * y
+                         + value(coefficients["A0"], w)) % modulus
+        positive_odd = x * t * value(coefficients["B1"], w) % modulus
+        require(
+            (positive_base + positive_odd) * (positive_base - positive_odd)
+            % modulus
+            == (positive_base**2
+                - w * y * value(coefficients["B1"], w) ** 2) % modulus,
+            "positive coordinate pair",
+        )
+        negative_even = t * value(coefficients["A1"], w) % modulus
+        negative_odd = x * (
+            value(coefficients["B2"], w) * y
+            + value(coefficients["B0"], w)
+        ) % modulus
+        require(
+            (negative_even + negative_odd) * (-negative_even + negative_odd)
+            % modulus
+            == (w * (value(coefficients["B2"], w) * y
+                     + value(coefficients["B0"], w)) ** 2
+                - y * value(coefficients["A1"], w) ** 2) % modulus,
+            "negative coordinate pair",
+        )
+        pair_checks += 2
+    return {
+        "colored_quartic_descends_to_squarefree_quotient_quadratic": True,
+        "quotient_quadratic_count_on_six_free_fibers": len(invariant),
+        "right_colored_degree_profile": [0, 0, 0, 0, 2, 2],
+        "positive_parameter_dimension": 8,
+        "negative_parameter_dimension": 7,
+        "positive_Phi": "(A_2*Y+A_0)^2-W*Y*B_1^2",
+        "negative_Phi": "W*(B_2*Y+B_0)^2-Y*A_1^2",
+        "partial_resultant": "R_S=Res_Y(p_S,Phi_epsilon)",
+        "J_identity": "R_J is proportional to K_5^2*c",
+        "I_identity": "c*R_I is proportional to R_7^2",
+        "pair_checks": pair_checks,
+        "coordinate_orientation_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -317,6 +385,7 @@ def expected_certificate() -> dict[str, Any]:
         "universal_source_facet": profile_replay(),
         "component_color_profile_cut": component_color_replay(),
         "colored_source_resultant_split": colored_resultant_split_replay(),
+        "coordinate_colored_quotient_resultant": coordinate_colored_quotient_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -340,7 +409,7 @@ def expected_certificate() -> dict[str, Any]:
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_COLOR_INTERPOLATION_AND_RESULTANT_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_AND_COORDINATE_QUOTIENT_RESULTANT_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -377,6 +446,10 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["colored_source_resultant_split"].__setitem__("colored_divisor_squarefree", False),
         lambda x: x["colored_source_resultant_split"].__setitem__("common_K_pullback_degree", 9),
         lambda x: x["colored_source_resultant_split"].__setitem__("left_deficit_recovery", "untracked"),
+        lambda x: x["coordinate_colored_quotient_resultant"].__setitem__("quotient_quadratic_count_on_six_free_fibers", 14),
+        lambda x: x["coordinate_colored_quotient_resultant"].__setitem__("positive_parameter_dimension", 9),
+        lambda x: x["coordinate_colored_quotient_resultant"].__setitem__("negative_Phi", "wrong"),
+        lambda x: x["coordinate_colored_quotient_resultant"].__setitem__("coordinate_orientation_deleted", True),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -422,6 +495,7 @@ def main() -> None:
         f"raw_profiles={data['universal_source_facet']['profile_count']} "
         f"surviving_profiles={data['component_color_profile_cut']['surviving_profile_count']} "
         f"colored_divisors={data['colored_source_resultant_split']['four_root_divisors_checked']} "
+        f"coordinate_quotients={data['coordinate_colored_quotient_resultant']['quotient_quadratic_count_on_six_free_fibers']} "
         f"tamper_rejected={rejected}"
     )
 

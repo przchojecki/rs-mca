@@ -58,8 +58,29 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_COLOR_INTERPOLATION_AND_RESULTANT_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_AND_COORDINATE_QUOTIENT_RESULTANT_INTERFACES",
     "trivial_stabilizer_type_deleted": false
+  },
+  "coordinate_colored_quotient_resultant": {
+    "I_identity": "c*R_I is proportional to R_7^2",
+    "J_identity": "R_J is proportional to K_5^2*c",
+    "colored_quartic_descends_to_squarefree_quotient_quadratic": true,
+    "coordinate_orientation_deleted": false,
+    "negative_Phi": "W*(B_2*Y+B_0)^2-Y*A_1^2",
+    "negative_parameter_dimension": 7,
+    "pair_checks": 8,
+    "partial_resultant": "R_S=Res_Y(p_S,Phi_epsilon)",
+    "positive_Phi": "(A_2*Y+A_0)^2-W*Y*B_1^2",
+    "positive_parameter_dimension": 8,
+    "quotient_quadratic_count_on_six_free_fibers": 15,
+    "right_colored_degree_profile": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      2
+    ]
   },
   "nonclaims": [
     "no stabilizer action or paired degree profile in the trivial branch",
@@ -77,7 +98,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "677782fc5ad5f028595f4b71b3383252bc104fd8cbf569c58ade300383421461",
+  "payload_sha256": "49131c6962e551c529d0681427ef9fee0eb10ea2bb42ffa5f46db3c63710ca8c",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "coordinate_order_two": true,

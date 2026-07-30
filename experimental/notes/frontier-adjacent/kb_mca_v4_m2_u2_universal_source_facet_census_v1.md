@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, and its I/J row products split through one squarefree colored quartic.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, and the coordinate orientation descends this to explicit quotient-resultant equations.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact category census (10,10,4), exactly three component-color-compatible K-fiber profiles, stabilizer-independent 45-by-12 interpolation, and exact I/J partial-resultant identities through one squarefree colored quartic
-status: PROVED_FACET_COLOR_INTERPOLATION_AND_RESULTANT_INTERFACES_ORDER_TWO_AND_TRIVIAL_TYPES_OPEN_K3_OPEN
-impact: GIVES_THE_FIRST_EXACT_SOURCE_FACET_COLOR_INTERPOLATION_AND_RESULTANT_INTERFACE_FOR_THE_TRIVIAL_STABILIZER_TYPE
-falsifier: an actual degree-two component outside the category census or three color-compatible profiles, failure of the shared interpolation or colored partial-resultant identities in the trivial-stabilizer branch, or use of coordinate involution pairing there
+claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic and explicit 8/7-dimensional cubic-norm equations
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_AND_COORDINATE_QUOTIENT_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_AN_EXPLICIT_COORDINATE_NORM_FACTORIZATION_SYSTEM
+falsifier: an actual degree-two component outside the universal source interfaces, or a coordinate component whose colored divisor does not descend or whose printed paired-root resultants fail
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -161,7 +161,31 @@ Thus one four-edge divisor controls both partial resultants and recovers
 the surviving profile. This is an exact compiler, not a construction or a
 universal resultant failure.
 
-## 6. Scope and next action
+## 6. Coordinate quotient-resultant specialization
+
+In the coordinate orientation, star transport preserves the `I-J`
+category. Hence `C_H` is deck invariant and has the form `c(W)` for a
+squarefree quotient quadratic selecting two complete right pole-graph
+fibers. Since `I,J` are invariant under `T->-T`, write
+`P_S(T)=p_S(T^2)`. The positive and negative source forms give
+
+```text
+Phi_+=(A_2Y+A_0)^2-WYB_1^2,
+Phi_-=W(B_2Y+B_0)^2-YA_1^2,
+R_S=Res_Y(p_S,Phi_epsilon).
+```
+
+The colored split becomes
+
+```text
+R_J~K_5^2c,       cR_I~R_7^2.                     (6.1)
+```
+
+This is an explicit univariate system in the existing eight or seven
+source coefficients plus a two-fiber choice. Neither parity system is
+proved empty.
+
+## 7. Scope and next action
 
 Proved: the universal category census, the five exhaustive raw integer
 profiles, the exact three-profile component-color cut, applicability to the
@@ -177,3 +201,6 @@ For the `(8,1)` type, classify squarefree four-edge divisors `C_H` and route
 their two partial-resultant identities through the `45 x 12` source
 interpolation gate and complete-source defect budget. Retain exact degree,
 irreducibility, deck distinction, and outer-factor side conditions.
+
+For the coordinate type, solve `(6.1)` separately in the positive and
+negative parity spaces before generic endpoint reconstruction.
