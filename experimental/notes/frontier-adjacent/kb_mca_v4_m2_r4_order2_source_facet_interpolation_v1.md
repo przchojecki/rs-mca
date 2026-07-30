@@ -127,13 +127,16 @@ source component. The quadratic base change has two distinct components:
 G(T,psi(X)) ~ H(T,X) H(T,bX).                       (3.1)
 ```
 
-For `psi^(-1)(alpha_p)={x_p,bx_p}` put
+Write the degree-two fiber divisor as
+`psi^*[alpha_p]=[x_p]+[bx_p]`, allowing `x_p=bx_p` at ramification, and
+put
 
 ```text
 R_p(T)=H(T,x_p)H(T,bx_p).                           (3.2)
 ```
 
-This is projectively `G(T,alpha_p)`. If
+This is projectively `G(T,alpha_p)`; at ramification it is
+`H(T,x_p)^2`. If
 `tau(alpha_p)=alpha_bar(p)`, diagonal invariance gives the binary-quartic
 identity
 
