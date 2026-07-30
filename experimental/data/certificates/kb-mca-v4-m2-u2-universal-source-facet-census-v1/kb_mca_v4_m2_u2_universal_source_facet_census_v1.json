@@ -1,0 +1,88 @@
+{
+  "conclusion": {
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "order_two_type_deleted": false,
+    "terminal": "M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS",
+    "trivial_stabilizer_type_deleted": false
+  },
+  "nonclaims": [
+    "no stabilizer action or paired degree profile in the trivial branch",
+    "no universal source-row kernel failure",
+    "no component, type, owner, payment, K3, row, or Prize close"
+  ],
+  "parent": {
+    "certificate_blob_oid": "033043e7a0969ea9f98207567b890b10e3077271",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r4-order2-source-subfield-coefficient-compilers-v1/kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.json",
+    "certificate_payload_sha256": "f0b751301e56989bf6fbf19cf15e5ff8faa0d7d86e76278306950a488cdf5156",
+    "commit": "c88438d7109cf7acd7caebaf006f21c776b74d74",
+    "note_blob_oid": "f58c2ea9cea88dfc6be637e9f1f14e86e8862cc6",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.md",
+    "terminal": "M2_R4_ORDER_TWO_SOURCE_SUBFIELD_AND_COEFFICIENT_COMPILERS",
+    "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
+  },
+  "payload_sha256": "e9938cade2f481c98f0899f2b67971cabbe8df5fa74c0f5518b9f24c0d8513c7",
+  "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
+  "scope": {
+    "coordinate_order_two": true,
+    "coordinate_pairing_transferred_to_trivial": false,
+    "diagonal_order_two": true,
+    "trivial_stabilizer_r8_delta1": true
+  },
+  "universal_source_facet": {
+    "J_incidence_outside_K": 4,
+    "J_incidence_over_K": 20,
+    "category_census": {
+      "I-I": 10,
+      "I-J": 4,
+      "J-J": 10
+    },
+    "maximum_absent_J_labels": 1,
+    "profile_count": 5,
+    "profiles": [
+      [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        1,
+        3,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ]
+    ],
+    "ramification_counted_by_divisor_multiplicity": true,
+    "uses_stabilizer_symmetry": false
+  }
+}
