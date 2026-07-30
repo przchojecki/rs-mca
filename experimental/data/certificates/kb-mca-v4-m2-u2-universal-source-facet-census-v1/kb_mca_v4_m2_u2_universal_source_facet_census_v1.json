@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_AND_C2_112_SOURCE_QUOTIENT_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_AND_C2_112_ODD_INCIDENCE_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -184,6 +184,30 @@
     "row_112_deleted": false,
     "source_line_only": true,
     "universal_I_J_stars_exhausted": 4
+  },
+  "diagonal_c2_112_source_line_odd_incidence": {
+    "admissible_internal_edge_pairs": 12,
+    "admissible_pairs_share_exactly_one_endpoint": true,
+    "common_root_equations": [
+      "U(a,z)=0",
+      "V(a,z)=0"
+    ],
+    "forced_ramified_branch_retained": true,
+    "forced_unramified_signs_checked": 2,
+    "incidence_denominator_nonzero_by_J0_J1_disjointness": true,
+    "incidence_equation": "z=-N_epsilon(a)/D_epsilon(a)",
+    "internal_common_K_orbit_unramified": true,
+    "internal_edge_pairs_checked": 21,
+    "internal_ramification_defect_floor": 2,
+    "odd_part_nonzero_by_deck_distinction": true,
+    "odd_part_projective_class_unique": true,
+    "ramified_edge_types_checked": 6,
+    "rational_fixture_values": [
+      "223/239",
+      "-241/353"
+    ],
+    "remaining_defect_budget": 1,
+    "row_112_deleted": false
   },
   "diagonal_c2_square_fiber_linear_cut": {
     "V_evaluation_determinant": "epsilon*(1-w^2)*(1+epsilon*w)",
@@ -367,6 +391,7 @@
     "no deletion of the remaining four diagonal orbit rows",
     "no realization claim for any saturated (1,1,2) packet",
     "no colored quotient descent for the biquadratic or exceptional (1,1,2) branch",
+    "no deletion of the forced-ramified saturated (1,1,2) source-line branch",
     "no component, type, owner, payment, K3, row, or Prize close"
   ],
   "parent": {
@@ -380,7 +405,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "f1b0339b6b70a9f1055ba0910a53713712348b36d1b9e94ab7fd22d14f8a502b",
+  "payload_sha256": "50d33764080e90fce4c75f74836f51897fbc5d1f2f20cbca2e65b659ef582468",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "aligned_c6_deleted": true,
@@ -391,6 +416,7 @@
     "partition_preserving_diagonal_subcase_deleted": true,
     "row_112_saturated_defect_classified": true,
     "row_112_source_line_colored_quotient_compiled": true,
+    "row_112_source_line_odd_incidence_compiled": true,
     "row_202_deleted_all_source_subfield_branches": true,
     "row_202_ramified_source_line_deleted": true,
     "saturated_c2_source_line_linear_cut": true,

@@ -1039,6 +1039,93 @@ def diagonal_c2_112_source_line_colored_quotient_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_c2_112_source_line_odd_incidence_replay() -> dict[str, Any]:
+    edges = list(combinations(range(4), 2))
+    edge_index = {edge: index for index, edge in enumerate(edges)}
+    tau = {0: 1, 1: 0, 2: 3, 3: 2}
+    tau_edge = {
+        index: edge_index[tuple(sorted((tau[left], tau[right])))]
+        for index, (left, right) in enumerate(edges)
+    }
+
+    def collision(weights):
+        return sum(weight * (weight - 1) // 2
+                   for weight in weights.values())
+
+    pairs_checked = 0
+    admissible_pairs = 0
+    for first, second in combinations_with_replacement(range(6), 2):
+        pairs_checked += 1
+        packet = Counter((first, second, tau_edge[first], tau_edge[second]))
+        if collision(packet) > 1:
+            continue
+        require(first != second, "c2 112 internal stars distinct")
+        require(len(set(edges[first]) & set(edges[second])) == 1,
+                "c2 112 internal stars adjacent")
+        admissible_pairs += 1
+    require((pairs_checked, admissible_pairs) == (21, 12),
+            "c2 112 internal edge-pair census")
+
+    ramified_costs = []
+    for edge in range(6):
+        packet = Counter((edge, edge, tau_edge[edge], tau_edge[edge]))
+        ramified_costs.append(collision(packet))
+    require(min(ramified_costs) == 2,
+            "c2 112 internal ramification defect floor")
+
+    fixtures = []
+    for epsilon in (1, -1):
+        w = Fraction(2, 5)
+        q0, q1, q2 = Fraction(21, 11), Fraction(-10, 3), Fraction(1)
+        f = q0 - epsilon * w * q2
+        g = epsilon * q2 - w * q0
+        m = q1 * (1 - epsilon * w)
+
+        at_w = (
+            f + g * w,
+            m * (1 + epsilon * w),
+            epsilon * (g + f * w),
+        )
+        require(at_w == tuple((1 - w * w) * value
+                              for value in (q0, q1, q2)),
+                "c2 112 odd-part forced evaluation")
+
+        a = Fraction(7, 4)
+        numerator = f + m * a + epsilon * g * a * a
+        denominator = g + epsilon * m * a + epsilon * f * a * a
+        require(denominator != 0, "c2 112 odd-incidence denominator")
+        z = -numerator / denominator
+
+        def odd_value(t, W):
+            return ((f + g * W) + m * (1 + epsilon * W) * t
+                    + epsilon * (g + f * W) * t * t)
+
+        require(odd_value(a, z) == 0, "c2 112 odd incidence")
+        require(a * a * z * odd_value(1 / a, 1 / z)
+                == epsilon * odd_value(a, z),
+                "c2 112 odd reciprocal identity")
+        fixtures.append(str(z))
+
+    return {
+        "internal_edge_pairs_checked": pairs_checked,
+        "admissible_internal_edge_pairs": admissible_pairs,
+        "admissible_pairs_share_exactly_one_endpoint": True,
+        "ramified_edge_types_checked": len(ramified_costs),
+        "internal_ramification_defect_floor": min(ramified_costs),
+        "remaining_defect_budget": 1,
+        "internal_common_K_orbit_unramified": True,
+        "common_root_equations": ["U(a,z)=0", "V(a,z)=0"],
+        "forced_unramified_signs_checked": 2,
+        "odd_part_nonzero_by_deck_distinction": True,
+        "odd_part_projective_class_unique": True,
+        "incidence_equation": "z=-N_epsilon(a)/D_epsilon(a)",
+        "incidence_denominator_nonzero_by_J0_J1_disjointness": True,
+        "rational_fixture_values": fixtures,
+        "forced_ramified_branch_retained": True,
+        "row_112_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -1055,6 +1142,7 @@ def expected_certificate() -> dict[str, Any]:
         "diagonal_c2_square_fiber_linear_cut": diagonal_c2_square_fiber_linear_cut_replay(),
         "diagonal_c2_112_saturated_defect": diagonal_c2_112_saturated_defect_replay(),
         "diagonal_c2_112_source_line_colored_quotient": diagonal_c2_112_source_line_colored_quotient_replay(),
+        "diagonal_c2_112_source_line_odd_incidence": diagonal_c2_112_source_line_odd_incidence_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -1080,13 +1168,14 @@ def expected_certificate() -> dict[str, Any]:
             "row_202_deleted_all_source_subfield_branches": True,
             "row_112_saturated_defect_classified": True,
             "row_112_source_line_colored_quotient_compiled": True,
+            "row_112_source_line_odd_incidence_compiled": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_AND_C2_112_SOURCE_QUOTIENT_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_AND_C2_112_ODD_INCIDENCE_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -1097,6 +1186,7 @@ def expected_certificate() -> dict[str, Any]:
             "no deletion of the remaining four diagonal orbit rows",
             "no realization claim for any saturated (1,1,2) packet",
             "no colored quotient descent for the biquadratic or exceptional (1,1,2) branch",
+            "no deletion of the forced-ramified saturated (1,1,2) source-line branch",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -1195,6 +1285,14 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_112_source_line_colored_quotient"].__setitem__("J_partial_resultant", "wrong"),
         lambda x: x["diagonal_c2_112_source_line_colored_quotient"].__setitem__("row_112_deleted", True),
         lambda x: x["scope"].__setitem__("row_112_source_line_colored_quotient_compiled", False),
+        lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("admissible_internal_edge_pairs", 11),
+        lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("internal_ramification_defect_floor", 1),
+        lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("internal_common_K_orbit_unramified", False),
+        lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("odd_part_nonzero_by_deck_distinction", False),
+        lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("incidence_equation", "unconstrained"),
+        lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("forced_ramified_branch_retained", False),
+        lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("row_112_deleted", True),
+        lambda x: x["scope"].__setitem__("row_112_source_line_odd_incidence_compiled", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1255,6 +1353,7 @@ def main() -> None:
         f"{data['diagonal_c2_112_saturated_defect']['source_line_matching_preserving_orbits']} "
         f"c2_112_quotient_rows={data['diagonal_c2_112_source_line_colored_quotient']['aligned_matching_rows_checked']}/"
         f"{data['diagonal_c2_112_source_line_colored_quotient']['near_saturated_matching_rows_checked']} "
+        f"c2_112_odd_pairs={data['diagonal_c2_112_source_line_odd_incidence']['admissible_internal_edge_pairs']} "
         f"tamper_rejected={rejected}"
     )
 
