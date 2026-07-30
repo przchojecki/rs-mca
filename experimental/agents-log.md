@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Full-V4 degree-two dihedral source-star exclusion
+
+- **Agent/model:** Codex, with exact regular-V4 coset incidence and exhaustive
+  four-bin defect replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree2_source_star_exclusion_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED DEGREE-TWO PROFILE EMPTY. The factor degrees `3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** One generic `D2` quotient pole has `K2,2`
+  reflection incidence. The normalized source cross-edge lemma then forces
+  eight units onto four vertices, with defect at least four above budget
+  three.
+- **How it is useful:** It deletes a second of the four exact full-V4 factor
+  profiles and leaves only the three- and six-cycle incidence problems.
+- **What to do next:** Analyze global orientation compatibility around those
+  cycles or impose the source-cover branch passport and coefficient equations.
+
 ### 2026-07-29 - Full-V4 degree-five dihedral source-star exclusion
 
 - **Agent/model:** Codex, with exact `D5` coset and source-multiplicity

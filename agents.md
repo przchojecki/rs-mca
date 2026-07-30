@@ -257,6 +257,12 @@ At this snapshot:
   matching source-star vertex, with total weight `2+2=4`.  This contradicts
   the proved quartic maximum weight `3`.  The surviving factor degrees are
   `n=2,3,6`; all three, the full-V4 type, K3, and every payment remain open.
+- The generic full-V4 `n=2` factor is also empty.  At one pole of `G`, the
+  regular `D_2=V4` coset incidence is `K_(2,2)`, so both `Z` values use the
+  same two `Y` values.  Their endpoint and complete-source lifts force eight
+  units onto four cross star vertices, of minimum defect `4` against budget
+  `3`.  The full-V4 factor frontier is `n=3,6`; both profiles, the type, K3,
+  and every payment remain open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -344,9 +350,9 @@ data, and slope semantics remain open.
 
 Inside the remaining full-V4 `m=2` type, rational outer geometry and the
 complete source-star gate reduce the recurrent dihedral factor list to
-`n=2,3,6`; the exceptional totally ramified `n=5` profile is proved empty.
-These three generic-pole profiles remain source-coupled targets, not owners
-or payments.
+`n=3,6`; the totally ramified `n=5` profile and the repeated-incidence `n=2`
+profile are proved empty.  The two surviving generic-pole profiles remain
+source-coupled targets, not owners or payments.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every
