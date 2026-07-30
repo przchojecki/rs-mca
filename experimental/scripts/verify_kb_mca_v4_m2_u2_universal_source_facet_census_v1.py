@@ -829,6 +829,15 @@ def diagonal_c2_square_fiber_linear_cut_replay() -> dict[str, Any]:
         "complete_source_defect_budget": 3,
         "row_202_ramified_source_line_deleted": True,
         "row_202_surviving_source_line_dimensions": [4, 3],
+        "row_202_square_vertices": 2,
+        "row_202_square_vertex_defect": 2,
+        "row_202_all_branch_total_defect": 2 + min(occupancy_defects),
+        "row_202_deleted_all_source_subfield_branches": True,
+        "row_202_source_subfield_branches_checked": ["source-line", "biquadratic"],
+        "diagonal_orbit_rows_remaining": [
+            [1, 1, 2], [1, 0, 4], [0, 1, 4], [0, 0, 6]
+        ],
+        "diagonal_orbit_row_count_remaining": 4,
         "source_line_branch_deleted": False,
     }
 
@@ -869,13 +878,14 @@ def expected_certificate() -> dict[str, Any]:
             "minimally_mixed_c2_capacity_refined": True,
             "saturated_c2_source_line_linear_cut": True,
             "row_202_ramified_source_line_deleted": True,
+            "row_202_deleted_all_source_subfield_branches": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_AND_C2_202_RAMIFIED_DEFECT_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_AND_C2_202_ROW_DEFECT_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -883,7 +893,7 @@ def expected_certificate() -> dict[str, Any]:
             "no complete deletion of any of the five diagonal mixing rows",
             "no contradiction from a reciprocal c=2 square fiber alone",
             "no exclusion of the ramified (1,1,2) c=2 source orbit",
-            "no deletion of the unramified (2,0,2) row or its biquadratic branch",
+            "no deletion of the remaining four diagonal orbit rows",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -961,6 +971,11 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("row_202_ramified_total_defect", 3),
         lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("row_202_ramified_source_line_deleted", False),
         lambda x: x["scope"].__setitem__("row_202_ramified_source_line_deleted", False),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("row_202_square_vertex_defect", 1),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("row_202_all_branch_total_defect", 3),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("row_202_deleted_all_source_subfield_branches", False),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"]["diagonal_orbit_rows_remaining"].pop(),
+        lambda x: x["scope"].__setitem__("row_202_deleted_all_source_subfield_branches", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1016,6 +1031,7 @@ def main() -> None:
         f"c2_linear_dims={data['diagonal_c2_square_fiber_linear_cut']['sign_spaces']['positive']['unramified_dimension']}/"
         f"{data['diagonal_c2_square_fiber_linear_cut']['sign_spaces']['negative']['unramified_dimension']} "
         f"c2_202_ramified_deleted={data['diagonal_c2_square_fiber_linear_cut']['row_202_ramified_source_line_deleted']} "
+        f"diagonal_rows_remaining={data['diagonal_c2_square_fiber_linear_cut']['diagonal_orbit_row_count_remaining']} "
         f"tamper_rejected={rejected}"
     )
 
