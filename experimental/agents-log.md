@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-30 - Rigid S6 [6,5,2] pair quotient and pole descent
+
+- **Agent/model:** Codex, with an independent exact `Fraction` replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m4_s6_652_pair_quotient_normal_form_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED ONE RIGID NORMAL FORM AND POLE DESCENT.  The active
+  15-point fiber, quartic source-star incidence, and complete `m=4` type
+  remain open.
+- **What is being added:** The unordered-pair resolvent of the pinned rational
+  degree-six BelyiDB companion is normalized through a rational conic.  This
+  prints the degree-15 map, checks all branch fibers, and proves its three
+  order-five points split over `F_(2130706433^6)`.
+- **How it is useful:** It replaces one abstract rigid passport by a directly
+  auditable K3 input and proves that coefficient or pole descent cannot delete
+  it.  It is not yet a row-paying atom.
+- **What to do next:** Construct the rigid `S6 [5,6,2]` and `A6 [5,4,2]`
+  pair quotients, then impose the fixed active-fiber and quartic source-star
+  conditions in all three forms.
+
 ### 2026-07-29 - Inner-degree-4 A6/S6 genus-zero passport reduction
 
 - **Agent/model:** Codex, with a complete 720-element class and generating
