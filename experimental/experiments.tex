@@ -3095,28 +3095,52 @@ No destination row is deleted or paid, and no \(u=2\), K3, KoalaBear-row,
 owner, or ledger closure follows.
 
 \paragraph{Inner degree 6 routes to degree 2 or the excluded degree 5.}
-For the ten original blocks of size (6), a trivial block kernel makes the
-global group one of the (45) transitive degree-(10) groups.  Since its
-point stabilizer has a primitive degree-(6) quotient, (600mid |G|).
-Only catalogue entries (40,ldots,45) survive.  The (A_{10}) and
-(S_{10}) point stabilizers (A_9,S_9) have no transitive degree-(6)
+For the ten original blocks of size \(6\), a trivial block kernel makes the
+global group one of the \(45\) transitive degree-\(10\) groups.  Since its
+point stabilizer has a primitive degree-\(6\) quotient, \(600\mid |G|\).
+Only catalogue entries \(40,\ldots,45\) survive.  The \(A_{10}\) and
+\(S_{10}\) point stabilizers \(A_9,S_9\) have no transitive degree-\(6\)
 quotient.  In each of the four remaining wreath groups, exact subgroup
-reconstruction gives endpoint and intermediate indices (6) and (5).
+reconstruction gives endpoint and intermediate indices \(6\) and \(5\).
 The resulting inner degree five is already excluded.
 
-For nontrivial kernel, (D=[N,N]) is subdirect in ten copies of (A_5)
-or (A_6).  Refine its Scott strips by twists realized on the six-point
-actions.  A compatible coordinate has stabilizer orbits (1,5), while an
+For nontrivial kernel, \(D=[N,N]\) is subdirect in ten copies of \(A_5\)
+or \(A_6\).  Refine its Scott strips by twists realized on the six-point
+actions.  A compatible coordinate has stabilizer orbits \(1,5\), while an
 incompatible coordinate or another strip contributes a transitive
 six-point orbit.  The actual four-point suborbit therefore consists of
-synchronized fixed counterparts in a uniform class of size (5) or
-(10).  Size five is excluded.  At size ten, the four points lie in one
-column fiber, but the primitive degree-(10) catalogue has no subdegree
-four.  The column map factors to inner degree (2) or (5), so only
-degree two survives.  Thus (m=6) has no independent producer and the
-frontier falls from (18) to (12) types in degrees (2,3,4).  Degree
-two is not deleted or paid, and no (u=2), K3, row, owner, or ledger
+synchronized fixed counterparts in a uniform class of size \(5\) or
+\(10\).  Size five is excluded.  At size ten, the four points lie in one
+column fiber, but the primitive degree-\(10\) catalogue has no subdegree
+four.  The column map factors to inner degree \(2\) or \(5\), so only
+degree two survives.  Thus \(m=6\) has no independent producer and the
+frontier falls from \(18\) to \(12\) types in degrees \(2,3,4\).  Degree
+two is not deleted or paid, and no \(u=2\), K3, row, owner, or ledger
 closure follows.
+
+\paragraph{Inner degree 4 cuts to one outer \(A_6/S_6\) type.}
+The four incoming source-rank rows are
+\[
+  (r,\delta)=(1,16),(2,8),(4,4),(8,2).
+\]
+The complete primitive degree-\(15\) catalogue consists of \(A_7\),
+\(A_6\), \(S_6\), \(\operatorname{PSL}(4,2)\), \(A_{15}\), and
+\(S_{15}\).  Its nontrivial point-stabilizer subdegrees are \(14\), except
+for the two-subset actions of \(A_6,S_6\), whose subdegrees are \(6,8\).
+Thus the rows with \(r=1,2,4\) force a proper right factor of the outer
+degree-\(15\) map.  Such a factor has degree \(3\) or \(5\), so composition
+with the degree-\(4\) inner map routes the endpoint to inner degree \(12\)
+or \(20\).  Degree \(12\) is already closed.  Degree \(20\) is impossible:
+the three exceptional pole fibers each have profile \(5^4\), contributing
+\(3\cdot4\cdot(5-1)=48>2\cdot20-2=38\) to Riemann--Hurwitz.
+
+Only \((r,\delta)=(8,2)\) can remain, and its primitive outer monodromy is
+\(A_6\) or \(S_6\) on the fifteen two-subsets of six letters.  Exact action
+reconstruction gives subdegrees \(1,6,8\); a five-cycle fixing one letter
+acts with cycle profile \(5^3\), so the prescribed outer pole fiber is
+compatible and the survivor is not closed.  The transverse frontier falls
+from \(12\) to \(9\) types in inner degrees \(2,3,4\).  No destination row,
+\(u=2\), K3, KoalaBear row, owner, or ledger payment follows.
 
 The abstract compiler proposed in PR \#1119 proves only the taut finite-set
 fact that least-owner selection partitions candidate-supplied records and the

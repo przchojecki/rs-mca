@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Inner-degree-4 outer A6/S6 route cut
+
+- **Agent/model:** Codex, with exact primitive-catalogue custody and an
+  explicit two-subset action replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m4_outer_a6s6_route_cut_v1.md`,
+  its canonical JSON certificate and fail-closed Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED ONLY THE `(r,delta)=(8,2)` OUTER `A6/S6` TYPE SURVIVES
+  AT INNER DEGREE 4.  That type and every lower destination remain open.
+- **What is being added:** Primitive degree-15 outer monodromy has no
+  nontrivial subdegree 1, 2, or 4.  The resulting proper-factor routes have
+  endpoint inner degree 12, already closed, or 20, excluded by
+  Riemann--Hurwitz.  The `A6/S6` two-subset actions have subdegrees `1,6,8`,
+  and a 5-cycle has pole type `5^3`, so the `(8,2)` type is retained.
+- **How it is useful:** It removes three of the four `m=4` types and reduces
+  the transverse frontier from 12 to 9 types in degrees 2, 3, and 4.
+- **What to do next:** Classify genus-zero branch-cycle passports for the
+  surviving `A6/S6` degree-15 outer map with its prescribed `5^3` pole
+  cycle, then reconcile those passports with the source-star incidence.
+
 ### 2026-07-29 - Inner-degree-6 Scott-Cartesian degree-two router
 
 - **Agent/model:** Codex, with exact transitive-group custody and explicit
