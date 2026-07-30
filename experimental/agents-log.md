@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-30 - Rigid S6 [5,6,2] pair quotient and pole descent
+
+- **Agent/model:** Codex, with exact shared `Fraction` polynomial primitives.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m4_s6_562_pair_quotient_normal_form_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED SECOND RIGID NORMAL FORM AND POLE DESCENT.  Active-fiber
+  and source-star incidence remain open.
+- **What is being added:** A cubic-adjoint normalization of the unordered-pair
+  quintic prints the second rational degree-15 map and proves its three
+  order-five points split over the KoalaBear field.
+- **How it is useful:** Two of the three rigid `m=4` covers are now explicit;
+  coefficient and pole descent delete neither.  This remains a local K3 input,
+  not a row-paying atom.
+- **What to do next:** Construct the quadratic-field `A6 [5,4,2]` cover, then
+  impose the fixed active-fiber and quartic source-star conditions in all
+  three rigid forms.
+
 ### 2026-07-30 - Rigid S6 [6,5,2] pair quotient and pole descent
 
 - **Agent/model:** Codex, with an independent exact `Fraction` replay.
