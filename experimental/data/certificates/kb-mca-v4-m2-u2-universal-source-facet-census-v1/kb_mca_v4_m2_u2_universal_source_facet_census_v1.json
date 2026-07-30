@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_AND_COORDINATE_QUOTIENT_RESULTANT_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_AND_VIETA_RANK_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -82,6 +82,33 @@
       2
     ]
   },
+  "coordinate_k_fiber_vieta_rank": {
+    "coordinate_orientation_deleted": false,
+    "deck_checks": 5,
+    "deck_invariant_edge_coordinates": [
+      "p=ab",
+      "q=r*s*(a+b)"
+    ],
+    "negative_matrix_shape": [
+      10,
+      7
+    ],
+    "negative_product_matrix_shape": [
+      5,
+      4
+    ],
+    "negative_product_sample_rank": 3,
+    "negative_ramified_K_excluded": true,
+    "negative_sample_rank": 6,
+    "negative_sum_determinant_rank": 4,
+    "positive_matrix_shape": [
+      10,
+      8
+    ],
+    "positive_ramified_test_fibers": 2,
+    "positive_sample_rank": 7,
+    "positive_small_determinant_rank": 3
+  },
   "nonclaims": [
     "no stabilizer action or paired degree profile in the trivial branch",
     "no universal source-row kernel failure",
@@ -98,7 +125,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "49131c6962e551c529d0681427ef9fee0eb10ea2bb42ffa5f46db3c63710ca8c",
+  "payload_sha256": "ba77d21b4da577dcb4eafc375d36e4df18644c6c284cf0e53a3350c4011d8a85",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "coordinate_order_two": true,

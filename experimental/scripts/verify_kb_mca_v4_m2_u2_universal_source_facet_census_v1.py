@@ -376,6 +376,138 @@ def coordinate_colored_quotient_replay() -> dict[str, Any]:
     }
 
 
+def coordinate_k_fiber_vieta_replay() -> dict[str, Any]:
+    modulus = 101
+
+    def inverse(value: int) -> int:
+        return pow(value % modulus, modulus - 2, modulus)
+
+    def binary_value(coefficients: list[int], u: int, v: int) -> int:
+        degree = len(coefficients) - 1
+        return sum(
+            coefficient * pow(u, index, modulus)
+            * pow(v, degree - index, modulus)
+            for index, coefficient in enumerate(coefficients)
+        ) % modulus
+
+    def matrix_rank(matrix: list[list[int]]) -> int:
+        work = [[entry % modulus for entry in row] for row in matrix]
+        pivot_row = 0
+        for column in range(len(work[0])):
+            pivot = next((
+                row for row in range(pivot_row, len(work))
+                if work[row][column]
+            ), None)
+            if pivot is None:
+                continue
+            work[pivot_row], work[pivot] = work[pivot], work[pivot_row]
+            scale = inverse(work[pivot_row][column])
+            work[pivot_row] = [entry * scale % modulus
+                               for entry in work[pivot_row]]
+            for row in range(len(work)):
+                if row == pivot_row or not work[row][column]:
+                    continue
+                scale = work[row][column]
+                work[row] = [
+                    (left - scale * right) % modulus
+                    for left, right in zip(work[row], work[pivot_row])
+                ]
+            pivot_row += 1
+        return pivot_row
+
+    deck_checks = 0
+    for r, s, left, right in (
+        (1, 1, 2, 3), (2, 1, -1, 4), (3, 1, 5, -2),
+        (0, 1, 7, -7), (1, 0, 9, -9),
+    ):
+        require(left * right == (-left) * (-right), "deck product")
+        require(
+            r * s * (left + right)
+            == (-r) * s * ((-left) + (-right)),
+            "deck weighted sum",
+        )
+        deck_checks += 1
+
+    positive_points = [(0, 1), (1, 0), (1, 1), (4, 1), (9, 1)]
+    a2, a0, b1 = [3, 5, 7], [11, 13, 17], [19, 23]
+    positive_rows = []
+    positive_small_rows = []
+    for u, v in positive_points:
+        lead = binary_value(a2, u, v)
+        require(lead != 0, "positive leading support")
+        product_value = binary_value(a0, u, v) * inverse(lead) % modulus
+        weighted_sum = (
+            -u * v * binary_value(b1, u, v) * inverse(lead)
+        ) % modulus
+        v2 = [v * v % modulus, u * v % modulus, u * u % modulus]
+        positive_rows.extend((
+            [(-product_value * value) % modulus for value in v2]
+            + v2 + [0, 0],
+            [(weighted_sum * value) % modulus for value in v2]
+            + [0, 0, 0, u * v * v % modulus, u * u * v % modulus],
+        ))
+        positive_small_rows.append([
+            weighted_sum * v * v % modulus,
+            weighted_sum * u * v % modulus,
+            weighted_sum * u * u % modulus,
+            u * v * v % modulus,
+            u * u * v % modulus,
+        ])
+
+    negative_points = [(1, 1), (4, 1), (9, 1), (16, 1), (25, 1)]
+    b2, b0, a1 = [3, 5], [7, 11], [13, 17, 19]
+    negative_rows = []
+    negative_product_rows = []
+    negative_sum_rows = []
+    for u, v in negative_points:
+        lead = binary_value(b2, u, v)
+        require(u * v * lead != 0, "negative leading support")
+        product_value = binary_value(b0, u, v) * inverse(lead) % modulus
+        weighted_sum = -binary_value(a1, u, v) * inverse(lead) % modulus
+        v1 = [v, u]
+        v2 = [v * v % modulus, u * v % modulus, u * u % modulus]
+        negative_rows.extend((
+            [(-product_value * value) % modulus for value in v1]
+            + v1 + [0, 0, 0],
+            [(weighted_sum * value) % modulus for value in v1]
+            + [0, 0] + v2,
+        ))
+        negative_product_rows.append([
+            -product_value * v % modulus, -product_value * u % modulus,
+            v, u,
+        ])
+        negative_sum_rows.append([
+            weighted_sum * v % modulus, weighted_sum * u % modulus,
+            v * v % modulus, u * v % modulus, u * u % modulus,
+        ])
+
+    positive_rank = matrix_rank(positive_rows)
+    positive_small_rank = matrix_rank(positive_small_rows)
+    negative_rank = matrix_rank(negative_rows)
+    negative_product_rank = matrix_rank(negative_product_rows)
+    negative_sum_rank = matrix_rank(negative_sum_rows)
+    require(positive_rank <= 7, "positive Vieta kernel")
+    require(positive_small_rank <= 4, "positive determinant")
+    require(negative_rank <= 6, "negative Vieta kernel")
+    require(negative_product_rank <= 3, "negative product rank")
+    require(negative_sum_rank <= 4, "negative determinant")
+    return {
+        "deck_invariant_edge_coordinates": ["p=ab", "q=r*s*(a+b)"],
+        "deck_checks": deck_checks,
+        "positive_matrix_shape": [10, 8],
+        "positive_sample_rank": positive_rank,
+        "positive_small_determinant_rank": positive_small_rank,
+        "positive_ramified_test_fibers": 2,
+        "negative_matrix_shape": [10, 7],
+        "negative_sample_rank": negative_rank,
+        "negative_product_matrix_shape": [5, 4],
+        "negative_product_sample_rank": negative_product_rank,
+        "negative_sum_determinant_rank": negative_sum_rank,
+        "negative_ramified_K_excluded": True,
+        "coordinate_orientation_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -386,6 +518,7 @@ def expected_certificate() -> dict[str, Any]:
         "component_color_profile_cut": component_color_replay(),
         "colored_source_resultant_split": colored_resultant_split_replay(),
         "coordinate_colored_quotient_resultant": coordinate_colored_quotient_replay(),
+        "coordinate_k_fiber_vieta_rank": coordinate_k_fiber_vieta_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -409,7 +542,7 @@ def expected_certificate() -> dict[str, Any]:
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_AND_COORDINATE_QUOTIENT_RESULTANT_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_AND_VIETA_RANK_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -450,6 +583,12 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["coordinate_colored_quotient_resultant"].__setitem__("positive_parameter_dimension", 9),
         lambda x: x["coordinate_colored_quotient_resultant"].__setitem__("negative_Phi", "wrong"),
         lambda x: x["coordinate_colored_quotient_resultant"].__setitem__("coordinate_orientation_deleted", True),
+        lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("positive_matrix_shape", [9, 8]),
+        lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("positive_ramified_test_fibers", 0),
+        lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("negative_matrix_shape", [10, 8]),
+        lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("negative_product_sample_rank", 4),
+        lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("negative_ramified_K_excluded", False),
+        lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("coordinate_orientation_deleted", True),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -496,6 +635,8 @@ def main() -> None:
         f"surviving_profiles={data['component_color_profile_cut']['surviving_profile_count']} "
         f"colored_divisors={data['colored_source_resultant_split']['four_root_divisors_checked']} "
         f"coordinate_quotients={data['coordinate_colored_quotient_resultant']['quotient_quadratic_count_on_six_free_fibers']} "
+        f"coordinate_vieta_rank={data['coordinate_k_fiber_vieta_rank']['positive_sample_rank']}/"
+        f"{data['coordinate_k_fiber_vieta_rank']['negative_sample_rank']} "
         f"tamper_rejected={rejected}"
     )
 

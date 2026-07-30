@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, and the coordinate orientation descends this to explicit quotient-resultant equations.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, and the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic and explicit 8/7-dimensional cubic-norm equations
-status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_AND_COORDINATE_QUOTIENT_INTERFACES_TYPES_OPEN_K3_OPEN
-impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_AN_EXPLICIT_COORDINATE_NORM_FACTORIZATION_SYSTEM
-falsifier: an actual degree-two component outside the universal source interfaces, or a coordinate component whose colored divisor does not descend or whose printed paired-root resultants fail
+claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, and exact 10-by-8 or 10-by-7 K-fiber Vieta gates
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_AND_VIETA_RANK_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_AN_EXPLICIT_COORDINATE_NORM_AND_FIVE_FIBER_RANK_SYSTEM
+falsifier: an actual degree-two component outside the universal source interfaces, or a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -185,12 +185,62 @@ This is an explicit univariate system in the existing eight or seven
 source coefficients plus a two-fiber choice. Neither parity system is
 proved empty.
 
-## 7. Scope and next action
+## 7. Coordinate common-K Vieta-rank gate
+
+The five actual `J-J` stars over the common set `K` can be inserted before
+solving the larger norm-factorization system. Write a quotient point as
+`kappa=[u:v]`, choose a lift `[r:s]` with `[r^2:s^2]=[u:v]`, and let
+`{a,b}` be its unordered `J`-edge. The weighted coordinates
+
+```text
+p=ab,       q=r*s*(a+b)
+```
+
+are unchanged by `([r:s],a,b)->([-r:s],-a,-b)`. Vieta gives the exact
+positive equations
+
+```text
+A_0(kappa)=p A_2(kappa),
+u*v B_1(kappa)=-q A_2(kappa),
+```
+
+and the exact negative equations
+
+```text
+B_0(kappa)=p B_2(kappa),
+A_1(kappa)=-q B_2(kappa).
+```
+
+Across five fibers these are homogeneous `10 x 8` and `10 x 7` kernel
+gates, with nonzero leading values at every fiber. The positive branch
+has the necessary determinant
+
+```text
+det[qv^2,quv,qu^2,uv^2,u^2v]=0.
+```
+
+The negative branch has
+
+```text
+rank[-pv,-pu,v,u]<=3,
+det[qv,qu,v^2,uv,u^2]=0.
+```
+
+At a ramified source point the negative binary quadratic has only the two
+fixed endpoint labels, which are absent from `J`; therefore the negative
+branch excludes ramified common-`K` values. The positive equations remain
+valid there and were replayed at both quotient branch values. These are
+exact packet-deletion gates, not a proof that every coordinate packet
+fails.
+
+## 8. Scope and next action
 
 Proved: the universal category census, the five exhaustive raw integer
 profiles, the exact three-profile component-color cut, applicability to the
 trivial-stabilizer type, and the universal scope of the exact source-row
-interpolation gate and colored partial-resultant split.
+interpolation gate and colored partial-resultant split. In the coordinate
+branch, the quotient-resultant and common-`K` Vieta-rank systems are exact,
+including the negative ramified-fiber exclusion.
 
 Not proved: a stabilizer action in the trivial branch, realization or
 deletion of any of the three surviving profiles, universal failure of the
@@ -202,5 +252,7 @@ their two partial-resultant identities through the `45 x 12` source
 interpolation gate and complete-source defect budget. Retain exact degree,
 irreducibility, deck distinction, and outer-factor side conditions.
 
-For the coordinate type, solve `(6.1)` separately in the positive and
-negative parity spaces before generic endpoint reconstruction.
+For the coordinate type, apply the small Vieta determinants and full
+five-fiber kernel before solving `(6.1)` separately in the positive and
+negative parity spaces. Preserve the ramified-fiber distinction before
+generic endpoint reconstruction.
