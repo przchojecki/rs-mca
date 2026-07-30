@@ -1,0 +1,190 @@
+{
+  "conclusion": {
+    "deleted_fixture": true,
+    "next_gate": "exclude full-support kernels for every admissible s=6 ownership or reconstruct an actual owner",
+    "row_status": "OPEN",
+    "terminal": "M2_R2_DIHEDRAL_DEGREE3_ENDPOINT_COFACTOR_INTERPOLATION_COMPILER"
+  },
+  "fixture": {
+    "complete_source_roots": [
+      3,
+      6,
+      8,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      20,
+      21,
+      26,
+      27,
+      29,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      39,
+      41,
+      44
+    ],
+    "component_color_edge_count": 4,
+    "cubic_pole_values": [
+      7,
+      18
+    ],
+    "field": 47,
+    "first_block_kernel": [
+      0,
+      13,
+      0,
+      0,
+      0,
+      19,
+      14,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "first_block_rank": 11,
+    "invariant_fiber_map": {
+      "1": 10,
+      "10": 1,
+      "2": 8,
+      "5": 6,
+      "6": 5,
+      "8": 2
+    },
+    "invariant_labels": [
+      1,
+      2,
+      5,
+      6,
+      8,
+      10
+    ],
+    "locator_roots": [
+      [
+        32,
+        31
+      ],
+      [
+        11,
+        36
+      ],
+      [
+        6,
+        41
+      ],
+      [
+        16,
+        33
+      ],
+      [
+        3,
+        39
+      ],
+      [
+        12,
+        35
+      ],
+      [
+        18,
+        29
+      ],
+      [
+        34,
+        14
+      ],
+      [
+        20,
+        27
+      ],
+      [
+        44,
+        13
+      ],
+      [
+        21,
+        26
+      ],
+      [
+        15,
+        8
+      ]
+    ],
+    "minor_determinant": 7,
+    "minor_rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      19
+    ],
+    "noninvariant_pole_graph_degrees": {
+      "0": 2,
+      "11": 2,
+      "3": 2,
+      "4": 2,
+      "7": 2,
+      "9": 2
+    },
+    "source_labels": [
+      5,
+      10,
+      17,
+      19,
+      21,
+      23,
+      24,
+      26,
+      28,
+      30,
+      37,
+      42
+    ],
+    "stacked_rank": 12
+  },
+  "interpolation": {
+    "cofactor_fibers": "E_i(X)=B(X)/(z_i(X)*H(alpha_i,X))",
+    "endpoint_form": "M(T,X)=sum_i kappa_i*L_i(T)*B(X)/z_i(X)",
+    "equivalence": "H divides M iff the stacked matrix has a full-support kernel",
+    "kernel_equations": [
+      "sum_i w_i*E_i=0",
+      "sum_i alpha_i*w_i*E_i=0"
+    ],
+    "matrix_shape": [
+      38,
+      12
+    ],
+    "support_requirement": "all twelve w_i are nonzero"
+  },
+  "nonclaims": [
+    "no universal locator-ownership exclusion",
+    "no deployed endpoint-record deletion",
+    "no carrier, data, explaining-polynomial, or slope owner",
+    "no payment, K3, KoalaBear, endpoint, or Prize close"
+  ],
+  "parent_geometric_fence": {
+    "certificate_blob_oid": "7adf13b9e343c51d96cdc7c8878cf5bba15c618c",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-degree3-geometric-realization-fence-v1/kb_mca_v4_m2_r2_dihedral_degree3_geometric_realization_fence_v1.json",
+    "certificate_payload_sha256": "a7f42b038261ea137b2246987dcc398bdddbf807ede6ff46f70429d5a44b2be5",
+    "commit": "fce150e3323ce37f261b21c19685f4613552dd42",
+    "imported_terminal": "M2_R2_DIHEDRAL_DEGREE3_GEOMETRIC_REALIZATION_FENCE"
+  },
+  "payload_sha256": "bf5cfd6b06a9dcfa56601023ed497cdba1f7a37bc3fa47f4cff4855b6fa86a66",
+  "schema": "kb-mca-v4-m2-r2-dihedral-degree3-endpoint-cofactor-interpolation-compiler-v1"
+}

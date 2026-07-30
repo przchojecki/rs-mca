@@ -4240,3 +4240,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+### 2026-07-29 - KoalaBear cubic endpoint-cofactor interpolation compiler
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree3_endpoint_cofactor_interpolation_compiler_v1.md`,
+  `experimental/scripts/verify_kb_mca_v4_m2_r2_dihedral_degree3_endpoint_cofactor_interpolation_compiler_v1.py`,
+  its fail-closed JSON certificate, `agents.md`, and this log.
+- **Status:** PROVED exact compiler / one admissible packet deleted / K3 open.
+- **What is being added:** Actual divisibility by the residual cubic
+  component is equivalent to a full-support kernel in one explicit
+  `38 x 12` source-cofactor matrix. A pinned `F_47` `s=6` locator packet
+  satisfies the inherited ownership, pole-graph, and four-edge color gates
+  but has a nonzero rank-twelve minor.
+- **How it is useful:** Replaces the open-ended fixed-active-pencil
+  instruction by one necessary-and-sufficient endpoint interpolation gate
+  and proves that the abstract geometric realization need not extend to an
+  endpoint source form.
+- **What to do next:** Classify admissible locator ownerships modulo the two
+  `K_(2,2,2)` star automorphisms and source deck involution, then exclude
+  every full-support kernel over the deployed field or reconstruct a
+  surviving cofactor into the fixed active/block record and owner chronology.

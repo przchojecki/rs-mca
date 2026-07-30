@@ -393,6 +393,17 @@ second-endpoint branch twist and source genus are also exact.  The common
 six-pole divisor deletes `n=6`; only the `n=3` common degree-30 function and
 active-pencil/owner equations remain.
 
+The first actual-endpoint condition on that cubic survivor is now exact.
+Writing `E_i=B/(z_i H(alpha_i,X))`, divisibility of the fixed source form by
+the bidegree-`(2,4)` component is equivalent to a full-support kernel of the
+`38 x 12` matrix with columns `(E_i,alpha_i E_i)`. A pinned split `s=6`
+packet satisfies the inherited invariant/noninvariant locator ownership,
+two-regular pole graph, and four-edge component-color interfaces but has
+stacked rank twelve, so abstract source/locator realizability does not imply
+endpoint realization. The universal admissible-ownership rank exclusion, or
+reconstruction of a surviving cofactor into a same-record owner, remains
+open. No quotient payment is booked.
+
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every
 finite `(m,r,delta)` row emitted by the exact
