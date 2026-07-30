@@ -12,9 +12,10 @@ atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
 claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, deletion of the partition-preserving diagonal subcase and aligned c=6, quotient descent of the near-aligned c=6 colored divisor, exact c=2 crossing-degree, square-fiber, fourth-power-product, and exceptional-capacity pins, exact source-line square-fiber coefficient cuts of dimensions 4/3 both off ramification and after the ramified complete-source repair, complete deletion of the diagonal (2,0,2) orbit row, exact saturated (1,1,2) defect packet counts 1560/123 and source-line counts 96/12, exact source-line colored-divisor descent to two complete unramified quotient fibers with Q_J proportional to K_5^2 chi_Omega and chi_Omega Q_I proportional to R_7^2, exclusion of internal-K source ramification, an exact four-case rational odd-part incidence gate for every forced-square survivor, injective internal-star reconstruction to at most eight source-deck pairs per classified packet, the necessary J_1-slice identity Res_T(P_J1,U^2-WV^2) proportional to (W-w)^4 chi_mix^2, and exact negative reconstruction determinants supported on B=0 or BC=0
-status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_C2_112_Q_SLICE_AND_C2_112_NEGATIVE_FACTOR_INTERFACES_TYPES_OPEN_K3_OPEN
-impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FOUR_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM_THE_202_ROW_EMPTY_AND_SATURATED_112_AT_123_OR_12_EDGE_ORBITS_WITH_ONE_EXPLICIT_SOURCE_LINE_QUOTIENT_QUADRATIC_FOUR_ODD_PART_LABEL_TESTS_NO_RAMIFIED_COEFFICIENT_ESCAPE_AT_MOST_EIGHT_SOURCE_DECK_PAIRS_PER_PACKET_ONE_DEGREE_EIGHT_Q_SLICE_PREFILTER_AND_NEGATIVE_B_OR_BC_FACTOR_LOCI
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_C2_112_Q_SLICE_C2_112_NEGATIVE_FACTOR_AND_C2_112_ALIGNED_NEGATIVE_EXCLUSION_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FOUR_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM_THE_202_ROW_EMPTY_AND_SATURATED_112_AT_123_OR_12_EDGE_ORBITS_WITH_ONE_EXPLICIT_SOURCE_LINE_QUOTIENT_QUADRATIC_FOUR_ODD_PART_LABEL_TESTS_NO_RAMIFIED_COEFFICIENT_ESCAPE_AT_MOST_EIGHT_SOURCE_DECK_PAIRS_PER_PACKET_ONE_DEGREE_EIGHT_Q_SLICE_PREFILTER_NEGATIVE_B_OR_BC_FACTOR_LOCI_AND_NO_ALIGNED_NEGATIVE_Q_SLICE_SURVIVOR
 falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, an actual diagonal component whose endpoint involution preserves I and J, an aligned c=6 component, failure of the near-aligned c=6 quotient identities, a c=2 component violating the printed incidence degrees, square-fiber identities, or exceptional capacity interval, a saturated source-line c=2 square fiber violating the printed coefficient ranks, any actual diagonal (2,0,2) packet, a saturated (1,1,2) packet outside the printed defect census, a saturated source-line (1,1,2) packet whose colored divisor or partial resultants fail (9.17)--(9.18), or one with a ramified internal K orbit, disjoint internal pure stars, zero odd part, failed incidence equation (9.21), ramified root-row orders other than (2,2), noninjective internal U evaluation, more than eight source-deck candidate pairs, failure of the necessary q-slice identity (9.24), or a negative reconstruction outside the factor loci (9.25)
+aligned_negative_falsifier: an admissible aligned negative reconstruction satisfying the q-slice identity despite (9.27)
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -699,6 +700,33 @@ candidates exist exactly on `B=0` in the first template and `BC=0` in the
 second. These two genuine loci are retained for (9.24); neither `B` nor `C`
 is divided out.
 
+The aligned target deletes both retained negative loci. Write
+
+```text
+P=cd-2c-2d+1,       Q=2cd-c-d+2,
+B=bP+Q,              C=bQ+P=b B(1/b).
+```
+
+The moving template is unchanged by `b->1/b`, so its `C=0` locus is the
+represented `B=0` locus. On `B=0`, `P!=0`: otherwise `P=Q=0` gives first
+`c+d=0` and then `c^2=1`, contrary to fixed-point-free labels. Hence
+`b=-Q/P`.
+
+For either template, divide `Res_T(q,U^2-WV^2)` by `(W-w)^4`, make the
+residual quartic monic, and subtract the aligned target
+`((W-1/c)(W-1/d))^2`. If `m_j` is its `W^j` coefficient, exact
+reconstruction gives
+
+```text
+m_0=(cd-1)(cd+1)/(c^2 d^2),
+cd=-1  =>  m_1-m_3=4(c^2-1)/c=-A.                 (9.27)
+```
+
+The first identity and `cd!=1` force `cd=-1`; the second then contradicts
+the proved `A!=0`. Thus no aligned negative candidate passes (9.24). This
+does not delete the aligned positive sign or either near-aligned sign, whose
+target is `tau^*chi_Omega` rather than `tau^*q`.
+
 Provenance: the base argument was first banked as the independently auditable
 `prize` node `rate_half_kb_m2_r4_diagonal_facet_mixing_obstruction` at
 commit `af28147e`, and the maximally mixed extension at `f45a4d50`; the
@@ -724,6 +752,8 @@ The negative reconstruction factor gate is commit
 `eae904eec48f1f09d027bd83ea0d51816b9502a6`.
 The fixed-label exclusion of its apparent `A=0` locus is commit
 `24b4682367ae289cea3dd24e2fbf56d473f95963`.
+The aligned negative q-slice exclusion is commit
+`43541fc31451ca5f27bf51b2ba80ddb161feccde`.
 The complete proof is reproduced here rather than imported as an opaque
 status claim.
 
@@ -753,9 +783,11 @@ to the forced-ramified branch by (9.22). Internal-star evaluation then
 reduces every classified source-line packet to at most eight source-deck
 pairs by (9.23). Every reconstructed candidate then obeys the necessary
 degree-eight `J_1`-slice identity (9.24), and negative candidates are first
-restricted to the factor loci (9.25).
+restricted to the factor loci (9.25). In the aligned branch both retained
+negative loci are then deleted by (9.27).
 
-Not proved: a stabilizer action in the trivial branch, realization or
+Not proved: the aligned positive sign, either near-aligned sign, a
+stabilizer action in the trivial branch, realization or
 deletion of any of the three surviving profiles, universal failure of the
 shared source-row kernel, an owner, payment, K3, the KoalaBear row, or a
 Prize result.
@@ -779,8 +811,10 @@ single reciprocal quadratic system (9.6), not arbitrary four-edge divisors.
 Remove `(2,0,2)` by (9.15). For `(1,1,2)`, attack the saturated cases by
 applying (9.21), including its repaired ramified instance (9.22), before
 combining the aligned and near-aligned instances of
-(9.18) with the finite reconstructions from (9.23). Restrict negative forms
-by (9.25), then apply (9.24) before forming either degree-six partial
-resultant; route the 123
+(9.18) with the finite reconstructions from (9.23). In the aligned branch
+retain only the positive sign after (9.27). In the near-aligned branch,
+restrict negative forms by (9.25) and apply (9.24) with the actual
+`tau^*chi_Omega` target before forming either degree-six partial resultant;
+route the 123
 branch-independent orbits through the split resolvent.
 Keep (9.10) and the biquadratic source-cover branch separate.

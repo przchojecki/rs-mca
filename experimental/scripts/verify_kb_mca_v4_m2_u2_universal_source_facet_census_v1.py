@@ -1454,6 +1454,160 @@ def diagonal_c2_112_negative_factor_replay() -> dict[str, Any]:
                   d, 1 / d, w, 1 / w, z, 1 / z)
         require(len(set(labels)) == 12,
                 f"c2 112 negative {name} locus distinct labels")
+
+    def poly_trim(poly):
+        result = list(poly)
+        while len(result) > 1 and result[-1] == 0:
+            result.pop()
+        return result
+
+    def poly_add(left, right):
+        return poly_trim([
+            (left[index] if index < len(left) else 0)
+            + (right[index] if index < len(right) else 0)
+            for index in range(max(len(left), len(right)))
+        ])
+
+    def poly_scale(poly, scalar):
+        return poly_trim([scalar * value for value in poly])
+
+    def poly_multiply(left, right):
+        result = [Fraction(0)] * (len(left) + len(right) - 1)
+        for i, a_value in enumerate(left):
+            for j, b_value in enumerate(right):
+                result[i + j] += a_value * b_value
+        return poly_trim(result)
+
+    def poly_evaluate(poly, point):
+        result = Fraction(0)
+        for value in reversed(poly):
+            result = result * point + value
+        return result
+
+    def poly_divide_exact(dividend, divisor):
+        work = poly_trim(dividend)
+        quotient = [Fraction(0)] * (len(work) - len(divisor) + 1)
+        while len(work) >= len(divisor) and work != [0]:
+            shift = len(work) - len(divisor)
+            coefficient = work[-1] / divisor[-1]
+            quotient[shift] = coefficient
+            for index, value in enumerate(divisor):
+                work[index + shift] -= coefficient * value
+            work = poly_trim(work)
+        require(work == [0], "c2 112 aligned q-slice polynomial division")
+        return poly_trim(quotient)
+
+    def solve_unique(matrix, target):
+        rows = [list(row) + [rhs] for row, rhs in zip(matrix, target)]
+        columns = len(matrix[0])
+        pivot_columns = []
+        pivot_row = 0
+        for column in range(columns):
+            pivot = next((row for row in range(pivot_row, len(rows))
+                          if rows[row][column]), None)
+            if pivot is None:
+                continue
+            rows[pivot_row], rows[pivot] = rows[pivot], rows[pivot_row]
+            value = rows[pivot_row][column]
+            rows[pivot_row] = [entry / value for entry in rows[pivot_row]]
+            for row in range(len(rows)):
+                if row == pivot_row or not rows[row][column]:
+                    continue
+                value = rows[row][column]
+                rows[row] = [left - value * right
+                             for left, right in zip(rows[row], rows[pivot_row])]
+            pivot_columns.append(column)
+            pivot_row += 1
+        require(not any(all(value == 0 for value in row[:columns]) and row[-1]
+                        for row in rows),
+                "c2 112 aligned q-slice reconstruction consistency")
+        require(len(pivot_columns) == columns,
+                "c2 112 aligned q-slice reconstruction uniqueness")
+        solution = [Fraction(0)] * columns
+        for row, column in enumerate(pivot_columns):
+            solution[column] = rows[row][-1]
+        return solution
+
+    def qslice_mismatch(template, c, d, w):
+        a = Fraction(2)
+        p_factor = c * d - 2 * c - 2 * d + 1
+        q_factor = 2 * c * d - c - d + 2
+        require(p_factor, "c2 112 aligned B-locus denominator")
+        b = -q_factor / p_factor
+        q0, q1 = c * d, -(c + d)
+        f, g, m = q0 + w, -1 - w * q0, q1 * (1 + w)
+        numerator = f + m * a - g * a * a
+        denominator = g - m * a - f * a * a
+        require(denominator, "c2 112 aligned incidence denominator")
+        z = -numerator / denominator
+        labels = (a, 1 / a, b, 1 / b, c, 1 / c,
+                  d, 1 / d, w, 1 / w, z, 1 / z)
+        require(len(set(labels)) == 12,
+                "c2 112 aligned q-slice fixture distinctness")
+        v = ([f, g], [m, -m], [-g, -f])
+        vz = [poly_evaluate(poly, z) for poly in v]
+        l1, l0 = vz[2], vz[1] + a * vz[2]
+        if template == "fixed-moving":
+            first, second, r, s = edge(a, 1 / a), edge(a, b), 1 / a, b
+        else:
+            first, second, r, s = edge(a, b), edge(a, 1 / b), b, 1 / b
+        target = [
+            ((l0 + s * l1) * first[index]
+             + (l0 + r * l1) * second[index]) / (s - r)
+            for index in range(3)
+        ]
+        matrix = [
+            [1 + q0 * w * w, w * (1 + q0), w * w + q0, 0],
+            [q1 * w * w, q1 * w, q1, 1 - w * w],
+            [1, z, z * z, 0],
+            [0, 0, 0, 1 - z * z],
+            [-z * z, -z, -1, 0],
+        ]
+        x0, x1, x2, x3 = solve_unique(
+            matrix, [0, 0, target[0], target[1], target[2]]
+        )
+        u = ([x0, x1, x2], [x3, 0, -x3], [-x2, -x1, -x0])
+        residuals = []
+        for root in (c, d):
+            u_root = poly_add(
+                poly_add(u[0], poly_scale(u[1], root)),
+                poly_scale(u[2], root * root),
+            )
+            v_root = poly_add(
+                poly_add(v[0], poly_scale(v[1], root)),
+                poly_scale(v[2], root * root),
+            )
+            norm = poly_add(
+                poly_multiply(u_root, u_root),
+                poly_scale([0] + poly_multiply(v_root, v_root), -1),
+            )
+            residuals.append(poly_divide_exact(norm, [w * w, -2 * w, 1]))
+        observed = poly_multiply(*residuals)
+        observed = poly_scale(observed, 1 / observed[-1])
+        crossing = poly_multiply([-1 / c, 1], [-1 / d, 1])
+        expected = poly_multiply(crossing, crossing)
+        expected = poly_scale(expected, 1 / expected[-1])
+        return poly_add(observed, poly_scale(expected, -1))
+
+    aligned_checks = 0
+    generic_qslice = ((Fraction(3), Fraction(7), Fraction(5)),
+                      (Fraction(4), Fraction(6), Fraction(9)))
+    special_qslice = ((Fraction(3), Fraction(-1, 3), Fraction(5)),
+                      (Fraction(4), Fraction(-1, 4), Fraction(7)))
+    for template in ("fixed-moving", "moving-moving"):
+        for c, d, w in generic_qslice:
+            mismatch = qslice_mismatch(template, c, d, w)
+            require(
+                mismatch[0]
+                == (c * d - 1) * (c * d + 1) / (c * c * d * d),
+                "c2 112 aligned q-slice constant mismatch",
+            )
+            aligned_checks += 1
+        for c, d, w in special_qslice:
+            mismatch = qslice_mismatch(template, c, d, w)
+            require(mismatch[1] - mismatch[3] == 4 * (c * c - 1) / c,
+                    "c2 112 aligned q-slice outer mismatch")
+            aligned_checks += 1
     return {
         "endpoint_normalization": "common J0 endpoint=2",
         "template_counts": dict(templates),
@@ -1464,6 +1618,11 @@ def diagonal_c2_112_negative_factor_replay() -> dict[str, Any]:
         "moving_moving_survivor_locus": "B*C=0",
         "A_locus_excluded_by_internal_fixed_point": True,
         "exceptional_factors_retained": ["B", "C"],
+        "aligned_constant_mismatch": "(cd-1)*(cd+1)/(c^2*d^2)",
+        "aligned_cd_minus_one_outer_mismatch": "4*(c^2-1)/c=-A",
+        "aligned_q_slice_exact_fixtures": aligned_checks,
+        "aligned_negative_q_slice_deleted": True,
+        "near_aligned_negative_deleted": False,
         "positive_sign_deleted": False,
         "row_112_deleted": False,
     }
@@ -1520,13 +1679,14 @@ def expected_certificate() -> dict[str, Any]:
             "row_112_internal_star_reconstructed": True,
             "row_112_q_slice_resultant_compiled": True,
             "row_112_negative_factor_compiled": True,
+            "row_112_aligned_negative_q_slice_deleted": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_C2_112_Q_SLICE_AND_C2_112_NEGATIVE_FACTOR_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_C2_112_Q_SLICE_NEGATIVE_FACTOR_AND_ALIGNED_NEGATIVE_EXCLUSION_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -1540,7 +1700,8 @@ def expected_certificate() -> dict[str, Any]:
             "no geometric exclusion of forced source ramification in saturated (1,1,2)",
             "no realization claim for any reconstructed saturated (1,1,2) source form",
             "no sufficiency of the q-slice resultant for either full colored quotient identity",
-            "no deletion of the retained negative A, B, or C factor loci",
+            "no deletion of near-aligned negative B or C factor loci",
+            "no deletion of the aligned positive or either near-aligned sign",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -1671,8 +1832,13 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("fixed_moving_survivor_locus", "empty"),
         lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("A_locus_excluded_by_internal_fixed_point", False),
         lambda x: x["diagonal_c2_112_negative_factor"]["exceptional_factors_retained"].pop(),
+        lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("aligned_constant_mismatch", "wrong"),
+        lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("aligned_q_slice_exact_fixtures", 7),
+        lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("aligned_negative_q_slice_deleted", False),
+        lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("near_aligned_negative_deleted", True),
         lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("positive_sign_deleted", True),
         lambda x: x["scope"].__setitem__("row_112_negative_factor_compiled", False),
+        lambda x: x["scope"].__setitem__("row_112_aligned_negative_q_slice_deleted", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1739,6 +1905,7 @@ def main() -> None:
         f"c2_112_max_reconstructions={data['diagonal_c2_112_internal_star_reconstruction']['maximum_source_deck_pairs_per_packet']} "
         f"c2_112_qslice_patterns={len(data['diagonal_c2_112_q_slice_resultant']['mixed_incidence_patterns'])} "
         f"c2_112_negative_templates={sum(data['diagonal_c2_112_negative_factor']['template_counts'].values())} "
+        f"c2_112_aligned_negative_deleted={data['diagonal_c2_112_negative_factor']['aligned_negative_q_slice_deleted']} "
         f"tamper_rejected={rejected}"
     )
 
