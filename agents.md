@@ -205,6 +205,15 @@ At this snapshot:
   and one four-point `S6` cover.  Challenge-field descent, split zero and
   pole fibers, quartic source-star incidence, the `m=4` type, K3, the
   KoalaBear row, and all payments remain open.
+- The complete inner-degree-`4` transverse row is now empty.  The unique
+  `r=8` component is the connected `120`-sheet ordered-adjacency orbital on
+  two-subsets.  Its genera in the four exhaustive passports are
+  `3,6,4,13`.  The actual source normalization has genus at most `3` and
+  maps to this component separably with degree `2`, so Riemann--Hurwitz
+  would require source genus at least `5,11,7,25`.  Thus all four passports
+  have no actual producer, including the unconstructed four-point family.
+  The independent transverse frontier has `8` types in inner degrees `2,3`;
+  no lower type or ledger payment is closed.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -291,8 +300,8 @@ transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
 data, and slope semantics remain open.
 
 The next maximal equality-wall theorem is the source-coupled transverse
-outer compiler on the remaining `22` types in inner degrees
-`m in {2,3,4,6,10}`.  For every finite `(m,r,delta)` row emitted by the exact
+outer compiler on the remaining `8` types in inner degrees
+`m in {2,3}`.  For every finite `(m,r,delta)` row emitted by the exact
 source-pencil packet, impose the inherited irreducible quartic/source-star
 incidence on the non-diagonal outer component and terminate it in an
 actual-producer contradiction, a strict coarser decomposition, or a
