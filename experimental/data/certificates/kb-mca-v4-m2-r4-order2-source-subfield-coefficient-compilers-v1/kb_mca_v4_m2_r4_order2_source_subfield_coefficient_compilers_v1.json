@@ -78,6 +78,22 @@
     "order_two_type_deleted": false,
     "terminal": "M2_R4_ORDER_TWO_SOURCE_SUBFIELD_AND_COEFFICIENT_COMPILERS"
   },
+  "coordinate_coefficient_normal_form": {
+    "coordinates": {
+      "b": "-X",
+      "psi": "X^2",
+      "tau": "-T"
+    },
+    "deck_odd_part_required_nonzero": true,
+    "endpoint_even_in_T": true,
+    "endpoint_norm": "G=U^2-WV^2",
+    "negative_form": "T A_1(W)+X(B_2(W)T^2+B_0(W))",
+    "positive_form": "A_2(W)T^2+A_0(W)+XT B_1(W)",
+    "source_eigenspace_dimensions": [
+      8,
+      7
+    ]
+  },
   "nonclaims": [
     "no universal source-row kernel, reciprocal-norm, or split-resolvent failure",
     "no exact-degree, irreducibility, or outer-factor conclusion for a passing interpolant",
@@ -96,7 +112,7 @@
     "verifier_blob_oid": "8c1fd1318b180f27a3114a3a3beedd7e2ed3efbd",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_facet_interpolation_v1.py"
   },
-  "payload_sha256": "bbdab9cb571c6c6bfcdd477598aa38f4f69b43e0c3480da28b74a725faab8e33",
+  "payload_sha256": "f0b751301e56989bf6fbf19cf15e5ff8faa0d7d86e76278306950a488cdf5156",
   "schema": "kb-mca-v4-m2-r4-order2-source-subfield-coefficient-compilers-v1",
   "source_row_interpolation": {
     "complete_source_product": "product_i q_i is proportional to B^2",

@@ -5,15 +5,15 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: The diagonal order-two source descent has an exhaustive source-line/biquadratic split, both branches have exact coefficient tests, and every order-two source-star packet has a 45-by-12 source interpolation gate.
+direct_statement: The coordinate orientation has two exact 8/7-dimensional parity source forms, the diagonal source descent has an exhaustive source-line/biquadratic split with exact coefficient tests, and every order-two source-star packet has a 45-by-12 source interpolation gate.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_R4_ORDER_TWO_SOURCE_SUBFIELD_AND_COEFFICIENT_COMPILERS
 quantifier: every actual graph-free Q=6,s=6 inner-degree-two component in the order-two V4-stabilizer row
 projection_and_unit: exact source-component and endpoint-component coefficient interfaces; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exhaustive diagonal descent dichotomy, 8/7-dimensional reciprocal norm forms or split quartic resolvent, and a shared 45-by-12 full-support source-row kernel equivalence
+claimed_bound: coordinate 8/7-dimensional parity forms, exhaustive diagonal descent dichotomy with reciprocal norm or split quartic resolvent, and a shared 45-by-12 full-support source-row kernel equivalence
 status: PROVED_COMPILERS_ORDER_TWO_TYPE_OPEN_K3_OPEN
-impact: REPLACES_THE_DIAGONAL_SOURCE_DESCENT_AMBIGUITY_AND_GENERIC_SOURCE_COMPONENT_SEARCH_BY_EXACT_LOW_DIMENSIONAL_GATES
+impact: REPLACES_COORDINATE_AND_DIAGONAL_GENERIC_SOURCE_COMPONENT_SEARCH_BY_EXACT_LOW_DIMENSIONAL_GATES
 falsifier: an actual diagonal component outside the source-field dichotomy, failure of the reciprocal norm or split resolvent in its branch, or an actual source-row packet failing the 45-by-12 kernel/resultant identities
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py --check --tamper-selftest
 ---
@@ -36,6 +36,10 @@ respectively a quadratic-norm equation and a split cubic-resolvent equation.
 Independently of orientation, twelve projective source-row quartics come
 from a bidegree-at-most-`(2,4)` source form exactly when a concrete
 `45 x 12` matrix has a full-support kernel.
+
+For the coordinate orientation, the already-proved preserving lift further
+puts that reconstructed source form into one of two explicit parity spaces
+of dimensions eight and seven, with nonzero deck-odd part.
 
 These are exact K3/source-component interfaces. They delete no order-two
 subgroup by themselves, book no owner or payment, and do not close K3 or the
@@ -173,9 +177,42 @@ Res_T(A(T),H(T,X)) ~ B(X)^2.                        (3.3)
 Ramified fibers are included by divisor multiplicity. In the lifted
 coordinates (1.3), `B(X)~A(X^2)`.
 
-## 4. Scope and next action
+## 4. Coordinate coefficient normal form
 
-Proved: the exhaustive source-field dichotomy, reciprocal normal form,
+For the coordinate subgroup, normalize the proved source lift by
+
+```text
+tau(T)=-T,       b(X)=-X,       W=X^2.
+```
+
+The irreducible source equation is a `+1` or `-1` eigenform under
+`(T,X)->(-T,-X)`. Writing `H=U(T,W)+XV(T,W)` gives exactly
+
+```text
+H=A_2(W)T^2+A_0(W)+XT B_1(W)                        (dimension 8),
+```
+
+or
+
+```text
+H=T A_1(W)+X(B_2(W)T^2+B_0(W))                      (dimension 7),
+```
+
+where the `A` coefficients have degree at most two in `W` and the `B`
+coefficients degree at most one. The odd-`X` part must be nonzero because
+the source component and its deck conjugate are distinct. In either sign,
+
+```text
+G(T,W)=U(T,W)^2-WV(T,W)^2,       G(-T,W)=G(T,W).    (4.1)
+```
+
+This applies to the proved coordinate source presentation, not silently to
+the transposed orientation.
+
+## 5. Scope and next action
+
+Proved: the coordinate parity normal forms and deck-odd condition; the
+exhaustive diagonal source-field dichotomy, reciprocal normal form,
 low-genus biquadratic passports, quadratic norm, split resolvent, shared
 source-row interpolation equivalence, and square resultant.
 
@@ -188,6 +225,6 @@ The next exact order is:
 
 1. route each coordinate or diagonal source-facet packet through (3.1);
 2. reconstruct the unique source form for a survivor;
-3. impose (2.1)--(2.5), as appropriate, together with irreducibility and
-   the branch passport; and
+3. impose (4.1) in the coordinate branch or (2.1)--(2.5) in the diagonal
+   branch, together with irreducibility and the relevant passport; and
 4. only then reconstruct the endpoint biform and test the outer factor.

@@ -149,6 +149,29 @@ def subfield_replay() -> dict[str, Any]:
     }
 
 
+def coordinate_replay() -> dict[str, Any]:
+    monomials = [(i, j) for i in range(3) for j in range(5)]
+    positive = [(i, j) for i, j in monomials if (i + j) % 2 == 0]
+    negative = [(i, j) for i, j in monomials if (i + j) % 2 == 1]
+    plus_even = [(i, j) for i in (0, 2) for j in range(3)]
+    plus_odd = [(1, j) for j in range(2)]
+    minus_even = [(1, j) for j in range(3)]
+    minus_odd = [(i, j) for i in (0, 2) for j in range(2)]
+    require((len(positive), len(negative)) == (8, 7), "coordinate dimensions")
+    require((len(plus_even) + len(plus_odd),
+             len(minus_even) + len(minus_odd)) == (8, 7),
+            "coordinate even-odd forms")
+    return {
+        "coordinates": {"tau": "-T", "b": "-X", "psi": "X^2"},
+        "source_eigenspace_dimensions": [len(positive), len(negative)],
+        "positive_form": "A_2(W)T^2+A_0(W)+XT B_1(W)",
+        "negative_form": "T A_1(W)+X(B_2(W)T^2+B_0(W))",
+        "deck_odd_part_required_nonzero": True,
+        "endpoint_norm": "G=U^2-WV^2",
+        "endpoint_even_in_T": True,
+    }
+
+
 def poly_mul(left: list[int], right: list[int]) -> list[int]:
     out = [0] * (len(left) + len(right) - 1)
     for i, a in enumerate(left):
@@ -250,6 +273,7 @@ def expected_certificate() -> dict[str, Any]:
             "function_field_V4_is_ambient_stabilizer_V4": False,
             "replay": subfield_replay(),
         },
+        "coordinate_coefficient_normal_form": coordinate_replay(),
         "branch_coefficient_compiler": {
             "source_line_norm": "G=U^2-WV^2",
             "endpoint_reciprocal_sign": "+1",
@@ -294,6 +318,9 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["source_subfield_dichotomy"].__setitem__("function_field_V4_is_ambient_stabilizer_V4", True),
         lambda x: x["source_subfield_dichotomy"]["replay"].__setitem__("source_eigenspace_dimensions", [9, 6]),
         lambda x: x["source_subfield_dichotomy"]["replay"]["biquadratic_passports"][0].__setitem__("fixed_mu", 0),
+        lambda x: x["coordinate_coefficient_normal_form"].__setitem__("source_eigenspace_dimensions", [9, 6]),
+        lambda x: x["coordinate_coefficient_normal_form"].__setitem__("deck_odd_part_required_nonzero", False),
+        lambda x: x["coordinate_coefficient_normal_form"].__setitem__("endpoint_even_in_T", False),
         lambda x: x["branch_coefficient_compiler"].__setitem__("endpoint_reciprocal_sign", "-1"),
         lambda x: x["branch_coefficient_compiler"].__setitem__("source_line_norm", "G=U^2+WV^2"),
         lambda x: x["branch_coefficient_compiler"]["replay"].__setitem__("rows_sha256", "0" * 64),
@@ -338,7 +365,8 @@ def main() -> None:
     rejected = tamper_selftest(data) if args.tamper_selftest else 0
     print(
         "KB_MCA_V4_M2_R4_ORDER2_SOURCE_SUBFIELD_COEFFICIENT_COMPILERS_PASS "
-        f"source_dims={data['source_subfield_dichotomy']['replay']['source_eigenspace_dimensions']} "
+        f"coordinate_dims={data['coordinate_coefficient_normal_form']['source_eigenspace_dimensions']} "
+        f"diagonal_dims={data['source_subfield_dichotomy']['replay']['source_eigenspace_dimensions']} "
         f"source_matrix={data['source_row_interpolation']['replay']['matrix_rows']}x"
         f"{data['source_row_interpolation']['replay']['matrix_columns']} "
         f"tamper_rejected={rejected}"
