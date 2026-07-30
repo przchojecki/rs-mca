@@ -293,8 +293,18 @@ At this snapshot:
 - The sole `n=3` profile has an explicit abstract geometric realization at
   `a=b=-1`: a rational bidegree-`(2,4)` source component realizes the common
   cubic right factor, six poles, coefficient quartic, exact star graph, and
-  complete-source saturation.  Geometry alone cannot delete it; the live
-  gate is the fixed active endpoint pencil or a same-record owner.
+  complete-source saturation.  Geometry alone does not delete it; the
+  source-facet coupling below supplies the later exclusion.
+- The common-five `Q=6,s=6` source facet deletes the residual `n=3`
+  profile.  Above each of five labels `k` in the invariant six-set, the
+  whole outgoing factor has horizontal root set `I^c`.  The cubic
+  component contributes the four vertices outside one deck pair; because
+  `k in I` lies in the same six-label common-pole component, the omitted
+  pair must contain `k`.  Hence those four roots are `N_G(k)` in the exact
+  graph `2 K_(2,2,2)`, forcing an independent five-set where the maximum is
+  four.  Together with the proved `n=2,5,6` exclusions, this deletes the
+  full-V4 `(m,r,delta)=(2,2,4)` type.  The order-two and trivial stabilizer
+  types `(r,delta)=(4,2),(8,1)`, K3, and every payment remain open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -380,38 +390,24 @@ a necessary gate conditional on a future same-record parameter-to-carrier
 transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
 data, and slope semantics remain open.
 
-Inside the remaining full-V4 `m=2` type, rational outer geometry and the
-complete source-star gate reduce the recurrent dihedral factor list to
-`n=3,6`; the totally ramified `n=5` profile and the repeated-incidence `n=2`
-profile are proved empty.  The two surviving generic-pole profiles remain
-source-coupled targets, not owners or payments.  Their complete source-star
-graphs are now exact and defect zero, so the next gate is quartic
-coefficient realization rather than further multiplicity counting.  That
-realization is reduced to two printed one-variable families; exceptional
-factorization is now fully classified and deletes nothing.  The
-second-endpoint branch twist and source genus are also exact.  The common
-six-pole divisor deletes `n=6`; only the `n=3` common degree-30 function and
-active-pencil/owner equations remain.
+The full-V4 `m=2` type is now empty.  The source-facet deck gives
+`K subset I` with `|K|=5` and forces the outgoing horizontal roots above
+every complete `k`-fiber into `I^c`.  In the cubic graph, those roots are
+the complement `U_k` of one deck pair `P_k`.  This retains the relative
+second-endpoint twist: `k in I` gives `k notin U_k`, and common-pole
+membership then gives `k in P_k`, hence `U_k=N_G(k)`.  Thus `K` would be
+an independent five-set in `2 K_(2,2,2)`, whose independence number is
+four.  The resulting `n=3` deletion, together with the certified
+`n=2,5,6` deletions and exhaustive factor list, closes
+`(m,r,delta)=(2,2,4)`.
 
-The first actual-endpoint condition on that cubic survivor is now exact.
-Writing `E_i=B/(z_i H(alpha_i,X))`, divisibility of the fixed source form by
-the bidegree-`(2,4)` component is equivalent to a full-support kernel of the
-`38 x 12` matrix with columns `(E_i,alpha_i E_i)`. A pinned split `s=6`
-packet satisfies the inherited invariant/noninvariant locator ownership,
-two-regular pole graph, and four-edge component-color interfaces but has
-stacked rank twelve. More locally, every full-support kernel induces a
-multiplicative transport on the source-star graph whose cycle holonomies
-must be one; the packet's six canonical square holonomies are
-`11,26,17,2,41,31 mod 47`, all nonidentity. Thus abstract source/locator
-realizability does not imply endpoint realization. Retaining all three pair
-gains in each of the 24 star/owner triples gives an exact converse: the
-full-support kernel exists if and only if the complete 12-vertex gain
-multigraph is flat. The universal admissible-ownership nonflatness/rank
-exclusion, or reconstruction of a surviving cofactor into a same-record
-owner, remains open. No quotient payment is booked.
+The exact `38 x 12` endpoint-cofactor and gain-flatness compiler remains a
+valid audit theorem: it shows independently why one admissible abstract
+packet is not an endpoint factor.  Universal gain nonflatness is no longer
+required for the deleted full-V4 type.  No quotient payment is booked.
 
 The next maximal equality-wall theorem is the source-coupled transverse
-outer compiler on the remaining `3` types at inner degree `m=2`.  For every
+outer compiler on the remaining `2` types at inner degree `m=2`.  For every
 finite `(m,r,delta)` row emitted by the exact
 source-pencil packet, impose the inherited irreducible quartic/source-star
 incidence on the non-diagonal outer component and terminate it in an

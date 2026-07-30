@@ -4268,3 +4268,31 @@ Keep entries concise and link to the relevant files.
   nonidentity cycle in the complete gain graph in every case, fall back to
   the full stacked-rank gate, or reconstruct a surviving cofactor into the
   fixed active/block record and owner chronology.
+
+### 2026-07-30 - KoalaBear cubic source-facet and full-V4 exclusion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree3_source_facet_exclusion_v1.md`,
+  `experimental/scripts/verify_kb_mca_v4_m2_r2_dihedral_degree3_source_facet_exclusion_v1.py`,
+  its fail-closed JSON certificate, `agents.md`, and this log.
+- **Status:** PROVED `n=3` EMPTY / FULL-V4 `m=2` TYPE EMPTY / K3 OPEN.
+- **What is being added:** Corollaries 9.25 and 9.27 of the pinned
+  equality-wall theorem give `K subset I` with sizes five and six and exact
+  horizontal outgoing root set `I^c` over every `k in K`.  In the exact
+  cubic source-star graph, the two stars over that coordinate fiber form
+  the complement `U_k` of one deck pair `P_k`.  Since `k in I` is excluded
+  from `U_k` but lies in the same common-pole six-set, `k in P_k` and
+  `U_k=N_G(k)`.  Thus `K` would be independent in
+  `2 K_(2,2,2)`, contradicting independence number four.
+- **Twist guard:** The proof retains the relative second-endpoint
+  projective twist; it does not identify the two endpoint coordinates.
+- **Full-V4 synthesis:** The exhaustive factor list is `2,3,5,6`, and all
+  four degrees are now excluded.  Hence `(m,r,delta)=(2,2,4)` is empty.
+- **How it is useful:** It removes one of the three residual `m=2`
+  stabilizer types without a field search or owner assumption.  The exact
+  gain-flatness compiler remains banked but is no longer the live deletion
+  gate for this type.
+- **What to do next:** Attack the order-two stabilizer type
+  `(r,delta)=(4,2)`; keep the trivial type `(8,1)` behind it.  K3, the
+  KoalaBear row, every slope owner, and every payment remain open.
