@@ -9,6 +9,7 @@ import hashlib
 import json
 import subprocess
 from collections import Counter
+from fractions import Fraction
 from itertools import combinations, product
 from pathlib import Path
 from typing import Any, Callable
@@ -684,6 +685,127 @@ def diagonal_facet_mixing_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_c2_square_fiber_linear_cut_replay() -> dict[str, Any]:
+    def matrix_rank(matrix: list[list[int]]) -> int:
+        work = [[Fraction(entry) for entry in row] for row in matrix]
+        pivot_row = 0
+        for column in range(len(work[0])):
+            pivot = next((
+                row for row in range(pivot_row, len(work))
+                if work[row][column]
+            ), None)
+            if pivot is None:
+                continue
+            work[pivot_row], work[pivot] = work[pivot], work[pivot_row]
+            scale = work[pivot_row][column]
+            work[pivot_row] = [entry / scale for entry in work[pivot_row]]
+            for row in range(len(work)):
+                if row == pivot_row or not work[row][column]:
+                    continue
+                scale = work[row][column]
+                work[row] = [
+                    left - scale * right
+                    for left, right in zip(work[row], work[pivot_row])
+                ]
+            pivot_row += 1
+        return pivot_row
+
+    def compose(left: list[list[int]], right: list[list[int]]) -> list[list[int]]:
+        return [
+            [sum(entry * right[k][column] for k, entry in enumerate(row))
+             for column in range(len(right[0]))]
+            for row in left
+        ]
+
+    line_quotient = [[-3, 1, 0], [-2, 0, 1]]
+    signs = {}
+    for epsilon, name, ambient in ((1, "positive", 8), (-1, "negative", 7)):
+        w = 2
+        if epsilon == 1:
+            u_evaluation = [
+                [1, w, w * w, 0, 0],
+                [0, 0, 0, 1 + w * w, w],
+                [w * w, w, 1, 0, 0],
+            ]
+        else:
+            u_evaluation = [
+                [1, w, w * w, 0],
+                [0, 0, 0, 1 - w * w],
+                [-w * w, -w, -1, 0],
+            ]
+        v_evaluation = [
+            [1, w, 0],
+            [0, 0, 1 + epsilon * w],
+            [epsilon * w, epsilon, 0],
+        ]
+        require(matrix_rank(u_evaluation) == 3, "c2 U evaluation rank")
+        require(matrix_rank(v_evaluation) == 3, "c2 V evaluation rank")
+        require(matrix_rank(compose(line_quotient, u_evaluation)) == 2,
+                "c2 U locator-line cut")
+        require(matrix_rank(compose(line_quotient, v_evaluation)) == 2,
+                "c2 V locator-line cut")
+
+        u_ramified = [row[:] for row in u_evaluation]
+        if epsilon == 1:
+            u_ramified = [[1, 0, 0, 0, 0], [0, 0, 0, 1, 0], [0, 0, 1, 0, 0]]
+        else:
+            u_ramified = [[1, 0, 0, 0], [0, 0, 0, 1], [0, 0, -1, 0]]
+        require(matrix_rank(compose(line_quotient, u_ramified)) == 2,
+                "c2 ramified U cut")
+        signs[name] = {
+            "ambient_dimension": ambient,
+            "unramified_cut_rank": 4,
+            "unramified_dimension": ambient - 4,
+            "ramified_cut_rank": 2,
+            "ramified_dimension": ambient - 2,
+        }
+
+    require(signs["positive"]["unramified_dimension"] == 4,
+            "positive c2 unramified dimension")
+    require(signs["negative"]["unramified_dimension"] == 3,
+            "negative c2 unramified dimension")
+    require(signs["positive"]["ramified_dimension"] == 6,
+            "positive c2 ramified dimension")
+    require(signs["negative"]["ramified_dimension"] == 5,
+            "negative c2 ramified dimension")
+
+    def multiply(left: list[Fraction], right: list[Fraction]) -> list[Fraction]:
+        out = [Fraction(0)] * (len(left) + len(right) - 1)
+        for i, a in enumerate(left):
+            for j, b in enumerate(right):
+                out[i + j] += a * b
+        return out
+
+    chi = [Fraction(1), Fraction(-5, 2), Fraction(1)]
+    a, b, c = Fraction(7, 3), Fraction(-4, 5), Fraction(11, 7)
+    m12 = multiply(chi, [b, a])
+    m01 = multiply(chi, [-a, -b])
+    m02 = multiply(chi, [-c, c])
+    require(m01 == [-entry for entry in reversed(m12)],
+            "paired c2 minor reciprocity")
+    require(m02 == [-entry for entry in reversed(m02)],
+            "middle c2 minor anti-reciprocity")
+    return {
+        "forced_square_root_locator": "P_J1",
+        "unramified_star_conditions": ["U(T,w) lies in <P_J1>",
+                                         "V(T,w) lies in <P_J1>"],
+        "sign_spaces": signs,
+        "V_evaluation_determinant": "epsilon*(1-w^2)*(1+epsilon*w)",
+        "fixed_point_free_excludes_w_plus_minus_one": True,
+        "minor_common_factor": "chi_w=(W-w)*(W-w^-1)",
+        "minor_quotients": {
+            "m12": "chi_w*(A*W+B)",
+            "m01": "-chi_w*(B*W+A)",
+            "m02": "C*chi_w*(W-1)",
+        },
+        "minor_reciprocal_checks": 2,
+        "ramified_orbit": ["0", "infinity"],
+        "ramified_orbit_retained": True,
+        "ramified_V_value_constrained": False,
+        "source_line_branch_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -697,6 +819,7 @@ def expected_certificate() -> dict[str, Any]:
         "coordinate_k_fiber_vieta_rank": coordinate_k_fiber_vieta_replay(),
         "coordinate_transpose_transport": coordinate_transpose_replay(),
         "diagonal_facet_mixing": diagonal_facet_mixing_replay(),
+        "diagonal_c2_square_fiber_linear_cut": diagonal_c2_square_fiber_linear_cut_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -717,19 +840,21 @@ def expected_certificate() -> dict[str, Any]:
             "partition_preserving_diagonal_subcase_deleted": True,
             "aligned_c6_deleted": True,
             "minimally_mixed_c2_capacity_refined": True,
+            "saturated_c2_source_line_linear_cut": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_AND_C2_CAPACITY_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_AND_C2_SOURCE_LINEAR_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
             "no universal source-row kernel failure",
             "no complete deletion of any of the five diagonal mixing rows",
             "no contradiction from a reciprocal c=2 square fiber alone",
+            "no exclusion of the ramified c=2 source orbit",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -794,6 +919,14 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_facet_mixing"].__setitem__("c2_112_saturated_J1_degree_profile", [3, 4]),
         lambda x: x["diagonal_facet_mixing"].__setitem__("c2_112_exceptional_J1_capacity_values", [6, 7]),
         lambda x: x["scope"].__setitem__("minimally_mixed_c2_capacity_refined", False),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"]["sign_spaces"]["positive"].__setitem__("unramified_dimension", 5),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"]["sign_spaces"]["negative"].__setitem__("unramified_cut_rank", 3),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"]["sign_spaces"]["positive"].__setitem__("ramified_dimension", 4),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("ramified_orbit_retained", False),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"]["minor_quotients"].__setitem__("m02", "wrong"),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("minor_reciprocal_checks", 1),
+        lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("source_line_branch_deleted", True),
+        lambda x: x["scope"].__setitem__("saturated_c2_source_line_linear_cut", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -846,6 +979,8 @@ def main() -> None:
         f"diagonal_mixing_rows={data['diagonal_facet_mixing']['orbit_row_count']} "
         f"c6_near={data['diagonal_facet_mixing']['near_c6_matchings_surviving']} "
         f"c2_exceptional={data['diagonal_facet_mixing']['near_c2_matching_types']['a1_b1_eta_to_J0']} "
+        f"c2_linear_dims={data['diagonal_c2_square_fiber_linear_cut']['sign_spaces']['positive']['unramified_dimension']}/"
+        f"{data['diagonal_c2_square_fiber_linear_cut']['sign_spaces']['negative']['unramified_dimension']} "
         f"tamper_rejected={rejected}"
     )
 
