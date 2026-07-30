@@ -580,6 +580,7 @@ def diagonal_facet_mixing_replay() -> dict[str, Any]:
     eta_near = 6
     c6_eta_xi_deleted = 0
     c6_near_survivors = 0
+    c2_near_types: Counter[str] = Counter()
     for edges in matchings(tuple(range(12))):
         mate = {}
         for left, right in edges:
@@ -600,6 +601,15 @@ def diagonal_facet_mixing_replay() -> dict[str, Any]:
             )
         else:
             census[(a, b, crossing)] += 1
+            if crossing == 2:
+                if (a, b) == (2, 0):
+                    c2_near_types["a2_b0"] += 1
+                elif mate[eta_near] in common:
+                    c2_near_types["a1_b1_eta_to_K"] += 1
+                else:
+                    require(mate[eta_near] in set(range(6, 12)),
+                            "c2 exceptional eta lies in J_0")
+                    c2_near_types["a1_b1_eta_to_J0"] += 1
             if crossing == 6:
                 if mate[eta_near] == xi:
                     c6_eta_xi_deleted += 1
@@ -617,8 +627,22 @@ def diagonal_facet_mixing_replay() -> dict[str, Any]:
     require(preserving == 225, "partition-preserving matching count")
     require(c6_eta_xi_deleted == 120, "near c6 eta-xi deletion count")
     require(c6_near_survivors == 600, "near c6 survivor count")
+    require(c2_near_types == {
+        "a2_b0": 1350,
+        "a1_b1_eta_to_K": 900,
+        "a1_b1_eta_to_J0": 1800,
+    }, "near c2 matching types")
     c6_j_counts = [z for z in range(3) if 4 - z <= 2]
     require(c6_j_counts == [2], "near c6 paired J counts")
+    c2_202_profile = sorted([4] * 4 + [(20 - 4 * 4) // 2] * 2)
+    require(c2_202_profile == [2, 2, 4, 4, 4, 4],
+            "c2 (2,0,2) degree profile")
+    c2_112_saturated_profile = [4, 4]
+    require(4 + 2 + 2 == sum(c2_112_saturated_profile),
+            "c2 (1,1,2) saturation")
+    c2_112_exceptional_values = list(range(3 * 2, 2 * 4 + 1))
+    require(c2_112_exceptional_values == [6, 7, 8],
+            "c2 (1,1,2) exceptional capacity")
     rows = [
         {"a": a, "b": b, "c": crossing, "matching_count": census[(a, b, crossing)]}
         for a, b, crossing in sorted(census, key=lambda row: (row[2], -row[0], row[1]))
@@ -646,6 +670,14 @@ def diagonal_facet_mixing_replay() -> dict[str, Any]:
         "near_c6_J_identity": "Q_J is proportional to K_5^2*chi",
         "near_c6_I_identity": "chi*Q_I is proportional to R_7^2",
         "near_c6_resultant_degree": 12,
+        "near_c2_matching_types": dict(c2_near_types),
+        "c2_202_J_degree_profile": c2_202_profile,
+        "c2_202_square_fiber": "R_kstar is proportional to P_J1^2",
+        "c2_202_internal_product": "product over K_0 of R_k is proportional to P_J0^4",
+        "c2_112_saturated_J1_degree_profile": c2_112_saturated_profile,
+        "c2_112_saturated_square_fiber": "R_tau_eta is proportional to P_J1^2",
+        "c2_112_exceptional_eta_orbit": "eta and tau(eta) lie in J_0",
+        "c2_112_exceptional_J1_capacity_values": c2_112_exceptional_values,
         "uses_whole_fiber_transport_only": True,
         "individual_star_transport_used": False,
         "diagonal_orientation_deleted": False,
@@ -684,18 +716,20 @@ def expected_certificate() -> dict[str, Any]:
             "coordinate_pairing_transferred_to_trivial": False,
             "partition_preserving_diagonal_subcase_deleted": True,
             "aligned_c6_deleted": True,
+            "minimally_mixed_c2_capacity_refined": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_AND_C6_QUOTIENT_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_AND_C2_CAPACITY_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
             "no universal source-row kernel failure",
             "no complete deletion of any of the five diagonal mixing rows",
+            "no contradiction from a reciprocal c=2 square fiber alone",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -754,6 +788,12 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_facet_mixing"].__setitem__("near_c6_colored_quotient_degree", 4),
         lambda x: x["diagonal_facet_mixing"].__setitem__("near_c6_colored_quotient_tau_eigenvalue", -1),
         lambda x: x["diagonal_facet_mixing"].__setitem__("near_c6_J_identity", "wrong"),
+        lambda x: x["diagonal_facet_mixing"]["near_c2_matching_types"].__setitem__("a2_b0", 1349),
+        lambda x: x["diagonal_facet_mixing"]["c2_202_J_degree_profile"].pop(),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("c2_202_square_fiber", "wrong"),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("c2_112_saturated_J1_degree_profile", [3, 4]),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("c2_112_exceptional_J1_capacity_values", [6, 7]),
+        lambda x: x["scope"].__setitem__("minimally_mixed_c2_capacity_refined", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -805,6 +845,7 @@ def main() -> None:
         f"transpose_terms={data['coordinate_transpose_transport']['divided_difference_terms_checked']} "
         f"diagonal_mixing_rows={data['diagonal_facet_mixing']['orbit_row_count']} "
         f"c6_near={data['diagonal_facet_mixing']['near_c6_matchings_surviving']} "
+        f"c2_exceptional={data['diagonal_facet_mixing']['near_c2_matching_types']['a1_b1_eta_to_J0']} "
         f"tamper_rejected={rejected}"
     )
 

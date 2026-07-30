@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows, with aligned c=6 impossible and its near-aligned survivor reduced to one reciprocal colored quotient system.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows, with aligned c=6 impossible, its near-aligned survivor reduced to one reciprocal colored quotient system, and the c=2 rows reduced to exact incidence-capacity and square-fiber alternatives.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, deletion of the partition-preserving diagonal subcase and aligned c=6, and quotient descent of the near-aligned c=6 colored divisor
-status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_AND_C6_QUOTIENT_INTERFACES_TYPES_OPEN_K3_OPEN
-impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FIVE_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM
-falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, an actual diagonal component whose endpoint involution preserves I and J, an aligned c=6 component, or failure of the near-aligned c=6 quotient identities
+claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, deletion of the partition-preserving diagonal subcase and aligned c=6, quotient descent of the near-aligned c=6 colored divisor, and exact c=2 crossing-degree, square-fiber, fourth-power-product, and exceptional-capacity pins
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_AND_C2_CAPACITY_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FIVE_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM_AND_C2_AT_PRINTED_SQUARE_FIBER_ALTERNATIVES
+falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, an actual diagonal component whose endpoint involution preserves I and J, an aligned c=6 component, failure of the near-aligned c=6 quotient identities, or a c=2 component violating the printed incidence degrees, square-fiber identities, or exceptional capacity interval
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -338,11 +338,56 @@ individual-star lift, so it applies to both diagonal source-subfield
 branches. It deletes aligned `c=6`; the near-aligned quotient system remains
 open.
 
+The two minimally mixed rows also have an exact capacity ledger. Let `d_j`
+be the incidence degree of `j in J` among the ten common-`K` component
+stars. The universal color cut gives
+
+```text
+2 <= d_j <= 4,                sum_(j in J) d_j = 20. (9.7)
+```
+
+For `(a,b,c)=(2,0,2)`, put `K_0=K intersect tau(K)` and let `k_*` be
+the remaining label of `K`. The four quartics indexed by `K_0` are supported
+on the four-label set `J_0`; their sixteen roots saturate its capacity.
+Consequently
+
+```text
+d_j=4 (j in J_0),             d_j=2 (j in J_1),
+R_(k_*)~P_(J_1)^2,            product_(k in K_0) R_k~P_(J_0)^4. (9.8)
+```
+
+The square follows because each of the two reduced quadratic stars in
+`R_(k_*)` is supported on the same two-label set `J_1`.
+
+For `(a,b,c)=(1,1,2)`, suppose either `L=I` or `tau(eta) in K`. The
+quartic indexed by `tau(eta)` contributes four `J_1` roots, and the two
+common-`K` quartics transported to `L^c` contribute at least two each.
+This saturates the capacity eight of `J_1`, giving
+
+```text
+d_j=4 (j in J_1),             R_(tau(eta))~P_(J_1)^2. (9.9)
+```
+
+Every common-`K` quartic transported to `L^c` then has exactly two `J_1`
+roots. The sole unsaturated case has
+
+```text
+L!=I,       eta,tau(eta) in J_0,
+6 <= sum_(j in J_1) d_j <= 8.                       (9.10)
+```
+
+Indeed, its three common-`K` labels with non-`K` destinations all transport
+to `L^c`, giving the lower bound six; (9.7) gives the upper bound eight.
+These are divisor and capacity consequences, not a deletion of either
+`c=2` row. In particular, a reciprocal square fiber alone is not a
+contradiction.
+
 Provenance: the base argument was first banked as the independently auditable
 `prize` node `rate_half_kb_m2_r4_diagonal_facet_mixing_obstruction` at
 commit `af28147e`, and the maximally mixed extension at `f45a4d50`; the
-complete proof is reproduced here rather than imported as an opaque status
-claim.
+minimally mixed refinement is commit
+`ac58d21166535a2e6d4c6c9d403c4f753658e344`. The complete proof is
+reproduced here rather than imported as an opaque status claim.
 
 ## 10. Scope and next action
 
@@ -356,7 +401,10 @@ routes the second coordinate subgroup through a freshly rebuilt coordinate
 source record. In the diagonal branch, partition preservation is impossible;
 the endpoint involution has one of the five crossing rows (9.4), with the
 printed common-`K` support cuts. Aligned `c=6` is impossible, and its
-near-aligned survivor has the quotient system (9.6).
+near-aligned survivor has the quotient system (9.6). The `(2,0,2)` row has
+the exact degree profile and square/fourth-power identities (9.8). The
+`(1,1,2)` row has the saturated identity (9.9) apart from the single orbit
+alternative (9.10).
 
 Not proved: a stabilizer action in the trivial branch, realization or
 deletion of any of the three surviving profiles, universal failure of the
@@ -379,3 +427,6 @@ root supports with the reciprocal norm or split-resolvent branch gate. Do
 not import the coordinate branch's `I,J` invariance or colored quotient
 descent outside the proved near-aligned `c=6` row. For that row, attack the
 single reciprocal quadratic system (9.6), not arbitrary four-edge divisors.
+For `c=2`, substitute the forced square fiber (9.8) into the source norm or
+split-resolvent equation and combine the resulting coefficient minors with
+the four-fiber fourth-power product. Keep (9.10) as a separate branch.

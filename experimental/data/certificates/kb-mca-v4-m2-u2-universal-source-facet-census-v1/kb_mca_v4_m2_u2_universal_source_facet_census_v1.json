@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_AND_C6_QUOTIENT_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_AND_C2_CAPACITY_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -127,6 +127,27 @@
     "K_transport_to_L_complement": "at least two roots lie in J_1",
     "K_transport_to_eta": "all four roots lie in J_1=J intersect tau(I)",
     "aligned_c6_deleted": true,
+    "c2_112_exceptional_J1_capacity_values": [
+      6,
+      7,
+      8
+    ],
+    "c2_112_exceptional_eta_orbit": "eta and tau(eta) lie in J_0",
+    "c2_112_saturated_J1_degree_profile": [
+      4,
+      4
+    ],
+    "c2_112_saturated_square_fiber": "R_tau_eta is proportional to P_J1^2",
+    "c2_202_J_degree_profile": [
+      2,
+      2,
+      4,
+      4,
+      4,
+      4
+    ],
+    "c2_202_internal_product": "product over K_0 of R_k is proportional to P_J0^4",
+    "c2_202_square_fiber": "R_kstar is proportional to P_J1^2",
     "crossing_counts": [
       2,
       4,
@@ -135,6 +156,11 @@
     "diagonal_orientation_deleted": false,
     "endpoint_involution_fixed_point_free_on_labels": true,
     "individual_star_transport_used": false,
+    "near_c2_matching_types": {
+      "a1_b1_eta_to_J0": 1800,
+      "a1_b1_eta_to_K": 900,
+      "a2_b0": 1350
+    },
     "near_c6_I_identity": "chi*Q_I is proportional to R_7^2",
     "near_c6_J_identity": "Q_J is proportional to K_5^2*chi",
     "near_c6_J_roots_per_paired_quartic": 2,
@@ -191,6 +217,7 @@
     "no stabilizer action or paired degree profile in the trivial branch",
     "no universal source-row kernel failure",
     "no complete deletion of any of the five diagonal mixing rows",
+    "no contradiction from a reciprocal c=2 square fiber alone",
     "no component, type, owner, payment, K3, row, or Prize close"
   ],
   "parent": {
@@ -204,13 +231,14 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "d12f7dccbca0236ccd21482de28c44f5e6399de70fddeb5e10b17d3eb6560755",
+  "payload_sha256": "f554b899de646525028323282e95d600d7293eb49d04098e5be185508c30174f",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "aligned_c6_deleted": true,
     "coordinate_order_two": true,
     "coordinate_pairing_transferred_to_trivial": false,
     "diagonal_order_two": true,
+    "minimally_mixed_c2_capacity_refined": true,
     "partition_preserving_diagonal_subcase_deleted": true,
     "trivial_stabilizer_r8_delta1": true
   },
