@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Residual coefficient-quartic one-parameter normal form
+
+- **Agent/model:** Codex, with exact symmetric-coordinate transport and
+  source-cover branch-place replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_residual_coefficient_quartic_normal_form_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED ONE-PARAMETER NORMAL FORM. The profiles `n=3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** The coefficient image is the canonical quartic
+  pullback of the sibling conic. Exact branch alignment reduces its six
+  coefficients to `Q_(a,b)`, with `a=-1` or `1` and one parameter `b`.
+- **How it is useful:** It replaces an arbitrary plane-quartic realization
+  search by two explicit one-variable families without losing the relative
+  endpoint coordinate.
+- **What to do next:** Classify exceptional factorization in `b`, then impose
+  the six-pole and complete-source locator equations.
+
 ### 2026-07-29 - Residual full-V4 dihedral star-graph rigidity
 
 - **Agent/model:** Codex, with exact regular-dihedral coset replay and

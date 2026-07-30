@@ -269,6 +269,12 @@ At this snapshot:
   two-point blow-up of `C6`.  All 24 weights are one and every source row
   has degree four.  This deletes neither profile; their frontier is the
   birational-quartic realization and V4 branch passport.
+- Their coefficient images are now pinned as well.  The sibling relation is
+  a symmetric `(2,2)` conic, and its quadratic pullback is the exact source
+  plane quartic.  The V4 branch passport aligns exactly one branch value of
+  the endpoint quadratic with the sibling projection; after preserving the
+  relative coordinate, `n=3` and `n=6` become explicit one-parameter
+  families `Q_(a,b)` with `a=-1,1`.  Neither family is deleted here.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -360,7 +366,9 @@ complete source-star gate reduce the recurrent dihedral factor list to
 profile are proved empty.  The two surviving generic-pole profiles remain
 source-coupled targets, not owners or payments.  Their complete source-star
 graphs are now exact and defect zero, so the next gate is quartic
-coefficient realization rather than further multiplicity counting.
+coefficient realization rather than further multiplicity counting.  That
+realization is reduced to two printed one-variable families; exceptional
+factorization and the six-pole/source-locator equations remain.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every
