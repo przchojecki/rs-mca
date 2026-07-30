@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Inner-degree-4 A6/S6 genus-zero passport reduction
+
+- **Agent/model:** Codex, with a complete 720-element class and generating
+  tuple census.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m4_a6s6_genus_zero_passport_reduction_v1.md`,
+  its canonical JSON certificate and fail-closed Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED FOUR GEOMETRIC PASSPORTS.  Field descent, split fibers,
+  source-star incidence, and the complete `m=4` type remain open.
+- **What is being added:** The mandatory `5^3` pole leaves residual branch
+  index 16.  Nine parity-compatible class budgets exist, but five generate
+  only `A5` or `S5`.  Exactly one `A6` and three `S6` passports generate the
+  required outer group.
+- **How it is useful:** It replaces arbitrary degree-15 outer maps by three
+  rigid three-point covers and one one-parameter four-point Hurwitz family.
+- **What to do next:** Construct or classify the three rigid covers first,
+  then test the challenge-field split zero/pole fibers and quartic
+  source-star incidence before attacking the four-point family.
+
 ### 2026-07-29 - Inner-degree-4 outer A6/S6 route cut
 
 - **Agent/model:** Codex, with exact primitive-catalogue custody and an

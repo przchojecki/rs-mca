@@ -197,6 +197,14 @@ At this snapshot:
   transverse frontier has `9` types in inner degrees `2,3,4`; the surviving
   `m=4` type, degree `2`, `u=2`, K3, the KoalaBear row, and all payments
   remain open.
+- The surviving inner-degree-`4` outer type has exactly four geometric
+  genus-zero passports.  Riemann--Hurwitz and the complete `S6` two-subset
+  class table leave nine parity-compatible index budgets; exact product-one
+  enumeration shows five generate only proper groups of order `60` or
+  `120`.  The survivors are three three-point covers (one `A6`, two `S6`)
+  and one four-point `S6` cover.  Challenge-field descent, split zero and
+  pole fibers, quartic source-star incidence, the `m=4` type, K3, the
+  KoalaBear row, and all payments remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
