@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows, with aligned c=6 impossible, its near-aligned survivor reduced to one reciprocal colored quotient system, the c=2 rows reduced to exact incidence-capacity and square-fiber alternatives, every saturated c=2 square fiber in the source-line branch giving an exact unramified 4/3-dimensional or ramified 6/5-dimensional linear cut, and the entire (2,0,2) diagonal row deleted in both source-subfield branches by the complete-source defect budget.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows, with aligned c=6 impossible, its near-aligned survivor reduced to one reciprocal colored quotient system, the c=2 rows reduced to exact incidence-capacity and square-fiber alternatives, every saturated c=2 square fiber in the source-line branch giving an exact unramified 4/3-dimensional or ramified 6/5-dimensional linear cut, the entire (2,0,2) diagonal row deleted in both source-subfield branches by the complete-source defect budget, and the saturated (1,1,2) cases reduced to 123 matching-preserving edge orbits, only 12 in the source-line branch.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, deletion of the partition-preserving diagonal subcase and aligned c=6, quotient descent of the near-aligned c=6 colored divisor, exact c=2 crossing-degree, square-fiber, fourth-power-product, and exceptional-capacity pins, exact source-line square-fiber coefficient cuts of dimensions 4/3 off ramification and 6/5 at ramification, and complete deletion of the diagonal (2,0,2) orbit row
-status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_AND_C2_202_ROW_DEFECT_INTERFACES_TYPES_OPEN_K3_OPEN
-impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FOUR_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM_AND_THE_202_ROW_EMPTY
-falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, an actual diagonal component whose endpoint involution preserves I and J, an aligned c=6 component, failure of the near-aligned c=6 quotient identities, a c=2 component violating the printed incidence degrees, square-fiber identities, or exceptional capacity interval, a saturated source-line c=2 square fiber violating the printed unramified or ramified linear rank, or any actual diagonal (2,0,2) packet
+claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, deletion of the partition-preserving diagonal subcase and aligned c=6, quotient descent of the near-aligned c=6 colored divisor, exact c=2 crossing-degree, square-fiber, fourth-power-product, and exceptional-capacity pins, exact source-line square-fiber coefficient cuts of dimensions 4/3 off ramification and 6/5 at ramification, complete deletion of the diagonal (2,0,2) orbit row, and exact saturated (1,1,2) defect packet counts 1560/123 and source-line counts 96/12
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_AND_C2_112_SATURATED_DEFECT_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FOUR_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM_THE_202_ROW_EMPTY_AND_SATURATED_112_AT_123_OR_12_EDGE_ORBITS
+falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, an actual diagonal component whose endpoint involution preserves I and J, an aligned c=6 component, failure of the near-aligned c=6 quotient identities, a c=2 component violating the printed incidence degrees, square-fiber identities, or exceptional capacity interval, a saturated source-line c=2 square fiber violating the printed unramified or ramified linear rank, any actual diagonal (2,0,2) packet, or a saturated (1,1,2) packet outside the printed defect census
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -459,6 +459,30 @@ for every actual diagonal component. Four rows remain:
 `(1,1,2),(1,0,4),(0,1,4),(0,0,6)`. This does not delete the ramified
 alternative in `(1,1,2)`.
 
+The saturated `(1,1,2)` cases have an exact one-unit defect ledger. Their
+reciprocal square vertices have weight exactly two and consume two defect
+units. A third occurrence of either square edge would already raise total
+defect to four. The remaining common-`K` stars are therefore
+
+```text
+four reduced J_0-J_0 edges,
+four reduced J_0-J_1 edges, each J_1 label used twice,
+collision_defect(pure)+collision_defect(mixed)<=1. (9.16)
+```
+
+The possible `J_0` degree profiles are exactly
+`(2,2,4,4),(2,3,3,4),(3,3,3,3)`. Exhausting edge multisets gives `1,560`
+labeled packets in `123` orbits under the order-16 relabeling group that
+preserves the two `tau` pairs of `J_0` and may swap `J_1`.
+
+In the source-line branch, the four pure edges are a union of two
+`tau`-edge orbits. A repeated mixed edge would repeat its transported
+`I-J` partner as well and spend two residual defect units, so all four mixed
+edges are distinct. Exactly `96` labeled packets in `12` matching-preserving
+orbits remain; their transported partners are all four universal `I-J`
+stars. These counts are combinatorial admissibility lists, not component
+realization or deletion. The exceptional case (9.10) is outside the list.
+
 Provenance: the base argument was first banked as the independently auditable
 `prize` node `rate_half_kb_m2_r4_diagonal_facet_mixing_obstruction` at
 commit `af28147e`, and the maximally mixed extension at `f45a4d50`; the
@@ -468,6 +492,8 @@ and ramification repair are commit
 `30c4a8a44f25caf37567b589146f52503bca72dc`; the `(2,0,2)` ramified-defect
 exclusion is commit `9d31dd05ad53f079ef41a4cc05cc479e241f768b`. The complete
 row deletion is commit `9aea5c6027fc35285f23ffbbf5b55cf1828d23e2`.
+The saturated `(1,1,2)` classifier is commit
+`7eb3d2d9f8ed13fd44f54e646d0edc90d2748bba`.
 The complete proof is reproduced here rather than imported as an opaque
 status claim.
 
@@ -485,7 +511,8 @@ the endpoint involution has one of the five crossing rows (9.4), with the
 printed common-`K` support cuts. Aligned `c=6` is impossible, and its
 near-aligned survivor has the quotient system (9.6). The `(2,0,2)` row is
 deleted by (9.15). The `(1,1,2)` row has the saturated identity (9.9) apart
-from the single orbit alternative (9.10). In the source-line branch, every saturated square fiber
+from the single orbit alternative (9.10), and its saturated cases have the
+exact packet census (9.16). In the source-line branch, every saturated square fiber
 has the exact unramified `4/3`-dimensional or ramified `6/5`-dimensional
 linear cut (9.12)--(9.13).
 
@@ -511,6 +538,7 @@ not import the coordinate branch's `I,J` invariance or colored quotient
 descent outside the proved near-aligned `c=6` row. For that row, attack the
 single reciprocal quadratic system (9.6), not arbitrary four-edge divisors.
 Remove `(2,0,2)` by (9.15). For `(1,1,2)`, attack the saturated cases by
-combining their two doubled reciprocal square vertices with the one remaining
-unit of complete-source defect. Keep (9.10), its ramified alternative, and
-the biquadratic source-cover branch separate.
+routing the twelve source-line orbits through the coefficient/interpolation
+gate and the 123 branch-independent orbits through the split resolvent. Keep
+(9.10), its ramified alternative, and the biquadratic source-cover branch
+separate.

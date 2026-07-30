@@ -10,7 +10,7 @@ import json
 import subprocess
 from collections import Counter
 from fractions import Fraction
-from itertools import combinations, product
+from itertools import combinations, combinations_with_replacement, permutations, product
 from pathlib import Path
 from typing import Any, Callable
 
@@ -842,6 +842,122 @@ def diagonal_c2_square_fiber_linear_cut_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_c2_112_saturated_defect_replay() -> dict[str, Any]:
+    pure = list(combinations(range(4), 2))
+    mixed = [(left, right) for left in range(4) for right in range(2)]
+    pure_index = {edge: index for index, edge in enumerate(pure)}
+    mixed_index = {edge: index for index, edge in enumerate(mixed)}
+    tau = {0: 1, 1: 0, 2: 3, 3: 2}
+    tau_pure = {
+        index: pure_index[tuple(sorted((tau[left], tau[right])))]
+        for index, (left, right) in enumerate(pure)
+    }
+
+    def collision(weights: Counter[int]) -> int:
+        return sum(value * (value - 1) // 2 for value in weights.values())
+
+    def valid(pure_packet, mixed_packet, source_line=False):
+        pure_weights = Counter(pure_packet)
+        mixed_weights = Counter(mixed_packet)
+        if collision(pure_weights) + collision(mixed_weights) > 1:
+            return False
+        j0_degree = [0] * 4
+        j1_degree = [0] * 2
+        for edge, weight in pure_weights.items():
+            left, right = pure[edge]
+            j0_degree[left] += weight
+            j0_degree[right] += weight
+        for edge, weight in mixed_weights.items():
+            left, right = mixed[edge]
+            j0_degree[left] += weight
+            j1_degree[right] += weight
+        if j1_degree != [2, 2] or not all(2 <= degree <= 4 for degree in j0_degree):
+            return False
+        if source_line:
+            if collision(mixed_weights):
+                return False
+            if any(pure_weights[index] != pure_weights[tau_pure[index]]
+                   for index in range(6)):
+                return False
+            if any(tau_pure[index] == index and pure_weights[index] % 2
+                   for index in range(6)):
+                return False
+        return True
+
+    group_j0 = [
+        perm for perm in permutations(range(4))
+        if {frozenset((perm[0], perm[1])), frozenset((perm[2], perm[3]))}
+        == {frozenset((0, 1)), frozenset((2, 3))}
+    ]
+
+    def canonical(packet):
+        pure_packet, mixed_packet = packet
+        images = []
+        for perm in group_j0:
+            for swap in (0, 1):
+                pure_image = tuple(sorted(
+                    pure_index[tuple(sorted((perm[pure[edge][0]],
+                                             perm[pure[edge][1]])))]
+                    for edge in pure_packet
+                ))
+                mixed_image = tuple(sorted(
+                    mixed_index[(perm[mixed[edge][0]], mixed[edge][1] ^ swap)]
+                    for edge in mixed_packet
+                ))
+                images.append((pure_image, mixed_image))
+        return min(images)
+
+    def packets(source_line=False):
+        return [
+            (pure_packet, mixed_packet)
+            for pure_packet in combinations_with_replacement(range(6), 4)
+            for mixed_packet in combinations_with_replacement(range(8), 4)
+            if valid(pure_packet, mixed_packet, source_line)
+        ]
+
+    universal = packets()
+    source_line = packets(source_line=True)
+    universal_orbits = {canonical(packet) for packet in universal}
+    source_line_orbits = {canonical(packet) for packet in source_line}
+    require(len(group_j0) * 2 == 16, "c2 112 relabeling group")
+    require((len(universal), len(universal_orbits)) == (1560, 123),
+            "c2 112 universal packet census")
+    require((len(source_line), len(source_line_orbits)) == (96, 12),
+            "c2 112 source-line packet census")
+
+    profiles = set()
+    for pure_packet, mixed_packet in universal:
+        degree = [0] * 4
+        for edge in pure_packet:
+            left, right = pure[edge]
+            degree[left] += 1
+            degree[right] += 1
+        for edge in mixed_packet:
+            degree[mixed[edge][0]] += 1
+        profiles.add(tuple(sorted(degree)))
+    expected_profiles = {(2, 2, 4, 4), (2, 3, 3, 4), (3, 3, 3, 3)}
+    require(profiles == expected_profiles, "c2 112 J0 profiles")
+    return {
+        "square_vertex_weights": [2, 2],
+        "square_vertex_defect": 2,
+        "remaining_defect_budget": 1,
+        "pure_J0_edge_count": 4,
+        "mixed_J0_J1_edge_count": 4,
+        "mixed_J1_degrees": [2, 2],
+        "J0_degree_profiles": [list(profile) for profile in sorted(profiles)],
+        "universal_labeled_packets": len(universal),
+        "matching_preserving_group_order": len(group_j0) * 2,
+        "universal_matching_preserving_orbits": len(universal_orbits),
+        "source_line_labeled_packets": len(source_line),
+        "source_line_matching_preserving_orbits": len(source_line_orbits),
+        "source_line_mixed_edges_distinct": True,
+        "source_line_transported_I_J_stars": 4,
+        "exceptional_unsaturated_orbit_retained": True,
+        "row_112_deleted": False,
+        "packets_claimed_realizable": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -856,6 +972,7 @@ def expected_certificate() -> dict[str, Any]:
         "coordinate_transpose_transport": coordinate_transpose_replay(),
         "diagonal_facet_mixing": diagonal_facet_mixing_replay(),
         "diagonal_c2_square_fiber_linear_cut": diagonal_c2_square_fiber_linear_cut_replay(),
+        "diagonal_c2_112_saturated_defect": diagonal_c2_112_saturated_defect_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -879,13 +996,14 @@ def expected_certificate() -> dict[str, Any]:
             "saturated_c2_source_line_linear_cut": True,
             "row_202_ramified_source_line_deleted": True,
             "row_202_deleted_all_source_subfield_branches": True,
+            "row_112_saturated_defect_classified": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_AND_C2_202_ROW_DEFECT_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_AND_C2_112_SATURATED_DEFECT_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -894,6 +1012,7 @@ def expected_certificate() -> dict[str, Any]:
             "no contradiction from a reciprocal c=2 square fiber alone",
             "no exclusion of the ramified (1,1,2) c=2 source orbit",
             "no deletion of the remaining four diagonal orbit rows",
+            "no realization claim for any saturated (1,1,2) packet",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -976,6 +1095,15 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_square_fiber_linear_cut"].__setitem__("row_202_deleted_all_source_subfield_branches", False),
         lambda x: x["diagonal_c2_square_fiber_linear_cut"]["diagonal_orbit_rows_remaining"].pop(),
         lambda x: x["scope"].__setitem__("row_202_deleted_all_source_subfield_branches", False),
+        lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("square_vertex_weights", [2, 3]),
+        lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("remaining_defect_budget", 0),
+        lambda x: x["diagonal_c2_112_saturated_defect"]["J0_degree_profiles"].pop(),
+        lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("universal_labeled_packets", 1559),
+        lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("universal_matching_preserving_orbits", 122),
+        lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("source_line_labeled_packets", 95),
+        lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("source_line_matching_preserving_orbits", 11),
+        lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("exceptional_unsaturated_orbit_retained", False),
+        lambda x: x["scope"].__setitem__("row_112_saturated_defect_classified", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1032,6 +1160,8 @@ def main() -> None:
         f"{data['diagonal_c2_square_fiber_linear_cut']['sign_spaces']['negative']['unramified_dimension']} "
         f"c2_202_ramified_deleted={data['diagonal_c2_square_fiber_linear_cut']['row_202_ramified_source_line_deleted']} "
         f"diagonal_rows_remaining={data['diagonal_c2_square_fiber_linear_cut']['diagonal_orbit_row_count_remaining']} "
+        f"c2_112_orbits={data['diagonal_c2_112_saturated_defect']['universal_matching_preserving_orbits']}/"
+        f"{data['diagonal_c2_112_saturated_defect']['source_line_matching_preserving_orbits']} "
         f"tamper_rejected={rejected}"
     )
 

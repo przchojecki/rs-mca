@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_AND_C2_202_ROW_DEFECT_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_AND_C2_112_SATURATED_DEFECT_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -121,6 +121,50 @@
       "diagonal"
     ],
     "old_source_record_reused": false
+  },
+  "diagonal_c2_112_saturated_defect": {
+    "J0_degree_profiles": [
+      [
+        2,
+        2,
+        4,
+        4
+      ],
+      [
+        2,
+        3,
+        3,
+        4
+      ],
+      [
+        3,
+        3,
+        3,
+        3
+      ]
+    ],
+    "exceptional_unsaturated_orbit_retained": true,
+    "matching_preserving_group_order": 16,
+    "mixed_J0_J1_edge_count": 4,
+    "mixed_J1_degrees": [
+      2,
+      2
+    ],
+    "packets_claimed_realizable": false,
+    "pure_J0_edge_count": 4,
+    "remaining_defect_budget": 1,
+    "row_112_deleted": false,
+    "source_line_labeled_packets": 96,
+    "source_line_matching_preserving_orbits": 12,
+    "source_line_mixed_edges_distinct": true,
+    "source_line_transported_I_J_stars": 4,
+    "square_vertex_defect": 2,
+    "square_vertex_weights": [
+      2,
+      2
+    ],
+    "universal_labeled_packets": 1560,
+    "universal_matching_preserving_orbits": 123
   },
   "diagonal_c2_square_fiber_linear_cut": {
     "V_evaluation_determinant": "epsilon*(1-w^2)*(1+epsilon*w)",
@@ -302,6 +346,7 @@
     "no contradiction from a reciprocal c=2 square fiber alone",
     "no exclusion of the ramified (1,1,2) c=2 source orbit",
     "no deletion of the remaining four diagonal orbit rows",
+    "no realization claim for any saturated (1,1,2) packet",
     "no component, type, owner, payment, K3, row, or Prize close"
   ],
   "parent": {
@@ -315,7 +360,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "f0a7dc4fd1d7f099aefaac879914aad504a11fc4b9d858cbcd95cdd7b6a93dbb",
+  "payload_sha256": "22e3cc5c5100d2b90e6487b6216fc8e5c0d6cd3f5eeefef90bac325643cbcd71",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "aligned_c6_deleted": true,
@@ -324,6 +369,7 @@
     "diagonal_order_two": true,
     "minimally_mixed_c2_capacity_refined": true,
     "partition_preserving_diagonal_subcase_deleted": true,
+    "row_112_saturated_defect_classified": true,
     "row_202_deleted_all_source_subfield_branches": true,
     "row_202_ramified_source_line_deleted": true,
     "saturated_c2_source_line_linear_cut": true,
