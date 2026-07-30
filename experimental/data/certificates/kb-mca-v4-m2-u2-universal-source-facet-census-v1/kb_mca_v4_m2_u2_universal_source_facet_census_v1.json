@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_AND_C2_SOURCE_LINEAR_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_AND_C2_202_RAMIFIED_DEFECT_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -124,6 +124,7 @@
   },
   "diagonal_c2_square_fiber_linear_cut": {
     "V_evaluation_determinant": "epsilon*(1-w^2)*(1+epsilon*w)",
+    "complete_source_defect_budget": 3,
     "fixed_point_free_excludes_w_plus_minus_one": true,
     "forced_square_root_locator": "P_J1",
     "minor_common_factor": "chi_w=(W-w)*(W-w^-1)",
@@ -139,6 +140,17 @@
       "infinity"
     ],
     "ramified_orbit_retained": true,
+    "row_202_J0_defect_floor": 2,
+    "row_202_J0_edge_vertices": 6,
+    "row_202_J0_star_units": 8,
+    "row_202_ramified_double_vertex_defect": 2,
+    "row_202_ramified_occupancies_checked": 1287,
+    "row_202_ramified_source_line_deleted": true,
+    "row_202_ramified_total_defect": 4,
+    "row_202_surviving_source_line_dimensions": [
+      4,
+      3
+    ],
     "sign_spaces": {
       "negative": {
         "ambient_dimension": 7,
@@ -257,7 +269,8 @@
     "no universal source-row kernel failure",
     "no complete deletion of any of the five diagonal mixing rows",
     "no contradiction from a reciprocal c=2 square fiber alone",
-    "no exclusion of the ramified c=2 source orbit",
+    "no exclusion of the ramified (1,1,2) c=2 source orbit",
+    "no deletion of the unramified (2,0,2) row or its biquadratic branch",
     "no component, type, owner, payment, K3, row, or Prize close"
   ],
   "parent": {
@@ -271,7 +284,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "0d1fa37ac4dc443ea19a00b2cad9bb3a6a37a1710c3f9ccd59b46609e2f6f1a6",
+  "payload_sha256": "ca878fb3aa4e41ab5b7184413decdb50522716fd70267ddd529dc37d57d9bce6",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "aligned_c6_deleted": true,
@@ -280,6 +293,7 @@
     "diagonal_order_two": true,
     "minimally_mixed_c2_capacity_refined": true,
     "partition_preserving_diagonal_subcase_deleted": true,
+    "row_202_ramified_source_line_deleted": true,
     "saturated_c2_source_line_linear_cut": true,
     "trivial_stabilizer_r8_delta1": true
   },

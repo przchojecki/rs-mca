@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows, with aligned c=6 impossible, its near-aligned survivor reduced to one reciprocal colored quotient system, the c=2 rows reduced to exact incidence-capacity and square-fiber alternatives, and every saturated c=2 square fiber in the source-line branch giving an exact unramified 4/3-dimensional or ramified 6/5-dimensional linear cut.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows, with aligned c=6 impossible, its near-aligned survivor reduced to one reciprocal colored quotient system, the c=2 rows reduced to exact incidence-capacity and square-fiber alternatives, every saturated c=2 square fiber in the source-line branch giving an exact unramified 4/3-dimensional or ramified 6/5-dimensional linear cut, and the ramified source-line alternative deleted in the (2,0,2) row by the complete-source defect budget.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, deletion of the partition-preserving diagonal subcase and aligned c=6, quotient descent of the near-aligned c=6 colored divisor, exact c=2 crossing-degree, square-fiber, fourth-power-product, and exceptional-capacity pins, and exact source-line square-fiber coefficient cuts of dimensions 4/3 off ramification and 6/5 at ramification
-status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_AND_C2_SOURCE_LINEAR_INTERFACES_TYPES_OPEN_K3_OPEN
-impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FIVE_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM_AND_SATURATED_C2_SOURCE_LINE_AT_4_OR_3_PARAMETERS_OFF_RAMIFICATION
-falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, an actual diagonal component whose endpoint involution preserves I and J, an aligned c=6 component, failure of the near-aligned c=6 quotient identities, a c=2 component violating the printed incidence degrees, square-fiber identities, or exceptional capacity interval, or a saturated source-line c=2 square fiber violating the printed unramified or ramified linear rank
+claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, deletion of the partition-preserving diagonal subcase and aligned c=6, quotient descent of the near-aligned c=6 colored divisor, exact c=2 crossing-degree, square-fiber, fourth-power-product, and exceptional-capacity pins, exact source-line square-fiber coefficient cuts of dimensions 4/3 off ramification and 6/5 at ramification, and deletion of the ramified source-line (2,0,2) subcase
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_AND_C2_202_RAMIFIED_DEFECT_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FIVE_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM_AND_THE_SOURCE_LINE_202_ROW_UNCONDITIONALLY_AT_4_OR_3_PARAMETERS
+falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, an actual diagonal component whose endpoint involution preserves I and J, an aligned c=6 component, failure of the near-aligned c=6 quotient identities, a c=2 component violating the printed incidence degrees, square-fiber identities, or exceptional capacity interval, a saturated source-line c=2 square fiber violating the printed unramified or ramified linear rank, or a ramified source-line (2,0,2) packet whose complete-source defect does not exceed the budget
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -423,14 +423,39 @@ of `V` and no common-minor factor (9.13) follows. Hence an argument that
 deduces (9.13) directly from the whole-fiber square without separating
 ramification is invalid.
 
+For the stronger `(a,b,c)=(2,0,2)` row, the ramified alternative is in
+fact impossible. If the forced square fiber uses one branch value, its
+reciprocal partner uses the other. The two coincident square-root stars are
+distinct `J-J` and `I-I` vertices of weight at least two, contributing
+defect two. The four labels in `K_0` are then unramified and contribute
+eight reduced stars supported on `J_0`. There are only
+`binom(4,2)=6` possible `J_0` edges, and balancing eight units over six
+vertices gives
+
+```text
+sum_(J_0 edges e) binom(weight(e),2) >= 2.
+```
+
+Thus the total complete-source defect is at least `2+2=4`, contradicting
+the proved budget three. Hence
+
+```text
+(2,0,2) source-line row => forced square fiber unramified
+                         => coefficient dimensions 4/3.       (9.14)
+```
+
+This does not delete the unramified row, the biquadratic source-cover
+branch, or the ramified alternative in `(1,1,2)`.
+
 Provenance: the base argument was first banked as the independently auditable
 `prize` node `rate_half_kb_m2_r4_diagonal_facet_mixing_obstruction` at
 commit `af28147e`, and the maximally mixed extension at `f45a4d50`; the
 minimally mixed refinement is commit
 `ac58d21166535a2e6d4c6c9d403c4f753658e344`. The source-line linear cut
 and ramification repair are commit
-`30c4a8a44f25caf37567b589146f52503bca72dc`. The complete proof is
-reproduced here rather than imported as an opaque status claim.
+`30c4a8a44f25caf37567b589146f52503bca72dc`; the `(2,0,2)` ramified-defect
+exclusion is commit `9d31dd05ad53f079ef41a4cc05cc479e241f768b`. The complete
+proof is reproduced here rather than imported as an opaque status claim.
 
 ## 10. Scope and next action
 
@@ -449,7 +474,9 @@ the exact degree profile and square/fourth-power identities (9.8). The
 `(1,1,2)` row has the saturated identity (9.9) apart from the single orbit
 alternative (9.10). In the source-line branch, every saturated square fiber
 has the exact unramified `4/3`-dimensional or ramified `6/5`-dimensional
-linear cut (9.12)--(9.13).
+linear cut (9.12)--(9.13). The ramified alternative is impossible in the
+source-line `(2,0,2)` row by (9.14), so that row is unconditionally in the
+`4/3`-dimensional locus within this branch.
 
 Not proved: a stabilizer action in the trivial branch, realization or
 deletion of any of the three surviving profiles, universal failure of the
@@ -474,7 +501,8 @@ descent outside the proved near-aligned `c=6` row. For that row, attack the
 single reciprocal quadratic system (9.6), not arbitrary four-edge divisors.
 For `c=2`, substitute the forced square fiber (9.8) into the source norm or
 split-resolvent equation and combine the resulting coefficient minors with
-the four-fiber fourth-power product. In the source-line branch, first seek an
-exact exclusion of a common-`K` label at the ramified source orbit; otherwise
-feed the `4/3`-parameter unramified forms into the source interpolation gate.
-Keep (9.10) and the biquadratic source-cover branch separate.
+the four-fiber fourth-power product. In the source-line `(2,0,2)` row,
+(9.14) supplies the required ramified exclusion: classify its reciprocal
+`J_0` star occupancies and impose the four-fiber fourth-power product on the
+`4/3`-parameter forms. Keep (9.10), the `(1,1,2)` ramified alternative, and
+the biquadratic source-cover branch separate.
