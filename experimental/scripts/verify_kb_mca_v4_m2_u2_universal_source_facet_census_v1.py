@@ -508,6 +508,32 @@ def coordinate_k_fiber_vieta_replay() -> dict[str, Any]:
     }
 
 
+def coordinate_transpose_replay() -> dict[str, Any]:
+    terms_checked = 0
+    for degree in range(1, 61):
+        terms = {(degree - 1 - index, index) for index in range(degree)}
+        require({(right, left) for left, right in terms} == terms,
+                "endpoint divided-difference transpose")
+        terms_checked += len(terms)
+
+    identity, first, second, diagonal = (0, 0), (1, 0), (0, 1), (1, 1)
+    transpose = lambda element: (element[1], element[0])
+    require(transpose(identity) == identity, "identity transpose")
+    require(transpose(first) == second, "first coordinate transpose")
+    require(transpose(second) == first, "second coordinate transpose")
+    require(transpose(diagonal) == diagonal, "diagonal transpose")
+    return {
+        "endpoint_self_correspondence_transpose_invariant": True,
+        "divided_difference_terms_checked": terms_checked,
+        "coordinate_subgroups_exchanged": True,
+        "diagonal_subgroup_fixed": True,
+        "fresh_source_record_required": True,
+        "old_source_record_reused": False,
+        "independent_order_two_geometry_routes": ["coordinate", "diagonal"],
+        "coordinate_orientation_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -519,6 +545,7 @@ def expected_certificate() -> dict[str, Any]:
         "colored_source_resultant_split": colored_resultant_split_replay(),
         "coordinate_colored_quotient_resultant": coordinate_colored_quotient_replay(),
         "coordinate_k_fiber_vieta_rank": coordinate_k_fiber_vieta_replay(),
+        "coordinate_transpose_transport": coordinate_transpose_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -542,7 +569,7 @@ def expected_certificate() -> dict[str, Any]:
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_AND_VIETA_RANK_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_AND_TRANSPOSE_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -589,6 +616,10 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("negative_product_sample_rank", 4),
         lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("negative_ramified_K_excluded", False),
         lambda x: x["coordinate_k_fiber_vieta_rank"].__setitem__("coordinate_orientation_deleted", True),
+        lambda x: x["coordinate_transpose_transport"].__setitem__("endpoint_self_correspondence_transpose_invariant", False),
+        lambda x: x["coordinate_transpose_transport"].__setitem__("coordinate_subgroups_exchanged", False),
+        lambda x: x["coordinate_transpose_transport"].__setitem__("fresh_source_record_required", False),
+        lambda x: x["coordinate_transpose_transport"].__setitem__("old_source_record_reused", True),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -637,6 +668,7 @@ def main() -> None:
         f"coordinate_quotients={data['coordinate_colored_quotient_resultant']['quotient_quadratic_count_on_six_free_fibers']} "
         f"coordinate_vieta_rank={data['coordinate_k_fiber_vieta_rank']['positive_sample_rank']}/"
         f"{data['coordinate_k_fiber_vieta_rank']['negative_sample_rank']} "
+        f"transpose_terms={data['coordinate_transpose_transport']['divided_difference_terms_checked']} "
         f"tamper_rejected={rejected}"
     )
 

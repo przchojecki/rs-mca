@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, and the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, and endpoint transposition routes the other coordinate subgroup through a fresh source record.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, and exact 10-by-8 or 10-by-7 K-fiber Vieta gates
-status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_AND_VIETA_RANK_INTERFACES_TYPES_OPEN_K3_OPEN
-impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_AN_EXPLICIT_COORDINATE_NORM_AND_FIVE_FIBER_RANK_SYSTEM
-falsifier: an actual degree-two component outside the universal source interfaces, or a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail
+claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, and transpose transport of the second coordinate subgroup
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_AND_TRANSPOSE_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_COORDINATE_AND_DIAGONAL_GEOMETRY_ROUTES
+falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, or failure of endpoint transposition after rebuilding the source record
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -233,14 +233,38 @@ valid there and were replayed at both quotient branch values. These are
 exact packet-deletion gates, not a proof that every coordinate packet
 fails.
 
-## 8. Scope and next action
+## 8. Transport of the second coordinate subgroup
+
+The endpoint relation is the symmetric self-correspondence `f(T)=f(W)`.
+Axis transposition preserves every actual non-diagonal bidegree-`(4,4)`
+component and conjugates the order-two subgroups by
+
+```text
+<1 x tau>  <->  <tau x 1>,
+<tau x tau> -> <tau x tau>.
+```
+
+For a transposed component, rename `T'=W,W'=T` and rerun the degree-two
+source reduction on the new second coordinate `W'=psi'(X')`. This gives
+fresh data `H',b',I',J',L',K'`. The coordinate source-facet, coefficient,
+colored-resultant, and Vieta-rank results apply to that primed record.
+They do not assert that `H'` is the formal transpose of the old source
+equation or that a packet-specific determinant is unchanged.
+
+Thus the two coordinate subgroups are one existence/deletion route. The
+order-two campaign has two independent geometries, coordinate and
+diagonal, not three subgroup-specific campaigns. Neither route is closed.
+
+## 9. Scope and next action
 
 Proved: the universal category census, the five exhaustive raw integer
 profiles, the exact three-profile component-color cut, applicability to the
 trivial-stabilizer type, and the universal scope of the exact source-row
 interpolation gate and colored partial-resultant split. In the coordinate
 branch, the quotient-resultant and common-`K` Vieta-rank systems are exact,
-including the negative ramified-fiber exclusion.
+including the negative ramified-fiber exclusion. Endpoint transposition
+routes the second coordinate subgroup through a freshly rebuilt coordinate
+source record.
 
 Not proved: a stabilizer action in the trivial branch, realization or
 deletion of any of the three surviving profiles, universal failure of the
@@ -255,4 +279,6 @@ irreducibility, deck distinction, and outer-factor side conditions.
 For the coordinate type, apply the small Vieta determinants and full
 five-fiber kernel before solving `(6.1)` separately in the positive and
 negative parity spaces. Preserve the ramified-fiber distinction before
-generic endpoint reconstruction.
+generic endpoint reconstruction. Apply the same program to `<1 x tau>`
+only after transposition and reconstruction of its primed source record;
+continue the diagonal subgroup as the other independent geometry route.

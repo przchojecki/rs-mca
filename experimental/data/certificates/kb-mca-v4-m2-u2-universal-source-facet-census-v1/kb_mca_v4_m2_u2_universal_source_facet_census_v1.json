@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_AND_VIETA_RANK_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_AND_TRANSPOSE_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -109,6 +109,19 @@
     "positive_sample_rank": 7,
     "positive_small_determinant_rank": 3
   },
+  "coordinate_transpose_transport": {
+    "coordinate_orientation_deleted": false,
+    "coordinate_subgroups_exchanged": true,
+    "diagonal_subgroup_fixed": true,
+    "divided_difference_terms_checked": 1830,
+    "endpoint_self_correspondence_transpose_invariant": true,
+    "fresh_source_record_required": true,
+    "independent_order_two_geometry_routes": [
+      "coordinate",
+      "diagonal"
+    ],
+    "old_source_record_reused": false
+  },
   "nonclaims": [
     "no stabilizer action or paired degree profile in the trivial branch",
     "no universal source-row kernel failure",
@@ -125,7 +138,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "ba77d21b4da577dcb4eafc375d36e4df18644c6c284cf0e53a3350c4011d8a85",
+  "payload_sha256": "c064cf1971e08427b266de1f9768e98f11562998c09b8e8e828cf89cff48f297",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "coordinate_order_two": true,
