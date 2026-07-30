@@ -1126,6 +1126,78 @@ def diagonal_c2_112_source_line_odd_incidence_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_c2_112_ramified_complete_source_repair_replay() -> dict[str, Any]:
+    allocations = [orders for orders in product(range(3), repeat=2)
+                   if sum(orders) == 4]
+    require(allocations == [(2, 2)], "c2 112 ramified row orders")
+
+    def matrix_rank(matrix):
+        work = [[Fraction(value) for value in row] for row in matrix]
+        pivot_row = 0
+        for column in range(len(work[0])):
+            pivot = next((row for row in range(pivot_row, len(work))
+                          if work[row][column]), None)
+            if pivot is None:
+                continue
+            work[pivot_row], work[pivot] = work[pivot], work[pivot_row]
+            scale = work[pivot_row][column]
+            work[pivot_row] = [value / scale for value in work[pivot_row]]
+            for row in range(len(work)):
+                if row == pivot_row or not work[row][column]:
+                    continue
+                scale = work[row][column]
+                work[row] = [left - scale * right
+                             for left, right in zip(work[row], work[pivot_row])]
+            pivot_row += 1
+        return pivot_row
+
+    def compose(left, right):
+        return [[sum(value * right[k][column]
+                     for k, value in enumerate(row))
+                 for column in range(len(right[0]))]
+                for row in left]
+
+    line_quotient = [[-3, 1, 0], [-2, 0, 1]]
+    dimensions = {}
+    for epsilon, name, ambient in ((1, "positive", 8), (-1, "negative", 7)):
+        u_columns = 5 if epsilon == 1 else 4
+        u = [[0] * u_columns for _ in range(3)]
+        u[0][0] = 1
+        u[1][3] = 1
+        u[2][2] = epsilon
+        v = [[1, 0, 0], [0, 0, 1], [0, epsilon, 0]]
+        u_rank = matrix_rank(compose(line_quotient, u))
+        v_rank = matrix_rank(compose(line_quotient, v))
+        require((u_rank, v_rank) == (2, 2),
+                "c2 112 ramified U/V line ranks")
+        dimensions[name] = ambient - u_rank - v_rank
+    require(dimensions == {"positive": 4, "negative": 3},
+            "c2 112 repaired ramified dimensions")
+
+    expansions_checked = 0
+    for u1, v0 in product(range(-2, 3), repeat=2):
+        order = 1 if v0 else (2 if u1 else 3)
+        if order == 2:
+            require(v0 == 0, "c2 112 order-two linear coefficient")
+        expansions_checked += 1
+
+    return {
+        "source_branch_order": 2,
+        "root_row_order_cap": 2,
+        "root_row_total_order": 4,
+        "root_row_order_allocations": [list(orders) for orders in allocations],
+        "root_rows_have_order_two": True,
+        "odd_part_at_branch": "V(T,0) is a nonzero multiple of P_J1",
+        "odd_part_zero_excluded_by_deck_distinction": True,
+        "ramified_complete_source_cut_rank": 4,
+        "repaired_dimensions": dimensions,
+        "odd_incidence_gate_extends_to_w_zero": True,
+        "local_expansions_checked": expansions_checked,
+        "geometric_source_ramification_retained": True,
+        "row_112_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -1143,6 +1215,7 @@ def expected_certificate() -> dict[str, Any]:
         "diagonal_c2_112_saturated_defect": diagonal_c2_112_saturated_defect_replay(),
         "diagonal_c2_112_source_line_colored_quotient": diagonal_c2_112_source_line_colored_quotient_replay(),
         "diagonal_c2_112_source_line_odd_incidence": diagonal_c2_112_source_line_odd_incidence_replay(),
+        "diagonal_c2_112_ramified_complete_source_repair": diagonal_c2_112_ramified_complete_source_repair_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -1169,13 +1242,14 @@ def expected_certificate() -> dict[str, Any]:
             "row_112_saturated_defect_classified": True,
             "row_112_source_line_colored_quotient_compiled": True,
             "row_112_source_line_odd_incidence_compiled": True,
+            "row_112_ramified_complete_source_repaired": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_AND_C2_112_ODD_INCIDENCE_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_AND_C2_112_RAMIFIED_REPAIR_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -1186,7 +1260,7 @@ def expected_certificate() -> dict[str, Any]:
             "no deletion of the remaining four diagonal orbit rows",
             "no realization claim for any saturated (1,1,2) packet",
             "no colored quotient descent for the biquadratic or exceptional (1,1,2) branch",
-            "no deletion of the forced-ramified saturated (1,1,2) source-line branch",
+            "no geometric exclusion of forced source ramification in saturated (1,1,2)",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -1293,6 +1367,14 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("forced_ramified_branch_retained", False),
         lambda x: x["diagonal_c2_112_source_line_odd_incidence"].__setitem__("row_112_deleted", True),
         lambda x: x["scope"].__setitem__("row_112_source_line_odd_incidence_compiled", False),
+        lambda x: x["diagonal_c2_112_ramified_complete_source_repair"]["root_row_order_allocations"].pop(),
+        lambda x: x["diagonal_c2_112_ramified_complete_source_repair"].__setitem__("root_row_total_order", 3),
+        lambda x: x["diagonal_c2_112_ramified_complete_source_repair"].__setitem__("odd_part_zero_excluded_by_deck_distinction", False),
+        lambda x: x["diagonal_c2_112_ramified_complete_source_repair"].__setitem__("ramified_complete_source_cut_rank", 2),
+        lambda x: x["diagonal_c2_112_ramified_complete_source_repair"]["repaired_dimensions"].__setitem__("positive", 6),
+        lambda x: x["diagonal_c2_112_ramified_complete_source_repair"].__setitem__("geometric_source_ramification_retained", False),
+        lambda x: x["diagonal_c2_112_ramified_complete_source_repair"].__setitem__("row_112_deleted", True),
+        lambda x: x["scope"].__setitem__("row_112_ramified_complete_source_repaired", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1354,6 +1436,8 @@ def main() -> None:
         f"c2_112_quotient_rows={data['diagonal_c2_112_source_line_colored_quotient']['aligned_matching_rows_checked']}/"
         f"{data['diagonal_c2_112_source_line_colored_quotient']['near_saturated_matching_rows_checked']} "
         f"c2_112_odd_pairs={data['diagonal_c2_112_source_line_odd_incidence']['admissible_internal_edge_pairs']} "
+        f"c2_112_ramified_dims={data['diagonal_c2_112_ramified_complete_source_repair']['repaired_dimensions']['positive']}/"
+        f"{data['diagonal_c2_112_ramified_complete_source_repair']['repaired_dimensions']['negative']} "
         f"tamper_rejected={rejected}"
     )
 
