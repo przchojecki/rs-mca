@@ -1383,14 +1383,20 @@ def diagonal_c2_112_negative_factor_replay() -> dict[str, Any]:
             [-point * point, -point, -1, 0],
         ]
 
-    def augmented(template, b, c, d, w):
+    def incidence_label(c, d, w):
         a = Fraction(2)
         q0, q1 = c * d, -(c + d)
         f, g, m = q0 + w, -1 - w * q0, q1 * (1 + w)
         numerator = f + m * a - g * a * a
         denominator = g - m * a - f * a * a
         require(denominator, "c2 112 negative incidence denominator")
-        z = -numerator / denominator
+        return -numerator / denominator
+
+    def augmented(template, b, c, d, w):
+        a = Fraction(2)
+        q0, q1 = c * d, -(c + d)
+        f, g, m = q0 + w, -1 - w * q0, q1 * (1 + w)
+        z = incidence_label(c, d, w)
         vz = [f + g * z, m * (1 - z), -(g + f * z)]
         l1, l0 = vz[2], vz[1] + a * vz[2]
         require(vz[0] == -a * l0, "c2 112 negative incidence division")
@@ -1430,24 +1436,34 @@ def diagonal_c2_112_negative_factor_replay() -> dict[str, Any]:
             require(augmented(template, *fixture) == printed(template, *fixture),
                     "c2 112 negative determinant factor")
             factor_checks += 1
-    require(augmented("fixed-moving", Fraction(5), Fraction(3),
-                      Fraction(7, 11), Fraction(7)) == 0,
-            "c2 112 negative A locus")
-    require(augmented("fixed-moving", Fraction(-17), Fraction(3),
-                      Fraction(7), Fraction(5)) == 0,
+    a_locus = (Fraction(5), Fraction(3), Fraction(7, 11), Fraction(7))
+    b_locus = (Fraction(-17), Fraction(3), Fraction(7), Fraction(5))
+    c_locus = (Fraction(-1, 17), Fraction(3), Fraction(7), Fraction(5))
+    require(augmented("fixed-moving", *a_locus) == 0,
+            "c2 112 negative A determinant locus")
+    require(incidence_label(*a_locus[1:]) == -1,
+            "c2 112 negative A locus fixed internal label")
+    require(augmented("fixed-moving", *b_locus) == 0,
             "c2 112 negative B locus")
-    require(augmented("moving-moving", Fraction(-1, 17), Fraction(3),
-                      Fraction(7), Fraction(5)) == 0,
+    require(augmented("moving-moving", *c_locus) == 0,
             "c2 112 negative C locus")
+    for name, fixture in (("B", b_locus), ("C", c_locus)):
+        b, c, d, w = fixture
+        z = incidence_label(c, d, w)
+        labels = (Fraction(2), Fraction(1, 2), b, 1 / b, c, 1 / c,
+                  d, 1 / d, w, 1 / w, z, 1 / z)
+        require(len(set(labels)) == 12,
+                f"c2 112 negative {name} locus distinct labels")
     return {
         "endpoint_normalization": "common J0 endpoint=2",
         "template_counts": dict(templates),
         "factor_fixtures_checked": factor_checks,
         "fixed_moving_determinant": "nonzero_prefactor*A^2*B",
         "moving_moving_determinant": "nonzero_prefactor*A*B*C",
-        "fixed_moving_survivor_locus": "A*B=0",
-        "moving_moving_survivor_locus": "A*B*C=0",
-        "exceptional_factors_retained": ["A", "B", "C"],
+        "fixed_moving_survivor_locus": "B=0",
+        "moving_moving_survivor_locus": "B*C=0",
+        "A_locus_excluded_by_internal_fixed_point": True,
+        "exceptional_factors_retained": ["B", "C"],
         "positive_sign_deleted": False,
         "row_112_deleted": False,
     }
@@ -1653,6 +1669,7 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["scope"].__setitem__("row_112_q_slice_resultant_compiled", False),
         lambda x: x["diagonal_c2_112_negative_factor"]["template_counts"].__setitem__("fixed-moving", 7),
         lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("fixed_moving_survivor_locus", "empty"),
+        lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("A_locus_excluded_by_internal_fixed_point", False),
         lambda x: x["diagonal_c2_112_negative_factor"]["exceptional_factors_retained"].pop(),
         lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("positive_sign_deleted", True),
         lambda x: x["scope"].__setitem__("row_112_negative_factor_compiled", False),
