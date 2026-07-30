@@ -1331,6 +1331,128 @@ def diagonal_c2_112_q_slice_resultant_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_c2_112_negative_factor_replay() -> dict[str, Any]:
+    edges = list(combinations(range(4), 2))
+    edge_index = {edge: index for index, edge in enumerate(edges)}
+    tau = {0: 1, 1: 0, 2: 3, 3: 2}
+    tau_edge = {
+        index: edge_index[tuple(sorted((tau[left], tau[right])))]
+        for index, (left, right) in enumerate(edges)
+    }
+    templates = Counter()
+    for first, second in combinations_with_replacement(range(6), 2):
+        packet = Counter((first, second, tau_edge[first], tau_edge[second]))
+        defect = sum(weight * (weight - 1) // 2
+                     for weight in packet.values())
+        if defect > 1:
+            continue
+        fixed = sum(tau_edge[edge] == edge for edge in (first, second))
+        require(fixed in (0, 1), "c2 112 negative template type")
+        templates["fixed-moving" if fixed else "moving-moving"] += 1
+    require(templates == {"fixed-moving": 8, "moving-moving": 4},
+            "c2 112 negative template census")
+
+    def determinant(matrix):
+        work = [[Fraction(value) for value in row] for row in matrix]
+        result = Fraction(1)
+        for column in range(len(work)):
+            pivot = next((row for row in range(column, len(work))
+                          if work[row][column]), None)
+            if pivot is None:
+                return Fraction(0)
+            if pivot != column:
+                work[column], work[pivot] = work[pivot], work[column]
+                result = -result
+            value = work[column][column]
+            result *= value
+            work[column] = [entry / value for entry in work[column]]
+            for row in range(column + 1, len(work)):
+                value = work[row][column]
+                if value:
+                    work[row] = [left - value * right
+                                 for left, right in zip(work[row], work[column])]
+        return result
+
+    def edge(left, right):
+        return [left * right, -(left + right), Fraction(1)]
+
+    def evaluation(point):
+        return [
+            [1, point, point * point, 0],
+            [0, 0, 0, 1 - point * point],
+            [-point * point, -point, -1, 0],
+        ]
+
+    def augmented(template, b, c, d, w):
+        a = Fraction(2)
+        q0, q1 = c * d, -(c + d)
+        f, g, m = q0 + w, -1 - w * q0, q1 * (1 + w)
+        numerator = f + m * a - g * a * a
+        denominator = g - m * a - f * a * a
+        require(denominator, "c2 112 negative incidence denominator")
+        z = -numerator / denominator
+        vz = [f + g * z, m * (1 - z), -(g + f * z)]
+        l1, l0 = vz[2], vz[1] + a * vz[2]
+        require(vz[0] == -a * l0, "c2 112 negative incidence division")
+        if template == "fixed-moving":
+            first, second, r, s = edge(a, 1 / a), edge(a, b), 1 / a, b
+        else:
+            first, second, r, s = edge(a, b), edge(a, 1 / b), b, 1 / b
+        target = [
+            ((l0 + s * l1) * first[index]
+             + (l0 + r * l1) * second[index]) / (s - r)
+            for index in range(3)
+        ]
+        at_w, at_z = evaluation(w), evaluation(z)
+        rows = [
+            [at_w[0][j] - q0 * at_w[2][j] for j in range(4)] + [0],
+            [at_w[1][j] - q1 * at_w[2][j] for j in range(4)] + [0],
+        ]
+        rows.extend(row + [target[index]] for index, row in enumerate(at_z))
+        return determinant(rows)
+
+    def printed(template, b, c, d, w):
+        incidence = c * d * w + 4 * c * d - 2 * c * w - 2 * c - 2 * d * w - 2 * d + 4 * w + 1
+        factor_a = 5 * c * d - 4 * c - 4 * d + 5
+        factor_b = b * c * d - 2 * b * c - 2 * b * d + b + 2 * c * d - c - d + 2
+        factor_c = 2 * b * c * d - b * c - b * d + 2 * b + c * d - 2 * c - 2 * d + 1
+        common = ((c - 2) * (2 * c - 1) * (d - 2) * (2 * d - 1)
+                  * (w - 1)**5 * (w + 1)**5 * (c * d - 1)**2)
+        if template == "fixed-moving":
+            return -6 * common * factor_a**2 * factor_b / ((2 * b - 1) * incidence**5)
+        return 6 * common * factor_a * factor_b * factor_c / ((b - 1) * (b + 1) * incidence**5)
+
+    fixtures = ((Fraction(3), Fraction(5), Fraction(7), Fraction(11)),
+                (Fraction(4), Fraction(6), Fraction(9), Fraction(13)))
+    factor_checks = 0
+    for template in templates:
+        for fixture in fixtures:
+            require(augmented(template, *fixture) == printed(template, *fixture),
+                    "c2 112 negative determinant factor")
+            factor_checks += 1
+    require(augmented("fixed-moving", Fraction(5), Fraction(3),
+                      Fraction(7, 11), Fraction(7)) == 0,
+            "c2 112 negative A locus")
+    require(augmented("fixed-moving", Fraction(-17), Fraction(3),
+                      Fraction(7), Fraction(5)) == 0,
+            "c2 112 negative B locus")
+    require(augmented("moving-moving", Fraction(-1, 17), Fraction(3),
+                      Fraction(7), Fraction(5)) == 0,
+            "c2 112 negative C locus")
+    return {
+        "endpoint_normalization": "common J0 endpoint=2",
+        "template_counts": dict(templates),
+        "factor_fixtures_checked": factor_checks,
+        "fixed_moving_determinant": "nonzero_prefactor*A^2*B",
+        "moving_moving_determinant": "nonzero_prefactor*A*B*C",
+        "fixed_moving_survivor_locus": "A*B=0",
+        "moving_moving_survivor_locus": "A*B*C=0",
+        "exceptional_factors_retained": ["A", "B", "C"],
+        "positive_sign_deleted": False,
+        "row_112_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -1351,6 +1473,7 @@ def expected_certificate() -> dict[str, Any]:
         "diagonal_c2_112_ramified_complete_source_repair": diagonal_c2_112_ramified_complete_source_repair_replay(),
         "diagonal_c2_112_internal_star_reconstruction": diagonal_c2_112_internal_star_reconstruction_replay(),
         "diagonal_c2_112_q_slice_resultant": diagonal_c2_112_q_slice_resultant_replay(),
+        "diagonal_c2_112_negative_factor": diagonal_c2_112_negative_factor_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -1380,13 +1503,14 @@ def expected_certificate() -> dict[str, Any]:
             "row_112_ramified_complete_source_repaired": True,
             "row_112_internal_star_reconstructed": True,
             "row_112_q_slice_resultant_compiled": True,
+            "row_112_negative_factor_compiled": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_AND_C2_112_Q_SLICE_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_C2_112_Q_SLICE_AND_C2_112_NEGATIVE_FACTOR_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -1400,6 +1524,7 @@ def expected_certificate() -> dict[str, Any]:
             "no geometric exclusion of forced source ramification in saturated (1,1,2)",
             "no realization claim for any reconstructed saturated (1,1,2) source form",
             "no sufficiency of the q-slice resultant for either full colored quotient identity",
+            "no deletion of the retained negative A, B, or C factor loci",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -1526,6 +1651,11 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_112_q_slice_resultant"].__setitem__("resultant_divisor", "wrong"),
         lambda x: x["diagonal_c2_112_q_slice_resultant"].__setitem__("necessary_only", False),
         lambda x: x["scope"].__setitem__("row_112_q_slice_resultant_compiled", False),
+        lambda x: x["diagonal_c2_112_negative_factor"]["template_counts"].__setitem__("fixed-moving", 7),
+        lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("fixed_moving_survivor_locus", "empty"),
+        lambda x: x["diagonal_c2_112_negative_factor"]["exceptional_factors_retained"].pop(),
+        lambda x: x["diagonal_c2_112_negative_factor"].__setitem__("positive_sign_deleted", True),
+        lambda x: x["scope"].__setitem__("row_112_negative_factor_compiled", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1591,6 +1721,7 @@ def main() -> None:
         f"{data['diagonal_c2_112_ramified_complete_source_repair']['repaired_dimensions']['negative']} "
         f"c2_112_max_reconstructions={data['diagonal_c2_112_internal_star_reconstruction']['maximum_source_deck_pairs_per_packet']} "
         f"c2_112_qslice_patterns={len(data['diagonal_c2_112_q_slice_resultant']['mixed_incidence_patterns'])} "
+        f"c2_112_negative_templates={sum(data['diagonal_c2_112_negative_factor']['template_counts'].values())} "
         f"tamper_rejected={rejected}"
     )
 

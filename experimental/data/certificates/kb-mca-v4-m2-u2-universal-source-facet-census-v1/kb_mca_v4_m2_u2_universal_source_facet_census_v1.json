@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_AND_C2_112_Q_SLICE_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_C2_112_Q_SLICE_AND_C2_112_NEGATIVE_FACTOR_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -154,6 +154,25 @@
     "sign_count": 2,
     "source_deck_conjugates_identified": true,
     "source_form_unique_after_passing": true
+  },
+  "diagonal_c2_112_negative_factor": {
+    "endpoint_normalization": "common J0 endpoint=2",
+    "exceptional_factors_retained": [
+      "A",
+      "B",
+      "C"
+    ],
+    "factor_fixtures_checked": 4,
+    "fixed_moving_determinant": "nonzero_prefactor*A^2*B",
+    "fixed_moving_survivor_locus": "A*B=0",
+    "moving_moving_determinant": "nonzero_prefactor*A*B*C",
+    "moving_moving_survivor_locus": "A*B*C=0",
+    "positive_sign_deleted": false,
+    "row_112_deleted": false,
+    "template_counts": {
+      "fixed-moving": 8,
+      "moving-moving": 4
+    }
   },
   "diagonal_c2_112_q_slice_resultant": {
     "aligned_target_quadratic": "tau^*P_J1",
@@ -476,6 +495,7 @@
     "no geometric exclusion of forced source ramification in saturated (1,1,2)",
     "no realization claim for any reconstructed saturated (1,1,2) source form",
     "no sufficiency of the q-slice resultant for either full colored quotient identity",
+    "no deletion of the retained negative A, B, or C factor loci",
     "no component, type, owner, payment, K3, row, or Prize close"
   ],
   "parent": {
@@ -489,7 +509,7 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "66b83997ed25269d8d79e5d77291dcb3638835356cb895b827f90c9f287a86cf",
+  "payload_sha256": "a919a052d67da8a35bec299ffaa1b0f22974d0b543cf05cbcb09e5d504db450e",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "aligned_c6_deleted": true,
@@ -499,6 +519,7 @@
     "minimally_mixed_c2_capacity_refined": true,
     "partition_preserving_diagonal_subcase_deleted": true,
     "row_112_internal_star_reconstructed": true,
+    "row_112_negative_factor_compiled": true,
     "row_112_q_slice_resultant_compiled": true,
     "row_112_ramified_complete_source_repaired": true,
     "row_112_saturated_defect_classified": true,
