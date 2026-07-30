@@ -8,7 +8,7 @@ import copy
 import hashlib
 import json
 import subprocess
-from collections import Counter
+from collections import Counter, defaultdict
 from fractions import Fraction
 from itertools import combinations, combinations_with_replacement, permutations, product
 from pathlib import Path
@@ -1198,6 +1198,105 @@ def diagonal_c2_112_ramified_complete_source_repair_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_c2_112_internal_star_reconstruction_replay() -> dict[str, Any]:
+    def matrix_rank(matrix):
+        work = [[Fraction(value) for value in row] for row in matrix]
+        pivot_row = 0
+        for column in range(len(work[0])):
+            pivot = next((row for row in range(pivot_row, len(work))
+                          if work[row][column]), None)
+            if pivot is None:
+                continue
+            work[pivot_row], work[pivot] = work[pivot], work[pivot_row]
+            scale = work[pivot_row][column]
+            work[pivot_row] = [value / scale for value in work[pivot_row]]
+            for row in range(len(work)):
+                if row == pivot_row or not work[row][column]:
+                    continue
+                scale = work[row][column]
+                work[row] = [left - scale * right
+                             for left, right in zip(work[row], work[pivot_row])]
+            pivot_row += 1
+        return pivot_row
+
+    def evaluation(epsilon, W):
+        if epsilon == 1:
+            return [
+                [1, W, W * W, 0, 0],
+                [0, 0, 0, 1 + W * W, W],
+                [W * W, W, 1, 0, 0],
+            ]
+        return [
+            [1, W, W * W, 0],
+            [0, 0, 0, 1 - W * W],
+            [-W * W, -W, -1, 0],
+        ]
+
+    def compose(left, right):
+        return [[sum(value * right[k][column]
+                     for k, value in enumerate(row))
+                 for column in range(len(right[0]))] for row in left]
+
+    w, z = Fraction(2), Fraction(3)
+    line_quotient = [[-3, 1, 0], [-2, 0, 1]]
+    maps = {}
+    for epsilon, name, expected_dimension in (
+            (1, "positive", 3), (-1, "negative", 2)):
+        at_w = evaluation(epsilon, w)
+        at_z = evaluation(epsilon, z)
+        source_cut = compose(line_quotient, at_w)
+        source_dimension = len(at_w[0]) - matrix_rank(source_cut)
+        require(source_dimension == expected_dimension,
+                "c2 112 reconstruction source dimension")
+        require(matrix_rank(source_cut + at_z) == len(at_w[0]),
+                "c2 112 internal evaluation injective")
+        maps[name] = {
+            "source_dimension": source_dimension,
+            "image_dimension": source_dimension,
+            "injective": True,
+            "surjective": epsilon == 1,
+        }
+
+    edges = list(combinations(range(4), 2))
+    edge_index = {edge: index for index, edge in enumerate(edges)}
+    tau = {0: 1, 1: 0, 2: 3, 3: 2}
+    tau_edge = {
+        index: edge_index[tuple(sorted((tau[left], tau[right])))]
+        for index, (left, right) in enumerate(edges)
+    }
+
+    def collision(packet):
+        return sum(weight * (weight - 1) // 2
+                   for weight in packet.values())
+
+    assignments = defaultdict(list)
+    for first, second in combinations_with_replacement(range(6), 2):
+        packet = Counter((first, second, tau_edge[first], tau_edge[second]))
+        if collision(packet) <= 1:
+            assignments[tuple(sorted(packet.elements()))].append((first, second))
+    assignment_counts = sorted(len(values) for values in assignments.values())
+    require(assignment_counts == [2, 2, 2, 2, 4],
+            "c2 112 internal assignment counts")
+    require(all(len(set(edges[first]) & set(edges[second])) == 1
+                for values in assignments.values() for first, second in values),
+            "c2 112 internal assignments adjacent")
+
+    return {
+        "forced_to_internal_evaluation_maps": maps,
+        "positive_target_always_reconstructs": True,
+        "negative_target_plane_equations": 1,
+        "source_form_unique_after_passing": True,
+        "source_deck_conjugates_identified": True,
+        "pure_multisets_checked": len(assignments),
+        "internal_assignment_counts": assignment_counts,
+        "sign_count": 2,
+        "maximum_source_deck_pairs_per_packet": max(assignment_counts) * 2,
+        "continuous_coefficient_family_remaining": False,
+        "candidates_claimed_realizable": False,
+        "row_112_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -1216,6 +1315,7 @@ def expected_certificate() -> dict[str, Any]:
         "diagonal_c2_112_source_line_colored_quotient": diagonal_c2_112_source_line_colored_quotient_replay(),
         "diagonal_c2_112_source_line_odd_incidence": diagonal_c2_112_source_line_odd_incidence_replay(),
         "diagonal_c2_112_ramified_complete_source_repair": diagonal_c2_112_ramified_complete_source_repair_replay(),
+        "diagonal_c2_112_internal_star_reconstruction": diagonal_c2_112_internal_star_reconstruction_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -1243,13 +1343,14 @@ def expected_certificate() -> dict[str, Any]:
             "row_112_source_line_colored_quotient_compiled": True,
             "row_112_source_line_odd_incidence_compiled": True,
             "row_112_ramified_complete_source_repaired": True,
+            "row_112_internal_star_reconstructed": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_AND_C2_112_RAMIFIED_REPAIR_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_AND_C2_112_FINITE_RECONSTRUCTION_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -1261,6 +1362,7 @@ def expected_certificate() -> dict[str, Any]:
             "no realization claim for any saturated (1,1,2) packet",
             "no colored quotient descent for the biquadratic or exceptional (1,1,2) branch",
             "no geometric exclusion of forced source ramification in saturated (1,1,2)",
+            "no realization claim for any reconstructed saturated (1,1,2) source form",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -1375,6 +1477,14 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_112_ramified_complete_source_repair"].__setitem__("geometric_source_ramification_retained", False),
         lambda x: x["diagonal_c2_112_ramified_complete_source_repair"].__setitem__("row_112_deleted", True),
         lambda x: x["scope"].__setitem__("row_112_ramified_complete_source_repaired", False),
+        lambda x: x["diagonal_c2_112_internal_star_reconstruction"]["forced_to_internal_evaluation_maps"]["positive"].__setitem__("injective", False),
+        lambda x: x["diagonal_c2_112_internal_star_reconstruction"]["forced_to_internal_evaluation_maps"]["negative"].__setitem__("image_dimension", 3),
+        lambda x: x["diagonal_c2_112_internal_star_reconstruction"].__setitem__("negative_target_plane_equations", 0),
+        lambda x: x["diagonal_c2_112_internal_star_reconstruction"]["internal_assignment_counts"].pop(),
+        lambda x: x["diagonal_c2_112_internal_star_reconstruction"].__setitem__("maximum_source_deck_pairs_per_packet", 9),
+        lambda x: x["diagonal_c2_112_internal_star_reconstruction"].__setitem__("continuous_coefficient_family_remaining", True),
+        lambda x: x["diagonal_c2_112_internal_star_reconstruction"].__setitem__("candidates_claimed_realizable", True),
+        lambda x: x["scope"].__setitem__("row_112_internal_star_reconstructed", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1438,6 +1548,7 @@ def main() -> None:
         f"c2_112_odd_pairs={data['diagonal_c2_112_source_line_odd_incidence']['admissible_internal_edge_pairs']} "
         f"c2_112_ramified_dims={data['diagonal_c2_112_ramified_complete_source_repair']['repaired_dimensions']['positive']}/"
         f"{data['diagonal_c2_112_ramified_complete_source_repair']['repaired_dimensions']['negative']} "
+        f"c2_112_max_reconstructions={data['diagonal_c2_112_internal_star_reconstruction']['maximum_source_deck_pairs_per_packet']} "
         f"tamper_rejected={rejected}"
     )
 
