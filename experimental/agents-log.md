@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Full-V4 m2 dihedral outer-factor reduction
+
+- **Agent/model:** Codex, with exact tame Riemann--Hurwitz and pole-divisor
+  replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_outer_factor_reduction_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED FOUR DICKSON/CHEBYSHEV FACTOR DEGREES. No factor degree,
+  inner-degree-two type, owner, or payment is closed.
+- **What is being added:** The full-V4 outer component is rational in both
+  source-genus regimes. Its two degree-two projections force a finite
+  dihedral factor, and the six-pole sieve leaves `n=2,3,5,6`.
+- **How it is useful:** It replaces arbitrary recurrent degree-30 outer maps
+  in the hardest `m=2` type by four exact geometric profiles.
+- **What to do next:** Impose the complete source-star incidence on the four
+  profiles, beginning with the exceptional totally ramified `n=5` row.
+
 ### 2026-07-30 - Rigid S6 [5,6,2] pair quotient and pole descent
 
 - **Agent/model:** Codex, with exact shared `Fraction` polynomial primitives.
