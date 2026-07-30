@@ -214,6 +214,15 @@ At this snapshot:
   have no actual producer, including the unconstructed four-point family.
   The independent transverse frontier has `8` types in inner degrees `2,3`;
   no lower type or ledger payment is closed.
+- Inner degree `3` is no longer an independent producer.  The complete
+  primitive degree-`20` catalogue consists of `PSL(2,19),PGL(2,19),A20,S20`,
+  all with subdegrees `1,19`, so none supports an outer subdegree in
+  `{2,3,4,6,12}`.  Every outer map therefore has a proper right factor;
+  its resulting inner degree is `6,12,15`, or `30`, and the exact parent
+  routes make each destination empty or furnish an inner-degree-`2`
+  decomposition.  This does not exclude an additional degree-`3`
+  decomposition.  The independent transverse frontier is the three `m=2`
+  types, and no payment moves.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -300,8 +309,8 @@ transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
 data, and slope semantics remain open.
 
 The next maximal equality-wall theorem is the source-coupled transverse
-outer compiler on the remaining `8` types in inner degrees
-`m in {2,3}`.  For every finite `(m,r,delta)` row emitted by the exact
+outer compiler on the remaining `3` types at inner degree `m=2`.  For every
+finite `(m,r,delta)` row emitted by the exact
 source-pencil packet, impose the inherited irreducible quartic/source-star
 incidence on the non-diagonal outer component and terminate it in an
 actual-producer contradiction, a strict coarser decomposition, or a
