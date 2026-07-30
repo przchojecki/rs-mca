@@ -1,0 +1,190 @@
+{
+  "schema": "kb-mca-v4-m12-diagonal-socle-degree5-close-v1",
+  "payload_sha256": "456b51c78e837c8a27ffda0b43409c63c88128b254be320723728868db096e6f",
+  "statement": {
+    "workboard_item": "K3",
+    "row": "KoalaBear MCA at 2^-128",
+    "object": "MCA",
+    "agreement": 1116048,
+    "B_star": "274980728111395087",
+    "deployed_characteristic": 2130706433,
+    "challenge_field_degree": 6,
+    "endpoint_degree": 60,
+    "component_u": 2,
+    "original_inner_degree": 12,
+    "original_outer_degree": 5,
+    "status": "PROVED_M12_DECOMPOSITION_ROW_EMPTY_OTHER_K3_ROWS_OPEN",
+    "ledger_movement": 0
+  },
+  "parent_route_cut": {
+    "commit": "e368e5c8fc101ae0040b47265c2cd167e70dadd2",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m12-outer-subdegree-route-cut-v1/kb_mca_v4_m12_outer_subdegree_route_cut_v1.json",
+    "certificate_blob_oid": "6ea55700f303869a850c79c66c331842e0eed385",
+    "certificate_payload_sha256": "4349f6ca07b991fe78b90c66feb1fdcb1df582ac19d34c50d354c3c91c9e6b63",
+    "imported_terminal": "M12_TRANSVERSE_TYPES_R2_R4_UNPAID",
+    "imported_rows": [
+      {"r": 2, "delta": 24},
+      {"r": 4, "delta": 12}
+    ],
+    "imported_global_transverse_type_count": 24
+  },
+  "degree_twelve_primitive_catalogue": [
+    {"group": "M11", "order": 7920, "simple_socle": "M11", "subdegrees": [1, 11]},
+    {"group": "M12", "order": 95040, "simple_socle": "M12", "subdegrees": [1, 11]},
+    {"group": "PSL(2,11)", "order": 660, "simple_socle": "PSL(2,11)", "subdegrees": [1, 11]},
+    {"group": "PGL(2,11)", "order": 1320, "simple_socle": "PSL(2,11)", "subdegrees": [1, 11]},
+    {"group": "A12", "order": 239500800, "simple_socle": "A12", "subdegrees": [1, 11]},
+    {"group": "S12", "order": 479001600, "simple_socle": "A12", "subdegrees": [1, 11]}
+  ],
+  "block_kernel_socle": {
+    "original_block_count": 5,
+    "original_block_size": 12,
+    "outer_point_stabilizer_order_upper_bound": 24,
+    "minimum_terminal_inner_group_order": 660,
+    "kernel_projection_nontrivial": true,
+    "kernel_projection_contains_simple_socle": true,
+    "derived_kernel": "D=[N,N]",
+    "derived_projection": "projection_i(D)=S_i",
+    "subdirect_product": "D<=S_0 x S_1 x S_2 x S_3 x S_4"
+  },
+  "scott_strip_dichotomy": {
+    "source": "Scott lemma, Proc. Symp. Pure Math. 37 (1980), p.328",
+    "strip_support_partition_G_invariant": true,
+    "outer_block_action_degree": 5,
+    "outer_block_action_primitive": true,
+    "invariant_support_partitions": ["five_singletons", "one_five_point_part"],
+    "independent_case": "D=S_0 x S_1 x S_2 x S_3 x S_4",
+    "diagonal_case": "D is one full twisted diagonal strip",
+    "actual_suborbit_size": 4,
+    "actual_suborbit_meets_other_block": true,
+    "independent_other_block_orbit_size": 12,
+    "independent_case_survives": false,
+    "terminal": "DERIVED_BLOCK_KERNEL_FULL_DIAGONAL"
+  },
+  "m12_cross_action_audit": {
+    "degree": 12,
+    "action_12a_generator_a_cycles": [[1, 4], [3, 10], [5, 11], [6, 12]],
+    "action_12a_generator_b_cycles": [[1, 8, 9], [2, 3, 4], [5, 12, 11], [6, 10, 7]],
+    "action_12b_generator_a_cycles": [[2, 3], [5, 6], [8, 9], [11, 12]],
+    "action_12b_generator_b_cycles": [[1, 2, 4], [3, 5, 7], [6, 8, 10], [9, 11, 12]],
+    "paired_group_order": 95040,
+    "action_12a_point_stabilizer_order": 7920,
+    "same_action_orbit_lengths": [1, 11],
+    "cross_action_orbit_lengths": [12],
+    "opposite_action_has_short_orbit": false
+  },
+  "outer_subdegree_conclusion": {
+    "diagonal_point_stabilizer_orbits_in_equivalent_action": [1, 11],
+    "actual_suborbit_size": 4,
+    "points_contributed_per_met_block": 1,
+    "projected_block_count": 4,
+    "surviving_outer_subdegree": 4,
+    "surviving_delta": 12,
+    "deleted_row": {"r": 2, "delta": 24},
+    "all_five_degree_twelve_actions_equivalent": true,
+    "terminal": "M12_R2_DICKSON_ROW_EMPTY_R4_FORCES_EQUIVALENT_ACTIONS"
+  },
+  "diagonal_normalizer_columns": {
+    "common_socle_action_degree": 12,
+    "common_socle_action_faithful": true,
+    "common_socle_action_two_transitive": true,
+    "centralizer_in_Sym12_order": 1,
+    "normalizer_restrictions_implement_one_automorphism": true,
+    "normalizer_restrictions_equal_across_original_blocks": true,
+    "action_form": "g(x,i)=(n_g(x),pi_g(i))",
+    "secondary_block_count": 12,
+    "secondary_block_size": 5,
+    "secondary_blocks": "C_x={(x,0),(x,1),(x,2),(x,3),(x,4)}",
+    "monodromy_intermediate_field_correspondence": true,
+    "luroth_theorem": true,
+    "secondary_inner_degree": 5,
+    "secondary_outer_degree": 12,
+    "terminal": "SECOND_GEOMETRIC_DECOMPOSITION_INNER_DEGREE_5"
+  },
+  "degree_five_import": {
+    "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.json",
+    "certificate_blob_oid": "911bac3c1c5d1b4cd9822c59939d60e832b7ef23",
+    "certificate_payload_sha256": "638190df24415e5609fa9c2f50dde8fd22bd150f60e7bef5cd1496cb22d75b4e",
+    "quantifier": "every geometric decomposition of the residual degree-60 endpoint map",
+    "imported_inner_degree": 5,
+    "imported_terminal": "DELETED_CHALLENGE_FIELD_FIFTH_POWER_FIBER_CONTRADICTION",
+    "p_mod_5": 3,
+    "q_mod_5": 4,
+    "gcd_5_q_minus_1": 1,
+    "fifth_power_map_on_K_is_bijective": true
+  },
+  "external_source_custody": {
+    "gap_primgrp_commit": "5612e113d50ac23a7d10945383936e20440b4e14",
+    "gap_degree12_entry_sha256": "9165e7e00ecebd79aaa1272ac83747529839a86191c859b56d49c01d88d12166",
+    "scott_doi": "10.1090/pspum/037/604599",
+    "scott_lemma_page": 328,
+    "atlas_m12_four_generator_files_sha256": "55af41251add2886aedb2ebf04dfb522776768a245dd9e6cd8369094cf84aa38"
+  },
+  "source_bindings": [
+    {
+      "binding_id": "KB_M12_CLOSE::route_cut_certificate",
+      "commit": "e368e5c8fc101ae0040b47265c2cd167e70dadd2",
+      "path": "experimental/data/certificates/kb-mca-v4-m12-outer-subdegree-route-cut-v1/kb_mca_v4_m12_outer_subdegree_route_cut_v1.json",
+      "blob_oid": "6ea55700f303869a850c79c66c331842e0eed385",
+      "role": "two surviving m=12 rows and 24-type transverse frontier"
+    },
+    {
+      "binding_id": "KB_M12_CLOSE::route_cut_note",
+      "commit": "e368e5c8fc101ae0040b47265c2cd167e70dadd2",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_m12_outer_subdegree_route_cut_v1.md",
+      "blob_oid": "7e1afd7dd2ea66688d8ec7446b8b7c46c2f1414b",
+      "role": "geometric outer-suborbit interpretation and route-cut scope"
+    },
+    {
+      "binding_id": "KB_M12_CLOSE::degree5_certificate",
+      "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+      "path": "experimental/data/certificates/kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.json",
+      "blob_oid": "911bac3c1c5d1b4cd9822c59939d60e832b7ef23",
+      "role": "universal deletion of geometric inner-degree-five decompositions"
+    },
+    {
+      "binding_id": "KB_M12_CLOSE::degree5_note",
+      "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.md",
+      "blob_oid": "e15b77679b7dbc0bb28cf5642a04bb4c71e61429",
+      "role": "proof and quantifier of the degree-five source-fiber contradiction"
+    },
+    {
+      "binding_id": "KB_M12_CLOSE::normal_form_certificate",
+      "commit": "f7a42415bdb24c7e626b76394558bad100c5a874",
+      "path": "experimental/data/certificates/kb-mca-v4-m12-outer-normal-form-compiler-v1/kb_mca_v4_m12_outer_normal_form_compiler_v1.json",
+      "blob_oid": "8e0ecd7f5b008900ada67dbf80848e8dbbff8416",
+      "role": "six printed m=12 outer families superseded by the row deletion"
+    },
+    {
+      "binding_id": "KB_M12_CLOSE::normal_form_note",
+      "commit": "f7a42415bdb24c7e626b76394558bad100c5a874",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_m12_outer_normal_form_compiler_v1.md",
+      "blob_oid": "5a36de4a27d80d5a885aa0751db9fc37d9744aab",
+      "role": "geometric-family scope and nonpayment context"
+    }
+  ],
+  "conclusion": {
+    "deleted_by_this_packet": [
+      {"r": 2, "delta": 24},
+      {"r": 4, "delta": 12}
+    ],
+    "remaining_degree_twelve_type_count": 0,
+    "remaining_global_transverse_type_count": 22,
+    "remaining_inner_degrees": [2, 3, 4, 6, 10],
+    "normal_form_families_without_actual_producer": 6,
+    "terminal": "M12_DECOMPOSITION_ROW_EMPTY",
+    "m12_closed": true,
+    "u2_closed": false,
+    "K3_closed": false,
+    "row_closed": false
+  },
+  "nonclaims": [
+    "No surviving type outside inner degree twelve is deleted or paid.",
+    "No endpoint-record census is claimed.",
+    "No parameter-to-carrier, received-data, explaining-polynomial, or slope bridge is proved.",
+    "No u=2, K3, or KoalaBear row closure is claimed.",
+    "No ledger quantity moves."
+  ]
+}

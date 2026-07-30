@@ -1,0 +1,125 @@
+{
+  "schema": "kb-mca-v4-m10-scott-strip-lower-degree-router-v1",
+  "payload_sha256": "66117d7ba207a66606fc4ae4770a2b314b3510066be7af734b4e579d028ce1d1",
+  "statement": {
+    "workboard_item": "K3",
+    "row": "KoalaBear MCA at 2^-128",
+    "object": "MCA",
+    "agreement": 1116048,
+    "B_star": "274980728111395087",
+    "endpoint_degree": 60,
+    "original_inner_degree": 10,
+    "original_outer_degree": 6,
+    "status": "PROVED_M10_ROUTED_TO_INNER_DEGREES_2_3_6_OTHER_K3_ROWS_OPEN",
+    "ledger_movement": 0
+  },
+  "parent_compiler": {
+    "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json",
+    "certificate_blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477",
+    "certificate_payload_sha256": "6d4bc83e40e491f02f7d265b021628ffb7d52b1978c0655f83e5a9d3e0a9f4bb",
+    "imported_terminal": "TRANSVERSE_OUTER_CORRESPONDENCE_UNPAID",
+    "imported_m10_rows": [[1, 40], [2, 20], [4, 10], [5, 8]]
+  },
+  "incoming_frontier": {
+    "commit": "c23eb801af8853d0369a72ea8834c84e7a3242f6",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m12-diagonal-socle-degree5-close-v1/kb_mca_v4_m12_diagonal_socle_degree5_close_v1.json",
+    "certificate_blob_oid": "9e1bd3d89dac6409f148dc134fda46d3bf644c11",
+    "certificate_payload_sha256": "456b51c78e837c8a27ffda0b43409c63c88128b254be320723728868db096e6f",
+    "imported_terminal": "M12_DECOMPOSITION_ROW_EMPTY",
+    "global_transverse_type_count": 22,
+    "live_inner_degrees": [2, 3, 4, 6, 10]
+  },
+  "degree_ten_catalogue": [
+    {"group": "A5", "order": 60, "socle": "A5", "subdegrees": [1, 3, 6]},
+    {"group": "S5", "order": 120, "socle": "A5", "subdegrees": [1, 3, 6]},
+    {"group": "PSL(2,9)", "order": 360, "socle": "A6", "subdegrees": [1, 9]},
+    {"group": "PGL(2,9)", "order": 720, "socle": "A6", "subdegrees": [1, 9]},
+    {"group": "PSigmaL(2,9)", "order": 720, "socle": "A6", "subdegrees": [1, 9]},
+    {"group": "M10", "order": 720, "socle": "A6", "subdegrees": [1, 9]},
+    {"group": "PGammaL(2,9)", "order": 1440, "socle": "A6", "subdegrees": [1, 9]},
+    {"group": "A10", "order": 1814400, "socle": "A10", "subdegrees": [1, 9]},
+    {"group": "S10", "order": 3628800, "socle": "A10", "subdegrees": [1, 9]}
+  ],
+  "kernel_free_gate": {
+    "outer_point_stabilizer_order_upper_bound": 120,
+    "possible_inner_groups": ["A5", "S5"],
+    "block_kernel_trivial": true,
+    "global_groups": ["A6", "S6"],
+    "flag_set": "(i,A) with i in six points and A a disjoint two-subset",
+    "flag_set_size": 60,
+    "A6_point_stabilizer_order": 6,
+    "A6_subdegrees": [1, 2, 3, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6],
+    "S6_point_stabilizer_order": 12,
+    "S6_subdegrees": [1, 2, 3, 3, 3, 6, 6, 6, 6, 6, 6, 12],
+    "subdegree_four_present": false,
+    "terminal": "KERNEL_FREE_M10_FLAG_ACTIONS_EXCLUDED"
+  },
+  "scott_strip_route": {
+    "derived_kernel": "D=[N,N]",
+    "subdirect_coordinate_count": 6,
+    "simple_socles": ["A5", "A6", "A10"],
+    "support_partition_G_invariant": true,
+    "support_sizes": [1, 2, 3, 6],
+    "actual_suborbit_size": 4,
+    "actual_suborbit_transverse": true,
+    "independent_other_block_orbit_size": 10,
+    "independent_support_size_survives": false,
+    "all_socle_automorphisms_realized": true,
+    "socle_action_centralizer_order": 1,
+    "column_block_size_formula": "support size t",
+    "secondary_inner_degrees": [2, 3, 6],
+    "terminal": "M10_STRICTLY_ROUTED_TO_LOWER_DECOMPOSITION"
+  },
+  "external_source_custody": {
+    "gap_primgrp_commit": "5612e113d50ac23a7d10945383936e20440b4e14",
+    "gap_degree10_entry_bytes": 1272,
+    "gap_degree10_entry_sha256": "9cf136ffbea68f3156bc2ff386b5aec7b510a77e13e77ad6a09904b02382a69e",
+    "atlas_A6_page": "https://brauer.maths.qmul.ac.uk/Atlas/alt/A6/",
+    "atlas_AutA6_degree10_page": "https://brauer.maths.qmul.ac.uk/Atlas/v3/permrep/A6V4G1-p10B0",
+    "scott_doi": "10.1090/pspum/037/604599",
+    "scott_lemma_page": 328
+  },
+  "source_bindings": [
+    {
+      "binding_id": "KB_M10_ROUTER::compiler_certificate",
+      "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+      "path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json",
+      "blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477",
+      "role": "terminal m10 transverse rows and primitive degree-ten group count"
+    },
+    {
+      "binding_id": "KB_M10_ROUTER::compiler_note",
+      "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.md",
+      "blob_oid": "b4a69440c518f22189ec2060cb3a3a500a23e724",
+      "role": "actual transverse size-four suborbit and geometric route scope"
+    },
+    {
+      "binding_id": "KB_M10_ROUTER::incoming_frontier_certificate",
+      "commit": "c23eb801af8853d0369a72ea8834c84e7a3242f6",
+      "path": "experimental/data/certificates/kb-mca-v4-m12-diagonal-socle-degree5-close-v1/kb_mca_v4_m12_diagonal_socle_degree5_close_v1.json",
+      "blob_oid": "9e1bd3d89dac6409f148dc134fda46d3bf644c11",
+      "role": "22-type frontier after complete m12 deletion"
+    }
+  ],
+  "conclusion": {
+    "routed_m10_rows": [[1, 40], [2, 20], [4, 10], [5, 8]],
+    "m10_terminal_type_count": 0,
+    "remaining_global_transverse_type_count": 18,
+    "remaining_inner_degrees": [2, 3, 4, 6],
+    "terminal": "M10_NO_TERMINAL_PRODUCER_ROUTES_TO_M2_M3_M6",
+    "m10_routed": true,
+    "all_m10_decompositions_nonexistent": false,
+    "u2_closed": false,
+    "K3_closed": false,
+    "row_closed": false
+  },
+  "nonclaims": [
+    "Endpoints are not claimed to lack every degree-ten decomposition.",
+    "No lower-degree transverse type is deleted or paid.",
+    "No endpoint-record census or carrier, data, explaining-polynomial, or slope bridge is claimed.",
+    "No u=2, K3, or KoalaBear row closure is claimed.",
+    "No ledger quantity moves."
+  ]
+}

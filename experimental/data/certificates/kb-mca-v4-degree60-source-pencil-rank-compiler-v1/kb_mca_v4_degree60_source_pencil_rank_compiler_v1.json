@@ -1,0 +1,877 @@
+{
+  "schema": "kb-mca-v4-degree60-source-pencil-rank-compiler-v1",
+  "payload_sha256": "6d4bc83e40e491f02f7d265b021628ffb7d52b1978c0655f83e5a9d3e0a9f4bb",
+  "statement": {
+    "workboard_item": "K3",
+    "row": "KoalaBear MCA at 2^-128",
+    "object": "MCA",
+    "agreement": 1116048,
+    "B_star": "274980728111395087",
+    "deployed_characteristic": 2130706433,
+    "challenge_field_degree": 6,
+    "endpoint_degree": 60,
+    "component_u": 2,
+    "component_bidegree": [
+      4,
+      4
+    ],
+    "record_quantifier": "every supplied actual endpoint record (K,A,V_act,Gamma) satisfying the imported parent hypotheses",
+    "template_count_scope": "per supplied endpoint record, not a finite census of all endpoint records",
+    "status": "PROVED_EXACT_PER_RECORD_COMPILER_AND_TRANSVERSE_OUTER_ROUTE_CUT_ROW_OPEN",
+    "ledger_movement": 0
+  },
+  "parent_stack": {
+    "head_commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.json",
+    "certificate_blob_oid": "911bac3c1c5d1b4cd9822c59939d60e832b7ef23",
+    "certificate_payload_sha256": "638190df24415e5609fa9c2f50dde8fd22bd150f60e7bef5cd1496cb22d75b4e",
+    "imported_terminal": "PROVED_SOURCE_FIBER_ADAPTER_DEGREE5_DELETION_DEGREE30_REFINEMENT_ROW_OPEN"
+  },
+  "compiler": {
+    "raw_template_total": 32099,
+    "source_coefficient_order": "degrees 0 through m",
+    "active_coefficient_order": "degrees 0 through 60",
+    "source_gate": "rank(S_pi)=2 for m in {2,3,4,6,10}; m=12 uses degree_twelve_reduction",
+    "active_gate": "rank([C_mn|coeff(V_act)])=rank(C_mn)=n+1 for m in {2,3,4,6,10}; m=12 uses degree_twelve_reduction",
+    "active_columns": "for m in {2,3,4,6,10}: coeff(H0^(n-j)*H1^j), j=0,...,n; m=12 uses degree_twelve_reduction",
+    "terminal_order": [
+      "SOURCE_RANK_FAILURE",
+      "ACTIVE_SYNDROME_FAILURE",
+      "STRICT_RIGHT_FACTOR_ROUTE",
+      "SAME_FIBER_SUBDEGREE4_IMPOSSIBLE",
+      "TRANSVERSE_OUTER_CORRESPONDENCE"
+    ],
+    "profiles": [
+      {
+        "m": 2,
+        "n": 30,
+        "a": 6,
+        "b": 0,
+        "raw_templates": 10395,
+        "source_matrix": [
+          3,
+          6
+        ],
+        "source_rank": 2,
+        "source_determinantal_codimension": 4,
+        "active_matrix": [
+          61,
+          31
+        ],
+        "active_rank": 31,
+        "active_syndromes": 30
+      },
+      {
+        "m": 3,
+        "n": 20,
+        "a": 4,
+        "b": 0,
+        "raw_templates": 15400,
+        "source_matrix": [
+          4,
+          4
+        ],
+        "source_rank": 2,
+        "source_determinantal_codimension": 4,
+        "active_matrix": [
+          61,
+          21
+        ],
+        "active_rank": 21,
+        "active_syndromes": 40
+      },
+      {
+        "m": 4,
+        "n": 15,
+        "a": 3,
+        "b": 0,
+        "raw_templates": 5775,
+        "source_matrix": [
+          5,
+          3
+        ],
+        "source_rank": 2,
+        "source_determinantal_codimension": 3,
+        "active_matrix": [
+          61,
+          16
+        ],
+        "active_rank": 16,
+        "active_syndromes": 45
+      },
+      {
+        "m": 6,
+        "n": 10,
+        "a": 2,
+        "b": 0,
+        "raw_templates": 462,
+        "source_matrix": [
+          7,
+          2
+        ],
+        "source_rank": 2,
+        "source_determinantal_codimension": 0,
+        "active_matrix": [
+          61,
+          11
+        ],
+        "active_rank": 11,
+        "active_syndromes": 50
+      },
+      {
+        "m": 10,
+        "n": 6,
+        "a": 1,
+        "b": 1,
+        "raw_templates": 66,
+        "source_matrix": [
+          11,
+          2
+        ],
+        "source_rank": 2,
+        "source_determinantal_codimension": 0,
+        "active_matrix": [
+          61,
+          7
+        ],
+        "active_rank": 7,
+        "active_syndromes": 54
+      },
+      {
+        "m": 12,
+        "n": 5,
+        "a": 1,
+        "b": 0,
+        "raw_templates": 1,
+        "source_matrix": [
+          13,
+          1
+        ],
+        "source_rank": 1,
+        "source_determinantal_codimension": 0,
+        "active_matrix": [
+          49,
+          5
+        ],
+        "active_rank": 5,
+        "active_syndromes": 44
+      }
+    ]
+  },
+  "degree_twelve_reduction": {
+    "unique_source_partition": true,
+    "canonical_pencil": "<A,N0>",
+    "residue_equation": "N0^5=V_act mod A with deg(N0)<12",
+    "residue_unique": true,
+    "gcd_A_N0_automatic_from_active_source_disjointness": true,
+    "reduced_quotient": "B=(V_act-N0^5)/A",
+    "degree_bound_B": 48,
+    "basis": [
+      "A^4",
+      "A^3*N0",
+      "A^2*N0^2",
+      "A*N0^3",
+      "N0^4"
+    ],
+    "matrix_shape": [
+      49,
+      5
+    ],
+    "matrix_rank": 5,
+    "syndromes": 44
+  },
+  "strict_right_factor_routing": {
+    "routes": {
+      "4": [
+        2
+      ],
+      "6": [
+        2,
+        3
+      ],
+      "10": [
+        2,
+        5
+      ],
+      "12": [
+        2,
+        3,
+        4,
+        6
+      ]
+    },
+    "degree_five_terminal": "DELETED_CHALLENGE_FIELD_FIFTH_POWER_FIBER_CONTRADICTION",
+    "strictly_decreasing": true,
+    "terminal_inner_degrees": [
+      2,
+      3,
+      4,
+      6,
+      10,
+      12
+    ]
+  },
+  "same_fiber_route_cut": {
+    "same_fiber_form": "Delta_h(T,W)=H0(T)H1(W)-H1(T)H0(W)",
+    "actual_component_irreducible": true,
+    "actual_component_bidegree": [
+      4,
+      4
+    ],
+    "required_subdegree_if_contained": 4,
+    "small_degree_catalogue": [
+      {
+        "degree": 2,
+        "primitive_group_count": 1,
+        "subdegree_rows": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "degree": 3,
+        "primitive_group_count": 2,
+        "subdegree_rows": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "degree": 4,
+        "primitive_group_count": 2,
+        "subdegree_rows": [
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      {
+        "degree": 5,
+        "primitive_group_count": 5,
+        "subdegree_rows": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      {
+        "degree": 6,
+        "primitive_group_count": 4,
+        "subdegree_rows": [
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      {
+        "degree": 10,
+        "primitive_group_count": 9,
+        "subdegree_rows": [
+          [
+            1,
+            3,
+            6
+          ],
+          [
+            1,
+            3,
+            6
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            9
+          ]
+        ]
+      },
+      {
+        "degree": 12,
+        "primitive_group_count": 6,
+        "subdegree_rows": [
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            11
+          ]
+        ]
+      }
+    ],
+    "degree_five_is_only_profile_with_catalogue_subdegree_four": true,
+    "degree_five_already_deleted": true,
+    "terminal": "SAME_FIBER_SUBDEGREE4_IMPOSSIBLE"
+  },
+  "transverse_outer_terminal": {
+    "image": "C=closure((h x h)(Gamma))",
+    "image_irreducible": true,
+    "image_nondiagonal": true,
+    "degree_identity": "delta*r=4*m",
+    "cover_degree_upper_bound": "delta<=m^2",
+    "terminal": "TRANSVERSE_OUTER_CORRESPONDENCE",
+    "rows": [
+      {
+        "m": 2,
+        "n": 30,
+        "r_delta": [
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            8,
+            1
+          ]
+        ]
+      },
+      {
+        "m": 3,
+        "n": 20,
+        "r_delta": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            12,
+            1
+          ]
+        ]
+      },
+      {
+        "m": 4,
+        "n": 15,
+        "r_delta": [
+          [
+            1,
+            16
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            8,
+            2
+          ]
+        ]
+      },
+      {
+        "m": 6,
+        "n": 10,
+        "r_delta": [
+          [
+            1,
+            24
+          ],
+          [
+            2,
+            12
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            8,
+            3
+          ]
+        ]
+      },
+      {
+        "m": 10,
+        "n": 6,
+        "r_delta": [
+          [
+            1,
+            40
+          ],
+          [
+            2,
+            20
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            5,
+            8
+          ]
+        ]
+      },
+      {
+        "m": 12,
+        "n": 5,
+        "r_delta": [
+          [
+            1,
+            48
+          ],
+          [
+            2,
+            24
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            4,
+            12
+          ]
+        ]
+      }
+    ],
+    "paid": false
+  },
+  "deployed_field_controls": {
+    "scope": "DIVISOR_INTERFACE_CONTROLS_NOT_ENDPOINT_SURVIVORS",
+    "field_embedding": "F_(p^2) is a subfield of K=F_(p^6)",
+    "fp2_model": "omega^2+omega+1=0",
+    "sqrt_minus_one": 16711679,
+    "power_controls": [
+      {
+        "m": 2,
+        "n": 30,
+        "a": 6,
+        "zeta": [
+          2130706432,
+          0
+        ],
+        "target_representatives": 36,
+        "right_factor_degree": null
+      },
+      {
+        "m": 3,
+        "n": 20,
+        "a": 4,
+        "zeta": [
+          0,
+          1
+        ],
+        "target_representatives": 24,
+        "right_factor_degree": null
+      },
+      {
+        "m": 4,
+        "n": 15,
+        "a": 3,
+        "zeta": [
+          16711679,
+          0
+        ],
+        "target_representatives": 18,
+        "right_factor_degree": 2
+      },
+      {
+        "m": 6,
+        "n": 10,
+        "a": 2,
+        "zeta": [
+          0,
+          2130706432
+        ],
+        "target_representatives": 12,
+        "right_factor_degree": 2
+      },
+      {
+        "m": 12,
+        "n": 5,
+        "a": 1,
+        "zeta": [
+          0,
+          16711679
+        ],
+        "target_representatives": 6,
+        "right_factor_degree": 2
+      }
+    ],
+    "degree_ten_control": {
+      "field": "F_p",
+      "outer_polynomial": "s5(x)=x^5+x^2+x",
+      "right_component": "r(z)=z+2/z",
+      "inner_map": "h=s5 composed with r",
+      "source_value": 243,
+      "active_values": [
+        3459,
+        3574,
+        8607,
+        19677,
+        30437,
+        43384
+      ],
+      "h_at_old_z_1": 255,
+      "coordinate_change": "old z=1+1/t",
+      "exceptional_source_points_new_t": [
+        0,
+        2130706432
+      ],
+      "right_factor_degree": 2,
+      "fibers": [
+        {
+          "y": 243,
+          "x_roots": [
+            441863510,
+            709682263,
+            710497174,
+            796172940,
+            1603196979
+          ],
+          "z_roots": [
+            74267057,
+            635415206,
+            824563947,
+            1188339233,
+            1311122138,
+            1530081469,
+            1604873909,
+            1738540140,
+            1748005996,
+            2129029503
+          ]
+        },
+        {
+          "y": 3459,
+          "x_roots": [
+            85973857,
+            872107610,
+            1750292172,
+            1822723048,
+            1861022612
+          ],
+          "z_roots": [
+            524247488,
+            669066773,
+            704716532,
+            738015176,
+            962409336,
+            1012276996,
+            1153656275,
+            1336775124,
+            1511963758,
+            2040404707
+          ]
+        },
+        {
+          "y": 3574,
+          "x_roots": [
+            292496322,
+            598963494,
+            682863060,
+            937365616,
+            1749724374
+          ],
+          "z_roots": [
+            714150458,
+            1005685328,
+            1258341041,
+            1471328886,
+            1514082436,
+            1553989613,
+            1709052297,
+            1807884165,
+            1825444399,
+            2054986408
+          ]
+        },
+        {
+          "y": 8607,
+          "x_roots": [
+            301169065,
+            393923145,
+            587925168,
+            1160295361,
+            1818100127
+          ],
+          "z_roots": [
+            168034917,
+            419890251,
+            448555045,
+            534454304,
+            711740316,
+            1066041149,
+            1202773742,
+            1229101756,
+            1283645823,
+            1458588429
+          ]
+        },
+        {
+          "y": 19677,
+          "x_roots": [
+            133423276,
+            197786794,
+            426255696,
+            1635032333,
+            1868914767
+          ],
+          "z_roots": [
+            10557685,
+            122865591,
+            223329671,
+            358247568,
+            574517956,
+            1192307416,
+            1364654713,
+            1411702662,
+            1510667199,
+            1753975271
+          ]
+        },
+        {
+          "y": 30437,
+          "x_roots": [
+            114235151,
+            491570846,
+            570012245,
+            1308462057,
+            1777132567
+          ],
+          "z_roots": [
+            215919938,
+            315566246,
+            407523600,
+            583041545,
+            725871186,
+            992895811,
+            1561212629,
+            1837417984,
+            1974847492,
+            2039235734
+          ]
+        },
+        {
+          "y": 43384,
+          "x_roots": [
+            1052806569,
+            1180717393,
+            1312828491,
+            1366977764,
+            1478789082
+          ],
+          "z_roots": [
+            133148234,
+            280420086,
+            668377073,
+            772386483,
+            810412009,
+            1047569159,
+            1324342231,
+            1567326038,
+            1930358159,
+            2119192693
+          ]
+        }
+      ],
+      "source_points_all_finite_after_conjugation": true,
+      "active_points_all_finite_after_conjugation": true,
+      "source_matrix_rank": 2,
+      "active_matrix_rank": 7,
+      "active_membership": true
+    },
+    "prime_degree_controls_indecomposable": [
+      2,
+      3
+    ],
+    "composite_control_routes": {
+      "4": 2,
+      "6": 2,
+      "10": 2,
+      "12": 2
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "KB_SOURCE_PENCIL_COMPILER::parent_certificate",
+      "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+      "path": "experimental/data/certificates/kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.json",
+      "blob_oid": "911bac3c1c5d1b4cd9822c59939d60e832b7ef23",
+      "role": "six surviving source profiles, binary-pencil equivalence, field descent, and degree-five deletion"
+    },
+    {
+      "binding_id": "KB_SOURCE_PENCIL_COMPILER::parent_note",
+      "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.md",
+      "blob_oid": "e15b77679b7dbc0bb28cf5642a04bb4c71e61429",
+      "role": "source-fiber theorem and canonical degree-twelve pencil"
+    },
+    {
+      "binding_id": "KB_SOURCE_PENCIL_COMPILER::actual_component",
+      "commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/proof/pole_disjoint_conic_facet_collinearity_reduction.md",
+      "blob_oid": "356ff4b47d0bb429d11ea10382762a6e95b5ce24",
+      "role": "actual irreducible bidegree-(4,4) component and endpoint parameter-line semantics"
+    },
+    {
+      "binding_id": "KB_SOURCE_PENCIL_COMPILER::primitive_degree60_route",
+      "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.md",
+      "blob_oid": "5d0ec0315fca34de80c22983b76bbafa12dd5661",
+      "role": "imported actual component bidegree and geometric decomposition route"
+    },
+    {
+      "binding_id": "KB_SOURCE_PENCIL_COMPILER::deployed_field",
+      "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+      "path": "tex/cs25_cap_v13_2.tex",
+      "blob_oid": "5ceff5dbc4b1ac4cef53eae7eada32046e4bafeb",
+      "role": "deployed prime and extension field"
+    }
+  ],
+  "independent_replays": {
+    "sage": {
+      "path": "experimental/scripts/verify_kb_mca_v4_degree60_source_pencil_rank_compiler_v1.sage",
+      "sha256": "87b9b920e235219680e12289cce3c4eb81e38369db38f9c85f0338f5397feebc"
+    },
+    "wolfram": {
+      "path": "experimental/scripts/verify_kb_mca_v4_degree60_source_pencil_rank_compiler_v1.wl",
+      "sha256": "d5fbf0c29f28fdef6bf9a15e6665913d64bcf3de2043174e53011868459710f4"
+    },
+    "live_wolfram_plugin": {
+      "profile_total": 32099,
+      "power_divisibility": {
+        "2": true,
+        "3": true,
+        "4": true,
+        "6": true,
+        "10": false,
+        "12": true
+      },
+      "degree_ten_all_x_checks": true,
+      "degree_ten_all_z_checks": true,
+      "degree_ten_all_roots_distinct": true
+    }
+  },
+  "conclusion": {
+    "terminal": "TRANSVERSE_OUTER_CORRESPONDENCE_UNPAID",
+    "missing_theorem": "uniform source-coupled outer-correspondence incidence or a same-record carrier/data/explaining-polynomial/slope bridge",
+    "u2_closed": false,
+    "K3_closed": false,
+    "row_closed": false
+  },
+  "nonclaims": [
+    "The 32099 templates are not a finite census of all endpoint records.",
+    "The deployed-field controls are not inherited actual-component or received-line records.",
+    "No transverse outer correspondence is paid or deleted.",
+    "No endpoint parameter is identified with a carrier coordinate.",
+    "No evaluation-domain, received-data, explaining-polynomial, or slope descent is proved.",
+    "No ledger quantity moves.",
+    "The u=2 branch, K3 workboard item, and KoalaBear row remain open."
+  ]
+}

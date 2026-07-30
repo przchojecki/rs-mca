@@ -1,0 +1,210 @@
+{
+  "conclusion": {
+    "full_v4_type_deleted": false,
+    "next_gate": "birational quartic coefficient realization plus V4 branch passport",
+    "profiles_deleted": [],
+    "surviving_factor_degrees": [
+      3,
+      6
+    ],
+    "terminal": "M2_R2_DIHEDRAL_RESIDUAL_STAR_GRAPH_RIGIDITY"
+  },
+  "dihedral_incidence": [
+    {
+      "incidence_graph": "C6",
+      "n": 3,
+      "regular_orbit_size": 6,
+      "z_neighborhoods": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "incidence_graph": "C12",
+      "n": 6,
+      "regular_orbit_size": 12,
+      "z_neighborhoods": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          5
+        ]
+      ]
+    }
+  ],
+  "nonclaims": [
+    "no n=3 or n=6 existence or deletion",
+    "no m2 type deletion or payment",
+    "no K3, KoalaBear, endpoint, or Prize close"
+  ],
+  "parent_degree2_exclusion": {
+    "certificate_blob_oid": "a6705b3507014434052c4c5e63209fae2d566038",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-degree2-source-star-exclusion-v1/kb_mca_v4_m2_r2_dihedral_degree2_source_star_exclusion_v1.json",
+    "certificate_payload_sha256": "c3771a0386e955b87f6ec9f4256d9569fb5e9459036653f790691851be0f2a89",
+    "commit": "36ed2ac28176fb583cbf15d16f8074b6e8a48de8",
+    "imported_terminal": "M2_R2_DIHEDRAL_DEGREE2_EMPTY"
+  },
+  "parent_source_genus": {
+    "certificate_blob_oid": "83e82b826ddfa2f5377e99f439be5f00900507c6",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-full-v4-source-genus-drop-v1/kb_mca_v4_m2_r2_full_v4_source_genus_drop_v1.json",
+    "certificate_payload_sha256": "9a2ea090568600356f27f3174aee6d08414217b26dbb8f7922931c64a151122f",
+    "commit": "f6bc4a2b2a6a5b3bba98f24a520c67ca3373dbbb",
+    "imported_terminal": "M2_R2_SOURCE_GENUS_ZERO_OR_ONE"
+  },
+  "payload_sha256": "63f6387bba81e51e0a49f409645e9493b3f128f6ab9d119be2dcc64da766b1d4",
+  "schema": "kb-mca-v4-m2-r2-dihedral-residual-star-graph-rigidity-v1",
+  "source_graphs": [
+    {
+      "defect": 0,
+      "distinct_star_vertices": 24,
+      "generic_outer_poles": 2,
+      "graph_shape": "2 K2,2,2",
+      "n": 3,
+      "source_label_degree_multiset": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "source_labels": 12,
+      "source_star_units": 24,
+      "star_weight_multiset": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "defect": 0,
+      "distinct_star_vertices": 24,
+      "generic_outer_poles": 1,
+      "graph_shape": "2-point blow-up of C6",
+      "n": 6,
+      "source_label_degree_multiset": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "source_labels": 12,
+      "source_star_units": 24,
+      "star_weight_multiset": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "source_orientation_law": {
+    "combined_graph": "K2,2 exactly once",
+    "conjugation": "c eta c^-1=eta*a",
+    "first_endpoint_edges": [
+      [
+        "t",
+        "s"
+      ],
+      [
+        "tau(t)",
+        "tau(s)"
+      ]
+    ],
+    "preserving_lift": "(tau,b)",
+    "second_endpoint_edges": [
+      [
+        "t",
+        "tau(s)"
+      ],
+      [
+        "tau(t)",
+        "s"
+      ]
+    ]
+  }
+}

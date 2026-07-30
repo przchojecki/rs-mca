@@ -1,0 +1,212 @@
+{
+  "classification_source": {
+    "catalogue_completeness": "imported",
+    "commit": "5612e113d50ac23a7d10945383936e20440b4e14",
+    "entry": "PRIMGRP[20]",
+    "entry_sha256": "cbc9ca7fda9b0de36a4034a4d59e24bb6c07aff0e54458604990919583007133",
+    "extracted_bytes": 342,
+    "path": "data/gps1.g",
+    "repository": "gap-packages/primgrp"
+  },
+  "conclusion": {
+    "independent_frontier_after": 3,
+    "independent_frontier_before": 8,
+    "m3_independent_type_count": 0,
+    "m3_nonexistence_claimed": false,
+    "primitive_outer_producer_count": 0,
+    "remaining_inner_degrees": [
+      2
+    ],
+    "remaining_m2_rows": [
+      [
+        2,
+        4
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        8,
+        1
+      ]
+    ],
+    "terminal": "M3_NO_INDEPENDENT_PRODUCER_ROUTES_TO_M2"
+  },
+  "input": {
+    "inner_degree": 3,
+    "mandatory_outer_pole_cycle": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "outer_degree": 20,
+    "required_subdegrees": [
+      2,
+      3,
+      4,
+      6,
+      12
+    ],
+    "transverse_rows": [
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        12,
+        1
+      ]
+    ]
+  },
+  "nonclaims": [
+    "no nonexistence of every inner-degree-three decomposition",
+    "no deletion or payment of an inner-degree-two type",
+    "no carrier, received-data, explaining-polynomial, or slope owner",
+    "no u2, K3, KoalaBear row, endpoint, or prize closure",
+    "no ledger movement"
+  ],
+  "parent_frontier": {
+    "certificate_blob_oid": "a0b2c8ec260da35ffdefa5a29c7aa5496af5cc79",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m4-adjacency-genus-exclusion-v1/kb_mca_v4_m4_adjacency_genus_exclusion_v1.json",
+    "certificate_payload_sha256": "a0bc909a9e05c097440d318f5fe7aed052387507723fc1f3337172d3e5db7428",
+    "commit": "b60dcda4bc84453aa72c4185c72b351fa345ea40",
+    "imported_terminal": "M4_TRANSVERSE_ROW_EMPTY_BY_ADJACENCY_GENUS"
+  },
+  "parent_m12_close": {
+    "certificate_blob_oid": "9e1bd3d89dac6409f148dc134fda46d3bf644c11",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m12-diagonal-socle-degree5-close-v1/kb_mca_v4_m12_diagonal_socle_degree5_close_v1.json",
+    "certificate_payload_sha256": "456b51c78e837c8a27ffda0b43409c63c88128b254be320723728868db096e6f",
+    "commit": "c23eb801",
+    "imported_terminal": "M12_DECOMPOSITION_ROW_EMPTY"
+  },
+  "parent_m6_router": {
+    "certificate_blob_oid": "af5fd87a5c28f3b021fc05971a665e6d92f978af",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m6-scott-cartesian-degree2-router-v1/kb_mca_v4_m6_scott_cartesian_degree2_router_v1.json",
+    "certificate_payload_sha256": "b34e096730f3d93644c283f95d65f622100d6868e9882ed2b901fa109b3d6116",
+    "commit": "30be68b9",
+    "imported_terminal": "M6_NO_TERMINAL_PRODUCER_ROUTES_TO_M2_OR_EXCLUDED_M5"
+  },
+  "parent_source_fiber": {
+    "certificate_blob_oid": "911bac3c1c5d1b4cd9822c59939d60e832b7ef23",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.json",
+    "certificate_payload_sha256": "638190df24415e5609fa9c2f50dde8fd22bd150f60e7bef5cd1496cb22d75b4e",
+    "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+    "imported_refinement": {
+      "from": 30,
+      "to": 6
+    }
+  },
+  "parent_source_profile": {
+    "certificate_blob_oid": "7e8a79db97dc56125f25d9a190c3b0c3adca158a",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-primitive-subdegree4-route-cut-v1/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.json",
+    "certificate_payload_sha256": "21a8ca7800745c2c94876d48473801e84f4d9c8f9e6ce5b53e8b8bd66b699962",
+    "commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+    "imported_excluded_inner_degree": 15
+  },
+  "payload_sha256": "0f7c0134c723875d66dd19d96f9c68c7299079b5560e63780910afc6d86f21d4",
+  "primitive_catalogue": [
+    {
+      "name": "PSL(2,19)",
+      "order": 3420,
+      "subdegrees": [
+        1,
+        19
+      ]
+    },
+    {
+      "name": "PGL(2,19)",
+      "order": 6840,
+      "subdegrees": [
+        1,
+        19
+      ]
+    },
+    {
+      "name": "A20",
+      "order": 1216451004088320000,
+      "subdegrees": [
+        1,
+        19
+      ]
+    },
+    {
+      "name": "S20",
+      "order": 2432902008176640000,
+      "subdegrees": [
+        1,
+        19
+      ]
+    }
+  ],
+  "projective_action_replay": {
+    "PGL(2,19)": {
+      "reconstructed_order": 6840,
+      "subdegrees": [
+        1,
+        19
+      ]
+    },
+    "PSL(2,19)": {
+      "reconstructed_order": 3420,
+      "subdegrees": [
+        1,
+        19
+      ]
+    },
+    "mandatory_pole_cycle_present_in_PSL": [
+      5,
+      5,
+      5,
+      5
+    ]
+  },
+  "proper_factor_routes": [
+    {
+      "new_inner_degree": 6,
+      "right_factor_degree": 2,
+      "terminal": "M6_TO_M2_OR_EMPTY"
+    },
+    {
+      "new_inner_degree": 12,
+      "right_factor_degree": 4,
+      "terminal": "M12_EMPTY"
+    },
+    {
+      "new_inner_degree": 15,
+      "right_factor_degree": 5,
+      "terminal": "SOURCE_PROFILE_EMPTY"
+    },
+    {
+      "new_inner_degree": 30,
+      "right_factor_degree": 10,
+      "terminal": "M30_TO_M6_TO_M2_OR_EMPTY"
+    }
+  ],
+  "schema": "kb-mca-v4-m3-primitive-outer-degree2-router-v1",
+  "source_bindings": {
+    "classification": "complete GAP PrimGrp degree-20 entry",
+    "decomposition_dictionary": "primitive outer monodromy iff no proper rational right factor",
+    "destination_routes": "exact parent terminals pinned by Git blob and payload",
+    "local_replay": "exact projective-line PSL(2,19),PGL(2,19) actions"
+  },
+  "statement": {
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "terminal": "M3_NO_INDEPENDENT_PRODUCER_ROUTES_TO_M2",
+    "workboard_item": "K3"
+  }
+}
