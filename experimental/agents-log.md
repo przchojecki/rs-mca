@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Residual full-V4 dihedral star-graph rigidity
+
+- **Agent/model:** Codex, with exact regular-dihedral coset replay and
+  independent complete-source degree audit.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_residual_star_graph_rigidity_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED RESIDUAL GRAPH RIGIDITY. The profiles `n=3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** The second endpoint lift forces complementary
+  cross-edge orientations. The complete graphs are two `K_(2,2,2)`
+  components and the two-point blow-up of `C6`, both with 24 unit weights.
+- **How it is useful:** It removes all residual orientation ambiguity and
+  proves that defect counting has no further leverage on these profiles.
+- **What to do next:** Solve the birational-quartic coefficient realization
+  problem together with the genus-zero/genus-one V4 branch passport.
+
 ### 2026-07-29 - Full-V4 degree-two dihedral source-star exclusion
 
 - **Agent/model:** Codex, with exact regular-V4 coset incidence and exhaustive

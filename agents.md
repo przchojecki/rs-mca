@@ -263,6 +263,12 @@ At this snapshot:
   units onto four cross star vertices, of minimum defect `4` against budget
   `3`.  The full-V4 factor frontier is `n=3,6`; both profiles, the type, K3,
   and every payment remain open.
+- The two residual full-V4 profiles now have exact source-star graphs.  The
+  source-cover conjugation law forces complementary orientations over each
+  `Z` value: `n=3` gives two `K_(2,2,2)` components, while `n=6` gives the
+  two-point blow-up of `C6`.  All 24 weights are one and every source row
+  has degree four.  This deletes neither profile; their frontier is the
+  birational-quartic realization and V4 branch passport.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -352,7 +358,9 @@ Inside the remaining full-V4 `m=2` type, rational outer geometry and the
 complete source-star gate reduce the recurrent dihedral factor list to
 `n=3,6`; the totally ramified `n=5` profile and the repeated-incidence `n=2`
 profile are proved empty.  The two surviving generic-pole profiles remain
-source-coupled targets, not owners or payments.
+source-coupled targets, not owners or payments.  Their complete source-star
+graphs are now exact and defect zero, so the next gate is quartic
+coefficient realization rather than further multiplicity counting.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every
