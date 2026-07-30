@@ -223,6 +223,18 @@ At this snapshot:
   decomposition.  This does not exclude an additional degree-`3`
   decomposition.  The independent transverse frontier is the three `m=2`
   types, and no payment moves.
+- The three residual inner-degree-`2` types now have exact V4 stabilizer
+  forms.  For `h x h`, the component degree `delta` is the setwise
+  stabilizer order, giving full V4, one of three order-two subgroups, and
+  the trivial subgroup for `(r,delta)=(2,4),(4,2),(8,1)`.  The complete
+  primitive degree-`30` catalogue has only subdegrees `1,29`, so every
+  outer map decomposes; its six proper-factor destinations are empty or
+  recurrent to degree `2`.  In every orientation containing
+  `tau x 1`, including all of `(2,4)`, the preserving source lift is the
+  diagonal endpoint/source-deck involution.  Paired source rows avoid both
+  paired locators, and the weight-three source-star defect is impossible.
+  This classifies recurrence but deletes and pays no `m=2` type; a
+  source-coupled contradiction or same-record owner remains open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
