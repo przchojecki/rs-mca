@@ -403,10 +403,12 @@ stacked rank twelve. More locally, every full-support kernel induces a
 multiplicative transport on the source-star graph whose cycle holonomies
 must be one; the packet's six canonical square holonomies are
 `11,26,17,2,41,31 mod 47`, all nonidentity. Thus abstract source/locator
-realizability does not imply endpoint realization. The universal
-admissible-ownership holonomy/rank exclusion, or reconstruction of a
-surviving cofactor into a same-record owner, remains open. No quotient
-payment is booked.
+realizability does not imply endpoint realization. Retaining all three pair
+gains in each of the 24 star/owner triples gives an exact converse: the
+full-support kernel exists if and only if the complete 12-vertex gain
+multigraph is flat. The universal admissible-ownership nonflatness/rank
+exclusion, or reconstruction of a surviving cofactor into a same-record
+owner, remains open. No quotient payment is booked.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every

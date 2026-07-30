@@ -5,13 +5,13 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Actual realization of the residual n=3 component is equivalent to a full-support kernel of one explicit 38-by-12 source-cofactor matrix. Every such kernel induces a flat multiplicative transport on the source-star graph. A pinned split s=6 locator packet satisfies the inherited ownership and four-edge color interfaces but has six nonidentity canonical square holonomies and a nonzero rank-twelve minor.
+direct_statement: Actual realization of the residual n=3 component is equivalent both to a full-support kernel of one explicit 38-by-12 source-cofactor matrix and to flatness of the sparse gain multigraph formed by the 24 star/owner triples. A pinned split s=6 locator packet satisfies the inherited ownership and four-edge color interfaces but has six nonidentity canonical square holonomies and a nonzero rank-twelve minor.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_R2_DIHEDRAL_DEGREE3_ENDPOINT_COFACTOR_INTERPOLATION_COMPILER
 quantifier: every actual endpoint realization of the sole residual n=3 component; one pinned split-field locator packet for the deleting fixture
 projection_and_unit: exact endpoint-component divisibility and source interpolation; not a carrier owner, received-line theorem, slope projection, or payment
-claimed_bound: H divides the actual endpoint form if and only if the stacked cofactor matrix has a kernel vector with all twelve entries nonzero; every star cycle then has holonomy one; the pinned admissible fixture has six nonidentity square holonomies and rank twelve
+claimed_bound: H divides the actual endpoint form if and only if the stacked cofactor matrix has a kernel vector with all twelve entries nonzero, equivalently the complete 12-vertex gain multigraph is flat; the pinned admissible fixture has six nonidentity square holonomies and rank twelve
 status: PROVED_EXACT_ENDPOINT_COFACTOR_COMPILER_ONE_ADMISSIBLE_PACKET_DELETED_ROW_OPEN
 impact: REPLACES_THE_VAGUE_ACTIVE_PENCIL_GATE_BY_ONE_EXACT_FULL_SUPPORT_KERNEL_PROBLEM
 falsifier: an actual factorization violating the two interpolation identities or star transport, a full-support kernel that does not reconstruct the cofactor, or failure of the pinned holonomies or determinant
@@ -78,6 +78,22 @@ rho_(a->b)(x)=
 and every directed star cycle must have transport product one. This is a
 necessary local obstruction, not a sufficiency claim.
 
+The complete sparse form is exact. At each root retain the full triple
+`S_x={a,b,c}`. For distinct `u,v in S_x`, with third label `r`, give
+the directed pair the gain
+
+```text
+rho^x_(u->v)=
+ -[(alpha_u-alpha_r)E_u(x)]/[(alpha_v-alpha_r)E_v(x)].          (0.5)
+```
+
+Insert all three pair edges from each of the 24 triples into a gain
+multigraph on the twelve source labels. Then (0.3) has a full-support
+solution if and only if this complete gain multigraph is flat, meaning that
+every closed walk has gain product one. The six star squares are only a
+convenient necessary subfamily; one nonflat cycle anywhere in the complete
+gain graph is a complete no-kernel certificate.
+
 One pinned `F_47` packet satisfies the exact inherited `s=6` interfaces:
 six invariant coordinate quadratics, a fixed-point-free invariant-fiber
 bijection, a simple two-regular noninvariant pole graph, locator avoidance,
@@ -138,6 +154,15 @@ and the three cofactor evaluations are nonzero, it gives the printed edge
 transport. Multiplying `w_b/w_a` around any directed cycle telescopes to
 one.
 
+For the converse, retain all three pair gains (0.5). If the gain multigraph
+is flat, choose one nonzero weight in each connected component and transport
+it along paths. Flatness makes the result path-independent and all weights
+remain nonzero. On every local triangle, the transported vector is in the
+one-dimensional kernel of the rows `(1,1,1)` and
+`(alpha_a,alpha_b,alpha_c)`. Thus both degree-at-most-18 sums in (0.3)
+vanish at all 24 distinct complete-source roots, hence vanish identically.
+This proves the exact equivalence.
+
 ## 3. Deleting fixture
 
 For the parent geometric maps over `F_47`, take cubic pole values `7,18`.
@@ -190,17 +215,18 @@ contradicts the necessary cycle law.
 
 ## 4. Scope
 
-Proved: the exact actual-component interpolation equivalence, the necessary
-star-cycle holonomy law, and deletion of the pinned admissible packet. Not
-proved: a universal nonidentity-holonomy or rank theorem for all locator
-ownerships or pole pairs, fixed active-root compatibility, a
+Proved: the exact actual-component interpolation equivalence, the equivalent
+complete gain-flatness criterion, the necessary star-cycle subtest, and
+deletion of the pinned admissible packet. Not proved: universal nonflatness
+or full rank for all locator ownerships or pole pairs, fixed active-root
+compatibility, a
 parameter-to-carrier bridge, received-data or explaining-polynomial descent,
 distinct-slope projection, owner, payment, K3 close, KoalaBear row, or either
 Prize problem.
 
 The next route-deciding action is to classify admissible `s=6` ownerships
 up to the two `K_(2,2,2)` star automorphisms and source deck involution,
-first proving one nonidentity cycle holonomy in every case and falling back
-to the full stacked rank gate. A surviving kernel must instead be
+then prove one nonidentity cycle in the complete gain graph for every case,
+falling back to the full stacked rank gate. A surviving kernel must instead be
 reconstructed into its cofactor and tested against the actual active and
 block fibers.

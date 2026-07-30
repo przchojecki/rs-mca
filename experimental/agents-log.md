@@ -4256,12 +4256,15 @@ Keep entries concise and link to the relevant files.
   an exact multiplicative source-star transport with cycle holonomy one; the
   packet's six canonical square products are
   `11,26,17,2,41,31 mod 47`, all nonidentity.
+- **Exact sparse converse:** Retaining all three pair gains in each of the 24
+  star/owner triples gives a 12-vertex gain multigraph. A full-support kernel
+  exists if and only if every closed walk has gain product one.
 - **How it is useful:** Replaces the open-ended fixed-active-pencil
   instruction by one necessary-and-sufficient endpoint interpolation gate
   and a local four-edge obstruction, and proves that the abstract geometric
   realization need not extend to an endpoint source form.
 - **What to do next:** Classify admissible locator ownerships modulo the two
-  `K_(2,2,2)` star automorphisms and source deck involution, first prove one
-  nonidentity cycle in every case and fall back to the full stacked-rank gate,
-  or reconstruct a surviving cofactor into the fixed active/block record and
-  owner chronology.
+  `K_(2,2,2)` star automorphisms and source deck involution, then prove one
+  nonidentity cycle in the complete gain graph in every case, fall back to
+  the full stacked-rank gate, or reconstruct a surviving cofactor into the
+  fixed active/block record and owner chronology.
