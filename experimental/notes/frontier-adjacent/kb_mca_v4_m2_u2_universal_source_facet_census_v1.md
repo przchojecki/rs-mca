@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows, with aligned c=6 impossible and its near-aligned survivor reduced to one reciprocal colored quotient system.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, and deletion of the partition-preserving diagonal subcase
-status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_AND_DIAGONAL_MIXING_INTERFACES_TYPES_OPEN_K3_OPEN
-impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FIVE_DIAGONAL_MIXING_ROWS
-falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, or an actual diagonal component whose endpoint involution preserves I and J
+claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, deletion of the partition-preserving diagonal subcase and aligned c=6, and quotient descent of the near-aligned c=6 colored divisor
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_DIAGONAL_MIXING_AND_C6_QUOTIENT_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FIVE_DIAGONAL_MIXING_ROWS_WITH_C6_AT_ONE_QUOTIENT_SYSTEM
+falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, an actual diagonal component whose endpoint involution preserves I and J, an aligned c=6 component, or failure of the near-aligned c=6 quotient identities
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -307,10 +307,42 @@ transport only, so it applies to both branches of the diagonal
 source-subfield dichotomy. It deletes the partition-preserving subcase, not
 the five mixing rows or the diagonal orientation.
 
-Provenance: this argument was first banked as the independently auditable
+If `c=6`, then `tau` swaps `I` and `J`. The aligned case `L=I` is impossible:
+the `I`-supported `eta` quartic would transport to four `J` roots over an
+`L^c` fiber of `J`-capacity two. In the near-aligned case, `eta in J` must
+pair into `K`; pairing it with `xi` gives the same capacity contradiction.
+Thus
+
+```text
+tau(eta) in K,       ell=tau(xi) in J intersect L^c. (9.5)
+```
+
+If `z` is the number of `J` roots over `xi`, then the paired quartic over
+`ell` has `4-z` such roots. Both one-exchange capacities are two, so
+`z=4-z=2`. The remaining four `L^c` quartics are transports of `K` quartics
+and are supported on `I`. Therefore exactly the four stars above `xi,ell`
+are `I-J`, and the four colored roots are the two complete source fibers
+over that `tau` orbit.
+
+Writing their squarefree quotient locator as `chi(W)`, one gets
+
+```text
+C_H(X)~chi(psi(X)),       [tau^*chi]=[chi],
+Q_J~K_5^2 chi,            chi Q_I~R_7^2.            (9.6)
+```
+
+Here `Q_I,Q_J` are the descended partial resultants. The quadratic `chi` is
+in the positive `tau`-eigenspace and is reciprocal when `tau(W)=1/W`.
+This descent follows from the universal divisor identities, not from an
+individual-star lift, so it applies to both diagonal source-subfield
+branches. It deletes aligned `c=6`; the near-aligned quotient system remains
+open.
+
+Provenance: the base argument was first banked as the independently auditable
 `prize` node `rate_half_kb_m2_r4_diagonal_facet_mixing_obstruction` at
-commit `af28147e`; the complete proof is reproduced here rather than imported
-as an opaque status claim.
+commit `af28147e`, and the maximally mixed extension at `f45a4d50`; the
+complete proof is reproduced here rather than imported as an opaque status
+claim.
 
 ## 10. Scope and next action
 
@@ -323,7 +355,8 @@ including the negative ramified-fiber exclusion. Endpoint transposition
 routes the second coordinate subgroup through a freshly rebuilt coordinate
 source record. In the diagonal branch, partition preservation is impossible;
 the endpoint involution has one of the five crossing rows (9.4), with the
-printed common-`K` support cuts.
+printed common-`K` support cuts. Aligned `c=6` is impossible, and its
+near-aligned survivor has the quotient system (9.6).
 
 Not proved: a stabilizer action in the trivial branch, realization or
 deletion of any of the three surviving profiles, universal failure of the
@@ -344,4 +377,5 @@ continue the diagonal subgroup as the other independent geometry route.
 Split that route by (9.4), starting with `c=2`, and combine the transported
 root supports with the reciprocal norm or split-resolvent branch gate. Do
 not import the coordinate branch's `I,J` invariance or colored quotient
-descent.
+descent outside the proved near-aligned `c=6` row. For that row, attack the
+single reciprocal quadratic system (9.6), not arbitrary four-edge divisors.

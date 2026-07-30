@@ -577,6 +577,9 @@ def diagonal_facet_mixing_replay() -> dict[str, Any]:
 
     census: Counter[tuple[int, int, int]] = Counter()
     preserving = 0
+    eta_near = 6
+    c6_eta_xi_deleted = 0
+    c6_near_survivors = 0
     for edges in matchings(tuple(range(12))):
         mate = {}
         for left, right in edges:
@@ -597,12 +600,25 @@ def diagonal_facet_mixing_replay() -> dict[str, Any]:
             )
         else:
             census[(a, b, crossing)] += 1
+            if crossing == 6:
+                if mate[eta_near] == xi:
+                    c6_eta_xi_deleted += 1
+                else:
+                    require(mate[eta_near] in common, "c6 eta pairs into K")
+                    ell = mate[xi]
+                    require(ell in set(range(6, 12)) - {eta_near},
+                            "c6 xi orbit label")
+                    c6_near_survivors += 1
 
     expected = {(2, 0, 2), (1, 1, 2), (1, 0, 4), (0, 1, 4), (0, 0, 6)}
     require(set(census) == expected, "five diagonal mixing rows")
     require(sum(census.values()) + preserving == 10395,
             "fixed-point-free matching count")
     require(preserving == 225, "partition-preserving matching count")
+    require(c6_eta_xi_deleted == 120, "near c6 eta-xi deletion count")
+    require(c6_near_survivors == 600, "near c6 survivor count")
+    c6_j_counts = [z for z in range(3) if 4 - z <= 2]
+    require(c6_j_counts == [2], "near c6 paired J counts")
     rows = [
         {"a": a, "b": b, "c": crossing, "matching_count": census[(a, b, crossing)]}
         for a, b, crossing in sorted(census, key=lambda row: (row[2], -row[0], row[1]))
@@ -620,6 +636,16 @@ def diagonal_facet_mixing_replay() -> dict[str, Any]:
         "K_transport_to_K": "all four roots lie in J_0=J intersect tau(J)",
         "K_transport_to_eta": "all four roots lie in J_1=J intersect tau(I)",
         "K_transport_to_L_complement": "at least two roots lie in J_1",
+        "aligned_c6_deleted": True,
+        "near_c6_eta_xi_matchings_deleted": c6_eta_xi_deleted,
+        "near_c6_matchings_surviving": c6_near_survivors,
+        "near_c6_J_roots_per_paired_quartic": c6_j_counts[0],
+        "near_c6_colored_source_fibers": 2,
+        "near_c6_colored_quotient_degree": 2,
+        "near_c6_colored_quotient_tau_eigenvalue": 1,
+        "near_c6_J_identity": "Q_J is proportional to K_5^2*chi",
+        "near_c6_I_identity": "chi*Q_I is proportional to R_7^2",
+        "near_c6_resultant_degree": 12,
         "uses_whole_fiber_transport_only": True,
         "individual_star_transport_used": False,
         "diagonal_orientation_deleted": False,
@@ -657,18 +683,19 @@ def expected_certificate() -> dict[str, Any]:
             "trivial_stabilizer_r8_delta1": True,
             "coordinate_pairing_transferred_to_trivial": False,
             "partition_preserving_diagonal_subcase_deleted": True,
+            "aligned_c6_deleted": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_AND_DIAGONAL_MIXING_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_AND_C6_QUOTIENT_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
             "no universal source-row kernel failure",
-            "no deletion of the five diagonal mixing rows",
+            "no complete deletion of any of the five diagonal mixing rows",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -721,6 +748,12 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_facet_mixing"]["orbit_rows"].pop(),
         lambda x: x["diagonal_facet_mixing"].__setitem__("individual_star_transport_used", True),
         lambda x: x["diagonal_facet_mixing"].__setitem__("diagonal_orientation_deleted", True),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("aligned_c6_deleted", False),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("near_c6_matchings_surviving", 599),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("near_c6_J_roots_per_paired_quartic", 1),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("near_c6_colored_quotient_degree", 4),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("near_c6_colored_quotient_tau_eigenvalue", -1),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("near_c6_J_identity", "wrong"),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -771,6 +804,7 @@ def main() -> None:
         f"{data['coordinate_k_fiber_vieta_rank']['negative_sample_rank']} "
         f"transpose_terms={data['coordinate_transpose_transport']['divided_difference_terms_checked']} "
         f"diagonal_mixing_rows={data['diagonal_facet_mixing']['orbit_row_count']} "
+        f"c6_near={data['diagonal_facet_mixing']['near_c6_matchings_surviving']} "
         f"tamper_rejected={rejected}"
     )
 

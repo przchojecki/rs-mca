@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_AND_DIAGONAL_MIXING_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_AND_C6_QUOTIENT_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -126,6 +126,7 @@
     "K_transport_to_K": "all four roots lie in J_0=J intersect tau(J)",
     "K_transport_to_L_complement": "at least two roots lie in J_1",
     "K_transport_to_eta": "all four roots lie in J_1=J intersect tau(I)",
+    "aligned_c6_deleted": true,
     "crossing_counts": [
       2,
       4,
@@ -134,6 +135,15 @@
     "diagonal_orientation_deleted": false,
     "endpoint_involution_fixed_point_free_on_labels": true,
     "individual_star_transport_used": false,
+    "near_c6_I_identity": "chi*Q_I is proportional to R_7^2",
+    "near_c6_J_identity": "Q_J is proportional to K_5^2*chi",
+    "near_c6_J_roots_per_paired_quartic": 2,
+    "near_c6_colored_quotient_degree": 2,
+    "near_c6_colored_quotient_tau_eigenvalue": 1,
+    "near_c6_colored_source_fibers": 2,
+    "near_c6_eta_xi_matchings_deleted": 120,
+    "near_c6_matchings_surviving": 600,
+    "near_c6_resultant_degree": 12,
     "orbit_row_count": 5,
     "orbit_rows": [
       {
@@ -180,7 +190,7 @@
   "nonclaims": [
     "no stabilizer action or paired degree profile in the trivial branch",
     "no universal source-row kernel failure",
-    "no deletion of the five diagonal mixing rows",
+    "no complete deletion of any of the five diagonal mixing rows",
     "no component, type, owner, payment, K3, row, or Prize close"
   ],
   "parent": {
@@ -194,9 +204,10 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "e5d3705f96c3fe141e3ed87c3d4901e7528b4297c9b92b5d014918ad5f9d4112",
+  "payload_sha256": "d12f7dccbca0236ccd21482de28c44f5e6399de70fddeb5e10b17d3eb6560755",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
+    "aligned_c6_deleted": true,
     "coordinate_order_two": true,
     "coordinate_pairing_transferred_to_trivial": false,
     "diagonal_order_two": true,
