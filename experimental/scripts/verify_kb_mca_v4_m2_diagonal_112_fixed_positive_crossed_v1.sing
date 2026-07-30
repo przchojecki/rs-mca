@@ -1,0 +1,50 @@
+// Independent deployed-characteristic H9 terminal replay.
+option(redSB);
+ring r = 2130706433,(d,c),lp;
+
+poly e0 =
+  4*c2*d4 - 120*c2*d3 + 8*c*d4 + 193*c2*d2 + 120*c*d3
+  + 4*d4 - 84*c2*d - 262*c*d2 - 84*d3 + 4*c2 + 120*c*d
+  + 193*d2 + 8*c - 120*d + 4;
+
+poly e1 =
+  4*c4*d2 + 8*c4*d - 120*c3*d2 + 4*c4 + 120*c3*d
+  + 193*c2*d2 - 84*c3 - 262*c2*d - 84*c*d2 + 193*c2
+  + 120*c*d + 4*d2 - 120*c + 8*d + 4;
+
+ideal I = std(e0,e1);
+if (size(I) != 3) { ERROR("unexpected H9 Groebner size"); }
+
+poly q2 = c2 - 14*c + 1;
+poly q6 = 4*c6 - 112*c5 + 317*c4 - 430*c3 + 317*c2 - 112*c + 4;
+poly h = 100*c4 - 504*c3 + 817*c2 - 504*c + 100;
+poly expected = (2*c-1)^3*(c-2)^3*q2*q6*h;
+if (leadcoef(expected)*I[1]-expected != 0)
+{
+  ERROR("H9 eliminant mismatch");
+}
+
+ideal Iq2 = std(I+ideal(q2));
+if (reduce(c*d-1,Iq2) != 0) { ERROR("q2 collision missing"); }
+
+ideal Iq6 = std(I+ideal(q6));
+if (reduce(d-c,Iq6) != 0) { ERROR("q6 collision missing"); }
+
+ideal Ih = std(I+ideal(h));
+poly hRelation = 375*d - 1600*c3 + 6664*c2 - 7241*c + 1400;
+if (reduce(hRelation,Ih) != 0) { ERROR("h relation missing"); }
+
+poly mJ = 1153095255*c3 + 44715398*c2 + 2079603121*c + 1265012543;
+poly uJ = 481856514*c2 + 161871344*c + 1378984398;
+poly vJ = 2108730127*c3 + 1092963338*c2 + 577218842*c + 1355798505;
+poly mI = 1777964224*c3 + 1373289511*c2 + 1474392606*c + 1474202438;
+poly uI = 134274715*c2 + 1582407299*c + 450536384;
+poly vI = 1452206296*c3 + 1366419164*c2 + 264697898*c + 1149576513;
+if (uJ*h+vJ*mJ-1 != 0) { ERROR("J Bezout mismatch"); }
+if (uI*h+vI*mI-1 != 0) { ERROR("I Bezout mismatch"); }
+
+print("schema=kb-mca-v4-m2-diagonal-112-fixed-positive-crossed-singular-v1");
+print("H9_GB_SIZE=3");
+print("H9_COMPONENTS=fixed_collision,reciprocal_collision,equal_label_collision,h");
+print("H9_FULL_QUOTIENT_J_AND_I_BEZOUT=PASS");
+print("PASS");

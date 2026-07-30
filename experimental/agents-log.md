@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-30 - Diagonal `(1,1,2)` fixed-positive crossed representative deletion
+
+- **Agent/model:** Codex, with exact Sage, Singular, Wolfram, and pure-Python
+  replays plus independent scope review.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_diagonal_112_fixed_positive_crossed_v1.md`,
+  its canonical JSON certificate, Python verifier, exact Sage replay, exact
+  Singular replay, exact Wolfram replay, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED for one normalized representative only:
+  `J_0={2,1/2,b,1/b}`, `J_1={c,d}`, assignment
+  `{{2,1/2},{2,b}}`, crossed distribution `(0,2)`. The other seven
+  fixed-moving assignments are `OPEN_SEPARATE_EXACT_SYSTEMS`;
+  complete-system covariance is `NOT_CLAIMED`.
+- **What is being added:** For that representative, the four ordinary
+  factor branches and all six coefficient-zero division charts are
+  exhausted exactly. Their terminals are declared-unit contradictions, a
+  forbidden `w=c` collision, or a deployed-field component decomposition
+  whose only noncollision component fails both full quotient identities by
+  explicit Bezout witnesses.
+- **How it is useful:** It rigorously deletes one local representative while
+  fail-closing the invalid full-orbit inference. Endpoint-only transport
+  preserves the observed residual but not the aligned target; diagonal
+  `W` transport preserves the target but not the observed residual/source
+  divisor.
+- **What to do next:** Derive the other seven fixed-moving crossed systems
+  independently. Also audit the separate `(2,0)` and `(1,1)` equations;
+  only afterward aggregate fixed-moving or moving-moving positive patterns.
+
 ### 2026-07-30 - Diagonal `(1,1,2)` near-negative q-slice deletion
 
 - **Agent/model:** Codex, with independent exact Sage and Wolfram

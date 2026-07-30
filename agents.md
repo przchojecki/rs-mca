@@ -315,6 +315,23 @@ At this snapshot:
   `xi in I minus K`.  The aligned positive and near-aligned positive signs,
   exceptional unsaturated orbit, biquadratic source cover, complete
   `(1,1,2)` row, K3, and every payment remain open.
+- In the same saturated source-line branch, one normalized fixed-moving
+  aligned-positive crossed `(0,2)` representative is empty: exactly
+  `J_0={2,1/2,b,1/b}`, `J_1={c,d}`, and assignment
+  `{{2,1/2},{2,b}}`.  Exact reconstruction gives four ordinary factor
+  branches; six coefficient-zero division charts have unit localized
+  ideals.  Two branches are killed by declared units, one forces the
+  collision `w=c`, and the last decomposes over the deployed characteristic
+  into fixed/reciprocal/equal-label collisions plus a quartic component on
+  which both full quotient proportionalities have explicit Bezout-unit
+  mismatches.  The other seven fixed-moving assignments remain
+  `OPEN_SEPARATE_EXACT_SYSTEMS`: endpoint-only normalization preserves the
+  observed residual but not the aligned target, while diagonal `W`
+  transport preserves the target but not the observed residual/source
+  divisor, so complete-system covariance is not claimed.  This also does
+  not address the distinct identity-doubled `(2,0)` or balanced `(1,1)`
+  systems, any moving-moving or near-positive template, the complete
+  `(1,1,2)` row, K3, or a payment.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
