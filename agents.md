@@ -290,6 +290,11 @@ At this snapshot:
   normalizer and the exceptional fibers `c=27/8,756/125`; every case
   contradicts the forced source-cover branch pair.  The full-V4 dihedral
   frontier is now only `n=3`.
+- The sole `n=3` profile has an explicit abstract geometric realization at
+  `a=b=-1`: a rational bidegree-`(2,4)` source component realizes the common
+  cubic right factor, six poles, coefficient quartic, exact star graph, and
+  complete-source saturation.  Geometry alone cannot delete it; the live
+  gate is the fixed active endpoint pencil or a same-record owner.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -386,7 +391,7 @@ realization is reduced to two printed one-variable families; exceptional
 factorization is now fully classified and deletes nothing.  The
 second-endpoint branch twist and source genus are also exact.  The common
 six-pole divisor deletes `n=6`; only the `n=3` common degree-30 function and
-six-pole/source-locator equations remain.
+active-pencil/owner equations remain.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every

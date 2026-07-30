@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-30 - Residual cubic geometric realization fence
+
+- **Agent/model:** Codex, with exact rational-map and divisor identities.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree3_geometric_realization_fence_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED GEOMETRIC ROUTE FENCE. The fixed endpoint pencil,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** One explicit `b=-1` genus-zero family realizes
+  all abstract common-function, pole, quartic, star, and locator gates.
+- **How it is useful:** It prevents further geometry-only elimination work
+  on `n=3` and identifies active-record/owner semantics as load-bearing.
+- **What to do next:** Compare the fixed active source pencil with the
+  special model or compile its degree-six recurrence into a first owner.
+
 ### 2026-07-30 - Residual degree-six common-pole exclusion
 
 - **Agent/model:** Codex, with exact projective binary-sextic classification
