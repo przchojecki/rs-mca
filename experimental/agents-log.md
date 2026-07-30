@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-29 - Full-V4 degree-five dihedral source-star exclusion
+
+- **Agent/model:** Codex, with exact `D5` coset and source-multiplicity
+  replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree5_source_star_exclusion_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED DEGREE-FIVE PROFILE EMPTY. The factor degrees `2,3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** The totally ramified `n=5` pole forces two
+  degree-two complete-source pullbacks onto one matching star vertex, giving
+  weight four against the proved maximum three.
+- **How it is useful:** It is the first actual source-star deletion inside
+  the recurrent inner-degree-two tower and narrows its hardest type to three
+  generic-pole profiles.
+- **What to do next:** Compile the induced two-, three-, and six-cycle
+  incidence on the source-star equations and seek a contradiction or
+  same-record owner.
+
 ### 2026-07-29 - Full-V4 m2 dihedral outer-factor reduction
 
 - **Agent/model:** Codex, with exact tame Riemann--Hurwitz and pole-divisor

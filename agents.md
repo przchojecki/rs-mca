@@ -251,6 +251,12 @@ At this snapshot:
   `n=2,3,5,6`; the `n=5` profile has one generic order-five outer pole and
   one simple pole at the totally ramified value.  No factor degree, `m=2`
   type, owner, or payment is deleted here.
+- The exceptional full-V4 `n=5` dihedral factor is empty.  Its simple pole
+  at the common totally ramified quotient value forces both degree-two
+  source-parameter pullbacks over one endpoint source pair onto the same
+  matching source-star vertex, with total weight `2+2=4`.  This contradicts
+  the proved quartic maximum weight `3`.  The surviving factor degrees are
+  `n=2,3,6`; all three, the full-V4 type, K3, and every payment remain open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -335,6 +341,12 @@ endpoint parameter line is not the evaluation carrier: `m | 2^21` is only
 a necessary gate conditional on a future same-record parameter-to-carrier
 transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
 data, and slope semantics remain open.
+
+Inside the remaining full-V4 `m=2` type, rational outer geometry and the
+complete source-star gate reduce the recurrent dihedral factor list to
+`n=2,3,6`; the exceptional totally ramified `n=5` profile is proved empty.
+These three generic-pole profiles remain source-coupled targets, not owners
+or payments.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `3` types at inner degree `m=2`.  For every
