@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-30 - Diagonal `(1,1,2)` fixed-positive identity representative deletion
+
+- **Agent/model:** Codex, with exact Sage, Singular, Wolfram, and pure-Python
+  replays plus a fresh independent proof audit.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_diagonal_112_fixed_positive_identity_v1.md`,
+  its canonical JSON certificate, Python verifier, exact Sage replay, exact
+  Singular replay, exact Wolfram replay, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED for one normalized representative only:
+  `J_0={2,1/2,b,1/b}`, `J_1={c,d}`, assignment
+  `{{2,1/2},{2,b}}`, identity-doubled distribution `(2,0)`. The other seven
+  fixed-moving assignments are `OPEN_SEPARATE_EXACT_SYSTEMS`;
+  complete-system covariance is `NOT_CLAIMED`.
+- **What is being added:** For that representative, four ordinary branches
+  and all six coefficient-zero division charts are exhausted. Their
+  terminals are declared label collisions or one degree-eight component on
+  which both complete quotient proportionalities have explicit
+  deployed-field Bezout-unit mismatches.
+- **How it is useful:** Together with the repaired crossed predecessor, it
+  closes `(0,2)` and `(2,0)` for the same single representative while
+  fail-closing the invalid inference to the full eight-assignment orbit.
+  It does not imply that every surviving fixed-moving candidate is balanced.
+- **What to do next:** Derive the other seven identity and crossed systems
+  independently, then derive the eight balanced systems. Do not infer
+  row-level payment, ownership, or complete-system covariance from these
+  local deletions.
+
 ### 2026-07-30 - Diagonal `(1,1,2)` fixed-positive crossed representative deletion
 
 - **Agent/model:** Codex, with exact Sage, Singular, Wolfram, and pure-Python

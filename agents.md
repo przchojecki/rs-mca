@@ -332,6 +332,20 @@ At this snapshot:
   not address the distinct identity-doubled `(2,0)` or balanced `(1,1)`
   systems, any moving-moving or near-positive template, the complete
   `(1,1,2)` row, K3, or a payment.
+- For that same normalized fixed-moving assignment, the separate
+  aligned-positive identity-doubled `(2,0)` system is empty as well.  Its
+  four ordinary branches and six named coefficient-zero charts are
+  exhaustive.  The ordinary terminals force `w=c`, `b=1/2`, `cd=1` with
+  `w=1`, or `d=c`, except for one degree-eight component; explicit
+  deployed-field Bezout units show that component violates both full
+  quotient identities.  This closes `(0,2)` and `(2,0)` only for the one
+  representative `J_0={2,1/2,b,1/b}`, `J_1={c,d}`, assignment
+  `{{2,1/2},{2,b}}`.  The other seven fixed-moving assignments are
+  `OPEN_SEPARATE_EXACT_SYSTEMS`, complete-system covariance is not claimed,
+  and no inference that all surviving fixed-moving candidates are balanced
+  is licensed.  All eight balanced systems, any moving-moving or
+  near-positive template, the complete `(1,1,2)` row, K3, and every payment
+  remain open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
