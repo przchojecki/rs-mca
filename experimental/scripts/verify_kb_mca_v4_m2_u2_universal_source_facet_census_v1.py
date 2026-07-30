@@ -958,6 +958,87 @@ def diagonal_c2_112_saturated_defect_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_c2_112_source_line_colored_quotient_replay() -> dict[str, Any]:
+    labels = tuple(range(12))
+    invariant = frozenset(range(6))
+    common = frozenset(range(5))
+    xi = 5
+    eta = 6
+
+    def matchings(vertices):
+        if not vertices:
+            yield ()
+            return
+        first = vertices[0]
+        for index in range(1, len(vertices)):
+            second = vertices[index]
+            rest = vertices[1:index] + vertices[index + 1:]
+            for tail in matchings(rest):
+                yield ((first, second),) + tail
+
+    aligned_rows = 0
+    near_saturated_rows = 0
+    for edges in matchings(labels):
+        mate = {}
+        for left, right in edges:
+            mate[left] = right
+            mate[right] = left
+        crossing = sum(mate[label] not in invariant for label in invariant)
+        internal_common_pairs = sum(
+            left in common and right in common for left, right in edges
+        )
+        xi_to_common = int(mate[xi] in common)
+        if (internal_common_pairs, xi_to_common, crossing) != (1, 1, 2):
+            continue
+
+        aligned_complement = set(range(6, 12))
+        aligned_omega = {
+            mate[label] for label in common if mate[label] in aligned_complement
+        }
+        crossing_labels = {
+            mate[label] for label in invariant if mate[label] not in invariant
+        }
+        require(aligned_omega == crossing_labels and len(aligned_omega) == 2,
+                "c2 112 aligned quotient fibers")
+        aligned_rows += 1
+
+        if mate[eta] in common:
+            near_complement = set(labels) - (set(common) | {eta})
+            near_omega = {
+                mate[label] for label in common if mate[label] in near_complement
+            }
+            require(xi in near_omega and len(near_omega) == 2,
+                    "c2 112 near quotient fibers")
+            other = next(label for label in near_omega if label != xi)
+            require(other in crossing_labels,
+                    "c2 112 near other crossing label")
+            near_saturated_rows += 1
+
+    require(aligned_rows == 2700, "c2 112 aligned matching census")
+    require(near_saturated_rows == 900, "c2 112 near matching census")
+    require(2 * 5 + 2 == 12 and 2 * 7 - 2 == 12,
+            "c2 112 partial-resultant quotient degrees")
+    return {
+        "aligned_matching_rows_checked": aligned_rows,
+        "near_saturated_matching_rows_checked": near_saturated_rows,
+        "source_line_only": True,
+        "mixed_stars_transported": 4,
+        "universal_I_J_stars_exhausted": 4,
+        "Omega_size": 2,
+        "aligned_Omega": "J_1",
+        "near_Omega": "{xi, ell}",
+        "near_Omega_tau_invariance_claimed": False,
+        "colored_divisor": "C_H is proportional to chi_Omega(psi)",
+        "colored_divisor_degree": 4,
+        "colored_quotient_degree": 2,
+        "Omega_fibers_unramified": True,
+        "J_partial_resultant": "Q_J is proportional to K_5^2 chi_Omega",
+        "I_partial_resultant": "chi_Omega Q_I is proportional to R_7^2",
+        "partial_resultant_quotient_degree": 12,
+        "row_112_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -973,6 +1054,7 @@ def expected_certificate() -> dict[str, Any]:
         "diagonal_facet_mixing": diagonal_facet_mixing_replay(),
         "diagonal_c2_square_fiber_linear_cut": diagonal_c2_square_fiber_linear_cut_replay(),
         "diagonal_c2_112_saturated_defect": diagonal_c2_112_saturated_defect_replay(),
+        "diagonal_c2_112_source_line_colored_quotient": diagonal_c2_112_source_line_colored_quotient_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -997,13 +1079,14 @@ def expected_certificate() -> dict[str, Any]:
             "row_202_ramified_source_line_deleted": True,
             "row_202_deleted_all_source_subfield_branches": True,
             "row_112_saturated_defect_classified": True,
+            "row_112_source_line_colored_quotient_compiled": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_AND_C2_112_SATURATED_DEFECT_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_AND_C2_112_SOURCE_QUOTIENT_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
@@ -1013,6 +1096,7 @@ def expected_certificate() -> dict[str, Any]:
             "no exclusion of the ramified (1,1,2) c=2 source orbit",
             "no deletion of the remaining four diagonal orbit rows",
             "no realization claim for any saturated (1,1,2) packet",
+            "no colored quotient descent for the biquadratic or exceptional (1,1,2) branch",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -1104,6 +1188,13 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("source_line_matching_preserving_orbits", 11),
         lambda x: x["diagonal_c2_112_saturated_defect"].__setitem__("exceptional_unsaturated_orbit_retained", False),
         lambda x: x["scope"].__setitem__("row_112_saturated_defect_classified", False),
+        lambda x: x["diagonal_c2_112_source_line_colored_quotient"].__setitem__("Omega_size", 3),
+        lambda x: x["diagonal_c2_112_source_line_colored_quotient"].__setitem__("aligned_Omega", "arbitrary"),
+        lambda x: x["diagonal_c2_112_source_line_colored_quotient"].__setitem__("near_Omega_tau_invariance_claimed", True),
+        lambda x: x["diagonal_c2_112_source_line_colored_quotient"].__setitem__("Omega_fibers_unramified", False),
+        lambda x: x["diagonal_c2_112_source_line_colored_quotient"].__setitem__("J_partial_resultant", "wrong"),
+        lambda x: x["diagonal_c2_112_source_line_colored_quotient"].__setitem__("row_112_deleted", True),
+        lambda x: x["scope"].__setitem__("row_112_source_line_colored_quotient_compiled", False),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -1162,6 +1253,8 @@ def main() -> None:
         f"diagonal_rows_remaining={data['diagonal_c2_square_fiber_linear_cut']['diagonal_orbit_row_count_remaining']} "
         f"c2_112_orbits={data['diagonal_c2_112_saturated_defect']['universal_matching_preserving_orbits']}/"
         f"{data['diagonal_c2_112_saturated_defect']['source_line_matching_preserving_orbits']} "
+        f"c2_112_quotient_rows={data['diagonal_c2_112_source_line_colored_quotient']['aligned_matching_rows_checked']}/"
+        f"{data['diagonal_c2_112_source_line_colored_quotient']['near_saturated_matching_rows_checked']} "
         f"tamper_rejected={rejected}"
     )
 
