@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, and endpoint transposition routes the other coordinate subgroup through a fresh source record.
+direct_statement: Every residual degree-two source component, including the trivial-stabilizer type, has the exact (J-J,I-I,I-J)=(10,10,4) census; component edge coloring cuts the five raw K-fiber profiles to three, every survivor passes the same exact 45-by-12 source-row interpolation gate, its I/J row products split through one squarefree colored quartic, the coordinate orientation descends this to explicit quotient-resultant and five-fiber Vieta-rank equations, endpoint transposition routes the other coordinate subgroup through a fresh source record, and the diagonal endpoint involution must mix I and J in one of five exact crossing-orbit rows.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_U2_UNIVERSAL_SOURCE_FACET_CENSUS
 quantifier: every actual graph-free Q=6,s=6,u=2 source component in the residual inner-degree-two order-two or trivial-stabilizer types
 projection_and_unit: exact source-facet interface; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, and transpose transport of the second coordinate subgroup
-status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_AND_TRANSPOSE_INTERFACES_TYPES_OPEN_K3_OPEN
-impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_COORDINATE_AND_DIAGONAL_GEOMETRY_ROUTES
-falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, or failure of endpoint transposition after rebuilding the source record
+claimed_bound: exact universal facet/color/interpolation/resultant interfaces plus coordinate descent to one quotient quadratic, explicit 8/7-dimensional cubic-norm equations, exact 10-by-8 or 10-by-7 K-fiber Vieta gates, transpose transport of the second coordinate subgroup, and deletion of the partition-preserving diagonal subcase
+status: PROVED_FACET_COLOR_INTERPOLATION_RESULTANT_COORDINATE_QUOTIENT_VIETA_RANK_TRANSPOSE_AND_DIAGONAL_MIXING_INTERFACES_TYPES_OPEN_K3_OPEN
+impact: GIVES_EXACT_TRIVIAL_SOURCE_INTERFACES_AND_REDUCES_ORDER_TWO_TO_ONE_COORDINATE_ROUTE_PLUS_FIVE_DIAGONAL_MIXING_ROWS
+falsifier: an actual degree-two component outside the universal source interfaces, a coordinate component whose colored divisor, paired-root resultants, or printed K-fiber Vieta gates fail, failure of endpoint transposition after rebuilding the source record, or an actual diagonal component whose endpoint involution preserves I and J
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py --check --tamper-selftest
 ---
 
@@ -255,7 +255,64 @@ Thus the two coordinate subgroups are one existence/deletion route. The
 order-two campaign has two independent geometries, coordinate and
 diagonal, not three subgroup-specific campaigns. Neither route is closed.
 
-## 9. Scope and next action
+## 9. Diagonal facet-mixing obstruction
+
+Let `tau` now denote the fixed-point-free endpoint deck involution in the
+diagonal subgroup `<tau x tau>`; it is not the unrelated canonical matching
+also denoted `tau` in the source-facet theorem. Put `J=I^c` and let `xi` be
+the unique label in `I minus K`.
+
+The diagonal whole-fiber compiler gives split quartics `R_y` with
+
+```text
+[R_tau(y)]=[tau^*R_y].                              (9.1)
+```
+
+Every `R_k`, `k in K`, has all four roots in `J`. Suppose `tau(I)=I`.
+The fixed-point-free matching on the six-set `I` must pair the odd five-set
+`K` to `xi`, so some `k in K` has `tau(k)=xi`. Equation (9.1) transports
+four `J` roots to `R_xi`. If `xi in L`, then `L=I` and `xi=eta`, whose
+quartic is supported on `I`. Otherwise `xi in L^c`; its two quadratic stars
+lie in reduced one-exchange facets, each containing only one `J` label, so
+the quartic has at most two `J` roots. Both cases are contradictions. Hence
+
+```text
+tau(I)!=I,       tau(J)!=J.                         (9.2)
+```
+
+Let `c=|I intersect tau(J)|`. The same number crosses in the other direction,
+and the `6-c` noncrossing labels of `I` are internally paired. Thus
+
+```text
+c in {2,4,6}.                                      (9.3)
+```
+
+If `a` counts involution pairs contained in `K`, and `b` is one exactly when
+`tau(xi) in K`, then `6-c=2a+2b`. The exact remaining rows are
+
+```text
+(a,b,c)=(2,0,2),(1,1,2),(1,0,4),(0,1,4),(0,0,6). (9.4)
+```
+
+There is also a support cut. Set
+
+```text
+J_0=J intersect tau(J),       J_1=J intersect tau(I).
+```
+
+For `k in K`, transport to `K` forces every root of `R_k` into `J_0`;
+transport to `eta` forces every root into `J_1`; and transport to `L^c`
+forces at least two roots into `J_1`. This argument uses whole-fiber
+transport only, so it applies to both branches of the diagonal
+source-subfield dichotomy. It deletes the partition-preserving subcase, not
+the five mixing rows or the diagonal orientation.
+
+Provenance: this argument was first banked as the independently auditable
+`prize` node `rate_half_kb_m2_r4_diagonal_facet_mixing_obstruction` at
+commit `af28147e`; the complete proof is reproduced here rather than imported
+as an opaque status claim.
+
+## 10. Scope and next action
 
 Proved: the universal category census, the five exhaustive raw integer
 profiles, the exact three-profile component-color cut, applicability to the
@@ -264,7 +321,9 @@ interpolation gate and colored partial-resultant split. In the coordinate
 branch, the quotient-resultant and common-`K` Vieta-rank systems are exact,
 including the negative ramified-fiber exclusion. Endpoint transposition
 routes the second coordinate subgroup through a freshly rebuilt coordinate
-source record.
+source record. In the diagonal branch, partition preservation is impossible;
+the endpoint involution has one of the five crossing rows (9.4), with the
+printed common-`K` support cuts.
 
 Not proved: a stabilizer action in the trivial branch, realization or
 deletion of any of the three surviving profiles, universal failure of the
@@ -282,3 +341,7 @@ negative parity spaces. Preserve the ramified-fiber distinction before
 generic endpoint reconstruction. Apply the same program to `<1 x tau>`
 only after transposition and reconstruction of its primed source record;
 continue the diagonal subgroup as the other independent geometry route.
+Split that route by (9.4), starting with `c=2`, and combine the transported
+root supports with the reciprocal norm or split-resolvent branch gate. Do
+not import the coordinate branch's `I,J` invariance or colored quotient
+descent.

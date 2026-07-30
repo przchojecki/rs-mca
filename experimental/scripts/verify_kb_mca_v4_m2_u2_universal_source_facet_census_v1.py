@@ -8,6 +8,7 @@ import copy
 import hashlib
 import json
 import subprocess
+from collections import Counter
 from itertools import combinations, product
 from pathlib import Path
 from typing import Any, Callable
@@ -123,6 +124,13 @@ def load_parent() -> dict[str, Any]:
     require(data["conclusion"]["terminal"] == PARENT["terminal"], "parent terminal")
     require(data["source_row_interpolation"]["replay"]["matrix_rows"] == 45,
             "parent source gate")
+    require(
+        data["parent"]["terminal"]
+        == "M2_R4_ORDER_TWO_SOURCE_FACET_AND_DIAGONAL_INTERPOLATION_INTERFACES",
+        "diagonal fiber parent terminal",
+    )
+    require(not data["conclusion"]["diagonal_orientation_deleted"],
+            "parent diagonal scope")
     return data
 
 
@@ -218,6 +226,23 @@ def load_source_facet_parent() -> dict[str, Any]:
     require(
         data["outgoing_conjugate_ledger"]["q6_s6_complementary_pole_graph_left_degree"] == 2,
         "left pole-graph degree",
+    )
+    require(
+        data["theorem_status"]["q6_s6_source_facet_deck_9_27"] == "PROVED",
+        "source-facet deck status",
+    )
+    classes = data["outgoing_conjugate_ledger"]["q6_s6_horizontal_fiber_classes"]
+    require(classes["K_pullback_degree"] == 10, "common-K fiber degree")
+    require(classes["eta_pullback_degree"] == 2, "eta fiber degree")
+    require(classes["exchange_distinct_parameter_points"] == 12,
+            "one-exchange point count")
+    require(
+        data["outgoing_conjugate_ledger"]["q6_s6_source_facet_common_size"] == 5,
+        "one-exchange common size",
+    )
+    require(
+        data["outgoing_conjugate_ledger"]["q6_s6_source_facet_exchange_size"] == 1,
+        "one-exchange size",
     )
     return data
 
@@ -534,6 +559,73 @@ def coordinate_transpose_replay() -> dict[str, Any]:
     }
 
 
+def diagonal_facet_mixing_replay() -> dict[str, Any]:
+    invariant = frozenset(range(6))
+    common = frozenset(range(5))
+    xi = 5
+
+    def matchings(vertices: tuple[int, ...]):
+        if not vertices:
+            yield ()
+            return
+        first = vertices[0]
+        for index in range(1, len(vertices)):
+            second = vertices[index]
+            rest = vertices[1:index] + vertices[index + 1:]
+            for tail in matchings(rest):
+                yield ((first, second),) + tail
+
+    census: Counter[tuple[int, int, int]] = Counter()
+    preserving = 0
+    for edges in matchings(tuple(range(12))):
+        mate = {}
+        for left, right in edges:
+            mate[left] = right
+            mate[right] = left
+        crossing = sum(mate[label] not in invariant for label in invariant)
+        a = sum(left in common and right in common for left, right in edges)
+        b = int(mate[xi] in common)
+        if crossing == 0:
+            preserving += 1
+            require(mate[xi] in common, "odd common five-set")
+            transported_roots = 4
+            xi_J_capacities = {"aligned_eta": 0, "near_one_exchange": 2}
+            require(
+                all(transported_roots > capacity
+                    for capacity in xi_J_capacities.values()),
+                "transported xi capacity",
+            )
+        else:
+            census[(a, b, crossing)] += 1
+
+    expected = {(2, 0, 2), (1, 1, 2), (1, 0, 4), (0, 1, 4), (0, 0, 6)}
+    require(set(census) == expected, "five diagonal mixing rows")
+    require(sum(census.values()) + preserving == 10395,
+            "fixed-point-free matching count")
+    require(preserving == 225, "partition-preserving matching count")
+    rows = [
+        {"a": a, "b": b, "c": crossing, "matching_count": census[(a, b, crossing)]}
+        for a, b, crossing in sorted(census, key=lambda row: (row[2], -row[0], row[1]))
+    ]
+    return {
+        "endpoint_involution_fixed_point_free_on_labels": True,
+        "total_fixed_point_free_matchings": 10395,
+        "partition_preserving_matchings_deleted": preserving,
+        "partition_preserving_diagonal_subcase_deleted": True,
+        "transported_common_K_J_roots": 4,
+        "xi_J_capacities": {"aligned_eta": 0, "near_one_exchange": 2},
+        "crossing_counts": [2, 4, 6],
+        "orbit_rows": rows,
+        "orbit_row_count": len(rows),
+        "K_transport_to_K": "all four roots lie in J_0=J intersect tau(J)",
+        "K_transport_to_eta": "all four roots lie in J_1=J intersect tau(I)",
+        "K_transport_to_L_complement": "at least two roots lie in J_1",
+        "uses_whole_fiber_transport_only": True,
+        "individual_star_transport_used": False,
+        "diagonal_orientation_deleted": False,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
@@ -546,6 +638,7 @@ def expected_certificate() -> dict[str, Any]:
         "coordinate_colored_quotient_resultant": coordinate_colored_quotient_replay(),
         "coordinate_k_fiber_vieta_rank": coordinate_k_fiber_vieta_replay(),
         "coordinate_transpose_transport": coordinate_transpose_replay(),
+        "diagonal_facet_mixing": diagonal_facet_mixing_replay(),
         "universal_source_interpolation": {
             "actual_source_bidegree": [2, 4],
             "source_count": 12,
@@ -563,17 +656,19 @@ def expected_certificate() -> dict[str, Any]:
             "diagonal_order_two": True,
             "trivial_stabilizer_r8_delta1": True,
             "coordinate_pairing_transferred_to_trivial": False,
+            "partition_preserving_diagonal_subcase_deleted": True,
         },
         "conclusion": {
             "order_two_type_deleted": False,
             "trivial_stabilizer_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_AND_TRANSPOSE_INTERFACES",
+            "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_AND_DIAGONAL_MIXING_INTERFACES",
         },
         "nonclaims": [
             "no stabilizer action or paired degree profile in the trivial branch",
             "no universal source-row kernel failure",
+            "no deletion of the five diagonal mixing rows",
             "no component, type, owner, payment, K3, row, or Prize close",
         ],
     }
@@ -620,6 +715,12 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["coordinate_transpose_transport"].__setitem__("coordinate_subgroups_exchanged", False),
         lambda x: x["coordinate_transpose_transport"].__setitem__("fresh_source_record_required", False),
         lambda x: x["coordinate_transpose_transport"].__setitem__("old_source_record_reused", True),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("partition_preserving_diagonal_subcase_deleted", False),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("partition_preserving_matchings_deleted", 224),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("crossing_counts", [2, 4]),
+        lambda x: x["diagonal_facet_mixing"]["orbit_rows"].pop(),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("individual_star_transport_used", True),
+        lambda x: x["diagonal_facet_mixing"].__setitem__("diagonal_orientation_deleted", True),
         lambda x: x["conclusion"].__setitem__("trivial_stabilizer_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parent"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -669,6 +770,7 @@ def main() -> None:
         f"coordinate_vieta_rank={data['coordinate_k_fiber_vieta_rank']['positive_sample_rank']}/"
         f"{data['coordinate_k_fiber_vieta_rank']['negative_sample_rank']} "
         f"transpose_terms={data['coordinate_transpose_transport']['divided_difference_terms_checked']} "
+        f"diagonal_mixing_rows={data['diagonal_facet_mixing']['orbit_row_count']} "
         f"tamper_rejected={rejected}"
     )
 

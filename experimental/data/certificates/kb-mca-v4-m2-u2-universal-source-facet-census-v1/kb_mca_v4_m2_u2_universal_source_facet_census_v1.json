@@ -58,7 +58,7 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_AND_TRANSPOSE_INTERFACES",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_AND_DIAGONAL_MIXING_INTERFACES",
     "trivial_stabilizer_type_deleted": false
   },
   "coordinate_colored_quotient_resultant": {
@@ -122,9 +122,65 @@
     ],
     "old_source_record_reused": false
   },
+  "diagonal_facet_mixing": {
+    "K_transport_to_K": "all four roots lie in J_0=J intersect tau(J)",
+    "K_transport_to_L_complement": "at least two roots lie in J_1",
+    "K_transport_to_eta": "all four roots lie in J_1=J intersect tau(I)",
+    "crossing_counts": [
+      2,
+      4,
+      6
+    ],
+    "diagonal_orientation_deleted": false,
+    "endpoint_involution_fixed_point_free_on_labels": true,
+    "individual_star_transport_used": false,
+    "orbit_row_count": 5,
+    "orbit_rows": [
+      {
+        "a": 2,
+        "b": 0,
+        "c": 2,
+        "matching_count": 1350
+      },
+      {
+        "a": 1,
+        "b": 1,
+        "c": 2,
+        "matching_count": 2700
+      },
+      {
+        "a": 1,
+        "b": 0,
+        "c": 4,
+        "matching_count": 3600
+      },
+      {
+        "a": 0,
+        "b": 1,
+        "c": 4,
+        "matching_count": 1800
+      },
+      {
+        "a": 0,
+        "b": 0,
+        "c": 6,
+        "matching_count": 720
+      }
+    ],
+    "partition_preserving_diagonal_subcase_deleted": true,
+    "partition_preserving_matchings_deleted": 225,
+    "total_fixed_point_free_matchings": 10395,
+    "transported_common_K_J_roots": 4,
+    "uses_whole_fiber_transport_only": true,
+    "xi_J_capacities": {
+      "aligned_eta": 0,
+      "near_one_exchange": 2
+    }
+  },
   "nonclaims": [
     "no stabilizer action or paired degree profile in the trivial branch",
     "no universal source-row kernel failure",
+    "no deletion of the five diagonal mixing rows",
     "no component, type, owner, payment, K3, row, or Prize close"
   ],
   "parent": {
@@ -138,12 +194,13 @@
     "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
   },
-  "payload_sha256": "c064cf1971e08427b266de1f9768e98f11562998c09b8e8e828cf89cff48f297",
+  "payload_sha256": "e5d3705f96c3fe141e3ed87c3d4901e7528b4297c9b92b5d014918ad5f9d4112",
   "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
   "scope": {
     "coordinate_order_two": true,
     "coordinate_pairing_transferred_to_trivial": false,
     "diagonal_order_two": true,
+    "partition_preserving_diagonal_subcase_deleted": true,
     "trivial_stabilizer_r8_delta1": true
   },
   "source_facet_parent": {
