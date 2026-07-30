@@ -235,6 +235,15 @@ At this snapshot:
   paired locators, and the weight-three source-star defect is impossible.
   This classifies recurrence but deletes and pays no `m=2` type; a
   source-coupled contradiction or same-record owner remains open.
+- In the full-V4 `(r,delta)=(2,4)` row, the actual source normalization has
+  genus zero or one.  Its degree-four map to the second endpoint coordinate
+  has deck group `<eta,a>=V4`, where `eta` is the source-projection
+  involution and `a` is the diagonal endpoint/source-deck lift.  The second
+  endpoint involution conjugates `eta` to `eta*a`; commuting would factor
+  the quartic coefficient map through a quadratic source quotient and
+  return to the excluded line/conic branch.  Tame Riemann--Hurwitz gives
+  `(g,#Fix(a))=(0,2)` or `(1,0)`.  Neither rational nor elliptic regime is
+  yet deleted or paid.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
