@@ -305,6 +305,16 @@ At this snapshot:
   four.  Together with the proved `n=2,5,6` exclusions, this deletes the
   full-V4 `(m,r,delta)=(2,2,4)` type.  The order-two and trivial stabilizer
   types `(r,delta)=(4,2),(8,1)`, K3, and every payment remain open.
+- In the saturated diagonal `(a,b,c)=(1,1,2)` source-line branch of the
+  residual order-two type, the near-aligned negative sign is now empty.
+  Exact Sage and Wolfram reconstructions show that all three retained
+  rank-drop loci have the same residual quartic.  Its mandatory
+  `tau(ell)` root forces the residual roots to be
+  `{tau(ell),ell}`; equality with the actual near target would give
+  `tau(xi)=ell`, hence `xi=tau(ell) in K`, contradicting
+  `xi in I minus K`.  The aligned positive and near-aligned positive signs,
+  exceptional unsaturated orbit, biquadratic source cover, complete
+  `(1,1,2)` row, K3, and every payment remain open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers

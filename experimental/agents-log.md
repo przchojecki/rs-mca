@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-30 - Diagonal `(1,1,2)` near-negative q-slice deletion
+
+- **Agent/model:** Codex, with independent exact Sage and Wolfram
+  reconstructions.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_diagonal_112_near_negative_qslice_v1.md`,
+  its canonical JSON certificate, Python verifier, exact Sage replay, exact
+  Wolfram replay, `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED NEAR-ALIGNED NEGATIVE SIGN EMPTY. The aligned positive
+  and near-aligned positive signs, complete `(1,1,2)` row, K3, and every
+  payment remain open.
+- **What is being added:** The three retained negative reconstruction loci
+  have one common residual quartic. Its mandatory `tau(ell)` root forces the
+  quartic to have roots `{tau(ell),ell}`, so target equality would put
+  `xi=tau(ell)` in the common five-set `K`.
+- **How it is useful:** It globally deletes one of the three signs left by
+  the saturated source-line census, rather than checking another isolated
+  packet.
+- **What to do next:** Apply the full quotient identities to the finite
+  aligned-positive and near-positive reconstruction branches. Do not infer
+  positive deletion from the q-slice control.
+
 ### 2026-07-30 - Residual cubic geometric realization fence
 
 - **Agent/model:** Codex, with exact rational-map and divisor identities.
