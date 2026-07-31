@@ -4296,3 +4296,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Attack the order-two stabilizer type
   `(r,delta)=(4,2)`; keep the trivial type `(8,1)` behind it.  K3, the
   KoalaBear row, every slope owner, and every payment remain open.
+
+### 2026-07-30 - KoalaBear canonical moving-positive balanced deletion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_diagonal_112_moving_positive_balanced_v1.md`,
+  `experimental/scripts/verify_kb_mca_v4_m2_diagonal_112_moving_positive_balanced_v1.{py,sage,sing,wl}`,
+  its fail-closed JSON certificate, `agents.md`, and this log.
+- **Status:** PROVED canonical balanced `(1,1)` EMPTY / fresh independent
+  review GREEN with no issue / K3 OPEN.
+- **What is being added:** For the one unordered source-star pair
+  `{{2,b},{2,1/b}}`, exact source reconstruction and reciprocal descent give
+  four q-slice equations.  The finite `y,w=0` localization is empty with
+  localizer nilpotence three.  On finite `y,w!=0`, the complete first-match
+  q-slice/parity partition has no surviving component.
+- **Scope guard:** The `y=infinity` calculation is a non-load-bearing
+  compactification control.  No covariance transports the proof to the
+  other three moving-moving assignments; they remain separate open exact
+  systems.  No owner or payment is claimed and ledger movement is zero.
+- **How it is useful:** Banks one exact local K3 route cut directly on the
+  universal source-facet parent without any stacked theorem dependency.
+- **What to do next:** Derive the other three assignment systems separately
+  or incorporate this canonical deletion into an exhaustive source-bound
+  first-match partition.  K3 and the KoalaBear row remain open.

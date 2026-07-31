@@ -321,6 +321,14 @@ At this snapshot:
   KoalaBear field.  Two of the three rigid covers are now explicit; the `A6`
   cover, split active fibers, quartic source-star incidence, four-point
   family, `m=4` type, K3, and all payments remain open.
+- The independently reviewed canonical moving-positive balanced packet
+  deletes the aligned `(1,1)` residual for the unordered source-star pair
+  `{{2,b},{2,1/b}}`.  Its exact first match deletes finite `y,w=0` at the
+  q-slice, then deletes the finite `y,w!=0` charts by named q-slice/parity
+  localizations; the `y=infinity` calculation is only a non-load-bearing
+  compactification control.  No covariance is available: the other three
+  moving-moving assignments remain separate open systems.  This local route
+  cut moves no ledger quantity; K3 and the KoalaBear row remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
