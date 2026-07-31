@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kb-mca-v4-m2-aligned-positive-f02-f03-deletion-v1",
+  "title": "KoalaBear aligned-positive F02/F03 deletion certificate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "source_pins",
+    "field",
+    "scope",
+    "localizer",
+    "cells",
+    "literal_b_inversion",
+    "conclusions",
+    "open_cells",
+    "evidence_level",
+    "nonclaims",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "kb-mca-v4-m2-aligned-positive-f02-f03-deletion-v1"
+    },
+    "source_pins": {
+      "type": "object",
+      "required": [
+        "atlas_parent_commit",
+        "atlas_head_commit",
+        "atlas_compiler",
+        "atlas_certificate"
+      ]
+    },
+    "field": {
+      "type": "object",
+      "required": [
+        "prime",
+        "challenge_extension_degree",
+        "symbolic_source_field",
+        "q_slice_field",
+        "survivor_field"
+      ],
+      "properties": {
+        "prime": {"const": 2130706433},
+        "challenge_extension_degree": {"const": 6}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "direct_assignment",
+        "transported_assignment",
+        "targets",
+        "direct_cells_deleted",
+        "transported_cells_deleted",
+        "ledger_movement"
+      ],
+      "properties": {
+        "direct_assignment": {"const": "F02"},
+        "transported_assignment": {"const": "F03"},
+        "targets": {"const": ["R02", "R11", "R20"]},
+        "direct_cells_deleted": {"const": 3},
+        "transported_cells_deleted": {"const": 3},
+        "ledger_movement": {"const": 0}
+      }
+    },
+    "localizer": {
+      "type": "object",
+      "required": ["provenance", "raw", "rabinowitsch", "radical"],
+      "properties": {
+        "radical": {
+          "type": "object",
+          "required": [
+            "degree",
+            "terms",
+            "sha256",
+            "factor_count",
+            "factors",
+            "factor_set_sha256"
+          ],
+          "properties": {
+            "factor_count": {"const": 34},
+            "degree": {"const": 43},
+            "terms": {"const": 12312},
+            "factors": {
+              "type": "array",
+              "minItems": 34,
+              "maxItems": 34,
+              "uniqueItems": true
+            }
+          }
+        }
+      }
+    },
+    "cells": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/cell"}
+    },
+    "literal_b_inversion": {
+      "type": "object",
+      "required": [
+        "map",
+        "records",
+        "proved_for_all_twelve_assignments",
+        "imported_conclusion",
+        "other_conclusions_imported",
+        "method"
+      ],
+      "properties": {
+        "records": {
+          "type": "array",
+          "minItems": 12,
+          "maxItems": 12,
+          "items": {"$ref": "#/$defs/inversion"}
+        },
+        "proved_for_all_twelve_assignments": {"const": true},
+        "imported_conclusion": {"const": "F02_EMPTY_IMPLIES_F03_EMPTY"},
+        "other_conclusions_imported": {"const": []}
+      }
+    },
+    "conclusions": {
+      "type": "object",
+      "minProperties": 6,
+      "maxProperties": 6
+    },
+    "open_cells": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "uniqueItems": true
+    },
+    "evidence_level": {
+      "type": "object",
+      "required": ["F02_F03_local_lemma", "K3_row", "global_ledger"],
+      "properties": {
+        "F02_F03_local_lemma": {"const": "PROVED_EXACT_GREEN"},
+        "K3_row": {"const": "OPEN"},
+        "global_ledger": {"const": "UNCHANGED"}
+      }
+    },
+    "nonclaims": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "$defs": {
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cell_id",
+        "factor_first",
+        "branch_exhaustivity",
+        "branches",
+        "survivor",
+        "conclusion",
+        "proof_mode",
+        "ledger_movement"
+      ],
+      "properties": {
+        "cell_id": {"pattern": "^F02-R(02|11|20)$"},
+        "branches": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/branch"}
+        },
+        "ledger_movement": {"const": 0}
+      }
+    },
+    "branch": {
+      "type": "object",
+      "required": [
+        "branch",
+        "selected_factor_sha256",
+        "generator_metrics",
+        "localized_groebner",
+        "classification"
+      ]
+    },
+    "inversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "target",
+        "U_global_sign",
+        "V_exact",
+        "z_exact",
+        "q_exact",
+        "G_equals_U2_minus_WV2_exact",
+        "label_factor_multisets_exact",
+        "full_J_identity_exact_by_factor_transport",
+        "full_I_identity_exact_by_factor_transport"
+      ]
+    }
+  }
+}

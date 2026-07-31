@@ -312,6 +312,14 @@ At this snapshot:
   Möbius/diagonal-`W` globalization is explicitly rejected.  Every atlas
   cell remains `UNCLASSIFIED_QSLICE_GENERATED`, ledger movement is zero, and
   K3 remains open.
+- Exact factor-first localization deletes all three aligned-positive targets
+  for `F02={E01,E12}`.  The balanced cell is already a localized unit ideal;
+  the crossed and identity cells have complete `GF(p^2)` point censuses of
+  sizes four and eight, and every point violates both full quotient
+  identities by a certified nonzero norm.  Literal full-source
+  `b->b^-1` transport deletes the three `F03` partners.  Exactly six of the
+  36 atlas cells are now empty, the other 30 remain open, ledger movement is
+  zero, and K3 remains open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers

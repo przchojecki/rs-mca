@@ -4324,3 +4324,31 @@ Keep entries concise and link to the relevant files.
   component into an exact empty chart, named same-record owner, or
   `UNPAID_PRIMITIVE`.  The atlas moves no ledger quantity and does not close
   K3 or the KoalaBear row.
+
+### 2026-07-31 - Delete the aligned-positive F02/F03 pair
+
+- **Agent/model:** Codex generator, with a separate fresh Codex proof audit.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_aligned_positive_f02_f03_deletion_v1.md`,
+  the exact Sage compiler, fail-closed Python verifier, JSON certificate and
+  schema, `agents.md`, and this log.
+- **Status:** GREEN exact local deletion / six atlas cells empty / K3 open.
+- **What is being added:** All three residual-root targets for the literal
+  `F02={E01,E12}` source assignment are empty on the complete declared
+  34-factor open.  `R11` is a localized unit ideal.  The `R02` and `R20`
+  q-slice survivors have complete `GF(p^2)` censuses of four and eight
+  points, and both full quotient identities have nonzero mismatch norms at
+  every point.  Exact coefficientwise `b->b^-1` source transport gives the
+  same three deletions for `F03`.
+- **Verification:** Sage independently rebuilds nine factor-first localized
+  branches, both lex point censuses, every full-quotient mismatch, and all
+  twelve literal source-transport records.  Python normal and optimized
+  modes reject 26/26 semantic mutations.  A fresh reviewer independently
+  replayed the packet, audited all localizer factors and branch coverage,
+  checked the deployed `GF(p^2)` to `GF(p^6)` implication, and returned
+  GREEN.
+- **How it is useful:** Deletes exactly six of the 36 aligned-positive atlas
+  cells without a covariance shortcut, owner, charge, or ledger movement.
+- **What to do next:** Classify the remaining 30 cells.  Preserve the literal
+  atlas IDs and stop at an exact empty chart, named same-record owner, or
+  explicit primitive route cut.  K3 and the KoalaBear row remain open.
