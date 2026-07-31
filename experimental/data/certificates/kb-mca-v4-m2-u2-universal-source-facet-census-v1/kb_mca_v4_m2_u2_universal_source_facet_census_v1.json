@@ -1,0 +1,642 @@
+{
+  "colored_source_resultant_split": {
+    "I_resultant_identity": "C_H*Res_T(P_I,H) is proportional to D_R^2",
+    "J_resultant_identity": "Res_T(P_J,H) is proportional to D_K^2*C_H",
+    "P_I_degree": 6,
+    "P_J_degree": 6,
+    "colored_divisor_degree": 4,
+    "colored_divisor_divides_L_complement_pullback": true,
+    "colored_divisor_squarefree": true,
+    "common_K_pullback_degree": 10,
+    "four_root_divisors_checked": 495,
+    "left_deficit_recovery": "c_j=deg gcd(C_H,bZ_j)",
+    "partial_resultant_degrees": {
+      "I": 24,
+      "J": 24
+    },
+    "remaining_pullback_degree": 14,
+    "uses_stabilizer_symmetry": false
+  },
+  "component_color_profile_cut": {
+    "colored_edge_count": 4,
+    "component_source_degree": 2,
+    "every_J_label_occurs_over_K": true,
+    "left_pole_graph_degree": 2,
+    "maximum_deficit": 2,
+    "outside_K_deficit_is_left_colored_degree": true,
+    "surviving_profile_count": 3,
+    "surviving_profiles": [
+      [
+        2,
+        2,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ]
+    ],
+    "uses_stabilizer_symmetry": false,
+    "uses_zero_migration_condition": false
+  },
+  "conclusion": {
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "order_two_type_deleted": false,
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_C2_112_Q_SLICE_NEGATIVE_FACTOR_AND_ALIGNED_NEGATIVE_EXCLUSION_INTERFACES",
+    "trivial_stabilizer_type_deleted": false
+  },
+  "coordinate_colored_quotient_resultant": {
+    "I_identity": "c*R_I is proportional to R_7^2",
+    "J_identity": "R_J is proportional to K_5^2*c",
+    "colored_quartic_descends_to_squarefree_quotient_quadratic": true,
+    "coordinate_orientation_deleted": false,
+    "negative_Phi": "W*(B_2*Y+B_0)^2-Y*A_1^2",
+    "negative_parameter_dimension": 7,
+    "pair_checks": 8,
+    "partial_resultant": "R_S=Res_Y(p_S,Phi_epsilon)",
+    "positive_Phi": "(A_2*Y+A_0)^2-W*Y*B_1^2",
+    "positive_parameter_dimension": 8,
+    "quotient_quadratic_count_on_six_free_fibers": 15,
+    "right_colored_degree_profile": [
+      0,
+      0,
+      0,
+      0,
+      2,
+      2
+    ]
+  },
+  "coordinate_k_fiber_vieta_rank": {
+    "coordinate_orientation_deleted": false,
+    "deck_checks": 5,
+    "deck_invariant_edge_coordinates": [
+      "p=ab",
+      "q=r*s*(a+b)"
+    ],
+    "negative_matrix_shape": [
+      10,
+      7
+    ],
+    "negative_product_matrix_shape": [
+      5,
+      4
+    ],
+    "negative_product_sample_rank": 3,
+    "negative_ramified_K_excluded": true,
+    "negative_sample_rank": 6,
+    "negative_sum_determinant_rank": 4,
+    "positive_matrix_shape": [
+      10,
+      8
+    ],
+    "positive_ramified_test_fibers": 2,
+    "positive_sample_rank": 7,
+    "positive_small_determinant_rank": 3
+  },
+  "coordinate_transpose_transport": {
+    "coordinate_orientation_deleted": false,
+    "coordinate_subgroups_exchanged": true,
+    "diagonal_subgroup_fixed": true,
+    "divided_difference_terms_checked": 1830,
+    "endpoint_self_correspondence_transpose_invariant": true,
+    "fresh_source_record_required": true,
+    "independent_order_two_geometry_routes": [
+      "coordinate",
+      "diagonal"
+    ],
+    "old_source_record_reused": false
+  },
+  "diagonal_c2_112_internal_star_reconstruction": {
+    "candidates_claimed_realizable": false,
+    "continuous_coefficient_family_remaining": false,
+    "forced_to_internal_evaluation_maps": {
+      "negative": {
+        "image_dimension": 2,
+        "injective": true,
+        "source_dimension": 2,
+        "surjective": false
+      },
+      "positive": {
+        "image_dimension": 3,
+        "injective": true,
+        "source_dimension": 3,
+        "surjective": true
+      }
+    },
+    "internal_assignment_counts": [
+      2,
+      2,
+      2,
+      2,
+      4
+    ],
+    "maximum_source_deck_pairs_per_packet": 8,
+    "negative_target_plane_equations": 1,
+    "positive_target_always_reconstructs": true,
+    "pure_multisets_checked": 5,
+    "row_112_deleted": false,
+    "sign_count": 2,
+    "source_deck_conjugates_identified": true,
+    "source_form_unique_after_passing": true
+  },
+  "diagonal_c2_112_negative_factor": {
+    "A_locus_excluded_by_internal_fixed_point": true,
+    "aligned_cd_minus_one_outer_mismatch": "4*(c^2-1)/c=-A",
+    "aligned_constant_mismatch": "(cd-1)*(cd+1)/(c^2*d^2)",
+    "aligned_negative_q_slice_deleted": true,
+    "aligned_q_slice_exact_fixtures": 8,
+    "endpoint_normalization": "common J0 endpoint=2",
+    "exceptional_factors_retained": [
+      "B",
+      "C"
+    ],
+    "factor_fixtures_checked": 4,
+    "fixed_moving_determinant": "nonzero_prefactor*A^2*B",
+    "fixed_moving_survivor_locus": "B=0",
+    "moving_moving_determinant": "nonzero_prefactor*A*B*C",
+    "moving_moving_survivor_locus": "B*C=0",
+    "near_aligned_negative_deleted": false,
+    "positive_sign_deleted": false,
+    "row_112_deleted": false,
+    "template_counts": {
+      "fixed-moving": 8,
+      "moving-moving": 4
+    }
+  },
+  "diagonal_c2_112_q_slice_resultant": {
+    "aligned_target_quadratic": "tau^*P_J1",
+    "forced_multiplicity_per_q_root": 2,
+    "full_colored_quotient_still_required": true,
+    "mixed_incidence_patterns": [
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "near_target_quadratic": "tau^*chi_Omega",
+    "necessary_only": true,
+    "norm_T_degree": 4,
+    "q_degree": 2,
+    "resultant_W_degree": 8,
+    "resultant_divisor": "w^4*k1^2*k2^2",
+    "row_112_deleted": false
+  },
+  "diagonal_c2_112_ramified_complete_source_repair": {
+    "geometric_source_ramification_retained": true,
+    "local_expansions_checked": 25,
+    "odd_incidence_gate_extends_to_w_zero": true,
+    "odd_part_at_branch": "V(T,0) is a nonzero multiple of P_J1",
+    "odd_part_zero_excluded_by_deck_distinction": true,
+    "ramified_complete_source_cut_rank": 4,
+    "repaired_dimensions": {
+      "negative": 3,
+      "positive": 4
+    },
+    "root_row_order_allocations": [
+      [
+        2,
+        2
+      ]
+    ],
+    "root_row_order_cap": 2,
+    "root_row_total_order": 4,
+    "root_rows_have_order_two": true,
+    "row_112_deleted": false,
+    "source_branch_order": 2
+  },
+  "diagonal_c2_112_saturated_defect": {
+    "J0_degree_profiles": [
+      [
+        2,
+        2,
+        4,
+        4
+      ],
+      [
+        2,
+        3,
+        3,
+        4
+      ],
+      [
+        3,
+        3,
+        3,
+        3
+      ]
+    ],
+    "exceptional_unsaturated_orbit_retained": true,
+    "matching_preserving_group_order": 16,
+    "mixed_J0_J1_edge_count": 4,
+    "mixed_J1_degrees": [
+      2,
+      2
+    ],
+    "packets_claimed_realizable": false,
+    "pure_J0_edge_count": 4,
+    "remaining_defect_budget": 1,
+    "row_112_deleted": false,
+    "source_line_labeled_packets": 96,
+    "source_line_matching_preserving_orbits": 12,
+    "source_line_mixed_edges_distinct": true,
+    "source_line_transported_I_J_stars": 4,
+    "square_vertex_defect": 2,
+    "square_vertex_weights": [
+      2,
+      2
+    ],
+    "universal_labeled_packets": 1560,
+    "universal_matching_preserving_orbits": 123
+  },
+  "diagonal_c2_112_source_line_colored_quotient": {
+    "I_partial_resultant": "chi_Omega Q_I is proportional to R_7^2",
+    "J_partial_resultant": "Q_J is proportional to K_5^2 chi_Omega",
+    "Omega_fibers_unramified": true,
+    "Omega_size": 2,
+    "aligned_Omega": "J_1",
+    "aligned_matching_rows_checked": 2700,
+    "colored_divisor": "C_H is proportional to chi_Omega(psi)",
+    "colored_divisor_degree": 4,
+    "colored_quotient_degree": 2,
+    "mixed_stars_transported": 4,
+    "near_Omega": "{xi, ell}",
+    "near_Omega_tau_invariance_claimed": false,
+    "near_saturated_matching_rows_checked": 900,
+    "partial_resultant_quotient_degree": 12,
+    "row_112_deleted": false,
+    "source_line_only": true,
+    "universal_I_J_stars_exhausted": 4
+  },
+  "diagonal_c2_112_source_line_odd_incidence": {
+    "admissible_internal_edge_pairs": 12,
+    "admissible_pairs_share_exactly_one_endpoint": true,
+    "common_root_equations": [
+      "U(a,z)=0",
+      "V(a,z)=0"
+    ],
+    "forced_ramified_branch_retained": true,
+    "forced_unramified_signs_checked": 2,
+    "incidence_denominator_nonzero_by_J0_J1_disjointness": true,
+    "incidence_equation": "z=-N_epsilon(a)/D_epsilon(a)",
+    "internal_common_K_orbit_unramified": true,
+    "internal_edge_pairs_checked": 21,
+    "internal_ramification_defect_floor": 2,
+    "odd_part_nonzero_by_deck_distinction": true,
+    "odd_part_projective_class_unique": true,
+    "ramified_edge_types_checked": 6,
+    "rational_fixture_values": [
+      "223/239",
+      "-241/353"
+    ],
+    "remaining_defect_budget": 1,
+    "row_112_deleted": false
+  },
+  "diagonal_c2_square_fiber_linear_cut": {
+    "V_evaluation_determinant": "epsilon*(1-w^2)*(1+epsilon*w)",
+    "complete_source_defect_budget": 3,
+    "diagonal_orbit_row_count_remaining": 4,
+    "diagonal_orbit_rows_remaining": [
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        1,
+        0,
+        4
+      ],
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "fixed_point_free_excludes_w_plus_minus_one": true,
+    "forced_square_root_locator": "P_J1",
+    "minor_common_factor": "chi_w=(W-w)*(W-w^-1)",
+    "minor_quotients": {
+      "m01": "-chi_w*(B*W+A)",
+      "m02": "C*chi_w*(W-1)",
+      "m12": "chi_w*(A*W+B)"
+    },
+    "minor_reciprocal_checks": 2,
+    "ramified_V_value_constrained": false,
+    "ramified_orbit": [
+      "0",
+      "infinity"
+    ],
+    "ramified_orbit_retained": true,
+    "row_202_J0_defect_floor": 2,
+    "row_202_J0_edge_vertices": 6,
+    "row_202_J0_star_units": 8,
+    "row_202_all_branch_total_defect": 4,
+    "row_202_deleted_all_source_subfield_branches": true,
+    "row_202_ramified_double_vertex_defect": 2,
+    "row_202_ramified_occupancies_checked": 1287,
+    "row_202_ramified_source_line_deleted": true,
+    "row_202_ramified_total_defect": 4,
+    "row_202_source_subfield_branches_checked": [
+      "source-line",
+      "biquadratic"
+    ],
+    "row_202_square_vertex_defect": 2,
+    "row_202_square_vertices": 2,
+    "row_202_surviving_source_line_dimensions": [
+      4,
+      3
+    ],
+    "sign_spaces": {
+      "negative": {
+        "ambient_dimension": 7,
+        "ramified_cut_rank": 2,
+        "ramified_dimension": 5,
+        "unramified_cut_rank": 4,
+        "unramified_dimension": 3
+      },
+      "positive": {
+        "ambient_dimension": 8,
+        "ramified_cut_rank": 2,
+        "ramified_dimension": 6,
+        "unramified_cut_rank": 4,
+        "unramified_dimension": 4
+      }
+    },
+    "source_line_branch_deleted": false,
+    "unramified_star_conditions": [
+      "U(T,w) lies in <P_J1>",
+      "V(T,w) lies in <P_J1>"
+    ]
+  },
+  "diagonal_facet_mixing": {
+    "K_transport_to_K": "all four roots lie in J_0=J intersect tau(J)",
+    "K_transport_to_L_complement": "at least two roots lie in J_1",
+    "K_transport_to_eta": "all four roots lie in J_1=J intersect tau(I)",
+    "aligned_c6_deleted": true,
+    "c2_112_exceptional_J1_capacity_values": [
+      6,
+      7,
+      8
+    ],
+    "c2_112_exceptional_eta_orbit": "eta and tau(eta) lie in J_0",
+    "c2_112_saturated_J1_degree_profile": [
+      4,
+      4
+    ],
+    "c2_112_saturated_square_fiber": "R_tau_eta is proportional to P_J1^2",
+    "c2_202_J_degree_profile": [
+      2,
+      2,
+      4,
+      4,
+      4,
+      4
+    ],
+    "c2_202_internal_product": "product over K_0 of R_k is proportional to P_J0^4",
+    "c2_202_square_fiber": "R_kstar is proportional to P_J1^2",
+    "crossing_counts": [
+      2,
+      4,
+      6
+    ],
+    "diagonal_orientation_deleted": false,
+    "endpoint_involution_fixed_point_free_on_labels": true,
+    "individual_star_transport_used": false,
+    "near_c2_matching_types": {
+      "a1_b1_eta_to_J0": 1800,
+      "a1_b1_eta_to_K": 900,
+      "a2_b0": 1350
+    },
+    "near_c6_I_identity": "chi*Q_I is proportional to R_7^2",
+    "near_c6_J_identity": "Q_J is proportional to K_5^2*chi",
+    "near_c6_J_roots_per_paired_quartic": 2,
+    "near_c6_colored_quotient_degree": 2,
+    "near_c6_colored_quotient_tau_eigenvalue": 1,
+    "near_c6_colored_source_fibers": 2,
+    "near_c6_eta_xi_matchings_deleted": 120,
+    "near_c6_matchings_surviving": 600,
+    "near_c6_resultant_degree": 12,
+    "orbit_row_count": 5,
+    "orbit_rows": [
+      {
+        "a": 2,
+        "b": 0,
+        "c": 2,
+        "matching_count": 1350
+      },
+      {
+        "a": 1,
+        "b": 1,
+        "c": 2,
+        "matching_count": 2700
+      },
+      {
+        "a": 1,
+        "b": 0,
+        "c": 4,
+        "matching_count": 3600
+      },
+      {
+        "a": 0,
+        "b": 1,
+        "c": 4,
+        "matching_count": 1800
+      },
+      {
+        "a": 0,
+        "b": 0,
+        "c": 6,
+        "matching_count": 720
+      }
+    ],
+    "partition_preserving_diagonal_subcase_deleted": true,
+    "partition_preserving_matchings_deleted": 225,
+    "total_fixed_point_free_matchings": 10395,
+    "transported_common_K_J_roots": 4,
+    "uses_whole_fiber_transport_only": true,
+    "xi_J_capacities": {
+      "aligned_eta": 0,
+      "near_one_exchange": 2
+    }
+  },
+  "nonclaims": [
+    "no stabilizer action or paired degree profile in the trivial branch",
+    "no universal source-row kernel failure",
+    "no complete deletion of any of the five diagonal mixing rows",
+    "no contradiction from a reciprocal c=2 square fiber alone",
+    "no exclusion of the ramified (1,1,2) c=2 source orbit",
+    "no deletion of the remaining four diagonal orbit rows",
+    "no realization claim for any saturated (1,1,2) packet",
+    "no colored quotient descent for the biquadratic or exceptional (1,1,2) branch",
+    "no geometric exclusion of forced source ramification in saturated (1,1,2)",
+    "no realization claim for any reconstructed saturated (1,1,2) source form",
+    "no sufficiency of the q-slice resultant for either full colored quotient identity",
+    "no deletion of near-aligned negative B or C factor loci",
+    "no deletion of the aligned positive or either near-aligned sign",
+    "no component, type, owner, payment, K3, row, or Prize close"
+  ],
+  "parent": {
+    "certificate_blob_oid": "033043e7a0969ea9f98207567b890b10e3077271",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r4-order2-source-subfield-coefficient-compilers-v1/kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.json",
+    "certificate_payload_sha256": "f0b751301e56989bf6fbf19cf15e5ff8faa0d7d86e76278306950a488cdf5156",
+    "commit": "c88438d7109cf7acd7caebaf006f21c776b74d74",
+    "note_blob_oid": "f58c2ea9cea88dfc6be637e9f1f14e86e8862cc6",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.md",
+    "terminal": "M2_R4_ORDER_TWO_SOURCE_SUBFIELD_AND_COEFFICIENT_COMPILERS",
+    "verifier_blob_oid": "7cc4eb6e0560ca5c587f91623dc407892a07e2ca",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_subfield_coefficient_compilers_v1.py"
+  },
+  "payload_sha256": "8f768cfded349dc3dd40cf6214ffe980c69ff18ae2d8c209e63b4307767429d2",
+  "schema": "kb-mca-v4-m2-u2-universal-source-facet-census-v1",
+  "scope": {
+    "aligned_c6_deleted": true,
+    "coordinate_order_two": true,
+    "coordinate_pairing_transferred_to_trivial": false,
+    "diagonal_order_two": true,
+    "minimally_mixed_c2_capacity_refined": true,
+    "partition_preserving_diagonal_subcase_deleted": true,
+    "row_112_aligned_negative_q_slice_deleted": true,
+    "row_112_internal_star_reconstructed": true,
+    "row_112_negative_factor_compiled": true,
+    "row_112_q_slice_resultant_compiled": true,
+    "row_112_ramified_complete_source_repaired": true,
+    "row_112_saturated_defect_classified": true,
+    "row_112_source_line_colored_quotient_compiled": true,
+    "row_112_source_line_odd_incidence_compiled": true,
+    "row_202_deleted_all_source_subfield_branches": true,
+    "row_202_ramified_source_line_deleted": true,
+    "saturated_c2_source_line_linear_cut": true,
+    "trivial_stabilizer_r8_delta1": true
+  },
+  "source_facet_parent": {
+    "certificate_blob_oid": "91643b5b9020f52764a77cfbc8aa6279ce2d5ef8",
+    "certificate_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/verification/pole_disjoint_conic_facet_collinearity_certificate.json",
+    "certificate_payload_sha256": "396697687aa5baf19d8114b20858d4500b119c078f5f128b6c0e207ec8ff50bb",
+    "commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+    "theorem_blob_oid": "356ff4b47d0bb429d11ea10382762a6e95b5ce24",
+    "theorem_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/proof/pole_disjoint_conic_facet_collinearity_reduction.md"
+  },
+  "source_reduction_parent": {
+    "certificate_blob_oid": "61afd4534740c5ccabc6196919126c80c361e4c5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-q6-u2-complete-source-conic-exclusion-v1/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.json",
+    "certificate_payload_sha256": "30a5d45895957f774ef972118e227fa54522fc27a48ee0e2a99a0d5a012a5451",
+    "commit": "ad109774f7d9bc320e7e0c046ba83471f39d5cd9",
+    "note_blob_oid": "bd4ca8c756c22f6f475cb06c142de4c981d6b320",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.md",
+    "terminal": "DELETED_BY_COMPLETE_SOURCE_DIVISOR_PROFILE_OBSTRUCTION",
+    "verifier_blob_oid": "c5e7338fc03acdd245c60291aea27b0cde521645",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.py"
+  },
+  "universal_source_facet": {
+    "J_incidence_outside_K": 4,
+    "J_incidence_over_K": 20,
+    "category_census": {
+      "I-I": 10,
+      "I-J": 4,
+      "J-J": 10
+    },
+    "maximum_absent_J_labels": 1,
+    "profile_count": 5,
+    "profiles": [
+      [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        1,
+        3,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        2,
+        4,
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ]
+    ],
+    "ramification_counted_by_divisor_multiplicity": true,
+    "uses_stabilizer_symmetry": false
+  },
+  "universal_source_interpolation": {
+    "actual_source_bidegree": [
+      2,
+      4
+    ],
+    "applies_to_trivial_stabilizer": true,
+    "complete_source_product": "product_i q_i is proportional to B^2",
+    "kernel_condition": "full support",
+    "matrix_columns": 12,
+    "matrix_rows": 45,
+    "row_binary_degree": 4,
+    "source_count": 12,
+    "stabilizer_types_r_delta": [
+      [
+        2,
+        4
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        8,
+        1
+      ]
+    ],
+    "uses_stabilizer_symmetry": false
+  }
+}

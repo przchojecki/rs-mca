@@ -1,0 +1,97 @@
+{
+  "conclusion": {
+    "factor_degree_five_deleted": true,
+    "full_v4_type_deleted": false,
+    "surviving_factor_degrees": [
+      2,
+      3,
+      6
+    ],
+    "terminal": "M2_R2_DIHEDRAL_DEGREE5_EMPTY"
+  },
+  "dihedral_coset_replay": {
+    "degree": 5,
+    "reflection_branch_cycles": [
+      2,
+      2,
+      1
+    ],
+    "rotation_branch_cycles": [
+      5
+    ],
+    "totally_ramified_quotient_fiber_size": 1
+  },
+  "input": {
+    "component_degree": 4,
+    "dihedral_factor_degree": 5,
+    "inner_degree": 2,
+    "outer_pole_profile": {
+      "endpoint_order_five_poles": 6,
+      "generic_order_five_poles": 1,
+      "simple_totally_ramified_poles": 1
+    },
+    "outer_subdegree": 2
+  },
+  "nonclaims": [
+    "no deletion of factor degree 2, 3, or 6",
+    "no deletion of either other inner-degree-two type",
+    "no deletion or payment of the full-V4 inner-degree-two type",
+    "no coordinate-index identity z_i=psi^*[alpha_i]",
+    "no carrier, received-data, explaining-polynomial, or slope owner",
+    "no u2, K3, KoalaBear row, endpoint, or prize closure",
+    "no ledger movement"
+  ],
+  "parent_complete_source": {
+    "certificate_blob_oid": "61afd4534740c5ccabc6196919126c80c361e4c5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-q6-u2-complete-source-conic-exclusion-v1/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.json",
+    "certificate_payload_sha256": "30a5d45895957f774ef972118e227fa54522fc27a48ee0e2a99a0d5a012a5451",
+    "commit": "ad109774f7d9bc320e7e0c046ba83471f39d5cd9",
+    "imported_terminal": "DELETED_BY_COMPLETE_SOURCE_DIVISOR_PROFILE_OBSTRUCTION"
+  },
+  "parent_outer_reduction": {
+    "certificate_blob_oid": "4e389740170515d668ad1057488a484fb43cd104",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-outer-factor-reduction-v1/kb_mca_v4_m2_r2_dihedral_outer_factor_reduction_v1.json",
+    "certificate_payload_sha256": "7f85c8e4bf9c1f324a705058992cd2e082a990feeb648f37189ba78d72df831c",
+    "commit": "b264da9d3309b7b42ab81a1481778d9d92ca8926",
+    "imported_terminal": "M2_R2_DIHEDRAL_FACTOR_DEGREES_2_3_5_6"
+  },
+  "parent_quartic_defect": {
+    "certificate_blob_oid": "7e8a79db97dc56125f25d9a190c3b0c3adca158a",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-primitive-subdegree4-route-cut-v1/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.json",
+    "certificate_payload_sha256": "21a8ca7800745c2c94876d48473801e84f4d9c8f9e6ce5b53e8b8bd66b699962",
+    "commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+    "imported_terminal": "ROUTED_TO_GEOMETRIC_FUNCTIONAL_DECOMPOSITION_ADAPTER"
+  },
+  "parent_source_cover": {
+    "certificate_blob_oid": "83e82b826ddfa2f5377e99f439be5f00900507c6",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-full-v4-source-genus-drop-v1/kb_mca_v4_m2_r2_full_v4_source_genus_drop_v1.json",
+    "certificate_payload_sha256": "9a2ea090568600356f27f3174aee6d08414217b26dbb8f7922931c64a151122f",
+    "commit": "f6bc4a2b2a6a5b3bba98f24a520c67ca3373dbbb",
+    "imported_terminal": "M2_R2_SOURCE_GENUS_ZERO_OR_ONE"
+  },
+  "payload_sha256": "1b711c1cde8f0652ce5e713513955ecdc1789e9fd62c361bca00ae05c9b4c287",
+  "schema": "kb-mca-v4-m2-r2-dihedral-degree5-source-star-exclusion-v1",
+  "source_pullback": {
+    "complete_source_identity": "div(B)=psi^*(sum_i [alpha_i])",
+    "coordinate_index_identification_used": false,
+    "endpoint_map_unramified_over_source_poles": true,
+    "forced_star": "h^(-1)(y_0)",
+    "local_saturation": "two distinct source labels at every B-root",
+    "source_base_change_degree": 2
+  },
+  "source_weight_replay": {
+    "distinct_endpoint_values_over_z0": 2,
+    "endpoint_source_fiber_size": 2,
+    "forced_defect_cost": 6,
+    "forced_matching_star_weight": 4,
+    "proved_maximum_star_weight": 3,
+    "proved_total_defect_budget": 3,
+    "source_parameter_fiber_degree": 2
+  },
+  "statement": {
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "terminal": "M2_R2_DIHEDRAL_DEGREE5_EMPTY",
+    "workboard_item": "K3"
+  }
+}
