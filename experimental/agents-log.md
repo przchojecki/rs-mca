@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-30 - Diagonal `(1,1,2)` fixed-positive balanced representative deletion
+
+- **Agent/model:** Codex, with exact Sage, Singular, Wolfram, and pure-Python
+  replays plus two independent proof audits.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_diagonal_112_fixed_positive_balanced_v1.md`,
+  its canonical JSON certificate, Python verifier, exact Sage replay, exact
+  Singular replay, exact Wolfram replay, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED for one normalized representative only:
+  `J_0={2,1/2,b,1/b}`, `J_1={c,d}`, assignment
+  `{{2,1/2},{2,b}}`, balanced distribution `(1,1)`. The other seven
+  fixed-moving assignments are `OPEN_SEPARATE_EXACT_SYSTEMS`;
+  complete-system covariance is `NOT_CLAIMED`.
+- **What is being added:** The exact quadratic leading-coefficient split,
+  complete five-factor ordinary partition, the separately checked
+  `cd=w^2` incidence component, and both later pivot splits are exhaustive.
+  Every localized deployed-field ideal is the unit ideal for the one
+  displayed assignment. Endpoint-only normalization preserves the observed
+  residual but not the aligned target, while diagonal `W` transport
+  preserves the target but not the observed residual/source divisor.
+- **How it is useful:** Together with the crossed `(0,2)` and
+  identity-doubled `(2,0)` repaired predecessors, it deletes all three
+  aligned-positive root distributions only for that same representative and
+  fail-closes the invalid inference to the full eight-assignment orbit.
+- **What to do next:** Derive the other seven fixed-moving systems
+  independently. Do not infer a row-level owner, slope count, payment, or
+  complete-system covariance from this local source-component deletion.
+
 ### 2026-07-30 - Diagonal `(1,1,2)` fixed-positive identity representative deletion
 
 - **Agent/model:** Codex, with exact Sage, Singular, Wolfram, and pure-Python

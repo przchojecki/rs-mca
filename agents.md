@@ -343,8 +343,22 @@ At this snapshot:
   `{{2,1/2},{2,b}}`.  The other seven fixed-moving assignments are
   `OPEN_SEPARATE_EXACT_SYSTEMS`, complete-system covariance is not claimed,
   and no inference that all surviving fixed-moving candidates are balanced
-  is licensed.  All eight balanced systems, any moving-moving or
+  is licensed.  The balanced system for this representative is addressed by
+  the next packet; the other seven balanced systems, any moving-moving or
   near-positive template, the complete `(1,1,2)` row, K3, and every payment
+  remain open.
+- For that same normalized fixed-moving assignment, the balanced `(1,1)`
+  q-slice system is empty.  The quadratic leading-coefficient split,
+  complete five-factor terminal partition, separately handled `cd=w^2`
+  incidence component, and both subsequent pivot charts are exhaustive;
+  every localized deployed-field ideal is the unit ideal.  Together with
+  the repaired crossed and identity-doubled predecessors, this deletes all
+  three aligned-positive root distributions only for the representative
+  `J_0={2,1/2,b,1/b}`, `J_1={c,d}`, assignment
+  `{{2,1/2},{2,b}}`.  The other seven fixed-moving systems are
+  `OPEN_SEPARATE_EXACT_SYSTEMS`, and complete-system covariance is not
+  claimed.  Moving-moving and near-positive templates, the exceptional and
+  biquadratic branches, the complete `(1,1,2)` row, K3, and every payment
   remain open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
