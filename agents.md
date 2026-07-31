@@ -1,6 +1,6 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
-> **Updated:** 2026-07-29
+> **Updated:** 2026-07-30
 > **State snapshot:** `main@93fba1be3f3299b0ba4708d88715377bbb656e45`
 > **Supersedes:** all older priority lists in this file.
 
@@ -321,6 +321,19 @@ At this snapshot:
   KoalaBear field.  Two of the three rigid covers are now explicit; the `A6`
   cover, split active fibers, quartic source-star incidence, four-point
   family, `m=4` type, K3, and all payments remain open.
+- The cumulative saturated diagonal `(1,1,2)` source-line compiler now has
+  three additional exact q-slice exclusions.  Both near-aligned negative
+  templates are empty in all three relative-label orbits, including
+  `w=0`; all six aligned-positive forced-ramified template/allocation cells
+  are empty; and all seven near-positive homogeneous endpoint-boundary
+  cells are empty.  Together with the earlier aligned-negative deletion,
+  this removes the complete aligned forced-ramified source-line branch.
+  The six aligned-positive unramified cells remain open.  The separately
+  proved 18-cell near-positive affine ledger is not imported by this packet,
+  so the complete near-aligned branch is not booked here.  The q-slice is a
+  necessary prefilter, not a sufficient colored-quotient identity; the
+  `(1,1,2)` row, order-two type, K3, all payments, and the KoalaBear row
+  remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.

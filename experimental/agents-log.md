@@ -4296,3 +4296,30 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Attack the order-two stabilizer type
   `(r,delta)=(4,2)`; keep the trivial type `(8,1)` behind it.  K3, the
   KoalaBear row, every slope owner, and every payment remain open.
+
+### 2026-07-30 - Saturated `(1,1,2)` source-line q-slice exclusions
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_u2_saturated_112_q_slice_exclusions_v1.md`,
+  its five exact helper modules, fail-closed verifier and JSON certificate,
+  `agents.md`, and this log.
+- **Status:** PROVED three source-line route cuts / K3 open.
+- **What is being added:** The near-aligned negative sign is empty in both
+  internal templates and all three relative-`xi` orbits, including forced
+  ramification.  All six aligned-positive `w=0` template/allocation ideals
+  and all seven near-positive projective-boundary ideals are unit after full
+  forbidden saturation over the deployed characteristic.  Combined with
+  the pinned aligned-negative parent, the complete aligned
+  forced-ramified branch is empty.
+- **Replay discipline:** The default certificate audit is inexpensive.  The
+  17 exact SymPy/FLINT cases are hash-pinned, serial, and individually
+  capped at 60 seconds; every recorded case completed under a 256 MB cgroup.
+- **Scope guard:** This packet does not import the separately proved 18-cell
+  near-positive affine ledger, does not delete the six aligned-positive
+  unramified cells, and does not close the saturated row, order-two type,
+  K3, any payment, or the KoalaBear row.
+- **What to do next:** Attack the six aligned-positive unramified cells with
+  a modular-interpolation or dedicated quadratic-resultant compiler.  Treat
+  the 18-cell near-positive affine ledger as a separate review packet rather
+  than inflating this extension with its large exact artifact bundle.
