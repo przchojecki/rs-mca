@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
 > **Updated:** 2026-07-29
-> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
+> **State snapshot:** `main@93fba1be3f3299b0ba4708d88715377bbb656e45`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -79,6 +79,289 @@ At this snapshot:
 - On the pinned M31 quotient profile, the proposed rooted-shell cap `1233` is refuted by an explicit deficiency-192 packet of size `1237`; a ragged non-`T16` collision and the signed-`T8` census further cut alignment-only routes.  The canonical-remainder inequality `|F_eta|<=1716*r(eta)+5577` forces at least `9774` represented remainders in any unsafe support fiber, but supplies no received-word or row-list projection.
 - The cumulative M31 rank-seven compiler now reaches `Q=147594` locally.  Its adjacent `Q=147595`, `k=4981` survivor is reduced to a varying proper-`G`, zero-excess cross-cofactor incidence terminal requiring an aggregate cap `2157928`; no v4 atom, higher-rank theorem, or row closure follows.
 - The KoalaBear equality-wall PR stack proves local normalization, a `Q=6,u=2` geometry reduction, and exclusion of 60 labelled `P3+C3` cases, but retains 405 labelled conic cases and lacks global ownership/add-back.  The separate column-far transverse-secant certificate is per fixed union only.  No large `U_paid` claimed by an abstract candidate-record compiler is banked; the live active value remains `null`.
+- The exact deployed-field reciprocal-`P6` packet exhibits a local
+  `Q=6,u=2` source-facet survivor satisfying the split-pole, weighted-GRS,
+  endpoint-deck, and reciprocal gates.  Direct elimination from those gates
+  alone is therefore unavailable.  The packet is not an active received-line
+  record, does not exclude earlier owners, and moves no ledger quantity.
+- The exact source-fiber follow-up deletes that committed local witness from
+  the actual endpoint producer: at the five common invariant sources and the
+  extra invariant source `eta=0`, its specialized quartic is coprime to the
+  complete source polynomial, whereas every actual outgoing component must
+  divide every specialized source fiber.  This is witness-specific and moves
+  no ledger quantity; it does not eliminate all reciprocal-`P6` components.
+- The complete-source saturation theorem upgrades that witness-specific gate
+  uniformly.  The twelve actual quartic source rows sum to twice the complete
+  degree-24 source divisor, forcing that divisor to be invariant under the
+  conic involution.  Exact fixed-point/orbit multiplicities then exclude all
+  reciprocal, `D4`, and `D5` reduced profiles.  Together with the retained
+  ramified-common exclusions, this closes the complete `Q=6,s=6,u=2`
+  conic-image branch, independently of pole partition and signature.  It
+  moves no ledger quantity; the birational-quartic `u=2` image and `u=3`
+  remain open.
+- The degree-60 primitive-subdegree-four route cut now removes the primitive
+  part of the residual `u=2` branch.  Complete-source saturation sends all
+  24 pole multiplicity units of a birational quartic to vertices of the
+  complete twelve-line source star; the rational-quartic genus budget leaves
+  at least 21 distinct vertices and only up to three weight-two vertices or
+  one weight-three vertex.  After the proved line/conic exclusions, every
+  residual actual birational-quartic `u=2` component gives a bidegree-`(4,4)`
+  self-correspondence component and hence geometric
+  monodromy subdegree four.  The exhaustive nine-group primitive
+  degree-60 catalogue has no such subdegree, so every residual survivor
+  forces a geometric functional decomposition of the endpoint map.  The
+  eight possible inner degrees are `2,3,4,5,6,10,12,30`; turning those
+  decompositions into domain-compatible same-record owners or
+  actual-producer deletions remains open.  This is a route cut with zero
+  ledger movement, not `u=2` or row closure.
+- The source-pencil rank compiler now makes the surviving decomposable
+  branch exact per supplied endpoint record.  The `2,3,4,6,10` source rows
+  have `10395,15400,5775,462,66` canonical partitions, respectively, and
+  the degree-`12` row has one reduced `49 x 5` pencil-membership test: there
+  are `32099` raw templates per record, not a finite census of all endpoint
+  records.  Exact source-rank and active-syndrome tests replace generic
+  rational-map search.  After routing through proper right factors, the
+  complete primitive catalogues in degrees `2,3,4,6,10,12` have no
+  subdegree four, so an actual bidegree-`(4,4)` component cannot remain in
+  the same-inner-fiber divisor.  Every survivor instead emits an explicit
+  `TRANSVERSE_OUTER_CORRESPONDENCE(r,delta)` with `delta*r=4m` and
+  `delta<=m^2`.  Deployed
+  divisor-interface controls include indecomposable degree-`2` and
+  degree-`3` examples, proving that the imported source/active divisor gates
+  alone cannot delete those rows.  The controls are not actual component or
+  received-line records; the transverse rows are unpaid and no ledger value
+  moves.
+- The inner-degree-`12` transverse row is now cut from four types to two.
+  Its degree-five outer map has one `K`-rational total pole and five distinct
+  simple `K`-rational zeros.  Primitive degree-five monodromy has no
+  subdegree three, excluding `(r,delta)=(3,16)`.  A subdegree-one component
+  would make the outer cover cyclic; its two rational total branch points
+  give a `K`-normal form `a*x^5+b`, impossible because fifth powering is
+  bijective on `K=F_(p^6)` and the outer zero fiber has five rational points.
+  Thus only `(2,24)` and `(4,12)` remain at `m=12`.  These survivors are
+  unpaid; inner degree `12`, `u=2`, K3, and the row remain open, with zero
+  ledger movement.
+- The two surviving inner-degree-`12` types now have a complete geometric
+  outer normal-form compiler.  The actual bidegree-`(2,4)` model and the
+  degree-`12` map to the `r=4` outer component force outer genus at most one.
+  Complete tame quintic branch cycles leave five `A5`/`S5` profiles and
+  exclude polynomial `AGL(1,5)`.  Exact critical-value integration gives
+  four rigid `r=4` forms and one one-parameter form; the `r=2` row is a
+  Dickson quintic with two explicit conic divided-difference factors.
+  These are geometric affine forms, not challenge-field endpoint
+  classifications.  No family is deleted or paid and no ledger value moves.
+- The complete inner-degree-`12` row is now empty.  For the five original
+  blocks of size `12`, the derived block kernel is a subdirect product of
+  the five simple inner socles.  Scott's lemma and the primitive outer
+  degree-`5` action leave the independent product and one full diagonal
+  strip; the actual size-`4` suborbit excludes the independent product.
+  The exact degree-`12` point-stabilizer orbits, including a paired-generator
+  replay of the two inequivalent `M12` actions, force `r=4` and equivalent
+  socle actions on all five blocks.  Their diagonal normalizer preserves
+  twelve secondary blocks of size `5`, hence forces another geometric
+  decomposition with inner degree `5`, which the source-fiber adapter
+  already deletes over `K=F_(p^6)`.  Thus both remaining types and all six
+  printed outer families have no actual producer.  The transverse frontier
+  has `22` types in inner degrees `2,3,4,6,10`; `u=2`, K3, the row, and all
+  ledger payments remain open.
+- Inner degree `10` is no longer an independent terminal producer.  The
+  complete primitive degree-`10` catalogue has simple socle `A5`, `A6`,
+  or `A10`.  If the six-block kernel is trivial, the outer stabilizer bound
+  leaves only `A5` and `S5`; the resulting degree-`60` flag actions of
+  `A6` and `S6` have no subdegree four.  Otherwise Scott strips partition
+  the six inner blocks into supports of size `1,2,3,` or `6`.  Size one
+  contradicts the actual transverse size-four suborbit, while every larger
+  support gives a preserved column system and hence a second decomposition
+  of inner degree `2`, `3`, or `6`.  Thus the four `m=10` types route
+  strictly to lower live rows.  The transverse frontier has `18` types in
+  inner degrees `2,3,4,6`; no lower row is deleted or paid, and `u=2`, K3,
+  the KoalaBear row, and all ledger payments remain open.
+- Inner degree `6` is no longer an independent terminal producer.  A
+  kernel-free ten-block action must be one of four degree-`10` wreath
+  groups or `A10,S10`; the latter point stabilizers have no primitive
+  degree-`6` quotient, while every wreath chain has an intermediate block
+  of size `5`, already excluded over the challenge field.  With nontrivial
+  kernel, Scott-compatible synchronized classes have size `5` or `10`.
+  Size `5` is excluded; size `10` puts the actual quartic suborbit inside
+  one degree-`10` column fiber, forcing a proper right factor of degree `2`
+  or `5`.  Thus every `m=6` producer dies or routes to `m=2`.  The
+  transverse frontier has `12` types in inner degrees `2,3,4`; degree `2`,
+  `u=2`, K3, the KoalaBear row, and every ledger payment remain open.
+- Inner degree `4` cuts to one outer-monodromy type.  The incoming
+  `(r,delta)` rows are `(1,16)`, `(2,8)`, `(4,4)`, and `(8,2)`.  The complete
+  primitive degree-`15` catalogue has no nontrivial subdegree `1`, `2`, or
+  `4`, so the first three rows force a proper outer right factor of degree
+  `3` or `5`.  These route to inner degree `12`, already closed, or degree
+  `20`, excluded by the three `5^4` pole fibers and Riemann--Hurwitz.  Only
+  `(8,2)` with outer monodromy `A6` or `S6` on two-subsets survives.  The
+  transverse frontier has `9` types in inner degrees `2,3,4`; the surviving
+  `m=4` type, degree `2`, `u=2`, K3, the KoalaBear row, and all payments
+  remain open.
+- The surviving inner-degree-`4` outer type has exactly four geometric
+  genus-zero passports.  Riemann--Hurwitz and the complete `S6` two-subset
+  class table leave nine parity-compatible index budgets; exact product-one
+  enumeration shows five generate only proper groups of order `60` or
+  `120`.  The survivors are three three-point covers (one `A6`, two `S6`)
+  and one four-point `S6` cover.  Challenge-field descent, split zero and
+  pole fibers, quartic source-star incidence, the `m=4` type, K3, the
+  KoalaBear row, and all payments remain open.
+- The complete inner-degree-`4` transverse row is now empty.  The unique
+  `r=8` component is the connected `120`-sheet ordered-adjacency orbital on
+  two-subsets.  Its genera in the four exhaustive passports are
+  `3,6,4,13`.  The actual source normalization has genus at most `3` and
+  maps to this component separably with degree `2`, so Riemann--Hurwitz
+  would require source genus at least `5,11,7,25`.  Thus all four passports
+  have no actual producer, including the unconstructed four-point family.
+  The independent transverse frontier has `8` types in inner degrees `2,3`;
+  no lower type or ledger payment is closed.
+- Inner degree `3` is no longer an independent producer.  The complete
+  primitive degree-`20` catalogue consists of `PSL(2,19),PGL(2,19),A20,S20`,
+  all with subdegrees `1,19`, so none supports an outer subdegree in
+  `{2,3,4,6,12}`.  Every outer map therefore has a proper right factor;
+  its resulting inner degree is `6,12,15`, or `30`, and the exact parent
+  routes make each destination empty or furnish an inner-degree-`2`
+  decomposition.  This does not exclude an additional degree-`3`
+  decomposition.  The independent transverse frontier is the three `m=2`
+  types, and no payment moves.
+- The three residual inner-degree-`2` types now have exact V4 stabilizer
+  forms.  For `h x h`, the component degree `delta` is the setwise
+  stabilizer order, giving full V4, one of three order-two subgroups, and
+  the trivial subgroup for `(r,delta)=(2,4),(4,2),(8,1)`.  The complete
+  primitive degree-`30` catalogue has only subdegrees `1,29`, so every
+  outer map decomposes; its six proper-factor destinations are empty or
+  recurrent to degree `2`.  In every orientation containing
+  `tau x 1`, including all of `(2,4)`, the preserving source lift is the
+  diagonal endpoint/source-deck involution.  Paired source rows avoid both
+  paired locators, and the weight-three source-star defect is impossible.
+  This classifies recurrence but deletes and pays no `m=2` type; a
+  source-coupled contradiction or same-record owner remains open.
+- In the full-V4 `(r,delta)=(2,4)` row, the actual source normalization has
+  genus zero or one.  Its degree-four map to the second endpoint coordinate
+  has deck group `<eta,a>=V4`, where `eta` is the source-projection
+  involution and `a` is the diagonal endpoint/source-deck lift.  The second
+  endpoint involution conjugates `eta` to `eta*a`; commuting would factor
+  the quartic coefficient map through a quadratic source quotient and
+  return to the excluded line/conic branch.  Tame Riemann--Hurwitz gives
+  `(g,#Fix(a))=(0,2)` or `(1,0)`.  Neither rational nor elliptic regime is
+  yet deleted or paid.
+- The outer component in both remaining full-V4 source-genus regimes is
+  rational.  Its two degree-two projections generate a finite dihedral
+  group, forcing a Dickson/Chebyshev right factor of the outer degree-`30`
+  map.  The six distinct order-five poles leave exactly factor degrees
+  `n=2,3,5,6`; the `n=5` profile has one generic order-five outer pole and
+  one simple pole at the totally ramified value.  No factor degree, `m=2`
+  type, owner, or payment is deleted here.
+- The exceptional full-V4 `n=5` dihedral factor is empty.  Its simple pole
+  at the common totally ramified quotient value forces both degree-two
+  source-parameter pullbacks over one endpoint source pair onto the same
+  matching source-star vertex, with total weight `2+2=4`.  This contradicts
+  the proved quartic maximum weight `3`.  The surviving factor degrees are
+  `n=2,3,6`; all three, the full-V4 type, K3, and every payment remain open.
+- The generic full-V4 `n=2` factor is also empty.  At one pole of `G`, the
+  regular `D_2=V4` coset incidence is `K_(2,2)`, so both `Z` values use the
+  same two `Y` values.  Their endpoint and complete-source lifts force eight
+  units onto four cross star vertices, of minimum defect `4` against budget
+  `3`.  The full-V4 factor frontier is `n=3,6`; both profiles, the type, K3,
+  and every payment remain open.
+- The two residual full-V4 profiles now have exact source-star graphs.  The
+  source-cover conjugation law forces complementary orientations over each
+  `Z` value: `n=3` gives two `K_(2,2,2)` components, while `n=6` gives the
+  two-point blow-up of `C6`.  All 24 weights are one and every source row
+  has degree four.  This deletes neither profile; their frontier is the
+  birational-quartic realization and V4 branch passport.
+- Their coefficient images are now pinned as well.  The sibling relation is
+  a symmetric `(2,2)` conic, and its quadratic pullback is the exact source
+  plane quartic.  The V4 branch passport aligns exactly one branch value of
+  the endpoint quadratic with the sibling projection; after preserving the
+  relative coordinate, `n=3` and `n=6` become explicit one-parameter
+  families `Q_(a,b)` with `a=-1,1`.  Neither family is deleted here.
+- The coefficient-geometry audit is complete: every allowed `Q_(a,b)` is
+  geometrically irreducible and rational.  For `b!=a` it has three ordinary
+  nodes; for `b=a` it has one node and one tacnode of delta two.  No allowed
+  parameter dies by factorization or genus, so the residual gate is now the
+  six-pole and complete-source locator realization.
+- The relative second-endpoint source cover is classified without setting
+  its projective twist to one.  Equality of quadratic square classes forces
+  the branch preimages to be the roots of
+  `z^2-b*d*z+b^2+d^2-4`, `d^2=a+2`.  Hence source genus zero is exactly
+  `b^2=a+2`, and genus one is its complement.  Both regimes remain live.
+- The common six-pole divisor deletes the residual `n=6` profile.  Two
+  unramified Dickson-six fiber structures have only the standard projective
+  normalizer and the exceptional fibers `c=27/8,756/125`; every case
+  contradicts the forced source-cover branch pair.  The full-V4 dihedral
+  frontier is now only `n=3`.
+- The sole `n=3` profile has an explicit abstract geometric realization at
+  `a=b=-1`: a rational bidegree-`(2,4)` source component realizes the common
+  cubic right factor, six poles, coefficient quartic, exact star graph, and
+  complete-source saturation.  Geometry alone does not delete it; the
+  source-facet coupling below supplies the later exclusion.
+- The common-five `Q=6,s=6` source facet deletes the residual `n=3`
+  profile.  Above each of five labels `k` in the invariant six-set, the
+  whole outgoing factor has horizontal root set `I^c`.  The cubic
+  component contributes the four vertices outside one deck pair; because
+  `k in I` lies in the same six-label common-pole component, the omitted
+  pair must contain `k`.  Hence those four roots are `N_G(k)` in the exact
+  graph `2 K_(2,2,2)`, forcing an independent five-set where the maximum is
+  four.  Together with the proved `n=2,5,6` exclusions, this deletes the
+  full-V4 `(m,r,delta)=(2,2,4)` type.  The order-two and trivial stabilizer
+  types `(r,delta)=(4,2),(8,1)`, K3, and every payment remain open.
+- In the saturated diagonal `(a,b,c)=(1,1,2)` source-line branch of the
+  residual order-two type, the near-aligned negative sign is now empty.
+  Exact Sage and Wolfram reconstructions show that all three retained
+  rank-drop loci have the same residual quartic.  Its mandatory
+  `tau(ell)` root forces the residual roots to be
+  `{tau(ell),ell}`; equality with the actual near target would give
+  `tau(xi)=ell`, hence `xi=tau(ell) in K`, contradicting
+  `xi in I minus K`.  The aligned positive and near-aligned positive signs,
+  exceptional unsaturated orbit, biquadratic source cover, complete
+  `(1,1,2)` row, K3, and every payment remain open.
+- In the same saturated source-line branch, one normalized fixed-moving
+  aligned-positive crossed `(0,2)` representative is empty: exactly
+  `J_0={2,1/2,b,1/b}`, `J_1={c,d}`, and assignment
+  `{{2,1/2},{2,b}}`.  Exact reconstruction gives four ordinary factor
+  branches; six coefficient-zero division charts have unit localized
+  ideals.  Two branches are killed by declared units, one forces the
+  collision `w=c`, and the last decomposes over the deployed characteristic
+  into fixed/reciprocal/equal-label collisions plus a quartic component on
+  which both full quotient proportionalities have explicit Bezout-unit
+  mismatches.  The other seven fixed-moving assignments remain
+  `OPEN_SEPARATE_EXACT_SYSTEMS`: endpoint-only normalization preserves the
+  observed residual but not the aligned target, while diagonal `W`
+  transport preserves the target but not the observed residual/source
+  divisor, so complete-system covariance is not claimed.  This also does
+  not address the distinct identity-doubled `(2,0)` or balanced `(1,1)`
+  systems, any moving-moving or near-positive template, the complete
+  `(1,1,2)` row, K3, or a payment.
+- For that same normalized fixed-moving assignment, the separate
+  aligned-positive identity-doubled `(2,0)` system is empty as well.  Its
+  four ordinary branches and six named coefficient-zero charts are
+  exhaustive.  The ordinary terminals force `w=c`, `b=1/2`, `cd=1` with
+  `w=1`, or `d=c`, except for one degree-eight component; explicit
+  deployed-field Bezout units show that component violates both full
+  quotient identities.  This closes `(0,2)` and `(2,0)` only for the one
+  representative `J_0={2,1/2,b,1/b}`, `J_1={c,d}`, assignment
+  `{{2,1/2},{2,b}}`.  The other seven fixed-moving assignments are
+  `OPEN_SEPARATE_EXACT_SYSTEMS`, complete-system covariance is not claimed,
+  and no inference that all surviving fixed-moving candidates are balanced
+  is licensed.  All eight balanced systems, any moving-moving or
+  near-positive template, the complete `(1,1,2)` row, K3, and every payment
+  remain open.
+- The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
+  degree-`15` normal form, constructed as the unordered-pair quotient of the
+  pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
+  are `(6,6,3)`, `(5,5,5)`, and `(2,2,2,2,1,1,1,1,1,1,1)`.  The order-five
+  points are `-77` and `22 plus or minus 33 sqrt(5)`, so they split over the
+  even-degree KoalaBear field.  Pole descent therefore does not delete this
+  row.  A split unramified active fiber, quartic source-star incidence, the
+  other two rigid covers, the four-point family, the `m=4` type, K3, and all
+  payments remain open.
+- The rigid `S6:(5.1,2.2.2,3.2.1)` passport also has an exact rational
+  degree-`15` unordered-pair normal form.  Its branch fibers are `(5,5,5)`,
+  `(6,3,3,2,1)`, and `(2,2,2,2,2,2,1,1,1)`.  Its order-five divisor is one
+  rational point plus two points over `Q(sqrt(5))`, so it too splits over the
+  KoalaBear field.  Two of the three rigid covers are now explicit; the `A6`
+  cover, split active fibers, quartic source-star incidence, four-point
+  family, `m=4` type, K3, and all payments remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -129,6 +412,54 @@ The factor `4807520` is only a full-budget calibration before other atoms consum
 #### K3. Pay MCA projection and residual geometry
 
 Produce exhaustive balanced-core coverage in units of distinct affine slopes. The moving-root theorem pays only charts proved to be genuine pencils. A line-by-line decomposition also needs an exact count of relevant lines. Higher-dimensional cores require a proved ray/slope compiler with exact multiplicities.
+
+The complete `Q=6,s=6,u=2` conic-image branch is now excluded by the
+all-twelve-source saturation theorem, before any signature-specific
+eliminant or right-label assignment.  The primitive part of the remaining
+`u=2` branch is also cut: the complete-source quartic defect theorem folds
+simple/repeated/ramified charts into five defect types, and the exact
+degree-60 primitive-group classification forces every residual actual
+survivor into geometric functional decomposition.  The exact source-fiber
+adapter now proves that the sixty active roots are complete unramified inner
+fibers and splits the twelve source poles into complete and index-five
+exceptional fibers.  It deletes inner degree `5` over
+`K=F_{p^6}` by the split fifth-power-fiber contradiction, routes inner
+degree `30` to inner degree `6` by fifth-power extraction, and reduces the
+inner-degree-`12` row to one canonical binary-pencil membership test.  The
+endpoint parameter line is not the evaluation carrier: `m | 2^21` is only
+a necessary gate conditional on a future same-record parameter-to-carrier
+transport, and it leaves `m=2,4`.  No quotient payment is booked; all carrier,
+data, and slope semantics remain open.
+
+The full-V4 `m=2` type is now empty.  The source-facet deck gives
+`K subset I` with `|K|=5` and forces the outgoing horizontal roots above
+every complete `k`-fiber into `I^c`.  In the cubic graph, those roots are
+the complement `U_k` of one deck pair `P_k`.  This retains the relative
+second-endpoint twist: `k in I` gives `k notin U_k`, and common-pole
+membership then gives `k in P_k`, hence `U_k=N_G(k)`.  Thus `K` would be
+an independent five-set in `2 K_(2,2,2)`, whose independence number is
+four.  The resulting `n=3` deletion, together with the certified
+`n=2,5,6` deletions and exhaustive factor list, closes
+`(m,r,delta)=(2,2,4)`.
+
+The exact `38 x 12` endpoint-cofactor and gain-flatness compiler remains a
+valid audit theorem: it shows independently why one admissible abstract
+packet is not an endpoint factor.  Universal gain nonflatness is no longer
+required for the deleted full-V4 type.  No quotient payment is booked.
+
+The next maximal equality-wall theorem is the source-coupled transverse
+outer compiler on the remaining `2` types at inner degree `m=2`.  For every
+finite `(m,r,delta)` row emitted by the exact
+source-pencil packet, impose the inherited irreducible quartic/source-star
+incidence on the non-diagonal outer component and terminate it in an
+actual-producer contradiction, a strict coarser decomposition, or a
+same-record carrier/data/explaining-polynomial/slope owner.  A source-only
+rank calculation cannot close the prime-degree rows, as the exact deployed
+controls show.  Inner degree `12` is no longer a live target: its diagonal
+socle forces a secondary inner-degree-`5` decomposition, contradicting the
+universal source-fiber adapter.  Do not resume its six-family coefficient
+classifier, the old primitive 985-chart atlas, or the `u=3` component
+compiler while the remaining transverse `u=2` interface is open.
 
 #### K4. Close algebraic routing and add-back
 

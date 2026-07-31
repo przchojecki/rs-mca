@@ -1,0 +1,84 @@
+// Independent deployed-characteristic terminal replay for distribution (2,0).
+option(redSB);
+ring r = 0,(d,c),lp;
+
+poly e0 =
+  36*c6*d4 - 180*c6*d3 - 172*c5*d4 + 297*c6*d2
+  + 920*c5*d3 + 524*c4*d4 - 180*c6*d - 1698*c5*d2
+  - 2428*c4*d3 - 960*c3*d4 + 36*c6 + 1256*c5*d
+  + 4071*c4*d2 + 3648*c3*d3 + 860*c2*d4 - 328*c5
+  - 3052*c4*d - 5364*c3*d2 - 3052*c2*d3 - 328*c*d4
+  + 860*c4 + 3648*c3*d + 4071*c2*d2 + 1256*c*d3 + 36*d4
+  - 960*c3 - 2428*c2*d - 1698*c*d2 - 180*d3 + 524*c2
+  + 920*c*d + 297*d2 - 172*c - 180*d + 36;
+
+poly e1 =
+  36*c4*d6 - 172*c4*d5 - 180*c3*d6 + 524*c4*d4
+  + 920*c3*d5 + 297*c2*d6 - 960*c4*d3 - 2428*c3*d4
+  - 1698*c2*d5 - 180*c*d6 + 860*c4*d2 + 3648*c3*d3
+  + 4071*c2*d4 + 1256*c*d5 + 36*d6 - 328*c4*d
+  - 3052*c3*d2 - 5364*c2*d3 - 3052*c*d4 - 328*d5
+  + 36*c4 + 1256*c3*d + 4071*c2*d2 + 3648*c*d3 + 860*d4
+  - 180*c3 - 1698*c2*d - 2428*c*d2 - 960*d3 + 297*c2
+  + 920*c*d + 524*d2 - 180*c - 172*d + 36;
+
+poly f6 =
+  9*c6 - 82*c5 + 119*c4 - 156*c3 + 119*c2 - 82*c + 9;
+poly f8 =
+  324*c8 - 5328*c7 + 29617*c6 - 77552*c5 + 106134*c4
+  - 77552*c3 + 29617*c2 - 5328*c + 324;
+poly f10 =
+  36*c10 - 352*c9 + 1741*c8 - 5266*c7 + 9871*c6
+  - 12124*c5 + 9871*c4 - 5266*c3 + 1741*c2 - 352*c + 36;
+
+poly expected =
+  3486784401*(c-2)^4*(2*c-1)^4*(c-1)^10*(c+1)^10*f6*f8*f10;
+poly actual = resultant(e0,e1,d);
+if (actual-expected != 0) { ERROR("terminal resultant mismatch"); }
+
+ideal I6 = std(ideal(e0,e1,f6));
+if (reduce(c*d-1,I6) != 0) { ERROR("f6 reciprocal collision missing"); }
+poly wNum =
+  3*c2*d2 - 4*c2*d - 4*c*d2 + 2*c2 + 9*c*d + 2*d2
+  - 5*c - 5*d + 2;
+poly wDen =
+  2*c2*d2 - 5*c2*d - 5*c*d2 + 2*c2 + 9*c*d + 2*d2
+  - 4*c - 4*d + 3;
+if (reduce(wNum-wDen,I6) != 0) { ERROR("f6 w=1 collision missing"); }
+
+ideal I10 = std(ideal(e0,e1,f10));
+if (reduce(d-c,I10) != 0) { ERROR("f10 equal-label collision missing"); }
+
+ring modp = (integer,2130706433),(c),lp;
+poly f8 =
+  324*c8 - 5328*c7 + 29617*c6 - 77552*c5 + 106134*c4
+  - 77552*c3 + 29617*c2 - 5328*c + 324;
+poly mJ =
+  9883900*c7 + 763829210*c6 + 1812515029*c5 + 915891061*c4
+  + 913730111*c3 + 47079281*c2 + 1996723265*c + 482954018;
+poly uJ =
+  1606439928*c6 + 1258221600*c5 + 1415812154*c4
+  + 1301926167*c3 + 1055326069*c2 + 177769301*c + 1050548741;
+poly vJ =
+  29628355*c7 + 885094218*c6 + 1465118481*c5 + 901744177*c4
+  + 1916788299*c3 + 1095838264*c2 + 343401622*c + 162121279;
+
+poly mI =
+  829611936*c7 + 1359907050*c6 + 1507080347*c5 + 413622875*c4
+  + 795930408*c3 + 1198218452*c2 + 1278816008*c + 467867406;
+poly uI =
+  1820761540*c6 + 227124627*c5 + 986262926*c4 + 1339492114*c3
+  + 1704323271*c2 + 1711384843*c + 728891986;
+poly vI =
+  880556468*c7 + 644748967*c6 + 1809782485*c5 + 338011691*c4
+  + 1768858959*c3 + 2109338360*c2 + 197424372*c + 1963273613;
+
+if (uJ*f8+vJ*mJ-1 != 0) { ERROR("J Bezout mismatch"); }
+if (uI*f8+vI*mI-1 != 0) { ERROR("I Bezout mismatch"); }
+
+print("schema=kb-mca-v4-m2-diagonal-112-fixed-positive-identity-singular-v1");
+print("RESULTANT_FACTORS=f6,f8,f10");
+print("F6_COLLISIONS=cd-1,w-1");
+print("F10_COLLISION=d-c");
+print("F8_FULL_QUOTIENT_J_AND_I_BEZOUT=PASS");
+print("PASS");

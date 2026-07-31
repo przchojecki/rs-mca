@@ -1,0 +1,264 @@
+{
+  "conclusion": {
+    "all_allowed_geometrically_irreducible": true,
+    "all_allowed_normalization_genus": 0,
+    "allowed_a": [
+      -1,
+      1
+    ],
+    "excluded_b": [
+      -2,
+      2
+    ],
+    "next_gate": "six-pole and complete-source locator realization",
+    "profiles_deleted": [],
+    "terminal": "M2_R2_DIHEDRAL_RESIDUAL_QUARTIC_SINGULARITY_ATLAS"
+  },
+  "exact_replays": [
+    {
+      "N_discriminant": "196",
+      "a": -1,
+      "alpha": "-3087",
+      "atlas": "three ordinary nodes",
+      "b": "-5",
+      "beta": "5488",
+      "center_hessian": "28812",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "100",
+      "a": -1,
+      "alpha": "-375",
+      "atlas": "three ordinary nodes",
+      "b": "-3",
+      "beta": "1000",
+      "center_hessian": "7500",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "36",
+      "a": -1,
+      "alpha": "81",
+      "atlas": "one ordinary node plus one tacnode",
+      "b": "-1",
+      "beta": "0",
+      "center_hessian": "972",
+      "delta_multiset": [
+        1,
+        2
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "16",
+      "a": -1,
+      "alpha": "48",
+      "atlas": "three ordinary nodes",
+      "b": "0",
+      "beta": "-32",
+      "center_hessian": "192",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "4",
+      "a": -1,
+      "alpha": "9",
+      "atlas": "three ordinary nodes",
+      "b": "1",
+      "beta": "-8",
+      "center_hessian": "12",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "4",
+      "a": -1,
+      "alpha": "-15",
+      "atlas": "three ordinary nodes",
+      "b": "3",
+      "beta": "16",
+      "center_hessian": "12",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "36",
+      "a": -1,
+      "alpha": "-567",
+      "atlas": "three ordinary nodes",
+      "b": "5",
+      "beta": "648",
+      "center_hessian": "972",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "588",
+      "a": 1,
+      "alpha": "-3087",
+      "atlas": "three ordinary nodes",
+      "b": "-5",
+      "beta": "24696",
+      "center_hessian": "28812",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "300",
+      "a": 1,
+      "alpha": "-375",
+      "atlas": "three ordinary nodes",
+      "b": "-3",
+      "beta": "6000",
+      "center_hessian": "7500",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "108",
+      "a": 1,
+      "alpha": "81",
+      "atlas": "three ordinary nodes",
+      "b": "-1",
+      "beta": "648",
+      "center_hessian": "972",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "48",
+      "a": 1,
+      "alpha": "48",
+      "atlas": "three ordinary nodes",
+      "b": "0",
+      "beta": "96",
+      "center_hessian": "192",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "12",
+      "a": 1,
+      "alpha": "9",
+      "atlas": "one ordinary node plus one tacnode",
+      "b": "1",
+      "beta": "0",
+      "center_hessian": "12",
+      "delta_multiset": [
+        1,
+        2
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "12",
+      "a": 1,
+      "alpha": "-15",
+      "atlas": "three ordinary nodes",
+      "b": "3",
+      "beta": "24",
+      "center_hessian": "12",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    },
+    {
+      "N_discriminant": "108",
+      "a": 1,
+      "alpha": "-567",
+      "atlas": "three ordinary nodes",
+      "b": "5",
+      "beta": "1296",
+      "center_hessian": "972",
+      "delta_multiset": [
+        1,
+        1,
+        1
+      ],
+      "geometrically_irreducible": true,
+      "normalization_genus": 0
+    }
+  ],
+  "nonclaims": [
+    "no actual source realization for arbitrary b",
+    "no n=3 or n=6 deletion or m2 payment",
+    "no K3, KoalaBear, endpoint, or Prize close"
+  ],
+  "parent_normal_form": {
+    "certificate_blob_oid": "8df504a15307d229a9c3de2bb876be89819853cb",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-residual-coefficient-quartic-normal-form-v1/kb_mca_v4_m2_r2_dihedral_residual_coefficient_quartic_normal_form_v1.json",
+    "certificate_payload_sha256": "ba9783671d9d91bbd345ebaeec4b894d96be9d8d20f1ccc7d7ee1c5847bf6c81",
+    "commit": "3efe818561509dcc6f2ae792f2ed1d22c7d317ae",
+    "imported_terminal": "M2_R2_DIHEDRAL_RESIDUAL_ONE_PARAMETER_QUARTIC_NORMAL_FORM"
+  },
+  "payload_sha256": "e402c17bf8f4757f5b534f3b1a9da5faebafe6ac60956a4849f27f66202b96de",
+  "schema": "kb-mca-v4-m2-r2-dihedral-residual-quartic-singularity-atlas-v1",
+  "universal_identities": {
+    "M_factorization": "(a-2)(P+1)^2*((a-b^2+2)P^2+2(a-2b+2)P+(a-2))",
+    "N_discriminant": "4(a+2)(b-2)^2",
+    "R_discriminant": "P^2*(alpha P^2+beta)",
+    "alpha": "(a-2)(a+2)(b-2)^3(b+2)",
+    "beta": "-4(a+2)(a-b)(b-2)^3",
+    "center_hessian": "-4(a-2)(a+2)(b-2)^4",
+    "side_hessian": "16(a-2)(a+2)(b-2)^3"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "payload_sha256": "c9cfbbf394e479f93d8d8378d886331c8afbbaf338e6fc6b21f55e3e1c485fd7",
+  "statement": {"schema": "kb-mca-v4-m4-a6s6-genus-zero-passport-reduction-v1", "terminal": "M4_A6S6_GEOMETRIC_FRONTIER_FOUR_PASSPORTS"},
+  "parent_route_cut": {"commit": "d7232a30a5cca4a42330422415da71f06a7c5a31", "certificate_path": "experimental/data/certificates/kb-mca-v4-m4-outer-a6s6-route-cut-v1/kb_mca_v4_m4_outer_a6s6_route_cut_v1.json", "certificate_blob_oid": "bb130d089d1ca7c0fcab04b65f66de773952ceb2", "certificate_payload_sha256": "61a8db82285f22393fc2af6c1d35224d79587fa150009270d42ac33972557485", "imported_terminal": "M4_ONLY_R8_DELTA2_A6S6_OUTER_SURVIVES", "imported_survivor": [8,2,"A6_or_S6_two_subsets"], "mandatory_pair_cycle_type": [5,5,5]},
+  "input": {"degree": 15, "genus_zero_total_index": 28, "mandatory_letter_class": "5.1", "mandatory_pair_cycle_type": "5.5.5", "mandatory_index": 12, "residual_index_budget": 16},
+  "class_rows": [
+    ["1.1.1.1.1.1",1,"even","1.1.1.1.1.1.1.1.1.1.1.1.1.1.1",0],
+    ["2.1.1.1.1",15,"odd","2.2.2.2.1.1.1.1.1.1.1",4],
+    ["2.2.1.1",45,"even","2.2.2.2.2.2.1.1.1",6],
+    ["2.2.2",15,"odd","2.2.2.2.2.2.1.1.1",6],
+    ["3.1.1.1",40,"even","3.3.3.3.1.1.1",8],
+    ["3.2.1",120,"odd","6.3.3.2.1",10],
+    ["3.3",40,"even","3.3.3.3.3",10],
+    ["4.1.1",90,"odd","4.4.4.2.1",10],
+    ["4.2",90,"even","4.4.4.2.1",10],
+    ["5.1",144,"even","5.5.5",12],
+    ["6",120,"odd","6.6.3",12]
+  ],
+  "necessary_passports": [
+    ["S6",["2.1.1.1.1","2.1.1.1.1","2.1.1.1.1","2.1.1.1.1"],[4,4,4,4],4],
+    ["S6",["2.1.1.1.1","2.1.1.1.1","3.1.1.1"],[4,4,8],2],
+    ["S6",["2.1.1.1.1","2.2.1.1","2.2.2"],[4,6,6],2],
+    ["S6",["2.1.1.1.1","6"],[4,12],2],
+    ["A6",["2.2.1.1","3.3"],[6,10],0],
+    ["A6",["2.2.1.1","4.2"],[6,10],0],
+    ["S6",["2.2.2","3.2.1"],[6,10],2],
+    ["S6",["2.2.2","4.1.1"],[6,10],2],
+    ["A6",["3.1.1.1","3.1.1.1"],[8,8],0]
+  ],
+  "tuple_audit": [
+    [["2.1.1.1.1","2.1.1.1.1","2.1.1.1.1","2.1.1.1.1"],720,[["5A",125,{"120":125},0]],false],
+    [["2.1.1.1.1","2.1.1.1.1","3.1.1.1"],720,[["5A",25,{"120":25},0]],false],
+    [["2.1.1.1.1","2.2.1.1","2.2.2"],720,[["5A",25,{"720":25},25]],true],
+    [["2.1.1.1.1","6"],720,[["5A",5,{"720":5},5]],true],
+    [["2.2.1.1","3.3"],360,[["5A",5,{"60":5},0],["5B",5,{"60":5},0]],false],
+    [["2.2.1.1","4.2"],360,[["5A",10,{"360":10},10],["5B",10,{"360":10},10]],true],
+    [["2.2.2","3.2.1"],720,[["5A",5,{"720":5},5]],true],
+    [["2.2.2","4.1.1"],720,[["5A",5,{"120":5},0]],false],
+    [["3.1.1.1","3.1.1.1"],360,[["5A",5,{"60":5},0],["5B",5,{"60":5},0]],false]
+  ],
+  "conclusion": {"necessary_passport_count": 9, "realized_passport_count": 4, "retained": [["A6",["5.1","2.2.1.1","4.2"]],["S6",["5.1","2.1.1.1.1","2.2.1.1","2.2.2"]],["S6",["5.1","2.1.1.1.1","6"]],["S6",["5.1","2.2.2","3.2.1"]]], "three_point_count": 3, "four_point_count": 1, "terminal": "M4_A6S6_GEOMETRIC_FRONTIER_FOUR_PASSPORTS"},
+  "source_bindings": {"enumerated_group": "S6", "group_order": 720, "action": "two_subsets_of_six_letters", "largest_prefix_count": 3375, "arithmetic": "exact_integer_permutation_composition"},
+  "nonclaims": ["no challenge-field descent", "no split-zero or split-pole payment", "no quartic source-star incidence", "no surviving m4 type deletion", "no KoalaBear row or ledger closure"]
+}

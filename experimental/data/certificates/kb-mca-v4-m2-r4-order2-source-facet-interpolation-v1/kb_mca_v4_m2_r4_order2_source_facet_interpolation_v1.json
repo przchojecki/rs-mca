@@ -1,0 +1,254 @@
+{
+  "conclusion": {
+    "coordinate_orientation_deleted": false,
+    "diagonal_orientation_deleted": false,
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "order_two_type_deleted": false,
+    "terminal": "M2_R4_ORDER_TWO_SOURCE_FACET_AND_DIAGONAL_INTERPOLATION_INTERFACES"
+  },
+  "coordinate_orientation": {
+    "individual_star_equivariance": true,
+    "involution_preserves_I_and_J": true,
+    "preserving_lift": "(T,X)->(tau(T),b(X))",
+    "replay": {
+      "category_census": {
+        "I-I": 10,
+        "I-J": 4,
+        "J-J": 10
+      },
+      "component_colored_edges": 4,
+      "defect": 0,
+      "exhaustive_K_pair_degree_profiles": [
+        [
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            4,
+            4
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      ],
+      "fixture_aligned_L_equals_I": true,
+      "fixture_stars": [
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          9
+        ]
+      ],
+      "pole_left_degrees": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "source_degrees": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    "route_fence": "facet, degree, color, involution, and defect ledgers admit an aligned abstract survivor"
+  },
+  "diagonal_orientation": {
+    "global_divisor": "product_p R_p is proportional to A^4",
+    "individual_star_equivariance_claimed": false,
+    "interpolation_equivalence": "full-support kernel iff bidegree-at-most-(4,4) biform interpolant",
+    "replay": {
+      "field": 101,
+      "kernel_full_support": true,
+      "kernel_residual": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "matrix_columns": 12,
+      "matrix_rows": 35,
+      "matrix_sha256": "508018adbd7eca75d574eb75db22fd33d183e199e0fa760cfd6b5f8046cc9e46",
+      "parity_rows": 7,
+      "quartic_coefficients": 5
+    },
+    "whole_fiber_transport": "[R_bar(p)]=[tau^*R_p]"
+  },
+  "nonclaims": [
+    "no algebraic realization of the aligned coordinate fixture",
+    "no universal coordinate coefficient or diagonal kernel failure",
+    "no deletion of any order-two subgroup or the trivial m2 type",
+    "no carrier, data, explaining-polynomial, slope owner, or payment",
+    "no K3, KoalaBear row, endpoint, or Prize close"
+  ],
+  "parents": {
+    "router": {
+      "certificate_blob_oid": "50d17f218bfa7d3acb211c946db0c025b9a98944",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-v4-outer-recurrence-router-v1/kb_mca_v4_m2_v4_outer_recurrence_router_v1.json",
+      "certificate_payload_sha256": "fe8141810501fd7b3762a378210609177185972ec706bf9ac943fa398bd82d39",
+      "commit": "d4063dcd9c56835c3916ef792e263ea720a4d397",
+      "terminal": "M2_V4_STABILIZERS_OUTER_RECURRENCE_AND_SOURCE_PARITY"
+    },
+    "source_facet": {
+      "certificate_blob_oid": "91643b5b9020f52764a77cfbc8aa6279ce2d5ef8",
+      "certificate_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/verification/pole_disjoint_conic_facet_collinearity_certificate.json",
+      "certificate_payload_sha256": "396697687aa5baf19d8114b20858d4500b119c078f5f128b6c0e207ec8ff50bb",
+      "commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+      "theorem_blob_oid": "356ff4b47d0bb429d11ea10382762a6e95b5ce24",
+      "theorem_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/proof/pole_disjoint_conic_facet_collinearity_reduction.md"
+    }
+  },
+  "payload_sha256": "96c47c813c41f4b268b9826ed4866e14d44c5a8187487266a3de6f550cbbf6b6",
+  "schema": "kb-mca-v4-m2-r4-order2-source-facet-interpolation-v1"
+}

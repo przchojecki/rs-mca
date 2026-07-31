@@ -1,0 +1,519 @@
+{
+  "artifacts": {
+    "sage_output_payload_sha256": "38ee51ae4fbf76f97cbf4382b55c13c81820c2eeab45387a0cbc3942316673c6",
+    "sage_sha256": "bfaa32657f6de4ae4b7d92c42d1f0e8734a2d42f66c7182611022b2588765275",
+    "singular_sha256": "cd864aa62fae198be32b233250ab6f90aa0eec21f4a0265c79e2075020967637",
+    "wolfram_sha256": "d485506fddba7dff801decc3d03f7e195983aa05cc6b0fe621bdbc908793e5a3"
+  },
+  "assignment_scope": {
+    "closed_assignment_count": 1,
+    "complete_system_covariance": "NOT_CLAIMED",
+    "covariance_mismatch": {
+      "diagonal_W_transport": "preserves aligned target but not observed residual/source W divisor",
+      "endpoint_only_normalizer": "preserves observed residual side but not aligned target"
+    },
+    "fixed_moving_assignment_count": 8,
+    "open_assignment_count": 7,
+    "other_assignments_status": "OPEN_SEPARATE_EXACT_SYSTEMS",
+    "status": "REPRESENTATIVE_ONLY"
+  },
+  "branch_partition": {
+    "c_choice_count": 2,
+    "c_choice_one": {
+      "d_choice_one": "H9",
+      "d_choice_zero": "H8"
+    },
+    "c_choice_zero": {
+      "d_choices_deleted": 2,
+      "required_nonzero_factorization": [
+        [
+          "d",
+          1
+        ],
+        [
+          "w-d",
+          2
+        ],
+        [
+          "w-1",
+          2
+        ],
+        [
+          "w+1",
+          2
+        ],
+        [
+          "d-2",
+          2
+        ],
+        [
+          "2d-1",
+          2
+        ],
+        [
+          "c-1",
+          2
+        ],
+        [
+          "c+1",
+          2
+        ],
+        [
+          "A",
+          2
+        ],
+        [
+          "cd-1",
+          4
+        ]
+      ]
+    },
+    "d_choice_count_per_c_choice": 2,
+    "degenerate_linear_splits": {
+      "initial_b_coefficient_and_constant_zero": {
+        "charts": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "localized_groebner_bases": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "localizer": "Hbasic; additionally d-w on c_choice=0"
+      },
+      "later_w_coefficient_and_constant_zero": {
+        "charts": [
+          0,
+          1
+        ],
+        "localized_groebner_bases": [
+          "1",
+          "1"
+        ],
+        "localizer": "substituted Hbasic times the nonzero b coefficient and all introduced denominators"
+      },
+      "rabinowitsch_equation": "t*H-1"
+    },
+    "normal_branch_count": 4
+  },
+  "conclusion": {
+    "complete_112_row_deleted": false,
+    "complete_system_covariance": "NOT_CLAIMED",
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "ledger_movement": 0,
+    "moving_moving_status": "OPEN",
+    "other_fixed_moving_assignment_count": 7,
+    "other_fixed_moving_assignments_status": "OPEN_SEPARATE_EXACT_SYSTEMS",
+    "positive_1_1_status": "OPEN",
+    "positive_2_0_status": "OPEN",
+    "representative_fixed_moving_crossed_0_2_empty": true
+  },
+  "field": {
+    "challenge_extension_degree": 6,
+    "prime": 2130706433,
+    "prime_avoids": [
+      2,
+      3,
+      5
+    ]
+  },
+  "h8": {
+    "collision": "w=c",
+    "retained_factor": "c+d",
+    "retained_factor_exponent": 2,
+    "w_denominator_on_d_minus_c_coefficients": [
+      0,
+      -10,
+      10
+    ],
+    "w_numerator_minus_c_denominator_on_d_minus_c_coefficients": [
+      0
+    ],
+    "w_numerator_on_d_minus_c_coefficients": [
+      0,
+      0,
+      -10,
+      10
+    ]
+  },
+  "h9": {
+    "component_partition": [
+      {
+        "factor": "2c-1",
+        "multiplicity": 3,
+        "terminal": "c=1/2 fixed-label collision"
+      },
+      {
+        "factor": "c-2",
+        "multiplicity": 3,
+        "terminal": "c=2 fixed-label collision"
+      },
+      {
+        "factor": "q2",
+        "multiplicity": 1,
+        "terminal": "cd=1 reciprocal-label collision"
+      },
+      {
+        "factor": "q6",
+        "multiplicity": 1,
+        "terminal": "d=c equal-label collision"
+      },
+      {
+        "factor": "h",
+        "multiplicity": 1,
+        "terminal": "full quotient J and I coefficient-one mismatch"
+      }
+    ],
+    "e0_terms_d_c_coefficient": [
+      [
+        4,
+        2,
+        4
+      ],
+      [
+        3,
+        2,
+        -120
+      ],
+      [
+        4,
+        1,
+        8
+      ],
+      [
+        2,
+        2,
+        193
+      ],
+      [
+        3,
+        1,
+        120
+      ],
+      [
+        4,
+        0,
+        4
+      ],
+      [
+        1,
+        2,
+        -84
+      ],
+      [
+        2,
+        1,
+        -262
+      ],
+      [
+        3,
+        0,
+        -84
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        1,
+        1,
+        120
+      ],
+      [
+        2,
+        0,
+        193
+      ],
+      [
+        0,
+        1,
+        8
+      ],
+      [
+        1,
+        0,
+        -120
+      ],
+      [
+        0,
+        0,
+        4
+      ]
+    ],
+    "e1_terms_d_c_coefficient": [
+      [
+        2,
+        4,
+        4
+      ],
+      [
+        1,
+        4,
+        8
+      ],
+      [
+        2,
+        3,
+        -120
+      ],
+      [
+        0,
+        4,
+        4
+      ],
+      [
+        1,
+        3,
+        120
+      ],
+      [
+        2,
+        2,
+        193
+      ],
+      [
+        0,
+        3,
+        -84
+      ],
+      [
+        1,
+        2,
+        -262
+      ],
+      [
+        2,
+        1,
+        -84
+      ],
+      [
+        0,
+        2,
+        193
+      ],
+      [
+        1,
+        1,
+        120
+      ],
+      [
+        2,
+        0,
+        4
+      ],
+      [
+        0,
+        1,
+        -120
+      ],
+      [
+        1,
+        0,
+        8
+      ],
+      [
+        0,
+        0,
+        4
+      ]
+    ],
+    "eliminant_degree": 18,
+    "eliminant_factors_low_to_high": {
+      "c_minus_2": [
+        -2,
+        1
+      ],
+      "h": [
+        100,
+        -504,
+        817,
+        -504,
+        100
+      ],
+      "q2": [
+        1,
+        -14,
+        1
+      ],
+      "q6": [
+        4,
+        -112,
+        317,
+        -430,
+        317,
+        -112,
+        4
+      ],
+      "two_c_minus_1": [
+        -1,
+        2
+      ]
+    },
+    "full_quotient": {
+      "I": {
+        "bezout_h": [
+          450536384,
+          1582407299,
+          134274715
+        ],
+        "bezout_mismatch": [
+          1149576513,
+          264697898,
+          1366419164,
+          1452206296
+        ],
+        "mismatch": [
+          1474202438,
+          1474392606,
+          1373289511,
+          1777964224
+        ]
+      },
+      "J": {
+        "bezout_h": [
+          1378984398,
+          161871344,
+          481856514
+        ],
+        "bezout_mismatch": [
+          1355798505,
+          577218842,
+          1092963338,
+          2108730127
+        ],
+        "mismatch": [
+          1265012543,
+          2079603121,
+          44715398,
+          1153095255
+        ]
+      },
+      "coefficient_index": 1,
+      "identities_tested": [
+        "Q_J proportional to K_5^2 chi_Omega",
+        "chi_Omega Q_I proportional to R_7^2"
+      ]
+    },
+    "groebner_basis_size": 3,
+    "h_d_relation_low_to_high": [
+      -1400,
+      7241,
+      -6664,
+      1600
+    ],
+    "h_factorization_mod_p": {
+      "factor_one": [
+        1210481498,
+        272520209,
+        1
+      ],
+      "factor_two": [
+        1516822740,
+        1602501447,
+        1
+      ],
+      "scalar": 100
+    }
+  },
+  "nonclaims": [
+    "no claim for the other seven fixed-moving assignments",
+    "no projective covariance claim for the complete source system",
+    "no claim for the separately derived positive root distribution (2,0)",
+    "no balanced positive (1,1) deletion",
+    "no moving-moving deletion",
+    "no near-aligned positive deletion",
+    "no exceptional unsaturated-orbit or biquadratic-source-cover deletion",
+    "no complete (1,1,2) row deletion",
+    "no owner, payment, K3 value, KoalaBear row bound, or Prize closure"
+  ],
+  "normalization": {
+    "J0": [
+      "2",
+      "1/2",
+      "b",
+      "1/b"
+    ],
+    "J1": [
+      "c",
+      "d"
+    ],
+    "deck": "tau(x)=1/x",
+    "fixed_moving_edges": [
+      [
+        "2",
+        "1/2"
+      ],
+      [
+        "2",
+        "b"
+      ]
+    ],
+    "root_distribution": [
+      0,
+      2
+    ]
+  },
+  "payload_sha256": "ec52873035a42fec4c3f19f429913197df872487c2a6137646dd81474c6fedf7",
+  "provenance": {
+    "predecessor": {
+      "certificate_blob_oid": "b585fac976632789f979773b445da5bb82438a4b",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-diagonal-112-near-negative-qslice-v1/kb_mca_v4_m2_diagonal_112_near_negative_qslice_v1.json",
+      "commit": "84d35eca57609057a7226f1054501f3885014874",
+      "note_blob_oid": "d8d52aa81ffdaa6736b7f5dc16c1b3c9c4bc2a97",
+      "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_diagonal_112_near_negative_qslice_v1.md",
+      "verifier_blob_oid": "0aeaa65ba8097ebeaf9390bf7fa39f58f8c40180",
+      "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_diagonal_112_near_negative_qslice_v1.py"
+    },
+    "source_facet_parent": {
+      "certificate_blob_oid": "844b7885620bf10fe19336f3acd7866cf1d9a204",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-u2-universal-source-facet-census-v1/kb_mca_v4_m2_u2_universal_source_facet_census_v1.json",
+      "commit": "c2edcfa5cbfb8a41e7dea04ae1b34325c90ed5dc",
+      "note_blob_oid": "cc315015998cf9ab0ecf2970c13f1e27f1f132d6",
+      "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_u2_universal_source_facet_census_v1.md",
+      "verifier_blob_oid": "e810f286d5b67d19660c3c382501a690e3e76fb0",
+      "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py"
+    }
+  },
+  "schema": "kb-mca-v4-m2-diagonal-112-fixed-positive-crossed-v1",
+  "scope": {
+    "assignment": "{{2,1/2},{2,b}}",
+    "assignment_quantifier": "SINGLE_NORMALIZED_REPRESENTATIVE",
+    "ledger_movement": 0,
+    "profile": "(a,b,c)=(1,1,2)",
+    "root_distribution": [
+      0,
+      2
+    ],
+    "source_branch": "saturated source-line",
+    "target": "normalized fixed-moving aligned-positive crossed representative"
+  },
+  "workboard": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture": null,
+    "atom_or_cell": "K3_M2_DIAGONAL_112_FIXED_POSITIVE_CROSSED_0_2_REPRESENTATIVE",
+    "impact": "ROUTE_CUT_LOCAL_ONLY",
+    "object": "MCA",
+    "row": "KoalaBear MCA at 2^-128",
+    "target_epsilon": "2^-128",
+    "workboard_item": "K3"
+  }
+}
