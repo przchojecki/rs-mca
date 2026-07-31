@@ -1,0 +1,57 @@
+{
+  "complete_source": {
+    "endpoint_poles": 6,
+    "outer_poles": "two distinct values outside {-2,2}, each of order five for G",
+    "row_divisibility": "H(alpha,x) divides B(x) for every source label alpha",
+    "saturation": "sum_alpha div(H(alpha,x))=2*div(B)",
+    "source_degree": 24,
+    "source_labels": 12,
+    "star_graph": "two disjoint K_(2,2,2)"
+  },
+  "conclusion": {
+    "next_gate": "fixed active endpoint pencil compatibility or chronology-valid recurrent owner",
+    "surviving_factor_degrees": [
+      3
+    ],
+    "terminal": "M2_R2_DIHEDRAL_DEGREE3_GEOMETRIC_REALIZATION_FENCE"
+  },
+  "exact_replay": {
+    "branch_values": [
+      -2,
+      2
+    ],
+    "pullback_and_D3_checks": 390,
+    "quartic_and_discriminant_checks": 46,
+    "t_grid_size": 13,
+    "x_grid_size": 15
+  },
+  "maps": {
+    "D3": "y^3-3*y",
+    "H": "2*(x^2+1)*t^2-2*x*(x^2+3)*t+(x^2+1)^2",
+    "coefficient_quartic": "9*(S^2*P^2-2*P^3-3*P^2+1)",
+    "h": "(t^2+2)/(1-t^2)",
+    "psi": "2/(x^2+1)",
+    "source_discriminant": "-4*(x^2-1)^2*(x^2+2)"
+  },
+  "nonclaims": [
+    "no fixed KoalaBear endpoint-record realization",
+    "no owner or payment",
+    "no m2 type, K3, KoalaBear, endpoint, or Prize close"
+  ],
+  "parent_degree6_exclusion": {
+    "certificate_blob_oid": "b6c821cdf89c0e82461ff53216e7a83ac8087ff5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-degree6-common-pole-exclusion-v1/kb_mca_v4_m2_r2_dihedral_degree6_common_pole_exclusion_v1.json",
+    "certificate_payload_sha256": "224fbbaf75c0aa830c7fab8e6024a51d3454d7ce3a6260184041983806f1e3fd",
+    "commit": "5bcb2b2bd0158912cb7319ef386ca2523db5436d",
+    "imported_terminal": "M2_R2_DIHEDRAL_DEGREE6_COMMON_POLE_EMPTY"
+  },
+  "payload_sha256": "a7f42b038261ea137b2246987dcc398bdddbf807ede6ff46f70429d5a44b2be5",
+  "schema": "kb-mca-v4-m2-r2-dihedral-degree3-geometric-realization-fence-v1",
+  "specialization": {
+    "a": -1,
+    "b": -1,
+    "d": -1,
+    "ell": "identity",
+    "source_genus": 0
+  }
+}

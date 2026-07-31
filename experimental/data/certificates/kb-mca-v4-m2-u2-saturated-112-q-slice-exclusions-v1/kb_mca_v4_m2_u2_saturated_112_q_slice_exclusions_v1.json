@@ -1,0 +1,355 @@
+{
+  "B_star": 274980728111395087,
+  "agreement": 1116048,
+  "aligned_positive_forced_ramified": {
+    "allocations": [
+      "same",
+      "swap",
+      "mixed"
+    ],
+    "deleted": true,
+    "deployed_prime_unit_ideals": 6,
+    "moving_trace_descent": "s=b+1/b",
+    "relative_scales": {
+      "fixed-moving": "3*(2b-1)*(p-1)*(p+2t+4)",
+      "moving-moving": "-3*(b-1)*(b+1)*(p-1)*(p+2t+4)*(5p+4t+5)"
+    },
+    "source_parameter": "w=0",
+    "templates": [
+      "fixed-moving",
+      "moving-moving"
+    ]
+  },
+  "conclusion": {
+    "aligned_forced_ramified_source_line_branch_deleted": true,
+    "aligned_positive_unramified_cells_remaining": 6,
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "near_aligned_source_line_branch_deleted_here": false,
+    "order_two_type_deleted": false,
+    "row_112_deleted": false,
+    "terminal": "M2_U2_SATURATED_112_NEAR_ALIGNED_Q_SLICE_AND_ALIGNED_FORCED_RAMIFIED_EXCLUSIONS"
+  },
+  "deep_replay": {
+    "case_count": 17,
+    "cases": {
+      "aligned-ramified-fixed-mixed": {
+        "arguments": [
+          "fixed-moving",
+          "mixed"
+        ],
+        "helper": "aligned_ramified",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=c88354fa6c3284c4ffe460eee511f8a0d6b71809f02dfac55a99ca6234a204ff"
+        ]
+      },
+      "aligned-ramified-fixed-same": {
+        "arguments": [
+          "fixed-moving",
+          "same"
+        ],
+        "helper": "aligned_ramified",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=48e8be2962036927d72c8dbc299b449e94b6902ce22f4aa97e4c5343779bcace"
+        ]
+      },
+      "aligned-ramified-fixed-swap": {
+        "arguments": [
+          "fixed-moving",
+          "swap"
+        ],
+        "helper": "aligned_ramified",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=ea4a29b822314685d3eb91337372b2c19f8d7065bc8f4364f13361abb1c92341"
+        ]
+      },
+      "aligned-ramified-moving-mixed": {
+        "arguments": [
+          "moving-moving",
+          "mixed"
+        ],
+        "helper": "aligned_ramified",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=06b3195101008998876f26e6468ad830b3e81bdc51981b0533ffa626fd279330"
+        ]
+      },
+      "aligned-ramified-moving-same": {
+        "arguments": [
+          "moving-moving",
+          "same"
+        ],
+        "helper": "aligned_ramified",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=0ab646a7f71d52ac6ad157b50635d36f6541802f207420b73713b5d23e8d402b"
+        ]
+      },
+      "aligned-ramified-moving-swap": {
+        "arguments": [
+          "moving-moving",
+          "swap"
+        ],
+        "helper": "aligned_ramified",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=0af2e99f4c89721fc9baeec36da3ffc8ca0ef17fe4f9bf6e542602a76b5f1e58"
+        ]
+      },
+      "near-negative-a": {
+        "arguments": [
+          "fixed-moving",
+          "--xi",
+          "a",
+          "--eliminate",
+          "--fibers",
+          "--modular-saturate"
+        ],
+        "helper": "near_negative",
+        "required_output_fragments": [
+          "projection=(c + 2)**4*(13*c - 14)**4",
+          "fiber=-2 w_gcd_degree=2 w_gcd=w**2 + 2*w + 1",
+          "fiber=14/13 w_gcd_degree=2 w_gcd=w**2 - 2*w + 1",
+          "xi=a modular_forbidden_saturation_unit=True"
+        ]
+      },
+      "near-negative-other": {
+        "arguments": [
+          "fixed-moving",
+          "--xi",
+          "other",
+          "--eliminate",
+          "--fibers",
+          "--modular-saturate"
+        ],
+        "helper": "near_negative",
+        "required_output_fragments": [
+          "projection=d**2*(d - 1)**6*(d + 1)**6*(d + 2)**4*",
+          "(d**3 - 6*d**2 + 3*d - 2)**4",
+          "fiber=0 w_gcd_degree=2 w_gcd=w**2",
+          "d**3 - 6*d**2 + 3*d - 2 w_gcd_degree=2 w_gcd=w**2 + 2*w + 1",
+          "xi=other modular_forbidden_saturation_unit=True"
+        ]
+      },
+      "near-negative-tau-a": {
+        "arguments": [
+          "fixed-moving",
+          "--xi",
+          "tau-a",
+          "--eliminate",
+          "--fibers",
+          "--modular-saturate"
+        ],
+        "helper": "near_negative",
+        "required_output_fragments": [
+          "projection=(2*c + 1)**4*(14*c - 13)**4",
+          "fiber=-1/2 w_gcd_degree=2 w_gcd=w**2 + 2*w + 1",
+          "fiber=13/14 w_gcd_degree=2 w_gcd=w**2 - 2*w + 1",
+          "xi=tau-a modular_forbidden_saturation_unit=True"
+        ]
+      },
+      "near-negative-template": {
+        "arguments": [
+          "fixed-moving",
+          "--compare-templates"
+        ],
+        "helper": "near_negative",
+        "required_output_fragments": [
+          "NEAR_NEGATIVE_TEMPLATE_EQUIVALENCE_PASS",
+          "same_z=true U_opposite=true V_equal=true G_equal=true"
+        ]
+      },
+      "near-projective-fixed-a": {
+        "arguments": [
+          "fixed-moving",
+          "--xi",
+          "a"
+        ],
+        "helper": "near_projective",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=70f4c010cd06ee27cb03658b4d58758b556f30760f178c16e035a6145e2fc442"
+        ]
+      },
+      "near-projective-fixed-other": {
+        "arguments": [
+          "fixed-moving",
+          "--xi",
+          "other"
+        ],
+        "helper": "near_projective",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=7409bb53fad5683912a596423d2ff8ff6ff5cc0619703610a363047fc3cc51a2"
+        ]
+      },
+      "near-projective-fixed-tau-a": {
+        "arguments": [
+          "fixed-moving",
+          "--xi",
+          "tau-a"
+        ],
+        "helper": "near_projective",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=6b5f573cdb40bb1143ee598f4bcd7c024b7228065ab3f489b535ee67af1eaa3e"
+        ]
+      },
+      "near-projective-moving-a": {
+        "arguments": [
+          "moving-moving",
+          "--xi",
+          "a"
+        ],
+        "helper": "near_projective",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=1411f536466ee16b420ff956240e8254721749e0798d75b8091c98050cdc57ba"
+        ]
+      },
+      "near-projective-moving-other-minus": {
+        "arguments": [
+          "moving-moving",
+          "--xi",
+          "other",
+          "--sign",
+          "-1"
+        ],
+        "helper": "near_projective",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=e0817f557782249d5af979161b32d577cd04394ba351e47e2754e9f727af46d1"
+        ]
+      },
+      "near-projective-moving-other-plus": {
+        "arguments": [
+          "moving-moving",
+          "--xi",
+          "other",
+          "--sign",
+          "1"
+        ],
+        "helper": "near_projective",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=2e20bddd6b75d705498f04513efea4267667f974310149a26fa61f566f68e1ef"
+        ]
+      },
+      "near-projective-moving-tau-a": {
+        "arguments": [
+          "moving-moving",
+          "--xi",
+          "tau-a"
+        ],
+        "helper": "near_projective",
+        "required_output_fragments": [
+          "basis=unit",
+          "digest=fb5f5f73633bc2aa9efd82d8bfa79d076157c8ea02b29009e4eaef206a07f255"
+        ]
+      }
+    },
+    "serial_execution_required": true,
+    "wall_time_cap_seconds_per_case": 60
+  },
+  "deployed_base_characteristic": 2130706433,
+  "helper_sha256": {
+    "aligned_ramified": "2b9ea459bff2d46a8a04404e54d1d585f14a69f59237f4383b5951f5d5c3d599",
+    "near_negative": "958ca2c6e53380ead0b8f90599f500417ef2e842c7ce999497d3a2da11a509a9",
+    "near_projective": "d1f36c8451a3407adc4c58436c6a67f8c25777da47752be4ea60833bb1b570a1",
+    "negative_core": "412ccf180a4de9b39bb33330397c72e79994f5c9f00e2e6f3df4d5e377c89a9c",
+    "positive_core": "242d76eb58a0af2cbffa1cedfbcfd116b6b3a7912d9db64e1ec022ff59dd4a13"
+  },
+  "near_aligned_negative": {
+    "admissible_residue_fibers": 0,
+    "constant_gate": "(xi*d)^2=1",
+    "deleted": true,
+    "deployed_prime_saturations": 3,
+    "forced_ramification_w_zero_included": true,
+    "minus_branch_projections": {
+      "xi=1/2": "(2c+1)^4*(14c-13)^4",
+      "xi=2": "(c+2)^4*(13c-14)^4",
+      "xi=b": "d^2*(d-1)^6*(d+1)^6*(d+2)^4*(d^3-6d^2+3d-2)^4"
+    },
+    "moving_C_locus_covered_by_inversion": true,
+    "plus_branch": "label collision d=tau(xi)",
+    "relative_xi_orbits": [
+      "2",
+      "1/2",
+      "b"
+    ],
+    "templates_covered": [
+      "fixed-moving",
+      "moving-moving"
+    ]
+  },
+  "near_aligned_positive_projective_boundary": {
+    "deleted": true,
+    "deployed_prime_unit_ideals": 7,
+    "fixed_moving_unit_ideals": 3,
+    "homogeneous_q": "Y*(T-dY)",
+    "internal_label": "(d-2)/(2-4d)",
+    "moving_fixed_xi_trace_unit_ideals": 2,
+    "moving_other_xi_sign_unit_ideals": 2,
+    "odd_vector": [
+      "-d",
+      "1+W",
+      "-dW"
+    ],
+    "oriented_endpoint": "eta=infinity",
+    "projective_q_slice": "G(d,W)*coeff_T^4(G(T,W))",
+    "source_parameter": "w=tau(eta)=0"
+  },
+  "nonclaims": [
+    "no sufficiency claim for the necessary q-slice identity",
+    "no banking here of the separately proved 18-cell near-positive affine ledger",
+    "no complete near-aligned source-line deletion from this packet alone",
+    "no deletion of the six aligned positive unramified cells",
+    "no deletion of the full saturated (1,1,2) orbit row",
+    "no later packet, source-row, owner, or payment assembly",
+    "no order-two type, K3, KoalaBear row, or Prize close"
+  ],
+  "object": "MCA",
+  "parent": {
+    "certificate_blob_oid": "844b7885620bf10fe19336f3acd7866cf1d9a204",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-u2-universal-source-facet-census-v1/kb_mca_v4_m2_u2_universal_source_facet_census_v1.json",
+    "certificate_payload_sha256": "8f768cfded349dc3dd40cf6214ffe980c69ff18ae2d8c209e63b4307767429d2",
+    "commit": "c2edcfa5cbfb8a41e7dea04ae1b34325c90ed5dc",
+    "note_blob_oid": "cc315015998cf9ab0ecf2970c13f1e27f1f132d6",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_u2_universal_source_facet_census_v1.md",
+    "terminal": "M2_U2_SOURCE_FACET_COLOR_COORDINATE_QUOTIENT_VIETA_TRANSPOSE_DIAGONAL_MIXING_C6_QUOTIENT_C2_CAPACITY_C2_SOURCE_LINEAR_C2_202_ROW_DEFECT_C2_112_SATURATED_DEFECT_C2_112_SOURCE_QUOTIENT_C2_112_ODD_INCIDENCE_C2_112_RAMIFIED_REPAIR_C2_112_FINITE_RECONSTRUCTION_C2_112_Q_SLICE_NEGATIVE_FACTOR_AND_ALIGNED_NEGATIVE_EXCLUSION_INTERFACES",
+    "verifier_blob_oid": "e810f286d5b67d19660c3c382501a690e3e76fb0",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py"
+  },
+  "payload_sha256": "42d7250cac42a12ea1f8ce62d1db6a3968061499a8035142f198ed4527b54a2e",
+  "provenance": {
+    "prize_aligned_positive_ramified_commit": "e9baa0de",
+    "prize_near_negative_commit": "08a2e4de",
+    "prize_near_positive_projective_commit": "7d2d7aca",
+    "upstream_parent_pr": 1132
+  },
+  "row": "KoalaBear MCA at 2^-128",
+  "schema": "kb-mca-v4-m2-u2-saturated-112-q-slice-exclusions-v1",
+  "synthesis": {
+    "aligned_forced_ramified_source_line_branch_deleted": true,
+    "aligned_negative_branch_deleted_by_parent": true,
+    "aligned_positive_forced_ramified_deleted_here": true,
+    "near_aligned_source_line_branch_deleted_here": false,
+    "near_negative_branch_deleted_here": true,
+    "near_positive_affine_cells_banked_here": 0,
+    "near_positive_affine_cells_proved_in_prize_not_imported": 18,
+    "near_positive_projective_cells_deleted_here": 7,
+    "remaining_aligned_positive_unramified_cells": [
+      "fixed-moving/same/w!=0",
+      "fixed-moving/swap/w!=0",
+      "fixed-moving/mixed/w!=0",
+      "moving-moving/same/w!=0",
+      "moving-moving/swap/w!=0",
+      "moving-moving/mixed/w!=0"
+    ]
+  },
+  "target_epsilon": "2^-128",
+  "workboard_item": "K3"
+}

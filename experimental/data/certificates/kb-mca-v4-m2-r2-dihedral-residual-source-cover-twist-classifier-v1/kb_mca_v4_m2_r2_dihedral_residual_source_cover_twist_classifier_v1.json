@@ -1,0 +1,182 @@
+{
+  "conclusion": {
+    "next_gate": "common degree-30 function plus six-pole/source-locator realization",
+    "profiles_deleted": [],
+    "surviving_factor_degrees": [
+      3,
+      6
+    ],
+    "terminal": "M2_R2_DIHEDRAL_RESIDUAL_SOURCE_COVER_TWIST_CLASSIFIER"
+  },
+  "exact_replays": [
+    {
+      "Q_at_2_basis_1_d": [
+        "10",
+        "6"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "10",
+        "-6"
+      ],
+      "Q_discriminant": "-15",
+      "a": -1,
+      "b": "-3",
+      "d_square": 1
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "2",
+        "2"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "2",
+        "-2"
+      ],
+      "Q_discriminant": "9",
+      "a": -1,
+      "b": "-1",
+      "d_square": 1
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "1",
+        "0"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "1",
+        "0"
+      ],
+      "Q_discriminant": "12",
+      "a": -1,
+      "b": "0",
+      "d_square": 1
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "2",
+        "-2"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "2",
+        "2"
+      ],
+      "Q_discriminant": "9",
+      "a": -1,
+      "b": "1",
+      "d_square": 1
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "10",
+        "-6"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "10",
+        "6"
+      ],
+      "Q_discriminant": "-15",
+      "a": -1,
+      "b": "3",
+      "d_square": 1
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "12",
+        "6"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "12",
+        "-6"
+      ],
+      "Q_discriminant": "-5",
+      "a": 1,
+      "b": "-3",
+      "d_square": 3
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "4",
+        "2"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "4",
+        "-2"
+      ],
+      "Q_discriminant": "3",
+      "a": 1,
+      "b": "-1",
+      "d_square": 3
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "3",
+        "0"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "3",
+        "0"
+      ],
+      "Q_discriminant": "4",
+      "a": 1,
+      "b": "0",
+      "d_square": 3
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "4",
+        "-2"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "4",
+        "2"
+      ],
+      "Q_discriminant": "3",
+      "a": 1,
+      "b": "1",
+      "d_square": 3
+    },
+    {
+      "Q_at_2_basis_1_d": [
+        "12",
+        "-6"
+      ],
+      "Q_at_minus_2_basis_1_d": [
+        "12",
+        "6"
+      ],
+      "Q_discriminant": "-5",
+      "a": 1,
+      "b": "3",
+      "d_square": 3
+    }
+  ],
+  "genus_classifier": {
+    "genus_one": "b^2!=a+2",
+    "genus_zero": "b^2=a+2",
+    "n3_genus_zero": "b^2=1",
+    "n6_genus_zero": "b^2=3"
+  },
+  "nonclaims": [
+    "no existence in either genus regime",
+    "no n=3 or n=6 deletion or m2 payment",
+    "no K3, KoalaBear, endpoint, or Prize close"
+  ],
+  "parent_singularity_atlas": {
+    "certificate_blob_oid": "1355c5acace3f031194abf67b227d657132c12b7",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-residual-quartic-singularity-atlas-v1/kb_mca_v4_m2_r2_dihedral_residual_quartic_singularity_atlas_v1.json",
+    "certificate_payload_sha256": "e402c17bf8f4757f5b534f3b1a9da5faebafe6ac60956a4849f27f66202b96de",
+    "commit": "4cdfa41a1de1360155e3d350a5fe3ec99e9fe94b",
+    "imported_terminal": "M2_R2_DIHEDRAL_RESIDUAL_QUARTIC_SINGULARITY_ATLAS"
+  },
+  "payload_sha256": "ec4c0ff7938e4176ba8d5f2a889201b5d683635538a28bed90d86240d4e67313",
+  "schema": "kb-mca-v4-m2-r2-dihedral-residual-source-cover-twist-classifier-v1",
+  "square_class": {
+    "Q_at_2": "(b-d)^2",
+    "Q_at_minus_2": "(b+d)^2",
+    "Q_b": "z^2-b*d*z+b^2+d^2-4",
+    "coefficient_cover": "P^2=(Z0-d)^2/Q_b(Z0)",
+    "d_relation": "d^2=a+2",
+    "endpoint_cover": "W^2=m(ell(Z0))",
+    "forced_preimages": "ell^-1({2,b})=roots(Q_b)"
+  }
+}
