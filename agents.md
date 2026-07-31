@@ -406,6 +406,20 @@ valid audit theorem: it shows independently why one admissible abstract
 packet is not an endpoint factor.  Universal gain nonflatness is no longer
 required for the deleted full-V4 type.  No quotient payment is booked.
 
+The exact outer-frontier custody packet now synthesizes the committed
+per-record progression `26 -> 22 -> 18 -> 12 -> 8 -> 3 -> 2`.  Its only
+residual types are `(m,r,delta)=(2,4,2),(2,8,1)`.  A cap of 68 source-map
+classes follows only conditionally, after both types close and four open
+semantic gates hold: terminal-to-active-cell mapping, a complete actual-record
+selector, cardinality-preserving strict descent or exact reselection, and
+full same-record owner descent.  The deployed-carrier dihedral control has
+two complete reduced quadratic fibres
+`q_1=x+a/x`, `q_2=x+a^3/x`, while their common invariant has the complete
+reduced fibre `u^(-1)(0)=D` of degree `2^21`; it proves that recurrent
+carrier-preserving quadratic folds need not give bounded-degree strict
+progress.  It constructs no actual received-line record.  Global K3 and the
+KoalaBear row remain open, and ledger movement is zero.
+
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `2` types at inner degree `m=2`.  For every
 finite `(m,r,delta)` row emitted by the exact

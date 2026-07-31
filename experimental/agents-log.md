@@ -4296,3 +4296,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Attack the order-two stabilizer type
   `(r,delta)=(4,2)`; keep the trivial type `(8,1)` behind it.  K3, the
   KoalaBear row, every slope owner, and every payment remain open.
+
+### 2026-07-30 - KoalaBear K3 outer-frontier and dihedral route cut
+
+- **Agent/model:** Codex, with independent fresh proof audit.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_k3_outer_frontier_dihedral_route_cut_v1.md`,
+  its fail-closed JSON certificate and README,
+  `experimental/scripts/verify_kb_mca_v4_k3_outer_frontier_dihedral_route_cut_v1.{py,sage,wl}`,
+  the repaired tangent-adapter source pins, `agents.md`, and this log.
+- **Status:** PROVED exact scoped route cut / fresh audit NO ISSUE / GLOBAL
+  K3 AND KOALABEAR ROW OPEN / ZERO LEDGER MOVEMENT.
+- **What is being added:** A payload-bound synthesis of the committed
+  per-record frontier `26 -> 22 -> 18 -> 12 -> 8 -> 3 -> 2`, leaving exactly
+  `(m,r,delta)=(2,4,2),(2,8,1)`.  The any-69 implication remains conditional
+  on closing both types and four printed semantic adapter gates.  The
+  deployed-carrier control proves that `q_1=x+a/x` and `q_2=x+a^3/x` have
+  complete reduced two-point fibres on `D`, while their common invariant has
+  complete reduced zero fibre `u^(-1)(0)=D` of degree `2^21`.
+- **How it is useful:** It records the exact remaining geometric frontier and
+  rigorously cuts the inference that recurrent carrier-preserving quadratic
+  folds automatically yield bounded-degree strict progress.
+- **Nonclaim and next step:** No actual received-line record, active-cell
+  semantic adapter, cap-68 theorem, owner, slope payment, or row closure is
+  supplied.  Close the two residual types together with the four same-record
+  semantic gates before using the conditional cap in the live ledger.
