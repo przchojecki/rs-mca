@@ -1,0 +1,113 @@
+{
+  "conclusion": {
+    "factor_degree_two_deleted": true,
+    "full_v4_type_deleted": false,
+    "surviving_factor_degrees": [
+      3,
+      6
+    ],
+    "terminal": "M2_R2_DIHEDRAL_DEGREE2_EMPTY"
+  },
+  "d2_incidence_replay": {
+    "group": "D2=V4",
+    "incidence": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "incidence_graph": "K2,2",
+    "regular_orbit_size": 4,
+    "y_quotient_size": 2,
+    "z_quotient_size": 2
+  },
+  "defect_floor_replay": {
+    "available_cross_vertices": 4,
+    "minimizers": [
+      [
+        2,
+        2,
+        2,
+        2
+      ]
+    ],
+    "minimum_defect": 4,
+    "profile_count_checked": 165,
+    "proved_defect_budget": 3,
+    "source_units": 8
+  },
+  "input": {
+    "component_degree": 4,
+    "dihedral_factor_degree": 2,
+    "inner_degree": 2,
+    "outer_generic_order_five_poles": 3,
+    "outer_subdegree": 2
+  },
+  "nonclaims": [
+    "no deletion of factor degree 3 or 6",
+    "no deletion of either other inner-degree-two type",
+    "no deletion or payment of the full-V4 inner-degree-two type",
+    "no coordinate-index identity for complete source divisors",
+    "no carrier, received-data, explaining-polynomial, or slope owner",
+    "no u2, K3, KoalaBear row, endpoint, or prize closure",
+    "no ledger movement"
+  ],
+  "parent_degree5_exclusion": {
+    "certificate_blob_oid": "ba27da451743fd198efd4b335a0983ed030acbb5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-degree5-source-star-exclusion-v1/kb_mca_v4_m2_r2_dihedral_degree5_source_star_exclusion_v1.json",
+    "certificate_payload_sha256": "1b711c1cde8f0652ce5e713513955ecdc1789e9fd62c361bca00ae05c9b4c287",
+    "commit": "fe2a549c8de1de34e5ea331ff4c410145207e381",
+    "imported_terminal": "M2_R2_DIHEDRAL_DEGREE5_EMPTY"
+  },
+  "parent_m2_router": {
+    "certificate_blob_oid": "50d17f218bfa7d3acb211c946db0c025b9a98944",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-v4-outer-recurrence-router-v1/kb_mca_v4_m2_v4_outer_recurrence_router_v1.json",
+    "certificate_payload_sha256": "fe8141810501fd7b3762a378210609177185972ec706bf9ac943fa398bd82d39",
+    "commit": "d4063dcd9c56835c3916ef792e263ea720a4d397",
+    "imported_terminal": "M2_V4_STABILIZERS_OUTER_RECURRENCE_AND_SOURCE_PARITY"
+  },
+  "parent_quartic_defect": {
+    "certificate_blob_oid": "7e8a79db97dc56125f25d9a190c3b0c3adca158a",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-primitive-subdegree4-route-cut-v1/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.json",
+    "certificate_payload_sha256": "21a8ca7800745c2c94876d48473801e84f4d9c8f9e6ce5b53e8b8bd66b699962",
+    "commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+    "imported_terminal": "ROUTED_TO_GEOMETRIC_FUNCTIONAL_DECOMPOSITION_ADAPTER"
+  },
+  "parent_source_cover": {
+    "certificate_blob_oid": "83e82b826ddfa2f5377e99f439be5f00900507c6",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-full-v4-source-genus-drop-v1/kb_mca_v4_m2_r2_full_v4_source_genus_drop_v1.json",
+    "certificate_payload_sha256": "9a2ea090568600356f27f3174aee6d08414217b26dbb8f7922931c64a151122f",
+    "commit": "f6bc4a2b2a6a5b3bba98f24a520c67ca3373dbbb",
+    "imported_terminal": "M2_R2_SOURCE_GENUS_ZERO_OR_ONE"
+  },
+  "payload_sha256": "c3771a0386e955b87f6ec9f4256d9569fb5e9459036653f790691851be0f2a89",
+  "schema": "kb-mca-v4-m2-r2-dihedral-degree2-source-star-exclusion-v1",
+  "source_cross_edge": {
+    "available_cross_vertices": 4,
+    "endpoint_lifts_per_z": 2,
+    "normalized_W_fiber_size": 4,
+    "preserving_lift": "(T,X)->(tau(T),b(X))",
+    "roots_per_source_sheet_per_y_value": 1,
+    "roots_per_y_value": 2,
+    "source_units_per_endpoint_lift": 2,
+    "z_values_per_generic_pole": 2
+  },
+  "statement": {
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "terminal": "M2_R2_DIHEDRAL_DEGREE2_EMPTY",
+    "workboard_item": "K3"
+  }
+}
