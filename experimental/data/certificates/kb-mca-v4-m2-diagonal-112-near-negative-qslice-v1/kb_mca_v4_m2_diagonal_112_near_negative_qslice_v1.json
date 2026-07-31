@@ -1,0 +1,207 @@
+{
+  "conclusion": {
+    "aligned_positive_deleted": false,
+    "near_negative_deleted": true,
+    "near_positive_deleted": false,
+    "row_112_deleted": false,
+    "terminal": "DELETED_BY_FORBIDDEN_XI_TAU_ELL_COLLISION"
+  },
+  "field_context": {
+    "challenge_field": "GF(2130706433^6)",
+    "characteristic": 2130706433,
+    "descent": "cleared-denominator integer identities reduce modulo the deployed odd prime",
+    "small_characteristics_excluded": [
+      2,
+      3,
+      5
+    ],
+    "symbolic_field": "QQ(b,c,d)"
+  },
+  "label_map": {
+    "I": [
+      "tau(eta)",
+      "tau(ell)",
+      "tau(xi)",
+      "xi",
+      "z",
+      "tau(z)"
+    ],
+    "J0": [
+      "2",
+      "1/2",
+      "b",
+      "1/b"
+    ],
+    "J1": [
+      "eta=c",
+      "ell=d"
+    ],
+    "K": [
+      "tau(eta)",
+      "tau(ell)",
+      "tau(xi)",
+      "z",
+      "tau(z)"
+    ],
+    "forced_value": "w=tau(eta)=1/c",
+    "target_roots": [
+      "tau(ell)=1/d",
+      "tau(xi)"
+    ]
+  },
+  "near_negative": {
+    "default_minor_identity": "det(0,1,2,3)=3*(d-2)*(2d-1)*(c-2)*(c+d)*(2c-1)*(c-1)^4*(c+1)^4*(cd-1)*A/(c^4*Lambda^4)",
+    "difference_identity": "R(W)-((W-1/d)(W-d))^2=2*Phi/(d*Lambda^2)*(W+W^3)-Phi*Psi/(d^2*Lambda^4)*W^2",
+    "evaluation_identity": "R(1/d)=Phi^2/(d^4*Lambda^4)",
+    "inherited_chart_units": "all incidence and reconstruction denominators declared nonzero in parent equations (9.25)-(9.26)",
+    "lambda_parent_relation": "Lambda=c*E after w=1/c; parent chart has c*E nonzero",
+    "leading_coefficient_identity": "lc=(c-1)^2*(c+1)^-2*(d-1)^2*(d+1)^2*(cd-1)^4*A^-4*Lambda^4",
+    "loci": [
+      "fixed-moving:B",
+      "moving-moving:B",
+      "moving-moving:C"
+    ],
+    "nonzero_denominators": {
+      "common": [
+        "d",
+        "Lambda"
+      ],
+      "fixed-moving:B": [
+        "P"
+      ],
+      "moving-moving:B": [
+        "P"
+      ],
+      "moving-moving:C": [
+        "Q"
+      ]
+    },
+    "polynomials": {
+      "Lambda_sha256": "e0321c19b9cf82b6f56a2a1f9905dcb96e506520be6621de01a33d66f3b00c8a",
+      "Phi_sha256": "d2b294670e7f4d0afe675c1f00f4e88c16d5f147ba061c63be46fe1b0fd680a0",
+      "Psi_sha256": "f24e8c678524b56faef5a27aab257da9bec19d5cf9c75b26c1dc3f7a70b57a6f"
+    },
+    "residual_when_phi_zero": "((W-tau(ell))(W-ell))^2",
+    "terminal_implication": "target equality forces tau(xi)=ell, hence xi=tau(ell) in K, contradicting xi in I\\K"
+  },
+  "nonclaims": [
+    "The near-aligned positive sign is not deleted.",
+    "The aligned positive sign is not deleted.",
+    "The full diagonal (1,1,2) row is not deleted.",
+    "No owner, payment, K3 value, or KoalaBear row bound is booked.",
+    "The GF(43) positive packet is a q-slice control, not a deployed-field component."
+  ],
+  "parent": {
+    "certificate_blob_oid": "844b7885620bf10fe19336f3acd7866cf1d9a204",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-u2-universal-source-facet-census-v1/kb_mca_v4_m2_u2_universal_source_facet_census_v1.json",
+    "commit": "c2edcfa5cbfb8a41e7dea04ae1b34325c90ed5dc",
+    "note_blob_oid": "cc315015998cf9ab0ecf2970c13f1e27f1f132d6",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_u2_universal_source_facet_census_v1.md",
+    "verifier_blob_oid": "e810f286d5b67d19660c3c382501a690e3e76fb0",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py"
+  },
+  "payload_sha256": "24240b1c384417d1bae255b5887a0b1751b5d4ab398d85ed90c43c0a0f2e6f1c",
+  "positive_qslice_control": {
+    "I": [
+      23,
+      15,
+      38,
+      13,
+      9,
+      24
+    ],
+    "J": [
+      2,
+      22,
+      28,
+      20,
+      17,
+      10
+    ],
+    "K": [
+      23,
+      15,
+      38,
+      13,
+      9
+    ],
+    "U_coefficients_by_T_degree": [
+      [
+        18,
+        30,
+        40
+      ],
+      [
+        34,
+        9,
+        34
+      ],
+      [
+        40,
+        30,
+        18
+      ]
+    ],
+    "V_coefficients_by_T_degree": [
+      [
+        3,
+        34
+      ],
+      [
+        10,
+        10
+      ],
+      [
+        34,
+        3
+      ]
+    ],
+    "b": 28,
+    "c": 17,
+    "d": 10,
+    "field_prime": 43,
+    "full_quotient_even_pullback": false,
+    "labels": [
+      2,
+      22,
+      28,
+      20,
+      17,
+      10,
+      23,
+      15,
+      38,
+      13,
+      9,
+      24
+    ],
+    "q_c": [
+      36,
+      35,
+      10
+    ],
+    "q_d": [
+      9,
+      35,
+      40
+    ],
+    "s_tau_xi": 9,
+    "t_tau_ell": 13,
+    "template": "fixed-moving",
+    "w": 38,
+    "xi": 24,
+    "z": 23
+  },
+  "replays": {
+    "sage_payload_sha256": "b084042da8e91a531b7fc474f1c93f7a1467f4f98d9ec85b717f985754bf7cda",
+    "sage_script_sha256": "e0e2711406957bb9d2ee955c9862b46a13d4902bee97d33b85d6aec7df33fcc4",
+    "wolfram_script_sha256": "594e3b80388cdfca847963e736297c2889ba09f55d074984ee82e030912fec5c"
+  },
+  "schema": "kb-mca-v4-m2-diagonal-112-near-negative-qslice-v1",
+  "scope": {
+    "ledger_movement": 0,
+    "profile": "(a,b,c)=(1,1,2)",
+    "source_branch": "source-line",
+    "target": "near-aligned negative q-slice"
+  }
+}

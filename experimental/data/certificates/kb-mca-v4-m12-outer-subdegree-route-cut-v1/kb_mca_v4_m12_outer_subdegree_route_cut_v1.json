@@ -1,0 +1,122 @@
+{
+  "schema": "kb-mca-v4-m12-outer-subdegree-route-cut-v1",
+  "payload_sha256": "4349f6ca07b991fe78b90c66feb1fdcb1df582ac19d34c50d354c3c91c9e6b63",
+  "statement": {
+    "workboard_item": "K3",
+    "row": "KoalaBear MCA at 2^-128",
+    "object": "MCA",
+    "agreement": 1116048,
+    "B_star": "274980728111395087",
+    "deployed_characteristic": 2130706433,
+    "challenge_field_degree": 6,
+    "endpoint_degree": 60,
+    "component_u": 2,
+    "inner_degree": 12,
+    "outer_degree": 5,
+    "status": "PROVED_M12_OUTER_SUBDEGREE_ROUTE_CUT_ROW_OPEN",
+    "ledger_movement": 0
+  },
+  "parent_stack": {
+    "head_commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json",
+    "certificate_blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477",
+    "certificate_payload_sha256": "6d4bc83e40e491f02f7d265b021628ffb7d52b1978c0655f83e5a9d3e0a9f4bb",
+    "imported_terminal": "TRANSVERSE_OUTER_CORRESPONDENCE_UNPAID",
+    "imported_transverse_type_count": 26
+  },
+  "degree_twelve_outer_profile": {
+    "outer_defined_over": "K=F_(p^6)",
+    "outer_separable": true,
+    "pole_orders": [5],
+    "unique_pole_K_rational": true,
+    "zero_orders": [1, 1, 1, 1, 1],
+    "all_zeros_distinct_K_rational": true,
+    "initial_rows": [
+      {"r": 1, "delta": 48},
+      {"r": 2, "delta": 24},
+      {"r": 3, "delta": 16},
+      {"r": 4, "delta": 12}
+    ]
+  },
+  "geometric_component_gate": {
+    "component": "C=closure((h x h)(Gamma))",
+    "geometrically_irreducible": true,
+    "non_diagonal": true,
+    "bidegree": "(r,r)",
+    "degree_identity": "delta*r=4*m",
+    "cover_degree_upper_bound": "delta<=m^2",
+    "outer_component_interpretation": "point-stabilizer suborbit of geometric monodromy"
+  },
+  "primitive_degree_five_catalogue": [
+    {"group": "C5", "subdegrees": [1, 1, 1, 1, 1]},
+    {"group": "D10", "subdegrees": [1, 2, 2]},
+    {"group": "AGL(1,5)", "subdegrees": [1, 4]},
+    {"group": "A5", "subdegrees": [1, 4]},
+    {"group": "S5", "subdegrees": [1, 4]}
+  ],
+  "subdegree_three_exclusion": {
+    "candidate_r": 3,
+    "candidate_delta": 16,
+    "outer_prime_degree_implies_geometric_indecomposability": true,
+    "primitive_catalogue_complete": true,
+    "catalogue_has_subdegree_three": false,
+    "terminal": "M12_R3_PRIMITIVE_SUBDEGREE_ABSENT"
+  },
+  "subdegree_one_exclusion": {
+    "candidate_r": 1,
+    "candidate_delta": 48,
+    "component_is_graph_of_nonidentity_mobius_map": true,
+    "nontrivial_deck_group_order": 5,
+    "cover_is_tame_cyclic_degree_five": true,
+    "total_branch_point_count": 2,
+    "second_total_branch_point_K_rational": true,
+    "K_rational_normal_form": "a*x^5+b with a nonzero",
+    "p_mod_5": 3,
+    "q_mod_5": 4,
+    "gcd_5_q_minus_1": 1,
+    "fifth_power_permutates_K": true,
+    "maximum_distinct_K_rational_zeros_in_normal_form": 1,
+    "required_distinct_simple_K_rational_zeros": 5,
+    "terminal": "M12_R1_CYCLIC_FIFTH_POWER_FIBER_CONTRADICTION"
+  },
+  "surviving_degree_twelve_rows": [
+    {"r": 2, "delta": 24},
+    {"r": 4, "delta": 12}
+  ],
+  "source_bindings": [
+    {
+      "binding_id": "KB_M12_OUTER_CUT::parent_certificate",
+      "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+      "path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json",
+      "blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477",
+      "role": "degree-twelve outer profile, transverse degree ledger, and primitive degree-five catalogue"
+    },
+    {
+      "binding_id": "KB_M12_OUTER_CUT::parent_note",
+      "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.md",
+      "blob_oid": "b4a69440c518f22189ec2060cb3a3a500a23e724",
+      "role": "geometric component interpretation and challenge-field descent"
+    }
+  ],
+  "conclusion": {
+    "deleted_degree_twelve_rows": [
+      {"r": 1, "delta": 48},
+      {"r": 3, "delta": 16}
+    ],
+    "remaining_degree_twelve_type_count": 2,
+    "remaining_global_transverse_type_count": 24,
+    "terminal": "M12_TRANSVERSE_TYPES_R2_R4_UNPAID",
+    "m12_closed": false,
+    "u2_closed": false,
+    "K3_closed": false,
+    "row_closed": false
+  },
+  "nonclaims": [
+    "Neither surviving inner-degree-twelve type is deleted or paid.",
+    "No endpoint-record census is claimed.",
+    "No parameter-to-carrier, received-data, explaining-polynomial, or slope bridge is proved.",
+    "No inner-degree-twelve, u=2, K3, or KoalaBear row closure is claimed.",
+    "No ledger quantity moves."
+  ]
+}

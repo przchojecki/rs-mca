@@ -1,0 +1,100 @@
+{
+  "conclusion": {
+    "a_fixed_points_by_genus": {
+      "0": 2,
+      "1": 0
+    },
+    "admissible_source_genera": [
+      0,
+      1
+    ],
+    "genus_two_and_three_excluded": true,
+    "r2_type_deleted": false,
+    "terminal": "M2_R2_SOURCE_GENUS_ZERO_OR_ONE"
+  },
+  "conjugation_replay": {
+    "c_a_c_inverse": "a",
+    "c_eta_c_inverse": "eta*a",
+    "deck_group": "V4=<eta,a>",
+    "normalizer_witness": "D8 square action"
+  },
+  "fixed_point_replay": [
+    {
+      "admissible": true,
+      "fix_a": 2,
+      "fix_eta": 2,
+      "fix_eta_a": 2,
+      "genus": 0
+    },
+    {
+      "admissible": true,
+      "fix_a": 0,
+      "fix_eta": 4,
+      "fix_eta_a": 4,
+      "genus": 1
+    },
+    {
+      "admissible": false,
+      "fix_a": -2,
+      "fix_eta": 6,
+      "fix_eta_a": 6,
+      "genus": 2
+    },
+    {
+      "admissible": false,
+      "fix_a": -4,
+      "fix_eta": 8,
+      "fix_eta_a": 8,
+      "genus": 3
+    }
+  ],
+  "input": {
+    "component_degree": 4,
+    "component_stabilizer": "full_V4",
+    "inner_degree": 2,
+    "outer_subdegree": 2,
+    "prior_source_genus_upper_bound": 3,
+    "source_bidegree": [
+      2,
+      4
+    ]
+  },
+  "nonclaims": [
+    "no deletion of the rational source regime",
+    "no deletion of the elliptic source regime",
+    "no source-genus lower bound",
+    "no outer bidegree-two correspondence classification",
+    "no carrier, received-data, explaining-polynomial, or slope owner",
+    "no u2, K3, KoalaBear row, endpoint, or prize closure",
+    "no ledger movement"
+  ],
+  "parent_conic_exclusion": {
+    "certificate_blob_oid": "61afd4534740c5ccabc6196919126c80c361e4c5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-q6-u2-complete-source-conic-exclusion-v1/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.json",
+    "certificate_payload_sha256": "30a5d45895957f774ef972118e227fa54522fc27a48ee0e2a99a0d5a012a5451",
+    "commit": "ad109774f7d9bc320e7e0c046ba83471f39d5cd9",
+    "imported_terminal": "DELETED_BY_COMPLETE_SOURCE_DIVISOR_PROFILE_OBSTRUCTION"
+  },
+  "parent_m2_router": {
+    "certificate_blob_oid": "50d17f218bfa7d3acb211c946db0c025b9a98944",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-v4-outer-recurrence-router-v1/kb_mca_v4_m2_v4_outer_recurrence_router_v1.json",
+    "certificate_payload_sha256": "fe8141810501fd7b3762a378210609177185972ec706bf9ac943fa398bd82d39",
+    "commit": "d4063dcd9c56835c3916ef792e263ea720a4d397",
+    "imported_terminal": "M2_V4_STABILIZERS_OUTER_RECURRENCE_AND_SOURCE_PARITY"
+  },
+  "payload_sha256": "9a2ea090568600356f27f3174aee6d08414217b26dbb8f7922931c64a151122f",
+  "schema": "kb-mca-v4-m2-r2-full-v4-source-genus-drop-v1",
+  "source_cover": {
+    "characteristic_is_tame": true,
+    "deck_group_over_W": "V4=<eta,a>",
+    "degree_over_W": 4,
+    "degree_over_X": 2,
+    "eta_quotient_genus": 0
+  },
+  "statement": {
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "terminal": "M2_R2_SOURCE_GENUS_ZERO_OR_ONE",
+    "workboard_item": "K3"
+  }
+}
