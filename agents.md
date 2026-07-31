@@ -305,6 +305,13 @@ At this snapshot:
   four.  Together with the proved `n=2,5,6` exclusions, this deletes the
   full-V4 `(m,r,delta)=(2,2,4)` type.  The order-two and trivial stabilizer
   types `(r,delta)=(4,2),(8,1)`, K3, and every payment remain open.
+- The aligned-positive saturated source-line atlas now generates all twelve
+  compatible internal source-star assignments against all three residual
+  root distributions as 36 separate exact q-slice systems.  It uses only
+  star-swap sign, `c<->d`, and literal `b<->b^-1` identities; the failed
+  Möbius/diagonal-`W` globalization is explicitly rejected.  Every atlas
+  cell remains `UNCLASSIFIED_QSLICE_GENERATED`, ledger movement is zero, and
+  K3 remains open.
 - The rigid `S6:(5.1,2.1.1.1.1,6)` passport now has an exact rational
   degree-`15` normal form, constructed as the unordered-pair quotient of the
   pinned BelyiDB `S6 [6,5,2]` degree-six companion.  Its three branch fibers
@@ -405,6 +412,13 @@ The exact `38 x 12` endpoint-cofactor and gain-flatness compiler remains a
 valid audit theorem: it shows independently why one admissible abstract
 packet is not an endpoint factor.  Universal gain nonflatness is no longer
 required for the deleted full-V4 type.  No quotient payment is booked.
+
+The exact aligned-positive atlas is the source-bound coefficient interface
+for the remaining saturated `(1,1,2)` work: all 36 assignment/target cells
+are generated directly, but none is paid or globally deleted by the atlas
+itself.  Subsequent component work must preserve those semantic cell IDs and
+terminate each in an exact empty chart, a named same-record owner, or an
+explicit primitive route cut.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `2` types at inner degree `m=2`.  For every

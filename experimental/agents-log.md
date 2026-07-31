@@ -4296,3 +4296,31 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Attack the order-two stabilizer type
   `(r,delta)=(4,2)`; keep the trivial type `(8,1)` behind it.  K3, the
   KoalaBear row, every slope owner, and every payment remain open.
+
+### 2026-07-30 - KoalaBear aligned-positive 36-cell q-slice atlas
+
+- **Agent/model:** Codex, with fresh independent proof audit.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_aligned_positive_qslice_atlas_v1.md`,
+  bounded Sage/Python/Wolfram replays, the fail-closed JSON certificate and
+  schema, `agents.md`, and this log.
+- **Status:** GREEN exact atlas/compiler foundation / all 36 cells
+  `UNCLASSIFIED_QSLICE_GENERATED` / K3 open.
+- **What is being added:** The twelve compatible saturated source-line
+  assignments are crossed directly with the three aligned-positive residual
+  root distributions.  Each resulting q-slice system is reconstructed from
+  its actual common endpoint.  Only star-swap sign, `c<->d`, and literal
+  `b<->b^-1` identities are used; Möbius and diagonal-`W` globalization are
+  rejected.
+- **Verification:** Sage reproduces the exact polynomial, denominator, and
+  radical-localizer hashes; Python normal and optimized modes reject 25/25
+  scope/formula/hash/provenance mutations; Wolfram independently replays 72
+  exact rational fixture cells and 144 literal symmetry controls.  A fresh
+  reviewer returned GREEN for this zero-ledger compiler obligation.
+- **How it is useful:** Replaces representative-orbit extrapolation by an
+  exhaustive source-bound semantic registry suitable for componentwise
+  closure or explicit route cuts.
+- **What to do next:** Preserve all 36 semantic IDs while classifying each
+  component into an exact empty chart, named same-record owner, or
+  `UNPAID_PRIMITIVE`.  The atlas moves no ledger quantity and does not close
+  K3 or the KoalaBear row.
