@@ -1,0 +1,287 @@
+{
+  "artifacts": {
+    "sage_output_payload_sha256": "86b859a30fcf95b613385c7d6a705bc5c5c3ac2e2bdfcadf37e93086b8567ca4",
+    "sage_sha256": "32f5089cfdee4747ee9e928781b4ddc727fd20ba5456de66ec7370bc9ce8956f",
+    "singular_sha256": "e56977457dacd8e4759b041c8162e8d2fc4de4a17bcae7d94115829f2a073bac",
+    "wolfram_sha256": "4b77a6c9a795f89f28c27d8df96f9a3efe3f141e2ccbcb7e6a247bf97ce743f4"
+  },
+  "assignment_scope": {
+    "closed_assignment_count": 1,
+    "complete_system_covariance": "NOT_CLAIMED",
+    "covariance_mismatch": {
+      "diagonal_W_transport": "preserves aligned target but not observed residual/source W divisor",
+      "endpoint_only_normalizer": "preserves observed residual side but not aligned target"
+    },
+    "fixed_moving_assignment_count": 8,
+    "open_assignment_count": 7,
+    "other_assignments_status": "OPEN_SEPARATE_EXACT_SYSTEMS",
+    "status": "REPRESENTATIVE_ONLY"
+  },
+  "branch_partition": {
+    "equation_count": 4,
+    "leading_coefficient_split": {
+      "coefficient": "L=coeff_b^2(qC)",
+      "exhaustive_charts": [
+        "L=0",
+        "L!=0"
+      ],
+      "leading_zero": {
+        "generators": [
+          "L",
+          "qC",
+          "qD",
+          "eC",
+          "eD",
+          "t*Hbasic-1"
+        ],
+        "linear_coefficient_zero_subchart_unit": true,
+        "localized_dimension": -1,
+        "localized_groebner_basis": "1"
+      }
+    },
+    "quadratic_chart": {
+      "complete_terminal_factorization": [
+        {
+          "exponent": 2,
+          "factor": "w-1",
+          "terminal": "DECLARED_PARENT_UNIT"
+        },
+        {
+          "exponent": 1,
+          "factor": "w^2-cd",
+          "terminal": "SEPARATE_INCIDENCE_CHART"
+        },
+        {
+          "exponent": 1,
+          "factor": "cd-1",
+          "terminal": "DECLARED_PARENT_UNIT"
+        },
+        {
+          "exponent": 2,
+          "factor": "5cd-4c-4d+5",
+          "terminal": "DECLARED_RECONSTRUCTION_UNIT"
+        },
+        {
+          "exponent": 1,
+          "factor": "q_essential",
+          "terminal": "SYMMETRIC_PIVOT_PARTITION"
+        }
+      ],
+      "factor_unit": -1,
+      "incidence_cd_eq_w2": {
+        "compact_substitution": "d=w^2/c",
+        "essential_equation_degrees": [
+          8,
+          8
+        ],
+        "generators": [
+          "qC",
+          "qD",
+          "eC",
+          "eD",
+          "cd-w^2",
+          "t*Hbasic*L*Hfixed-1"
+        ],
+        "localized_dimension": -1,
+        "localized_groebner_basis": "1",
+        "replay_strengthening": "after d=w^2/c, the two essential qC/qD factors alone give the unit ideal under the named localizer"
+      },
+      "q_essential": {
+        "first_pivot": "linear remainder of qD modulo monic qC",
+        "first_pivot_ordinary_localized_dimension": -1,
+        "first_pivot_ordinary_localized_groebner_basis": "1",
+        "first_pivot_support_status": "coefficient and constant vanish",
+        "second_pivot": "linear remainder of eC modulo monic qC",
+        "second_pivot_coefficient_zero_localized_dimension": -1,
+        "second_pivot_coefficient_zero_localized_groebner_basis": "1",
+        "second_pivot_ordinary_localized_dimension": -1,
+        "second_pivot_ordinary_localized_groebner_basis": "1",
+        "support_dimension": 1,
+        "support_pointwise_equations": [
+          "p=-w",
+          "5s+4w-4=0"
+        ],
+        "symmetric_equations": [
+          "Q(s,p,w)=0",
+          "A(s,p,w)=0",
+          "B(s,p,w)=0"
+        ],
+        "symmetric_reduction": [
+          "q_essential=Q(s,p,w)",
+          "slice_essential(c,d,w)=A(s,p,w)+c*B(s,p,w)",
+          "slice_essential(d,c,w)=A(s,p,w)+d*B(s,p,w)",
+          "c-d is a declared unit"
+        ]
+      }
+    },
+    "rabinowitsch_equation": "t*H-1"
+  },
+  "conclusion": {
+    "complete_112_row_deleted": false,
+    "complete_system_covariance": "NOT_CLAIMED",
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "ledger_movement": 0,
+    "moving_moving_status": "OPEN",
+    "other_fixed_moving_assignment_count": 7,
+    "other_fixed_moving_assignments_status": "OPEN_SEPARATE_EXACT_SYSTEMS",
+    "representative_all_three_root_distributions_empty": true,
+    "representative_balanced_1_1_empty": true,
+    "representative_crossed_0_2_status": "CLOSED_BY_STACKED_PREDECESSOR_SAME_REPRESENTATIVE",
+    "representative_identity_2_0_status": "CLOSED_BY_IMMEDIATE_PREDECESSOR_SAME_REPRESENTATIVE"
+  },
+  "field": {
+    "challenge_extension_degree": 6,
+    "prime": 2130706433,
+    "prime_avoids": [
+      2,
+      3,
+      5
+    ]
+  },
+  "nonclaims": [
+    "no balanced (1,1) claim for the other seven fixed-moving assignments",
+    "no crossed (0,2) or identity (2,0) claim for the other seven fixed-moving assignments",
+    "no projective covariance claim for the complete source system",
+    "no moving-moving deletion",
+    "no near-aligned positive deletion",
+    "no exceptional unsaturated-orbit or biquadratic-source-cover deletion",
+    "no complete (1,1,2) row deletion",
+    "no owner, payment, K3 value, KoalaBear row bound, or Prize closure",
+    "no use of full quotient or endpoint H-product identities"
+  ],
+  "normalization": {
+    "J0": [
+      "2",
+      "1/2",
+      "b",
+      "1/b"
+    ],
+    "J1": [
+      "c",
+      "d"
+    ],
+    "deck": "tau(x)=1/x",
+    "fixed_moving_edges": [
+      [
+        "2",
+        "1/2"
+      ],
+      [
+        "2",
+        "b"
+      ]
+    ],
+    "root_distribution": [
+      1,
+      1
+    ],
+    "target_quadratic": "(W-1/c)(W-1/d)"
+  },
+  "payload_sha256": "a9e67b5cb40c0731f504636f06e2e99c9147b76e1d27dfee2b9d6855e9dca471",
+  "polynomial_metrics": {
+    "A": {
+      "degree": 9,
+      "sha256": "720eec95a329975e0df2ea1533648af0dbb2254f726b11131acc090e1386d140",
+      "terms": 115
+    },
+    "B": {
+      "degree": 8,
+      "sha256": "412b6a1290d0b0cafb5795b6591c15b94a1f7aefedd641b1fd0d6abcad7c43c6",
+      "terms": 84
+    },
+    "L": {
+      "degree": 10,
+      "sha256": "1d10dcd6da3f56234773ef8067f1471d636ed43d71dca825576554e5fe05bd8e",
+      "terms": 69
+    },
+    "Q": {
+      "degree": 7,
+      "sha256": "27345df84a941f9892be25b62fd5104a41392d14b40c003be36fab41b9f020e8",
+      "terms": 43
+    },
+    "eC": {
+      "degree": 20,
+      "sha256": "163673f99d8078515ab0b0845a2e77f617a627507e78474b70b4bb844d381367",
+      "terms": 943
+    },
+    "eD": {
+      "degree": 20,
+      "sha256": "7a219b3ebff0b4162c6533209bc2402e8f80f5f0899bcd45435c820df5f88582",
+      "terms": 943
+    },
+    "incidence_compact_ell": {
+      "degree": 7,
+      "sha256": "c245ad66f003f08ab8dd7d4ac6bf1b8ff501768dfb55954faa47180922a70388",
+      "terms": 16
+    },
+    "incidence_compact_qC": {
+      "degree": 8,
+      "sha256": "14d979e5e87e8c63e28417bef8ca2bfa5278cde9fb2004f2ca0e0d6ac87f4589",
+      "terms": 32
+    },
+    "incidence_compact_qD": {
+      "degree": 8,
+      "sha256": "dcff91b87a60d0f9ae50f39b549602cd13d7b3176b9a1a88fe1b308e2ef2dc02",
+      "terms": 32
+    },
+    "qC": {
+      "degree": 12,
+      "sha256": "89ac6b1c752f14da89fb1c9f2e3dca3a438fbd87fb7bcbc927a03c943e1a0212",
+      "terms": 197
+    },
+    "qD": {
+      "degree": 12,
+      "sha256": "bcee3e9dd49ebc1957ed817f0c16d8b302c89ed51626c9dbbbd53724efdcf7ba",
+      "terms": 197
+    }
+  },
+  "provenance": {
+    "predecessor": {
+      "assignment": "{{2,1/2},{2,b}}",
+      "assignment_quantifier": "SINGLE_NORMALIZED_REPRESENTATIVE",
+      "certificate_blob_oid": "1e083a5cac1bba0827ae2c6c9e72ffd9da03d3ba",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-diagonal-112-fixed-positive-identity-v1/kb_mca_v4_m2_diagonal_112_fixed_positive_identity_v1.json",
+      "commit": "9f5b7ffa8759f0372802792bc5baf589410cdd28",
+      "note_blob_oid": "8a541e989d9882316cd25de90bebb37afec116a6",
+      "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_diagonal_112_fixed_positive_identity_v1.md",
+      "other_assignments_status": "OPEN_SEPARATE_EXACT_SYSTEMS",
+      "payload_sha256": "ce59e2be2417dd8681bce65d7f0d838850445dfccbd82d68c137387510ea7cb5",
+      "verifier_blob_oid": "45c5d583039c326705769e55dc309142f3b39813",
+      "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_diagonal_112_fixed_positive_identity_v1.py"
+    },
+    "source_facet_parent": {
+      "certificate_blob_oid": "844b7885620bf10fe19336f3acd7866cf1d9a204",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-u2-universal-source-facet-census-v1/kb_mca_v4_m2_u2_universal_source_facet_census_v1.json",
+      "commit": "c2edcfa5cbfb8a41e7dea04ae1b34325c90ed5dc",
+      "note_blob_oid": "cc315015998cf9ab0ecf2970c13f1e27f1f132d6",
+      "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_u2_universal_source_facet_census_v1.md",
+      "verifier_blob_oid": "e810f286d5b67d19660c3c382501a690e3e76fb0",
+      "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_u2_universal_source_facet_census_v1.py"
+    }
+  },
+  "schema": "kb-mca-v4-m2-diagonal-112-fixed-positive-balanced-v1",
+  "scope": {
+    "assignment": "{{2,1/2},{2,b}}",
+    "assignment_quantifier": "SINGLE_NORMALIZED_REPRESENTATIVE",
+    "ledger_movement": 0,
+    "profile": "(a,b,c)=(1,1,2)",
+    "root_distribution": [
+      1,
+      1
+    ],
+    "source_branch": "saturated source-line",
+    "target": "normalized fixed-moving aligned-positive balanced representative"
+  },
+  "workboard": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture": null,
+    "atom_or_cell": "K3_M2_DIAGONAL_112_FIXED_POSITIVE_BALANCED_1_1_REPRESENTATIVE",
+    "impact": "ROUTE_CUT_LOCAL_ONLY",
+    "object": "MCA",
+    "row": "KoalaBear MCA at 2^-128",
+    "target_epsilon": "2^-128",
+    "workboard_item": "K3"
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "branch_gate": {
+    "Y_branch_values": [
+      "-2",
+      "2"
+    ],
+    "aligned_h_branch_values": 1,
+    "normalization": "aligned value 2; other value b not in {-2,2}",
+    "quadratic_pullback_branch_places": 2,
+    "target_map": "m(x)=(x-2)/(x-b)"
+  },
+  "canonical_quartic": {
+    "actual_image_degree": 4,
+    "equation": "A*P^4+B*S^2*P^2-2B*P^3+C*S^4-4C*S^2*P+(2C+D)*P^2+E*S^2-2E*P+F",
+    "sibling_equation": "A*pi^2+B*sigma*pi+C*(sigma^2-2*pi)+D*pi+E*sigma+F",
+    "substitution": {
+      "pi": "P^2",
+      "sigma": "S^2-2P"
+    }
+  },
+  "coefficient_formulas": {
+    "A": "(a-2)(a-b^2+2)",
+    "B": "-(a-2)(2a-b^2-2b+4)",
+    "C": "(a-b)^2",
+    "D": "4a^2-a*b^2-4a*b-4a+16b-16",
+    "E": "-2(a-2)(a-b)",
+    "F": "(a-2)^2"
+  },
+  "conclusion": {
+    "continuous_parameters_per_degree": 1,
+    "next_gate": "factor exceptional b and impose six-pole/source-locator equations",
+    "profiles_deleted": [],
+    "surviving_factor_degrees": [
+      3,
+      6
+    ],
+    "terminal": "M2_R2_DIHEDRAL_RESIDUAL_ONE_PARAMETER_QUARTIC_NORMAL_FORM"
+  },
+  "dihedral_rows": {
+    "n3": {
+      "a": -1,
+      "n": 3
+    },
+    "n6": {
+      "a": 1,
+      "n": 6
+    }
+  },
+  "exact_replays": [
+    {
+      "a": -1,
+      "alpha": "-375",
+      "b": "-3",
+      "beta": "1000",
+      "coefficients": {
+        "A": "24",
+        "B": "-3",
+        "C": "4",
+        "D": "-59",
+        "E": "12",
+        "F": "9"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": -1,
+      "alpha": "81",
+      "b": "-1",
+      "beta": "0",
+      "coefficients": {
+        "A": "0",
+        "B": "9",
+        "C": "0",
+        "D": "-27",
+        "E": "0",
+        "F": "9"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": -1,
+      "alpha": "48",
+      "b": "0",
+      "beta": "-32",
+      "coefficients": {
+        "A": "-3",
+        "B": "6",
+        "C": "1",
+        "D": "-8",
+        "E": "-6",
+        "F": "9"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": -1,
+      "alpha": "9",
+      "b": "1",
+      "beta": "-8",
+      "coefficients": {
+        "A": "0",
+        "B": "-3",
+        "C": "4",
+        "D": "13",
+        "E": "-12",
+        "F": "9"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": -1,
+      "alpha": "-15",
+      "b": "3",
+      "beta": "16",
+      "coefficients": {
+        "A": "24",
+        "B": "-39",
+        "C": "16",
+        "D": "61",
+        "E": "-24",
+        "F": "9"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": 1,
+      "alpha": "-375",
+      "b": "-3",
+      "beta": "6000",
+      "coefficients": {
+        "A": "6",
+        "B": "3",
+        "C": "16",
+        "D": "-61",
+        "E": "8",
+        "F": "1"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": 1,
+      "alpha": "81",
+      "b": "-1",
+      "beta": "648",
+      "coefficients": {
+        "A": "-2",
+        "B": "7",
+        "C": "4",
+        "D": "-29",
+        "E": "4",
+        "F": "1"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": 1,
+      "alpha": "48",
+      "b": "0",
+      "beta": "96",
+      "coefficients": {
+        "A": "-3",
+        "B": "6",
+        "C": "1",
+        "D": "-16",
+        "E": "2",
+        "F": "1"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": 1,
+      "alpha": "9",
+      "b": "1",
+      "beta": "0",
+      "coefficients": {
+        "A": "-2",
+        "B": "3",
+        "C": "0",
+        "D": "-5",
+        "E": "0",
+        "F": "1"
+      },
+      "gamma": "0"
+    },
+    {
+      "a": 1,
+      "alpha": "-15",
+      "b": "3",
+      "beta": "24",
+      "coefficients": {
+        "A": "6",
+        "B": "-9",
+        "C": "4",
+        "D": "11",
+        "E": "-4",
+        "F": "1"
+      },
+      "gamma": "0"
+    }
+  ],
+  "nonclaims": [
+    "no irreducibility or source realization for arbitrary b",
+    "no n=3 or n=6 deletion or m2 payment",
+    "no K3, KoalaBear, endpoint, or Prize close"
+  ],
+  "parent_source_genus": {
+    "certificate_blob_oid": "83e82b826ddfa2f5377e99f439be5f00900507c6",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-full-v4-source-genus-drop-v1/kb_mca_v4_m2_r2_full_v4_source_genus_drop_v1.json",
+    "certificate_payload_sha256": "9a2ea090568600356f27f3174aee6d08414217b26dbb8f7922931c64a151122f",
+    "commit": "f6bc4a2b2a6a5b3bba98f24a520c67ca3373dbbb",
+    "imported_terminal": "M2_R2_SOURCE_GENUS_ZERO_OR_ONE"
+  },
+  "parent_star_graph": {
+    "certificate_blob_oid": "c842c89b0d4978a12d4ede3d12fc040de6d11741",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-residual-star-graph-rigidity-v1/kb_mca_v4_m2_r2_dihedral_residual_star_graph_rigidity_v1.json",
+    "certificate_payload_sha256": "63f6387bba81e51e0a49f409645e9493b3f128f6ab9d119be2dcc64da766b1d4",
+    "commit": "06a0dcb152687db4017484b215ed851bae52f1f2",
+    "imported_terminal": "M2_R2_DIHEDRAL_RESIDUAL_STAR_GRAPH_RIGIDITY"
+  },
+  "payload_sha256": "ba9783671d9d91bbd345ebaeec4b894d96be9d8d20f1ccc7d7ee1c5847bf6c81",
+  "schema": "kb-mca-v4-m2-r2-dihedral-residual-coefficient-quartic-normal-form-v1"
+}
