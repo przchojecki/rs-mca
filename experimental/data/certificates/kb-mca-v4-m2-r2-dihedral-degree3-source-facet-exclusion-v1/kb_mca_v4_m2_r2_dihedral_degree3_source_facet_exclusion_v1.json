@@ -1,0 +1,132 @@
+{
+  "conclusion": {
+    "degree3_deleted": true,
+    "deleted_type": {
+      "delta": 4,
+      "m": 2,
+      "r": 2
+    },
+    "full_v4_type_deleted": true,
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "remaining_m2_types": [
+      {
+        "delta": 2,
+        "r": 4
+      },
+      {
+        "delta": 1,
+        "r": 8
+      }
+    ],
+    "terminal": "M2_R2_DIHEDRAL_DEGREE3_AND_FULL_V4_EMPTY"
+  },
+  "full_v4_synthesis": {
+    "degree3_exclusion": "common-five source-facet independence contradiction",
+    "excluded_factor_degrees": [
+      2,
+      3,
+      5,
+      6
+    ],
+    "exhaustive_factor_degrees": [
+      2,
+      3,
+      5,
+      6
+    ]
+  },
+  "graph_replay": {
+    "components": [
+      "K_(2,2,2)",
+      "K_(2,2,2)"
+    ],
+    "edges": 24,
+    "five_subsets_checked": 792,
+    "independence_number": 4,
+    "independent_five_subsets": 0,
+    "vertex_degrees": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "vertices": 12
+  },
+  "nonclaims": [
+    "no deletion of the order-two or trivial m2 stabilizer types",
+    "no carrier, data, explaining-polynomial, or slope owner",
+    "no payment, K3, KoalaBear row, endpoint, or Prize close"
+  ],
+  "parents": {
+    "degree2": {
+      "certificate_blob_oid": "a6705b3507014434052c4c5e63209fae2d566038",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-degree2-source-star-exclusion-v1/kb_mca_v4_m2_r2_dihedral_degree2_source_star_exclusion_v1.json",
+      "certificate_payload_sha256": "c3771a0386e955b87f6ec9f4256d9569fb5e9459036653f790691851be0f2a89",
+      "commit": "36ed2ac28176fb583cbf15d16f8074b6e8a48de8",
+      "terminal": "M2_R2_DIHEDRAL_DEGREE2_EMPTY"
+    },
+    "degree5": {
+      "certificate_blob_oid": "ba27da451743fd198efd4b335a0983ed030acbb5",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-degree5-source-star-exclusion-v1/kb_mca_v4_m2_r2_dihedral_degree5_source_star_exclusion_v1.json",
+      "certificate_payload_sha256": "1b711c1cde8f0652ce5e713513955ecdc1789e9fd62c361bca00ae05c9b4c287",
+      "commit": "fe2a549c8de1de34e5ea331ff4c410145207e381",
+      "terminal": "M2_R2_DIHEDRAL_DEGREE5_EMPTY"
+    },
+    "degree6": {
+      "certificate_blob_oid": "b6c821cdf89c0e82461ff53216e7a83ac8087ff5",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-degree6-common-pole-exclusion-v1/kb_mca_v4_m2_r2_dihedral_degree6_common_pole_exclusion_v1.json",
+      "certificate_payload_sha256": "224fbbaf75c0aa830c7fab8e6024a51d3454d7ce3a6260184041983806f1e3fd",
+      "commit": "5bcb2b2bd0158912cb7319ef386ca2523db5436d",
+      "terminal": "M2_R2_DIHEDRAL_DEGREE6_COMMON_POLE_EMPTY"
+    },
+    "outer_factor": {
+      "certificate_blob_oid": "4e389740170515d668ad1057488a484fb43cd104",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-outer-factor-reduction-v1/kb_mca_v4_m2_r2_dihedral_outer_factor_reduction_v1.json",
+      "certificate_payload_sha256": "7f85c8e4bf9c1f324a705058992cd2e082a990feeb648f37189ba78d72df831c",
+      "commit": "b264da9d3309b7b42ab81a1481778d9d92ca8926",
+      "terminal": "M2_R2_DIHEDRAL_FACTOR_DEGREES_2_3_5_6"
+    },
+    "star_graph": {
+      "certificate_blob_oid": "c842c89b0d4978a12d4ede3d12fc040de6d11741",
+      "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-residual-star-graph-rigidity-v1/kb_mca_v4_m2_r2_dihedral_residual_star_graph_rigidity_v1.json",
+      "certificate_payload_sha256": "63f6387bba81e51e0a49f409645e9493b3f128f6ab9d119be2dcc64da766b1d4",
+      "commit": "06a0dcb152687db4017484b215ed851bae52f1f2",
+      "terminal": "M2_R2_DIHEDRAL_RESIDUAL_STAR_GRAPH_RIGIDITY"
+    }
+  },
+  "payload_sha256": "f48a46f22bc15098f5fc566e6f009d76afa4751c4fd4b4b8edaf481e619c5a01",
+  "schema": "kb-mca-v4-m2-r2-dihedral-degree3-source-facet-exclusion-v1",
+  "source_facet": {
+    "common_set_contained_in_invariant_set": true,
+    "common_set_size": 5,
+    "horizontal_outgoing_roots_over_common_fiber": "I^c",
+    "invariant_set_size": 6
+  },
+  "source_facet_parent": {
+    "certificate_blob_oid": "91643b5b9020f52764a77cfbc8aa6279ce2d5ef8",
+    "certificate_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/verification/pole_disjoint_conic_facet_collinearity_certificate.json",
+    "certificate_payload_sha256": "396697687aa5baf19d8114b20858d4500b119c078f5f128b6c0e207ec8ff50bb",
+    "commit": "44542e91e459364a521870ed2ebde7f6fe5055bf",
+    "theorem_blob_oid": "356ff4b47d0bb429d11ea10382762a6e95b5ce24",
+    "theorem_path": "experimental/notes/frontier-adjacent/kb_mca_v4_equality_wall_geometry_v1/proof/pole_disjoint_conic_facet_collinearity_reduction.md"
+  },
+  "twist_safe_identification": {
+    "common_pole_consequence": "k lies in U_k disjoint_union P_k",
+    "complete_coordinate_fiber_star_endpoints": "U_k",
+    "conclusion": "k in P_k and U_k=N_G(k)",
+    "endpoint_count": 4,
+    "facet_consequence": "U_k subset I^c and k in I imply k notin U_k",
+    "omitted_deck_pair": "P_k",
+    "omitted_pair_size": 2,
+    "relative_endpoint_twist_set_to_identity": false
+  }
+}

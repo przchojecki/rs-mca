@@ -1,0 +1,26 @@
+{
+  "schema": "kb-mca-v4-m4-outer-a6s6-route-cut-v1",
+  "payload_sha256": "61a8db82285f22393fc2af6c1d35224d79587fa150009270d42ac33972557485",
+  "statement": {"workboard_item": "K3", "row": "KoalaBear MCA at 2^-128", "object": "MCA", "agreement": 1116048, "B_star": "274980728111395087", "endpoint_degree": 60, "original_inner_degree": 4, "original_outer_degree": 15, "status": "PROVED_M4_ONLY_R8_DELTA2_A6S6_OUTER_SURVIVES_OTHER_K3_ROWS_OPEN", "ledger_movement": 0},
+  "parent_compiler": {"commit": "e287c54252c7872e1745c7594cfef62b74a65cf5", "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json", "certificate_blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477", "certificate_payload_sha256": "6d4bc83e40e491f02f7d265b021628ffb7d52b1978c0655f83e5a9d3e0a9f4bb", "imported_terminal": "TRANSVERSE_OUTER_CORRESPONDENCE_UNPAID", "imported_m4_rows": [[1,16],[2,8],[4,4],[8,2]]},
+  "incoming_frontier": {"commit": "30be68b9421ba37155499d52a0635fa7b10ae3b2", "certificate_path": "experimental/data/certificates/kb-mca-v4-m6-scott-cartesian-degree2-router-v1/kb_mca_v4_m6_scott_cartesian_degree2_router_v1.json", "certificate_blob_oid": "af5fd87a5c28f3b021fc05971a665e6d92f978af", "certificate_payload_sha256": "b34e096730f3d93644c283f95d65f622100d6868e9882ed2b901fa109b3d6116", "imported_terminal": "M6_NO_TERMINAL_PRODUCER_ROUTES_TO_M2_OR_EXCLUDED_M5", "global_transverse_type_count": 12, "live_inner_degrees": [2,3,4]},
+  "degree_twelve_import": {"commit": "c23eb801af8853d0369a72ea8834c84e7a3242f6", "certificate_path": "experimental/data/certificates/kb-mca-v4-m12-diagonal-socle-degree5-close-v1/kb_mca_v4_m12_diagonal_socle_degree5_close_v1.json", "certificate_blob_oid": "9e1bd3d89dac6409f148dc134fda46d3bf644c11", "certificate_payload_sha256": "456b51c78e837c8a27ffda0b43409c63c88128b254be320723728868db096e6f", "terminal": "M12_DECOMPOSITION_ROW_EMPTY"},
+  "degree_fifteen_catalogue": [
+    {"group":"A7","order":2520,"subdegrees":[1,14]},
+    {"group":"A6","order":360,"subdegrees":[1,6,8]},
+    {"group":"S6","order":720,"subdegrees":[1,6,8]},
+    {"group":"PSL(4,2)","order":20160,"subdegrees":[1,14]},
+    {"group":"A15","order":653837184000,"subdegrees":[1,14]},
+    {"group":"S15","order":1307674368000,"subdegrees":[1,14]}
+  ],
+  "proper_factor_route": {"excluded_outer_subdegrees":[1,2,4], "proper_right_factor_degrees":[3,5], "resulting_endpoint_inner_degrees":[12,20], "degree_twelve_terminal":"M12_DECOMPOSITION_ROW_EMPTY", "degree_twenty_source_ramification":48, "degree_twenty_RH_budget":38, "degree_twenty_survives":false, "terminal":"R1_R2_R4_OUTER_TYPES_EMPTY"},
+  "survivor": {"outer_subdegree":8, "correspondence_degree":2, "outer_groups":["A6","S6"], "action":"two-subsets of six points", "action_degree":15, "point_stabilizer_subdegrees":[1,6,8], "pole_cycle_type":[5,5,5], "pole_profile_compatible":true, "terminal":"ONLY_R8_DELTA2_A6S6_OUTER_SURVIVES"},
+  "external_source_custody": {"gap_primgrp_commit":"5612e113d50ac23a7d10945383936e20440b4e14", "gap_degree15_entry_bytes":894, "gap_degree15_entry_sha256":"d24658310cb386c9663e95ab9024eab9142d79f849131f499da36eeda82c003e"},
+  "source_bindings": [
+    {"binding_id":"KB_M4_CUT::compiler_certificate","commit":"e287c54252c7872e1745c7594cfef62b74a65cf5","path":"experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json","blob_oid":"5c16c7884b349d7e474b8dfc1267ab357ef0d477","role":"four m4 transverse rows and exhaustive source profiles"},
+    {"binding_id":"KB_M4_CUT::incoming_frontier_certificate","commit":"30be68b9421ba37155499d52a0635fa7b10ae3b2","path":"experimental/data/certificates/kb-mca-v4-m6-scott-cartesian-degree2-router-v1/kb_mca_v4_m6_scott_cartesian_degree2_router_v1.json","blob_oid":"af5fd87a5c28f3b021fc05971a665e6d92f978af","role":"12-type frontier after m6 routing"},
+    {"binding_id":"KB_M4_CUT::m12_certificate","commit":"c23eb801af8853d0369a72ea8834c84e7a3242f6","path":"experimental/data/certificates/kb-mca-v4-m12-diagonal-socle-degree5-close-v1/kb_mca_v4_m12_diagonal_socle_degree5_close_v1.json","blob_oid":"9e1bd3d89dac6409f148dc134fda46d3bf644c11","role":"deletion of the degree-twelve proper-factor route"}
+  ],
+  "conclusion": {"excluded_m4_rows":[[1,16],[2,8],[4,4]], "surviving_m4_rows":[[8,2]], "remaining_global_transverse_type_count":9, "remaining_inner_degrees":[2,3,4], "terminal":"M4_ONLY_R8_DELTA2_A6S6_OUTER_SURVIVES", "m4_closed":false, "u2_closed":false, "K3_closed":false, "row_closed":false},
+  "nonclaims": ["The surviving A6/S6 outer type is not deleted or paid.", "No endpoint-record census or carrier, data, explaining-polynomial, or slope bridge is claimed.", "No u=2, K3, or KoalaBear row closure is claimed.", "No ledger quantity moves."]
+}

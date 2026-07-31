@@ -1,0 +1,375 @@
+{
+  "schema": "kb-mca-v4-k3-outer-frontier-dihedral-route-cut-v1",
+  "payload_sha256": "0fccacea96bb1d2b8715d1eb0862c7a2a70b218bc0a13fe41e04788c2e156de2",
+  "base_repository": {
+    "head": "c2edcfa5cbfb8a41e7dea04ae1b34325c90ed5dc",
+    "stacked_on_pr": 1132,
+    "role": "EXACT_PREDECESSOR_HEAD"
+  },
+  "statement": {
+    "workboard_item": "K3",
+    "row": "KoalaBear MCA at 2^-128",
+    "object": "MCA",
+    "agreement": 1116048,
+    "B_star": 274980728111395087,
+    "direct_statement": "Exact synthesis of the committed per-record transverse frontier, a conditional active-v4 any-69 implication, and a fixed-point-free deployed-carrier counterexample to treating recurrent quadratic folds as automatic strict progress.",
+    "status": "YELLOW_ROUTE_CUT_GLOBAL_K3_OPEN",
+    "ledger_movement": 0
+  },
+  "source_bindings": [
+    {
+      "binding_id": "source_pencil",
+      "path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json",
+      "payload_sha256": "6d4bc83e40e491f02f7d265b021628ffb7d52b1978c0655f83e5a9d3e0a9f4bb",
+      "blob_oid_at_base": "5c16c7884b349d7e474b8dfc1267ab357ef0d477"
+    },
+    {
+      "binding_id": "m12_close",
+      "path": "experimental/data/certificates/kb-mca-v4-m12-diagonal-socle-degree5-close-v1/kb_mca_v4_m12_diagonal_socle_degree5_close_v1.json",
+      "payload_sha256": "456b51c78e837c8a27ffda0b43409c63c88128b254be320723728868db096e6f",
+      "blob_oid_at_base": "9e1bd3d89dac6409f148dc134fda46d3bf644c11"
+    },
+    {
+      "binding_id": "m10_router",
+      "path": "experimental/data/certificates/kb-mca-v4-m10-scott-strip-lower-degree-router-v1/kb_mca_v4_m10_scott_strip_lower_degree_router_v1.json",
+      "payload_sha256": "66117d7ba207a66606fc4ae4770a2b314b3510066be7af734b4e579d028ce1d1",
+      "blob_oid_at_base": "6e49093fdb9d9e55b45c55265eb3cc0c0e65e8c9"
+    },
+    {
+      "binding_id": "m6_router",
+      "path": "experimental/data/certificates/kb-mca-v4-m6-scott-cartesian-degree2-router-v1/kb_mca_v4_m6_scott_cartesian_degree2_router_v1.json",
+      "payload_sha256": "b34e096730f3d93644c283f95d65f622100d6868e9882ed2b901fa109b3d6116",
+      "blob_oid_at_base": "af5fd87a5c28f3b021fc05971a665e6d92f978af"
+    },
+    {
+      "binding_id": "m4_close",
+      "path": "experimental/data/certificates/kb-mca-v4-m4-adjacency-genus-exclusion-v1/kb_mca_v4_m4_adjacency_genus_exclusion_v1.json",
+      "payload_sha256": "a0bc909a9e05c097440d318f5fe7aed052387507723fc1f3337172d3e5db7428",
+      "blob_oid_at_base": "a0b2c8ec260da35ffdefa5a29c7aa5496af5cc79"
+    },
+    {
+      "binding_id": "m3_router",
+      "path": "experimental/data/certificates/kb-mca-v4-m3-primitive-outer-degree2-router-v1/kb_mca_v4_m3_primitive_outer_degree2_router_v1.json",
+      "payload_sha256": "0f7c0134c723875d66dd19d96f9c68c7299079b5560e63780910afc6d86f21d4",
+      "blob_oid_at_base": "24f406d8bdb72d8562c91b28890eae59befd6d91"
+    },
+    {
+      "binding_id": "m2_full_v4_close",
+      "path": "experimental/data/certificates/kb-mca-v4-m2-r2-dihedral-degree3-source-facet-exclusion-v1/kb_mca_v4_m2_r2_dihedral_degree3_source_facet_exclusion_v1.json",
+      "payload_sha256": "f48a46f22bc15098f5fc566e6f009d76afa4751c4fd4b4b8edaf481e619c5a01",
+      "blob_oid_at_base": "75fce13ee5cee43dc2d74565505641adf114f6f2"
+    },
+    {
+      "binding_id": "m2_live_interface",
+      "path": "experimental/data/certificates/kb-mca-v4-m2-u2-universal-source-facet-census-v1/kb_mca_v4_m2_u2_universal_source_facet_census_v1.json",
+      "payload_sha256": "8f768cfded349dc3dd40cf6214ffe980c69ff18ae2d8c209e63b4307767429d2",
+      "blob_oid_at_base": "844b7885620bf10fe19336f3acd7866cf1d9a204"
+    },
+    {
+      "binding_id": "active_v4_manifest",
+      "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/manifest.json",
+      "payload_sha256": "ffd1e427f53db3d2dbfd13e69a05d173d2f2aa1f03c152aead73fcc821094acb",
+      "blob_oid_at_base": "c29987f43f7526aacbbf4c238ee6887687876879"
+    },
+    {
+      "binding_id": "active_v4_row",
+      "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/row_manifest.json",
+      "payload_sha256": "36e9d69aaf6deeb4fe123358e8bb8d5bbbdcb40c9315b4316f0c6a1189a270e1",
+      "blob_oid_at_base": "15731acc39a4cc38d8175fd09535b149490f8551"
+    }
+  ],
+  "packet_files": [
+    {
+      "file_id": "note",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_k3_outer_frontier_dihedral_route_cut_v1.md",
+      "sha256": "b492db556c877854c69032669fb093a3f7ddb73812c6fe866e209356aad5a5ed"
+    },
+    {
+      "file_id": "python_verifier",
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_outer_frontier_dihedral_route_cut_v1.py",
+      "sha256": "8ef0433c15232cedd2727790bf8a7b6ecf329d037e907bb7b9738c6e711d3fad"
+    },
+    {
+      "file_id": "sage_replay",
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_outer_frontier_dihedral_route_cut_v1.sage",
+      "sha256": "98b6aa73087d0f683ed82b617028a7227eade2befb82ea7b71daa5a2cb036581"
+    },
+    {
+      "file_id": "wolfram_replay",
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_outer_frontier_dihedral_route_cut_v1.wl",
+      "sha256": "e4d7c86a9a6610f5c672fdffa08b0e2219596d862c9798d032c3a0632556905d"
+    },
+    {
+      "file_id": "readme",
+      "path": "experimental/data/certificates/kb-mca-v4-k3-outer-frontier-dihedral-route-cut-v1/README.md",
+      "sha256": "adb3eb82b4a916b9e1c687d39ae1d823fe2467aa5f74b61d808a021f2a9e387a"
+    }
+  ],
+  "active_v4_repair": {
+    "reason": "The predecessor tangent row and manifest pinned grande_finale.tex blob 8a5d9791, while #1132 contains the material b13de8113 saturated-BC status update at blob 6b21d6ea.",
+    "predecessor_manifest_payload_sha256": "536b08f23e552b2cb4fb226d74d42d54750118dae2efe619ff6e67d69d0370bf",
+    "predecessor_row_payload_sha256": "a05d8caf2b772c9c5cc7e7683631c9db7f5b3f2ba4cf8f436f6d3b16f4bdc189",
+    "predecessor_grande_finale_blob_oid": "8a5d9791900ca9eed773feba146b92ad296704ce",
+    "repaired_manifest_payload_sha256": "ffd1e427f53db3d2dbfd13e69a05d173d2f2aa1f03c152aead73fcc821094acb",
+    "repaired_row_payload_sha256": "36e9d69aaf6deeb4fe123358e8bb8d5bbbdcb40c9315b4316f0c6a1189a270e1",
+    "repaired_row_file_sha256": "c416511796e3a196bf43f6a9f7155f499a6bf7c63dbbf52e2a64b4437e248a05",
+    "current_grande_finale_blob_oid": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
+    "current_grande_finale_blob_gate": "git rev-parse BASE_HEAD:experimental/grande_finale.tex",
+    "tangent_verifier_passes": true,
+    "tangent_verifier_normal_passes": true,
+    "tangent_verifier_optimized_passes": true,
+    "agents_md_drift_is_diagnostic_steering_only": true
+  },
+  "frontier_synthesis": {
+    "degree_identity": "delta*r=4*m",
+    "history": [
+      {
+        "stage": "source_pencil",
+        "count": 26,
+        "live_inner_degrees": [2, 3, 4, 6, 10, 12]
+      },
+      {
+        "stage": "m12_closed",
+        "count": 22,
+        "live_inner_degrees": [2, 3, 4, 6, 10]
+      },
+      {
+        "stage": "m10_routed",
+        "count": 18,
+        "live_inner_degrees": [2, 3, 4, 6]
+      },
+      {
+        "stage": "m6_routed",
+        "count": 12,
+        "live_inner_degrees": [2, 3, 4]
+      },
+      {
+        "stage": "m4_closed",
+        "count": 8,
+        "live_inner_degrees": [2, 3]
+      },
+      {
+        "stage": "m3_routed",
+        "count": 3,
+        "live_inner_degrees": [2]
+      },
+      {
+        "stage": "m2_full_v4_closed",
+        "count": 2,
+        "live_inner_degrees": [2]
+      }
+    ],
+    "residual_types": [
+      [2, 4, 2],
+      [2, 8, 1]
+    ],
+    "terminal": "UNPAID_TWO_TRANSVERSE_TYPES_AND_SEMANTIC_ADAPTER"
+  },
+  "active_v4_partition": {
+    "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_SOURCE_ADAPTER_V1",
+    "manifest_payload_sha256": "ffd1e427f53db3d2dbfd13e69a05d173d2f2aa1f03c152aead73fcc821094acb",
+    "row_payload_sha256": "36e9d69aaf6deeb4fe123358e8bb8d5bbbdcb40c9315b4316f0c6a1189a270e1",
+    "partition_sha256": "4fade91abc408264989babcff6f8f9bbd80bcec52545a5db15ac376bf17d88fc",
+    "owner_order": [
+      "SOURCE_COORDINATE_TANGENT_IMAGE",
+      "ACTIVE_V4_BOUNDARY_PREFIX_Q",
+      "ACTIVE_V4_BALANCED_CORE",
+      "UNPAID_V4_COMPLEMENT"
+    ],
+    "atom_order": ["U_paid", "U_Q", "U_BC", "U_new"],
+    "live_four_cell_partition_present": true,
+    "live_four_cell_partition_first_match_disjoint": true,
+    "live_four_cell_partition_witness_exhaustive": true,
+    "transverse_terminal_to_active_cell_mapping_proved": false
+  },
+  "strict_route_compiler": {
+    "rank": {
+      "m10": 3,
+      "m6": 2,
+      "m3": 2,
+      "m2": 1,
+      "closed": 0
+    },
+    "strict_edges": [
+      ["m10", "m6"],
+      ["m10", "m3"],
+      ["m10", "m2"],
+      ["m6", "m2"],
+      ["m6", "closed"],
+      ["m3", "m2"],
+      ["m3", "closed"]
+    ],
+    "m2_self_recurrence_is_strict": false,
+    "well_founded": true
+  },
+  "conditional_any69": {
+    "statement_status": "CONDITIONAL_ONLY",
+    "required_adapter_gates": [
+      "transverse_terminal_to_active_cell_mapping",
+      "semantic_complete_selector",
+      "strict_descent_69_class_transport_or_exact_reselection",
+      "full_same_record_owner_descent"
+    ],
+    "current_gate_values": {
+      "transverse_terminal_to_active_cell_mapping": false,
+      "semantic_complete_selector": false,
+      "strict_descent_69_class_transport_or_exact_reselection": false,
+      "full_same_record_owner_descent": false
+    },
+    "same_record_key": [
+      "received_line_id",
+      "slope_coordinates",
+      "graph_record_id",
+      "evaluation_support_id",
+      "received_data_id",
+      "explaining_polynomial_id",
+      "source_map_class_id",
+      "active_v4_owner_index"
+    ],
+    "currently_resolved_types": [],
+    "remaining_types": [
+      [2, 4, 2],
+      [2, 8, 1]
+    ],
+    "cap68_currently_proved": false,
+    "cap68_if_all_gates_and_types_close": true,
+    "proof_measure": "finite strict route rank 3>2>1>0"
+  },
+  "deployed_dihedral_route_cut": {
+    "field_prime": 2130706433,
+    "field_prime_verified": true,
+    "carrier_subgroup": "D=<a>",
+    "carrier_order": 2097152,
+    "primitive_root_seed": 3,
+    "carrier_generator": 1213133211,
+    "carrier_generator_order": 2097152,
+    "tau1": "x |-> a/x",
+    "tau2": "x |-> a^3/x",
+    "tau1_fixed_point_free_on_D": true,
+    "tau2_fixed_point_free_on_D": true,
+    "fixed_point_congruences": ["2k=1 mod N", "2k=3 mod N"],
+    "quadratic_quotient_fibres": [
+      {
+        "name": "q1",
+        "involution": "x |-> a/x",
+        "coefficient": "a",
+        "coefficient_value": 1213133211,
+        "formula": "q1(x)=x+a/x",
+        "fibre_difference_formula": "q1(T)-q1(x)=((T-x)(T*x-a))/(T*x)",
+        "rational_map_degree": 2,
+        "preserves_D": true,
+        "complete_D_fibre_formula": "q1^(-1)(q1(x))={x,a/x} for x in D",
+        "D_fibre_complete": true,
+        "D_fibre_reduced": true,
+        "D_fibre_cardinality": 2
+      },
+      {
+        "name": "q2",
+        "involution": "x |-> a^3/x",
+        "coefficient": "a^3",
+        "coefficient_value": 1397683113,
+        "formula": "q2(x)=x+a^3/x",
+        "fibre_difference_formula": "q2(T)-q2(x)=((T-x)(T*x-a^3))/(T*x)",
+        "rational_map_degree": 2,
+        "preserves_D": true,
+        "complete_D_fibre_formula": "q2^(-1)(q2(x))={x,a^3/x} for x in D",
+        "D_fibre_complete": true,
+        "D_fibre_reduced": true,
+        "D_fibre_cardinality": 2
+      }
+    ],
+    "rotation": "tau2*tau1: x |-> a^2*x",
+    "rotation_order": 1048576,
+    "generated_group": "DIHEDRAL",
+    "generated_group_order": 2097152,
+    "common_invariant": "u=x^(N/2)-x^(-N/2)",
+    "common_invariant_rational_map_degree": 2097152,
+    "common_invariant_value_on_D": 0,
+    "common_invariant_zero_fibre": {
+      "equation": "u^(-1)(0)=D",
+      "defining_polynomial": "x^N-1",
+      "cardinality": 2097152,
+      "fibre_degree": 2097152,
+      "complete": true,
+      "reduced": true,
+      "separability": "N divides p-1 and p does not divide N",
+      "pole_support": ["0", "infinity"],
+      "pole_orders": {
+        "0": 1048576,
+        "infinity": 1048576
+      },
+      "pole_divisor_degree": 2097152
+    },
+    "fixed_field_intersection": "F_p(x)^<tau1> INTERSECT F_p(x)^<tau2> = F_p(u)",
+    "fixed_field_intersection_degree": 2097152,
+    "fixed_field_intersection_proved": true,
+    "bounded_degree_four_progress_forced": false,
+    "useful_nonconstant_quotient_on_D_forced": false,
+    "actual_received_line_record_constructed": false,
+    "scope": "CARRIER_PRESERVATION_INFERENCE_COUNTEREXAMPLE_ONLY"
+  },
+  "live_arithmetic": {
+    "field_prime": 2130706433,
+    "B_star": 274980728111395087,
+    "active_U_paid_tangent": 981104,
+    "active_reserve_after_tangent": 274980728110413983,
+    "source_map_cap68_live_charge_derived": false,
+    "ledger_movement": 0
+  },
+  "historical_abstract_calibration": {
+    "source_commit": "ceb6611e7f6aa713fe4a2d7c6d48ca67daaae365",
+    "source_payload_sha256": "afa673d57ed84c240560aae9e40ae72a33a115c5638fd4bad0b23859e2520ecb",
+    "authority": false,
+    "live_charge_derived": false,
+    "role": "OFF_BRANCH_NON_LOAD_BEARING_PROVENANCE_ONLY",
+    "field_prime": 2130706433,
+    "outer_multiplier": 1894736,
+    "support_multiplier": 1894736,
+    "historical_cap68_calibration": 270487454459300144,
+    "historical_cap69_calibration": 274524580645231568
+  },
+  "historical_provenance": {
+    "commit": "ceb6611e7f6aa713fe4a2d7c6d48ca67daaae365",
+    "artifact": "abstract source-map-class compiler",
+    "branch_status": "OFF_THIS_BRANCH",
+    "authority": false,
+    "role": "PROVENANCE_ONLY"
+  },
+  "proof_status": {
+    "verdict": "YELLOW_ROUTE_CUT_GLOBAL_K3_OPEN",
+    "global_K3_closed": false,
+    "KoalaBear_row_closed": false,
+    "proved": [
+      "exact committed frontier synthesis 26>22>18>12>8>3>2",
+      "the live active-v4 four-cell first-match partition is present",
+      "the stated any-69 cap implication under all four semantic gates and both terminal resolutions",
+      "q1 and q2 have complete reduced two-point fibres on D",
+      "u^(-1)(0)=D is a complete reduced degree-N fibre",
+      "the fixed-point-free dihedral carrier-preservation inference counterexample",
+      "the exact live tangent subtraction"
+    ],
+    "unproved": [
+      "transverse-terminal to active-cell mapping",
+      "semantic selector for every actual 69-class packet",
+      "69-class injective/cardinality-preserving strict descent or exact reselection",
+      "full same-record owner descent",
+      "resolution of (2,4,2)",
+      "resolution of (2,8,1)"
+    ]
+  },
+  "audit": {
+    "parameter_dependence": "FINITE_DEPLOYED_PARAMETERS_ONLY",
+    "layer_cake_dyadic_summability": "NOT_APPLICABLE",
+    "moment_markov_chebyshev": "NOT_APPLICABLE",
+    "numerical_evidence": "NONE_PROMOTED_ALL_REPLAYS_EXACT"
+  },
+  "nonclaims": [
+    "No actual received-line record realizing the two involutions is constructed.",
+    "No local source-map class, residue direction, graph record, or slope is identified with another kind of object.",
+    "No residual transverse type is deleted or paid.",
+    "No semantic active-v4 adapter gate is asserted.",
+    "No cap-68 theorem is unconditional.",
+    "No U_Q, U_BC, or U_new value is supplied.",
+    "No ledger value, endpoint, K3 status, or KoalaBear-row status moves."
+  ]
+}
