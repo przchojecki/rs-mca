@@ -1,0 +1,230 @@
+{
+  "branch_coefficient_compiler": {
+    "biquadratic_test": "monic quartic cubic resolvent splits completely over K(W)",
+    "endpoint_reciprocal_sign": "+1",
+    "replay": {
+      "formula": "Y^3-bY^2+(ac-4d)Y+(4bd-a^2d-c^2)",
+      "rows": [
+        {
+          "quartic": [
+            64,
+            -120,
+            70,
+            -15,
+            1
+          ],
+          "resolvent": [
+            -10880,
+            1544,
+            -70,
+            1
+          ],
+          "resolvent_roots": [
+            34,
+            20,
+            16
+          ]
+        },
+        {
+          "quartic": [
+            -330,
+            151,
+            33,
+            -15,
+            1
+          ],
+          "resolvent": [
+            7889,
+            -945,
+            -33,
+            1
+          ],
+          "resolvent_roots": [
+            49,
+            7,
+            -23
+          ]
+        },
+        {
+          "quartic": [
+            3458,
+            -2671,
+            549,
+            -41,
+            1
+          ],
+          "resolvent": [
+            -5353371,
+            95679,
+            -549,
+            1
+          ],
+          "resolvent_roots": [
+            261,
+            159,
+            129
+          ]
+        }
+      ],
+      "rows_sha256": "146680674d4edc6322bf84359f042ac8e7f1a61377f7b83f799c8d1b0fd39ec5"
+    },
+    "source_line_norm": "G=U^2-WV^2"
+  },
+  "conclusion": {
+    "coordinate_orientation_deleted": false,
+    "diagonal_orientation_deleted": false,
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "order_two_type_deleted": false,
+    "terminal": "M2_R4_ORDER_TWO_SOURCE_SUBFIELD_AND_COEFFICIENT_COMPILERS"
+  },
+  "coordinate_coefficient_normal_form": {
+    "coordinates": {
+      "b": "-X",
+      "psi": "X^2",
+      "tau": "-T"
+    },
+    "deck_odd_part_required_nonzero": true,
+    "endpoint_even_in_T": true,
+    "endpoint_norm": "G=U^2-WV^2",
+    "negative_form": "T A_1(W)+X(B_2(W)T^2+B_0(W))",
+    "positive_form": "A_2(W)T^2+A_0(W)+XT B_1(W)",
+    "source_eigenspace_dimensions": [
+      8,
+      7
+    ]
+  },
+  "nonclaims": [
+    "no universal source-row kernel, reciprocal-norm, or split-resolvent failure",
+    "no exact-degree, irreducibility, or outer-factor conclusion for a passing interpolant",
+    "no deletion of an order-two subgroup or the trivial m2 type",
+    "no carrier, data, explaining-polynomial, slope owner, or payment",
+    "no K3, KoalaBear row, endpoint, or Prize close"
+  ],
+  "parent": {
+    "certificate_blob_oid": "c0f6f9496e4bf43b60358133372ce47bc9b5c8dd",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r4-order2-source-facet-interpolation-v1/kb_mca_v4_m2_r4_order2_source_facet_interpolation_v1.json",
+    "certificate_payload_sha256": "96c47c813c41f4b268b9826ed4866e14d44c5a8187487266a3de6f550cbbf6b6",
+    "commit": "77b0971ebb443efd8487ee3809cd988ba183d00c",
+    "note_blob_oid": "a74eb30e46d8941c1cc4c598b2fdff6a3daad657",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_order2_source_facet_interpolation_v1.md",
+    "terminal": "M2_R4_ORDER_TWO_SOURCE_FACET_AND_DIAGONAL_INTERPOLATION_INTERFACES",
+    "verifier_blob_oid": "8c1fd1318b180f27a3114a3a3beedd7e2ed3efbd",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_facet_interpolation_v1.py"
+  },
+  "payload_sha256": "f0b751301e56989bf6fbf19cf15e5ff8faa0d7d86e76278306950a488cdf5156",
+  "schema": "kb-mca-v4-m2-r4-order2-source-subfield-coefficient-compilers-v1",
+  "source_row_interpolation": {
+    "complete_source_product": "product_i q_i is proportional to B^2",
+    "complete_source_resultant": "Res_T(A,H) is proportional to B^2",
+    "equivalence": "full-support kernel iff unique bidegree-at-most-(2,4) source interpolant",
+    "replay": {
+      "field": 101,
+      "kernel_full_support": true,
+      "kernel_residual": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "matrix_columns": 12,
+      "matrix_rows": 45,
+      "matrix_sha256": "22f70ada26c19d5cbb1dd170a0b97d91c35d9f3d842efd8b0a8455cb8d938cc1",
+      "parity_rows": 9,
+      "quartic_coefficients": 5
+    }
+  },
+  "source_subfield_dichotomy": {
+    "exhaustive_branches": [
+      "source_line_lift",
+      "biquadratic_W_cover"
+    ],
+    "function_field_V4_is_ambient_stabilizer_V4": false,
+    "individual_star_transport_only_in_source_line_branch": true,
+    "replay": {
+      "U_eigenspace_dimensions": [
+        5,
+        4
+      ],
+      "V_eigenspace_dimensions": [
+        3,
+        3
+      ],
+      "biquadratic_passports": [
+        {
+          "branch_orbits": [
+            1,
+            1,
+            1
+          ],
+          "fixed_eta": 2,
+          "fixed_eta_prime": 2,
+          "fixed_mu": 2,
+          "genus": 0
+        },
+        {
+          "branch_orbits": [
+            2,
+            2,
+            0
+          ],
+          "fixed_eta": 4,
+          "fixed_eta_prime": 4,
+          "fixed_mu": 0,
+          "genus": 1
+        }
+      ],
+      "source_eigenspace_dimensions": [
+        8,
+        7
+      ],
+      "source_line_coordinates": {
+        "b": "-X",
+        "psi": "X^2",
+        "s": "1/X",
+        "tau": "1/Z"
+      }
+    }
+  }
+}

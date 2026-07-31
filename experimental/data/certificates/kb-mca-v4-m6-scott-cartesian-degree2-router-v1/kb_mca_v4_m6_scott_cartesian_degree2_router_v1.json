@@ -1,0 +1,110 @@
+{
+  "schema": "kb-mca-v4-m6-scott-cartesian-degree2-router-v1",
+  "payload_sha256": "b34e096730f3d93644c283f95d65f622100d6868e9882ed2b901fa109b3d6116",
+  "statement": {
+    "workboard_item": "K3",
+    "row": "KoalaBear MCA at 2^-128",
+    "object": "MCA",
+    "agreement": 1116048,
+    "B_star": "274980728111395087",
+    "endpoint_degree": 60,
+    "original_inner_degree": 6,
+    "original_outer_degree": 10,
+    "status": "PROVED_M6_ROUTED_TO_INNER_DEGREE_2_OR_EXCLUDED_M5_OTHER_K3_ROWS_OPEN",
+    "ledger_movement": 0
+  },
+  "parent_compiler": {
+    "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json",
+    "certificate_blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477",
+    "certificate_payload_sha256": "6d4bc83e40e491f02f7d265b021628ffb7d52b1978c0655f83e5a9d3e0a9f4bb",
+    "imported_terminal": "TRANSVERSE_OUTER_CORRESPONDENCE_UNPAID",
+    "imported_m6_rows": [[1, 24], [2, 12], [3, 8], [4, 6], [6, 4], [8, 3]]
+  },
+  "incoming_frontier": {
+    "commit": "412bc68f1dcb6ac3924d6445146417f3c713ef89",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m10-scott-strip-lower-degree-router-v1/kb_mca_v4_m10_scott_strip_lower_degree_router_v1.json",
+    "certificate_blob_oid": "6e49093fdb9d9e55b45c55265eb3cc0c0e65e8c9",
+    "certificate_payload_sha256": "66117d7ba207a66606fc4ae4770a2b314b3510066be7af734b4e579d028ce1d1",
+    "imported_terminal": "M10_NO_TERMINAL_PRODUCER_ROUTES_TO_M2_M3_M6",
+    "global_transverse_type_count": 18,
+    "live_inner_degrees": [2, 3, 4, 6]
+  },
+  "degree_five_import": {
+    "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.json",
+    "certificate_blob_oid": "911bac3c1c5d1b4cd9822c59939d60e832b7ef23",
+    "certificate_payload_sha256": "638190df24415e5609fa9c2f50dde8fd22bd150f60e7bef5cd1496cb22d75b4e",
+    "quantifier": "every geometric decomposition of the residual degree-60 endpoint map",
+    "terminal": "INNER_DEGREE_FIVE_EXCLUDED"
+  },
+  "degree_six_catalogue": [
+    {"group": "A5", "order": 60, "socle": "A5", "subdegrees": [1, 5]},
+    {"group": "S5", "order": 120, "socle": "A5", "subdegrees": [1, 5]},
+    {"group": "A6", "order": 360, "socle": "A6", "subdegrees": [1, 5]},
+    {"group": "S6", "order": 720, "socle": "A6", "subdegrees": [1, 5]}
+  ],
+  "kernel_free_gate": {
+    "transitive_degree_ten_group_count": 45,
+    "required_group_order_divisor": 600,
+    "candidate_indices": [40, 41, 42, 43, 44, 45],
+    "large_candidates": ["A10", "S10"],
+    "large_candidates_survive": false,
+    "wreath_chains": [
+      {"group": "[A5^2]2", "G_order": 7200, "block_stabilizer_order": 720, "quotient": "A5", "endpoint_stabilizer_order": 120, "intermediate_order": 600, "intermediate_index": 5, "subdegrees": [1, 5]},
+      {"group": "parity wreath, split", "G_order": 14400, "block_stabilizer_order": 1440, "quotient": "S5", "endpoint_stabilizer_order": 240, "intermediate_order": 1200, "intermediate_index": 5, "subdegrees": [1, 5]},
+      {"group": "parity wreath, twist", "G_order": 14400, "block_stabilizer_order": 1440, "quotient": "S5", "endpoint_stabilizer_order": 240, "intermediate_order": 1200, "intermediate_index": 5, "subdegrees": [1, 5]},
+      {"group": "[S5^2]2", "G_order": 28800, "block_stabilizer_order": 2880, "quotient": "S5", "endpoint_stabilizer_order": 480, "intermediate_order": 2400, "intermediate_index": 5, "subdegrees": [1, 5]}
+    ],
+    "terminal": "KERNEL_FREE_M6_ROUTES_TO_EXCLUDED_M5"
+  },
+  "scott_cartesian_route": {
+    "derived_kernel": "D=[N,N]",
+    "subdirect_coordinate_count": 10,
+    "simple_socles": ["A5", "A6"],
+    "socle_subdegrees": [1, 5],
+    "compatibility_partition_G_invariant": true,
+    "compatible_class_sizes_supporting_delta": [5, 10],
+    "actual_suborbit_size": 4,
+    "size_five_terminal": "INNER_DEGREE_FIVE_EXCLUDED",
+    "size_ten_column_contains_delta": true,
+    "primitive_degree_ten_nontrivial_subdegrees": [3, 6, 9],
+    "subdegree_four_present": false,
+    "proper_right_factor_degrees": [2, 5],
+    "surviving_inner_degree": 2,
+    "terminal": "NONTRIVIAL_KERNEL_M6_ROUTES_TO_M2_OR_EXCLUDED_M5"
+  },
+  "external_source_custody": {
+    "gap_primgrp_commit": "5612e113d50ac23a7d10945383936e20440b4e14",
+    "gap_degree6_entry_bytes": 321,
+    "gap_degree6_entry_sha256": "00bc5cdf6d0d833236953b9462c7c595a28960407ab2ee89e1b44ae11c16f5b7",
+    "gap_transgrp_commit": "165fc21ff497b24b7a5975582b331e6692ba04f1",
+    "gap_trans10_file_bytes": 7059,
+    "gap_trans10_file_sha256": "e7d8189cac31fa4f5a0f830234080fbddf0d741ca27921ffc7946c24b22f51d0",
+    "scott_doi": "10.1090/pspum/037/604599",
+    "scott_lemma_page": 328
+  },
+  "source_bindings": [
+    {"binding_id": "KB_M6_ROUTER::compiler_certificate", "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5", "path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json", "blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477", "role": "terminal m6 transverse rows and actual quartic suborbit"},
+    {"binding_id": "KB_M6_ROUTER::incoming_frontier_certificate", "commit": "412bc68f1dcb6ac3924d6445146417f3c713ef89", "path": "experimental/data/certificates/kb-mca-v4-m10-scott-strip-lower-degree-router-v1/kb_mca_v4_m10_scott_strip_lower_degree_router_v1.json", "blob_oid": "6e49093fdb9d9e55b45c55265eb3cc0c0e65e8c9", "role": "18-type frontier after m12 close and m10 routing"},
+    {"binding_id": "KB_M6_ROUTER::degree5_certificate", "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829", "path": "experimental/data/certificates/kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.json", "blob_oid": "911bac3c1c5d1b4cd9822c59939d60e832b7ef23", "role": "universal challenge-field deletion of inner degree five"}
+  ],
+  "conclusion": {
+    "routed_m6_rows": [[1, 24], [2, 12], [3, 8], [4, 6], [6, 4], [8, 3]],
+    "m6_terminal_type_count": 0,
+    "remaining_global_transverse_type_count": 12,
+    "remaining_inner_degrees": [2, 3, 4],
+    "terminal": "M6_NO_TERMINAL_PRODUCER_ROUTES_TO_M2_OR_EXCLUDED_M5",
+    "m6_routed": true,
+    "degree_two_closed": false,
+    "u2_closed": false,
+    "K3_closed": false,
+    "row_closed": false
+  },
+  "nonclaims": [
+    "No degree-two destination is deleted or paid.",
+    "No endpoint-record census or carrier, data, explaining-polynomial, or slope bridge is claimed.",
+    "No u=2, K3, or KoalaBear row closure is claimed.",
+    "No ledger quantity moves."
+  ]
+}
