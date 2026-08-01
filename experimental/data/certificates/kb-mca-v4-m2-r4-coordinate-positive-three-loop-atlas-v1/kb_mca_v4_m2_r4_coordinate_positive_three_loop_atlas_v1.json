@@ -152,8 +152,9 @@
     "k3_status": "OPEN",
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
-    "positive_three_loop_subcase_deleted": false,
-    "terminal": "M2_R4_COORDINATE_POSITIVE_THREE_LOOP_EIGHT_LANE_ELIMINANT_FRONTIER"
+    "positive_three_loop_subcase_deleted": true,
+    "positive_two_loop_subcase_deleted": true,
+    "terminal": "M2_R4_COORDINATE_POSITIVE_MULTI_LOOP_COMPLETE_SOURCE_EXCLUSION"
   },
   "loop_ramification_and_census": {
     "B1_nonzero": true,
@@ -323,9 +324,9 @@
     "total_skeleton_orbits": 10
   },
   "nonclaims": [
-    "no one of the eight saturated lane ideals is proved empty",
-    "no bare edge resultant is treated as sufficient for a seven-label packet",
-    "no remaining source-facet or outer-factor equation is imposed",
+    "the eight-lane atlas is retained but no lane saturation is needed for the deletion",
+    "no ordinary source-root norm is identified with divisor-weighted ramified incidence",
+    "positive zero-loop and narrowed one-loop rows remain open",
     "no negative-parity, diagonal, or trivial-stabilizer conclusion",
     "no order-two type, K3, KoalaBear row, owner, payment, or Prize close"
   ],
@@ -382,7 +383,68 @@
       "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_facet_interpolation_v1.py"
     }
   },
-  "payload_sha256": "f6e9a6cf83aeb9a4e1fd6c26f8108aecb7a2a71d6265086d6e6ba1aa859779b8",
+  "payload_sha256": "9eaf5d6b814c8b117b4ebe7e493396506197d6ca024d8a3a7fcf3a0fde167c8b",
+  "ramified_loop_multiplicity_exclusion": {
+    "branch_chart_orders": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "complete_source_square_local_order": 4,
+    "deleted_common_loop_counts": [
+      2,
+      3
+    ],
+    "local_hypotheses": [
+      "ramified antipodal star {a,-a}",
+      "A2(branch)*a*B1(branch)!=0",
+      "other signed target squares differ from a^2"
+    ],
+    "maximum_positive_common_loop_count": 1,
+    "multi_loop_placement_count": 4,
+    "multi_loop_placements": [
+      {
+        "B1_zero": "ramified_zero",
+        "excluded_branch": "ramified_infinity",
+        "loops": [
+          "ramified_zero",
+          "ramified_infinity"
+        ]
+      },
+      {
+        "B1_zero": "ordinary",
+        "excluded_branch": "ramified_zero",
+        "loops": [
+          "ramified_zero",
+          "ordinary"
+        ]
+      },
+      {
+        "B1_zero": "ordinary",
+        "excluded_branch": "ramified_infinity",
+        "loops": [
+          "ramified_infinity",
+          "ordinary"
+        ]
+      },
+      {
+        "B1_zero": "ordinary",
+        "excluded_branch": "ramified_zero",
+        "loops": [
+          "ramified_zero",
+          "ramified_infinity",
+          "ordinary"
+        ]
+      }
+    ],
+    "ordinary_resultant_local_order": 2,
+    "ramified_one_loop_requires_B1_zero": true
+  },
   "schema": "kb-mca-v4-m2-r4-coordinate-positive-three-loop-atlas-v1",
   "scope": {
     "common_pair_degree_profiles": [
@@ -403,7 +465,7 @@
     "row": "KoalaBear MCA at 2^-128",
     "source_parity": "positive",
     "stabilizer_order": 2,
-    "subcase": "exactly three common antipodal edge orbits",
+    "subcase": "at least two common antipodal edge orbits, with the three-loop atlas retained",
     "workboard_item": "K3"
   },
   "signed_outside_vieta_atlas": {

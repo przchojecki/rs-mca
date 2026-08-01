@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the positive coordinate order-two branch, every three-loop packet has one exact outside skeleton, one of four guarded common-kernel placements, and one of eight signed seven-edge Vieta systems; each outside label has an exact 22-term generic eliminant and a separately retained degree-drop branch.
+direct_statement: In the positive coordinate order-two branch, complete-source local multiplicity excludes every packet with two or three common antipodal edge orbits; the exact three-loop atlas and eliminants are retained as the audited route that exposed the obstruction.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_R4_COORDINATE_POSITIVE_THREE_LOOP_ATLAS
-quantifier: every actual graph-free Q=6,s=6 inner-degree-two component in the positive coordinate order-two orientation whose five common K-fiber edges contain exactly three antipodal orbits
+quantifier: every actual graph-free Q=6,s=6 inner-degree-two component in the positive coordinate order-two orientation whose five common K-fiber edges contain at least two antipodal orbits
 projection_and_unit: exact source-component graph and Vieta interfaces; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: ten common skeleton orbits overall, exactly two three-loop profile rows, one outside skeleton, four guarded degree-six common residuals, eight signed lanes with seven edges each, and exact generic/degree-drop one-edge eliminants
-status: PROVED_COMPILER_POSITIVE_THREE_LOOP_SUBCASE_OPEN_ORDER_TWO_TYPE_OPEN_K3_OPEN
-impact: REPLACES_THE_POSITIVE_THREE_LOOP_SEARCH_BY_EIGHT_EXACT_SATURATED_POLYNOMIAL_SYSTEMS
-falsifier: a positive coordinate three-loop packet outside the printed skeletons or placements, a failed determinant identity, a third sign orbit, a failed square-root-free Vieta equivalence, or an outside edge not covered by the generic and degree-drop eliminants
+claimed_bound: exact local orders 2 versus 4 at a ramified loop with nonzero B1, implying at most one positive common loop; ten common skeleton orbits, four three-loop placements, eight signed lanes, and exact generic/degree-drop eliminants retained
+status: PROVED_POSITIVE_TWO_AND_THREE_LOOP_SUBCASES_EMPTY_ORDER_TWO_TYPE_OPEN_K3_OPEN
+impact: DELETES_POSITIVE_MULTI_LOOP_COORDINATE_SUBCASES_AND_NARROWS_ONE_LOOP_TO_THE_B1_ZERO
+falsifier: an actual positive complete-source packet with a ramified antipodal star where B1 is nonzero, or failure of the local resultant order 2 versus complete-source-square order 4 comparison
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py --check --tamper-selftest
 ---
 
@@ -36,12 +36,12 @@ shape
 H(T,X)=A_2(W)T^2+A_0(W)+XT B_1(W),       W=X^2.     (0.2)
 ```
 
-This extension compiles the subcase in which the five common `K`-fiber
+This packet compiles the subcase in which the five common `K`-fiber
 edge orbits contain exactly three antipodal target edges. The three loops
 use both ramified quotient values and the unique root of `B_1`. The two
 remaining common edges give one `4 x 4` kernel with one of four explicit
 degree-six determinant residuals. The seven outside edges have one exact
-graph skeleton and one binary cycle-sign invariant. Thus the complete
+graph skeleton and one binary cycle-sign invariant. Thus the raw
 three-loop frontier consists of eight exact saturated polynomial systems.
 
 For each outside edge, the product equation has degree at most two in its
@@ -49,9 +49,14 @@ quotient label and the squared-sum equation has degree at most four. Their
 generic resultant has 22 terms and total coefficient degree six. The
 linear degree-drop branch is retained explicitly.
 
-No one of the eight systems is proved empty. This packet does not delete
-positive parity, a coordinate orientation, or the order-two type, and it
-books no owner or payment.
+The pinned complete-source square supplies a stronger final step. At either
+ramified loop where `B_1` is nonzero, exactly the two antipodal target rows
+vanish, each to local order one, so their product has order two. The
+ramified complete-source divisor has order two and its square has order
+four. This contradiction deletes every positive two- and three-loop row.
+Positive zero-loop and narrowed one-loop rows remain; the coordinate
+orientation and order-two type are not deleted, and no owner or payment is
+booked.
 
 ## 1. Loop ramification and the ten skeletons
 
@@ -311,22 +316,73 @@ If also `B=0`, then `C!=0` under the loop-target collision guards, so the
 constant product equation has no root. Thus (6.5) and (6.6) exhaust every
 outside edge without dividing away the repeated-product branch.
 
-## 7. Scope and next action
+## 7. Complete-source local multiplicity exclusion
+
+Let `w_0` be a branch value of `W=X^2`, and use a local source coordinate
+`u` with `W-w_0` of order two. Suppose the star there is `{a,-a}`. After
+moving the branch to `u=0`, write the positive normal form locally as
+
+```text
+H(T,u)=D(u^2)T^2+E(u^2)+uT C(u^2).                 (7.1)
+```
+
+The loop product row and leading support give
+
+```text
+E(0)=-a^2D(0),             D(0)a!=0.               (7.2)
+```
+
+If `B_1(w_0)=C(0)!=0`, substitution in (7.1) gives
+
+```text
+H(a,u)= aC(0)u+O(u^2),
+H(-a,u)=-aC(0)u+O(u^2).                            (7.3)
+```
+
+Every other target label `t` has `t^2!=a^2`, hence
+`H(t,0)=D(0)(t^2-a^2)!=0`. The pinned source-row compiler gives
+
+```text
+Res_T(A(T),H(T,u))=product_t H(t,u) ~ B_source(u)^2. (7.4)
+```
+
+The left side of (7.4) has order two by (7.3). The complete source fiber
+above a quotient branch is the doubled divisor `2[u=0]`, so
+`ord_u B_source=2` and the right side has order four. Contradiction. The
+reciprocal local chart proves the same statement at infinity.
+
+Now use the census from Section 1. A two-loop row either has one ordinary
+loop, which consumes the unique zero of linear `B_1`, or has both branch
+loops, at at least one of which `B_1` is nonzero. A three-loop row has its
+ordinary loop at the `B_1` zero and both branch loops. Every case contains
+a forbidden ramified loop. Therefore
+
+```text
+number of positive common loops <= 1.              (7.5)
+```
+
+In particular both positive 442/433 two-loop rows and both three-loop rows
+are empty. If a surviving one-loop row is ramified, its loop must be the
+unique zero of `B_1`.
+
+This local-order theorem also explains why an ordinary source-root norm
+must not be identified with a target graph table that manually doubles a
+ramified loop. No such norm is used in (7.1)--(7.5).
+
+## 8. Scope and next action
 
 Proved: the loop nonrepetition and ramification gate; the exact ten-orbit
 common skeleton census; the unique complete outside graph in the
 three-loop subcase; the four common placement determinants; the two sign
 orbits and eight signed Vieta lanes; the square-root-free edge equivalence;
-and the generic and degree-drop one-edge eliminants.
+the generic and degree-drop one-edge eliminants; and the complete-source
+local multiplicity exclusion of every positive two- and three-loop row.
 
-Not proved: emptiness of any saturated lane, simultaneous compatibility of
-the seven outside labels, the remaining source-facet or outer-factor
-conditions, deletion of positive parity or another orientation, an owner,
-payment, K3, the KoalaBear row, or a Prize result.
+Not proved: deletion of positive zero-loop or narrowed one-loop rows,
+positive parity as a whole, another orientation, an owner, payment, K3, the
+KoalaBear row, or a Prize result.
 
-The next exact task is one parametric saturation calculation per lane,
-retaining the guards in (5.4), all label-separation factors, and all target
-collisions. A bare product of the seven scalar resultants cannot close a
-lane. Any survivor must then be reconstructed through the full common
-kernel and tested against the remaining source-facet and outer-component
-identities.
+Do not run the eight three-loop saturation systems: (7.5) supersedes them.
+The next positive-coordinate task is to compile the zero-loop rows and the
+one-loop rows after forcing any ramified loop to the `B_1` zero. The
+diagonal and trivial-stabilizer orientations remain separate.

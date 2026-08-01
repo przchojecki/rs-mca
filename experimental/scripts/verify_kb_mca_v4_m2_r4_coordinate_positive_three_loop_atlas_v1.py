@@ -137,6 +137,17 @@ def load_parents() -> None:
             "coefficient parent dimensions")
     require(normal["positive_form"] == "A_2(W)T^2+A_0(W)+XT B_1(W)",
             "coefficient parent positive form")
+    interpolation = coefficient["source_row_interpolation"]
+    require(
+        interpolation["complete_source_resultant"]
+        == "Res_T(A,H) is proportional to B^2",
+        "coefficient parent complete-source square",
+    )
+    source_note = git_output("show", f"{SOURCE_FACET_PARENT['commit']}:{SOURCE_FACET_PARENT['note_path']}")
+    require("allowing `x_p=bx_p` at ramification" in source_note,
+            "source parent ramified divisor")
+    require("at ramification it is\n`H(T,x_p)^2`" in source_note,
+            "source parent ramified square")
     require(coefficient["parent"] == SOURCE_FACET_PARENT,
             "coefficient-to-source parent pin")
 
@@ -651,6 +662,85 @@ def edge_eliminant_replay() -> dict[str, Any]:
     }
 
 
+def local_order(polynomial, variable) -> int:
+    terms = sp.Poly(sp.expand(polynomial), variable).terms()
+    return min(monomial[0] for monomial, coefficient in terms if coefficient)
+
+
+def ramified_loop_multiplicity_replay() -> dict[str, Any]:
+    u, a, t = sp.symbols("u a t")
+    d0, d1, d2, e1, e2, c0, c1 = sp.symbols(
+        "d0 d1 d2 e1 e2 c0 c1"
+    )
+    w = u**2
+    denominator = d0 + d1 * w + d2 * w**2
+    numerator = -a**2 * d0 + e1 * w + e2 * w**2
+    odd = c0 + c1 * w
+    row_plus = sp.expand(a**2 * denominator + numerator + a * u * odd)
+    row_minus = sp.expand(a**2 * denominator + numerator - a * u * odd)
+    row_other = sp.expand(t**2 * denominator + numerator + t * u * odd)
+    require(sp.Poly(row_plus, u).coeff_monomial(u) == a * c0,
+            "positive ramified tangent")
+    require(sp.Poly(row_minus, u).coeff_monomial(u) == -a * c0,
+            "negative ramified tangent")
+    require(sp.expand(row_other.subs(u, 0) - d0 * (t**2 - a**2)) == 0,
+            "other target branch unit")
+
+    targets = tuple(range(-6, 0)) + tuple(range(1, 7))
+    charts = (
+        (1, 2 + 3 * u**2 + 5 * u**4, -2 + 13 * u**2 + 17 * u**4,
+         u * (7 + 11 * u**2)),
+        (2, 5 + 3 * u**2 + 2 * u**4, -20 + 17 * u**2 + 13 * u**4,
+         u * (11 + 7 * u**2)),
+    )
+    orders = []
+    for loop_target, d_value, e_value, odd_value in charts:
+        product = sp.prod(
+            target**2 * d_value + e_value + target * odd_value
+            for target in targets
+        )
+        observed = local_order(product, u)
+        required = local_order((u**2 * (1 + u)) ** 2, u)
+        require((observed, required) == (2, 4), "ramified local-order mismatch")
+        orders.append([observed, required])
+
+    placements = []
+    slots = ("ramified_zero", "ramified_infinity", "ordinary")
+    for loop_count in (2, 3):
+        for loops in itertools.combinations(slots, loop_count):
+            branches = [slot for slot in loops if slot.startswith("ramified_")]
+            require(branches, "multi-loop ramification")
+            if "ordinary" in loops:
+                b1_zero = "ordinary"
+                live_branch = branches[0]
+            else:
+                b1_zero = "ramified_zero"
+                live_branch = "ramified_infinity"
+            require(live_branch in loops and live_branch != b1_zero,
+                    "nonzero B1 branch loop")
+            placements.append({
+                "loops": list(loops),
+                "B1_zero": b1_zero,
+                "excluded_branch": live_branch,
+            })
+    require(len(placements) == 4, "multi-loop placement coverage")
+    return {
+        "local_hypotheses": [
+            "ramified antipodal star {a,-a}",
+            "A2(branch)*a*B1(branch)!=0",
+            "other signed target squares differ from a^2",
+        ],
+        "ordinary_resultant_local_order": 2,
+        "complete_source_square_local_order": 4,
+        "branch_chart_orders": orders,
+        "multi_loop_placement_count": len(placements),
+        "multi_loop_placements": placements,
+        "deleted_common_loop_counts": [2, 3],
+        "maximum_positive_common_loop_count": 1,
+        "ramified_one_loop_requires_B1_zero": True,
+    }
+
+
 def expected_certificate() -> dict[str, Any]:
     data = {
         "schema": "kb-mca-v4-m2-r4-coordinate-positive-three-loop-atlas-v1",
@@ -667,7 +757,7 @@ def expected_certificate() -> dict[str, Any]:
             "orientation": "coordinate",
             "source_parity": "positive",
             "common_pair_degree_profiles": [[4, 4, 2], [4, 3, 3]],
-            "subcase": "exactly three common antipodal edge orbits",
+            "subcase": "at least two common antipodal edge orbits, with the three-loop atlas retained",
         },
         "loop_ramification_and_census": {
             "antipodal_target_type_repeats": False,
@@ -683,18 +773,20 @@ def expected_certificate() -> dict[str, Any]:
         "common_kernel_and_placement_atlas": common_kernel_replay(),
         "signed_outside_vieta_atlas": signed_vieta_replay(),
         "outside_edge_eliminant": edge_eliminant_replay(),
+        "ramified_loop_multiplicity_exclusion": ramified_loop_multiplicity_replay(),
         "conclusion": {
-            "positive_three_loop_subcase_deleted": False,
+            "positive_two_loop_subcase_deleted": True,
+            "positive_three_loop_subcase_deleted": True,
             "coordinate_positive_orientation_deleted": False,
             "order_two_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_R4_COORDINATE_POSITIVE_THREE_LOOP_EIGHT_LANE_ELIMINANT_FRONTIER",
+            "terminal": "M2_R4_COORDINATE_POSITIVE_MULTI_LOOP_COMPLETE_SOURCE_EXCLUSION",
         },
         "nonclaims": [
-            "no one of the eight saturated lane ideals is proved empty",
-            "no bare edge resultant is treated as sufficient for a seven-label packet",
-            "no remaining source-facet or outer-factor equation is imposed",
+            "the eight-lane atlas is retained but no lane saturation is needed for the deletion",
+            "no ordinary source-root norm is identified with divisor-weighted ramified incidence",
+            "positive zero-loop and narrowed one-loop rows remain open",
             "no negative-parity, diagonal, or trivial-stabilizer conclusion",
             "no order-two type, K3, KoalaBear row, owner, payment, or Prize close",
         ],
@@ -729,7 +821,11 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["outside_edge_eliminant"]["generic"].__setitem__("resultant_digest", "0" * 64),
         lambda x: x["outside_edge_eliminant"]["degree_drop"].__setitem__("root", "w=C/B"),
         lambda x: x["outside_edge_eliminant"].__setitem__("resultant_is_only_necessary_before_saturation", False),
-        lambda x: x["conclusion"].__setitem__("positive_three_loop_subcase_deleted", True),
+        lambda x: x["ramified_loop_multiplicity_exclusion"].__setitem__("ordinary_resultant_local_order", 4),
+        lambda x: x["ramified_loop_multiplicity_exclusion"].__setitem__("multi_loop_placement_count", 3),
+        lambda x: x["ramified_loop_multiplicity_exclusion"].__setitem__("maximum_positive_common_loop_count", 2),
+        lambda x: x["conclusion"].__setitem__("positive_two_loop_subcase_deleted", False),
+        lambda x: x["conclusion"].__setitem__("positive_three_loop_subcase_deleted", False),
         lambda x: x["conclusion"].__setitem__("order_two_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
         lambda x: x["parents"]["source_facet"].__setitem__("certificate_payload_sha256", "0" * 64),
@@ -773,6 +869,9 @@ def main() -> None:
         f"placements={data['common_kernel_and_placement_atlas']['placement_count']} "
         f"lanes={data['signed_outside_vieta_atlas']['lane_count']} "
         f"edge_records={data['signed_outside_vieta_atlas']['edge_record_count']} "
+        f"local_orders={data['ramified_loop_multiplicity_exclusion']['ordinary_resultant_local_order']}/"
+        f"{data['ramified_loop_multiplicity_exclusion']['complete_source_square_local_order']} "
+        f"deleted_loops={','.join(str(value) for value in data['ramified_loop_multiplicity_exclusion']['deleted_common_loop_counts'])} "
         f"tamper_rejected={rejected}"
     )
 

@@ -4331,8 +4331,8 @@ Keep entries concise and link to the relevant files.
   `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.md`,
   `experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py`,
   its fail-closed JSON certificate, `agents.md`, and this log.
-- **Status:** PROVED exact compiler / positive three-loop subcase open / K3
-  open.
+- **Status:** PROVED positive two-/three-loop subcases EMPTY / positive
+  coordinate orientation open / K3 open.
 - **What is being added:** In the positive coordinate orientation, loop
   nonrepetition and ramification refine the two exact pair-degree profiles
   `(4,4,2)` and `(4,3,3)` to one three-loop common skeleton each.  The
@@ -4340,16 +4340,23 @@ Keep entries concise and link to the relevant files.
   placements have explicit degree-six residuals; target-sign gauge gives
   two cycle-sign orbits and eight seven-edge lanes; and every outside edge
   has exact generic and degree-drop eliminants.  The generic resultant has
-  22 terms and total coefficient degree six.
+  22 terms and total coefficient degree six.  The complete-source square
+  then closes the compiled branch locally: at a ramified loop with nonzero
+  `B_1`, the two antipodal target rows have total order two, while the
+  doubled source fiber requires square order four.  Every positive two- or
+  three-loop placement has such a branch.
 - **Replay discipline:** The verifier pins both exact order-two parents by
   commit, blob, payload, and terminal; exhausts all finite graph/sign
   quotients; checks every polynomial identity symbolically; seals the
-  certificate; and rejects 25 hostile mutations.
-- **Scope guard:** No saturated lane is proved empty.  A bare edge resultant
-  is only necessary, and no source-facet completion, outer-factor identity,
-  orientation/type deletion, owner, payment, K3 value, or row bound is
+  certificate; checks both branch charts and all four multi-loop placement
+  patterns; and rejects 29 hostile mutations.
+- **Route correction:** An attempted ordinary source-root neighbor norm was
+  removed because it did not carry the doubled divisor multiplicity of a
+  ramified loop.  The closing theorem uses the pinned complete-source square
+  directly and does not rely on that norm.
+- **Scope guard:** Positive zero-loop and narrowed one-loop rows remain.
+  No orientation/type deletion, owner, payment, K3 value, or row bound is
   claimed.
-- **What to do next:** Saturate the eight exact lane systems by all quotient
-  label-separation and target-collision factors.  Reconstruct any survivor
-  through the common kernel and impose the remaining source-facet and outer
-  producer identities.
+- **What to do next:** Compile the positive zero-loop and one-loop rows,
+  forcing any ramified one-loop to the unique zero of `B_1`.  Do not run the
+  superseded eight-lane three-loop saturation.
