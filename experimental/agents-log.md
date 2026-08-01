@@ -4388,22 +4388,30 @@ Keep entries concise and link to the relevant files.
   explicit division-free reconstruction.  For each common row and cycle
   sign, the complete outside product assignment reduces exhaustively to
   `5*7*15=525` necessary cases.  Each outside edge has the exact 22-term
-  generic scalar eliminant plus its degree-drop branch.  Two oriented
-  triangle templates eliminate `d,e,f` completely into three product-chain
-  equations and one compact squared-sum cut.
+  generic scalar eliminant plus its degree-drop branch.  The residual
+  target-sign quotient has `39` aligned plus `228` near-aligned formal
+  orbits.  Four universal product binomials are necessary and sufficient,
+  with explicit reconstruction of `d,e,f`; seven cleared equations compile
+  every target squared sum in all `267` representatives.
+- **Follow-up repair:** The first two triangle templates listed only three
+  product equations.  An exponent-lattice audit found the missing
+  independent cross relation linking `DE/DF` to `BE/CF`.  Both templates now
+  have complete four-binomial product chains and remain selected-row
+  projections of the universal compiler.
 - **Replay discipline:** The default verifier pins the previous atlas by
   commit, blob, payload, and terminal; replays the finite matching ledgers
   and displayed polynomial identities; seals the certificate; and rejects
-  18 hostile mutations.  Three localized product-rank cells retain exact
+  23 hostile mutations.  Three localized product-rank cells retain exact
   deployed-field Singular `UNIT` certificates with canonical equation and
   program hashes; `--full-singular-replay` reconstructs them when Singular
   is installed.  A clean Modal image replayed all three successfully under
   app `ap-Iz1TrNvOrldVFaJExtbKt8`.
-- **Scope guard:** The two target-free triangle templates are not proved
-  exhaustive and neither is proved empty.  Bare resultants remain only
-  necessary.  No alignment branch, route, positive orientation, order-two
-  type, owner, payment, K3 value, KoalaBear row, or Prize result is closed.
-- **What to do next:** Classify the residual matching orbits, then reduce
-  the complete product chain and one compact sum cut in each guarded
-  one-dimensional common-chart coordinate ring.  Do not retry the raw
-  ambient seven-variable degree-order basis.
+- **Scope guard:** Formal orbit representatives are not algebraic survivors,
+  and target elimination is not source-system elimination.  Bare resultants
+  remain only necessary.  No alignment branch, route, positive orientation,
+  order-two type, owner, payment, K3 value, KoalaBear row, or Prize result is
+  closed.
+- **What to do next:** Reconstruct guarded common-curve function fields or
+  regular chains, quotient common-cell/source-deck actions, and reduce the
+  universal product equations before the sum equations.  Do not run a
+  target-specific triangle fleet or raw ambient seven-variable basis.

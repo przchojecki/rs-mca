@@ -358,9 +358,13 @@ At this snapshot:
   a one-dimensional, division-free reconstructed coefficient kernel.  The
   outside interface is reduced to an exhaustive `5*7*15=525` necessary
   paired-product ledger per common row and cycle sign, with a 22-term
-  scalar edge eliminant and two target-free triangle templates.  Those two
-  templates are neither exhaustive nor proved empty.  Algebraic deletion
-  of the thirteen routes,
+  scalar edge eliminant.  Its exact residual target-gauge quotient has
+  `39` aligned plus `228` near-aligned formal orbits.  One universal
+  four-binomial product ideal with explicit `d,e,f` reconstruction, plus
+  seven cleared squared-sum equations, now eliminates the target variables
+  exactly in all `267` representatives.  This repairs a missing independent
+  cross relation in the two earlier triangle templates.  No compiled source
+  system is yet proved empty.  Algebraic deletion of the thirteen routes,
   the coordinate orientation, the order-two type, K3, every payment, and
   the KoalaBear row remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
@@ -460,12 +464,15 @@ elimination with the unique saturated-defect route `433-1a -> O0b`.
 For that route the base-rank-drop branch is now empty in all fifteen common
 matching cells, every common survivor has a unique projective coefficient
 kernel, and the complete outside product interface has an exhaustive
-`525`-case necessary ledger.  The next coordinate-positive calculation is
-not another ambient seven-variable basis: classify the residual matching
-orbits, then reduce each target-free product chain and compact squared-sum
-cut in the guarded one-dimensional common-chart coordinate ring.  The two
-currently compiled triangle templates do not yet exhaust the ledger and
-are not route deletions.
+`525`-case necessary ledger and an exact `267`-orbit residual target-gauge
+quotient.  Target elimination is complete: four universal product
+binomials are necessary and sufficient with explicit reconstruction of
+`d,e,f`, and seven universal equations compile all squared sums.  The next
+coordinate-positive calculation is source-side: reconstruct guarded
+common-curve function fields or regular chains, quotient common-cell and
+source-deck actions, then reduce product equations before sum equations.
+No target-specific triangle fleet or ambient seven-variable basis is
+requested.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `2` types at inner degree `m=2`.  For every

@@ -15,8 +15,9 @@ matching cell and cycle sign.
 
 **Impact:** deletes the common base-rank-drop branch, proves a unique common
 coefficient kernel on every common survivor, compiles all necessary outside
-product cases, and eliminates the target variables in two oriented triangle
-templates. It does not delete the route or book an MCA payment.
+product cases, quotients them to 267 residual target-gauge orbits, and gives
+one exact universal elimination of all seven target products and squared
+sums. It does not delete the route or book an MCA payment.
 
 **Parent:** the exact positive loop cap and residual workboard at commit
 `4569b506d7c86b3b7fbca5b22701ef83988e76e8`.
@@ -285,7 +286,8 @@ Eliminating `d,e,f` gives
 ```text
 F(v)=-F(u),
 F(w)=-F(-u),
-F(-v)F(-w)=bcF(xi),                              (6.3)
+F(-v)F(-w)=bcF(xi),
+bF(u)F(-v)=cF(w)F(-w),                           (6.3)
 
 H(u)F(xi)F(-u)+F(u)(F(-u)-F(xi))^2=0.           (6.4)
 ```
@@ -303,7 +305,8 @@ Elimination gives
 ```text
 F(v)=-F(u),
 F(w)=-F(-v),
-F(-u)F(-w)=bcF(xi),                              (6.6)
+F(-u)F(-w)=bcF(xi),
+bF(u)F(-u)=cF(-v)F(-w),                          (6.6)
 
 H(u)c^2F(xi)^2F(-u)^2
  -(F(u)F(-u)^2+c^2F(xi)^2)^2=0.                 (6.7)
@@ -316,22 +319,92 @@ distinct outside deck pairs and all source/common support guards.
 Templates A and B are not proved to exhaust the deployed-field matching
 orbits, and neither template is proved empty.
 
-## 7. Exact next task and nonclaims
+The fourth identity in each product chain is an audit repair.  The first
+version listed only a necessary three-equation subideal; explicit target
+reconstruction shows that the four-equation chain is the complete product
+elimination.
+
+## 7. Exact residual quotient and universal target compiler
+
+Preserving the fixed common, colored, and outside record multiplicities
+leaves one faithful target-sign involution:
+
+```text
+d -> -d:  DE+ <-> DE-, DF+ <-> DF-, EF/BE/CF fixed.  (7.1)
+```
+
+Burnside replay splits the formal ledger into
+
+```text
+alignment       labeled cases   fixed cases   orbits
+aligned                    75             3       39
+near-aligned              450             6      228
+total                     525                    267. (7.2)
+```
+
+For missing mate `EF`, there are nine aligned and thirty near-aligned
+orbits.  Templates A and B are exchanged by (7.1), after permuting residual
+deck-pair names; including all `eta` locations, they cover five of those 39
+formal orbits.  This quantifies nonexhaustiveness but does not require 34
+new target-specific compilers.
+
+Indeed, write the seven record values as
+
+```text
+X_DE+=de, X_DE-=-de, X_DF+=df, X_DF-=-df,
+X_EF=sigma ef, X_BE=be, X_CF=cf.                  (7.3)
+```
+
+Their complete product elimination is one universal four-binomial system:
+
+```text
+X_DE-+X_DE+=0,
+X_DF-+X_DF+=0,
+X_BE X_CF-sigma bc X_EF=0,
+b X_DE+ X_CF-c X_DF+ X_BE=0.                     (7.4)
+```
+
+It is necessary and sufficient on the supported stratum, with explicit
+reconstruction
+
+```text
+e=X_BE/b,  f=X_CF/c,  d=bX_DE+/X_BE.             (7.5)
+```
+
+All seven squared sums also eliminate universally.  If `H_R` is `H` at the
+source label carrying record `R`, the cleared equations are
+
+```text
+b^2X_BE^2H_DE+ -(b^2X_DE+ +X_BE^2)^2=0,
+b^2X_BE^2H_DE- -(b^2X_DE+ -X_BE^2)^2=0,
+c^2X_CF^2H_DF+ -(c^2X_DF+ +X_CF^2)^2=0,
+c^2X_CF^2H_DF- -(c^2X_DF+ -X_CF^2)^2=0,
+b^2c^2H_EF-(cX_BE+sigma bX_CF)^2=0,
+b^2H_BE-(b^2+X_BE)^2=0,
+c^2H_CF-(c^2+X_CF)^2=0.                          (7.6)
+```
+
+Assigning the record at `xi` to `F(xi)` and each matched pair to
+`F(u),F(-u)`, `F(v),F(-v)`, or `F(w),F(-w)` compiles (7.4)--(7.6) for all
+267 formal representatives.  Target-side exponent-lattice classification
+is complete; the remaining algebra is on the source/common curves.
+
+## 8. Exact next task and nonclaims
 
 The rank and kernel work replaces every common survivor by one projective
 quadratic map `F` and one linear numerator for `B_1`.  The next exact attack
 should therefore work in each guarded one-dimensional common-chart
-coordinate ring: reduce the three product-chain equations and one compact
-sum cut there, and only saturate after the system becomes zero-dimensional.
-Do not retry a raw seven-variable degree-order basis or expand (6.4)/(6.7)
-in the ambient ring before this reduction.
+coordinate ring: substitute the universal four product and seven sum
+equations, quotient common-cell/source-deck actions, and reduce product rows
+before sum rows.  Saturate only after the system becomes zero-dimensional.
+Do not retry a raw seven-variable degree-order basis.
 
 This packet does **not** prove that the two templates are exhaustive or
 empty; delete either alignment branch; delete `433-1a -> O0b`; close the
 positive coordinate orientation or order-two type; identify an owner or
 payment; close K3 or the KoalaBear row; or prove either Prize result.
 
-## 8. Replay
+## 9. Replay
 
 The default exact replay is deliberately small:
 
@@ -342,7 +415,7 @@ python3 experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_433_1a_o
 
 It pins the parent commit/blobs/payload, replays the finite cell and matching
 censuses, checks every displayed polynomial identity symbolically, checks
-the certificate seal, and rejects hostile status mutations.  A machine with
+the certificate seal, and rejects 23 hostile status mutations.  A machine with
 Singular can additionally reconstruct the six product minors and replay the
 three localized unit ideals:
 
@@ -359,4 +432,6 @@ localized cells successfully (`SINGULAR_REPLAYED 3`, app
 below five; a common survivor whose matrix rank is not seven or whose kernel
 violates (3.2); an actual outside assignment absent from (4.4); an actual
 edge violating (5.2)/(5.3); or an actual lift of (6.2) or (6.5) violating
-its corresponding target-free identities.
+its corresponding target-free identities; a formal case absent from (7.2);
+or target products/sums satisfying their original definitions but violating
+(7.4)/(7.6).

@@ -20,11 +20,13 @@
     "koalabear_row_status": "OPEN",
     "order_two_type_deleted": false,
     "outside_case_ledger_compiled": true,
+    "outside_case_symmetry_quotient_compiled": true,
     "route_deleted": false,
     "terminal": "M2_R4_COORDINATE_POSITIVE_433_1A_OUTSIDE_REDUCTION",
-    "triangle_templates_exhaustive": false
+    "triangle_templates_exhaustive": false,
+    "universal_target_elimination_compiled": true
   },
-  "next_exact_task": "reduce the three target-free product-chain equations and one compact sum cut inside each guarded one-dimensional common-chart coordinate ring; classify the remaining 525-case matching orbits before claiming route deletion",
+  "next_exact_task": "substitute the universal four-product and seven-sum target-free compiler inside each guarded one-dimensional common-chart coordinate ring; quotient common-cell/source-deck actions and reduce product equations before sum equations",
   "nonclaims": [
     "the stored UNIT certificates are exact deployed-field computations, not characteristic-free theorems",
     "a paired-product resultant survivor need not lift to three distinct unused source deck pairs",
@@ -32,6 +34,34 @@
     "neither target-free triangle template is proved empty",
     "no 433-1a route, positive orientation, order-two type, owner, payment, K3, KoalaBear row, or Prize close"
   ],
+  "outside_case_symmetry_quotient": {
+    "EF_missing_mate_orbits": {
+      "aligned": 9,
+      "near": 30,
+      "total": 39
+    },
+    "aligned": {
+      "fixed": 3,
+      "labeled": 75,
+      "orbits": 39
+    },
+    "current_template_orbits": {
+      "A_and_B_are_gauge_partners": true,
+      "aligned": 1,
+      "near": 4,
+      "total": 5
+    },
+    "faithful_record_action_size": 2,
+    "formal_orbits_are_algebraic_survivors": false,
+    "near": {
+      "fixed": 6,
+      "labeled": 450,
+      "orbits": 228
+    },
+    "nontrivial_action": "DE+<->DE-, DF+<->DF-, EF/BE/CF fixed",
+    "representative_digest": "c2d76d546d8d1a4a06733770202b9faa33616a9eb21f4465978fe337eb03c117",
+    "total_orbits": 267
+  },
   "outside_edge_eliminant": {
     "constant_branch": "A=B=0 implies C!=0, hence no product root",
     "degree_drop_condition": "A=0,B!=0",
@@ -72,7 +102,7 @@
     "verifier_blob_oid": "b2f686579a2bd298bcb9d1d1052508b08c48b743",
     "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py"
   },
-  "payload_sha256": "7b4971a54f76fa31f22861b99c2a0c76599b350e4321b8029242297c72488d74",
+  "payload_sha256": "d22671b3f5fc5e66da68a394dd12c3475f288f75fcdefde6f18267b139361c81",
   "product_base_rank": {
     "analytic_orbits": [
       [
@@ -240,7 +270,8 @@
         "product_chain": [
           "F(v)=-F(u)",
           "F(w)=-F(-u)",
-          "F(-v)*F(-w)=b*c*F(xi)"
+          "F(-v)*F(-w)=b*c*F(xi)",
+          "b*F(u)*F(-v)=c*F(w)*F(-w)"
         ],
         "sum_cut": "H(u)*F(xi)*F(-u)+F(u)*(F(-u)-F(xi))^2=0"
       },
@@ -262,11 +293,29 @@
         "product_chain": [
           "F(v)=-F(u)",
           "F(w)=-F(-v)",
-          "F(-u)*F(-w)=b*c*F(xi)"
+          "F(-u)*F(-w)=b*c*F(xi)",
+          "b*F(u)*F(-u)=c*F(-v)*F(-w)"
         ],
         "sum_cut": "H(u)*c^2*F(xi)^2*F(-u)^2-(F(u)*F(-u)^2+c^2*F(xi)^2)^2=0"
       }
     },
     "templates_exhaust_525_case_ledger": false
+  },
+  "universal_target_elimination": {
+    "compiled_formal_case_maps": 267,
+    "explicit_reconstruction": {
+      "d": "b*DE+/BE",
+      "e": "BE/b",
+      "f": "CF/c"
+    },
+    "product_relations": [
+      "DE-+DE+=0",
+      "DF-+DF+=0",
+      "BE*CF-sigma*b*c*EF=0",
+      "b*DE+*CF-c*DF+*BE=0"
+    ],
+    "source_systems_proved_empty": false,
+    "squared_sum_relation_count": 7,
+    "target_elimination_is_necessary_and_sufficient": true
   }
 }

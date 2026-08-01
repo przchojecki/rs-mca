@@ -317,6 +317,123 @@ def paired_product_replay() -> dict[str, Any]:
     }
 
 
+OUTSIDE_RECORDS = ("DE+", "DE-", "DF+", "DF-", "EF", "BE", "CF")
+INTERNAL_RECORDS = OUTSIDE_RECORDS[:5]
+RECORD_TAU = {
+    "DE+": "DE-", "DE-": "DE+", "DF+": "DF-", "DF-": "DF+",
+    "EF": "EF", "BE": "BE", "CF": "CF",
+}
+
+
+def canonical_record_matching(matching):
+    order = {record: index for index, record in enumerate(OUTSIDE_RECORDS)}
+    pairs = [tuple(sorted(pair, key=order.get)) for pair in matching]
+    return tuple(sorted(pairs, key=lambda pair: (order[pair[0]], order[pair[1]])))
+
+
+def outside_cases(alignment):
+    output = set()
+    for eta in INTERNAL_RECORDS:
+        xi_values = (eta,) if alignment == "aligned" else tuple(
+            record for record in OUTSIDE_RECORDS if record != eta
+        )
+        for xi in xi_values:
+            residual = tuple(record for record in OUTSIDE_RECORDS if record != xi)
+            for matching in perfect_matchings(residual):
+                output.add((eta, xi, canonical_record_matching(matching)))
+    return output
+
+
+def tau_outside_case(case):
+    eta, xi, matching = case
+    return (
+        RECORD_TAU[eta],
+        RECORD_TAU[xi],
+        canonical_record_matching(
+            (RECORD_TAU[left], RECORD_TAU[right]) for left, right in matching
+        ),
+    )
+
+
+def outside_case_key(case):
+    order = {record: index for index, record in enumerate(OUTSIDE_RECORDS)}
+    eta, xi, matching = case
+    return (order[eta], order[xi],
+            tuple((order[left], order[right]) for left, right in matching))
+
+
+def outside_orbits(values):
+    unseen = set(values)
+    output = []
+    while unseen:
+        seed = min(unseen, key=outside_case_key)
+        orbit = {seed, tau_outside_case(seed)}
+        require(orbit <= values, "outside gauge closure")
+        unseen -= orbit
+        output.append(tuple(sorted(orbit, key=outside_case_key)))
+    return tuple(sorted(output, key=lambda orbit: outside_case_key(orbit[0])))
+
+
+def outside_case_symmetry_replay() -> dict[str, Any]:
+    aligned = outside_cases("aligned")
+    near = outside_cases("near")
+    aligned_orbits = outside_orbits(aligned)
+    near_orbits = outside_orbits(near)
+    aligned_fixed = sum(len(orbit) == 1 for orbit in aligned_orbits)
+    near_fixed = sum(len(orbit) == 1 for orbit in near_orbits)
+    require((len(aligned), len(near)) == (75, 450), "placement split")
+    require((aligned_fixed, near_fixed) == (3, 6), "Burnside fixed cases")
+    require((len(aligned_orbits), len(near_orbits)) == (39, 228),
+            "outside orbit counts")
+
+    ef_aligned = outside_orbits({case for case in aligned if case[1] == "EF"})
+    ef_near = outside_orbits({case for case in near if case[1] == "EF"})
+    require((len(ef_aligned), len(ef_near)) == (9, 30), "EF orbit counts")
+
+    matching_a = canonical_record_matching((
+        ("DE+", "DF-"), ("DE-", "CF"), ("DF+", "BE"),
+    ))
+    matching_b = canonical_record_matching((
+        ("DE+", "CF"), ("DE-", "DF+"), ("DF-", "BE"),
+    ))
+    require(canonical_record_matching(
+        (RECORD_TAU[left], RECORD_TAU[right]) for left, right in matching_a
+    ) == matching_b, "template gauge equivalence")
+    template_aligned = outside_orbits({
+        ("EF", "EF", matching) for matching in (matching_a, matching_b)
+    })
+    template_near = outside_orbits({
+        (eta, "EF", matching)
+        for eta in INTERNAL_RECORDS[:4]
+        for matching in (matching_a, matching_b)
+    })
+    require((len(template_aligned), len(template_near)) == (1, 4),
+            "template orbit coverage")
+
+    representatives = {
+        alignment: [orbit[0] for orbit in orbits]
+        for alignment, orbits in (("aligned", aligned_orbits), ("near", near_orbits))
+    }
+    return {
+        "faithful_record_action_size": 2,
+        "nontrivial_action": "DE+<->DE-, DF+<->DF-, EF/BE/CF fixed",
+        "aligned": {"labeled": 75, "fixed": 3, "orbits": 39},
+        "near": {"labeled": 450, "fixed": 6, "orbits": 228},
+        "total_orbits": 267,
+        "EF_missing_mate_orbits": {"aligned": 9, "near": 30, "total": 39},
+        "current_template_orbits": {
+            "A_and_B_are_gauge_partners": True,
+            "aligned": 1,
+            "near": 4,
+            "total": 5,
+        },
+        "representative_digest": hashlib.sha256(
+            canonical_json(representatives).encode()
+        ).hexdigest(),
+        "formal_orbits_are_algebraic_survivors": False,
+    }
+
+
 def edge_eliminant_replay() -> dict[str, Any]:
     A, B, C, W = sp.symbols("A B C W")
     q0, q1, q2, q3, q4 = sp.symbols("q0 q1 q2 q3 q4")
@@ -375,6 +492,9 @@ def triangle_replay() -> dict[str, Any]:
     require(type_a == 0, "template A sum identity")
     require(sp.expand((c * f) * (b * e) - b * c * x) == 0,
             "template A terminal product")
+    require(sp.expand(b * (d * e) * (c * f)
+                      - c * (d * f) * (b * e)) == 0,
+            "template A cross product")
 
     type_b = sp.factor(
         (d + e)**2 * c**2 * x**2 * (c * f)**2
@@ -383,6 +503,9 @@ def triangle_replay() -> dict[str, Any]:
     require(type_b == 0, "template B sum identity")
     require(sp.expand((-d * f) * (b * e) + b * d * x) == 0,
             "template B terminal product")
+    require(sp.expand(b * (d * e) * (c * f)
+                      - c * (d * f) * (b * e)) == 0,
+            "template B cross product")
     return {
         "templates": {
             "A": {
@@ -391,6 +514,7 @@ def triangle_replay() -> dict[str, Any]:
                     "F(v)=-F(u)",
                     "F(w)=-F(-u)",
                     "F(-v)*F(-w)=b*c*F(xi)",
+                    "b*F(u)*F(-v)=c*F(w)*F(-w)",
                 ],
                 "sum_cut": (
                     "H(u)*F(xi)*F(-u)+F(u)*(F(-u)-F(xi))^2=0"
@@ -402,6 +526,7 @@ def triangle_replay() -> dict[str, Any]:
                     "F(v)=-F(u)",
                     "F(w)=-F(-v)",
                     "F(-u)*F(-w)=b*c*F(xi)",
+                    "b*F(u)*F(-u)=c*F(-v)*F(-w)",
                 ],
                 "sum_cut": (
                     "H(u)*c^2*F(xi)^2*F(-u)^2-"
@@ -412,6 +537,66 @@ def triangle_replay() -> dict[str, Any]:
         "eliminated_target_variables": ["d", "e", "f"],
         "templates_exhaust_525_case_ledger": False,
         "template_emptiness_proved": False,
+    }
+
+
+def universal_target_elimination_replay() -> dict[str, Any]:
+    b, c, d, e, f = sp.symbols("b c d e f", nonzero=True)
+    for sigma in (-1, 1):
+        records = {
+            "DE+": d * e, "DE-": -d * e,
+            "DF+": d * f, "DF-": -d * f,
+            "EF": sigma * e * f, "BE": b * e, "CF": c * f,
+        }
+        product_relations = (
+            records["DE-"] + records["DE+"],
+            records["DF-"] + records["DF+"],
+            records["BE"] * records["CF"] - sigma * b * c * records["EF"],
+            b * records["DE+"] * records["CF"]
+            - c * records["DF+"] * records["BE"],
+        )
+        require(all(sp.expand(value) == 0 for value in product_relations),
+                f"universal product identities sigma={sigma}")
+        sums = {
+            "DE+": (d + e)**2, "DE-": (d - e)**2,
+            "DF+": (d + f)**2, "DF-": (d - f)**2,
+            "EF": (e + sigma * f)**2,
+            "BE": (b + e)**2, "CF": (c + f)**2,
+        }
+        cleared = (
+            b**2 * records["BE"]**2 * sums["DE+"]
+            - (b**2 * records["DE+"] + records["BE"]**2)**2,
+            b**2 * records["BE"]**2 * sums["DE-"]
+            - (b**2 * records["DE+"] - records["BE"]**2)**2,
+            c**2 * records["CF"]**2 * sums["DF+"]
+            - (c**2 * records["DF+"] + records["CF"]**2)**2,
+            c**2 * records["CF"]**2 * sums["DF-"]
+            - (c**2 * records["DF+"] - records["CF"]**2)**2,
+            b**2 * c**2 * sums["EF"]
+            - (c * records["BE"] + sigma * b * records["CF"])**2,
+            b**2 * sums["BE"] - (b**2 + records["BE"])**2,
+            c**2 * sums["CF"] - (c**2 + records["CF"])**2,
+        )
+        require(all(sp.expand(value) == 0 for value in cleared),
+                f"universal sum identities sigma={sigma}")
+        require(sp.cancel(b * records["DE+"] / records["BE"] - d) == 0,
+                "target d reconstruction")
+        require(sp.cancel(records["BE"] / b - e) == 0,
+                "target e reconstruction")
+        require(sp.cancel(records["CF"] / c - f) == 0,
+                "target f reconstruction")
+    symmetry = outside_case_symmetry_replay()
+    return {
+        "product_relations": [
+            "DE-+DE+=0", "DF-+DF+=0",
+            "BE*CF-sigma*b*c*EF=0",
+            "b*DE+*CF-c*DF+*BE=0",
+        ],
+        "squared_sum_relation_count": 7,
+        "explicit_reconstruction": {"e": "BE/b", "f": "CF/c", "d": "b*DE+/BE"},
+        "compiled_formal_case_maps": symmetry["total_orbits"],
+        "target_elimination_is_necessary_and_sufficient": True,
+        "source_systems_proved_empty": False,
     }
 
 
@@ -434,12 +619,16 @@ def expected_certificate() -> dict[str, Any]:
         "product_base_rank": product_rank_identity_replay(),
         "common_kernel": common_kernel_replay(),
         "paired_product_ledger": paired_product_replay(),
+        "outside_case_symmetry_quotient": outside_case_symmetry_replay(),
         "outside_edge_eliminant": edge_eliminant_replay(),
         "target_free_triangle_templates": triangle_replay(),
+        "universal_target_elimination": universal_target_elimination_replay(),
         "conclusion": {
             "base_rank_drop_branch_deleted": True,
             "common_survivor_kernel_unique": True,
             "outside_case_ledger_compiled": True,
+            "outside_case_symmetry_quotient_compiled": True,
+            "universal_target_elimination_compiled": True,
             "triangle_templates_exhaustive": False,
             "route_deleted": False,
             "coordinate_positive_orientation_deleted": False,
@@ -449,10 +638,10 @@ def expected_certificate() -> dict[str, Any]:
             "terminal": "M2_R4_COORDINATE_POSITIVE_433_1A_OUTSIDE_REDUCTION",
         },
         "next_exact_task": (
-            "reduce the three target-free product-chain equations and one compact "
-            "sum cut inside each guarded one-dimensional common-chart coordinate "
-            "ring; classify the remaining 525-case matching orbits before claiming "
-            "route deletion"
+            "substitute the universal four-product and seven-sum target-free "
+            "compiler inside each guarded one-dimensional common-chart coordinate "
+            "ring; quotient common-cell/source-deck actions and reduce product "
+            "equations before sum equations"
         ),
         "nonclaims": [
             "the stored UNIT certificates are exact deployed-field computations, not characteristic-free theorems",
@@ -482,10 +671,15 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["paired_product_ledger"].__setitem__("residual_perfect_matchings", 14),
         lambda x: x["paired_product_ledger"].__setitem__("cases_per_common_row_and_cycle_sign", 524),
         lambda x: x["paired_product_ledger"].__setitem__("resultant_survival_is_sufficient", True),
+        lambda x: x["outside_case_symmetry_quotient"].__setitem__("total_orbits", 266),
+        lambda x: x["outside_case_symmetry_quotient"]["current_template_orbits"].__setitem__("total", 39),
         lambda x: x["outside_edge_eliminant"].__setitem__("generic_terms", 21),
         lambda x: x["outside_edge_eliminant"].__setitem__("seven_edge_cuts_are_only_necessary", False),
         lambda x: x["target_free_triangle_templates"].__setitem__("templates_exhaust_525_case_ledger", True),
         lambda x: x["target_free_triangle_templates"].__setitem__("template_emptiness_proved", True),
+        lambda x: x["universal_target_elimination"].__setitem__("squared_sum_relation_count", 6),
+        lambda x: x["universal_target_elimination"].__setitem__("target_elimination_is_necessary_and_sufficient", False),
+        lambda x: x["conclusion"].__setitem__("universal_target_elimination_compiled", False),
         lambda x: x["conclusion"].__setitem__("route_deleted", True),
         lambda x: x["conclusion"].__setitem__("order_two_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
@@ -658,6 +852,8 @@ def main() -> None:
         f"common_rank={data['common_kernel']['common_survivor_rank']} "
         f"ledger_cases={data['paired_product_ledger']['cases_per_common_row_and_cycle_sign']} "
         f"edge_terms={data['outside_edge_eliminant']['generic_terms']} "
+        f"case_orbits={data['outside_case_symmetry_quotient']['total_orbits']} "
+        f"target_sums={data['universal_target_elimination']['squared_sum_relation_count']} "
         f"triangle_templates={len(data['target_free_triangle_templates']['templates'])} "
         f"singular_replayed={singular_replayed} tamper_rejected={rejected}"
     )
