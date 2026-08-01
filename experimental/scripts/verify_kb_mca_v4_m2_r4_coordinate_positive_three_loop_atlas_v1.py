@@ -448,6 +448,13 @@ PLACEMENT_COLORED_ENDPOINTS = {
     "433_root_high": ("1", "b"),
 }
 
+PLACEMENT_COMMON_EDGES = {
+    "442_root_low": (("1", "b", 1), ("1", "b", -1)),
+    "442_root_high": (("1", "c", 1), ("1", "c", -1)),
+    "433_root_low": (("1", "b", 1), ("1", "c", 1)),
+    "433_root_high": (("1", "c", 1), ("b", "c", 1)),
+}
+
 
 def sign_orbits():
     unseen = set(itertools.product((1, -1), repeat=3))
@@ -478,6 +485,138 @@ def signed_edges(placement: str, cycle_sign: int):
         ("d", "f", -1, "internal-df-minus"),
         ("e", "f", cycle_sign, "internal-ef-cycle"),
     )
+
+
+def add_target_edge_orbit(edges, left, right, edge_sign):
+    edges.append(((left, 1), (right, edge_sign)))
+    edges.append(((left, -1), (right, -edge_sign)))
+
+
+def full_target_edges(placement: str, cycle_sign: int):
+    edges = []
+    for target in ("1", "b", "c"):
+        edges.extend([((target, 1), (target, -1))] * 2)
+    for left, right, edge_sign in PLACEMENT_COMMON_EDGES[placement]:
+        add_target_edge_orbit(edges, left, right, edge_sign)
+    for left, right, edge_sign, _ in signed_edges(placement, cycle_sign):
+        add_target_edge_orbit(edges, left, right, edge_sign)
+    require(len(edges) == 24, f"{placement} full edge count")
+    return tuple(edges)
+
+
+def target_neighbor_products(placement: str, cycle_sign: int):
+    symbols = {name: sp.Symbol(name) for name in ("b", "c", "d", "e", "f")}
+    symbols["1"] = sp.Integer(1)
+    products = {}
+    for name in symbols:
+        vertex = (name, 1)
+        neighbors = []
+        for left, right in full_target_edges(placement, cycle_sign):
+            if left == vertex:
+                neighbors.append(right)
+            if right == vertex:
+                neighbors.append(left)
+        require(len(neighbors) == 4, f"{placement} target degree {name}")
+        product = sp.Integer(1)
+        for neighbor_name, neighbor_sign in neighbors:
+            product *= neighbor_sign * symbols[neighbor_name]
+        products[name] = sp.expand(product)
+    return products
+
+
+def expected_neighbor_products(placement: str, cycle_sign: int):
+    b, c, d, e, f = sp.symbols("b c d e f")
+    return {
+        "442_root_low": {
+            "1": -b**2, "b": -b**2, "c": c**2 * e * f,
+            "d": e**2 * f**2,
+            "e": -cycle_sign * c * d**2 * f,
+            "f": -cycle_sign * c * d**2 * e,
+        },
+        "442_root_high": {
+            "1": -c**2, "b": b**2 * e * f, "c": -c**2,
+            "d": e**2 * f**2,
+            "e": -cycle_sign * b * d**2 * f,
+            "f": -cycle_sign * b * d**2 * e,
+        },
+        "433_root_low": {
+            "1": b * c, "b": b**2 * e, "c": c**2 * f,
+            "d": e**2 * f**2,
+            "e": -cycle_sign * b * d**2 * f,
+            "f": -cycle_sign * c * d**2 * e,
+        },
+        "433_root_high": {
+            "1": c * e, "b": b**2 * c * f, "c": b * c**2,
+            "d": e**2 * f**2,
+            "e": -cycle_sign * d**2 * f,
+            "f": -cycle_sign * b * d**2 * e,
+        },
+    }[placement]
+
+
+def neighbor_norm_replay() -> dict[str, Any]:
+    W, X, r, U = sp.symbols("W X r U")
+    d0, d1, d2, e0, e1, e2, beta = sp.symbols(
+        "d0 d1 d2 e0 e1 e2 beta"
+    )
+    D = d0 + d1 * W + d2 * W**2
+    E = e0 + e1 * W + e2 * W**2
+    B = beta * (W - 1)
+    source_row = sp.expand(
+        r**2 * D.subs(W, X**2)
+        + E.subs(W, X**2)
+        + r * X * B.subs(W, X**2)
+    )
+    numerator = sp.resultant(E, U * D**2 - W * B**2, W)
+    denominator = sp.resultant(D, E**2 - U * W * B**2, W)
+    require(
+        sp.expand(
+            sp.resultant(source_row, E.subs(W, X**2), X)
+            - r**4 * numerator.subs(U, r**2)
+        ) == 0,
+        "neighbor numerator norm",
+    )
+    require(
+        sp.expand(
+            sp.resultant(source_row, D.subs(W, X**2), X)
+            - denominator.subs(U, r**2)
+        ) == 0,
+        "neighbor denominator norm",
+    )
+    require(sp.degree(numerator, U) == 2, "neighbor numerator degree")
+    require(sp.degree(denominator, U) == 2, "neighbor denominator degree")
+    tables = {}
+    for placement in PLACEMENT_COMMON_EDGES:
+        for cycle_sign in (-1, 1):
+            observed = target_neighbor_products(placement, cycle_sign)
+            expected = expected_neighbor_products(placement, cycle_sign)
+            require(
+                all(sp.expand(observed[name] - expected[name]) == 0 for name in expected),
+                f"{placement} {cycle_sign} neighbor table",
+            )
+            tables[f"{placement}:sigma={cycle_sign:+d}"] = {
+                name: str(value) for name, value in observed.items()
+            }
+    return {
+        "formula": {
+            "numerator": "Res_W(E,U D^2-W B^2)",
+            "denominator": "Res_W(D,E^2-U W B^2)",
+            "target_neighbor_product": "mathcal_N(r^2)",
+        },
+        "numerator_U_degree": 2,
+        "denominator_U_degree": 2,
+        "target_degree": 4,
+        "lane_count": len(tables),
+        "neighbor_tables": tables,
+        "compressed_gates": {
+            "442_root_low": "ef=N(c^2)/c^2 plus three outside norm rows",
+            "442_root_high": "ef=N(b^2)/b^2 plus three outside norm rows",
+            "433_root_low": "e=N(b^2)/b^2,f=N(c^2)/c^2 plus three rows in d",
+            "433_root_high": "e=N(1)/c,f=N(b^2)/(b^2c) plus three rows in d",
+        },
+        "denominator_guard_required": True,
+        "norm_gate_is_only_necessary": True,
+    }
 
 
 def signed_vieta_replay() -> dict[str, Any]:
@@ -683,17 +822,19 @@ def expected_certificate() -> dict[str, Any]:
         "common_kernel_and_placement_atlas": common_kernel_replay(),
         "signed_outside_vieta_atlas": signed_vieta_replay(),
         "outside_edge_eliminant": edge_eliminant_replay(),
+        "target_neighbor_norm_compiler": neighbor_norm_replay(),
         "conclusion": {
             "positive_three_loop_subcase_deleted": False,
             "coordinate_positive_orientation_deleted": False,
             "order_two_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_R4_COORDINATE_POSITIVE_THREE_LOOP_EIGHT_LANE_ELIMINANT_FRONTIER",
+            "terminal": "M2_R4_COORDINATE_POSITIVE_THREE_LOOP_EIGHT_LANE_ELIMINANT_AND_NEIGHBOR_NORM_FRONTIER",
         },
         "nonclaims": [
             "no one of the eight saturated lane ideals is proved empty",
             "no bare edge resultant is treated as sufficient for a seven-label packet",
+            "no target-neighbor norm survivor is treated as a seven-label packet",
             "no remaining source-facet or outer-factor equation is imposed",
             "no negative-parity, diagonal, or trivial-stabilizer conclusion",
             "no order-two type, K3, KoalaBear row, owner, payment, or Prize close",
@@ -729,6 +870,10 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["outside_edge_eliminant"]["generic"].__setitem__("resultant_digest", "0" * 64),
         lambda x: x["outside_edge_eliminant"]["degree_drop"].__setitem__("root", "w=C/B"),
         lambda x: x["outside_edge_eliminant"].__setitem__("resultant_is_only_necessary_before_saturation", False),
+        lambda x: x["target_neighbor_norm_compiler"].__setitem__("numerator_U_degree", 3),
+        lambda x: x["target_neighbor_norm_compiler"].__setitem__("target_degree", 3),
+        lambda x: x["target_neighbor_norm_compiler"].__setitem__("denominator_guard_required", False),
+        lambda x: x["target_neighbor_norm_compiler"].__setitem__("norm_gate_is_only_necessary", False),
         lambda x: x["conclusion"].__setitem__("positive_three_loop_subcase_deleted", True),
         lambda x: x["conclusion"].__setitem__("order_two_type_deleted", True),
         lambda x: x["conclusion"].__setitem__("k3_status", "CLOSED"),
@@ -773,6 +918,8 @@ def main() -> None:
         f"placements={data['common_kernel_and_placement_atlas']['placement_count']} "
         f"lanes={data['signed_outside_vieta_atlas']['lane_count']} "
         f"edge_records={data['signed_outside_vieta_atlas']['edge_record_count']} "
+        f"neighbor_norm={data['target_neighbor_norm_compiler']['numerator_U_degree']}/"
+        f"{data['target_neighbor_norm_compiler']['denominator_U_degree']} "
         f"tamper_rejected={rejected}"
     )
 
