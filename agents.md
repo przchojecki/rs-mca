@@ -351,7 +351,16 @@ At this snapshot:
   zero of nonzero linear `B_1`.  Exact defect enumeration reduces the ten
   common-skeleton orbits to five live orbits, seven labeled common rows,
   and thirteen necessary common/outside graph routes.  Thus no three-loop
-  lane saturation is needed.  Algebraic deletion of those thirteen routes,
+  lane saturation is needed.  For the unique saturated-defect route
+  `433-1a -> O0b`, the five common product rows now have rank five in all
+  fifteen matching cells over the deployed field, so the six-row common
+  base has rank six and every common survivor has rank exactly seven with
+  a one-dimensional, division-free reconstructed coefficient kernel.  The
+  outside interface is reduced to an exhaustive `5*7*15=525` necessary
+  paired-product ledger per common row and cycle sign, with a 22-term
+  scalar edge eliminant and two target-free triangle templates.  Those two
+  templates are neither exhaustive nor proved empty.  Algebraic deletion
+  of the thirteen routes,
   the coordinate orientation, the order-two type, K3, every payment, and
   the KoalaBear row remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
@@ -448,6 +457,15 @@ saturated systems must not be run: the global cap supersedes them.  Defect
 enumeration leaves five common-skeleton orbits, seven labeled common rows,
 and thirteen necessary common/outside graph routes.  Start algebraic
 elimination with the unique saturated-defect route `433-1a -> O0b`.
+For that route the base-rank-drop branch is now empty in all fifteen common
+matching cells, every common survivor has a unique projective coefficient
+kernel, and the complete outside product interface has an exhaustive
+`525`-case necessary ledger.  The next coordinate-positive calculation is
+not another ambient seven-variable basis: classify the residual matching
+orbits, then reduce each target-free product chain and compact squared-sum
+cut in the guarded one-dimensional common-chart coordinate ring.  The two
+currently compiled triangle templates do not yet exhaust the ledger and
+are not route deletions.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `2` types at inner degree `m=2`.  For every
