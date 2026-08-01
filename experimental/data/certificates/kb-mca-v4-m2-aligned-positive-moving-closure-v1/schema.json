@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kb-mca-v4-m2-aligned-positive-moving-closure-v1/schema.json",
+  "title": "KoalaBear aligned-positive moving-moving closure certificate",
+  "type": "object",
+  "required": [
+    "schema",
+    "field",
+    "statement",
+    "scope",
+    "atlas_dependency",
+    "base_dependency",
+    "direct_cells",
+    "execution",
+    "imported_cell",
+    "literal_transport",
+    "open_cell_fence",
+    "conclusion",
+    "proof_status",
+    "nonclaims",
+    "ledger_movement",
+    "K3_closed",
+    "KoalaBear_row_closed",
+    "generic_saturation_used",
+    "terminal",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rs-mca-kb-v4-m2-aligned-positive-moving-closure-v1"
+    },
+    "field": {
+      "type": "object",
+      "required": [
+        "base_prime",
+        "challenge_extension_degree",
+        "empty_localization_is_geometric_over_base_closure"
+      ],
+      "properties": {
+        "base_prime": {"const": 2130706433},
+        "challenge_extension_degree": {"const": 6},
+        "empty_localization_is_geometric_over_base_closure": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "statement": {"type": "string"},
+    "scope": {"type": "object"},
+    "atlas_dependency": {"type": "object"},
+    "base_dependency": {"type": "object"},
+    "direct_cells": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "execution": {
+      "type": "object",
+      "required": [
+        "direct_cells_sharded",
+        "fresh_sage_process_per_direct_cell",
+        "reason"
+      ],
+      "properties": {
+        "direct_cells_sharded": {"const": true},
+        "fresh_sage_process_per_direct_cell": {"const": true},
+        "reason": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "imported_cell": {"type": "object"},
+    "literal_transport": {"type": "object"},
+    "open_cell_fence": {"type": "object"},
+    "conclusion": {"type": "object"},
+    "ledger_movement": {"const": 0},
+    "K3_closed": {"const": false},
+    "KoalaBear_row_closed": {"const": false},
+    "generic_saturation_used": {"const": false},
+    "proof_status": {
+      "const": "PROVED_EXACT_ALL_12_MOVING_MOVING_ALIGNED_POSITIVE_CELLS_EMPTY"
+    },
+    "nonclaims": {"type": "array", "minItems": 5, "maxItems": 5},
+    "terminal": {"const": "ALL_12_MOVING_MOVING_CELLS_EMPTY"},
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

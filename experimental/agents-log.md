@@ -4352,3 +4352,42 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Classify the remaining 30 cells.  Preserve the literal
   atlas IDs and stop at an exact empty chart, named same-record owner, or
   explicit primitive route cut.  K3 and the KoalaBear row remain open.
+
+### 2026-08-01 - Delete all twelve aligned-positive moving--moving cells
+
+- **Agent/model:** Codex generator; fresh independent review still required.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_aligned_positive_moving_closure_v1.md`,
+  the exact sharded Sage compiler, fail-closed Python verifier, JSON
+  certificate and schema, `agents.md`, and this log.
+- **Status:** PROVED exact local lemma / REVIEW REQUIRED / twelve moving cells
+  empty / eighteen fixed cells remain / K3 open.
+- **What is being added:** Eight literal moving cells are rebuilt directly.
+  The two balanced q-slice survivors receive independently derived full
+  `J/I` parity equations; in both cases `J` survives and `I` makes the named
+  localizer nilpotent with index two.  Three `M02` cells follow by an exact
+  full-source `b -> b^-1` transport, and `M00-R11` is imported from its exact
+  GREEN PR #1138 object.
+- **Certificate repair:** A replay exposed that textual normal-form hashes
+  against a non-reduced `slimgb` basis are not invariants.  The compiler now
+  checks `parity-remainder` membership in the prior ideal, omits the unstable
+  representative digest, and retains exact augmented-basis, localizer, and
+  nilpotence hashes.
+- **Operational replay:** A monolithic eight-cell Sage run deadlocked at the
+  external Singular prompt after both processes entered reciprocal reads.
+  The final compiler runs every direct cell in a fresh Sage/Singular process
+  and rejects missing, duplicate, reordered, or failed shards before
+  assembling one payload.
+- **Verification:** The sharded full compiler emitted payload
+  `343b691abab47586545aca75393bea1e1fff1dfb63537f059e4faef341893145`.
+  Python normal mode rejects 29/29 recomputed-payload semantic mutations;
+  optimized execution is refused.  Fresh independent proof review remains
+  the promotion gate.
+- **How it is useful:** Together with the six pinned `F02/F03` deletions, it
+  reduces the 36-cell aligned-positive atlas to exactly eighteen open
+  fixed-moving cells without an owner, charge, generic saturation, or ledger
+  movement.
+- **What to do next:** Obtain fresh review.  If GREEN, bank the exact local
+  deletion and attack the eighteen residual fixed-moving cells in literal
+  atlas order.  Stop at exact emptiness, a named same-record owner, or an
+  explicit primitive route cut; do not claim K3 or row closure.

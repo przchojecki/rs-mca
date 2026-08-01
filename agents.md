@@ -422,11 +422,15 @@ packet is not an endpoint factor.  Universal gain nonflatness is no longer
 required for the deleted full-V4 type.  No quotient payment is booked.
 
 The exact aligned-positive atlas is the source-bound coefficient interface
-for the remaining saturated `(1,1,2)` work: all 36 assignment/target cells
-are generated directly, but none is paid or globally deleted by the atlas
-itself.  Subsequent component work must preserve those semantic cell IDs and
-terminate each in an exact empty chart, a named same-record owner, or an
-explicit primitive route cut.
+for the remaining saturated `(1,1,2)` work.  Its 36 assignment/target cells
+remain literal semantic IDs.  The GREEN `F02/F03` packet deletes six cells.
+The exact moving--moving packet proves emptiness of all twelve `M00`--`M03`
+cells by eight direct localized systems, three literal `b -> b^-1`
+transports, and one pinned import; it is review-required and moves no ledger
+quantity.  Subject to fresh review, the residual atlas is exactly the
+eighteen fixed-moving cells `F00,F01,F04,F05,F06,F07` crossed with
+`R02,R11,R20`.  Each must terminate in an exact empty chart, a named
+same-record owner, or an explicit primitive route cut.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `2` types at inner degree `m=2`.  For every
