@@ -5,15 +5,15 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the positive coordinate order-two branch, every three-loop packet has one exact outside skeleton, one of four guarded common-kernel placements, and one of eight signed seven-edge Vieta systems; each outside label has an exact 22-term generic eliminant and a separately retained degree-drop branch, while a degree-(2,2) target-neighbor norm determines both colored targets in profile 433 and their product in profile 442.
+direct_statement: In the positive coordinate order-two branch, every three-loop packet has one exact outside skeleton, one of four guarded common-kernel placements, and one of eight signed seven-edge Vieta systems; each outside label has an exact 22-term generic eliminant and a separately retained degree-drop branch.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_R4_COORDINATE_POSITIVE_THREE_LOOP_ATLAS
 quantifier: every actual graph-free Q=6,s=6 inner-degree-two component in the positive coordinate order-two orientation whose five common K-fiber edges contain exactly three antipodal orbits
 projection_and_unit: exact source-component graph and Vieta interfaces; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: ten common skeleton orbits overall, exactly two three-loop profile rows, one outside skeleton, four guarded degree-six common residuals, eight signed lanes with seven edges each, exact generic/degree-drop one-edge eliminants, and one degree-(2,2) target-neighbor norm with compressed 433/442 gates
+claimed_bound: ten common skeleton orbits overall, exactly two three-loop profile rows, one outside skeleton, four guarded degree-six common residuals, eight signed lanes with seven edges each, and exact generic/degree-drop one-edge eliminants
 status: PROVED_COMPILER_POSITIVE_THREE_LOOP_SUBCASE_OPEN_ORDER_TWO_TYPE_OPEN_K3_OPEN
-impact: REPLACES_THE_POSITIVE_THREE_LOOP_SEARCH_BY_EIGHT_EXACT_SATURATED_POLYNOMIAL_SYSTEMS_AND_LOW_VARIABLE_NORM_PREFILTERS
+impact: REPLACES_THE_POSITIVE_THREE_LOOP_SEARCH_BY_EIGHT_EXACT_SATURATED_POLYNOMIAL_SYSTEMS
 falsifier: a positive coordinate three-loop packet outside the printed skeletons or placements, a failed determinant identity, a third sign orbit, a failed square-root-free Vieta equivalence, or an outside edge not covered by the generic and degree-drop eliminants
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py --check --tamper-selftest
 ---
@@ -48,12 +48,6 @@ For each outside edge, the product equation has degree at most two in its
 quotient label and the squared-sum equation has degree at most four. Their
 generic resultant has 22 terms and total coefficient degree six. The
 linear degree-drop branch is retained explicitly.
-
-Taking the norm over the four source rows incident to one target gives a
-quadratic-over-quadratic function of its square. In profile 433 it
-determines both colored outside targets from the common kernel and leaves
-three equations in the sole uncolored target. In profile 442 it determines
-the colored product before three further norm equations.
 
 No one of the eight systems is proved empty. This packet does not delete
 positive parity, a coordinate orientation, or the order-two type, and it
@@ -317,90 +311,22 @@ If also `B=0`, then `C!=0` under the loop-target collision guards, so the
 constant product equation has no root. Thus (6.5) and (6.6) exhaust every
 outside edge without dividing away the repeated-product branch.
 
-## 7. Target-neighbor norm
-
-Fix a nonzero target `r` and let `t_1,...,t_4` be its four target neighbors,
-with source-fiber multiplicities retained. Put
-
-```text
-F_r(X)=r^2D(X^2)+E(X^2)+rX B(X^2),
-
-N_num(U)=Res_W(E,U D^2-W B^2),
-N_den(U)=Res_W(D,E^2-U W B^2),
-N(U)=N_num(U)/N_den(U).                             (7.1)
-```
-
-Both resultants have degree at most two in `U`. The complete-fiber leading
-support gives `N_den(r^2)!=0`, and exact source resultants give
-
-```text
-Res_X(F_r,E(X^2))=r^4 N_num(r^2),
-Res_X(F_r,D(X^2))=N_den(r^2),
-product_j t_j=N(r^2).                              (7.2)
-```
-
-The complete target graph then gives:
-
-```text
-442 root low:
- N(1)=-b^2, N(b^2)=-b^2, N(c^2)=c^2ef,
- N(d^2)=e^2f^2,
- N(e^2)=-sigma c d^2f, N(f^2)=-sigma c d^2e.
-
-442 root high:
- N(1)=-c^2, N(b^2)=b^2ef, N(c^2)=-c^2,
- N(d^2)=e^2f^2,
- N(e^2)=-sigma b d^2f, N(f^2)=-sigma b d^2e.
-
-433 root low:
- N(1)=bc, N(b^2)=b^2e, N(c^2)=c^2f,
- N(d^2)=e^2f^2,
- N(e^2)=-sigma b d^2f, N(f^2)=-sigma c d^2e.
-
-433 root high:
- N(1)=ce, N(b^2)=b^2cf, N(c^2)=bc^2,
- N(d^2)=e^2f^2,
- N(e^2)=-sigma d^2f, N(f^2)=-sigma b d^2e.         (7.3)
-```
-
-Thus the common kernel determines the colored labels in profile 433:
-
-```text
-root low:   e=N(b^2)/b^2,       f=N(c^2)/c^2;
-root high:  e=N(1)/c,           f=N(b^2)/(b^2c).   (7.4)
-```
-
-After (7.4), only the final three rows of the corresponding table remain,
-all in the sole outside target `d`. In profile 442, the common kernel gives
-
-```text
-ef=N(c^2)/c^2       (root low),
-ef=N(b^2)/b^2       (root high),                    (7.5)
-```
-
-before its final three norm rows. These are exact necessary prefilters. A
-norm survivor does not supply seven distinct quotient labels or any of the
-saturations in Section 5.
-
-## 8. Scope and next action
+## 7. Scope and next action
 
 Proved: the loop nonrepetition and ramification gate; the exact ten-orbit
 common skeleton census; the unique complete outside graph in the
 three-loop subcase; the four common placement determinants; the two sign
 orbits and eight signed Vieta lanes; the square-root-free edge equivalence;
 and the generic and degree-drop one-edge eliminants.
-The target-neighbor norm identities and all eight neighbor-product tables
-are also proved; they give the compressed 433 and 442 gates above.
 
 Not proved: emptiness of any saturated lane, simultaneous compatibility of
 the seven outside labels, the remaining source-facet or outer-factor
 conditions, deletion of positive parity or another orientation, an owner,
 payment, K3, the KoalaBear row, or a Prize result.
 
-The next exact task is to clear the norm denominators in a 433 lane and
-reduce its three equations modulo the common residual. Only then should one
-run a parametric saturation calculation, retaining the guards in (5.4), all
-label-separation factors, and all target collisions. Neither a product of
-the seven scalar resultants nor a norm survivor can close a lane. Any
-survivor must be reconstructed through the full common kernel and tested
-against the remaining source-facet and outer-component identities.
+The next exact task is one parametric saturation calculation per lane,
+retaining the guards in (5.4), all label-separation factors, and all target
+collisions. A bare product of the seven scalar resultants cannot close a
+lane. Any survivor must then be reconstructed through the full common
+kernel and tested against the remaining source-facet and outer-component
+identities.

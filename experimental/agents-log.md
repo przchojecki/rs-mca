@@ -4340,20 +4340,16 @@ Keep entries concise and link to the relevant files.
   placements have explicit degree-six residuals; target-sign gauge gives
   two cycle-sign orbits and eight seven-edge lanes; and every outside edge
   has exact generic and degree-drop eliminants.  The generic resultant has
-  22 terms and total coefficient degree six.  A target-neighbor norm
-  extension then takes the four incident source rows at once, giving a
-  degree-`(2,2)` function of the target square.  It determines both colored
-  labels in profile 433 and their product in profile 442.
+  22 terms and total coefficient degree six.
 - **Replay discipline:** The verifier pins both exact order-two parents by
   commit, blob, payload, and terminal; exhausts all finite graph/sign
   quotients; checks every polynomial identity symbolically; seals the
-  certificate; and rejects 29 hostile mutations.
+  certificate; and rejects 25 hostile mutations.
 - **Scope guard:** No saturated lane is proved empty.  A bare edge resultant
   is only necessary, and no source-facet completion, outer-factor identity,
   orientation/type deletion, owner, payment, K3 value, or row bound is
   claimed.
-- **What to do next:** Clear the 433 norm denominators and reduce the three
-  compact equations modulo each common residual.  Back-substitute any
-  survivor into all seven quotient labels with their separation and
-  target-collision factors, then impose the remaining source-facet and outer
+- **What to do next:** Saturate the eight exact lane systems by all quotient
+  label-separation and target-collision factors.  Reconstruct any survivor
+  through the common kernel and impose the remaining source-facet and outer
   producer identities.

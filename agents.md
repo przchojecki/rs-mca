@@ -341,10 +341,7 @@ At this snapshot:
   reduce to four guarded `4 x 4` determinant placements.  Target-sign gauge
   then gives exactly eight seven-edge lanes.  Every outside edge has a
   22-term degree-six generic resultant and a separately retained linear
-  degree-drop cut.  Taking the four-neighbor target norm gives one
-  degree-`(2,2)` function: in 433 it determines both colored targets and
-  leaves three equations in the uncolored target, while in 442 it determines
-  their product.  No lane is deleted: each still requires the full
+  degree-drop cut.  No lane is deleted: each still requires the full
   label-separation and target-collision saturation, followed by the
   remaining source-facet and outer-factor tests.  Positive parity, the
   coordinate orientation, the order-two type, K3, every payment, and the
@@ -438,12 +435,9 @@ In the positive coordinate branch of the residual order-two type, the
 three-loop subcase is no longer an open-ended graph or coefficient search.
 It consists of four common placements times two cycle signs, hence eight
 exact saturated polynomial systems.  The one-edge resultant is only a
-necessary prefilter.  The target-neighbor norm is a stronger low-variable
-prefilter, determining both colored targets in 433 and their product in 442,
-but it also does not reconstruct a packet.  Lane deletion must retain all
-seven quotient labels, their pairwise separation, and every target-collision
-guard.  A passing lane must then meet the remaining source-facet and
-outer-component identities.
+necessary prefilter; lane deletion must retain all seven quotient labels,
+their pairwise separation, and every target-collision guard.  A passing lane
+must then meet the remaining source-facet and outer-component identities.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `2` types at inner degree `m=2`.  For every
@@ -459,12 +453,11 @@ universal source-fiber adapter.  Do not resume its six-family coefficient
 classifier, the old primitive 985-chart atlas, or the `u=3` component
 compiler while the remaining transverse `u=2` interface is open.
 
-For a local coordinate-positive attack, first reduce the three 433 norm
-equations modulo each common residual, then back-substitute any survivor
-into the fully saturated seven-label system.  Do not add another graph
-census or use a product of bare edge resultants.  Globally, the
-source-coupled transverse compiler remains the higher-priority route because
-it can terminate both residual `m=2` types or produce a same-record owner.
+For a local coordinate-positive attack, run the eight fully saturated
+three-loop systems before adding another graph census or using a product of
+bare edge resultants.  Globally, the source-coupled transverse compiler
+remains the higher-priority route because it can terminate both residual
+`m=2` types or produce a same-record owner.
 
 #### K4. Close algebraic routing and add-back
 
