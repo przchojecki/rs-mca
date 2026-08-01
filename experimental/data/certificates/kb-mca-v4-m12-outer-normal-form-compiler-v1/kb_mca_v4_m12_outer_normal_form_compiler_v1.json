@@ -1,0 +1,144 @@
+{
+  "schema": "kb-mca-v4-m12-outer-normal-form-compiler-v1",
+  "payload_sha256": "7eb4f4053f90cb4ca0d0f3379fa3f8f33522ae0ec9b3dc67f5c7e602150d22f0",
+  "statement": {
+    "workboard_item": "K3",
+    "row": "KoalaBear MCA at 2^-128",
+    "object": "MCA",
+    "inner_degree": 12,
+    "surviving_transverse_types": [[2, 24], [4, 12]],
+    "status": "PROVED_M12_OUTER_NORMAL_FORM_COMPILER_ROW_OPEN",
+    "ledger_movement": 0
+  },
+  "parent_stack": {
+    "head_commit": "e368e5c8fc101ae0040b47265c2cd167e70dadd2",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m12-outer-subdegree-route-cut-v1/kb_mca_v4_m12_outer_subdegree_route_cut_v1.json",
+    "certificate_blob_oid": "6ea55700f303869a850c79c66c331842e0eed385",
+    "certificate_payload_sha256": "4349f6ca07b991fe78b90c66feb1fdcb1df582ac19d34c50d354c3c91c9e6b63",
+    "imported_terminal": "M12_TRANSVERSE_TYPES_R2_R4_UNPAID"
+  },
+  "actual_curve_genus_gate": {
+    "source_bidegree": [2, 4],
+    "birational_to_endpoint_component": true,
+    "source_arithmetic_genus": 3,
+    "r4_map_degree": 12,
+    "outer_genus_upper_bound": 1,
+    "terminal": "M12_R4_OUTER_GENUS_AT_MOST_ONE"
+  },
+  "branch_cycle_ledger": {
+    "infinity_cycle_type": [5],
+    "infinity_index": 4,
+    "finite_index_sum": 4,
+    "ordered_pair_degree": 20,
+    "ordered_pair_indices": {
+      "2": 7,
+      "2,2": 10,
+      "3": 12,
+      "3,2": 15,
+      "4": 15,
+      "5": 16
+    },
+    "admissible_ordered_tuple_count": 310,
+    "rows": [
+      {"group_order": 60, "group": "A5", "finite_cycle_types": [[2, 2], [3]], "outer_genus": 0, "ordered_tuples": 10, "survives_genus_gate": true},
+      {"group_order": 60, "group": "A5", "finite_cycle_types": [[3], [3]], "outer_genus": 1, "ordered_tuples": 5, "survives_genus_gate": true},
+      {"group_order": 120, "group": "S5", "finite_cycle_types": [[2], [3, 2]], "outer_genus": 0, "ordered_tuples": 10, "survives_genus_gate": true},
+      {"group_order": 120, "group": "S5", "finite_cycle_types": [[2], [4]], "outer_genus": 0, "ordered_tuples": 10, "survives_genus_gate": true},
+      {"group_order": 120, "group": "S5", "finite_cycle_types": [[2], [2], [2, 2]], "outer_genus": 1, "ordered_tuples": 75, "survives_genus_gate": true},
+      {"group_order": 120, "group": "S5", "finite_cycle_types": [[2], [2], [3]], "outer_genus": 2, "ordered_tuples": 75, "survives_genus_gate": false},
+      {"group_order": 120, "group": "S5", "finite_cycle_types": [[2], [2], [2], [2]], "outer_genus": 3, "ordered_tuples": 125, "survives_genus_gate": false}
+    ],
+    "AGL_1_5_occurs": false
+  },
+  "normal_forms": [
+    {
+      "r": 2,
+      "group": "D5",
+      "finite_cycle_types": [[2, 2], [2, 2]],
+      "form": "x^5-5*a*x^3+5*a^2*x",
+      "parameter_condition": "a!=0",
+      "rigid_affine_class": true
+    },
+    {
+      "r": 4,
+      "group": "A5",
+      "finite_cycle_types": [[2, 2], [3]],
+      "form": "x^3*(12*x^2-15*(1+t)*x+20*t)",
+      "parameter_condition": "3*t^2+4*t+3=0",
+      "rigid_affine_class": true
+    },
+    {
+      "r": 4,
+      "group": "A5",
+      "finite_cycle_types": [[3], [3]],
+      "form": "x^3*(6*x^2-15*x+10)",
+      "parameter_condition": "none",
+      "rigid_affine_class": true
+    },
+    {
+      "r": 4,
+      "group": "S5",
+      "finite_cycle_types": [[2], [3, 2]],
+      "form": "x^3*(x-1)^2",
+      "parameter_condition": "none",
+      "rigid_affine_class": true
+    },
+    {
+      "r": 4,
+      "group": "S5",
+      "finite_cycle_types": [[2], [4]],
+      "form": "x^4*(5-4*x)",
+      "parameter_condition": "none",
+      "rigid_affine_class": true
+    },
+    {
+      "r": 4,
+      "group": "S5",
+      "finite_cycle_types": [[2], [2], [2, 2]],
+      "form": "x^2*(x-1)^2*(2*x-5*t)",
+      "parameter_condition": "open branch-profile locus",
+      "rigid_affine_class": false
+    }
+  ],
+  "dickson_divided_difference": {
+    "sqrt_relation": "s^2=5",
+    "factor_one": "x^2+((1+s)/2)*x*y+y^2+((-5+s)/2)*a",
+    "factor_two": "x^2+((1-s)/2)*x*y+y^2+((-5-s)/2)*a",
+    "factor_bidegrees": [[2, 2], [2, 2]]
+  },
+  "source_bindings": [
+    {
+      "binding_id": "KB_M12_NORMAL_FORMS::parent_certificate",
+      "commit": "e368e5c8fc101ae0040b47265c2cd167e70dadd2",
+      "path": "experimental/data/certificates/kb-mca-v4-m12-outer-subdegree-route-cut-v1/kb_mca_v4_m12_outer_subdegree_route_cut_v1.json",
+      "blob_oid": "6ea55700f303869a850c79c66c331842e0eed385",
+      "role": "surviving m12 transverse types and outer divisor profile"
+    },
+    {
+      "binding_id": "KB_M12_NORMAL_FORMS::actual_curve_source",
+      "commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+      "path": "experimental/notes/frontier-adjacent/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.md",
+      "blob_oid": "5d0ec0315fca34de80c22983b76bbafa12dd5661",
+      "role": "bidegree-(2,4) actual component and birational endpoint lift"
+    }
+  ],
+  "conclusion": {
+    "geometric_family_count": 6,
+    "rigid_affine_class_count": 5,
+    "one_parameter_family_count": 1,
+    "terminal": "M12_SIX_GEOMETRIC_OUTER_FAMILIES_UNPAID",
+    "challenge_field_classifier_proved": false,
+    "family_deleted": false,
+    "m12_closed": false,
+    "u2_closed": false,
+    "K3_closed": false,
+    "row_closed": false
+  },
+  "nonclaims": [
+    "No normalizing affine map is silently descended to the challenge field.",
+    "No family is deleted or realized by a supplied endpoint record.",
+    "No parameter-to-carrier, received-data, explaining-polynomial, or slope bridge is proved.",
+    "No inner-degree-twelve, u=2, K3, or KoalaBear row closure is claimed.",
+    "No ledger quantity moves."
+  ]
+}
