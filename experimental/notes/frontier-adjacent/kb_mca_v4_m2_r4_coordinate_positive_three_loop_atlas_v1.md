@@ -5,20 +5,20 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the positive coordinate order-two branch, complete-source local multiplicity excludes every packet with two or three common antipodal edge orbits; the exact three-loop atlas and eliminants are retained as the audited route that exposed the obstruction.
+direct_statement: In the positive coordinate order-two branch, every loop over any of the twelve complete source fibers is the unique projective zero of B1, so total loop count is at most one; composing this with exact defect arithmetic leaves five common-skeleton orbits and thirteen necessary residual graph routes.
 architecture: null
 partition_digest: null
 atom_or_cell: K3_M2_R4_COORDINATE_POSITIVE_THREE_LOOP_ATLAS
-quantifier: every actual graph-free Q=6,s=6 inner-degree-two component in the positive coordinate order-two orientation whose five common K-fiber edges contain at least two antipodal orbits
+quantifier: every actual graph-free Q=6,s=6 inner-degree-two component in the positive coordinate order-two orientation
 projection_and_unit: exact source-component graph and Vieta interfaces; not a carrier, received-line theorem, distinct-slope projection, owner, or payment
-claimed_bound: exact local orders 2 versus 4 at a ramified loop with nonzero B1, implying at most one positive common loop; ten common skeleton orbits, four three-loop placements, eight signed lanes, and exact generic/degree-drop eliminants retained
-status: PROVED_POSITIVE_TWO_AND_THREE_LOOP_SUBCASES_EMPTY_ORDER_TWO_TYPE_OPEN_K3_OPEN
-impact: DELETES_POSITIVE_MULTI_LOOP_COORDINATE_SUBCASES_AND_NARROWS_ONE_LOOP_TO_THE_B1_ZERO
-falsifier: an actual positive complete-source packet with a ramified antipodal star where B1 is nonzero, or failure of the local resultant order 2 versus complete-source-square order 4 comparison
+claimed_bound: exact local orders 2 versus 4 at a ramified loop with nonzero B1 plus the ordinary Vieta row imply a global positive loop cap one; the ten common orbits reduce to five live orbits, seven labeled common rows, and thirteen necessary residual graph routes
+status: PROVED_POSITIVE_GLOBAL_LOOP_CAP_AND_RESIDUAL_GRAPH_WORKBOARD_ORDER_TWO_TYPE_OPEN_K3_OPEN
+impact: DELETES_POSITIVE_MULTI_LOOP_COORDINATE_SUBCASES_AND_COMPILES_ZERO_OR_ONE_LOOP_FRONTIER
+falsifier: an actual positive complete-source packet with two loops, a common/outside graph omitted by the thirteen-route table, or failure of the local resultant order 2 versus complete-source-square order 4 comparison
 replay: python3 experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py --check --tamper-selftest
 ---
 
-# KoalaBear positive coordinate three-loop atlas
+# KoalaBear positive coordinate loop atlas and residual workboard
 
 ## 0. Verdict
 
@@ -53,8 +53,12 @@ The pinned complete-source square supplies a stronger final step. At either
 ramified loop where `B_1` is nonzero, exactly the two antipodal target rows
 vanish, each to local order one, so their product has order two. The
 ramified complete-source divisor has order two and its square has order
-four. This contradiction deletes every positive two- and three-loop row.
-Positive zero-loop and narrowed one-loop rows remain; the coordinate
+four. At an ordinary complete fiber, the Vieta sum row forces `B_1=0` at
+every loop. Thus every loop among all twelve complete fibers is the unique
+projective zero of nonzero linear `B_1`, giving a global cap of one. Exact
+degree and defect enumeration then leaves five common-skeleton orbits,
+seven labeled common rows, and thirteen necessary common/outside graph
+routes. Their algebraic feasibility remains open; the coordinate
 orientation and order-two type are not deleted, and no owner or payment is
 booked.
 
@@ -351,38 +355,92 @@ above a quotient branch is the doubled divisor `2[u=0]`, so
 `ord_u B_source=2` and the right side has order four. Contradiction. The
 reciprocal local chart proves the same statement at infinity.
 
-Now use the census from Section 1. A two-loop row either has one ordinary
-loop, which consumes the unique zero of linear `B_1`, or has both branch
-loops, at at least one of which `B_1` is nonzero. A three-loop row has its
-ordinary loop at the `B_1` zero and both branch loops. Every case contains
-a forbidden ramified loop. Therefore
+At an ordinary one of the twelve complete source fibers, a loop has roots
+`{a,-a}` and hence root sum zero. In (0.2), the coefficient of `T` is
+`xB_1(W)`. Leading support and `x!=0` therefore force `B_1(W)=0`. At a
+ramified fiber, the local contradiction above makes the same condition
+necessary. Distinct complete fibers have distinct quotient labels, and
+nonzero projective linear `B_1` has one zero. Therefore
 
 ```text
-number of positive common loops <= 1.              (7.5)
+number of positive loops over all complete fibers <= 1. (7.5)
 ```
 
 In particular both positive 442/433 two-loop rows and both three-loop rows
-are empty. If a surviving one-loop row is ramified, its loop must be the
-unique zero of `B_1`.
+are empty. A surviving one-common-loop row has no outside loop. A
+zero-common-loop row has at most one outside loop, and every surviving loop
+is the unique zero of `B_1`.
 
 This local-order theorem also explains why an ordinary source-root norm
 must not be identified with a target graph table that manually doubles a
 ramified loop. No such norm is used in (7.1)--(7.5).
 
-## 8. Scope and next action
+## 8. Residual zero-/one-loop graph workboard
+
+For a cross-pair orbit of multiplicity `m`, the minimum signed target-edge
+defect is
+
+```text
+min_(0<=s<=m) [2 binom(s,2)+2 binom(m-s,2)],       (8.1)
+```
+
+which is `0,0,2,4` for `m=1,2,3,4`; a loop costs one. Applying (8.1), the
+global cap (7.5), and the component budget three to (1.3) leaves exactly
+
+```text
+442-0a: (000;311), defect 2, orbit 1;
+442-1b: (010;220), defect 1, orbit 2;
+433-0:  (000;221), defect 0, orbit 1;
+433-1a: (001;310), defect 3, orbit 2;
+433-1b: (100;112), defect 1, orbit 1.              (8.2)
+```
+
+The extra 442 row `(001;400)` is impossible because its loop plus its
+multiplicity-four cross pair costs `1+4=5`. The other four deleted rows
+have two or three loops.
+
+For outside colored incidences `r`, loops `l`, and cross multiplicities
+`m`, the equations are
+
+```text
+sum r_i=2,  sum l_i+sum m_ij=5,
+r_i+2l_i+sum_(j!=i)m_ij=4.                         (8.3)
+```
+
+Modulo outside-pair permutation, the two loop-free orbits are `O0a =
+(002;000;311)` and `O0b = (011;000;221)`. The four one-loop orbits are
+`O1a = (002;001;400)`, `O1b = (002;010;220)`, `O1c =
+(011;001;310)`, and `O1d = (011;100;112)`. Their minimum defects are,
+respectively, `2,0,5,1,3,1`. Adding common and outside debits gives the
+exact necessary route table
+
+```text
+442-0a -> O0b, O1b, O1d
+442-1b -> O0a, O0b
+433-0  -> O0a, O0b, O1b, O1c, O1d
+433-1a -> O0b
+433-1b -> O0a, O0b.                               (8.4)
+```
+
+These thirteen entries pair orbit representatives; they are not fully
+labeled packet counts, and graph survival is not algebraic realizability.
+
+## 9. Scope and next action
 
 Proved: the loop nonrepetition and ramification gate; the exact ten-orbit
 common skeleton census; the unique complete outside graph in the
 three-loop subcase; the four common placement determinants; the two sign
 orbits and eight signed Vieta lanes; the square-root-free edge equivalence;
 the generic and degree-drop one-edge eliminants; and the complete-source
-local multiplicity exclusion of every positive two- and three-loop row.
+local multiplicity/Vieta proof of the global positive loop cap one; and the
+five-orbit, thirteen-route residual graph workboard.
 
-Not proved: deletion of positive zero-loop or narrowed one-loop rows,
-positive parity as a whole, another orientation, an owner, payment, K3, the
+Not proved: algebraic deletion of the thirteen residual routes, positive
+parity as a whole, another orientation, an owner, payment, K3, the
 KoalaBear row, or a Prize result.
 
 Do not run the eight three-loop saturation systems: (7.5) supersedes them.
-The next positive-coordinate task is to compile the zero-loop rows and the
-one-loop rows after forcing any ramified loop to the `B_1` zero. The
-diagonal and trivial-stabilizer orientations remain separate.
+The next positive-coordinate task is to compile the complete Vieta/product
+system only for (8.4), starting with the unique saturated-defect route
+`433-1a -> O0b`. The diagonal and trivial-stabilizer orientations remain
+separate.

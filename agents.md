@@ -334,7 +334,9 @@ At this snapshot:
   necessary prefilter, not a sufficient colored-quotient identity; the
   `(1,1,2)` row, order-two type, K3, all payments, and the KoalaBear row
   remain open.
-- The positive coordinate order-two two- and three-loop branches are empty.
+- The positive coordinate order-two branch has at most one loop globally
+  across all twelve complete fibers.  In particular its two- and
+  three-common-loop branches are empty.
   Loop nonrepetition and ramification first leave one
   three-loop common skeleton in each pair-degree profile `(4,4,2)` and
   `(4,3,3)`; the complete outside graph is unique; and the common Vieta rows
@@ -344,10 +346,14 @@ At this snapshot:
   degree-drop cut.  The pinned complete-source square then gives a local
   obstruction: at a ramified loop with nonzero `B_1`, the target-row product
   has order two, while the doubled complete-source fiber requires order
-  four.  Every positive two-/three-loop placement contains such a branch.
-  Thus no lane saturation is needed.  Positive zero-loop and narrowed
-  one-loop rows, the coordinate orientation, the order-two type, K3, every
-  payment, and the KoalaBear row remain open.
+  four.  The ordinary Vieta row also forces every nonramified loop to the
+  zero of `B_1`; hence every positive loop occupies the unique projective
+  zero of nonzero linear `B_1`.  Exact defect enumeration reduces the ten
+  common-skeleton orbits to five live orbits, seven labeled common rows,
+  and thirteen necessary common/outside graph routes.  Thus no three-loop
+  lane saturation is needed.  Algebraic deletion of those thirteen routes,
+  the coordinate orientation, the order-two type, K3, every payment, and
+  the KoalaBear row remain open.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -434,11 +440,14 @@ packet is not an endpoint factor.  Universal gain nonflatness is no longer
 required for the deleted full-V4 type.  No quotient payment is booked.
 
 In the positive coordinate branch of the residual order-two type, the
-complete-source local multiplicity theorem deletes every common loop count
-two or three.  The retained three-loop atlas has four common placements
-times two cycle signs, but its eight saturated systems must not be run: the
-order-two versus order-four branch contradiction supersedes them.  A
-surviving ramified one-loop must put its loop at the unique zero of `B_1`.
+complete-source local multiplicity theorem and ordinary Vieta row force
+every loop among all twelve complete fibers to the unique zero of `B_1`.
+Thus total positive loop count is at most one.  The retained three-loop
+atlas has four common placements times two cycle signs, but its eight
+saturated systems must not be run: the global cap supersedes them.  Defect
+enumeration leaves five common-skeleton orbits, seven labeled common rows,
+and thirteen necessary common/outside graph routes.  Start algebraic
+elimination with the unique saturated-defect route `433-1a -> O0b`.
 
 The next maximal equality-wall theorem is the source-coupled transverse
 outer compiler on the remaining `2` types at inner degree `m=2`.  For every

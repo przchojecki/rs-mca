@@ -4324,15 +4324,15 @@ Keep entries concise and link to the relevant files.
   the 18-cell near-positive affine ledger as a separate review packet rather
   than inflating this extension with its large exact artifact bundle.
 
-### 2026-08-01 - Positive coordinate three-loop atlas
+### 2026-08-01 - Positive coordinate loop atlas and residual workboard
 
 - **Agent/model:** Codex.
 - **Files added or changed:**
   `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.md`,
   `experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py`,
   its fail-closed JSON certificate, `agents.md`, and this log.
-- **Status:** PROVED positive two-/three-loop subcases EMPTY / positive
-  coordinate orientation open / K3 open.
+- **Status:** PROVED global positive loop cap one and exact residual graph
+  workboard / positive coordinate orientation open / K3 open.
 - **What is being added:** In the positive coordinate orientation, loop
   nonrepetition and ramification refine the two exact pair-degree profiles
   `(4,4,2)` and `(4,3,3)` to one three-loop common skeleton each.  The
@@ -4344,19 +4344,30 @@ Keep entries concise and link to the relevant files.
   then closes the compiled branch locally: at a ramified loop with nonzero
   `B_1`, the two antipodal target rows have total order two, while the
   doubled source fiber requires square order four.  Every positive two- or
-  three-loop placement has such a branch.
+  three-loop placement has such a branch.  At every ordinary complete
+  fiber, the Vieta sum row forces a loop to a zero of `B_1`; the local
+  theorem gives the same condition at ramification.  Hence every loop among
+  all twelve complete fibers occupies the unique zero of nonzero linear
+  `B_1`, and total loop count is at most one.
+- **Residual workboard:** Composing the global cap with exact signed-edge
+  defect arithmetic reduces ten common-skeleton orbits to five live orbits
+  and seven labeled common rows.  Exact outside degree enumeration gives
+  two loop-free and four one-loop graph orbits; thirteen necessary
+  common/outside representative routes survive the defect budget three.
 - **Replay discipline:** The verifier pins both exact order-two parents by
   commit, blob, payload, and terminal; exhausts all finite graph/sign
   quotients; checks every polynomial identity symbolically; seals the
-  certificate; checks both branch charts and all four multi-loop placement
-  patterns; and rejects 29 hostile mutations.
+  certificate; checks both branch charts, all four multi-loop placement
+  patterns, the complete residual degree/defect ledger, and rejects 34
+  hostile mutations.
 - **Route correction:** An attempted ordinary source-root neighbor norm was
   removed because it did not carry the doubled divisor multiplicity of a
   ramified loop.  The closing theorem uses the pinned complete-source square
   directly and does not rely on that norm.
-- **Scope guard:** Positive zero-loop and narrowed one-loop rows remain.
-  No orientation/type deletion, owner, payment, K3 value, or row bound is
-  claimed.
-- **What to do next:** Compile the positive zero-loop and one-loop rows,
-  forcing any ramified one-loop to the unique zero of `B_1`.  Do not run the
-  superseded eight-lane three-loop saturation.
+- **Scope guard:** The thirteen graph routes are necessary only; their
+  algebraic realizability remains open.  No orientation/type deletion,
+  owner, payment, K3 value, or row bound is claimed.
+- **What to do next:** Compile complete Vieta/product equations for the
+  thirteen routed records, beginning with the unique saturated-defect route
+  `433-1a -> O0b`.  Do not run the superseded eight-lane three-loop
+  saturation.

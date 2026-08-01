@@ -154,7 +154,7 @@
     "order_two_type_deleted": false,
     "positive_three_loop_subcase_deleted": true,
     "positive_two_loop_subcase_deleted": true,
-    "terminal": "M2_R4_COORDINATE_POSITIVE_MULTI_LOOP_COMPLETE_SOURCE_EXCLUSION"
+    "terminal": "M2_R4_COORDINATE_POSITIVE_GLOBAL_LOOP_CAP_AND_RESIDUAL_WORKBOARD"
   },
   "loop_ramification_and_census": {
     "B1_nonzero": true,
@@ -326,7 +326,7 @@
   "nonclaims": [
     "the eight-lane atlas is retained but no lane saturation is needed for the deletion",
     "no ordinary source-root norm is identified with divisor-weighted ramified incidence",
-    "positive zero-loop and narrowed one-loop rows remain open",
+    "the thirteen residual graph routes remain only necessary, not algebraically realized",
     "no negative-parity, diagonal, or trivial-stabilizer conclusion",
     "no order-two type, K3, KoalaBear row, owner, payment, or Prize close"
   ],
@@ -383,7 +383,347 @@
       "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_order2_source_facet_interpolation_v1.py"
     }
   },
-  "payload_sha256": "9eaf5d6b814c8b117b4ebe7e493396506197d6ca024d8a3a7fcf3a0fde167c8b",
+  "payload_sha256": "5f6921f4abe90968f7ad624f207c9e2f991152e75da4f285938e3552286c082a",
+  "positive_residual_loop_workboard": {
+    "common_rows": [
+      {
+        "loop_count": 0,
+        "loops": [
+          0,
+          0,
+          0
+        ],
+        "minimum_common_defect": 2,
+        "multiplicities": [
+          3,
+          1,
+          1
+        ],
+        "name": "442-0a",
+        "orbit_size": 1,
+        "profile": "442",
+        "verdict": "live"
+      },
+      {
+        "loop_count": 1,
+        "loops": [
+          0,
+          0,
+          1
+        ],
+        "minimum_common_defect": 5,
+        "multiplicities": [
+          4,
+          0,
+          0
+        ],
+        "name": "442-1a",
+        "orbit_size": 1,
+        "profile": "442",
+        "verdict": "common-defect-budget"
+      },
+      {
+        "loop_count": 1,
+        "loops": [
+          0,
+          1,
+          0
+        ],
+        "minimum_common_defect": 1,
+        "multiplicities": [
+          2,
+          2,
+          0
+        ],
+        "name": "442-1b",
+        "orbit_size": 2,
+        "profile": "442",
+        "verdict": "live"
+      },
+      {
+        "loop_count": 2,
+        "loops": [
+          1,
+          1,
+          0
+        ],
+        "minimum_common_defect": 2,
+        "multiplicities": [
+          1,
+          1,
+          1
+        ],
+        "name": "442-2",
+        "orbit_size": 1,
+        "profile": "442",
+        "verdict": "global-loop-cap"
+      },
+      {
+        "loop_count": 3,
+        "loops": [
+          1,
+          1,
+          1
+        ],
+        "minimum_common_defect": 3,
+        "multiplicities": [
+          2,
+          0,
+          0
+        ],
+        "name": "442-3",
+        "orbit_size": 1,
+        "profile": "442",
+        "verdict": "global-loop-cap"
+      },
+      {
+        "loop_count": 0,
+        "loops": [
+          0,
+          0,
+          0
+        ],
+        "minimum_common_defect": 0,
+        "multiplicities": [
+          2,
+          2,
+          1
+        ],
+        "name": "433-0",
+        "orbit_size": 1,
+        "profile": "433",
+        "verdict": "live"
+      },
+      {
+        "loop_count": 1,
+        "loops": [
+          0,
+          0,
+          1
+        ],
+        "minimum_common_defect": 3,
+        "multiplicities": [
+          3,
+          1,
+          0
+        ],
+        "name": "433-1a",
+        "orbit_size": 2,
+        "profile": "433",
+        "verdict": "live"
+      },
+      {
+        "loop_count": 1,
+        "loops": [
+          1,
+          0,
+          0
+        ],
+        "minimum_common_defect": 1,
+        "multiplicities": [
+          1,
+          1,
+          2
+        ],
+        "name": "433-1b",
+        "orbit_size": 1,
+        "profile": "433",
+        "verdict": "live"
+      },
+      {
+        "loop_count": 2,
+        "loops": [
+          1,
+          0,
+          1
+        ],
+        "minimum_common_defect": 2,
+        "multiplicities": [
+          2,
+          0,
+          1
+        ],
+        "name": "433-2",
+        "orbit_size": 2,
+        "profile": "433",
+        "verdict": "global-loop-cap"
+      },
+      {
+        "loop_count": 3,
+        "loops": [
+          1,
+          1,
+          1
+        ],
+        "minimum_common_defect": 3,
+        "multiplicities": [
+          1,
+          1,
+          0
+        ],
+        "name": "433-3",
+        "orbit_size": 1,
+        "profile": "433",
+        "verdict": "global-loop-cap"
+      }
+    ],
+    "component_defect_budget": 3,
+    "live_common_labeled_count": 7,
+    "live_common_orbit_count": 5,
+    "maximum_positive_total_loop_count": 1,
+    "outside_orbits": [
+      {
+        "colored": [
+          0,
+          0,
+          2
+        ],
+        "loops": [
+          0,
+          0,
+          0
+        ],
+        "minimum_outside_defect": 2,
+        "multiplicities": [
+          3,
+          1,
+          1
+        ],
+        "name": "O0a",
+        "orbit_size": 3
+      },
+      {
+        "colored": [
+          0,
+          1,
+          1
+        ],
+        "loops": [
+          0,
+          0,
+          0
+        ],
+        "minimum_outside_defect": 0,
+        "multiplicities": [
+          2,
+          2,
+          1
+        ],
+        "name": "O0b",
+        "orbit_size": 3
+      },
+      {
+        "colored": [
+          0,
+          0,
+          2
+        ],
+        "loops": [
+          0,
+          0,
+          1
+        ],
+        "minimum_outside_defect": 5,
+        "multiplicities": [
+          4,
+          0,
+          0
+        ],
+        "name": "O1a",
+        "orbit_size": 3
+      },
+      {
+        "colored": [
+          0,
+          0,
+          2
+        ],
+        "loops": [
+          0,
+          1,
+          0
+        ],
+        "minimum_outside_defect": 1,
+        "multiplicities": [
+          2,
+          2,
+          0
+        ],
+        "name": "O1b",
+        "orbit_size": 6
+      },
+      {
+        "colored": [
+          0,
+          1,
+          1
+        ],
+        "loops": [
+          0,
+          0,
+          1
+        ],
+        "minimum_outside_defect": 3,
+        "multiplicities": [
+          3,
+          1,
+          0
+        ],
+        "name": "O1c",
+        "orbit_size": 6
+      },
+      {
+        "colored": [
+          0,
+          1,
+          1
+        ],
+        "loops": [
+          1,
+          0,
+          0
+        ],
+        "minimum_outside_defect": 1,
+        "multiplicities": [
+          1,
+          1,
+          2
+        ],
+        "name": "O1d",
+        "orbit_size": 3
+      }
+    ],
+    "outside_raw_counts_by_loop_count": {
+      "0": 6,
+      "1": 18
+    },
+    "representative_route_count": 13,
+    "routes": {
+      "433-0": [
+        "O0a",
+        "O0b",
+        "O1b",
+        "O1c",
+        "O1d"
+      ],
+      "433-1a": [
+        "O0b"
+      ],
+      "433-1b": [
+        "O0a",
+        "O0b"
+      ],
+      "442-0a": [
+        "O0b",
+        "O1b",
+        "O1d"
+      ],
+      "442-1b": [
+        "O0a",
+        "O0b"
+      ]
+    }
+  },
   "ramified_loop_multiplicity_exclusion": {
     "branch_chart_orders": [
       [
@@ -406,6 +746,7 @@
       "other signed target squares differ from a^2"
     ],
     "maximum_positive_common_loop_count": 1,
+    "maximum_positive_total_loop_count": 1,
     "multi_loop_placement_count": 4,
     "multi_loop_placements": [
       {
@@ -442,7 +783,11 @@
         ]
       }
     ],
+    "ordinary_loop_requires_B1_zero": true,
+    "ordinary_loop_vieta_coefficient": "x*B1",
     "ordinary_resultant_local_order": 2,
+    "outside_allowance_with_one_common_loop": 0,
+    "outside_allowance_with_zero_common_loops": 1,
     "ramified_one_loop_requires_B1_zero": true
   },
   "schema": "kb-mca-v4-m2-r4-coordinate-positive-three-loop-atlas-v1",
@@ -465,7 +810,7 @@
     "row": "KoalaBear MCA at 2^-128",
     "source_parity": "positive",
     "stabilizer_order": 2,
-    "subcase": "at least two common antipodal edge orbits, with the three-loop atlas retained",
+    "subcase": "positive coordinate loop census and residual graph workboard, with the three-loop atlas retained",
     "workboard_item": "K3"
   },
   "signed_outside_vieta_atlas": {

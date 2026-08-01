@@ -300,6 +300,157 @@ def outside_skeleton_census() -> dict[str, Any]:
     }
 
 
+def permute_outside_record(record, permutation):
+    colored, loops, multiplicities = record
+    edge_values = {
+        (0, 1): multiplicities[0],
+        (0, 2): multiplicities[1],
+        (1, 2): multiplicities[2],
+    }
+    return (
+        tuple(colored[permutation[index]] for index in range(3)),
+        tuple(loops[permutation[index]] for index in range(3)),
+        tuple(
+            edge_values[tuple(sorted((permutation[left], permutation[right])))]
+            for left, right in ((0, 1), (0, 2), (1, 2))
+        ),
+    )
+
+
+def residual_loop_workboard(common_census: dict[str, Any]) -> dict[str, Any]:
+    common_names = {
+        ("442", (0, 0, 0), (3, 1, 1)): "442-0a",
+        ("442", (0, 0, 1), (4, 0, 0)): "442-1a",
+        ("442", (0, 1, 0), (2, 2, 0)): "442-1b",
+        ("442", (1, 1, 0), (1, 1, 1)): "442-2",
+        ("442", (1, 1, 1), (2, 0, 0)): "442-3",
+        ("433", (0, 0, 0), (2, 2, 1)): "433-0",
+        ("433", (0, 0, 1), (3, 1, 0)): "433-1a",
+        ("433", (1, 0, 0), (1, 1, 2)): "433-1b",
+        ("433", (1, 0, 1), (2, 0, 1)): "433-2",
+        ("433", (1, 1, 1), (1, 1, 0)): "433-3",
+    }
+    common_rows = []
+    for profile in ("442", "433"):
+        for row in common_census[profile]["orbits"]:
+            loops = tuple(row["loops"])
+            multiplicities = tuple(row["multiplicities"])
+            loop_count = sum(loops)
+            defect = loop_count + sum(
+                minimum_cross_defect(value) for value in multiplicities
+            )
+            reason = "live"
+            if loop_count > 1:
+                reason = "global-loop-cap"
+            elif defect > 3:
+                reason = "common-defect-budget"
+            common_rows.append({
+                "name": common_names[(profile, loops, multiplicities)],
+                "profile": profile,
+                "loops": list(loops),
+                "multiplicities": list(multiplicities),
+                "orbit_size": row["orbit_size"],
+                "loop_count": loop_count,
+                "minimum_common_defect": defect,
+                "verdict": reason,
+            })
+
+    outside_names = {
+        ((0, 0, 2), (0, 0, 0), (3, 1, 1)): "O0a",
+        ((0, 1, 1), (0, 0, 0), (2, 2, 1)): "O0b",
+        ((0, 0, 2), (0, 0, 1), (4, 0, 0)): "O1a",
+        ((0, 0, 2), (0, 1, 0), (2, 2, 0)): "O1b",
+        ((0, 1, 1), (0, 0, 1), (3, 1, 0)): "O1c",
+        ((0, 1, 1), (1, 0, 0), (1, 1, 2)): "O1d",
+    }
+    outside_rows = []
+    raw_counts = {}
+    for loop_count in (0, 1):
+        solutions = set()
+        for colored in itertools.product(range(3), repeat=3):
+            if sum(colored) != 2:
+                continue
+            for loops in itertools.product(range(2), repeat=3):
+                if sum(loops) != loop_count:
+                    continue
+                for multiplicities in itertools.product(range(6), repeat=3):
+                    de, df, ef = multiplicities
+                    if sum(multiplicities) + loop_count != 5:
+                        continue
+                    degrees = (
+                        colored[0] + 2 * loops[0] + de + df,
+                        colored[1] + 2 * loops[1] + de + ef,
+                        colored[2] + 2 * loops[2] + df + ef,
+                    )
+                    if degrees == (4, 4, 4):
+                        solutions.add((colored, loops, multiplicities))
+        raw_counts[str(loop_count)] = len(solutions)
+        unseen = set(solutions)
+        for representative in sorted(solutions):
+            if representative not in unseen:
+                continue
+            orbit = {
+                permute_outside_record(representative, permutation)
+                for permutation in itertools.permutations(range(3))
+            }
+            require(orbit <= solutions, "residual outside permutation closure")
+            unseen -= orbit
+            colored, loops, multiplicities = representative
+            defect = sum(loops) + sum(
+                minimum_cross_defect(value) for value in multiplicities
+            )
+            outside_rows.append({
+                "name": outside_names[representative],
+                "colored": list(colored),
+                "loops": list(loops),
+                "multiplicities": list(multiplicities),
+                "orbit_size": len(orbit),
+                "minimum_outside_defect": defect,
+            })
+
+    routes = {}
+    for common in common_rows:
+        if common["verdict"] != "live":
+            continue
+        allowed = []
+        for outside in outside_rows:
+            outside_loop_count = sum(outside["loops"])
+            if common["loop_count"] + outside_loop_count > 1:
+                continue
+            if (common["minimum_common_defect"]
+                    + outside["minimum_outside_defect"] > 3):
+                continue
+            allowed.append(outside["name"])
+        require(allowed, f"empty residual route {common['name']}")
+        routes[common["name"]] = allowed
+
+    expected_routes = {
+        "442-0a": ["O0b", "O1b", "O1d"],
+        "442-1b": ["O0a", "O0b"],
+        "433-0": ["O0a", "O0b", "O1b", "O1c", "O1d"],
+        "433-1a": ["O0b"],
+        "433-1b": ["O0a", "O0b"],
+    }
+    require(routes == expected_routes, "residual route table")
+    live = [row for row in common_rows if row["verdict"] == "live"]
+    require(len(live) == 5, "live common orbit count")
+    require(sum(row["orbit_size"] for row in live) == 7,
+            "live labeled common count")
+    require(raw_counts == {"0": 6, "1": 18}, "outside raw counts")
+    require(len(outside_rows) == 6, "outside orbit count")
+    return {
+        "component_defect_budget": 3,
+        "maximum_positive_total_loop_count": 1,
+        "common_rows": common_rows,
+        "live_common_orbit_count": len(live),
+        "live_common_labeled_count": sum(row["orbit_size"] for row in live),
+        "outside_raw_counts_by_loop_count": raw_counts,
+        "outside_orbits": outside_rows,
+        "routes": routes,
+        "representative_route_count": sum(len(value) for value in routes.values()),
+    }
+
+
 def product_row(w, product, a0, ai, a1):
     return (
         -a0**2 + (a0**2 - a1**2) * w - product,
@@ -724,6 +875,23 @@ def ramified_loop_multiplicity_replay() -> dict[str, Any]:
                 "excluded_branch": live_branch,
             })
     require(len(placements) == 4, "multi-loop placement coverage")
+
+    # At an ordinary source lift x!=0, an antipodal root pair has sum zero.
+    # The T-linear coefficient of the positive normal form is x*B1, so the
+    # ordinary Vieta row forces B1=0 there as well.
+    ordinary_t, ordinary_x, ordinary_b1, ordinary_a2, ordinary_a0 = sp.symbols(
+        "ordinary_t ordinary_x ordinary_b1 ordinary_a2 ordinary_a0"
+    )
+    ordinary_h = (
+        ordinary_a2 * ordinary_t**2
+        + ordinary_x * ordinary_b1 * ordinary_t
+        + ordinary_a0
+    )
+    require(
+        sp.Poly(ordinary_h, ordinary_t).coeff_monomial(ordinary_t)
+        == ordinary_x * ordinary_b1,
+        "ordinary loop Vieta coefficient",
+    )
     return {
         "local_hypotheses": [
             "ramified antipodal star {a,-a}",
@@ -737,11 +905,17 @@ def ramified_loop_multiplicity_replay() -> dict[str, Any]:
         "multi_loop_placements": placements,
         "deleted_common_loop_counts": [2, 3],
         "maximum_positive_common_loop_count": 1,
+        "ordinary_loop_vieta_coefficient": "x*B1",
+        "ordinary_loop_requires_B1_zero": True,
         "ramified_one_loop_requires_B1_zero": True,
+        "maximum_positive_total_loop_count": 1,
+        "outside_allowance_with_zero_common_loops": 1,
+        "outside_allowance_with_one_common_loop": 0,
     }
 
 
 def expected_certificate() -> dict[str, Any]:
+    common_census = common_loop_census()
     data = {
         "schema": "kb-mca-v4-m2-r4-coordinate-positive-three-loop-atlas-v1",
         "parents": {
@@ -757,14 +931,14 @@ def expected_certificate() -> dict[str, Any]:
             "orientation": "coordinate",
             "source_parity": "positive",
             "common_pair_degree_profiles": [[4, 4, 2], [4, 3, 3]],
-            "subcase": "at least two common antipodal edge orbits, with the three-loop atlas retained",
+            "subcase": "positive coordinate loop census and residual graph workboard, with the three-loop atlas retained",
         },
         "loop_ramification_and_census": {
             "antipodal_target_type_repeats": False,
             "B1_nonzero": True,
             "maximum_nonramified_loop_count": 1,
             "three_loop_locations": ["ramified_zero", "ramified_infinity", "B1_root"],
-            "all_profile_orbits": common_loop_census(),
+            "all_profile_orbits": common_census,
             "total_labeled_skeletons": 13,
             "total_skeleton_orbits": 10,
             "three_loop_profile_count": 2,
@@ -774,6 +948,7 @@ def expected_certificate() -> dict[str, Any]:
         "signed_outside_vieta_atlas": signed_vieta_replay(),
         "outside_edge_eliminant": edge_eliminant_replay(),
         "ramified_loop_multiplicity_exclusion": ramified_loop_multiplicity_replay(),
+        "positive_residual_loop_workboard": residual_loop_workboard(common_census),
         "conclusion": {
             "positive_two_loop_subcase_deleted": True,
             "positive_three_loop_subcase_deleted": True,
@@ -781,12 +956,12 @@ def expected_certificate() -> dict[str, Any]:
             "order_two_type_deleted": False,
             "k3_status": "OPEN",
             "koalabear_row_status": "OPEN",
-            "terminal": "M2_R4_COORDINATE_POSITIVE_MULTI_LOOP_COMPLETE_SOURCE_EXCLUSION",
+            "terminal": "M2_R4_COORDINATE_POSITIVE_GLOBAL_LOOP_CAP_AND_RESIDUAL_WORKBOARD",
         },
         "nonclaims": [
             "the eight-lane atlas is retained but no lane saturation is needed for the deletion",
             "no ordinary source-root norm is identified with divisor-weighted ramified incidence",
-            "positive zero-loop and narrowed one-loop rows remain open",
+            "the thirteen residual graph routes remain only necessary, not algebraically realized",
             "no negative-parity, diagonal, or trivial-stabilizer conclusion",
             "no order-two type, K3, KoalaBear row, owner, payment, or Prize close",
         ],
@@ -824,6 +999,11 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["ramified_loop_multiplicity_exclusion"].__setitem__("ordinary_resultant_local_order", 4),
         lambda x: x["ramified_loop_multiplicity_exclusion"].__setitem__("multi_loop_placement_count", 3),
         lambda x: x["ramified_loop_multiplicity_exclusion"].__setitem__("maximum_positive_common_loop_count", 2),
+        lambda x: x["ramified_loop_multiplicity_exclusion"].__setitem__("maximum_positive_total_loop_count", 2),
+        lambda x: x["ramified_loop_multiplicity_exclusion"].__setitem__("ordinary_loop_requires_B1_zero", False),
+        lambda x: x["positive_residual_loop_workboard"].__setitem__("live_common_orbit_count", 6),
+        lambda x: x["positive_residual_loop_workboard"].__setitem__("representative_route_count", 12),
+        lambda x: x["positive_residual_loop_workboard"]["routes"].__setitem__("433-1a", ["O0a", "O0b"]),
         lambda x: x["conclusion"].__setitem__("positive_two_loop_subcase_deleted", False),
         lambda x: x["conclusion"].__setitem__("positive_three_loop_subcase_deleted", False),
         lambda x: x["conclusion"].__setitem__("order_two_type_deleted", True),
@@ -872,6 +1052,8 @@ def main() -> None:
         f"local_orders={data['ramified_loop_multiplicity_exclusion']['ordinary_resultant_local_order']}/"
         f"{data['ramified_loop_multiplicity_exclusion']['complete_source_square_local_order']} "
         f"deleted_loops={','.join(str(value) for value in data['ramified_loop_multiplicity_exclusion']['deleted_common_loop_counts'])} "
+        f"total_loop_cap={data['ramified_loop_multiplicity_exclusion']['maximum_positive_total_loop_count']} "
+        f"residual_routes={data['positive_residual_loop_workboard']['representative_route_count']} "
         f"tamper_rejected={rejected}"
     )
 
