@@ -4323,3 +4323,33 @@ Keep entries concise and link to the relevant files.
   a modular-interpolation or dedicated quadratic-resultant compiler.  Treat
   the 18-cell near-positive affine ledger as a separate review packet rather
   than inflating this extension with its large exact artifact bundle.
+
+### 2026-08-01 - Positive coordinate three-loop atlas
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.md`,
+  `experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py`,
+  its fail-closed JSON certificate, `agents.md`, and this log.
+- **Status:** PROVED exact compiler / positive three-loop subcase open / K3
+  open.
+- **What is being added:** In the positive coordinate orientation, loop
+  nonrepetition and ramification refine the two exact pair-degree profiles
+  `(4,4,2)` and `(4,3,3)` to one three-loop common skeleton each.  The
+  complete outside graph is unique; four guarded `4 x 4` common-kernel
+  placements have explicit degree-six residuals; target-sign gauge gives
+  two cycle-sign orbits and eight seven-edge lanes; and every outside edge
+  has exact generic and degree-drop eliminants.  The generic resultant has
+  22 terms and total coefficient degree six.
+- **Replay discipline:** The verifier pins both exact order-two parents by
+  commit, blob, payload, and terminal; exhausts all finite graph/sign
+  quotients; checks every polynomial identity symbolically; seals the
+  certificate; and rejects 25 hostile mutations.
+- **Scope guard:** No saturated lane is proved empty.  A bare edge resultant
+  is only necessary, and no source-facet completion, outer-factor identity,
+  orientation/type deletion, owner, payment, K3 value, or row bound is
+  claimed.
+- **What to do next:** Saturate the eight exact lane systems by all quotient
+  label-separation and target-collision factors.  Reconstruct any survivor
+  through the common kernel and impose the remaining source-facet and outer
+  producer identities.
