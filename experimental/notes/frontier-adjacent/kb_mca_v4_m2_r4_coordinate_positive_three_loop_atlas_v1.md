@@ -444,3 +444,22 @@ The next positive-coordinate task is to compile the complete Vieta/product
 system only for (8.4), starting with the unique saturated-defect route
 `433-1a -> O0b`. The diagonal and trivial-stabilizer orientations remain
 separate.
+
+---
+
+## Status addendum 2026-08-02 (coordinator export): `433-1a` CLOSED
+
+The complete positive residual route `433-1a -> O0b` is EMPTY: all ten
+algebraic representatives of the two signed lanes PROVED excluded, raw-row
+coverage exactly 60/60. Census, per-cell mechanism ledger, provenance pins,
+and a self-contained verifier:
+`kb_mca_v4_m2_r4_coordinate_positive_433_1a_complete_route_exclusion_v1.md`
+(same directory). Route count across the campaign: 13 (wave 38) -> 6 reps
+(wave 39) -> 1 rep (wave 40) -> 0 (wave 41, audited into the canonical DAG
+at commit `2f7604fc`).
+
+`433-1b` at the same audit pin: majority-closed (Vieta minor compiler,
+O0a signed-edge atlas, product-rankdrop branch closed end-to-end, cells 0
+and 1/2 closed, cell 14's quadratic curve structure decomposed; open
+exception: the cell-14 unit chart). The remaining `433-1b` cells are the
+lane frontier; work past the pin is not claimed here.

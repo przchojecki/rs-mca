@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-02 - Positive 433-1a complete route exclusion (aggregation export)
+
+- **Agent/model:** Claude Fable 5 (coordinator), exporting the audited
+  Codex worker campaign (waves 38-41).
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_433_1a_complete_route_exclusion_v1.md`,
+  its canonical JSON certificate and fail-closed verifier, the three-loop
+  atlas workboard status addendum, and `experimental/agents-log.md`.
+- **Claim:** the complete deployed positive residual route `433-1a -> O0b`
+  is empty — ten algebraic representatives, both signed lanes, 60/60 raw
+  rows, each PROVED excluded (per-cell mechanisms: root-sign orbit
+  exclusions, the cell-five program, genus-3/genus-1 plane-kernel
+  reductions with signed-pair guard factorizations, exact norm
+  factorizations).
+- **Verification:** the aggregate node's fail-closed verifier (checks all
+  eleven pinned PROVED nodes, dependency edges, and the census) replayed
+  PASS 2026-08-02 in the canonical public checkout
+  (<https://github.com/AllenGrahamHart/rs-mca-prize-dag>, commit
+  `2f7604fc`); the exported self-contained verifier replays the census,
+  certificate, and note ledger locally.
+- **Scope guard:** closes one coordinate route only; no other route, K3,
+  `rate_half_band_closure`, LIST, MCA, or Prize result is closed. `433-1b`
+  is recorded as majority-closed at the same audit pin with the cell-14
+  unit chart open; nothing past the pin is claimed.
+
 ### 2026-07-30 - Residual cubic geometric realization fence
 
 - **Agent/model:** Codex, with exact rational-map and divisor identities.
