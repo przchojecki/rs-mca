@@ -1,0 +1,12 @@
+{
+  "claim_id": "P06B3W_DECORATED_PRODUCT_LINE_REDUCTION",
+  "clearing_denominator": "a*t*(a-1)*(r-1)",
+  "constant_factor": "a*t*(-a + t)*(a - 1)*(r - 1)*(r - t)",
+  "degeneracy_resultant_in_a": "(r - 1)**2*(r - t)**2",
+  "left_factor": "-a*r + a*t + a + r*t + r - t**2 - t - 1",
+  "record_currency": "decorated_records=9*sum_r(C_r)=288*T_sm",
+  "right_factor": "a**2 + a*r - a*t - a + r**2 - r*t - r + t",
+  "schema": "p06b3w-decorated-product-line-symbolic-verification/v1",
+  "scope_guard": "This theorem reduces valid records to nonzero product lines. It does not bound their aggregate over subgroup parameters.",
+  "status": "PASS_EXACT_SYMBOLIC_IDENTITIES"
+}
