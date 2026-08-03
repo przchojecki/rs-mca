@@ -1,0 +1,21 @@
+{
+  "schema": "sp01zxaa-support-eight-partition-sieve/v1",
+  "claim_id": "SP01ZXAA_EXACT_SUPPORT_EIGHT_PARTITION_SIEVE",
+  "status": "PASS_EXACT_SUPPORT_EIGHT_EXCLUSION",
+  "field": 2147483647,
+  "support_count": 12870,
+  "partition_capacities": [16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,13],
+  "residual_degree_histogram": {"220":8,"221":168,"222":840,"223":1401,"224":888,"225":588,"226":1128,"227":1050,"228":336,"229":28,"231":3003,"233":3432},
+  "outside_overlap_upper_histogram": {"2":6435,"8":28,"9":344,"10":1218,"11":1960,"12":1820,"13":888,"14":169,"15":8},
+  "required_core_root_histogram": {"205":8,"207":168,"209":841,"211":1448,"213":1260,"215":1288,"217":1058,"219":336,"221":28,"229":3003,"231":3432},
+  "dependent_within_group_seven_row_histogram": {"0":12870},
+  "forced_bucket_lower_histogram": {"13":8,"15":168,"17":841,"19":1448,"21":1260,"23":1288,"25":1058,"27":336,"29":28,"67":3003,"81":3432},
+  "observed_bucket_histogram": {"1":12869,"8":1},
+  "certified_core_root_cap_histogram": {"193":12869,"200":1},
+  "maximum_certified_core_root_cap": 200,
+  "minimum_rowwise_bucket_margin": 12,
+  "minimum_residual_root_margin": 12,
+  "independent_seven_row_normals_generated": 4586301708,
+  "new_split_locator_with_exact_coefficient_support_eight": false,
+  "scope_guard": "Exact support-eight classification inside the affine hull of the sixteen known syndrome locators. Support nine or more and arbitrary syndrome-section split locators remain open."
+}

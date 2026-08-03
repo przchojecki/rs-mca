@@ -1,0 +1,30 @@
+# Run from the repository root.
+CERT=experimental/data/certificates/atlas-full-affine-hull
+SCRIPTS=experimental/scripts
+FIXTURE=$CERT/SP01zxa_quadratic_cover_pair_input.txt
+PENCIL=$CERT/SP01zxa2_fourteen_plus_two_pencil.json
+
+# Short exact synthesis of all support certificates.
+python $SCRIPTS/C_verify_SP01zxab_full_affine_hull_synthesis.py $CERT /tmp/SP01zxab_full_affine_hull_synthesis.replay.json
+
+# Independent structural route cuts.
+python $SCRIPTS/A_verify_SP01zxaa_rational_bidegree_barrier.py $FIXTURE $PENCIL /tmp/SP01zxaa_rational_bidegree_barrier.replay.json
+python $SCRIPTS/B_audit_SP01zxaa_rational_bidegree_barrier.py $FIXTURE $PENCIL /tmp/SP01zxaa_rational_bidegree_barrier_independent_audit.replay.json
+python $SCRIPTS/A_verify_SP01zxaa_Schur_power_profile.py $FIXTURE /tmp/SP01zxaa_Schur_power_profile.replay.json
+python $SCRIPTS/B_audit_SP01zxaa_Schur_power_profile.py $FIXTURE /tmp/SP01zxaa_Schur_power_profile_independent_audit.replay.json
+
+# Example support-eight regeneration.
+g++ -std=c++20 -O3 -DNDEBUG -fopenmp $SCRIPTS/A_verify_SP01zxaa_support_eight_partition_sieve.cpp -o sp01zxaa_primary
+g++ -std=c++20 -O3 -DNDEBUG -fopenmp $SCRIPTS/B_audit_SP01zxaa_support_eight_partition_sieve.cpp -o sp01zxaa_audit
+OMP_NUM_THREADS=16 ./sp01zxaa_primary $FIXTURE /tmp/SP01zxaa_support_eight_partition_sieve.replay.json
+OMP_NUM_THREADS=16 ./sp01zxaa_audit $FIXTURE /tmp/SP01zxaa_support_eight_partition_sieve_independent_audit.replay.json
+
+# Dense regeneration: compile once per support s=9,...,16. These are HPC jobs.
+g++ -std=c++20 -O3 -DNDEBUG -fopenmp -DSUPPORT_VALUE=9 $SCRIPTS/A_verify_SP01zxab_dense_support_partition_sieve.cpp -o sp01zxab_primary_s09
+g++ -std=c++20 -O3 -DNDEBUG -fopenmp -DSUPPORT_VALUE=9 $SCRIPTS/B_audit_SP01zxab_dense_support_partition_sieve.cpp -o sp01zxab_audit_s09
+OMP_NUM_THREADS=16 ./sp01zxab_primary_s09 $FIXTURE /tmp/SP01zxab_support_09_partition_sieve.replay.json
+OMP_NUM_THREADS=16 ./sp01zxab_audit_s09 $FIXTURE /tmp/SP01zxab_support_09_partition_sieve_independent_audit.replay.json
+
+# Replace 9 by each support through 16 and use the corresponding output name.
+# The support-specific source files for supports 2 through 7 have the same
+# FIXTURE OUTPUT command-line interface as the support-eight example.

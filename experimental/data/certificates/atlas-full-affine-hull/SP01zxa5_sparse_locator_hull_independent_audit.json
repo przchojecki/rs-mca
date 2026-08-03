@@ -1,0 +1,17 @@
+{
+  "schema": "sp01zxa5-sparse-locator-hull-independent-audit/v1",
+  "status": "PASS_INDEPENDENT_SUPPORT_AT_MOST_THREE_EXCLUSION",
+  "pair_count": 120,
+  "pair_interior_root_histogram": {"1":120},
+  "pair_global_interior_root_maximum": 1,
+  "pair_degree_drop_root_histogram": {"0":120},
+  "pair_global_degree_drop_root_maximum": 0,
+  "triple_count": 560,
+  "triple_global_valid_row_class_weight": 1,
+  "triple_global_projective_pair_bucket": 3,
+  "triple_global_concurrent_class_count_bound": 3,
+  "triple_global_root_upper_bound": 3,
+  "triple_minimum_required_split_roots": 64,
+  "new_split_locator_with_coefficient_support_at_most_three": false,
+  "scope_guard": "Independent product-evaluation and unweighted projective upper-bound audit; coefficient support four or more is not classified."
+}

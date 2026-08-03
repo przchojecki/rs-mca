@@ -1,0 +1,20 @@
+{
+  "schema": "sp01zxa5-sparse-syndrome-locator-hull/v1",
+  "claim_id": "SP01ZXA5_SPARSE_SYNDROME_LOCATOR_HULL_RIGIDITY",
+  "status": "PASS_EXACT_SUPPORT_TWO_AND_THREE_CLASSIFICATION",
+  "field": 2147483647,
+  "pair_count": 120,
+  "pair_residual_degree_histogram": {"33":97,"34":8,"35":15},
+  "pair_interior_root_histogram": {"1":120},
+  "pair_global_interior_root_maximum": 1,
+  "pair_degree_drop_root_histogram": {"0":120},
+  "pair_global_degree_drop_root_maximum": 0,
+  "triple_count": 560,
+  "triple_residual_degree_histogram": {"64":15,"65":48,"66":392,"68":97,"69":8},
+  "triple_interior_root_histogram": {"2":558,"3":2},
+  "triple_global_interior_root_maximum": 3,
+  "triple_global_split_gap": 62,
+  "triple_maximum_three_cases": [{"indices":[0,6,9],"residual_degree":66},{"indices":[6,7,10],"residual_degree":66}],
+  "new_split_locator_with_coefficient_support_at_most_three": false,
+  "scope_guard": "Classification inside the affine hull of the sixteen known syndrome locators for coefficient support at most three; denser combinations and arbitrary outsiders remain open."
+}

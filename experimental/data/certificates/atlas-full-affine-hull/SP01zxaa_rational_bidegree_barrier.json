@@ -1,0 +1,217 @@
+{
+  "boundary_pairs_per_mode": 13,
+  "boundary_total_degree": 12,
+  "core_rows": 509,
+  "determinants_checked": 13234,
+  "field": 2147483647,
+  "fixture_sha256": "24ebbd8a1b893153e495d1b5c9de14369237c613c1ff6502f4e6d215a28d71a1",
+  "modes": {
+    "evaluation": [
+      {
+        "denominator_degree": 12,
+        "determinant_product": 968778955,
+        "determinant_sequence_sha256": "cef812158d4ade295412098edabba390968cd8a6036462f3155a5ea8be15b56c",
+        "nonzero_determinants": 509,
+        "numerator_degree": 0
+      },
+      {
+        "denominator_degree": 11,
+        "determinant_product": 366258203,
+        "determinant_sequence_sha256": "7e37d1a905840c68ed4920958aaf6786ee04b137a7f747ce75e7e640d08b82f1",
+        "nonzero_determinants": 509,
+        "numerator_degree": 1
+      },
+      {
+        "denominator_degree": 10,
+        "determinant_product": 1020556824,
+        "determinant_sequence_sha256": "a83b3d6ccf4a5ac1be19c33b8514e18d7f87b11ad30a5f7b75ef3fde4c9e45ab",
+        "nonzero_determinants": 509,
+        "numerator_degree": 2
+      },
+      {
+        "denominator_degree": 9,
+        "determinant_product": 1159038473,
+        "determinant_sequence_sha256": "22a64925cd6b95fed536893fef2dab18f1b4505e4d5b82330addddc6201f20cb",
+        "nonzero_determinants": 509,
+        "numerator_degree": 3
+      },
+      {
+        "denominator_degree": 8,
+        "determinant_product": 439523370,
+        "determinant_sequence_sha256": "3c8d50682491261e84e7568e0388bc275eb4138932951fedb3ef35dc046553e7",
+        "nonzero_determinants": 509,
+        "numerator_degree": 4
+      },
+      {
+        "denominator_degree": 7,
+        "determinant_product": 834054836,
+        "determinant_sequence_sha256": "e2a0ba10e25c59a21971b149dc492d732ef7270089900ae8f06d367428c23646",
+        "nonzero_determinants": 509,
+        "numerator_degree": 5
+      },
+      {
+        "denominator_degree": 6,
+        "determinant_product": 1783288898,
+        "determinant_sequence_sha256": "4d76f0416270bae61f79c776b9f169682fa48235e80980f8b0e2120dc0bded9a",
+        "nonzero_determinants": 509,
+        "numerator_degree": 6
+      },
+      {
+        "denominator_degree": 5,
+        "determinant_product": 1405554699,
+        "determinant_sequence_sha256": "8a82b59a547a6aa7136aa827de326676bd204d5092ecc1e825b0cdba335e843b",
+        "nonzero_determinants": 509,
+        "numerator_degree": 7
+      },
+      {
+        "denominator_degree": 4,
+        "determinant_product": 963901606,
+        "determinant_sequence_sha256": "16fb014f230b4f71734b53ec15e61dcd5783bdf442feada6161cd48aa33852d9",
+        "nonzero_determinants": 509,
+        "numerator_degree": 8
+      },
+      {
+        "denominator_degree": 3,
+        "determinant_product": 949610695,
+        "determinant_sequence_sha256": "7afb1be7ffae22f4e3f281d2e3c25f607dcb2baf88d9e36148dbf45ce10cb1e8",
+        "nonzero_determinants": 509,
+        "numerator_degree": 9
+      },
+      {
+        "denominator_degree": 2,
+        "determinant_product": 1781447049,
+        "determinant_sequence_sha256": "8d914761484e1c3a50ba833868c36449ff5f2d566c20d8b1fa7dbec13180fca6",
+        "nonzero_determinants": 509,
+        "numerator_degree": 10
+      },
+      {
+        "denominator_degree": 1,
+        "determinant_product": 1959629580,
+        "determinant_sequence_sha256": "a853e5ee08e4c1991db8b305014d11db97491cab04638a634b197c58c4addc40",
+        "nonzero_determinants": 509,
+        "numerator_degree": 11
+      },
+      {
+        "denominator_degree": 0,
+        "determinant_product": 1299258800,
+        "determinant_sequence_sha256": "0aceb236777c95b07e03cdf571d971388a27b7faffa7cf9c36180a56446330b1",
+        "nonzero_determinants": 509,
+        "numerator_degree": 12
+      }
+    ],
+    "reciprocal": [
+      {
+        "denominator_degree": 12,
+        "determinant_product": 1539504202,
+        "determinant_sequence_sha256": "53193aa343e90067c5f635bc45830f355e4e92a2318a842ab77ab62821c1d1e3",
+        "nonzero_determinants": 509,
+        "numerator_degree": 0
+      },
+      {
+        "denominator_degree": 11,
+        "determinant_product": 171591768,
+        "determinant_sequence_sha256": "2b51a3fa613fd1b8495f73d6211405f18c147700821a3bc04b567929844fb27e",
+        "nonzero_determinants": 509,
+        "numerator_degree": 1
+      },
+      {
+        "denominator_degree": 10,
+        "determinant_product": 799153380,
+        "determinant_sequence_sha256": "abfcbcd68718ae8ee270e195f23e97afec137a36240aabe2c29d45740abfeb4b",
+        "nonzero_determinants": 509,
+        "numerator_degree": 2
+      },
+      {
+        "denominator_degree": 9,
+        "determinant_product": 1332066075,
+        "determinant_sequence_sha256": "7c7e44e77aa1098d1e180374e0ae4d084b7585a37caf930c97f7d9f49b6fa383",
+        "nonzero_determinants": 509,
+        "numerator_degree": 3
+      },
+      {
+        "denominator_degree": 8,
+        "determinant_product": 739162460,
+        "determinant_sequence_sha256": "d123519b8a371fc4b92266996cf73d7eccfa5cbf0defc5a03dc624e78defddc9",
+        "nonzero_determinants": 509,
+        "numerator_degree": 4
+      },
+      {
+        "denominator_degree": 7,
+        "determinant_product": 1911823565,
+        "determinant_sequence_sha256": "094fb204dee5228159c2a944d310a998a244d39a5c8d70a34a52ebf594acc931",
+        "nonzero_determinants": 509,
+        "numerator_degree": 5
+      },
+      {
+        "denominator_degree": 6,
+        "determinant_product": 291598400,
+        "determinant_sequence_sha256": "aea29ad78dee6ce8a3997eb8ecdd6da6536a28cbd15ccaf4c1c9cfd4c76b5628",
+        "nonzero_determinants": 509,
+        "numerator_degree": 6
+      },
+      {
+        "denominator_degree": 5,
+        "determinant_product": 223516092,
+        "determinant_sequence_sha256": "95006a34e420faff9be29cfeefb31cad1c4b97f38a182a30933549524fc01c05",
+        "nonzero_determinants": 509,
+        "numerator_degree": 7
+      },
+      {
+        "denominator_degree": 4,
+        "determinant_product": 834050378,
+        "determinant_sequence_sha256": "f443887e8c7a9aa8f3a9ed029eb8d8a50853bc4b4bd2831ac8e8b624e936c77a",
+        "nonzero_determinants": 509,
+        "numerator_degree": 8
+      },
+      {
+        "denominator_degree": 3,
+        "determinant_product": 83431905,
+        "determinant_sequence_sha256": "77e2991fe75450c6b60dd85568727cdf4065ed2bd0d1a28e85466fc6bcde9ba2",
+        "nonzero_determinants": 509,
+        "numerator_degree": 9
+      },
+      {
+        "denominator_degree": 2,
+        "determinant_product": 2003845534,
+        "determinant_sequence_sha256": "2dbb62730722015160a5b6fd9aa0c4988818f93759de020c7e428ce10af95406",
+        "nonzero_determinants": 509,
+        "numerator_degree": 10
+      },
+      {
+        "denominator_degree": 1,
+        "determinant_product": 709246719,
+        "determinant_sequence_sha256": "b7a88b7489372577b6d32d782dd1730a6b03d1f7b27c14f3a5ec2ef304104d3d",
+        "nonzero_determinants": 509,
+        "numerator_degree": 11
+      },
+      {
+        "denominator_degree": 0,
+        "determinant_product": 346725893,
+        "determinant_sequence_sha256": "ac6e92f870f69c177c09d7820ad1b08fd11814eed7f13cfbb508fe9ecfea6a01",
+        "nonzero_determinants": 509,
+        "numerator_degree": 12
+      }
+    ]
+  },
+  "pencil_sha256": "aca8baa481470c8eaa86a7835e83e5e3a34b5d9dc1659fcef8cb89781bf5113f",
+  "principal_columns": 14,
+  "principal_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15
+  ],
+  "schema": "sp01zxaa-rational-bidegree-barrier/v1",
+  "scope_guard": "Rules out row-wise rational representations P_a(t)/Q_b(t) for a+b<=12 in evaluation and reciprocal modes. It does not rule out the dimension-forced a+b>=13 range or row-coupled laws.",
+  "status": "PASS_NO_ROW_HAS_RATIONAL_TYPE_A_PLUS_B_AT_MOST_12"
+}

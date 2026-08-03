@@ -1,0 +1,20 @@
+{
+  "schema": "sp01zxa7-independent-support-five-audit/v1",
+  "status": "PASS_INDEPENDENT_EXACT_SUPPORT_FIVE_EXCLUSION",
+  "representation": "direct residual products and exterior-cofactor normals",
+  "support_count": 4368,
+  "partition_capacities": [16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,13],
+  "residual_degree_histogram": {"126":15,"127":160,"128":420,"129":336,"130":90,"131":120,"132":2170,"133":56,"134":1001},
+  "outside_overlap_upper_histogram": {"2":3003,"5":56,"6":238,"7":456,"8":440,"9":160,"10":15},
+  "required_core_root_histogram": {"116":15,"118":160,"120":420,"122":356,"124":190,"126":168,"128":56,"130":2002,"132":1001},
+  "dependent_within_group_quadruple_histogram": {"0":4368},
+  "forced_bucket_lower_histogram": {"20":15,"22":160,"24":420,"26":356,"28":190,"30":168,"32":56,"40":2002,"48":1001},
+  "observed_bucket_histogram": {"1":4367,"5":1},
+  "certified_core_root_cap_histogram": {"97":4367,"101":1},
+  "maximum_certified_core_root_cap": 101,
+  "minimum_rowwise_bucket_margin": 19,
+  "minimum_residual_root_margin": 19,
+  "independent_quadruple_normals_generated": 249565680,
+  "repeated_normal_cases": [{"branches":[2,7,9,11,15],"bucket":5,"exact_core_roots":5,"exact_outside_roots":0,"exact_residual_roots":5,"residual_degree":134,"normal":[1,1473213867,912590158,1429569557,1909598905]}],
+  "verdict": "No exact-support-five split locator occurs in the affine hull."
+}
