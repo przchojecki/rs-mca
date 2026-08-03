@@ -1,0 +1,56 @@
+{
+  "claim_id": "P06B3V_EXACT_CROSS_PAIR_CUBIC_DIVISOR_REDUCTION",
+  "rows": [
+    {
+      "cubic_records": 0,
+      "decorated_product_line_records": 0,
+      "expected_cubic_records": 0,
+      "expected_decorated_product_line_records": 0,
+      "expected_normalized_product_cell_records": 0,
+      "maximum_cross_ratio_multiplicity": 0,
+      "maximum_product_cell_multiplicity": 0,
+      "n": 16,
+      "normalized_product_cell_records": 0,
+      "occupied_product_cells": 0,
+      "p": 17,
+      "product_line_left_degenerate": 0,
+      "product_line_right_degenerate": 0,
+      "smooth_trade_orbits": 0
+    },
+    {
+      "cubic_records": 288,
+      "decorated_product_line_records": 2592,
+      "expected_cubic_records": 288,
+      "expected_decorated_product_line_records": 2592,
+      "expected_normalized_product_cell_records": 72,
+      "maximum_cross_ratio_multiplicity": 16,
+      "maximum_product_cell_multiplicity": 2,
+      "n": 32,
+      "normalized_product_cell_records": 72,
+      "occupied_product_cells": 64,
+      "p": 97,
+      "product_line_left_degenerate": 112,
+      "product_line_right_degenerate": 112,
+      "smooth_trade_orbits": 9
+    },
+    {
+      "cubic_records": 32,
+      "decorated_product_line_records": 288,
+      "expected_cubic_records": 32,
+      "expected_decorated_product_line_records": 288,
+      "expected_normalized_product_cell_records": 8,
+      "maximum_cross_ratio_multiplicity": 3,
+      "maximum_product_cell_multiplicity": 2,
+      "n": 32,
+      "normalized_product_cell_records": 8,
+      "occupied_product_cells": 5,
+      "p": 193,
+      "product_line_left_degenerate": 8,
+      "product_line_right_degenerate": 8,
+      "smooth_trade_orbits": 1
+    }
+  ],
+  "schema": "p06b3v-cubic-divisor-and-product-cell-audit/v1",
+  "scope_guard": "The 32T and 8T identities are exact. The finite rows do not prove the global T_sm<=n^2/2 inequality.",
+  "status": "PASS_INDEPENDENT_EXHAUSTIVE_SMALL_ROW_AUDIT"
+}
