@@ -463,3 +463,13 @@ O0a signed-edge atlas, product-rankdrop branch closed end-to-end, cells 0
 and 1/2 closed, cell 14's quadratic curve structure decomposed; open
 exception: the cell-14 unit chart). The remaining `433-1b` cells are the
 lane frontier; work past the pin is not claimed here.
+
+**Status addendum (2026-08-03, waves 42-43 audited):** role cell `14` is
+now **completely closed** — all 1,680 raw outside cases excluded by four
+disjoint proved families, and the `(-1,1)` kernel normalization is global
+on the guarded curve; see
+`kb_mca_v4_m2_r4_coordinate_positive_433_1b_cell14_complete_closure_v1.md`
+(same directory) for the census, ledger, certificate, and verifier.
+Cell 3 at the new pin: compact curve kernel + global quadratic quotient
+banked, `DE` block `xi{0,1,2} x pairing{0..3}` (192 cases) proved empty;
+cell 3 and the remaining cells stay open.

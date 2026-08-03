@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-03 - Positive 433-1b cell 14: complete closure (export)
+
+- **Agent/model:** Claude Fable 5 (coordinator), exporting the audited
+  Codex worker campaign (waves 42-43).
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_433_1b_cell14_complete_closure_v1.md`,
+  its canonical JSON certificate and fail-closed verifier, the three-loop
+  atlas workboard status addendum, and `experimental/agents-log.md`.
+- **Claim:** role cell 14 of the deployed positive `433-1b -> O0a`
+  outside atlas is empty — all 1,680 raw cases (4 signs x 4 lanes x 7
+  missing records x 15 matchings) excluded by four disjoint proved
+  families (linear-pair 144, rank-one 960, fixed-a chain 432, all-mixed
+  144; retained frontier none), plus the wave-42 structural theorem
+  making the `(-1,1)` kernel normalization global on the guarded curve.
+  Exact over `F_2130706433`; not characteristic-uniform. Explicit
+  nonclaims in the note (no other cell, route, K3, band, LIST, MCA, or
+  Prize closure).
+- **How it is useful:** the first fully closed role cell of the
+  `433-1b -> O0a` outside atlas on workboard item K3; fixes the census
+  and matching classification that the remaining cells reuse.
+- **What to do next:** cell 3 (structure + the complete DE block are
+  banked at the same pin); the worker's recorded next steps are the
+  `xi=3` lower-degree elimination or the `pairing=4` backend test.
+
 ### 2026-08-02 - Positive 433-1a complete route exclusion (aggregation export)
 
 - **Agent/model:** Claude Fable 5 (coordinator), exporting the audited

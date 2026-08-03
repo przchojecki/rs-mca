@@ -1,0 +1,81 @@
+{
+  "claim": "Role cell 14 of the deployed positive 433-1b -> O0a outside atlas over F_2130706433 is empty: all 1,680 raw cases (4 source signs x 4 target lanes x 7 missing records x 15 matchings) excluded by four disjoint proved families; retained frontier none. Companion structural theorem: the (-1,1) kernel normalization is global on the guarded principal curve (unit kernel-denominator boundary ideals in all four source signs).",
+  "deployed_prime": 2130706433,
+  "source_signs": 4,
+  "target_lanes": 4,
+  "missing_records": 7,
+  "matchings": 15,
+  "total_raw_cases": 1680,
+  "outside_records": ["de", "de", "-de", "df", "sigma_o ef", "bf", "sigma_c cf"],
+  "families": [
+    {
+      "family": "linear_pair",
+      "cases": 144,
+      "missing_roles": [0, 1, 2],
+      "matching_indices": [0, 1, 2],
+      "matching_class": "residual de records paired",
+      "node": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_linear_pair_outside_exclusion",
+      "wave": 43,
+      "open_unit_ideals": 144,
+      "boundary_unit_ideals": 1632
+    },
+    {
+      "family": "rankone_target_projection",
+      "cases": 960,
+      "missing_roles": [3, 4, 5, 6],
+      "matching_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+      "matching_class": "all fifteen",
+      "node": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_rankone_target_projection_exclusion",
+      "wave": 43,
+      "field_root_incidences": 12880,
+      "direct_finite_replays": 2848
+    },
+    {
+      "family": "fixed_a_rankone_chain",
+      "cases": 432,
+      "missing_roles": [0, 1, 2],
+      "matching_indices": [3, 4, 5, 9, 10, 11, 12, 13, 14],
+      "matching_class": "residual de records unpaired, chain-eliminable",
+      "node": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_fixed_a_rankone_chain_exclusion",
+      "wave": 43,
+      "field_root_incidences": 9456,
+      "direct_finite_replays": 8736
+    },
+    {
+      "family": "fixed_a_rankone_allmixed",
+      "cases": 144,
+      "missing_roles": [0, 1, 2],
+      "matching_indices": [6, 7, 8],
+      "matching_class": "residual de records unpaired, all-mixed",
+      "node": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_fixed_a_rankone_allmixed_exclusion",
+      "wave": 43,
+      "field_root_incidences": 2992,
+      "weighted_branches": 960
+    }
+  ],
+  "structural_theorem": {
+    "name": "kernel normalization global on the guarded curve",
+    "node": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_quadratic_curve_structure",
+    "statement_item": 6,
+    "wave": 42,
+    "kernel_denominator_boundary": "unit in all four source signs",
+    "modal_app": "ap-Lq3SBj46m5prGz0ixF9MRN"
+  },
+  "pinned_nodes": [
+    "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_quadratic_curve_structure",
+    "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_linear_pair_outside_exclusion",
+    "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_rankone_target_projection_exclusion",
+    "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_fixed_a_rankone_chain_exclusion",
+    "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_fixed_a_rankone_allmixed_exclusion"
+  ],
+  "provenance": {
+    "canonical_repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag",
+    "audit_notes": "notes/wave24_integration_20260727/WAVE42_AUDIT.md and WAVE43_AUDIT.md",
+    "wave42_integration_commit": "7cbedd5d",
+    "wave43_integration_commit": "db970533",
+    "worker_pin": "6bc692e8",
+    "verifiers_replayed": "2026-08-03, PASS, in the canonical checkout: every pinned node's verify.py + verify_audit.py, the manifest harness replay for both cell lanes, and the global dag structural verifier"
+  },
+  "adjacent_status_at_pin": "cell 3 open: compact curve kernel + global quadratic quotient structural theorems banked; DE block xi{0,1,2} x pairing{0..3} = 192 cases proved empty; nothing past pin 6bc692e8 claimed",
+  "nonclaim": "Closes one role cell of one coordinate route only, exact over the deployed prime and not characteristic-uniform. No other 433-1b cell, no route closure, K3, rate_half_band_closure, LIST, MCA, or Prize result is closed."
+}
