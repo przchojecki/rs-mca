@@ -1,0 +1,9827 @@
+{
+  "anchor_rows": [
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "five_root_index": 0,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "five_root_index": 1,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        3,
+        6
+      ],
+      "five_root_index": 2,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        3,
+        7
+      ],
+      "five_root_index": 3,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        3,
+        8
+      ],
+      "five_root_index": 4,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "five_root_index": 5,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        4,
+        5
+      ],
+      "five_root_index": 6,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        4,
+        6
+      ],
+      "five_root_index": 7,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        4,
+        7
+      ],
+      "five_root_index": 8,
+      "pivot_norm": "6302794178043",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        4,
+        8
+      ],
+      "five_root_index": 9,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        4,
+        9
+      ],
+      "five_root_index": 10,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        5,
+        6
+      ],
+      "five_root_index": 11,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        5,
+        7
+      ],
+      "five_root_index": 12,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        5,
+        8
+      ],
+      "five_root_index": 13,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        5,
+        9
+      ],
+      "five_root_index": 14,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        6,
+        7
+      ],
+      "five_root_index": 15,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        6,
+        8
+      ],
+      "five_root_index": 16,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        6,
+        9
+      ],
+      "five_root_index": 17,
+      "pivot_norm": "6302794178043",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        7,
+        8
+      ],
+      "five_root_index": 18,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        7,
+        9
+      ],
+      "five_root_index": 19,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        2,
+        8,
+        9
+      ],
+      "five_root_index": 20,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        4,
+        6
+      ],
+      "five_root_index": 21,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        4,
+        7
+      ],
+      "five_root_index": 22,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        4,
+        8
+      ],
+      "five_root_index": 23,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        4,
+        9
+      ],
+      "five_root_index": 24,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        5,
+        6
+      ],
+      "five_root_index": 25,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        5,
+        7
+      ],
+      "five_root_index": 26,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        5,
+        8
+      ],
+      "five_root_index": 27,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        5,
+        9
+      ],
+      "five_root_index": 28,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        6,
+        7
+      ],
+      "five_root_index": 29,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        6,
+        8
+      ],
+      "five_root_index": 30,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        6,
+        9
+      ],
+      "five_root_index": 31,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        7,
+        8
+      ],
+      "five_root_index": 32,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        3,
+        7,
+        9
+      ],
+      "five_root_index": 33,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        4,
+        5,
+        8
+      ],
+      "five_root_index": 34,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        4,
+        5,
+        9
+      ],
+      "five_root_index": 35,
+      "pivot_norm": "1737807448267",
+      "rank_drop_candidate_primes": [
+        67
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        4,
+        6,
+        7
+      ],
+      "five_root_index": 36,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        4,
+        6,
+        8
+      ],
+      "five_root_index": 37,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        4,
+        6,
+        9
+      ],
+      "five_root_index": 38,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        4,
+        7,
+        9
+      ],
+      "five_root_index": 39,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        1,
+        5,
+        7,
+        9
+      ],
+      "five_root_index": 40,
+      "pivot_norm": "596560765823",
+      "rank_drop_candidate_primes": [
+        23
+      ]
+    },
+    {
+      "five_root_class": [
+        0,
+        2,
+        4,
+        6,
+        8
+      ],
+      "five_root_index": 41,
+      "pivot_norm": "25937424601",
+      "rank_drop_candidate_primes": []
+    }
+  ],
+  "candidate_prime_cell_rows": [
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 0,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 1,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 2,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 3,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 4,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 5,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 6,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 7,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 8,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 9,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 10,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 11,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 12,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 13,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 14,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 15,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 16,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1409,
+        5039,
+        6491
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        1871,
+        25741
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 17,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 18,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 19,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 20,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 21,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 22,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 23,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 24,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 25,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 26,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 27,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 28,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 29,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 30,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 31,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 32,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 33,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 34,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        2267,
+        7393,
+        104831,
+        217559
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        617,
+        83579,
+        2958253
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        8713
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        463
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        397,
+        419,
+        3631
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        419,
+        70753
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        61403
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        937003,
+        1702339
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        199,
+        397,
+        991
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        397,
+        1061897,
+        4760779
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        55243
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        947,
+        2399
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        1783,
+        9409489,
+        18706777
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        67,
+        25301
+      ],
+      "five_root_index": 35,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 36,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        7393
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        331,
+        13487
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        463,
+        6337
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        2729
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 37,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 38,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        9439,
+        68311,
+        135431473
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        7129,
+        1720379
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        80279
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        5479,
+        553279,
+        2521817
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        4159,
+        13553,
+        895291
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331,
+        23497
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        199,
+        3037,
+        96779
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        1607,
+        7019
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        331
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        353,
+        524261
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        1277,
+        604759,
+        1358831
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        3433
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        991
+      ],
+      "five_root_index": 39,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        27061
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 0
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        9923,
+        121067
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        353,
+        1871,
+        56453
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89,
+        617
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        397,
+        617,
+        6997
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        69257
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        331,
+        419,
+        14543,
+        35729
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        13619
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 8
+    },
+    {
+      "candidate_primes": [
+        23,
+        1373153
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23,
+        67,
+        89
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23,
+        89
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23,
+        199,
+        353,
+        325513
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23,
+        89,
+        463,
+        5479,
+        25741,
+        1466389
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23,
+        8053
+      ],
+      "five_root_index": 40,
+      "triple_root_index": 14
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 1
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 2
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 3
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 4
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        7591,
+        18899
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 5
+    },
+    {
+      "candidate_primes": [
+        23,
+        397,
+        2707,
+        35267,
+        50909
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 6
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 7
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 9
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 10
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 11
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 12
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 13
+    },
+    {
+      "candidate_primes": [
+        23
+      ],
+      "five_root_index": 41,
+      "triple_root_index": 14
+    }
+  ],
+  "candidate_primes_congruent_to_one_mod_11": [
+    23,
+    67,
+    89,
+    199,
+    331,
+    353,
+    397,
+    419,
+    463,
+    617,
+    947,
+    991,
+    1277,
+    1409,
+    1607,
+    1783,
+    1871,
+    2267,
+    2399,
+    2707,
+    2729,
+    3037,
+    3433,
+    3631,
+    4159,
+    5039,
+    5479,
+    6337,
+    6491,
+    6997,
+    7019,
+    7129,
+    7393,
+    7591,
+    8053,
+    8713,
+    9439,
+    9923,
+    13487,
+    13553,
+    13619,
+    14543,
+    18899,
+    23497,
+    25301,
+    25741,
+    27061,
+    35267,
+    35729,
+    50909,
+    55243,
+    56453,
+    61403,
+    68311,
+    69257,
+    70753,
+    80279,
+    83579,
+    96779,
+    104831,
+    121067,
+    217559,
+    325513,
+    524261,
+    553279,
+    604759,
+    895291,
+    937003,
+    1061897,
+    1358831,
+    1373153,
+    1466389,
+    1702339,
+    1720379,
+    2521817,
+    2958253,
+    4760779,
+    9409489,
+    18706777,
+    135431473
+  ],
+  "characteristic_zero_nontrivial_rows": [],
+  "deduction": "Outside the candidate primes, every normalized five-point fibre has no distinct quotient label carrying a triple fibre if characteristic_zero_nontrivial_rows is empty.",
+  "five_root_translation_classes": 42,
+  "five_triple_cells": 630,
+  "norm_factorization_sha256": "bdad60ea40e7a6b8d10c275bc0feaeb27417d606fc4ac80e5a35598452b2c882",
+  "norm_factorizations": [
+    {
+      "factors": [
+        [
+          23,
+          1
+        ]
+      ],
+      "integer": "23"
+    },
+    {
+      "factors": [
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "67"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ]
+      ],
+      "integer": "529"
+    },
+    {
+      "factors": [
+        [
+          67,
+          2
+        ]
+      ],
+      "integer": "4489"
+    },
+    {
+      "factors": [
+        [
+          89,
+          2
+        ]
+      ],
+      "integer": "7921"
+    },
+    {
+      "factors": [
+        [
+          23,
+          3
+        ]
+      ],
+      "integer": "12167"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "35443"
+    },
+    {
+      "factors": [
+        [
+          3,
+          10
+        ]
+      ],
+      "integer": "59049"
+    },
+    {
+      "factors": [
+        [
+          23,
+          1
+        ],
+        [
+          67,
+          2
+        ]
+      ],
+      "integer": "103247"
+    },
+    {
+      "factors": [
+        [
+          23,
+          4
+        ]
+      ],
+      "integer": "279841"
+    },
+    {
+      "factors": [
+        [
+          947,
+          2
+        ]
+      ],
+      "integer": "896809"
+    },
+    {
+      "factors": [
+        [
+          991,
+          2
+        ]
+      ],
+      "integer": "982081"
+    },
+    {
+      "factors": [
+        [
+          1409,
+          2
+        ]
+      ],
+      "integer": "1985281"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          2
+        ]
+      ],
+      "integer": "2374681"
+    },
+    {
+      "factors": [
+        [
+          89,
+          2
+        ],
+        [
+          353,
+          1
+        ]
+      ],
+      "integer": "2796113"
+    },
+    {
+      "factors": [
+        [
+          43,
+          4
+        ]
+      ],
+      "integer": "3418801"
+    },
+    {
+      "factors": [
+        [
+          23,
+          1
+        ],
+        [
+          67,
+          3
+        ]
+      ],
+      "integer": "6917549"
+    },
+    {
+      "factors": [
+        [
+          2729,
+          2
+        ]
+      ],
+      "integer": "7447441"
+    },
+    {
+      "factors": [
+        [
+          3433,
+          2
+        ]
+      ],
+      "integer": "11785489"
+    },
+    {
+      "factors": [
+        [
+          67,
+          4
+        ]
+      ],
+      "integer": "20151121"
+    },
+    {
+      "factors": [
+        [
+          3,
+          10
+        ],
+        [
+          23,
+          2
+        ]
+      ],
+      "integer": "31236921"
+    },
+    {
+      "factors": [
+        [
+          89,
+          1
+        ],
+        [
+          617,
+          2
+        ]
+      ],
+      "integer": "33881321"
+    },
+    {
+      "factors": [
+        [
+          6337,
+          2
+        ]
+      ],
+      "integer": "40157569"
+    },
+    {
+      "factors": [
+        [
+          7019,
+          2
+        ]
+      ],
+      "integer": "49266361"
+    },
+    {
+      "factors": [
+        [
+          7591,
+          2
+        ]
+      ],
+      "integer": "57623281"
+    },
+    {
+      "factors": [
+        [
+          8053,
+          2
+        ]
+      ],
+      "integer": "64850809"
+    },
+    {
+      "factors": [
+        [
+          8713,
+          2
+        ]
+      ],
+      "integer": "75916369"
+    },
+    {
+      "factors": [
+        [
+          9923,
+          2
+        ]
+      ],
+      "integer": "98465929"
+    },
+    {
+      "factors": [
+        [
+          67,
+          2
+        ],
+        [
+          199,
+          2
+        ]
+      ],
+      "integer": "177768889"
+    },
+    {
+      "factors": [
+        [
+          13619,
+          2
+        ]
+      ],
+      "integer": "185477161"
+    },
+    {
+      "factors": [
+        [
+          25301,
+          2
+        ]
+      ],
+      "integer": "640140601"
+    },
+    {
+      "factors": [
+        [
+          27061,
+          2
+        ]
+      ],
+      "integer": "732297721"
+    },
+    {
+      "factors": [
+        [
+          89,
+          2
+        ],
+        [
+          331,
+          2
+        ]
+      ],
+      "integer": "867832681"
+    },
+    {
+      "factors": [
+        [
+          67,
+          1
+        ],
+        [
+          3631,
+          2
+        ]
+      ],
+      "integer": "883338787"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          1871,
+          2
+        ]
+      ],
+      "integer": "1851839089"
+    },
+    {
+      "factors": [
+        [
+          23,
+          3
+        ],
+        [
+          397,
+          2
+        ]
+      ],
+      "integer": "1917628703"
+    },
+    {
+      "factors": [
+        [
+          50909,
+          2
+        ]
+      ],
+      "integer": "2591726281"
+    },
+    {
+      "factors": [
+        [
+          55243,
+          2
+        ]
+      ],
+      "integer": "3051789049"
+    },
+    {
+      "factors": [
+        [
+          61403,
+          2
+        ]
+      ],
+      "integer": "3770328409"
+    },
+    {
+      "factors": [
+        [
+          263,
+          4
+        ]
+      ],
+      "integer": "4784350561"
+    },
+    {
+      "factors": [
+        [
+          69257,
+          2
+        ]
+      ],
+      "integer": "4796532049"
+    },
+    {
+      "factors": [
+        [
+          70753,
+          2
+        ]
+      ],
+      "integer": "5005987009"
+    },
+    {
+      "factors": [
+        [
+          80279,
+          2
+        ]
+      ],
+      "integer": "6444717841"
+    },
+    {
+      "factors": [
+        [
+          83579,
+          2
+        ]
+      ],
+      "integer": "6985449241"
+    },
+    {
+      "factors": [
+        [
+          89,
+          2
+        ],
+        [
+          991,
+          2
+        ]
+      ],
+      "integer": "7779063601"
+    },
+    {
+      "factors": [
+        [
+          96779,
+          2
+        ]
+      ],
+      "integer": "9366174841"
+    },
+    {
+      "factors": [
+        [
+          3,
+          10
+        ],
+        [
+          419,
+          2
+        ]
+      ],
+      "integer": "10366701489"
+    },
+    {
+      "factors": [
+        [
+          11,
+          10
+        ]
+      ],
+      "integer": "25937424601"
+    },
+    {
+      "factors": [
+        [
+          397,
+          2
+        ],
+        [
+          617,
+          2
+        ]
+      ],
+      "integer": "60000012601"
+    },
+    {
+      "factors": [
+        [
+          325513,
+          2
+        ]
+      ],
+      "integer": "105958713169"
+    },
+    {
+      "factors": [
+        [
+          89,
+          2
+        ],
+        [
+          5479,
+          2
+        ]
+      ],
+      "integer": "237783992161"
+    },
+    {
+      "factors": [
+        [
+          524261,
+          2
+        ]
+      ],
+      "integer": "274849596121"
+    },
+    {
+      "factors": [
+        [
+          11,
+          11
+        ]
+      ],
+      "integer": "285311670611"
+    },
+    {
+      "factors": [
+        [
+          604759,
+          2
+        ]
+      ],
+      "integer": "365733448081"
+    },
+    {
+      "factors": [
+        [
+          89,
+          2
+        ],
+        [
+          7129,
+          2
+        ]
+      ],
+      "integer": "402566139361"
+    },
+    {
+      "factors": [
+        [
+          11,
+          10
+        ],
+        [
+          23,
+          1
+        ]
+      ],
+      "integer": "596560765823"
+    },
+    {
+      "factors": [
+        [
+          89,
+          2
+        ],
+        [
+          13553,
+          2
+        ]
+      ],
+      "integer": "1454959451089"
+    },
+    {
+      "factors": [
+        [
+          11,
+          10
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "1737807448267"
+    },
+    {
+      "factors": [
+        [
+          1373153,
+          2
+        ]
+      ],
+      "integer": "1885549161409"
+    },
+    {
+      "factors": [
+        [
+          23,
+          4
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          331,
+          2
+        ]
+      ],
+      "integer": "2728709722289"
+    },
+    {
+      "factors": [
+        [
+          1702339,
+          2
+        ]
+      ],
+      "integer": "2897958070921"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ]
+      ],
+      "integer": "3138428376721"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          199,
+          2
+        ],
+        [
+          397,
+          2
+        ]
+      ],
+      "integer": "3301739750761"
+    },
+    {
+      "factors": [
+        [
+          3,
+          5
+        ],
+        [
+          11,
+          10
+        ]
+      ],
+      "integer": "6302794178043"
+    },
+    {
+      "factors": [
+        [
+          2521817,
+          2
+        ]
+      ],
+      "integer": "6359560981489"
+    },
+    {
+      "factors": [
+        [
+          23,
+          1
+        ],
+        [
+          89,
+          2
+        ],
+        [
+          6997,
+          2
+        ]
+      ],
+      "integer": "8919316953647"
+    },
+    {
+      "factors": [
+        [
+          331,
+          2
+        ],
+        [
+          9439,
+          2
+        ]
+      ],
+      "integer": "9761306727481"
+    },
+    {
+      "factors": [
+        [
+          43,
+          8
+        ]
+      ],
+      "integer": "11688200277601"
+    },
+    {
+      "factors": [
+        [
+          4760779,
+          2
+        ]
+      ],
+      "integer": "22665016686841"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          217559,
+          2
+        ]
+      ],
+      "integer": "25038584876449"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ]
+      ],
+      "integer": "34522712143931"
+    },
+    {
+      "factors": [
+        [
+          23,
+          3
+        ],
+        [
+          56453,
+          2
+        ]
+      ],
+      "integer": "38775513689903"
+    },
+    {
+      "factors": [
+        [
+          331,
+          2
+        ],
+        [
+          23497,
+          2
+        ]
+      ],
+      "integer": "60489615135049"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          1
+        ]
+      ],
+      "integer": "72183852664583"
+    },
+    {
+      "factors": [
+        [
+          3,
+          10
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          7393,
+          2
+        ]
+      ],
+      "integer": "74230399111023"
+    },
+    {
+      "factors": [
+        [
+          9409489,
+          2
+        ]
+      ],
+      "integer": "88538483241121"
+    },
+    {
+      "factors": [
+        [
+          23,
+          4
+        ],
+        [
+          18899,
+          2
+        ]
+      ],
+      "integer": "99951425900041"
+    },
+    {
+      "factors": [
+        [
+          23,
+          3
+        ],
+        [
+          121067,
+          2
+        ]
+      ],
+      "integer": "178334377355663"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "210274701240307"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ]
+      ],
+      "integer": "379749833583241"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          13487,
+          2
+        ]
+      ],
+      "integer": "431952500540089"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          397,
+          2
+        ],
+        [
+          2707,
+          2
+        ]
+      ],
+      "integer": "610960590158689"
+    },
+    {
+      "factors": [
+        [
+          3,
+          5
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "integer": "762638095543203"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          2
+        ]
+      ],
+      "integer": "1660228611285409"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "2313021713643377"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          89,
+          1
+        ]
+      ],
+      "integer": "3072521380809859"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ]
+      ],
+      "integer": "4177248169415651"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "4836318128527061"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          1
+        ]
+      ],
+      "integer": "8734246172414543"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          463,
+          1
+        ]
+      ],
+      "integer": "15984015722640053"
+    },
+    {
+      "factors": [
+        [
+          3,
+          5
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          1
+        ]
+      ],
+      "integer": "17540676197493669"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          23,
+          2
+        ]
+      ],
+      "integer": "18262514724139499"
+    },
+    {
+      "factors": [
+        [
+          23,
+          5
+        ],
+        [
+          199,
+          2
+        ],
+        [
+          353,
+          2
+        ]
+      ],
+      "integer": "31761042115790087"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          1409,
+          1
+        ]
+      ],
+      "integer": "48642501410798779"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "53199499413797671"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          43,
+          2
+        ]
+      ],
+      "integer": "63832494754128419"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          1871,
+          1
+        ]
+      ],
+      "integer": "64591994421294901"
+    },
+    {
+      "factors": [
+        [
+          23,
+          1
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          895291,
+          2
+        ]
+      ],
+      "integer": "82757217247889207"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          2729,
+          1
+        ]
+      ],
+      "integer": "94212481440787699"
+    },
+    {
+      "factors": [
+        [
+          23,
+          4
+        ],
+        [
+          199,
+          2
+        ],
+        [
+          3037,
+          2
+        ]
+      ],
+      "integer": "102213222528232729"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "111235316956122403"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          3433,
+          1
+        ]
+      ],
+      "integer": "118516470790115123"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          67,
+          2
+        ]
+      ],
+      "integer": "154972454814106259"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          18706777,
+          2
+        ]
+      ],
+      "integer": "185120114529968641"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ]
+      ],
+      "integer": "200887661965534489"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          6337,
+          1
+        ]
+      ],
+      "integer": "218770426856090747"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          7019,
+          1
+        ]
+      ],
+      "integer": "242314916538251689"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          7591,
+          1
+        ]
+      ],
+      "integer": "262061907884580221"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          8053,
+          1
+        ]
+      ],
+      "integer": "278011400895076343"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          8713,
+          1
+        ]
+      ],
+      "integer": "300796390910070803"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          2958253,
+          2
+        ]
+      ],
+      "integer": "310170936960034987"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          9923,
+          1
+        ]
+      ],
+      "integer": "342568872604227313"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          947,
+          1
+        ]
+      ],
+      "integer": "359623092403329227"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          991,
+          1
+        ]
+      ],
+      "integer": "376332085080991831"
+    },
+    {
+      "factors": [
+        [
+          23,
+          1
+        ],
+        [
+          135431473,
+          2
+        ]
+      ],
+      "integer": "421858729215843767"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          199,
+          1
+        ]
+      ],
+      "integer": "460291321015032023"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          13619,
+          1
+        ]
+      ],
+      "integer": "470164816688196289"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          25301,
+          1
+        ]
+      ],
+      "integer": "873459139953598231"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          27061,
+          1
+        ]
+      ],
+      "integer": "934219113326916791"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          331,
+          1
+        ]
+      ],
+      "integer": "1017004577048063329"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          353,
+          1
+        ]
+      ],
+      "integer": "1084600047425880227"
+    },
+    {
+      "factors": [
+        [
+          23,
+          3
+        ],
+        [
+          331,
+          2
+        ],
+        [
+          35729,
+          2
+        ]
+      ],
+      "integer": "1701693021571057967"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          50909,
+          1
+        ]
+      ],
+      "integer": "1757516752535383279"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          617,
+          1
+        ]
+      ],
+      "integer": "1895745691959683003"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          61403,
+          1
+        ]
+      ],
+      "integer": "2119798093773795193"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          23,
+          2
+        ]
+      ],
+      "integer": "2209764281620879379"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          69257,
+          1
+        ]
+      ],
+      "integer": "2390939474952229267"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          70753,
+          1
+        ]
+      ],
+      "integer": "2442585452319550043"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "2558412289990815269"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          80279,
+          1
+        ]
+      ],
+      "integer": "2771448808202636749"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          83579,
+          1
+        ]
+      ],
+      "integer": "2885373758277609049"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          96779,
+          1
+        ]
+      ],
+      "integer": "3341073558577498249"
+    },
+    {
+      "factors": [
+        [
+          3,
+          5
+        ],
+        [
+          11,
+          13
+        ],
+        [
+          419,
+          1
+        ]
+      ],
+      "integer": "3514998982358622627"
+    },
+    {
+      "factors": [
+        [
+          67,
+          1
+        ],
+        [
+          2267,
+          2
+        ],
+        [
+          104831,
+          2
+        ]
+      ],
+      "integer": "3784053780988749643"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ]
+      ],
+      "integer": "4620416225207293247"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          397,
+          1
+        ]
+      ],
+      "integer": "7250218345483381103"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          397,
+          1
+        ],
+        [
+          617,
+          1
+        ]
+      ],
+      "integer": "8456303816943754519"
+    },
+    {
+      "factors": [
+        [
+          23,
+          1
+        ],
+        [
+          463,
+          2
+        ],
+        [
+          1466389,
+          2
+        ]
+      ],
+      "integer": "10602009922145099327"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          325513,
+          1
+        ]
+      ],
+      "integer": "11237591598107411603"
+    },
+    {
+      "factors": [
+        [
+          23,
+          5
+        ],
+        [
+          1358831,
+          2
+        ]
+      ],
+      "integer": "11884203297345086423"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          524261,
+          1
+        ]
+      ],
+      "integer": "18098911591289409991"
+    },
+    {
+      "factors": [
+        [
+          23,
+          5
+        ],
+        [
+          1720379,
+          2
+        ]
+      ],
+      "integer": "19049669502272424863"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          604759,
+          1
+        ]
+      ],
+      "integer": "20877920873451567629"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          55243,
+          1
+        ]
+      ],
+      "integer": "20978520056638982563"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          7129,
+          1
+        ]
+      ],
+      "integer": "21904004923793484811"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          263,
+          2
+        ]
+      ],
+      "integer": "26266916239119196729"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          13553,
+          1
+        ]
+      ],
+      "integer": "41641882274116019027"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          1373153,
+          1
+        ]
+      ],
+      "integer": "47404965748575284443"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          1702339,
+          1
+        ]
+      ],
+      "integer": "58769359268387354609"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          199,
+          1
+        ],
+        [
+          397,
+          1
+        ]
+      ],
+      "integer": "62730150032660558239"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          353,
+          1
+        ]
+      ],
+      "integer": "70913344673833674617"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          2521817,
+          1
+        ]
+      ],
+      "integer": "87059962370671642627"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          463,
+          1
+        ]
+      ],
+      "integer": "93010987490042468407"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          4
+        ]
+      ],
+      "integer": "106269573179767744681"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          331,
+          1
+        ],
+        [
+          9439,
+          1
+        ]
+      ],
+      "integer": "107859620255692918679"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          67,
+          3
+        ]
+      ],
+      "integer": "114214699197996312883"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          4760779,
+          1
+        ]
+      ],
+      "integer": "164355002997871682249"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          217559,
+          1
+        ]
+      ],
+      "integer": "172746714820394141867"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          5479,
+          1
+        ]
+      ],
+      "integer": "185177791100029392071"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          331,
+          1
+        ],
+        [
+          23497,
+          1
+        ]
+      ],
+      "integer": "268500635358408360017"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "309567887088888647549"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          9409489,
+          1
+        ]
+      ],
+      "integer": "324841080168485161259"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          89,
+          1
+        ]
+      ],
+      "integer": "411217044043449098983"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          331,
+          1
+        ]
+      ],
+      "integer": "537995421258425501041"
+    },
+    {
+      "factors": [
+        [
+          23,
+          4
+        ],
+        [
+          89,
+          2
+        ],
+        [
+          553279,
+          2
+        ]
+      ],
+      "integer": "678546681155800102801"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          2
+        ]
+      ],
+      "integer": "901784714563284321121"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          43,
+          4
+        ]
+      ],
+      "integer": "1298289110804217914041"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          331,
+          1
+        ]
+      ],
+      "integer": "1529357770543614064757"
+    },
+    {
+      "factors": [
+        [
+          3,
+          5
+        ],
+        [
+          23,
+          6
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          5039,
+          2
+        ]
+      ],
+      "integer": "4100262033113727968763"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          3631,
+          1
+        ]
+      ],
+      "integer": "6189754817730218090719"
+    },
+    {
+      "factors": [
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          397,
+          2
+        ],
+        [
+          1061897,
+          2
+        ]
+      ],
+      "integer": "6299067699718149000283"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          1607,
+          1
+        ]
+      ],
+      "integer": "7425008873908120247929"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          67,
+          4
+        ]
+      ],
+      "integer": "7652384846265752963161"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          6
+        ]
+      ],
+      "integer": "56216604212097136936249"
+    },
+    {
+      "factors": [
+        [
+          3,
+          15
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "integer": "59938945498865420543457"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          89,
+          2
+        ],
+        [
+          1871,
+          1
+        ]
+      ],
+      "integer": "61907615725140306209341"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          67,
+          4
+        ]
+      ],
+      "integer": "84176233308923282594771"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          18899,
+          1
+        ]
+      ],
+      "integer": "87321246240192635075053"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "163761412270022094553421"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          397,
+          1
+        ],
+        [
+          2707,
+          1
+        ]
+      ],
+      "integer": "215889751673458639104031"
+    },
+    {
+      "factors": [
+        [
+          3,
+          5
+        ],
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          7393,
+          1
+        ]
+      ],
+      "integer": "360894483833420743954011"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          121067,
+          1
+        ]
+      ],
+      "integer": "559379931137171371534549"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          23,
+          6
+        ]
+      ],
+      "integer": "618382646333068506298739"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          199,
+          2
+        ]
+      ],
+      "integer": "742584766154304057481739"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          353,
+          1
+        ]
+      ],
+      "integer": "862802664646534319065039"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          3
+        ],
+        [
+          1783,
+          1
+        ]
+      ],
+      "integer": "890314907325987671780461"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          463,
+          1
+        ],
+        [
+          1466389,
+          1
+        ]
+      ],
+      "integer": "1127192470533354423180763"
+    },
+    {
+      "factors": [
+        [
+          11,
+          12
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          3
+        ],
+        [
+          2399,
+          1
+        ]
+      ],
+      "integer": "1197905475420664287493733"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          7
+        ]
+      ],
+      "integer": "1292981896878234149533727"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          991,
+          1
+        ]
+      ],
+      "integer": "1653878280600072310442461"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          6997,
+          1
+        ]
+      ],
+      "integer": "2877285657172013345584051"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          27061,
+          2
+        ]
+      ],
+      "integer": "3058989314514503129031371"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          89,
+          2
+        ],
+        [
+          331,
+          2
+        ]
+      ],
+      "integer": "3625152478066326610690331"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          6
+        ],
+        [
+          67,
+          1
+        ]
+      ],
+      "integer": "3766512482210508174728683"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          13487,
+          1
+        ]
+      ],
+      "integer": "4175142093167841189493363"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          4
+        ],
+        [
+          56453,
+          1
+        ]
+      ],
+      "integer": "5999236214717428490476493"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          895291,
+          1
+        ]
+      ],
+      "integer": "12050145356508617658817033"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          3
+        ],
+        [
+          419,
+          1
+        ]
+      ],
+      "integer": "25315802291935080746829833"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          43,
+          6
+        ]
+      ],
+      "integer": "26405902224646988153679899"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          135431473,
+          1
+        ]
+      ],
+      "integer": "27206511967518411077572297"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          4
+        ],
+        [
+          67,
+          3
+        ]
+      ],
+      "integer": "31961955638266486193491603"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          199,
+          1
+        ],
+        [
+          9923,
+          2
+        ]
+      ],
+      "integer": "81852007711347231108101021"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          397,
+          1
+        ],
+        [
+          7591,
+          2
+        ]
+      ],
+      "integer": "95560577793970544358259607"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          2958253,
+          1
+        ]
+      ],
+      "integer": "115987275530912153600398331"
+    },
+    {
+      "factors": [
+        [
+          3,
+          15
+        ],
+        [
+          11,
+          14
+        ],
+        [
+          25741,
+          1
+        ]
+      ],
+      "integer": "140262581462390435473556967"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          397,
+          2
+        ],
+        [
+          419,
+          1
+        ]
+      ],
+      "integer": "145928791499371789600775809"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          199,
+          1
+        ],
+        [
+          353,
+          1
+        ]
+      ],
+      "integer": "171697730264660329493942761"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          397,
+          2
+        ],
+        [
+          617,
+          2
+        ]
+      ],
+      "integer": "250634942802443242806618251"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          2267,
+          1
+        ],
+        [
+          104831,
+          1
+        ]
+      ],
+      "integer": "405124442468570423816779573"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          325513,
+          2
+        ]
+      ],
+      "integer": "442615840618843282648408019"
+    },
+    {
+      "factors": [
+        [
+          11,
+          16
+        ],
+        [
+          1409,
+          2
+        ],
+        [
+          6491,
+          1
+        ]
+      ],
+      "integer": "592129308615456080224306331"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          4
+        ],
+        [
+          331,
+          1
+        ],
+        [
+          35729,
+          1
+        ]
+      ],
+      "integer": "1256775747026314099153165619"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          199,
+          1
+        ],
+        [
+          3037,
+          1
+        ]
+      ],
+      "integer": "1477184155279811390008793669"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          96779,
+          2
+        ]
+      ],
+      "integer": "2621364059502609796545044897"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          1358831,
+          1
+        ]
+      ],
+      "integer": "3321254979049050638270441953"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          1720379,
+          1
+        ]
+      ],
+      "integer": "4204950666861020015010744277"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          199,
+          2
+        ],
+        [
+          397,
+          2
+        ]
+      ],
+      "integer": "7636995736309664689218359897"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          617,
+          1
+        ],
+        [
+          83579,
+          2
+        ]
+      ],
+      "integer": "18004032268634643592637539747"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          3
+        ],
+        [
+          937003,
+          1
+        ]
+      ],
+      "integer": "56613323854296053615803804321"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          89,
+          1
+        ],
+        [
+          553279,
+          1
+        ]
+      ],
+      "integer": "120356892348085885765157870953"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          18706777,
+          1
+        ]
+      ],
+      "integer": "185564341130784134010876307187"
+    },
+    {
+      "factors": [
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          67,
+          2
+        ],
+        [
+          397,
+          1
+        ],
+        [
+          1061897,
+          1
+        ]
+      ],
+      "integer": "380168185767121348505934335189"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          35267,
+          1
+        ],
+        [
+          50909,
+          2
+        ]
+      ],
+      "integer": "381810552994082202220053774577"
+    },
+    {
+      "factors": [
+        [
+          3,
+          10
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          419,
+          2
+        ],
+        [
+          14543,
+          1
+        ]
+      ],
+      "integer": "629774214105319986882971902077"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          1277,
+          1
+        ],
+        [
+          604759,
+          2
+        ]
+      ],
+      "integer": "1950948723778280753648812188487"
+    },
+    {
+      "factors": [
+        [
+          3,
+          10
+        ],
+        [
+          11,
+          14
+        ],
+        [
+          23,
+          4
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          5039,
+          1
+        ]
+      ],
+      "integer": "2118559396667601832965865063197"
+    },
+    {
+      "factors": [
+        [
+          11,
+          13
+        ],
+        [
+          1783,
+          1
+        ],
+        [
+          9409489,
+          2
+        ]
+      ],
+      "integer": "5449897421368173541137609598733"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          67,
+          1
+        ],
+        [
+          89,
+          3
+        ],
+        [
+          7129,
+          2
+        ]
+      ],
+      "integer": "10027492121544343455762414122593"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          199,
+          1
+        ],
+        [
+          4760779,
+          2
+        ]
+      ],
+      "integer": "18840802493511468348511198549709"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          89,
+          2
+        ],
+        [
+          4159,
+          1
+        ],
+        [
+          13553,
+          2
+        ]
+      ],
+      "integer": "25277265360420151206820825192301"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          5479,
+          1
+        ],
+        [
+          2521817,
+          2
+        ]
+      ],
+      "integer": "145552179821334238491840048293381"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          7393,
+          1
+        ],
+        [
+          217559,
+          2
+        ]
+      ],
+      "integer": "773251486335417586001077551089507"
+    },
+    {
+      "factors": [
+        [
+          11,
+          15
+        ],
+        [
+          331,
+          2
+        ],
+        [
+          9439,
+          2
+        ],
+        [
+          68311,
+          1
+        ]
+      ],
+      "integer": "2785408394381064284559323515703741"
+    },
+    {
+      "factors": [
+        [
+          11,
+          17
+        ],
+        [
+          89,
+          2
+        ],
+        [
+          5479,
+          2
+        ],
+        [
+          25741,
+          1
+        ]
+      ],
+      "integer": "3093739030848415659842890823961071"
+    }
+  ],
+  "operation_counts": {
+    "distinct_inverted_field_elements_summed_by_cell": 3360,
+    "maximum_norm_integer_bits": 112,
+    "unique_norm_integers": 234
+  },
+  "remaining": "Audit candidate specializations and compute Q^2 spectra of every exact-five anchor state.",
+  "schema": "P04CW_FIVE_TRIPLE_FILTER_V1",
+  "support": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "triple_root_translation_classes": 15
+}

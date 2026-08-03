@@ -1,0 +1,24 @@
+# Run from the repository root. Primary stages require SymPy and NumPy.
+SCRIPTS=experimental/scripts
+
+# Pair-of-lines characteristic filter, modular terminal, and exact profiles.
+python $SCRIPTS/derive_p04cw_parity_line_pair_filter.py --output /tmp/p04cw_parity_line_pair_filter.json
+python $SCRIPTS/verify_p04cw_parity_line_pair_modular_terminal.py --filter /tmp/p04cw_parity_line_pair_filter.json --output /tmp/p04cw_parity_line_pair_modular_terminal.json
+python $SCRIPTS/classify_p04cw_parity_pair_exceptional_profiles.py --terminal /tmp/p04cw_parity_line_pair_modular_terminal.json --output /tmp/p04cw_parity_pair_exceptional_profiles.json
+
+# Five-root/triple characteristic filter, modular terminal, and exact profiles.
+python $SCRIPTS/derive_p04cw_five_triple_filter.py --output /tmp/p04cw_five_triple_filter.json
+python $SCRIPTS/verify_p04cw_five_triple_modular_terminal.py --filter /tmp/p04cw_five_triple_filter.json --output /tmp/p04cw_five_triple_modular_terminal.json
+python $SCRIPTS/classify_p04cw_five_triple_profiles.py --terminal /tmp/p04cw_five_triple_modular_terminal.json --output /tmp/p04cw_five_triple_profiles.json
+
+# Independent scalar replay of the recorded public certificates.
+python $SCRIPTS/audit_p04cw_parity_uniform_S6_theorem.py
+
+# Expected terminal lines:
+# PASS_P04CW_PARITY_LINE_PAIR_FILTER
+# PASS_WITH_SPECIALIZATIONS_REQUIRING_CLASSIFICATION
+# PASS_P04CW_PARITY_PAIR_EXCEPTIONAL_PROFILES
+# PASS_P04CW_FIVE_TRIPLE_FILTER
+# PASS_P04CW_FIVE_TRIPLE_MODULAR_TERMINAL
+# PASS_P04CW_FIVE_TRIPLE_PROFILES
+# PASS_P04CW_INDEPENDENT_PARITY_UNIFORM_S6_AUDIT
