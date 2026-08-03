@@ -1,0 +1,218 @@
+{
+  "author": "Manuel E. Rey-Alvarez Zafiria",
+  "exceptional_censuses": {
+    "availability": {
+      "199": {
+        "available": true,
+        "quotient_labels": 18,
+        "required_for_tau5_m6": 11
+      },
+      "23": {
+        "available": false,
+        "quotient_labels": 2,
+        "required_for_tau5_m6": 11
+      },
+      "419": {
+        "available": true,
+        "quotient_labels": 38,
+        "required_for_tau5_m6": 11
+      },
+      "67": {
+        "available": false,
+        "quotient_labels": 6,
+        "required_for_tau5_m6": 11
+      }
+    },
+    "complete_available_rows": {
+      "199": {
+        "exact_S6": 20,
+        "maximum_fibre": 6,
+        "six_fibre_isolated_profile": "6^1 2^8 1^9",
+        "stdout": "P04CU_FOUR_STATE_CENSUS_V1\np=199 q=18 projective_rows=1512000 exact_states_evaluated=1474200 rank_deficient=0 max_labels_ge3=6 max_labels_ge4=4 max_labels_ge5=2 max_fibre=6 maxima=20,22,24,27, best_support=1,3,5,7,9, best_gamma=1,36,53,76,165, best_hist=1^12,3^4,4^2, max_high_support=1,3,5,7,9, max_high_gamma=1,159,122,150,11, max_high_hist=1^10,2^4,4^4, gcd1_maxima=18,21,24,27, gcd1_max_high=2 gcd2_maxima=20,22,24,27, gcd2_max_high=4 max_fibre_support=1,2,3,5,6, max_fibre_gamma=1,145,186,182,141, max_fibre_hist=1^9,2^8,6^1,\nPASS_P04CU_FOUR_STATE_CENSUS\n",
+        "top_envelopes_S6_through_S9": [
+          20,
+          22,
+          24,
+          27
+        ]
+      },
+      "419": {
+        "exact_S6": 20,
+        "maximum_fibre": 6,
+        "six_fibre_isolated_profile": "6^1 2^5 1^32",
+        "stdout": "P04CU_FOUR_STATE_CENSUS_V1\np=419 q=38 projective_rows=3175200 exact_states_evaluated=3137400 rank_deficient=0 max_labels_ge3=6 max_labels_ge4=2 max_labels_ge5=2 max_fibre=6 maxima=20,22,24,27, best_support=1,3,5,7,9, best_gamma=1,268,266,184,131, best_hist=1^28,2^4,3^4,4^2, max_high_support=1,2,3,4,5, max_high_gamma=1,187,221,418,46, max_high_hist=1^34,2^2,4^2, gcd1_maxima=18,21,24,27, gcd1_max_high=2 gcd2_maxima=20,22,24,27, gcd2_max_high=2 max_fibre_support=1,2,3,4,7, max_fibre_gamma=1,301,395,315,362, max_fibre_hist=1^32,2^5,6^1,\nPASS_P04CU_FOUR_STATE_CENSUS\n",
+        "top_envelopes_S6_through_S9": [
+          20,
+          22,
+          24,
+          27
+        ]
+      }
+    },
+    "completeness": "The projective four-root census contains every coefficient vector with fibre at least four. Every omitted vector has fibre cap three and hence S6<=18."
+  },
+  "nonclaims": [
+    "The prime-uniform S6 theorem is not yet proved.",
+    "A uniform fibre cap five is false: p=199 and p=419 have isolated six-fibres.",
+    "No extension-field, arbitrary-background, whole-ImgFib, or list-grand conclusion is claimed."
+  ],
+  "parity_quotient": {
+    "even_support_identity": "For Gamma(X)=sum_(j=1)^5 c_j X^(2j), put P(Z)=sum c_j Z^j. On X=r xi, Z=X^2 ranges over r^2 H and Gamma(X)=P(Z).",
+    "exact_envelope_identity": "S_(2h)(Gamma)=2*S_h(P restricted to Q^2), where Q=F_p^*/H and Q^2 is the image of the squaring map",
+    "odd_support_identity": "For Gamma(X)=X sum_(j=0)^4 c_j X^(2j), put Z=X^2. Since Z^6=r^11 X and Z^11=r^22 on r^2 H, inversion W=Z^-1 gives Gamma(X)=r^11 sum_(j=0)^4 c_j W^(5-j).",
+    "quotient_map": "rH maps to r^2H or r^-2H with kernel {H,-H}",
+    "reduced_polynomial": "P(Z)=c_1 Z+...+c_5 Z^5 with every c_j nonzero, evaluated on the square quotient cosets Q^2 inside F_p^*/H.",
+    "target_at_h_3": "S_6(Gamma)<=20 iff S_3(P restricted to Q^2)<=10"
+  },
+  "proved_reduction": "All geometrically available characteristics in which a six-point fibre can occur satisfy exact S6<=20. In every other characteristic the fibre cap is five. Parity supports reduce exactly to the full-degree-five top-three bound on Q^2, S3(P|Q^2)<=10.",
+  "remaining_global_obligations": [
+    "For gap-gcd one supports outside p=199,419, prove S6<=21 by the projective line-orbit incidence theorem or give a counterexample.",
+    "For the two parity supports, prove the reduced quintic-coset theorem S3(P|Q^2)<=10 or give a counterexample."
+  ],
+  "schema": "P04CV_EXACT_FIVE_PARITY_AND_SIX_FIBRE_REDUCTION_V1",
+  "six_fibre_table": {
+    "normalized_six_by_six_norm_table": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        23,
+        67,
+        23,
+        1,
+        243
+      ],
+      [
+        1,
+        67,
+        419,
+        23,
+        1,
+        1
+      ],
+      [
+        1,
+        23,
+        23,
+        199,
+        1,
+        3125
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        529,
+        1024
+      ],
+      [
+        1,
+        243,
+        1,
+        3125,
+        1024,
+        243
+      ]
+    ],
+    "possible_primes_congruent_to_one_mod_11": [
+      23,
+      67,
+      199,
+      419
+    ],
+    "proof": "A six-point fibre makes the 6x6 Fourier evaluation matrix on exponents {0} union A singular. Affine changes of exponents and roots reduce all cells to the displayed exact table. Outside the listed prime divisors every determinant remains nonzero.",
+    "six_subset_AGL_representatives": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        5,
+        9
+      ],
+      [
+        0,
+        1,
+        2,
+        4,
+        5,
+        7
+      ]
+    ]
+  },
+  "support_dichotomy": {
+    "diagonal_label_multiplicity": {
+      "gcd_1": 1,
+      "gcd_2": 2,
+      "proof": "Two quotient labels rH and sH give the same projective coefficient point exactly when (r/s)^(a-a0)=1 for every active exponent. The kernel has size gcd(A-A); H has odd order 11, so the gcd-two kernel is represented by H and -H."
+    },
+    "gap_gcd_histogram": [
+      [
+        1,
+        250
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "parity_supports": [
+      [
+        1,
+        3,
+        5,
+        7,
+        9
+      ],
+      [
+        2,
+        4,
+        6,
+        8,
+        10
+      ]
+    ],
+    "support_count": 252
+  },
+  "title": "ell=11 exact-five parity quotient and six-fibre reduction",
+  "verdict": "PASS_WITH_GLOBAL_PARITY_REDUCTION_AND_EXCEPTIONAL_TERMINAL"
+}
