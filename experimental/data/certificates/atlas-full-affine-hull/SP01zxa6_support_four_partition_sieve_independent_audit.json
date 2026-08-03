@@ -1,0 +1,17 @@
+{
+  "schema": "sp01zxa6-independent-partition-audit/v1",
+  "status": "PASS_INDEPENDENT_SUPPORT_FOUR_EXCLUSION",
+  "representation": "direct residual locator products",
+  "partition_capacities": [21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,5],
+  "quadruple_count": 1820,
+  "residual_degree_histogram": {"95":20,"96":120,"97":168,"98":56,"99":1016,"100":48,"101":392},
+  "outside_overlap_upper_histogram": {"2":1365,"4":28,"5":104,"6":183,"7":120,"8":20},
+  "required_core_root_histogram": {"87":20,"89":120,"91":168,"93":71,"95":48,"97":1029,"99":364},
+  "forced_bucket_lower_histogram": {"24":20,"28":120,"32":168,"36":71,"40":48,"44":1029,"48":364},
+  "observed_bucket_histogram": {"1":1820},
+  "minimum_rowwise_bucket_margin": 23,
+  "certified_core_root_cap": 75,
+  "minimum_residual_root_margin": 12,
+  "independent_triple_normals_generated": 58112600,
+  "verdict": "No exact-support-four split locator occurs in the affine hull."
+}

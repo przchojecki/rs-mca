@@ -1,0 +1,33 @@
+{
+  "GRS_square_dimension_if_applicable": 31,
+  "code_dimension": 16,
+  "code_length": 509,
+  "field": 2147483647,
+  "fixture_sha256": "24ebbd8a1b893153e495d1b5c9de14369237c613c1ff6502f4e6d215a28d71a1",
+  "profiles": [
+    {
+      "monomials": 16,
+      "pivot_count": 16,
+      "pivot_sha256": "ae71c9ef132ed80663954dd5a0dd1c33644937230a2f8f95267ea0d8905e5ce6",
+      "power": 1,
+      "rank": 16
+    },
+    {
+      "monomials": 136,
+      "pivot_count": 136,
+      "pivot_sha256": "67fa64e4cfe020890ddd49146f066687880847a5315adf607aed886e1e70dbe3",
+      "power": 2,
+      "rank": 136
+    },
+    {
+      "monomials": 816,
+      "pivot_count": 509,
+      "pivot_sha256": "e8ece98d5f4f119969af607dcd83b3be5dcc0e8c317023cc42215dc9056fbfe2",
+      "power": 3,
+      "rank": 509
+    }
+  ],
+  "schema": "sp01zxaa-Schur-power-profile/v1",
+  "scope_guard": "The maximal Schur-square dimension refutes a generalized Reed-Solomon or low-product-dimension explanation for this evaluation code. It does not by itself prove or refute MDS.",
+  "status": "PASS_MAXIMAL_SQUARE_AND_FULL_AMBIENT_CUBE"
+}

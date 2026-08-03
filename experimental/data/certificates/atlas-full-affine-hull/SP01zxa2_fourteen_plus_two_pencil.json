@@ -1,0 +1,148 @@
+{
+  "certificate": {
+    "common_degree33_fiber_pencil": false,
+    "common_root_descent": "gcd(A,h) has degree equal to the number of agreed common direction roots; after cancellation the principal bidegree is (d+2-z,d+2-z)",
+    "constant_one_intersections": {
+      "0": [
+        720105278
+      ],
+      "1": [
+        693915940,
+        1453567707
+      ],
+      "10": [
+        505812588
+      ],
+      "12": [
+        118152248
+      ],
+      "13": [
+        124028105,
+        2023455542
+      ],
+      "14": [
+        716346231,
+        1431137416
+      ],
+      "15": [
+        769129305,
+        1378354342
+      ],
+      "2": [
+        538520711
+      ],
+      "3": [
+        348644144
+      ],
+      "4": [
+        3313627
+      ],
+      "6": [
+        163628149
+      ],
+      "7": [
+        511274869,
+        1636208778
+      ],
+      "8": [
+        869107803
+      ],
+      "9": [
+        548596861,
+        1598886786
+      ]
+    },
+    "constant_two_isolated": true,
+    "core_size": 509,
+    "field": 2147483647,
+    "full_private_locator_degree": 33,
+    "full_private_locator_difference_rank": 13,
+    "full_private_locator_rank": 14,
+    "full_private_locator_x32_coefficients": [
+      412404328,
+      1803413558,
+      850304221,
+      684676412,
+      979236503,
+      60083859,
+      1577294466,
+      1851858286,
+      1825910044,
+      1914111965,
+      1355075449,
+      1358009437,
+      1947363586,
+      1897801744
+    ],
+    "input_sha256": "24ebbd8a1b893153e495d1b5c9de14369237c613c1ff6502f4e6d215a28d71a1",
+    "label_multiplicity_histogram": {
+      "1": 492,
+      "14": 2,
+      "2": 20
+    },
+    "outside_size": 514,
+    "owner_partition_sizes": {
+      "common_direction_roots": 2,
+      "constant_one_branch": 35,
+      "constant_two_branch": 35,
+      "principal_private_total": 442
+    },
+    "principal_base_coefficients": [
+      1930499021,
+      2133179392
+    ],
+    "principal_base_index": 0,
+    "principal_branch_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10,
+      12,
+      13,
+      14,
+      15
+    ],
+    "principal_common_labels": [
+      675960951,
+      1471522696
+    ],
+    "principal_direction_coefficients": [
+      365935037,
+      1480918098
+    ],
+    "principal_parameters": {
+      "0": 0,
+      "1": 1,
+      "10": 842789410,
+      "12": 189366551,
+      "13": 495521579,
+      "14": 862037149,
+      "15": 1458323542,
+      "2": 1184341680,
+      "3": 178181989,
+      "4": 224839066,
+      "6": 778627540,
+      "7": 332194940,
+      "8": 1382581777,
+      "9": 1446149731
+    },
+    "principal_unit_index": 1,
+    "private_cell_size_histogram": {
+      "31": 6,
+      "32": 8
+    },
+    "symbolic_identity": "q_i=q_base+t_i*h and F_i=A-t_i*B with A=H-q_base*G, B=h*G",
+    "transverse_constant_one_index": 5,
+    "transverse_constant_two_index": 11
+  },
+  "claim_id": "SP01ZXA2_FOURTEEN_PLUS_TWO_PENCIL_AND_COMMON_ROOT_DESCENT",
+  "schema": "sp01zxa2-fourteen-plus-two-pencil/v1",
+  "scope_guard": "Exact global fixture reduction; diffuse principal-fiber incidence and global list equality remain open.",
+  "status": "PASS_EXACT_GLOBAL_COLORED_PENCIL_DECOMPOSITION"
+}

@@ -1,0 +1,112 @@
+{
+  "affine_dimension": 15,
+  "all_nonempty_coefficient_supports": 65535,
+  "dense_audit_normals": 10694457231,
+  "dense_json_bundle_sha256": "422fc5c795cec02f65a573ebb7081529bb2227009106fccbcd11d9c7cc3a4eef",
+  "dense_primary_normals": 10694457224,
+  "dense_supports_9_through_16": 26333,
+  "field": 2147483647,
+  "schema": "sp01zxab-full-affine-hull-synthesis/v1",
+  "scope_guard": "Complete classification inside the affine hull of the sixteen known syndrome locators. It does not exclude split locators outside this affine hull or prove the complete fixture list.",
+  "split_affine_hull_members": "exactly_the_sixteen_vertices",
+  "status": "PASS_EXACT_FULL_AFFINE_HULL_RIGIDITY",
+  "supports_4_through_8": [
+    {
+      "audit_margin": 12,
+      "primary_margin": 9,
+      "support": 4,
+      "support_count": 1820
+    },
+    {
+      "audit_margin": 19,
+      "primary_margin": 4,
+      "support": 5,
+      "support_count": 4368
+    },
+    {
+      "audit_margin": 13,
+      "primary_margin": 8,
+      "support": 6,
+      "support_count": 8008
+    },
+    {
+      "audit_margin": 13,
+      "primary_margin": 3,
+      "support": 7,
+      "support_count": 11440
+    },
+    {
+      "audit_margin": 12,
+      "primary_margin": 12,
+      "support": 8,
+      "support_count": 12870
+    }
+  ],
+  "supports_9_through_16": [
+    {
+      "audit_core_cap": 233,
+      "audit_margin": 11,
+      "primary_core_cap": 233,
+      "primary_margin": 11,
+      "support": 9,
+      "support_count": 11440
+    },
+    {
+      "audit_core_cap": 257,
+      "audit_margin": 10,
+      "primary_core_cap": 257,
+      "primary_margin": 10,
+      "support": 10,
+      "support_count": 8008
+    },
+    {
+      "audit_core_cap": 281,
+      "audit_margin": 27,
+      "primary_core_cap": 281,
+      "primary_margin": 25,
+      "support": 11,
+      "support_count": 4368
+    },
+    {
+      "audit_core_cap": 301,
+      "audit_margin": 28,
+      "primary_core_cap": 312,
+      "primary_margin": 25,
+      "support": 12,
+      "support_count": 1820
+    },
+    {
+      "audit_core_cap": 331,
+      "audit_margin": 29,
+      "primary_core_cap": 331,
+      "primary_margin": 29,
+      "support": 13,
+      "support_count": 560
+    },
+    {
+      "audit_core_cap": 361,
+      "audit_margin": 30,
+      "primary_core_cap": 361,
+      "primary_margin": 30,
+      "support": 14,
+      "support_count": 120
+    },
+    {
+      "audit_core_cap": 391,
+      "audit_margin": 31,
+      "primary_core_cap": 391,
+      "primary_margin": 31,
+      "support": 15,
+      "support_count": 16
+    },
+    {
+      "audit_core_cap": 421,
+      "audit_margin": 36,
+      "primary_core_cap": 421,
+      "primary_margin": 36,
+      "support": 16,
+      "support_count": 1
+    }
+  ],
+  "vertex_count": 16
+}

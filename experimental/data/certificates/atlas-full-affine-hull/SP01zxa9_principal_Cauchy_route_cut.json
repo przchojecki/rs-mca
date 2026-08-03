@@ -1,0 +1,39 @@
+{
+  "core_rows": 509,
+  "field": 2147483647,
+  "fixture_sha256": "24ebbd8a1b893153e495d1b5c9de14369237c613c1ff6502f4e6d215a28d71a1",
+  "modes": {
+    "evaluation": {
+      "affine_failure_rows": 509,
+      "mobius_test_rank_histogram": {
+        "4": 509
+      }
+    },
+    "reciprocal": {
+      "affine_failure_rows": 509,
+      "mobius_test_rank_histogram": {
+        "4": 509
+      }
+    }
+  },
+  "principal_columns": 14,
+  "principal_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15
+  ],
+  "schema": "sp01zxa9-principal-Cauchy-route-cut/v1",
+  "scope_guard": "Refutes only affine and fractional-linear dependence on the exact principal parameters.",
+  "status": "PASS_SIMPLE_AFFINE_AND_MOBIUS_MODELS_REFUTED"
+}

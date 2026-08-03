@@ -1,0 +1,148 @@
+{
+  "boundary_total_degree": 12,
+  "core_rows": 509,
+  "field": 2147483647,
+  "locator_values_rederived_by_global_product_quotient": true,
+  "modes": {
+    "evaluation": [
+      {
+        "full_rank_rows": 509,
+        "left_degree": 0,
+        "right_degree": 12
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 1,
+        "right_degree": 11
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 2,
+        "right_degree": 10
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 3,
+        "right_degree": 9
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 4,
+        "right_degree": 8
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 5,
+        "right_degree": 7
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 6,
+        "right_degree": 6
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 7,
+        "right_degree": 5
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 8,
+        "right_degree": 4
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 9,
+        "right_degree": 3
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 10,
+        "right_degree": 2
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 11,
+        "right_degree": 1
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 12,
+        "right_degree": 0
+      }
+    ],
+    "reciprocal": [
+      {
+        "full_rank_rows": 509,
+        "left_degree": 0,
+        "right_degree": 12
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 1,
+        "right_degree": 11
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 2,
+        "right_degree": 10
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 3,
+        "right_degree": 9
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 4,
+        "right_degree": 8
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 5,
+        "right_degree": 7
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 6,
+        "right_degree": 6
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 7,
+        "right_degree": 5
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 8,
+        "right_degree": 4
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 9,
+        "right_degree": 3
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 10,
+        "right_degree": 2
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 11,
+        "right_degree": 1
+      },
+      {
+        "full_rank_rows": 509,
+        "left_degree": 12,
+        "right_degree": 0
+      }
+    ]
+  },
+  "parameters_rederived_from_coefficient_line": true,
+  "rank_checks": 13234,
+  "rank_trace_sha256": "031f6572e33901dae99fe33eb158ef2626d3de0f69135cbec2ba654d87f7e9d1",
+  "schema": "sp01zxaa-rational-bidegree-barrier-independent-audit/v1",
+  "scope_guard": "Full rank at every a+b=12 boundary pair excludes every lower bidegree submatrix. Types with a+b>=13 are not excluded.",
+  "status": "PASS_INDEPENDENT_ALTERNANT_RANK_AUDIT"
+}

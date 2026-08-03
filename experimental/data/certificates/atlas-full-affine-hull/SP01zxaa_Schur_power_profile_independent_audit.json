@@ -1,0 +1,27 @@
+{
+  "code_length": 509,
+  "evaluation_method": "Horner evaluation of expanded degree-479 locators",
+  "field": 2147483647,
+  "locator_coefficients_constructed": true,
+  "profile_sha256": "c51c5a0182ae313d683771a451b9a79800c3ea5c8e429244ada442210fa4d6b8",
+  "profiles": [
+    {
+      "monomials": 16,
+      "power": 1,
+      "rank": 16
+    },
+    {
+      "monomials": 136,
+      "power": 2,
+      "rank": 136
+    },
+    {
+      "monomials": 816,
+      "power": 3,
+      "rank": 509
+    }
+  ],
+  "schema": "sp01zxaa-Schur-power-profile-independent-audit/v1",
+  "scope_guard": "This is a code-invariant route cut, not a proof of full-spark or complete affine-hull rigidity.",
+  "status": "PASS_INDEPENDENT_COEFFICIENT_HORNER_SCHUR_AUDIT"
+}

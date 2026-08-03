@@ -1,0 +1,23 @@
+{
+  "schema": "sp01zxa6-support-four-partition-sieve/v1",
+  "claim_id": "SP01ZXA6_SUPPORT_FOUR_PARTITION_SIEVE",
+  "status": "PASS_EXACT_SUPPORT_FOUR_EXCLUSION",
+  "field": 2147483647,
+  "quadruple_count": 1820,
+  "partition_capacities": [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,9],
+  "projective_root_line_cap": 3,
+  "residual_degree_histogram": {"95":20,"96":120,"97":168,"98":56,"99":1016,"100":48,"101":392},
+  "outside_overlap_upper_histogram": {"2":1365,"4":28,"5":104,"6":183,"7":120,"8":20},
+  "required_core_root_histogram": {"87":20,"89":120,"91":168,"93":71,"95":48,"97":1029,"99":364},
+  "forced_bucket_lower_histogram": {"18":20,"22":120,"26":168,"30":71,"34":48,"38":1029,"42":364},
+  "observed_bucket_histogram": {"1":1820},
+  "global_forced_bucket_minimum": 18,
+  "global_observed_bucket_maximum": 1,
+  "minimum_rowwise_bucket_margin": 17,
+  "certified_core_root_cap": 78,
+  "minimum_residual_root_margin": 9,
+  "independent_triple_normals_generated": 52022880,
+  "tight_cases": [{"indices":[1,5,7,9],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,7,13],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,7,14],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,7,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,9,13],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,9,14],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,9,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,13,14],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,13,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[1,5,14,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,7,9,13],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,7,9,14],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,7,9,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,7,13,14],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,7,13,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,7,14,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,9,13,14],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,9,13,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,9,14,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1},{"indices":[5,13,14,15],"degree":95,"required_core_roots":87,"forced":18,"observed":1}],
+  "new_split_locator_with_exact_coefficient_support_four": false,
+  "scope_guard": "Exact support-four classification inside the affine hull of the sixteen known syndrome locators. Support five or more and arbitrary syndrome-section split locators remain open."
+}

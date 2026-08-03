@@ -1,0 +1,21 @@
+{
+  "schema": "sp01zxa8-support-six-partition-sieve/v1",
+  "claim_id": "SP01ZXA8_EXACT_SUPPORT_SIX_PARTITION_SIEVE",
+  "status": "PASS_EXACT_SUPPORT_SIX_EXCLUSION",
+  "field": 2147483647,
+  "support_count": 8008,
+  "partition_capacities": [15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,14],
+  "residual_degree_histogram": {"157":6,"158":120,"159":560,"160":840,"161":435,"162":216,"163":420,"164":336,"165":3073,"167":2002},
+  "outside_overlap_upper_histogram": {"2":5005,"6":70,"7":392,"8":840,"9":1000,"10":575,"11":120,"12":6},
+  "required_core_root_histogram": {"145":6,"147":120,"149":560,"151":855,"153":580,"155":476,"157":336,"159":70,"163":3003,"165":2002},
+  "dependent_within_group_five_row_histogram": {"0":8008},
+  "forced_bucket_lower_histogram": {"9":6,"11":120,"13":560,"15":855,"17":580,"19":476,"21":336,"23":70,"27":3003,"29":2002},
+  "observed_bucket_histogram": {"1":8008},
+  "certified_core_root_cap_histogram": {"137":8008},
+  "maximum_certified_core_root_cap": 137,
+  "minimum_rowwise_bucket_margin": 8,
+  "minimum_residual_root_margin": 8,
+  "independent_five_row_normals_generated": 809616808,
+  "new_split_locator_with_exact_coefficient_support_six": false,
+  "scope_guard": "Exact support-six classification inside the affine hull of the sixteen known syndrome locators. Support seven or more and arbitrary syndrome-section split locators remain open."
+}
