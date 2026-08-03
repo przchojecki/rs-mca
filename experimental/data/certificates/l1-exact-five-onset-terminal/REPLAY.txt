@@ -1,0 +1,4 @@
+python experimental/scripts/audit_p04cu_exact_five_witness_family.py experimental/data/certificates/l1-exact-five-onset-terminal/p04cu_ell11_exact_five_D_positive_nonvacancy.json
+python experimental/scripts/audit_p04cv_parity_and_exceptional_profiles.py experimental/data/certificates/l1-exact-five-onset-terminal/p04cv_exact_five_parity_and_six_fibre_reduction.json
+g++ -std=c++20 -O3 -DNDEBUG experimental/scripts/p04cu_ell11_exact_five_spectrum_probe.cpp -o p04cu_probe
+./p04cu_probe --four-state 331
