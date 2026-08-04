@@ -1,0 +1,99 @@
+{
+  "schema": "rs-mca-kb-v4-m2-aligned-positive-fixed-frontier-v1",
+  "field": {
+    "base_prime": 2130706433,
+    "challenge_extension_degree": 6
+  },
+  "scope": {
+    "workboard_item": "K3",
+    "row": "KoalaBear MCA at 2^-128",
+    "agreement": 1116048,
+    "literal_cell_count": 18,
+    "ledger_movement": 0
+  },
+  "parent": {
+    "path": "experimental/scripts/compile_kb_mca_v4_m2_aligned_positive_moving_closure_v1.sage",
+    "sha256": "2ed13fbab353d0ac3017fa31cab68de3f3b66f190061ba63fd277dbdc7958675",
+    "git_blob": "b3cb935fb1fbe8c584149b034416a164a7562231"
+  },
+  "full_localization": {
+    "empty": [
+      "F00-R11",
+      "F01-R11"
+    ],
+    "surviving_two_dimensional": [
+      "F00-R02",
+      "F00-R20",
+      "F01-R02",
+      "F01-R20"
+    ],
+    "basis_fingerprints": {
+      "F00-R02": [2, 141, "ba2ce2b580b8daaacca53b3e409c9a3c09c7f1b5c0495c297b16eb7962c478aa"],
+      "F00-R11": [2, 127, "64b31d79d37d777d49f10100d523e0b3ad05957aa7ed659a16b4f698aaef7f81"],
+      "F00-R20": [2, 145, "f89abf7729b75f1f4c0504aea595d92369ce572fa501189a9b80be8bd8dbb609"],
+      "F01-R02": [2, 145, "793f410594a4612b69bae793521f566bcd057cada56c6d4dd4070ca703122440"],
+      "F01-R11": [2, 127, "d91e61d31f513231173e66a12888ed6feb8345741bf588b4c8341ea7fa82ed8c"],
+      "F01-R20": [2, 145, "f4cfcd5effb7aaf74b5a3d8b98be27d11907b3160cbc466494e8ed7502a8e3d1"]
+    }
+  },
+  "quadratic_route": {
+    "identity": "Res_w(Aw^2+Bw+C,Dw^2+Ew+F)=(AF-CD)^2-(AE-BD)(BF-CE)",
+    "generic_reconstruction": "w=-(AF-CD)/(AE-BD)",
+    "rank_drop_retained": "AE-BD=0",
+    "literal_cells": [
+      "F04-R02", "F04-R11", "F04-R20",
+      "F05-R02", "F05-R11", "F05-R20",
+      "F06-R02", "F06-R11", "F06-R20",
+      "F07-R02", "F07-R11", "F07-R20"
+    ],
+    "literal_orbit_groups": [
+      ["F04-R02", "F07-R02"],
+      ["F04-R11", "F07-R11"],
+      ["F04-R20", "F07-R20"],
+      ["F05-R02", "F06-R02"],
+      ["F05-R11", "F06-R11"],
+      ["F05-R20", "F06-R20"]
+    ],
+    "group_fingerprints": {
+      "F04-R02|F07-R02": {
+        "resultant": [42, 3679, "6cd1bfd1f71d5fcfa7681ae1a3b55a47e9417b930d15fb6ef0832edd9bb25a62"],
+        "cores_U_V_Z": ["ddf8018384e814c2ca79b5c859256e2c17bcbd6d9f076039942da10a29a8d10c", "20443e52dc2e17d88a29b70481ad921547ceb8b4e94936e22549d73d90683673", "3abc7201bc0dc867f3562955f9b31f8e8975c9582b64460053ce4b1f20c2e4e1"]
+      },
+      "F04-R11|F07-R11": {
+        "resultant": [38, 2464, "96332dc722616fa9deec7b62ff05ea6bed0e8ee39ef602ae6c5425bb1d0ea0fb"],
+        "cores_U_V_Z": ["44b86befa91b53ebf14d4a722df2de7ca9912ea705d6a605ed46995e328ae030", "c1971c94f9cda4b58e029475e06b14e9cdbac90503343aa474f6955b8eb8244d", "83332f506d9096bd02427084ac50011d4fe6c561394964988869ac559d83c75d"]
+      },
+      "F04-R20|F07-R20": {
+        "resultant": [42, 3679, "6cd1bfd1f71d5fcfa7681ae1a3b55a47e9417b930d15fb6ef0832edd9bb25a62"],
+        "cores_U_V_Z": ["99890415692db75c2e3fa3c8430f0abf2b23578270c3f0713072420c58fd87c9", "bface961aaf2afd8eab4e8f5c468ae9313d71027e1bfda928a7799e9f5a9cee9", "df47818456a378fa010195f86d1c88ea3caa42cca85438c20783c1ac178f781e"]
+      },
+      "F05-R02|F06-R02": {
+        "resultant": [42, 3679, "8adb5b853956a140502a9047973aa5f888869b185c07558de98e1641e4810df1"],
+        "cores_U_V_Z": ["3d7651651ab13204d5156c0a15d3394d73cce2e0a3974d8e68fe431075a4af0d", "12ae224781902a568c4d9849e65c6b1146df61f07e5eb889f31a8bd1b1de7e66", "7c9cfc5c42cf483696b62d9677fb00f9e2b541008856415ec817f32f28fe1fb4"]
+      },
+      "F05-R11|F06-R11": {
+        "resultant": [38, 2464, "c3f94974d8160c5bb64e897c383569990b227a75aab02903ae9736067869f440"],
+        "cores_U_V_Z": ["32c3a948917cf1ed2d17eb80b2eed0acd41f8a7e9f58329ecf18de654522c2af", "2d023795ba50d9cd7b3503297947ce75344a39a67a2e30059b1d96ea2d0d2334", "84bb21f1ed84a48faf38b830ca55144e4701636bf6bd50734872222293d0407d"]
+      },
+      "F05-R20|F06-R20": {
+        "resultant": [42, 3679, "8adb5b853956a140502a9047973aa5f888869b185c07558de98e1641e4810df1"],
+        "cores_U_V_Z": ["1a7a304f730e6c8bedd969b68cbc86f558b5ef78f1d9737f0017aa523d1ed74c", "b9f648d48818671def997d5a10fb96604b49ae3645cde194f6768f889d9f3af2", "5bfe9db2dde73d44faddc79bf8289fbd688b3bb74eb70c3623fcd828e5bc577e"]
+      }
+    }
+  },
+  "independent_symbolic_check": {
+    "tool": "Wolfram Language",
+    "identities_checked": 5,
+    "result": [0, 0, 0, 0, 0]
+  },
+  "conclusion": {
+    "newly_empty_cells": 2,
+    "remaining_open_cells": 16,
+    "quadratic_route_cells": 12,
+    "quadratic_route_orbits": 6,
+    "K3_closed": false,
+    "KoalaBear_row_closed": false
+  },
+  "terminal": "TWO_BALANCED_CELLS_EMPTY_TWELVE_QUADRATIC_ROUTES_COMPILED",
+  "payload_sha256": "4adc4187bb5794ed70fce122055fb94916974c1adacf9451237aff002ebfd63e"
+}

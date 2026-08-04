@@ -4391,3 +4391,34 @@ Keep entries concise and link to the relevant files.
   deletion and attack the eighteen residual fixed-moving cells in literal
   atlas order.  Stop at exact emptiness, a named same-record owner, or an
   explicit primitive route cut; do not claim K3 or row closure.
+
+### 2026-08-04 - Close two fixed-moving cells and compile the quadratic residual
+
+- **Agent/model:** Codex generator with independent Wolfram symbolic replay;
+  fresh proof review still required.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_aligned_positive_fixed_frontier_v1.md`,
+  its exact Sage compiler, fail-closed Python verifier, compact JSON
+  certificate, and this log.
+- **Status:** PROVED exact local lemma / REVIEW REQUIRED / two fixed-moving
+  balanced cells empty / sixteen aligned-positive cells remain / K3 open.
+- **What is being added:** All six literal `F00/F01` cells receive exact
+  named-open localization.  `F00-R11` and `F01-R11` are empty with
+  nilpotence index three; the other four schemes survive in dimension two.
+  The twelve `F04/F05/F06/F07` cells are compiled literally into the exact
+  quadratic compatibility `U^2-VZ=0`.  On `V!=0` their common moving root is
+  `w=-U/V`; the `V=0` rank drop is retained.  Direct hashes collapse the
+  twelve cells to six two-cell fingerprint orbits.
+- **Independent check:** Wolfram Language returned five zeros for the
+  generic resultant, linear-combination, reconstructed-evaluation, and
+  coefficient-syzygy identities.  The local SymPy verifier independently
+  replays the same identities and rejects 11/11 hostile mutations.
+- **Route cut:** A monolithic four-variable `F04-R02` Groebner basis and the
+  high-degree generic three-variable basis both remained nonterminal.  They
+  are not used.  The packet banks only the exact two-cell deletion and the
+  division-safe quadratic route, with no owner, charge, or ledger movement.
+- **What to do next:** Attack the four `F00/F01-R02/R20` survivors with full
+  quotient parity.  For each of the six quadratic orbits, split `V!=0` from
+  `U=V=0`, substitute into the remaining quartics only on the generic
+  branch, and terminate each component in emptiness, a named owner, or an
+  explicit primitive route.
