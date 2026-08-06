@@ -30,6 +30,682 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-06 - Diagonal c2 (1,1,2) aligned-positive unramified block: all six cells closed (export)
+
+- **Agent/model:** Claude Opus 5 (export-draft pilot), exporting the audited
+  Codex worker campaign (roadmap-r3 rate-half work cycle 14, 2026-07-31).
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_diagonal_c2_112_aligned_positive_unramified_six_cell_closure_v1.md`,
+  its canonical JSON certificate
+  (`experimental/data/certificates/kb-mca-v4-m2-r4-diagonal-c2-112-aligned-positive-unramified-six-cell-closure-v1/`)
+  and fail-closed verifier
+  (`experimental/scripts/verify_kb_mca_v4_m2_r4_diagonal_c2_112_aligned_positive_unramified_six_cell_closure_v1.py`),
+  a status addendum (section 7) to
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_u2_saturated_112_q_slice_exclusions_v1.md`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **Claim:** all six aligned-positive **unramified** (`w != 0`) allocation
+  cells of the diagonal `c2 (1,1,2)` source line are excluded over
+  `F_(2130706433^6)`. The cell set is the exact product
+  `{fixed-moving, moving-moving} x {same, swap, mixed}`. Two cells
+  (`MM-same`, `MM-swap`) are empty already at the necessary q-slice identity;
+  the other four (`MM-mixed`, `FM-same`, `FM-swap`, `FM-mixed`) have q-slice
+  survivors — 4, 4, 1 and 4 respectively — and are excluded by the two full
+  colored quotient norm identities. Retained frontier inside the block:
+  none. Exact over the deployed prime and its degree-six extension; **not
+  characteristic-uniform**. Explicit nonclaims in the note: no 36-cell atlas,
+  no outer/transverse frontier, terminal types `(2,4,2)` and `(2,8,1)`
+  untouched, no near-aligned branch, no `rate_half_band_closure`, K3, LIST,
+  MCA or Prize closure.
+- **How it is useful:** this is exactly the six-cell frontier that
+  `kb_mca_v4_m2_u2_saturated_112_q_slice_exclusions_v1.md` `(6.1)` lists as
+  open and whose verifier still prints `remaining_unramified=6`. The new
+  section-7 addendum keeps that packet-local counter intact (it is pinned by
+  that packet's own certificate and tamper self-test) and records the
+  tree-level figure alongside it: packet scope 6, canonical DAG **0**.
+- **Correspondence discipline:** section 4 of the note records that a
+  neighbouring contributor lane is working an "aligned-positive unramified
+  six-cell block" with all four qualifiers matching ours (`m=2`, diagonal,
+  `c2(1,1,2)`, aligned-positive), and states in terms that
+  **correspondence is probable, not established** — the partitions are on
+  different axes and no cell-for-cell mapping row exists on either side. No
+  identity is asserted, nothing external was replayed, and our half of the
+  mapping row is printed so the other half can be written against it.
+- **Replay:** every pinned node's `verify.py` and `verify_audit.py` replayed
+  PASS on 2026-08-06 in the canonical checkout under `tools/ramguard`, and
+  the recorded PASS lines (including the `survivors=` fields) are pinned in
+  the certificate and cross-checked by the export verifier. The FLINT-backed
+  exact component verifiers were also re-run: **11 PASS**, whose own printed
+  counters (`norm_factors=28/26/25/10`, `survivors=4/1/4/0`,
+  `deployed_orientations=4 rejected=4`, `branches=20 endpoints=5 boundary=5`)
+  are cross-checked line by line against the census; **4 did not complete**
+  (`moving_same`/`moving_swap` `verify_exact.py`, `moving_mixed`
+  `verify_exhaustive.py`/`verify_survivors.py`) because each imposes its own
+  internal 60-second per-stage cap that this host exceeded — a host-speed
+  observation recorded verbatim in the note and certificate, not a rejection
+  and not a failed proof. The export verifier itself is pure python and
+  fail-closed; it rejected **27/27** hostile mutations in a tamper harness
+  (dropped cell, faked closure count, non-re-adding endpoint split,
+  survivor/audit disagreement, wrong route, off-common grid product mismatch,
+  degree-7 point claimed embeddable, an untested survivor claimed rejected,
+  an off-common endpoint claimed non-boundary, a ledger silently raised to
+  match a stale PASS line, correspondence upgraded to established, mapping
+  row claimed present, nonclaim caveat removed, unpinned integration commit,
+  non-completion reason stripped of its honest label, ...).
+- **What to do next:** the cell-for-cell mapping row owed to the neighbouring
+  lane since 2026-07-31 (our half is in section 4); then the remaining
+  export-eligible items — positive `433-1b` cells 3 and 6 (wave 45) and the
+  wave-46 band-flip narrative. The residual `rate_half_band_closure` frontier
+  below this block is packet and source-row assembly, not another cell of
+  this allocation ledger.
+
+### 2026-08-03 - Positive 433-1b cell 14: complete closure (export)
+
+- **Agent/model:** Claude Fable 5 (coordinator), exporting the audited
+  Codex worker campaign (waves 42-43).
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_433_1b_cell14_complete_closure_v1.md`,
+  its canonical JSON certificate and fail-closed verifier, the three-loop
+  atlas workboard status addendum, and `experimental/agents-log.md`.
+- **Claim:** role cell 14 of the deployed positive `433-1b -> O0a`
+  outside atlas is empty — all 1,680 raw cases (4 signs x 4 lanes x 7
+  missing records x 15 matchings) excluded by four disjoint proved
+  families (linear-pair 144, rank-one 960, fixed-a chain 432, all-mixed
+  144; retained frontier none), plus the wave-42 structural theorem
+  making the `(-1,1)` kernel normalization global on the guarded curve.
+  Exact over `F_2130706433`; not characteristic-uniform. Explicit
+  nonclaims in the note (no other cell, route, K3, band, LIST, MCA, or
+  Prize closure).
+- **How it is useful:** the first fully closed role cell of the
+  `433-1b -> O0a` outside atlas on workboard item K3; fixes the census
+  and matching classification that the remaining cells reuse.
+- **What to do next:** cell 3 (structure + the complete DE block are
+  banked at the same pin); the worker's recorded next steps are the
+  `xi=3` lower-degree elimination or the `pairing=4` backend test.
+
+### 2026-08-02 - Positive 433-1a complete route exclusion (aggregation export)
+
+- **Agent/model:** Claude Fable 5 (coordinator), exporting the audited
+  Codex worker campaign (waves 38-41).
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_433_1a_complete_route_exclusion_v1.md`,
+  its canonical JSON certificate and fail-closed verifier, the three-loop
+  atlas workboard status addendum, and `experimental/agents-log.md`.
+- **Claim:** the complete deployed positive residual route `433-1a -> O0b`
+  is empty — ten algebraic representatives, both signed lanes, 60/60 raw
+  rows, each PROVED excluded (per-cell mechanisms: root-sign orbit
+  exclusions, the cell-five program, genus-3/genus-1 plane-kernel
+  reductions with signed-pair guard factorizations, exact norm
+  factorizations).
+- **Verification:** the aggregate node's fail-closed verifier (checks all
+  eleven pinned PROVED nodes, dependency edges, and the census) replayed
+  PASS 2026-08-02 in the canonical public checkout
+  (<https://github.com/AllenGrahamHart/rs-mca-prize-dag>, commit
+  `2f7604fc`); the exported self-contained verifier replays the census,
+  certificate, and note ledger locally.
+- **Scope guard:** closes one coordinate route only; no other route, K3,
+  `rate_half_band_closure`, LIST, MCA, or Prize result is closed. `433-1b`
+  is recorded as majority-closed at the same audit pin with the cell-14
+  unit chart open; nothing past the pin is claimed.
+
+### 2026-07-30 - Residual cubic geometric realization fence
+
+- **Agent/model:** Codex, with exact rational-map and divisor identities.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree3_geometric_realization_fence_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED GEOMETRIC ROUTE FENCE. The fixed endpoint pencil,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** One explicit `b=-1` genus-zero family realizes
+  all abstract common-function, pole, quartic, star, and locator gates.
+- **How it is useful:** It prevents further geometry-only elimination work
+  on `n=3` and identifies active-record/owner semantics as load-bearing.
+- **What to do next:** Compare the fixed active source pencil with the
+  special model or compile its degree-six recurrence into a first owner.
+
+### 2026-07-30 - Residual degree-six common-pole exclusion
+
+- **Agent/model:** Codex, with exact projective binary-sextic classification
+  and quadratic-field resultants.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree6_common_pole_exclusion_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED DEGREE-SIX PROFILE EMPTY. The `n=3` profile, full-V4
+  type, K3, and every payment remain open.
+- **What is being added:** The common six-pole divisor and forced branch
+  twist are incompatible in every standard and exceptional Dickson-six
+  projective class.
+- **How it is useful:** It removes one of the final two full-V4 dihedral
+  profiles without a speculative source-locator assumption.
+- **What to do next:** Classify two simultaneous pairs of generic cubic
+  fibers and impose the degree-ten common outer map and complete locators.
+
+### 2026-07-29 - Residual source-cover twist classifier
+
+- **Agent/model:** Codex, with exact quadratic square-class and branch-place
+  parity analysis.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_residual_source_cover_twist_classifier_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED SOURCE-COVER TWIST CLASSIFIER. The profiles `n=3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** The relative endpoint branch preimages and source
+  genus are exact: genus zero iff `b^2=a+2`, genus one otherwise.
+- **How it is useful:** It removes an untracked projective twist from the
+  source-cover branch analysis without conflating the endpoint coordinates.
+- **What to do next:** Impose the common degree-30 function and six exact
+  order-five pole fibers through the forced branch matching.
+
+### 2026-07-29 - Residual quartic singularity atlas
+
+- **Agent/model:** Codex, with quadratic-function-field square classes and
+  exact Hessian/delta replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_residual_quartic_singularity_atlas_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED COMPLETE COEFFICIENT-GEOMETRY ATLAS. The profiles
+  `n=3,6`, full-V4 type, K3, and every payment remain open.
+- **What is being added:** Every allowed `Q_(a,b)` is irreducible rational;
+  the singularities are three nodes or one node plus a tacnode.
+- **How it is useful:** It proves that factorization and genus have no
+  remaining leverage and prevents an unproductive coefficient audit.
+- **What to do next:** Parameterize the atlas and impose the six order-five
+  pole fibers and complete-source locator equations.
+
+### 2026-07-29 - Residual coefficient-quartic one-parameter normal form
+
+- **Agent/model:** Codex, with exact symmetric-coordinate transport and
+  source-cover branch-place replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_residual_coefficient_quartic_normal_form_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED ONE-PARAMETER NORMAL FORM. The profiles `n=3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** The coefficient image is the canonical quartic
+  pullback of the sibling conic. Exact branch alignment reduces its six
+  coefficients to `Q_(a,b)`, with `a=-1` or `1` and one parameter `b`.
+- **How it is useful:** It replaces an arbitrary plane-quartic realization
+  search by two explicit one-variable families without losing the relative
+  endpoint coordinate.
+- **What to do next:** Classify exceptional factorization in `b`, then impose
+  the six-pole and complete-source locator equations.
+
+### 2026-07-29 - Residual full-V4 dihedral star-graph rigidity
+
+- **Agent/model:** Codex, with exact regular-dihedral coset replay and
+  independent complete-source degree audit.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_residual_star_graph_rigidity_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED RESIDUAL GRAPH RIGIDITY. The profiles `n=3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** The second endpoint lift forces complementary
+  cross-edge orientations. The complete graphs are two `K_(2,2,2)`
+  components and the two-point blow-up of `C6`, both with 24 unit weights.
+- **How it is useful:** It removes all residual orientation ambiguity and
+  proves that defect counting has no further leverage on these profiles.
+- **What to do next:** Solve the birational-quartic coefficient realization
+  problem together with the genus-zero/genus-one V4 branch passport.
+
+### 2026-07-29 - Full-V4 degree-two dihedral source-star exclusion
+
+- **Agent/model:** Codex, with exact regular-V4 coset incidence and exhaustive
+  four-bin defect replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree2_source_star_exclusion_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED DEGREE-TWO PROFILE EMPTY. The factor degrees `3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** One generic `D2` quotient pole has `K2,2`
+  reflection incidence. The normalized source cross-edge lemma then forces
+  eight units onto four vertices, with defect at least four above budget
+  three.
+- **How it is useful:** It deletes a second of the four exact full-V4 factor
+  profiles and leaves only the three- and six-cycle incidence problems.
+- **What to do next:** Analyze global orientation compatibility around those
+  cycles or impose the source-cover branch passport and coefficient equations.
+
+### 2026-07-29 - Full-V4 degree-five dihedral source-star exclusion
+
+- **Agent/model:** Codex, with exact `D5` coset and source-multiplicity
+  replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree5_source_star_exclusion_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED DEGREE-FIVE PROFILE EMPTY. The factor degrees `2,3,6`,
+  full-V4 type, K3, and every payment remain open.
+- **What is being added:** The totally ramified `n=5` pole forces two
+  degree-two complete-source pullbacks onto one matching star vertex, giving
+  weight four against the proved maximum three.
+- **How it is useful:** It is the first actual source-star deletion inside
+  the recurrent inner-degree-two tower and narrows its hardest type to three
+  generic-pole profiles.
+- **What to do next:** Compile the induced two-, three-, and six-cycle
+  incidence on the source-star equations and seek a contradiction or
+  same-record owner.
+
+### 2026-07-29 - Full-V4 m2 dihedral outer-factor reduction
+
+- **Agent/model:** Codex, with exact tame Riemann--Hurwitz and pole-divisor
+  replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_outer_factor_reduction_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/agents-log.md`, and `agents.md`.
+- **Status:** PROVED FOUR DICKSON/CHEBYSHEV FACTOR DEGREES. No factor degree,
+  inner-degree-two type, owner, or payment is closed.
+- **What is being added:** The full-V4 outer component is rational in both
+  source-genus regimes. Its two degree-two projections force a finite
+  dihedral factor, and the six-pole sieve leaves `n=2,3,5,6`.
+- **How it is useful:** It replaces arbitrary recurrent degree-30 outer maps
+  in the hardest `m=2` type by four exact geometric profiles.
+- **What to do next:** Impose the complete source-star incidence on the four
+  profiles, beginning with the exceptional totally ramified `n=5` row.
+
+### 2026-07-30 - Rigid S6 [5,6,2] pair quotient and pole descent
+
+- **Agent/model:** Codex, with exact shared `Fraction` polynomial primitives.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m4_s6_562_pair_quotient_normal_form_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED SECOND RIGID NORMAL FORM AND POLE DESCENT.  Active-fiber
+  and source-star incidence remain open.
+- **What is being added:** A cubic-adjoint normalization of the unordered-pair
+  quintic prints the second rational degree-15 map and proves its three
+  order-five points split over the KoalaBear field.
+- **How it is useful:** Two of the three rigid `m=4` covers are now explicit;
+  coefficient and pole descent delete neither.  This remains a local K3 input,
+  not a row-paying atom.
+- **What to do next:** Construct the quadratic-field `A6 [5,4,2]` cover, then
+  impose the fixed active-fiber and quartic source-star conditions in all
+  three rigid forms.
+
+### 2026-07-30 - Rigid S6 [6,5,2] pair quotient and pole descent
+
+- **Agent/model:** Codex, with an independent exact `Fraction` replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m4_s6_652_pair_quotient_normal_form_v1.md`,
+  its canonical JSON certificate and fail-closed verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED ONE RIGID NORMAL FORM AND POLE DESCENT.  The active
+  15-point fiber, quartic source-star incidence, and complete `m=4` type
+  remain open.
+- **What is being added:** The unordered-pair resolvent of the pinned rational
+  degree-six BelyiDB companion is normalized through a rational conic.  This
+  prints the degree-15 map, checks all branch fibers, and proves its three
+  order-five points split over `F_(2130706433^6)`.
+- **How it is useful:** It replaces one abstract rigid passport by a directly
+  auditable K3 input and proves that coefficient or pole descent cannot delete
+  it.  It is not yet a row-paying atom.
+- **What to do next:** Construct the rigid `S6 [5,6,2]` and `A6 [5,4,2]`
+  pair quotients, then impose the fixed active-fiber and quartic source-star
+  conditions in all three forms.
+
+### 2026-07-29 - Inner-degree-4 A6/S6 genus-zero passport reduction
+
+- **Agent/model:** Codex, with a complete 720-element class and generating
+  tuple census.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m4_a6s6_genus_zero_passport_reduction_v1.md`,
+  its canonical JSON certificate and fail-closed Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED FOUR GEOMETRIC PASSPORTS.  Field descent, split fibers,
+  source-star incidence, and the complete `m=4` type remain open.
+- **What is being added:** The mandatory `5^3` pole leaves residual branch
+  index 16.  Nine parity-compatible class budgets exist, but five generate
+  only `A5` or `S5`.  Exactly one `A6` and three `S6` passports generate the
+  required outer group.
+- **How it is useful:** It replaces arbitrary degree-15 outer maps by three
+  rigid three-point covers and one one-parameter four-point Hurwitz family.
+- **What to do next:** Construct or classify the three rigid covers first,
+  then test the challenge-field split zero/pole fibers and quartic
+  source-star incidence before attacking the four-point family.
+
+### 2026-07-29 - Inner-degree-4 outer A6/S6 route cut
+
+- **Agent/model:** Codex, with exact primitive-catalogue custody and an
+  explicit two-subset action replay.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m4_outer_a6s6_route_cut_v1.md`,
+  its canonical JSON certificate and fail-closed Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED ONLY THE `(r,delta)=(8,2)` OUTER `A6/S6` TYPE SURVIVES
+  AT INNER DEGREE 4.  That type and every lower destination remain open.
+- **What is being added:** Primitive degree-15 outer monodromy has no
+  nontrivial subdegree 1, 2, or 4.  The resulting proper-factor routes have
+  endpoint inner degree 12, already closed, or 20, excluded by
+  Riemann--Hurwitz.  The `A6/S6` two-subset actions have subdegrees `1,6,8`,
+  and a 5-cycle has pole type `5^3`, so the `(8,2)` type is retained.
+- **How it is useful:** It removes three of the four `m=4` types and reduces
+  the transverse frontier from 12 to 9 types in degrees 2, 3, and 4.
+- **What to do next:** Classify genus-zero branch-cycle passports for the
+  surviving `A6/S6` degree-15 outer map with its prescribed `5^3` pole
+  cycle, then reconcile those passports with the source-star incidence.
+
+### 2026-07-29 - Inner-degree-6 Scott-Cartesian degree-two router
+
+- **Agent/model:** Codex, with exact transitive-group custody and explicit
+  reconstruction of four wreath chains.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m6_scott_cartesian_degree2_router_v1.md`,
+  its canonical JSON certificate and fail-closed Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED INNER-DEGREE-6 ROUTED TO DEGREE 2 OR EXCLUDED DEGREE 5.
+  Degree (2), the (u=2) branch, K3, KoalaBear row, and all payments
+  remain open.
+- **What is being added:** Every kernel-free primitive degree-six endpoint
+  chain has an intermediate block of size five.  For nontrivial kernel, the
+  quartic orbit forces Scott-compatible columns of size five or ten; the
+  size-ten column has a forbidden same-fiber subdegree four and factors to
+  degree two or five.
+- **How it is useful:** It removes all six (m=6) types as independent
+  producers and reduces the transverse frontier from (18) to (12)
+  types in degrees (2,3,4).
+- **What to do next:** Classify inner degree (4) using the actual quartic
+  suborbit before expanding endpoint records.
+
+### 2026-07-29 - Inner-degree-10 Scott-strip lower-degree router
+
+- **Agent/model:** Codex, with exact primitive-catalogue custody, a
+  \(720\)-permutation flag-action replay, and fail-closed mutation tests.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m10_scott_strip_lower_degree_router_v1.md`,
+  its canonical JSON certificate and Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED INNER-DEGREE-10 ROUTED STRICTLY TO LOWER DEGREES.
+  The destination degrees \(2,3,6\), the \(u=2\) branch, K3, KoalaBear row,
+  and all ledger payments remain open.
+- **What is being added:** The kernel-free case is reduced to explicit
+  degree-\(60\) flag actions of \(A_6\) and \(S_6\), whose point-stabilizer
+  subdegrees do not include four.  In the nontrivial-kernel case, Scott
+  supports of size one contradict the actual transverse size-four suborbit,
+  while support sizes \(2,3,6\) preserve columns and force a second
+  decomposition of that smaller inner degree.
+- **How it is useful:** It removes all four \(m=10\) types as independent
+  terminal producers and reduces the global transverse frontier from
+  \(22\) to \(18\) types in inner degrees \(2,3,4,6\), without deleting or
+  paying any destination row.
+- **What to do next:** Apply the same kernel/strip classification to inner
+  degree \(6\), explicitly separating kernel-free actions from strict
+  lower-degree routes.
+
+### 2026-07-29 - Inner-degree-12 diagonal-socle close
+
+- **Agent/model:** Codex, with exact Scott-strip, degree-12 primitive-group,
+  paired-`M12`, and source-custody replays.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m12_diagonal_socle_degree5_close_v1.md`,
+  its canonical JSON certificate and fail-closed Python verifier,
+  `experimental/experiments.tex`, `experimental/agents-log.md`, and
+  `agents.md`.
+- **Status:** PROVED INNER-DEGREE-12 ROW EMPTY.  The \(u=2\) branch, K3,
+  KoalaBear row, and all ledger payments remain open.
+- **What is being added:** The derived block kernel is forced to be one full
+  diagonal simple socle; the actual size-four suborbit deletes the Dickson
+  \(r=2\) row and synchronizes all five degree-12 actions.  The diagonal
+  normalizer then preserves twelve blocks of size five, forcing a secondary
+  inner-degree-five decomposition that the universal source-fiber adapter
+  already excludes over the challenge field.
+- **How it is useful:** It deletes both remaining \(m=12\) transverse types,
+  makes all six printed outer families producer-free, and reduces the global
+  transverse frontier from \(24\) to \(22\) types in inner degrees
+  \(2,3,4,6,10\), without a record census or ledger payment.
+- **What to do next:** Apply source-coupled actual-producer deletion or
+  same-record ownership to the remaining \(22\) transverse types; do not
+  continue the superseded \(m=12\) coefficient classifier.
+
+### 2026-07-29 - Inner-degree-12 outer normal-form compiler
+
+- **Agent/model:** Codex, with exact branch-cycle, quadratic-field, and
+  critical-value integration replays.
+- **Files added or changed:**
+  experimental/notes/frontier-adjacent/kb_mca_v4_m12_outer_normal_form_compiler_v1.md,
+  the canonical JSON certificate, its fail-closed Python verifier,
+  experimental/experiments.tex, and agents.md.
+- **Status:** PROVED GEOMETRIC NORMAL-FORM COMPILER.  No family,
+  inner-degree-12 type, \(u=2\) branch, K3 item, or row is closed; no ledger
+  field changes.
+- **What is being added:** The \(r=4\) survivor has outer genus at most one.
+  A complete tame \(S_5\) branch-cycle replay leaves five \(A_5/S_5\)
+  profiles and excludes \(\operatorname{AGL}(1,5)\).  The \(r=2\) row is
+  Dickson/dihedral.  Exact integration compiles both survivors into five
+  rigid affine classes and one one-parameter family.
+- **How it is useful:** It replaces arbitrary degree-five outer-map search
+  by six printed geometric families and exposes one precise missing
+  interface: challenge-field affine classification of the outer
+  coefficients recovered from the canonical source pencil.
+- **What to do next:** Build that fail-closed coefficient classifier without
+  silently descending geometric normalizations, then impose the split
+  active-zero fiber and actual quartic/source-star incidence.
+
+### 2026-07-29 - Inner-degree-12 outer-subdegree route cut
+
+- **Agent/model:** Codex, with the proof isolated and independently checked
+  against the exact source-pencil compiler interface.
+- **Files added or changed:**
+  experimental/notes/frontier-adjacent/kb_mca_v4_m12_outer_subdegree_route_cut_v1.md,
+  the canonical JSON certificate, its fail-closed Python verifier,
+  experimental/experiments.tex, and agents.md.
+- **Status:** PROVED INNER-DEGREE-12 ROUTE CUT.  The two surviving types,
+  inner degree \(12\), \(u=2\), K3, and the KoalaBear row remain open; no
+  ledger field changes.
+- **What is being added:** The degree-five outer row initially has types
+  \((r,\delta)=(1,48),(2,24),(3,16),(4,12)\).  Complete primitive
+  degree-five subdegrees exclude \(r=3\).  The \(r=1\) component would make
+  the cover cyclic and force a \(K\)-normal form \(a x^5+b\), incompatible
+  with five distinct simple \(K\)-rational zeros because fifth powering
+  permutes \(K=\mathbf F_{p^6}\).  Only \((2,24)\) and \((4,12)\) survive.
+- **How it is useful:** It deletes two exact transverse types without a
+  record census or carrier hypothesis and reduces the global transverse
+  frontier from \(26\) to \(24\) types.
+- **What to do next:** Impose the inherited quartic/source-star incidence on
+  the two survivors and terminate each in an actual-producer contradiction,
+  a strict coarser decomposition, or a same-record
+  carrier/data/explaining-polynomial/slope owner.
+
+### 2026-07-29 - Degree-60 source-pencil rank compiler and transverse route cut
+
+- **Agent/model:** Codex, with the mathematical design challenged by a
+  separate agent, exact arithmetic independently replayed in Sage/GAP and
+  through the Wolfram plugin, and fresh proof and certificate reviews
+  returned GREEN before publication.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON certificate,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED EXACT PER-RECORD COMPILER / SAME-FIBER ROUTE CUT.  The
+  transverse outer rows, \(u=2\), K3, and the KoalaBear row remain open; no
+  ledger field changes.
+- **What is being added:** The six surviving decomposition profiles have
+  \(32099\) canonical raw source templates per supplied endpoint record.
+  Exact coefficient ranks and active symmetric-power syndromes decide every
+  template, with a reduced \(49\times5\), 44-syndrome test in degree twelve.
+  After strict right-factor routing, a bidegree-\((4,4)\) actual component
+  cannot lie in the terminal same-fiber divisor: the complete primitive
+  catalogues in degrees \(2,3,4,6,10,12\) have no subdegree four.  Every
+  survivor therefore emits a non-diagonal outer correspondence satisfying
+  \(\delta r=4m\) and \(\delta\le m^2\).
+- **How it is useful:** It replaces generic rational-map discovery by a
+  deterministic source-bound compiler and identifies the precise remaining
+  geometric object.  Exact deployed-field divisor controls show that
+  source/active divisor gates alone cannot delete the prime-degree
+  \(m=2,3\) rows.  The controls are not actual endpoint components or
+  received-line witnesses.
+- **What to do next:** Build one source-coupled transverse outer compiler for
+  the finite \((m,r,\delta)\) rows.  Impose the inherited quartic/source-star
+  incidence and terminate every row in an actual-producer contradiction,
+  strict coarser decomposition, or chronology-valid
+  carrier/data/explaining-polynomial/slope owner.
+
+### 2026-07-29 - Degree-60 decomposition source-fiber adapter
+
+- **Agent/model:** Codex, with the divisor/profile statement audited by a
+  separate agent, exact arithmetic replayed independently in Sage and through
+  the Wolfram plugin, and the degree-thirty refinement separately checked.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON certificate,
+  the rejected parameter/carrier argument in `experimental/dead_ends/`,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED SOURCE-FIBER ADAPTER / DEGREE-FIVE DELETION /
+  DEGREE-THIRTY-TO-SIX REFINEMENT. The \(u=2\) branch and KoalaBear row remain
+  open, and no ledger field changes.
+- **What is being added:** For every geometric decomposition
+  \(f=F\circ h\), the sixty simple active zeros are complete unramified
+  \(h\)-fibers.  The twelve order-five source poles split exactly into
+  complete unramified fibers and index-five exceptional fibers, giving the
+  eight-row profile table and an exact binary source-pencil equivalence.
+  The \(m=5\) profile is impossible over \(K=\mathbf F_{p^6}\): its two
+  split branch points give a fifth-power normal form, while fifth powering
+  is bijective on \(K\) and cannot have a reduced five-point \(K\)-fiber.
+  The \(m=30\) profile factors through an inner degree-six map, and the
+  \(m=12\) profile has one canonical pencil membership test.  Only
+  \(m=2,4\) divide \(2^{21}\), but this is explicitly conditional on an
+  unproved same-record parameter-to-carrier bridge.
+- **How it is useful:** It terminates two of the eight decomposition rows and
+  distinguishes a locator-level complete-fiber theorem from the still-open
+  received-data, explaining-polynomial, and slope-projection semantics.  It
+  preserves the failed prime-field argument as a dead end, and prevents a
+  parameter-line decomposition from being mislabeled as a carrier quotient
+  payment.
+- **What to do next:** Run one exhaustive source-pencil compiler over the
+  exact partitions for \(m=2,3,4,6,10\) and the canonical \(m=12\) pencil.
+  Terminate each candidate geometrically or emit an explicit survivor, then
+  require a separate same-record carrier/data/slope bridge.  Do not start
+  \(u=3\) or move the ledger.
+
+### 2026-07-29 - Degree-60 primitive-subdegree-four \(u=2\) route cut
+
+- **Agent/model:** Codex, with the complete-source quartic defect lemma
+  isolated by a separate agent, the primitive catalogue replayed through
+  Sage/GAP, all nine explicit groups independently recomputed with the
+  Wolfram plugin, and fresh adversarial proof and certificate audits returned
+  GREEN before publication.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.md`,
+  matching Python, Sage, and Wolfram replays, the canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED CLASSIFICATION-BACKED ROUTE CUT. The primitive residual
+  birational-quartic \(Q=6,s=6,u=2\) branch is empty. The decomposable
+  \(u=2\) branch and the KoalaBear row remain open, and no ledger field
+  changes.
+- **What is being added:** Complete-source saturation puts all quartic pole
+  units on the twelve-line source star and leaves at most three units of
+  repeated-vertex defect. After the proved line/conic exclusions, every
+  residual actual birational-quartic \(u=2\) component also gives a
+  subdegree-four component of the degree-\(60\) endpoint self-correspondence,
+  while none of the nine primitive degree-\(60\) groups has subdegree four.
+  Thus every residual survivor forces geometric functional decomposition.
+  Exact pole orders and Riemann--Hurwitz leave eight possible inner degrees.
+- **How it is useful:** It replaces the primitive \(985\)-orbit quartic
+  eliminant and separate repeated/ramified charts by a finite source-bound
+  decomposition adapter. The Wolfram replay independently confirms all nine
+  stabilizer-orbit rows from explicit generators.
+- **What to do next:** For inner degrees
+  \(2,3,4,5,6,10,12,30\), prove domain compatibility and descent of the
+  received data, explaining polynomial, and slope projection, or delete the
+  actual producer. Do not call geometric decomposition itself a paid owner.
+
+### 2026-07-29 - Complete-source exclusion of the \(Q=6,s=6,u=2\) conic
+
+- **Agent/model:** Codex, with the divisor argument generated separately
+  from the exact Python ledger and Sage normal-form replay, and submitted to
+  a fresh adversarial proof reviewer.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_complete_source_conic_exclusion_v1.md`,
+  the matching exact Python verifier, Sage replay, canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED COMPLETE-SOURCE REDUCED-CONIC EXCLUSION. The
+  \(Q=6,s=6,u=2\) conic-image branch closes after combining with the
+  retained ramified-common exclusions. The KoalaBear row remains open and
+  no ledger field changes.
+- **What is being added:** The twelve actual quartic source rows saturate
+  twice the complete degree-24 source divisor. This forces the complete
+  divisor to be invariant under the conic involution. The reciprocal profile
+  then contains forbidden simple involution-fixed poles; exact order-four
+  and order-five orbit residues exclude every possible deck-branch count
+  \(r=0,1,2\).
+- **How it is useful:** The exclusion is independent of pole partition,
+  signature graph, right-label identification, and the
+  \(\mathcal L=\mathcal I\)/one-swap split. It therefore bypasses the much
+  larger source-semantic component census and deletes all ten graph controls
+  in the \(2+2+2\) sector at one pre-signature terminal.
+- **What to do next:** Apply the complete-source identity to the actual
+  \(u=2\) birational-quartic coefficient map. Keep simple and repeated
+  quartic charts exhaustive; route any survivor only through a
+  chronology-valid same-record owner. Defer \(u=3\) until this branch
+  stabilizes.
+
+### 2026-07-29 - Reciprocal-P6 active source-fiber deletion
+
+- **Agent/model:** Codex, with the producer gate isolated by a fresh
+  subagent and an independent Sage implementation.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_reciprocal_p6_source_fiber_obstruction_v1.md`,
+  the matching exact Python verifier, Sage replay, canonical JSON
+  certificate, `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED WITNESS-SPECIFIC ACTIVE SOURCE-FIBER DELETION. The
+  KoalaBear row remains open and no ledger field changes.
+- **What is being added:** Every actual outgoing component must divide all
+  twelve specialized source fibers of the endpoint producer. The exact
+  reciprocal-\(P_6\) component in PR #1126 has gcd degree zero with the
+  complete source polynomial at the five common invariant sources and at
+  \(\eta=0\), so that committed local witness cannot lift to an actual
+  endpoint component. The exact gcd histogram is `{0: 6, 4: 6}`.
+- **How it is useful:** It supplies the active source-semantic deletion asked
+  for by the parent route cut and identifies a mandatory first gate for every
+  future conic compiler. It does not invalidate the parent's local
+  consistency claim, eliminate every reciprocal-\(P_6\) component, supply an
+  owner, or prove cap 68.
+- **What to do next:** Impose the all-twelve-source divisibility gate
+  uniformly in the exhaustive \(2+2+2\) component compiler, then classify
+  every surviving reciprocal, \(D_4\), \(D_5\), \(P_6\), and
+  \(P_2\sqcup C_4\) component by actual-producer deletion or a
+  chronology-valid same-record owner.
+
+### 2026-07-29 - KoalaBear reciprocal-P6 local survivor route cut
+
+- **Agent/model:** Codex, with an independent algebra replay by a fresh
+  subagent and a separate Sage implementation.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_q6_u2_reciprocal_p6_local_survivor_route_cut_v1.md`,
+  the matching Python verifier, Sage replay, canonical JSON certificate,
+  preserved false-positive note under `experimental/dead_ends/`,
+  `experimental/experiments.tex`, and `agents.md`.
+- **Status:** PROVED LOCAL SOURCE-FACET SURVIVOR / ROUTE CUT. The active row
+  remains open and no ledger field changes.
+- **What is being added:** An exact
+  \(\mathbf F_{p^2}\subset\mathbf F_{p^6}\) reciprocal-\(P_6\) component for
+  the normalized KoalaBear \(Q=6,u=2\) local equations. It passes the
+  split-pole, exact-gcd-graph, endpoint-deck, reciprocal-involution,
+  degree-two reconstruction, twelve weighted-GRS, and twelve-source-label
+  checks. An earlier base-field resultant candidate is explicitly rejected
+  and preserved because it failed the three nonanchor \(P\)-equations.
+- **How it is useful:** It closes the direct-local-elimination route: the
+  extracted source-facet and reciprocal gates alone do not make the
+  reciprocal-\(P_6\) branch empty. It does not supply a received line, bad
+  slope, active first-match survivor, owner exclusion, or row counterexample.
+- **What to do next:** Bind this exact local component to the active
+  received-line/selector producer. Prove that the omitted semantics delete it
+  or emit a chronology-valid same-record owner carrying its actual slope.
+  Continue to retain the other reciprocal, \(D_4/D_5\), \(P_2+C_4\), and
+  quartic branches in the exhaustive K3 scope.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
@@ -3682,3 +4358,178 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+### 2026-07-29 - KoalaBear cubic endpoint-cofactor interpolation compiler
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree3_endpoint_cofactor_interpolation_compiler_v1.md`,
+  `experimental/scripts/verify_kb_mca_v4_m2_r2_dihedral_degree3_endpoint_cofactor_interpolation_compiler_v1.py`,
+  its fail-closed JSON certificate, `agents.md`, and this log.
+- **Status:** PROVED exact compiler / one admissible packet deleted / K3 open.
+- **What is being added:** Actual divisibility by the residual cubic
+  component is equivalent to a full-support kernel in one explicit
+  `38 x 12` source-cofactor matrix. A pinned `F_47` `s=6` locator packet
+  satisfies the inherited ownership, pole-graph, and four-edge color gates
+  but has a nonzero rank-twelve minor. Every full-support kernel also induces
+  an exact multiplicative source-star transport with cycle holonomy one; the
+  packet's six canonical square products are
+  `11,26,17,2,41,31 mod 47`, all nonidentity.
+- **Exact sparse converse:** Retaining all three pair gains in each of the 24
+  star/owner triples gives a 12-vertex gain multigraph. A full-support kernel
+  exists if and only if every closed walk has gain product one.
+- **How it is useful:** Replaces the open-ended fixed-active-pencil
+  instruction by one necessary-and-sufficient endpoint interpolation gate
+  and a local four-edge obstruction, and proves that the abstract geometric
+  realization need not extend to an endpoint source form.
+- **What to do next:** Classify admissible locator ownerships modulo the two
+  `K_(2,2,2)` star automorphisms and source deck involution, then prove one
+  nonidentity cycle in the complete gain graph in every case, fall back to
+  the full stacked-rank gate, or reconstruct a surviving cofactor into the
+  fixed active/block record and owner chronology.
+
+### 2026-07-30 - KoalaBear cubic source-facet and full-V4 exclusion
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r2_dihedral_degree3_source_facet_exclusion_v1.md`,
+  `experimental/scripts/verify_kb_mca_v4_m2_r2_dihedral_degree3_source_facet_exclusion_v1.py`,
+  its fail-closed JSON certificate, `agents.md`, and this log.
+- **Status:** PROVED `n=3` EMPTY / FULL-V4 `m=2` TYPE EMPTY / K3 OPEN.
+- **What is being added:** Corollaries 9.25 and 9.27 of the pinned
+  equality-wall theorem give `K subset I` with sizes five and six and exact
+  horizontal outgoing root set `I^c` over every `k in K`.  In the exact
+  cubic source-star graph, the two stars over that coordinate fiber form
+  the complement `U_k` of one deck pair `P_k`.  Since `k in I` is excluded
+  from `U_k` but lies in the same common-pole six-set, `k in P_k` and
+  `U_k=N_G(k)`.  Thus `K` would be independent in
+  `2 K_(2,2,2)`, contradicting independence number four.
+- **Twist guard:** The proof retains the relative second-endpoint
+  projective twist; it does not identify the two endpoint coordinates.
+- **Full-V4 synthesis:** The exhaustive factor list is `2,3,5,6`, and all
+  four degrees are now excluded.  Hence `(m,r,delta)=(2,2,4)` is empty.
+- **How it is useful:** It removes one of the three residual `m=2`
+  stabilizer types without a field search or owner assumption.  The exact
+  gain-flatness compiler remains banked but is no longer the live deletion
+  gate for this type.
+- **What to do next:** Attack the order-two stabilizer type
+  `(r,delta)=(4,2)`; keep the trivial type `(8,1)` behind it.  K3, the
+  KoalaBear row, every slope owner, and every payment remain open.
+
+### 2026-07-30 - Saturated `(1,1,2)` source-line q-slice exclusions
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_u2_saturated_112_q_slice_exclusions_v1.md`,
+  its five exact helper modules, fail-closed verifier and JSON certificate,
+  `agents.md`, and this log.
+- **Status:** PROVED three source-line route cuts / K3 open.
+- **What is being added:** The near-aligned negative sign is empty in both
+  internal templates and all three relative-`xi` orbits, including forced
+  ramification.  All six aligned-positive `w=0` template/allocation ideals
+  and all seven near-positive projective-boundary ideals are unit after full
+  forbidden saturation over the deployed characteristic.  Combined with
+  the pinned aligned-negative parent, the complete aligned
+  forced-ramified branch is empty.
+- **Replay discipline:** The default certificate audit is inexpensive.  The
+  17 exact SymPy/FLINT cases are hash-pinned, serial, and individually
+  capped at 60 seconds; every recorded case completed under a 256 MB cgroup.
+- **Scope guard:** This packet does not import the separately proved 18-cell
+  near-positive affine ledger, does not delete the six aligned-positive
+  unramified cells, and does not close the saturated row, order-two type,
+  K3, any payment, or the KoalaBear row.
+- **What to do next:** Attack the six aligned-positive unramified cells with
+  a modular-interpolation or dedicated quadratic-resultant compiler.  Treat
+  the 18-cell near-positive affine ledger as a separate review packet rather
+  than inflating this extension with its large exact artifact bundle.
+
+### 2026-08-01 - Positive coordinate loop atlas and residual workboard
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.md`,
+  `experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py`,
+  its fail-closed JSON certificate, `agents.md`, and this log.
+- **Status:** PROVED global positive loop cap one and exact residual graph
+  workboard / positive coordinate orientation open / K3 open.
+- **What is being added:** In the positive coordinate orientation, loop
+  nonrepetition and ramification refine the two exact pair-degree profiles
+  `(4,4,2)` and `(4,3,3)` to one three-loop common skeleton each.  The
+  complete outside graph is unique; four guarded `4 x 4` common-kernel
+  placements have explicit degree-six residuals; target-sign gauge gives
+  two cycle-sign orbits and eight seven-edge lanes; and every outside edge
+  has exact generic and degree-drop eliminants.  The generic resultant has
+  22 terms and total coefficient degree six.  The complete-source square
+  then closes the compiled branch locally: at a ramified loop with nonzero
+  `B_1`, the two antipodal target rows have total order two, while the
+  doubled source fiber requires square order four.  Every positive two- or
+  three-loop placement has such a branch.  At every ordinary complete
+  fiber, the Vieta sum row forces a loop to a zero of `B_1`; the local
+  theorem gives the same condition at ramification.  Hence every loop among
+  all twelve complete fibers occupies the unique zero of nonzero linear
+  `B_1`, and total loop count is at most one.
+- **Residual workboard:** Composing the global cap with exact signed-edge
+  defect arithmetic reduces ten common-skeleton orbits to five live orbits
+  and seven labeled common rows.  Exact outside degree enumeration gives
+  two loop-free and four one-loop graph orbits; thirteen necessary
+  common/outside representative routes survive the defect budget three.
+- **Replay discipline:** The verifier pins both exact order-two parents by
+  commit, blob, payload, and terminal; exhausts all finite graph/sign
+  quotients; checks every polynomial identity symbolically; seals the
+  certificate; checks both branch charts, all four multi-loop placement
+  patterns, the complete residual degree/defect ledger, and rejects 34
+  hostile mutations.
+- **Route correction:** An attempted ordinary source-root neighbor norm was
+  removed because it did not carry the doubled divisor multiplicity of a
+  ramified loop.  The closing theorem uses the pinned complete-source square
+  directly and does not rely on that norm.
+- **Scope guard:** The thirteen graph routes are necessary only; their
+  algebraic realizability remains open.  No orientation/type deletion,
+  owner, payment, K3 value, or row bound is claimed.
+- **What to do next:** Compile complete Vieta/product equations for the
+  thirteen routed records, beginning with the unique saturated-defect route
+  `433-1a -> O0b`.  Do not run the superseded eight-lane three-loop
+  saturation.
+
+### 2026-08-01 - Positive `433-1a -> O0b` outside reduction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_433_1a_outside_reduction_v1.md`,
+  `experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_433_1a_outside_reduction_v1.py`,
+  its fail-closed JSON certificate, `agents.md`, and this log.
+- **Status:** PROVED product-base rank, common-kernel uniqueness, and
+  necessary outside-equation compilers / `433-1a -> O0b` open / K3 open.
+- **What is being added:** The five common product rows have rank five on
+  every admissible deployed-field point in all fifteen matching cells, so
+  the six-row common base has rank six globally.  Every common survivor has
+  rank exactly seven and a one-dimensional coefficient kernel with an
+  explicit division-free reconstruction.  For each common row and cycle
+  sign, the complete outside product assignment reduces exhaustively to
+  `5*7*15=525` necessary cases.  Each outside edge has the exact 22-term
+  generic scalar eliminant plus its degree-drop branch.  The residual
+  target-sign quotient has `39` aligned plus `228` near-aligned formal
+  orbits.  Four universal product binomials are necessary and sufficient,
+  with explicit reconstruction of `d,e,f`; seven cleared equations compile
+  every target squared sum in all `267` representatives.
+- **Follow-up repair:** The first two triangle templates listed only three
+  product equations.  An exponent-lattice audit found the missing
+  independent cross relation linking `DE/DF` to `BE/CF`.  Both templates now
+  have complete four-binomial product chains and remain selected-row
+  projections of the universal compiler.
+- **Replay discipline:** The default verifier pins the previous atlas by
+  commit, blob, payload, and terminal; replays the finite matching ledgers
+  and displayed polynomial identities; seals the certificate; and rejects
+  23 hostile mutations.  Three localized product-rank cells retain exact
+  deployed-field Singular `UNIT` certificates with canonical equation and
+  program hashes; `--full-singular-replay` reconstructs them when Singular
+  is installed.  A clean Modal image replayed all three successfully under
+  app `ap-Iz1TrNvOrldVFaJExtbKt8`.
+- **Scope guard:** Formal orbit representatives are not algebraic survivors,
+  and target elimination is not source-system elimination.  Bare resultants
+  remain only necessary.  No alignment branch, route, positive orientation,
+  order-two type, owner, payment, K3 value, KoalaBear row, or Prize result is
+  closed.
+- **What to do next:** Reconstruct guarded common-curve function fields or
+  regular chains, quotient common-cell/source-deck actions, and reduce the
+  universal product equations before the sum equations.  Do not run a
+  target-specific triangle fleet or raw ambient seven-variable basis.

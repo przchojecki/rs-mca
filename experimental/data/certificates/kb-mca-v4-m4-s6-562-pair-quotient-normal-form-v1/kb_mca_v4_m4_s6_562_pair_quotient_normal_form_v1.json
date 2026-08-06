@@ -1,0 +1,216 @@
+{
+  "arithmetic_helper": {
+    "blob_oid": "0fd60889fe3aac71170ae74113b91166d917baec",
+    "commit": "0d2d1a9811b9b540619f5746acd7107a1c31204e",
+    "path": "experimental/scripts/verify_kb_mca_v4_m4_s6_652_pair_quotient_normal_form_v1.py",
+    "role": "exact Fraction polynomial primitives only"
+  },
+  "challenge_field": {
+    "extension_degree": 6,
+    "p": 2130706433,
+    "pole_fiber_splits": true,
+    "pole_points": [
+      "287/188",
+      "(25461+7257*sqrt(5))/25444",
+      "(25461-7257*sqrt(5))/25444"
+    ],
+    "pole_quadratic_discriminant": 1053280980
+  },
+  "conclusion": {
+    "impact": "SECOND_OF_THREE_RIGID_M4_PASSPORTS_EXPLICIT_POLE_DESCENT_PROVED",
+    "passport": [
+      "S6",
+      [
+        "5.1",
+        "2.2.2",
+        "3.2.1"
+      ]
+    ],
+    "terminal": "M4_S6_562_RIGID_PAIR_QUOTIENT_AND_POLE_DESCENT"
+  },
+  "nonclaims": [
+    "no completely split unramified active fiber",
+    "no quartic source-star incidence",
+    "no surviving m4 type deletion",
+    "no owner, ledger, endpoint, or KoalaBear row closure"
+  ],
+  "pair_model": {
+    "common_denominator_coefficients_ascending": [
+      2391178738527,
+      -4974655751100,
+      3171741595920,
+      -97900305120,
+      -559791696960,
+      144800664832
+    ],
+    "construction": "cubic_adjoint_normalization_of_unordered_pair_quintic",
+    "curve_terms": [
+      [
+        -2780548824,
+        5,
+        0
+      ],
+      [
+        1627638336,
+        4,
+        1
+      ],
+      [
+        4750104241,
+        4,
+        0
+      ],
+      [
+        1389447360,
+        3,
+        2
+      ],
+      [
+        8341646472,
+        3,
+        1
+      ],
+      [
+        -819790080,
+        2,
+        3
+      ],
+      [
+        -7256554248,
+        2,
+        2
+      ],
+      [
+        -14250312723,
+        2,
+        1
+      ],
+      [
+        -137681280,
+        1,
+        4
+      ],
+      [
+        -1378420000,
+        1,
+        3
+      ],
+      [
+        -2780548824,
+        1,
+        2
+      ],
+      [
+        82396160,
+        0,
+        5
+      ],
+      [
+        1054995600,
+        0,
+        4
+      ],
+      [
+        4001277576,
+        0,
+        3
+      ],
+      [
+        4750104241,
+        0,
+        2
+      ]
+    ],
+    "y_denominator_scalar": 3,
+    "y_numerator_coefficients_ascending": [
+      -6278131675989,
+      30343501997370,
+      -45755128056690,
+      30146980069620,
+      -8905527312840,
+      929160531616
+    ],
+    "z_denominator_scalar": 4,
+    "z_numerator_coefficients_ascending": [
+      2693309104647,
+      -19894826835720,
+      51448121890020,
+      -56413547740800,
+      27591806916400,
+      -4990137124288
+    ]
+  },
+  "parent_passport_reduction": {
+    "certificate_blob_oid": "c9be4609a28f4c4b89c099e09a359f833dbf7e1b",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m4-a6s6-genus-zero-passport-reduction-v1/kb_mca_v4_m4_a6s6_genus_zero_passport_reduction_v1.json",
+    "certificate_payload_sha256": "c9cfbbf394e479f93d8d8378d886331c8afbbaf338e6fc6b21f55e3e1c485fd7",
+    "commit": "4e33c7be8b3b29848e0ceb8fd7f50dce45fb2eed",
+    "imported_passport": [
+      "S6",
+      [
+        "5.1",
+        "2.2.2",
+        "3.2.1"
+      ]
+    ],
+    "imported_terminal": "M4_A6S6_GEOMETRIC_FRONTIER_FOUR_PASSPORTS"
+  },
+  "payload_sha256": "b1c817ea6bfb36c4aecb59748949d5a3eab71c36de1b0a8c221a79e4a13b6a0d",
+  "quotient": {
+    "degree": 15,
+    "denominator_cubic_coefficients_ascending": [
+      33495606,
+      -8441982,
+      -31403007,
+      14658356
+    ],
+    "denominator_sextic_coefficients_ascending": [
+      -119893424310248247,
+      379227334439635443,
+      -474965645409866205,
+      290661295480797960,
+      -83250949083482880,
+      6554290056691968,
+      915512069923328
+    ],
+    "fiber_profiles": [
+      [
+        5,
+        5,
+        5
+      ],
+      [
+        6,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ]
+    ],
+    "numerator": "177147*(188u-287)^5*(25444u^2-50922u+15129)^5",
+    "numerator_minus_denominator": "3125*(88u+123)^2*(89u-123)^3*(208u-369)^6*(683u-1107)^3*(980u-1599)",
+    "total_branch_index": 28
+  },
+  "source_companion": {
+    "blob_oid": "94cff64a36672ba6bde9e6cbc1fa251230aa8001",
+    "commit": "7d5b899b0741ebd505363f7f811e5737e906abee",
+    "label": "6T16-[5,6,2]-51-321-222-g0",
+    "path": "belyi_db/6/6T16-[5,6,2]-51-321-222-g0.m",
+    "repository": "michaelmusty/BelyiDB"
+  },
+  "statement": {
+    "schema": "kb-mca-v4-m4-s6-562-pair-quotient-normal-form-v1",
+    "terminal": "M4_S6_562_RIGID_PAIR_QUOTIENT_AND_POLE_DESCENT"
+  }
+}

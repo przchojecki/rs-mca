@@ -1,0 +1,41 @@
+{
+  "claim": "The complete deployed positive residual route 433-1a -> O0b over F_2130706433 is empty: both signed target lanes, all 60 common matching/root-sign rows, ten algebraically distinct representatives, each PROVED excluded.",
+  "signed_lanes": 2,
+  "total_raw_rows": 60,
+  "total_representatives": 10,
+  "orbit_partition": [
+    {"orbit": [0], "rows": 4, "representatives": 1},
+    {"orbit": [1, 2], "rows": 8, "representatives": 2},
+    {"orbit": [3, 6], "rows": 8, "representatives": 1},
+    {"orbit": [4, 7], "rows": 8, "representatives": 1},
+    {"orbit": [5, 8], "rows": 8, "representatives": 1},
+    {"orbit": [9, 10], "rows": 8, "representatives": 1},
+    {"orbit": [11], "rows": 4, "representatives": 1},
+    {"orbit": [12, 13], "rows": 8, "representatives": 1},
+    {"orbit": [14], "rows": 4, "representatives": 1}
+  ],
+  "pinned_nodes": {
+    "aggregate": "rate_half_kb_m2_r4_coordinate_positive_433_1a_o0b_complete_route_exclusion",
+    "signed_edge_atlas": "rate_half_kb_m2_r4_coordinate_positive_433_1a_o0b_signed_edge_atlas",
+    "common_row_quotient": "rate_half_kb_m2_r4_coordinate_positive_433_1a_common_root_sign_symmetry_quotient",
+    "orbit_exclusions": [
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell0_generic_signed_pair_orbit_exclusion",
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell1_2_common_root_sign_orbit_exclusion",
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell3_signed_pair_guard_factorization_exclusion",
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell4_main_projection_guard_factorization_exclusion",
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell58_complete_root_sign_orbit_exclusion",
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell9_signed_pair_guard_factorization_exclusion",
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell11_signed_pair_guard_factorization_exclusion",
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell12_signed_pair_guard_factorization_exclusion",
+      "rate_half_kb_m2_r4_coordinate_positive_433_1a_cell14_signed_pair_guard_factorization_exclusion"
+    ]
+  },
+  "provenance": {
+    "canonical_repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag",
+    "audit_notes": "notes/wave24_integration_20260727/WAVE38_AUDIT.md .. WAVE41_AUDIT.md",
+    "final_integration_commit": "2f7604fc",
+    "aggregate_verifier_replayed": "2026-08-02, PASS, in the canonical checkout (checks all eleven pinned PROVED nodes, dependency edges, and this census)",
+    "route_count_by_wave": {"wave38": 13, "wave39_representatives": 6, "wave40_representatives": 1, "wave41_representatives": 0}
+  },
+  "nonclaim": "Closes one coordinate route only. No other coordinate route, K3, rate_half_band_closure, LIST, MCA, or Prize result is closed."
+}

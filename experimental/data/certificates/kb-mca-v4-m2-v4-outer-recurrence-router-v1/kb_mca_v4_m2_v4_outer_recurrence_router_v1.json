@@ -1,0 +1,254 @@
+{
+  "classification_source": {
+    "catalogue_completeness": "imported",
+    "commit": "5612e113d50ac23a7d10945383936e20440b4e14",
+    "entry": "PRIMGRP[30]",
+    "entry_sha256": "1a923cc8f4428ec22864109cdc60d0c87326e8939cc1d72d217d22df2a4b8da0",
+    "extracted_bytes": 344,
+    "path": "data/gps1.g",
+    "repository": "gap-packages/primgrp"
+  },
+  "conclusion": {
+    "coordinate_stabilized_weight_three_present": false,
+    "m2_nonexistence_claimed": false,
+    "m2_type_count_after": 3,
+    "m2_type_count_before": 3,
+    "outer_recurrence_classified": true,
+    "primitive_outer_producer_count": 0,
+    "terminal": "M2_V4_STABILIZERS_OUTER_RECURRENCE_AND_SOURCE_PARITY"
+  },
+  "coordinate_stabilized_source": {
+    "coordinate_stabilized_profiles": [
+      {
+        "fixed_matching_vertex_counts": [
+          0
+        ],
+        "weight_three_vertices": 0,
+        "weight_two_vertices": 0
+      },
+      {
+        "fixed_matching_vertex_counts": [
+          1
+        ],
+        "weight_three_vertices": 0,
+        "weight_two_vertices": 1
+      },
+      {
+        "fixed_matching_vertex_counts": [
+          0,
+          2
+        ],
+        "weight_three_vertices": 0,
+        "weight_two_vertices": 2
+      },
+      {
+        "fixed_matching_vertex_counts": [
+          1,
+          3
+        ],
+        "weight_three_vertices": 0,
+        "weight_two_vertices": 3
+      }
+    ],
+    "imported_nonsimple_profiles": [
+      {
+        "defect_cost": 1,
+        "weight_three_vertices": 0,
+        "weight_two_vertices": 1
+      },
+      {
+        "defect_cost": 2,
+        "weight_three_vertices": 0,
+        "weight_two_vertices": 2
+      },
+      {
+        "defect_cost": 3,
+        "weight_three_vertices": 0,
+        "weight_two_vertices": 3
+      },
+      {
+        "defect_cost": 3,
+        "weight_three_vertices": 1,
+        "weight_two_vertices": 0
+      }
+    ],
+    "paired_locator_avoidance": "div(q_i)<=div(B/(z_i*z_bar_i))",
+    "star_equivariance": "star(b*x)=tau(star(x))",
+    "weight_three_excluded": true
+  },
+  "input": {
+    "actual_component_bidegree": [
+      4,
+      4
+    ],
+    "inner_degree": 2,
+    "outer_degree": 30,
+    "transverse_rows": [
+      [
+        2,
+        4
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        8,
+        1
+      ]
+    ]
+  },
+  "nonclaims": [
+    "no deletion or payment of an inner-degree-two type",
+    "no preferred orientation in the order-two stabilizer row",
+    "no source refinement without tau x 1 in the stabilizer",
+    "no carrier, received-data, explaining-polynomial, or slope owner",
+    "no u2, K3, KoalaBear row, endpoint, or prize closure",
+    "no ledger movement"
+  ],
+  "parent_compiler": {
+    "certificate_blob_oid": "5c16c7884b349d7e474b8dfc1267ab357ef0d477",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-source-pencil-rank-compiler-v1/kb_mca_v4_degree60_source_pencil_rank_compiler_v1.json",
+    "certificate_payload_sha256": "6d4bc83e40e491f02f7d265b021628ffb7d52b1978c0655f83e5a9d3e0a9f4bb",
+    "commit": "e287c54252c7872e1745c7594cfef62b74a65cf5",
+    "imported_terminal": "TRANSVERSE_OUTER_CORRESPONDENCE_UNPAID"
+  },
+  "parent_m10_router": {
+    "certificate_blob_oid": "6e49093fdb9d9e55b45c55265eb3cc0c0e65e8c9",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m10-scott-strip-lower-degree-router-v1/kb_mca_v4_m10_scott_strip_lower_degree_router_v1.json",
+    "certificate_payload_sha256": "66117d7ba207a66606fc4ae4770a2b314b3510066be7af734b4e579d028ce1d1",
+    "commit": "412bc68f1dcb6ac3924d6445146417f3c713ef89",
+    "imported_terminal": "M10_NO_TERMINAL_PRODUCER_ROUTES_TO_M2_M3_M6"
+  },
+  "parent_m3_frontier": {
+    "certificate_blob_oid": "24f406d8bdb72d8562c91b28890eae59befd6d91",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m3-primitive-outer-degree2-router-v1/kb_mca_v4_m3_primitive_outer_degree2_router_v1.json",
+    "certificate_payload_sha256": "0f7c0134c723875d66dd19d96f9c68c7299079b5560e63780910afc6d86f21d4",
+    "commit": "bf173815d0a51d880c94c833be125769715f2c49",
+    "imported_terminal": "M3_NO_INDEPENDENT_PRODUCER_ROUTES_TO_M2"
+  },
+  "parent_primitive_route": {
+    "certificate_blob_oid": "7e8a79db97dc56125f25d9a190c3b0c3adca158a",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-primitive-subdegree4-route-cut-v1/kb_mca_v4_degree60_primitive_subdegree4_route_cut_v1.json",
+    "certificate_payload_sha256": "21a8ca7800745c2c94876d48473801e84f4d9c8f9e6ce5b53e8b8bd66b699962",
+    "commit": "59c4449ca0f5cee929dd39fc7b5ae8b0a33877f4",
+    "imported_terminal": "ROUTED_TO_GEOMETRIC_FUNCTIONAL_DECOMPOSITION_ADAPTER"
+  },
+  "payload_sha256": "fe8141810501fd7b3762a378210609177185972ec706bf9ac943fa398bd82d39",
+  "primitive_catalogue": [
+    {
+      "name": "PSL(2,29)",
+      "order": 12180,
+      "subdegrees": [
+        1,
+        29
+      ]
+    },
+    {
+      "name": "PGL(2,29)",
+      "order": 24360,
+      "subdegrees": [
+        1,
+        29
+      ]
+    },
+    {
+      "name": "A30",
+      "order": 132626429906095529318154240000000,
+      "subdegrees": [
+        1,
+        29
+      ]
+    },
+    {
+      "name": "S30",
+      "order": 265252859812191058636308480000000,
+      "subdegrees": [
+        1,
+        29
+      ]
+    }
+  ],
+  "projective_action_replay": {
+    "PGL(2,29)": {
+      "reconstructed_order": 24360,
+      "subdegrees": [
+        1,
+        29
+      ]
+    },
+    "PSL(2,29)": {
+      "reconstructed_order": 12180,
+      "subdegrees": [
+        1,
+        29
+      ]
+    }
+  },
+  "proper_factor_routes": [
+    {
+      "new_inner_degree": 4,
+      "right_factor_degree": 2,
+      "terminal": "M4_EMPTY"
+    },
+    {
+      "new_inner_degree": 6,
+      "right_factor_degree": 3,
+      "terminal": "M6_TO_M2_OR_EMPTY"
+    },
+    {
+      "new_inner_degree": 10,
+      "right_factor_degree": 5,
+      "terminal": "M10_TO_M2_M3_M6"
+    },
+    {
+      "new_inner_degree": 12,
+      "right_factor_degree": 6,
+      "terminal": "M12_EMPTY"
+    },
+    {
+      "new_inner_degree": 20,
+      "right_factor_degree": 10,
+      "terminal": "SOURCE_PROFILE_EMPTY"
+    },
+    {
+      "new_inner_degree": 30,
+      "right_factor_degree": 15,
+      "terminal": "M30_TO_M6_TO_M2_OR_EMPTY"
+    }
+  ],
+  "schema": "kb-mca-v4-m2-v4-outer-recurrence-router-v1",
+  "statement": {
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "terminal": "M2_V4_STABILIZERS_OUTER_RECURRENCE_AND_SOURCE_PARITY",
+    "workboard_item": "K3"
+  },
+  "v4_stabilizer_replay": {
+    "group_order": 4,
+    "rows": [
+      {
+        "delta": 4,
+        "r": 2,
+        "stabilizer": "V4"
+      },
+      {
+        "delta": 2,
+        "r": 4,
+        "stabilizer": "one_of_three_C2"
+      },
+      {
+        "delta": 1,
+        "r": 8,
+        "stabilizer": "trivial"
+      }
+    ],
+    "subgroup_order_multiset": [
+      1,
+      2,
+      2,
+      2,
+      4
+    ]
+  }
+}

@@ -1,0 +1,225 @@
+---
+workboard_item: K3
+row: KoalaBear MCA at 2^-128
+object: MCA
+target_epsilon: 2^-128
+agreement: 1116048
+B_star: 274980728111395087
+direct_statement: The two surviving inner-degree-12 transverse types admit a complete geometric outer normal-form compiler. Riemann-Hurwitz and exhaustive tame degree-five branch cycles reduce r=4 to five low-genus A5/S5 profiles and exclude AGL(1,5). The r=2 row is Dickson/dihedral. Exact critical-value integration gives four rigid r=4 forms and one one-parameter form. Thus every live m=12 outer map belongs geometrically to one of six printed polynomial families.
+architecture: null
+partition_digest: null
+atom_or_cell: K3_M12_OUTER_NORMAL_FORM_COMPILER
+quantifier: every actual inner-degree-12 transverse terminal satisfying the imported source-pencil and outer-subdegree packets
+projection_and_unit: exact geometric outer normal-form compiler; not a challenge-field endpoint classifier, carrier owner, or distinct-slope payment
+claimed_bound: arbitrary m=12 outer-quintic search is replaced by five rigid affine classes and one one-parameter family
+status: PROVED_M12_OUTER_NORMAL_FORM_COMPILER_ROW_OPEN
+impact: COMPILES_BOTH_M12_SURVIVORS_TO_SIX_EXPLICIT_GEOMETRIC_FAMILIES
+falsifier: a live m=12 outer map outside the six printed affine families, an omitted tame two-transitive branch profile of off-diagonal genus at most one, or failure of the Dickson divided-difference factorization
+replay: python3 experimental/scripts/verify_kb_mca_v4_m12_outer_normal_form_compiler_v1.py --check --tamper-selftest
+---
+
+# KoalaBear inner-degree-\(12\) outer normal-form compiler
+
+## 0. Verdict
+
+The parent outer-subdegree cut leaves
+
+\[
+  (r,\delta)=(2,24),(4,12).
+\tag{0.1}
+\]
+
+Every outer map in (0.1) is now confined, over the algebraic closure, to one
+of six explicit polynomial families:
+
+\[
+\begin{array}{c|c|l}
+r&G_{\rm geom}&\text{affine normal form}\\ \hline
+2&D_5&D_5(x,a)=x^5-5ax^3+5a^2x,\quad a\ne0\\
+4&A_5&x^3(12x^2-15(1+\tau)x+20\tau),\
+       3\tau^2+4\tau+3=0\\
+4&A_5&x^3(6x^2-15x+10)\\
+4&S_5&x^3(x-1)^2\\
+4&S_5&x^4(5-4x)\\
+4&S_5&x^2(x-1)^2(2x-5\tau).
+\end{array}
+\tag{0.2}
+\]
+
+The last parameter is restricted to the open locus with the branch profile
+printed in Section 2.  The first five rows are rigid affine classes; the two
+roots in the second row are exchanged by an affine source change.
+
+This theorem is geometric.  It does not silently descend the normalizing
+affine maps to the challenge field, classify the outer coefficients of a
+supplied endpoint record, delete any family, construct an owner, or move the
+ledger.
+
+## 1. The genus cut
+
+The retained equality-wall geometry supplies an actual component \(H_0\) of
+bidegree \((2,4)\), birational to the bidegree-\((4,4)\) endpoint
+self-correspondence component \(\Gamma\).  Hence
+
+\[
+  g(\widetilde\Gamma)=g(\widetilde H_0)
+  \le(2-1)(4-1)=3.
+\tag{1.1}
+\]
+
+In the \(r=4\) terminal, the transverse compiler gives a degree-\(12\) map
+
+\[
+  \widetilde\Gamma\longrightarrow\widetilde C.
+\tag{1.2}
+\]
+
+If \(g(\widetilde C)\ge2\), Riemann--Hurwitz would give
+
+\[
+  2g(\widetilde\Gamma)-2
+  \ge12(2g(\widetilde C)-2)\ge24,
+\tag{1.3}
+\]
+
+contrary to (1.1).  Thus
+
+\[
+  \boxed{g(\widetilde C)\le1.}
+\tag{1.4}
+\]
+
+## 2. Complete tame quintic branch ledger
+
+The outer map has degree five and one pole of order five.  After geometric
+affine normalization it is a tame polynomial.  Its infinity branch cycle is
+a \(5\)-cycle and contributes index four.  The finite branch-cycle indices
+therefore sum to four.
+
+For \(r=4\), geometric monodromy is two-transitive.  The off-diagonal
+component is the transitive cover on the \(20\) ordered pairs
+
+\[
+  \Omega=\{(i,j):i\ne j,\ 1\le i,j\le5\}.
+\tag{2.1}
+\]
+
+The induced indices on \(\Omega\) are
+
+\[
+\begin{array}{c|rrrrrr}
+\text{cycle type}&(2)&(2,2)&(3)&(3,2)&(4)&(5)\\ \hline
+\operatorname{ind}_\Omega&7&10&12&15&15&16.
+\end{array}
+\tag{2.2}
+\]
+
+Enumerating all ordered finite tuples in \(S_5\) with index sum four,
+product inverse to a fixed infinity \(5\)-cycle, and point stabilizer
+transitive on the other four letters gives exactly:
+
+\[
+\begin{array}{c|c|c|r}
+G&\text{finite cycle types}&g(\widetilde C)&
+\text{ordered tuples}\\ \hline
+A_5&(3),(2,2)&0&10\\
+A_5&(3),(3)&1&5\\
+S_5&(2),(3,2)&0&10\\
+S_5&(2),(4)&0&10\\
+S_5&(2),(2),(2,2)&1&75\\
+S_5&(2),(2),(3)&2&75\\
+S_5&(2),(2),(2),(2)&3&125.
+\end{array}
+\tag{2.3}
+\]
+
+The counts total \(310\).  No tuple generates the order-\(20\) affine
+group.  Equation (1.4) removes the last two rows, leaving the first five.
+
+## 3. The dihedral normal form
+
+For \(r=2\), geometric monodromy is \(D_5\).  The finite branch cycles are
+two reflections of type \((2,2)\).  Its Galois closure \(X\) has inertia
+orders \(5,2,2\), so
+
+\[
+  2g(X)-2
+  =10\left(-2+\frac45+\frac12+\frac12\right)=-2.
+\tag{3.1}
+\]
+
+Thus \(X\simeq\mathbf P^1_z\).  Conjugate the action to
+
+\[
+  z\mapsto\zeta z,\qquad z\mapsto a/z.
+\tag{3.2}
+\]
+
+The reflection fixed field is generated by \(x=z+a/z\), and the full
+invariant is
+
+\[
+  z^5+(a/z)^5=x^5-5ax^3+5a^2x.
+\tag{3.3}
+\]
+
+If \(s^2=5\), the off-diagonal divided difference factors as
+
+\[
+\begin{aligned}
+&x^4+x^3y+x^2y^2+xy^3+y^4-5a(x^2+xy+y^2)+5a^2\\
+={}&
+\left(x^2+\frac{1+s}{2}xy+y^2+\frac{-5+s}{2}a\right)
+\cdot
+\left(x^2+\frac{1-s}{2}xy+y^2+\frac{-5-s}{2}a\right).
+\end{aligned}
+\tag{3.4}
+\]
+
+These are the two geometric \(r=2\) components.
+
+## 4. The five \(r=4\) normal forms
+
+Critical multiplicities and equality of the critical values determine the
+forms directly.
+
+For \((3),(2,2)\), normalize the critical points to \(0,1,\tau\).  Then
+\[
+  P'=c x^2(x-1)(x-\tau),\qquad
+  P(1)=P(\tau)
+\]
+is equivalent, for \(\tau\ne1\), to
+\[
+  3\tau^2+4\tau+3=0,
+\]
+and integration gives the second row of (0.2).
+
+For \((3),(3)\), normalize the two critical points to \(0,1\).  Integrating
+\(30x^2(x-1)^2\) gives the third row.
+
+For \((3,2),(2)\), normalize the common-fiber critical points to \(0,1\).
+Writing the remaining critical point as \(c\), the equation
+\(\int_0^1x^2(x-1)(x-c)\,dx=0\) gives \(c=3/5\), hence the fourth row.
+
+For \((4),(2)\), integration of \(x^3(x-1)\) gives the fifth row.
+
+Finally, for \((2,2),(2),(2)\), normalize the colliding critical pair to
+\(0,1\), and call the other critical points \(u,v\).  The equality of the
+first two critical values is
+\[
+  5(u+v)-10uv-3=0.
+\tag{4.1}
+\]
+Putting \(\tau=uv\) and integrating gives the last row of (0.2).
+
+## 5. Exact stopping point
+
+The next endpoint theorem must recover the outer coefficients from the
+canonical inner pencil \(\langle A,N_0\rangle\), prove any required
+challenge-field affine descent, and test membership in (0.2).  Only then can
+the split active-zero fiber and actual quartic/source-star incidence be
+imposed.
+
+No family in (0.2) is deleted or realized here.  The two transverse types,
+inner degree \(12\), \(u=2\), K3, and the KoalaBear row remain open, and no
+ledger quantity moves.

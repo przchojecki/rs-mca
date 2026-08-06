@@ -1,0 +1,321 @@
+{
+  "common_kernel": {
+    "common_base_rank": 6,
+    "common_survivor_rank": 7,
+    "division_free_reconstruction": {
+      "A0_tilde": "Delta_i*A0",
+      "A2_tilde": "Delta_i*A2",
+      "B1_tilde": "-q_i*A2(lambda_i)*(W-lambda_0)",
+      "Delta_i": "lambda_i*(lambda_i-lambda_0)",
+      "requires_A2_at_nonloop_nonzero": false
+    },
+    "kernel_dimension": 1,
+    "nonloop_quotient_determinant": "lambda_0*lambda_i*(-lambda_0 + lambda_i)"
+  },
+  "conclusion": {
+    "base_rank_drop_branch_deleted": true,
+    "common_survivor_kernel_unique": true,
+    "coordinate_positive_orientation_deleted": false,
+    "k3_status": "OPEN",
+    "koalabear_row_status": "OPEN",
+    "order_two_type_deleted": false,
+    "outside_case_ledger_compiled": true,
+    "outside_case_symmetry_quotient_compiled": true,
+    "route_deleted": false,
+    "terminal": "M2_R4_COORDINATE_POSITIVE_433_1A_OUTSIDE_REDUCTION",
+    "triangle_templates_exhaustive": false,
+    "universal_target_elimination_compiled": true
+  },
+  "next_exact_task": "substitute the universal four-product and seven-sum target-free compiler inside each guarded one-dimensional common-chart coordinate ring; quotient common-cell/source-deck actions and reduce product equations before sum equations",
+  "nonclaims": [
+    "the stored UNIT certificates are exact deployed-field computations, not characteristic-free theorems",
+    "a paired-product resultant survivor need not lift to three distinct unused source deck pairs",
+    "the two target-free triangle templates are not proved exhaustive",
+    "neither target-free triangle template is proved empty",
+    "no 433-1a route, positive orientation, order-two type, owner, payment, K3, KoalaBear row, or Prize close"
+  ],
+  "outside_case_symmetry_quotient": {
+    "EF_missing_mate_orbits": {
+      "aligned": 9,
+      "near": 30,
+      "total": 39
+    },
+    "aligned": {
+      "fixed": 3,
+      "labeled": 75,
+      "orbits": 39
+    },
+    "current_template_orbits": {
+      "A_and_B_are_gauge_partners": true,
+      "aligned": 1,
+      "near": 4,
+      "total": 5
+    },
+    "faithful_record_action_size": 2,
+    "formal_orbits_are_algebraic_survivors": false,
+    "near": {
+      "fixed": 6,
+      "labeled": 450,
+      "orbits": 228
+    },
+    "nontrivial_action": "DE+<->DE-, DF+<->DF-, EF/BE/CF fixed",
+    "representative_digest": "c2d76d546d8d1a4a06733770202b9faa33616a9eb21f4465978fe337eb03c117",
+    "total_orbits": 267
+  },
+  "outside_edge_eliminant": {
+    "constant_branch": "A=B=0 implies C!=0, hence no product root",
+    "degree_drop_condition": "A=0,B!=0",
+    "degree_drop_total_degree": 5,
+    "generic_condition": "A!=0",
+    "generic_identity": "A^3*Res(P,Q)=A*R0^2-B*R0*R1+C*R1^2",
+    "generic_terms": 22,
+    "generic_total_degree": 6,
+    "seven_edge_cuts_are_only_necessary": true
+  },
+  "paired_product_ledger": {
+    "cases_per_common_row_and_cycle_sign": 525,
+    "eta_choices": 5,
+    "missing_mate_product_cut": "A0(xi)-x*A2(xi)=0",
+    "missing_mate_record_choices": 7,
+    "missing_mate_sum_cut": "xi*B1(xi)^2-s_x^2*A2(xi)^2=0",
+    "outside_products": [
+      "de",
+      "-de",
+      "df",
+      "-df",
+      "sigma*ef",
+      "be",
+      "cf"
+    ],
+    "paired_product_cut": "(p2*q0-p0*q2)^2-(p2*q1-p1*q2)*(p1*q0-p0*q1)=0",
+    "residual_perfect_matchings": 15,
+    "resultant_survival_is_sufficient": false
+  },
+  "parent": {
+    "certificate_blob_oid": "1bfb0dac4f6eae6cb2b336d25265537609bd9d1b",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r4-coordinate-positive-three-loop-atlas-v1/kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.json",
+    "certificate_payload_sha256": "5f6921f4abe90968f7ad624f207c9e2f991152e75da4f285938e3552286c082a",
+    "commit": "4569b506d7c86b3b7fbca5b22701ef83988e76e8",
+    "note_blob_oid": "c2de8806e5fc9161f196fe05dcc9e17ae0299d53",
+    "note_path": "experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.md",
+    "terminal": "M2_R4_COORDINATE_POSITIVE_GLOBAL_LOOP_CAP_AND_RESIDUAL_WORKBOARD",
+    "verifier_blob_oid": "b2f686579a2bd298bcb9d1d1052508b08c48b743",
+    "verifier_path": "experimental/scripts/verify_kb_mca_v4_m2_r4_coordinate_positive_three_loop_atlas_v1.py"
+  },
+  "payload_sha256": "d22671b3f5fc5e66da68a394dd12c3475f288f75fcdefde6f18267b139361c81",
+  "product_base_rank": {
+    "analytic_orbits": [
+      [
+        0
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        11
+      ],
+      [
+        14
+      ]
+    ],
+    "deployed_field": 2130706433,
+    "duplicate_role_orbits": [
+      [
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        11
+      ],
+      [
+        12,
+        13
+      ],
+      [
+        14
+      ]
+    ],
+    "loop_sum_augmented_base_rank": 6,
+    "matching_cell_count": 15,
+    "product_rank": 5,
+    "singular_orbits": [
+      [
+        1,
+        2
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        12,
+        13
+      ]
+    ],
+    "singular_unit_certificates": {
+      "1": {
+        "equation_sha256": [
+          "aa40ebeb50ea66defa4bc1fb9c2ab256b2e197620cf0e024aaf4e0cc5f853bb5",
+          "c93d8cd53522b65dd959e2db325d1d95b4faad0a53e34dd5dd6f6fe283698883",
+          "076a75253978fc4272e969002e126a4c61b40b2472b5edac6efa9d999ffa46b7",
+          "749b9992062094575988709f56ec0ec4ba0190d6f01f7f27e17301d6499d86b8",
+          "4f3a0a4dcd229096ff8b5173d38d124bf94d62884ba958d4618512d13cc33811",
+          "cda590dea89094272ab00c211eaf497d3c592e05e048816b7a5b89bb1ba371a1"
+        ],
+        "output": [
+          "UNIT",
+          "1",
+          "1"
+        ],
+        "program_sha256": "b44b7d5d118c71e4b31f5eb924ff58e730ad65040356734c5fc2e2b234c4877f"
+      },
+      "12": {
+        "equation_sha256": [
+          "d334c132615b1ad03d84f362236a1acaeb1f861763dd2376633af3d64c1d47b2",
+          "99792205bce111b288be3d90c0432f5e8aa84074befae174095645d624e15b59",
+          "9887f0be6c856fd969e0bba63fc33c585963b348d5e2b1ac59f9710a5a3e7b1a",
+          "8a5ad1b0dcca5cb2c5136b761ce3007e1cc38c7d3dc5c7d53a83f1b163c6e448",
+          "c38688cfa77f360e057c6088fc0676ddaf3faecfa9c53fa2130c4d25ead3bf19",
+          "98ae78b1925223c68443fd7c22085877fe2e944f4132540cfee8938e700f8f42"
+        ],
+        "output": [
+          "UNIT",
+          "1",
+          "1"
+        ],
+        "program_sha256": "49bbb74fd711594b850810347f107aacecb6188233bb9427499c9250ee924b06"
+      },
+      "9": {
+        "equation_sha256": [
+          "c2769f66a8fd0f9df4945d0272f3dc6e119d7880d238bc5a278967a0642a995e",
+          "994c4381ad3685f0796a19e84ac504e5ab3f2f7be1fa8d3e05f803ad410a82ea",
+          "ba4b9985dc28dafc251c3ffd122d2c7517038bdcc5b16ceb4b153937062dce28",
+          "f1d4cdce484e7507df769a8c52a1c9724ae07520ec27fa8fc66689ad740e0616",
+          "e6a1046881a764ce197181b9c7487a668c3ac40593d183b99c6e0e37f85d7b41",
+          "dccb663ef4d498a03693528fcf625f6451fc5f1e21e1f32ce2d9546b3a958fee"
+        ],
+        "output": [
+          "UNIT",
+          "1",
+          "1"
+        ],
+        "program_sha256": "9bdc3ae4b02cde6a94af9ddcb818a365bedd98c2d268ce4f974b8c40c2f93a19"
+      }
+    }
+  },
+  "schema": "kb-mca-v4-m2-r4-coordinate-positive-433-1a-outside-reduction-v1",
+  "scope": {
+    "common_route": "433-1a",
+    "inner_degree": 2,
+    "orientation": "coordinate",
+    "outer_subdegree": 4,
+    "outside_route": "O0b",
+    "purpose": "complete-source product rank, common-kernel, and necessary outside reduction",
+    "row": "KoalaBear MCA at 2^-128",
+    "source_parity": "positive",
+    "stabilizer_order": 2,
+    "workboard_item": "K3"
+  },
+  "target_free_triangle_templates": {
+    "eliminated_target_variables": [
+      "d",
+      "e",
+      "f"
+    ],
+    "template_emptiness_proved": false,
+    "templates": {
+      "A": {
+        "pairs": [
+          [
+            "de",
+            "-df"
+          ],
+          [
+            "-de",
+            "cf"
+          ],
+          [
+            "df",
+            "be"
+          ]
+        ],
+        "product_chain": [
+          "F(v)=-F(u)",
+          "F(w)=-F(-u)",
+          "F(-v)*F(-w)=b*c*F(xi)",
+          "b*F(u)*F(-v)=c*F(w)*F(-w)"
+        ],
+        "sum_cut": "H(u)*F(xi)*F(-u)+F(u)*(F(-u)-F(xi))^2=0"
+      },
+      "B": {
+        "pairs": [
+          [
+            "de",
+            "cf"
+          ],
+          [
+            "-de",
+            "df"
+          ],
+          [
+            "-df",
+            "be"
+          ]
+        ],
+        "product_chain": [
+          "F(v)=-F(u)",
+          "F(w)=-F(-v)",
+          "F(-u)*F(-w)=b*c*F(xi)",
+          "b*F(u)*F(-u)=c*F(-v)*F(-w)"
+        ],
+        "sum_cut": "H(u)*c^2*F(xi)^2*F(-u)^2-(F(u)*F(-u)^2+c^2*F(xi)^2)^2=0"
+      }
+    },
+    "templates_exhaust_525_case_ledger": false
+  },
+  "universal_target_elimination": {
+    "compiled_formal_case_maps": 267,
+    "explicit_reconstruction": {
+      "d": "b*DE+/BE",
+      "e": "BE/b",
+      "f": "CF/c"
+    },
+    "product_relations": [
+      "DE-+DE+=0",
+      "DF-+DF+=0",
+      "BE*CF-sigma*b*c*EF=0",
+      "b*DE+*CF-c*DF+*BE=0"
+    ],
+    "source_systems_proved_empty": false,
+    "squared_sum_relation_count": 7,
+    "target_elimination_is_necessary_and_sufficient": true
+  }
+}

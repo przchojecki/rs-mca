@@ -1,0 +1,161 @@
+{
+  "conclusion": {
+    "excluded_factor_degrees": [
+      10,
+      15,
+      30
+    ],
+    "factor_degree_deleted_here": false,
+    "outer_component_genus": 0,
+    "surviving_factor_degrees": [
+      2,
+      3,
+      5,
+      6
+    ],
+    "terminal": "M2_R2_DIHEDRAL_FACTOR_DEGREES_2_3_5_6"
+  },
+  "dihedral_factor": {
+    "factor_degree_divides": 30,
+    "generated_group": "finite D_n of order 2n",
+    "local_ramification_indices": "1,2,n",
+    "projection_degrees": [
+      2,
+      2
+    ],
+    "projection_involutions_distinct": true,
+    "right_factor": "degree-n Dickson/Chebyshev quotient"
+  },
+  "input": {
+    "component_stabilizer": "full_V4",
+    "endpoint_pole_count": 6,
+    "endpoint_pole_order": 5,
+    "inner_degree": 2,
+    "outer_component_bidegree": [
+      2,
+      2
+    ],
+    "outer_degree": 30
+  },
+  "nonclaims": [
+    "no deletion of factor degree 2, 3, 5, or 6",
+    "no deletion or payment of the full-V4 inner-degree-two type",
+    "no source-star realization or exclusion",
+    "no carrier, received-data, explaining-polynomial, or slope owner",
+    "no u2, K3, KoalaBear row, endpoint, or prize closure",
+    "no ledger movement"
+  ],
+  "outer_genus_replay": [
+    {
+      "branch_inertia": [
+        "a",
+        "c",
+        "a*c"
+      ],
+      "fixed_points": {
+        "a": 2,
+        "a*c": 2,
+        "c": 2
+      },
+      "outer_genus": 0,
+      "source_genus": 0
+    },
+    {
+      "branch_inertia": [
+        "c",
+        "c",
+        "a*c",
+        "a*c"
+      ],
+      "fixed_points": {
+        "a": 0,
+        "a*c": 4,
+        "c": 4
+      },
+      "outer_genus": 0,
+      "source_genus": 1
+    }
+  ],
+  "parent_divisor_adapter": {
+    "certificate_blob_oid": "911bac3c1c5d1b4cd9822c59939d60e832b7ef23",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-degree60-decomposition-source-fiber-adapter-v1/kb_mca_v4_degree60_decomposition_source_fiber_adapter_v1.json",
+    "certificate_payload_sha256": "638190df24415e5609fa9c2f50dde8fd22bd150f60e7bef5cd1496cb22d75b4e",
+    "commit": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+    "imported_terminal": "PROVED_SOURCE_FIBER_ADAPTER_DEGREE5_DELETION_DEGREE30_REFINEMENT_ROW_OPEN"
+  },
+  "parent_m2_router": {
+    "certificate_blob_oid": "50d17f218bfa7d3acb211c946db0c025b9a98944",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-v4-outer-recurrence-router-v1/kb_mca_v4_m2_v4_outer_recurrence_router_v1.json",
+    "certificate_payload_sha256": "fe8141810501fd7b3762a378210609177185972ec706bf9ac943fa398bd82d39",
+    "commit": "d4063dcd9c56835c3916ef792e263ea720a4d397",
+    "imported_terminal": "M2_V4_STABILIZERS_OUTER_RECURRENCE_AND_SOURCE_PARITY"
+  },
+  "parent_source_genus": {
+    "certificate_blob_oid": "83e82b826ddfa2f5377e99f439be5f00900507c6",
+    "certificate_path": "experimental/data/certificates/kb-mca-v4-m2-r2-full-v4-source-genus-drop-v1/kb_mca_v4_m2_r2_full_v4_source_genus_drop_v1.json",
+    "certificate_payload_sha256": "9a2ea090568600356f27f3174aee6d08414217b26dbb8f7922931c64a151122f",
+    "commit": "f6bc4a2b2a6a5b3bba98f24a520c67ca3373dbbb",
+    "imported_terminal": "M2_R2_SOURCE_GENUS_ZERO_OR_ONE"
+  },
+  "payload_sha256": "7f85c8e4bf9c1f324a705058992cd2e082a990feeb648f37189ba78d72df831c",
+  "pole_sieve_replay": [
+    {
+      "factor_degree": 2,
+      "profile": {
+        "endpoint_order_five_poles": 6,
+        "generic_order_five_poles": 3,
+        "simple_totally_ramified_poles": 0
+      },
+      "survives": true
+    },
+    {
+      "factor_degree": 3,
+      "profile": {
+        "endpoint_order_five_poles": 6,
+        "generic_order_five_poles": 2,
+        "simple_totally_ramified_poles": 0
+      },
+      "survives": true
+    },
+    {
+      "factor_degree": 5,
+      "profile": {
+        "endpoint_order_five_poles": 6,
+        "generic_order_five_poles": 1,
+        "simple_totally_ramified_poles": 1
+      },
+      "survives": true
+    },
+    {
+      "factor_degree": 6,
+      "profile": {
+        "endpoint_order_five_poles": 6,
+        "generic_order_five_poles": 1,
+        "simple_totally_ramified_poles": 0
+      },
+      "survives": true
+    },
+    {
+      "factor_degree": 10,
+      "profile": null,
+      "survives": false
+    },
+    {
+      "factor_degree": 15,
+      "profile": null,
+      "survives": false
+    },
+    {
+      "factor_degree": 30,
+      "profile": null,
+      "survives": false
+    }
+  ],
+  "schema": "kb-mca-v4-m2-r2-dihedral-outer-factor-reduction-v1",
+  "statement": {
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "terminal": "M2_R2_DIHEDRAL_FACTOR_DEGREES_2_3_5_6",
+    "workboard_item": "K3"
+  }
+}
