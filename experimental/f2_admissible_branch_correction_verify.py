@@ -133,6 +133,83 @@ def syndrome(
     )
 
 
+def f25_add(
+    left: tuple[int, int], right: tuple[int, int]
+) -> tuple[int, int]:
+    return ((left[0] + right[0]) % 5, (left[1] + right[1]) % 5)
+
+
+def f25_mul(
+    left: tuple[int, int], right: tuple[int, int]
+) -> tuple[int, int]:
+    # F_25=F_5[a]/(a^2-2); 2 is a nonsquare modulo 5.
+    return (
+        (left[0] * right[0] + 2 * left[1] * right[1]) % 5,
+        (left[0] * right[1] + left[1] * right[0]) % 5,
+    )
+
+
+def f25_pow(value: tuple[int, int], exponent: int) -> tuple[int, int]:
+    result = (1, 0)
+    while exponent:
+        if exponent & 1:
+            result = f25_mul(result, value)
+        value = f25_mul(value, value)
+        exponent //= 2
+    return result
+
+
+def f25_sum(values: list[tuple[int, int]]) -> tuple[int, int]:
+    result = (0, 0)
+    for value in values:
+        result = f25_add(result, value)
+    return result
+
+
+def f25_moments(
+    points: list[tuple[int, int]], indices: tuple[int, ...]
+) -> tuple[tuple[int, int], ...]:
+    return tuple(f25_sum([f25_pow(point, j) for point in points])
+                 for j in indices)
+
+
+def check_ambient_invariance() -> int:
+    mu4 = [(1, 0), (2, 0), (4, 0), (3, 0)]
+    scalar = (0, 1)
+    scaled = [f25_mul(scalar, point) for point in mu4]
+    indices = (1, 2, 3)
+    cases = 0
+    for mask in range(16):
+        base = [mu4[index] for index in range(4) if mask >> index & 1]
+        extension = [
+            scaled[index] for index in range(4) if mask >> index & 1
+        ]
+        base_moments = f25_moments(base, indices)
+        extension_moments = f25_moments(extension, indices)
+        expected = tuple(
+            f25_mul(f25_pow(scalar, j), value)
+            for j, value in zip(indices, base_moments)
+        )
+        check(extension_moments == expected, "ambient moment scaling")
+        cases += 1
+
+    for left in range(16):
+        for right in range(16):
+            base_left = [mu4[index] for index in range(4) if left >> index & 1]
+            base_right = [mu4[index] for index in range(4) if right >> index & 1]
+            ext_left = [scaled[index] for index in range(4) if left >> index & 1]
+            ext_right = [scaled[index] for index in range(4) if right >> index & 1]
+            check(
+                (f25_moments(base_left, indices) ==
+                 f25_moments(base_right, indices)) ==
+                (f25_moments(ext_left, indices) ==
+                 f25_moments(ext_right, indices)),
+                "ambient moment-fiber equality",
+            )
+            cases += 1
+    return cases
+
+
 def check_weighted_identity(
     p: int, m: int, rows: list[list[int]]
 ) -> tuple[int, int, int]:
@@ -265,6 +342,19 @@ def main() -> None:
         sum(order < degree for _, order, degree in all_types) == 7,
         "non-generating type count",
     )
+    non_generating = {
+        row for row in all_types if row[1] < row[2]
+    }
+    descent = {
+        row: (row[0], row[1], row[1]) for row in non_generating
+    }
+    check(
+        set(descent.values()) == {
+            ("plus", 1, 1), ("plus", 2, 2), ("minus", 2, 2)
+        },
+        "seven-to-three generated-field descent",
+    )
+    ambient_cases = check_ambient_invariance()
 
     order_cases = 0
     for exponent in range(3, 14):
@@ -331,7 +421,7 @@ def main() -> None:
         "F2_ADMISSIBLE_BRANCH_CORRECTION_PASS "
         f"checks={CHECKS} order_cases={order_cases} "
         f"orbit_cases={orbit_cases} top_cases={top_cases} "
-        f"matrix_cases={len(matrix_cases)}"
+        f"matrix_cases={len(matrix_cases)} ambient_cases={ambient_cases}"
     )
 
 

@@ -45,7 +45,9 @@ Keep entries concise and link to the relevant files.
   gives the corrected `p mod 4` order split, the complete five-type
   generating-row census with a certified minus/order-four witness, the full
   twelve-type degree/order table reducing the non-generating side to seven
-  exact families, an exact Frobenius-coupled
+  exact families, an exact generated-field descent identifying those seven
+  families' final block censuses and kernel masses with three generating
+  types, an exact Frobenius-coupled
   negacyclic root-code model and rank for the minus-branch top windows, the
   pointwise weighted collision floor, and the corrected weighted Fourier
   factor `1+cos` rather than the unweighted `1+2cos`. The heaviest-fiber
@@ -53,8 +55,9 @@ Keep entries concise and link to the relevant files.
   theorem for these syndrome fibers to the weighted mass. Upstream
   `def:q-row-atom` still needs a separate map-and-owner transport.
 - **How it is useful:** It prevents a false all-row reduction from entering
-  a future Proximity Prize proof and leaves both residue branches with
-  explicit code-level weighted-mass terminals.
+  a future Proximity Prize proof, removes ambient extension as a separate F2
+  payment, and leaves both residue branches with explicit code-level
+  weighted-mass terminals on five generating signed types.
 - **What to do next:** Independently review the official-row scope and the
   top-window identification, then seek a weighted subset-syndrome `L^2`
   upper bound that covers both the plus-branch GRS kernels and the coupled

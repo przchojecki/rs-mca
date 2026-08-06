@@ -38,7 +38,9 @@ Frobenius-coupled negacyclic root code with exact rank.  We also record the
 pointwise weighted-collision floor and the correct Fourier factor
 $1+\cos$, which differs from the unweighted ternary factor $1+2\cos$.
 The same identity gives a lossless interface from a row-sharp heaviest-fiber
-bound to the weighted mass.
+bound to the weighted mass.  Finally, an exact generated-field descent shows
+that the seven non-generating degree/order types have the same final block
+census and kernel mass as three generating types.
 No MCA numerator, adjacent row, or Prize endpoint is closed here.
 \end{abstract}
 \maketitle
@@ -209,6 +211,64 @@ The field cap gives \(p^3<2^{128}\).  In the plus branch
 Theorem~\ref{thm:types}, raised to the listed multiples of their orders,
 prove nonemptiness.  Comparing \(k\) and \(e\) gives the final count.
 \end{proof}
+
+\begin{theorem}[Generated-field ambient invariance]\label{thm:ambient}
+Let \(B=\F_p(\mu_n)=\F_{p^k}\subseteq F=\F_{p^e}\), and let the domain be
+\(D=g\mu_n\) with \(g\in F^*\).  Scaling by \(g^{-1}\) gives an exact
+bijection between the following objects on \(D\) and on \(\mu_n\):
+\begin{enumerate}
+\item subsets whose first \(t\) power sums, or first \(t\) elementary
+      symmetric functions, vanish;
+\item pairs of subsets with equal first \(t\) moments, and the resulting
+      moment-trade block families;
+\item subgroup-coset unions, complements, and disjoint block families; and
+\item the binary subset-syndrome fibers and weighted ternary kernel mass for
+      every fixed moment window and exponent set.
+\end{enumerate}
+In particular, the seven non-generating types in
+Corollary~\ref{cor:alltypes} descend as
+\[
+\begin{split}
+ (\text{plus},k=1,e=2,3,4,5,6)&\longmapsto(\text{plus},k=e=1),\\
+ (\text{plus},k=2,e=4)&\longmapsto(\text{plus},k=e=2),\\
+ (\text{minus},k=2,e=4)&\longmapsto(\text{minus},k=e=2).
+\end{split}
+\]
+Thus the final F2 block census and kernel-mass problem on all twelve types
+reduce to the five signed generating types.
+\end{theorem}
+
+\begin{proof}
+For a subset \(S=gT\) and every \(j\ge1\), homogeneity gives
+\[
+ \sum_{x\in S}x^j=g^j\sum_{y\in T}y^j,
+ \qquad e_j(S)=g^je_j(T).                             \tag{2.1}
+\]
+The factors \(g^j\) are nonzero, so zero and equality of moments are
+preserved.  Scaling is a bijection commuting with complement, disjointness,
+and the coset partition.  Substitution \(X=gY\) transports every polynomial
+fiber presentation and preserves zero top coefficients after monic
+normalization.
+
+For a window \(W=gW_0\), identify the coordinate \(gx\) with \(x\).  The
+moment maps satisfy
+\[
+ A_W=\operatorname{diag}(g^\ell)_{\ell\in\Lambda}A_{W_0}. \tag{2.2}
+\]
+The diagonal map is injective.  Hence the two maps have identical
+\(\F_p\)-kernels, corresponding syndrome fibers, equal ranks and collision
+sums, and the same weighted mass.  Applying
+Corollary~\ref{cor:alltypes} gives the displayed seven-to-three descent and
+leaves precisely the five generating signed types.
+\end{proof}
+
+\begin{remark}[What does not descend]
+The ambient-normalized first-moment premise \((O1)\) includes an averaging
+space and normalization depending on \(e\).  Theorem~\ref{thm:ambient} does
+not restore it on non-generating rows.  It applies to the final t-null block
+census and the explicit kernel mass, which are intrinsic to the generated
+field.
+\end{remark}
 
 \section{The coupled minus-branch code}
 
@@ -408,6 +468,9 @@ full-agreement list-recovery or quotient-prefix max-fiber estimate is a
 sufficient supplier for both branches.  Corollary~\ref{cor:distance}
 controls low-weight words but not the
 weighted number of words above the distance floor.
+By Theorem~\ref{thm:ambient}, one such theorem for the five generating
+signed types also covers every non-generating ambient extension.  No separate
+extension-field extras payment is required.
 
 This interface does not identify these full binary syndrome fibers with the
 first-match residual family in \texttt{def:q-row-atom}.  Applying that
