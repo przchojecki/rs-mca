@@ -58,16 +58,18 @@ Keep entries concise and link to the relevant files.
   collisions. The antipodal-selector transport then embeds every full-cube
   F2 fiber into an ordinary central depth-`2R` split-locator prefix fiber,
   removing the weighted-map mismatch with upstream
-  `prob:capfr1-master-flatness`. Its normalized-band and structured-owner
-  seams remain open; `def:q-row-atom` is still a different pruned family.
+  `prob:capfr1-master-flatness`. Every selector is aperiodic on the official
+  power-of-two domains, so the quotient-periodic bucket is absent. The
+  normalized-band and common-divisor owner seams remain open;
+  `def:q-row-atom` is still a different pruned family.
 - **How it is useful:** It prevents a false all-row reduction from entering
   a future Proximity Prize proof, removes ambient extension as a separate F2
   payment, and leaves both residue branches with explicit code-level
   weighted-mass terminals on five generating signed types.
 - **What to do next:** Independently review the official-row scope and the
   top-window identification, then instantiate master split-locator flatness
-  at the transported central parameters and match its quotient/common-
-  divisor removals to the F2 structured-owner ledger.
+  at the transported central parameters and pay its common-divisor and
+  first-match owner seams.
 
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 

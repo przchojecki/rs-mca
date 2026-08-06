@@ -463,6 +463,8 @@ containing one point from every antipodal pair.  If
 \]
 Consequently every fiber of \(A\) injects into one ordinary half-size,
 depth-\(2R\) split-locator prefix fiber on \(D\).
+If \(m\) is a power of two, every selector \(E_x\) is aperiodic in the
+stabilizer sense of \texttt{def:periodicity-scale}.
 \end{theorem}
 
 \begin{proof}
@@ -478,6 +480,12 @@ coordinates are fixed.  Thus an \(A\)-fiber is exactly the transversal
 part of one ordinary power-sum prefix fiber.  Finally, Newton's triangular
 identities are invertible through depth \(2R<p\), so this is the ordinary
 top-\(2R\)-coefficient locator-prefix fiber.
+
+For the final assertion, every nontrivial subgroup of the cyclic
+\(2\)-group \(\mu_{2m}\) contains its unique element of order two, namely
+\(-1\).  If such a subgroup stabilized \(E_x\), then \(-E_x=E_x\).
+This is impossible because an antipodal transversal is disjoint from its
+negative.
 \end{proof}
 
 \begin{remark}[Instantiation and upstream scope]
@@ -487,8 +495,9 @@ twice the binary length.  Therefore a full split-locator flatness theorem
 at these central parameters bounds their F2 max fibers and masses directly.
 This removes the weighted-map mismatch with
 \texttt{prob:capfr1-master-flatness}.  It does not prove that statement,
-place the parameters in its normalized band, or supply its
-quotient/common-divisor removal and first-match ownership.
+place the parameters in its normalized band, or supply its common-divisor
+removal and first-match ownership.  Its quotient-periodic bucket is absent
+on every F2 selector image by the aperiodicity assertion.
 \end{remark}
 
 \begin{theorem}[Fixed-weight flatness pays full-cube mass]
@@ -616,6 +625,8 @@ This note does not claim:
 \item a quotient-prefix maximum-fiber theorem;
 \item a fixed-weight mean-plus-one flatness theorem for the F2 maps;
 \item master split-locator flatness at the transported central parameters;
+\item a common-divisor or first-match owner payment for the transported
+      prefix family;
 \item a transport from the first-match residual family in
       \texttt{def:q-row-atom} to these binary syndrome fibers;
 \item payment of an MCA, CA, list, or adjacent-row numerator;

@@ -266,6 +266,17 @@ def check_selector_transport(p: int, theta: int, m: int, r: int) -> None:
             else:
                 expected.append(constant)
         check(prefix == tuple(expected), "selector affine prefix")
+        if m & (m - 1) == 0:
+            selector_set = set(selector)
+            stabilizer = sum(
+                {
+                    pow(theta, shift, p) * point % p
+                    for point in selector_set
+                }
+                == selector_set
+                for shift in range(2 * m)
+            )
+            check(stabilizer == 1, "selector aperiodicity")
         cube_fibers[odd] += 1
         selector_fibers[prefix] += 1
         selector_images[odd] = prefix
