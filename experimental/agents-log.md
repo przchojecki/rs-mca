@@ -43,7 +43,9 @@ Keep entries concise and link to the relevant files.
   `p=2^61-1, q=p^2` refutes the claim that every admissible rate-half F2
   window has at most four prime-field proportionality classes. The packet
   gives the corrected `p mod 4` order split, the complete five-type
-  generating-row census with a certified minus/order-four witness, an exact Frobenius-coupled
+  generating-row census with a certified minus/order-four witness, the full
+  twelve-type degree/order table reducing the non-generating side to seven
+  exact families, an exact Frobenius-coupled
   negacyclic root-code model and rank for the minus-branch top windows, the
   pointwise weighted collision floor, and the corrected weighted Fourier
   factor `1+cos` rather than the unweighted `1+2cos`. The heaviest-fiber

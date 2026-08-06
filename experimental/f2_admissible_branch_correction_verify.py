@@ -230,6 +230,42 @@ def main() -> None:
                 generated_types.add(("minus", min(valuation, 40), degree))
     check(generated_types == observed_types, "five generating row types")
 
+    all_types = {
+        *(("plus", 1, degree) for degree in range(1, 7)),
+        ("plus", 2, 2),
+        ("plus", 2, 4),
+        ("plus", 4, 4),
+        ("minus", 2, 2),
+        ("minus", 2, 4),
+        ("minus", 4, 4),
+    }
+    plus_six_candidates = ((1, 257), (3, 7), (5, 3))
+    for coefficient, divisor in plus_six_candidates:
+        candidate = coefficient * (1 << 40) + 1
+        check(candidate % divisor == 0, "plus e=6 compositeness")
+        check(candidate**3 < 1 << 128, "plus cube-cap candidate")
+    minus_six_candidates = (
+        (40, 1, 3),
+        (40, 3, 144899),
+        (40, 5, 179),
+        (41, 1, 13367),
+        (41, 3, 5),
+        (42, 1, 3),
+    )
+    for valuation, coefficient, divisor in minus_six_candidates:
+        candidate = coefficient * (1 << valuation) - 1
+        check(candidate % divisor == 0, "minus e=6 compositeness")
+        check(candidate**3 < 1 << 128, "minus cube-cap candidate")
+    check((7 * (1 << 40) + 1) ** 3 > 1 << 128, "plus cube cutoff")
+    check((5 * (1 << 41) - 1) ** 3 > 1 << 128, "minus b41 cutoff")
+    check((3 * (1 << 42) - 1) ** 3 > 1 << 128, "minus b42 cutoff")
+    check(((1 << 43) - 1) ** 3 > 1 << 128, "minus valuation cutoff")
+    check(len(all_types) == 12, "all admissible type count")
+    check(
+        sum(order < degree for _, order, degree in all_types) == 7,
+        "non-generating type count",
+    )
+
     order_cases = 0
     for exponent in range(3, 14):
         modulus = 1 << exponent
