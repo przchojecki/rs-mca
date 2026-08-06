@@ -1,0 +1,335 @@
+\documentclass[11pt,a4paper]{amsart}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,tabularx}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathbb F}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\im}{\operatorname{im}}
+
+\title{An Admissible-Branch Correction for the Rate-Half F2 Kernel}
+\author{Experimental theorem packet}
+\date{August 2026}
+
+\begin{document}
+\begin{abstract}
+We audit a rate-half proof route at the maximal smooth order $n=2^{41}$.
+The frequently used formula
+\(\ord_n(p)=2^{(41-v_2(p-1))_+}\) applies to
+$p\equiv1\pmod4$, not to every admissible odd characteristic.  The official
+row $p=2^{61}-1$, $q=p^2$ is a generating counterexample to the resulting
+bounded proportionality-class census.  We give the corrected
+$p\equiv3\pmod4$ order law and replace the false direct-sum model by one
+Frobenius-coupled negacyclic root code with exact rank.  We also record the
+pointwise weighted-collision floor and the correct Fourier factor
+$1+\cos$, which differs from the unweighted ternary factor $1+2\cos$.
+No MCA numerator, adjacent row, or Prize endpoint is closed here.
+\end{abstract}
+\maketitle
+
+\section{Scope and notation}
+
+Fix
+\[
+ n=2^{41},\qquad q=p^e<2^{256},\qquad n\mid q-1,
+\]
+where $p$ is odd.  Write $k=\ord_n(p)$.  The field cap and the usual
+lifting-the-exponent calculation give
+\[
+ e\le 6,\qquad k\mid e,\qquad k\in\{1,2,4\}.
+\]
+We consider the first $R$ odd moment equations on an antipodal half-window.
+The deployed range satisfies
+\[
+ 2R<2^{36};
+\]
+for example this follows from $2R\le \lceil n/41\rceil+1$.
+
+For a linear moment map $A:\F_p^m\to V$, put
+\[
+ K=\ker A,
+ \qquad
+ Z(A)=\sum_{\epsilon\in K\cap\{-1,0,1\}^m}2^{-\wt(\epsilon)}.
+\]
+
+\section{The omitted residue class}
+
+\begin{proposition}[Correct dyadic order laws]\label{prop:order}
+For $a\ge2$ and odd $p$:
+\[
+ \ord_{2^a}(p)=
+ \begin{cases}
+  2^{(a-v_2(p-1))_+},&p\equiv1\pmod4,\\[2mm]
+  2^{\max\{1,a-v_2(p+1)\}},&p\equiv3\pmod4.
+ \end{cases}
+\]
+Consequently, on an admissible minus-branch row
+$p\equiv3\pmod4$, if $b=v_2(p+1)$, then
+\[
+ b\ge39,
+ \qquad
+ k=2^{\max\{1,41-b\}}\in\{2,4\}.
+\]
+\end{proposition}
+
+\begin{proof}
+For $p\equiv1\pmod4$, repeated squaring and LTE give
+$v_2(p^{2^j}-1)=v_2(p-1)+j$.  For $p\equiv3\pmod4$, the first square gives
+$v_2(p^2-1)=1+v_2(p+1)$ and each further square raises the valuation by one.
+The least power of two whose exponent reaches $a$ gives the two formulas.
+Since $k$ is a power of two dividing $e\le6$, it belongs to
+$\{1,2,4\}$; the minus branch has $k\ge2$, yielding the final claim.
+\end{proof}
+
+\begin{theorem}[Official generating counterexample]\label{thm:m61}
+Let
+\[
+ p=2^{61}-1=2305843009213693951,
+ \qquad q=p^2.
+\]
+Then $p$ is prime, $q<2^{256}$, and
+\[
+ p\equiv-1\pmod{2^{41}},
+ \qquad
+ \ord_{2^{41}}(p)=2=e.
+\]
+Thus this is an admissible generating row.  Nevertheless
+\[
+ \left|\mu_{2^{41}}\cap\F_p^*\right|
+ =\gcd(2^{41},p-1)=2.
+\]
+After one representative is retained from every antipodal pair, all
+$2^{40}$ positions are distinct $\F_p$-proportionality classes.  In
+particular, the all-admissible claim that there are at most four such classes
+is false.
+\end{theorem}
+
+\begin{proof}
+The Lucas--Lehmer test gives a primality certificate for the Mersenne number
+$2^{61}-1$; the companion verifier replays it.  The congruence
+$p\equiv-1\pmod{2^{41}}$ proves both $2^{41}\mid p^2-1$ and order two.
+Also $p^2<2^{122}<2^{256}$.  Two roots are proportional over $\F_p$ exactly
+when their quotient lies in the displayed intersection.  Its only elements
+are $\{1,-1\}$, and the antipodal quotient has already removed the second
+possibility.
+\end{proof}
+
+\begin{remark}[Surviving plus branch]
+The counterexample does not affect the bounded-class reduction on
+$p\equiv1\pmod4$.  In that branch the first formula in
+Proposition~\ref{prop:order}, together with $k\mid e\le6$, gives
+$k\in\{1,2,4\}$ and the established prime-field class decomposition.  The
+repair is a branch split, not a rejection of the plus-branch theorem.
+\end{remark}
+
+\section{The coupled minus-branch code}
+
+Let $W$ be either the exact-order or nested window at order $2^a$, with
+$a\in\{40,41\}$, and let $m=|W|/2$.  There is an element $\omega$ of order
+$2m$ for which a coefficient vector
+$\epsilon=(\epsilon_0,\ldots,\epsilon_{m-1})$ has coefficient polynomial
+\[
+ P_\epsilon(X)=\sum_{s=0}^{m-1}\epsilon_sX^s
+\]
+and the first $R$ odd moments vanish exactly when
+\[
+ P_\epsilon(\omega^{2j-1})=0,
+ \qquad 1\le j\le R.                                  \tag{3.1}
+\]
+For a nested window take $\omega$ to be a generator of $W$.  For an
+exact-order window, write its representatives as
+$y^{2s+1}$ and take $\omega=y^2$; the discarded factor $y^{2j-1}$ is
+nonzero.
+
+\begin{theorem}[Frobenius-closed negacyclic reduction]\label{thm:coupled}
+Assume $p\equiv3\pmod4$ and the admissible hypotheses above.  Put
+\[
+ h=
+ \begin{cases}
+  2,&W\text{ exact-order at }2^{40}\text{ or }2^{41},\\
+  2,&W\text{ nested at }2^{40},\\
+  k,&W\text{ nested at }2^{41}.
+ \end{cases}
+\]
+Then the Frobenius-closed root set
+\[
+ \Omega_W=
+ \left\{\omega^{p^i(2j-1)}:
+ 0\le i<h,\ 1\le j\le R\right\}
+\]
+has exactly $hR$ elements.  Its root polynomial
+\[
+ G_W(X)=\prod_{\alpha\in\Omega_W}(X-\alpha)
+\]
+lies in $\F_p[X]$, and the moment kernel is exactly
+\[
+ K_W=
+ \left\{\operatorname{coeff}(P):
+ P\in\F_p[X],\ \deg P<m,\ G_W\mid P\right\}.          \tag{3.2}
+\]
+Consequently
+\[
+ \operatorname{rank}_{\F_p}A_W=hR,
+ \qquad
+ \dim_{\F_p}K_W=m-hR.                                 \tag{3.3}
+\]
+\end{theorem}
+
+\begin{proof}
+The relevant Frobenius order is $\ord_{2m}(p)$, which is the printed $h$ by
+Proposition~\ref{prop:order}.  The smallest frequency modulus is
+$2m=2^{39}$, whereas all selected exponents are less than
+$2R<2^{36}$.  If $v_2(p+1)$ reaches the modulus exponent, Frobenius sends a
+small odd exponent to its negative.  At the next modulus it sends it to a
+half-period translate of its negative.  In the unique order-four case the
+four conjugates occupy the four quarter-period bands.  These bands are
+disjoint because their widths are below one eighth of the smallest modulus.
+Hence $|\Omega_W|=hR$.
+
+The set is Frobenius-stable, so $G_W\in\F_p[X]$.  A polynomial over $\F_p$
+vanishing at the roots in (3.1) vanishes at all their Frobenius conjugates,
+and the converse is immediate.  Distinct-root divisibility gives (3.2).
+Multiplication by the monic degree-$hR$ polynomial $G_W$ identifies
+polynomials of degree less than $m-hR$ with the kernel, proving (3.3).
+\end{proof}
+
+\begin{corollary}[Signed distance]\label{cor:distance}
+Every nonzero
+$\epsilon\in K_W\cap\{-1,0,1\}^m$ has
+\[
+ \wt(\epsilon)\ge2R+1.
+\]
+\end{corollary}
+
+\begin{proof}
+On the minus branch $p>m$.  Indeed, for $b=v_2(p+1)=39$ or $40$, the
+coefficient-one candidates $2^{39}-1$ and $2^{40}-1$ are composite, so
+primality forces the next odd coefficient and gives $p>2^{40}\ge m$; for
+$b\ge41$ the inequality is immediate.  The odd-moment Newton exclusion in
+characteristic greater than the support weight applies to (3.1), ruling out
+every reduced signed polynomial of weight at most $2R$.
+\end{proof}
+
+\begin{remark}
+The code in Theorem~\ref{thm:coupled} is one $\F_p$ subfield-subcode of an
+extension-field GRS parity check.  Its $2^{40}$ singleton proportionality
+classes are Frobenius-coupled.  Treating them as independent one-coordinate
+codes would replace (3.2) by a false direct sum and would incorrectly
+factorize its mass.
+\end{remark}
+
+\section{Weighted collision and Fourier identities}
+
+\begin{theorem}[Pointwise weighted collision floor]\label{thm:floor}
+Let $A:\F_p^m\to\F_p^d$ have rank $d$.  For
+$S\subseteq\{1,\ldots,m\}$ put $\Phi(S)=A1_S$ and
+\[
+ N(v)=|\{S:\Phi(S)=v\}|.
+\]
+Then
+\[
+ 2^m Z(A)=\sum_vN(v)^2,                                \tag{4.1}
+\]
+and, pointwise for every such map,
+\[
+ Z(A)\ge\max\{1,2^m/p^d\}.                            \tag{4.2}
+\]
+If $a_s$ denotes the $s$-th syndrome column, then
+\begin{align}
+ Z(A)
+ &=p^{-d}\sum_{u\in\F_p^d}
+   \prod_{s=1}^m
+   \left(1+\cos\frac{2\pi\langle u,a_s\rangle}{p}\right) \tag{4.3}\\
+ &=\frac{2^m}{p^d}\sum_{u\in\F_p^d}
+   \prod_{s=1}^m
+   \cos^2\frac{\pi\langle u,a_s\rangle}{p}.          \tag{4.4}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+For an ordered collision $(S,T)$, remove the common intersection.  The
+remaining signed incidence vector is a ternary kernel word $\epsilon$, and
+the common intersection is arbitrary on its $m-\wt(\epsilon)$ zero
+coordinates.  Summing gives (4.1).  Diagonal collisions give $Z\ge1$.
+Cauchy--Schwarz over the $p^d$ syndromes gives
+$\sum_vN(v)^2\ge4^m/p^d$, proving (4.2).
+
+For (4.3), insert additive-character orthogonality for $A\epsilon=0$.
+At one coordinate the weighted sum is
+\[
+ 1+\tfrac12e^{2\pi i\theta/p}+\tfrac12e^{-2\pi i\theta/p}
+ =1+\cos(2\pi\theta/p).
+\]
+The identity $1+\cos(2x)=2\cos^2x$ gives (4.4).
+\end{proof}
+
+\begin{corollary}[Minus-window mass statement]
+For the code in Theorem~\ref{thm:coupled},
+\[
+ Z_W=2^{-m}\sum_vN_W(v)^2
+ \ge\max\{1,2^m/p^{hR}\}.
+\]
+\end{corollary}
+
+\begin{remark}[Normalization fence]
+The factor $1+2\cos$ is the character factor for the unweighted count of
+ternary words.  It is not the factor for the Prize-route mass
+$\sum2^{-\wt}$.  Any mass argument using $1+2\cos$ has changed the object by
+an exponential weight and must be re-derived from (4.3) or (4.4).
+\end{remark}
+
+\section{Consequences and nonclaims}
+
+The packet supplies a corrected structural terminal:
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+branch & proved code model & remaining task\\
+\midrule
+$p\equiv1\pmod4$ & bounded direct sum of prime-field GRS kernels
+  & weighted mass upper bound\\
+$p\equiv3\pmod4$ & one Frobenius-coupled root code (3.2)
+  & weighted mass upper bound\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The common upper-bound target is a capacity-edge weighted subset-syndrome
+$L^2$ estimate.  Theorem~\ref{thm:floor} is a lower bound and does not close
+it.  Corollary~\ref{cor:distance} controls low-weight words but not the
+weighted number of words above the distance floor.
+
+This note does not claim:
+\begin{itemize}
+\item an upper bound on either branch's weighted mass;
+\item a quotient-prefix maximum-fiber theorem;
+\item payment of an MCA, CA, list, or adjacent-row numerator;
+\item resolution of a Proximity Prize endpoint;
+\item that lower order layers, parity normalization, or a first-match ledger
+      are discharged by the top-window code theorem.
+\end{itemize}
+
+The companion script
+\begin{center}
+\small
+\texttt{experimental/}\\
+\texttt{f2\_admissible\_branch\_correction\_verify.py}
+\end{center}
+checks the M61 certificate, the dyadic order law, Frobenius-root cardinalities,
+the weighted collision/Fourier normalization, and explicit mutation failures.
+
+\end{document}

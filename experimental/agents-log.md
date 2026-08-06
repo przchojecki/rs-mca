@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-06 - Rate-half F2 admissible-branch correction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/f2_admissible_branch_correction.tex`,
+  `experimental/f2_admissible_branch_correction_verify.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COUNTEREXAMPLE / ROUTE CORRECTION. No MCA, CA, LIST,
+  adjacent-row, or Prize endpoint changes.
+- **What is being added:** The official generating row
+  `p=2^61-1, q=p^2` refutes the claim that every admissible rate-half F2
+  window has at most four prime-field proportionality classes. The packet
+  gives the corrected `p mod 4` order split, an exact Frobenius-coupled
+  negacyclic root-code model and rank for the minus-branch top windows, the
+  pointwise weighted collision floor, and the corrected weighted Fourier
+  factor `1+cos` rather than the unweighted `1+2cos`.
+- **How it is useful:** It prevents a false all-row reduction from entering
+  a future Proximity Prize proof and leaves both residue branches with
+  explicit code-level weighted-mass terminals.
+- **What to do next:** Independently review the official-row scope and the
+  top-window identification, then seek a weighted subset-syndrome `L^2`
+  upper bound that covers both the plus-branch GRS kernels and the coupled
+  minus-branch root codes.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
