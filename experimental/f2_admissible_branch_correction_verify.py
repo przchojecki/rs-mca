@@ -256,6 +256,56 @@ def check_weighted_identity(
     return collisions, unweighted, maximum
 
 
+def check_fixed_weight_bridge(
+    p: int, m: int, rows: list[list[int]]
+) -> int:
+    layers = [Counter() for _ in range(m + 1)]
+    full: Counter[tuple[int, ...]] = Counter()
+    all_one = syndrome(rows, (1,) * m, p)
+    for bits in itertools.product((0, 1), repeat=m):
+        value = syndrome(rows, bits, p)
+        layers[sum(bits)][value] += 1
+        full[value] += 1
+
+    mass = Fraction(sum(size * size for size in full.values()), 1 << m)
+    for weight, layer in enumerate(layers):
+        complement = Counter()
+        for value, count in layer.items():
+            shifted = tuple((a - v) % p for a, v in zip(all_one, value))
+            complement[shifted] = count
+        check(complement == layers[m - weight], "fixed-weight complement")
+
+    codomain = p ** rank_mod(rows, p)
+    bands = (set(range(m + 1)), set(range(2, max(2, m - 1))))
+    for good in bands:
+        loss = Fraction(1)
+        for weight in good:
+            population = math.comb(m, weight)
+            maximum = max(layers[weight].values())
+            loss = max(
+                loss,
+                Fraction(maximum * codomain, codomain + population),
+            )
+            check(
+                maximum <= loss * (1 + Fraction(population, codomain)),
+                "fixed-weight premise",
+            )
+        tail = sum(
+            math.comb(m, weight)
+            for weight in range(m + 1)
+            if weight not in good
+        )
+        bound = (
+            Fraction(3 * tail * tail, 1 << m)
+            + 3 * loss * (m + 1 + Fraction(1 << m, codomain))
+        )
+        check(mass <= bound, "fixed-weight band bridge")
+        if len(good) == m + 1:
+            sharp = 2 * loss * (m + 1 + Fraction(1 << m, codomain))
+            check(mass <= sharp, "fixed-weight all-weight bridge")
+    return len(bands)
+
+
 def main() -> None:
     n = 1 << 41
     p = (1 << 61) - 1
@@ -411,6 +461,7 @@ def main() -> None:
         (7, 6, [[1, 1, 1, 1, 1, 1], [0, 1, 2, 3, 4, 5]]),
     )
     collision_counts = [check_weighted_identity(*case) for case in matrix_cases]
+    bridge_cases = sum(check_fixed_weight_bridge(*case) for case in matrix_cases)
     check(
         any(unweighted != Fraction(collisions, 1 << case[1])
             for case, (collisions, unweighted, _) in zip(matrix_cases, collision_counts)),
@@ -421,7 +472,8 @@ def main() -> None:
         "F2_ADMISSIBLE_BRANCH_CORRECTION_PASS "
         f"checks={CHECKS} order_cases={order_cases} "
         f"orbit_cases={orbit_cases} top_cases={top_cases} "
-        f"matrix_cases={len(matrix_cases)} ambient_cases={ambient_cases}"
+        f"matrix_cases={len(matrix_cases)} ambient_cases={ambient_cases} "
+        f"bridge_cases={bridge_cases}"
     )
 
 

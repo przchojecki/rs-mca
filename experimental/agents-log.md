@@ -52,16 +52,20 @@ Keep entries concise and link to the relevant files.
   pointwise weighted collision floor, and the corrected weighted Fourier
   factor `1+cos` rather than the unweighted `1+2cos`. The heaviest-fiber
   sandwich `M^2/2^m <= Z <= M` gives a lossless interface from a max-fiber
-  theorem for these syndrome fibers to the weighted mass. Upstream
-  `def:q-row-atom` still needs a separate map-and-owner transport.
+  theorem for these syndrome fibers to the weighted mass. The exact
+  fixed-weight bridge further proves that mean-plus-one flatness on a
+  central binomial band controls the full-cube mass, including cross-weight
+  collisions. Upstream `def:q-row-atom` still needs a separate weighted-map
+  and owner transport.
 - **How it is useful:** It prevents a false all-row reduction from entering
   a future Proximity Prize proof, removes ambient extension as a separate F2
   payment, and leaves both residue branches with explicit code-level
   weighted-mass terminals on five generating signed types.
 - **What to do next:** Independently review the official-row scope and the
-  top-window identification, then seek a weighted subset-syndrome `L^2`
-  upper bound that covers both the plus-branch GRS kernels and the coupled
-  minus-branch root codes.
+  top-window identification, then prove fixed-weight mean-plus-one flatness
+  for the weighted odd-prefix maps on a sufficient central band, uniformly
+  for both the plus-branch GRS kernels and the coupled minus-branch root
+  codes.
 
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 

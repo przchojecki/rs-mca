@@ -38,9 +38,12 @@ Frobenius-coupled negacyclic root code with exact rank.  We also record the
 pointwise weighted-collision floor and the correct Fourier factor
 $1+\cos$, which differs from the unweighted ternary factor $1+2\cos$.
 The same identity gives a lossless interface from a row-sharp heaviest-fiber
-bound to the weighted mass.  Finally, an exact generated-field descent shows
-that the seven non-generating degree/order types have the same final block
-census and kernel mass as three generating types.
+bound to the weighted mass.  A second exact bridge shows that fixed-weight
+mean-plus-one flatness on a central binomial band already controls the
+full-cube mass, including cross-weight collisions.  Finally, an exact
+generated-field descent shows that the seven non-generating degree/order
+types have the same final block census and kernel mass as three generating
+types.
 No MCA numerator, adjacent row, or Prize endpoint is closed here.
 \end{abstract}
 \maketitle
@@ -430,6 +433,72 @@ bound, use \(N(v)^2\le M(A)N(v)\), sum over $v$, and use
 \(\sum_vN(v)=2^m\) in (4.1).
 \end{proof}
 
+\begin{theorem}[Fixed-weight flatness pays full-cube mass]
+\label{thm:fixed-weight-bridge}
+For $0\le b\le m$, put
+\[
+ N_b(v)=|\{x\in\{0,1\}^m:|x|=b,\ Ax=v\}|,
+ \quad M_b=\max_vN_b(v),
+ \quad B_b=\binom mb.
+\]
+Let \(\mathcal G\subseteq\{0,\ldots,m\}\), put
+\(T_{\mathcal G}=\sum_{b\notin\mathcal G}B_b\), and suppose that for
+\(Q,L\ge1\),
+\[
+ M_b\le L\left(1+\frac{B_b}{Q}\right)
+ \qquad(b\in\mathcal G).                            \tag{4.6}
+\]
+Then
+\[
+ Z(A)\le \frac{3T_{\mathcal G}^2}{2^m}
+       +3L\left(m+1+\frac{2^m}{Q}\right).           \tag{4.7}
+\]
+If every weight is in \(\mathcal G\), the factor $3$ may be replaced by $2$
+and the tail term omitted.  Moreover \(M_b=M_{m-b}\), and the corresponding
+fixed-weight collision sums agree.
+\end{theorem}
+
+\begin{proof}
+The collision identity and Minkowski's inequality give
+\[
+ 2^{m/2}\sqrt{Z(A)}
+ =\left\|\sum_bN_b\right\|_2
+ \le\sum_b\|N_b\|_2.
+\]
+Since \(\sum_vN_b(v)=B_b\), one has
+\(\|N_b\|_2^2\le M_bB_b\).  A weight outside \(\mathcal G\) therefore
+contributes at most \(B_b\), while (4.6) bounds a good weight by
+\[
+ \sqrt{M_bB_b}
+ \le\sqrt L\left(\sqrt{B_b}+\frac{B_b}{\sqrt Q}\right).
+\]
+Cauchy--Schwarz and the binomial theorem give
+\[
+ \sum_b\sqrt{B_b}\le\sqrt{(m+1)2^m},
+ \qquad \sum_bB_b=2^m.
+\]
+Thus
+\[
+ 2^{m/2}\sqrt{Z(A)}
+ \le T_{\mathcal G}
+ +\sqrt L\left(\sqrt{(m+1)2^m}+\frac{2^m}{\sqrt Q}\right).
+\]
+Apply \((a+b+c)^2\le3(a^2+b^2+c^2)\); when the tail is absent, use the
+two-term version.  Finally, if \(a=A(1,\ldots,1)\), complementation sends
+the weight-\(b\) syndrome \(v\) to the weight-\((m-b)\) syndrome \(a-v\),
+proving the symmetry.
+\end{proof}
+
+\begin{remark}[Relation to the upstream flatness target]
+At \(Q=p^d\), Theorem~\ref{thm:fixed-weight-bridge} has exactly the
+mean-plus-one normalization of \texttt{prob:capfr1-master-flatness} and
+\texttt{prob:capfp-Q}.  If \(\log L=o(m)\), \(2^m/Q=2^{o(m)}\), and the
+omitted binomial tails total \(2^{m/2+o(m)}\), then \(Z(A)=2^{o(m)}\).
+This is an implication, not an identification: the F2 columns carry
+odd-power weights, and the upstream Q atom is a pruned first-match family
+rather than this full fixed-weight slice.
+\end{remark}
+
 \begin{corollary}[Minus-window mass statement]
 For the code in Theorem~\ref{thm:coupled},
 \[
@@ -465,8 +534,11 @@ The common upper-bound target is a capacity-edge weighted subset-syndrome
 $L^2$ estimate.  Theorem~\ref{thm:floor} is a lower bound and does not close
 it.  Corollary~\ref{cor:maxfiber} shows that a uniform subexponential binary
 full-agreement list-recovery or quotient-prefix max-fiber estimate is a
-sufficient supplier for both branches.  Corollary~\ref{cor:distance}
-controls low-weight words but not the
+sufficient supplier for both branches.  More economically,
+Theorem~\ref{thm:fixed-weight-bridge} needs mean-plus-one flatness only on
+fixed-weight slices in a sufficiently wide central band; its proof retains
+all cross-weight collisions.  Corollary~\ref{cor:distance} controls
+low-weight words but not the
 weighted number of words above the distance floor.
 By Theorem~\ref{thm:ambient}, one such theorem for the five generating
 signed types also covers every non-generating ambient extension.  No separate
@@ -480,6 +552,7 @@ This note does not claim:
 \begin{itemize}
 \item an upper bound on either branch's weighted mass;
 \item a quotient-prefix maximum-fiber theorem;
+\item a fixed-weight mean-plus-one flatness theorem for the F2 maps;
 \item a transport from the first-match residual family in
       \texttt{def:q-row-atom} to these binary syndrome fibers;
 \item payment of an MCA, CA, list, or adjacent-row numerator;
