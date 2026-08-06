@@ -30,6 +30,47 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-06 - Rate-half F2 admissible-branch correction
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/f2_admissible_branch_correction.tex`,
+  `experimental/f2_admissible_branch_correction_verify.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COUNTEREXAMPLE / ROUTE CORRECTION. No MCA, CA, LIST,
+  adjacent-row, or Prize endpoint changes.
+- **What is being added:** The official generating row
+  `p=2^61-1, q=p^2` refutes the claim that every admissible rate-half F2
+  window has at most four prime-field proportionality classes. The packet
+  gives the corrected `p mod 4` order split, the complete five-type
+  generating-row census with a certified minus/order-four witness, the full
+  twelve-type degree/order table reducing the non-generating side to seven
+  exact families, an exact generated-field descent identifying those seven
+  families' final block censuses and kernel masses with three generating
+  types, an exact Frobenius-coupled
+  negacyclic root-code model and rank for the minus-branch top windows, the
+  pointwise weighted collision floor, and the corrected weighted Fourier
+  factor `1+cos` rather than the unweighted `1+2cos`. The heaviest-fiber
+  sandwich `M^2/2^m <= Z <= M` gives a lossless interface from a max-fiber
+  theorem for these syndrome fibers to the weighted mass. The exact
+  fixed-weight bridge further proves that mean-plus-one flatness on a
+  central binomial band controls the full-cube mass, including cross-weight
+  collisions. The antipodal-selector transport then embeds every full-cube
+  F2 fiber into an ordinary central depth-`2R` split-locator prefix fiber,
+  removing the weighted-map mismatch with upstream
+  `prob:capfr1-master-flatness`. Every selector is aperiodic on the official
+  power-of-two domains, so the quotient-periodic bucket is absent. The
+  normalized-band and common-divisor owner seams remain open;
+  `def:q-row-atom` is still a different pruned family.
+- **How it is useful:** It prevents a false all-row reduction from entering
+  a future Proximity Prize proof, removes ambient extension as a separate F2
+  payment, and leaves both residue branches with explicit code-level
+  weighted-mass terminals on five generating signed types.
+- **What to do next:** Independently review the official-row scope and the
+  top-window identification, then instantiate master split-locator flatness
+  at the transported central parameters and pay its common-divisor and
+  first-match owner seams.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from

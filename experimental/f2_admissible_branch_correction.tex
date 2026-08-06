@@ -1,0 +1,647 @@
+\documentclass[11pt,a4paper]{amsart}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,tabularx}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathbb F}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\im}{\operatorname{im}}
+
+\title{An Admissible-Branch Correction for the Rate-Half F2 Kernel}
+\author{Experimental theorem packet}
+\date{August 2026}
+
+\begin{document}
+\begin{abstract}
+We audit a rate-half proof route at the maximal smooth order $n=2^{41}$.
+The frequently used formula
+\(\ord_n(p)=2^{(41-v_2(p-1))_+}\) applies to
+$p\equiv1\pmod4$, not to every admissible odd characteristic.  The official
+row $p=2^{61}-1$, $q=p^2$ is a generating counterexample to the resulting
+bounded proportionality-class census.  We give the corrected
+$p\equiv3\pmod4$ order law and replace the false direct-sum model by one
+Frobenius-coupled negacyclic root code with exact rank.  We also record the
+pointwise weighted-collision floor and the correct Fourier factor
+$1+\cos$, which differs from the unweighted ternary factor $1+2\cos$.
+The same identity gives a lossless interface from a row-sharp heaviest-fiber
+bound to the weighted mass.  A second exact bridge shows that fixed-weight
+mean-plus-one flatness on a central binomial band already controls the
+full-cube mass, including cross-weight collisions.  More directly, an
+antipodal-selector transport embeds every F2 cube fiber into an ordinary
+central split-locator prefix fiber on the doubled cyclic domain.  Finally,
+an exact generated-field descent shows that the seven non-generating
+degree/order types have the same final block census and kernel mass as
+three generating types.
+No MCA numerator, adjacent row, or Prize endpoint is closed here.
+\end{abstract}
+\maketitle
+
+\section{Scope and notation}
+
+Fix
+\[
+ n=2^{41},\qquad q=p^e<2^{256},\qquad n\mid q-1,
+\]
+where $p$ is odd.  Write $k=\ord_n(p)$.  The field cap and the usual
+lifting-the-exponent calculation give
+\[
+ e\le 6,\qquad k\mid e,\qquad k\in\{1,2,4\}.
+\]
+We consider the first $R$ odd moment equations on an antipodal half-window.
+The deployed range satisfies
+\[
+ 2R<2^{36};
+\]
+for example this follows from $2R\le \lceil n/41\rceil+1$.
+
+For a linear moment map $A:\F_p^m\to V$, put
+\[
+ K=\ker A,
+ \qquad
+ Z(A)=\sum_{\epsilon\in K\cap\{-1,0,1\}^m}2^{-\wt(\epsilon)}.
+\]
+
+\section{The omitted residue class}
+
+\begin{proposition}[Correct dyadic order laws]\label{prop:order}
+For $a\ge2$ and odd $p$:
+\[
+ \ord_{2^a}(p)=
+ \begin{cases}
+  2^{(a-v_2(p-1))_+},&p\equiv1\pmod4,\\[2mm]
+  2^{\max\{1,a-v_2(p+1)\}},&p\equiv3\pmod4.
+ \end{cases}
+\]
+Consequently, on an admissible minus-branch row
+$p\equiv3\pmod4$, if $b=v_2(p+1)$, then
+\[
+ b\ge39,
+ \qquad
+ k=2^{\max\{1,41-b\}}\in\{2,4\}.
+\]
+\end{proposition}
+
+\begin{proof}
+For $p\equiv1\pmod4$, repeated squaring and LTE give
+$v_2(p^{2^j}-1)=v_2(p-1)+j$.  For $p\equiv3\pmod4$, the first square gives
+$v_2(p^2-1)=1+v_2(p+1)$ and each further square raises the valuation by one.
+The least power of two whose exponent reaches $a$ gives the two formulas.
+Since $k$ is a power of two dividing $e\le6$, it belongs to
+$\{1,2,4\}$; the minus branch has $k\ge2$, yielding the final claim.
+\end{proof}
+
+\begin{theorem}[Official generating counterexample]\label{thm:m61}
+Let
+\[
+ p=2^{61}-1=2305843009213693951,
+ \qquad q=p^2.
+\]
+Then $p$ is prime, $q<2^{256}$, and
+\[
+ p\equiv-1\pmod{2^{41}},
+ \qquad
+ \ord_{2^{41}}(p)=2=e.
+\]
+Thus this is an admissible generating row.  Nevertheless
+\[
+ \left|\mu_{2^{41}}\cap\F_p^*\right|
+ =\gcd(2^{41},p-1)=2.
+\]
+After one representative is retained from every antipodal pair, all
+$2^{40}$ positions are distinct $\F_p$-proportionality classes.  In
+particular, the all-admissible claim that there are at most four such classes
+is false.
+\end{theorem}
+
+\begin{proof}
+The Lucas--Lehmer test gives a primality certificate for the Mersenne number
+$2^{61}-1$; the companion verifier replays it.  The congruence
+$p\equiv-1\pmod{2^{41}}$ proves both $2^{41}\mid p^2-1$ and order two.
+Also $p^2<2^{122}<2^{256}$.  Two roots are proportional over $\F_p$ exactly
+when their quotient lies in the displayed intersection.  Its only elements
+are $\{1,-1\}$, and the antipodal quotient has already removed the second
+possibility.
+\end{proof}
+
+\begin{remark}[Surviving plus branch]
+The counterexample does not affect the bounded-class reduction on
+$p\equiv1\pmod4$.  In that branch the first formula in
+Proposition~\ref{prop:order}, together with $k\mid e\le6$, gives
+$k\in\{1,2,4\}$ and the established prime-field class decomposition.  The
+repair is a branch split, not a rejection of the plus-branch theorem.
+\end{remark}
+
+\begin{theorem}[Complete generating-row type table]\label{thm:types}
+Assume in addition that the row is generating, so
+\(\ord_{2^{41}}(p)=e\).  Exactly five residue-signed types are possible:
+\[
+\begin{array}{ccl}
+\toprule
+\text{branch}&\text{valuation}&e\\
+\midrule
+p\equiv1\pmod4&v_2(p-1)\ge41&1\\
+p\equiv1\pmod4&v_2(p-1)=40&2\\
+p\equiv1\pmod4&v_2(p-1)=39&4\\
+p\equiv3\pmod4&v_2(p+1)\ge40&2\\
+p\equiv3\pmod4&v_2(p+1)=39&4\\
+\bottomrule
+\end{array}
+\]
+All five types are nonempty.  In table order, prime witnesses are
+\[
+ 3\mathbin{\cdot}2^{41}+1,\quad
+ 27\mathbin{\cdot}2^{40}+1,\quad
+ 5\mathbin{\cdot}2^{39}+1,\quad
+ 2^{61}-1,\quad
+ 25\mathbin{\cdot}2^{39}-1.
+\]
+Taking \(q=p^e\) gives \(q<2^{256}\) in every case.
+\end{theorem}
+
+\begin{proof}
+Set each branch of Proposition~\ref{prop:order} equal to
+\(e\in\{1,2,4\}\).  The plus branch gives the first three rows.  The minus
+branch has order two exactly when \(v_2(p+1)\ge40\), and order four exactly
+when \(v_2(p+1)=39\).  The companion verifier gives complete-factor
+Pocklington certificates for the four non-Mersenne witnesses and a
+Lucas--Lehmer certificate for \(2^{61}-1\), then checks the orders and field
+cap directly.
+\end{proof}
+
+\begin{corollary}[Complete degree/order table]\label{cor:alltypes}
+Without the generating hypothesis, the five signed valuation/order rows and
+their possible extension degrees are
+\[
+\begin{array}{ccll}
+\toprule
+\text{branch}&\text{valuation}&k=\ord_{2^{41}}(p)&\text{possible }e\\
+\midrule
+p\equiv1\pmod4&v_2(p-1)\ge41&1&1,2,3,4,5,6\\
+p\equiv1\pmod4&v_2(p-1)=40&2&2,4\\
+p\equiv1\pmod4&v_2(p-1)=39&4&4\\
+p\equiv3\pmod4&v_2(p+1)\ge40&2&2,4\\
+p\equiv3\pmod4&v_2(p+1)=39&4&4\\
+\bottomrule
+\end{array}
+\]
+All twelve types are nonempty.  Exactly seven are non-generating: the five
+plus/order-one types with \(2\le e\le6\), and the plus and minus order-two
+types with \(e=4\).
+\end{corollary}
+
+\begin{proof}
+Since \(k\mid e\le6\), divisibility initially allows
+\(e\in\{1,\ldots,6\}\) for \(k=1\), \(e\in\{2,4,6\}\) for \(k=2\), and
+only \(e=4\) for \(k=4\).  It remains to exclude \(e=6,k=2\).
+The field cap gives \(p^3<2^{128}\).  In the plus branch
+\(p=c2^{40}+1\), leaving \(c=1,3,5\); these candidates have divisors
+\(257,7,3\).  In the minus branch \(p=c2^b-1\), \(b\ge40\), the surviving
+\((b,c)\) are
+\((40,1),(40,3),(40,5),(41,1),(41,3),(42,1)\), with respective divisors
+\(3,144899,179,13367,5,3\).  The witnesses in
+Theorem~\ref{thm:types}, raised to the listed multiples of their orders,
+prove nonemptiness.  Comparing \(k\) and \(e\) gives the final count.
+\end{proof}
+
+\begin{theorem}[Generated-field ambient invariance]\label{thm:ambient}
+Let \(B=\F_p(\mu_n)=\F_{p^k}\subseteq F=\F_{p^e}\), and let the domain be
+\(D=g\mu_n\) with \(g\in F^*\).  Scaling by \(g^{-1}\) gives an exact
+bijection between the following objects on \(D\) and on \(\mu_n\):
+\begin{enumerate}
+\item subsets whose first \(t\) power sums, or first \(t\) elementary
+      symmetric functions, vanish;
+\item pairs of subsets with equal first \(t\) moments, and the resulting
+      moment-trade block families;
+\item subgroup-coset unions, complements, and disjoint block families; and
+\item the binary subset-syndrome fibers and weighted ternary kernel mass for
+      every fixed moment window and exponent set.
+\end{enumerate}
+In particular, the seven non-generating types in
+Corollary~\ref{cor:alltypes} descend as
+\[
+\begin{split}
+ (\text{plus},k=1,e=2,3,4,5,6)&\longmapsto(\text{plus},k=e=1),\\
+ (\text{plus},k=2,e=4)&\longmapsto(\text{plus},k=e=2),\\
+ (\text{minus},k=2,e=4)&\longmapsto(\text{minus},k=e=2).
+\end{split}
+\]
+Thus the final F2 block census and kernel-mass problem on all twelve types
+reduce to the five signed generating types.
+\end{theorem}
+
+\begin{proof}
+For a subset \(S=gT\) and every \(j\ge1\), homogeneity gives
+\[
+ \sum_{x\in S}x^j=g^j\sum_{y\in T}y^j,
+ \qquad e_j(S)=g^je_j(T).                             \tag{2.1}
+\]
+The factors \(g^j\) are nonzero, so zero and equality of moments are
+preserved.  Scaling is a bijection commuting with complement, disjointness,
+and the coset partition.  Substitution \(X=gY\) transports every polynomial
+fiber presentation and preserves zero top coefficients after monic
+normalization.
+
+For a window \(W=gW_0\), identify the coordinate \(gx\) with \(x\).  The
+moment maps satisfy
+\[
+ A_W=\operatorname{diag}(g^\ell)_{\ell\in\Lambda}A_{W_0}. \tag{2.2}
+\]
+The diagonal map is injective.  Hence the two maps have identical
+\(\F_p\)-kernels, corresponding syndrome fibers, equal ranks and collision
+sums, and the same weighted mass.  Applying
+Corollary~\ref{cor:alltypes} gives the displayed seven-to-three descent and
+leaves precisely the five generating signed types.
+\end{proof}
+
+\begin{remark}[What does not descend]
+The ambient-normalized first-moment premise \((O1)\) includes an averaging
+space and normalization depending on \(e\).  Theorem~\ref{thm:ambient} does
+not restore it on non-generating rows.  It applies to the final t-null block
+census and the explicit kernel mass, which are intrinsic to the generated
+field.
+\end{remark}
+
+\section{The coupled minus-branch code}
+
+Let $W$ be either the exact-order or nested window at order $2^a$, with
+$a\in\{40,41\}$, and let $m=|W|/2$.  There is an element $\omega$ of order
+$2m$ for which a coefficient vector
+$\epsilon=(\epsilon_0,\ldots,\epsilon_{m-1})$ has coefficient polynomial
+\[
+ P_\epsilon(X)=\sum_{s=0}^{m-1}\epsilon_sX^s
+\]
+and the first $R$ odd moments vanish exactly when
+\[
+ P_\epsilon(\omega^{2j-1})=0,
+ \qquad 1\le j\le R.                                  \tag{3.1}
+\]
+For a nested window take $\omega$ to be a generator of $W$.  For an
+exact-order window, write its representatives as
+$y^{2s+1}$ and take $\omega=y^2$; the discarded factor $y^{2j-1}$ is
+nonzero.
+
+\begin{theorem}[Frobenius-closed negacyclic reduction]\label{thm:coupled}
+Assume $p\equiv3\pmod4$ and the admissible hypotheses above.  Put
+\[
+ h=
+ \begin{cases}
+  2,&W\text{ exact-order at }2^{40}\text{ or }2^{41},\\
+  2,&W\text{ nested at }2^{40},\\
+  k,&W\text{ nested at }2^{41}.
+ \end{cases}
+\]
+Then the Frobenius-closed root set
+\[
+ \Omega_W=
+ \left\{\omega^{p^i(2j-1)}:
+ 0\le i<h,\ 1\le j\le R\right\}
+\]
+has exactly $hR$ elements.  Its root polynomial
+\[
+ G_W(X)=\prod_{\alpha\in\Omega_W}(X-\alpha)
+\]
+lies in $\F_p[X]$, and the moment kernel is exactly
+\[
+ K_W=
+ \left\{\operatorname{coeff}(P):
+ P\in\F_p[X],\ \deg P<m,\ G_W\mid P\right\}.          \tag{3.2}
+\]
+Consequently
+\[
+ \operatorname{rank}_{\F_p}A_W=hR,
+ \qquad
+ \dim_{\F_p}K_W=m-hR.                                 \tag{3.3}
+\]
+\end{theorem}
+
+\begin{proof}
+The relevant Frobenius order is $\ord_{2m}(p)$, which is the printed $h$ by
+Proposition~\ref{prop:order}.  The smallest frequency modulus is
+$2m=2^{39}$, whereas all selected exponents are less than
+$2R<2^{36}$.  If $v_2(p+1)$ reaches the modulus exponent, Frobenius sends a
+small odd exponent to its negative.  At the next modulus it sends it to a
+half-period translate of its negative.  In the unique order-four case the
+four conjugates occupy the four quarter-period bands.  These bands are
+disjoint because their widths are below one eighth of the smallest modulus.
+Hence $|\Omega_W|=hR$.
+
+The set is Frobenius-stable, so $G_W\in\F_p[X]$.  A polynomial over $\F_p$
+vanishing at the roots in (3.1) vanishes at all their Frobenius conjugates,
+and the converse is immediate.  Distinct-root divisibility gives (3.2).
+Multiplication by the monic degree-$hR$ polynomial $G_W$ identifies
+polynomials of degree less than $m-hR$ with the kernel, proving (3.3).
+\end{proof}
+
+\begin{corollary}[Signed distance]\label{cor:distance}
+Every nonzero
+$\epsilon\in K_W\cap\{-1,0,1\}^m$ has
+\[
+ \wt(\epsilon)\ge2R+1.
+\]
+\end{corollary}
+
+\begin{proof}
+On the minus branch $p>m$.  Indeed, for $b=v_2(p+1)=39$ or $40$, the
+coefficient-one candidates $2^{39}-1$ and $2^{40}-1$ are composite, so
+primality forces the next odd coefficient and gives $p>2^{40}\ge m$; for
+$b\ge41$ the inequality is immediate.  The odd-moment Newton exclusion in
+characteristic greater than the support weight applies to (3.1), ruling out
+every reduced signed polynomial of weight at most $2R$.
+\end{proof}
+
+\begin{remark}
+The code in Theorem~\ref{thm:coupled} is one $\F_p$ subfield-subcode of an
+extension-field GRS parity check.  Its $2^{40}$ singleton proportionality
+classes are Frobenius-coupled.  Treating them as independent one-coordinate
+codes would replace (3.2) by a false direct sum and would incorrectly
+factorize its mass.
+\end{remark}
+
+\section{Weighted collision and Fourier identities}
+
+\begin{theorem}[Pointwise weighted collision floor]\label{thm:floor}
+Let $A:\F_p^m\to\F_p^d$ have rank $d$.  For
+$S\subseteq\{1,\ldots,m\}$ put $\Phi(S)=A1_S$ and
+\[
+ N(v)=|\{S:\Phi(S)=v\}|.
+\]
+Then
+\[
+ 2^m Z(A)=\sum_vN(v)^2,                                \tag{4.1}
+\]
+and, pointwise for every such map,
+\[
+ Z(A)\ge\max\{1,2^m/p^d\}.                            \tag{4.2}
+\]
+If $a_s$ denotes the $s$-th syndrome column, then
+\begin{align}
+ Z(A)
+ &=p^{-d}\sum_{u\in\F_p^d}
+   \prod_{s=1}^m
+   \left(1+\cos\frac{2\pi\langle u,a_s\rangle}{p}\right) \tag{4.3}\\
+ &=\frac{2^m}{p^d}\sum_{u\in\F_p^d}
+   \prod_{s=1}^m
+   \cos^2\frac{\pi\langle u,a_s\rangle}{p}.          \tag{4.4}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+For an ordered collision $(S,T)$, remove the common intersection.  The
+remaining signed incidence vector is a ternary kernel word $\epsilon$, and
+the common intersection is arbitrary on its $m-\wt(\epsilon)$ zero
+coordinates.  Summing gives (4.1).  Diagonal collisions give $Z\ge1$.
+Cauchy--Schwarz over the $p^d$ syndromes gives
+$\sum_vN(v)^2\ge4^m/p^d$, proving (4.2).
+
+For (4.3), insert additive-character orthogonality for $A\epsilon=0$.
+At one coordinate the weighted sum is
+\[
+ 1+\tfrac12e^{2\pi i\theta/p}+\tfrac12e^{-2\pi i\theta/p}
+ =1+\cos(2\pi\theta/p).
+\]
+The identity $1+\cos(2x)=2\cos^2x$ gives (4.4).
+\end{proof}
+
+\begin{corollary}[Heaviest-fiber sandwich]\label{cor:maxfiber}
+In the notation of Theorem~\ref{thm:floor}, put
+\(M(A)=\max_v N(v)\).  Then
+\[
+ \frac{M(A)^2}{2^m}\le Z(A)\le M(A).                \tag{4.5}
+\]
+In particular, a max-fiber estimate for this syndrome map,
+\[
+ M(A)\le \Lambda_Q\frac{2^m}{p^d}+E_Q
+\]
+implies the identical upper bound for $Z(A)$, with no normalization loss.
+\end{corollary}
+
+\begin{proof}
+Keep a largest term in \(\sum_vN(v)^2\) for the lower bound.  For the upper
+bound, use \(N(v)^2\le M(A)N(v)\), sum over $v$, and use
+\(\sum_vN(v)=2^m\) in (4.1).
+\end{proof}
+
+\begin{theorem}[Antipodal-selector prefix transport]
+\label{thm:selector-transport}
+Let \(K\) be a finite field of odd characteristic \(p>2R\), and let
+\(\theta\in K\) have order \(2m\).  Put
+\[
+ H=\{\theta^s:0\le s<m\},\qquad D=\mu_{2m}=H\sqcup(-H),
+\]
+and define
+\[
+ A(x)_j=\sum_{s=0}^{m-1}x_s\theta^{s(2j-1)}
+ \quad(1\le j\le R)
+\]
+on \(x\in\{0,1\}^m\).  Associate to \(x\) the antipodal transversal
+\[
+ E_x=\{\theta^s:x_s=1\}\cup\{-\theta^s:x_s=0\}\subseteq D.
+\]
+Then \(x\mapsto E_x\) is a bijection onto the \(m\)-subsets of \(D\)
+containing one point from every antipodal pair.  If
+\(c_\ell=\sum_{s=0}^{m-1}\theta^{s\ell}\), then
+\[
+ \sum_{a\in E_x}a^\ell=
+ \begin{cases}
+  2A(x)_{(\ell+1)/2}-c_\ell,&\ell\text{ odd},\\
+  c_\ell,&\ell\text{ even}.
+ \end{cases}                                        \tag{4.6}
+\]
+Consequently every fiber of \(A\) injects into one ordinary half-size,
+depth-\(2R\) split-locator prefix fiber on \(D\).
+If \(m\) is a power of two, every selector \(E_x\) is aperiodic in the
+stabilizer sense of \texttt{def:periodicity-scale}.
+\end{theorem}
+
+\begin{proof}
+Each bit selects one of \(\theta^s\) and \(-\theta^s\), proving the
+bijection.  The contribution of pair \(s\) to the \(\ell\)-th power sum is
+\[
+ x_s\theta^{s\ell}+(1-x_s)(-\theta^s)^\ell.
+\]
+It is \(\theta^{s\ell}\) for even \(\ell\), and
+\((2x_s-1)\theta^{s\ell}\) for odd \(\ell\), which proves (4.6).
+Since \(2\) is invertible, the odd coordinates recover \(A(x)\); the even
+coordinates are fixed.  Thus an \(A\)-fiber is exactly the transversal
+part of one ordinary power-sum prefix fiber.  Finally, Newton's triangular
+identities are invertible through depth \(2R<p\), so this is the ordinary
+top-\(2R\)-coefficient locator-prefix fiber.
+
+For the final assertion, every nontrivial subgroup of the cyclic
+\(2\)-group \(\mu_{2m}\) contains its unique element of order two, namely
+\(-1\).  If such a subgroup stabilized \(E_x\), then \(-E_x=E_x\).
+This is impossible because an antipodal transversal is disjoint from its
+negative.
+\end{proof}
+
+\begin{remark}[Instantiation and upstream scope]
+The plus GRS class matrix and the minus coefficient-root matrix both have
+the displayed form, up to invertible row scalings; their roots have order
+twice the binary length.  Therefore a full split-locator flatness theorem
+at these central parameters bounds their F2 max fibers and masses directly.
+This removes the weighted-map mismatch with
+\texttt{prob:capfr1-master-flatness}.  It does not prove that statement,
+place the parameters in its normalized band, or supply its common-divisor
+removal and first-match ownership.  Its quotient-periodic bucket is absent
+on every F2 selector image by the aperiodicity assertion.
+\end{remark}
+
+\begin{theorem}[Fixed-weight flatness pays full-cube mass]
+\label{thm:fixed-weight-bridge}
+For $0\le b\le m$, put
+\[
+ N_b(v)=|\{x\in\{0,1\}^m:|x|=b,\ Ax=v\}|,
+ \quad M_b=\max_vN_b(v),
+ \quad B_b=\binom mb.
+\]
+Let \(\mathcal G\subseteq\{0,\ldots,m\}\), put
+\(T_{\mathcal G}=\sum_{b\notin\mathcal G}B_b\), and suppose that for
+\(Q,L\ge1\),
+\[
+ M_b\le L\left(1+\frac{B_b}{Q}\right)
+ \qquad(b\in\mathcal G).                            \tag{4.7}
+\]
+Then
+\[
+ Z(A)\le \frac{3T_{\mathcal G}^2}{2^m}
+       +3L\left(m+1+\frac{2^m}{Q}\right).           \tag{4.8}
+\]
+If every weight is in \(\mathcal G\), the factor $3$ may be replaced by $2$
+and the tail term omitted.  Moreover \(M_b=M_{m-b}\), and the corresponding
+fixed-weight collision sums agree.
+\end{theorem}
+
+\begin{proof}
+The collision identity and Minkowski's inequality give
+\[
+ 2^{m/2}\sqrt{Z(A)}
+ =\left\|\sum_bN_b\right\|_2
+ \le\sum_b\|N_b\|_2.
+\]
+Since \(\sum_vN_b(v)=B_b\), one has
+\(\|N_b\|_2^2\le M_bB_b\).  A weight outside \(\mathcal G\) therefore
+contributes at most \(B_b\), while (4.7) bounds a good weight by
+\[
+ \sqrt{M_bB_b}
+ \le\sqrt L\left(\sqrt{B_b}+\frac{B_b}{\sqrt Q}\right).
+\]
+Cauchy--Schwarz and the binomial theorem give
+\[
+ \sum_b\sqrt{B_b}\le\sqrt{(m+1)2^m},
+ \qquad \sum_bB_b=2^m.
+\]
+Thus
+\[
+ 2^{m/2}\sqrt{Z(A)}
+ \le T_{\mathcal G}
+ +\sqrt L\left(\sqrt{(m+1)2^m}+\frac{2^m}{\sqrt Q}\right).
+\]
+Apply \((a+b+c)^2\le3(a^2+b^2+c^2)\); when the tail is absent, use the
+two-term version.  Finally, if \(a=A(1,\ldots,1)\), complementation sends
+the weight-\(b\) syndrome \(v\) to the weight-\((m-b)\) syndrome \(a-v\),
+proving the symmetry.
+\end{proof}
+
+\begin{remark}[Relation to the upstream flatness target]
+At \(Q=p^d\), Theorem~\ref{thm:fixed-weight-bridge} has exactly the
+mean-plus-one normalization of \texttt{prob:capfr1-master-flatness} and
+\texttt{prob:capfp-Q}.  If \(\log L=o(m)\), \(2^m/Q=2^{o(m)}\), and the
+omitted binomial tails total \(2^{m/2+o(m)}\), then \(Z(A)=2^{o(m)}\).
+This is an implication, not an identification: the F2 columns carry
+odd-power weights, and the upstream Q atom is a pruned first-match family
+rather than this full fixed-weight slice.
+\end{remark}
+
+\begin{corollary}[Minus-window mass statement]
+For the code in Theorem~\ref{thm:coupled},
+\[
+ Z_W=2^{-m}\sum_vN_W(v)^2
+ \ge\max\{1,2^m/p^{hR}\}.
+\]
+\end{corollary}
+
+\begin{remark}[Normalization fence]
+The factor $1+2\cos$ is the character factor for the unweighted count of
+ternary words.  It is not the factor for the Prize-route mass
+$\sum2^{-\wt}$.  Any mass argument using $1+2\cos$ has changed the object by
+an exponential weight and must be re-derived from (4.3) or (4.4).
+\end{remark}
+
+\section{Consequences and nonclaims}
+
+The packet supplies a corrected structural terminal:
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+branch & proved code model & remaining task\\
+\midrule
+$p\equiv1\pmod4$ & bounded direct sum of prime-field GRS kernels
+  & weighted mass upper bound\\
+$p\equiv3\pmod4$ & one Frobenius-coupled root code (3.2)
+  & weighted mass upper bound\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The common upper-bound target is a capacity-edge weighted subset-syndrome
+$L^2$ estimate.  Theorem~\ref{thm:floor} is a lower bound and does not close
+it.  Corollary~\ref{cor:maxfiber} shows that a uniform subexponential binary
+full-agreement list-recovery or quotient-prefix max-fiber estimate is a
+sufficient supplier for both branches.  More economically,
+Theorem~\ref{thm:fixed-weight-bridge} needs mean-plus-one flatness only on
+fixed-weight slices in a sufficiently wide central band; its proof retains
+all cross-weight collisions.  More directly still,
+Theorem~\ref{thm:selector-transport} embeds the full cube fiber in one
+ordinary central split-locator prefix fiber, making
+\texttt{prob:capfr1-master-flatness} a common theorem-level target once its
+scope and structured-owner seams are paid.  Corollary~\ref{cor:distance} controls
+low-weight words but not the
+weighted number of words above the distance floor.
+By Theorem~\ref{thm:ambient}, one such theorem for the five generating
+signed types also covers every non-generating ambient extension.  No separate
+extension-field extras payment is required.
+
+This interface does not identify these full binary syndrome fibers with the
+first-match residual family in \texttt{def:q-row-atom}.  Applying that
+upstream Q atom here requires a separate map-and-owner transport theorem.
+
+This note does not claim:
+\begin{itemize}
+\item an upper bound on either branch's weighted mass;
+\item a quotient-prefix maximum-fiber theorem;
+\item a fixed-weight mean-plus-one flatness theorem for the F2 maps;
+\item master split-locator flatness at the transported central parameters;
+\item a common-divisor or first-match owner payment for the transported
+      prefix family;
+\item a transport from the first-match residual family in
+      \texttt{def:q-row-atom} to these binary syndrome fibers;
+\item payment of an MCA, CA, list, or adjacent-row numerator;
+\item resolution of a Proximity Prize endpoint;
+\item that lower order layers, parity normalization, or a first-match ledger
+      are discharged by the top-window code theorem.
+\end{itemize}
+
+The companion script
+\begin{center}
+\small
+\texttt{experimental/}\\
+\texttt{f2\_admissible\_branch\_correction\_verify.py}
+\end{center}
+checks the M61 certificate, the dyadic order law, Frobenius-root cardinalities,
+the weighted collision/Fourier normalization, and explicit mutation failures.
+
+\end{document}
