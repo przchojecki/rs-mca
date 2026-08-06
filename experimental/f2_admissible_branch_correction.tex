@@ -138,6 +138,43 @@ $k\in\{1,2,4\}$ and the established prime-field class decomposition.  The
 repair is a branch split, not a rejection of the plus-branch theorem.
 \end{remark}
 
+\begin{theorem}[Complete generating-row type table]\label{thm:types}
+Assume in addition that the row is generating, so
+\(\ord_{2^{41}}(p)=e\).  Exactly five residue-signed types are possible:
+\[
+\begin{array}{ccl}
+\toprule
+\text{branch}&\text{valuation}&e\\
+\midrule
+p\equiv1\pmod4&v_2(p-1)\ge41&1\\
+p\equiv1\pmod4&v_2(p-1)=40&2\\
+p\equiv1\pmod4&v_2(p-1)=39&4\\
+p\equiv3\pmod4&v_2(p+1)\ge40&2\\
+p\equiv3\pmod4&v_2(p+1)=39&4\\
+\bottomrule
+\end{array}
+\]
+All five types are nonempty.  In table order, prime witnesses are
+\[
+ 3\mathbin{\cdot}2^{41}+1,\quad
+ 27\mathbin{\cdot}2^{40}+1,\quad
+ 5\mathbin{\cdot}2^{39}+1,\quad
+ 2^{61}-1,\quad
+ 25\mathbin{\cdot}2^{39}-1.
+\]
+Taking \(q=p^e\) gives \(q<2^{256}\) in every case.
+\end{theorem}
+
+\begin{proof}
+Set each branch of Proposition~\ref{prop:order} equal to
+\(e\in\{1,2,4\}\).  The plus branch gives the first three rows.  The minus
+branch has order two exactly when \(v_2(p+1)\ge40\), and order four exactly
+when \(v_2(p+1)=39\).  The companion verifier gives complete-factor
+Pocklington certificates for the four non-Mersenne witnesses and a
+Lucas--Lehmer certificate for \(2^{61}-1\), then checks the orders and field
+cap directly.
+\end{proof}
+
 \section{The coupled minus-branch code}
 
 Let $W$ be either the exact-order or nested window at order $2^a$, with

@@ -45,6 +45,36 @@ def lucas_lehmer(exponent: int) -> bool:
     return value == 0
 
 
+def trial_prime(value: int) -> bool:
+    if value < 2:
+        return False
+    if value % 2 == 0:
+        return value == 2
+    divisor = 3
+    while divisor * divisor <= value:
+        if value % divisor == 0:
+            return False
+        divisor += 2
+    return True
+
+
+def pocklington(
+    value: int, factors: dict[int, int], witnesses: dict[int, int]
+) -> None:
+    product = math.prod(prime**power for prime, power in factors.items())
+    check(product == value - 1, "complete p-1 factorization")
+    check(product > math.isqrt(value), "Pocklington size threshold")
+    for prime in factors:
+        check(trial_prime(prime), "factor primality")
+        witness = witnesses[prime]
+        check(pow(witness, value - 1, value) == 1, "Fermat condition")
+        check(
+            math.gcd(pow(witness, (value - 1) // prime, value) - 1, value)
+            == 1,
+            "Pocklington gcd condition",
+        )
+
+
 def orbit_union(modulus: int, p: int, r: int) -> set[int]:
     h = dyadic_order(p, modulus.bit_length() - 1)
     roots = set()
@@ -161,6 +191,44 @@ def main() -> None:
     check((1 << (41 - v2(p - 1))) != 2, "old all-row formula mutation")
     check(math.gcd(n, p - 1) == 2, "prime-field root intersection")
     check(n // 2 == 1 << 40, "singleton class count")
+
+    plus_rows = (
+        (3 * (1 << 41) + 1, 1, {2: 41, 3: 1}, {2: 5, 3: 5}, 41),
+        (27 * (1 << 40) + 1, 2, {2: 40, 3: 3}, {2: 5, 3: 3}, 40),
+        (5 * (1 << 39) + 1, 4, {2: 39, 5: 1}, {2: 3, 5: 3}, 39),
+    )
+    observed_types: set[tuple[str, int, int]] = set()
+    for prime, degree, factors, witnesses, valuation in plus_rows:
+        pocklington(prime, factors, witnesses)
+        check(prime % 4 == 1, "plus residue")
+        check(v2(prime - 1) == valuation, "plus valuation")
+        check(dyadic_order(prime, 41) == degree, "plus order")
+        check(prime**degree < 1 << 256, "plus field cap")
+        observed_types.add(("plus", valuation, degree))
+
+    observed_types.add(("minus", 40, 2))
+    minus_four = 25 * (1 << 39) - 1
+    pocklington(
+        minus_four,
+        {2: 1, 3: 2, 131: 1, 20011: 1, 291271: 1},
+        {2: 3, 3: 2, 131: 2, 20011: 2, 291271: 2},
+    )
+    check(minus_four % 4 == 3, "minus-four residue")
+    check(v2(minus_four + 1) == 39, "minus-four valuation")
+    check(dyadic_order(minus_four, 41) == 4, "minus-four order")
+    check(minus_four**4 < 1 << 256, "minus-four field cap")
+    observed_types.add(("minus", 39, 4))
+
+    generated_types: set[tuple[str, int, int]] = set()
+    for valuation in range(2, 48):
+        plus_order = 1 << max(0, 41 - valuation)
+        minus_order = 1 << max(1, 41 - valuation)
+        for degree in range(1, 7):
+            if plus_order == degree:
+                generated_types.add(("plus", min(valuation, 41), degree))
+            if minus_order == degree:
+                generated_types.add(("minus", min(valuation, 40), degree))
+    check(generated_types == observed_types, "five generating row types")
 
     order_cases = 0
     for exponent in range(3, 14):
