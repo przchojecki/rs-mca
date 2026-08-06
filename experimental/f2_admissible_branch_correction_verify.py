@@ -210,6 +210,91 @@ def check_ambient_invariance() -> int:
     return cases
 
 
+def elementary_prefix(
+    points: tuple[int, ...], depth: int, p: int
+) -> tuple[int, ...]:
+    coefficients = [1] + [0] * depth
+    for point in points:
+        for degree in range(depth, 0, -1):
+            coefficients[degree] = (
+                coefficients[degree] + point * coefficients[degree - 1]
+            ) % p
+    return tuple(coefficients[1:])
+
+
+def power_prefix(
+    points: tuple[int, ...], depth: int, p: int
+) -> tuple[int, ...]:
+    return tuple(
+        sum(pow(point, degree, p) for point in points) % p
+        for degree in range(1, depth + 1)
+    )
+
+
+def check_selector_transport(p: int, theta: int, m: int, r: int) -> None:
+    check(pow(theta, 2 * m, p) == 1, "selector root order upper")
+    check(pow(theta, m, p) == p - 1, "selector root antipode")
+    check(p > 2 * r, "selector Newton gate")
+    half = tuple(pow(theta, index, p) for index in range(m))
+    domain = tuple(pow(theta, index, p) for index in range(2 * m))
+    check(len(set(domain)) == 2 * m, "selector root order exact")
+
+    cube_fibers: Counter[tuple[int, ...]] = Counter()
+    selector_fibers: Counter[tuple[int, ...]] = Counter()
+    selector_images: dict[tuple[int, ...], tuple[int, ...]] = {}
+    for bits in itertools.product((0, 1), repeat=m):
+        odd = tuple(
+            sum(
+                bit * pow(point, 2 * degree - 1, p)
+                for bit, point in zip(bits, half)
+            )
+            % p
+            for degree in range(1, r + 1)
+        )
+        selector = tuple(
+            point if bit else (-point) % p
+            for bit, point in zip(bits, half)
+        )
+        prefix = power_prefix(selector, 2 * r, p)
+        expected = []
+        for degree in range(1, 2 * r + 1):
+            constant = sum(pow(point, degree, p) for point in half) % p
+            if degree % 2:
+                expected.append(
+                    (2 * odd[(degree - 1) // 2] - constant) % p
+                )
+            else:
+                expected.append(constant)
+        check(prefix == tuple(expected), "selector affine prefix")
+        cube_fibers[odd] += 1
+        selector_fibers[prefix] += 1
+        selector_images[odd] = prefix
+
+    check(len(selector_images) == len(cube_fibers), "selector key injection")
+    for odd, size in cube_fibers.items():
+        check(
+            selector_fibers[selector_images[odd]] == size,
+            "selector fiber equality",
+        )
+
+    ambient: Counter[tuple[int, ...]] = Counter()
+    power_to_elementary: dict[tuple[int, ...], tuple[int, ...]] = {}
+    elementary_to_power: dict[tuple[int, ...], tuple[int, ...]] = {}
+    for subset in itertools.combinations(domain, m):
+        powers = power_prefix(subset, 2 * r, p)
+        elementary = elementary_prefix(subset, 2 * r, p)
+        ambient[powers] += 1
+        previous = power_to_elementary.setdefault(powers, elementary)
+        check(previous == elementary, "selector Newton forward")
+        previous_power = elementary_to_power.setdefault(elementary, powers)
+        check(previous_power == powers, "selector Newton reverse")
+
+    ambient_maximum = max(ambient.values())
+    check(max(cube_fibers.values()) <= ambient_maximum, "selector ambient cap")
+    for prefix, size in selector_fibers.items():
+        check(size <= ambient[prefix], "selector transversal containment")
+
+
 def check_weighted_identity(
     p: int, m: int, rows: list[list[int]]
 ) -> tuple[int, int, int]:
@@ -405,6 +490,13 @@ def main() -> None:
         "seven-to-three generated-field descent",
     )
     ambient_cases = check_ambient_invariance()
+    selector_rows = (
+        (17, 2, 4, 1),
+        (13, 2, 6, 2),
+        (17, 3, 8, 3),
+    )
+    for row in selector_rows:
+        check_selector_transport(*row)
 
     order_cases = 0
     for exponent in range(3, 14):
@@ -473,7 +565,7 @@ def main() -> None:
         f"checks={CHECKS} order_cases={order_cases} "
         f"orbit_cases={orbit_cases} top_cases={top_cases} "
         f"matrix_cases={len(matrix_cases)} ambient_cases={ambient_cases} "
-        f"bridge_cases={bridge_cases}"
+        f"bridge_cases={bridge_cases} selector_cases={len(selector_rows)}"
     )
 
 

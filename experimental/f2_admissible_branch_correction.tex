@@ -40,10 +40,12 @@ $1+\cos$, which differs from the unweighted ternary factor $1+2\cos$.
 The same identity gives a lossless interface from a row-sharp heaviest-fiber
 bound to the weighted mass.  A second exact bridge shows that fixed-weight
 mean-plus-one flatness on a central binomial band already controls the
-full-cube mass, including cross-weight collisions.  Finally, an exact
-generated-field descent shows that the seven non-generating degree/order
-types have the same final block census and kernel mass as three generating
-types.
+full-cube mass, including cross-weight collisions.  More directly, an
+antipodal-selector transport embeds every F2 cube fiber into an ordinary
+central split-locator prefix fiber on the doubled cyclic domain.  Finally,
+an exact generated-field descent shows that the seven non-generating
+degree/order types have the same final block census and kernel mass as
+three generating types.
 No MCA numerator, adjacent row, or Prize endpoint is closed here.
 \end{abstract}
 \maketitle
@@ -433,6 +435,62 @@ bound, use \(N(v)^2\le M(A)N(v)\), sum over $v$, and use
 \(\sum_vN(v)=2^m\) in (4.1).
 \end{proof}
 
+\begin{theorem}[Antipodal-selector prefix transport]
+\label{thm:selector-transport}
+Let \(K\) be a finite field of odd characteristic \(p>2R\), and let
+\(\theta\in K\) have order \(2m\).  Put
+\[
+ H=\{\theta^s:0\le s<m\},\qquad D=\mu_{2m}=H\sqcup(-H),
+\]
+and define
+\[
+ A(x)_j=\sum_{s=0}^{m-1}x_s\theta^{s(2j-1)}
+ \quad(1\le j\le R)
+\]
+on \(x\in\{0,1\}^m\).  Associate to \(x\) the antipodal transversal
+\[
+ E_x=\{\theta^s:x_s=1\}\cup\{-\theta^s:x_s=0\}\subseteq D.
+\]
+Then \(x\mapsto E_x\) is a bijection onto the \(m\)-subsets of \(D\)
+containing one point from every antipodal pair.  If
+\(c_\ell=\sum_{s=0}^{m-1}\theta^{s\ell}\), then
+\[
+ \sum_{a\in E_x}a^\ell=
+ \begin{cases}
+  2A(x)_{(\ell+1)/2}-c_\ell,&\ell\text{ odd},\\
+  c_\ell,&\ell\text{ even}.
+ \end{cases}                                        \tag{4.6}
+\]
+Consequently every fiber of \(A\) injects into one ordinary half-size,
+depth-\(2R\) split-locator prefix fiber on \(D\).
+\end{theorem}
+
+\begin{proof}
+Each bit selects one of \(\theta^s\) and \(-\theta^s\), proving the
+bijection.  The contribution of pair \(s\) to the \(\ell\)-th power sum is
+\[
+ x_s\theta^{s\ell}+(1-x_s)(-\theta^s)^\ell.
+\]
+It is \(\theta^{s\ell}\) for even \(\ell\), and
+\((2x_s-1)\theta^{s\ell}\) for odd \(\ell\), which proves (4.6).
+Since \(2\) is invertible, the odd coordinates recover \(A(x)\); the even
+coordinates are fixed.  Thus an \(A\)-fiber is exactly the transversal
+part of one ordinary power-sum prefix fiber.  Finally, Newton's triangular
+identities are invertible through depth \(2R<p\), so this is the ordinary
+top-\(2R\)-coefficient locator-prefix fiber.
+\end{proof}
+
+\begin{remark}[Instantiation and upstream scope]
+The plus GRS class matrix and the minus coefficient-root matrix both have
+the displayed form, up to invertible row scalings; their roots have order
+twice the binary length.  Therefore a full split-locator flatness theorem
+at these central parameters bounds their F2 max fibers and masses directly.
+This removes the weighted-map mismatch with
+\texttt{prob:capfr1-master-flatness}.  It does not prove that statement,
+place the parameters in its normalized band, or supply its
+quotient/common-divisor removal and first-match ownership.
+\end{remark}
+
 \begin{theorem}[Fixed-weight flatness pays full-cube mass]
 \label{thm:fixed-weight-bridge}
 For $0\le b\le m$, put
@@ -446,12 +504,12 @@ Let \(\mathcal G\subseteq\{0,\ldots,m\}\), put
 \(Q,L\ge1\),
 \[
  M_b\le L\left(1+\frac{B_b}{Q}\right)
- \qquad(b\in\mathcal G).                            \tag{4.6}
+ \qquad(b\in\mathcal G).                            \tag{4.7}
 \]
 Then
 \[
  Z(A)\le \frac{3T_{\mathcal G}^2}{2^m}
-       +3L\left(m+1+\frac{2^m}{Q}\right).           \tag{4.7}
+       +3L\left(m+1+\frac{2^m}{Q}\right).           \tag{4.8}
 \]
 If every weight is in \(\mathcal G\), the factor $3$ may be replaced by $2$
 and the tail term omitted.  Moreover \(M_b=M_{m-b}\), and the corresponding
@@ -467,7 +525,7 @@ The collision identity and Minkowski's inequality give
 \]
 Since \(\sum_vN_b(v)=B_b\), one has
 \(\|N_b\|_2^2\le M_bB_b\).  A weight outside \(\mathcal G\) therefore
-contributes at most \(B_b\), while (4.6) bounds a good weight by
+contributes at most \(B_b\), while (4.7) bounds a good weight by
 \[
  \sqrt{M_bB_b}
  \le\sqrt L\left(\sqrt{B_b}+\frac{B_b}{\sqrt Q}\right).
@@ -537,7 +595,11 @@ full-agreement list-recovery or quotient-prefix max-fiber estimate is a
 sufficient supplier for both branches.  More economically,
 Theorem~\ref{thm:fixed-weight-bridge} needs mean-plus-one flatness only on
 fixed-weight slices in a sufficiently wide central band; its proof retains
-all cross-weight collisions.  Corollary~\ref{cor:distance} controls
+all cross-weight collisions.  More directly still,
+Theorem~\ref{thm:selector-transport} embeds the full cube fiber in one
+ordinary central split-locator prefix fiber, making
+\texttt{prob:capfr1-master-flatness} a common theorem-level target once its
+scope and structured-owner seams are paid.  Corollary~\ref{cor:distance} controls
 low-weight words but not the
 weighted number of words above the distance floor.
 By Theorem~\ref{thm:ambient}, one such theorem for the five generating
@@ -553,6 +615,7 @@ This note does not claim:
 \item an upper bound on either branch's weighted mass;
 \item a quotient-prefix maximum-fiber theorem;
 \item a fixed-weight mean-plus-one flatness theorem for the F2 maps;
+\item master split-locator flatness at the transported central parameters;
 \item a transport from the first-match residual family in
       \texttt{def:q-row-atom} to these binary syndrome fibers;
 \item payment of an MCA, CA, list, or adjacent-row numerator;
