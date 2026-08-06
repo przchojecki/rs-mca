@@ -1,0 +1,275 @@
+{
+  "claim": "All six aligned-positive unramified (w != 0) allocation cells of the diagonal c2 (1,1,2) source line are excluded over the deployed field F_(2130706433^6). The cell set is the exact product {fixed_moving, moving_moving} x {same, swap, mixed}. Two cells (MM-same, MM-swap) are empty already at the necessary q-slice identity (KBQS-1); the other four have q-slice survivors and are excluded by the two full colored quotient norm identities (KBQS-2). Remaining aligned-positive unramified cells: 0.",
+  "deployed_prime": 2130706433,
+  "deployed_field": "F_(2130706433^6)",
+  "templates": ["fixed_moving", "moving_moving"],
+  "allocations": ["same", "swap", "mixed"],
+  "total_cells": 6,
+  "cells_closed": 6,
+  "remaining_unramified": 0,
+  "closure_routes": {
+    "q_slice": 2,
+    "full_quotient": 4
+  },
+  "q_slice_identity": "Res_T(q(T), U(T,W)^2 - W V(T,W)^2) ~ (W-w)^4 ((W-k_1)(W-k_2))^2, w != 0   (KBQS-1)",
+  "full_quotient_identities": [
+    "Res_T(P_J, G) ~ K_5^4 q^2",
+    "q^2 Res_T(P_I, G) ~ R_7^4"
+  ],
+  "shared_requires": [
+    "rate_half_kb_m2_r4_diagonal_c2_112_source_line_internal_star_reconstruction",
+    "rate_half_kb_m2_r4_diagonal_c2_112_source_line_q_slice_resultant_gate"
+  ],
+  "full_quotient_requires": [
+    "rate_half_kb_m2_r4_diagonal_c2_112_source_line_colored_quotient_compiler"
+  ],
+  "cells": [
+    {
+      "label": "MM-same",
+      "template": "moving_moving",
+      "allocation": "same",
+      "node": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_same_q_slice_exclusion",
+      "closure_route": "q_slice",
+      "direct_component": "reciprocal cubic; direct minor-conic resultant not divisible by it",
+      "direct_norm_degree": 272,
+      "direct_norm_factors": 21,
+      "endpoint_candidates": 21,
+      "endpoint_split": {
+        "boundary": 8,
+        "no_common_determinant_conic_w": 8,
+        "failing_w_candidates": 5
+      },
+      "q_slice_survivors": 0,
+      "off_common": {
+        "grid": null,
+        "endpoint_factors": 7,
+        "combinations": 7,
+        "distinct_endpoints": 7,
+        "endpoint_variables": "p",
+        "all_on_base_forbidden_product": true
+      },
+      "contract_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_MOVING_SAME_CONTRACT_PASS",
+      "audit_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_MOVING_SAME_AUDIT_PASS hashes=3 minors=4",
+      "integration_commit": "2d988aba",
+      "integration_date": "2026-07-31"
+    },
+    {
+      "label": "MM-swap",
+      "template": "moving_moving",
+      "allocation": "swap",
+      "node": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_swap_q_slice_exclusion",
+      "closure_route": "q_slice",
+      "direct_component": "exceptional norm on the common component p*t+5p+t=0 (the other common component 4p+5t+4=0 has only forbidden minor-conic support)",
+      "direct_norm_degree": 26,
+      "direct_norm_factors": null,
+      "endpoint_candidates": 6,
+      "endpoint_split": {
+        "boundary": 4,
+        "failing_determinant_candidates": 2
+      },
+      "q_slice_survivors": 0,
+      "off_common": {
+        "grid": null,
+        "endpoint_factors": 7,
+        "combinations": 7,
+        "distinct_endpoints": 8,
+        "endpoint_variables": "p",
+        "all_on_base_forbidden_product": true
+      },
+      "contract_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_MOVING_SWAP_CONTRACT_PASS",
+      "audit_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_MOVING_SWAP_AUDIT_PASS hashes=3 minors=4",
+      "integration_commit": "2cb1206a",
+      "integration_date": "2026-07-31"
+    },
+    {
+      "label": "MM-mixed",
+      "template": "moving_moving",
+      "allocation": "mixed",
+      "node": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_mixed_full_quotient_exclusion",
+      "closure_route": "full_quotient",
+      "direct_component": "irreducible 91-term bidegree-(12,12) component",
+      "direct_norm_degree": 1224,
+      "direct_norm_factors": 38,
+      "endpoint_candidates": 4,
+      "endpoint_split": {
+        "embeds_in_deployed_field": 2,
+        "does_not_embed": 2
+      },
+      "q_slice_survivor_field_degrees": [3, 3, 7, 7],
+      "deployed_traces": 2,
+      "orientations_tested": 4,
+      "q_slice_survivors": 4,
+      "off_common": {
+        "grid": null,
+        "endpoint_factors": null,
+        "combinations": 12,
+        "distinct_endpoints": 6,
+        "endpoint_variables": "p,t",
+        "all_on_base_forbidden_product": true
+      },
+      "contract_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_MOVING_MIXED_CONTRACT_PASS",
+      "audit_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_MOVING_MIXED_AUDIT_PASS hashes=4 survivors=4 deployed_traces=2",
+      "integration_commit": "98a63928",
+      "integration_date": "2026-07-31"
+    },
+    {
+      "label": "FM-same",
+      "template": "fixed_moving",
+      "allocation": "same",
+      "node": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_same_full_quotient_exclusion",
+      "closure_route": "full_quotient",
+      "direct_component": "reciprocal quartic",
+      "direct_norm_degree": 472,
+      "direct_norm_factors": 28,
+      "endpoint_candidates": 20,
+      "endpoint_split": {
+        "boundary": 12,
+        "empty": 4,
+        "q_slice_points": 4
+      },
+      "q_slice_survivors": 4,
+      "off_common": {
+        "grid": [2, 1, 1],
+        "endpoint_factors": null,
+        "combinations": 2,
+        "distinct_endpoints": 7,
+        "endpoint_variables": "p,t",
+        "all_on_base_forbidden_product": true
+      },
+      "contract_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SAME_CONTRACT_PASS",
+      "audit_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SAME_AUDIT_PASS hashes=5 survivors=4",
+      "integration_commit": "32d34bc2",
+      "integration_date": "2026-07-31"
+    },
+    {
+      "label": "FM-swap",
+      "template": "fixed_moving",
+      "allocation": "swap",
+      "node": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_swap_full_quotient_exclusion",
+      "closure_route": "full_quotient",
+      "direct_component": "reciprocal cubic",
+      "direct_norm_degree": 333,
+      "direct_norm_factors": 26,
+      "endpoint_candidates": 24,
+      "endpoint_split": {
+        "boundary": 12,
+        "empty": 11,
+        "q_slice_points": 1
+      },
+      "q_slice_survivors": 1,
+      "off_common": {
+        "grid": [2, 1, 1],
+        "endpoint_factors": null,
+        "combinations": 2,
+        "distinct_endpoints": 9,
+        "endpoint_variables": "p,t",
+        "all_on_base_forbidden_product": true
+      },
+      "contract_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SWAP_CONTRACT_PASS",
+      "audit_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SWAP_AUDIT_PASS hashes=5 survivors=1",
+      "integration_commit": "000417d8",
+      "integration_date": "2026-07-31"
+    },
+    {
+      "label": "FM-mixed",
+      "template": "fixed_moving",
+      "allocation": "mixed",
+      "node": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_mixed_full_quotient_exclusion",
+      "closure_route": "full_quotient",
+      "direct_component": "reciprocal degree-five component",
+      "direct_norm_degree": 338,
+      "direct_norm_factors": 25,
+      "endpoint_candidates": 19,
+      "endpoint_split": {
+        "boundary": 9,
+        "empty": 6,
+        "q_slice_points": 4
+      },
+      "q_slice_survivors": 4,
+      "linear_rank_route": {
+        "component": "4p+5t+4=0 quadratic rank curve in w, intersected with the RAW first-pair kernel conic",
+        "norm_degree": 116,
+        "norm_factors": 10,
+        "base_boundary_fields": 4,
+        "remaining_w_values": 12,
+        "w_split": {
+          "forbidden": 9,
+          "no_common_b": 3
+        }
+      },
+      "residual_common_factors_boundary": ["p", "t^2-4p"],
+      "off_common": {
+        "grid": [5, 4, 1],
+        "endpoint_factors": null,
+        "combinations": 20,
+        "distinct_endpoints": 5,
+        "endpoint_variables": "p,t",
+        "all_on_base_forbidden_product": true
+      },
+      "contract_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_MIXED_CONTRACT_PASS",
+      "audit_pass": "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_MIXED_AUDIT_PASS hashes=10 survivors=4",
+      "integration_commit": "525aa1a6",
+      "integration_date": "2026-07-31"
+    }
+  ],
+  "pinned_nodes": [
+    "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_same_q_slice_exclusion",
+    "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_swap_q_slice_exclusion",
+    "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_mixed_full_quotient_exclusion",
+    "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_same_full_quotient_exclusion",
+    "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_swap_full_quotient_exclusion",
+    "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_mixed_full_quotient_exclusion"
+  ],
+  "provenance": {
+    "canonical_repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag",
+    "audit_notes": "notes/work_cycles/roadmap_r3/14-rate-half-20260730-20260803.md, burn-downs 'aligned unramified determinant router', 'moving-mixed full quotient close', 'fixed-same full quotient close', 'fixed-swap full quotient close', 'fixed-mixed full quotient close'",
+    "canonical_prize_pin": "1b2c2ee46951ef5031e100b21f4edd1eeb24b177",
+    "integration_commits": [
+      "2cb1206a",
+      "2d988aba",
+      "98a63928",
+      "32d34bc2",
+      "000417d8",
+      "525aa1a6"
+    ],
+    "manifest_refactor_commit": "4274661c",
+    "upstream_packet_superseded": "kb_mca_v4_m2_u2_saturated_112_q_slice_exclusions_v1 at PR head 543db66f, whose (6.1) frontier lists exactly these six cells and whose verifier still prints remaining_unramified=6",
+    "verifiers_replayed": "2026-08-06, PASS, in the canonical checkout under tools/ramguard: every pinned node's verify.py (claim contract, dependency edges, custody hashes) and independent verify_audit.py (coverage census, hostile mutations, survivor recount); the recorded PASS lines are the contract_pass/audit_pass fields above",
+    "verifiers_not_replayed_here": "the FLINT-backed per-cell exact component verifiers (verify_exact / verify_exhaustive / verify_degree5 / verify_quotient / verify_linear / verify_off_common / verify_survivors) are pinned by node id and were replayed at close in the canonical checkout; this export's own verifier does not re-run them"
+  },
+  "exact_verifiers_replayed_20260806": {
+    "runner": "tools/ramguard local -- ~/.venvs/prize-flint/bin/python <script>, run in the canonical checkout on 2026-08-06",
+    "note": "These are the FLINT-backed per-cell exact component verifiers, over and above the contract/audit verifiers recorded in provenance.verifiers_replayed. Their printed counters are cross-checked against this certificate's per-cell ledger by the export verifier.",
+    "pass_lines": [
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_MOVING_MIXED_EXACT_PASS deployed_orientations=4 rejected=4 off_common=true",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SAME_EXACT_PASS q_slice_survivors=4 rejected=4 off_common=true",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SAME_EXHAUSTIVE_PASS norm_factors=28 survivors=4 certificate_match=true",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SAME_LINEAR_PASS",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SWAP_EXACT_PASS q_slice_survivors=1 rejected=1 off_common=true",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SWAP_EXHAUSTIVE_PASS norm_factors=26 survivors=1 certificate_match=true",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_SWAP_LINEAR_PASS",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_MIXED_DEGREE5_PASS norm_factors=25 survivors=4 certificate_match=true",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_MIXED_LINEAR_PASS norm_factors=10 survivors=0",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_MIXED_OFF_COMMON_PASS branches=20 endpoints=5 boundary=5",
+      "KB_C2_112_ALIGNED_POSITIVE_UNRAMIFIED_FIXED_MIXED_QUOTIENT_PASS q_slice_survivors=4 rejected=4"
+    ],
+    "not_completed_on_this_host": [
+      "moving_same verify_exact.py",
+      "moving_swap verify_exact.py",
+      "moving_mixed verify_exhaustive.py",
+      "moving_mixed verify_survivors.py"
+    ],
+    "not_completed_reason": "Each of these scripts imposes its own internal 60-second per-stage subprocess cap; on this host at least one stage exceeded that cap and the script raised TimeoutExpired. This is a host-speed observation, NOT a failed proof and NOT a rejection: no assertion inside any of the four failed. The two moving-moving q-slice cells and the two unrun moving-mixed components therefore rest here on their contract and audit verifiers (both PASS, recorded above) and on their canonical-checkout replay at close, not on a 2026-08-06 exact re-run."
+  },
+  "upstream_correspondence": {
+    "status": "PROBABLE_NOT_ESTABLISHED",
+    "matching_qualifiers": ["m=2", "diagonal", "c2(1,1,2)", "aligned_positive"],
+    "our_partition": "{fixed_moving, moving_moving} x {same, swap, mixed}",
+    "other_partition_as_published": "two fixed-moving label assignments x three root patterns",
+    "mapping_row": "ABSENT ON BOTH SIDES",
+    "trust_label": "CONTENT-REVIEWED AT PUBLISHED HEAD, NOT REPLAYED",
+    "assertion": "No identity with any external cell set is asserted, and none may be inferred. Our closures rest on our own cell coordinates and pinned nodes only. A 6/6-closed record here and a 2/6-closed record elsewhere are not in contradiction under either identification, because retained cells are open, never shown nonempty."
+  },
+  "adjacent_status_at_pin": "the forced-ramified w=0 sibling rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_ramified_q_slice_exclusion is PROVED and already exported in the saturated 112 packet; the aggregation node rate_half_kb_m2_r4_diagonal_c2_112_source_line_complete_exclusion is PROVED in the canonical tree at this pin but is NOT exported here and nothing about it is claimed here",
+  "nonclaim": "Closes one six-cell block of one sign of one source line: the aligned-positive unramified (w != 0) allocation cells of the diagonal c2 (1,1,2) source line. It does not close the 36-cell aligned-positive atlas, any outer/transverse frontier, the residual terminal types (2,4,2) and (2,8,1), the near-aligned branch, the full saturated (1,1,2) orbit row, the order-two type, rate_half_band_closure, K3, any owner/charge/payment atom, the KoalaBear row, LIST, MCA, or either Prize problem. All exclusions are exact over the deployed prime and its degree-six extension and are not characteristic-uniform. In four of the six cells the q-slice is not empty; closure there is by the full colored quotient identities."
+}

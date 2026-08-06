@@ -325,3 +325,47 @@ Provenance: the source proofs are `prize` commits `08a2e4de` (near
 negative), `e9baa0de` (aligned positive ramified), and `7d2d7aca` (near
 positive projective). Their exact helper implementations are reproduced
 here rather than imported as opaque status claims.
+
+## 7. Status addendum (2026-08-06) — `(6.1)` is now discharged: `remaining_unramified` is 6 for this packet and **0** in the tree
+
+The six aligned-positive unramified cells listed as open at `(6.1)` —
+`{fixed-moving, moving-moving} x {same, swap, mixed}` — are **all six PROVED**
+in the canonical DAG, closed on 2026-07-31 in roadmap-r3 rate-half work cycle
+14 and replayed PASS on 2026-08-06. Two are empty already at the necessary
+q-slice identity; the other four have q-slice survivors and are excluded by
+the full colored quotient norm identities. Census, per-cell mechanism ledger,
+provenance pins, certificate and self-contained verifier:
+
+```text
+experimental/notes/frontier-adjacent/
+  kb_mca_v4_m2_r4_diagonal_c2_112_aligned_positive_unramified_six_cell_closure_v1.md
+```
+
+**Read the two counters correctly — they are both right.** The verifier of
+*this* packet prints
+
+```text
+remaining_unramified=6
+```
+
+and that number is **packet-local and unchanged**: it reports what *this*
+packet, at its own pinned scope, leaves open, and it is pinned by this
+packet's certificate and tamper self-test. It is **not** an assertion that the
+cells are open in the tree, and it must **not** be edited — editing it would
+break the custody chain of a correct historical record. The tree-level
+counter is the one that moved:
+
+```text
+remaining_unramified (this packet's own scope)   6   unchanged
+remaining_unramified (canonical DAG, 2026-08-06) 0   all six PROVED.
+```
+
+Anyone reading `remaining_unramified=6` as the current state of the frontier
+is reading a packet-scope figure as a tree-scope figure. The sibling note
+above is the tree-scope record.
+
+Unchanged by this addendum: `(6.1)`'s own text, every exclusion and nonclaim
+in sections 0-6, the 18 unimported near-positive affine charts, and the fact
+that this packet still does not delete the full saturated `(1,1,2)` orbit row,
+the order-two type, K3, any owner/payment atom, the KoalaBear row, or the
+Prize problem. The six-cell closure does not change any of those either.

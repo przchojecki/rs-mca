@@ -30,6 +30,75 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-06 - Diagonal c2 (1,1,2) aligned-positive unramified block: all six cells closed (export)
+
+- **Agent/model:** Claude Opus 5 (export-draft pilot), exporting the audited
+  Codex worker campaign (roadmap-r3 rate-half work cycle 14, 2026-07-31).
+- **Files added or changed:**
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_r4_diagonal_c2_112_aligned_positive_unramified_six_cell_closure_v1.md`,
+  its canonical JSON certificate
+  (`experimental/data/certificates/kb-mca-v4-m2-r4-diagonal-c2-112-aligned-positive-unramified-six-cell-closure-v1/`)
+  and fail-closed verifier
+  (`experimental/scripts/verify_kb_mca_v4_m2_r4_diagonal_c2_112_aligned_positive_unramified_six_cell_closure_v1.py`),
+  a status addendum (section 7) to
+  `experimental/notes/frontier-adjacent/kb_mca_v4_m2_u2_saturated_112_q_slice_exclusions_v1.md`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **Claim:** all six aligned-positive **unramified** (`w != 0`) allocation
+  cells of the diagonal `c2 (1,1,2)` source line are excluded over
+  `F_(2130706433^6)`. The cell set is the exact product
+  `{fixed-moving, moving-moving} x {same, swap, mixed}`. Two cells
+  (`MM-same`, `MM-swap`) are empty already at the necessary q-slice identity;
+  the other four (`MM-mixed`, `FM-same`, `FM-swap`, `FM-mixed`) have q-slice
+  survivors — 4, 4, 1 and 4 respectively — and are excluded by the two full
+  colored quotient norm identities. Retained frontier inside the block:
+  none. Exact over the deployed prime and its degree-six extension; **not
+  characteristic-uniform**. Explicit nonclaims in the note: no 36-cell atlas,
+  no outer/transverse frontier, terminal types `(2,4,2)` and `(2,8,1)`
+  untouched, no near-aligned branch, no `rate_half_band_closure`, K3, LIST,
+  MCA or Prize closure.
+- **How it is useful:** this is exactly the six-cell frontier that
+  `kb_mca_v4_m2_u2_saturated_112_q_slice_exclusions_v1.md` `(6.1)` lists as
+  open and whose verifier still prints `remaining_unramified=6`. The new
+  section-7 addendum keeps that packet-local counter intact (it is pinned by
+  that packet's own certificate and tamper self-test) and records the
+  tree-level figure alongside it: packet scope 6, canonical DAG **0**.
+- **Correspondence discipline:** section 4 of the note records that a
+  neighbouring contributor lane is working an "aligned-positive unramified
+  six-cell block" with all four qualifiers matching ours (`m=2`, diagonal,
+  `c2(1,1,2)`, aligned-positive), and states in terms that
+  **correspondence is probable, not established** — the partitions are on
+  different axes and no cell-for-cell mapping row exists on either side. No
+  identity is asserted, nothing external was replayed, and our half of the
+  mapping row is printed so the other half can be written against it.
+- **Replay:** every pinned node's `verify.py` and `verify_audit.py` replayed
+  PASS on 2026-08-06 in the canonical checkout under `tools/ramguard`, and
+  the recorded PASS lines (including the `survivors=` fields) are pinned in
+  the certificate and cross-checked by the export verifier. The FLINT-backed
+  exact component verifiers were also re-run: **11 PASS**, whose own printed
+  counters (`norm_factors=28/26/25/10`, `survivors=4/1/4/0`,
+  `deployed_orientations=4 rejected=4`, `branches=20 endpoints=5 boundary=5`)
+  are cross-checked line by line against the census; **4 did not complete**
+  (`moving_same`/`moving_swap` `verify_exact.py`, `moving_mixed`
+  `verify_exhaustive.py`/`verify_survivors.py`) because each imposes its own
+  internal 60-second per-stage cap that this host exceeded — a host-speed
+  observation recorded verbatim in the note and certificate, not a rejection
+  and not a failed proof. The export verifier itself is pure python and
+  fail-closed; it rejected **27/27** hostile mutations in a tamper harness
+  (dropped cell, faked closure count, non-re-adding endpoint split,
+  survivor/audit disagreement, wrong route, off-common grid product mismatch,
+  degree-7 point claimed embeddable, an untested survivor claimed rejected,
+  an off-common endpoint claimed non-boundary, a ledger silently raised to
+  match a stale PASS line, correspondence upgraded to established, mapping
+  row claimed present, nonclaim caveat removed, unpinned integration commit,
+  non-completion reason stripped of its honest label, ...).
+- **What to do next:** the cell-for-cell mapping row owed to the neighbouring
+  lane since 2026-07-31 (our half is in section 4); then the remaining
+  export-eligible items — positive `433-1b` cells 3 and 6 (wave 45) and the
+  wave-46 band-flip narrative. The residual `rate_half_band_closure` frontier
+  below this block is packet and source-row assembly, not another cell of
+  this allocation ledger.
+
 ### 2026-08-03 - Positive 433-1b cell 14: complete closure (export)
 
 - **Agent/model:** Claude Fable 5 (coordinator), exporting the audited
