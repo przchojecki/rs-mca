@@ -103,11 +103,14 @@ def syndrome(
     )
 
 
-def check_weighted_identity(p: int, m: int, rows: list[list[int]]) -> tuple[int, int]:
+def check_weighted_identity(
+    p: int, m: int, rows: list[list[int]]
+) -> tuple[int, int, int]:
     fibers: Counter[tuple[int, ...]] = Counter()
     for bits in itertools.product((0, 1), repeat=m):
         fibers[syndrome(rows, bits, p)] += 1
     collisions = sum(size * size for size in fibers.values())
+    maximum = max(fibers.values())
 
     mass = Fraction(0)
     unweighted = 0
@@ -119,6 +122,8 @@ def check_weighted_identity(p: int, m: int, rows: list[list[int]]) -> tuple[int,
 
     rank = rank_mod(rows, p)
     check(collisions == (1 << m) * mass, "weighted collision normalization")
+    check(Fraction(maximum * maximum, 1 << m) <= mass, "max-fiber lower sandwich")
+    check(mass <= maximum, "max-fiber upper sandwich")
     check(mass >= 1, "diagonal floor")
     check(mass >= Fraction(1 << m, p**rank), "rank floor")
 
@@ -141,7 +146,7 @@ def check_weighted_identity(p: int, m: int, rows: list[list[int]]) -> tuple[int,
     wrong_fourier /= p**rank
     check(abs(weighted_fourier - float(mass)) < 1e-9, "1+cos Fourier identity")
     check(abs(wrong_fourier - unweighted) < 1e-8, "1+2cos unweighted control")
-    return collisions, unweighted
+    return collisions, unweighted, maximum
 
 
 def main() -> None:
@@ -214,7 +219,7 @@ def main() -> None:
     collision_counts = [check_weighted_identity(*case) for case in matrix_cases]
     check(
         any(unweighted != Fraction(collisions, 1 << case[1])
-            for case, (collisions, unweighted) in zip(matrix_cases, collision_counts)),
+            for case, (collisions, unweighted, _) in zip(matrix_cases, collision_counts)),
         "weighted/unweighted mutation must be detected",
     )
 

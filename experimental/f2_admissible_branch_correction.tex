@@ -37,6 +37,8 @@ $p\equiv3\pmod4$ order law and replace the false direct-sum model by one
 Frobenius-coupled negacyclic root code with exact rank.  We also record the
 pointwise weighted-collision floor and the correct Fourier factor
 $1+\cos$, which differs from the unweighted ternary factor $1+2\cos$.
+The same identity gives a lossless interface from a row-sharp heaviest-fiber
+bound to the weighted mass.
 No MCA numerator, adjacent row, or Prize endpoint is closed here.
 \end{abstract}
 \maketitle
@@ -277,6 +279,25 @@ At one coordinate the weighted sum is
 The identity $1+\cos(2x)=2\cos^2x$ gives (4.4).
 \end{proof}
 
+\begin{corollary}[Heaviest-fiber sandwich]\label{cor:maxfiber}
+In the notation of Theorem~\ref{thm:floor}, put
+\(M(A)=\max_v N(v)\).  Then
+\[
+ \frac{M(A)^2}{2^m}\le Z(A)\le M(A).                \tag{4.5}
+\]
+In particular, a row-sharp estimate
+\[
+ M(A)\le \Lambda_Q\frac{2^m}{p^d}+E_Q
+\]
+implies the identical upper bound for $Z(A)$, with no normalization loss.
+\end{corollary}
+
+\begin{proof}
+Keep a largest term in \(\sum_vN(v)^2\) for the lower bound.  For the upper
+bound, use \(N(v)^2\le M(A)N(v)\), sum over $v$, and use
+\(\sum_vN(v)=2^m\) in (4.1).
+\end{proof}
+
 \begin{corollary}[Minus-window mass statement]
 For the code in Theorem~\ref{thm:coupled},
 \[
@@ -310,7 +331,10 @@ $p\equiv3\pmod4$ & one Frobenius-coupled root code (3.2)
 
 The common upper-bound target is a capacity-edge weighted subset-syndrome
 $L^2$ estimate.  Theorem~\ref{thm:floor} is a lower bound and does not close
-it.  Corollary~\ref{cor:distance} controls low-weight words but not the
+it.  Corollary~\ref{cor:maxfiber} shows that a uniform subexponential binary
+full-agreement list-recovery or quotient-prefix max-fiber estimate is a
+sufficient supplier for both branches.  Corollary~\ref{cor:distance}
+controls low-weight words but not the
 weighted number of words above the distance floor.
 
 This note does not claim:
