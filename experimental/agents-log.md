@@ -46,8 +46,9 @@ Keep entries concise and link to the relevant files.
   negacyclic root-code model and rank for the minus-branch top windows, the
   pointwise weighted collision floor, and the corrected weighted Fourier
   factor `1+cos` rather than the unweighted `1+2cos`. The heaviest-fiber
-  sandwich `M^2/2^m <= Z <= M` gives a lossless interface from row-sharp
-  `(Q)` to the weighted mass.
+  sandwich `M^2/2^m <= Z <= M` gives a lossless interface from a max-fiber
+  theorem for these syndrome fibers to the weighted mass. Upstream
+  `def:q-row-atom` still needs a separate map-and-owner transport.
 - **How it is useful:** It prevents a false all-row reduction from entering
   a future Proximity Prize proof and leaves both residue branches with
   explicit code-level weighted-mass terminals.
