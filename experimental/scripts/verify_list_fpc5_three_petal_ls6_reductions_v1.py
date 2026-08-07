@@ -3,7 +3,9 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from itertools import product
+from math import comb
 
 
 MOD = 257
@@ -350,12 +352,98 @@ def check_determinant_chart() -> tuple[int, int, int]:
     return len(chart), pair_checks, len(roots(d0))
 
 
+def exact_quotient(numerator: list[int], denominator: list[int]) -> list[int]:
+    quotient, remainder = divmod_poly(numerator, denominator)
+    assert remainder == [0]
+    return quotient
+
+
+def split_locator(points: range) -> list[int]:
+    value = [1]
+    for point in points:
+        value = mul(value, [(-point) % MOD, 1])
+    return value
+
+
+def check_canonical_owner_packing() -> tuple[int, int, int, int]:
+    ell, a = 3, 1
+    j, h, s = 2 * ell - a, ell - 2 * a, ell - a
+    d0 = split_locator(range(j))
+    q0 = [1]
+    multiplier = [7, 1]
+    v0 = [1]
+    modulus = add(mul(d0, multiplier), scale(v0, -1))
+    base_roots = frozenset(roots(d0))
+    owners: dict[tuple[int, ...], list[frozenset[int]]] = defaultdict(list)
+    split_points = 0
+
+    for coefficients in product(range(MOD), repeat=h + 1):
+        coordinate = trim(list(coefficients))
+        dh = add(d0, scale(coordinate, -1))
+        qh = [1]
+        vh = add(v0, scale(mul(coordinate, multiplier), -1))
+        assert degree(vh) <= s
+        assert mul(dh, multiplier) == add(mul(modulus, qh), vh)
+        if coordinate == [0]:
+            continue
+        dh_roots = frozenset(roots(dh))
+        if len(dh_roots) != j:
+            continue
+        split_points += 1
+        owner = gcd_poly(d0, coordinate)
+        assert owner == gcd_poly(d0, dh)
+        g = degree(owner)
+        aa = exact_quotient(d0, owner)
+        bb = exact_quotient(dh, owner)
+        kk = exact_quotient(coordinate, owner)
+        assert 0 <= g <= h
+        assert gcd_poly(owner, aa) == gcd_poly(owner, bb) == [1]
+        assert gcd_poly(aa, bb) == [1]
+        assert degree(aa) == degree(bb) == j - g
+        assert degree(kk) <= h - g
+        assert kk == add(mul(aa, qh), scale(mul(bb, q0), -1))
+        assert gcd_poly(kk, aa) == gcd_poly(kk, bb) == [1]
+        assert gcd_poly(owner, qh) == [1]
+        owners[tuple(owner)].append(dh_roots - base_roots)
+
+    assert split_points >= 100 and len(owners) >= 2
+    pair_checks = 0
+    for owner_key, family in owners.items():
+        g = degree(list(owner_key))
+        choose_size = h - g + 1
+        bound = comb(MOD - j, choose_size) // comb(j - g, choose_size)
+        assert len(family) <= bound
+        for left_index, left_roots in enumerate(family):
+            for right_roots in family[left_index + 1 :]:
+                assert len(left_roots & right_roots) <= h - g
+                pair_checks += 1
+
+    arithmetic_checks = 0
+    for ell_value in range(4, 40):
+        for a_value in range(1, max(2, ell_value // 3)):
+            h_value = ell_value - 2 * a_value
+            if h_value < 0:
+                continue
+            for b_value in range(ell_value):
+                v = 2 * ell_value + a_value + b_value - 2
+                for c_value in range(h_value + 1):
+                    width = ell_value + a_value + c_value
+                    size = c_value + 1
+                    if size <= min(width, v):
+                        assert comb(v, size) < 3**size * comb(width, size)
+                        arithmetic_checks += 1
+    return split_points, len(owners), pair_checks, arithmetic_checks
+
+
 def main() -> None:
     prefix_checks = check_prefix_ladder()
     pencil_checks = check_common_pencil()
     ratio_checks = check_inverse_source_ratio()
     pair_checks = check_pair_determinant()
     chart_checks, collective_checks, base_roots = check_determinant_chart()
+    owner_points, owners, owner_pairs, owner_arithmetic = (
+        check_canonical_owner_packing()
+    )
     assert prefix_checks == 9
     assert pencil_checks == 9
     assert ratio_checks == 2
@@ -372,6 +460,10 @@ def main() -> None:
         f"chart_checks={chart_checks}",
         f"collective_checks={collective_checks}",
         f"base_roots={base_roots}",
+        f"owner_points={owner_points}",
+        f"owners={owners}",
+        f"owner_pairs={owner_pairs}",
+        f"owner_arithmetic={owner_arithmetic}",
     )
 
 

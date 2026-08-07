@@ -435,6 +435,65 @@ additional maximum bound. A successful shift-pair or split-pencil census
 must count the split-root coordinates satisfying (5.7), or use quotient and
 owner structure.
 
+### Theorem 5.3 (canonical owner and fixed-owner packing)
+
+For a non-base guarded split point, define
+
+```text
+G=gcd(D_0,H),       g=deg G,
+D_0=GA,             D_H=GB,       H=GK.             (5.9)
+```
+
+Then
+
+```text
+G=gcd(D_0,D_H),       0<=g<=h,
+gcd(G,A)=gcd(G,B)=gcd(A,B)=1,
+deg A=deg B=j-g,       deg K<=h-g,
+K=AQ_H-BQ_0,           gcd(K,AB)=1.                 (5.10)
+```
+
+The primitive guard is exactly
+
+```text
+gcd(K,B)=1       and       gcd(G,Q_H)=1.             (5.11)
+```
+
+Fixing `G`, let `F_G` be the non-base guarded candidates with that owner.
+Then
+
+```text
+|F_G| <= floor(
+  binom(N-j,h-g+1) / binom(j-g,h-g+1)).              (5.12)
+```
+
+If `N=4ell+b-2`, `b<ell`, and `g=h-c`, this specializes to
+
+```text
+|F_G| <= floor(
+  binom(2ell+a+b-2,c+1) / binom(ell+a+c,c+1))
+ < 3^(c+1).                                          (5.13)
+```
+
+**Proof.** Modulo any irreducible factor of the squarefree `D_0`, equation
+(5.4) gives `H==-D_HQ_0`. Primitivity of the base makes `Q_0` a unit there,
+so `gcd(D_0,H)=gcd(D_0,D_H)`. Squarefreeness now makes `G,A,B` pairwise
+coprime. Dividing (5.4) by `G` gives `K=AQ_H-BQ_0`. Modulo `A`, both
+`B,Q_0` are units, so `gcd(K,A)=1`; modulo `B`, one has `K=AQ_H`, proving
+(5.11), including the separate shared-root guard.
+
+At fixed `G`, the roots of `B` form a `(j-g)`-subset of the `N-j` core
+points outside `D_0`. For two candidates, the nonzero determinant in (5.2)
+is divisible by `G gcd(B_1,B_2)` and has degree at most `h`. Hence two such
+sets meet in at most `h-g` points. Counting their `(h-g+1)`-subsets proves
+(5.12). For `g=h-c`, the two lower arguments become `c+1` and
+`ell+a+c`. Each factor in the ratio is less than three because
+`2ell+a+b-2<3(ell+a)`, proving (5.13). QED.
+
+This pays one fixed canonical owner, including every bounded-co-deficiency
+top chamber. It does not coalesce or chronology-route the potentially many
+different divisors `G|D_0`; a direct sum of (5.12) can still be exponential.
+
 ## 6. Interface with the live upstream program
 
 Theorem 2.2 removes every source carrying a degree-below-`a` locator syzygy,
@@ -446,15 +505,17 @@ additional prefix coefficients.  Hence a depth-uniform prefix
 maximum-to-mean theorem would traverse the complete ladder without a
 field-sized union-bound loss.
 
-Theorems 5.1--5.2 supply the exact primitive shift-pair invariant, rule out
-repeating a distance-only packing argument, and fence formal collective
-compatibility. What remains outside this packet is explicit:
+Theorems 5.1--5.3 supply the exact primitive shift-pair invariant, rule out
+repeating a distance-only packing argument, fence formal collective
+compatibility, and pay every fixed canonical owner by an exact root-packing
+ledger. What remains outside this packet is explicit:
 
 - classification of source-ratio degrees at least `a` and the
   maximum-to-mean estimate for the realized guarded prefix cells;
 - the split-root maximum in the determinant chart, including the
   high-multiplier range `deg E>ell-a`;
-- quotient, reciprocal/dihedral, and first-owner transport; and
+- aggregate coalescence or chronology-valid quotient, reciprocal/dihedral,
+  and first-owner transport across the different canonical owners; and
 - exhaustive projection from this symbolic FPC5 source cell to a deployed
   row numerator.
 
@@ -474,6 +535,7 @@ python3 experimental/scripts/verify_list_fpc5_three_petal_ls6_reductions_v1.py
 The stdlib-only exact finite-field replay checks both degree gates, the exact
 inverse source-ratio form, aligned and misaligned pencil identities, the
 forbidden common factor, the prefix parametrization, primitive pair
-determinant, complete determinant chart, root-local guard, `J` identity,
-cell depth, cell count exponent, and invariant effective depth. The script
-is a regression companion to the proofs, not their source.
+determinant, complete determinant chart, root-local guard, canonical owner,
+fixed-owner packing, `J` identity, cell depth, cell count exponent, and
+invariant effective depth. The script is a regression companion to the
+proofs, not their source.
