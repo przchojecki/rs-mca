@@ -7,13 +7,13 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: symbolic source chart with locator degree j=2*ell-a
 B_star: N/A
-direct_statement: short-syzygy LS6 sources are empty, common-pencil LS6 atoms are empty, and every low-multiplier LS6 slice is an exact locator-prefix ladder
+direct_statement: short-syzygy LS6 sources are empty, low multipliers form an exact prefix ladder, and primitive candidate pairs have a low cross determinant
 architecture: DIRECT
 partition_digest: N/A (DIRECT structural theorem)
 atom_or_cell: one fixed guarded three-petal complement-divisor atom LS6
 quantifier: every field and every parameter tuple satisfying the printed hypotheses
 projection_and_unit: monic locator candidates in one fixed LIST source cell
-claimed_bound: zero on the source-ratio-degree-below-a stratum; exact Q0^(e-a)-cell prefix decomposition in the low-multiplier stratum
+claimed_bound: zero on the source-ratio-degree-below-a stratum; exact prefix ladder; pair determinant degree at most ell-2a with distance-only closure fenced by J<=0
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
 falsifier: a guarded common-pencil solution, or a low-multiplier solution outside the displayed bijection
@@ -36,7 +36,10 @@ specific:
    case; and
 2. below the multiplier-degree wall, the remaining linear slice is exactly a
    tower of ordinary locator-prefix cells, with no loss in the normalized
-   average scale when the tower is expanded.
+   average scale when the tower is expanded; and
+3. every distinct primitive candidate pair has a nonzero cross determinant
+   of degree at most `ell-2a`, while its ordinary Johnson denominator is
+   exactly the nonpositive live parameter `J`.
 
 This is an `ARCHITECTURE_BRIDGE` to the repository's `Q` and split-pencil
 work, not a bankable row atom.
@@ -298,7 +301,69 @@ j-2(ell-2a+1)=3a-2>=1.                               (4.8)
 
 The split-core and coprimality guards only remove points from these cells.
 
-## 5. Interface with the live upstream program
+## 5. Primitive pair determinant and distance fence
+
+The quotient `Q` in (2.1) exists in both multiplier ranges. Lemma 2.1 and
+leading degrees give
+
+```text
+deg Q=e-a,       lc(Q)=lc(E).
+```
+
+Because a core locator `D` is coprime to the petal locator `M`, reduction of
+(2.1) modulo `D` gives the exact guard transport
+
+```text
+gcd(D,V)=gcd(D,Q).                                    (5.1)
+```
+
+Thus every guarded candidate gives a primitive pair `(D,Q)`.
+
+### Theorem 5.1 (low cross determinant)
+
+For two distinct candidates in one fixed atom, put
+
+```text
+H_12=D_1Q_2-D_2Q_1.
+```
+
+Then
+
+```text
+0!=H_12=(D_2V_1-D_1V_2)/M,
+deg H_12<=ell-2a.                                    (5.2)
+```
+
+In particular `gcd(D_1,D_2)|H_12`, so the two split root sets meet in at
+most `ell-2a` points. Fixing one candidate, the map from every other
+candidate to `H_12` is injective.
+
+**Proof.**  Cross-multiply the two equations (2.1) and subtract; the
+`E D_1D_2` terms cancel and give the identity in (5.2). The numerator has
+degree at most `(2ell-a)+(ell-a)=3ell-2a`, while `deg M=2ell`.
+
+If `H_12=0`, primitivity (5.1) makes `D_1,D_2` associates; monicity gives
+equality, and then the quotients and remainders agree. For fixed candidate
+one, equality of two determinants gives
+`D_1(Q_2-Q_3)=Q_1(D_2-D_3)`. Primitivity makes `D_1` divide `D_2-D_3`, whose
+degree is below `deg D_1`, so the candidates agree. QED.
+
+For core size `N=4ell+b-2` and locator degree `j=2ell-a`, the
+constant-weight Johnson denominator produced by this intersection cap is
+
+```text
+j^2-N(ell-2a)
+ =ell(4a-b+2)+a^2+2ab-4a
+ =J.                                                  (5.3)
+```
+
+The source cell considered here is exactly the `J<=0` tail. Therefore the
+pairwise distance consequence of (5.2) cannot provide a polynomial bound by
+the ordinary Johnson/Plotkin argument. Any successful shift-pair or
+split-pencil census must use compatibility among several determinants or
+their split factors.
+
+## 6. Interface with the live upstream program
 
 Theorem 2.2 removes every source carrying a degree-below-`a` locator syzygy,
 including the full split-pencil stratum, before any maximum-fiber estimate.
@@ -309,7 +374,9 @@ additional prefix coefficients.  Hence a depth-uniform prefix
 maximum-to-mean theorem would traverse the complete ladder without a
 field-sized union-bound loss.
 
-What remains outside this packet is explicit:
+Theorem 5.1 supplies the exact primitive shift-pair invariant and rules out
+repeating a distance-only packing argument. What remains outside this packet
+is explicit:
 
 - classification of source-ratio degrees at least `a` and the
   maximum-to-mean estimate for the realized guarded prefix cells;
@@ -324,7 +391,7 @@ The existing quotient/prefix discussion in
 consumer.  The present note contributes a source-side exact ladder and a
 split-pencil exclusion; it does not change that note's maximum-fiber status.
 
-## 6. Replay
+## 7. Replay
 
 Run
 
@@ -334,6 +401,7 @@ python3 experimental/scripts/verify_list_fpc5_three_petal_ls6_reductions_v1.py
 
 The stdlib-only exact finite-field replay checks both degree gates, the exact
 inverse source-ratio form, aligned and misaligned pencil identities, the
-forbidden common factor, the prefix parametrization, cell depth, cell count
-exponent, and the invariant effective depth. The script is a regression
-companion to the proofs, not their source.
+forbidden common factor, the prefix parametrization, primitive pair
+determinant, `J` identity, cell depth, cell count exponent, and invariant
+effective depth. The script is a regression companion to the proofs, not
+their source.

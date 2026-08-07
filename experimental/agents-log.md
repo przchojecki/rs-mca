@@ -43,10 +43,14 @@ Keep entries concise and link to the relevant files.
   three-petal LS6 source with locator-ratio degree below defect is empty
   (including every common pencil), plus an exact parametrization of the
   low-multiplier range as a ladder of ordinary locator-prefix cells with
-  invariant effective depth.
+  invariant effective depth, and an exact primitive pair determinant of
+  degree at most `ell-2a` whose distance-only Johnson denominator is the live
+  nonpositive parameter `J`.
 - **How it is useful:** Removes the complete short-syzygy source stratum and
   maps the surviving low-multiplier FPC5 slice to the live pruned
-  locator-prefix problem `Q` without a field-sized average-scale loss.
+  locator-prefix problem `Q` without a field-sized average-scale loss, and
+  directs shift-pair work toward collective determinant compatibility rather
+  than pairwise distance.
 - **What to do next:** Review the source-to-LS6 reduction and owner binding,
   prove maximum-to-mean control uniformly along the prefix ladder, and handle
   the high-multiplier split-in-subspace range. The included stdlib verifier is

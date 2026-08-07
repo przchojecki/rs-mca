@@ -84,6 +84,19 @@ def inverse_mod(poly: list[int], modulus: list[int]) -> list[int]:
     return remainder
 
 
+def monic(poly: list[int]) -> list[int]:
+    poly = trim(poly)
+    return scale(poly, pow(poly[-1], -1, MOD))
+
+
+def gcd_poly(left: list[int], right: list[int]) -> list[int]:
+    left, right = trim(left), trim(right)
+    while right != [0]:
+        _, remainder = divmod_poly(left, right)
+        left, right = right, remainder
+    return monic(left)
+
+
 def check_prefix_ladder() -> int:
     checks = 0
     for ell, a, e in ((7, 2, 2), (9, 2, 4), (11, 3, 7)):
@@ -185,18 +198,75 @@ def check_inverse_source_ratio() -> int:
     return checks
 
 
+def check_pair_determinant() -> int:
+    ell, a, e = 7, 2, 4
+    s, j = ell - a, 2 * ell - a
+    l2 = [3, 1] + [0] * (ell - 2) + [1]
+    l3 = [11, 2] + [0] * (ell - 2) + [1]
+    modulus = mul(l2, l3)
+    multiplier = [5, 6, 7, 8, 1]
+    fixtures: list[tuple[list[int], list[int], list[int]]] = []
+
+    for seed in range(1, 80):
+        quotient = [13 + seed, 17 + 2 * seed, 1]
+        tail = [19 + 3 * seed, 23 + 5 * seed]
+        base, remainder = divmod_poly(mul(modulus, quotient), multiplier)
+        locator = add(base, tail)
+        value = add(scale(remainder, -1), mul(multiplier, tail))
+        if degree(locator) != j or locator[-1] != 1:
+            continue
+        if gcd_poly(locator, modulus) != [1]:
+            continue
+        if gcd_poly(locator, quotient) != [1]:
+            continue
+        if gcd_poly(locator, value) != [1]:
+            continue
+        fixtures.append((locator, quotient, value))
+        if len(fixtures) == 2:
+            break
+
+    assert len(fixtures) == 2
+    d1, q1, v1 = fixtures[0]
+    d2, q2, v2 = fixtures[1]
+    determinant = add(mul(d1, q2), scale(mul(d2, q1), -1))
+    numerator = add(mul(d2, v1), scale(mul(d1, v2), -1))
+    quotient_h, remainder_h = divmod_poly(numerator, modulus)
+    assert determinant != [0]
+    assert remainder_h == [0] and quotient_h == determinant
+    assert degree(determinant) <= ell - 2 * a
+    assert degree(gcd_poly(d1, d2)) <= degree(determinant)
+    assert degree(q1) == degree(q2) == e - a
+
+    for ell_value, b_value, a_value in ((17, 9, 1), (23, 15, 2), (31, 27, 4)):
+        locator_degree = 2 * ell_value - a_value
+        core_size = 4 * ell_value + b_value - 2
+        intersection = ell_value - 2 * a_value
+        johnson = (
+            ell_value * (4 * a_value - b_value + 2)
+            + a_value * a_value
+            + 2 * a_value * b_value
+            - 4 * a_value
+        )
+        assert locator_degree * locator_degree - core_size * intersection == johnson
+        assert johnson <= 0
+    return 1
+
+
 def main() -> None:
     prefix_checks = check_prefix_ladder()
     pencil_checks = check_common_pencil()
     ratio_checks = check_inverse_source_ratio()
+    pair_checks = check_pair_determinant()
     assert prefix_checks == 9
     assert pencil_checks == 9
     assert ratio_checks == 2
+    assert pair_checks == 1
     print(
         "PASS: three-petal LS6 source-ratio exclusion and prefix ladder",
         f"prefix_checks={prefix_checks}",
         f"pencil_checks={pencil_checks}",
         f"ratio_checks={ratio_checks}",
+        f"pair_checks={pair_checks}",
     )
 
 
