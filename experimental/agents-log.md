@@ -40,11 +40,12 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / ARCHITECTURE BRIDGE. No deployed row, live `U_Q`, or
   endpoint moves.
 - **What is being added:** A direct polynomial proof that every guarded
-  three-petal LS6 atom coming from one common locator pencil is empty, plus an
-  exact parametrization of the low-multiplier range as a ladder of ordinary
-  locator-prefix cells with invariant effective depth.
-- **How it is useful:** Removes the complete common-pencil source stratum and
-  maps the remaining low-multiplier FPC5 slice to the live pruned
+  three-petal LS6 source with locator-ratio degree below defect is empty
+  (including every common pencil), plus an exact parametrization of the
+  low-multiplier range as a ladder of ordinary locator-prefix cells with
+  invariant effective depth.
+- **How it is useful:** Removes the complete short-syzygy source stratum and
+  maps the surviving low-multiplier FPC5 slice to the live pruned
   locator-prefix problem `Q` without a field-sized average-scale loss.
 - **What to do next:** Review the source-to-LS6 reduction and owner binding,
   prove maximum-to-mean control uniformly along the prefix ladder, and handle

@@ -7,13 +7,13 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: symbolic source chart with locator degree j=2*ell-a
 B_star: N/A
-direct_statement: common-pencil LS6 atoms are empty, and every low-multiplier LS6 slice is an exact locator-prefix ladder
+direct_statement: short-syzygy LS6 sources are empty, common-pencil LS6 atoms are empty, and every low-multiplier LS6 slice is an exact locator-prefix ladder
 architecture: DIRECT
 partition_digest: N/A (DIRECT structural theorem)
 atom_or_cell: one fixed guarded three-petal complement-divisor atom LS6
 quantifier: every field and every parameter tuple satisfying the printed hypotheses
 projection_and_unit: monic locator candidates in one fixed LIST source cell
-claimed_bound: zero on the common-pencil stratum; exact Q0^(e-a)-cell prefix decomposition in the low-multiplier stratum
+claimed_bound: zero on the source-ratio-degree-below-a stratum; exact Q0^(e-a)-cell prefix decomposition in the low-multiplier stratum
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
 falsifier: a guarded common-pencil solution, or a low-multiplier solution outside the displayed bijection
@@ -31,8 +31,9 @@ They do **not** prove a deployed LIST row, a maximum-versus-average theorem,
 or an exhaustive source-to-row projection.  Their useful consequence is more
 specific:
 
-1. a source whose three touched petal locators lie in one common pencil
-   contributes no guarded LS6 candidates; and
+1. every source with a modular locator ratio of degree below defect `a`
+   contributes no guarded LS6 candidates; common pencils are the degree-zero
+   case; and
 2. below the multiplier-degree wall, the remaining linear slice is exactly a
    tower of ordinary locator-prefix cells, with no loss in the normalized
    average scale when the tower is expanded.
@@ -80,6 +81,58 @@ deg E>=a.                                             (2.3)
 modulo `M` occurs.  The remainder is `DE` itself and has degree at least
 `2ell-a>s`, contrary to the LS6 degree condition.  QED.
 
+### Theorem 2.2 (inverse source-ratio gate)
+
+Let `F` be the canonical inverse of `E` modulo `M`.  Every nonempty guarded
+atom on the branch `a<=ell/2` satisfies
+
+```text
+deg F>=ell+a.                                         (2.4)
+```
+
+For the source multiplier defined by (3.2) below, put
+
+```text
+U=rem_(L_3)(L_1 L_2^(-1)).                           (2.5)
+```
+
+Then nonemptiness forces the source-only condition
+
+```text
+deg U>=a.                                             (2.6)
+```
+
+Equivalently, the complementary source stratum has a short syzygy
+
+```text
+L_1=U L_2+R L_3,       deg U,deg R<a,                (2.7)
+```
+
+and its guarded LS6 atom is empty.
+
+**Proof.**  Multiplying `DE==V mod M` by `F` gives
+`D=rem_M(FV)`.  If `deg F<ell+a`, then `deg(FV)<2ell`, so `D=FV` without
+modular reduction.  Since `deg D=2ell-a` and `a<=ell/2`, `V` is
+nonconstant, contradicting `gcd(D,V)=1`.
+
+The source residues (3.2) give
+
+```text
+F==L_1                 mod L_2,
+F==lambda^(-1)L_1      mod L_3.
+```
+
+Consequently
+
+```text
+F=L_1+L_2 A,
+A=(lambda^(-1)-1)U,
+```
+
+where `deg A<ell`.  Since the scalar is nonzero, `deg F>=ell+a` is
+equivalent to `deg U>=a`.  Finally, (2.5) says exactly that
+`L_1-U L_2=R L_3`; if `deg U<a`, degree comparison gives `deg R<a`.  QED.
+
 ## 3. The common-pencil stratum is empty
 
 Assume now that the three touched petal locators have the form
@@ -97,6 +150,16 @@ the unique polynomial of degree below `2ell` satisfying
 E L_1 == 1       mod L_2,
 E L_1 == lambda  mod L_3.                            (3.2)
 ```
+
+For (3.1), the ratio in (2.5) is the constant
+
+```text
+U=(z_3-z_1)/(z_3-z_2).
+```
+
+Thus Theorem 2.2 already excludes every common pencil.  The two direct
+computations below are retained because they identify the separate aligned
+degree obstruction and misaligned common-factor obstruction.
 
 ### Theorem 3.1 (aligned pencil)
 
@@ -237,8 +300,9 @@ The split-core and coprimality guards only remove points from these cells.
 
 ## 5. Interface with the live upstream program
 
-Theorem 3 removes a full split-pencil source stratum before any
-maximum-fiber estimate.  Theorem 4 turns the range `a<=deg E<=ell-a` into a
+Theorem 2.2 removes every source carrying a degree-below-`a` locator syzygy,
+including the full split-pencil stratum, before any maximum-fiber estimate.
+Theorem 4 turns the range `a<=deg E<=ell-a` into a
 precise instance of the repository's pruned locator-prefix problem `Q`:
 increasing `deg E` creates `Q_0^(e-a)` targets but fixes exactly `e-a`
 additional prefix coefficients.  Hence a depth-uniform prefix
@@ -247,7 +311,8 @@ field-sized union-bound loss.
 
 What remains outside this packet is explicit:
 
-- the maximum-to-mean estimate for the realized guarded prefix cells;
+- classification of source-ratio degrees at least `a` and the
+  maximum-to-mean estimate for the realized guarded prefix cells;
 - the high-multiplier range `deg E>ell-a`, which remains a genuine
   split-in-subspace/balanced-core problem;
 - quotient, reciprocal/dihedral, and first-owner transport; and
@@ -267,7 +332,8 @@ Run
 python3 experimental/scripts/verify_list_fpc5_three_petal_ls6_reductions_v1.py
 ```
 
-The stdlib-only exact finite-field replay checks the degree gate, aligned and
-misaligned pencil identities, the forbidden common factor, the prefix
-parametrization, cell depth, cell count exponent, and the invariant effective
-depth.  The script is a regression companion to the proofs, not their source.
+The stdlib-only exact finite-field replay checks both degree gates, the exact
+inverse source-ratio form, aligned and misaligned pencil identities, the
+forbidden common factor, the prefix parametrization, cell depth, cell count
+exponent, and the invariant effective depth. The script is a regression
+companion to the proofs, not their source.

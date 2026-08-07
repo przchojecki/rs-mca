@@ -58,6 +58,32 @@ def degree(poly: list[int]) -> int:
     return len(trim(poly)) - 1
 
 
+def extended_gcd(
+    left: list[int], right: list[int]
+) -> tuple[list[int], list[int], list[int]]:
+    old_r, r = trim(left), trim(right)
+    old_s, s = [1], [0]
+    old_t, t = [0], [1]
+    while r != [0]:
+        quotient, remainder = divmod_poly(old_r, r)
+        old_r, r = r, remainder
+        old_s, s = s, add(old_s, scale(mul(quotient, s), -1))
+        old_t, t = t, add(old_t, scale(mul(quotient, t), -1))
+    leading_inverse = pow(old_r[-1], -1, MOD)
+    return (
+        scale(old_r, leading_inverse),
+        scale(old_s, leading_inverse),
+        scale(old_t, leading_inverse),
+    )
+
+
+def inverse_mod(poly: list[int], modulus: list[int]) -> list[int]:
+    divisor, coefficient, _ = extended_gcd(poly, modulus)
+    assert divisor == [1]
+    _, remainder = divmod_poly(coefficient, modulus)
+    return remainder
+
+
 def check_prefix_ladder() -> int:
     checks = 0
     for ell, a, e in ((7, 2, 2), (9, 2, 4), (11, 3, 7)):
@@ -126,15 +152,51 @@ def check_common_pencil() -> int:
     return checks
 
 
+def check_inverse_source_ratio() -> int:
+    ell = 7
+    lambda_value = 19
+    lambda_inverse = pow(lambda_value, -1, MOD)
+    lambda_factor = (lambda_inverse - 1) % MOD
+    fixtures = (
+        (
+            [5, 2, 0, 1, 4, 0, 3, 1],
+            [9, 1, 7, 0, 0, 5, 2, 1],
+            [13, 4, 1, 0, 6, 3, 0, 1],
+        ),
+        (
+            [11, 6, 2, 0, 5, 1, 4, 1],
+            [3, 8, 0, 7, 1, 0, 2, 1],
+            [17, 1, 5, 2, 0, 4, 6, 1],
+        ),
+    )
+    checks = 0
+    for l1, l2, l3 in fixtures:
+        _, ratio = divmod_poly(mul(l1, inverse_mod(l2, l3)), l3)
+        inverse_multiplier = add(l1, mul(l2, scale(ratio, lambda_factor)))
+        _, residue_l2 = divmod_poly(inverse_multiplier, l2)
+        _, residue_l3 = divmod_poly(inverse_multiplier, l3)
+        _, expected_l2 = divmod_poly(l1, l2)
+        _, expected_l3 = divmod_poly(scale(l1, lambda_inverse), l3)
+        assert residue_l2 == expected_l2
+        assert residue_l3 == expected_l3
+        if degree(ratio) >= 1:
+            assert degree(inverse_multiplier) == ell + degree(ratio)
+        checks += 1
+    return checks
+
+
 def main() -> None:
     prefix_checks = check_prefix_ladder()
     pencil_checks = check_common_pencil()
+    ratio_checks = check_inverse_source_ratio()
     assert prefix_checks == 9
     assert pencil_checks == 9
+    assert ratio_checks == 2
     print(
-        "PASS: three-petal LS6 common-pencil exclusion and prefix ladder",
+        "PASS: three-petal LS6 source-ratio exclusion and prefix ladder",
         f"prefix_checks={prefix_checks}",
         f"pencil_checks={pencil_checks}",
+        f"ratio_checks={ratio_checks}",
     )
 
 
