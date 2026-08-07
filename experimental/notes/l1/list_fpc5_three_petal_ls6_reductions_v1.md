@@ -7,16 +7,16 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: symbolic source chart with locator degree j=2*ell-a
 B_star: N/A
-direct_statement: short-syzygy LS6 sources are empty, low multipliers form an exact prefix ladder, and primitive candidate pairs have a low cross determinant
+direct_statement: short-syzygy LS6 sources are empty, low multipliers form an exact prefix ladder, and one primitive candidate gives a complete determinant coordinate chart
 architecture: DIRECT
 partition_digest: N/A (DIRECT structural theorem)
 atom_or_cell: one fixed guarded three-petal complement-divisor atom LS6
 quantifier: every field and every parameter tuple satisfying the printed hypotheses
 projection_and_unit: monic locator candidates in one fixed LIST source cell
-claimed_bound: zero on the source-ratio-degree-below-a stratum; exact prefix ladder; pair determinant degree at most ell-2a with distance-only closure fenced by J<=0
+claimed_bound: zero on the source-ratio-degree-below-a stratum; exact prefix ladder; pair determinant degree at most ell-2a; exact affine determinant chart with root-local primitive guard
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
-falsifier: a guarded common-pencil solution, or a low-multiplier solution outside the displayed bijection
+falsifier: a guarded common-pencil solution, a low-multiplier solution outside the prefix bijection, or a determinant coordinate without the displayed inverse
 replay: python3 experimental/scripts/verify_list_fpc5_three_petal_ls6_reductions_v1.py
 ```
 
@@ -39,7 +39,11 @@ specific:
    average scale when the tower is expanded; and
 3. every distinct primitive candidate pair has a nonzero cross determinant
    of degree at most `ell-2a`, while its ordinary Johnson denominator is
-   exactly the nonpositive live parameter `J`.
+   exactly the nonpositive live parameter `J`; and
+4. after fixing one primitive candidate, that determinant is a complete
+   affine coordinate on the entire monic unguarded slice. Formal
+   multi-determinant compatibility is therefore automatic; the remaining
+   object is an exact split-root chart with a root-local primitive guard.
 
 This is an `ARCHITECTURE_BRIDGE` to the repository's `Q` and split-pencil
 work, not a bankable row atom.
@@ -359,9 +363,77 @@ j^2-N(ell-2a)
 
 The source cell considered here is exactly the `J<=0` tail. Therefore the
 pairwise distance consequence of (5.2) cannot provide a polynomial bound by
-the ordinary Johnson/Plotkin argument. Any successful shift-pair or
-split-pencil census must use compatibility among several determinants or
-their split factors.
+the ordinary Johnson/Plotkin argument.
+
+### Theorem 5.2 (complete fixed-base determinant chart)
+
+Fix one guarded candidate `(D_0,Q_0,V_0)` and put `h=ell-2a`. The map from
+the complete monic unguarded LS6 slice to `K[X]_{<=h}` given by
+
+```text
+D -> H_D=D_0Q-DQ_0                                  (5.4)
+```
+
+is an affine bijection. If `I_0=Q_0^(-1) mod D_0`, the inverse is
+
+```text
+R_H=rem_(D_0)(-H I_0),       D_H=D_0+R_H,
+Q_H=(H+D_HQ_0)/D_0,          V_H=(D_HV_0-MH)/D_0.   (5.5)
+```
+
+For coordinates `H,G`, their cross determinant is
+
+```text
+D_HQ_G-D_GQ_H=(D_HG-D_GH)/D_0,       deg<=h.        (5.6)
+```
+
+**Proof.** Theorem 5.1 makes (5.4) well-defined and injective. For an
+arbitrary `H` of degree at most `h`, primitivity of the base makes `I_0`
+well-defined. Formula (5.5) gives
+
+```text
+H+D_HQ_0==0 mod D_0.
+```
+
+Also `V_0==-MQ_0 mod D_0`, so
+
+```text
+D_HV_0-MH==0 mod D_0.
+```
+
+Both divisions in (5.5) are therefore exact. The resulting `D_H` is monic
+of degree `j`; `Q_H` has the same degree and leading coefficient as `Q_0`;
+and
+
+```text
+deg V_H<=max(j+s,2ell+h)-j=s.
+```
+
+Using `D_0E=MQ_0+V_0` now gives `D_HE=MQ_H+V_H`, so every `H` occurs.
+Expanding two copies of (5.4) proves (5.6). QED.
+
+The guarded split subset has an exact local description. Require
+`D_H|L_C`. At a root `x` of `D_H`, the condition `Q_H(x)!=0` is equivalent
+to
+
+```text
+x notin Z(D_0):       H(x)!=0;
+x in Z(D_0):          H'(x)+D_H'(x)Q_0(x)!=0.       (5.7)
+```
+
+Indeed, the first line follows by evaluating (5.4). At a common root,
+differentiating (5.4) gives
+`H'=D_0'Q_H-D_H'Q_0`; squarefreeness makes `D_0'(x)` nonzero. In particular
+
+```text
+Z(D_H) intersect Z(D_0)=Z(H) intersect Z(D_0).      (5.8)
+```
+
+Every formal three-or-more determinant and Plucker identity is thus already
+satisfied by the complete unguarded slice. Such identities impose no
+additional maximum bound. A successful shift-pair or split-pencil census
+must count the split-root coordinates satisfying (5.7), or use quotient and
+owner structure.
 
 ## 6. Interface with the live upstream program
 
@@ -374,14 +446,14 @@ additional prefix coefficients.  Hence a depth-uniform prefix
 maximum-to-mean theorem would traverse the complete ladder without a
 field-sized union-bound loss.
 
-Theorem 5.1 supplies the exact primitive shift-pair invariant and rules out
-repeating a distance-only packing argument. What remains outside this packet
-is explicit:
+Theorems 5.1--5.2 supply the exact primitive shift-pair invariant, rule out
+repeating a distance-only packing argument, and fence formal collective
+compatibility. What remains outside this packet is explicit:
 
 - classification of source-ratio degrees at least `a` and the
   maximum-to-mean estimate for the realized guarded prefix cells;
-- the high-multiplier range `deg E>ell-a`, which remains a genuine
-  split-in-subspace/balanced-core problem;
+- the split-root maximum in the determinant chart, including the
+  high-multiplier range `deg E>ell-a`;
 - quotient, reciprocal/dihedral, and first-owner transport; and
 - exhaustive projection from this symbolic FPC5 source cell to a deployed
   row numerator.
@@ -402,6 +474,6 @@ python3 experimental/scripts/verify_list_fpc5_three_petal_ls6_reductions_v1.py
 The stdlib-only exact finite-field replay checks both degree gates, the exact
 inverse source-ratio form, aligned and misaligned pencil identities, the
 forbidden common factor, the prefix parametrization, primitive pair
-determinant, `J` identity, cell depth, cell count exponent, and invariant
-effective depth. The script is a regression companion to the proofs, not
-their source.
+determinant, complete determinant chart, root-local guard, `J` identity,
+cell depth, cell count exponent, and invariant effective depth. The script
+is a regression companion to the proofs, not their source.

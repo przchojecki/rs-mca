@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from itertools import product
+
 
 MOD = 257
 
@@ -56,6 +58,21 @@ def divmod_poly(
 
 def degree(poly: list[int]) -> int:
     return len(trim(poly)) - 1
+
+
+def derivative(poly: list[int]) -> list[int]:
+    return trim([index * value for index, value in enumerate(poly)][1:] or [0])
+
+
+def evaluate(poly: list[int], point: int) -> int:
+    value = 0
+    for coefficient in reversed(poly):
+        value = (value * point + coefficient) % MOD
+    return value
+
+
+def roots(poly: list[int]) -> list[int]:
+    return [point for point in range(MOD) if evaluate(poly, point) == 0]
 
 
 def extended_gcd(
@@ -252,21 +269,109 @@ def check_pair_determinant() -> int:
     return 1
 
 
+def check_determinant_chart() -> tuple[int, int, int]:
+    ell, a, e = 7, 2, 4
+    s, j, h = ell - a, 2 * ell - a, ell - 2 * a
+    l2 = [3, 1] + [0] * (ell - 2) + [1]
+    l3 = [11, 2] + [0] * (ell - 2) + [1]
+    modulus = mul(l2, l3)
+    multiplier = [5, 6, 7, 8, 1]
+
+    base_fixture = None
+    for seed in range(1, 2001):
+        quotient = [13 + seed, 17 + 2 * seed, 1]
+        tail = [19 + 3 * seed, 23 + 5 * seed]
+        base, remainder = divmod_poly(mul(modulus, quotient), multiplier)
+        locator = add(base, tail)
+        value = add(scale(remainder, -1), mul(multiplier, tail))
+        if degree(locator) != j or locator[-1] != 1:
+            continue
+        if gcd_poly(locator, modulus) != [1]:
+            continue
+        if gcd_poly(locator, quotient) != [1]:
+            continue
+        if gcd_poly(locator, derivative(locator)) != [1]:
+            continue
+        if not roots(locator):
+            continue
+        base_fixture = (locator, quotient, value)
+        break
+    assert base_fixture is not None
+    d0, q0, v0 = base_fixture
+    q0_inverse = inverse_mod(q0, d0)
+
+    chart = []
+    for coefficients in product(range(3), repeat=h + 1):
+        determinant = trim(list(coefficients))
+        residue = divmod_poly(
+            scale(mul(determinant, q0_inverse), -1), d0
+        )[1]
+        locator = add(d0, residue)
+        quotient, quotient_remainder = divmod_poly(
+            add(determinant, mul(locator, q0)), d0
+        )
+        value, value_remainder = divmod_poly(
+            add(mul(locator, v0), scale(mul(modulus, determinant), -1)), d0
+        )
+        assert quotient_remainder == [0] and value_remainder == [0]
+        assert degree(locator) == j and locator[-1] == 1
+        assert degree(quotient) == e - a and quotient[-1] == q0[-1]
+        assert degree(value) <= s
+        assert mul(locator, multiplier) == add(mul(modulus, quotient), value)
+        assert add(mul(d0, quotient), scale(mul(locator, q0), -1)) == determinant
+
+        for point in roots(d0):
+            assert (evaluate(locator, point) == 0) == (
+                evaluate(determinant, point) == 0
+            )
+        for point in roots(locator):
+            primitive_at_point = evaluate(quotient, point) != 0
+            if evaluate(d0, point) != 0:
+                assert primitive_at_point == (evaluate(determinant, point) != 0)
+            else:
+                local_guard = (
+                    evaluate(derivative(determinant), point)
+                    + evaluate(derivative(locator), point) * evaluate(q0, point)
+                ) % MOD
+                assert primitive_at_point == (local_guard != 0)
+        chart.append((determinant, locator, quotient))
+
+    pair_checks = 0
+    for h_left, d_left, q_left in chart[:12]:
+        for h_right, d_right, q_right in chart[12:24]:
+            cross = add(mul(d_left, q_right), scale(mul(d_right, q_left), -1))
+            numerator = add(
+                mul(d_left, h_right), scale(mul(d_right, h_left), -1)
+            )
+            quotient, remainder = divmod_poly(numerator, d0)
+            assert remainder == [0] and quotient == cross
+            assert degree(cross) <= h
+            pair_checks += 1
+    return len(chart), pair_checks, len(roots(d0))
+
+
 def main() -> None:
     prefix_checks = check_prefix_ladder()
     pencil_checks = check_common_pencil()
     ratio_checks = check_inverse_source_ratio()
     pair_checks = check_pair_determinant()
+    chart_checks, collective_checks, base_roots = check_determinant_chart()
     assert prefix_checks == 9
     assert pencil_checks == 9
     assert ratio_checks == 2
     assert pair_checks == 1
+    assert chart_checks == 81
+    assert collective_checks == 144
+    assert base_roots >= 1
     print(
         "PASS: three-petal LS6 source-ratio exclusion and prefix ladder",
         f"prefix_checks={prefix_checks}",
         f"pencil_checks={pencil_checks}",
         f"ratio_checks={ratio_checks}",
         f"pair_checks={pair_checks}",
+        f"chart_checks={chart_checks}",
+        f"collective_checks={collective_checks}",
+        f"base_roots={base_roots}",
     )
 
 
