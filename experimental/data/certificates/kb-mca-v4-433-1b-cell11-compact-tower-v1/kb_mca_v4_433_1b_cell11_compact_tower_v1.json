@@ -1,0 +1,574 @@
+{
+  "B_star": 274980728111395087,
+  "FLOOR_v2_used": false,
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "S_sparse_bound_claimed": false,
+  "agreement": 1116048,
+  "architecture": "K3 coordinate-positive 433-1b source-role workboard",
+  "atom_or_cell": "source-role cell 11; epsilon=(-1,-1); pivot 1",
+  "claimed_bound": "exact structural reduction only; no cell-11 witness count",
+  "direct_statement": "For the public 433-1b source-role cell-11 pilot at epsilon=(-1,-1) and pivot 1 over F_2130706433, each of three declared reduced three-equation towers generates the guarded eight-equation common locus; the selected chart's two leading-coefficient boundaries have no deployed-field point; and one primitive eight-coordinate coefficient kernel annihilates all ten Vieta rows modulo that locus.",
+  "exact_replay": {
+    "boundaries": {
+      "b_leading": {
+        "b_discriminant": 1184183620,
+        "b_discriminant_euler": 2130706432,
+        "b_polynomial": [
+          1,
+          2078591770,
+          1
+        ],
+        "deployed_boundary_empty": true,
+        "lex_basis": [
+          "r4-16711678r3+16711678r2-16711678r-16711679",
+          "t-660744034r3-825930043r2+495558026",
+          "b2-221646201br3+208452772br2-134131496br-781478857b+1",
+          "c-8355838br3-33423357br2+8355839br-33423359b-16711679r3-8355841r2+33423360r-25067518",
+          "z+50845181br3-243451366br2+548852294br+747890281b-91039990r3+251221587r2-212049885r+346029379"
+        ],
+        "lex_basis_sha256": "0c50020ef27df5f4ba333d49c5822774a9a89130a6dcdfec5e07c1690756c127",
+        "r_deployed_roots": [
+          1689971530
+        ],
+        "r_factorization": [
+          {
+            "coefficients": [
+              1,
+              440734903
+            ],
+            "degree": 1,
+            "multiplicity": 1
+          },
+          {
+            "coefficients": [
+              1,
+              1673259852,
+              946675306,
+              700051530
+            ],
+            "degree": 3,
+            "multiplicity": 1
+          }
+        ],
+        "r_polynomial": [
+          1,
+          2113994755,
+          16711678,
+          2113994755,
+          2113994754
+        ],
+        "t_lift": 188031674
+      },
+      "c_leading": {
+        "b_discriminant": 140859139,
+        "b_discriminant_euler": 2130706432,
+        "b_polynomial": [
+          1,
+          1529703515,
+          1
+        ],
+        "deployed_boundary_empty": true,
+        "lex_basis": [
+          "r4+16711678r3+16711680r2-16711678r+16711679",
+          "t+335514072r3-989830538r2-167757036",
+          "b2-16711679br3-16711677br-33423358b+1",
+          "c+447690213br3+999167031br2-235719194br-674174006b-779279954r3+875150499r2-682090064r+116540255",
+          "z+762143357br3-985536034br2-438785597br+864454112b-900870435r3-355973426r2-995256255r+584420815"
+        ],
+        "lex_basis_sha256": "4bd3031797c18105e9f94a80bac4cc12033ec772a50903f33dccbd153be7f3bd",
+        "r_deployed_roots": [
+          700051530
+        ],
+        "r_factorization": [
+          {
+            "coefficients": [
+              1,
+              1430654903
+            ],
+            "degree": 1,
+            "multiplicity": 1
+          },
+          {
+            "coefficients": [
+              1,
+              716763208,
+              230069660,
+              440734903
+            ],
+            "degree": 3,
+            "multiplicity": 1
+          }
+        ],
+        "r_polynomial": [
+          1,
+          16711678,
+          16711680,
+          2113994755,
+          16711679
+        ],
+        "t_lift": 879708479
+      },
+      "program_sha256": "cb4d0d8748314a2be5275056d496626c752ad34ea75bb68be3b1bcb136e6f13d"
+    },
+    "charts": [
+      {
+        "b_boundary_basis_size": 15,
+        "b_boundary_dimension": 0,
+        "b_leading": {
+          "degree": 6,
+          "degrees": [
+            0,
+            6
+          ],
+          "expression": "r**6 - 33423357*r**5 - 2*r**4 + 2*r**3 - 33423359*r**2 - r",
+          "sha256": "ed1ccf6e86de9fac10d163fbe47b3d6013d88fd221f5db100d2e1fdd5a1dd51c",
+          "terms": 6
+        },
+        "b_relation": {
+          "degree": 8,
+          "degrees": [
+            0,
+            2,
+            1,
+            7
+          ],
+          "expression": "b**2*r**6 - 33423357*b**2*r**5 - 2*b**2*r**4 + 2*b**2*r**3 - 33423359*b**2*r**2 - b**2*r - 16711679*b*r**7 + 16711677*b*r**6 - 16711680*b*r**5*t + 3*b*r**5 + 16711678*b*r**4*t + b*r**4 + 66846714*b*r**3*t - 16711679*b*r**3 + 33423358*b*r**2*t - 16711683*b*r**2 + 16711682*b*r*t + 33423359*b*r + 16711680*b*t + b + r**6 - 33423357*r**5 - 2*r**4 + 2*r**3 - 33423359*r**2 - r",
+          "sha256": "6c6a0ec816acc73ee1bda257837bcbfe8ac2ebd1570f817a869f33c8b536f3f7",
+          "terms": 26
+        },
+        "base": {
+          "degree": 5,
+          "degrees": [
+            2,
+            4
+          ],
+          "expression": "16711679*r**4*t + 16711679*r**4 - 16711678*r**3*t + 16711678*r**3 + r**2*t**2 - 2*r**2*t + r**2 - 16711680*r*t**2 + 16711680*r*t - 16711679*t**2 - 16711679*t",
+          "sha256": "b7233074a1538036312e7c49b3e2ea8a6d731964fd22dce40823edbadf9044b5",
+          "terms": 11
+        },
+        "c_boundary_basis_size": 15,
+        "c_boundary_dimension": 0,
+        "c_leading": {
+          "degree": 8,
+          "degrees": [
+            0,
+            0,
+            8
+          ],
+          "expression": "r**8 - 2*r**7 + 33423360*r**6 - 66846714*r**5 - 6*r**4 + 66846718*r**3 - 33423356*r**2 - 2*r + 1",
+          "sha256": "2953318d0e36219e7ef05b814c7b2bae9293bb85187e56e44aa0e7809ec0e761",
+          "terms": 9
+        },
+        "c_relation": {
+          "degree": 9,
+          "degrees": [
+            1,
+            1,
+            1,
+            8
+          ],
+          "expression": "-16711679*b*r**8 - 2*b*r**7 - 2*b*r**6*t + 133693432*b*r**6 + 33423360*b*r**5*t - 33423354*b*r**5 + 100270074*b*r**4*t - 33423354*b*r**4 - 66846712*b*r**3*t + 66846718*b*r**3 + 6*b*r**2*t - 133693432*b*r**2 - 33423360*b*r*t + 33423358*b*r - 33423358*b*t - 16711679*b + c*r**8 - 2*c*r**7 + 33423360*c*r**6 - 66846714*c*r**5 - 6*c*r**4 + 66846718*c*r**3 - 33423356*c*r**2 - 2*c*r + c + 2*r**7 - 33423356*r**5*t - 100270078*r**5 - 4*r**4*t - 4*r**4 - 66846720*r**3*t + 133693430*r**3 + 66846716*r**2*t - 66846716*r**2 + 33423356*r*t + 33423358*r",
+          "sha256": "024c9040784394e1ea90a0d6263fc55b4523a32c0a4901e61a5b6dfff303ffc3",
+          "terms": 36
+        },
+        "c_row": 5,
+        "exact": true,
+        "kernel_basis_size": 36,
+        "kernel_dimension": 1,
+        "program_sha256": "56826996f57c331a44b2adfb09f20b822276a5791a1ecdcbfcc4d3a2499f0d17",
+        "remainders": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "tower_basis_size": 43,
+        "tower_dimension": 1
+      },
+      {
+        "b_boundary_basis_size": 15,
+        "b_boundary_dimension": 0,
+        "b_leading": {
+          "degree": 6,
+          "degrees": [
+            0,
+            6
+          ],
+          "expression": "r**6 - 33423357*r**5 - 2*r**4 + 2*r**3 - 33423359*r**2 - r",
+          "sha256": "ed1ccf6e86de9fac10d163fbe47b3d6013d88fd221f5db100d2e1fdd5a1dd51c",
+          "terms": 6
+        },
+        "b_relation": {
+          "degree": 8,
+          "degrees": [
+            0,
+            2,
+            1,
+            7
+          ],
+          "expression": "b**2*r**6 - 33423357*b**2*r**5 - 2*b**2*r**4 + 2*b**2*r**3 - 33423359*b**2*r**2 - b**2*r - 16711679*b*r**7 + 16711677*b*r**6 - 16711680*b*r**5*t + 3*b*r**5 + 16711678*b*r**4*t + b*r**4 + 66846714*b*r**3*t - 16711679*b*r**3 + 33423358*b*r**2*t - 16711683*b*r**2 + 16711682*b*r*t + 33423359*b*r + 16711680*b*t + b + r**6 - 33423357*r**5 - 2*r**4 + 2*r**3 - 33423359*r**2 - r",
+          "sha256": "6c6a0ec816acc73ee1bda257837bcbfe8ac2ebd1570f817a869f33c8b536f3f7",
+          "terms": 26
+        },
+        "base": {
+          "degree": 5,
+          "degrees": [
+            2,
+            4
+          ],
+          "expression": "16711679*r**4*t + 16711679*r**4 - 16711678*r**3*t + 16711678*r**3 + r**2*t**2 - 2*r**2*t + r**2 - 16711680*r*t**2 + 16711680*r*t - 16711679*t**2 - 16711679*t",
+          "sha256": "b7233074a1538036312e7c49b3e2ea8a6d731964fd22dce40823edbadf9044b5",
+          "terms": 11
+        },
+        "c_boundary_basis_size": 21,
+        "c_boundary_dimension": 0,
+        "c_leading": {
+          "degree": 7,
+          "degrees": [
+            0,
+            1,
+            7
+          ],
+          "expression": "4177920*r**7 + 1065353216*r**6 - 1061175297*r**5 - 1065353216*r**4 - 12533759*r**3 + 1056997376*r**2 - 1061175297*r + t - 1056997377",
+          "sha256": "723dabb0e7498d2e984f8e8d4539008640e0e970a6d6c99c81c40884c0d7c592",
+          "terms": 9
+        },
+        "c_relation": {
+          "degree": 8,
+          "degrees": [
+            1,
+            1,
+            1,
+            7
+          ],
+          "expression": "1061175297*b*r**7 + 1056997377*b*r**6 - 8355840*b*r**5*t + 20889597*b*r**5 - 1056997379*b*r**4 + 33423356*b*r**3*t - 1052819456*b*r**3 - b*r**2*t - 1031929858*b*r**2 + 25067520*b*r*t + 4177920*b*r + 16711680*b*t - 1065353216*b + 4177920*c*r**7 + 1065353216*c*r**6 - 1061175297*c*r**5 - 1065353216*c*r**4 - 12533759*c*r**3 + 1056997376*c*r**2 - 1061175297*c*r + c*t - 1056997377*c + 8355840*r**6 + 16711679*r**5 + r**4*t - 33423358*r**4 - 50135036*r**3 - 50135037*r**2*t - 8355840*r**2 - 16711678*r*t - r",
+          "sha256": "9781707e520e3c6eb9181f0a8076d6d7ef94d2889c430be66a2d6a643174c046",
+          "terms": 31
+        },
+        "c_row": 6,
+        "exact": true,
+        "kernel_basis_size": 36,
+        "kernel_dimension": 1,
+        "program_sha256": "8c1fd0100cf60070a0999b6e0a307a0bb0009b55f80dd132b0e29721cf7596fe",
+        "remainders": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "tower_basis_size": 39,
+        "tower_dimension": 1
+      },
+      {
+        "b_boundary_basis_size": 15,
+        "b_boundary_dimension": 0,
+        "b_leading": {
+          "degree": 6,
+          "degrees": [
+            0,
+            6
+          ],
+          "expression": "r**6 - 33423357*r**5 - 2*r**4 + 2*r**3 - 33423359*r**2 - r",
+          "sha256": "ed1ccf6e86de9fac10d163fbe47b3d6013d88fd221f5db100d2e1fdd5a1dd51c",
+          "terms": 6
+        },
+        "b_relation": {
+          "degree": 8,
+          "degrees": [
+            0,
+            2,
+            1,
+            7
+          ],
+          "expression": "b**2*r**6 - 33423357*b**2*r**5 - 2*b**2*r**4 + 2*b**2*r**3 - 33423359*b**2*r**2 - b**2*r - 16711679*b*r**7 + 16711677*b*r**6 - 16711680*b*r**5*t + 3*b*r**5 + 16711678*b*r**4*t + b*r**4 + 66846714*b*r**3*t - 16711679*b*r**3 + 33423358*b*r**2*t - 16711683*b*r**2 + 16711682*b*r*t + 33423359*b*r + 16711680*b*t + b + r**6 - 33423357*r**5 - 2*r**4 + 2*r**3 - 33423359*r**2 - r",
+          "sha256": "6c6a0ec816acc73ee1bda257837bcbfe8ac2ebd1570f817a869f33c8b536f3f7",
+          "terms": 26
+        },
+        "base": {
+          "degree": 5,
+          "degrees": [
+            2,
+            4
+          ],
+          "expression": "16711679*r**4*t + 16711679*r**4 - 16711678*r**3*t + 16711678*r**3 + r**2*t**2 - 2*r**2*t + r**2 - 16711680*r*t**2 + 16711680*r*t - 16711679*t**2 - 16711679*t",
+          "sha256": "b7233074a1538036312e7c49b3e2ea8a6d731964fd22dce40823edbadf9044b5",
+          "terms": 11
+        },
+        "c_boundary_basis_size": 35,
+        "c_boundary_dimension": 0,
+        "c_leading": {
+          "degree": 7,
+          "degrees": [
+            1,
+            0,
+            7
+          ],
+          "expression": "b - 8355839*r**7 + 16711678*r**6 + 2*r**5 - 50135038*r**4 + 50135034*r**3 + 16711682*r**2 - 41779198*r + 16711678",
+          "sha256": "11bad36a3bab745324d0edcda5545a4abb61c68d71556fedca1ea2b37c199d86",
+          "terms": 9
+        },
+        "c_relation": {
+          "degree": 8,
+          "degrees": [
+            1,
+            2,
+            1,
+            7
+          ],
+          "expression": "16711678*b**2*r**5 + 66846717*b**2*r**4 - 16711676*b**2*r**3 + 16711676*b**2*r**2 + 33423362*b**2*r - 33423358*b**2*t - 16711679*b**2 + b*c - 8355840*b*r**7 + 33423358*b*r**6 + 16711678*b*r**5*t + 16711685*b*r**5 + 4*b*r**4*t - 16711682*b*r**4 + 4*b*r**3*t + b*r**3 - 167116792*b*r**2*t + 66846718*b*r**2 - 83558398*b*r*t - 75202553*b*r - 33423364*b*t - 16711682*b - 8355839*c*r**7 + 16711678*c*r**6 + 2*c*r**5 - 50135038*c*r**4 + 50135034*c*r**3 + 16711682*c*r**2 - 41779198*c*r + 16711678*c - 16711678*r**6 + 16711678*r**5 - 33423358*r**4*t + 50135033*r**4 + 33423356*r**3*t + 16711680*r**3 - 4*r**2*t + 100270074*r**2 + 33423360*r*t + 2*r",
+          "sha256": "65778dce8f2052a15016d6d0f80b8545374843b70978b36ecb67750ad24bc01f",
+          "terms": 40
+        },
+        "c_row": 7,
+        "exact": true,
+        "kernel_basis_size": 36,
+        "kernel_dimension": 1,
+        "program_sha256": "c8a043a300cdcafa4e310a091bd5eb59698e0293da3b35748a2123c26faaaa21",
+        "remainders": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "tower_basis_size": 41,
+        "tower_dimension": 1
+      }
+    ],
+    "field": 2130706433,
+    "kernel": {
+      "all_rows_zero": true,
+      "common_basis_size": 40,
+      "common_dimension": 1,
+      "epsilon": [
+        -1,
+        -1
+      ],
+      "final_kernel_removed_gcd": {
+        "degree": 4,
+        "degrees": [
+          0,
+          4,
+          0,
+          0
+        ],
+        "expression": "r**4 - r**2",
+        "sha256": "52c2e5a10cb8e6e647d5268cad01c0e25b1b3bd643176b8444b7b249c61a9efe",
+        "terms": 2
+      },
+      "identically_zero_rows": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "kernel": [
+        {
+          "degree": 14,
+          "degrees": [
+            4,
+            8,
+            2,
+            2
+          ],
+          "expression": "b**2*c**2*r**6*t**4 + b**2*c**2*r**6*t**2 - b**2*c**2*r**2*t**4 - b**2*c**2*r**2*t**2 + 1065353215*b**2*c*r**8*t**2 - 1065353216*b**2*c*r**8 - 1065353216*b**2*c*r**6*t**4 + 1065353216*b**2*c*r**6*t**2 + b**2*c*r**6 - b**2*c*r**4*t**4 - 1065353215*b**2*c*r**4*t**2 - 1065353216*b**2*c*r**4 + 1065353215*b**2*c*r**2*t**4 - 1065353216*b**2*c*r**2*t**2 - 1065353215*b*c**2*r**8*t**2 + 1065353216*b*c**2*r**8 - 1065353216*b*c**2*r**6*t**4 + 1065353216*b*c**2*r**6*t**2 + b*c**2*r**6 + b*c**2*r**4*t**4 + 1065353215*b*c**2*r**4*t**2 + 1065353216*b*c**2*r**4 + 1065353215*b*c**2*r**2*t**4 - 1065353216*b*c**2*r**2*t**2 - b*c*r**6*t**4 - b*c*r**6*t**2 + 4*b*c*r**6 - 3*b*c*r**2*t**4 + b*c*r**2*t**2 + 1065353216*b*r**8*t**2 + 1065353216*b*r**8 + 1065353216*b*r**6*t**4 - 1065353216*b*r**6*t**2 + b*r**6 + b*r**4*t**4 - 1065353216*b*r**4*t**2 + 1065353216*b*r**4 + 1065353216*b*r**2*t**4 + 1065353216*b*r**2*t**2 - 1065353216*c*r**8*t**2 - 1065353216*c*r**8 + 1065353216*c*r**6*t**4 - 1065353216*c*r**6*t**2 + c*r**6 - c*r**4*t**4 + 1065353216*c*r**4*t**2 - 1065353216*c*r**4 + 1065353216*c*r**2*t**4 + 1065353216*c*r**2*t**2",
+          "sha256": "ab6bada2a728b06232468af3bedaa31428efe647fac168a64d92954b7d561261",
+          "terms": 49
+        },
+        {
+          "degree": 14,
+          "degrees": [
+            4,
+            8,
+            2,
+            2
+          ],
+          "expression": "b**2*c**2*r**6*t**4 - b**2*c**2*r**6 - b**2*c**2*r**2*t**4 + b**2*c**2*r**2 + 1065353216*b**2*c*r**8*t**2 - 1065353215*b**2*c*r**8 + 1065353216*b**2*c*r**6*t**4 - 1065353216*b**2*c*r**6 + 1065353215*b**2*c*r**4*t**4 + b**2*c*r**4*t**2 + 1065353215*b**2*c*r**4 - 1065353216*b**2*c*r**2*t**4 + 1065353216*b**2*c*r**2 - 1065353215*b**2*c*t**4 + 1065353216*b**2*c*t**2 - 1065353216*b*c**2*r**8*t**2 + 1065353215*b*c**2*r**8 + 1065353216*b*c**2*r**6*t**4 - 1065353216*b*c**2*r**6 - 1065353215*b*c**2*r**4*t**4 - b*c**2*r**4*t**2 - 1065353215*b*c**2*r**4 - 1065353216*b*c**2*r**2*t**4 + 1065353216*b*c**2*r**2 + 1065353215*b*c**2*t**4 - 1065353216*b*c**2*t**2 - b*c*r**6*t**4 + b*c*r**6 + b*c*r**2*t**4 - b*c*r**2 - 1065353216*b*r**8*t**2 - 1065353216*b*r**8 - 1065353216*b*r**6*t**4 + 1065353216*b*r**6 + 1065353216*b*r**4*t**4 - b*r**4*t**2 + 1065353216*b*r**4 + 1065353216*b*r**2*t**4 - 1065353216*b*r**2 - 1065353216*b*t**4 - 1065353216*b*t**2 + 1065353216*c*r**8*t**2 + 1065353216*c*r**8 - 1065353216*c*r**6*t**4 + 1065353216*c*r**6 - 1065353216*c*r**4*t**4 + c*r**4*t**2 - 1065353216*c*r**4 + 1065353216*c*r**2*t**4 - 1065353216*c*r**2 + 1065353216*c*t**4 + 1065353216*c*t**2",
+          "sha256": "1c350699a644d6dc02b908450d4bc41d2d1643ac44575c24764f67925d60b924",
+          "terms": 52
+        },
+        {
+          "degree": 12,
+          "degrees": [
+            4,
+            6,
+            2,
+            2
+          ],
+          "expression": "-b**2*c**2*r**6*t**2 - b**2*c**2*r**6 + b**2*c**2*r**2*t**2 + b**2*c**2*r**2 - 1065353216*b**2*c*r**6*t**2 + 1065353215*b**2*c*r**6 - 1065353216*b**2*c*r**4*t**4 - 1065353215*b**2*c*r**4*t**2 - b**2*c*r**4 + b**2*c*r**2*t**4 + 1065353216*b**2*c*r**2*t**2 - 1065353216*b**2*c*r**2 - 1065353216*b**2*c*t**4 + 1065353215*b**2*c*t**2 - 1065353216*b*c**2*r**6*t**2 + 1065353215*b*c**2*r**6 + 1065353216*b*c**2*r**4*t**4 + 1065353215*b*c**2*r**4*t**2 + b*c**2*r**4 + b*c**2*r**2*t**4 + 1065353216*b*c**2*r**2*t**2 - 1065353216*b*c**2*r**2 + 1065353216*b*c**2*t**4 - 1065353215*b*c**2*t**2 + b*c*r**6*t**2 - 3*b*c*r**6 + 4*b*c*r**2*t**4 - b*c*r**2*t**2 - b*c*r**2 + 1065353216*b*r**6*t**2 + 1065353216*b*r**6 + 1065353216*b*r**4*t**4 - 1065353216*b*r**4*t**2 + b*r**4 + b*r**2*t**4 - 1065353216*b*r**2*t**2 + 1065353216*b*r**2 + 1065353216*b*t**4 + 1065353216*b*t**2 + 1065353216*c*r**6*t**2 + 1065353216*c*r**6 - 1065353216*c*r**4*t**4 + 1065353216*c*r**4*t**2 - c*r**4 + c*r**2*t**4 - 1065353216*c*r**2*t**2 + 1065353216*c*r**2 - 1065353216*c*t**4 - 1065353216*c*t**2",
+          "sha256": "32e6b9d475bed5739ca4a87edf95f0343fc35d16e6e990a1198a74eec6da7df9",
+          "terms": 49
+        },
+        {
+          "degree": 15,
+          "degrees": [
+            4,
+            8,
+            3,
+            3
+          ],
+          "expression": "-1065353216*b**3*c**2*r**8*t**2 - 1065353216*b**3*c**2*r**8 + 1065353216*b**3*c**2*r**6*t**4 - 1065353216*b**3*c**2*r**6*t**2 + b**3*c**2*r**6 - b**3*c**2*r**4*t**4 + 1065353216*b**3*c**2*r**4*t**2 - 1065353216*b**3*c**2*r**4 + 1065353216*b**3*c**2*r**2*t**4 + 1065353216*b**3*c**2*r**2*t**2 + 1065353216*b**2*c**3*r**8*t**2 + 1065353216*b**2*c**3*r**8 + 1065353216*b**2*c**3*r**6*t**4 - 1065353216*b**2*c**3*r**6*t**2 + b**2*c**3*r**6 + b**2*c**3*r**4*t**4 - 1065353216*b**2*c**3*r**4*t**2 + 1065353216*b**2*c**3*r**4 + 1065353216*b**2*c**3*r**2*t**4 + 1065353216*b**2*c**3*r**2*t**2 - b**2*c**2*r**6*t**4 - b**2*c**2*r**6*t**2 + 4*b**2*c**2*r**6 - 3*b**2*c**2*r**2*t**4 + b**2*c**2*r**2*t**2 - 1065353215*b**2*c*r**8*t**2 + 1065353216*b**2*c*r**8 - 1065353216*b**2*c*r**6*t**4 + 1065353216*b**2*c*r**6*t**2 + b**2*c*r**6 + b**2*c*r**4*t**4 + 1065353215*b**2*c*r**4*t**2 + 1065353216*b**2*c*r**4 + 1065353215*b**2*c*r**2*t**4 - 1065353216*b**2*c*r**2*t**2 + 1065353215*b*c**2*r**8*t**2 - 1065353216*b*c**2*r**8 - 1065353216*b*c**2*r**6*t**4 + 1065353216*b*c**2*r**6*t**2 + b*c**2*r**6 - b*c**2*r**4*t**4 - 1065353215*b*c**2*r**4*t**2 - 1065353216*b*c**2*r**4 + 1065353215*b*c**2*r**2*t**4 - 1065353216*b*c**2*r**2*t**2 + b*c*r**6*t**4 + b*c*r**6*t**2 - b*c*r**2*t**4 - b*c*r**2*t**2",
+          "sha256": "99c42c793118a5ea4c2836d7b24caafa699732113e332211a5f8b1403fb831e2",
+          "terms": 49
+        },
+        {
+          "degree": 15,
+          "degrees": [
+            4,
+            8,
+            3,
+            3
+          ],
+          "expression": "1065353216*b**3*c**2*r**8*t**2 + 1065353216*b**3*c**2*r**8 - 1065353216*b**3*c**2*r**6*t**4 + 1065353216*b**3*c**2*r**6 - 1065353216*b**3*c**2*r**4*t**4 + b**3*c**2*r**4*t**2 - 1065353216*b**3*c**2*r**4 + 1065353216*b**3*c**2*r**2*t**4 - 1065353216*b**3*c**2*r**2 + 1065353216*b**3*c**2*t**4 + 1065353216*b**3*c**2*t**2 - 1065353216*b**2*c**3*r**8*t**2 - 1065353216*b**2*c**3*r**8 - 1065353216*b**2*c**3*r**6*t**4 + 1065353216*b**2*c**3*r**6 + 1065353216*b**2*c**3*r**4*t**4 - b**2*c**3*r**4*t**2 + 1065353216*b**2*c**3*r**4 + 1065353216*b**2*c**3*r**2*t**4 - 1065353216*b**2*c**3*r**2 - 1065353216*b**2*c**3*t**4 - 1065353216*b**2*c**3*t**2 - b**2*c**2*r**6*t**4 + b**2*c**2*r**6 + b**2*c**2*r**2*t**4 - b**2*c**2*r**2 - 1065353216*b**2*c*r**8*t**2 + 1065353215*b**2*c*r**8 + 1065353216*b**2*c*r**6*t**4 - 1065353216*b**2*c*r**6 - 1065353215*b**2*c*r**4*t**4 - b**2*c*r**4*t**2 - 1065353215*b**2*c*r**4 - 1065353216*b**2*c*r**2*t**4 + 1065353216*b**2*c*r**2 + 1065353215*b**2*c*t**4 - 1065353216*b**2*c*t**2 + 1065353216*b*c**2*r**8*t**2 - 1065353215*b*c**2*r**8 + 1065353216*b*c**2*r**6*t**4 - 1065353216*b*c**2*r**6 + 1065353215*b*c**2*r**4*t**4 + b*c**2*r**4*t**2 + 1065353215*b*c**2*r**4 - 1065353216*b*c**2*r**2*t**4 + 1065353216*b*c**2*r**2 - 1065353215*b*c**2*t**4 + 1065353216*b*c**2*t**2 + b*c*r**6*t**4 - b*c*r**6 - b*c*r**2*t**4 + b*c*r**2",
+          "sha256": "c94fee85268a1bf701598840d2c33a27757906f4ba74708d92396f110e655015",
+          "terms": 52
+        },
+        {
+          "degree": 13,
+          "degrees": [
+            4,
+            6,
+            3,
+            3
+          ],
+          "expression": "1065353216*b**3*c**2*r**6*t**2 + 1065353216*b**3*c**2*r**6 - 1065353216*b**3*c**2*r**4*t**4 + 1065353216*b**3*c**2*r**4*t**2 - b**3*c**2*r**4 + b**3*c**2*r**2*t**4 - 1065353216*b**3*c**2*r**2*t**2 + 1065353216*b**3*c**2*r**2 - 1065353216*b**3*c**2*t**4 - 1065353216*b**3*c**2*t**2 + 1065353216*b**2*c**3*r**6*t**2 + 1065353216*b**2*c**3*r**6 + 1065353216*b**2*c**3*r**4*t**4 - 1065353216*b**2*c**3*r**4*t**2 + b**2*c**3*r**4 + b**2*c**3*r**2*t**4 - 1065353216*b**2*c**3*r**2*t**2 + 1065353216*b**2*c**3*r**2 + 1065353216*b**2*c**3*t**4 + 1065353216*b**2*c**3*t**2 + b**2*c**2*r**6*t**2 - 3*b**2*c**2*r**6 + 4*b**2*c**2*r**2*t**4 - b**2*c**2*r**2*t**2 - b**2*c**2*r**2 - 1065353216*b**2*c*r**6*t**2 + 1065353215*b**2*c*r**6 + 1065353216*b**2*c*r**4*t**4 + 1065353215*b**2*c*r**4*t**2 + b**2*c*r**4 + b**2*c*r**2*t**4 + 1065353216*b**2*c*r**2*t**2 - 1065353216*b**2*c*r**2 + 1065353216*b**2*c*t**4 - 1065353215*b**2*c*t**2 - 1065353216*b*c**2*r**6*t**2 + 1065353215*b*c**2*r**6 - 1065353216*b*c**2*r**4*t**4 - 1065353215*b*c**2*r**4*t**2 - b*c**2*r**4 + b*c**2*r**2*t**4 + 1065353216*b*c**2*r**2*t**2 - 1065353216*b*c**2*r**2 - 1065353216*b*c**2*t**4 + 1065353215*b*c**2*t**2 - b*c*r**6*t**2 - b*c*r**6 + b*c*r**2*t**2 + b*c*r**2",
+          "sha256": "c98c8b449aa640bd99c01c8472ba057c4840dcd9418a050c181b6dfeb97bf5c1",
+          "terms": 49
+        },
+        {
+          "degree": 14,
+          "degrees": [
+            4,
+            7,
+            2,
+            3
+          ],
+          "expression": "-b**3*c**2*r**7*t**2 - b**3*c**2*r**7 + b**3*c**2*r**5*t**4 - b**3*c**2*r**5*t**2 - 2*b**3*c**2*r**5 + 2*b**3*c**2*r**3*t**4 + b**3*c**2*r**3*t**2 - b**3*c**2*r**3 + b**3*c**2*r*t**4 + b**3*c**2*r*t**2 - 4*b**2*c**2*r**7 - 4*b**2*c**2*r**5 + 4*b**2*c**2*r**3*t**4 + 4*b**2*c**2*r*t**4 + b**2*c*r**7*t**2 - 3*b**2*c*r**7 - b**2*c*r**5*t**4 + b**2*c*r**5*t**2 - 2*b**2*c*r**5 + 2*b**2*c*r**3*t**4 - b**2*c*r**3*t**2 + b**2*c*r**3 + 3*b**2*c*r*t**4 - b**2*c*r*t**2 + b*c**2*r**7*t**2 - 3*b*c**2*r**7 - b*c**2*r**5*t**4 + b*c**2*r**5*t**2 - 2*b*c**2*r**5 + 2*b*c**2*r**3*t**4 - b*c**2*r**3*t**2 + b*c**2*r**3 + 3*b*c**2*r*t**4 - b*c**2*r*t**2 - 4*b*c*r**7 - 4*b*c*r**5 + 4*b*c*r**3*t**4 + 4*b*c*r*t**4 - c*r**7*t**2 - c*r**7 + c*r**5*t**4 - c*r**5*t**2 - 2*c*r**5 + 2*c*r**3*t**4 + c*r**3*t**2 - c*r**3 + c*r*t**4 + c*r*t**2",
+          "sha256": "53255e14214302fad13d6f8368927e3e8496b33ffb0a3170476b20b30e2c6718",
+          "terms": 48
+        },
+        {
+          "degree": 14,
+          "degrees": [
+            4,
+            7,
+            2,
+            3
+          ],
+          "expression": "b**3*c**2*r**7*t**2 + b**3*c**2*r**7 - b**3*c**2*r**5*t**4 + b**3*c**2*r**5*t**2 + 2*b**3*c**2*r**5 - 2*b**3*c**2*r**3*t**4 - b**3*c**2*r**3*t**2 + b**3*c**2*r**3 - b**3*c**2*r*t**4 - b**3*c**2*r*t**2 + 4*b**2*c**2*r**7 + 4*b**2*c**2*r**5 - 4*b**2*c**2*r**3*t**4 - 4*b**2*c**2*r*t**4 - b**2*c*r**7*t**2 + 3*b**2*c*r**7 + b**2*c*r**5*t**4 - b**2*c*r**5*t**2 + 2*b**2*c*r**5 - 2*b**2*c*r**3*t**4 + b**2*c*r**3*t**2 - b**2*c*r**3 - 3*b**2*c*r*t**4 + b**2*c*r*t**2 - b*c**2*r**7*t**2 + 3*b*c**2*r**7 + b*c**2*r**5*t**4 - b*c**2*r**5*t**2 + 2*b*c**2*r**5 - 2*b*c**2*r**3*t**4 + b*c**2*r**3*t**2 - b*c**2*r**3 - 3*b*c**2*r*t**4 + b*c**2*r*t**2 + 4*b*c*r**7 + 4*b*c*r**5 - 4*b*c*r**3*t**4 - 4*b*c*r*t**4 + c*r**7*t**2 + c*r**7 - c*r**5*t**4 + c*r**5*t**2 + 2*c*r**5 - 2*c*r**3*t**4 - c*r**3*t**2 + c*r**3 - c*r*t**4 - c*r*t**2",
+          "sha256": "f57461abacb0737df02d15b1ff95a839813472a1d646ccaa6b2eeda364155396",
+          "terms": 48
+        }
+      ],
+      "pivot": 1,
+      "product_kernel_removed_gcd": {
+        "degree": 0,
+        "degrees": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "expression": "1",
+        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "terms": 1
+      },
+      "program_sha256": "7c85b75b34b7cb50f443fccf29db6c61356c5ef765f3ded418e5a7f52fd42020",
+      "remainders": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "pilot_program_sha256": "445ea4dba9456208a60dc65d4a3faae64ae2e29be977fdec017fba029282e44e",
+    "pilot_quotient_exact": false,
+    "schema": "kb-mca-v4-433-1b-cell11-compact-tower-raw-v1",
+    "selected_c_row": 5,
+    "source_commit": "28b3bc8ab13e94c25088e904251eb5cf49e68ad2",
+    "source_sha256": {
+      "common": "a956656cba6c884bae665a2439666964ed468dcf9d0466e80cb825e811a6f845",
+      "pilot": "1590721003b1b8c9f850064eddab82d2fa25ddb93a00ef9d71feaa4d492f16ea",
+      "product": "ee4dcb25877e9101a544ee5896b9bf6890059d6398c78d7562127b0d1c53c293"
+    }
+  },
+  "falsifier": "a source mismatch, nonzero tower or kernel remainder, deployed leading-boundary point, missing sign transport, or surviving signed-pair resultant component",
+  "field": 2130706433,
+  "impact": "LOCAL_ONLY",
+  "independent_checks": {
+    "method_note": "Wolfram independently factors both boundary quartics as linear times irreducible cubic and confirms that the two quadratic b-lift discriminants are nonsquares.",
+    "wolfram": {
+      "b_boundary_factor_degrees": [
+        1,
+        3
+      ],
+      "b_lift_discriminant": 1184183620,
+      "b_lift_euler": 2130706432,
+      "c_boundary_factor_degrees": [
+        1,
+        3
+      ],
+      "c_lift_discriminant": 140859139,
+      "c_lift_euler": 2130706432,
+      "method": "Wolfram Cloud FactorList and PowerMod over F_2130706433"
+    }
+  },
+  "ledger_movement": 0,
+  "nonclaims": [
+    "No v4 U_paid, U_Q, U_BC, or U_new value is changed.",
+    "The complete cell-11 signed-pair resultant family is not computed here.",
+    "Only epsilon=(-1,-1), pivot 1 is reduced; sign and outside-role transport remain open.",
+    "Exact local algebra is not an exhaustive affine-slope projection.",
+    "The falsified FLOOR v2 random-word first-moment route is not used.",
+    "No upper bound for the exact sparse-layer maximum S_sparse is claimed.",
+    "The same model generated and audited this packet, so independent review is still required."
+  ],
+  "object": "MCA",
+  "partition_digest": "public-DAG-433-1b-router@28b3bc8a",
+  "projection_and_unit": "local common-locus parameters; not yet affine slopes or a v4 atom",
+  "provenance": {
+    "compute": "local SymPy 1.14.0 and Singular 4.4.1; no hosted source upload",
+    "raw_sha256": "dc09d27a2465ff74e95425a3ac8328ca3e1bf75116815f4947e6f0f17abb7fde",
+    "source_commit": "28b3bc8ab13e94c25088e904251eb5cf49e68ad2",
+    "source_repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag",
+    "source_sha256": {
+      "common": "a956656cba6c884bae665a2439666964ed468dcf9d0466e80cb825e811a6f845",
+      "pilot": "1590721003b1b8c9f850064eddab82d2fa25ddb93a00ef9d71feaa4d492f16ea",
+      "product": "ee4dcb25877e9101a544ee5896b9bf6890059d6398c78d7562127b0d1c53c293"
+    }
+  },
+  "quantifier": "the exact guarded common locus in the one declared source-sign chart",
+  "relationship_to_upstream": "The public pilot records a nonexact nine-generator quotient at all four pivots. This packet repairs the pivot-1 structural presentation with an exact three-equation tower; it does not supply the missing complete signed-pair resultant or role transport.",
+  "role_orbit_11_closed": false,
+  "row": "KoalaBear MCA at target epsilon 2^-128",
+  "schema": "kb-mca-v4-433-1b-cell11-compact-tower-v1",
+  "sign_transport_complete": false,
+  "signed_pair_resultant_complete": false,
+  "status": "EXPERIMENTAL_REVIEW_REQUIRED",
+  "target_epsilon": "2^-128",
+  "workboard_item": "K3/K4"
+}

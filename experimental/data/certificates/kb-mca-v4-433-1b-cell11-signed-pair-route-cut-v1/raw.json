@@ -1,0 +1,367 @@
+{
+  "b1_opposite": true,
+  "cell": 11,
+  "cross_remainder_zero": false,
+  "deployed_fiber_scan": {
+    "attempted_r_values": 4,
+    "guarded_residual_roots": 1,
+    "limit": 256,
+    "residual_roots": 2,
+    "seed": 43311,
+    "tower_points": 5,
+    "witness": {
+      "D0": 796444780,
+      "N0": 1242524170,
+      "b": 1722399428,
+      "c": 463843441,
+      "r": 976487466,
+      "raw_product": 0,
+      "raw_square": 0,
+      "t": 1814604652,
+      "w0": 58144935,
+      "w1": 1833131373
+    }
+  },
+  "epsilon": [
+    -1,
+    -1
+  ],
+  "exact_factorization": "resultant=N0*D0^5*(w0-t^2)*(w0+1)*Q2",
+  "exact_factorization_reconstructs": true,
+  "falsified_1a_candidate": {
+    "degree": 16,
+    "max_r_denominator_degree": 177,
+    "max_r_numerator_degree": 293,
+    "nonzero_coefficients": 17,
+    "sha256": "f333a0e39ee1a10389437a74c5207c32f784d7d7a0b2c69f79e3f36562b79e6f"
+  },
+  "falsified_1a_candidate_cross": {
+    "degree": 15,
+    "max_r_denominator_degree": 640,
+    "max_r_numerator_degree": 1026,
+    "nonzero_coefficients": 16,
+    "sha256": "1df9fb9a66ae82d6cb9a6d4ab0be55043d5c4504e00a8f7652f6dd0e6c781f1e"
+  },
+  "falsified_1a_guard_identity": "N0*D0^5*(w0-t^2)^2*(w0-r^2)*(w0+r^2)",
+  "field": 2130706433,
+  "guard_divisibility": {
+    "D0": 5,
+    "N0": 1,
+    "w0_minus_one": 0,
+    "w0_minus_r2": 0,
+    "w0_minus_t2": 1,
+    "w0_plus_one": 1,
+    "w0_plus_r2": 0
+  },
+  "guard_factors": {
+    "D0": {
+      "degree": 2,
+      "max_r_denominator_degree": 22,
+      "max_r_numerator_degree": 36,
+      "nonzero_coefficients": 3,
+      "sha256": "9b57b7771c5c7796527ff7fb16e8b596af0678a0311940a2e8d6ba701f9f98af"
+    },
+    "N0": {
+      "degree": 2,
+      "max_r_denominator_degree": 24,
+      "max_r_numerator_degree": 40,
+      "nonzero_coefficients": 3,
+      "sha256": "defcfff38fe671ccb0d2adbc0196f9c47495ad0b382096179f47916dc7cdc1f9"
+    },
+    "w0_minus_one": {
+      "degree": 1,
+      "max_r_denominator_degree": 0,
+      "max_r_numerator_degree": 0,
+      "nonzero_coefficients": 2,
+      "sha256": "574b2b5d5d61c38857dc6b97b0da840b8c2ee8ecf99d2d0e989c9a88cb0dab93"
+    },
+    "w0_minus_r2": {
+      "degree": 1,
+      "max_r_denominator_degree": 0,
+      "max_r_numerator_degree": 2,
+      "nonzero_coefficients": 2,
+      "sha256": "1ad14434e259cdc74102d05acad012f7e16784ae53ae8d090143c7fba52eb313"
+    },
+    "w0_minus_t2": {
+      "degree": 1,
+      "max_r_denominator_degree": 2,
+      "max_r_numerator_degree": 4,
+      "nonzero_coefficients": 2,
+      "sha256": "8ffba1625a381c08aeffed6fb74e13c953ddf05151b8d7ce3638f0ff54f38a4c"
+    },
+    "w0_plus_one": {
+      "degree": 1,
+      "max_r_denominator_degree": 0,
+      "max_r_numerator_degree": 0,
+      "nonzero_coefficients": 2,
+      "sha256": "f106a1081d9222abee1d98ae755d543e8b6900d15ccecfcdc2a75b52d92b3d28"
+    },
+    "w0_plus_r2": {
+      "degree": 1,
+      "max_r_denominator_degree": 0,
+      "max_r_numerator_degree": 2,
+      "nonzero_coefficients": 2,
+      "sha256": "dfdffac0f48fd6516ace74b3083ff96b43b6ace2ddeacdd4b25295f9265f6eda"
+    }
+  },
+  "guard_residual": {
+    "degree": 2,
+    "max_r_denominator_degree": 282,
+    "max_r_numerator_degree": 456,
+    "nonzero_coefficients": 3,
+    "sha256": "5eef057cab04f0b65e09f17e19df728491bdbee4aef2c8cfc6395ca0b196d6fe"
+  },
+  "guard_residual_discriminant": {
+    "max_r_denominator_degree": 567,
+    "max_r_numerator_degree": 920,
+    "sha256": "b0355225bc81ad215d5b7aece9f1bf1f23e83258ec018a7ada7e89e427714f9c"
+  },
+  "guard_residual_discriminant_norm": {
+    "denominator_degree": 464,
+    "numerator_degree": 1404,
+    "sha256": "835e0abe3b1f771612dd119cdaabb34be5b687a8d50ee9c896052d4a3f888caf"
+  },
+  "guard_residual_discriminant_norm_factors": {
+    "denominator": {
+      "factors": [
+        {
+          "degree": 1,
+          "multiplicity": 20,
+          "polynomial": "x + 1430654903"
+        },
+        {
+          "degree": 1,
+          "multiplicity": 20,
+          "polynomial": "x + 440734903"
+        },
+        {
+          "degree": 3,
+          "multiplicity": 20,
+          "polynomial": "x^3 + 1673259852*x^2 + 946675306*x + 700051530"
+        },
+        {
+          "degree": 3,
+          "multiplicity": 20,
+          "polynomial": "x^3 + 716763208*x^2 + 230069660*x + 440734903"
+        },
+        {
+          "degree": 2,
+          "multiplicity": 152,
+          "polynomial": "x^2 + 2113994753*x + 2113994754"
+        }
+      ],
+      "scalar": 1
+    },
+    "numerator": {
+      "factors": [
+        {
+          "degree": 14,
+          "multiplicity": 2,
+          "polynomial": "x^14 + 1385176792*x^13 + 1916679677*x^12 + 1194136829*x^11 + 1934745315*x^10 + 1285144673*x^9 + 16321418*x^8 + 37528556*x^7 + 175833193*x^6 + 845561760*x^5 + 1042049813*x^4 + 1194136829*x^3 + 132081487*x^2 + 745529641*x + 2113994754"
+        },
+        {
+          "degree": 3,
+          "multiplicity": 2,
+          "polynomial": "x^3 + 1648895803*x^2 + 1438912710*x + 2085134648"
+        },
+        {
+          "degree": 3,
+          "multiplicity": 2,
+          "polynomial": "x^3 + 1582149436*x^2 + 1583535605*x + 650202686"
+        },
+        {
+          "degree": 4,
+          "multiplicity": 2,
+          "polynomial": "x^4 + 1709050548*x^3 + 1320606965*x^2 + 765553633*x + 2130706432"
+        },
+        {
+          "degree": 1,
+          "multiplicity": 4,
+          "polynomial": "x"
+        },
+        {
+          "degree": 3,
+          "multiplicity": 36,
+          "polynomial": "x^3 + 16711677*x^2 + 33423357*x + 2113994754"
+        },
+        {
+          "degree": 3,
+          "multiplicity": 36,
+          "polynomial": "x^3 + 2097283076*x^2 + 33423359*x + 1"
+        },
+        {
+          "degree": 2,
+          "multiplicity": 40,
+          "polynomial": "x^2 + 1709421813*x + 16711679"
+        },
+        {
+          "degree": 2,
+          "multiplicity": 40,
+          "polynomial": "x^2 + 1440129211*x + 16711679"
+        },
+        {
+          "degree": 3,
+          "multiplicity": 40,
+          "polynomial": "x^3 + 1066789869*x^2 + 1867953710*x + 273642648"
+        },
+        {
+          "degree": 3,
+          "multiplicity": 40,
+          "polynomial": "x^3 + 2125643366*x^2 + 1518479797*x + 775407172"
+        },
+        {
+          "degree": 1,
+          "multiplicity": 184,
+          "polynomial": "x + 2130706432"
+        },
+        {
+          "degree": 1,
+          "multiplicity": 184,
+          "polynomial": "x + 16711679"
+        },
+        {
+          "degree": 1,
+          "multiplicity": 184,
+          "polynomial": "x + 1"
+        },
+        {
+          "degree": 1,
+          "multiplicity": 184,
+          "polynomial": "x + 2113994754"
+        }
+      ],
+      "scalar": 1581281474
+    }
+  },
+  "guard_residual_discriminant_norm_square": true,
+  "guard_residual_discriminant_root": null,
+  "guard_residual_discriminant_square": false,
+  "guard_residual_roots": [],
+  "kernel_profiles": [
+    {
+      "max_r_denominator_degree": 21,
+      "max_r_numerator_degree": 36,
+      "sha256": "4ca4eb887dc03b7cc80bc1caaeac74ac0c71f248a8222190c7b4fc663c87f58e"
+    },
+    {
+      "max_r_denominator_degree": 21,
+      "max_r_numerator_degree": 36,
+      "sha256": "f896e6f6781e5d76c0bbe83f543a660a97364dda7ac19477989fefc3a9b43881"
+    },
+    {
+      "max_r_denominator_degree": 22,
+      "max_r_numerator_degree": 34,
+      "sha256": "1b0212a35440cebfdebffaca2f7cb323025eeab915553635802cfd070ddc2efb"
+    },
+    {
+      "max_r_denominator_degree": 22,
+      "max_r_numerator_degree": 38,
+      "sha256": "70689084ea4e6b0a744fa2e4715f85fd5f6d8df23f0dddc8b38e08ea61a02397"
+    },
+    {
+      "max_r_denominator_degree": 24,
+      "max_r_numerator_degree": 40,
+      "sha256": "6f2ba7fc09c4eecff02a66d5ef4997068771cd963564199c931df1c1ea62623b"
+    },
+    {
+      "max_r_denominator_degree": 24,
+      "max_r_numerator_degree": 38,
+      "sha256": "b13aeb9479cf4d97c027d183eec8789c838eeb1f255fa6c8b1ca568bab6bc839"
+    },
+    {
+      "max_r_denominator_degree": 23,
+      "max_r_numerator_degree": 38,
+      "sha256": "bcf8285972f2fdaa9c232844dfb4719c509edc59f39034ae876a2ffcb4832db4"
+    },
+    {
+      "max_r_denominator_degree": 23,
+      "max_r_numerator_degree": 38,
+      "sha256": "f84c453385ee868ae5d691010975d5b2472fddc4c644cdd8659be2593b407704"
+    }
+  ],
+  "label_evaluation_profiles": {
+    "minus_one": {
+      "sha256": "f3e9e9f4d4730d067e826c5488d05e2230f5dbde78ae9efc7ccd1b17927cf765",
+      "zero": true
+    },
+    "minus_r2": {
+      "sha256": "7de0da12f5c2ee130ebb9995c5ff2295e6f5a14165fe7cd2b68a90bfcc574d4c",
+      "zero": false
+    },
+    "one": {
+      "sha256": "363958f663be7041f4bbdc4fbec1ff62a2276364f65e0274ae94f61fe3d474f2",
+      "zero": false
+    },
+    "r2": {
+      "sha256": "7377a2e0d7e3573a12e21b13f75f0c377355c648e065d58bd5e0c3a1e693b92d",
+      "zero": false
+    },
+    "t2": {
+      "sha256": "f3e9e9f4d4730d067e826c5488d05e2230f5dbde78ae9efc7ccd1b17927cf765",
+      "zero": true
+    },
+    "zero": {
+      "sha256": "06adffb6fdb81180975591119742734dba39d812905050ea29b8122081c4da15",
+      "zero": false
+    }
+  },
+  "label_roots_zero": {
+    "minus_one": true,
+    "minus_r2": false,
+    "one": false,
+    "r2": false,
+    "t2": true,
+    "zero": false
+  },
+  "leading_exception_classified": false,
+  "pivot": 1,
+  "raw_product_w1_degree": 2,
+  "raw_square_w1_degree": 4,
+  "resultant": {
+    "degree": 16,
+    "max_r_denominator_degree": 462,
+    "max_r_numerator_degree": 750,
+    "nonzero_coefficients": 17,
+    "sha256": "b9a65d00d6b6de580bb57464cd2c6eb1cf08a8596081fdb339ae547639caf0a3"
+  },
+  "role_orbit_11_closed": false,
+  "schema": "kb-mca-v4-433-1b-cell11-signed-pair-guard-raw-v1",
+  "selected_c_row": 5,
+  "sign_transport_complete": false,
+  "source_tower_certificate": "experimental/data/certificates/kb-mca-v4-433-1b-cell11-compact-tower-v1/kb_mca_v4_433_1b_cell11_compact_tower_v1.json",
+  "source_tower_sha256": "810c173c085fbbf885fb6f24f8cb0938c86846a7cfe0e6d8f7a37b882f3ca58e",
+  "tower_checks": {
+    "b_relation": true,
+    "base": true,
+    "c_relation": true
+  },
+  "tower_relation_profiles": {
+    "b_u": {
+      "max_r_denominator_degree": 6,
+      "max_r_numerator_degree": 7,
+      "sha256": "178da29dd70dffe38e249170aa7ed3505a8125bda188acf89e13a39c9c958c2a"
+    },
+    "b_v": {
+      "max_r_denominator_degree": 0,
+      "max_r_numerator_degree": 0,
+      "sha256": "63f9d24fada20246d7756f9dd4d125ddeebc3695bfe85d4bf5f3b9817c33dacc"
+    },
+    "c": {
+      "max_r_denominator_degree": 8,
+      "max_r_numerator_degree": 8,
+      "sha256": "b47f06ce07f0110e52a9b98ad1aabbab3f8288d507febd8684fb89078a8b5bd8"
+    },
+    "t_u": {
+      "denominator": "x^2 + 2113994753*x + 2113994754",
+      "denominator_degree": 2,
+      "numerator": "2113994754*x^4 + 16711678*x^3 + 2*x^2 + 2113994753*x + 16711679",
+      "numerator_degree": 4
+    },
+    "t_v": {
+      "denominator": "x^2 + 2113994753*x + 2113994754",
+      "denominator_degree": 2,
+      "numerator": "2113994754*x^4 + 2113994755*x^3 + 2130706432*x^2",
+      "numerator_degree": 4
+    }
+  }
+}

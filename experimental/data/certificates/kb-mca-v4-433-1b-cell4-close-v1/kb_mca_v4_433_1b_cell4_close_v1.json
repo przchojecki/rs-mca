@@ -1,0 +1,330 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "nodes": [
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7c9e0c0e2722233fa3fbd0e01ac176c17c635fe2c11587d90d0cfea68725e8a3"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_firstpair_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_firstpair_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "ef9a1938aeb750cc9dfa2159b2b5ebb4c437bd65a7ce98b30dcd6369dff2fe6f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing11_14_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing11_14_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "1c1597adb588aaf73d052020ec9af67f7136f716fb953d40feaa45f9c4459bf2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing11_14_orbit_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing11_14_orbit_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "b9855750b1449329ea785b8716347140a6d578951fb17312d25760c235147198"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing11_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing11_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e62adacf3157b35c9b1290283faea5fe41c21ecc223d72a7ec6194bdf14b5966"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing3_6_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing3_6_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "4885e8bd3264907c8950b1d6df50648f53bb306997899682357dbb31e8e2958f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing3_6_orbit_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing3_6_orbit_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0161a2122284d21d46b45b89b9d40d57461e83de8e1f998b6e5fcc9e271ca8bc"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing3_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing3_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "4ad1d11bdb6b92d9d717e967b2a19976316c90bf69e2c778419f5e35fa75108c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing4_9_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing4_9_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "dce5e90b992bb990466f5e88d060a6e55eafce15b8b186c1d16d4d7b669a2c56"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing4_9_orbit_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing4_9_orbit_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "f650d701e30b7ba510aeae818a3f21c48d9fc2dd34e4c9f36cc46fab5584cdda"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing4_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing4_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e79eb5f90d58b0979cbf660dec82970557046a5579e102ea5d8be7f53afc664f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing5_12_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing5_12_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7caca883450f4d77d7773bb8083f63b37cb039b873b7404743195b446f864e28"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing5_12_orbit_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing5_12_orbit_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "68e85a3426d1554a178ec8f6365087652af0103df52586b05a6ee3c672cccf90"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing5_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing5_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "50cc196d73b08c4ed450c1a3780fc2ae476ac90b4da4cfd0a137097a70398b77"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing7_10_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing7_10_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "9922cbd477ba7c90050d13afc8081a62989560d6fff491407567e2e19cecb44d"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing7_10_orbit_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing7_10_orbit_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "d0dfe4d9b374193e44b610fb832ea8282afc13d6173176c4947e1b710f83d1f5"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing7_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing7_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "dd68beb5e076b31e68c56bc8ecd2e91bdc214e2f971e967886dd33666d6c09f1"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing8_13_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing8_13_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "f99b7345f5939dbadded7f9b721cfe552da4f99ab34a30baa0ccfc55934abe7f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing8_13_orbit_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing8_13_orbit_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e4a24b98d626fa46c6e55d963fafaadf9858fb82a15d3838a9765abb289c6564"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing8_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_de_pairing8_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "227a61c6c17345f683ec4ee5eb58a2a66c96d12ea2a8e314871b8f69da075431"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_four_basis_tower_kernel",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_four_basis_tower_kernel",
+      "status": "PROVED",
+      "verify_sha256": "da2ae8c6790e4a1f96eacd668c81f947333a2480a02ab9816cde4c1058402e65"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_parallel_de_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_parallel_de_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "c1d82fae6bf49eaaf7e1a7eb10fe9d9bcc07443973095c91352e0bf454258681"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_parallel_de_matching_orbit_quotient",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_parallel_de_matching_orbit_quotient",
+      "status": "PROVED",
+      "verify_sha256": "7edd4d2e0cc613b0757a9c0b9e0203e6cb77b7569ab481dfeda587317ebc2306"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing10_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing10_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "6882331a038c55476a99910e7bde2e0eb2969b8ec373a837ffe45d6349ae22bb"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing12_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing12_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "41b1e616fc9d71cf0cafcee2f24446ab9a401a6887ca4b86b8d0273a93e359d7"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing13_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing13_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "b1b29c970c4be9c90b3edfbaff128caadb9d7a430222860ef715e190e437e2d0"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing14_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing14_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "d940c59bb6ac99ad75fd1150cc2b3c963a4dfca39ca22c3b150314508ccd13c7"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing6_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing6_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "c331ff10fb25f882bd29dc68de33233906dbb1488b2e58787964e067cbf4c726"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing9_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_positive_de_pairing9_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "d9346df597ee5d88767883ab19a9b3c920f56be1c5a6a5215e60181c398b09b8"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi0_pairing0_four_basis_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi0_pairing0_four_basis_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "a3242e70751ed456acb6f1fe515809451d9cc79f685fe83ef0cbb1f697a21bb3"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi1_pairing0_parallel_edge_transport",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi1_pairing0_parallel_edge_transport",
+      "status": "PROVED",
+      "verify_sha256": "a5d70cda2420c44c37db458c96d61e1ff12dd1cfe9e635b4ebbae01facf97391"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi2_pairing0_four_basis_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi2_pairing0_four_basis_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "adb07d95d45d6ce93a7d091895d77d395d5c82a27f15496899742b1f3046a526"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing0_reciprocal_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing0_reciprocal_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "b7dfb72f4d21333add6b004fee3317eb8e70a13cc7b7d40bc5fb1f0774476c0c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing11_quadratic_resultant_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing11_quadratic_resultant_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "60163cdb4b5f4686f9a7a43845f6d815c3393b87eff8ed8c773448c4631ae002"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing3_reciprocal_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing3_reciprocal_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "4e1a28d3f78b27da9785303b181c25fe706f4b2a4a993d888700db2c5dacd48c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing4_nested_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing4_nested_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "a8212e1c3547af4b680f92dacc6fa052cec61a0e04a5e27e68347a20bd05677f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing5_nested_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing5_nested_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "1de4d8f1e97cc629b27ab7f05882cc12198365f04965f0b279edff457d55b54b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing7_quadratic_resultant_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing7_quadratic_resultant_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "1094bd4fbdb47e1df3f6e2e44f344c0e1d80170b3d00ad90f965ccafe8cef3c7"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing8_quadratic_resultant_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairing8_quadratic_resultant_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7c9d4c40f6831ff3df508ecf8c195abd21fafd6e4c2c1aa44b6e8453eebf12a8"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairings1_2_reciprocal_linear_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_pairings1_2_reciprocal_linear_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "67f0731f2acacbd4878f3cb2d98b946ad5245a41bb7aa1b67395a965e5088bc9"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e18089e64372b580a5dab71491099ba82b8659256431fecf0e11fc73189b59cc"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing11_14_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing11_14_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "4cf9951ddcc50dc0b9bc0e8f6b3c2febcc0d3bb429efcdb52e96a9a6ed4e5a9b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing3_6_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing3_6_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "1c6b7b3c39fc9af83f8257b89c75da88ff2bcf0cf2c5fffbd8fb015e62a73532"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing4_9_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing4_9_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "302311fc85417b5ea63bb55d5e283ac84f1d81fd0a17b57bee3324ecd73606d4"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing5_12_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing5_12_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "07eb08519cc74b87ed0a80d824ad03bf56de3554db0965eb8276bcf4ac34bc3f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing7_10_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing7_10_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "c859c8305874f7b164d70a180e5f454dc3e4f5eeff1046f4c4935adef7376782"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing8_13_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi3_xi4_pairing8_13_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0aa0aec9e9bc3f51f05f2c1031e5896d3489d1a403dfbbf9e4620ab6c87aaada"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi4_xi3_pairing0_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi4_xi3_pairing0_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e94c3b068c567d10dd79c66eb825e20ee4661d22b5e719368434a539ee660f5c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi4_xi3_pairings1_2_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi4_xi3_pairings1_2_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0babbd8152e9f2601c53e4a82b79516e251f5f6c6a05e1dcc25279b1080b3733"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi5_xi6_endpoint_compatibility_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell4_xi5_xi6_endpoint_compatibility_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "387d27c48d45e43bd6329c6dc000031c7c2be6b3fd851a0ceccd2f194c848e50"
+    }
+  ],
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Workboard remainder open: cell 9 (in flight), the [5,8] and [11] common-role orbits, the cell-3 xi4 residual.",
+    "Fresh independent proof review remains required before promotion to a GREEN banked result."
+  ],
+  "provenance": {
+    "commit": "594aaa985568cd02991673532d89419e8224d6da",
+    "node_count": 50,
+    "replay": "from the repo root: tools/ramguard local -- python3 <node path>/verify.py (RAMGUARD_TIMEOUT=2400 for the two cell-4 pairing-7/8 heavy ledgers)",
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-433-1b-cell4-close-v1",
+  "statement": {
+    "claims": {
+      "heavy_ledgers": "pairing-7/8 degree-4068 norm ledgers verified (extended-wall replays)",
+      "slices": "105/105 paid; pairings 0-14 via nested-quadratic / quadratic-resultant / common-f-resultant exclusions and matching-exchange transports; endpoint roles empty"
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_UNIT_OTHER_K3_ITEMS_OPEN",
+    "title": "Complete closure of common-role cell 4 of the positive 433-1b workboard (all 105 labeled slices)",
+    "workboard_item": "K3"
+  }
+}
