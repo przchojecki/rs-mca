@@ -3715,3 +3715,15 @@ AllenGrahamHart/rs-mca-prize-dag @ a001708ae. Modal replay
 `ap-jYkVRdvSHQuofSrzIJzAG1` passed all 28 primary verifiers and 28 audits.
 Ledger movement 0; K3 and the KoalaBear row remain open only on role orbits
 `[5,8]` and `[11]` within this exported workboard.
+
+## 2026-08-09 — [K3] 433-1b common-role orbit [5,8] closed
+
+Added `kb-mca-v4-433-1b-cells5-8-close-v1`. Cell 5 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over 24 quotient orbits,
+and all 30 endpoint labels are excluded because eight degree-16/degree-11
+eliminants have no deployed base-field root. An exact B/C transport closes
+cell 8 over all 1,680 signed principal systems, with the global rank-drop
+theorem paying the complement. The packet pins 23 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 3fa298743024. Ledger movement 0; K3 and
+the KoalaBear row remain open only on role orbit `[11]` within this exported
+workboard.
