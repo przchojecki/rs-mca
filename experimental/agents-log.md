@@ -3682,3 +3682,87 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-08-09 — [K3] living progress branch opened (k3-433-progress-export)
+
+Four unit certificates: c112 source-line coverage COMPLETE (incl.
+the M01-R11/M02-R11 Singular-replay discharge at PR #1144's pinned
+commit); 433-1b cell 4 CLOSED (105/105 slices); 433-1b cells 12-13
+CLOSED; 433-1b universal structure (105 -> 60 orbit quotient +
+transports). 204 theorem nodes pinned by path + verifier sha256 in
+AllenGrahamHart/rs-mca-prize-dag @ 594aaa985; all verifiers
+coordinator-replayed. Ledger movement 0; K3 and the KoalaBear row
+remain open (cell 9 in flight; [5,8], [11], cell-3 xi4 residual).
+Incremental pushes will land here as cells close.
+
+## 2026-08-09 — [K3] 433-1b coordinate-positive cell 9 closed
+
+Added `kb-mca-v4-433-1b-cell9-close-v1`: 105/105 labeled slices paid
+by 30 endpoint labels and 75 active labels in 24 exact orbits. The packet
+pins 28 PROVED theorem nodes and verifier digests in
+AllenGrahamHart/rs-mca-prize-dag @ 68ac9e383; the executable aggregate
+reconstructs the universal router and checks the 17-owner partition. All 56
+node verifier and audit scripts were coordinator-replayed. Ledger movement 0;
+K3 and the KoalaBear row remain open ([5,8], [11], cell-3 xi4 residual).
+
+## 2026-08-09 — [K3] 433-1b source role cell 3 re-pinned complete
+
+Added `kb-mca-v4-433-1b-cell3-close-v1`. The common rank-drop branch is
+empty in all four source-sign rows, and a disjoint supplier census pays all
+`7 * 15 * 4 * 4 = 1680` principal systems, including all 240 `xi4` systems
+by exact outside-role transport. The packet pins 28 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ a001708ae. Modal replay
+`ap-jYkVRdvSHQuofSrzIJzAG1` passed all 28 primary verifiers and 28 audits.
+Ledger movement 0; K3 and the KoalaBear row remain open only on role orbits
+`[5,8]` and `[11]` within this exported workboard.
+
+## 2026-08-09 — [K3] 433-1b common-role orbit [5,8] closed
+
+Added `kb-mca-v4-433-1b-cells5-8-close-v1`. Cell 5 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over 24 quotient orbits,
+and all 30 endpoint labels are excluded because eight degree-16/degree-11
+eliminants have no deployed base-field root. An exact B/C transport closes
+cell 8 over all 1,680 signed principal systems, with the global rank-drop
+theorem paying the complement. The packet pins 23 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 3fa298743024. Ledger movement 0; K3 and
+the KoalaBear row remain open only on role orbit `[11]` within this exported
+workboard.
+
+## 2026-08-09 — [K3] cell-5 xi=3 pairings 3-5 local route cut
+
+Added `kb-mca-v4-433-1b-cell5-xi3-pairings345-v1`, stacked on #1152.  A
+source-bound local FLINT/SymPy adapter applies the pinned cell-4
+reciprocal-square and nested sign-free compilers to the cell-5 four-basis
+tower.  All 20 deployed-field sign rows complete with zero witnesses, zero
+final pair solutions, and zero unresolved branches; the compact certificate
+records 120 target roots, 296 candidates, and 432 source routes.  Ten
+mutations are rejected.  A Wolfram check independently reproduces one
+representative nonsquare no-`b` lift.  Status remains YELLOW / experimental:
+fresh review must audit adapter substitution, degree-drop boundaries,
+outside-role transport, and labeled add-back.  Ledger movement 0; pairings
+7, 8, and 11 remain.
+
+## 2026-08-09 — [K3] cell-5 xi=3 pairings 7/8/11 local route cut
+
+Added `kb-mca-v4-433-1b-cell5-xi3-pairings7811-v1`, stacked on the
+pairings-3/4/5 packet.  The common quadratic-resultant/sign-free adapter was
+replayed against the pinned cell-5 four-basis tower in all 24 deployed-field
+sign rows.  The exact census contains 140 target roots, 308 candidates, 312
+source routes, and 40 lifted `z/q` candidates; every terminal third-pair cut
+is nonzero, with zero witnesses and zero unresolved branches.  Twelve hostile
+certificate mutations are rejected, and Wolfram independently checks the two
+common symbolic identities.  Status remains YELLOW / experimental: fresh
+review must audit both cell-5 adapters, degree-drop boundaries, outside-role
+transport, and labeled add-back before `[5,8]` is closed.  Ledger movement 0;
+the global `S_sparse` problem and role orbit `[11]` remain open.
+
+## 2026-08-09 — [K3] upstream `[5,8]` provenance replay blocked
+
+Audited the newer end-to-end `[5,8]` closure added to PR #1152.  Its JSON
+certificate pins public-DAG commit `3fa298743024`, but the public remote
+rejected that object as `not our ref`, GitHub's commit API returned HTTP 422,
+the named branch was absent from `ls-remote`, and the six load-bearing closure
+nodes sampled were absent from current public master `fc7133243`.  Verdict is
+RED for current reproducibility and no verdict on mathematical truth.  The
+six-representative local xi3 packets remain a useful independent partial
+control, but do not pay endpoint rootlessness or duplicate-role transport.
