@@ -3766,3 +3766,18 @@ nodes sampled were absent from current public master `fc7133243`.  Verdict is
 RED for current reproducibility and no verdict on mathematical truth.  The
 six-representative local xi3 packets remain a useful independent partial
 control, but do not pay endpoint rootlessness or duplicate-role transport.
+
+## 2026-08-09 — [K3/K4] 433-1b cell-11 exact compact tower
+
+Added `kb-mca-v4-433-1b-cell11-compact-tower-v1`, stacked on #1153.  The
+public cell-11 pilot's nonexact quotient is replaced, at source sign
+`(-1,-1)` and pivot 1, by three exact guarded three-equation towers.  On the
+selected chart both leading-coefficient boundaries are deployed-field empty,
+and a primitive eight-coordinate coefficient kernel reduces all ten Vieta
+rows to zero.  Sixteen hostile mutations are rejected; Wolfram independently
+reproduces both boundary factorizations and nonresidue tests.  Status is
+YELLOW / experimental: the complete signed-pair resultant, sign/outside-role
+transport, labeled add-back, and fresh review remain open.  Ledger movement
+0; role orbit `[11]`, K3, the KoalaBear row, and the global exact
+`S_sparse` bound remain open.  The falsified FLOOR-v2 first-moment route is
+not used.
