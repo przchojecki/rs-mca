@@ -3741,3 +3741,28 @@ representative nonsquare no-`b` lift.  Status remains YELLOW / experimental:
 fresh review must audit adapter substitution, degree-drop boundaries,
 outside-role transport, and labeled add-back.  Ledger movement 0; pairings
 7, 8, and 11 remain.
+
+## 2026-08-09 — [K3] cell-5 xi=3 pairings 7/8/11 local route cut
+
+Added `kb-mca-v4-433-1b-cell5-xi3-pairings7811-v1`, stacked on the
+pairings-3/4/5 packet.  The common quadratic-resultant/sign-free adapter was
+replayed against the pinned cell-5 four-basis tower in all 24 deployed-field
+sign rows.  The exact census contains 140 target roots, 308 candidates, 312
+source routes, and 40 lifted `z/q` candidates; every terminal third-pair cut
+is nonzero, with zero witnesses and zero unresolved branches.  Twelve hostile
+certificate mutations are rejected, and Wolfram independently checks the two
+common symbolic identities.  Status remains YELLOW / experimental: fresh
+review must audit both cell-5 adapters, degree-drop boundaries, outside-role
+transport, and labeled add-back before `[5,8]` is closed.  Ledger movement 0;
+the global `S_sparse` problem and role orbit `[11]` remain open.
+
+## 2026-08-09 — [K3] upstream `[5,8]` provenance replay blocked
+
+Audited the newer end-to-end `[5,8]` closure added to PR #1152.  Its JSON
+certificate pins public-DAG commit `3fa298743024`, but the public remote
+rejected that object as `not our ref`, GitHub's commit API returned HTTP 422,
+the named branch was absent from `ls-remote`, and the six load-bearing closure
+nodes sampled were absent from current public master `fc7133243`.  Verdict is
+RED for current reproducibility and no verdict on mathematical truth.  The
+six-representative local xi3 packets remain a useful independent partial
+control, but do not pay endpoint rootlessness or duplicate-role transport.
