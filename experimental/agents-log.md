@@ -3781,3 +3781,17 @@ transport, labeled add-back, and fresh review remain open.  Ledger movement
 0; role orbit `[11]`, K3, the KoalaBear row, and the global exact
 `S_sparse` bound remain open.  The falsified FLOOR-v2 first-moment route is
 not used.
+
+## 2026-08-09 — [K3/K4] 433-1b cell-11 signed-pair route cut
+
+Added `kb-mca-v4-433-1b-cell11-signed-pair-route-cut-v1`, stacked on the
+exact compact-tower packet.  The complete degree-16 signed-pair resultant
+factors as `N0*D0^5*(w0-t^2)*(w0+1)*Q2`, not as the 433-1a guard product;
+`Q2` is quadratic with square total norm but nonsquare discriminant in the
+declared degree-four tower.  A deterministic exact scan found a fully guarded
+deployed-field signed-pair point after four `r` values, and an independent
+source-expression verifier replays the tower, guard, distinctness, and both
+signed equations while rejecting 16 hostile mutations.  Verdict is YELLOW /
+`COUNTEREXAMPLE_NEW_FLOOR`: this blocks the 433-1a factor transplant but is not
+a KoalaBear counterexample, cell-11 closure, or ledger movement.  The new
+maximal obligation is a count/owner classification for the quadratic cover.
