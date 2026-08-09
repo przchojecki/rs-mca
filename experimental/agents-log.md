@@ -3694,3 +3694,13 @@ AllenGrahamHart/rs-mca-prize-dag @ 594aaa985; all verifiers
 coordinator-replayed. Ledger movement 0; K3 and the KoalaBear row
 remain open (cell 9 in flight; [5,8], [11], cell-3 xi4 residual).
 Incremental pushes will land here as cells close.
+
+## 2026-08-09 — [K3] 433-1b coordinate-positive cell 9 closed
+
+Added `kb-mca-v4-433-1b-cell9-close-v1`: 105/105 labeled slices paid
+by 30 endpoint labels and 75 active labels in 24 exact orbits. The packet
+pins 28 PROVED theorem nodes and verifier digests in
+AllenGrahamHart/rs-mca-prize-dag @ 68ac9e383; the executable aggregate
+reconstructs the universal router and checks the 17-owner partition. All 56
+node verifier and audit scripts were coordinator-replayed. Ledger movement 0;
+K3 and the KoalaBear row remain open ([5,8], [11], cell-3 xi4 residual).
