@@ -3727,3 +3727,17 @@ theorem paying the complement. The packet pins 23 PROVED theorem nodes at
 AllenGrahamHart/rs-mca-prize-dag @ 3fa298743024. Ledger movement 0; K3 and
 the KoalaBear row remain open only on role orbit `[11]` within this exported
 workboard.
+
+## 2026-08-10 — [K3] 433-1b source-role cell 11 closed
+
+Added `kb-mca-v4-433-1b-cell11-close-v1`. Cell 11 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over all 24 quotient
+orbits, and the separate endpoint theorem pays the remaining 30 labels. The
+final pairings 7, 8, and 11 have complete direct equation and leading-boundary
+replays; a shared FLINT packet reconstructs 61 profiles and 302 roots through
+degree 5192. The packet pins 22 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 7824a826a283. All 44 cell-11 verifier and
+hostile-audit scripts passed. The exported raw-label workboard now has no
+open role orbit. Ledger movement remains 0; K3 and the KoalaBear row remain
+open on labels-to-distinct-affine-slopes conversion, the genuine-pencil
+ledger, and fresh independent proof review.
