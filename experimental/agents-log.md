@@ -3727,3 +3727,17 @@ theorem paying the complement. The packet pins 23 PROVED theorem nodes at
 AllenGrahamHart/rs-mca-prize-dag @ 3fa298743024. Ledger movement 0; K3 and
 the KoalaBear row remain open only on role orbit `[11]` within this exported
 workboard.
+
+## 2026-08-09 — [K3] cell-5 xi=3 pairings 3-5 local route cut
+
+Added `kb-mca-v4-433-1b-cell5-xi3-pairings345-v1`, stacked on #1152.  A
+source-bound local FLINT/SymPy adapter applies the pinned cell-4
+reciprocal-square and nested sign-free compilers to the cell-5 four-basis
+tower.  All 20 deployed-field sign rows complete with zero witnesses, zero
+final pair solutions, and zero unresolved branches; the compact certificate
+records 120 target roots, 296 candidates, and 432 source routes.  Ten
+mutations are rejected.  A Wolfram check independently reproduces one
+representative nonsquare no-`b` lift.  Status remains YELLOW / experimental:
+fresh review must audit adapter substitution, degree-drop boundaries,
+outside-role transport, and labeled add-back.  Ledger movement 0; pairings
+7, 8, and 11 remain.
