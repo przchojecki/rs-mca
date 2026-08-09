@@ -3704,3 +3704,14 @@ AllenGrahamHart/rs-mca-prize-dag @ 68ac9e383; the executable aggregate
 reconstructs the universal router and checks the 17-owner partition. All 56
 node verifier and audit scripts were coordinator-replayed. Ledger movement 0;
 K3 and the KoalaBear row remain open ([5,8], [11], cell-3 xi4 residual).
+
+## 2026-08-09 — [K3] 433-1b source role cell 3 re-pinned complete
+
+Added `kb-mca-v4-433-1b-cell3-close-v1`. The common rank-drop branch is
+empty in all four source-sign rows, and a disjoint supplier census pays all
+`7 * 15 * 4 * 4 = 1680` principal systems, including all 240 `xi4` systems
+by exact outside-role transport. The packet pins 28 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ a001708ae. Modal replay
+`ap-jYkVRdvSHQuofSrzIJzAG1` passed all 28 primary verifiers and 28 audits.
+Ledger movement 0; K3 and the KoalaBear row remain open only on role orbits
+`[5,8]` and `[11]` within this exported workboard.
