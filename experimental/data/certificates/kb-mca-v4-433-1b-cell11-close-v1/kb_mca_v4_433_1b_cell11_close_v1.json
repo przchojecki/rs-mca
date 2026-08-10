@@ -1,0 +1,184 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "bankability_contract": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture": "positive-433-1b-coordinate-guarded-route",
+    "atom_or_cell": "coordinate-positive 433-1b source-role cell 11",
+    "claimed_bound": "0 surviving labels out of 105",
+    "direct_statement": "Every one of the 105 raw direct labels in positive 433-1b source-role cell 11 is empty on the deployed guarded route.",
+    "falsifier": "a deployed guarded-route solution in cell 11, an omitted quotient orbit, an invalid endpoint rootlessness certificate, or a verifier digest mismatch",
+    "impact": "LOCAL_ONLY",
+    "object": "MCA",
+    "partition_digest": "sha256:82df776b06b375e9bee6fcc77aead1ebca4594028fa2e51df6318422a9d2f9bb",
+    "projection_and_unit": "raw workboard labels, not distinct bad slopes",
+    "quantifier": "every raw direct label in the declared source-role cell",
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED",
+    "target_epsilon": "2^-128",
+    "workboard_item": "K3"
+  },
+  "nodes": [
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "b0cdd85e528cf0032307dc8b488201632f24962adda7d053c42a5abef3d938ba"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_active_labels_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_active_labels_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7121a13db2a249a27aec9db84c5ed1148238fdda1c81211472858ff356097081"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_endpoint_roles_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_endpoint_roles_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "66b186aeee95b6c8c59193df5e484f85078de2014324db7ee906bedf1d562c3e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_universal_generic_outside_label_orbit_quotient",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_universal_generic_outside_label_orbit_quotient",
+      "status": "PROVED",
+      "verify_sha256": "cd49f5cd6b74e733908eac92149fc8e3aafbbd4a846fcf0428d2089f1b84e7c2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_quadratic_four_basis_common_locus",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_quadratic_four_basis_common_locus",
+      "status": "PROVED",
+      "verify_sha256": "b459aec1f4f169566b117d39a3dfdb15caa739a2223be3fc8414038c30db7125"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_global_common_kernel",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_global_common_kernel",
+      "status": "PROVED",
+      "verify_sha256": "60106a40dcd9964859297f7a3cffb62d527917c55d5a38539fd409a3f1bcb45a"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_first_pair_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_first_pair_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7136b9b76d3f842f57e086b7b44bc6c19d5dea61b8c0761a786144660911de71"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_pairing11_14_common_f_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_pairing11_14_common_f_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0bebe83f5e0a34440992a2a5cd5695e7bcf608c33a696e30aaed793e08691922"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_pairing3_6_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_pairing3_6_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e8724e835e5e451b9263f5ec555d81a99e8cf7c3c600f68587f94681fb05c85f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_pairing4_7_9_10_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_pairing4_7_9_10_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "9023c3eebf43b07f1d98f893450bfdb3ea88cc47acf4627eaf97eee368206be8"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_pairing5_8_12_13_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_parallel_de_pairing5_8_12_13_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "f9a8b0d785a686e8d1fd3d5b0df7f400c4f1707387903759c2134ab550d48c7e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_positive_de_pairing9_10_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_positive_de_pairing9_10_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "f9a430407b8935af4abcf7866a1db454fe85eaa4fbbb95afd04de60e45a3849b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_positive_de_pairing12_13_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_positive_de_pairing12_13_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "ebd0fe95c7416d9569224d82eae81d88d81a0b383bec7e22a133f0a887c67e15"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_positive_de_pairing14_common_f_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_positive_de_pairing14_common_f_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "c9f93bd82f5bcb1f16a6909f320064c31f360202bdd2eb7357a367f593c35e95"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_pairing0_reciprocal_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_pairing0_reciprocal_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "eafb762c9dfcab464ba768bf4d58b481a4b52b6a44802478c5befd7443862847"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_pairings1_2_reciprocal_linear_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_pairings1_2_reciprocal_linear_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "405dd58de350fada69033cff8e7ca4b0cf84303f1b2b4fe32ae1eaadc5f511bf"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing3_6_reciprocal_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing3_6_reciprocal_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "bdd47750e12df36599e07bab6365b85468f5e72e45aeda0ce114492ab8eff6b3"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing4_9_nested_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing4_9_nested_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0a4825d084652b97837cd0314915a3ea1cb6fa657ad1b56cc5432efb85cf7270"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing5_12_nested_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing5_12_nested_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "51a69e888deb73c24fde6c258866b6b30ec6def207c9f7ae9bc8fa4216ebace2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing7_10_quadratic_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing7_10_quadratic_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "77ee09015f3d3bc148b5aa9cbef5ffca2fbfffbbd67a9ad6d3e4f557c5f40314"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing8_13_quadratic_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing8_13_quadratic_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e6b03df3133ac45aa645badfe5df5412e3e85d3a70f2801220823a4b6c143d93"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing11_14_quadratic_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell11_xi3_xi4_pairing11_14_quadratic_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "924d55a68ef68296e1cc657dd1724dfcaa985d437d898995df3b0de3b14fc98d"
+    }
+  ],
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Raw-label workboard coverage is not yet converted to distinct bad slopes.",
+    "The genuine-pencil ledger and fresh independent proof review remain required before promotion to a GREEN banked result."
+  ],
+  "provenance": {
+    "branch": "codex/full-prize-resolution-v12-20260807",
+    "commit": "7824a826a28360fabcb1e50bf36f1cec14685292",
+    "node_count": 22,
+    "replay": "from the campaign repo root: tools/ramguard local -- python3 <node path>/verify.py && tools/ramguard local -- python3 <node path>/verify_audit.py",
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-433-1b-cell11-close-v1",
+  "statement": {
+    "claims": {
+      "active_orbits": "75 nonendpoint cell-11 labels partition into 24 exact orbits with size profile 1:1, 2:9, 4:14 and are paid by 16 owner packets",
+      "common_geometry": "24 four-basis chart/sign rows and 40 global-kernel row reductions are exact over the deployed field",
+      "endpoint_labels": "30 cell-11 endpoint labels are excluded by the independent endpoint rootlessness theorem",
+      "final_outside_packet": "pairings 7, 8, and 11 close the final 12 labels with 24 complete rows and no witness",
+      "slices": "cell 11 is closed at 105/105 raw direct labels"
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_UNIT_LABEL_WORKBOARD_COMPLETE_CONVERSION_OPEN",
+    "title": "Complete closure of source-role cell 11 of the positive 433-1b workboard",
+    "workboard_item": "K3"
+  }
+}

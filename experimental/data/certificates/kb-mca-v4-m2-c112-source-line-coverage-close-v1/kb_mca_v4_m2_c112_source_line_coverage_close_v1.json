@@ -1,0 +1,542 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "nodes": [
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_negative_literal_assignment_coverage",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_negative_literal_assignment_coverage",
+      "status": "PROVED",
+      "verify_sha256": "0a53fbefa3f21e10caadb1b03597d03316d6b4f3620f636fd0b0fa1d3135af1f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_36_cell_coverage",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_36_cell_coverage",
+      "status": "PROVED",
+      "verify_sha256": "41d133a46b1d38749536034d52d380580cb9018028dba47fc8a6149378045bf6"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_f02_f03_upstream_import",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_f02_f03_upstream_import",
+      "status": "PROVED",
+      "verify_sha256": "d3bce7854e5c3095f7fa9e30cec8331846d929f7c49f2f0f2a6edc3895b7e10d"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_balanced_quadratic_branch_reduction",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_balanced_quadratic_branch_reduction",
+      "status": "PROVED",
+      "verify_sha256": "713d8e82aa9d9db01fb62ebb87891ee3374ef4dfb06849b84076276b347534e4"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_companion_inversion_transport",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_companion_inversion_transport",
+      "status": "PROVED",
+      "verify_sha256": "3dd1b9211711701e4b30f6bf407a21bd375dae3078d3f2f7c1fab9ada4a4c873"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_f04_r02_cell_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_f04_r02_cell_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7da5f1bcb4ba1a31bafd8fc2f2fe9f71c954527efb50a71c63ab3e6591401434"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_f04_r02_degree12_branch_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_f04_r02_degree12_branch_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e69a92979f033c2709b1345aa9e7e90325cfdc4c8a80a2a041f5307706070d2b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_f07_r02_cell_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_f07_r02_cell_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "40701a78375564e4bbe7fef64c370edc6b46697d1a8e24811403b794f1b68459"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_quadratic_orbit_compression_upstream_import",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_quadratic_orbit_compression_upstream_import",
+      "status": "PROVED",
+      "verify_sha256": "818e279cdc2e14b12b42b39a520b24aa197fddcfacf5cab48e32ceb34cd15e56"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_degree12_branch_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_degree12_branch_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "86da4f3a81288e00eccd4be866dbbc80783c06210effbcf001530f8ec9c135ab"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_degree12_degree6_leading_curve_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_degree12_degree6_leading_curve_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "fc249215db26ccd16cab9382e8e629022fd491b14367c3c13ac2336b66573f80"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_degree12_leading_branch_decomposition",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_degree12_leading_branch_decomposition",
+      "status": "PROVED",
+      "verify_sha256": "dab4cd5c78c60202c0f52e4dd9f4511107b0c4388c5def9f1bb4656549afc9e9"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_degree12_s_zero_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_degree12_s_zero_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "b5ae454d5d61ad34745b91fda92e691ffabdbea1f678a82c776fe3a6ac0e7a7f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_quadratic_branch_reduction",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_quadratic_branch_reduction",
+      "status": "PROVED",
+      "verify_sha256": "7dd93d2d8843c718a21509696e9c6b23d8749a1b83eeeec46a9d48c0d1d0dce4"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_rank_drop_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r02_r20_rank_drop_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "cf366bf65cd6f7bb5a6c05c0f520c2a919dcb64c2fd318035f553f850ab3d394"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r20_cell_exclusions",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r20_cell_exclusions",
+      "status": "PROVED",
+      "verify_sha256": "2e3cb2d649604ef6e696b3e0e1df120bbc9eccdb9aec1ec9642c5c8c66b20644"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r20_degree12_branch_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_r20_degree12_branch_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "eb094a818738a011652fa5fee2749e17d3089f9a0325753bb6a929e362aae0d8"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_remaining_r02_cell_exclusions",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_fixed_remaining_r02_cell_exclusions",
+      "status": "PROVED",
+      "verify_sha256": "c62b9622001578f75b665c1f7e500df6670f757bb3cdf9edf409fd6f963c2b93"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_literal_cell_crosswalk",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_literal_cell_crosswalk",
+      "status": "PROVED",
+      "verify_sha256": "78757026d638f989d5541a961d3ada9ad94cd4bc63cb3e7d409736112a012c28"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_moving_ten_cell_upstream_import",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_moving_ten_cell_upstream_import",
+      "status": "PROVED",
+      "verify_sha256": "ec40b99d0957b973d595a98579eab422f0fbd5ba830cd36f1a52b77910fa80ac"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_moving_upstream_review_gate",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_moving_upstream_review_gate",
+      "status": "PROVED",
+      "verify_sha256": "a92c353305eea971f21f13fff86a55270692d8f5715f2411a39588dca304d5c5"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_ramified_q_slice_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_ramified_q_slice_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "d082645156f5d24e6bc79968599e39e53c2c964ce27558af3ea2b1ed0d48585a"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_mixed_full_quotient_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_mixed_full_quotient_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "f19504957febb65ad280ef0ba85f3541bbc59f89021284850b8ba3a9cd3cc88c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_same_full_quotient_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_same_full_quotient_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "3334f4b79988da9f47be5db17699a0cfdf1b8e6134d25eaf9b310ddba4c55c4d"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_swap_full_quotient_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_fixed_swap_full_quotient_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "217850519f7db7f991f4db9ff213ad811acef303f98b8ed8f68f21dba55ba572"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_mixed_full_quotient_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_mixed_full_quotient_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "5060ee40bde2500cd7c0a405cc5556ab4c032ddace6abf5cb14dcaf45091f3e4"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_same_q_slice_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_same_q_slice_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7474f138df8404bfb1d97d7d880c7528929406312ecbb6475b1a58bc4b7e276b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_swap_q_slice_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_aligned_positive_unramified_moving_swap_q_slice_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "44f33e7c4d2bd0240457734e610adda7c1c25784b6891d14d5e15152732ac3bc"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_degree12_b0_f_p6_fiber_boundary_audit",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_degree12_b0_f_p6_fiber_boundary_audit",
+      "status": "PROVED",
+      "verify_sha256": "aff7c67e63ac3eceff8675a6a8dad738142dd188161c9e8ca48aa913ad538b00"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_degree12_b0_k8_nonzero_f_p6_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_degree12_b0_k8_nonzero_f_p6_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "acb12e8e88724ce5f7e6b51b2fe05b6dc596163555fd23ee06df99b31f0ad21e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_degree12_k8_branch_cover",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_degree12_k8_branch_cover",
+      "status": "PROVED",
+      "verify_sha256": "86679fe476aaf60512dbefc1e197cccc7ff733a3d97471e79bf7e4c0ef139fcc"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_degree12_r20_b0_f_p6_fiber_boundary_audit",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_degree12_r20_b0_f_p6_fiber_boundary_audit",
+      "status": "PROVED",
+      "verify_sha256": "478e3d72fb7899c75f04b0b646cc35d71443a1084d79017c2f5f8c445221a1da"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_degree12_r20_b0_generic_boundary_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_degree12_r20_b0_generic_boundary_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e9f05753387f5741df89e0e1b55fa9d290d3d8256c1ff252ff90b062f917c3bf"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_degree12_r20_k10_zero_leading_drop_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_degree12_r20_k10_zero_leading_drop_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7561f1f2f2c739442f500fe68ecef1365a4e246f66e58477ed6b0ef19958e053"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_f04_cubic_full_j_route_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_f04_cubic_full_j_route_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "6c032cf32d11c6ac3894e6c5cfdd7b42e2d0e66e74327c22c6e8cff83ee7b60b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_companion_inversion_transport",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_companion_inversion_transport",
+      "status": "PROVED",
+      "verify_sha256": "aa8793dd911588dd17da3b8020a3565b312c526821202e158a2a44f9879cb48c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_cubic_full_j_route_exclusions",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_cubic_full_j_route_exclusions",
+      "status": "PROVED",
+      "verify_sha256": "b81408f8d19c48e9eecc9d557ab8fb9edc210809adb52b980208055ba6fcf593"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_full_j_log_denominator_branch_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_full_j_log_denominator_branch_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "a088252622a7b5e5e99e99d4b273fe0ff603c59e72e1c29bb99e061d72da75a2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_full_j_log_guarded_numerator_exclusions",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_full_j_log_guarded_numerator_exclusions",
+      "status": "PROVED",
+      "verify_sha256": "1dbf88f221218b61cf5a432783e2e9ba0bd78fb8f455cb491f2f928aff895f24"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_full_j_log_router_replay",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_full_j_log_router_replay",
+      "status": "PROVED",
+      "verify_sha256": "42dcf6494968a6e4c4fd383586ff7bb14974d9d45c6262deefc4080b269160bb"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_r02_generic_cubic_replay",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_r02_generic_cubic_replay",
+      "status": "PROVED",
+      "verify_sha256": "543a8a7b33800f134abe33b14095785c825e192f6cb7eeaa8c2a672f284402bb"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_r20_generic_cubic_replay",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_fixed_literal_r20_generic_cubic_replay",
+      "status": "PROVED",
+      "verify_sha256": "d84d768f27728d229518f20958615118cc020b48e8e6a85d02557883433ebdb3"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_full_j_log_denominator_branch_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_full_j_log_denominator_branch_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "bae64ec4a69b734eabe7c518234444c19a6de419c7eb55fd14a96bdd67305a31"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_full_j_log_derivative_branch_router",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_full_j_log_derivative_branch_router",
+      "status": "PROVED",
+      "verify_sha256": "acbda1a8249858f33d61ced261fc250da1bccc844d5c6fdbcc01425739bd7d2e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_full_j_log_guarded_numerator_branch_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_full_j_log_guarded_numerator_branch_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "94fcd96774bd750e82a505656387e47c9c1f9aa5d02713e6337e2858c4632301"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_negative_literal_assignment_coverage",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_negative_literal_assignment_coverage",
+      "status": "PROVED",
+      "verify_sha256": "3deaca2b6fed9cb7c872060e90653716f68762c95342d9831bc6e1a6bcffe129"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_negative_q_slice_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_negative_q_slice_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "4a7b5526cf5032f86b54b9caecea94745d28a3ab2cf47fbd21fd47d776415aff"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_direct_residual_registry",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_direct_residual_registry",
+      "status": "PROVED",
+      "verify_sha256": "aa7c247cc94ae65b60b6ff09164cea6c9612fca5bfaf0f12612a128b4db0155f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_f02_mixed_collision_exclusions",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_f02_mixed_collision_exclusions",
+      "status": "PROVED",
+      "verify_sha256": "82033379293dc5d88b0a0215129bcdc28da87520ff3ec75fd6e256de070f897e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_f02_square_orbit_exclusions",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_f02_square_orbit_exclusions",
+      "status": "PROVED",
+      "verify_sha256": "ab2cef1e995d0e0dcc399e20ba3084ba8bd649cc994e2354285a6d688399d2ab"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_f04_complete_chart_classification",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_f04_complete_chart_classification",
+      "status": "PROVED",
+      "verify_sha256": "48c74d601c7a228ccf9c2353c2dc2c001169c248cbf76938e2160ba8c4537c6d"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_f06_complete_chart_classification",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_f06_complete_chart_classification",
+      "status": "PROVED",
+      "verify_sha256": "a48a6958dac5aa712645f77edd39fabcf311548a0eb6c7254d78af3b0b6786fc"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_fixed_xi_direct_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_fixed_xi_direct_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "35b0b84a1d47d60af94328614feed8eb6160eb3e5855fc0b11a94418dced6661"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_fixed_xi_mixed_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_fixed_xi_mixed_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e54b73e841cc1b48e9f0a300ca992181447b44e687565dfb68c93afebe39d3f8"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_fixed_xi_swapped_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_fixed_xi_swapped_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "f943c347851b98e774b68e1c01806d5d289157a375fe1b52895eec14a998968b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_literal_inversion_transport",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_literal_inversion_transport",
+      "status": "PROVED",
+      "verify_sha256": "a211a30474bcfb9d7320b1627fc7acaa23073cd8d3c381635d2e80d05962a410"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_m01_complete_chart_classification",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_m01_complete_chart_classification",
+      "status": "PROVED",
+      "verify_sha256": "936ee2c8a7e67897a24e2b7d394d4ec5e4ca6c221f06af80dad2231a346d464e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_m03_complete_chart_classification",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_m03_complete_chart_classification",
+      "status": "PROVED",
+      "verify_sha256": "9472ac84a2b6c579233d61c326ea5cd7f40bc4c085f259bcf1a94fd64b38c442"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_a_xi_mixed_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_a_xi_mixed_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "634d34cd39f436337ab5bd0956e44d6ba19b5db56bf016fbe78711e13278ecbf"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_a_xi_square_ell_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_a_xi_square_ell_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "7f0c5737358fb2fcf787d8ff36ecadc81ebb728ea1fd1b2facf535a8f4b6882b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_a_xi_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_a_xi_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "85c95c0ef4545ddfb982187f2c107158a57eb4e36b79d7ea6c61ec435ca1d3c2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_other_xi_mixed_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_other_xi_mixed_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "4ecde08b0a4154cb82365e78cfa69801740c7fa1bf3aaf2e8e644468f96f0534"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_other_xi_square_ell_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_other_xi_square_ell_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0c09579d0f20e027bdad1c056ab6b8baadef0e284e500fa375f6d9b7a8288b70"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_other_xi_square_xi_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_other_xi_square_xi_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "448ba76d8e9c99ea1ab0f18ec67bd02bd1dae842b87dd1919959a7ca1bd35642"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_tau_xi_orbit_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_moving_moving_tau_xi_orbit_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "a5a40f25fa0e5b6f585dd96917c8c5408d495d1cca3f2044109582193050732b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_other_xi_mixed_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_other_xi_mixed_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "6e395a9ed745ac52082dc32e00a6fc7e8eaa523955a9c076706d45b337dcfb2c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_other_xi_square_ell_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_other_xi_square_ell_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "1817aa8d3421f7e52171bffefa70578d63a9b3b5f5eb10604aef1aa1672f4657"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_other_xi_square_xi_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_other_xi_square_xi_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "163d38cf097b912de5f29a56a2ea144556c98547bb66093aeac23ab0781a3b4b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_pair_swap_covariance_refutation",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_pair_swap_covariance_refutation",
+      "status": "PROVED",
+      "verify_sha256": "03e7fd59fd71ea2e5534966cc6a4cdeaa9945e38b7ffc5837744a19a126ff5e4"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_projective_boundary_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_projective_boundary_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "8d679e6a2f0655b2a80c3c221ea6df893a168935f464bf9adfef84bdd787e7b2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_projective_boundary_literal_coverage",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_projective_boundary_literal_coverage",
+      "status": "PROVED",
+      "verify_sha256": "dd8d2075a96a3deaa8c7ff020291b1e112d2a6aed5ce9a956ce5080e40ee43f2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_tau_xi_mixed_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_tau_xi_mixed_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "eea4800dd91776e9cf7a7cb993c59a9e163b544d47d2bf242ec411986b14046b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_near_positive_tau_xi_square_exclusions",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_near_positive_tau_xi_square_exclusions",
+      "status": "PROVED",
+      "verify_sha256": "b6ae0dd8dd5cae1099b72a97aa4e23acbc357195b1912df51840c6fedab08d56"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_quadratic_parity_reduced_evaluation_identity",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_quadratic_parity_reduced_evaluation_identity",
+      "status": "PROVED",
+      "verify_sha256": "be686878e62dd4fcca6ab581a7e5761700bf7e89264c2f406d8124299eed4c0d"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_quadratic_pseudoremainder_determinant_reduction",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_quadratic_pseudoremainder_determinant_reduction",
+      "status": "PROVED",
+      "verify_sha256": "706e879392186f7fc32fa640cf1fc2c2fe4f33ee2c98ec68a550adb4b423d895"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_ramified_complete_source_repair",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_ramified_complete_source_repair",
+      "status": "PROVED",
+      "verify_sha256": "d6075ba0b1ad70129116bc6fc3eb3256eb01ad95e438a832b17577ce44f4d95c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_saturated_defect_classifier",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_saturated_defect_classifier",
+      "status": "PROVED",
+      "verify_sha256": "91078c313d8f44ecf5df0690648d7c0d6169d184884e10214f54a740b6551591"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_source_line_aligned_negative_q_slice_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_source_line_aligned_negative_q_slice_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "41c1cc5860646c8ebd2f962850a6e773800d75a432de25e22ecf755bf132c08c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_source_line_colored_quotient_compiler",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_source_line_colored_quotient_compiler",
+      "status": "PROVED",
+      "verify_sha256": "88accf4b4b57570d80db04ba9d7d346b50699023810ed6143f054e0e40536ca2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_source_line_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_source_line_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0d0f7757b27c3d0fda5e01d1947ada654d77248530fc00d6e98bb765e188c743"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_source_line_internal_star_reconstruction",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_source_line_internal_star_reconstruction",
+      "status": "PROVED",
+      "verify_sha256": "b6b76a344a7f20518f49c0f388a629faef25b89d38d4890730030fcf7ddd30e4"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_source_line_literal_assignment_coverage",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_source_line_literal_assignment_coverage",
+      "status": "PROVED",
+      "verify_sha256": "a4829dcf3a9806d26cecbb72450a277d772b907c18695b0fa4c6036f535bc83f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_source_line_negative_reconstruction_factor_gate",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_source_line_negative_reconstruction_factor_gate",
+      "status": "PROVED",
+      "verify_sha256": "7d001fb9870f2b1193a96bacc163520c4155b1028996274362d4cdc69f84317b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_source_line_odd_part_incidence_gate",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_source_line_odd_part_incidence_gate",
+      "status": "PROVED",
+      "verify_sha256": "e7737833669e842feb9dab1e23ce709ebe51da9585b5aa7f61ed4adad2fe755a"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_diagonal_c2_112_source_line_q_slice_resultant_gate",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_c2_112_source_line_q_slice_resultant_gate",
+      "status": "PROVED",
+      "verify_sha256": "c030914ba8d129febecc02aef204cdf4c25d2693d3b50d09da65543169d3f5f3"
+    }
+  ],
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Workboard remainder open: cell 9 (in flight), the [5,8] and [11] common-role orbits, the cell-3 xi4 residual.",
+    "Fresh independent proof review remains required before promotion to a GREEN banked result."
+  ],
+  "provenance": {
+    "commit": "594aaa985568cd02991673532d89419e8224d6da",
+    "node_count": 85,
+    "replay": "from the repo root: tools/ramguard local -- python3 <node path>/verify.py (RAMGUARD_TIMEOUT=2400 for the two cell-4 pairing-7/8 heavy ledgers)",
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-m2-c112-source-line-coverage-close-v1",
+  "statement": {
+    "claims": {
+      "m01_m02_gate": "M01-R11/M02-R11 discharged by a direct exact Singular replay at upstream PR #1144 commit 05ff2348de8f2c0f99683875ff12a9a79dcf21ec (fresh augmented slimgb basis size 168 dim 2; all 148 deterministic blocks of the 151178-term I polynomial reduced)",
+      "near_positive": "108 literal cells -> 42 orbits via two exact restricted q-slice transports; all excluded",
+      "negative_and_projective": "aligned-negative + negative source-line coverage closed; all 48 literal positive projective boundary cells closed",
+      "registry": "36/36 aligned-positive semantic cells PROVED (disjoint seven-packet census)"
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_UNIT_OTHER_K3_ITEMS_OPEN",
+    "title": "Complete literal source-line coverage of the saturated diagonal c2(1,1,2) branch",
+    "workboard_item": "K3"
+  }
+}

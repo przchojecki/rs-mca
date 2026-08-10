@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
-> **Updated:** 2026-07-29
-> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
+> **Updated:** 2026-08-10
+> **State snapshot:** `main@93fba1be3f3299b0ba4708d88715377bbb656e45`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -79,6 +79,8 @@ At this snapshot:
 - On the pinned M31 quotient profile, the proposed rooted-shell cap `1233` is refuted by an explicit deficiency-192 packet of size `1237`; a ragged non-`T16` collision and the signed-`T8` census further cut alignment-only routes.  The canonical-remainder inequality `|F_eta|<=1716*r(eta)+5577` forces at least `9774` represented remainders in any unsafe support fiber, but supplies no received-word or row-list projection.
 - The cumulative M31 rank-seven compiler now reaches `Q=147594` locally.  Its adjacent `Q=147595`, `k=4981` survivor is reduced to a varying proper-`G`, zero-excess cross-cofactor incidence terminal requiring an aggregate cap `2157928`; no v4 atom, higher-rank theorem, or row closure follows.
 - The KoalaBear equality-wall PR stack proves local normalization, a `Q=6,u=2` geometry reduction, and exclusion of 60 labelled `P3+C3` cases, but retains 405 labelled conic cases and lacks global ownership/add-back.  The separate column-far transverse-secant certificate is per fixed union only.  No large `U_paid` claimed by an abstract candidate-record compiler is banked; the live active value remains `null`.
+- The K3 raw `433-1b -> O0a` workboard is proved empty over all 15 role cells, 1575 labels, and 25200 signed systems, and PR #1152 adds exact local `O0b` cell-11 boundary cuts. These results remain raw-system statements with zero ledger movement and `null` distinct-slope payment. The source-bound compiler route cut at `experimental/notes/thresholds/kb_mca_v4_k3_source_bound_compiler_route_cut_v1.md` is scoped only to the declared residual slice `Z_BC^(m=2,r=4)`; the slice membership predicate and exhaustive reduction from all `Z_BC` remain open. Within that slice, the first missing implication is a total canonical selector plus record-preserving reconstruction/projection with an exact finite fiber bound. A two-sided inverse is sufficient but stronger than necessary. The packet cuts the proposed `O0b -> O0a` transport only for its frozen natural record/role/gauge/typed-incidence map class, not arbitrary orientation-changing maps. All eleven other positive routes, the eight candidate source-cover row/passport combinations, `U_K3_allocation`, and distinct-slope conversion remain open; `11304` is only a conditional candidate abstract-label-orbit workload, not a census, elimination, representative count, or payment.
+- The follow-up active-slice semantic route cut at `experimental/notes/thresholds/kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.md` imports the exact #1139 tangent source-pin repair, so `U_paid=981104` is again source-revalidated and the joint reserve is `274980728110413983`. It proves on the actual deployed carrier that 30 active and six source complete degree-two fibers can satisfy the printed source-pencil identities while the displayed deck involution `T -> 1-T` fails to preserve the carrier. This refutes only direct endpoint-coordinate identification: conjugation by `T-1/2` gives `T -> -T`, which does preserve the carrier, and no record-level conjugacy theorem is ruled out. The packet constructs no actual received line, active-slice witness, owner, projection fiber, or K3 payment; ledger movement is zero. The historical equality-wall route is also open: it targets distinct source-map equivalence classes per transversal projective residue line rather than affine slopes, excludes only `3912 <= delta <= 118076`, and leaves five low-excess degree-12--16 windows plus general excess unpaid.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -96,6 +98,8 @@ At this snapshot:
 | `experimental/rs_mca_thresholds.tex` | **Exact-regime/exposition source:** staircases, below-half-distance results, syndrome geometry, and examples; not unrestricted near-capacity closure authority. |
 | `experimental/experiments.tex` | **Experimental theorem ledger:** integrated direct list constructions, bridge lemmas, provenance, and scoped nonclaims. Each result retains its printed row and status; the file is not a deployed-row closure authority. |
 | `experimental/proximity_prize_results_v4.tex` | **Current synthesis/index:** compact map of proved partial Prize results and status-preserving nonclaims. Follow its cited proof sources before banking any theorem or atom. |
+| `experimental/notes/thresholds/kb_mca_v4_k3_source_bound_compiler_route_cut_v1.md` and `experimental/data/certificates/kb-mca-v4-k3-source-bound-compiler-route-cut-v1/manifest.json` | **K3 source-bound route-cut authority:** declared `Z_BC^(m=2,r=4)` scope, exact thirteen-route census, imported raw-zero scope, natural-map-class O0b/O0a obstruction, missing selector/reconstruction/projection and unit bridges, stale tangent source gate, and null K3 ledger outputs. It is not a payment, an all-`Z_BC` compiler, or a closure theorem. |
+| `experimental/notes/thresholds/kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.md` and `experimental/data/certificates/kb-mca-v4-k3-active-slice-semantic-bridge-route-cut-v1/manifest.json` | **Current K3 semantic-route authority:** repaired tangent source pin; exact deployed-carrier direct-coordinate countermodel; executable-predicate, same-record, chronology, conjugacy, and all-`Z_BC` scope fences; null K3 outputs. It supersedes only #1157's stale-tangent diagnostic, not its raw route census or transport cut. |
 | `tex/RS_disproof_v3.tex`, `tex/slackMCA_v4.tex`, `tex/snarks_v5.tex` | Stable background for no-slack obstructions, reserve/quotient theory, and later protocol accounting. |
 | `archived/` predecessors | Provenance only. Never bank an archived owner or charge without an explicit source-bound bridge. |
 
@@ -129,6 +133,27 @@ The factor `4807520` is only a full-budget calibration before other atoms consum
 #### K3. Pay MCA projection and residual geometry
 
 Produce exhaustive balanced-core coverage in units of distinct affine slopes. The moving-root theorem pays only charts proved to be genuine pencils. A line-by-line decomposition also needs an exact count of relevant lines. Higher-dimensional cores require a proved ray/slope compiler with exact multiplicities.
+
+The immediate maximal K3 theorem begins by defining and proving the
+source-bound membership predicate for the declared residual slice
+`Z_BC^(m=2,r=4)` and its scope within `Z_BC`. Every `z` in that slice must
+have a total canonical selector into a supplied actual endpoint record and
+actual component, with reconstruction/projection preserving the received
+line, witness support, affine slope, first-match owner, and add-back
+chronology, together with an exact finite projection-fiber bound. A two-sided
+inverse is a sufficient stronger implementation. A separate exhaustive
+reduction must cover all `Z_BC` or route its complement. Until these claims
+are proved, raw workboard systems and the orientation trichotomy cannot be
+charged in distinct-slope units. Do not reopen raw cell-11 elimination as a
+substitute for this bridge.
+
+The displayed endpoint coordinate cannot be identified directly with the
+evaluation carrier from the printed source-pencil identities: the exact
+deployed-carrier countermodel above disproves that shortcut. A conjugated
+carrier fold remains possible only through a new same-record theorem. The
+historical equality-wall 69-object route is not yet a cap-68 slope theorem;
+its five low-excess degrees, general-excess branch, class-to-slope
+multiplicity, and current-partition adapter all remain open.
 
 #### K4. Close algebraic routing and add-back
 
