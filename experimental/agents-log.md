@@ -3682,3 +3682,160 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-08-09 — [K3] living progress branch opened (k3-433-progress-export)
+
+Four unit certificates: c112 source-line coverage COMPLETE (incl.
+the M01-R11/M02-R11 Singular-replay discharge at PR #1144's pinned
+commit); 433-1b cell 4 CLOSED (105/105 slices); 433-1b cells 12-13
+CLOSED; 433-1b universal structure (105 -> 60 orbit quotient +
+transports). 204 theorem nodes pinned by path + verifier sha256 in
+AllenGrahamHart/rs-mca-prize-dag @ 594aaa985; all verifiers
+coordinator-replayed. Ledger movement 0; K3 and the KoalaBear row
+remain open (cell 9 in flight; [5,8], [11], cell-3 xi4 residual).
+Incremental pushes will land here as cells close.
+
+## 2026-08-09 — [K3] 433-1b coordinate-positive cell 9 closed
+
+Added `kb-mca-v4-433-1b-cell9-close-v1`: 105/105 labeled slices paid
+by 30 endpoint labels and 75 active labels in 24 exact orbits. The packet
+pins 28 PROVED theorem nodes and verifier digests in
+AllenGrahamHart/rs-mca-prize-dag @ 68ac9e383; the executable aggregate
+reconstructs the universal router and checks the 17-owner partition. All 56
+node verifier and audit scripts were coordinator-replayed. Ledger movement 0;
+K3 and the KoalaBear row remain open ([5,8], [11], cell-3 xi4 residual).
+
+## 2026-08-09 — [K3] 433-1b source role cell 3 re-pinned complete
+
+Added `kb-mca-v4-433-1b-cell3-close-v1`. The common rank-drop branch is
+empty in all four source-sign rows, and a disjoint supplier census pays all
+`7 * 15 * 4 * 4 = 1680` principal systems, including all 240 `xi4` systems
+by exact outside-role transport. The packet pins 28 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ a001708ae. Modal replay
+`ap-jYkVRdvSHQuofSrzIJzAG1` passed all 28 primary verifiers and 28 audits.
+Ledger movement 0; K3 and the KoalaBear row remain open only on role orbits
+`[5,8]` and `[11]` within this exported workboard.
+
+## 2026-08-09 — [K3] 433-1b common-role orbit [5,8] closed
+
+Added `kb-mca-v4-433-1b-cells5-8-close-v1`. Cell 5 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over 24 quotient orbits,
+and all 30 endpoint labels are excluded because eight degree-16/degree-11
+eliminants have no deployed base-field root. An exact B/C transport closes
+cell 8 over all 1,680 signed principal systems, with the global rank-drop
+theorem paying the complement. The packet pins 23 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 3fa298743024. Ledger movement 0; K3 and
+the KoalaBear row remain open only on role orbit `[11]` within this exported
+workboard.
+
+## 2026-08-10 — [K3] 433-1b source-role cell 11 closed
+
+Added `kb-mca-v4-433-1b-cell11-close-v1`. Cell 11 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over all 24 quotient
+orbits, and the separate endpoint theorem pays the remaining 30 labels. The
+final pairings 7, 8, and 11 have complete direct equation and leading-boundary
+replays; a shared FLINT packet reconstructs 61 profiles and 302 roots through
+degree 5192. The packet pins 22 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 7824a826a283. All 44 cell-11 verifier and
+hostile-audit scripts passed. The exported raw-label workboard now has no
+open role orbit. Ledger movement remains 0; K3 and the KoalaBear row remain
+open on labels-to-distinct-affine-slopes conversion, the genuine-pencil
+ledger, and fresh independent proof review.
+
+## 2026-08-10 — [K3] complete raw 433-1b to O0a workboard exclusion
+
+Added `kb-mca-v4-433-1b-raw-workboard-close-v1`. An explicit B/C
+duplicate-role transport closes the previously implicit cell-10 step from
+cell 9 over all 105 labels and 1,680 signed principal systems. Nine disjoint
+owner packets now cover all 15 role cells, 1,575 labels, and 25,200 signed
+principal systems; the global rank-drop theorem excludes the complement.
+The packet pins three aggregate PROVED nodes and hostile audits at
+AllenGrahamHart/rs-mca-prize-dag @ `8df090339e3e`. Ledger movement remains
+0. K3 remains open on eleven other positive routes, orientation/source-cover
+assembly, exact distinct-slope allocation, and independent review.
+
+## 2026-08-10 — [K3] repeated-BC O0b cell-11 off-guard route cut
+
+Added `kb-mca-v4-433-1b-o0b-cell11-offguard-v1`. Across eight source
+towers, three missing representatives, two outside signs, and 15 residual
+matchings, all 720 exact paired-product systems are empty at every deployed
+nonzero-guard source value. Nested norms leave 1,584 exceptional-root
+occurrences over 126 base values; exact all-pair replay excludes all 1,584.
+The packet pins two PROVED nodes and 19 source artifacts at
+AllenGrahamHart/rs-mca-prize-dag @ `81f218e38285`. Ledger movement remains
+0. Missing `BE/CF`, guard and selected-cofactor boundaries, cell 14,
+orientation, allocation, independent review, K3, and the KoalaBear row remain
+open.
+
+## 2026-08-10 — [K3] repeated-BC O0b cell-11 colored off-guard cut
+
+Added `kb-mca-v4-433-1b-o0b-cell11-colored-offguard-v1`.  The missing
+`BE/CF` endpoint product fixes the colored endpoint, and its reconstructed
+squared sum gives one necessary source-algebra consistency identity.  All 16
+exact norms are units on the deployed rational open: their only base-field
+roots are `x=0,1` for `BC-` and `x=0,-1` for `BC+`, all registered guards.
+The packet pins one PROVED node and four evidence files at
+AllenGrahamHart/rs-mca-prize-dag @ `96868562394e`.  Ledger movement is 0;
+finite guard/cofactor fibers and all later K3 obligations remain open.
+
+## 2026-08-10 — [K3] source-bound compiler maximal route cut
+
+Added `kb-mca-v4-k3-source-bound-compiler-route-cut-v1` on a clean worktree
+based on PR #1152 head `ed4877cce5f2`. Its mathematical scope is only the
+declared active residual slice `Z_BC^(m=2,r=4)`; neither the source-bound
+membership predicate nor an exhaustive reduction from all `Z_BC` is claimed.
+The packet replays the proved raw `433-1b -> O0a` exclusion (15 cells, 1575
+labels, 25200 signed systems, zero survivors), derives the exact 13-route
+table (2 raw-zero, 11 open), and fails closed at the first absent implication:
+there is no total canonical selector plus record-preserving
+reconstruction/projection and exact finite fiber bound from the declared
+slice to supplied actual components. A two-sided inverse would suffice but is
+stronger than necessary. The raw-zero routes have zero surviving raw systems
+and `null` distinct-slope payment.
+
+The same packet gives a rigorous transport cut for the proposed
+`433-1b -> O0b` versus closed-O0a route within the frozen natural
+record/role/gauge/typed-incidence map class. It does not exclude arbitrary
+orientation-changing algebraic maps. On repeated BC the guarded product ratio
+is `+1` versus `-1`; on split BC the outside incidence signatures are
+non-isomorphic under all six typed role permutations. Native O0b bookkeeping
+contains 408 rows / 42840 raw labels. The value 11304 is only a conditional
+candidate abstract-label-orbit workload: pinned `label_orbits.py` expressly
+says it is not a census or elimination, and it is not a representative count
+or payment. The source-cover value 8 likewise counts unresolved candidate
+row/passport combinations, not terminals. The per-supplied-record value 32099
+is directly bound to the pinned transverse-source compiler statement.
+
+PR #1155 is replayed and preserved as a valid guard-transplant regression
+route cut with a surviving exact point. Leaving the dirty
+`rs-mca-k3-433-cell11-cover` worktree and its uncommitted cover/transport files
+untouched is an operational author audit, not a proof claim or certificate
+input; the files are preserved and neither refuted nor deleted.
+
+Validation uses Python normal/optimized replay and hostile mutations, the raw
+dependency and PR #1155 replays, Sage finite-field/involution replay, FLINT
+integer/matrix replay, and Wolfram totals/permutation replay. Mutation and
+source-hash counts are reported by the current verifier rather than copied
+into this log. The tangent manifest/row expects `grande_finale.tex` Git blob
+`8a5d9791900ca9eed773feba146b92ad296704ce`, while PR #1152 contains
+`6b21d6ea937a8a9f85fc7ade6032d73efd4c7222`; both tangent-verifier modes fail
+the stale `active_v4` source gate. Thus manifest-declared `U_paid=981104` and
+the derived reserve arithmetic are not transitively source-revalidated by
+this packet. The honest outputs remain
+`U_remaining=U_positive=U_sourcecover=U_K3=U_K3_allocation=signed_slack=null`;
+the joint reserve `274980728110413983` is not an allocation or a newly banked
+value. Ledger movement is zero; K3 and the KoalaBear row remain open.
+
+The open-PR audit is a non-load-bearing temporal snapshot. At audit time,
+#1130 and draft #1132 supplied parameter-side and actual-component interfaces
+but not the active same-record bridge; #1152 was the dependency; #1153--#1155
+were local replay/route-cut layers; and draft #1156 concerned a different MCA
+exception router. The durable proof claim is only that the packet's pinned
+dependency set contains no declared-slice selector/reconstruction/projection
+theorem.
+
+Fresh post-repair proof and certificate/custody reviews were independently
+GREEN and PR-ready for success condition B. The certificate reviewer also
+rejected 41 additional targeted promotion mutations beyond the shipped 32.
+Neither review promoted the open K3 theorem, the stale tangent payment, or
+any null ledger output.

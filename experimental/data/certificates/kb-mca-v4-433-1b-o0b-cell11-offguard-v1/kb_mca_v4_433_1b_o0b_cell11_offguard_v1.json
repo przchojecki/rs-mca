@@ -1,0 +1,90 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "bankability_contract": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture": "positive-433-1b-O0b-common-repeat-cell11",
+    "atom_or_cell": "repeated-BC O0b cell-11 uncolored representative systems",
+    "claimed_bound": "0 surviving endpoints out of 720 representative systems",
+    "direct_statement": "All 720 repeated-BC O0b cell-11 DE+/DF+/EF representative systems are empty at every deployed off-guard source value.",
+    "falsifier": "a non-guard deployed source value at which all three paired-product Sylvester matrices are singular, an omitted representative, or a pinned-blob mismatch",
+    "impact": "ROUTE_CUT",
+    "object": "MCA",
+    "projection_and_unit": "uncolored representative systems, not distinct bad slopes",
+    "quantifier": "every deployed source value on the registered nonzero-guard chart",
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED",
+    "target_epsilon": "2^-128",
+    "workboard_item": "K3"
+  },
+  "evidence_files": {
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_generic_rank_modal.py": "d6995ccc293a30c3277c108a42dcbcbe1c7afa7eece40cd263a1cfd9cc9cb786",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_manifest.py": "4ec6de6737e081c8cdfb37d5edfa35b5a9d43fbff6d22ea0040d989e21731258",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_manifest.json": "1f2f13e925f7a6b05141b6757cb21417d8537866f59dce59ff7a2a6a56bc2fb1",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_resultant_norm_bcminus_emm_result.json": "3fdf054568151bd55799507bfb92314758e67f51c9829ab0c0ae18284b22a48c",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_resultant_norm_bcminus_emp_result.json": "be543841e5a28692b06114154ad5b2c2ea55a91236743531649f2adb5c39e53e",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_resultant_norm_bcminus_epm_result.json": "0288f3927dbbe2d1129e0dc83aecd1fbe271d48fa0487165223fc4689548d583",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_resultant_norm_bcminus_epp_result.json": "6cb8f12b9736fbe557a922609045ef51e9024899bef6e65162a175180714f83e",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_resultant_norm_bcplus_emm_result.json": "7fcaae4a89c5d4d65c49f6f078b6af7e71261b4564c7f96894d49a085a5bddca",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_resultant_norm_bcplus_emp_result.json": "27a90f419645562223d6a4bc2eb4454a935f9ffc514b8983c0c907ce7ad0733a",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_resultant_norm_bcplus_epm_result.json": "15fe77d6130ed26c0395d2c7d056e4a77f40a600ba4039597b4f481829d06631",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_resultant_norm_bcplus_epp_result.json": "6a082ad0f355500341b9ecabd5d040f9c4188b2425970219f28445b9a6f90301",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_bcminus_emm_result.json": "1c6abee11c174be2280928a8ef5a1031e6ce78ba56f727d0719b456390566e69",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_bcminus_emp_result.json": "78590a25e112c8470bfe5d0ee016cef1df8167dd0090612e5e417508ebb4d37f",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_bcminus_epm_result.json": "1dabb3b34e76f59966c03e1273917d1bd2a8bc2e0e643e3463aecab79683b286",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_bcminus_epp_result.json": "fa6b7b398afb095ae77ef31609dc9ea9452d7acaa27c9d36457335846f336839",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_bcplus_emm_result.json": "4b8a9cfb63d27f5734c21b80a0e624b0e21352b109a6c0959f7b05715942b26e",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_bcplus_emp_result.json": "feac376c5d39332a3cd8fac73643f57738250cd96a1c64f5e61e8ade487c059b",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_bcplus_epm_result.json": "3e403d3f7eba4d536995bd252ba6b7d8dd052627bd35aa306430a2dda598063f",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_uncolored_exceptional_replay_bcplus_epp_result.json": "acd61c91f6421c82bdece449704c585df7ceafe6d72df4f0ea4585c3f4f61e6e"
+  },
+  "nodes": [
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_uncolored_generic_rank_atlas",
+      "node_manifest_sha256": "0029b434961f75c3b3eaa585d258cf12533b02cd1d8aeb4a6c6b6bd4784ae762",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_uncolored_generic_rank_atlas",
+      "status": "PROVED",
+      "verify_audit_sha256": "c12b2fffc83f153048839ac512a34d306c2861e85e00794ef4307decb6c36ea4",
+      "verify_sha256": "d8efa3819b3f231464fa9aa4e62ffad72a307877081552462c1b61010ab7a364"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_uncolored_deployed_off_guard_pair_exclusion",
+      "node_manifest_sha256": "b4527e4df3e7b75f689a279cefcee4b21005b5afafb19fa8fc99e7637673e14f",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_uncolored_deployed_off_guard_pair_exclusion",
+      "status": "PROVED",
+      "verify_audit_sha256": "a9b7532b2ce457fc4862baeeb4a0a559a90059f19d78e82e8f03a843eee80498",
+      "verify_sha256": "4b6abe5f3106d4890bae0fe267feab31dd9e1c5ad59813f8d9428745a935f91f"
+    }
+  ],
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Does not cover missing BE/CF, registered guard loci, selected-cofactor boundaries, or cell 14.",
+    "Does not perform source-orientation assembly or convert representatives to distinct affine slopes.",
+    "Does not discharge exact allocation or independent review."
+  ],
+  "provenance": {
+    "branch": "codex/full-prize-resolution-v12-20260807",
+    "commit": "81f218e3828546ec591bbf6880ee3dd42f2eb23d",
+    "evidence_file_count": 19,
+    "node_count": 2,
+    "replay": "from this repo: python3 experimental/data/certificates/kb-mca-v4-433-1b-o0b-cell11-offguard-v1/verify.py --source-root /path/to/rs-mca-prize-dag",
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-433-1b-o0b-cell11-offguard-v1",
+  "statement": {
+    "claims": {
+      "deployed_exceptional_replay": "1584 of 1584 exceptional-root occurrences are excluded by a full-rank equation pair",
+      "distinct_base_values": 126,
+      "norm_partition": "288 off-guard units plus 432 pointwise norm covers equals 720 representatives",
+      "representative_census": "8 source towers times 3 missing records times 2 outside signs times 15 residual matchings equals 720"
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_ROUTE_CUT_BOUNDARIES_OPEN",
+    "title": "Repeated-BC O0b cell-11 deployed off-guard pair exclusion",
+    "workboard_item": "K3"
+  }
+}
+
