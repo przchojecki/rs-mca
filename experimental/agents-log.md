@@ -3777,3 +3777,65 @@ roots are `x=0,1` for `BC-` and `x=0,-1` for `BC+`, all registered guards.
 The packet pins one PROVED node and four evidence files at
 AllenGrahamHart/rs-mca-prize-dag @ `96868562394e`.  Ledger movement is 0;
 finite guard/cofactor fibers and all later K3 obligations remain open.
+
+## 2026-08-10 — [K3] source-bound compiler maximal route cut
+
+Added `kb-mca-v4-k3-source-bound-compiler-route-cut-v1` on a clean worktree
+based on PR #1152 head `ed4877cce5f2`. Its mathematical scope is only the
+declared active residual slice `Z_BC^(m=2,r=4)`; neither the source-bound
+membership predicate nor an exhaustive reduction from all `Z_BC` is claimed.
+The packet replays the proved raw `433-1b -> O0a` exclusion (15 cells, 1575
+labels, 25200 signed systems, zero survivors), derives the exact 13-route
+table (2 raw-zero, 11 open), and fails closed at the first absent implication:
+there is no total canonical selector plus record-preserving
+reconstruction/projection and exact finite fiber bound from the declared
+slice to supplied actual components. A two-sided inverse would suffice but is
+stronger than necessary. The raw-zero routes have zero surviving raw systems
+and `null` distinct-slope payment.
+
+The same packet gives a rigorous transport cut for the proposed
+`433-1b -> O0b` versus closed-O0a route within the frozen natural
+record/role/gauge/typed-incidence map class. It does not exclude arbitrary
+orientation-changing algebraic maps. On repeated BC the guarded product ratio
+is `+1` versus `-1`; on split BC the outside incidence signatures are
+non-isomorphic under all six typed role permutations. Native O0b bookkeeping
+contains 408 rows / 42840 raw labels. The value 11304 is only a conditional
+candidate abstract-label-orbit workload: pinned `label_orbits.py` expressly
+says it is not a census or elimination, and it is not a representative count
+or payment. The source-cover value 8 likewise counts unresolved candidate
+row/passport combinations, not terminals. The per-supplied-record value 32099
+is directly bound to the pinned transverse-source compiler statement.
+
+PR #1155 is replayed and preserved as a valid guard-transplant regression
+route cut with a surviving exact point. Leaving the dirty
+`rs-mca-k3-433-cell11-cover` worktree and its uncommitted cover/transport files
+untouched is an operational author audit, not a proof claim or certificate
+input; the files are preserved and neither refuted nor deleted.
+
+Validation uses Python normal/optimized replay and hostile mutations, the raw
+dependency and PR #1155 replays, Sage finite-field/involution replay, FLINT
+integer/matrix replay, and Wolfram totals/permutation replay. Mutation and
+source-hash counts are reported by the current verifier rather than copied
+into this log. The tangent manifest/row expects `grande_finale.tex` Git blob
+`8a5d9791900ca9eed773feba146b92ad296704ce`, while PR #1152 contains
+`6b21d6ea937a8a9f85fc7ade6032d73efd4c7222`; both tangent-verifier modes fail
+the stale `active_v4` source gate. Thus manifest-declared `U_paid=981104` and
+the derived reserve arithmetic are not transitively source-revalidated by
+this packet. The honest outputs remain
+`U_remaining=U_positive=U_sourcecover=U_K3=U_K3_allocation=signed_slack=null`;
+the joint reserve `274980728110413983` is not an allocation or a newly banked
+value. Ledger movement is zero; K3 and the KoalaBear row remain open.
+
+The open-PR audit is a non-load-bearing temporal snapshot. At audit time,
+#1130 and draft #1132 supplied parameter-side and actual-component interfaces
+but not the active same-record bridge; #1152 was the dependency; #1153--#1155
+were local replay/route-cut layers; and draft #1156 concerned a different MCA
+exception router. The durable proof claim is only that the packet's pinned
+dependency set contains no declared-slice selector/reconstruction/projection
+theorem.
+
+Fresh post-repair proof and certificate/custody reviews were independently
+GREEN and PR-ready for success condition B. The certificate reviewer also
+rejected 41 additional targeted promotion mutations beyond the shipped 32.
+Neither review promoted the open K3 theorem, the stale tangent payment, or
+any null ledger output.
