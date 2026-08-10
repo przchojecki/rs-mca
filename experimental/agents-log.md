@@ -3682,3 +3682,98 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-08-09 — [K3] living progress branch opened (k3-433-progress-export)
+
+Four unit certificates: c112 source-line coverage COMPLETE (incl.
+the M01-R11/M02-R11 Singular-replay discharge at PR #1144's pinned
+commit); 433-1b cell 4 CLOSED (105/105 slices); 433-1b cells 12-13
+CLOSED; 433-1b universal structure (105 -> 60 orbit quotient +
+transports). 204 theorem nodes pinned by path + verifier sha256 in
+AllenGrahamHart/rs-mca-prize-dag @ 594aaa985; all verifiers
+coordinator-replayed. Ledger movement 0; K3 and the KoalaBear row
+remain open (cell 9 in flight; [5,8], [11], cell-3 xi4 residual).
+Incremental pushes will land here as cells close.
+
+## 2026-08-09 — [K3] 433-1b coordinate-positive cell 9 closed
+
+Added `kb-mca-v4-433-1b-cell9-close-v1`: 105/105 labeled slices paid
+by 30 endpoint labels and 75 active labels in 24 exact orbits. The packet
+pins 28 PROVED theorem nodes and verifier digests in
+AllenGrahamHart/rs-mca-prize-dag @ 68ac9e383; the executable aggregate
+reconstructs the universal router and checks the 17-owner partition. All 56
+node verifier and audit scripts were coordinator-replayed. Ledger movement 0;
+K3 and the KoalaBear row remain open ([5,8], [11], cell-3 xi4 residual).
+
+## 2026-08-09 — [K3] 433-1b source role cell 3 re-pinned complete
+
+Added `kb-mca-v4-433-1b-cell3-close-v1`. The common rank-drop branch is
+empty in all four source-sign rows, and a disjoint supplier census pays all
+`7 * 15 * 4 * 4 = 1680` principal systems, including all 240 `xi4` systems
+by exact outside-role transport. The packet pins 28 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ a001708ae. Modal replay
+`ap-jYkVRdvSHQuofSrzIJzAG1` passed all 28 primary verifiers and 28 audits.
+Ledger movement 0; K3 and the KoalaBear row remain open only on role orbits
+`[5,8]` and `[11]` within this exported workboard.
+
+## 2026-08-09 — [K3] 433-1b common-role orbit [5,8] closed
+
+Added `kb-mca-v4-433-1b-cells5-8-close-v1`. Cell 5 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over 24 quotient orbits,
+and all 30 endpoint labels are excluded because eight degree-16/degree-11
+eliminants have no deployed base-field root. An exact B/C transport closes
+cell 8 over all 1,680 signed principal systems, with the global rank-drop
+theorem paying the complement. The packet pins 23 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 3fa298743024. Ledger movement 0; K3 and
+the KoalaBear row remain open only on role orbit `[11]` within this exported
+workboard.
+
+## 2026-08-10 — [K3] 433-1b source-role cell 11 closed
+
+Added `kb-mca-v4-433-1b-cell11-close-v1`. Cell 11 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over all 24 quotient
+orbits, and the separate endpoint theorem pays the remaining 30 labels. The
+final pairings 7, 8, and 11 have complete direct equation and leading-boundary
+replays; a shared FLINT packet reconstructs 61 profiles and 302 roots through
+degree 5192. The packet pins 22 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 7824a826a283. All 44 cell-11 verifier and
+hostile-audit scripts passed. The exported raw-label workboard now has no
+open role orbit. Ledger movement remains 0; K3 and the KoalaBear row remain
+open on labels-to-distinct-affine-slopes conversion, the genuine-pencil
+ledger, and fresh independent proof review.
+
+## 2026-08-10 — [K3] complete raw 433-1b to O0a workboard exclusion
+
+Added `kb-mca-v4-433-1b-raw-workboard-close-v1`. An explicit B/C
+duplicate-role transport closes the previously implicit cell-10 step from
+cell 9 over all 105 labels and 1,680 signed principal systems. Nine disjoint
+owner packets now cover all 15 role cells, 1,575 labels, and 25,200 signed
+principal systems; the global rank-drop theorem excludes the complement.
+The packet pins three aggregate PROVED nodes and hostile audits at
+AllenGrahamHart/rs-mca-prize-dag @ `8df090339e3e`. Ledger movement remains
+0. K3 remains open on eleven other positive routes, orientation/source-cover
+assembly, exact distinct-slope allocation, and independent review.
+
+## 2026-08-10 — [K3] repeated-BC O0b cell-11 off-guard route cut
+
+Added `kb-mca-v4-433-1b-o0b-cell11-offguard-v1`. Across eight source
+towers, three missing representatives, two outside signs, and 15 residual
+matchings, all 720 exact paired-product systems are empty at every deployed
+nonzero-guard source value. Nested norms leave 1,584 exceptional-root
+occurrences over 126 base values; exact all-pair replay excludes all 1,584.
+The packet pins two PROVED nodes and 19 source artifacts at
+AllenGrahamHart/rs-mca-prize-dag @ `81f218e38285`. Ledger movement remains
+0. Missing `BE/CF`, guard and selected-cofactor boundaries, cell 14,
+orientation, allocation, independent review, K3, and the KoalaBear row remain
+open.
+
+## 2026-08-10 — [K3] repeated-BC O0b cell-11 colored off-guard cut
+
+Added `kb-mca-v4-433-1b-o0b-cell11-colored-offguard-v1`.  The missing
+`BE/CF` endpoint product fixes the colored endpoint, and its reconstructed
+squared sum gives one necessary source-algebra consistency identity.  All 16
+exact norms are units on the deployed rational open: their only base-field
+roots are `x=0,1` for `BC-` and `x=0,-1` for `BC+`, all registered guards.
+The packet pins one PROVED node and four evidence files at
+AllenGrahamHart/rs-mca-prize-dag @ `96868562394e`.  Ledger movement is 0;
+finite guard/cofactor fibers and all later K3 obligations remain open.

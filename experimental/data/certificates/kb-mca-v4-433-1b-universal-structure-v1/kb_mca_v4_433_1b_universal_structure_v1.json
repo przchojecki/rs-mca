@@ -1,0 +1,293 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "nodes": [
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell0_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell0_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "6a6fdd54a13f08eb2b4b7f605331dbbd3c5ad72ba51948ff2646417f71342a2e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_fixed_a_rankone_allmixed_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_fixed_a_rankone_allmixed_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "d39a34c7fc3043d83be44a9e1babd9dbe237c9671842ac0faecf464331ad2760"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_fixed_a_rankone_chain_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_fixed_a_rankone_chain_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "473a02cd5ef8d9486001e60475ef6afc4404c5088d7e47a3cfa316b3080ae6a3"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_linear_pair_outside_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_linear_pair_outside_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "59834142a5b5a9679811f7adc61fec999715c15746d8d41a220648db2d659730"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_quadratic_curve_structure",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_quadratic_curve_structure",
+      "status": "PROVED",
+      "verify_sha256": "59e27bd3e4b77fa8e6cb6915336cc78924bcac97113d07673675befb4af47b98"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_rankone_target_projection_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell14_rankone_target_projection_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "8d229e7398ce4677c8f1ccc77a67c2fab2d990212b7480a2655541eeeba780f6"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_compact_curve_kernel",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_compact_curve_kernel",
+      "status": "PROVED",
+      "verify_sha256": "4a405e7d9a5a865bfab7cfea1d6cfb25ac8b21a1b6a042abce35c4c61071c587"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "b2083fd9336497c67b8394cb79c7a6a6d24e7fc3a15d84203dcb092c2dedf896"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_firstpair_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_firstpair_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "ff6406def3f0f5b0af18faa37849261ed49681818ebe08ddf12d8bdb633b348e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing10_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing10_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "dc9564674f036df3a7e4cfd74720772678ff65553b1b4a68e2ca6242a6840184"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing11_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing11_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "1cba23ad8b691fd2a2f3f16863590db84d1be1c40a4e639c4eff6bfdc822a9c9"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing12_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing12_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "ce7e272cd1934d7824ef4e8d45caee4efa437c4e69c7b1d519795241ed9ff672"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing13_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing13_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "eef6ecb077c9eb15ceee43b5f53ce8fb5ca701e8086f64ce325476789ca9a932"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing14_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing14_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "6c6309251cf48433494bf7217d42b075d1bbd1b8b3a52f54b9e54f27f1987497"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing3_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing3_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "37e44a5cbb019a457abcda562fb5b5437e0f012029bd2a7371af094c58736b00"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing4_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing4_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "29c30017791f0894d84468f311817a7c579a322f8d5d88b692a3ba1e892e4046"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing5_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing5_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "67d8d2262782e7c788654c858cb244bc3ec7f241329b1df9fe1e5f0bf4aeb375"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing6_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing6_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "d9b0a83a891298c542a92e707bb008ff181b1a576423ef73df249958f92f6f52"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing7_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing7_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "262d73fd1caf841ec126919c68ff9c5453bdda8b57476a365395796fc5a666d0"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing8_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing8_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e3bd1d1c5909e5f6ae5764c615c77d0d276424a641789b788522c0e90c0c10e2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing9_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_de_pairing9_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e4c933af5299ad8da55094c09c4f8da884e287f10fe0fdb1a620044c5943a8f7"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_global_quadratic_quotient",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_global_quadratic_quotient",
+      "status": "PROVED",
+      "verify_sha256": "26d5191073a26b42c928a41b2777deb1bfa29d6530997681b9c6c7a9338f6306"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi0_pairing0_outside_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi0_pairing0_outside_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e557d8f781f01165f5ce22e4683ceee99c9f9b1b332c183def345830d6c8c40c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi1_pairing0_parallel_edge_transport",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi1_pairing0_parallel_edge_transport",
+      "status": "PROVED",
+      "verify_sha256": "001daeca20cbfd190eb8756c87c8df750bc965b32ad3d091850760d10cb31725"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi2_pairing0_outside_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi2_pairing0_outside_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "ba34a67c622c8432ae3ab9bfe14a9db70ad25b58694759e6d17eaeeb87e42fe7"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_fully_mixed_pairings11_14_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_fully_mixed_pairings11_14_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "57ade72a6cc7ee84266c5084a06f0b0b43ce5d59850220afbcec33f8326eb50b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_fully_mixed_pairings7_8_10_13_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_fully_mixed_pairings7_8_10_13_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "aa2496675f46ea40a1e18d912ae2e85ff1e00f89ad8d7dd14a0aaafc38ee90fc"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_opposite_de_pairings3_6_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_opposite_de_pairings3_6_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "cd7266041a04ac6d63d57ab49833a090ed1430d7a02e847af3164766bf953a27"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_opposite_de_pairings4_5_9_12_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_opposite_de_pairings4_5_9_12_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "51c34ab777f5c4c01959009be8aa0a397000eb689c91c6a887d073cab416ca9a"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_pairing0_reciprocal_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_pairing0_reciprocal_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "f94fb62c507b2b6c7f677afc4f4d884e24089ac4d5cbb2f38e97f325a3bc6695"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_pairings1_2_reciprocal_linear_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi3_pairings1_2_reciprocal_linear_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "988cd3d2b629833dada924904ef9f3e395357f72d6ddd58e22f98b56a26e4696"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi4_xi3_outside_role_transport_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi4_xi3_outside_role_transport_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "978ba7d3d558d17ab3a9268a748cec5c586612e65310586ca262fc9911e6ec14"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi5_finite_source_pairing_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi5_finite_source_pairing_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0f2dfb50e35b72ad42e489a7d4158f35f13b0c8a5916499c32e74616ab40d887"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi6_endpoint_compatibility_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell3_xi6_endpoint_compatibility_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "c090dace0db787c58abea953123562382564bbd44fe52a3958a66e9c2a361f17"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cells1_2_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cells1_2_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "ee26b39791c03035077e50ebc5c5340e0bd67ee961f48260093763a5aaa7829f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cells3_6_duplicate_role_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cells3_6_duplicate_role_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "fde9888facd44ab5c159ad05522802c55d1cdf8d8b222318ccc9de5cca55b2bc"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cells4_7_duplicate_role_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cells4_7_duplicate_role_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "a0aec0d41db4c8385494da8d962b5f8916b2e2de98e918221e38f2166d64a69e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_common_vieta_minor_compiler",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_common_vieta_minor_compiler",
+      "status": "PROVED",
+      "verify_sha256": "40019f9741abef44822c264d11a34c0ea58626e559d671327c650f149c5ab92b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_o0a_signed_edge_atlas",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0a_signed_edge_atlas",
+      "status": "PROVED",
+      "verify_sha256": "f50bbddd1744a6c36e2aaed95741aec9a0fe16e7658a1b08298173cdbea06b7a"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_product_rankdrop_common_exception_classifier",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_product_rankdrop_common_exception_classifier",
+      "status": "PROVED",
+      "verify_sha256": "c2f52b32fa0dfa903f58b6d0492d1055b13f7b9567d5373093e054c3386ed827"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_product_rankdrop_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_product_rankdrop_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "5e19f405591de9c24d7c8f7c9812096aa157c70797f33a7c971c057ee53d4f72"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_product_rankdrop_deployed_rational_classifier",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_product_rankdrop_deployed_rational_classifier",
+      "status": "PROVED",
+      "verify_sha256": "79b2c5333030b1a4a70aa0e1af559a5a50f679a2e537c043875f786276a60240"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_universal_generic_outside_label_orbit_quotient",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_universal_generic_outside_label_orbit_quotient",
+      "status": "PROVED",
+      "verify_sha256": "cd49f5cd6b74e733908eac92149fc8e3aafbbd4a846fcf0428d2089f1b84e7c2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_universal_xi4_xi3_outside_role_transport",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_universal_xi4_xi3_outside_role_transport",
+      "status": "PROVED",
+      "verify_sha256": "22c572696978f790f2fdafcb2a719713bc0e118cb4cb5c466880ff251e4c7b89"
+    }
+  ],
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Workboard remainder open: cell 9 (in flight), the [5,8] and [11] common-role orbits, the cell-3 xi4 residual.",
+    "Fresh independent proof review remains required before promotion to a GREEN banked result."
+  ],
+  "provenance": {
+    "commit": "594aaa985568cd02991673532d89419e8224d6da",
+    "node_count": 44,
+    "replay": "from the repo root: tools/ramguard local -- python3 <node path>/verify.py (RAMGUARD_TIMEOUT=2400 for the two cell-4 pairing-7/8 heavy ledgers)",
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-433-1b-universal-structure-v1",
+  "statement": {
+    "claims": {
+      "quotient": "the 105 labeled slices form 60 orbits under the parallel-DE matching exchange; universal xi4/xi3 transport; universal positive label quotient; common Vieta minors, product-base/common-kernel compilers, first-pair theorems"
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_UNIT_OTHER_K3_ITEMS_OPEN",
+    "title": "Universal structure of the positive 433-1b workboard: quotients and transports",
+    "workboard_item": "K3"
+  }
+}
