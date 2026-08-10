@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - FPC5 shifted-Johnson and first-layout payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md`; added
+  `experimental/scripts/verify_list_fpc5_shifted_johnson_v1.py`; updated this
+  log entry.
+- **Status:** PROVED / PARTIAL PAYMENT / EXACT ROUTE CUT. No complete FPC5
+  source payment or Prize endpoint is claimed.
+- **What is being added:** Haboeck's proved quadratic MCA bound and `thm:A`
+  give an exact adjacent-dimension list cap for the FPC5 GRS shells, retaining
+  `binom(b,u)`. Canonical first-layout domination then pays all source layouts
+  and touched sets for selected exact cells.
+- **How it is useful:** At `n=8192`, the unique shifted cells at the first live
+  scales of rates `1/2`, `1/4`, and `1/8` receive global upper-field
+  payments. At rate `1/16`, `M=61`, defects `248` and `292` are jointly paid
+  for `q>=2^254`, while defects `286,...,291` provably exceed this exact
+  aggregate bound below `2^256`.
+- **What to do next:** Use a stronger guarded split-pencil or joint-background
+  census for the six failed cells and the region `a^2<=N(K-1)`; do not repeat
+  Haboeck scans there or drop either binomial multiplier.
+
 ### 2026-08-10 - Fixed-background GRS boundary payment
 
 - **Agent/model:** Codex.

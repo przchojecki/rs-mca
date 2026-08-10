@@ -5,17 +5,17 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1; every primitive split locator is exactly a weight-d vector in one GRS syndrome coset; summing fixed-background singleton or Johnson bounds pays bounded background polarity
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1; every primitive split locator is exactly a weight-d vector in one GRS syndrome coset; summing fixed-background singleton or Johnson bounds pays bounded background polarity; Haboeck plus the proved deep-point conversion bounds the adjacent-dimension shifted-Johnson shell with the exact background factor, and canonical first-layout domination compiles selected cells across all source layouts and touched sets
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, exact fixed-background codimension/incidence normalization, an exact GRS syndrome-shell bijection, a per-chart singleton criterion, and a binomial-times-Johnson bounded-polarity payment; no middle-polarity guarded aggregate bound, deployed-row bound, or endpoint bound
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, exact fixed-background codimension/incidence normalization, an exact GRS syndrome-shell bijection, a per-chart singleton criterion, a binomial-times-Johnson bounded-polarity payment, an exact shifted-Johnson list cap, and a canonical first-layout/touched-set compiler for selected cells; no complete middle-polarity guarded aggregate, deployed-row endpoint, or Prize close
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
-falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence, or a nonempty fixed-background cell violating the ell-1 codimension or incidence identity
-replay: analytic proof; no computational claim
+falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence, a nonempty fixed-background cell violating the ell-1 codimension or incidence identity, a shifted shell exceeding the printed deep-point ceiling, or a canonical aggregate exceeding its exact touched/background/source charge
+replay: python3 experimental/scripts/verify_list_fpc5_shifted_johnson_v1.py for the official boundary arithmetic; analytic proofs for the structural theorems
 ---
 
 # General t-petal joint anchor owner
@@ -689,16 +689,137 @@ gives `|F|<=sum_R|F_R|`, and there are `binom(b,u)` choices. Finally,
 This payment is pinned to `AllenGrahamHart/rs-mca-prize-dag` commit
 `2af7246eb`, node `l1_fpc5_fixed_background_grs_shell_payment`.
 
-## 13. Nonclaim
+## 13. Adjacent-dimension shifted-Johnson shell cap
+
+Fix one source/touched/degree cell and retain
+
+```text
+N=k-1,       h=t ell,       u=d-(t-1)ell,       a=N-d.
+```
+
+Define the effective syndrome endpoint `H`, chart count `W`, and adjacent
+base-code dimension `K` by
+
+```text
+u<0:          H=h,           W=1,
+0<=u<=b:      H=d+ell,       W=binom(b,u),
+K=N-H.                                                (13.1)
+```
+
+Assume `K>=2`. For `m>=3`, put
+
+```text
+Q_m=floor sqrt((2m+1)^14 N^7
+               /(384^2 (K-1)^3)).                    (13.2)
+```
+
+### Theorem 13.1
+
+If
+
+```text
+(2m a)^2 >= (2m+1)^2 N(K-1),
+K Q_m<q-N,                                            (13.3)
+```
+
+then the complete fixed cell has at most
+
+```text
+W L_m(q),
+L_m(q)=ceil(Q_m(q-N)/(q-N-KQ_m))                     (13.4)
+```
+
+contributors.
+
+#### Proof
+
+In the `u<0` chart, Theorem 11.1 has `D=h-1`, hence target code
+`C^+=RS[F,Core,K+1]`. For each fixed required background set in the other
+branch, `D=d+ell-1` and the same identity holds; summing those charts costs
+the exact factor `W=binom(b,u)`.
+
+Apply Haboeck's proved quadratic MCA theorem to the adjacent code
+`C=RS[F,Core,K]`. Its reduced degree rate is `(K-1)/N`, and the first
+inequality in `(13.3)` says that the shell agreement reaches its printed
+radius. MCA monotonicity and `epsilon_ca<=epsilon_mca` give a CA bad-slope
+numerator at most `Q_m` at radius `d/N`.
+
+The integer-radius hypothesis of `thm:A` is automatic:
+
+```text
+d<=H-1=N-K-1.
+```
+
+Using `eta=KQ_m/(q-N)` in `thm:A` gives exactly `(13.4)`. QED.
+
+This is the one-code-dimension strip
+
+```text
+N(K-1)<a^2<=NK.                                      (13.5)
+```
+
+The method has no finite `m` when `a^2<=N(K-1)`. It retains the full
+background-choice factor and therefore does not mistake a per-chart bound
+for a cell payment.
+
+Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit `22978e3ae`,
+nodes `rs_deep_point_list_to_ca_conversion` and
+`l1_fpc5_shifted_johnson_grs_shell_cap`.
+
+## 14. Canonical first-layout compiler
+
+Let `Delta` be a set of exact shifted cells at one fixed `(M,t)`. Cell `d`
+may have its own `W_d`, `K_d`, `m_d`, and `L_d(q)` from Theorem 13.1.
+
+### Theorem 14.1
+
+Across every admissible maximal source layout, the complete canonical
+first-owner class has size at most
+
+```text
+binom(M,t) sum_(d in Delta) W_d L_d(q)+M.             (14.1)
+```
+
+#### Proof
+
+Choose the first admissible maximal source layout after earlier global
+owners. General first-layout domination carries every selected non-anchor in
+this layout and charges every later-layout member to one of its `M` planted
+anchors. In the first layout, touched subsets and exact defects are disjoint
+reconstructed cells. There are `binom(M,t)` touched subsets, and Theorem 13.1
+bounds each fixed touched/defect cell. Sum these bounds and add the anchors
+once. QED.
+
+At `n=8192`, exact integer replay gives the following sufficient global
+field gates:
+
+```text
+rate   M   shifted cells (t,d,u)                    sufficient q
+1/2    5   (4,2264,-193)                            2^228
+1/4   13   (3,911,-33)                              2^233
+1/8   29   (3,486,-8)                               2^220
+1/16  61   (3,248,-2),(3,292,42)                    2^254
+```
+
+For rate `1/16`, `M=61`, each of the other six shifted/nonpositive-Johnson
+defects `d=286,...,291` exceeds `floor(q/2^128)` after the exact
+`binom(61,3)` multiplier even at `q=2^256-1`. Four of those six pass at
+fixed-cell level, so this is a necessary outer-composition audit rather than
+a restatement of Theorem 13.1.
+
+Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit `b0852b67c`,
+node `l1_fpc5_shifted_johnson_first_layout_payment`.
+
+## 15. Nonclaim
 
 The theorem types the joint owner and all remaining background equations and
 pays each fixed guarded owner. The dual-domain reduction neither counts its
 pencils nor supplies a converse from arbitrary coefficient pairs to guarded
 FPC5 candidates. The MDS formula counts the complete unguarded chart, not
 the guarded contributors. The Cauchy, Hankel, fixed-background, and GRS-shell
-formulations are exact but supply no middle-polarity upper bound below the
-injective or positive-`J_fix` ranges. The packet does not
-aggregate the realized guarded owners or fixed background sets,
-supply first-match chronology, pay the complete source cell, deploy a row,
-or move an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be
-exponential.
+formulations are exact. Theorems 13.1 and 14.1 add a field-dependent payment
+only in the adjacent-code strip and only for selected cells passing the
+printed aggregate test. They do not supply a complete middle-polarity upper
+bound, aggregate the realized guarded owners, pay lower field slices, deploy
+a Prize endpoint, or touch the dominant region `a^2<=N(K-1)`. Summing `(5.2)`
+over all divisors of `P_0` can still be exponential.
