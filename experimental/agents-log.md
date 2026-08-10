@@ -3741,3 +3741,15 @@ hostile-audit scripts passed. The exported raw-label workboard now has no
 open role orbit. Ledger movement remains 0; K3 and the KoalaBear row remain
 open on labels-to-distinct-affine-slopes conversion, the genuine-pencil
 ledger, and fresh independent proof review.
+
+## 2026-08-10 — [K3] complete raw 433-1b to O0a workboard exclusion
+
+Added `kb-mca-v4-433-1b-raw-workboard-close-v1`. An explicit B/C
+duplicate-role transport closes the previously implicit cell-10 step from
+cell 9 over all 105 labels and 1,680 signed principal systems. Nine disjoint
+owner packets now cover all 15 role cells, 1,575 labels, and 25,200 signed
+principal systems; the global rank-drop theorem excludes the complement.
+The packet pins three aggregate PROVED nodes and hostile audits at
+AllenGrahamHart/rs-mca-prize-dag @ `8df090339e3e`. Ledger movement remains
+0. K3 remains open on eleven other positive routes, orientation/source-cover
+assembly, exact distinct-slope allocation, and independent review.
