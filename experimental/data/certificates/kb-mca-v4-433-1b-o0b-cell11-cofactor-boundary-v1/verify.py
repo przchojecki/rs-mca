@@ -33,31 +33,39 @@ def digest(value):
 
 def validate_source(cert, source_root):
     commit = cert["provenance"]["commit"]
-    node = cert["node"]
     checked = 0
-    for key, name in (
-        ("node_manifest_sha256", "node.json"),
-        ("verify_sha256", "verify.py"),
-        ("verify_audit_sha256", "verify_audit.py"),
-    ):
-        path = f"{node['path']}/{name}"
-        require(digest(blob(source_root, commit, path)) == node[key],
-                f"digest mismatch: {path}")
-        checked += 1
-    manifest = json.loads(blob(
-        source_root, commit, f"{node['path']}/node.json"
-    ))
-    require(manifest["node"]["id"] == node["id"], "node id")
-    require(manifest["node"]["status"] == "PROVED", "node status")
+    for node in [cert["node"], *cert["dependencies"]]:
+        for key, name in (
+            ("node_manifest_sha256", "node.json"),
+            ("verify_sha256", "verify.py"),
+            ("verify_audit_sha256", "verify_audit.py"),
+        ):
+            path = f"{node['path']}/{name}"
+            require(digest(blob(source_root, commit, path)) == node[key],
+                    f"digest mismatch: {path}")
+            checked += 1
+        manifest = json.loads(blob(
+            source_root, commit, f"{node['path']}/node.json"
+        ))
+        require(manifest["node"]["id"] == node["id"], "node id")
+        require(manifest["node"]["status"] == "PROVED", "node status")
 
     result = None
+    chart = None
     for path, expected in cert["evidence_files"].items():
         raw = blob(source_root, commit, path)
         require(digest(raw) == expected, f"digest mismatch: {path}")
         checked += 1
         if path.endswith("selected_cofactor_boundary_result.json"):
             result = json.loads(raw)
+        if path.endswith("cell11_chart_coverage_result.json"):
+            chart = json.loads(raw)
     require(result is not None, "result payload")
+    require(chart is not None, "chart payload")
+    require(chart["status_counts"] == {"UNIT": 8}, "chart status")
+    require(len(chart["rows"]) == 8, "chart row census")
+    require(all(row["one_remainder"] == "0" and row["basis_size"] == 1
+                for row in chart["rows"]), "chart unit ideals")
     require(result["case_count"] == len(result["rows"]) == 8,
             "tower census")
     require(result["status_counts"]
@@ -106,16 +114,17 @@ def main():
     require(not cert["K3_closed"] and not cert["KoalaBear_row_closed"],
             "scope flags")
     require(cert["statement"]["ledger_movement"] == 0, "ledger movement")
-    require(cert["provenance"]["node_count"] == 1, "node count")
+    require(len(cert["dependencies"]) == 1, "dependency count")
+    require(cert["provenance"]["node_count"] == 2, "node count")
     require(len(cert["evidence_files"])
-            == cert["provenance"]["evidence_file_count"] == 5,
+            == cert["provenance"]["evidence_file_count"] == 7,
             "evidence count")
     checked = 0
     if args.source_root is not None:
         checked = validate_source(cert, args.source_root)
     print(
         "O0B_CELL11_COFACTOR_BOUNDARY_CERT_PASS "
-        f"blobs={checked} towers=8 base_roots=8 deployed_roots=0"
+        f"blobs={checked} towers=8 base_roots=8 guarded_points=0"
     )
 
 
