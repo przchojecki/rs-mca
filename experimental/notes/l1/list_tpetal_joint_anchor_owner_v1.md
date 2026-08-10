@@ -5,16 +5,16 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, and an exact owner-free weighted Cauchy divisor formulation; no guarded owner-aggregate bound, deployed-row bound, or endpoint bound
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, and its full-rank rational Pade-Hankel kernel; no guarded owner-aggregate bound, deployed-row bound, or endpoint bound
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
-falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, or a CRT pair violating the printed moment, primitive, or background Cauchy identities
+falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, or a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence
 replay: analytic proof; no computational claim
 ---
 
@@ -435,14 +435,89 @@ Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
 `a530e44835630165f92e01d91aa0b8e57f0ae0d7`, node
 `l1_fpc5_tpetal_owner_free_cauchy_divisor_chart`.
 
-## 9. Nonclaim
+## 9. Full-rank rational Pade-Hankel kernel
+
+Define the weighted moment sequence
+
+```text
+mu_s=sum_(z in T)c(z)z^s/Lambda'(z),       s>=0,
+c=h-d-1.
+```
+
+### Theorem 9.1
+
+If `G=sum_(a=0)^d g_a X^a`, the complete low-numerator system `(8.3)` is
+
+```text
+H_mu g=0,
+H_mu=(mu_(j+a))_(0<=j<c,0<=a<=d).                    (9.1)
+```
+
+If the pair slice contains its saturated primitive monic anchor, then
+
+```text
+rank H_mu=c,       dim ker H_mu=2d+2-h.              (9.2)
+```
+
+The moment sequence is generated canonically at infinity by
+
+```text
+chi(X)/Lambda(X)=sum_(s>=0)mu_s X^(-s-1).             (9.3)
+```
+
+Writing
+
+```text
+Lambda=X^h+lambda_(h-1)X^(h-1)+...+lambda_0,
+```
+
+it obeys
+
+```text
+mu_(s+h)+lambda_(h-1)mu_(s+h-1)+...+lambda_0 mu_s=0
+for every s>=0.                                      (9.4)
+```
+
+Thus the split candidates are exactly the monic degree-`d` divisors of
+`L_Core` in one full-rank rational Pade-Hankel kernel. For a selected root
+`x`, writing `G/(X-x)=sum q_aX^a`, the primitive guard is the punctured
+first-row pairing
+
+```text
+sum_a mu_a q_a!=0.                                   (9.5)
+```
+
+The background Cauchy tests remain unchanged.
+
+#### Proof
+
+Linearity gives
+
+```text
+M_j(G)=sum_a g_a mu_(j+a),
+```
+
+which is `(9.1)`. The incoming slice-dimension theorem gives kernel
+dimension `2d+2-h`, and rank-nullity proves `(9.2)`. Lagrange interpolation
+of `chi/Lambda` proves `(9.3)`; multiplying by `Lambda` and comparing every
+negative-power coefficient proves `(9.4)`. The divisor statement and
+`(9.5)` are `(8.3)--(8.4)` in coefficient form. QED.
+
+This identifies the structured kernel class but proves no split-divisor
+flatness or base-field-normalized census.
+
+Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
+`a9ffb4521cd52953bb901296fe5bb8a766a4116e`, node
+`l1_fpc5_tpetal_cauchy_hankel_kernel`.
+
+## 10. Nonclaim
 
 The theorem types the joint owner and all remaining background equations and
 pays each fixed guarded owner. The dual-domain reduction neither counts its
 pencils nor supplies a converse from arbitrary coefficient pairs to guarded
 FPC5 candidates. The MDS formula counts the complete unguarded chart, not
-the guarded contributors. The Cauchy formulation is exact but supplies no
-upper bound. The packet does not aggregate the realized guarded owners,
+the guarded contributors. The Cauchy and Hankel formulations are exact but
+supply no upper bound. The packet does not aggregate the realized guarded owners,
 supply first-match chronology, pay the complete source cell, deploy a row,
 or move an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be
 exponential.
