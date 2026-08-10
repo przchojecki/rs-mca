@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - General t-petal joint anchor owner
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No split-point, aggregate owner,
+  deployed-row, or endpoint bound is supplied.
+- **What is being added:** The single gcd `gcd(H,F L_(R_0))` recovers both
+  common defect roots and common background-agreement roots relative to an
+  exact anchor. Owner-containment strata are exactly `H=QK` with printed
+  dimension, and every other background root is an affine equation in `H`.
+- **How it is useful:** It replaces two potentially independent owner ledgers
+  by one determinant-coordinate stratum and exposes the complete background
+  guard in the primitive remainder chart.
+- **What to do next:** Bound split coordinates inside the joint-owner strata
+  and aggregate realized owners with source-bound first-match chronology.
+  The proof is analytic and makes no computational claim.
+
 ### 2026-08-10 - General t-petal anchor Pade chart
 
 - **Agent/model:** Codex.
