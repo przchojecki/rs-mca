@@ -5,16 +5,16 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, and a two-generator coefficient parameterization of every fixed owner chamber; no owner-aggregate, deployed-row, or endpoint bound
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, and the exact ambient owner-stratum enumerator; no guarded owner-aggregate, deployed-row, or endpoint bound
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
-falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, or a candidate violating the owner-cancelled determinant or two-generator coordinate
+falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, or an ambient exact-owner stratum differing from the printed MDS count
 replay: analytic proof; no computational claim
 ---
 
@@ -265,12 +265,101 @@ Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
 `8d0d19b8860143ad1a33aeee467a18f07e37baf4`, node
 `l1_fpc5_tpetal_joint_owner_split_pencil`.
 
-## 7. Nonclaim
+## 7. Exact ambient MDS owner census
+
+Put
+
+```text
+p=deg P_0=d+|R_0|,       Q_f=|mathbb F|,
+r=2d-deg Lambda=e-1.                                  (7.1)
+```
+
+The saturated-cell inequality `deg Lambda>d` gives `r<d<=p`.
+
+### Theorem 7.1
+
+On the `p` roots of `P_0`, the combined anchor defect/background failure
+vector is a nonzero diagonal rescaling of the evaluation vector of `H`.
+Therefore the complete monic chart has exactly the support strata of the
+length-`p`, dimension-`r+1` generalized Reed--Solomon code.
+
+For any fixed monic divisor `Q|P_0` of degree `q<=r`, put
+
+```text
+s=r-q,       m=p-q.
+```
+
+The number of nonzero unguarded chart points with exact owner `Q` is
+
+```text
+N_Q(m,s)
+ =sum_(j=0)^s (-1)^j binom(m,j)(Q_f^(s+1-j)-1).       (7.2)
+```
+
+There are `binom(p,q)` possible degree-`q` owners. At top ownership `q=r`,
+every degree-`r` divisor occurs with exactly `Q_f-1` chart points, so the
+complete top-owner ambient chart has
+
+```text
+binom(p,r)(Q_f-1)                                      (7.3)
+```
+
+non-anchor points.
+
+#### Proof
+
+At a root `x` of `F`, the determinant identity gives
+
+```text
+G_H(x)=-Lambda(x)H(x)/W(x).
+```
+
+At `y in R_0`, it gives
+
+```text
+B_H(y)=Lambda(y)H(y)/F(y).
+```
+
+All scaling factors are nonzero. Evaluation of degree-at-most-`r`
+polynomials on these `p>r` points is therefore an injective generalized
+Reed--Solomon code, and the anchor-coordinate theorem identifies it with the
+complete monic chart.
+
+For fixed `Q`, exact ownership is equivalent to
+
+```text
+H=QK,       deg K<=s,
+K(z)!=0 for every root z of P_0/Q.                    (7.4)
+```
+
+Inclusion-exclusion over the `m` evaluation hyperplanes `K(z)=0` gives
+`(7.2)`: a fixed `j<=s` set leaves `Q_f^(s+1-j)` polynomials, while every
+intersection of more than `s` hyperplanes contains only zero. The binomial
+identity for the complete alternating sum absorbs that zero-polynomial
+tail. Finally `P_0` has `binom(p,q)` degree-`q` divisors, and for `q=r` the
+residual `K` is any nonzero scalar. QED.
+
+### Route verdict
+
+This upgrades the small-cell owner-coalescence warning to an exact ambient
+no-go. Owner dimension, MDS support counting, or other unguarded linear
+arguments realize every top divisor rather than suppressing them. Any
+successful aggregate theorem must retain simultaneous splitting of the
+reconstructed locator together with the primitive, background, and
+first-owner guards.
+
+Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
+`058febd07e71302be851d2f13e62cc55a8e689ba`, node
+`l1_fpc5_tpetal_joint_owner_ambient_mds_census`.
+
+## 8. Nonclaim
 
 The theorem types the joint owner and all remaining background equations and
-pays each fixed owner. The new reduction neither counts the dual-domain
+pays each fixed guarded owner. The dual-domain reduction neither counts its
 pencils nor supplies a converse from arbitrary coefficient pairs to guarded
-FPC5 candidates. It does not aggregate the realized owners, supply
+FPC5 candidates. The MDS formula counts the complete unguarded chart, not
+the guarded contributors. The packet does not aggregate the realized
+guarded owners, supply
 first-match chronology, pay the complete source cell, deploy a row, or move
 an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be
 exponential.
