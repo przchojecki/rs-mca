@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - General t-petal anchor Pade chart
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_tpetal_anchor_pade_chart_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No split-point, aggregate owner,
+  deployed-row, or endpoint bound is supplied.
+- **What is being added:** Every determinant coordinate in the general-`t`
+  monic anchor chart has the explicit remainder inverse
+  `G_H=F+rem_F(-Lambda H W^(-1))`, with a unique reconstructed numerator and
+  an exact root-local primitive predicate, including the derivative guard at
+  roots common to `F` and `G_H`.
+- **How it is useful:** It converts arbitrary-`t` full-petal cells from an
+  abstract affine split-flat problem to the same primitive
+  determinant/remainder language used by the three-petal LS6 route. The live
+  object is now the split-root maximum for a printed remainder graph.
+- **What to do next:** Prove a dimension-uniform split-root or first-owner
+  bound for that graph while retaining the primitive and exact guards. The
+  proof is analytic and makes no computational claim.
+
 ### 2026-08-10 - General t-petal anchor coordinate
 
 - **Agent/model:** Codex.
