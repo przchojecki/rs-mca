@@ -124,10 +124,27 @@ would be invalid. A completion must force a coherent owner/global affine
 line or assign the resulting positive-dimensional component to `(S)` with
 the same received-line owner retained.
 
+There is a second, subtler non-implication. The shared equation
+`F_x(gamma,tau)=0` records equality with the rational owner line, not
+membership of `x` in the selected agreement support. The atom identity is
+
+```text
+Q_tau h + c Lambda = A_tau + gamma B_tau,
+```
+
+and hence, even at `Q_tau(x)!=0`, the clone equation yields
+`Q_tau(x)(h-r_gamma)(x)=-c Lambda(x)`. It gives an actual agreement only
+when the selected locator vanishes as well. Thus the automatic `c>=m`
+curve zeros cannot be treated as a common support, and the varying
+denominator-root sets do not inject the clone slopes into coordinates. Any
+large-class continuation must retain the locators or construct an explicit
+same-owner `(S)`/`(A)` route from the coefficient proportionality.
+
 ## Nonclaims
 
 - No payment of identically-zero, vertical, or horizontal branches.
 - No payment or absorption of the unique class with `c>=m`.
+- No conversion of shared owner-line zeros into selected support roots.
 - No permission to add `2n` to unrelated first-match costs without an exact
   allocation.
 - No complete coordinate-clone or exception routing `(E)`.
