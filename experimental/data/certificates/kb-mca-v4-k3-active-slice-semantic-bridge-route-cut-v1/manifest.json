@@ -1,0 +1,712 @@
+{
+  "active_contract": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_SOURCE_ADAPTER_V1",
+    "atom_order": [
+      "U_paid",
+      "U_Q",
+      "U_BC",
+      "U_new"
+    ],
+    "base_prime": 2130706433,
+    "challenge_denominator": "FIELD_CARDINALITY",
+    "extension_degree": 6,
+    "first_match": true,
+    "k": 1048576,
+    "list_atom_import_forbidden": [
+      "U_list-int",
+      "U_ext"
+    ],
+    "n": 2097152,
+    "object": "MCA",
+    "owner_order": [
+      "SOURCE_COORDINATE_TANGENT_IMAGE",
+      "ACTIVE_V4_BOUNDARY_PREFIX_Q",
+      "ACTIVE_V4_BALANCED_CORE",
+      "UNPAID_V4_COMPLEMENT"
+    ],
+    "partition_sha256": "4fade91abc408264989babcff6f8f9bbd80bcec52545a5db15ac376bf17d88fc",
+    "quantifier": "UNIFORM_OVER_ALL_ADMISSIBLE_RECEIVED_LINES",
+    "row": "KoalaBear MCA at 2^-128",
+    "set_difference_equations": [
+      "Z_paid=Z intersect T",
+      "R1=Z setminus Z_paid",
+      "Z_Q=R1 intersect Q",
+      "R2=R1 setminus Z_Q",
+      "Z_BC=R2 intersect BC",
+      "Z_new=R2 setminus Z_BC"
+    ],
+    "unit": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE"
+  },
+  "architecture_comparison": {
+    "current_architecture": "GRANDE_FINALE_V4_KB_MCA_TANGENT_SOURCE_ADAPTER_V1",
+    "current_partition_sha256": "4fade91abc408264989babcff6f8f9bbd80bcec52545a5db15ac376bf17d88fc",
+    "current_to_historical_partition_adapter_proved": false,
+    "historical_69_objects_are_affine_slopes": false,
+    "historical_U_paid": 4200515150819207,
+    "historical_architecture": "GRANDE_FINALE_V4_KB_MCA_TANGENT_DEEP_SOURCE_RATIONAL_C5_BASE_TWIST_FROBENIUS_9208_FIRST_GAP_PENCIL_IMAGE_ADAPTER_V1",
+    "historical_bypass_bankable": false,
+    "historical_cap_68_reserve_margin": 292758501275736,
+    "historical_cap_68_source_map_charge": 270487454459300144,
+    "historical_cap_69_reserve_deficit": 3744367684655688,
+    "historical_cap_69_source_map_charge": 274524580645231568,
+    "historical_counted_object": "DISTINCT_SOURCE_MAP_EQUIVALENCE_CLASSES_PER_TRANSVERSAL_PROJECTIVE_RESIDUE_LINE",
+    "historical_delta_floor": 3912,
+    "historical_excluded_integer_delta_interval": [
+      3912,
+      118076
+    ],
+    "historical_general_excess_delta_floor": 134944,
+    "historical_general_excess_status": "OPEN",
+    "historical_half_degree_c": 67472,
+    "historical_image_cap_per_projective_direction": 1894736,
+    "historical_line_cap_68_status": "OPEN",
+    "historical_open_splitting_degrees": [
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "historical_owner_count_before_Q_BC": 7,
+    "historical_partition_sha256": "7a57fa877417920862ed2fe2e5c569852555f78b73b046d320d5e7a65d98ebaa",
+    "historical_pencil_degree_e": 134944,
+    "historical_primitive_69_point_exclusion_status": "OPEN",
+    "historical_proved_splitting_degrees": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "historical_remaining_budget": 270780212960575880,
+    "historical_same_map_directions_globally_deduplicated": true,
+    "historical_surviving_low_excess_h_windows": [
+      {
+        "h_interval": [
+          118077,
+          132382
+        ],
+        "splitting_degree": 12
+      },
+      {
+        "h_interval": [
+          119375,
+          134943
+        ],
+        "splitting_degree": 13
+      },
+      {
+        "h_interval": [
+          120487,
+          134943
+        ],
+        "splitting_degree": 14
+      },
+      {
+        "h_interval": [
+          121451,
+          134943
+        ],
+        "splitting_degree": 15
+      },
+      {
+        "h_interval": [
+          122294,
+          134943
+        ],
+        "splitting_degree": 16
+      }
+    ]
+  },
+  "artifact_kind": "SOURCE_BOUND_DEFINITION_ROUTE_CUT_AND_DIRECT_COORDINATE_COUNTERMODEL",
+  "base_repository": {
+    "base_head": "d7f0fd9370b3c13ff93293f08e03cadddb59b921",
+    "base_is_exact_pr1157_head": true,
+    "duplicate_pr1156_scalar_locator_repair": false,
+    "parent_head": "ed4877cce5f227f33311fa93f5ff5e5f4150ae63",
+    "repository": "przchojecki/rs-mca",
+    "tangent_pin_repair_source_commit": "8d43c6fa3a6ff04ea369ba7046fced6ae133b097",
+    "tangent_repair_import_mode": "EXACT_THREE_FILE_PATCH_ONLY"
+  },
+  "conclusion": {
+    "K3_closed": false,
+    "KoalaBear_row_closed": false,
+    "active_slice_bridge_proved": false,
+    "actual_MCA_counterexample": false,
+    "all_Z_BC_covered": false,
+    "arbitrary_conjugated_fold_refuted": false,
+    "direct_coordinate_carrier_inference_refuted": true,
+    "ledger_movement": 0,
+    "official_endpoint_changed": false
+  },
+  "definition_inventory": [
+    {
+      "defined": true,
+      "executable_source_predicate": true,
+      "object": "MCA_WITNESS_RELATION",
+      "source_bound": true
+    },
+    {
+      "defined": true,
+      "executable_source_predicate": false,
+      "object": "GENERIC_BALANCED_QUOTIENT_CORE",
+      "source_bound": true
+    },
+    {
+      "defined": "SYMBOLIC_ENGLISH_LABEL_ONLY",
+      "executable_source_predicate": false,
+      "object": "ACTIVE_V4_Q_SET",
+      "row_manifest_predicate_available_flag": true,
+      "source_bound": false
+    },
+    {
+      "defined": "SYMBOLIC_ENGLISH_LABEL_ONLY",
+      "executable_source_predicate": false,
+      "object": "ACTIVE_V4_BC_SET",
+      "row_manifest_predicate_available_flag": true,
+      "source_bound": false
+    },
+    {
+      "defined": false,
+      "executable_source_predicate": false,
+      "object": "Z_BC^(m_in=2,r_out=4)",
+      "source_bound": false
+    },
+    {
+      "defined": true,
+      "executable_source_predicate": true,
+      "object": "SUPPLIED_ENDPOINT_SOURCE_PENCIL_RECORD",
+      "source_bound": "PER_SUPPLIED_RECORD_ONLY"
+    },
+    {
+      "defined": true,
+      "executable_source_predicate": true,
+      "object": "THIRTEEN_ROUTE_RAW_WORKBOARD",
+      "source_bound": false
+    }
+  ],
+  "direct_coordinate_countermodel": {
+    "A_coefficients_sha256": "c25023b5dc7e52cd30df07ea423c2b8e3f39510f4212b54396e14033205f7d19",
+    "A_degree": 12,
+    "A_monic_squarefree": true,
+    "V_act_coefficients_sha256": "f599f5f0ec530a64484ee63d4bcf4c6d1b22ffcb20da912711a45de669958713",
+    "V_act_degree": 60,
+    "V_act_in_Sym30_W": true,
+    "V_act_monic_squarefree": true,
+    "active_pair_count": 30,
+    "active_root_count": 60,
+    "active_source_disjoint": true,
+    "actual_MCA_witness_constructed": false,
+    "actual_endpoint_record_constructed": false,
+    "actual_received_line_constructed": false,
+    "actual_slice_counterexample": false,
+    "ambient_field_cardinality": "93571093019388561295270373781649880353786165192103559169",
+    "base_prime": 2130706433,
+    "carrier_index_in_base_multiplicative_group": 1016,
+    "carrier_internal_tau_pair_count": 1071,
+    "carrier_order": 2097152,
+    "coefficient_contradiction": {
+      "D_root_polynomial": "X^n-1",
+      "X^(n-1)_coefficients": [
+        0,
+        2128609281
+      ],
+      "p_divides_n": false,
+      "tau_D_root_polynomial": "(1-X)^n-1"
+    },
+    "complete_source_locators_in_W": true,
+    "composition": "V_act/A^5=(P/Q^5) composed with h",
+    "composition_verified": true,
+    "conjugacy_disclosure": {
+      "conjugated_involution": "g*tau*g^-1(T)=-T",
+      "conjugated_involution_preserves_D": true,
+      "g": "g(T)=T-1/2",
+      "minus_one_in_D": true,
+      "no_carrier_compatible_conjugate_claimed": false,
+      "record_level_conjugacy_proved": false
+    },
+    "deck_defined_over": "F_p subset F_(p^6)",
+    "deck_involution": "tau(T)=1-T",
+    "deck_order": 2,
+    "direct_carrier_witness": {
+      "tau_x": 0,
+      "tau_x_in_D": false,
+      "x": 1,
+      "x_in_D": true
+    },
+    "extension_degree": 6,
+    "gcd_V_act_A": "1",
+    "inner_map": "h(T)=T*(1-T)",
+    "inner_map_invariant": true,
+    "map_class": "DISPLAYED_ENDPOINT_COORDINATE_ONLY",
+    "outer_active_coefficients_sha256": "b2b398d7e4fcd66945550e07297d0dd4f42654307025264ec3c1df3c4d2c546e",
+    "outer_source_coefficients_sha256": "789f0d469207a2d81c9e3cf54d562e09785d70d1f487b12026d7960064f07376",
+    "outer_values_distinct": true,
+    "primitive_generator": 3,
+    "selected_fibers_unramified": true,
+    "selected_pairs": [
+      [
+        106253,
+        2130600181
+      ],
+      [
+        1369722,
+        2129336712
+      ],
+      [
+        3779040,
+        2126927394
+      ],
+      [
+        8509390,
+        2122197044
+      ],
+      [
+        10074554,
+        2120631880
+      ],
+      [
+        10557358,
+        2120149076
+      ],
+      [
+        12609353,
+        2118097081
+      ],
+      [
+        14292086,
+        2116414348
+      ],
+      [
+        14535750,
+        2116170684
+      ],
+      [
+        15465656,
+        2115240778
+      ],
+      [
+        15916705,
+        2114789729
+      ],
+      [
+        16063573,
+        2114642861
+      ],
+      [
+        17060445,
+        2113645989
+      ],
+      [
+        18308266,
+        2112398168
+      ],
+      [
+        18560217,
+        2112146217
+      ],
+      [
+        19146956,
+        2111559478
+      ],
+      [
+        23803083,
+        2106903351
+      ],
+      [
+        24600315,
+        2106106119
+      ],
+      [
+        24695656,
+        2106010778
+      ],
+      [
+        25420300,
+        2105286134
+      ],
+      [
+        26886517,
+        2103819917
+      ],
+      [
+        32424981,
+        2098281453
+      ],
+      [
+        33558404,
+        2097148030
+      ],
+      [
+        33587235,
+        2097119199
+      ],
+      [
+        33762591,
+        2096943843
+      ],
+      [
+        33877430,
+        2096829004
+      ],
+      [
+        34423271,
+        2096283163
+      ],
+      [
+        35880750,
+        2094825684
+      ],
+      [
+        37630638,
+        2093075796
+      ],
+      [
+        37955085,
+        2092751349
+      ],
+      [
+        38255910,
+        2092450524
+      ],
+      [
+        38823503,
+        2091882931
+      ],
+      [
+        41058570,
+        2089647864
+      ],
+      [
+        41999211,
+        2088707223
+      ],
+      [
+        42650444,
+        2088055990
+      ],
+      [
+        42971510,
+        2087734924
+      ]
+    ],
+    "selected_root_count": 72,
+    "selected_roots_all_in_carrier": true,
+    "source_pair_count": 6,
+    "source_pencil": "W=<1,h>",
+    "source_root_count": 12,
+    "subgroup_generator": 1213133211,
+    "subgroup_generator_order": 2097152,
+    "tau_preserves_D": false
+  },
+  "exact_ledger_outputs": {
+    "U_BC": null,
+    "U_K3": null,
+    "U_K3_allocation": null,
+    "U_Q": null,
+    "U_new": null,
+    "U_paid": 981104,
+    "U_positive": null,
+    "U_remaining": null,
+    "U_sourcecover": null,
+    "chronology": [
+      "U_paid",
+      "U_Q",
+      "U_BC",
+      "U_new"
+    ],
+    "inequality_evaluable": false,
+    "joint_remaining_reserve": 274980728110413983,
+    "known_sum": 981104,
+    "ledger_movement": 0,
+    "row_closed": false,
+    "signed_slack": null
+  },
+  "first_failed_bridge": {
+    "actual_counterexample_available": false,
+    "bridge_id": "ACTIVE_M2_R4_SLICE_TO_CARRIER_SELECTOR_RECONSTRUCTION_AND_PROJECTION",
+    "direct_coordinate_countermodel_available": true,
+    "first_false_shortcut": "DISPLAYED_ENDPOINT_PARAMETER_COORDINATE_IS_THE_EVALUATION_CARRIER",
+    "reason_actual_counterexample_unavailable": "THE_DECLARED_ACTIVE_SLICE_HAS_NO_EXECUTABLE_ANTECEDENT",
+    "status": "UNDEFINED_DOMAIN_PREDICATE_AND_UNPROVEN_MAP",
+    "unpaid_primitive_declared": false
+  },
+  "imported_census": {
+    "actual_active_slice_slope_count": null,
+    "actual_endpoint_record_count": null,
+    "actual_projection_fiber_bound": null,
+    "open_raw_route_count": 11,
+    "predecessor_1157_bound_by_hash": true,
+    "raw_zero_is_slope_payment": false,
+    "raw_zero_route_count": 2,
+    "replayed_as_new_algebra": false,
+    "thirteen_route_count": 13
+  },
+  "nonclaims": [
+    "NO_ACTUAL_RECEIVED_PAIR",
+    "NO_ACTUAL_RECEIVED_LINE",
+    "NO_MCA_WITNESS",
+    "NO_ACTIVE_Q_MEMBERSHIP",
+    "NO_ACTIVE_BC_MEMBERSHIP",
+    "NO_ACTIVE_M2_R4_SLICE_MEMBERSHIP",
+    "NO_ACTUAL_ENDPOINT_RECORD",
+    "NO_ACTUAL_IRREDUCIBLE_4_4_COMPONENT",
+    "NO_K3_ORIENTATION_REALIZATION",
+    "NO_EXPLAINING_DATA_DESCENT",
+    "NO_FIRST_MATCH_OWNER_DESCENT",
+    "NO_PROJECTION_FIBER_BOUND",
+    "NO_ALL_Z_BC_COMPLEMENT_FENCE",
+    "NO_UNPAID_PRIMITIVE_DECLARATION",
+    "NO_ACTUAL_RECORD_COUNTEREXAMPLE",
+    "NO_CLAIM_AGAINST_ARBITRARY_CONJUGACY",
+    "NO_K3_ALLOCATION",
+    "NO_K3_PAYMENT",
+    "NO_ROW_CLOSURE",
+    "NO_OFFICIAL_ENDPOINT_CHANGE",
+    "NO_LIST_CHRONOLOGY_IMPORT",
+    "NO_NEW_TANGENT_PAYMENT"
+  ],
+  "payload_sha256": "b57081991bacd2acd4cb28d4631a0fa22e9c00a8fdec87b4ae52f0fccf3b19e8",
+  "pr_reconciliation": [
+    {
+      "pays_K3": false,
+      "pr": 1130,
+      "role": "SUPPLIED_RECORD_SOURCE_PENCIL_COMPILER"
+    },
+    {
+      "pays_K3": false,
+      "pr": 1132,
+      "role": "TRANSVERSE_FRONTIER_AND_ORDER_TWO_INTERFACES"
+    },
+    {
+      "pays_K3": false,
+      "pr": 1139,
+      "role": "CONDITIONAL_ANY69_ROUTE_CUT_AND_IMPORTED_TANGENT_PIN_REPAIR"
+    },
+    {
+      "pays_K3": false,
+      "pr": 1143,
+      "role": "NECESSARY_THIRTEEN_ROUTE_RAW_WORKBOARD"
+    },
+    {
+      "pays_K3": false,
+      "pr": 1152,
+      "role": "RAW_433_1B_TO_O0A_EXCLUSION"
+    },
+    {
+      "pays_K3": false,
+      "pr": 1155,
+      "role": "VALID_GUARD_TRANSPLANT_ROUTE_CUT"
+    },
+    {
+      "pays_K3": false,
+      "pr": 1156,
+      "role": "UNRELATED_DENOMINATOR_ROOT_AND_COORDINATE_CLONE_ROUTING"
+    },
+    {
+      "pays_K3": false,
+      "pr": 1157,
+      "role": "PREDECESSOR_SELECTOR_AND_UNIT_ROUTE_CUT"
+    }
+  ],
+  "required_compiler": {
+    "actual_endpoint_record_producer_proved": false,
+    "all_Z_BC_complement_fence_proved": false,
+    "deterministic_tie_break_proved": false,
+    "earlier_owner_projection_proved": false,
+    "exact_projection_fiber_bound": null,
+    "membership_predicate_proved": false,
+    "must_preserve": [
+      "received_line",
+      "affine_slope",
+      "support",
+      "explaining_polynomial_and_data",
+      "balanced_core_witness",
+      "source_line",
+      "orientation",
+      "source_cover_and_passport",
+      "first_match_owner",
+      "add_back_chronology",
+      "field_of_definition",
+      "distinctness_and_nonvanishing_guards"
+    ],
+    "projection_proved": false,
+    "reconstruction_proved": false,
+    "relation_name": "Rec_2_4",
+    "total_canonical_selector_proved": false
+  },
+  "schema": "rs-mca-kb-v4-k3-active-slice-semantic-bridge-route-cut-v1",
+  "source_bindings": [
+    {
+      "binding_id": "KB_K3_SEM::primary_verifier",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.py",
+      "sha256": "300faf72a1c2a98645283556df81c67cfc5d7b9e694f672d70b93662d95cdffd"
+    },
+    {
+      "binding_id": "KB_K3_SEM::schema",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/data/schemas/kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.schema.json",
+      "sha256": "d3a4dd8d136af2f1c9a7f7a463096723f9128c9934c78966ebe26aab2d1f5605"
+    },
+    {
+      "binding_id": "KB_K3_SEM::note",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/notes/thresholds/kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.md",
+      "sha256": "9aef3fdfbbf43028d726c8837dd4032eaa9c4b86c88f32be6f00e197870c39c3"
+    },
+    {
+      "binding_id": "KB_K3_SEM::readme",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-k3-active-slice-semantic-bridge-route-cut-v1/README.md",
+      "sha256": "d43c3fa991a386b37dd49ec61ccad090538f789cb5e9520e45d4b0b068ed3245"
+    },
+    {
+      "binding_id": "KB_K3_SEM::tangent_row_repaired",
+      "internal_payload_sha256": "36e9d69aaf6deeb4fe123358e8bb8d5bbbdcb40c9315b4316f0c6a1189a270e1",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/row_manifest.json",
+      "sha256": "c416511796e3a196bf43f6a9f7155f499a6bf7c63dbbf52e2a64b4437e248a05"
+    },
+    {
+      "binding_id": "KB_K3_SEM::tangent_manifest_repaired",
+      "internal_payload_sha256": "ffd1e427f53db3d2dbfd13e69a05d173d2f2aa1f03c152aead73fcc821094acb",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/manifest.json",
+      "sha256": "e21f3a454ff9e66b21dfd152d920713c1e0a61392b488c57ae8309137a887587"
+    },
+    {
+      "binding_id": "KB_K3_SEM::tangent_readme_repaired",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/README.md",
+      "sha256": "b63faa7e06358404bf35101cbc68b65f995a9160c4a4413e7c5498086f2cc8fa"
+    },
+    {
+      "binding_id": "KB_K3_SEM::tangent_verifier",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/scripts/verify_kb_mca_v4_tangent_source_adapter_v1.py",
+      "sha256": "5d3fa1b34393c5c4534babd50fea4ebcc73283ab6619521b849fecef07ff6f5a"
+    },
+    {
+      "binding_id": "KB_K3_SEM::active_v4",
+      "git_blob_sha1": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/grande_finale.tex",
+      "sha256": "336ba3c9a6d9483d0eab74677d6224aae23adf15d84891c6099f6d2f45cf226d"
+    },
+    {
+      "binding_id": "KB_K3_SEM::mca_witness_source",
+      "git_blob_sha1": "f50d296131b471ec1e986bc0a28d81d6e0af0b11",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/Conjectures_and_Barriers_RS_MCA_v4_1.tex",
+      "sha256": "a26464d28d5c10284b73882ab081a04fa791659f94cbf22232055be05c59e66d"
+    },
+    {
+      "binding_id": "KB_K3_SEM::predecessor_1157_manifest",
+      "commit": "d7f0fd9370b3c13ff93293f08e03cadddb59b921",
+      "internal_payload_sha256": "5f7ae16ce2a94a02cbef0e602251686aa50d1ea4af84ed413538fabc3d9f696b",
+      "kind": "GIT_COMMIT_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-k3-source-bound-compiler-route-cut-v1/manifest.json",
+      "sha256": "fec032b358fe8ef0038dec3caa8c0c20b4f5891b5a927744feef1a58b8727a29"
+    },
+    {
+      "binding_id": "KB_K3_SEM::predecessor_1157_note",
+      "commit": "d7f0fd9370b3c13ff93293f08e03cadddb59b921",
+      "kind": "GIT_COMMIT_SHA256",
+      "path": "experimental/notes/thresholds/kb_mca_v4_k3_source_bound_compiler_route_cut_v1.md",
+      "sha256": "bf90c7ddcd1671fa77b6da39cb4383702414fd0ec497fe036786719643e33c62"
+    },
+    {
+      "binding_id": "KB_K3_SEM::historical_owner_manifest",
+      "commit": "702cd8e16673f2971ac1e7898603de2d7d087dfa",
+      "internal_payload_sha256": "0ba2155dea1a337b17fe23d7da303b5fa3b13d4958777b977a9e768842072bf5",
+      "kind": "GIT_COMMIT_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-first-gap-source-pencil-image-owner-v1/manifest.json",
+      "sha256": "741681ff61a41a5c43f88fe7362839bb361b60be8ad19b1d3c59f292a8bf79e6"
+    },
+    {
+      "binding_id": "KB_K3_SEM::historical_fixed_domain_normalization",
+      "commit": "065f347a96c91ade7d80df8bf324f646329c623e",
+      "internal_payload_sha256": "706fc1aaef763890b3ffbfbba1f750fb926ad412f2f0c66515ead393fb3318b0",
+      "kind": "GIT_COMMIT_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-equality-wall-fixed-domain-rank16-normalization-v1/certificate.json",
+      "sha256": "823319e88230ee45cf5c718a0a2eba5cc88969d951d9ddcd90e57dc549a4e8e9"
+    },
+    {
+      "binding_id": "KB_K3_SEM::historical_source_fiber_reduction",
+      "commit": "065f347a96c91ade7d80df8bf324f646329c623e",
+      "kind": "GIT_COMMIT_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-rank-one-split-scroll-source-fiber-reduction-v1/certificate.json",
+      "sha256": "13f662f66a353b22f8678c7021d502facd23ebe2ac2e8aae1325842de9f6fde5"
+    },
+    {
+      "binding_id": "KB_K3_SEM::historical_residue_line_reduction",
+      "commit": "065f347a96c91ade7d80df8bf324f646329c623e",
+      "internal_payload_sha256": "e2f3159960425614b6cb6e3bf849b2d737a6f6525e8aeb37d266804acfb9ef17",
+      "kind": "GIT_COMMIT_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-equality-wall-residue-line-partition-reduction-v1/certificate.json",
+      "sha256": "8df41484112cb64a423f0043aa041af51ca6fdae4540b527d5b0a2733adcfab6"
+    },
+    {
+      "binding_id": "KB_K3_SEM::independent_sage",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.sage",
+      "sha256": "0e5530fbc78b950595b1766e9b184de8cbe943e93c7b6cebf40565cbda3f319c"
+    },
+    {
+      "binding_id": "KB_K3_SEM::independent_flint",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1_flint.py",
+      "sha256": "abf4fcec275a5eaea10568ed741ce6f5ea3fe6ad359cec95c01dfa04be2e24e3"
+    },
+    {
+      "binding_id": "KB_K3_SEM::independent_wolfram",
+      "kind": "LOCAL_SHA256",
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.wl",
+      "sha256": "4b6ea20e6948ecd64c650b8fd2b2919fa64115bc5c9c4df29d5b75cf599f6e9b"
+    },
+    {
+      "binding_id": "KB_K3_SEM::source_pencil_public_dag",
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "EXTERNAL_GIT_COMMIT_SHA256",
+      "path": "background/nodes/rate_half_kb_decomposition_source_pencil_compiler/statement.md",
+      "sha256": "54b2879737b8d9f381678e35f18460ed51f092a7c2ab808aea9bf6ea9454b776"
+    },
+    {
+      "binding_id": "KB_K3_SEM::transverse_public_dag",
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "EXTERNAL_GIT_COMMIT_SHA256",
+      "path": "background/nodes/rate_half_kb_source_pencil_rank_transverse_compiler/statement.md",
+      "sha256": "0c1756ccf94e7b4503bf7b9aa5a39cebf16abaf1a200ec9496dd8bcf6b6f664f"
+    }
+  ],
+  "status": "PROVED_DEFINITION_LEVEL_ROUTE_CUT_OPEN_GAP",
+  "tangent_source_repair": {
+    "U_paid": 981104,
+    "joint_remaining_reserve": 274980728110413983,
+    "joint_reserve_is_K3_allocation": false,
+    "lean_build_passed": true,
+    "lean_correspondence_empty_axiom_census_accurate": false,
+    "new_payment": false,
+    "normal_check_passed": true,
+    "normal_tamper_selftest_passed": true,
+    "optimized_check_passed": true,
+    "optimized_tamper_selftest_passed": true,
+    "preexisting_axiom_documentation_drift_invalidates_payment": false,
+    "source_pin_refresh": true,
+    "standard_lean_axioms_observed": [
+      "propext",
+      "Quot.sound"
+    ],
+    "transitive_source_revalidated": true,
+    "user_declared_axioms_observed": []
+  },
+  "theorem_kind": "DIRECT_ENDPOINT_COORDINATE_CARRIER_INFERENCE_COUNTERMODEL"
+}

@@ -93,17 +93,17 @@
   "DOES_NOT_TREAT_PYTHON_AS_PROOF_VALIDATION"
  ],
  "partition_sha256": "4fade91abc408264989babcff6f8f9bbd80bcec52545a5db15ac376bf17d88fc",
- "payload_sha256": "536b08f23e552b2cb4fb226d74d42d54750118dae2efe619ff6e67d69d0370bf",
+ "payload_sha256": "ffd1e427f53db3d2dbfd13e69a05d173d2f2aa1f03c152aead73fcc821094acb",
  "proof_status": "PROVED_GATE_B_BANKABLE_ATOM_ROW_OPEN",
  "row_manifest_binding": {
   "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/row_manifest.json",
-  "sha256": "574c6fd6d3a993260e2dc947235a92a56189e4197c069c3ff24b962944dda5c1"
+  "sha256": "c416511796e3a196bf43f6a9f7155f499a6bf7c63dbbf52e2a64b4437e248a05"
  },
  "schema": "rs-mca-kb-mca-v4-tangent-source-adapter-v1",
  "source_bindings": [
   {
    "binding_id": "KB_TAN_V4::row_manifest",
-   "hash": "574c6fd6d3a993260e2dc947235a92a56189e4197c069c3ff24b962944dda5c1",
+   "hash": "c416511796e3a196bf43f6a9f7155f499a6bf7c63dbbf52e2a64b4437e248a05",
    "hash_kind": "SHA256",
    "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/row_manifest.json",
    "role": "K0_FIELD_PARTITION_OWNER_ORDER_QUANTIFIER_AND_UNIT_BINDING"
@@ -152,7 +152,7 @@
   },
   {
    "binding_id": "KB_TAN_V4::active_v4",
-   "hash": "8a5d9791900ca9eed773feba146b92ad296704ce",
+   "hash": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
    "hash_kind": "GIT_BLOB_SHA1",
    "path": "experimental/grande_finale.tex",
    "role": "ACTIVE_Q_BC_NEW_CERTIFICATE_PREDICATES_AND_ORDER32_RATIONAL_ATOM_CONSUMER"

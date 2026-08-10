@@ -3839,3 +3839,64 @@ GREEN and PR-ready for success condition B. The certificate reviewer also
 rejected 41 additional targeted promotion mutations beyond the shipped 32.
 Neither review promoted the open K3 theorem, the stale tangent payment, or
 any null ledger output.
+
+## 2026-08-10 — [K3] active-slice semantic bridge direct-coordinate route cut
+
+Added `kb-mca-v4-k3-active-slice-semantic-bridge-route-cut-v1` on a clean
+worktree at exact #1157 head `d7f0fd9370`. Imported only #1139's three-file
+tangent source-pin repair; normal/optimized checks and tamper suites now pass,
+so the existing active atom `U_paid=981104` is source-revalidated. This is a
+pin refresh, not a new payment. The exact joint reserve is
+`274980728110413983`, not a K3 allocation.
+
+The source audit proves that current Q and BC manifest entries are English
+predicate labels rather than executable source relations and that
+`Z_BC^(m_in=2,r_out=4)` has no defined source-level membership predicate.
+The packet freezes the required typed actual-record relation, same-line
+selector/reconstruction, exact projection fibers, chronology preservation,
+and all-`Z_BC` complement fence. None is claimed proved.
+
+An exact countermodel uses the actual deployed subgroup
+`D=<1213133211>` of order `2^21` in `F_2130706433`. There are exactly 1071
+unordered pairs `{x,1-x}` inside `D`; the first 30 active and next six source
+pairs give monic squarefree coprime locators of degrees 60 and 12 satisfying
+`V_act/A^5=(P/Q^5) composed with h` for `h=T(1-T)` and the printed
+`W=<1,h>` source-pencil conditions. Nevertheless `tau(T)=1-T` sends `1 in D`
+to `0 notin D`. This rigorously cuts direct endpoint-coordinate carrier
+identification. It does not cut arbitrary conjugacy: `T-1/2` conjugates tau
+to `T -> -T`, which preserves the even-order carrier. No actual received
+line, MCA witness, active owner, K3 orientation, or slope payment is
+constructed.
+
+Python normal/optimized replay checked all 2,097,152 carrier points, the 1071
+pair census, source hashes, type-strict canonical JSON, and rejected 43
+semantic plus three parser mutations. External public-DAG source replay
+checked two pinned statements. Independent Sage and FLINT replays matched the degrees, gcds,
+fibers, coefficient hashes, carrier witness, and conjugacy disclosure.
+Wolfram's connected evaluator independently returned the same exact
+direct-coordinate result; the corrected local `wm.sh -file` repeat later hit
+the cloud account's `Insufficient credits` response. Exa
+literature search was non-load-bearing and found no project-specific
+same-record shortcut. Ledger movement remains zero; every K3 output and
+`U_Q,U_BC,U_new` remain null.
+
+The repaired tangent Lean package also builds. Its pre-existing
+`CORRESPONDENCE.md` incorrectly predicts an empty axiom census for every
+declaration; the actual census contains only standard `propext` and
+`Quot.sound`, with no user-declared axioms. This documentation drift does not
+alter the tangent theorem or payment, and the imported #1139 change remains
+the exact three-file source-pin repair.
+
+The historical equality-wall bypass was independently audited and is not a
+proved cap 68. Its target counts distinct source-map equivalence classes per
+transversal projective residue line after direction deduplication, not affine
+slopes. The exact exclusion interval is `3912 <= delta <= 118076`; five
+degree-12--16 low-excess windows and general excess remain open, and each
+direction can cost up to 1,894,736 slopes. A current-partition adapter would
+be necessary but not sufficient. K3 and the KoalaBear row remain open.
+
+Fresh independent reviews after the final reseal were GREEN for the narrow
+direct-coordinate route-cut mathematics and GREEN for certificate custody.
+The same mathematics review remains RED for K3 closure/payment, as required:
+the actual-slope `Rec_2_4` selector/reconstruction, exact projection fibers,
+chronology preservation, and all-`Z_BC` complement fence are still unproved.
