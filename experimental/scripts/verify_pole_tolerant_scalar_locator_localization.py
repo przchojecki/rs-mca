@@ -24,7 +24,7 @@ CERT_REL = Path(
 )
 SCHEMA = "pole-tolerant-scalar-locator-localization-v1"
 EXPECTED_SOURCE_PINS = {
-    "experimental/grande_finale.tex": "8a5d9791900ca9eed773feba146b92ad296704ce"
+    "experimental/grande_finale.tex": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222"
 }
 EXPECTED_THEOREMS = {
     "POLE_TOLERANT_EXCLUSIVE_LOCALIZATION",

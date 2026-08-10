@@ -1,0 +1,29 @@
+python3 experimental/scripts/verify_coordinate_clone_subcritical_payment.py --check
+PASS certificate, manifest, source pin, review status, and nonclaims
+PASS affine-chart bidegree intersection fixtures
+PASS concave endpoint inequality and all-subcritical-class payment
+PASS unique-large-class reduction; no complete exception routing claimed
+RESULT: PASS (15215 checks)
+
+python3 -O experimental/scripts/verify_coordinate_clone_subcritical_payment.py --check
+PASS certificate, manifest, source pin, review status, and nonclaims
+PASS affine-chart bidegree intersection fixtures
+PASS concave endpoint inequality and all-subcritical-class payment
+PASS unique-large-class reduction; no complete exception routing claimed
+RESULT: PASS (15215 checks)
+
+python3 experimental/scripts/verify_coordinate_clone_subcritical_payment.py --tamper-selftest
+PASS tamper rejected: source pin
+PASS tamper rejected: theorem set
+PASS tamper rejected: nonclaim
+PASS tamper rejected: review status
+PASS tamper rejected: M31 agreement
+RESULT: PASS (5/5 mutations rejected)
+
+python3 -O experimental/scripts/verify_coordinate_clone_subcritical_payment.py --tamper-selftest
+PASS tamper rejected: source pin
+PASS tamper rejected: theorem set
+PASS tamper rejected: nonclaim
+PASS tamper rejected: review status
+PASS tamper rejected: M31 agreement
+RESULT: PASS (5/5 mutations rejected)

@@ -1,0 +1,36 @@
+{
+  "base": {
+    "commit": "93fba1be3f3299b0ba4708d88715377bbb656e45"
+  },
+  "deployed_rows": {
+    "koalabear_mca": {
+      "budget": 274980728111395087,
+      "k": 1048576,
+      "m": 1116048,
+      "n": 2097152
+    },
+    "mersenne31_mca": {
+      "budget": 16777215,
+      "k": 1048576,
+      "m": 1116024,
+      "n": 2097152
+    }
+  },
+  "nonclaims": [
+    "NO_BOUND_ON_ACTUAL_TRIVIALIZED_CARDINALITY",
+    "NO_SPREAD_OR_LARGE_OWNER_ABSORPTION",
+    "NO_COMPLETE_EXCEPTION_ROUTING",
+    "NO_ADJACENT_ROW_CLOSURE",
+    "NO_OFFICIAL_SCORE_MOVEMENT"
+  ],
+  "review_status": "INDEPENDENT_REVIEW_REQUESTED",
+  "schema": "denominator-root-puncture-trivialization-v1",
+  "source_pins": {
+    "experimental/grande_finale.tex": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
+    "experimental/notes/m2/pole_tolerant_scalar_locator_localization.md": "ba51f8ddac7b6fb84669f9d805fb56f5a9ed0df1"
+  },
+  "theorems": [
+    "DENOMINATOR_ROOT_CANCELLATION_DICHOTOMY",
+    "PUNCTURE_TRIVIALIZED_SUPPORT_SHADOW_PACKING"
+  ]
+}
