@@ -1,0 +1,77 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "bankability_contract": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture": "positive-433-1b-coordinate-guarded-route",
+    "atom_or_cell": "complete coordinate-positive 433-1b to O0a raw workboard",
+    "claimed_bound": "0 surviving raw systems out of 25200",
+    "direct_statement": "The complete positive 433-1b to O0a raw workboard is empty in all 15 role cells, 1575 labels, and 25200 signed principal systems; the global rank-drop branch is empty separately.",
+    "falsifier": "an omitted or multiply owned role cell, a failed owner packet, an invalid cell-9-to-cell-10 transport, or a surviving guarded raw system",
+    "impact": "ARCHITECTURE_BRIDGE",
+    "object": "MCA",
+    "partition_digest": "sha256:82df776b06b375e9bee6fcc77aead1ebca4594028fa2e51df6318422a9d2f9bb",
+    "projection_and_unit": "raw workboard labels and signed principal systems, not distinct bad slopes",
+    "quantifier": "every raw principal system and the complementary global rank-drop branch in the declared route",
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED",
+    "target_epsilon": "2^-128",
+    "workboard_item": "K3"
+  },
+  "nodes": [
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cells9_10_duplicate_role_transport",
+      "node_manifest_sha256": "c532f86c392d29a116a947af32006648467e19fdfb72edeef17458266ddad19b",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cells9_10_duplicate_role_transport",
+      "status": "PROVED",
+      "verify_audit_sha256": "a876f484d6fc3bf2405007b3f5dd63a2cb58876215043ec95fb5031f5365d4b7",
+      "verify_sha256": "eddd977362e61061c8befa3f5baa453649c1192bdaf19a5b840eaa60f09489a3"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cells9_10_complete_exclusion",
+      "node_manifest_sha256": "baa3cdec74dbfa866283067e57325466b2e98d47c1d87ba85e51f1b161ee069d",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cells9_10_complete_exclusion",
+      "status": "PROVED",
+      "verify_audit_sha256": "f393841c7db6bf9cdc1f608a4b48f8f35d4c3baed06559b47f15d068181b7bb8",
+      "verify_sha256": "de14b749d3670ea9d4be1446c76e33bb7de6de69ccfc3714272cc4020bfdaf33"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_raw_workboard_complete_exclusion",
+      "node_manifest_sha256": "f97faa957163bffb5e77c6bc9f67d5103311ea9b39a2eb4a22575436b34c28b5",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_raw_workboard_complete_exclusion",
+      "status": "PROVED",
+      "verify_audit_sha256": "a316d3ac2fa94f8fa432af66e3882683c138b078a4d29d9f1414b6d48f38f6f4",
+      "verify_sha256": "e1351670c2ca054f28589fd37822d8e3822336b3353ed93dcc87c7c81161af1a"
+    }
+  ],
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Does not prove exhaustive balanced-core routing or a raw-label-to-distinct-affine-slope conversion.",
+    "Does not pay the eleven other positive-coordinate routes or source-cover orientations.",
+    "Fresh independent proof review remains required before a GREEN K3 promotion."
+  ],
+  "provenance": {
+    "branch": "codex/full-prize-resolution-v12-20260807",
+    "commit": "8df0903391a228eed6e24398fca9d40d72d546cf",
+    "experiment_sha256": "a562de03d52fedad25a9670b492283107b96fab6e4d689f32ff53345e7723f13",
+    "node_count": 3,
+    "replay": "from the campaign repo root: tools/ramguard local -- python3 <node path>/verify.py; tools/ramguard local -- python3 <node path>/verify_audit.py",
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-433-1b-raw-workboard-close-v1",
+  "statement": {
+    "claims": {
+      "cell_9_10_transport": "exact B/C duplicate-role bijection of all 105 labels and 1680 signed principal systems",
+      "owner_partition": "[0]|[1,2]|[3,6]|[4,7]|[5,8]|[9,10]|[11]|[12,13]|[14]",
+      "principal_census": "15 role cells, 1575 raw labels, 25200 signed principal systems",
+      "rankdrop": "the complementary global product-rank-drop branch is excluded"
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_UNIT_OTHER_K3_ITEMS_OPEN",
+    "title": "Complete raw positive 433-1b to O0a workboard exclusion",
+    "workboard_item": "K3"
+  }
+}

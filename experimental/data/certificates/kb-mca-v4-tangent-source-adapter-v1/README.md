@@ -28,6 +28,16 @@ The remaining number is reserve, not an allocation. `U_Q`, `U_BC`, and `U_new`
 remain open. The legacy M1 value `422354730332` is recorded only for comparison
 and is not imported.
 
+## #1132 source-pin repair
+
+The predecessor row and manifest pinned `experimental/grande_finale.tex` at
+blob `8a5d9791900ca9eed773feba146b92ad296704ce`.  The exact #1132 predecessor
+contains the material `b13de8113` saturated-balanced-core status update at
+blob `6b21d6ea937a8a9f85fc7ade6032d73efd4c7222`.  The row and manifest seals in
+this directory were refreshed to bind the latter blob.  The packet verifier
+passes after that repair.  Drift in `agents.md` remains a printed steering
+diagnostic, not a proof-source gate.
+
 ## Files
 
 - `row_manifest.json` freezes the row, architecture, partition, owner order,

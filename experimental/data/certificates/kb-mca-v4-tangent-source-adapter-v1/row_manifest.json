@@ -76,7 +76,7 @@
     ],
     "witness_exhaustive": true
   },
-  "payload_sha256": "a05d8caf2b772c9c5cc7e7683631c9db7f5b3f2ba4cf8f436f6d3b16f4bdc189",
+  "payload_sha256": "36e9d69aaf6deeb4fe123358e8bb8d5bbbdcb40c9315b4316f0c6a1189a270e1",
   "row_contract": {
     "B_star": 274980728111395087,
     "agreement": 1116048,
@@ -117,7 +117,7 @@
     },
     {
       "binding_id": "KB_V4_ROW::active_v4",
-      "hash": "8a5d9791900ca9eed773feba146b92ad296704ce",
+      "hash": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
       "hash_kind": "GIT_BLOB_SHA1",
       "path": "experimental/grande_finale.tex",
       "role": "ACTIVE_Q_BC_NEW_CERTIFICATE_PREDICATES_AND_ORDER32_RATIONAL_ATOM_CONSUMER"

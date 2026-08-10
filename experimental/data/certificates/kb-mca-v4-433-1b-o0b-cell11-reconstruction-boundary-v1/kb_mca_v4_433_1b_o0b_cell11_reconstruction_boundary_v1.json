@@ -1,0 +1,82 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "bankability_contract": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture": "positive-433-1b-O0b-common-repeat-cell11",
+    "atom_or_cell": "repeated-BC O0b cell-11 missing-label reconstruction boundary",
+    "claimed_bound": "0 guarded reconstruction-denominator boundary points",
+    "direct_statement": "The common-kernel denominator A(lambda_missing) is nonzero at every guarded base-field repeated-BC O0b cell-11 source.",
+    "falsifier": "a guarded base-field common-source point with A(lambda_missing)=0, a missing source row, or a pinned-blob mismatch",
+    "impact": "ROUTE_CUT",
+    "object": "MCA",
+    "projection_and_unit": "source tower points, not distinct bad slopes",
+    "quantifier": "all eight epsilon/sign guarded common-source rows",
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED",
+    "target_epsilon": "2^-128",
+    "workboard_item": "K3"
+  },
+  "dependencies": [
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_common_kernel_reconstruction",
+      "node_manifest_sha256": "730a070aca95e1033d2ecc3b2b513a6a5ed49cccf3395246e0beaeb83091d3b0",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_common_kernel_reconstruction",
+      "status": "PROVED",
+      "verify_audit_sha256": "a7a11650584bb2ac608b980d90e8fb086e5edfcedb5554b83948ff397ac49c59",
+      "verify_sha256": "cfca0e7e1027b66c582362aada1d703212d05886762c11ce86dc9f2e5f7c3e5b"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_symmetric_function_field_tower",
+      "node_manifest_sha256": "43d1197f6294c63fe75f09170baad5f8864c802a94e5125672b0a6f7bdcc4172",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_symmetric_function_field_tower",
+      "status": "PROVED",
+      "verify_audit_sha256": "568060d3ccb86eb6773e7a1fc50e18537227a999b8cc020dbba72b2b2399dc5a",
+      "verify_sha256": "fb27b726f46de38944a45d5b5e40341d9ffdec8e2461c2eeaef18246d51c17df"
+    }
+  ],
+  "evidence_files": {
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_function_field_core.py": "336aace4780acce09d9cb53cc969635d16a038af0a5379338a746e086758aac7",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_principal_input_result.json": "a9c3f10fc7e368f88599bce085598d641d0a73352a1f7d54e06abcd9b4aabbf7",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_reconstruction_denominator_boundary_modal.py": "503e7f066376206f0c090c92d43ee4f8e027210f86962053f32d4fc6c30b9d0a",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_reconstruction_denominator_boundary_result.json": "2228e7ece1b6b74d34f15fdc2a6f82e6fd33ba675a6b19f18537fc3756547b05",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_symmetric_tower_result.json": "e80940956518b958dafe74eb34e8ce4f00ce729e78646203bb0724057e6f7899"
+  },
+  "node": {
+    "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_missing_label_reconstruction_denominator_exclusion",
+    "node_manifest_sha256": "95905b51f8f8c973dc838376013deb50d881538606a1675dc62cd1c88bec411a",
+    "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_missing_label_reconstruction_denominator_exclusion",
+    "status": "PROVED",
+    "verify_audit_sha256": "489a9922c4904ee42e9190bef838543f88e5280bf7734f4aacc6241f13da40d0",
+    "verify_sha256": "d73af8af413d14424fc18a3d36eb48a7534b9a57a523467914a938c165c85561"
+  },
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Does not certify every implementation pivot or outside-resultant guard.",
+    "Does not close cell 14, assemble orientations, or convert source cases to distinct slopes."
+  ],
+  "provenance": {
+    "branch": "codex/full-prize-resolution-v12-20260807",
+    "commit": "925ac77558928fd531a5091db935139b797ef181",
+    "evidence_file_count": 5,
+    "node_count": 3,
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-433-1b-o0b-cell11-reconstruction-boundary-v1",
+  "statement": {
+    "claims": {
+      "BC_minus_chart_roots": 0,
+      "BC_plus_chart_roots_per_row": [153731577, 583634934, 1547071505],
+      "case_census": "8 epsilon/sign source towers",
+      "field_boundary_points": 16,
+      "guarded_boundary_points": 0
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_ROUTE_CUT_LATER_GUARDS_OPEN",
+    "title": "Repeated-BC O0b cell-11 reconstruction-denominator cut",
+    "workboard_item": "K3"
+  }
+}
