@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - General t-petal anchor coordinate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_tpetal_anchor_coordinate_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No split-point, aggregate owner,
+  deployed-row, or endpoint bound is supplied.
+- **What is being added:** On the monic chart from the general-`t` dimension
+  theorem, `(FB-GW)/Lambda` is an affine bijection to all polynomials of
+  degree at most `e-1`. For a squarefree exact anchor it also satisfies
+  `gcd(H,F)=gcd(G,F)`, recovering every common-defect owner by one gcd.
+- **How it is useful:** It extends the exact determinant and owner coordinates
+  already available in the two- and three-petal cells to every `t`, closing
+  coefficient multiplicity and fixed-owner ambiguity before the live
+  maximum-to-mean count.
+- **What to do next:** Bound the coordinates whose reconstructed locators
+  split and pass the exact guards without summing independent gcd strata.
+  The proof is analytic and makes no computational claim.
+
 ### 2026-08-10 - General t-petal saturated-slice dimension
 
 - **Agent/model:** Codex.
