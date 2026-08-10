@@ -3753,3 +3753,16 @@ The packet pins three aggregate PROVED nodes and hostile audits at
 AllenGrahamHart/rs-mca-prize-dag @ `8df090339e3e`. Ledger movement remains
 0. K3 remains open on eleven other positive routes, orientation/source-cover
 assembly, exact distinct-slope allocation, and independent review.
+
+## 2026-08-10 — [K3] repeated-BC O0b cell-11 off-guard route cut
+
+Added `kb-mca-v4-433-1b-o0b-cell11-offguard-v1`. Across eight source
+towers, three missing representatives, two outside signs, and 15 residual
+matchings, all 720 exact paired-product systems are empty at every deployed
+nonzero-guard source value. Nested norms leave 1,584 exceptional-root
+occurrences over 126 base values; exact all-pair replay excludes all 1,584.
+The packet pins two PROVED nodes and 19 source artifacts at
+AllenGrahamHart/rs-mca-prize-dag @ `81f218e38285`. Ledger movement remains
+0. Missing `BE/CF`, guard and selected-cofactor boundaries, cell 14,
+orientation, allocation, independent review, K3, and the KoalaBear row remain
+open.
