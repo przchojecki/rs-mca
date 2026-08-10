@@ -5,16 +5,16 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, and the exact ambient owner-stratum enumerator; no guarded owner-aggregate, deployed-row, or endpoint bound
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, and an exact owner-free weighted Cauchy divisor formulation; no guarded owner-aggregate bound, deployed-row bound, or endpoint bound
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
-falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, or an ambient exact-owner stratum differing from the printed MDS count
+falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, or a CRT pair violating the printed moment, primitive, or background Cauchy identities
 replay: analytic proof; no computational claim
 ---
 
@@ -352,14 +352,97 @@ Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
 `058febd07e71302be851d2f13e62cc55a8e689ba`, node
 `l1_fpc5_tpetal_joint_owner_ambient_mds_census`.
 
-## 8. Nonclaim
+## 8. Owner-free weighted Cauchy divisor formulation
+
+Let `chi` be the unique polynomial of degree below `h=deg Lambda`
+satisfying
+
+```text
+chi==c_i (mod L_i).
+```
+
+For every locator polynomial `G` of degree at most `d`, put
+
+```text
+B_G=rem_Lambda(chi G).                                (8.1)
+```
+
+### Theorem 8.1
+
+The pair `(G,B)` belongs to the complete `t`-petal slice if and only if
+`B=B_G` and `deg B_G<=d`. If the petals split into the point set `T`, write
+`c(z)=c_i` for `z in T_i` and
+
+```text
+M_j(P)=sum_(z in T) c(z) z^j P(z)/Lambda'(z).         (8.2)
+```
+
+Then
+
+```text
+deg B_G<=d
+iff M_j(G)=0 for 0<=j<=h-d-2.                        (8.3)
+```
+
+For a monic squarefree core-split locator `G` and every `x in Z(G)`,
+
+```text
+B_G(x)=-Lambda(x)M_0(G/(X-x)).                        (8.4)
+```
+
+Hence primitivity is exactly the nonvanishing of all punctured moments in
+`(8.4)`. At every background point `y`,
+
+```text
+B_G(y)=Lambda(y) sum_(z in T)
+  c(z)G(z)/((y-z)Lambda'(z)),                         (8.5)
+```
+
+so required and forbidden background agreements are explicit Cauchy
+vanishing and nonvanishing tests. Finally, if `L_Core` is the source-core
+locator and `A=L_Core/G`, the moment system becomes
+
+```text
+sum_(z in T)
+  c(z) z^j L_Core(z)/(A(z)Lambda'(z))=0,
+0<=j<=h-d-2.                                         (8.6)
+```
+
+Thus the guarded cell is one owner-free weighted reciprocal-divisor census
+over `A|L_Core`; no joint owners are independently summed.
+
+#### Proof
+
+CRT proves `(8.1)` and the pair-slice equivalence. Lagrange interpolation
+gives
+
+```text
+B_G(X)/Lambda(X)
+ =sum_(z in T)c(z)G(z)/(Lambda'(z)(X-z)).             (8.7)
+```
+
+Its expansion at infinity has coefficient `M_j(G)` at `X^(-j-1)`, proving
+`(8.3)`. Substituting `G=(X-x)G_x` into `(8.7)` at `X=x` proves `(8.4)`,
+and evaluation at a background point proves `(8.5)`. Since core and petals
+are disjoint, `A(z)` is nonzero and `G(z)=L_Core(z)/A(z)`, proving `(8.6)`.
+QED.
+
+This is a dual-domain weighted Cauchy formulation, not an identification
+with ordinary prefix flatness or a proof of the base-field-normalized
+split-pencil census.
+
+Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
+`a530e44835630165f92e01d91aa0b8e57f0ae0d7`, node
+`l1_fpc5_tpetal_owner_free_cauchy_divisor_chart`.
+
+## 9. Nonclaim
 
 The theorem types the joint owner and all remaining background equations and
 pays each fixed guarded owner. The dual-domain reduction neither counts its
 pencils nor supplies a converse from arbitrary coefficient pairs to guarded
 FPC5 candidates. The MDS formula counts the complete unguarded chart, not
-the guarded contributors. The packet does not aggregate the realized
-guarded owners, supply
-first-match chronology, pay the complete source cell, deploy a row, or move
-an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be
+the guarded contributors. The Cauchy formulation is exact but supplies no
+upper bound. The packet does not aggregate the realized guarded owners,
+supply first-match chronology, pay the complete source cell, deploy a row,
+or move an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be
 exponential.
