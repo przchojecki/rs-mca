@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - Fixed-background GRS boundary payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md` and this log
+  entry.
+- **Status:** PROVED / PARTIAL PAYMENT. No middle-polarity aggregate or row
+  endpoint is supplied.
+- **What is being added:** Summing the exact fixed-background singleton or
+  positive-Johnson bounds gives `binom(b,u)` and
+  `binom(b,u)Nell/[d^2-N(d-ell)]`, respectively. Both are polynomial within
+  fixed distance of `u=0` or `u=b`.
+- **How it is useful:** This pays a region that can survive joint-background
+  Johnson, since `J_bg=bJ_fix-Nu(b-u)`, while retaining the exact entropy
+  price for choosing required background zeros.
+- **What to do next:** Attack middle background polarity with a
+  base-field-normalized shell census or a guard/chronology coalescence; do
+  not drop the binomial factor.
+
 ### 2026-08-10 - General t-petal GRS syndrome-shell specialization
 
 - **Agent/model:** Codex.

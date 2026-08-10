@@ -5,13 +5,13 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1; every primitive split locator is exactly a weight-d vector in one GRS syndrome coset
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1; every primitive split locator is exactly a weight-d vector in one GRS syndrome coset; summing fixed-background singleton or Johnson bounds pays bounded background polarity
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, exact fixed-background codimension/incidence normalization, an exact GRS syndrome-shell bijection, and a per-chart singleton criterion; no guarded owner-aggregate bound, deployed-row bound, or endpoint bound
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, exact fixed-background codimension/incidence normalization, an exact GRS syndrome-shell bijection, a per-chart singleton criterion, and a binomial-times-Johnson bounded-polarity payment; no middle-polarity guarded aggregate bound, deployed-row bound, or endpoint bound
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
 falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence, or a nonempty fixed-background cell violating the ell-1 codimension or incidence identity
@@ -644,15 +644,60 @@ injective-range consequence are pinned to
 `AllenGrahamHart/rs-mca-prize-dag` commit
 `52e7b7344`, node `l1_fpc5_tpetal_hankel_grs_syndrome_shell`.
 
-## 12. Nonclaim
+## 12. Fixed-background GRS boundary payment
+
+Retain `0<=u<=b` and define
+
+```text
+J_fix=d^2-N(d-ell).
+```
+
+### Theorem 12.1
+
+For the complete contributor family `F` in one fixed
+source/touched/degree cell,
+
+```text
+|F|<=binom(b,u)                                      (12.1)
+```
+
+when `d+ell-1>=N`, while
+
+```text
+|F|<=binom(b,u) N ell/J_fix                          (12.2)
+```
+
+when `d+ell-1<N` and `J_fix>0`. Hence, for every fixed absolute `C`, either
+branch is polynomial when `min(u,b-u)<=C`.
+
+Moreover, if `J_bg` is the joint-background Johnson denominator, then
+
+```text
+J_bg=b J_fix-Nu(b-u).                                (12.3)
+```
+
+#### Proof
+
+For each required `u`-set `R`, Theorem 11.1 gives at most one support in the
+injective branch. In the other branch, distinct `d`-supports intersect in at
+most `d-ell`; the ordinary Johnson double count gives at most
+`Nell/J_fix` supports when `J_fix>0`. The fixed-background incidence identity
+gives `|F|<=sum_R|F_R|`, and there are `binom(b,u)` choices. Finally,
+`binom(b,u)<=b^C` under the bounded-polarity hypothesis. Substituting
+`r-u=d-ell` into `J_bg=b d^2+Nu^2-Nbr` proves `(12.3)`. QED.
+
+This payment is pinned to `AllenGrahamHart/rs-mca-prize-dag` commit
+`2af7246eb`, node `l1_fpc5_fixed_background_grs_shell_payment`.
+
+## 13. Nonclaim
 
 The theorem types the joint owner and all remaining background equations and
 pays each fixed guarded owner. The dual-domain reduction neither counts its
 pencils nor supplies a converse from arbitrary coefficient pairs to guarded
 FPC5 candidates. The MDS formula counts the complete unguarded chart, not
 the guarded contributors. The Cauchy, Hankel, fixed-background, and GRS-shell
-formulations are exact but supply no upper bound below the injective range.
-The packet does not
+formulations are exact but supply no middle-polarity upper bound below the
+injective or positive-`J_fix` ranges. The packet does not
 aggregate the realized guarded owners or fixed background sets,
 supply first-match chronology, pay the complete source cell, deploy a row,
 or move an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be
