@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - FPC5 GRS support-shortening prefixes
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md`; added
+  `experimental/scripts/verify_list_fpc5_constant_weight_shortening_v1.py`;
+  updated this log.
+- **Status:** PROVED / PARTIAL PAYMENT / EXACT ROUTE CUT. No full FPC5 or
+  Prize endpoint is claimed.
+- **What is being added:** Every fixed FPC5 GRS syndrome shell injects into a
+  binary constant-weight code. Complementing supports and fixing a common
+  `j`-set gives an exact Plotkin-Johnson cap after shortening, with the full
+  required-background incidence factor retained.
+- **How it is useful:** At `n=8192`, this pays the complete rate-`1/8`
+  source-scale prefix `M=29..32` and rate-`1/16` prefix `M=57..67`, including
+  all 57 `M=61` cells and the 37 cells outside the adjacent-dimension strip.
+  Exact replay stops at `M=33` and `M=68`; rate-half `M=5` and rate-quarter
+  `M=13` also remain above this cap.
+- **What to do next:** Seek a stronger shell/split-divisor theorem at those
+  four stopping scales or a symbolic shortening-depth bound on later rows.
+  Do not interpret a failed upper bound as evidence that a contributor
+  family exists.
+
 ### 2026-08-10 - FPC5 shifted-Johnson and first-layout payment
 
 - **Agent/model:** Codex.

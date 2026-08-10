@@ -5,17 +5,17 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1; every primitive split locator is exactly a weight-d vector in one GRS syndrome coset; summing fixed-background singleton or Johnson bounds pays bounded background polarity; Haboeck plus the proved deep-point conversion bounds the adjacent-dimension shifted-Johnson shell with the exact background factor, and canonical first-layout domination compiles selected cells across all source layouts and touched sets
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1; every primitive split locator is exactly a weight-d vector in one GRS syndrome coset; summing fixed-background singleton or Johnson bounds pays bounded background polarity; Haboeck plus the proved deep-point conversion bounds the adjacent-dimension shifted-Johnson shell with the exact background factor; exact constant-weight shortening bounds every fixed GRS shell, and canonical first-layout domination compiles both selected cells and complete official source prefixes
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, exact fixed-background codimension/incidence normalization, an exact GRS syndrome-shell bijection, a per-chart singleton criterion, a binomial-times-Johnson bounded-polarity payment, an exact shifted-Johnson list cap, and a canonical first-layout/touched-set compiler for selected cells; no complete middle-polarity guarded aggregate, deployed-row endpoint, or Prize close
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, exact fixed-background codimension/incidence normalization, an exact GRS syndrome-shell bijection, a per-chart singleton criterion, a binomial-times-Johnson bounded-polarity payment, an exact shifted-Johnson list cap, an exact constant-weight support-shortening cap, and a canonical first-layout/touched-set compiler paying two complete official source prefixes; no complete middle-polarity guarded aggregate, deployed-row endpoint, or Prize close
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
-falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence, a nonempty fixed-background cell violating the ell-1 codimension or incidence identity, a shifted shell exceeding the printed deep-point ceiling, or a canonical aggregate exceeding its exact touched/background/source charge
-replay: python3 experimental/scripts/verify_list_fpc5_shifted_johnson_v1.py for the official boundary arithmetic; analytic proofs for the structural theorems
+falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence, a nonempty fixed-background cell violating the ell-1 codimension or incidence identity, a shifted shell exceeding the printed deep-point ceiling, a constant-weight shell exceeding the shortening cap, or a canonical aggregate exceeding its exact touched/background/source charge
+replay: python3 experimental/scripts/verify_list_fpc5_shifted_johnson_v1.py for the adjacent-dimension arithmetic; python3 experimental/scripts/verify_list_fpc5_constant_weight_shortening_v1.py for the support-shortening prefixes; analytic proofs for the structural theorems
 ---
 
 # General t-petal joint anchor owner
@@ -810,7 +810,122 @@ a restatement of Theorem 13.1.
 Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit `b0852b67c`,
 node `l1_fpc5_shifted_johnson_first_layout_payment`.
 
-## 15. Nonclaim
+## 15. Constant-weight shortening of every GRS shell
+
+Fix a chart from Theorem 11.1. Put
+
+```text
+H=t ell, sigma=H-d                         when u<0,
+H=d+ell, sigma=ell                         for one fixed background chart,
+w=min(d,N-d).                                             (15.1)
+```
+
+For `0<=j<=w`, set
+
+```text
+x=w-j,
+Delta_j=x^2-(N-j)(x-sigma).                              (15.2)
+```
+
+Call `j` admissible if `x<sigma`, with `P_j=1`, or if `Delta_j>0`, with
+
+```text
+P_j=floor((N-j)sigma/Delta_j).                           (15.3)
+```
+
+### Theorem 15.1
+
+Every fixed chart has at most
+
+```text
+A_j=floor(binom(N,j)P_j/binom(w,j))                     (15.4)
+```
+
+members. The complete fixed source/touched/degree cell has at most `A_j`
+when `u<0` and at most `binom(b,u)A_j` when `0<=u<=b`.
+
+#### Proof
+
+Theorem 11.1 injects chart members into weight-`d` support vectors in one
+GRS syndrome coset whose kernel distance is `H`. If `S,T` are distinct
+supports, the difference vector is a nonzero kernel word supported inside
+`S union T`, so
+
+```text
+H<=2d-|S intersect T|,
+|S triangle T|>=2(H-d)=2sigma.                          (15.5)
+```
+
+Complement the supports when `d>N/2`; distance is unchanged and their weight
+is now `w`. Counting incidences with `j`-subsets shows that some common
+`j`-set is contained in at least
+
+```text
+|F| binom(w,j)/binom(N,j)
+```
+
+members. Remove it. The residual family has length `N-j`, weight `x`, and
+distance at least `2sigma`. It is singleton when `x<sigma`. Otherwise its
+pairwise intersections are at most `x-sigma`; the ordinary incidence
+second-moment argument gives
+
+```text
+m Delta_j<=(N-j)sigma.
+```
+
+This proves `(15.3)--(15.4)`. Summing the exact required-background charts
+gives the final factor. QED.
+
+Unlike Theorem 13.1, this theorem has no adjacent-dimension or field-size
+hypothesis. It may still be exponential when the required shortening depth
+grows.
+
+Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit `12ed6c980`,
+node `l1_fpc5_grs_shell_constant_weight_shortening_cap`.
+
+## 16. Official first-scale prefix payment
+
+Apply Theorem 15.1 to every exact `(PF6)` survivor at `n=8192`, minimize over
+all admissible shortening depths, and compile through Theorem 14.1.
+
+### Theorem 16.1
+
+At rate `1/8`, the complete source-scale prefix `M=29,...,32` has `126`
+fixed defect cells in five `(M,t)` groups and total global cap
+
+```text
+G_8=195112047344632914122867933361797765038.            (16.1)
+```
+
+It is paid for `q>=2^128 G_8`; this threshold has 256 bits and is below
+`2^256`.
+
+At rate `1/16`, the complete prefix `M=57,...,67` has `374` cells in twelve
+groups, with `M=60` empty, and total cap
+
+```text
+G_16=2444555448501019158442942184801171570.             (16.2)
+```
+
+It is paid for `q>=2^128 G_16`, a 249-bit threshold.
+
+#### Proof
+
+For each fixed `(M,t)`, sum the exact chart factors and caps from Theorem
+15.1 over the disjoint defect cells, multiply once by `binom(M,t)`, and add
+the `M` planted anchors from Theorem 14.1. Sum the resulting bounds over
+touched counts and source scales. Exact integer replay gives `(16.1)` and
+`(16.2)`. Since the target budget is `floor(q/2^128)`, the printed field
+gates are sufficient. QED.
+
+The same compiler is above the strict budget cap at rate-half `M=5`,
+rate-quarter `M=13`, rate-`1/8` `M=33`, and rate-`1/16` `M=68`. These are
+upper-bound route fences, not lower bounds on any contributor family.
+
+Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit `12ed6c980`,
+node `l1_fpc5_grs_shortening_official_prefix_payment`.
+
+## 17. Nonclaim
 
 The theorem types the joint owner and all remaining background equations and
 pays each fixed guarded owner. The dual-domain reduction neither counts its
@@ -818,8 +933,10 @@ pencils nor supplies a converse from arbitrary coefficient pairs to guarded
 FPC5 candidates. The MDS formula counts the complete unguarded chart, not
 the guarded contributors. The Cauchy, Hankel, fixed-background, and GRS-shell
 formulations are exact. Theorems 13.1 and 14.1 add a field-dependent payment
-only in the adjacent-code strip and only for selected cells passing the
-printed aggregate test. They do not supply a complete middle-polarity upper
-bound, aggregate the realized guarded owners, pay lower field slices, deploy
-a Prize endpoint, or touch the dominant region `a^2<=N(K-1)`. Summing `(5.2)`
-over all divisors of `P_0` can still be exponential.
+in the adjacent-code strip. Theorems 15.1 and 16.1 extend fixed-chart control
+beyond that strip and pay two finite official prefixes, but their shortening
+depth can grow and the outer cap still fails at the four printed next
+scales. These theorems do not supply a complete middle-polarity upper bound,
+aggregate the realized guarded owners, pay lower field slices or larger
+rows, deploy a Prize endpoint, or close the full large-source target. Summing
+`(5.2)` over all divisors of `P_0` can still be exponential.
