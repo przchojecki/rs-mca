@@ -3766,3 +3766,14 @@ AllenGrahamHart/rs-mca-prize-dag @ `81f218e38285`. Ledger movement remains
 0. Missing `BE/CF`, guard and selected-cofactor boundaries, cell 14,
 orientation, allocation, independent review, K3, and the KoalaBear row remain
 open.
+
+## 2026-08-10 — [K3] repeated-BC O0b cell-11 colored off-guard cut
+
+Added `kb-mca-v4-433-1b-o0b-cell11-colored-offguard-v1`.  The missing
+`BE/CF` endpoint product fixes the colored endpoint, and its reconstructed
+squared sum gives one necessary source-algebra consistency identity.  All 16
+exact norms are units on the deployed rational open: their only base-field
+roots are `x=0,1` for `BC-` and `x=0,-1` for `BC+`, all registered guards.
+The packet pins one PROVED node and four evidence files at
+AllenGrahamHart/rs-mca-prize-dag @ `96868562394e`.  Ledger movement is 0;
+finite guard/cofactor fibers and all later K3 obligations remain open.
