@@ -5,16 +5,16 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity and exact owner-containment dimension; no split-point, owner-aggregate, deployed-row, or endpoint bound
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, and binomial-ratio fixed-owner packing; no owner-aggregate, deployed-row, or endpoint bound
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
-falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, or a non-anchor background root not represented by the printed affine equation
+falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, or a fixed-owner family exceeding the binomial ratio
 replay: analytic proof; no computational claim
 ---
 
@@ -117,8 +117,46 @@ B_H(y)=0 iff T_H(y)=-W(y),                            (4.2)
 
 one affine linear equation on the coordinate body.
 
-## 5. Nonclaim
+## 5. Fixed joint-owner packing
 
-The theorem types the joint owner and all remaining background equations.
-It does not bound split points in an owner stratum, aggregate the realized
-owners, supply first-match chronology, deploy a row, or move an endpoint.
+For one surviving full-petal cell, write
+
+```text
+N=|C|,       b=|Bkg|,       r=2d-t ell=e-1,
+u=d-(t-1)ell,       v=max(0,u).                       (5.1)
+```
+
+Fix an exact owner `Q=gcd(H,P_0)` of degree `q`. Let `F_Q` be the distinct
+exact candidates with this owner. Then
+
+```text
+|F_Q| <= floor(
+  binom(N+b-q,r-q+1) / binom(d+v-q,r-q+1)
+).                                                    (5.2)
+```
+
+Indeed, each candidate's combined defect/background marked set has size at
+least `d+v`. Two such marked sets meet in at most `r` points by the joint
+determinant degree budget. After removing the common `q` owner roots, the
+sets have size at least `d+v-q` in an `N+b-q` point universe and meet in at
+most `r-q` points. No `(r-q+1)`-subset can occur twice, so double counting
+proves `(5.2)`.
+
+The denominator is always defined. If `u>=0`, then `d+v-r=ell`. If `u<0`,
+then `d+v-r=t ell-d>=ell-b>=1` by the list threshold. In particular, for
+`q=r-c`,
+
+```text
+|F_Q|<=n^(c+1).                                       (5.3)
+```
+
+Every bounded co-deficiency chamber is therefore polynomial per fixed
+joint owner.
+
+## 6. Nonclaim
+
+The theorem types the joint owner and all remaining background equations and
+pays each fixed owner. It does not aggregate the realized owners, supply
+first-match chronology, pay the complete source cell, deploy a row, or move
+an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be
+exponential.

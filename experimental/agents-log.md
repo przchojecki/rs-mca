@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - General t-petal fixed joint-owner packing
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. The payment is per fixed owner;
+  no aggregate owner, deployed-row, or endpoint bound is supplied.
+- **What is being added:** At joint-owner degree `q`, candidate marked sets
+  give the exact packing ratio
+  `binom(N+b-q,r-q+1)/binom(d+max(0,u)-q,r-q+1)`. Every bounded
+  co-deficiency owner chamber is polynomial.
+- **How it is useful:** This is the first arbitrary-`t` counting theorem
+  after the affine-coordinate reductions and matches the fixed-owner
+  discipline of the split-pencil program.
+- **What to do next:** Coalesce the realized `Q` strata with source-bound
+  first-match chronology; summing the fixed-owner bound over all divisors can
+  still be exponential. The proof is analytic and makes no computational
+  claim.
+
 ### 2026-08-10 - General t-petal joint anchor owner
 
 - **Agent/model:** Codex.
