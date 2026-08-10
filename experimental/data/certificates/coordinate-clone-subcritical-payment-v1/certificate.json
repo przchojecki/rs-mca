@@ -1,0 +1,33 @@
+{
+  "base": {
+    "commit": "93fba1be3f3299b0ba4708d88715377bbb656e45"
+  },
+  "deployed_rows": {
+    "koalabear_mca": {
+      "budget": 274980728111395087,
+      "m": 1116048,
+      "n": 2097152
+    },
+    "mersenne31_mca": {
+      "budget": 16777215,
+      "m": 1116024,
+      "n": 2097152
+    }
+  },
+  "nonclaims": [
+    "NO_IDENTICALLY_ZERO_OR_FIXED_COMPONENT_PAYMENT",
+    "NO_LARGE_CLONE_COMPONENT_PAYMENT",
+    "NO_CROSS_CELL_ALLOCATION",
+    "NO_COMPLETE_EXCEPTION_ROUTING",
+    "NO_ADJACENT_ROW_CLOSURE",
+    "NO_OFFICIAL_SCORE_MOVEMENT"
+  ],
+  "review_status": "INDEPENDENT_REVIEW_REQUESTED",
+  "schema": "coordinate-clone-subcritical-payment-v1",
+  "source_pins": {
+    "experimental/grande_finale.tex": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222"
+  },
+  "theorems": [
+    "COORDINATE_CLONE_SUBCRITICAL_CLASS_PAYMENT"
+  ]
+}

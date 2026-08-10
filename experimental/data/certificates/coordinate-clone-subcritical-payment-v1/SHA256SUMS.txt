@@ -1,0 +1,5 @@
+9ee00d514f2e524a960da629668f60edac9f3ba5db4d6382ffdb2c0beb7c66ee  README.md
+4b25c32fcfed271f92d75c94e887c75457180fbde76b440a5f9ace128119e09b  certificate.json
+0726c7708b4aa5144ede0bc9ce31def82671bb5c39ec3b987c2f19a03ef4ebb3  recorded_output.txt
+6815a7a9b40d8f5e7059fc8c562a70ec166655bbf6818a9dbdc2f01bbde10e38  ../../../notes/m2/coordinate_clone_subcritical_payment.md
+c59678f1726bd48964b584b9793fa409ae4928ffa2fac05ab0ce55762d54ab54  ../../../scripts/verify_coordinate_clone_subcritical_payment.py
