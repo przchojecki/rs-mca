@@ -1,0 +1,5 @@
+7038149d042bc483307152dccee09284a7800e984762af6b79891d573910ed4f  README.md
+6b721d758464c15dc4564b3536d4f65bc47fa8927e547d6711fe089b5cac890f  certificate.json
+cea868eb7de426f4878bb61da0be3b7ca9b4cfb214a3d58451c8691bfe8fcc4e  recorded_output.txt
+dd099159a20ce88c5cf690e2fa723ae1a90fd73c4453936d67632ecb3cd1eb8a  ../../../notes/m2/denominator_root_puncture_trivialization.md
+88311bd81b5aaf58699618701db0836484e2f9a3e6dfc05592bee7bd8091f77f  ../../../scripts/verify_denominator_root_puncture_trivialization.py

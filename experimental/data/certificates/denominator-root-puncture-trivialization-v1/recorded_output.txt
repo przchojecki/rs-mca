@@ -1,0 +1,29 @@
+python3 experimental/scripts/verify_denominator_root_puncture_trivialization.py --check
+PASS certificate, manifest, prerequisite pins, review status, and nonclaims
+PASS puncture fixture, interpolation uniqueness, and pole-defect slope recovery
+PASS shadow disjointness and exact deployed non-payment fence
+PASS no exception payment or endpoint claimed
+RESULT: PASS (137341 checks)
+
+python3 -O experimental/scripts/verify_denominator_root_puncture_trivialization.py --check
+PASS certificate, manifest, prerequisite pins, review status, and nonclaims
+PASS puncture fixture, interpolation uniqueness, and pole-defect slope recovery
+PASS shadow disjointness and exact deployed non-payment fence
+PASS no exception payment or endpoint claimed
+RESULT: PASS (137341 checks)
+
+python3 experimental/scripts/verify_denominator_root_puncture_trivialization.py --tamper-selftest
+PASS tamper rejected: source pin
+PASS tamper rejected: theorem set
+PASS tamper rejected: nonclaim
+PASS tamper rejected: review status
+PASS tamper rejected: M31 agreement
+RESULT: PASS (5/5 mutations rejected)
+
+python3 -O experimental/scripts/verify_denominator_root_puncture_trivialization.py --tamper-selftest
+PASS tamper rejected: source pin
+PASS tamper rejected: theorem set
+PASS tamper rejected: nonclaim
+PASS tamper rejected: review status
+PASS tamper rejected: M31 agreement
+RESULT: PASS (5/5 mutations rejected)
