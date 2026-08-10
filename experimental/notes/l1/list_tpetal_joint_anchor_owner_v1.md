@@ -5,13 +5,13 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1; every primitive split locator is exactly a weight-d vector in one GRS syndrome coset
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, and exact fixed-background codimension/incidence normalization; no guarded owner-aggregate bound, deployed-row bound, or endpoint bound
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, exact fixed-background codimension/incidence normalization, an exact GRS syndrome-shell bijection, and a per-chart singleton criterion; no guarded owner-aggregate bound, deployed-row bound, or endpoint bound
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
 falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence, or a nonempty fixed-background cell violating the ell-1 codimension or incidence identity
@@ -578,14 +578,81 @@ Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
 `6b45e49c7c1f07e6dfacd1e43a3abe260c7b33a4`, node
 `l1_fpc5_tpetal_fixed_background_hankel_codimension`.
 
-## 11. Nonclaim
+## 11. Exact GRS syndrome-shell specialization
+
+Let one of the rational Hankel charts above have locator degree `d` and `c`
+recurrence rows, and put
+
+```text
+D=d+c.
+```
+
+Thus `D=h-1` in the unaugmented chart, while a fixed-background chart has
+`c=ell-1` and `D=d+ell-1`. Let `C` be the `N`-point core, put
+
+```text
+v_x=1/L_C'(x),
+H_D=(v_x x^a)_(0<=a<D, x in C),
+```
+
+and retain the moment segment `mu=(mu_0,...,mu_(D-1))`.
+
+### Theorem 11.1
+
+Primitive core-split locators in the chart are canonically bijective with
+
+```text
+{e in F^C: wt(e)=d and H_D e=mu}.                    (11.1)
+```
+
+If `D<N`, then
+
+```text
+ker H_D=RS[F,C,N-D],                                 (11.2)
+```
+
+so `(11.1)` is exactly the radius-`d` exact shell of that GRS code around
+any word with syndrome `mu`. If `D>=N`, the fixed chart contains at most one
+primitive split locator. In the noninjective range, two distinct locator
+supports satisfy
+
+```text
+|S intersect T|<=d-c-1.                              (11.3)
+```
+
+For the fixed-background chart this is `d-ell`.
+
+#### Proof
+
+For support `S`, let `w_x` be the Cramer amplitudes from the first `d`
+moments. The locator recurrence extends those moment equalities through
+indices `0,...,D-1`. Setting `e_x=w_x/v_x` on `S` and zero elsewhere gives
+`H_De=mu`; the primitive guard is exactly `wt(e)=d`. Conversely, a
+weight-`d` vector in that syndrome fiber gives its support locator, all `c`
+recurrences, and nonzero Cramer amplitudes. Vandermonde recovery makes both
+maps inverse.
+
+For `D<N`, the Lagrange leading-coefficient identity puts
+`RS[F,C,N-D]` in `ker H_D`, and dimensions give equality. For `D>=N`, the
+first `N` weighted Vandermonde rows are invertible. Finally, the difference
+of two shell vectors is a nonzero word of the `[N,N-D,D+1]` GRS code, while
+its support lies in `S union T`; this proves `(11.3)`. QED.
+
+This is the FPC5 specialization of the integrated
+`l1_syndrome_catalecticant_shells.md` theorem. The parameter dictionary and
+injective-range consequence are pinned to
+`AllenGrahamHart/rs-mca-prize-dag` commit
+`52e7b7344`, node `l1_fpc5_tpetal_hankel_grs_syndrome_shell`.
+
+## 12. Nonclaim
 
 The theorem types the joint owner and all remaining background equations and
 pays each fixed guarded owner. The dual-domain reduction neither counts its
 pencils nor supplies a converse from arbitrary coefficient pairs to guarded
 FPC5 candidates. The MDS formula counts the complete unguarded chart, not
-the guarded contributors. The Cauchy, Hankel, and fixed-background
-formulations are exact but supply no upper bound. The packet does not
+the guarded contributors. The Cauchy, Hankel, fixed-background, and GRS-shell
+formulations are exact but supply no upper bound below the injective range.
+The packet does not
 aggregate the realized guarded owners or fixed background sets,
 supply first-match chronology, pay the complete source cell, deploy a row,
 or move an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be

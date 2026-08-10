@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - General t-petal GRS syndrome-shell specialization
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. The theorem identifies a local
+  exact shell; it supplies no noninjective list bound or aggregate payment.
+- **What is being added:** A chart with locator degree `d` and `c` Hankel
+  rows is canonically the weight-`d` syndrome shell of the `D=d+c` row
+  weighted Vandermonde check on the core. For `D<N` its kernel is
+  `RS[F,C,N-D]`; for `D>=N` the fixed chart is singleton. MDS distance gives
+  support overlap at most `d-c-1`.
+- **How it is useful:** It connects the FPC5 Pade-Hankel endpoint directly to
+  the repository's syndrome-catalecticant language and separates the
+  automatic injective branch from the genuine ordinary-list wall.
+- **What to do next:** Bound the derived exact GRS shells in the live
+  parameter family while retaining background and chronology filters, or
+  exploit many untouched petals. Do not present the shell identification as
+  a list-size bound.
+
 ### 2026-08-10 - General t-petal fixed joint-owner packing
 
 - **Agent/model:** Codex.
