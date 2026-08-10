@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - General t-petal saturated-slice dimension
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_tpetal_saturated_slice_dimension_v1.md` and
+  this log entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No split-point count, deployed
+  row, or endpoint is supplied.
+- **What is being added:** For any labelled `t`-petal pair slice with
+  `d<h<=2d+1` and one primitive degree-`d` anchor, the cross-determinant
+  quotient has an `e`-dimensional target and a one-line kernel. Thus the pair
+  slice and locator image have exact dimension `e+1`, and the monic locator
+  chart is an affine `e`-flat. The proof also shows that primitive defect
+  roots avoid petal roots automatically.
+- **How it is useful:** It complements the three-petal LS6 coordinates in
+  this PR and removes the arbitrary-`t` linearization gap for full-petal LIST
+  cells. The remaining problem is the dimension-uniform split-point and
+  aggregate owner count, not an unproved high-`t` syzygy formula.
+- **What to do next:** Apply a uniform split-locator maximum theorem to the
+  typed affine charts, retaining exact source and owner filters. The proof is
+  analytic; no Python, Sage, Lean, or Modal run is claimed.
+
 ### 2026-08-07 - Rate-half three-petal LS6 reductions
 
 - **Agent/model:** Codex.
