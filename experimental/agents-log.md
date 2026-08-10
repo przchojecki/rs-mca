@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-10 - Sharp FPC5 two-petal determinant specialization
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_fpc5_two_petal_sharp_determinant_specialization_v1.md`
+  and this log entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No aggregate owner bound,
+  deployed row, or Prize endpoint is supplied.
+- **What is being added:** The sharp rate-half `M=4,t=2` FPC5 cell receives
+  three exact compatible coordinates: a full-domain degree-`2ell-3`
+  six-marked rational map, a shortening to the balanced exact shell
+  `RS[C,2ell-1]` at agreement `3ell-2`, and the native affine coordinate
+  `E=(A_1A'_2-A'_1A_2)/L_0` of degree at most `ell-3`. Relative to an exact
+  anchor, `gcd(E,F_0)=gcd(F,F_0)`, so the generic determinant atlas applies
+  directly and caps every fixed owner by its printed root-matroid/packing
+  minimum; the maximal-intersection owner has at most two non-anchor
+  neighbors.
+- **How it is useful:** It removes background-set, coefficient-pair, and
+  fixed-pencil multiplicity from this sharp LIST cell. It identifies the
+  precise remaining theorem as an aggregate count of coordinates whose
+  reconstructed locator splits and passes the marked FPC5 guards.
+- **What to do next:** Prove or falsify an aggregate gcd-owner coalescence
+  bound for the one marked coordinate body. The proof is analytic; no
+  Python, Sage, Lean, Modal, or document build was run.
+
 ### 2026-07-29 - LIST balanced-pencil anchor determinant atlas
 
 - **Agent/model:** Codex.
