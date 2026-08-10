@@ -5,16 +5,16 @@ object: LIST
 target_epsilon: target-free structural theorem; intended finite context 2^-128
 agreement: one exact labelled support of total degree h with d<h<=2d+1
 B_star: not_applicable
-direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel
+direct_statement: one determinant-coordinate gcd simultaneously recovers common defect roots and common background-agreement roots; all other background roots are affine coordinate equations; every fixed joint owner has an exact packing payment and a dual-domain bounded-tail split-pencil coordinate; the complete unguarded owner chart has the exact MDS support census; anchor elimination gives an owner-free weighted Cauchy divisor formulation retaining splitness and guards, whose coefficient space is a full-row-rank rational Pade-Hankel kernel; fixing the required background zeros gives exactly ell-1 Hankel rows and monic codimension ell-1
 architecture: DIRECT
 partition_digest: not_applicable
 atom_or_cell: one fixed labelled arbitrary-t monic pair slice with one exact anchor
 quantifier: every field and every source partition satisfying the companion primitive remainder theorem
 projection_and_unit: determinant coordinates with their split locators, reconstructed numerators, and source-background roots
-claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, and its full-rank rational Pade-Hankel kernel; no guarded owner-aggregate bound, deployed-row bound, or endpoint bound
+claimed_bound: exact joint-owner identity, exact owner-containment dimension, binomial-ratio fixed-owner packing, a two-generator coefficient parameterization of every fixed owner chamber, the exact ambient owner-stratum enumerator, an exact owner-free weighted Cauchy divisor formulation, its full-rank rational Pade-Hankel kernel, and exact fixed-background codimension/incidence normalization; no guarded owner-aggregate bound, deployed-row bound, or endpoint bound
 status: PROVED
 impact: ARCHITECTURE_BRIDGE
-falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, or a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence
+falsifier: a common anchor defect or background root missed by the gcd, an extraneous gcd root, a non-anchor background root not represented by the printed affine equation, a fixed-owner family exceeding the binomial ratio, a candidate violating the owner-cancelled determinant or two-generator coordinate, an ambient exact-owner stratum differing from the printed MDS count, a CRT pair violating the printed moment, primitive, or background Cauchy identities, a Cauchy moment block violating the printed Hankel rank, generating function, or recurrence, or a nonempty fixed-background cell violating the ell-1 codimension or incidence identity
 replay: analytic proof; no computational claim
 ---
 
@@ -510,14 +510,83 @@ Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
 `a9ffb4521cd52953bb901296fe5bb8a766a4116e`, node
 `l1_fpc5_tpetal_cauchy_hankel_kernel`.
 
-## 10. Nonclaim
+## 10. Fixed-background codimension normalization
+
+Assume
+
+```text
+u=d-(t-1)ell>=0
+```
+
+and fix a required `u`-set `R` of background zeros. Put
+
+```text
+P_R=Lambda L_R,       h_R=t ell+u,
+```
+
+and let `chi_R` equal `c_i` modulo `L_i` and zero modulo `L_R`.
+
+### Theorem 10.1
+
+The pairs satisfying the touched-petal congruences, `B|_R=0`, and
+`deg B<=d` reconstruct uniquely as
+
+```text
+B_(G,R)=rem_(P_R)(chi_R G).                           (10.1)
+```
+
+Their coefficient vectors lie in the rational Pade-Hankel kernel generated
+by `chi_R/P_R`, with exactly
+
+```text
+h_R-d-1=ell-1                                         (10.2)
+```
+
+rows. If the fixed-`R` cell contains a primitive monic member, this block
+has full row rank `ell-1`; its locator vector space has dimension
+`d-ell+2`, and its monic chart has affine codimension `ell-1`, independently
+of `t` and `u`.
+
+For any contributor family, if `R_G` is the complete background zero set
+and `F_R={G:R subset R_G}`, then
+
+```text
+sum_(R subset Bkg, |R|=u)|F_R|
+ =sum_G binom(|R_G|,u).                               (10.3)
+```
+
+A first-`R` rule partitions contributors disjointly, although those
+first-`R` pieces need not be complete linear charts.
+
+#### Proof
+
+Adjoin `L_R` as a zero-label CRT block and apply Theorems 8.1 and 9.1.
+Equation `(10.2)` is
+
+```text
+t ell+u-((t-1)ell+u)-1=ell-1.
+```
+
+The slice-dimension theorem gives vector dimension
+`2d+2-h_R=d-ell+2`; rank-nullity gives full row rank. Double-counting the
+incidences `(G,R)` proves `(10.3)`. QED.
+
+This normalization pays neither one fixed split-divisor cell nor the sum
+over background sets.
+
+Source provenance: `AllenGrahamHart/rs-mca-prize-dag` commit
+`6b45e49c7c1f07e6dfacd1e43a3abe260c7b33a4`, node
+`l1_fpc5_tpetal_fixed_background_hankel_codimension`.
+
+## 11. Nonclaim
 
 The theorem types the joint owner and all remaining background equations and
 pays each fixed guarded owner. The dual-domain reduction neither counts its
 pencils nor supplies a converse from arbitrary coefficient pairs to guarded
 FPC5 candidates. The MDS formula counts the complete unguarded chart, not
-the guarded contributors. The Cauchy and Hankel formulations are exact but
-supply no upper bound. The packet does not aggregate the realized guarded owners,
+the guarded contributors. The Cauchy, Hankel, and fixed-background
+formulations are exact but supply no upper bound. The packet does not
+aggregate the realized guarded owners or fixed background sets,
 supply first-match chronology, pay the complete source cell, deploy a row,
 or move an endpoint. Summing `(5.2)` over all divisors of `P_0` can still be
 exponential.
