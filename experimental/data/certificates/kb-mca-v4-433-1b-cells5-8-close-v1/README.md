@@ -38,3 +38,16 @@ This packet moves no ledger value and does not close K3 or the KoalaBear row.
 Within this exported workboard, role orbit `[11]` remains open. Fresh
 independent proof review remains required before promotion to a GREEN banked
 result.
+
+## Provenance annotation (2026-08-10, coordinator)
+
+The `provenance.commit` hash is the durable pin; the
+`provenance.branch` field names a worker-local branch that is not
+published. As of source-repo master
+`711fcb9775ef6561fde1f6e7eb11d28e0a04d205`
+(https://github.com/AllenGrahamHart/rs-mca-prize-dag), the pinned
+commit and every node listed in this certificate are reachable from
+public master with their verifiers. Worker certificate pushes land
+on this PR ahead of the coordinator's audited merge to master, so a
+pinned commit may be briefly unreachable (typically hours) between
+the two — replay against master at or after the commit above.
