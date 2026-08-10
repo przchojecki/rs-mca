@@ -3900,3 +3900,53 @@ direct-coordinate route-cut mathematics and GREEN for certificate custody.
 The same mathematics review remains RED for K3 closure/payment, as required:
 the actual-slope `Rec_2_4` selector/reconstruction, exact projection fibers,
 chronology preservation, and all-`Z_BC` complement fence are still unproved.
+
+## 2026-08-10 — [K3] actual-record dimension-sensitivity audit
+
+Added `kb-mca-v4-k3-actual-record-source-dimension-route-cut-v1` in a clean
+worktree at exact #1158 head `5145fc8e0a`; every pre-existing dirty worktree
+was left untouched. At final refresh, upstream target `main` was `93fba1be3f`; #1157
+and #1158 were still open and absent from `main` by ancestry and artifact
+content. The public proof DAG master was
+pinned at `3edb8b31b6` and audited rather than trusted by its `PROVED` label.
+
+The packet constructs an actual deployed KoalaBear received pole line over
+`F_(p^6)`, an exact support of size `1116048`, explaining polynomial zero,
+and the full-degree affine slope `alpha`. Its direction word cannot be
+explained by degree less than `k`, or even less than `k+1`, on that support;
+the pair is column-far and the canonical tangent image is empty. The shifted
+interpolation minimum is exactly `67473` under both dimension conventions.
+With `K=k` it is the boundary numerical profile; with `K=k+1` it is the
+first-interior numerical profile. Independent source review found that the
+available Q theorem is restricted to its special prefix witness family and
+that neither numerical profile is proved equivalent to the frozen Q or BC
+slope predicate. The packet therefore assigns no Q, BC, or `U_new` owner and
+records the missing `SEM-QBC` dimension/priority adapter before
+`ActiveRec_2_4` as an open gap—not as success condition B.
+
+The scope fence is explicit. A weak-Popov basis is
+`g1=(Lambda_E,0)`, `g2=(L_(D-E) mod Lambda_E,L_(D-E))`; the zero-codeword
+support witnesses have `B=0` and lie on the pure `A*g1` ray. The packet does
+not prove primitive `r_out=4` survival, endpoint realization, membership in
+the thirteen K3 routes, a K3 payment, or any row closure. All unresolved
+ledger values remain null and ledger movement is zero.
+
+The strict canonical certificate binds five local and six public-DAG source
+files plus the packet files, a recursively strict schema, the exact huge
+support-count fingerprint, and hostile semantic/parser mutations. The primary
+check is fail-closed if the exact public-DAG checkout is absent. Python normal
+and optimized modes, Sage, and FLINT replay the field, carrier, root-count,
+lattice, profile, and toy-kernel calculations without making owner claims.
+The connected Wolfram evaluator independently returned every exact arithmetic
+check true after the semantic downgrade and explicitly returned the actual
+owner as not established by the pinned sources; the local wrapper separately reported `Insufficient
+credits`. Exa and TheoremSearch were non-load-bearing controls.
+
+After the final semantic downgrade and reseal, independent mathematics review
+was GREEN for the narrow actual-record/profile-sensitivity theorem and RED for
+K3 closure/payment, as scoped. Independent certificate review was GREEN at
+payload `75ee17e4de50c5a4a0acd360c9d94ba00748875527390212823631c4585b4970`:
+normal and optimized replay, all 11 source pins, Sage, FLINT, 62 semantic and
+three parser mutations, fail-closed no-DAG behavior, and 309-leaf resealed
+fuzzing passed with no accepted mutation. `SEM-QBC`, `Rec_2_4`, K3 payment,
+and the KoalaBear row remain open.
