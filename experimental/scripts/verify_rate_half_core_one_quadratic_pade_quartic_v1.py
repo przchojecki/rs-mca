@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "3da4ed86f6d93dcf88574ac03b2362a0512c7cae"
+SOURCE_COMMIT = "f68d685e78da099e0a4dff362cc90ed2601a341f"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -50,6 +50,12 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_squarefree_shared_correction_third_jet_vanishing/proof.md": "34579c3c726f41e5bc41f06a7d8770aaa0d1f47290dbadbe067732b77d177751",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_squarefree_unified_heavy_row_remainder_gate/statement.md": "29905a8b21943e295833eddc17806d85fc985c4948661506978b7d5c801a3ee2",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_squarefree_unified_heavy_row_remainder_gate/proof.md": "3b7ec72714ff4e00e61fb93cf8507ac2c70f9cabd597acbbf8d8e889cbd7104a",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_correction_two_jet_gate/statement.md": "5610d73b036054898e0618df45c15933c8c02ed094dc43c3baec2f66847242f4",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_correction_two_jet_gate/proof.md": "0111ed16df6f01012237e25b8e770afe2b3be05a517108decc3ebae8d2610939",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_squarefree_center_overlap_exact_deficit_ledger/statement.md": "62bd5e1d732a619a8be032b020cf0eaf96aca16d61bb033f2554989721198e41",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_squarefree_center_overlap_exact_deficit_ledger/proof.md": "7bbdc2db7988c546df04e62695d9203d3ff80559acb1ba98b49f1f2ae920c624",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_macroscopic_parameter_factor/statement.md": "946dde2786e3d542c82145c262361f5e66297c34eff743a24bfe535e880ccac3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_macroscopic_parameter_factor/proof.md": "f2b39e7707a0360218d99ff322996314e6e2c6eaddfb4708610b942a31882701",
 }
 
 
@@ -81,6 +87,11 @@ class Formula:
     separated_heavy_row_nonzero: int = 1
     shared_forced_jet_order: int = 2
     shared_third_jet_vanishes: int = 1
+    nonreduced_forced_order: int = 2
+    nonreduced_missing_jets: int = 2
+    center_overlap_equals_deficit: int = 1
+    macroscopic_factor_d_a0: int = 61083979321
+    macroscopic_factor_d_a1: int = 78536544842
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -198,6 +209,26 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.shared_third_jet_vanishes == 1,
         "shared third-jet vanishing changed",
     )
+    require(
+        formula.nonreduced_forced_order == 2,
+        "nonreduced forced order changed",
+    )
+    require(
+        formula.nonreduced_missing_jets == 2,
+        "nonreduced missing-jet count changed",
+    )
+    require(
+        formula.center_overlap_equals_deficit == 1,
+        "center-overlap/deficit identity changed",
+    )
+    require(
+        formula.macroscopic_factor_d_a0 == 61083979321,
+        "d_A=0 macroscopic factor bound changed",
+    )
+    require(
+        formula.macroscopic_factor_d_a1 == 78536544842,
+        "d_A=1 macroscopic factor bound changed",
+    )
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -267,6 +298,33 @@ def replay(formula: Formula) -> dict[str, int]:
             )
             checks += 3
 
+        for d_a in (0, 1):
+            row_count = 3 * p - 3 + d_a
+            slope_count = 3 * e
+            factor_denominator = 9 - 2 * d_a
+            threshold = (3 * e + factor_denominator - 1) // factor_denominator
+            require(
+                2 * row_count == 9 * e - factor_denominator,
+                "factor row-count identity failed",
+            )
+            require(
+                factor_denominator * (threshold - 1) < 3 * e
+                <= factor_denominator * threshold,
+                "macroscopic factor threshold failed",
+            )
+            require(
+                d_a == d_a * formula.center_overlap_equals_deficit,
+                "center overlap is not the deficit bit",
+            )
+            if e == 183251937963:
+                expected = (
+                    formula.macroscopic_factor_d_a0
+                    if d_a == 0
+                    else formula.macroscopic_factor_d_a1
+                )
+                require(threshold == expected, "official factor bound failed")
+            checks += 4
+
     require(2 + 2 * 3 == 8, "double marked order failed")
     require(1 + 2 * 3 == 7, "simple marked order failed")
     require(
@@ -278,8 +336,16 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.separated_smith_exponent == 2,
         "type-[2] correction failed",
     )
+    require(
+        6 - 4 == formula.nonreduced_missing_jets,
+        "nonreduced determinant gap failed",
+    )
+    require(
+        formula.nonreduced_forced_order + formula.nonreduced_missing_jets == 4,
+        "nonreduced two-jet ledger failed",
+    )
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 38, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 44, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -302,6 +368,10 @@ def replay(formula: Formula) -> dict[str, int]:
         "separated_heavy_row_nonzero": formula.separated_heavy_row_nonzero,
         "shared_forced_jet_order": formula.shared_forced_jet_order,
         "shared_third_jet_vanishes": formula.shared_third_jet_vanishes,
+        "nonreduced_missing_jets": formula.nonreduced_missing_jets,
+        "center_overlap_equals_deficit": formula.center_overlap_equals_deficit,
+        "macroscopic_factor_d_a0": formula.macroscopic_factor_d_a0,
+        "macroscopic_factor_d_a1": formula.macroscopic_factor_d_a1,
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),
@@ -318,7 +388,7 @@ def tamper_selftest() -> int:
             replay(Formula(**values))
         except VerificationError:
             rejected += 1
-    require(rejected == 17, "tamper self-test did not reject every mutation")
+    require(rejected == 22, "tamper self-test did not reject every mutation")
     return rejected
 
 

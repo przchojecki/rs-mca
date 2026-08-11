@@ -52,9 +52,14 @@ Keep entries concise and link to the relevant files.
   augmented coefficient-MDS condition to the single exact barycentric
   remainder `H|R_lambda`. On the complete squarefree supported-disjoint
   locus the heavy row is proved nonzero, has exact correction-root orders,
-  and has overlap degree at most one (at most two scalar coefficients). A
+  and has overlap degree exactly `d_A` (at most two scalar coefficients). A
   squarefree shared third jet is proved to vanish, so the same gate covers
-  every squarefree double-root correction.
+  every squarefree double-root correction. The current extension identifies
+  the overlap degree exactly as `j=d_A`, reduces an unshared nonreduced
+  correction to two explicit Hasse jets, and proves that every irreducible
+  paired-biform factor splits in both certified directions. One such factor
+  has parameter degree at least `ceil(e/3)` for `d_A=0` or `ceil(3e/7)`
+  for `d_A=1`.
   It also adds an exact `m=2` route fence showing that
   Layer-A row surplus plus pointwise saturation alone does not force rank.
 - **How it is useful:** Replaces an anonymous biform residual by the packet's
@@ -68,15 +73,22 @@ Keep entries concise and link to the relevant files.
   countermodel showing that marked orders eight and seven require a genuine
   Hankel/source/split-fiber input to exclude. On the separated double-root
   locus each correction is one Smith chain of type `[2]`, not `[1,1]`; all
-  but at most three heavy-row roots are prescribed. The Layer-A fence keeps
+  but at most three heavy-row roots are prescribed. The exact-deficit ledger
+  removes overlap as an independent branch variable. The factor theorem
+  rules out every bounded-degree common-factor mechanism while retaining a
+  macroscopic two-directionally split component as the live wall. The
+  Layer-A fence keeps
   the stronger canonical pair-union/Hankel theorem live while retiring a
   generic dimension-count shortcut.
 - **What to do next:** Decide whether the exact nonzero barycentric remainder
   can be divisible by `H`, using the canonical pair-union and
-  source geometry essentially. Treat nonreduced `S_B`, roots shared with `g_*`, and the
-  two-simple correction separately. Independently review the Pade infinity
-  normalization, correction-contact comparison, center-line cancellation,
-  and the scope separation on the Layer-A fence before promotion.
+  source geometry essentially. Attack the two named nonreduced Hasse jets,
+  the shared nonreduced profile, and the two-simple correction separately.
+  For the global route, combine the macroscopic factor's two-directional
+  splitting with the Hankel moment source or a base-field-normalized
+  split-pencil census. Independently review the Pade infinity normalization,
+  correction-contact comparison, center-line cancellation, and the scope
+  separation on the Layer-A fence before promotion.
 
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
