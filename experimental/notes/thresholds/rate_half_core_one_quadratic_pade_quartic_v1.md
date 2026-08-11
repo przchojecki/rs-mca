@@ -5,13 +5,13 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic
+direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one scalar-quadratic u=4 extremal boundary
 quantifier: every field and profile satisfying the exact pair-floor interface and retained core-one quadratic packet
 projection_and_unit: projective parameter fibers and local intersection multiplicity
-claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm
+claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect, and on the separated double-root locus the residual parameter-vector has degree at most three
 status: PROVED
 impact: ROUTE_CUT
 falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, or a residual parameter root outside the correction quartic
@@ -41,8 +41,8 @@ ledger. This note closes both structural gaps. It is a profile-level route
 cut, not a `LineRay` payment or an adjacent-row theorem.
 
 The proof source is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@beb25530100b14f23413c470219fdb6b8521094b`.
-The verifier records the ten statement/proof SHA-256 values and can check
+`AllenGrahamHart/rs-mca-prize-dag@edf8a35cc3450e4c9c1fd9b5601a232cfd536557`.
+The verifier records the sixteen statement/proof SHA-256 values and can check
 them against a local source checkout with `--source-root`.
 
 ## 2. Every off-line fiber, including positive excess
@@ -247,9 +247,85 @@ orders. Hence the next exclusion must use a genuinely prize-specific input:
 the Hankel anti-diagonal equations, the three-class contracted source,
 simultaneous split fibers, or the received-word/Forney identities.
 
+## 8. Supported first jets and coefficient-plane rank
+
+Let `gamma` be a supported slope with residual rank loss `c_gamma>0`.
+Away from `S_B` in the double-root arm or `S_1S_2` in the two-simple arm,
+the exact regular factor gives
+
+```text
+ord_gamma(D_1)=c_gamma.                            (25)
+```
+
+The specialized symmetric Hankel kernel is
+
+```text
+ker M_gamma=Q_min F[X]_(<=c_gamma).                (26)
+```
+
+All positive local Smith exponents are therefore one. The derivative
+moment form
+
+```text
+B_gamma(A,B)=dot Phi(Q_min^2AB)                    (27)
+```
+
+has rank `c_gamma` and radical exactly `span{R_gamma}`. There are at most
+two exceptional projective slopes in the double-root arm and at most four
+in the two-simple arm.
+
+This interacts with the common coefficient plane
+`W_q=span(q_0,...,q_e)`. Since `W_q` is totally isotropic for every endpoint
+combination, its image in the nondegenerate quotient of `(27)` is totally
+isotropic. Hence
+
+```text
+dim((W_q intersect ker M_gamma)/span(Q_gamma))
+ <=floor(c_gamma/2).                               (28)
+```
+
+If `E_gamma=(Q_i(x))` is evaluated on the exact contracted actual support,
+
+```text
+e-floor(c_gamma/2)<=rank E_gamma<=e.               (29)
+```
+
+In particular an ordinary rank-one loss slope has exact rank `e`; the
+primitive locator is the only coefficient-plane vector vanishing on its
+whole actual support. Rank two has rank `e-1` or `e`.
+
+## 9. Separated double-root correction: cubic residual
+
+Assume in the double-root arm that `S_B` is squarefree and
+`gcd(g_*,S_B)=1`. Divide the fixed heavy row:
+
+```text
+U(t,X)=[Q(t,X)-Q(t,x_*)]/(X-x_*).                  (30)
+```
+
+The first quotient moment is `P_F(t,x_*)`. Supported kernel divisibility,
+the contact divisor `R_*+2B`, and the higher vertical contact `R_*+3B`
+give
+
+```text
+P_F(t,x_*)=D_1(t)C_0(t),
+M(t)U(t)=D_1(t)C(t),       deg_t C<=3,             (31)
+
+C_(i+1)=x_*C_i-kappa S_Bh_i.                      (32)
+```
+
+Thus each of the two separated correction roots has one positive regular
+Smith invariant of exponent two: type `[2]`, not `[1,1]`. This is a true
+Hankel/Forney reduction beyond the abstract marked-order fence. It does not
+exclude the resulting cubic recurrence. Nonreduced `S_B` and roots shared
+with `g_*` remain outside `(30)--(32)`.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
 `LineRay` census, pay a v4 atom, move an adjacent endpoint, or change a
-leaderboard score. It identifies the remaining degree-four geometry and
-rules out determinant multiplicity as a standalone closure argument.
+leaderboard score. It identifies the remaining degree-four geometry,
+rules out determinant multiplicity as a standalone closure argument, and
+reduces only the separated double-root correction to the printed cubic
+recurrence. Nonreduced/shared corrections and the two-simple correction
+remain open.

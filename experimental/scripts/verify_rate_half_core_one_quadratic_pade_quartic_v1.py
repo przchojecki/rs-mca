@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "beb25530100b14f23413c470219fdb6b8521094b"
+SOURCE_COMMIT = "edf8a35cc3450e4c9c1fd9b5601a232cfd536557"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -22,6 +22,12 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_extremal_resultant_regular_quartic_identification/proof.md": "fa8b278e41e9c579f729c82c2756715693e5f1895e33590f27dc190e606eb9c3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_correction_marked_jet_route_fence/statement.md": "16dfa510de497812e3ec3bef088a50464bd647acebd47d4ce2b645bc92ff3b2c",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_correction_marked_jet_route_fence/proof.md": "df14c50468d1c6f7c68b3a672f2efe414fc25c71971f46406df40b9d6e271f34",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_supported_first_jet_perfect_pairing/statement.md": "dd5741a5f8f189cd009c3a80dd253996e861e7bec6270d5dfb77cdc544ef57dd",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_supported_first_jet_perfect_pairing/proof.md": "880ac7cc7ba37e6811af3736b66af1e6b9a7c9e95bd2a2c015fda4e682c8b8a9",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_supported_coefficient_plane_kernel_intersection/statement.md": "e5470716c2f85b5b02338213ae0c8654ec8f89b6c3616e15008f333f3812e177",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_supported_coefficient_plane_kernel_intersection/proof.md": "229aea8c16c49d9d657ee03ef11513e02ed81e9df507f5a1f99ca05f473020d8",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_quotient_cubic_residual/statement.md": "c888235f0efe4ed23ca4d3c05ecbd3b263c560d52b69e9a687a6914c514d5419",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_quotient_cubic_residual/proof.md": "86bf14cfc6fece3cd739af15621a26c2cbf34b3b1e989c017418574d202886f2",
 }
 
 
@@ -40,6 +46,9 @@ class Formula:
     residual_degree: int = 4
     double_correction_multiplicity: int = 2
     simple_correction_total: int = 4
+    supported_exception_cap: int = 4
+    separated_residual_degree: int = 3
+    separated_smith_exponent: int = 2
 
 
 def verify_source(root: Path) -> int:
@@ -63,6 +72,15 @@ def replay(formula: Formula) -> dict[str, int]:
     require(
         formula.simple_correction_total == 4,
         "simple correction total changed",
+    )
+    require(formula.supported_exception_cap == 4, "exception cap changed")
+    require(
+        formula.separated_residual_degree == 3,
+        "separated residual degree changed",
+    )
+    require(
+        formula.separated_smith_exponent == 2,
+        "separated Smith exponent changed",
     )
 
     checks = 0
@@ -99,6 +117,17 @@ def replay(formula: Formula) -> dict[str, int]:
                 (d - rank_loss) + rank_loss - d == 0,
                 "center cancellation failed",
             )
+        for rank_loss in (1, 2):
+            kernel_dimension = rank_loss + 1
+            min_coefficient_rank = e - rank_loss // 2
+            require(
+                kernel_dimension - rank_loss == 1,
+                "first-jet radical dimension failed",
+            )
+            require(
+                min_coefficient_rank in (e - 1, e),
+                "coefficient-plane rank failed",
+            )
         for excess in range(5):
             for padding in range(3):
                 require(
@@ -109,20 +138,32 @@ def replay(formula: Formula) -> dict[str, int]:
 
     require(2 + 2 * 3 == 8, "double marked order failed")
     require(1 + 2 * 3 == 7, "simple marked order failed")
+    require(
+        (183251937963 + 1) - (183251937963 - 2)
+        == formula.separated_residual_degree,
+        "cubic quotient degree failed",
+    )
+    require(
+        formula.separated_smith_exponent == 2,
+        "type-[2] correction failed",
+    )
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 10, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 16, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
     )
 
     return {
-        "checks": checks + 4,
+        "checks": checks + 8,
         "official_e": 183251937963,
         "pade_exponent": 2 * (3 * 183251937963 - 2) + 1,
         "residual_degree": formula.residual_degree,
         "double_marked_order": 8,
         "simple_marked_order": 7,
+        "supported_exception_cap": formula.supported_exception_cap,
+        "separated_residual_degree": formula.separated_residual_degree,
+        "separated_smith_exponent": formula.separated_smith_exponent,
         "source_hashes": len(SOURCE_HASHES),
     }
 
@@ -137,7 +178,7 @@ def tamper_selftest() -> int:
             replay(Formula(**values))
         except VerificationError:
             rejected += 1
-    require(rejected == 4, "tamper self-test did not reject every mutation")
+    require(rejected == 7, "tamper self-test did not reject every mutation")
     return rejected
 
 

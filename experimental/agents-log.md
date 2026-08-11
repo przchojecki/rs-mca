@@ -43,16 +43,22 @@ Keep entries concise and link to the relevant files.
   packet from selected zero-excess fibers to every off-line fiber, proves an
   exact four-unit residual projective intersection ledger, and identifies
   its parameter eliminant with the regular Kronecker correction quartic via
-  a normalized contracted-Pade resultant.
+  a normalized contracted-Pade resultant. The follow-up proves perfect
+  supported first jets away from the correction divisor, an exact rank-`e`
+  coefficient-plane evaluation theorem at ordinary rank-one loss, and a
+  degree-three Hankel recurrence for squarefree double-root corrections
+  disjoint from the supported divisor.
 - **How it is useful:** Replaces an anonymous biform residual by the packet's
   existing correction forms: `S_B^2` in the double-root arm and `S_1S_2` in
   the two-simple arm. It also records an explicit symmetric-pencil
   countermodel showing that marked orders eight and seven require a genuine
-  Hankel/source/split-fiber input to exclude.
-- **What to do next:** Use the three-class contracted source and Hankel
-  anti-diagonal equations to test the forced correction jets. Independently
-  review the Padé infinity normalization and the cancellation of center-line
-  rank-loss factors before promotion.
+  Hankel/source/split-fiber input to exclude. On the separated double-root
+  locus each correction is one Smith chain of type `[2]`, not `[1,1]`.
+- **What to do next:** Test the cubic recurrence against the three-class
+  contracted source. Treat nonreduced `S_B`, roots shared with `g_*`, and the
+  two-simple correction separately. Independently review the Pade infinity
+  normalization, correction-contact comparison, and center-line
+  cancellation before promotion.
 
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
