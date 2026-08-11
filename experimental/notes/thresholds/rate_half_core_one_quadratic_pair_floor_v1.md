@@ -5,13 +5,13 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: the core-one scalar-quadratic u=4 profile has no pair below union 3rho/2-1; every assigned-center line has at most three supported slopes; the floor and first strict boundary canonically produce dual-GRS split biforms whose row-root data must pass explicit full-support coefficient-MDS kernel tests
+direct_statement: the core-one scalar-quadratic u=4 profile has no pair below union 3rho/2-1; every assigned-center line has at most three supported slopes; the floor and first strict boundary canonically produce dual-GRS split biforms whose fixed-domain rows and all zero-excess parameter fibers must pass explicit full-support coefficient-MDS kernel tests
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one quadratic pair-union rho+3 cell
 quantifier: every field and profile satisfying the exact interface below; in particular the official e=183251937963 specialization
 projection_and_unit: supported affine slopes and actual error supports
-claimed_bound: pair union at least 3rho/2-1; at most three assigned centers per codeword line; at least rho+1 expanding thirds per pair; the floor and first strict cases have exact split biforms and printed coefficient-MDS realizability matrices
+claimed_bound: pair union at least 3rho/2-1; at most three assigned centers per codeword line; at least rho+1 expanding thirds per pair; the floor and first strict cases have exact split biforms, full-degree padded zero-excess fibers, and printed coefficient-MDS realizability matrices in both directions
 status: PROVED
 impact: ROUTE_CUT
 falsifier: a profile satisfying (P1)--(P4) with one rho+3 support pair, or a failure of either exact incidence contradiction
@@ -35,7 +35,7 @@ primitive shift-pair control.  A compiler adapter must first place a live
 first-match atom in the exact profile `(P1)--(P4)` below.
 
 The full source proof is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@a01726108cfd588c7901557a8f3760afb03f5447`:
+`AllenGrahamHart/rs-mca-prize-dag@cd318d6155d9f96ff986926dfec5a0b58f54a408`:
 
 ```text
 bidirectional localization statement
@@ -76,6 +76,14 @@ coefficient-MDS gate proof
   16efedbadab999696cc438e07de4da83c51a2311a1c664805ea45cbbfe1d3433
 small-profile rank probe
   508d0d0bcc0888c4170a121f458ac2c0618b32cdcf99b88b0ad78586ef8a43e9
+paired padded-fiber statement
+  ac80fea6eddd99a7733f72a4743aa0a982a34ba0ce15043975848f31239dff84
+paired padded-fiber proof
+  6a2ab5b579dccecb018b5bb3ab35ce31690745014a4a75a1a4f2e422f988e437
+parameter-fiber coefficient gate statement
+  c1261184526f38bc36dbad4706f1ba4ffbe1e2276190702b0c80bbd45378690b
+parameter-fiber coefficient gate proof
+  3539a0b726e761836e9224132b6503e96ed99e3058eab44d7c92e9461cd1353a
 ```
 
 ## 2. Exact profile interface
@@ -597,3 +605,57 @@ These printed row counts are not rank arguments. As calibration, the exact
 `F_421`, and 250 deterministic degree-preserving switches per field were
 also full rank. That finite evidence shows the gate has power; it does not
 prove the official all-profile rank statement or pay `LineRay`.
+
+## 12. All zero-excess fibers and the transposed coefficient gate
+
+The clean-fiber restriction in `(E8)` and `(S6)` is unnecessary for
+full-degree splitting. For any zero-excess slope, write the specialized full
+locator as
+
+```text
+Q_delta=q_delta R_delta,
+```
+
+where `R_delta` is the monic padded-heavy factor of degree `r_delta`. If
+`A_delta` is the actual inside-support locator, the same minimum-word circuit
+and dual-GRS interpolation give the exact identity
+
+```text
+G(delta,X)=zeta_delta A_delta(X)R_delta(X),
+zeta_delta!=0.                                      (K5)
+```
+
+The two factors have disjoint base-field roots and their degrees add to the
+full domain degree. Therefore `(K5)` holds on at least
+
+```text
+2e extremal fibers,       p+2 first-strict fibers.  (K6)
+```
+
+This supplies a second coefficient-MDS test, now on the parameter set. For a
+selected slope set `Z`, write the monic fiber root polynomial as
+
+```text
+F_delta(X)=sum_i f_(i,delta)X^i.
+```
+
+Every vector `(zeta_delta f_(i,delta))_(delta in Z)` lies in the same
+punctured RS code of parameter dimension `m+1`. Equivalently, with
+`L_Z(T)=product_(delta in Z)(T-delta)`, the matrix
+
+```text
+Kpar_((i,l),delta)=f_(i,delta)delta^l/L_Z'(delta),
+0<=l<=|Z|-m-2,                                     (K7)
+```
+
+has a kernel vector with every coordinate nonzero. The official guaranteed
+dimensions are
+
+```text
+extremal: 50371909150609548946088 rows x 366503875926 columns;
+strict:   25185954575671278348969 rows x 274877906946 columns. (K8)
+```
+
+The fixed-domain matrix `(K3)` and parameter matrix `(K7)` constrain one
+common biform. Neither matrix's row count proves its rank, and passing either
+matrix separately is not a realizability certificate.

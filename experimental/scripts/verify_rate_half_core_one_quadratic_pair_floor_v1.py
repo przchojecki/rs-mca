@@ -8,7 +8,7 @@ import copy
 from dataclasses import dataclass
 
 
-SOURCE_COMMIT = "a01726108cfd588c7901557a8f3760afb03f5447"
+SOURCE_COMMIT = "cd318d6155d9f96ff986926dfec5a0b58f54a408"
 SOURCE_HASHES = {
     "localization_statement": (
         "fafe03c21890127aeef952a4e6282da6319f20a6c224d80338ce8e8529be22c8"
@@ -66,6 +66,18 @@ SOURCE_HASHES = {
     ),
     "coefficient_gate_probe": (
         "508d0d0bcc0888c4170a121f458ac2c0618b32cdcf99b88b0ad78586ef8a43e9"
+    ),
+    "padded_fiber_statement": (
+        "ac80fea6eddd99a7733f72a4743aa0a982a34ba0ce15043975848f31239dff84"
+    ),
+    "padded_fiber_proof": (
+        "6a2ab5b579dccecb018b5bb3ab35ce31690745014a4a75a1a4f2e422f988e437"
+    ),
+    "parameter_gate_statement": (
+        "c1261184526f38bc36dbad4706f1ba4ffbe1e2276190702b0c80bbd45378690b"
+    ),
+    "parameter_gate_proof": (
+        "3539a0b726e761836e9224132b6503e96ed99e3058eab44d7c92e9461cd1353a"
     ),
 }
 
@@ -212,6 +224,30 @@ def replay(formula: Formula) -> dict[str, int]:
                 "extremal coefficient-MDS check count mismatch",
             )
 
+        ext_parameter_columns = 2 * e
+        ext_parameter_checks = ext_parameter_columns - ((e - 2) + 1)
+        require(
+            ext_parameter_checks == e + 1,
+            "extremal parameter-fiber check count mismatch",
+        )
+        require(
+            (p - 2) * ext_parameter_checks
+            == (p - 2) * (e + 1),
+            "extremal parameter-fiber matrix rows mismatch",
+        )
+
+        strict_parameter_columns = p + 2
+        strict_parameter_checks = strict_parameter_columns - ((e - 1) + 1)
+        require(
+            strict_parameter_checks == p + 2 - e,
+            "strict parameter-fiber check count mismatch",
+        )
+        require(
+            (p - 1) * strict_parameter_checks
+            == (p - 1) * (p + 2 - e),
+            "strict parameter-fiber matrix rows mismatch",
+        )
+
     official_N = 1 << 41
     official_rho = official_N // 4
     official_e = (official_rho + 1) // 3
@@ -221,7 +257,7 @@ def replay(formula: Formula) -> dict[str, int]:
     require(2 * official_e - 9 == 366503875917, "official gap mismatch")
 
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 19, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 23, "source hash inventory changed")
     require(
         all(len(value) == 64 for value in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -251,6 +287,15 @@ def replay(formula: Formula) -> dict[str, int]:
         "strict_coefficient_matrix_rows": (
             official_e * (official_rho // 2 + 1)
         ),
+        "extremal_parameter_matrix_rows": (
+            (official_rho // 2 - 2) * (official_e + 1)
+        ),
+        "extremal_parameter_matrix_columns": 2 * official_e,
+        "strict_parameter_matrix_rows": (
+            (official_rho // 2 - 1)
+            * (official_rho // 2 + 2 - official_e)
+        ),
+        "strict_parameter_matrix_columns": official_rho // 2 + 2,
     }
 
 
