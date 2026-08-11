@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "a97f137e71b761d76ad2c5a657a7d897add2480d"
+SOURCE_COMMIT = "39c001bfb6196de1739cc68118dc78dc730e25fd"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -34,8 +34,10 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_layer_a_saturation_count_route_fence/proof.md": "2658e564d4eda83af64cee8e2fdab73aff531a1eace1fe1ef2cfbd3f2f6d1cac",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_row_barycentric_remainder_gate/statement.md": "ce6c3e3c2a53f9f1259811e7150f28e3d1c71730cefb8b7039f0866d85ab35b1",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_row_barycentric_remainder_gate/proof.md": "2538c8ba0c5063a210fe91e8b599ec66151e950b9fa6dc29df0709b68fe0b42a",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_center_disjoint_heavy_row_nonzero_scalar/statement.md": "64ebde9edcca9794d9ff8b7f2d915f839c3a4d49957a00819365fa36edb7d4c3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_center_disjoint_heavy_row_nonzero_scalar/statement.md": "0d8c08f08b94463af07bcff141367cb63d0f9fb14293c787cef320bde6553935",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_center_disjoint_heavy_row_nonzero_scalar/proof.md": "d815dcc569e9b58862d729f409298f39b8f603cf64178f1c4877967aeb95be60",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_separated_heavy_row_nonzero/statement.md": "526fe94e415f0940d5aac29bae4a48062d2c61d8b269261e9dc1b4fcd13659c6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_separated_heavy_row_nonzero/proof.md": "beb045df9a3e1cef2e36132c3d5f381405823ef1096d6b72d02490406bce619a",
 }
 
 
@@ -64,7 +66,7 @@ class Formula:
     layer_a_row_surplus: int = 2
     barycentric_remainder_defect: int = 3
     center_disjoint_quotient_degree: int = 0
-    center_disjoint_scalar_nonzero: int = 1
+    separated_heavy_row_nonzero: int = 1
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -171,8 +173,8 @@ def replay(formula: Formula) -> dict[str, int]:
         "center-disjoint quotient degree changed",
     )
     require(
-        formula.center_disjoint_scalar_nonzero == 1,
-        "center-disjoint scalar gate changed",
+        formula.separated_heavy_row_nonzero == 1,
+        "separated heavy-row nonzero gate changed",
     )
 
     checks = 0
@@ -255,7 +257,7 @@ def replay(formula: Formula) -> dict[str, int]:
         "type-[2] correction failed",
     )
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 24, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 26, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -275,7 +277,7 @@ def replay(formula: Formula) -> dict[str, int]:
         "separated_smith_exponent": formula.separated_smith_exponent,
         "heavy_row_unknowns": formula.heavy_row_unknowns,
         "barycentric_remainder_defect": formula.barycentric_remainder_defect,
-        "center_disjoint_scalar_nonzero": formula.center_disjoint_scalar_nonzero,
+        "separated_heavy_row_nonzero": formula.separated_heavy_row_nonzero,
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),

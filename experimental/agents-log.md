@@ -50,13 +50,14 @@ Keep entries concise and link to the relevant files.
   disjoint from the supported divisor. The latest extension factors the
   fixed heavy row through the supported/correction divisor and reduces its
   augmented coefficient-MDS condition to the single exact barycentric
-  remainder `H|R_lambda`. On the center-disjoint locus the surviving scalar
-  is proved nonzero. It also adds an exact `m=2` route fence showing that
+  remainder `H|R_lambda`. On the complete squarefree supported-disjoint
+  locus the heavy row is proved nonzero for every center-overlap degree.
+  It also adds an exact `m=2` route fence showing that
   Layer-A row surplus plus pointwise saturation alone does not force rank.
 - **How it is useful:** Replaces an anonymous biform residual by the packet's
   existing correction forms: `S_B^2` in the double-root arm and `S_1S_2` in
   the two-simple arm. The formerly qualitative heavy-row wall is now the
-  explicit matrix test `B_H lambda=0`; in the center-disjoint case passage
+  explicit matrix test `B_H lambda=0`; every passing separated candidate
   produces a genuine projective row rather than the zero row. It also records an explicit symmetric-pencil
   countermodel showing that marked orders eight and seven require a genuine
   Hankel/source/split-fiber input to exclude. On the separated double-root
@@ -64,8 +65,8 @@ Keep entries concise and link to the relevant files.
   but at most three heavy-row roots are prescribed. The Layer-A fence keeps
   the stronger canonical pair-union/Hankel theorem live while retiring a
   generic dimension-count shortcut.
-- **What to do next:** Decide whether the exact barycentric remainder can
-  vanish on the center-overlap locus, using the canonical pair-union and
+- **What to do next:** Decide whether the exact nonzero barycentric remainder
+  can be divisible by `H`, using the canonical pair-union and
   source geometry essentially. Treat nonreduced `S_B`, roots shared with `g_*`, and the
   two-simple correction separately. Independently review the Pade infinity
   normalization, correction-contact comparison, center-line cancellation,

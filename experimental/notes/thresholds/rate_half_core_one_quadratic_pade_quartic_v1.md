@@ -5,13 +5,13 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; on the center-disjoint locus the surviving scalar is nonzero; bare Layer-A row surplus plus saturation does not force rank
+direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; on the complete separated locus the heavy row is nonzero; bare Layer-A row surplus plus saturation does not force rank
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one scalar-quadratic u=4 extremal boundary
 quantifier: every field and profile satisfying the exact pair-floor interface and retained core-one quadratic packet
 projection_and_unit: projective parameter fibers and local intersection multiplicity
-claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on the separated double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, and center-disjoint passage gives R_lambda=c g_*S_B^2 with c nonzero; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
+claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on the separated double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, and every passing remainder is nonzero for all center-overlap degrees; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
 status: PROVED
 impact: ROUTE_CUT
 falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, or a residual parameter root outside the correction quartic
@@ -41,8 +41,8 @@ ledger. This note closes both structural gaps. It is a profile-level route
 cut, not a `LineRay` payment or an adjacent-row theorem.
 
 The proof source is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@a97f137e71b761d76ad2c5a657a7d897add2480d`.
-The verifier records the twenty-four statement/proof SHA-256 values and can check
+`AllenGrahamHart/rs-mca-prize-dag@39c001bfb6196de1739cc68118dc78dc730e25fd`.
+The verifier records the twenty-six statement/proof SHA-256 values and can check
 them against a local source checkout with `--source-root`.
 
 ## 2. Every off-line fiber, including positive excess
@@ -411,30 +411,26 @@ B_H lambda=0                      => R_lambda=H T_j,
 Thus the formerly qualitative augmented coefficient-MDS condition is one
 explicit univariate remainder.  No generic-rank assumption is used.
 
-## 13. Center-disjoint passage is nonzero
+## 13. Every separated heavy row is nonzero
 
-Suppose additionally that `S_B` is squarefree,
-`gcd(g_*,S_B)=1`, and
-
-```text
-gcd(Lambda,g_*S_B^2)=1.                            (40)
-```
-
-Then the scalar left by `(34)` cannot vanish:
+Suppose that `S_B` is squarefree and `gcd(g_*,S_B)=1`. There is no
+restriction on correction-center overlap. Then
 
 ```text
-G(t,x_*)=c g_*(t)S_B(t)^2,
-R_lambda(t)=c g_*(t)S_B(t)^2,       c!=0.          (41)
+G(t,x_*)!=0,
+R_lambda(t)=G(t,x_*)!=0                             (40)
 ```
 
-Indeed, `c=0` would make `X-x_*` a component of `G`.  At either root of
-`S_B`, the row polynomial `Q(t,x_*)` has order three.  If that slope is
-unsupported, multiplicativity of the resultant would force order at least
-three, whereas `(21)` gives exactly two.  If it is supported, the exact
+for every passing connected-weld candidate. Indeed, a zero row would make
+`X-x_*` a component of `G`. At either root of `S_B`, the row polynomial
+`Q(t,x_*)` has order three. If that root is not off-line supported, including
+when it is a center, `(21)` gives exact resultant order two, a contradiction.
+If it is off-line supported, the exact
 all-excess fiber factorization puts `x_*` in its actual-support or padding
 factor.  The first case contradicts first-jet transversality; the second
 forces `g_*` to vanish there, contrary to `gcd(g_*,S_B)=1`.  Hence the
-center-disjoint heavy row is a genuine projective row, not the zero row.
+separated heavy row is a genuine projective row for every overlap degree
+`j=0,1,2,3`.
 
 ## Nonclaims
 
@@ -443,8 +439,9 @@ This packet does not exclude either quadratic root arm, prove a live
 leaderboard score. It identifies the remaining degree-four geometry,
 rules out determinant multiplicity as a standalone closure argument, and
 reduces only the separated double-root correction to the printed cubic
-recurrence and exact heavy-row remainder. The nonvanishing theorem requires
-center-disjointness; center-overlap remains open. The Layer-A fixture refutes only a
+recurrence and exact heavy-row remainder. The nonvanishing theorem covers
+all center-overlap degrees, but does not exclude a nonzero passing remainder.
+The Layer-A fixture refutes only a
 generic count-and-saturation implication, not the structured endpoint
 configuration. Nonreduced/shared corrections and the two-simple correction
 remain open.
