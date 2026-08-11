@@ -53,7 +53,8 @@ Keep entries concise and link to the relevant files.
   remainder `H|R_lambda`. On the complete squarefree supported-disjoint
   locus the heavy row is proved nonzero, has exact correction-root orders,
   and has overlap degree at most one (at most two scalar coefficients). A
-  squarefree shared correction is reduced to one exact third-jet gate.
+  squarefree shared third jet is proved to vanish, so the same gate covers
+  every squarefree double-root correction.
   It also adds an exact `m=2` route fence showing that
   Layer-A row surplus plus pointwise saturation alone does not force rank.
 - **How it is useful:** Replaces an anonymous biform residual by the packet's
@@ -62,8 +63,8 @@ Keep entries concise and link to the relevant files.
   explicit matrix test `B_H lambda=0`; every passing separated candidate
   produces a genuine correction-coprime projective row rather than the zero
   row, and the three- and four-scalar overlap cases are excluded. At a shared
-  root the packet distinguishes exact order-two failure from the vanishing
-  branch where the cubic quotient extends with Smith type `[3]`. It also records an explicit symmetric-pencil
+  root symmetric corank-one control forces the cubic quotient to extend with
+  Smith type `[3]`; the order-two branch is eliminated. It also records an explicit symmetric-pencil
   countermodel showing that marked orders eight and seven require a genuine
   Hankel/source/split-fiber input to exclude. On the separated double-root
   locus each correction is one Smith chain of type `[2]`, not `[1,1]`; all
