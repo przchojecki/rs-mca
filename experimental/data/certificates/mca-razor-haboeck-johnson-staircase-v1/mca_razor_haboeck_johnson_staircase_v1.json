@@ -1,0 +1,33 @@
+{
+ "workboard_item": "MCA",
+ "row": "official maximal rate-half",
+ "object": "MCA",
+ "target_epsilon": "2^-128",
+ "n": 2199023255552,
+ "k": 1099511627776,
+ "campaign_repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag",
+ "campaign_commit": "4e77e95b3acf",
+ "Q_9": 31838208335176550182206428283836,
+ "a_9": 1641330047987,
+ "Q_94": 306835809425699384690368974701937497457,
+ "a_94": 1563215236073,
+ "Q_95": 330298791207625937408605578064099942258,
+ "a_95": 1563128173124,
+ "three_n_over_4": 1649267441664,
+ "razor_gain": 86139268540,
+ "staircase_rule": "a_RH(q) <= a_{m(q)}, m(q) = max{m in [9,95] : Q_m*2^128 <= q}",
+ "files": [
+  {
+   "path": "background/nodes/rate_half_haboeck_quadratic_johnson_safe_bracket/statement.md",
+   "sha256": "dd58b2a7a3fde5c9cba6b7764b51bc37abe5bbafd3736ebe14987e509212a084"
+  },
+  {
+   "path": "background/nodes/rate_half_haboeck_quadratic_johnson_safe_bracket/verify.py",
+   "sha256": "76e5bfd78ae7e41b57350f62a394888f7ac45a8676ad5b60cfb92e813cf39ea0"
+  },
+  {
+   "path": "background/nodes/rate_half_haboeck_quadratic_johnson_safe_bracket/verify_audit.py",
+   "sha256": "a2ac3a89cf2edf8e39f39558c20e635d3ec27710d67060ec2183dff0eb28284b"
+  }
+ ]
+}

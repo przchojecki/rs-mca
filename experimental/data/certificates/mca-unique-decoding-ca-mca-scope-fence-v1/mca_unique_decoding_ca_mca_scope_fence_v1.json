@@ -1,0 +1,23 @@
+{
+ "workboard_item": "MCA",
+ "row": "official maximal rate-half",
+ "object": "MCA",
+ "target_epsilon": "2^-128",
+ "n": 2199023255552,
+ "k": 1099511627776,
+ "campaign_repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag",
+ "campaign_commit": "4e77e95b3acf",
+ "gate": "2(n-a) <= n-k <=> a >= 3n/4",
+ "nearest_interior_failure": 2,
+ "live_interval": "[k+2^34, 3n/4)",
+ "files": [
+  {
+   "path": "background/nodes/rate_half_unique_decoding_ca_mca_scope_fence/statement.md",
+   "sha256": "1311f2c85330c8a898687322056a4c9f591edf31c592fa213dcbc3f6600106f4"
+  },
+  {
+   "path": "background/nodes/rate_half_unique_decoding_ca_mca_scope_fence/verify.py",
+   "sha256": "e6d8d7c940b96dcb9681a6594fbaaa2ddc3b456c6d990ed2851c22a814bc6cc4"
+  }
+ ]
+}

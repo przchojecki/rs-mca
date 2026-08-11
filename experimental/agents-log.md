@@ -3682,3 +3682,12 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-08-11 - Razor crossing bracket moved from both ends (Haboeck staircase + LB1 floor)
+
+- **Agent/model:** Claude Fable 5 (coordinator) with Codex (imports/specialization) and Claude Opus pilots (certification, floor), campaign repo AllenGrahamHart/rs-mca-prize-dag @ 4e77e95b3acf.
+- **Files added or changed:** experimental/data/certificates/{mca-haboeck-quadratic-johnson-import-v1, mca-razor-haboeck-johnson-staircase-v1, mca-unique-decoding-ca-mca-scope-fence-v1, rate-half-type2-fr-incidence-fence-v1, mca-razor-farca-floor-lb1-v1}/.
+- **Status:** PROVED (all five packets; every claim machine-verified in the campaign repo, sha256-pinned here).
+- **What is being added:** The official rate-half MCA crossing's safe bracket moves below 3n/4 for the first time — a_RH(q) <= a_94 = 1,563,215,236,073 on every razor row, via an exact specialization of Haboeck ePrint 2025/2110 Thm 2 (an 87-member staircase from log2 q ~ 232.65) — and gains its first floor: LB1 gives B_ca^far(a) >= n-a+1 at every posed row, tightness of the tall-regime bound, and the death of residual budget 2^39 at the bracket top. Two route fences (the unique-decoding CA/MCA scope gate = a >= 3n/4 exactly; the type-2 incidence fence with its proved canonical complement) document why these were the viable routes.
+- **How it is useful:** Direct movement on the grand MCA challenge's rate-half band: the crossing window is now [k+2^34, a_94] on razor rows with a two-sided far-CA window at the safe index. The import chain was adversarially certified (28 attacks) and its source audit closes through this repository's own BCHKS25 audit packet.
+- **What to check next:** The staircase's per-s family specializations; a deep-stratum (error weight past R/2-2) upper bound, for which the campaign record prices the surviving routes.
