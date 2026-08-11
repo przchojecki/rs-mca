@@ -5,13 +5,13 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; on the complete separated locus the heavy row is nonzero; bare Layer-A row surplus plus saturation does not force rank
+direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test with at most three scalar coefficients; on the complete separated locus the heavy row is nonzero and has exact correction orders; bare Layer-A row surplus plus saturation does not force rank
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one scalar-quadratic u=4 extremal boundary
 quantifier: every field and profile satisfying the exact pair-floor interface and retained core-one quadratic packet
 projection_and_unit: projective parameter fibers and local intersection multiplicity
-claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on the separated double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, and every passing remainder is nonzero for all center-overlap degrees; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
+claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on the separated double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, every passing remainder is nonzero and correction-coprime, and the center overlap has j<=2; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
 status: PROVED
 impact: ROUTE_CUT
 falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, or a residual parameter root outside the correction quartic
@@ -41,8 +41,8 @@ ledger. This note closes both structural gaps. It is a profile-level route
 cut, not a `LineRay` payment or an adjacent-row theorem.
 
 The proof source is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@39c001bfb6196de1739cc68118dc78dc730e25fd`.
-The verifier records the twenty-six statement/proof SHA-256 values and can check
+`AllenGrahamHart/rs-mca-prize-dag@c0bcb637256420ce8407619385a58afd39f7fde0`.
+The verifier records the thirty statement/proof SHA-256 values and can check
 them against a local source checkout with `--source-root`.
 
 ## 2. Every off-line fiber, including positive excess
@@ -431,6 +431,36 @@ factor.  The first case contradicts first-jet transversality; the second
 forces `g_*` to vanish there, contrary to `gcd(g_*,S_B)=1`.  Hence the
 separated heavy row is a genuine projective row for every overlap degree
 `j=0,1,2,3`.
+
+## 14. Exact correction jets and the overlap cap
+
+At a root `tau` of `S_B`, put `c_tau=ord_tau Lambda`, which is zero or one.
+On the normalized curve, `X-x_*` has order three and the Forney section has
+order two. The Pade syzygy subtracts one exactly when `tau` is a center,
+while fixed-row substitution changes the value only from order three onward.
+Consequently
+
+```text
+ord_tau G(t,x_*)=2-c_tau=ord_tau H,
+T_j(tau)!=0,
+gcd(T_j,S_B)=1.                                    (41)
+```
+
+The endpoint ordering also sharpens the overlap count. The heavy row lies
+outside `U=S_alpha union S_beta`. If either endpoint center were a
+correction root, `x_*` would be padded there, putting that center in both
+`g_*` and `S_B`, contrary to separatedness. Only the third center can be a
+correction root. The exact center deficit ledger allows at most one center
+root of `g_*`; these contributions are disjoint. Hence
+
+```text
+deg gcd(S_B,Lambda)<=1,
+deg gcd(g_*,Lambda)<=1,
+j=deg gcd(Lambda,g_*S_B^2)<=2.                     (42)
+```
+
+Thus the exact nonzero remainder has at most three scalar coefficients,
+not four, and none of its free factors can be a correction root.
 
 ## Nonclaims
 

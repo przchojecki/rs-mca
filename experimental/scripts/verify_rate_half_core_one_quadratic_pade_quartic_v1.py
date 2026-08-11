@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "39c001bfb6196de1739cc68118dc78dc730e25fd"
+SOURCE_COMMIT = "c0bcb637256420ce8407619385a58afd39f7fde0"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -38,6 +38,10 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_center_disjoint_heavy_row_nonzero_scalar/proof.md": "d815dcc569e9b58862d729f409298f39b8f603cf64178f1c4877967aeb95be60",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_separated_heavy_row_nonzero/statement.md": "526fe94e415f0940d5aac29bae4a48062d2c61d8b269261e9dc1b4fcd13659c6",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_separated_heavy_row_nonzero/proof.md": "beb045df9a3e1cef2e36132c3d5f381405823ef1096d6b72d02490406bce619a",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_separated_heavy_row_correction_exact_order/statement.md": "b2564f19937e4f1415acdaedafdb7ef29729dba00070d7aab92525cfaa41a3a9",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_separated_heavy_row_correction_exact_order/proof.md": "9a3cdc703dc0c38f26609df5c874d3c8b520890a4b27f509c7945d6d241ea931",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_separated_center_overlap_cap_two/statement.md": "25d20172763333686d0cbdb9a4c127f9ee985eaaaddbb349cfccf635260e6ae6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_separated_center_overlap_cap_two/proof.md": "fc385c4aea754ea9e0a79d5f9ef073211857d6879094e093e85db694907c2f9f",
 }
 
 
@@ -59,12 +63,12 @@ class Formula:
     supported_exception_cap: int = 4
     separated_residual_degree: int = 3
     separated_smith_exponent: int = 2
-    center_overlap_cap: int = 3
-    heavy_row_unknowns: int = 4
+    center_overlap_cap: int = 2
+    heavy_row_unknowns: int = 3
     layer_a_rank: int = 20
     layer_a_nullity: int = 4
     layer_a_row_surplus: int = 2
-    barycentric_remainder_defect: int = 3
+    barycentric_remainder_defect: int = 2
     center_disjoint_quotient_degree: int = 0
     separated_heavy_row_nonzero: int = 1
 
@@ -159,13 +163,13 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.separated_smith_exponent == 2,
         "separated Smith exponent changed",
     )
-    require(formula.center_overlap_cap == 3, "center-overlap cap changed")
-    require(formula.heavy_row_unknowns == 4, "heavy-row unknown cap changed")
+    require(formula.center_overlap_cap == 2, "center-overlap cap changed")
+    require(formula.heavy_row_unknowns == 3, "heavy-row unknown cap changed")
     require(formula.layer_a_rank == 20, "Layer-A rank constant changed")
     require(formula.layer_a_nullity == 4, "Layer-A nullity constant changed")
     require(formula.layer_a_row_surplus == 2, "Layer-A surplus constant changed")
     require(
-        formula.barycentric_remainder_defect == 3,
+        formula.barycentric_remainder_defect == 2,
         "barycentric remainder defect changed",
     )
     require(
@@ -257,7 +261,7 @@ def replay(formula: Formula) -> dict[str, int]:
         "type-[2] correction failed",
     )
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 26, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 30, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
