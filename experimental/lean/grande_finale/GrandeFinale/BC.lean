@@ -21,8 +21,8 @@ records as already theorem-level:
 * the MDS decoding-uniqueness kernel behind the near-rational uniqueness
   argument (two degree-`<K` codewords agreeing on `≥ K` points coincide);
 * the near-rational-line algebraic identity and the Hamming subadditivity bound
-  that place a doubly-near-rational line in the common-proximity paid branch
-  (`cor:near-rational-line`);
+  used by the support-wise two-anchor theorem; these kernels alone do not
+  identify a paid owner (`cor:near-rational-line`);
 * the deficiency-one eliminant kernels: the remainder-vanishing split test and
   the eliminant degree bound `j + (n-j+1)·j` (`thm:deficiency-one-eliminant`);
 * the split-chart tangent-slope cap `#slopes ≤ |T*|` (`prop:split-chart-tangent`);
@@ -111,15 +111,15 @@ theorem codeword_agreement_unique {F : Type*} [Field F] {p q : F[X]} {K : ℕ}
         (lt_of_le_of_lt (Polynomial.natDegree_sub_le _ _) (max_lt hp hq)
           |> lt_of_lt_of_le <| by linarith))))
 
-/-! ## Near-rational slopes are paid outside the balanced core (`cor:near-rational-line`) -/
+/-! ## Near-rational structural kernels (`cor:near-rational-line`) -/
 
 /--
 Near-rational-line algebraic identity (`cor:near-rational-line`).  If an affine
 line `u + z·v` decomposes as `c₁ + e₁` at slope `z₁` and as `c₂ + e₂` at slope
 `z₂ ≠ z₁`, then `v` is recovered as
 `v = (z₁ - z₂)⁻¹ ((c₁ - c₂) + (e₁ - e₂))`.  Since `c₁ - c₂` is a codeword and
-`e₁ - e₂` is small, `v` is close to a codeword — the identity behind the
-common-proximity paid branch.
+`e₁ - e₂` is small, `v` is close to a codeword.  A chronology-correct payment
+requires the separate support-wise two-anchor theorem and its hypotheses.
 -/
 theorem near_rational_line_algebra {D F : Type*} [Field F]
     (u v c1 c2 e1 e2 : D → F) {z1 z2 : F} (hz : z1 ≠ z2)

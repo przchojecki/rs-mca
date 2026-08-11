@@ -1255,9 +1255,9 @@
       "line": 7940,
       "mining_priority": "LOW/SKIP",
       "occupied_by": "current tex proof",
-      "paraphrase": "Per-line reduction from rank-one supports to the balanced core.",
+      "paraphrase": "Support-wise MCA near-rational slopes admit the repaired uniform 2w distinct-slope payment; no whole-line balanced-core ownership follows.",
       "proof_status_in_tex": "PROVEN",
-      "quote": "For an affine line \\((u,v)\\) at band agreement \\(m\\), if two finite slopes \\(z_1,z_2\\) have \\(d_1(u+z_iv)\\le w\\) and non",
+      "quote": "Under 3w <= n-K, the support-wise MCA-bad near-rational slopes on a fixed affine line number at most 2w; the proof uses two bad anchors and an injective coordinate-ratio map.",
       "reachability_layer": "CONFIRMATION-CEILING"
     },
     {
@@ -1543,9 +1543,9 @@
       "line": 8368,
       "mining_priority": "LOW/SKIP",
       "occupied_by": "FRESH",
-      "paraphrase": "For every line $(u,v)$ at band agreement $m$: if two finite slopes have $d_1(u+zv)\\le w$ with nonzero census, then $v$ is within distance $2w$ and $u$ within distance $3w$ of codew",
+      "paraphrase": "For every fixed affine line, the repaired support-wise MCA theorem bounds the near-rational bad-slope set by 2w under 3w <= n-K; it is a local slope charge, not a Q/BC owner theorem.",
       "proof_status_in_tex": "PROVEN",
-      "quote": "For every line $(u,v)$ at band agreement $m$: if two finite slopes have $d_1(u+zv)\\le w$ with nonzero census, then $v$ i",
+      "quote": "Every additional support-wise MCA-bad near-rational slope is an injective coordinate ratio on the union error support of two bad anchors, of size at most 2w.",
       "reachability_layer": "CONFIRMATION-CEILING"
     },
     {

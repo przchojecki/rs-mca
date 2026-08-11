@@ -211,21 +211,24 @@ value one depth up.
 
 ## Compile-through corollary (proved, free)
 
-For every line `(u,v)` at threshold `m > n/2` with `E` its residual
-finite slopes: if some `m`-support is common, `N_MCA-bad = 0`
-(`thm:capfp-slope-elim`(b), cap25 L8262); otherwise every MCA-bad slope
-is close, hence has an explaining codeword with `s_{z,c} >= m`, hence
-lies in the slope projection of `LineRay_E`, so
+For every line `(u,v)` at threshold `m > n/2` with `m >= K+1` and `E` its
+residual finite slopes, every MCA-bad slope has an exact noncommon witness
+support and hence an explaining codeword with `s_{z,c} >= m`.  It therefore
+lies in the slope projection of `LineRay_E`, whether or not a different
+`m`-support is common.  Thus
 
     N_MCA-bad(u,v;m)  <=  |{z in E : exists c, (z,c) in LineRay_E}|
                       <=  |LineRay_E(u,v;m)|        (gf L1874-1881).
 
 Therefore any bound on the recorded target is a per-line MCA-bad-slope
-bound, and — through `thm:capfp-slope-elim`, `cor:capfr1-balanced-line`'s
-"+1" near-rational slope (cap25 L7940-7948), and the first-match paid
-compilers — it supplies the `U_A`/`U_R1` numerator of
-`cor:capfr1-Q-R1-closing` (L7829-7835) / `prop:capfp-closing` (L8525)
-**unchanged**: the same compile-through that
+bound, and — through `thm:capfp-slope-elim`, the repaired
+`cor:capfr1-balanced-line` support-wise near-rational payment `+2w` under
+`3w <= n-K`, and the first-match paid
+compilers — the residual LineRay implication still supplies the `U_A`/`U_R1`
+numerator of `cor:capfr1-Q-R1-closing` (L7829-7835) /
+`prop:capfp-closing` (L8525).  The global additive ledger is **not** unchanged:
+its near-rational charge moves from `+1` to `+2w` and must be regenerated in
+the declared owner order.  Only the residual compile-through is the same one that
 `prob:capg-split-pencil-B` itself claims for its corrected models
 (L9863-9868, "the implication chain of
 `cor:capfr1-terminal-package`,`prop:capfp-closing` is unchanged").

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-mca-kb-v4-common-core-shortening-staircase-route-cut-v1",
+  "title": "KoalaBear v4 common-core shortening staircase route cut",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "artifact_kind",
+    "base",
+    "row",
+    "theorem",
+    "exact_boundaries",
+    "terminals",
+    "chronology",
+    "source_bindings",
+    "packet_files",
+    "packet_file_sha256",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rs-mca-kb-v4-common-core-shortening-staircase-route-cut-v1"
+    },
+    "artifact_kind": {
+      "const": "SOURCE_BOUND_LOCAL_THEOREM_AND_MAXIMAL_ROUTE_CUT"
+    },
+    "base": {"type": "object"},
+    "row": {"type": "object"},
+    "theorem": {"type": "object"},
+    "exact_boundaries": {"type": "object"},
+    "terminals": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true
+    },
+    "chronology": {"type": "object"},
+    "source_bindings": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "packet_files": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "uniqueItems": true
+    },
+    "packet_file_sha256": {"type": "object"},
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

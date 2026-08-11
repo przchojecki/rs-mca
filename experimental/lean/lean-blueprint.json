@@ -11697,7 +11697,7 @@
         "statement_status": "not_started",
         "notes": ""
       },
-      "statement_excerpt": "For an affine line \\((u,v)\\) at band agreement \\(m\\), if two finite slopes \\(z_1,z_2\\) have \\(d_1(u+z_iv) w\\) and nonzero census, then \\((u,v)\\) is jointly close to a codeword pair on at least \\(n-3w\\) points and hence is not MCA-bad at agreement \\(m\\) in the normalized band. Consequently, outside at most one near-rational slope, \\[ N_{{MCA{-}bad}}(u,v;m) 1+ \\#\\{z:\\ d_1(u+zv) w+1,\\ (u+zv;m)>0\\}. \\] Thus the aperiodic census reduces to the balanced core along pencils.",
+      "statement_excerpt": "For a fixed affine line and support-wise MCA badness, the repaired near-rational theorem gives at most 2w finite bad slopes when 3w <= n-K: two anchor slopes determine a codeword line, and every further bad slope is an injective coordinate ratio on an error support of size at most 2w. This is a direct slope payment, not a deletion of all near-rational slopes or a balanced-core owner theorem.",
       "depends_on": [],
       "implies": [],
       "module": "bc_split_pencil"
@@ -12348,7 +12348,7 @@
         "statement_status": "not_started",
         "notes": ""
       },
-      "statement_excerpt": "Fix a line $(u,v)$ over the challenge field, an agreement $a=m>n/2$, and $w=m-K$. Call $T$ rank-one if the vectors $(T):=(S_r(u,T))_{r<w}$ and $(T):=(S_r(v,T))_{r<w}$ are proportional and not both zero, with $(T)0$; each rank-one support determines the single slope $z(T)$ with $(T)=-z(T)(T)$. Then: {enumerate}[label=()] a slope $z$ is close at support $T$ (i.e.\\ $u+zv$ interpolable on $T$) if and only if $(T)=-z\\,(T)$; supports with $=0$ carry no slope, and supports with $==0$ (common supports) carry every slope; if some $m$-support is common, the pair $(u,v)$ has correlated agreement at density $m/n$ on it, and no slope is MCA-bad at radius ",
+      "statement_excerpt": "Fix a line (u,v), agreement m, and w=m-K>=1. Noncommon rank-one exact m-supports determine at most one finite slope. A common support instead translates the identical support-wise bad-slope set to a sparse pair supported outside that support; it does not imply that no slope is MCA-bad. Every bad slope has an exact noncommon m-support, so the rank-one injection applies to the actual support-wise census.",
       "depends_on": [
         "thm:capf-spi"
       ],
@@ -12480,7 +12480,7 @@
         "statement_status": "not_started",
         "notes": ""
       },
-      "statement_excerpt": "For every line $(u,v)$ at band agreement $m$: if two finite slopes have $d_1(u+zv) w$ with nonzero census, then $v$ is within distance $2w$ and $u$ within distance $3w$ of codewords, the pair has correlated agreement at density $1-3w/n>m/n$, and no slope is MCA-bad. Hence in every case \\[ N_{{MCA{-}bad}}(u,v;m)\\ \\ 1+\\#\\{z:\\ d_1(u+zv) w+1,\\ cen(u+zv;m)>0\\}: \\] input (A) reduces, unconditionally, to the balanced core along pencils.",
+      "statement_excerpt": "For every affine line at band agreement m, the support-wise MCA-bad slopes in the near-rational branch are bounded by 2w under 3w <= n-K. The proof uses two actual bad anchors and injects every additional bad slope into a coordinate ratio on their union error support. The result is a local distinct-slope charge; it does not by itself identify Q, balanced-core ownership, or a global ledger atom.",
       "depends_on": [],
       "implies": [],
       "module": "capfp_slope_lattice_split_pencil"
@@ -13501,7 +13501,7 @@
         "statement_status": "not_started",
         "notes": ""
       },
-      "statement_excerpt": "thm:capfp-slope-elim(d) bounds the slope count of any exact-agreement syndrome pencil $M(Z)=M_0+ZM_1$ by a rank-one census over split candidates $_A$, except on the residual branch $M_0_A=M_1_A=0$ ``as in thm:capf-spi''. For a fixed split $_A$ this branch is a common support in the sense of prop:capfr1-slope-elimination and is already harmless by thm:capfp-slope-elim(b). The genuinely open case was the family version --- kernel sections $W(Z,X)$ that are identically split without any single $Z$-independent split annihilator being given --- and that case is closed by thm:capg-tangentborne: any rational identically split kernel section is const",
+      "statement_excerpt": "thm:capfp-slope-elim(d) bounds the noncommon exact-agreement branch by a rank-one support census. A fixed common support is translated to an exact sparse pair and paid by the support-wise two-anchor theorem when its hypotheses hold; common support alone is not a zero statement. For an identically split kernel, thm:capg-tangentborne gives a slope payment only when n-a'<=t, including deficiency one; at arbitrary deficiency it is a structural route and the residual remains unpaid.",
       "depends_on": [
         "thm:capfp-slope-elim",
         "thm:capf-spi",

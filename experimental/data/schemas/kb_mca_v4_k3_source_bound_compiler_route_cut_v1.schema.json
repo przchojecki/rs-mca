@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-mca-kb-v4-k3-source-bound-compiler-route-cut-v1",
+  "title": "KoalaBear v4 K3 source-bound compiler route cut",
+  "type": "object",
+  "required": [
+    "schema",
+    "status",
+    "terminal",
+    "theorem_kind",
+    "active_contract",
+    "tangent_import_source_gate",
+    "imported_raw_dependency",
+    "compiler_contract",
+    "first_failed_bridge",
+    "orientation_census",
+    "source_cover",
+    "coordinate_workboard",
+    "o0b_native_route_cut",
+    "pr1155_reconciliation",
+    "exact_ledger_outputs",
+    "conclusion",
+    "nonclaims",
+    "source_bindings",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rs-mca-kb-v4-k3-source-bound-compiler-route-cut-v1"
+    },
+    "status": {
+      "const": "PROVED_FAIL_CLOSED_K3_ROUTE_CUT_WITH_STALE_UPSTREAM_SOURCE_GATE"
+    },
+    "terminal": {
+      "const": "UNPAID_PARAMETER_TO_CARRIER_AND_LABELS_TO_SLOPES"
+    },
+    "active_contract": {
+      "type": "object",
+      "required": ["architecture_id", "partition_sha256", "owner", "unit", "quantifier", "row"]
+    },
+    "tangent_import_source_gate": {
+      "type": "object",
+      "required": [
+        "atom",
+        "manifest_declared_value",
+        "expected_active_v4_git_blob",
+        "observed_pr1152_active_v4_git_blob",
+        "source_binding_matches",
+        "expected_steering_git_blob",
+        "observed_pr1152_steering_git_blob",
+        "steering_binding_matches",
+        "steering_drift_is_gating",
+        "transitive_source_revalidated",
+        "classification"
+      ]
+    },
+    "imported_raw_dependency": {
+      "type": "object",
+      "required": ["route", "public_dag_commit", "surviving_raw_systems", "ledger_movement"]
+    },
+    "compiler_contract": {
+      "type": "object",
+      "required": [
+        "domain",
+        "domain_is_all_Z_BC",
+        "slice_membership_predicate_proved",
+        "slice_exhaustive_within_Z_BC",
+        "requested_partition",
+        "inverse_must_preserve",
+        "parameter_line_is_evaluation_carrier",
+        "single_valued_source_to_component_map_proved",
+        "inverse_reconstruction_map_proved",
+        "exhaustive_partition_proved"
+      ]
+    },
+    "first_failed_bridge": {
+      "type": "object",
+      "required": ["id", "status", "falsifier", "effect"]
+    },
+    "orientation_census": {"type": "object"},
+    "source_cover": {"type": "object"},
+    "coordinate_workboard": {"type": "object"},
+    "o0b_native_route_cut": {"type": "object"},
+    "pr1155_reconciliation": {"type": "object"},
+    "exact_ledger_outputs": {
+      "type": "object",
+      "required": [
+        "U_remaining",
+        "U_positive",
+        "U_sourcecover",
+        "U_K3",
+        "U_K3_allocation",
+        "signed_slack",
+        "inequality_evaluable"
+      ]
+    },
+    "conclusion": {
+      "type": "object",
+      "required": ["success_condition", "verdict", "ledger_movement", "K3_closed", "KoalaBear_row_closed"]
+    },
+    "theorem_kind": {
+      "const": "MAXIMAL_ROUTE_CUT_NOT_A_K3_PAYMENT"
+    },
+    "nonclaims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "source_bindings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["repo", "commit", "path", "sha256", "kind"]
+      }
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "additionalProperties": true
+}

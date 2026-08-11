@@ -81,9 +81,9 @@ catalogue.
 | primitive one-pencil arithmetic | `m31List_onePencilCap_eq_two` | Kernel-checks `floor(2,097,152/981,129)=2`. |
 | calibrated M31 natural scale | `M31ListNaturalScaleCalibration` | Keeps the huge support mass explicit while binding `q_prof`, `w`, average ceiling, and loss. |
 | exact calibrated denominator/numerator | `M31ListNaturalScaleCalibration.denominator_eq`, `.naturalNumerator_eq` | Prints `q_prof^w` and `1+1,993,678=1,993,679`. |
-| near-rational profile input | `M31NearRationalCertificate` | Requires a deduplicated line-local slope list of length at most one, matching the active near-rational line cap. |
+| near-rational profile input | `M31NearRationalCertificate` | Requires a deduplicated line-local slope list of length at most one as an explicit hypothesis.  The active source no longer supplies that cap for an arbitrary line; its support-wise replacement is `<=2w`. |
 | primitive one-pencil profile input | `M31PrimitiveOnePencilCertificate` | Requires a deduplicated line-local slope list bounded by the active moving-root quotient `floor(n/omega)`. |
-| paid near-rational profile | `m31NearRationalProfile` | Exact numerator one, `q_slope=p`, and natural-scale comparison. |
+| conditional singleton compiler | `m31NearRationalProfile` | Exact numerator one, `q_slope=p`, and natural-scale comparison for a supplied singleton certificate; not a payment of the full deployed near-rational branch. |
 | paid primitive C8 profile | `m31PrimitiveOnePencilProfile` | Exact numerator two, `q_slope=p`, and natural-scale comparison. |
 | denominator separation | `m31PrimitiveOnePencilProfile_denominators` | Prints `q_prof^67,447` and `q_slope=p` as distinct fields. |
 | exact primitive budget chain | `m31PrimitiveOnePencilProfile_budget` | Gives `#slopes<=2<=q_slope` and `2<=naturalNumerator`. |

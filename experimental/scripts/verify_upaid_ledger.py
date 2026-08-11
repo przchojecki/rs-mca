@@ -14,7 +14,8 @@ Status: EXPERIMENTAL / PARTIAL-LEDGER.
 
 Generator routes (cell arithmetic):
   * tangent: radius predicate + r+1 closed form (prop:capf-tangent)
-  * common-support MCA: definitional 0
+  * same-witness common-support MCA cell: local definitional 0; never a
+    global deletion from existence of a different common support
   * quotient safe-sum: binomial product sum (def:capf-quotient-status)
   * ExtPole lower floor: ceiling formula (prop:capf-extension) — floor not upper
   * oracle: small-n brute support union vs safe-sum; small-n tangent witness count
@@ -28,6 +29,7 @@ import hashlib
 import json
 import math
 import re
+import subprocess
 import sys
 from dataclasses import dataclass
 from itertools import combinations
@@ -48,6 +50,7 @@ N = 2**21
 K_BASE = 2**20
 P_KB = 2**31 - 2**24 + 1
 P_M31 = 2**31 - 1
+BASE_SHA_TARGET = "eb42b823f817baace7e37cf9b5018affa26eeb43"
 
 
 @dataclass(frozen=True)
@@ -162,13 +165,18 @@ def paid_tan_hi(n: int, k: int, A: int) -> dict[str, Any]:
 
 
 def common_support_mca_cell() -> dict[str, Any]:
-    """Common supports are not MCA-bad (def:paid-cells (ii) + prop:capfr1-slope-elimination)."""
+    """The supplied support cannot itself witness pair noncontainment."""
     return {
         "status": "EXACT",
         "value": 0,
         "paying_theorem": "def:paid-cells (ii) / prop:capfr1-slope-elimination",
         "route": "definitional_not_MCA_bad",
-        "note": "For MCA numerator, common-support branches contribute 0 bad slopes.",
+        "note": (
+            "Same-witness scope only: if both line components interpolate on the "
+            "supplied support, that support is pair-contained and contributes 0. "
+            "Existence of a different common support does not delete a slope with "
+            "another noncontained bad support."
+        ),
     }
 
 
@@ -493,7 +501,16 @@ def pin_labels(root: Path) -> dict[str, Any]:
         (COMPACT_REL, "def:paid-cells"),
     ]
     for rel, label in specs:
-        lines = (root / rel).read_text(encoding="utf-8").splitlines()
+        proc = subprocess.run(
+            ["git", "-C", str(root), "show", f"{BASE_SHA_TARGET}:{rel.as_posix()}"],
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        if proc.returncode != 0:
+            raise AssertionError(f"cannot replay pinned source {BASE_SHA_TARGET}:{rel}")
+        lines = proc.stdout.splitlines()
         pat = re.compile(r"\\label(?:\[[^\]]*\])?\{" + re.escape(label) + r"\}")
         idx = next((i for i, ln in enumerate(lines, 1) if pat.search(ln)), None)
         if idx is None:
@@ -554,7 +571,7 @@ def build_certificate(root: Path) -> dict[str, Any]:
             "id": "C2_common_support",
             "name": "common-support branch",
             "source": "def:paid-cells (ii), prop:capfr1-slope-elimination",
-            "deployed_status": "EXACT 0 on MCA; BLOCKED on list",
+            "deployed_status": "EXACT 0 on the same supplied MCA witness only; BLOCKED on list",
         },
         {
             "id": "C3_quotient_pullback",
@@ -603,7 +620,7 @@ def build_certificate(root: Path) -> dict[str, Any]:
     cert: dict[str, Any] = {
         "status": STATUS,
         "object": "cor:capfr1-Q-R1-closing U_paid(a0+1) partial per-cell ledger",
-        "base_sha_target": "eb42b823f817baace7e37cf9b5018affa26eeb43",
+        "base_sha_target": BASE_SHA_TARGET,
         "is_degenerate_by_construction": False,
         "beats_trivial_baseline": True,
         "is_tautology_under_preconditions": False,
@@ -629,16 +646,17 @@ def build_certificate(root: Path) -> dict[str, Any]:
         "qr1_prior_audit_replay": qr1_replay,
         "generator_routes": {
             "tangent": "closed_form r+1 under 3r<=n-k range predicate",
-            "common_support_mca": "definitional 0 (not MCA-bad)",
+            "common_support_mca": "same-witness pair-contained support contributes 0; no global deletion",
             "quotient_safe_sum": "binomial product double sum (formula path; not applied without C)",
             "oracle_quotient": "enumerate support union on n<=16",
             "lower_L": "identity-prefix ceil(C(n,a)/p^w) + MCA deep-list conversion",
         },
         "honest_headline": (
-            "PARTIAL-LEDGER: at the four deployed a0+1 rows the only EXACT paid MCA "
-            "contribution available from proved compilers without open inputs is "
-            "common-support = 0; tangent is out of range; all other paid cells are "
-            "blocked or charged to U_Q. U_paid_computable << B_* is NOT a closing proof."
+            "PARTIAL-LEDGER: the only exact MCA entry in this route-scoped catalog "
+            "is the same-witness pair-contained support cell, whose local value is 0. "
+            "This does not delete slopes merely because another common support exists. "
+            "Tangent is out of range; all other cells are blocked or charged to U_Q. "
+            "U_paid_computable << B_* is NOT a closing proof."
         ),
     }
     cert["payload_sha256"] = payload_hash(cert)

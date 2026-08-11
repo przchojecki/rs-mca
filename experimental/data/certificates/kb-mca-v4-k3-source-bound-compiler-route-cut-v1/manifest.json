@@ -1,0 +1,729 @@
+{
+  "active_contract": {
+    "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_SOURCE_ADAPTER_V1",
+    "contract_scope": "DECLARED_TARGET_CONTRACT_WITH_STALE_TRANSITIVE_PROOF_SOURCE",
+    "first_match": true,
+    "owner": "ACTIVE_V4_BALANCED_CORE",
+    "owner_priority": 2,
+    "partition_sha256": "4fade91abc408264989babcff6f8f9bbd80bcec52545a5db15ac376bf17d88fc",
+    "quantifier": "UNIFORM_OVER_ALL_ADMISSIBLE_RECEIVED_LINES",
+    "row": {
+      "B_star": 274980728111395087,
+      "agreement": 1116048,
+      "base_prime": 2130706433,
+      "extension_degree": 6,
+      "k": 1048576,
+      "n": 2097152
+    },
+    "unit": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE"
+  },
+  "compiler_contract": {
+    "domain": "DECLARED_ACTIVE_V4_BALANCED_CORE_M2_R4_RESIDUAL_SLICE",
+    "domain_is_all_Z_BC": false,
+    "exhaustive_partition_proved": false,
+    "inverse_must_preserve": [
+      "received_line",
+      "reconstructed_support",
+      "affine_slope",
+      "first_match_owner",
+      "add_back_chronology"
+    ],
+    "inverse_reconstruction_map_proved": false,
+    "parameter_line_is_evaluation_carrier": false,
+    "requested_partition": [
+      "source-line",
+      "coordinate",
+      "source-cover"
+    ],
+    "single_valued_source_to_component_map_proved": false,
+    "slice_exhaustive_within_Z_BC": false,
+    "slice_membership_predicate_proved": false
+  },
+  "conclusion": {
+    "K3_closed": false,
+    "KoalaBear_row_closed": false,
+    "ledger_movement": 0,
+    "route_cut": "the active m=2,r=4 slice/source-bound selector, reconstruction, projection, and unit conversion are unproved; the proposed O0b-to-O0a transport fails within the declared natural map class; the imported tangent atom has a stale transitive source gate",
+    "success_condition": "B",
+    "verdict": "YELLOW_GLOBAL_RED_NATURAL_O0B_TO_O0A_TRANSPORT"
+  },
+  "coordinate_workboard": {
+    "U_remaining": null,
+    "proved_raw_zero_count": 2,
+    "remaining_route_count": 11,
+    "remaining_routes": [
+      "433-0 -> O0a",
+      "433-0 -> O0b",
+      "433-0 -> O1b",
+      "433-0 -> O1c",
+      "433-0 -> O1d",
+      "433-1b -> O0b",
+      "442-0a -> O0b",
+      "442-0a -> O1b",
+      "442-0a -> O1d",
+      "442-1b -> O0a",
+      "442-1b -> O0b"
+    ],
+    "route_count": 13,
+    "routes": [
+      {
+        "common": "433-0",
+        "common_loops": 0,
+        "distinct_affine_slope_payment": null,
+        "outside": "O0a",
+        "outside_loops": 0,
+        "route": "433-0 -> O0a",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 2
+      },
+      {
+        "common": "433-0",
+        "common_loops": 0,
+        "distinct_affine_slope_payment": null,
+        "outside": "O0b",
+        "outside_loops": 0,
+        "route": "433-0 -> O0b",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 0
+      },
+      {
+        "common": "433-0",
+        "common_loops": 0,
+        "distinct_affine_slope_payment": null,
+        "outside": "O1b",
+        "outside_loops": 1,
+        "route": "433-0 -> O1b",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 1
+      },
+      {
+        "common": "433-0",
+        "common_loops": 0,
+        "distinct_affine_slope_payment": null,
+        "outside": "O1c",
+        "outside_loops": 1,
+        "route": "433-0 -> O1c",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 3
+      },
+      {
+        "common": "433-0",
+        "common_loops": 0,
+        "distinct_affine_slope_payment": null,
+        "outside": "O1d",
+        "outside_loops": 1,
+        "route": "433-0 -> O1d",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 1
+      },
+      {
+        "common": "433-1a",
+        "common_loops": 1,
+        "distinct_affine_slope_payment": null,
+        "outside": "O0b",
+        "outside_loops": 0,
+        "route": "433-1a -> O0b",
+        "status": "PROVED_EMPTY_RAW_SYSTEMS",
+        "surviving_raw_systems": 0,
+        "total_defect": 3
+      },
+      {
+        "common": "433-1b",
+        "common_loops": 1,
+        "distinct_affine_slope_payment": null,
+        "outside": "O0a",
+        "outside_loops": 0,
+        "route": "433-1b -> O0a",
+        "status": "PROVED_EMPTY_RAW_SYSTEMS",
+        "surviving_raw_systems": 0,
+        "total_defect": 3
+      },
+      {
+        "common": "433-1b",
+        "common_loops": 1,
+        "distinct_affine_slope_payment": null,
+        "outside": "O0b",
+        "outside_loops": 0,
+        "route": "433-1b -> O0b",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 1
+      },
+      {
+        "common": "442-0a",
+        "common_loops": 0,
+        "distinct_affine_slope_payment": null,
+        "outside": "O0b",
+        "outside_loops": 0,
+        "route": "442-0a -> O0b",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 2
+      },
+      {
+        "common": "442-0a",
+        "common_loops": 0,
+        "distinct_affine_slope_payment": null,
+        "outside": "O1b",
+        "outside_loops": 1,
+        "route": "442-0a -> O1b",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 3
+      },
+      {
+        "common": "442-0a",
+        "common_loops": 0,
+        "distinct_affine_slope_payment": null,
+        "outside": "O1d",
+        "outside_loops": 1,
+        "route": "442-0a -> O1d",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 3
+      },
+      {
+        "common": "442-1b",
+        "common_loops": 1,
+        "distinct_affine_slope_payment": null,
+        "outside": "O0a",
+        "outside_loops": 0,
+        "route": "442-1b -> O0a",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 3
+      },
+      {
+        "common": "442-1b",
+        "common_loops": 1,
+        "distinct_affine_slope_payment": null,
+        "outside": "O0b",
+        "outside_loops": 0,
+        "route": "442-1b -> O0b",
+        "status": "TARGET_RAW_WORKBOARD_ROUTE_NO_SLOPE_PAYMENT",
+        "surviving_raw_systems": null,
+        "total_defect": 1
+      }
+    ]
+  },
+  "exact_ledger_outputs": {
+    "B_star": 274980728111395087,
+    "U_K3": null,
+    "U_K3_allocation": null,
+    "U_paid": 981104,
+    "U_paid_source_status": "MANIFEST_DECLARED_TRANSITIVE_SOURCE_GATE_STALE",
+    "U_positive": null,
+    "U_remaining": null,
+    "U_sourcecover": null,
+    "allocation_interval_only": [
+      0,
+      274980728110413983
+    ],
+    "inequality_evaluable": false,
+    "joint_Q_BC_new_reserve": 274980728110413983,
+    "joint_reserve_is_K3_allocation": false,
+    "joint_reserve_status": "ARITHMETIC_FROM_MANIFEST_DECLARATION_NOT_REVALIDATED_PAYMENT",
+    "signed_slack": null
+  },
+  "first_failed_bridge": {
+    "effect": "raw labels/systems cannot be charged as distinct affine slopes",
+    "falsifier": "an ill-defined active m=2,r=4 slice, one slope in that slice with no admissible selected component, incompatible selected components without a controlled fiber, or any reconstruction changing line, support, slope, owner, or chronology",
+    "id": "ACTIVE_M2_R4_SLICE_TO_CARRIER_SELECTOR_RECONSTRUCTION_AND_PROJECTION",
+    "reason": "the orientation target is scoped to a declared active m=2,r=4 residual slice, while the source-pencil theorem classifies only supplied actual endpoint records and explicitly distinguishes its parameter line from the evaluation carrier",
+    "status": "UNPROVEN"
+  },
+  "frozen_equations": {
+    "active_first_match": [
+      "Z_paid = Z intersect T",
+      "R1 = Z setminus Z_paid",
+      "Z_Q = R1 intersect Q",
+      "R2 = R1 setminus Z_Q",
+      "Z_BC = R2 intersect BC",
+      "Z_new = R2 setminus Z_BC"
+    ],
+    "active_slice": "Z_BC^(m=2,r=4) is the declared residual slice of Z_BC; a source-bound membership predicate and exhaustive reduction are open",
+    "source_pencil": [
+      "V_act in Sym^(60/m)(W)",
+      "A_S in W",
+      "A_R^5 in W"
+    ],
+    "unproved_bridge": "every z in the declared active m=2,r=4 slice admits a total same-record selector/reconstruction into supplied actual endpoint records and actual (4,4) components, preserving every compiler field and carrying an exact projection-fiber bound; a two-sided inverse is a sufficient stronger form"
+  },
+  "imported_raw_dependency": {
+    "active_partition_bridge_proved": false,
+    "ledger_movement": 0,
+    "public_dag_commit": "8df0903391a228eed6e24398fca9d40d72d546cf",
+    "raw_labels": 1575,
+    "role_cells": 15,
+    "route": "433-1b -> O0a",
+    "signed_principal_systems": 25200,
+    "status": "PROVED_EMPTY_RAW_SYSTEMS",
+    "surviving_raw_systems": 0
+  },
+  "nonclaims": [
+    "No active balanced-core bad slope is identified with a raw workboard label.",
+    "The conditional 11304 abstract-orbit workload is not a census, elimination, or distinct-slope payment.",
+    "The manifest-declared U_paid is not source-revalidated by this packet because its active-v4 transitive blob pin is stale.",
+    "The joint Q/BC/new reserve is not U_K3_allocation.",
+    "The source-cover row-passport strata are not a terminal census.",
+    "PR1155 is preserved as a valid route cut, not promoted to a closure.",
+    "No K3 or KoalaBear-row ledger value moves."
+  ],
+  "o0b_native_route_cut": {
+    "o0a_transport_obstructions": [
+      {
+        "branch": "REPEATED_BC",
+        "guard": {
+          "bc_nonzero": true,
+          "characteristic_not_2": true
+        },
+        "invariant": "parallel_product_ratio",
+        "isomorphism_exists": false,
+        "o0a_value_mod_p": 2130706432,
+        "o0b_value": 1
+      },
+      {
+        "branch": "SPLIT_BC_FULL_SYSTEM",
+        "invariant": "outside_incidence_signature",
+        "isomorphisms": 0,
+        "o0a_signature": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            3
+          ]
+        ],
+        "o0b_signature": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "permutations_checked": 6
+      }
+    ],
+    "outside_label_orbits": {
+      "o0a_universal": {
+        "orbits": 36,
+        "profile": {
+          "1": 3,
+          "2": 15,
+          "4": 18
+        },
+        "weighted_total": 105
+      },
+      "o0b_d_sign": {
+        "orbits": 57,
+        "profile": {
+          "1": 9,
+          "2": 48
+        },
+        "weighted_total": 105
+      },
+      "o0b_identical_pair": {
+        "orbits": 60,
+        "profile": {
+          "1": 15,
+          "2": 45
+        },
+        "weighted_total": 105
+      },
+      "o0b_s0_both": {
+        "orbits": 32,
+        "profile": {
+          "1": 3,
+          "2": 7,
+          "4": 22
+        },
+        "weighted_total": 105
+      },
+      "o0b_s0_role": {
+        "orbits": 56,
+        "profile": {
+          "1": 7,
+          "2": 49
+        },
+        "weighted_total": 105
+      }
+    },
+    "residual_owner_partition": {
+      "repeated_cells_11_14": {
+        "raw_labels": 3360,
+        "rows": 32
+      },
+      "repeated_cells_1_2": {
+        "raw_labels": 1680,
+        "rows": 16
+      },
+      "split_rank5": {
+        "raw_labels": 37800,
+        "rows": 360
+      },
+      "total": {
+        "raw_labels": 42840,
+        "rows": 408
+      }
+    },
+    "route": "433-1b -> O0b",
+    "split_block_candidate_orbit_audit": {
+      "conditional_candidate_workload": 11304,
+      "raw_labels": 37800,
+      "s0_fixed_candidate_term": 1368,
+      "s0_paired_candidate_term": 2736,
+      "sde_candidate_term": 7200,
+      "sdf_candidate_term": 0,
+      "status": "CONDITIONAL_ABSTRACT_LABEL_ORBIT_WORKLOAD_NOT_A_CENSUS_ELIMINATION_OR_PAYMENT",
+      "unproved_inputs": [
+        "widened-scope O0b S0 d-sign quotient",
+        "SDE-to-SDF lane transport as a banked full-system certificate",
+        "S0 role transport as a banked full-system certificate"
+      ]
+    },
+    "transport_scope": {
+      "arbitrary_algebraic_orientation_changing_maps_covered": false,
+      "claim": "NO_TRANSPORT_IN_THIS_DECLARED_NATURAL_CLASS",
+      "class_id": "DECLARED_NATURAL_RECORD_ROLE_GAUGE_AND_TYPED_INCIDENCE_RELABELINGS",
+      "generators": [
+        "TARGET_VERTEX_GAUGE_APPLIED_UNIFORMLY_TO_PARALLEL_RECORDS",
+        "INTERCHANGE_OF_THE_TWO_PARALLEL_BC_RECORDS",
+        "SWAP_OF_B_AND_C_ROLES",
+        "SOURCE_ROOT_SIGN_OR_DECK_RELABELINGS_DECLARED_BY_THE_PINNED_ATLASES",
+        "TYPED_OUTSIDE_ROLE_PERMUTATIONS_PRESERVING_DISPLAYED_INCIDENCE_DATA"
+      ],
+      "preserves": [
+        "displayed_parallel_product_equations",
+        "typed_outside_incidence_data",
+        "record_and_role_types"
+      ]
+    }
+  },
+  "orientation_census": {
+    "diagonal_involutions": {
+      "all_fixed_point_free_involutions": 10395,
+      "live_total": 10170,
+      "partition_preserving_deleted": 225,
+      "rows": [
+        {
+          "a": 0,
+          "b": 0,
+          "c": 6,
+          "multiplicity": 720
+        },
+        {
+          "a": 0,
+          "b": 1,
+          "c": 4,
+          "multiplicity": 1800
+        },
+        {
+          "a": 1,
+          "b": 0,
+          "c": 4,
+          "multiplicity": 3600
+        },
+        {
+          "a": 1,
+          "b": 1,
+          "c": 2,
+          "multiplicity": 2700
+        },
+        {
+          "a": 2,
+          "b": 0,
+          "c": 2,
+          "multiplicity": 1350
+        }
+      ]
+    },
+    "exceptional_source_line_orbit": "KBDM-10",
+    "independent_transverse_type": {
+      "delta": 1,
+      "m": 2,
+      "r": 8,
+      "status": "OUTSIDE_THREE_ORIENTATIONS_OPEN"
+    },
+    "live_unrouted_source_line_rows": [
+      [
+        1,
+        0,
+        4
+      ],
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "source_line_closed_scope": "SATURATED_c2_1_1_2_ONLY",
+    "transverse_partitions_per_supplied_actual_record": 32099
+  },
+  "payload_sha256": "5f7ae16ce2a94a02cbef0e602251686aa50d1ea4af84ed413538fabc3d9f696b",
+  "pr1155_reconciliation": {
+    "classification": "VALID_GUARD_TRANSPLANT_ROUTE_CUT_REGRESSION_DEPENDENCY",
+    "commit": "1cf13bb4058da19c5108bf79472394a598217bca",
+    "guarded_necessary_point_survives": true,
+    "mutations_rejected_by_own_verifier": 16,
+    "raw_sha256": "74c2a601542b12cf236aa60519e486a361fbe3326dca62455e460da6ce710e76",
+    "status": "OPEN_GAP",
+    "strategic_effect": "rules out guard-only transplant; does not assign a slope payment and is not superseded by PR1152",
+    "witness": {
+      "D0": 796444780,
+      "N0": 1242524170,
+      "b": 1722399428,
+      "c": 463843441,
+      "r": 976487466,
+      "t": 1814604652,
+      "w0": 58144935,
+      "w1": 1833131373
+    }
+  },
+  "schema": "rs-mca-kb-v4-k3-source-bound-compiler-route-cut-v1",
+  "source_bindings": [
+    {
+      "commit": "ed4877cce5f227f33311fa93f5ff5e5f4150ae63",
+      "kind": "LOCAL_BLOB_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-433-1b-raw-workboard-close-v1/kb_mca_v4_433_1b_raw_workboard_close_v1.json",
+      "repo": "przchojecki/rs-mca",
+      "sha256": "289f542e2e8420fca4c04ad66cf01e763d82a63cf86686bf496cb8228ac750d6"
+    },
+    {
+      "commit": "ed4877cce5f227f33311fa93f5ff5e5f4150ae63",
+      "kind": "LOCAL_BLOB_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-433-1b-raw-workboard-close-v1/verify.py",
+      "repo": "przchojecki/rs-mca",
+      "sha256": "a6cc773757339c5adf1c2004a33ebe96a2dfc6ec4d2e58e457ff7f849d465668"
+    },
+    {
+      "commit": "ed4877cce5f227f33311fa93f5ff5e5f4150ae63",
+      "kind": "LOCAL_BLOB_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/manifest.json",
+      "repo": "przchojecki/rs-mca",
+      "sha256": "943f62b5ebf5e5bc638067a7b47a3b7f7cb1d53a7d2b647b2178b764a976b964"
+    },
+    {
+      "commit": "ed4877cce5f227f33311fa93f5ff5e5f4150ae63",
+      "kind": "LOCAL_BLOB_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/row_manifest.json",
+      "repo": "przchojecki/rs-mca",
+      "sha256": "574c6fd6d3a993260e2dc947235a92a56189e4197c069c3ff24b962944dda5c1"
+    },
+    {
+      "commit": "ed4877cce5f227f33311fa93f5ff5e5f4150ae63",
+      "kind": "LOCAL_BLOB_SHA256",
+      "path": "experimental/grande_finale.tex",
+      "repo": "przchojecki/rs-mca",
+      "sha256": "336ba3c9a6d9483d0eab74677d6224aae23adf15d84891c6099f6d2f45cf226d"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_decomposition_source_pencil_compiler/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "54b2879737b8d9f381678e35f18460ed51f092a7c2ab808aea9bf6ea9454b776"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0a_signed_edge_atlas/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "62ea6520db4f1a0144e343ff80efe1adf85121738b163ac20a2be805a87fe204"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_residual_owner_partition/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "a01d451b19f2c09987a5b88102edb1a39eb6e2402fe8530bce996494a7fdcaac"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_signed_edge_atlas/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "1e62ce887dbe2ebb57e8219536454af8683142dee820997a71f070a79ac637fc"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_remaining_route_payment/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "b2d6c15247f6b0a4b4fbae70615a7266205ffb96c9cf0914a655fbe9c10a6a27"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_residual_loop_workboard/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "fdfe52363a1b143279e426080c8a7cf9dd79623f21f1f69f371b6794d15fef7a"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_facet_mixing_obstruction/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "4ed39ffaaf859355bcd6406a9bc83aeb7a1aeb334da5f3d78e59a791118052ff"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_diagonal_source_subfield_dichotomy/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "8c56c6b461949bb1ec34703233cf4e952179b9248899dbb39ee2c76c4f04e11b"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_k3_allocation_inequality/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "dd41d5e3075e8eb3e75ad792bddaeb28b5615b50d66202c5a83078a789008d1b"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_m2_r4_k3_orientation_assembly/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "52ada0417abf74fc4709bc635520ed3064d67cf7c9fbd017dc6a45f474e7ff1e"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "background/nodes/rate_half_kb_source_pencil_rank_transverse_compiler/statement.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "0c1756ccf94e7b4503bf7b9aa5a39cebf16abaf1a200ec9496dd8bcf6b6f664f"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "notes/codex_briefs/URGENT_M1_SCOPE_HAZARD_20260810.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "d2513e03b3f2ec3b8d44c30798273e67b83cf36063d9fcce385d3fab310d8888"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "notes/codex_briefs/WAVE57_K3_ROUND30_HANDOFF_20260810.md",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "53a137f13db20ca21102910a44a0d4b24f4ae97203b883f52d76dc2c92bdbdbc"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "notes/pilots_20260810/k3_orientation_assembly/replay_orientation_images.py",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "c99d76452860e995f89a2bb691748890be5ca78a9214c56671895bfa2129fe5a"
+    },
+    {
+      "commit": "48a7de3c2d0d092b1899b1bb18d62bb4bf8861ce",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "notes/pilots_20260810/k3_splitbc_transport/label_orbits.py",
+      "repo": "AllenGrahamHart/rs-mca-prize-dag",
+      "sha256": "3146e60b7f28817f914862e7b141fc34ac5953408558772359b1d6d75cb1317e"
+    },
+    {
+      "commit": "1cf13bb4058da19c5108bf79472394a598217bca",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "experimental/data/certificates/kb-mca-v4-433-1b-cell11-signed-pair-route-cut-v1/raw.json",
+      "repo": "przchojecki/rs-mca",
+      "sha256": "74c2a601542b12cf236aa60519e486a361fbe3326dca62455e460da6ce710e76"
+    },
+    {
+      "commit": "1cf13bb4058da19c5108bf79472394a598217bca",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "experimental/notes/thresholds/kb_mca_v4_433_1b_cell11_signed_pair_route_cut_v1.md",
+      "repo": "przchojecki/rs-mca",
+      "sha256": "1b91a9e3a6f6ce4f1acb67df0afe0ac8cc75aa94f7ffea0e5298a6a05be1870d"
+    },
+    {
+      "commit": "1cf13bb4058da19c5108bf79472394a598217bca",
+      "kind": "GIT_BLOB_CONTENT_SHA256",
+      "path": "experimental/scripts/verify_kb_mca_v4_433_1b_cell11_signed_pair_route_cut_v1.py",
+      "repo": "przchojecki/rs-mca",
+      "sha256": "ae0450c34c6d5776bc2f2af2898f9dfb5076b3ade4711b278df9a2d8fae9567d"
+    }
+  ],
+  "source_cover": {
+    "U_sourcecover": null,
+    "live_diagonal_rows": [
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        1,
+        0,
+        4
+      ],
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        0,
+        6
+      ]
+    ],
+    "passports_per_row": [
+      {
+        "genus": 0,
+        "passport": [
+          "eta",
+          "eta_prime",
+          "mu"
+        ]
+      },
+      {
+        "genus": 1,
+        "passport": [
+          "eta",
+          "eta",
+          "eta_prime",
+          "eta_prime"
+        ]
+      }
+    ],
+    "terminal_census": null,
+    "terminal_workboard_exists": false,
+    "unresolved_candidate_row_passport_combinations": 8
+  },
+  "status": "PROVED_FAIL_CLOSED_K3_ROUTE_CUT_WITH_STALE_UPSTREAM_SOURCE_GATE",
+  "tangent_import_source_gate": {
+    "atom": "U_paid",
+    "classification": "STALE_TRANSITIVE_SOURCE_BINDING_NOT_A_REVALIDATED_PAYMENT",
+    "expected_active_v4_git_blob": "8a5d9791900ca9eed773feba146b92ad296704ce",
+    "expected_steering_git_blob": "30d8b9f1b4caa3c7504fe3d24fc7ce8da84de434",
+    "manifest_declared_proof_status": "PROVED_GATE_B_BANKABLE_ATOM_ROW_OPEN",
+    "manifest_declared_value": 981104,
+    "observed_pr1152_active_v4_git_blob": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
+    "observed_pr1152_steering_git_blob": "75a01e4b6cfc17c34112a47bd51294519ebc687c",
+    "source_binding_matches": false,
+    "steering_binding_matches": false,
+    "steering_drift_is_gating": false,
+    "transitive_source_revalidated": false
+  },
+  "terminal": "UNPAID_PARAMETER_TO_CARRIER_AND_LABELS_TO_SLOPES",
+  "theorem_kind": "MAXIMAL_ROUTE_CUT_NOT_A_K3_PAYMENT"
+}
