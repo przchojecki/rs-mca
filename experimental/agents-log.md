@@ -47,18 +47,25 @@ Keep entries concise and link to the relevant files.
   supported first jets away from the correction divisor, an exact rank-`e`
   coefficient-plane evaluation theorem at ordinary rank-one loss, and a
   degree-three Hankel recurrence for squarefree double-root corrections
-  disjoint from the supported divisor.
+  disjoint from the supported divisor. The latest extension factors the
+  fixed heavy row through the supported/correction divisor up to at most
+  four scalar unknowns. It also adds an exact `m=2` route fence showing that
+  Layer-A row surplus plus pointwise saturation alone does not force rank.
 - **How it is useful:** Replaces an anonymous biform residual by the packet's
   existing correction forms: `S_B^2` in the double-root arm and `S_1S_2` in
   the two-simple arm. It also records an explicit symmetric-pencil
   countermodel showing that marked orders eight and seven require a genuine
   Hankel/source/split-fiber input to exclude. On the separated double-root
-  locus each correction is one Smith chain of type `[2]`, not `[1,1]`.
-- **What to do next:** Test the cubic recurrence against the three-class
-  contracted source. Treat nonreduced `S_B`, roots shared with `g_*`, and the
+  locus each correction is one Smith chain of type `[2]`, not `[1,1]`; all
+  but at most three heavy-row roots are prescribed. The Layer-A fence keeps
+  the stronger canonical pair-union/Hankel theorem live while retiring a
+  generic dimension-count shortcut.
+- **What to do next:** Decide the augmented coefficient-MDS rank with the
+  heavy-row coordinate, using the canonical pair-union and source geometry
+  essentially. Treat nonreduced `S_B`, roots shared with `g_*`, and the
   two-simple correction separately. Independently review the Pade infinity
-  normalization, correction-contact comparison, and center-line
-  cancellation before promotion.
+  normalization, correction-contact comparison, center-line cancellation,
+  and the scope separation on the Layer-A fence before promotion.
 
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 

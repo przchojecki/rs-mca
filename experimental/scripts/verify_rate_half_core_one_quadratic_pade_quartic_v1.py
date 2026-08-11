@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "edf8a35cc3450e4c9c1fd9b5601a232cfd536557"
+SOURCE_COMMIT = "62dc0233cb3ca1a033957977912bbd21cc27d1d7"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -28,6 +28,10 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_supported_coefficient_plane_kernel_intersection/proof.md": "229aea8c16c49d9d657ee03ef11513e02ed81e9df507f5a1f99ca05f473020d8",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_quotient_cubic_residual/statement.md": "c888235f0efe4ed23ca4d3c05ecbd3b263c560d52b69e9a687a6914c514d5419",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_quotient_cubic_residual/proof.md": "86bf14cfc6fece3cd739af15621a26c2cbf34b3b1e989c017418574d202886f2",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_row_center_overlap_factorization/statement.md": "f4ca71e7dad263b81b5bb6785e1c41c19d8bc130be1ecfa1508566b4f06710cb",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_row_center_overlap_factorization/proof.md": "caea37f7fa0254d84304850b700b50a810e6492fdd4293546664c0d36926a1e3",
+    "background/nodes/rate_half_layer_a_saturation_count_route_fence/statement.md": "6f28fea411e3bba5f055103229d09817e46aec18232c71cccb800297146bb36d",
+    "background/nodes/rate_half_layer_a_saturation_count_route_fence/proof.md": "2658e564d4eda83af64cee8e2fdab73aff531a1eace1fe1ef2cfbd3f2f6d1cac",
 }
 
 
@@ -49,6 +53,70 @@ class Formula:
     supported_exception_cap: int = 4
     separated_residual_degree: int = 3
     separated_smith_exponent: int = 2
+    center_overlap_cap: int = 3
+    heavy_row_unknowns: int = 4
+    layer_a_rank: int = 20
+    layer_a_nullity: int = 4
+    layer_a_row_surplus: int = 2
+
+
+def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
+    work = [row[:] for row in matrix]
+    row = 0
+    for column in range(len(work[0])):
+        pivot = next(
+            (index for index in range(row, len(work)) if work[index][column]),
+            None,
+        )
+        if pivot is None:
+            continue
+        work[row], work[pivot] = work[pivot], work[row]
+        inverse = pow(work[row][column], prime - 2, prime)
+        work[row] = [entry * inverse % prime for entry in work[row]]
+        for index in range(len(work)):
+            if index == row or not work[index][column]:
+                continue
+            scale = work[index][column]
+            work[index] = [
+                (left - scale * right) % prime
+                for left, right in zip(work[index], work[row])
+            ]
+        row += 1
+    return row
+
+
+def verify_layer_a_fixture(formula: Formula) -> int:
+    prime = 97
+    zeta = 28
+    require(pow(zeta, 32, prime) == 1, "Layer-A root order failed")
+    require(pow(zeta, 16, prime) != 1, "Layer-A root is not primitive")
+    points = [pow(zeta, 2 * index, prime) for index in range(13)]
+    slopes = [pow(zeta, 4 * index, prime) for index in range(8)] + [zeta]
+    incidences = []
+    for x in points:
+        roots = [
+            gamma
+            for gamma in slopes
+            if (gamma * gamma - pow(x, 4, prime)) % prime == 0
+        ]
+        require(len(roots) == 2, "Layer-A point is not saturated")
+        require(set(roots) == {x * x % prime, -x * x % prime}, "wrong roots")
+        incidences.extend((gamma, x) for gamma in roots)
+    matrix = [
+        [
+            pow(gamma, degree_z, prime) * pow(x, degree_x, prime) % prime
+            for degree_z in range(3)
+            for degree_x in range(8)
+        ]
+        for gamma, x in incidences
+    ]
+    rank = finite_field_rank(matrix, prime)
+    require(len(matrix) == 26, "Layer-A row count changed")
+    require(len(matrix[0]) == 24, "Layer-A column count changed")
+    require(rank == formula.layer_a_rank, "Layer-A rank changed")
+    require(24 - rank == formula.layer_a_nullity, "Layer-A nullity changed")
+    require(26 - 24 == formula.layer_a_row_surplus, "Layer-A surplus changed")
+    return 32
 
 
 def verify_source(root: Path) -> int:
@@ -82,6 +150,11 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.separated_smith_exponent == 2,
         "separated Smith exponent changed",
     )
+    require(formula.center_overlap_cap == 3, "center-overlap cap changed")
+    require(formula.heavy_row_unknowns == 4, "heavy-row unknown cap changed")
+    require(formula.layer_a_rank == 20, "Layer-A rank constant changed")
+    require(formula.layer_a_nullity == 4, "Layer-A nullity constant changed")
+    require(formula.layer_a_row_surplus == 2, "Layer-A surplus constant changed")
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -136,6 +209,17 @@ def replay(formula: Formula) -> dict[str, int]:
                 )
         checks += 23
 
+        for overlap in range(formula.center_overlap_cap + 1):
+            require(
+                (e - 2 - overlap) + overlap == e - 2,
+                "heavy-row center cancellation failed",
+            )
+            require(
+                overlap + 1 <= formula.heavy_row_unknowns,
+                "heavy-row scalar cap failed",
+            )
+            checks += 2
+
     require(2 + 2 * 3 == 8, "double marked order failed")
     require(1 + 2 * 3 == 7, "simple marked order failed")
     require(
@@ -148,14 +232,16 @@ def replay(formula: Formula) -> dict[str, int]:
         "type-[2] correction failed",
     )
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 16, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 20, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
     )
 
+    checks += verify_layer_a_fixture(formula)
+
     return {
-        "checks": checks + 8,
+        "checks": checks + 13,
         "official_e": 183251937963,
         "pade_exponent": 2 * (3 * 183251937963 - 2) + 1,
         "residual_degree": formula.residual_degree,
@@ -164,6 +250,9 @@ def replay(formula: Formula) -> dict[str, int]:
         "supported_exception_cap": formula.supported_exception_cap,
         "separated_residual_degree": formula.separated_residual_degree,
         "separated_smith_exponent": formula.separated_smith_exponent,
+        "heavy_row_unknowns": formula.heavy_row_unknowns,
+        "layer_a_rank": formula.layer_a_rank,
+        "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),
     }
 
@@ -178,7 +267,7 @@ def tamper_selftest() -> int:
             replay(Formula(**values))
         except VerificationError:
             rejected += 1
-    require(rejected == 7, "tamper self-test did not reject every mutation")
+    require(rejected == 12, "tamper self-test did not reject every mutation")
     return rejected
 
 
