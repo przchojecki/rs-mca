@@ -80,6 +80,33 @@ SOURCE_HASHES = {
         "3539a0b726e761836e9224132b6503e96ed99e3058eab44d7c92e9461cd1353a"
     ),
 }
+WELD_SOURCE_COMMIT = "77a26cfa85c9b1954345f9dd3027a75c59fa8943"
+WELD_SOURCE_HASHES = {
+    "weld_statement": (
+        "bf1eb3d232f9d6461523cff7cb694c4bc99172668ab7d87fee60343496d7eb26"
+    ),
+    "weld_proof": (
+        "f23156061b0cdd0a292af563c0e230f0063ae29e8ddb424c8822c82ac39996c8"
+    ),
+    "weld_verifier": (
+        "3427ff1751e6c6b7a1e6ce3ce5404623f1ae88d280cf7da1d4a5cf00c3e62fa4"
+    ),
+    "rank_statement": (
+        "f1bc111032a6d68e02efa6e572ed3f4a7e9bb2c7ce2ec01f1bda35b503c428c7"
+    ),
+    "rank_proof": (
+        "5f0c46deca4ba2d8dfb686039e76ee03d3bf1c8a210eaaa106aecfc053a6d77e"
+    ),
+    "rank_verifier": (
+        "bd2ba47e26df616ddaf8867654986fad15db8a243d884c68e658a18c5e904d45"
+    ),
+    "rank_probe": (
+        "69e5a13156093312ac653f83d8abecd92aaf177818a36d629d2e920533fcfedf"
+    ),
+    "rank_probe_results": (
+        "992937f6aaa1536fdf594bbd8250a6356afd5522391017e222bcc8dd0850ef33"
+    ),
+}
 
 
 class VerificationError(RuntimeError):
@@ -105,6 +132,63 @@ def obstruction(e: int, j: int) -> int:
         - 2 * j * j
         - 2 * j
     )
+
+
+def matrix_rank(rows: list[list[int]], columns: int, modulus: int) -> int:
+    pivots: dict[int, list[int]] = {}
+    for source in rows:
+        row = [value % modulus for value in source]
+        for column, pivot in pivots.items():
+            if row[column]:
+                factor = row[column]
+                row = [
+                    (left - factor * right) % modulus
+                    for left, right in zip(row, pivot)
+                ]
+        for column, value in enumerate(row):
+            if value:
+                inverse = pow(value, -1, modulus)
+                pivots[column] = [
+                    entry * inverse % modulus for entry in row
+                ]
+                break
+    return len(pivots)
+
+
+def replay_weld_rank() -> tuple[int, int]:
+    modulus = 101
+    xset = list(range(5, 11))
+    zset = [1, 2, 3, 4]
+
+    def row_poly(x: int, t: int) -> int:
+        return (t + 3) * (t - x) * (t - (x - 1)) % modulus
+
+    def fiber_poly(t: int, x: int) -> int:
+        return (x - t) * (x - (t + 1)) % modulus
+
+    rows = []
+    for delta in zset:
+        nonincident = [
+            x for x in xset if fiber_poly(delta, x) != 0
+        ]
+        anchor = nonincident[0]
+        for x in nonincident[1:]:
+            row = [0] * len(xset)
+            row[xset.index(x)] = (
+                row_poly(x, delta) * fiber_poly(delta, anchor)
+            ) % modulus
+            row[xset.index(anchor)] = (
+                -row_poly(anchor, delta) * fiber_poly(delta, x)
+            ) % modulus
+            rows.append(row)
+
+    rank = matrix_rank(rows, len(xset), modulus)
+    require(rank == len(xset) - 1, "connected weld nullity mismatch")
+    tampered = [row[:] for row in rows]
+    tampered[-1][0] = (tampered[-1][0] + 1) % modulus
+    tampered_rank = matrix_rank(tampered, len(xset), modulus)
+    require(tampered_rank == len(xset), "weld tamper was not rejected")
+    return rank, tampered_rank
 
 
 @dataclass(frozen=True)
@@ -248,6 +332,47 @@ def replay(formula: Formula) -> dict[str, int]:
             "strict parameter-fiber matrix rows mismatch",
         )
 
+        for line_deficit in (0, 1):
+            ext_columns = 3 * p - 3 + line_deficit
+            ext_domain_degree = p - 3
+            ext_weld_rows = 2 * e * (
+                ext_columns - ext_domain_degree - 1
+            )
+            require(
+                ext_weld_rows == 2 * e * (2 * p - 1 + line_deficit),
+                "extremal weld-row count mismatch",
+            )
+            require(
+                ext_columns - 2 * ext_domain_degree
+                == p + 3 + line_deficit,
+                "extremal common-neighbor margin mismatch",
+            )
+            require(
+                2 * e - (e - 2) == e + 2,
+                "extremal row-neighbor margin mismatch",
+            )
+
+        for line_deficit in range(min(e - 6, 4) + 1):
+            strict_columns = 2 * p + line_deficit
+            strict_domain_degree = p - 2
+            strict_weld_rows = (p + 2) * (
+                strict_columns - strict_domain_degree - 1
+            )
+            require(
+                strict_weld_rows
+                == (p + 2) * (p + 1 + line_deficit),
+                "strict weld-row count mismatch",
+            )
+            require(
+                strict_columns - 2 * strict_domain_degree
+                == 4 + line_deficit,
+                "strict common-neighbor margin mismatch",
+            )
+            require(
+                (p + 2) - (e - 1) == p - e + 3 == (e + 5) // 2,
+                "strict row-neighbor margin mismatch",
+            )
+
     official_N = 1 << 41
     official_rho = official_N // 4
     official_e = (official_rho + 1) // 3
@@ -262,6 +387,13 @@ def replay(formula: Formula) -> dict[str, int]:
         all(len(value) == 64 for value in SOURCE_HASHES.values()),
         "source hash malformed",
     )
+    require(len(WELD_SOURCE_COMMIT) == 40, "weld commit pin malformed")
+    require(len(WELD_SOURCE_HASHES) == 8, "weld hash inventory changed")
+    require(
+        all(len(value) == 64 for value in WELD_SOURCE_HASHES.values()),
+        "weld source hash malformed",
+    )
+    weld_rank, weld_tampered_rank = replay_weld_rank()
     return {
         "N": official_N,
         "rho": official_rho,
@@ -296,6 +428,14 @@ def replay(formula: Formula) -> dict[str, int]:
             * (official_rho // 2 + 2 - official_e)
         ),
         "strict_parameter_matrix_columns": official_rho // 2 + 2,
+        "extremal_weld_rows": (
+            2 * official_e * (official_rho - 1)
+        ),
+        "strict_weld_rows": (
+            (official_rho // 2 + 2) * (official_rho // 2 + 1)
+        ),
+        "toy_weld_rank": weld_rank,
+        "toy_weld_tampered_rank": weld_tampered_rank,
     }
 
 

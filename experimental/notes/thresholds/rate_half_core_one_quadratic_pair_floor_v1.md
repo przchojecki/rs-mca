@@ -659,3 +659,101 @@ strict:   25185954575671278348969 rows x 274877906946 columns. (K8)
 The fixed-domain matrix `(K3)` and parameter matrix `(K7)` constrain one
 common biform. Neither matrix's row count proves its rank, and passing either
 matrix separately is not a realizability certificate.
+
+## 13. Exact scalar weld for the two coefficient systems
+
+The compatibility omitted by separate coefficient tests has an exact sparse
+form. On the classified row set `X` and selected zero-excess slope set `Z`,
+put
+
+```text
+P_x(t)=product_(delta in A_x)(t-delta),
+F_delta(X)=A_delta(X)R_delta(X).                    (W1)
+```
+
+Their zero patterns agree on `X times Z`. At a nonincidence, one common
+biform requires
+
+```text
+lambda_x P_x(delta)=zeta_delta F_delta(x).          (W2)
+```
+
+Choose one nonincident anchor `a_delta` for every fiber. Eliminating
+`zeta_delta` gives a matrix `W` with two nonzero entries per row:
+
+```text
+(W lambda)_(delta,x)
+ =lambda_x P_x(delta)F_delta(a_delta)
+  -lambda_(a_delta)P_(a_delta)(delta)F_delta(x).    (W3)
+```
+
+If `Krow` is the fixed-domain matrix `(K3)`, then the two root
+factorizations come from one biform if and only if
+
+```text
+[Krow]
+[  W ] lambda=0                                    (W4)
+```
+
+has a full-support vector. In that event
+
+```text
+zeta_delta=lambda_(a_delta)P_(a_delta)(delta)
+                         /F_delta(a_delta),         (W5)
+```
+
+and the parameter matrix `(K7)` follows automatically; it is not an
+independent constraint after the weld.
+
+The weld has at least
+
+```text
+extremal: 2e(2p-1+d_A),
+strict:   (p+2)(p+1+r_A)                            (W6)
+```
+
+rows. At the official zero-line-deficit profiles these lower bounds are
+
+```text
+201487636602438195784362,
+ 75557863726738957139970.                           (W7)
+```
+
+These are equation counts, not rank claims.
+
+## 14. Connected-rank dichotomy
+
+Let `H` be the bipartite graph whose edges are the nonincidences in
+`X times Z`. Any two fiber vertices have at least
+
+```text
+extremal: p+3+d_A,
+strict:   4+r_A                                    (W8)
+```
+
+common row neighbors. Every row has at least
+
+```text
+extremal: e+2,
+strict:   p-e+3=(e+5)/2                            (W9)
+```
+
+fiber neighbors. Thus `H` is connected. The two-entry equations in
+`(W3)` then propagate every nonzero coordinate and every coordinate ratio,
+so
+
+```text
+rank W in {|X|-1,|X|}.                              (W10)
+```
+
+If `rank W=|X|`, the boundary is excluded immediately. If
+`rank W=|X|-1`, its kernel is one-dimensional and automatically
+full-support. There is then exactly one projective scalar vector to test
+against `Krow` and the retained source/Hankel identities; no full-support
+search remains.
+
+As a finite calibration only, the exact `e=7,d_A=1` cyclic ledger gives
+`rank W=|X|` over `F_337` and `F_421`; 100 degree-preserving switches
+per field do the same. This is 202/202 exclusions, not an all-profile rank
+proof. The analytic weld and dichotomy are pinned to
+`AllenGrahamHart/rs-mca-prize-dag@77a26cfa85c9b1954345f9dd3027a75c59fa8943`.
