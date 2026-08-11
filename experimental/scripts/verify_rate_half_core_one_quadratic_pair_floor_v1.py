@@ -8,7 +8,7 @@ import copy
 from dataclasses import dataclass
 
 
-SOURCE_COMMIT = "d9a0e884945b3600dc4825796a380d083975b75a"
+SOURCE_COMMIT = "a01726108cfd588c7901557a8f3760afb03f5447"
 SOURCE_HASHES = {
     "localization_statement": (
         "fafe03c21890127aeef952a4e6282da6319f20a6c224d80338ce8e8529be22c8"
@@ -27,6 +27,45 @@ SOURCE_HASHES = {
     ),
     "macroscopic_proof": (
         "ceaa9fae989d4b54652937993ab60aa61aa8dffb5078b3ca7acfb69e242b3954"
+    ),
+    "source_partition_statement": (
+        "fd23ed6e8d238cd56b2f553857e64e1c902b9c6f66a2a7b5541acb88568ae637"
+    ),
+    "source_partition_proof": (
+        "4f0db5ad2e68d2e2028dd91ec6e03e077543d31b53f1c3d70e6b25cd0196e932"
+    ),
+    "forney_gate_statement": (
+        "a8be024011bda2fcbecac762324b0ac86b5090ab876dd267f4a187ae9d2785b7"
+    ),
+    "forney_gate_proof": (
+        "a3a42cd173eaa41e66a4362fe9a46764610964b874384173c8081f3080a9da0d"
+    ),
+    "dual_biform_statement": (
+        "bfc301188ff4d08086fcbd9acceedb6f886b26f1f0fcb337c0e2cfff3d0e3b05"
+    ),
+    "dual_biform_proof": (
+        "03cbd1b1dfc702bb79b9974a76104bceba00758595bb78af706fa75b1261a857"
+    ),
+    "strict_minword_statement": (
+        "80ad5e3e4817fa0508a7ec738c285edff38925a349e2592edcb87a71e9381798"
+    ),
+    "strict_minword_proof": (
+        "b301134e650c60337bca20586540de9dd3bf76d8a3bce6632b2cbcad621f8d27"
+    ),
+    "strict_biform_statement": (
+        "61c0bd1bd1f75493d8a872c9aefabd73c45b1ca5ba361d23fa73ed0737560022"
+    ),
+    "strict_biform_proof": (
+        "518be4020bb33547e5530df6877e69b36b06f64b76ec3f1772b6f2edbe74368b"
+    ),
+    "coefficient_gate_statement": (
+        "6116d6040d5e45691046001fc0929d5a6924c2f088c84c7e3cf6173d34f77289"
+    ),
+    "coefficient_gate_proof": (
+        "16efedbadab999696cc438e07de4da83c51a2311a1c664805ea45cbbfe1d3433"
+    ),
+    "coefficient_gate_probe": (
+        "508d0d0bcc0888c4170a121f458ac2c0618b32cdcf99b88b0ad78586ef8a43e9"
     ),
 }
 
@@ -141,6 +180,38 @@ def replay(formula: Formula) -> dict[str, int]:
         require((rho + j0 - 1) // j0 == 3, "three-center cap failed")
         require(4 * j0 > rho + j0 - 1, "four-center exclusion failed")
 
+        p = rho // 2
+        require(2 * e <= 3 * e, "zero-excess count exceeded off-line slopes")
+        require(e + 6 <= 2 * e, "clean split-fiber lower bound failed")
+        require(3 * p - 3 == (9 * e - 9) // 2, "split-row floor mismatch")
+        require(p - 3 == (3 * e - 7) // 2, "domain biform degree mismatch")
+
+        off_line_strict = 3 * e + 1
+        strict_excess = p
+        strict_zero = off_line_strict - strict_excess
+        require(strict_zero == p + 2, "strict zero-excess count mismatch")
+        for line_deficit in range(min(e - 6, 4) + 1):
+            off_deficit = e - 6 - line_deficit
+            strict_clean = strict_zero - off_deficit
+            require(
+                strict_clean == (e + 15) // 2 + line_deficit,
+                "strict clean-fiber count mismatch",
+            )
+            strict_columns = 2 * p + line_deficit
+            strict_checks = strict_columns - ((p - 2) + 1)
+            require(
+                strict_checks == p + 1 + line_deficit,
+                "strict coefficient-MDS check count mismatch",
+            )
+
+        for line_deficit in (0, 1):
+            ext_columns = 3 * p - 3 + line_deficit
+            ext_checks = ext_columns - ((p - 3) + 1)
+            require(
+                ext_checks == 2 * p - 1 + line_deficit,
+                "extremal coefficient-MDS check count mismatch",
+            )
+
     official_N = 1 << 41
     official_rho = official_N // 4
     official_e = (official_rho + 1) // 3
@@ -150,7 +221,7 @@ def replay(formula: Formula) -> dict[str, int]:
     require(2 * official_e - 9 == 366503875917, "official gap mismatch")
 
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 6, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 19, "source hash inventory changed")
     require(
         all(len(value) == 64 for value in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -164,6 +235,22 @@ def replay(formula: Formula) -> dict[str, int]:
         "pair_union_floor": 3 * official_rho // 2 - 1,
         "center_line_max": 3,
         "expanding_thirds": official_rho + 1,
+        "zero_excess_slopes": 2 * official_e,
+        "clean_split_fibers": official_e + 6,
+        "split_rows": 3 * (official_rho // 2) - 3,
+        "biform_parameter_degree": official_e - 2,
+        "biform_domain_degree": official_rho // 2 - 3,
+        "strict_zero_excess_slopes": official_rho // 2 + 2,
+        "strict_clean_split_fibers": (official_e + 15) // 2,
+        "strict_split_rows": official_rho,
+        "strict_biform_parameter_degree": official_e - 1,
+        "strict_biform_domain_degree": official_rho // 2 - 2,
+        "extremal_coefficient_matrix_rows": (
+            (official_e - 1) * (official_rho - 1)
+        ),
+        "strict_coefficient_matrix_rows": (
+            official_e * (official_rho // 2 + 1)
+        ),
     }
 
 

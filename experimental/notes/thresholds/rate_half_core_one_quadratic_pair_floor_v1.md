@@ -5,13 +5,13 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: the core-one scalar-quadratic u=4 profile has no pair below union 3rho/2-1; every assigned-center line has at most three supported slopes
+direct_statement: the core-one scalar-quadratic u=4 profile has no pair below union 3rho/2-1; every assigned-center line has at most three supported slopes; the floor and first strict boundary canonically produce dual-GRS split biforms whose row-root data must pass explicit full-support coefficient-MDS kernel tests
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one quadratic pair-union rho+3 cell
 quantifier: every field and profile satisfying the exact interface below; in particular the official e=183251937963 specialization
 projection_and_unit: supported affine slopes and actual error supports
-claimed_bound: pair union at least 3rho/2-1; at most three assigned centers per codeword line; at least rho+1 expanding thirds per pair
+claimed_bound: pair union at least 3rho/2-1; at most three assigned centers per codeword line; at least rho+1 expanding thirds per pair; the floor and first strict cases have exact split biforms and printed coefficient-MDS realizability matrices
 status: PROVED
 impact: ROUTE_CUT
 falsifier: a profile satisfying (P1)--(P4) with one rho+3 support pair, or a failure of either exact incidence contradiction
@@ -35,7 +35,7 @@ primitive shift-pair control.  A compiler adapter must first place a live
 first-match atom in the exact profile `(P1)--(P4)` below.
 
 The full source proof is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@d9a0e884945b3600dc4825796a380d083975b75a`:
+`AllenGrahamHart/rs-mca-prize-dag@a01726108cfd588c7901557a8f3760afb03f5447`:
 
 ```text
 bidirectional localization statement
@@ -50,6 +50,32 @@ macroscopic-floor statement
   e1aea2dd47ced41f1b2be847846147d8df54730752232c5325d5dd62fbbeafcf
 macroscopic-floor proof
   ceaa9fae989d4b54652937993ab60aa61aa8dffb5078b3ca7acfb69e242b3954
+three-center source-partition statement
+  fd23ed6e8d238cd56b2f553857e64e1c902b9c6f66a2a7b5541acb88568ae637
+three-center source-partition proof
+  4f0db5ad2e68d2e2028dd91ec6e03e077543d31b53f1c3d70e6b25cd0196e932
+zero-excess Forney gate statement
+  a8be024011bda2fcbecac762324b0ac86b5090ab876dd267f4a187ae9d2785b7
+zero-excess Forney gate proof
+  a3a42cd173eaa41e66a4362fe9a46764610964b874384173c8081f3080a9da0d
+dual-MDS split-biform statement
+  bfc301188ff4d08086fcbd9acceedb6f886b26f1f0fcb337c0e2cfff3d0e3b05
+dual-MDS split-biform proof
+  03cbd1b1dfc702bb79b9974a76104bceba00758595bb78af706fa75b1261a857
+strict-boundary minimum-word statement
+  80ad5e3e4817fa0508a7ec738c285edff38925a349e2592edcb87a71e9381798
+strict-boundary minimum-word proof
+  b301134e650c60337bca20586540de9dd3bf76d8a3bce6632b2cbcad621f8d27
+strict-boundary split-biform statement
+  61c0bd1bd1f75493d8a872c9aefabd73c45b1ca5ba361d23fa73ed0737560022
+strict-boundary split-biform proof
+  518be4020bb33547e5530df6877e69b36b06f64b76ec3f1772b6f2edbe74368b
+coefficient-MDS gate statement
+  6116d6040d5e45691046001fc0929d5a6924c2f088c84c7e3cf6173d34f77289
+coefficient-MDS gate proof
+  16efedbadab999696cc438e07de4da83c51a2311a1c664805ea45cbbfe1d3433
+small-profile rank probe
+  508d0d0bcc0888c4170a121f458ac2c0618b32cdcf99b88b0ad78586ef8a43e9
 ```
 
 ## 2. Exact profile interface
@@ -384,3 +410,190 @@ owner that produces this profile, preserve its actual-support and deficit
 semantics through the adapter, and then delete the full pair-union band below
 `3rho/2-1`. The remaining local geometry has at most three assigned centers
 on every codeword line.
+
+## 9. The sole floor case is a lower-degree split-biform problem
+
+The equality case in `(M7)` can be reduced further without adding a
+conjecture.  Put `p=rho/2`.  The endpoint codeword line contains exactly
+three supported centers
+
+```text
+A={alpha,beta,theta},
+d_A=sum_(gamma in A)r_gamma in {0,1}.                (E1)
+```
+
+After subtracting this codeword line, every noncore coordinate is a
+nonzero parameter-linear source.  Its zero at the three line slopes
+partitions the fixed support into three disjoint classes of sizes
+
+```text
+p-1+r_alpha, p-1+r_beta, p-1+r_theta,               (E2)
+```
+
+plus one exceptional coordinate exactly when `d_A=0`.
+
+For an off-line slope `delta`, let `a_delta` be its triple-union excess
+above the RS minimum distance.  Exact incidence gives
+
+```text
+sum_(delta notin A)a_delta=e.                        (E3)
+```
+
+Thus at least `2e` off-line slopes have zero excess.  At each such slope,
+if `B_delta` is the monic locator of its `p+2` actual support points outside
+the fixed endpoint union and `X_delta` is its complement inside the
+noncore fixed support, the minimum RS circuit gives
+
+```text
+omega_x(delta)B_delta(x)L_U0'(x)=kappa_delta
+                                      (x in X_delta), (E4)
+```
+
+for one nonzero scalar.  The packet deficit shows that at least
+`e+6+d_A` of these slopes are clean (`a_delta=r_delta=0`).
+
+There is a canonical global carrier for these identities.  Let
+
+```text
+Lambda_A(t)=ell_alpha(t)ell_beta(t)ell_theta(t),
+H_x(t)=omega_x(t)Qbar(t;x)/Lambda_A(t).              (E5)
+```
+
+Termwise line-root accounting makes every `H_x` a polynomial of degree at
+most `e-2`.  The Hankel locator equation gives
+
+```text
+sum_(x in U_0)H_x(t)x^j=0,       0<=j<=rho-1.       (E6)
+```
+
+Dual-GRS interpolation on `|U_0|=3p-2` points therefore produces a unique
+biform
+
+```text
+G(t,X),       bidegree exactly (e-2,p-3),
+H_x(t)=G(t,x)/L_U0'(x).                             (E7)
+```
+
+It has two exact split directions:
+
+```text
+at least 3p-3+d_A fixed-domain rows
+  split into e-2 distinct off-line supported slopes;
+
+at least e+6+d_A fixed-slope fibers
+  split into p-3 distinct points of U_0.             (E8)
+```
+
+For every clean slope, `G(delta,X)` is a nonzero scalar multiple of its
+inside actual-support locator.  At the official row,
+
+```text
+bidegree=(183251937961,274877906941),
+split rows >=824633720829,
+clean split fibers >=183251937969.                  (E9)
+```
+
+This is a direct base-field split-biform reduction in the terminology of
+the active BC/LineRay program.  It does **not** prove the deduplicated
+`LineRay` target, identify this profile with a first-match BC atom, or bound
+the number of rays.  Its compiler value is narrower: if an adapter reaches
+the retained quadratic profile, the entire sub-floor pair band is deleted,
+and its sole equality residue is the explicit biform `(E7)--(E8)` rather
+than an unspecified rank-three boundary.
+
+## 10. The first strict boundary has a second split biform
+
+The next integer pair union is also rigid. Suppose
+
+```text
+|S_alpha union S_beta|=rho+p=3p,       p=rho/2.     (S1)
+```
+
+The endpoint codeword line now contains exactly two supported centers. On
+the noncore union `U_0`, the two endpoint-missing classes are disjoint and
+have sizes
+
+```text
+p+r_alpha,       p+r_beta.                          (S2)
+```
+
+For the `3e+1` off-line slopes, let `a_delta` be the triple-union excess
+above minimum distance. Exact incidence gives
+
+```text
+sum a_delta=p.                                      (S3)
+```
+
+Hence at least `p+2` off-line center differences are exact RS minimum
+words, including at least
+
+```text
+(e+15)/2+r_alpha+r_beta                             (S4)
+```
+
+with both zero excess and zero padding deficit.
+
+Divide the fixed-line source-locator product by the two endpoint parameter
+factors and apply dual-GRS interpolation on `|U_0|=3p-1`. This gives a
+second biform
+
+```text
+G_strict(t,X),       bidegree exactly (e-1,p-2).    (S5)
+```
+
+At least `2p+r_alpha+r_beta` fixed-domain rows split into `e-1` distinct
+off-line supported slopes. Every clean slope from `(S4)` gives a nonzero
+fiber equal, up to scalar, to its monic degree-`p-2` inside-support
+locator. At the official row the unconditional profile is
+
+```text
+bidegree=(183251937962,274877906942),
+split rows >=549755813888,
+clean split fibers >=91625968989.                   (S6)
+```
+
+Again this is a necessary LineRay/split-pencil profile, not its exclusion.
+
+## 11. Full-support coefficient-MDS realizability gate
+
+Both biforms admit one exact linear-algebra test that is stronger than
+their split counts. Let `X` be their classified split rows, and write
+
+```text
+G(t,x)=lambda_x P_x(t),
+P_x(t)=product_(delta in A_x)(t-delta)
+      =sum_j p_(j,x)t^j,       lambda_x!=0.         (K1)
+```
+
+If `n=deg_X G`, every coefficient vector must lie in the same punctured RS
+evaluation code:
+
+```text
+(lambda_x p_(j,x))_(x in X) in RS[F,X,n+1].        (K2)
+```
+
+Equivalently, with `L_X(Z)=product_(x in X)(Z-x)`, the matrix
+
+```text
+K_((j,l),x)=p_(j,x)x^l/L_X'(x),
+0<=l<=|X|-n-2,                                     (K3)
+```
+
+must have a kernel vector with **every** coordinate nonzero. The monic
+coefficient says `lambda_x=g_m(x)`, so all elementary-symmetric profiles
+of `A_x` are restrictions of rational functions with one common
+degree-`n` denominator. An incidence ledger that lacks this full-support
+kernel is not a realizable split biform.
+
+The official zero-deficit matrix dimensions are
+
+```text
+extremal:  100743818300669342078294 rows x 824633720829 columns;
+strict:     50371909150884426853035 rows x 549755813888 columns. (K4)
+```
+
+These printed row counts are not rank arguments. As calibration, the exact
+`e=7,d_A=1` smooth cyclic ledger has full column rank over both `F_337` and
+`F_421`, and 250 deterministic degree-preserving switches per field were
+also full rank. That finite evidence shows the gate has power; it does not
+prove the official all-profile rank statement or pay `LineRay`.
