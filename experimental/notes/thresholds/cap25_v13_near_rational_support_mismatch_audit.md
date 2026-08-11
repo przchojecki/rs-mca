@@ -1,6 +1,7 @@
 # CAP25 v13 near-rational support-mismatch audit
 
-Status: COUNTERPACKET / REPAIR / AUDIT.
+Status: RESOLVED LOCALLY by
+`kb_mca_supportwise_near_rational_two_anchor_repair_v1.md`.
 
 This note records a narrow audit finding for the CAP25 v13 raw and compact
 spines.  It is not a finite adjacent proof, does not alter the unsafe side, and
@@ -69,13 +70,16 @@ Without this priority step, the proof can over-delete near-rational lines.
 
 ## Consequence for the CAP25 v13 safe side
 
-This is a local source repair, not a new obstruction to the whole program.  The
-current finite adjacent target still depends on the Q/BC/SP safe-side inputs and
-on a first-match upper ledger.  The repair says that the near-rational
-column-close branch must be made support-wise before it is removed from the
-aperiodic residual.
+This is a local source repair, not a new obstruction to the whole program.  In
+the historical CAP25 v13 additive template, the finite adjacent target depends
+on Q/BC/SP and a first-match upper ledger; there the near-rational column-close
+branch must be paid support-wise before removal from the aperiodic residual.
+The active Grande Finale v4 maximum-type route instead enters through actual
+order-32 bad-slope records and has the separate `(S)/(A)/(E)` frontier.  This
+repair applies to both routes but does not make the legacy Q/BC/K3 bridge a
+prerequisite for the active one.
 
-## Next exact audit target
+## Closed exact audit target
 
 Audit the following replacement for the near-rational branch:
 
@@ -86,6 +90,10 @@ charged to a tangent ratio or to a shortened planted-core object supported on E.
 After that charge, the remaining bad slopes lie in the balanced-core census.
 ```
 
-The first false line to test is whether the charge is genuinely support-wise:
-the witness support for `u+zv` need not equal the large common support on which
-`u` and `v` are already jointly explained.
+The two-anchor theorem now proves this charge directly in support-wise units.
+If `3w < n-K+1`, two near-codeword slopes determine a codeword line and an
+error line supported on at most `2w` coordinates.  Every other near-rational
+bad slope is recovered as an actual coordinate ratio on that error support,
+so the whole stratum has at most `2w` distinct slopes.  At KoalaBear the exact
+charge is `134944`.  The repaired proof uses the bad slope's identical witness
+support and therefore does not identify it with the separate common support.

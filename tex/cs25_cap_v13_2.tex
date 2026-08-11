@@ -7023,25 +7023,29 @@ $\gamma_z+1$ instance of the dictionary ($\kappa=n-(\gamma_z+1)-\gamma_z$)
 gives the stated agreement statement --- (c).
 \end{proof}
 
-\begin{remark}[closure of the identically-split residual of slope
+\begin{remark}[threshold scope of the identically-split residual of slope
 elimination]\label{rem:capg-slopeelim-closure}
 \Cref{thm:capfp-slope-elim}\textup{(d)} bounds the slope count of any
 exact-agreement syndrome pencil $M(Z)=M_0+ZM_1$ by a rank-one census over
 split candidates $\Lambda_A$, \emph{except} on the residual branch
 $M_0\Lambda_A=M_1\Lambda_A=0$ ``as in \cref{thm:capf-spi}''.  For a fixed
 split $\Lambda_A$ this branch is a common support in the sense of
-\cref{prop:capfr1-slope-elimination} and is already harmless by
-\cref{thm:capfp-slope-elim}\textup{(b)}.  The genuinely open case was the
-\emph{family} version --- kernel sections $W(Z,X)$ that are identically
-split without any single $Z$-independent split annihilator being given
---- and that case is closed by \cref{thm:capg-tangentborne}: any rational
-identically split kernel section is constant, so the branch collapses to
-the fixed-candidate case, at every deficiency admitting a rational kernel
-section, with the tangent count $\le\max(\gamma,1)$.  In particular the
-``known unconditional strata'' list of \cref{prob:capfp-R1} may now cite
-deficiency one \emph{without} the residual caveat: by
-\cref{cor:capg-spib}, deficiency-one charts are eliminant-or-tangent
-outright.
+\cref{prop:capfr1-slope-elimination}.  Part~\textup{(b)} of
+\cref{thm:capfp-slope-elim} only translates the line to a sparse pair; it
+does not delete support-wise bad slopes.  If the threshold $a'$ under
+consideration also satisfies $n-a'\le t$, then
+\cref{thm:capg-tangentborne} applies to the constant section
+$W(Z,X)=\Lambda_A(X)$ and gives at most
+$\max(\deg\Lambda_A,1)$ MCA-bad finite slopes; this includes the
+deficiency-one use above.  No such payment follows at arbitrary deficiency.
+More generally, \cref{thm:capg-tangentborne} proves that a rational
+identically split kernel section is constant in $Z$, but its slope payment
+has the same threshold guard $n-a'\le t$.  Outside that guard the result is
+a structural route only: the fixed and family identically split branches
+remain in the support-wise rank-one/spread residual and are not banked here.
+The ``known unconditional strata'' list of \cref{prob:capfp-R1} may still
+cite deficiency one without the residual caveat because
+\cref{cor:capg-spib} makes those charts eliminant-or-tangent outright.
 \end{remark}
 
 \section{Identity-scale aperiodic slope floors and the refuted band
@@ -9539,28 +9543,60 @@ If \(d_1\ge w+1\), both rows can appear.  Predictable degrees bound the multipli
 \end{proof}
 
 \begin{corollary}[per-line reduction to the balanced core]\label{cor:capfr1-balanced-line}
-Let $(u,v)$ be an affine line at agreement $m$, write $w=m-K$, and assume
+Let $(u,v)$ be an affine line at agreement $m$, write $w=m-K\ge1$, and assume
 \[
-        n-3w\ge m
-        \qquad\text{equivalently}\qquad
-        m\le\frac{n+3K}{4}.
+        3w\le n-K.
 \]
-If two finite slopes $z_1,z_2$ have $d_1(u+z_iv)\le w$ and nonzero census, then $(u,v)$ has a common codeword-pair explanation on at least $n-3w\ge m$ points and hence is not MCA-bad at agreement $m$.  Consequently, outside at most one near-rational slope,
+Then the number of MCA-bad finite slopes with $d_1(u+zv)\le w$ and nonzero census is at most $2w$.  Consequently,
 \[
         N_{\mathrm{MCA\text{-}bad}}(u,v;m)
         \le
-        1+\#\{z:\ d_1(u+zv)\ge w+1,\ \Cen(u+zv;m)>0\}.
+        2w+\#\{z:\ d_1(u+zv)\ge w+1,\ \Cen(u+zv;m)>0\}.
 \]
-The condition holds at all four deployed adjacent rows.  Without it, the near-rational calculation alone does not imply an agreement-$m$ explanation.
+The condition holds at all four deployed adjacent rows.
 \end{corollary}
 
 \begin{proof}
-By \cref{thm:capfr1-near-rational-dichotomy}, a slope with $d_1\le w$ and nonzero census has $u+z_iv=c_i+\eta_i$ with $\wt(\eta_i)\le w$.  For two such slopes,
+Let $L$ be the set of MCA-bad slopes in the near-rational stratum.  If
+$|L|\le1$ the assertion is immediate.  Otherwise choose distinct
+$z_0,z_1\in L$.  By \cref{thm:capfr1-near-rational-dichotomy}, for every
+$z\in L$ there are a unique codeword $c_z$ and an error word $\eta_z$ with
 \[
-        v=\frac{c_1-c_2}{z_1-z_2}+\eta_v,
-        \qquad \wt(\eta_v)\le2w,
+        u+zv=c_z+\eta_z,
+        \qquad \wt(\eta_z)\le w.
 \]
-and then $u$ is within distance $3w$ of a codeword.  Hence the pair has a common codeword-pair explanation on at least $n-3w$ positions, which is at least $m$ by hypothesis.  Therefore no slope is MCA-bad; otherwise at most one near-rational slope exists, and every remaining close slope belongs to the balanced stratum.
+Put
+\[
+ c_v=\frac{c_{z_1}-c_{z_0}}{z_1-z_0},\qquad
+ c_u=c_{z_0}-z_0c_v,\qquad
+ e_v=v-c_v,\qquad e_u=u-c_u.
+\]
+Then $e_u+z_ie_v=\eta_{z_i}$; explicitly
+\[
+ e_v=\frac{\eta_{z_1}-\eta_{z_0}}{z_1-z_0},\qquad
+ e_u=\eta_{z_0}-z_0e_v,
+\]
+so $E:=\operatorname{supp}(e_u)\cup\operatorname{supp}(e_v)$ has size at most $2w$.  For every
+$z\in L$, the codeword
+\[
+ c_z-(c_u+zc_v)=e_u+ze_v-\eta_z
+\]
+is supported on at most $3w$ coordinates.  The hypothesis says that this
+support is smaller than $n-K+1$, the minimum distance of the code;
+hence this codeword is zero and $\eta_z=e_u+ze_v$.
+
+Choose a bad witness $(S,h)$ for $z$ with $|S|\ge m$.  On
+$S\setminus\operatorname{supp}(\eta_z)$ the polynomial $h-c_z$ has at least
+$m-w=K$ roots, so $h=c_z$.  Thus $\eta_z$ vanishes on $S$.  Pair
+noncontainment on this same support supplies an $x\in S$ with
+$(e_u(x),e_v(x))\ne(0,0)$.  Since
+$e_u(x)+ze_v(x)=0$, necessarily $e_v(x)\ne0$ and
+\[
+        z=-e_u(x)/e_v(x).
+\]
+Distinct slopes give distinct coordinate ratios, all on $E$.  Therefore
+$|L|\le|E|\le2w$.  Every remaining bad slope has nonzero census and belongs
+to the displayed balanced stratum.
 \end{proof}
 
 \begin{remark}[Balanced-core reduction]\label{prob:capfr1-balanced-core}
@@ -9878,10 +9914,10 @@ The interpolant is $I_f(X)=\sum_{x\in T}f(x)\Lambda_T(X)/((X-x)\Lambda_T'(x))$, 
 \end{proof}
 
 \begin{theorem}[slope elimination]\label{thm:capfp-slope-elim}
-Fix a line $(u,v)$ over the challenge field, an agreement $a=m>n/2$, and $w=m-K$.  Call $T$ \emph{rank-one} if the vectors $\alpha(T):=(S_r(u,T))_{r<w}$ and $\beta(T):=(S_r(v,T))_{r<w}$ are proportional and not both zero, with $\beta(T)\ne0$; each rank-one support determines the single slope $z(T)$ with $\alpha(T)=-z(T)\beta(T)$.  Then:
+Fix a line $(u,v)$ over the challenge field, an agreement $a=m>n/2$, and $w=m-K\ge1$.  Call $T$ \emph{rank-one} if the vectors $\alpha(T):=(S_r(u,T))_{r<w}$ and $\beta(T):=(S_r(v,T))_{r<w}$ are proportional and not both zero, with $\beta(T)\ne0$; each rank-one support determines the single slope $z(T)$ with $\alpha(T)=-z(T)\beta(T)$.  Then:
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item a slope $z$ is close at support $T$ \textup(i.e.\ $u+zv$ interpolable on $T$\textup) if and only if $\alpha(T)=-z\,\beta(T)$; supports with $\beta=0\ne\alpha$ carry no slope, and supports with $\alpha=\beta=0$ \textup(\emph{common} supports\textup) carry every slope;
-\item if some $m$-support is common, the pair $(u,v)$ has correlated agreement at density $m/n$ on it, and \emph{no} slope is MCA-bad at radius $1-m/n$;
+\item if some $m$-support is common, subtraction of its explaining codeword pair produces a pair supported on at most $n-m$ coordinates and preserves the MCA-bad slope set exactly;
 \item in every case,
 \[
         N_{\mathrm{MCA\text{-}bad}}(u,v;\,m)\ \le\ \#\mathrm{R1}(u,v;m)\ :=\ \#\{\text{rank-one supports}\};
@@ -9892,8 +9928,18 @@ Fix a line $(u,v)$ over the challenge field, an agreement $a=m>n/2$, and $w=m-K$
 
 \begin{proof}
 \textup{(a)}  By \cref{lem:capfp-functionals} applied to $u+zv$ and $\F$-linearity, closeness at $T$ is $\alpha(T)+z\beta(T)=0$, and the trichotomy is immediate.
-\textup{(b)}  A common support gives polynomials $c_u,c_v$ of degree $<K$ with $u|_T=c_u|_T$, $v|_T=c_v|_T$; then $(u+zv)|_T=(c_u+zc_v)|_T$ for every $z$: correlated agreement of the pair at density $m/n$, which by definition excludes MCA-badness at that radius.
-\textup{(c)}  If a common support exists, the left side is zero by \textup{(b)}.  Otherwise every MCA-bad slope is close, every close slope has an $m$-support inside its agreement set, no support is common, supports with $\beta=0$ carry no slope by \textup{(a)}, and distinct slopes have distinct rank-one supports since $z(T)$ is a function of $T$.
+\textup{(b)}  A common support gives polynomials $c_u,c_v$ of degree $<K$ with $u|_T=c_u|_T$, $v|_T=c_v|_T$.  Put $u'=u-c_u$ and $v'=v-c_v$.  Then $u',v'$ vanish on $T$, so their union support has size at most $n-m$.  For every slope $z$, support $S$, and codeword $c$, the relation $(u+zv)|_S=c|_S$ is equivalent to $(u'+zv')|_S=(c-c_u-zc_v)|_S$, and the same translation equivalence holds for simultaneous explanations of the pair.  Thus the MCA-bad slope sets agree exactly.
+\textup{(c)}  Let $S$ be a bad witness support, initially of size at least
+$m$.  It contains a non-common $m$-subset.  Indeed, otherwise choose one
+$m$-subset $T_0\subseteq S$ and its common explaining pair.  For each
+$x\in S\setminus T_0$, the set consisting of $x$ and any $m-1$ points of
+$T_0$ would also be common; its explaining pair agrees with the pair on
+$T_0$ at $m-1\ge K$ points and hence is the same polynomial pair.  That pair
+would explain all of $S$, contradicting the witness.  Thus every MCA-bad
+slope has a non-common exact $m$-support.  By \textup{(a)} it has
+$\beta\ne0$ and determines only that slope.  Choosing one canonical
+non-common witness support for every bad slope gives an injection into
+$\mathrm{R1}(u,v;m)$, whether or not a different common support exists.
 \textup{(d)}  The pencil is affine-linear in $Z$, so per split candidate the condition is $\mu_0+z\mu_1=0$ with $\mu_i=M_i\Lambda_A$: one slope, or none, or all \textup(the residual branch\textup).
 \end{proof}
 
@@ -9907,7 +9953,7 @@ with the finite form fitting under the deployed budget at $a_0+1$.  By \cref{thm
 
 \subsection{The lattice resolution of the census: near-rational dichotomy and the balanced core}
 
-The rank-one census, and with it input \textup{(A)}, now admits a second unconditional reduction: the twisted census of \emph{every} word is the split locus of an explicit rank-two $\F[X]$-lattice, its near-rational stratum resolves exactly, and per line at most one slope survives outside the balanced core.  Throughout, $\omega:=n-m$, $\widehat U$ denotes the degree-$\le n-1$ interpolant of the word $U$ on $D$, and we assume the band condition $2w\le n-K$.
+The rank-one census, and with it input \textup{(A)}, now admits a second unconditional reduction: the twisted census of \emph{every} word is the split locus of an explicit rank-two $\F[X]$-lattice and its near-rational stratum resolves exactly.  The support-wise near-rational payment is instead \cref{cor:capfp-line}: under the stronger guard $w\ge1$ and $3w\le n-K$, it costs at most $2w$ distinct bad slopes per line.  Throughout, $\omega:=n-m$, $\widehat U$ denotes the degree-$\le n-1$ interpolant of the word $U$ on $D$, and we assume the band condition $2w\le n-K$.
 
 
 \begin{proposition}[the census as a shifted lattice locus]\label{prop:capfp-lattice}
@@ -9990,16 +10036,23 @@ If $d_1\le w$ then $d_2=n-K+1-d_1\ge n-K+1-w=\omega+1$, so by predictable degree
 \end{proof}
 
 \begin{corollary}[per-line reduction to the balanced core; intermediate form]\label{cor:capfp-line}
-Let $(u,v)$ be a line at agreement $m$, write $w=m-K$, and assume $n-3w\ge m$.  If two finite slopes have $d_1(u+zv)\le w$ with nonzero census, then the pair has a common codeword-pair explanation on at least $n-3w\ge m$ points, so no slope is MCA-bad.  Hence
+Let $(u,v)$ be a line at agreement $m$, write $w=m-K\ge1$, and assume
+$3w\le n-K$.  The number of MCA-bad finite slopes with
+$d_1(u+zv)\le w$ and nonzero census is at most $2w$.  Hence
 \[
         N_{\mathrm{MCA\text{-}bad}}(u,v;m)
-        \le 1+\#\{z:\ d_1(u+zv)\ge w+1,\ \mathrm{cen}(u+zv;m)>0\}.
+        \le 2w+\#\{z:\ d_1(u+zv)\ge w+1,\ \mathrm{cen}(u+zv;m)>0\}.
 \]
 This is an intermediate reduction toward the active certificate template; it does not supply bucket coverage or parameter coalescing.
 \end{corollary}
 
 \begin{proof}
-By \cref{thm:capfp-dichotomy}(i), two near-rational slopes give $u+z_iv=c_i+\eta_i$ with $\operatorname{wt}\eta_i\le w$.  Subtracting gives a codeword approximation to $v$ with error at most $2w$, and substituting back gives one for $u$ with error at most $3w$.  Their common agreement has size at least $n-3w\ge m$.  If there are not two such slopes, at most one lies outside the balanced stratum; slopes with zero census are not close at agreement $m$.
+The proof of \cref{cor:capfr1-balanced-line} uses only the near-rational
+dichotomy, the Reed--Solomon minimum distance, and the support-wise definition,
+so it applies verbatim with \cref{thm:capfp-dichotomy}(i).  It gives at most
+$2w$ near-rational bad slopes.  Slopes with zero census are not close at
+agreement $m$, and every other bad slope lies in the displayed balanced
+stratum.
 \end{proof}
 
 \begin{remark}[balanced core, primitive challenge-field form]\label{prob:capfp-balanced}

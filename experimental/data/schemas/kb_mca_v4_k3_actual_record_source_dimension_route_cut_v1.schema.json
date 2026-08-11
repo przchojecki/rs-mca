@@ -1,0 +1,508 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-mca-kb-v4-k3-actual-record-source-dimension-route-cut-v1",
+  "title": "KoalaBear K3 actual-record dimension-sensitivity audit v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "artifact_kind",
+    "base_repository",
+    "source_bindings",
+    "deployed_row",
+    "actual_record_witness",
+    "dimension_noninvariance",
+    "public_dag_audit",
+    "missing_theorem",
+    "ledger",
+    "conclusion",
+    "packet_bindings",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rs-mca-kb-v4-k3-actual-record-source-dimension-route-cut-v1"
+    },
+    "artifact_kind": {
+      "const": "ACTUAL_RECORD_K_SHIFT_DIMENSION_SENSITIVITY_AUDIT"
+    },
+    "base_repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "base_head",
+        "base_is_exact_pr1158_head",
+        "upstream_main_at_refresh",
+        "pr1157_head",
+        "pr1158_head",
+        "public_dag_repository",
+        "public_dag_head_at_refresh",
+        "reconciled_prs"
+      ],
+      "properties": {
+        "repository": {"type": "string"},
+        "base_head": {"$ref": "#/$defs/sha1"},
+        "base_is_exact_pr1158_head": {"type": "boolean"},
+        "upstream_main_at_refresh": {"$ref": "#/$defs/sha1"},
+        "pr1157_head": {"$ref": "#/$defs/sha1"},
+        "pr1158_head": {"$ref": "#/$defs/sha1"},
+        "public_dag_repository": {"type": "string"},
+        "public_dag_head_at_refresh": {"$ref": "#/$defs/sha1"},
+        "reconciled_prs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["1130", "1132", "1139", "1143", "1152", "1155", "1156", "1157", "1158"],
+          "properties": {
+            "1130": {"$ref": "#/$defs/sha1"},
+            "1132": {"$ref": "#/$defs/sha1"},
+            "1139": {"$ref": "#/$defs/sha1"},
+            "1143": {"$ref": "#/$defs/sha1"},
+            "1152": {"$ref": "#/$defs/sha1"},
+            "1155": {"$ref": "#/$defs/sha1"},
+            "1156": {"$ref": "#/$defs/sha1"},
+            "1157": {"$ref": "#/$defs/sha1"},
+            "1158": {"$ref": "#/$defs/sha1"}
+          }
+        }
+      }
+    },
+    "source_bindings": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["binding_id", "repository", "commit", "path", "hash_kind", "hash", "role"],
+        "properties": {
+          "binding_id": {"type": "string", "minLength": 1},
+          "repository": {"type": "string", "minLength": 1},
+          "commit": {"$ref": "#/$defs/sha1"},
+          "path": {"type": "string", "minLength": 1},
+          "line_ranges": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "pattern": "^[0-9]+-[0-9]+$"}
+          },
+          "hash_kind": {"enum": ["GIT_BLOB_SHA1", "SHA256"]},
+          "hash": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "role": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "deployed_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "row", "object", "base_prime", "extension_degree", "field_cardinality",
+        "n", "code_dimension_k", "agreement_m", "locator_degree_omega",
+        "actual_lattice_K", "actual_lattice_w", "prefix_effective_K",
+        "prefix_effective_w", "B_star", "U_paid", "joint_unpaid_reserve",
+        "architecture_id", "partition_sha256", "unit"
+      ],
+      "properties": {
+        "row": {"type": "string"},
+        "object": {"const": "MCA"},
+        "base_prime": {"$ref": "#/$defs/positiveInt"},
+        "extension_degree": {"$ref": "#/$defs/positiveInt"},
+        "field_cardinality": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+        "n": {"$ref": "#/$defs/positiveInt"},
+        "code_dimension_k": {"$ref": "#/$defs/positiveInt"},
+        "agreement_m": {"$ref": "#/$defs/positiveInt"},
+        "locator_degree_omega": {"$ref": "#/$defs/nonnegativeInt"},
+        "actual_lattice_K": {"$ref": "#/$defs/positiveInt"},
+        "actual_lattice_w": {"$ref": "#/$defs/nonnegativeInt"},
+        "prefix_effective_K": {"$ref": "#/$defs/positiveInt"},
+        "prefix_effective_w": {"$ref": "#/$defs/nonnegativeInt"},
+        "B_star": {"$ref": "#/$defs/nonnegativeInt"},
+        "U_paid": {"$ref": "#/$defs/nonnegativeInt"},
+        "joint_unpaid_reserve": {"$ref": "#/$defs/nonnegativeInt"},
+        "architecture_id": {"type": "string"},
+        "partition_sha256": {"$ref": "#/$defs/sha256"},
+        "unit": {"const": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE"}
+      }
+    },
+    "actual_record_witness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_id", "carrier", "challenge_field", "error_size_e", "error_set",
+        "witness_support", "witness_support_size", "received_line",
+        "actual_MCA_witness", "pair_not_simultaneously_explained_on_S",
+        "direction_nonexplanation_reason", "direction_unexplained_for_degree_lt_k",
+        "direction_unexplained_for_degree_lt_k_plus_one", "full_extension_degree_slope",
+        "column_far", "tangent_image_empty", "lattice_vector",
+        "minimal_shifted_degree_actual_K", "minimal_shifted_degree_effective_K",
+        "minimality_root_bound", "actual_code_dimension_classification",
+        "effective_prefix_classification", "row_degree_profiles", "pure_ray_scope",
+        "zero_codeword_exact_m_supports"
+      ],
+      "properties": {
+        "record_id": {"const": "KB_SPARSE_BOUNDARY_ACTUAL_RECORD_V1"},
+        "carrier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["description", "primitive_generator", "carrier_index", "zeta", "order", "exact_order_checks"],
+          "properties": {
+            "description": {"type": "string"},
+            "primitive_generator": {"$ref": "#/$defs/positiveInt"},
+            "carrier_index": {"$ref": "#/$defs/positiveInt"},
+            "zeta": {"$ref": "#/$defs/positiveInt"},
+            "order": {"$ref": "#/$defs/positiveInt"},
+            "exact_order_checks": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "challenge_field": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "model", "modulus_coefficients_low_to_high", "modulus_irreducible",
+            "alpha_degree_over_F_p", "alpha_not_in_base_field"
+          ],
+          "properties": {
+            "model": {"type": "string"},
+            "modulus_coefficients_low_to_high": {
+              "type": "array",
+              "minItems": 7,
+              "maxItems": 7,
+              "items": {"$ref": "#/$defs/nonnegativeInt"}
+            },
+            "modulus_irreducible": {"type": "boolean"},
+            "alpha_degree_over_F_p": {"$ref": "#/$defs/positiveInt"},
+            "alpha_not_in_base_field": {"type": "boolean"}
+          }
+        },
+        "error_size_e": {"$ref": "#/$defs/positiveInt"},
+        "error_set": {"type": "string"},
+        "witness_support": {"type": "string"},
+        "witness_support_size": {"$ref": "#/$defs/positiveInt"},
+        "received_line": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "r0", "r1", "affine_slope", "received_word_at_slope",
+            "explaining_polynomial", "explaining_polynomial_degree_lt_k"
+          ],
+          "properties": {
+            "r0": {"type": "string"},
+            "r1": {"type": "string"},
+            "affine_slope": {"type": "string"},
+            "received_word_at_slope": {"type": "string"},
+            "explaining_polynomial": {"type": "string"},
+            "explaining_polynomial_degree_lt_k": {"type": "boolean"}
+          }
+        },
+        "actual_MCA_witness": {"type": "boolean"},
+        "pair_not_simultaneously_explained_on_S": {"type": "boolean"},
+        "direction_nonexplanation_reason": {"type": "string"},
+        "direction_unexplained_for_degree_lt_k": {"type": "boolean"},
+        "direction_unexplained_for_degree_lt_k_plus_one": {"type": "boolean"},
+        "full_extension_degree_slope": {"type": "boolean"},
+        "column_far": {"type": "boolean"},
+        "tangent_image_empty": {"type": "boolean"},
+        "lattice_vector": {"type": "string"},
+        "minimal_shifted_degree_actual_K": {"$ref": "#/$defs/positiveInt"},
+        "minimal_shifted_degree_effective_K": {"$ref": "#/$defs/positiveInt"},
+        "minimality_root_bound": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "off_E_root_count", "actual_K_max_degree_N_below_e",
+            "effective_K_max_degree_N_below_e", "max_degree_W_below_e", "proof"
+          ],
+          "properties": {
+            "off_E_root_count": {"$ref": "#/$defs/nonnegativeInt"},
+            "actual_K_max_degree_N_below_e": {"$ref": "#/$defs/nonnegativeInt"},
+            "effective_K_max_degree_N_below_e": {"$ref": "#/$defs/nonnegativeInt"},
+            "max_degree_W_below_e": {"$ref": "#/$defs/nonnegativeInt"},
+            "proof": {"type": "string"}
+          }
+        },
+        "actual_code_dimension_classification": {
+          "$ref": "#/$defs/classificationCode"
+        },
+        "effective_prefix_classification": {
+          "$ref": "#/$defs/classificationEffective"
+        },
+        "row_degree_profiles": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code_dimension", "effective_dimension", "difference"],
+          "properties": {
+            "code_dimension": {"$ref": "#/$defs/rowProfile"},
+            "effective_dimension": {"$ref": "#/$defs/rowProfile"},
+            "difference": {"type": "string"}
+          }
+        },
+        "pure_ray_scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "weak_popov_g1", "weak_popov_g2", "determinant",
+            "zero_codeword_supports_have_B", "primitive_r_out_4_membership_proved",
+            "endpoint_route_membership_proved", "role"
+          ],
+          "properties": {
+            "weak_popov_g1": {"type": "string"},
+            "weak_popov_g2": {"type": "string"},
+            "determinant": {"type": "string"},
+            "zero_codeword_supports_have_B": {"$ref": "#/$defs/nonnegativeInt"},
+            "primitive_r_out_4_membership_proved": {"type": "boolean"},
+            "endpoint_route_membership_proved": {"type": "boolean"},
+            "role": {"type": "string"}
+          }
+        },
+        "zero_codeword_exact_m_supports": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "formula", "bit_length", "big_endian_byte_length",
+            "big_endian_sha256", "residues"
+          ],
+          "properties": {
+            "formula": {"type": "string"},
+            "bit_length": {"$ref": "#/$defs/positiveInt"},
+            "big_endian_byte_length": {"$ref": "#/$defs/positiveInt"},
+            "big_endian_sha256": {"$ref": "#/$defs/sha256"},
+            "residues": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["mod_2130706433", "mod_1000000007", "mod_4294967291"],
+              "properties": {
+                "mod_2130706433": {"$ref": "#/$defs/nonnegativeInt"},
+                "mod_1000000007": {"$ref": "#/$defs/nonnegativeInt"},
+                "mod_4294967291": {"$ref": "#/$defs/nonnegativeInt"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "dimension_noninvariance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "same_actual_record", "code_dimension_profile",
+        "effective_dimension_profile", "d1_invariant", "w_drop", "d2_drop",
+        "m_prime_increase", "degree_cap_B_increase",
+        "literal_profile_classification_invariant_under_K_plus_one",
+        "K_plus_one_semantics_preserving_adapter_proved",
+        "explicit_priority_map_supplied_by_bound_sources",
+        "frozen_Q_membership_proved_for_record",
+        "frozen_BC_membership_proved_for_record",
+        "frozen_U_new_membership_proved_for_record", "actual_owner_status"
+      ],
+      "properties": {
+        "same_actual_record": {"type": "boolean"},
+        "code_dimension_profile": {"$ref": "#/$defs/dimensionProfile"},
+        "effective_dimension_profile": {"$ref": "#/$defs/dimensionProfile"},
+        "d1_invariant": {"type": "boolean"},
+        "w_drop": {"$ref": "#/$defs/nonnegativeInt"},
+        "d2_drop": {"$ref": "#/$defs/nonnegativeInt"},
+        "m_prime_increase": {"$ref": "#/$defs/nonnegativeInt"},
+        "degree_cap_B_increase": {"$ref": "#/$defs/nonnegativeInt"},
+        "literal_profile_classification_invariant_under_K_plus_one": {"type": "boolean"},
+        "K_plus_one_semantics_preserving_adapter_proved": {"type": "boolean"},
+        "explicit_priority_map_supplied_by_bound_sources": {"type": "boolean"},
+        "frozen_Q_membership_proved_for_record": {"type": "boolean"},
+        "frozen_BC_membership_proved_for_record": {"type": "boolean"},
+        "frozen_U_new_membership_proved_for_record": {"type": "boolean"},
+        "actual_owner_status": {"type": "string"}
+      }
+    },
+    "public_dag_audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_id", "declared_status", "selector_lemma_after_relation_is_supplied",
+        "source_bound_equivalence_to_frozen_BC_proved",
+        "typed_actual_certificate_validator_present",
+        "actual_received_pair_equations_checked", "actual_MCA_noncontainment_checked",
+        "degree_lt_k_explanation_checked", "Q_exclusion_executable",
+        "Q_exclusion_scope", "code_dimension_to_effective_dimension_adapter_proved",
+        "support_ge_m_to_exact_m_normalization_proved", "verifier_scope",
+        "downstream_order32_adapter_inherits_gap",
+        "downstream_component_bridge_remains_conditional"
+      ],
+      "properties": {
+        "node_id": {"type": "string"},
+        "declared_status": {"type": "string"},
+        "selector_lemma_after_relation_is_supplied": {"type": "boolean"},
+        "source_bound_equivalence_to_frozen_BC_proved": {"type": "boolean"},
+        "typed_actual_certificate_validator_present": {"type": "boolean"},
+        "actual_received_pair_equations_checked": {"type": "boolean"},
+        "actual_MCA_noncontainment_checked": {"type": "boolean"},
+        "degree_lt_k_explanation_checked": {"type": "boolean"},
+        "Q_exclusion_executable": {"type": "boolean"},
+        "Q_exclusion_scope": {"type": "string"},
+        "code_dimension_to_effective_dimension_adapter_proved": {"type": "boolean"},
+        "support_ge_m_to_exact_m_normalization_proved": {"type": "boolean"},
+        "verifier_scope": {"type": "string"},
+        "downstream_order32_adapter_inherits_gap": {"type": "boolean"},
+        "downstream_component_bridge_remains_conditional": {"type": "boolean"}
+      }
+    },
+    "missing_theorem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "theorem_id", "weakest_required_statement", "required_clauses",
+        "Rec_2_4_may_begin_after_this", "endpoint_realization_current_status",
+        "thirteen_route_replay_current_status"
+      ],
+      "properties": {
+        "theorem_id": {"type": "string"},
+        "weakest_required_statement": {"type": "string"},
+        "required_clauses": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "Rec_2_4_may_begin_after_this": {"type": "boolean"},
+        "endpoint_realization_current_status": {"type": "string"},
+        "thirteen_route_replay_current_status": {"type": "string"}
+      }
+    },
+    "ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "U_paid", "U_Q", "U_BC", "U_new", "U_remaining", "U_positive",
+        "U_sourcecover", "U_K3", "U_K3_allocation", "signed_slack",
+        "ledger_movement"
+      ],
+      "properties": {
+        "U_paid": {"$ref": "#/$defs/nonnegativeInt"},
+        "U_Q": {"type": "null"},
+        "U_BC": {"type": "null"},
+        "U_new": {"type": "null"},
+        "U_remaining": {"type": "null"},
+        "U_positive": {"type": "null"},
+        "U_sourcecover": {"type": "null"},
+        "U_K3": {"type": "null"},
+        "U_K3_allocation": {"type": "null"},
+        "signed_slack": {"type": "null"},
+        "ledger_movement": {"const": 0}
+      }
+    },
+    "conclusion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome", "actual_record_constructed",
+        "K_shift_profile_noninvariance_proved",
+        "public_DAG_source_bound_K_adapter_proved",
+        "actual_owner_collision_proved", "frozen_owner_membership_proved",
+        "SEM_QBC_required", "first_false_or_unproved_bridge",
+        "ActiveRec_2_4_defined", "Rec_2_4_compiler_proved", "K3_closed",
+        "KoalaBear_row_closed", "universal_smooth_domain_result",
+        "ledger_movement", "proof_tier"
+      ],
+      "properties": {
+        "outcome": {"const": "OPEN_MISSING_ADAPTER_GAP"},
+        "actual_record_constructed": {"type": "boolean"},
+        "K_shift_profile_noninvariance_proved": {"type": "boolean"},
+        "public_DAG_source_bound_K_adapter_proved": {"type": "boolean"},
+        "actual_owner_collision_proved": {"type": "boolean"},
+        "frozen_owner_membership_proved": {"type": "boolean"},
+        "SEM_QBC_required": {"type": "boolean"},
+        "first_false_or_unproved_bridge": {"type": "string"},
+        "ActiveRec_2_4_defined": {"type": "boolean"},
+        "Rec_2_4_compiler_proved": {"type": "boolean"},
+        "K3_closed": {"type": "boolean"},
+        "KoalaBear_row_closed": {"type": "boolean"},
+        "universal_smooth_domain_result": {"type": "boolean"},
+        "ledger_movement": {"const": 0},
+        "proof_tier": {"type": "string"}
+      }
+    },
+    "packet_bindings": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "role"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "role": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "payload_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha1": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "positiveInt": {"type": "integer", "minimum": 1},
+    "nonnegativeInt": {"type": "integer", "minimum": 0},
+    "dimensionProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["K", "w", "d1", "classification", "frozen_owner_membership_entailed"],
+      "properties": {
+        "K": {"$ref": "#/$defs/positiveInt"},
+        "w": {"$ref": "#/$defs/nonnegativeInt"},
+        "d1": {"$ref": "#/$defs/positiveInt"},
+        "classification": {"type": "string"},
+        "frozen_owner_membership_entailed": {"type": "boolean"}
+      }
+    },
+    "rowProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["d1", "d2", "d1_plus_d2", "m_prime", "degree_cap_B", "profile"],
+      "properties": {
+        "d1": {"$ref": "#/$defs/positiveInt"},
+        "d2": {"$ref": "#/$defs/nonnegativeInt"},
+        "d1_plus_d2": {"$ref": "#/$defs/positiveInt"},
+        "m_prime": {"$ref": "#/$defs/positiveInt"},
+        "degree_cap_B": {"$ref": "#/$defs/nonnegativeInt"},
+        "profile": {"type": "string"}
+      }
+    },
+    "classificationCode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "w", "boundary_profile_value", "d1_eq_boundary_profile",
+        "frozen_Q_membership_proved", "frozen_BC_membership_proved"
+      ],
+      "properties": {
+        "w": {"$ref": "#/$defs/nonnegativeInt"},
+        "boundary_profile_value": {"$ref": "#/$defs/nonnegativeInt"},
+        "d1_eq_boundary_profile": {"type": "boolean"},
+        "frozen_Q_membership_proved": {"type": "boolean"},
+        "frozen_BC_membership_proved": {"type": "boolean"}
+      }
+    },
+    "classificationEffective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "w", "boundary_profile_value", "first_interior_profile_value",
+        "d1_eq_first_interior_profile", "frozen_Q_membership_proved",
+        "frozen_BC_membership_proved"
+      ],
+      "properties": {
+        "w": {"$ref": "#/$defs/nonnegativeInt"},
+        "boundary_profile_value": {"$ref": "#/$defs/nonnegativeInt"},
+        "first_interior_profile_value": {"$ref": "#/$defs/nonnegativeInt"},
+        "d1_eq_first_interior_profile": {"type": "boolean"},
+        "frozen_Q_membership_proved": {"type": "boolean"},
+        "frozen_BC_membership_proved": {"type": "boolean"}
+      }
+    }
+  }
+}

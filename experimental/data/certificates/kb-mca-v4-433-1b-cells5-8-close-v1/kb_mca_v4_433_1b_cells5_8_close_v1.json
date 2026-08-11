@@ -1,0 +1,189 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "bankability_contract": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture": "positive-433-1b-coordinate-guarded-route",
+    "atom_or_cell": "coordinate-positive 433-1b role orbit [5,8]",
+    "claimed_bound": "0 surviving labels out of 210",
+    "direct_statement": "Every one of the 210 raw direct labels in positive 433-1b role orbit [5,8] is empty on the deployed guarded route.",
+    "falsifier": "a deployed guarded-route solution in either role cell, an omitted label, an invalid endpoint rootlessness certificate, or an invalid duplicate-role transport",
+    "impact": "LOCAL_ONLY",
+    "object": "MCA",
+    "partition_digest": "sha256:82df776b06b375e9bee6fcc77aead1ebca4594028fa2e51df6318422a9d2f9bb",
+    "projection_and_unit": "raw workboard labels, not distinct bad slopes",
+    "quantifier": "every raw direct label in both declared role cells",
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED",
+    "target_epsilon": "2^-128",
+    "workboard_item": "K3"
+  },
+  "nodes": [
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "ba180943a912eb1c6686bcc70a9404cb73bcaacf097d76ddcbf6faf40e4fa978"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_elliptic_common_kernel",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_elliptic_common_kernel",
+      "status": "PROVED",
+      "verify_sha256": "06db70dea051305ff6eafbab5ed1f29c884026ec3ba5334295279da4e5341863"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_endpoint_roles_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_endpoint_roles_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e0c067cef22d902e2e390ff7d36fa6ccb3ffd9ce3e70005ac92965d058539b7d"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_active_labels_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_active_labels_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "b5bb0c26d0f820f9feeb38701971ed6d94ea48dc4ba2aaa64b17586dfd1f178e"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_universal_generic_outside_label_orbit_quotient",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_universal_generic_outside_label_orbit_quotient",
+      "status": "PROVED",
+      "verify_sha256": "cd49f5cd6b74e733908eac92149fc8e3aafbbd4a846fcf0428d2089f1b84e7c2"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_first_pair_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_first_pair_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "1a010c8f0268f72dc2a0542c9f105729d2cd3d71e9d18da37055745814c7a449"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_pairing11_14_common_f_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_pairing11_14_common_f_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "e6b9b30750a1ae64372e734e7a5edb6d4e19ca4388d323d9b553a4534870ba24"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_pairing3_6_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_pairing3_6_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "f0d17922c0343f06fef7131d84fb88fe1173554c38e7cb42fd25f8951034ef4a"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_pairing4_7_9_10_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_pairing4_7_9_10_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "d2ee78c1b262daf2e00955869b3af50b6fe3e01fb860963f2c8d63fe04cd2565"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_pairing5_8_12_13_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_parallel_de_pairing5_8_12_13_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "162ddb06ff5366d5e8de786ada6d8f84aac5cef3379e0b93e8066fc1ab5dc993"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_positive_de_pairing9_10_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_positive_de_pairing9_10_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "8c5d31c64a78056dc851f4c0b86a01d5359eebd54f3834b44bbc9df378fb8282"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_positive_de_pairing12_13_nested_quadratic_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_positive_de_pairing12_13_nested_quadratic_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "417628bd55b899b105141c9808b06ec96d7b5f266ca5ff35eb2a51b813bb4380"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_positive_de_pairing14_common_f_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_positive_de_pairing14_common_f_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "d2eade5778295ecaaa8808150f9619266c557a813e4e8078f31c0f012a13050a"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_pairing0_reciprocal_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_pairing0_reciprocal_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "0dc34f666cce13afe054ab4f0e2716a7c362e8ca0fa1c3dc8349a4fce2644933"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_pairings1_2_reciprocal_linear_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_pairings1_2_reciprocal_linear_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "5c498c78ddfc0f56b4f40d5e510c01beacff09ab33bdc40683464dc2d459cf00"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing3_6_reciprocal_square_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing3_6_reciprocal_square_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "1ad161bd047507e9cc42b8d4d8fe6a46cc30ab365ab801a6a7f1ba6f42952e27"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing4_9_nested_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing4_9_nested_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "4693ff83858e600165ea76c87853a747d45cf0fcae719ea4b9b90b41a37cb03f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing5_12_nested_signfree_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing5_12_nested_signfree_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "acc04b3f4538a5836ffaf8a964aad10635d29028c266045b43bc55762d7c9cb5"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing7_10_quadratic_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing7_10_quadratic_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "4e5b0d567ef384ad9e9260f0edd800e0f8243e5845cf4ef7a2452b2393ac735f"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing8_13_quadratic_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing8_13_quadratic_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "97b513a0e8d9371eae2f0d952f2bd5930bad14ced3528a07410c0d043c3f7087"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing11_14_quadratic_resultant_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cell5_xi3_xi4_pairing11_14_quadratic_resultant_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "db982334a86d6b48e5a38c796151ba507281c64fe04eb801eb59c36e66813b07"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cells5_8_complete_exclusion",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cells5_8_complete_exclusion",
+      "status": "PROVED",
+      "verify_sha256": "013c6bc83795686742e12049524e254c19a5ef1776d00e487269bd4f46394b0c"
+    },
+    {
+      "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_cells5_8_duplicate_role_transport",
+      "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_cells5_8_duplicate_role_transport",
+      "status": "PROVED",
+      "verify_sha256": "a72496b60259c9538419b6da6606a11c8d9fbdadca6c10ce1bb8f2af1a7b9dd7"
+    }
+  ],
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Workboard remainder open: the [11] common-role orbit.",
+    "Fresh independent proof review remains required before promotion to a GREEN banked result."
+  ],
+  "provenance": {
+    "branch": "codex/full-prize-resolution-v12-20260807",
+    "commit": "3fa2987430242cb631ab76be4ebbee549ce95fb8",
+    "node_count": 23,
+    "replay": "from the campaign repo root: tools/ramguard local -- python3 <node path>/verify.py && tools/ramguard local -- python3 <node path>/verify_audit.py",
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-433-1b-cells5-8-close-v1",
+  "statement": {
+    "claims": {
+      "active_orbits": "75 nonendpoint cell-5 labels partition into 24 exact orbits with size profile 1:1, 2:9, 4:14 and are paid by 16 owner packets",
+      "endpoint_labels": "30 cell-5 endpoint labels excluded because eight degree-16/degree-11 eliminants have gcd 1 with r^p-r",
+      "slices": "cell 5 closed at 105/105; exact transport closes cell 8; role orbit [5,8] closed at 210/210",
+      "transport": "exact B/C bijection of all 1680 signed principal systems from cell 5 to cell 8"
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_UNIT_OTHER_K3_ITEMS_OPEN",
+    "title": "Complete closure of the [5,8] common-role orbit of the positive 433-1b workboard",
+    "workboard_item": "K3"
+  }
+}

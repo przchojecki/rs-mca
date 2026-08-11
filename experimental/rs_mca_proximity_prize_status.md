@@ -61,8 +61,9 @@ self-contained lower edge `(1−ρ)/3 ≈ 0.1667`.
   reduces to one **split-pencil problem** for determinantal representations of the domain
   polynomial, and prefix-fiber flatness (Q) is its boundary profile.
 - **Rigidity.** Identically split kernel sections of exact-agreement pencils are constant and
-  tangent-borne (≤ max(γ,1) bad slopes); deficiency-one charts are eliminant-or-tangent with no
-  residual branch. Prefix fibers are rigid (`|M∖M′| ≥ w+1` per side), giving an unconditional
+  tangent-borne (≤ max(γ,1) bad slopes) only at thresholds satisfying `n-a'≤t`; deficiency-one
+  charts meet that guard and are eliminant-or-tangent with no residual branch. At arbitrary
+  deficiency this is a structural route, not a payment. Prefix fibers are rigid (`|M∖M′| ≥ w+1` per side), giving an unconditional
   worst-case fiber cap (≈ 3.6·10⁵ bits below trivial per deployed row) and an exact second-moment
   ledger whose top stratum is the constant-shift split-pair census.
 - **Proved base cases of (Q).** Two-sided fiber flatness (Weil range) at head depths:

@@ -1,28 +1,31 @@
-# First deployed-row chart typing for prob:saturated-bc: the simple-pole/rank-one cell, placement decided by computation
+# Historical simple-pole/rank-one chart typing: deployed placement reopened by the support-wise repair
 
-**Status: EXPERIMENTAL / AUDIT — PROVED-LOCAL (placement argument,
-non-pencil exclusion lemma, from cited upstream propositions) /
-CITED-THEOREM (enumerative half) / CONDITIONAL_ON_NAMED_INPUT (the B*
-budget fit) / MEASURED (toy placement replays).** Base
+**Status: SUPERSEDED DEPLOYED PLACEMENT / PROVED TOY REGRESSION.**  The
+support-wise two-anchor repair withdraws this note's former claim that the
+entire deployed pole-line cell is boundary-Q-owned.  Every assertion below
+that assigns the whole deployed cell or its entire charge to Q is historical
+and must not be consumed.  What survives is the exact toy placement replay,
+the non-pencil exclusion lemma, and the conditional typing of records
+independently certified to have `d1=w+1`.  Base
 `2633895a66d3edf516120a87b2eb18c994f977ab`
 (`experimental/grande_finale.tex` = gf; line anchors verified against the
-blobs at base). **No `.tex`/`.pdf` edited.**
+blobs at base).  The cited `bc_chart_typing.json` and its two verifiers are
+preserved as historical regression artifacts; their deployed whole-cell
+conclusion is revoked and they are not current deployment authority.
 
 | item | value |
 | --- | --- |
 | object | the simple-pole/rank-one cell (`prop:pole-line` gf L583, `prop:rank-one-floor` gf L1523), typed at BOTH deployed MCA adjacent rows in `prob:saturated-bc`'s per-row grammar (gf L2191-2204) |
-| the new move | the first-match PLACEMENT of the cell is DECIDED BY COMPUTATION (Gate 1), not presupposed: boundary-Q-owned vs fresh named (b)-cell were both admissible certificate outcomes |
-| computed outcome | **BOUNDARY_Q_OWNED** — every computed pole-line profile is `d1 = w+1`, the boundary-Q profile (`prop:boundary-q` gf L1475-1492; `bc_section.tex` L24-29: interior is `w+2 <= d1 <= floor((n-K+1)/2)`) |
-| type assignment | **(b)-via-Q**: a named cell whose own slope bound IS the row-sharp Q atom target (`def:q-row-atom` gf L2043-2059); quantitatively NOT type (a) (non-pencil exclusion lemma below) |
-| lineage | third chart family overall, after the toy-row near-pencil family (`experimental/notes/bc_near_pencil_chart_reduction.md`) and the L4 planted interior family (`cap25_v13_bc_l4_interior_chart_to_q.md`: "(b), the charge goes to Q") — and the FIRST at a deployed `a_+` row |
+| the audited move | exact toy placement plus deployed arithmetic; the former extrapolation to all deployed slopes is withdrawn |
+| computed outcome | **TOY_BOUNDARY_Q_ONLY** — every computed toy profile is `d1 = w+1`; source-level deployed membership still permits a near-rational subpopulation of size at most `2w` |
+| type assignment | records independently certified at `d1=w+1` are boundary-Q; no whole-cell Q assignment or deployed payment follows from this packet |
+| lineage | third chart family overall, after the toy-row near-pencil family (`experimental/notes/bc_near_pencil_chart_reduction.md`) and the L4 planted interior family (`cap25_v13_bc_l4_interior_chart_to_q.md`: "(b), the charge goes to Q"); this packet no longer claims a deployed-row typing |
 | certificate | `experimental/data/certificates/bc-chart-typing/bc_chart_typing.json` |
 | verifier / checker | `experimental/scripts/verify_bc_chart_typing.py` (`--emit-defaults`/`--check`), `experimental/scripts/verify_bc_chart_typing_check.py` (`--check`, no-import, no-Popov) |
 
-**Use Rule.** Downstream material citing this packet must (i) cite the
-cell at its computed placement — a boundary-Q-owned cell paid by
-`prob:saturated-bc`'s first-match preamble BEFORE the residual chart set
-begins — and not as a saturated-BC residual chart that has been
-"resolved"; (ii) state every count at slope/ray-deduplicated scale only
+**Use Rule.** Downstream material citing this packet must (i) use its Q
+placement only for a record independently certified to satisfy `d1=w+1`,
+and must not assign the whole deployed cell to Q; (ii) state every count at slope/ray-deduplicated scale only
 (the `#679`/`#518` Use Rules, `r1_rawcount_refutation.md` /
 `capg_split_pencil_refutation.md`, are inherited unchanged); and (iii)
 treat the B* fit as CONDITIONAL_ON_NAMED_INPUT (depth-`w` max-fiber /
@@ -33,19 +36,19 @@ row-sharp Q) — the proved side is a floor pin, never an upper bound.
 - **Claim.** At both deployed MCA adjacent rows (KoalaBear
   `a_+ = 1116048`, Mersenne-31 `a_+ = 1116024`; `n = 2^21`, `K = k+1 =
   2^20+1`, `w = a_+ - K = 67471/67447`), the simple-pole/rank-one cell
-  carries the typed certificate row: placement = boundary-Q profile
-  `d1 = w+1` (computed, Gate 1; forced at deployed scale by the module
-  element + near-rational dichotomy below), type = (b)-via-Q (its own
-  slope bound is the Q atom target), NOT type (a) (its
+  satisfies `d1<=w+1`.  Gate 1 places every exact toy record at
+  `d1=w+1`, but does not exclude a deployed `d1<=w` subpopulation.  The
+  cell is NOT type (a) by the non-pencil lemma (its
   heaviest-fiber witness floor `B_B(a_+)`
   exceeds the one-pencil cap `floor((n-g)/(omega-g))` for every
   `g < omega`, Gate 3), extension-branch-excluded (`B_B(a_+) > H_ext`,
   `prop:extension-cell-target` gf L402-421), enumeratively exact by
   cited theorem, and B*-fitting only under the named input.
-- **Status.** EXPERIMENTAL / AUDIT.  Per-row chart VERIFICATION progress
-  on `prob:saturated-bc` — one named cell typed, enumeratively exact,
-  budget fit CONDITIONAL_ON_NAMED_INPUT (depth-`w` max-fiber / row-sharp
-  Q).  Not a resolution (see NON-CLAIMS).
+- **Status.** EXPERIMENTAL / AUDIT.  Toy chart verification and conditional
+  record-level typing only.  The deployed arithmetic is exact, but it does
+  not type a whole named deployed cell.  Budget fit remains
+  CONDITIONAL_ON_NAMED_INPUT (depth-`w` max-fiber / row-sharp Q).  Not a
+  resolution (see NON-CLAIMS).
 - **Verifier.** Exact big-int replay + toy placement replay, stdlib-only,
   deterministic, byte-stable, no timing or machine data; the deployed
   arithmetic is computed TWO independent ways inside the generator
@@ -55,17 +58,14 @@ row-sharp Q) — the proved side is a floor pin, never an upper bound.
   independent checker (binary-splitting factorial products + one exact
   division, with `math.lgamma` cross-estimates), because the M31 margin
   (3.2589 bits) is adjacency-critical.
-- **Consumers.** `prob:saturated-bc`'s per-row audit (the boundary-Q
-  first-match line of its preamble now has a deployed-row certificate
-  with exact integers); `prob:row-sharp-q`/`def:q-row-atom` (the cell's
-  entire charge is routed there, quantified); the thresholds draft's
-  hard inputs 1/3 (its four proved ray compilers are vacuous at this
-  cell's deployed scale — kappa/t/k-c all huge — so this cert supplies
-  the exact ray payment those compilers cannot reach).
+- **Consumers.** Toy regressions and the non-pencil exclusion may be reused.
+  `prob:saturated-bc`, `prob:row-sharp-q`, and `def:q-row-atom` may consume
+  only independently certified boundary records; this note supplies no
+  deployed whole-cell payment.
 - **Risk-limits.** The growing-deficiency BC interior core (dim
   `omega-w+1 = 913634/913682`) is `prob:band`-hard (Gamma_r route,
   budget-fit Sec. 6: misses the floor by `~2.07M` bits against 22-/3-bit
-  margins, tractability LOW) — this packet types one boundary-owned cell
+  margins, tractability LOW) — this packet supplies no whole-cell typing
   and cannot reach that core.  The M31 row is margin-adjacent twice
   over: +3.2589 bits here, and the same row already carries the #690
   `-0.3938`-bit TIGHT watch-item rung.
@@ -100,7 +100,7 @@ depth `w' = a_+ - k` — and the budget-fit MCA-row floors already sit
 exactly at this scale (`2^35.7352` KB / `2^20.7411` M31; consumed by
 payload hash, Gate 4).
 
-## 2. The placement computation (the outcome is computed, not presupposed)
+## 2. The toy placement computation (the deployed outcome is not inferred)
 
 For a slope `zeta`, the pole-line word `U = f_alpha + zeta g_alpha =
 (U_z - zeta)/(X - alpha)` admits the module element
@@ -119,10 +119,13 @@ wdeg(W, N) = max( deg(X - alpha), deg(U_z - zeta) - (K-1) )
 
 (deployed values `w+1 = 67472` KB / `67448` M31), so `d1 <= w+1` at
 EVERY scale.  On the other side, `d1 <= w` is exactly the near-rational
-branch (`thm:near-rational` gf L1350), and `cor:near-rational-line` (gf
-L1381) leaves at most one near-rational finite slope per line, paid
-outside the balanced core.  Hence all but at most one slope of the cell
-sits at `d1 = w+1` exactly.
+branch (`thm:near-rational` gf L1350).  The former one-slope source payment
+is withdrawn: the support-wise two-anchor repair bounds the whole branch by
+`2w` under `3w <= n-K`.  Thus source alone no longer proves that all but one
+deployed slope in this cell has `d1=w+1`.  The exact toy gates below still
+place every computed profile at the boundary; excluding the possible
+deployed `2w` near-rational subpopulation requires the repaired first-match
+payment rather than the old common-support shortcut.
 
 **Gate 1 computes this profile end-to-end** at two toys (harnesses
 ported from the in-tree #715 Gate B/C machinery), by exact shifted
@@ -147,12 +150,11 @@ split-pencil problem, and BC starts only after this profile is removed"
 — and `bc_section.tex` L29: "The excluded endpoint `d_1=w+1` is the
 quotient/prefix boundary profile and belongs to Q, not to BC."
 
-> **Computed placement outcome: BOUNDARY_Q_OWNED.**  The cell is paid by
-> the boundary-Q first-match branch of `prob:saturated-bc`'s preamble
-> before the residual chart set begins.  It is NOT a fresh saturated-BC
-> residual cell.  (The other admissible outcome — a fresh interior
-> (b)-cell — was a well-formed certificate too; the computation ruled it
-> out.)
+> **Computed toy placement outcome: BOUNDARY_Q_OWNED.**  This certifies the
+> displayed toy records only.  For the deployed cell, records independently
+> proved to have `d1=w+1` route to Q, while a support-wise near-rational
+> subpopulation of size at most `2w` remains separately paid.  No whole-cell
+> Q ownership follows from this computation.
 
 ## 3. Non-pencil exclusion lemma (the cell can never be typed (a))
 
@@ -223,8 +225,8 @@ not re-park.
 | --- | --- | --- |
 | cell | simple-pole/rank-one | simple-pole/rank-one |
 | `a_+`, `w` | 1,116,048; 67,471 | 1,116,024; 67,447 |
-| placement (computed) | BOUNDARY_Q_OWNED (`d1 = w+1 = 67472`) | BOUNDARY_Q_OWNED (`d1 = w+1 = 67448`) |
-| type | (b)-via-Q: named cell whose own slope bound IS the Q atom target (`def:q-row-atom`) | same |
+| placement | `d1<=w+1`; boundary only for independently certified records | same |
+| type | conditional boundary-Q plus a separately paid `<=2w` near-rational subpopulation | same |
 | NOT type (a) | `57198030366 > 1116049` (every `g`) | `1752700 > 1116025` (every `g`) |
 | `omega` (correct / printed) | 981,104 / 980,104 | 981,128 / 980,128 |
 | `dim` (affine slice, `omega-w`) | 913,633 | 913,681 |
@@ -304,33 +306,32 @@ deficiency 2 -> `C(n,2)/(omega-1) ~ 2^21.10`, which alone would eat
   deployed rows themselves.
 - **L4 interior chart** (`cap25_v13_bc_l4_interior_chart_to_q.md`):
   the "(b), charge goes to Q" precedent at the L4 fixture; same
-  discharge shape, now at deployed scale with the placement computed.
+  discharge shape for independently certified boundary records.  The
+  former deployed whole-cell extrapolation in this note is withdrawn.
 - **Open PRs**: #764 (retained-pair paving, loss-2 bookkeeping,
   thresholds lane), #771 (fixed-deficiency LineRay absorption,
   weighted-RS), #759/#760 (hard inputs 4/2) — cousins, no overlap, no
   block (checked at feasibility, 2026-07-13).
 - **Thresholds draft** (856d836): its four proved ray compilers
   (RC_ker, RC_circ, DRC, RC_core) are all vacuous at this cell's
-  deployed scale; this cert supplies exact ray payment where they
-  cannot reach, feeding hard inputs 1/3 in the draft's vocabulary.
+  deployed scale.  This packet supplies no replacement whole-cell
+  payment after the support-wise repair.
 
 ## Self-Red-Team
 
-- *"You typed a cell that the preamble already pays — is that
-  content?"*  The placement itself was the open question (the
-  feasibility read flagged 'certify the simple-pole chart as a
-  saturated-BC chart' as a category error precisely because nothing
-  in-tree had COMPUTED where first match puts it at a deployed row).
-  The packet's content is the computed placement, the exact typed rows,
-  the quantitative non-pencil exclusion, and the extension-headroom
-  exclusion — none previously recorded at any deployed row.
+- *"Did the toy placement compute a deployed owner?"*  No.  The
+  computation records only its declared toy fixtures.  The former step
+  from those fixtures to a whole deployed first-match cell used the now
+  withdrawn common-support/near-rational inference.  The quantitative
+  non-pencil and extension-headroom calculations remain regression data,
+  not a deployed payment.
 - *"The placement could have been presupposed from prop:boundary-q."*
   No: `prop:boundary-q` says the boundary profile is Q; it does not say
   the pole-line words SIT at the boundary profile.  That needs the
   module element (upper) + near-rational dichotomy (lower) + the
-  computation confirming zero near-rational slopes and exact `d1 = w+1`
-  at every tested word.  An interior placement would have produced a
-  different, equally valid certificate.
+  toy computation confirming zero near-rational slopes and exact `d1 = w+1`
+  at every tested word.  It does not establish the profile of every word
+  in either deployed row.
 - *"Two toys cannot type a deployed cell."*  The toys verify the
   MACHINERY (the profile computation and the rank exclusion); the
   deployed typing rests on the scale-free module element, the cited
@@ -408,4 +409,5 @@ whole-file sha256 + field equality); #721
 whole-file sha256 + content pins + full census replay).  Design
 lineage: budget-fit (first packet on the promoted problem; P1/P2 and
 the gap ledger) -> #666/#679/#715 (dedup reading and calibration) ->
-this packet (first deployed-row chart typing, placement computed).
+this packet (toy chart-placement regression; its former deployed-row
+extrapolation is revoked).
