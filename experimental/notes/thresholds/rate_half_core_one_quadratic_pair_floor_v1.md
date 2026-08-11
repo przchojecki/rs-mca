@@ -5,13 +5,13 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: the core-one scalar-quadratic u=4 profile has no actual-support pair of union rho+3; every pair has union at least rho+4
+direct_statement: the core-one scalar-quadratic u=4 profile has no pair below union 3rho/2-1; every assigned-center line has at most three supported slopes
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one quadratic pair-union rho+3 cell
 quantifier: every field and profile satisfying the exact interface below; in particular the official e=183251937963 specialization
 projection_and_unit: supported affine slopes and actual error supports
-claimed_bound: pair union at least rho+4; every assigned-center line obeys 4h+sum r<=rho+4
+claimed_bound: pair union at least 3rho/2-1; at most three assigned centers per codeword line; at least rho+1 expanding thirds per pair
 status: PROVED
 impact: ROUTE_CUT
 falsifier: a profile satisfying (P1)--(P4) with one rho+3 support pair, or a failure of either exact incidence contradiction
@@ -35,7 +35,7 @@ primitive shift-pair control.  A compiler adapter must first place a live
 first-match atom in the exact profile `(P1)--(P4)` below.
 
 The full source proof is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@04179c43ac45b7c53a03d2441487971da72f3069`:
+`AllenGrahamHart/rs-mca-prize-dag@d9a0e884945b3600dc4825796a380d083975b75a`:
 
 ```text
 bidirectional localization statement
@@ -46,6 +46,10 @@ pair-floor statement
   09a93f1e8a2fdc283fc424b21217323d5ec8ce6c0e429086f62c1d3f50e1edcd
 pair-floor proof
   a916c434e1ab321f9f731e5a62c70b670bb02964fcae4448a34f008333ac1742
+macroscopic-floor statement
+  e1aea2dd47ced41f1b2be847846147d8df54730752232c5325d5dd62fbbeafcf
+macroscopic-floor proof
+  ceaa9fae989d4b54652937993ab60aa61aa8dffb5078b3ca7acfb69e242b3954
 ```
 
 ## 2. Exact profile interface
@@ -267,7 +271,75 @@ other supported slopes have full-locator triple union at least `2rho+1`.
 At equality in `(T1)`, `(P3d)` gives coefficient-row rank at most three.
 That rank-three boundary is the next profile-level target.
 
-## 6. Official specialization
+## 6. Macroscopic incidence amplification
+
+The preceding route cut starts a second argument that no longer uses the
+rank-two coefficient normal form. Suppose a pair has
+
+```text
+U=S_alpha union S_beta,       |U|=rho+j,
+4<=j<=rho.                                             (M1)
+```
+
+After removing the core, `U_0` has `u=rho+j-1` light rows and therefore
+exact global incidence `eu`. Let `h` supported centers lie on the endpoint
+codeword line and let their total deficit be `d_A`. Exact line misses give
+
+```text
+jh+d_A<=u.                                            (M2)
+```
+
+An off-line slope `delta` must have actual triple union at least `2rho+1`.
+Consequently
+
+```text
+|S_delta intersect U_0|<=j-r_delta-2.                (M3)
+```
+
+Summing line and off-line incidences, using `T=3e+3` and total deficit
+`D=e-6`, gives
+
+```text
+eu<=h(rho-j+1)+(j-2)T-D.                             (M4)
+```
+
+Substitute the real upper bound `h<=u/j` from `(M2)`. A necessary condition
+is `F_e(j)<=0`, where
+
+```text
+F_e(j)=3e^2j-9e^2-2ej^2+5ej+6e-2j^2-2j.            (M5)
+```
+
+This quadratic is concave in `j`. On
+
+```text
+4<=j<=rho/2-2=(3e-5)/2
+```
+
+its endpoint values are
+
+```text
+F_e(4)=3e^2-6e-40>0,
+F_e((3e-5)/2)=(3e^2-14e-15)/2>0.                   (M6)
+```
+
+Thus the complete interval is empty and the route cut strengthens to
+
+```text
+|S_alpha union S_beta|>=3rho/2-1.                   (M7)
+```
+
+Repeating the line-missing count at this floor gives
+
+```text
+number of supported centers on one codeword line <=3,
+three centers => total line deficit <=1.             (M8)
+```
+
+Every fixed pair therefore has at least `T-3=rho+1` off-line, hence
+full-locator-expanding, third slopes.
+
+## 7. Official specialization
 
 For the full rate-half prize row,
 
@@ -278,16 +350,24 @@ e=(rho+1)/3=183251937963,
 T=rho+4=549755813892.                                (O1)
 ```
 
-The terminal contradiction has gap
+The first terminal contradiction has gap
 
 ```text
 2e-9=366503875917.                                   (O2)
 ```
 
+The macroscopic conclusion is
+
+```text
+j_0=rho/2-1=274877906943,
+|S_alpha union S_beta|>=824633720831,
+every assigned-center line has at most 3 supported slopes. (O3)
+```
+
 No large computation is involved; the verifier replays all symbolic
 identities, endpoint ranges, and official integers.
 
-## 7. Nonclaims and next adapter
+## 8. Nonclaims and next adapter
 
 This packet does not prove that every active BC/SP cell has `(P1)--(P4)`.
 It does not change any v4 atom value or row ledger and does not move a
@@ -296,10 +376,11 @@ leaderboard score.  Its reusable statement is:
 ```text
 symmetric core-one quadratic u=4 profile
   + exact bidirectional coefficient chain
-  => pair union rho+3 is empty.
+  => pair union at least 3rho/2-1 and line size at most three.
 ```
 
 The maximal next integration step is to identify the precise first-match
 owner that produces this profile, preserve its actual-support and deficit
-semantics through the adapter, and then delete its `rho+3` cell.  The
-remaining local geometry starts at the rank-three `rho+4` boundary.
+semantics through the adapter, and then delete the full pair-union band below
+`3rho/2-1`. The remaining local geometry has at most three assigned centers
+on every codeword line.

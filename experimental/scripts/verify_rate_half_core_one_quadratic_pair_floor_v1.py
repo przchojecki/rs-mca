@@ -8,7 +8,7 @@ import copy
 from dataclasses import dataclass
 
 
-SOURCE_COMMIT = "04179c43ac45b7c53a03d2441487971da72f3069"
+SOURCE_COMMIT = "d9a0e884945b3600dc4825796a380d083975b75a"
 SOURCE_HASHES = {
     "localization_statement": (
         "fafe03c21890127aeef952a4e6282da6319f20a6c224d80338ce8e8529be22c8"
@@ -21,6 +21,12 @@ SOURCE_HASHES = {
     ),
     "exclusion_proof": (
         "a916c434e1ab321f9f731e5a62c70b670bb02964fcae4448a34f008333ac1742"
+    ),
+    "macroscopic_statement": (
+        "e1aea2dd47ced41f1b2be847846147d8df54730752232c5325d5dd62fbbeafcf"
+    ),
+    "macroscopic_proof": (
+        "ceaa9fae989d4b54652937993ab60aa61aa8dffb5078b3ca7acfb69e242b3954"
     ),
 }
 
@@ -36,6 +42,18 @@ def require(condition: bool, message: str) -> None:
 
 def ceil_div(a: int, b: int) -> int:
     return -((-a) // b)
+
+
+def obstruction(e: int, j: int) -> int:
+    return (
+        3 * e * e * j
+        - 9 * e * e
+        - 2 * e * j * j
+        + 5 * e * j
+        + 6 * e
+        - 2 * j * j
+        - 2 * j
+    )
 
 
 @dataclass(frozen=True)
@@ -105,6 +123,24 @@ def replay(formula: Formula) -> dict[str, int]:
             closed = ceil_div(3 * rho + 12 + endpoint_deficit, 4)
             require(expansion == closed, "expansion ceiling identity failed")
 
+        j0 = rho // 2 - 1
+        require(j0 == (3 * e - 3) // 2, "macroscopic floor mismatch")
+        require(
+            obstruction(e, 4) == 3 * e * e - 6 * e - 40 > 0,
+            "left obstruction endpoint failed",
+        )
+        require(
+            obstruction(e, j0 - 1) == (3 * e * e - 14 * e - 15) // 2 > 0,
+            "right obstruction endpoint failed",
+        )
+        if e <= 1009:
+            require(
+                all(obstruction(e, j) > 0 for j in range(4, j0)),
+                "interior concavity replay failed",
+            )
+        require((rho + j0 - 1) // j0 == 3, "three-center cap failed")
+        require(4 * j0 > rho + j0 - 1, "four-center exclusion failed")
+
     official_N = 1 << 41
     official_rho = official_N // 4
     official_e = (official_rho + 1) // 3
@@ -114,7 +150,7 @@ def replay(formula: Formula) -> dict[str, int]:
     require(2 * official_e - 9 == 366503875917, "official gap mismatch")
 
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 4, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 6, "source hash inventory changed")
     require(
         all(len(value) == 64 for value in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -125,6 +161,9 @@ def replay(formula: Formula) -> dict[str, int]:
         "e": official_e,
         "T": official_rho + 4,
         "terminal_gap": 2 * official_e - 9,
+        "pair_union_floor": 3 * official_rho // 2 - 1,
+        "center_line_max": 3,
+        "expanding_thirds": official_rho + 1,
     }
 
 
