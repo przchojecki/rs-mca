@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-11 - Lane-T core-one quadratic Pade/quartic eliminant
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED / ROUTE CUT. No `LineRay` payment, adjacent endpoint,
+  v4 atom, or leaderboard value is claimed.
+- **What is being added:** Extends the existing core-one quadratic pair-floor
+  packet from selected zero-excess fibers to every off-line fiber, proves an
+  exact four-unit residual projective intersection ledger, and identifies
+  its parameter eliminant with the regular Kronecker correction quartic via
+  a normalized contracted-Pade resultant.
+- **How it is useful:** Replaces an anonymous biform residual by the packet's
+  existing correction forms: `S_B^2` in the double-root arm and `S_1S_2` in
+  the two-simple arm. It also records an explicit symmetric-pencil
+  countermodel showing that marked orders eight and seven require a genuine
+  Hankel/source/split-fiber input to exclude.
+- **What to do next:** Use the three-class contracted source and Hankel
+  anti-diagonal equations to test the forced correction jets. Independently
+  review the Padé infinity normalization and the cancellation of center-line
+  rank-loss factors before promotion.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
