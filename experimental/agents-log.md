@@ -4016,3 +4016,54 @@ re-reviewed GREEN.  Final normal and optimized Python replays rejected all
 34 hostile mutations, Sage exhausted all 117649 toy syndrome pairs with
 maximum two, and FLINT independently replayed the exact arithmetic and
 root-count guards.
+
+## 2026-08-11 — [MCA v4 S/A/E] common-core shortening staircase route cut
+
+On exact #1160 head `c5f4ea7a0c`, constructed the missing local algebra for
+the tuple-level common intersection of one selected family of maximal
+agreement supports.  If its size is `c<k`, interpolation on the core and
+division by its squarefree locator give a typed reversible adapter
+
+`(n,k,m) -> (n-c,k-c,m-c)`.
+
+It preserves the finite affine slope, the declared explanation/support
+correspondences, identical-support noncontainment, and the three invariants
+`m-k`, `n-k`, and `n-m`.  It does not preserve literal identity of the
+received line, carrier, explanation, or support across rows.  Reverse
+scalar-locator owner transport separately requires denominator nonvanishing
+on the deleted core, and the converse hardness embedding requires a field
+with enough compatible fresh evaluation points.
+
+The exact KoalaBear staircase has two sharp walls.  The deployed order-32
+degree-18 interface survives exactly through `c=4130` and drops to degree 17
+at `c=4131`.  For a single fixed core, the generic support/secant compiler
+fits through shortened dimension `s=2`.  Under the explicit shortened
+direction-separation guard, the affine-span compiler gives
+`J_13=47876303026096432 < B_*`, while
+`J_14=743896698428332665 > B_*`.  Jo's slope-preserving shortening transfer
+does not bridge the degree wall: at `c=4131` its binomial multiplier alone
+has 3765 bits and exceeds `B_*`, and staged shortening has the same
+telescoping cost.
+
+This is a maximal route cut, not a payment.  The active source still lacks a
+chronology-correct whole-line selector for varying local 32-tuple cores.
+For this staircase route, every slope must be assigned disjointly to an
+earlier owner, one paid fixed-core family, a shortened direction-list
+residual, or `COMMON_CORE_SHORTENED_s_GE_14`.  A different maximum-type
+whole-line theorem may bypass that selector.  Fixed-core bounds may not be
+summed over core choices.  Accordingly `U_S`, `U_A`, `U_E`, and global
+ledger movement all remain zero; no KoalaBear or universal closure is
+claimed.
+
+The final packet pins the active v4 source, CAP25 support-wise MCA predicate,
+common-core compiler, #1160 control, and the reproduced Paving/Jo shortening
+theorem.  Python normal and optimized modes reject 16 hostile mutations;
+Sage preserves all five slopes of the exact GF(17) cancellation control;
+FLINT and Wolfram independently replay the integer walls; and JSON schema,
+packet hashes, and diff checks pass.  Independent mathematics and
+source/chronology reviews, plus independent certificate custody, are GREEN
+on canonical payload
+`f5aac02184e6e3c0c3acda8fc64929d37e3166ce74556e7b3d217cdc8a520b7c`.
+Open PRs #1161 (symbolic rate-half Lane T) and #1162 (razor bracket) do not
+duplicate this active KoalaBear common-core route cut; their only likely
+textual overlap is `experimental/agents-log.md`.
