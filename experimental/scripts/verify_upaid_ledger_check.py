@@ -7,7 +7,8 @@ Checker routes (must differ from generator):
   * tangent: recompute r=n-A and R_tan via (n-k)//3; EXACT iff 0<=r<=R_tan with value n-A+1
     (generator uses the same formula path but this re-derives from n-A+1 identity without
     calling paid_tan_hi; also verifies 3*r <= n-k equivalent form)
-  * common-support MCA: re-assert 0 from slope-elimination text presence + constant
+  * same-witness common-support MCA: re-assert the local 0 while forbidding a
+    global deletion inference from existence of some other common support
   * lower L(a0): math.comb + ceil_div (not generator comb_batch ascending walk)
   * B_*: q_line >> lambda_bits (bit shift) vs generator //
   * quotient oracle: DP counting of labeled (c,B)-profiles vs binomial product
@@ -22,6 +23,7 @@ import hashlib
 import json
 import math
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -37,6 +39,7 @@ N = 2**21
 K_BASE = 2**20
 P_KB = 2**31 - 2**24 + 1
 P_M31 = 2**31 - 1
+BASE_SHA_TARGET = "eb42b823f817baace7e37cf9b5018affa26eeb43"
 
 ROWS = [
     ("kb_mca", "mca", P_KB, 6, 128, 1116047, 1116048),
@@ -172,11 +175,20 @@ def main() -> int:
 
     # Pin labels exist
     for label, pin in cert["statement_pins"].items():
-        path = root / pin["path"]
-        lines = path.read_text(encoding="utf-8").splitlines()
+        path = pin["path"]
+        proc = subprocess.run(
+            ["git", "-C", str(root), "show", f"{BASE_SHA_TARGET}:{path}"],
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        if proc.returncode != 0:
+            raise AssertionError(f"cannot replay pinned source {BASE_SHA_TARGET}:{path}")
+        lines = proc.stdout.splitlines()
         ln = int(pin["line"])
         if label not in lines[ln - 1]:
-            raise AssertionError(f"pin miss {label} at {path}:{ln}")
+            raise AssertionError(f"pin miss {label} at {BASE_SHA_TARGET}:{path}:{ln}")
 
     check_oracle_quotient_dp()
 
@@ -209,12 +221,16 @@ def main() -> int:
         if tan["status"] != "UNAVAILABLE_OUT_OF_RANGE":
             raise AssertionError(f"expected out-of-range tangent at deployed a1 for {rid}")
 
-        # Common support MCA = 0
+        # The supplied pair-contained witness is locally zero; this says nothing
+        # about a different noncontained support for the same slope.
         if kind == "mca":
             if drow["cells"]["C2_common_support"]["value"] != 0:
-                raise AssertionError(f"common support MCA not 0 on {rid}")
+                raise AssertionError(f"same-witness common support MCA not 0 on {rid}")
             if drow["cells"]["C2_common_support"]["status"] != "EXACT":
                 raise AssertionError(f"common support status {rid}")
+            note = drow["cells"]["C2_common_support"].get("note", "")
+            if "Same-witness scope only" not in note or "different common support does not delete" not in note:
+                raise AssertionError(f"common support scope fence {rid}")
 
         # L(a0) via math.comb (not generator comb_batch)
         la0 = lower_count_check(kind, p, ext, a0)

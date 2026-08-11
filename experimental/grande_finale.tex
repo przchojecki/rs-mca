@@ -5758,19 +5758,26 @@ Let
  C_0:=\{x\in D:r_0(x)=A(x),\ r_1(x)=B(x)\},
  \qquad c:=|C_0|.
 \]
-MCA-badness gives $c<m$.  Outside $C_0$, the equation
+For every $\gamma\in Z$, choose a support-wise bad witness support $S_\gamma$
+for the displayed explanation.  Outside $C_0$, the equation
 \[
  r_0(x)-A(x)+\gamma(r_1(x)-B(x))=0
 \]
-has at most one finite solution $\gamma$.  Counting agreements over all $\gamma\in Z$ therefore yields
+has at most one finite solution $\gamma$.  If $c<m$, every $S_\gamma$ uses
+at least $m-c$ coordinates outside $C_0$, and these outside coordinates are
+disjoint across slopes.  Hence
 \[
- |Z|m\le |Z|c+(n-c).
+ |Z|(m-c)\le n-c,
+ \qquad
+ |Z|\le\frac{n-c}{m-c}\le n-m+1.
 \]
-Hence
-\[
- |Z|\le\frac{n-c}{m-c}\le n-m+1,
-\]
-where the last expression is the maximum over integers $0\le c\le m-1$.
+If $c\ge m$, pair noncontainment on the same $S_\gamma$ forces
+$S_\gamma\setminus C_0\ne\varnothing$: a support contained in $C_0$ would
+be simultaneously explained by $(A,B)$.  Assign one such outside coordinate
+to every slope.  The affine equation above makes this assignment injective,
+so $|Z|\le n-c\le n-m$.  This proves the stated bound in both cases without
+identifying the existence of one common support with absence of support-wise
+bad witnesses elsewhere.
 \end{proof}
 
 \begin{corollary}[conditional generic closure]\label{cor:generic-closure}
@@ -6842,7 +6849,7 @@ If $g<m$, every support uses at least $m-g$ coordinates outside $G$.  By (a), th
 \]
 The quotient $(n-g)/(m-g)$ is increasing for $g<m$, and at $g=m-1$ equals $n-m+1$.  This proves (b).
 
-Now assume $g\ge m$.  Distinct supports meeting $D\setminus G$ use disjoint nonempty outside-coordinate sets, so there are at most $n-g$ of them.  Every remaining support lies in $G$ and witnesses the punctured owner line there.  Since $g\ge m>k$, evaluation on $G$ is injective and the punctured code is Reed--Solomon of dimension $k$.  If the punctured pair admitted a common size-$m$ explaining support, the same support would explain the original pair on $D$, contradicting support-wise MCA-badness.  The contained slopes are therefore bounded by the punctured MCA numerator.
+Now assume $g\ge m$.  Distinct supports meeting $D\setminus G$ use disjoint nonempty outside-coordinate sets, so there are at most $n-g$ of them.  Every remaining witness support $S_i$ lies in $G$ and witnesses the punctured owner line there.  Since $g\ge m>k$, evaluation on $G$ is injective and the punctured code is Reed--Solomon of dimension $k$.  The original pair was not simultaneously explained on this same $S_i$, so neither is its puncturing to $G$.  Thus every contained slope remains support-wise MCA-bad for the punctured pair and is bounded by the punctured MCA numerator.  The possible existence of a different common support is irrelevant to this same-support implication.
 \end{proof}
 
 \begin{corollary}[all small-owner atoms are paid]\label{cor:small-owner}
@@ -6927,12 +6934,18 @@ A nonzero word of $C'_G$ has at most
 \]
 zeros.  Under the displayed hypothesis, $p_{ijk}$ must therefore be zero for every triple.
 
-Fix two slopes.  The vanishing of every triple deviation shows that every $h_i$ lies on the same global codeword line $H_0+\gamma_iH_1$.  Let $C_0\subseteq G$ be the coordinate set on which this codeword line equals the owner line coefficientwise.  Support-wise MCA-badness gives $|C_0|<m$.  Outside $C_0$, equality of the two affine lines determines at most one slope.  Thus the contained slopes satisfy
+Fix two slopes.  The vanishing of every triple deviation shows that every $h_i$ lies on the same global codeword line $H_0+\gamma_iH_1$.  Let $C_0\subseteq G$ be the coordinate set on which this codeword line equals the owner line coefficientwise, and put $c_0=|C_0|$.  Outside $C_0$, equality of the two affine lines determines at most one slope.  If $c_0<m$, every $S_i$ uses at least $m-c_0$ outside coordinates, disjoint across slopes, and therefore
 \[
- |I_{\rm in}|(m-|C_0|)\le g-|C_0|,
+ |I_{\rm in}|(m-c_0)\le g-c_0,
  \qquad
  |I_{\rm in}|\le g-m+1.
 \]
+If $c_0\ge m$, the identical bad witness support $S_i$ cannot be contained
+in $C_0$, since $(H_0,H_1)$ would then simultaneously explain the owner
+line there.  Assign one point of $S_i\setminus C_0$ to each contained slope.
+The affine equality makes this assignment injective, so
+$|I_{\rm in}|\le g-c_0\le g-m$.  Thus the displayed $g-m+1$ bound holds in
+both cases.
 There are at most $n-g$ crossing supports by \cref{thm:owner-localization}, and hence
 \[
  |I|\le(n-g)+(g-m+1)=n-m+1.
@@ -7204,6 +7217,12 @@ agrees with $r_\gamma$ on at least $m$ coordinates.  At $x\in D$ the agreement e
 \end{equation}
 No component-freeness assumption will be imposed.
 
+Call a parameter pair $(\gamma,c)$ \emph{MCA-rich} if it is supplied with
+an exact size-$m$ agreement support for \eqref{eq:rayword} on which the
+received pair $(r_0,r_1)$ is not simultaneously explained.  Only these
+support-wise records enter the MCA numerator; no bound on unrestricted rich
+agreement pairs is asserted below.
+
 For $P(x)\ne0$, put
 \[
  f_x(Z)=\frac{E_x(Z)}{P(x)}\in\F[Z]_{\le31}.
@@ -7234,22 +7253,30 @@ Clone classes are disjoint subsets of $D$.  A class of type (ii) not covered by 
 \end{proof}
 
 \begin{lemma}[global affine-line block]\label{lem:affine-block}
-For any fixed global codeword line $A+\gamma B$, the number of slopes for which it agrees with $r_\gamma$ on at least $m$ coordinates is at most
+For any fixed global codeword line $A+\gamma B$, the number of finite slopes
+supplied with a size-$m$ agreement support on which $(r_0,r_1)$ is not
+simultaneously explained is at most
 \begin{equation}\label{eq:affinecost}
  n-m+1.
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-Let $C_0$ be the coordinate set on which $A=r_0$ and $B=r_1$.  Support-wise MCA-badness gives $|C_0|<m$.  Outside $C_0$, agreement of the two affine lines determines at most one slope.  Hence
+Let $C_0$ be the coordinate set on which $A=r_0$ and $B=r_1$, and put
+$c_0=|C_0|$.  Outside $C_0$, agreement of the two affine lines determines
+at most one slope.  If $c_0<m$, the supplied supports use at least $m-c_0$
+outside coordinates, disjoint across slopes, and
 \[
- N(m-|C_0|)\le n-|C_0|,
+ N(m-c_0)\le n-c_0,
 \]
-and the right quotient is maximized at $|C_0|=m-1$.
+whose right quotient is at most $n-m+1$.  If $c_0\ge m$, noncontainment on
+the identical supplied support forces at least one outside coordinate per
+slope.  Choosing one makes an injection into $D\setminus C_0$, so
+$N\le n-c_0\le n-m$.  This proves the bound in both cases.
 \end{proof}
 
 \begin{theorem}[complete correction-ray bound]\label{thm:ray}
-For either deployed row, the number of rich parameter pairs $(\gamma,c)$ satisfying \eqref{eq:rayword} is at most
+For either deployed row, the number of MCA-rich parameter pairs $(\gamma,c)$ satisfying \eqref{eq:rayword} is at most
 \begin{equation}\label{eq:raybound}
  \boxed{
  2(n-m+1)
@@ -7271,9 +7298,10 @@ In particular, a single correction ray can never be the residual spread-abundanc
 \end{theorem}
 
 \begin{proof}
-Remove all rich points lying on a type-(ii) clone graph whose class has at least $k$ coordinates.  By \cref{lem:clone,lem:affine-block}, there are at most two such graphs and each contributes at most $n-m+1$ slopes.
+Remove all MCA-rich points lying on a type-(ii) clone graph whose class has at least $k$ coordinates.  By \cref{lem:clone,lem:affine-block}, there are at most two such graphs and each contributes at most $n-m+1$ slopes.
 
-Consider a remaining rich point and choose exactly $m$ of its agreement coordinates.  Partition them into the vertical class and the clone classes meeting the point.  The vertical class has size at most $k-1$, because a nonzero degree-$<k$ polynomial has at most $k-1$ zeros.  Every clone class present at the point has size at most $k-1$: type-(i) classes have this bound, while every larger type-(ii) graph was removed.
+Consider a remaining MCA-rich point and use its supplied exact size-$m$
+agreement support.  Partition it into the vertical class and the clone classes meeting the point.  The vertical class has size at most $k-1$, because a nonzero degree-$<k$ polynomial has at most $k-1$ zeros.  Every clone class present at the point has size at most $k-1$: type-(i) classes have this bound, while every larger type-(ii) graph was removed.
 
 Since $m<2(k-1)$ on both rows, a partition of $m$ elements into parts of size at most $k-1$ has at least
 \begin{equation}\label{eq:crosspairs}

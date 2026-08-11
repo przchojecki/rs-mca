@@ -37,7 +37,7 @@ This is **not** a proof of the one-step inequality, **not** a complete
 | cell | paying theorem | deployed a0+1 status |
 |---|---|---|
 | C1 tangent/deep | `prop:capf-tangent` | **UNAVAILABLE** — `r = n-(a0+1) >> R_tan = floor((n-k)/3)` |
-| C2 common-support | `def:paid-cells` (ii) | **EXACT 0** on MCA; list CA form **BLOCKED** |
+| C2 same-witness common-support | `def:paid-cells` (ii) | **EXACT 0** on the supplied pair-contained MCA witness only; list CA form **BLOCKED** |
 | C3 quotient-pullback | `def:capf-quotient-status` | **BLOCKED** — missing declared scale set `C` and coverage hypothesis |
 | C4 prefix-boundary | `def:paid-cells` (iv) | **CHARGED TO U_Q** (not U_paid) |
 | C5 planted/GCD | `def:paid-cells` (v) | **BLOCKED** |
@@ -77,9 +77,13 @@ are separate residual summands (see the companion `w23-uq-ur1-bounds` packet).
 ## Ledger impact
 
 Narrows the missing-input map for `cor:capfr1-Q-R1-closing`: the paid side is
-not a single missing integer — it is a cell-wise map whose only currently exact
-MCA entry is common-support 0, with tangent out of range at the frontier
-agreements and every structural paid cell still open.
+not a single missing integer.  The only exact MCA entry in this packet is the
+local value zero for the *supplied same witness support*: when both line
+components interpolate there, that support is pair-contained and cannot itself
+witness MCA noncontainment.  This must not be globalized.  A slope may have a
+different common support and another exact support witnessing pair
+noncontainment.  The repaired `2w` theorem pays an independently identified
+near-rational MCA subcell; it is not the justification for the local C2 zero.
 
 ## Reproducibility
 
@@ -94,7 +98,7 @@ Under the *different* first-match decomposition of the integrated certificate
 `kb-mca-1116048-first-match-ledger-v1` (integrated at 0955594), the same
 deployed MCA row raw-pays terminal dyadic quotient rungs (471,447,040) and a
 generated-field image-cell cover (143,763,024,447,376) with lower rungs open.
-Therefore the claim that the only exact paid MCA entry in *this* packet's
-paid-cell map is common-support 0 is **route-scoped** to the
-`cor:capfr1-Q-R1-closing` cell catalog — not a claim that no proved paid mass
-exists under any first-match decomposition.
+The zero `U_paid^computable` in this packet is the sum of its exact local cell
+values, including the same-witness C2 zero.  It is not a global deletion of
+support-wise bad slopes and not a claim that no proved paid mass exists under
+another first-match decomposition.

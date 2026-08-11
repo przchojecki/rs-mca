@@ -1,0 +1,223 @@
+{
+  "schema": "rs-mca-kb-supportwise-near-rational-two-anchor-repair-v1",
+  "artifact_kind": "ACTUAL_SOURCE_FALSIFIER_AND_UNIFORM_TWO_ANCHOR_SLOPE_BOUND",
+  "base_repository": {
+    "repository": "przchojecki/rs-mca",
+    "base_head": "e603e0cedc5220ec2f29bd53836e732e3ec14934",
+    "base_is_exact_pr1159_head": true,
+    "upstream_main_at_refresh": "93fba1be3f3299b0ba4708d88715377bbb656e45",
+    "public_dag_repository": "AllenGrahamHart/rs-mca-prize-dag",
+    "public_dag_head_at_refresh": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+    "pr_heads": {
+      "1157": "d7f0fd9370b3c13ff93293f08e03cadddb59b921",
+      "1158": "5145fc8e0abca6325b8226294cdc2661e0891dcc",
+      "1159": "e603e0cedc5220ec2f29bd53836e732e3ec14934"
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "FOUNDATION_ORIGINAL_SUPPORTWISE_DEFINITION_AND_FALSE_NEAR_RATIONAL_CHAIN",
+      "commit": "e603e0cedc5220ec2f29bd53836e732e3ec14934",
+      "path": "tex/cs25_cap_v13_2.tex",
+      "line_ranges": [
+        "215-226",
+        "9518-9564",
+        "9880-9897",
+        "9977-10003"
+      ],
+      "git_blob_sha1": "5ceff5dbc4b1ac4cef53eae7eada32046e4bafeb",
+      "sha256": "356f1ad4b972746b664260191387b25a89a2e10fcc61962a49dc8282412f93ce",
+      "role": "PINNED_FALSE_STATEMENTS_AND_VALID_NEAR_RATIONAL_DICHOTOMY"
+    },
+    {
+      "binding_id": "GRANDE_ORIGINAL_SAME_SUPPORT_DEPENDENCIES",
+      "commit": "e603e0cedc5220ec2f29bd53836e732e3ec14934",
+      "path": "experimental/grande_finale.tex",
+      "line_ranges": [
+        "132-149",
+        "5744-5773",
+        "6815-6846",
+        "6885-6940",
+        "7202-7279"
+      ],
+      "git_blob_sha1": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
+      "sha256": "336ba3c9a6d9483d0eab74677d6224aae23adf15d84891c6099f6d2f45cf226d",
+      "role": "EXACT_SPARSIFICATION_AND_PROOFS_REQUIRING_SAME_SUPPORT_REPAIR"
+    }
+  ],
+  "public_dag_bindings": [
+    {
+      "binding_id": "DAG_VALID_TWO_ANCHOR_PAIR_PROXIMITY",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/v13_2_near_rational_pair_proximity/node.json",
+      "git_blob_sha1": "320312c9385168f13de7ed02891e2bde17931040",
+      "sha256": "bef1ef1c35a1e788d96bc0d8d326e149441a51d6f113bfecee34c3042ae46fc7",
+      "status": "PROVED",
+      "role": "VALID_COMMON_2W_ERROR_SUPPORT_STEP"
+    },
+    {
+      "binding_id": "DAG_REFUTED_SUPPORTWISE_PAYMENT",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/v13_2_near_rational_supportwise_payment/node.json",
+      "git_blob_sha1": "96b7e41df6df1b53e1ed9eb605ba3aa833ff0d1c",
+      "sha256": "181f7d0c3c5a6b3201c9e73bce4ff306f83dc1bee3d72b87dc159c5d3152a941",
+      "status": "REFUTED",
+      "role": "PREVIOUS_TOY_REFUTATION_LEFT_DISPLAYED_PLUS_ONE_OPEN"
+    },
+    {
+      "binding_id": "DAG_DISTINCT_LIST_EXACT_SHELL_RESULT",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/l1_exact_shell_balanced_shifted_lattice_reduction/node.json",
+      "git_blob_sha1": "4aede45fee92421f5817e6b782d5df7f95b05524",
+      "sha256": "a4e05bc8e4e57b1dbaaa2465c8627bbdde45a17ed2c9349462a8d777d4250e7a",
+      "status": "PROVED",
+      "role": "DISTINCT_LIST_EXACT_SHELL_STATEMENT_NOT_REFUTED_OR_USED"
+    }
+  ],
+  "repaired_sources": [
+    {
+      "path": "tex/cs25_cap_v13_2.tex",
+      "git_blob_sha1": "001c3898b6317911e487ee0199adcce701aaae57",
+      "sha256": "009dd3221e7b70182242cc25e82c2451e3ef2f7d4970fa325c7e96a96adbe7c7",
+      "repairs": [
+        "TWO_ANCHOR_2W_NEAR_RATIONAL_BOUND",
+        "COMMON_SUPPORT_TO_EXACT_SPARSE_TRANSLATION",
+        "EXACT_M_SUPPORT_NONCOMMON_SHRINK",
+        "NONCOMMON_WITNESS_RANK_ONE_INJECTION_WITH_POSITIVE_W",
+        "FIXED_SPLIT_KERNEL_THRESHOLD_SCOPING",
+        "STALE_ONE_SLOPE_PROSE_REMOVAL"
+      ]
+    },
+    {
+      "path": "experimental/grande_finale.tex",
+      "git_blob_sha1": "5e0cb1bad6b40c4db39f6b4cb3e5316aebeafe2f",
+      "sha256": "03b8806c5e71ebd41a97012fbdcc6442dabd4c8bf9383b7d832a48b0c55ce5ab",
+      "repairs": [
+        "GLOBAL_CODE_LINE_SAME_WITNESS_COUNT",
+        "OWNER_LOCALIZATION_SAME_SUPPORT_PUNCTURE",
+        "TRIPLE_COLLAPSE_LARGE_COMMON_CORE_CASE",
+        "CORRECTION_RAY_MCA_RICH_SCOPE"
+      ]
+    }
+  ],
+  "deployed_rows": [
+    {
+      "row": "KoalaBear MCA at 2^-128",
+      "n": 2097152,
+      "K": 1048576,
+      "agreement_m": 1116048,
+      "w": 67472,
+      "three_w": 202416,
+      "minimum_distance": 1048577,
+      "minimum_distance_margin": 846161,
+      "near_rational_charge": 134944,
+      "B_star": 274980728111395087,
+      "B_star_minus_charge": 274980728111260143
+    },
+    {
+      "row": "Mersenne-31 MCA at 2^-100",
+      "n": 2097152,
+      "K": 1048576,
+      "agreement_m": 1116024,
+      "w": 67448,
+      "three_w": 202344,
+      "minimum_distance": 1048577,
+      "minimum_distance_margin": 846233,
+      "near_rational_charge": 134896,
+      "B_star": 16777215,
+      "B_star_minus_charge": 16642319
+    }
+  ],
+  "actual_counterexample": {
+    "row": "KoalaBear MCA at 2^-128",
+    "error_coordinate_count": 67472,
+    "distinct_base_field_slopes": 67472,
+    "received_line": "v(e_i)=1, u(e_i)=-gamma_i on E; u=v=0 off E",
+    "common_support_size": 2029680,
+    "bad_witness_support_size": 1116048,
+    "bad_slope_count_lower_bound": 67472,
+    "near_rational_d1_upper_bound": 67472,
+    "balanced_slope_count": 0,
+    "old_claimed_near_rational_allowance": 1,
+    "refutes_old_displayed_bound": true,
+    "same_support_noncontainment": true,
+    "common_support_elsewhere": true
+  },
+  "two_anchor_theorem": {
+    "quantifier": "every finite field, every Reed-Solomon evaluation domain, every actual received line",
+    "hypotheses": [
+      "m=K+w",
+      "w>=1",
+      "3w<=n-K",
+      "finite affine slopes",
+      "support-wise MCA badness on the identical witness support",
+      "near-rational slope word distance at most w from C"
+    ],
+    "anchor_count": 2,
+    "anchor_union_support_bound": "2w",
+    "third_error_union_bound": "3w",
+    "projection": "z=-e_u(x)/e_v(x) on a same-witness noncontainment coordinate",
+    "fiber_bound": 1,
+    "conclusion": "number of near-rational support-wise MCA-bad slopes <=2w",
+    "uses_layer_cake": false,
+    "uses_moments": false,
+    "uses_asymptotics": false
+  },
+  "chronology": {
+    "unit": "DISTINCT_FINITE_AFFINE_BAD_SLOPES_PER_ACTUAL_RECEIVED_LINE",
+    "local_payment_proved": true,
+    "first_match_owner_bound": "every first-match subset of the near-rational stratum is also <=2w",
+    "global_ledger_movement": 0,
+    "reason_global_movement_zero": "the active v4 maximum-type S/A/E reserve and owner chronology have not yet been regenerated",
+    "U_Q": null,
+    "U_BC": null,
+    "U_K3": null,
+    "U_new": null,
+    "KoalaBear_closed": false
+  },
+  "regression_contract": {
+    "mandatory_failures": [
+      "restore common-support-implies-no-MCA statement",
+      "restore one-slope near-rational allowance",
+      "drop same-support noncontainment",
+      "weaken 3w minimum-distance guard",
+      "replace distinct slopes by witness or support counts",
+      "claim Q/BC/K3 ownership",
+      "claim complete-row closure",
+      "mutate a source blob hash",
+      "duplicate a JSON key"
+    ],
+    "toy_exact_census": {
+      "field": 7,
+      "n": 6,
+      "K": 3,
+      "m": 4,
+      "w": 1,
+      "syndrome_pair_count": 117649,
+      "expected_max_near_rational_bad_slopes": 2,
+      "exhaustive": true
+    }
+  },
+  "packet_files": [
+    "experimental/notes/thresholds/kb_mca_supportwise_near_rational_two_anchor_repair_v1.md",
+    "experimental/data/certificates/kb-mca-supportwise-near-rational-two-anchor-repair-v1/README.md",
+    "experimental/data/schemas/kb_mca_supportwise_near_rational_two_anchor_repair_v1.schema.json",
+    "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1.py",
+    "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1.sage",
+    "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1_flint.py",
+    "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1.wl"
+  ],
+  "packet_file_sha256": {
+    "experimental/notes/thresholds/kb_mca_supportwise_near_rational_two_anchor_repair_v1.md": "7e75d67420f4ed37add3b4f6ea3aa45e043a782a6396f328b1e34ce659938989",
+    "experimental/data/certificates/kb-mca-supportwise-near-rational-two-anchor-repair-v1/README.md": "d11ca706271a655cfef783efd24ea538eae8104cb132fb8edd55c579d6a29e6e",
+    "experimental/data/schemas/kb_mca_supportwise_near_rational_two_anchor_repair_v1.schema.json": "fe69a3aba92c2b92895a8b41c24e7d316f34b5515ae2e70d6dae176ff50f229d",
+    "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1.py": "5d284cb0f857f2ff7c0797e911a2047009d6883d54f9d0df0a682627c09b5a35",
+    "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1.sage": "e3514f0ffb35b6c9df3735eb2e880cf2798f22ab768d77f483c1ff8200009152",
+    "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1_flint.py": "3d40aed0da4f65a7a7cf2b13c9e1b8a878adf7ea0df710183f1786fae9def6b0",
+    "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1.wl": "fbd54856e58d0c97a05f1b30660867de05911816813e2687815fc4806e808c89"
+  },
+  "payload_sha256": "1eb7b0aff6a89affe99ff0b723952d26eeb1c8712ff859ab11891d9dd20f7446"
+}

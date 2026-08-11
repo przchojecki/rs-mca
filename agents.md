@@ -6,7 +6,7 @@
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
 
-Before starting, compare the snapshot with current `main`, then read the newest entry in `experimental/agents-log.md` and the live four-row completion packet. If the state changed, update the snapshot, authority table, and workboard before doing mathematics.
+Before starting, compare the snapshot with current `main`, then read the newest entry in `experimental/agents-log.md`, the active Grande Finale v4 source, and the current synthesis.  Use the four-row v3 packet only for historical calibration. If the state changed, update the snapshot, authority table, and workboard before doing mathematics.
 
 ## 1. Mission and resolution standard
 
@@ -65,7 +65,7 @@ At this snapshot:
 
 - CAP25 v13.2 proves the unsafe endpoints and reusable foundation results.
 - Grande Finale v4 proves many local identities, order-32/rational-atom reductions, owner localization, and spread-core incidence bounds, but no adjacent safe row.
-- The live compiler returns `ARCHITECTURE_ROUTE_CUT_CURRENT_ARTIFACT_SET`, not `SAFE`.
+- The historical v3 compiler returned `ARCHITECTURE_ROUTE_CUT_CURRENT_ARTIFACT_SET`, not `SAFE`; that terminal is not a current v4 acceptance result.
 - Every deployed `U_Q` remains `null`.
 - No row has complete active-architecture `U_paid`, exhaustive MCA balanced-core or list-interior payment, zero/exact residual, and chronology-correct add-back.
 - The KoalaBear legacy M1 stack records local `U_paid=422354730332` and local remainder `274980305756664755`, but neither is banked in Grande Finale v4 because the source-bound owner/partition bridge is missing.
@@ -82,6 +82,7 @@ At this snapshot:
 - The K3 raw `433-1b -> O0a` workboard is proved empty over all 15 role cells, 1575 labels, and 25200 signed systems, and PR #1152 adds exact local `O0b` cell-11 boundary cuts. These results remain raw-system statements with zero ledger movement and `null` distinct-slope payment. The source-bound compiler route cut at `experimental/notes/thresholds/kb_mca_v4_k3_source_bound_compiler_route_cut_v1.md` is scoped only to the declared residual slice `Z_BC^(m=2,r=4)`; the slice membership predicate and exhaustive reduction from all `Z_BC` remain open. Within that slice, the first missing implication is a total canonical selector plus record-preserving reconstruction/projection with an exact finite fiber bound. A two-sided inverse is sufficient but stronger than necessary. The packet cuts the proposed `O0b -> O0a` transport only for its frozen natural record/role/gauge/typed-incidence map class, not arbitrary orientation-changing maps. All eleven other positive routes, the eight candidate source-cover row/passport combinations, `U_K3_allocation`, and distinct-slope conversion remain open; `11304` is only a conditional candidate abstract-label-orbit workload, not a census, elimination, representative count, or payment.
 - The follow-up active-slice semantic route cut at `experimental/notes/thresholds/kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.md` imports the exact #1139 tangent source-pin repair, so `U_paid=981104` is again source-revalidated and the joint reserve is `274980728110413983`. It proves on the actual deployed carrier that 30 active and six source complete degree-two fibers can satisfy the printed source-pencil identities while the displayed deck involution `T -> 1-T` fails to preserve the carrier. This refutes only direct endpoint-coordinate identification: conjugation by `T-1/2` gives `T -> -T`, which does preserve the carrier, and no record-level conjugacy theorem is ruled out. The packet constructs no actual received line, active-slice witness, owner, projection fiber, or K3 payment; ledger movement is zero. The historical equality-wall route is also open: it targets distinct source-map equivalence classes per transversal projective residue line rather than affine slopes, excludes only `3912 <= delta <= 118076`, and leaves five low-excess degree-12--16 windows plus general excess unpaid.
 - The actual-record dimension-sensitivity audit at `experimental/notes/thresholds/kb_mca_v4_k3_actual_record_source_dimension_route_cut_v1.md` constructs a deployed non-tangent MCA-bad pole-line slope with exact shifted-lattice minimum `d1=67473` under both `K=k` and `K=k+1`. It is the boundary numerical profile for the code-dimension shift and the first-interior numerical profile for the effective shift. Neither profile is proved equivalent to the frozen Q or BC slope predicate, so no Q, BC, or `U_new` owner follows; the explicit `SEM-QBC` dimension/priority adapter remains open before `ActiveRec_2_4`. The record's zero-codeword census is a pure `A*g1` ray (`B=0`), not a proved primitive `r_out=4` survivor or a thirteen-route endpoint. All K3 and Q/BC/new outputs remain null; ledger movement is zero.
+- The support-wise near-rational repair at `experimental/notes/thresholds/kb_mca_supportwise_near_rational_two_anchor_repair_v1.md` refutes the foundation's former global-common-support deletion with an actual deployed line carrying at least `67472` near-rational bad slopes. Under `w=m-k>=1` and `3w<=n-k`, it proves the replacement uniform bound `|L_near|<=2w`: `134944` on KoalaBear and `134896` on Mersenne-31. The repaired source uses the identical bad witness support in slope elimination, global-code-line counting, and owner localization. This is a local distinct-slope payment; the active maximum-type reserve/owner chronology has not yet been regenerated, so it does not set `U_Q`, `U_BC`, `U_K3`, or close a row.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
@@ -91,7 +92,7 @@ At this snapshot:
 
 | File | Role |
 |---|---|
-| `experimental/notes/frontier-adjacent/four_row_exact_completion_compiler_v1.md` and `experimental/data/certificates/four-row-exact-completion-compiler-v1/four_row_exact_completion_compiler_v1.json` | **Live status authority:** current null atoms, route cuts, architecture IDs, exact row arithmetic, and replay contract. |
+| `experimental/notes/frontier-adjacent/four_row_exact_completion_compiler_v1.md` and `experimental/data/certificates/four-row-exact-completion-compiler-v1/four_row_exact_completion_compiler_v1.json` | **Historical v3 compiler/calibration only:** exact row arithmetic and the old additive-interface route cut. Grande Finale v4 supersedes its MCA atom interface and list chronology; its source hashes and `CURRENT_ARTIFACT_SET` terminal are not live acceptance authority. |
 | `experimental/Conjectures_and_Barriers_RS_MCA_v4_1.tex` | **Direct problem/falsifier authority:** benchmark conjectures, exact compiler requirements, finite barriers, and separation of finite from conjectural asymptotic claims. |
 | `experimental/grande_finale.tex` | **Active conditional completion architecture:** proved local theorems, order-32/rational-atom reductions, owner localization, spread-core incidence bounds, and exact completion problems. Hypotheses/problems are not row bounds. |
 | `tex/cs25_cap_v13_2.tex` | **Foundation/unsafe authority:** exact unsafe endpoints, field/domain conventions, reductions, and certificate grammar. |
@@ -102,6 +103,7 @@ At this snapshot:
 | `experimental/notes/thresholds/kb_mca_v4_k3_source_bound_compiler_route_cut_v1.md` and `experimental/data/certificates/kb-mca-v4-k3-source-bound-compiler-route-cut-v1/manifest.json` | **K3 source-bound route-cut authority:** declared `Z_BC^(m=2,r=4)` scope, exact thirteen-route census, imported raw-zero scope, natural-map-class O0b/O0a obstruction, missing selector/reconstruction/projection and unit bridges, stale tangent source gate, and null K3 ledger outputs. It is not a payment, an all-`Z_BC` compiler, or a closure theorem. |
 | `experimental/notes/thresholds/kb_mca_v4_k3_active_slice_semantic_bridge_route_cut_v1.md` and `experimental/data/certificates/kb-mca-v4-k3-active-slice-semantic-bridge-route-cut-v1/manifest.json` | **Current K3 semantic-route authority:** repaired tangent source pin; exact deployed-carrier direct-coordinate countermodel; executable-predicate, same-record, chronology, conjugacy, and all-`Z_BC` scope fences; null K3 outputs. It supersedes only #1157's stale-tangent diagnostic, not its raw route census or transport cut. |
 | `experimental/notes/thresholds/kb_mca_v4_k3_actual_record_source_dimension_route_cut_v1.md` and `experimental/data/certificates/kb-mca-v4-k3-actual-record-source-dimension-route-cut-v1/manifest.json` | **Current pre-`Rec_2_4` dimension-sensitivity audit:** actual deployed bad-slope record; exact two-shift lattice minimum and numerical profile change; no frozen owner assignment; public-DAG conditional-selector audit; and weakest open `SEM-QBC` repair. It is not source-level non-definability, primitive K3 membership, endpoint realization, payment, or row closure. |
+| `experimental/notes/thresholds/kb_mca_supportwise_near_rational_two_anchor_repair_v1.md` and `experimental/data/certificates/kb-mca-supportwise-near-rational-two-anchor-repair-v1/manifest.json` | **Support-wise near-rational authority:** actual deployed counterexample to common-support deletion; uniform two-anchor bound `|L_near|<=2w` for `w=m-k>=1` under `3w<=n-k`; exact deployed charges; same-support repairs; exhaustive toy syndrome census and hostile mutations. It is not a Q/BC/K3 owner compiler or row closure. |
 | `tex/RS_disproof_v3.tex`, `tex/slackMCA_v4.tex`, `tex/snarks_v5.tex` | Stable background for no-slack obstructions, reserve/quotient theory, and later protocol accounting. |
 | `archived/` predecessors | Provenance only. Never bank an archived owner or charge without an explicit source-bound bridge. |
 
@@ -136,13 +138,13 @@ The factor `4807520` is only a full-budget calibration before other atoms consum
 
 Produce exhaustive balanced-core coverage in units of distinct affine slopes. The moving-root theorem pays only charts proved to be genuine pencils. A line-by-line decomposition also needs an exact count of relevant lines. Higher-dimensional cores require a proved ray/slope compiler with exact multiplicities.
 
-The immediate maximal K3 theorem now begins with `SEM-QBC`: define executable
-Q and BC predicates on actual MCA witnesses, prove their slope projections
-equal the frozen first-match cells in both directions, and choose `K=k` or
-prove a boundary-preserving adapter from the finite `K=k+1` prefix convention.
-Only then define and prove the source-bound membership predicate for the
-declared residual slice `Z_BC^(m=2,r=4)` and its scope within `Z_BC`. Every
-`z` in that slice must
+For the legacy additive Q/BC/K3 ledger, the next theorem begins with
+`SEM-QBC`: define executable Q and BC predicates on actual MCA witnesses,
+prove their slope projections equal the frozen first-match cells in both
+directions, and choose `K=k` or prove a boundary-preserving adapter from the
+finite `K=k+1` prefix convention. Only then define and prove the source-bound
+membership predicate for the declared residual slice `Z_BC^(m=2,r=4)` and
+its scope within `Z_BC`. Every `z` in that slice must
 have a total canonical selector into a supplied actual endpoint record and
 actual component, with reconstruction/projection preserving the received
 line, witness support, affine slope, first-match owner, and add-back
@@ -160,6 +162,16 @@ carrier fold remains possible only through a new same-record theorem. The
 historical equality-wall 69-object route is not yet a cap-68 slope theorem;
 its five low-excess degrees, general-excess branch, class-to-slope
 multiplicity, and current-partition adapter all remain open.
+
+The active Grande Finale v4 maximum-type route does **not** require this
+legacy K3 bridge. Exact-agreement reduction supplies one canonical exact
+noncommon witness per actual bad slope when `m>=k+1`, so actual witnesses feed
+the active first-match classification without `SEM-QBC` or K3.  The theorem
+`thm:partial-relative` applies only after its common-factor branch has been
+separately routed; that routing remains part of frontier `(S)`.  The other live
+frontiers are `(A)` large-owner image control and `(E)` exception routing. Do
+not delay that route for `SEM-QBC`, and do not promote the direct adapter to a
+Q/BC owner statement.
 
 #### K4. Close algebraic routing and add-back
 

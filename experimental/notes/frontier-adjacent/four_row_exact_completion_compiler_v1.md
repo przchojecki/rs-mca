@@ -1,7 +1,17 @@
 # Four-row exact-completion compiler v1
 
-**Status:** PROVED EXACT-ARITHMETIC COMPILER / CURRENT-ARTIFACT
-ARCHITECTURE ROUTE CUT / FOUR DEPLOYED ROWS OPEN.
+**Status:** HISTORICAL GRANDE FINALE v3 EXACT-ARITHMETIC COMPILER /
+SUPERSEDED AS CURRENT-ARTIFACT AUTHORITY / FOUR DEPLOYED ROWS OPEN.
+
+**Supersession notice (2026-08-10).** Active Grande Finale v4 replaces the
+v3 MCA additive atom interface below by the maximum-type S/A/E endgame and
+adds `U_ext` to the list chronology. Consequently this packet remains useful
+for its exact row calibration and historical candidate-schema route cut, but
+its source hashes and `CURRENT_ARTIFACT_SET` terminal are not live authority.
+Its imported partial-`U_paid` packet is consumed only for row parameter
+calibration; no common-support/global-slope inference from that historical
+dependency is banked. Do not use the replay commands below as a current-v4
+acceptance gate.
 
 This packet implements the literal completion interface required by
 `experimental/grande_finale.tex`, Section `sec:exact-completion-ledger`, for

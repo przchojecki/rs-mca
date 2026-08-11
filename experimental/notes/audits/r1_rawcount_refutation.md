@@ -67,8 +67,10 @@ profile clause** (unlike `prob:capg-split-pencil-B`'s interior clause) and
 no exclusion that touches the plant:
 
 - "first match" / "first-match" / "strip": zero hits in the entire source.
-- Tangent in this lane means COMMON support (`alpha = beta = 0`, removed by
-  slope-elim(b)); the planted line has zero common supports (verified at
+- Tangent in this lane means a COMMON exact support (`alpha = beta = 0`).
+  Such a support cannot itself witness pair noncontainment; repaired
+  slope-elim(c) selects a noncommon exact support for every actual bad slope.
+  The planted line has zero common supports (verified at
   toy; forced generically at deployed scale by the freedom count below).
 - The printed paid-cell list (tangent, quotient, extension-pole,
   common-GCD, quotient-pullback, fixed-dimensional, sunflower, SPI ---

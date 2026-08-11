@@ -3950,3 +3950,69 @@ normal and optimized replay, all 11 source pins, Sage, FLINT, 62 semantic and
 three parser mutations, fail-closed no-DAG behavior, and 309-leaf resealed
 fuzzing passed with no accepted mutation. `SEM-QBC`, `Rec_2_4`, K3 payment,
 and the KoalaBear row remain open.
+
+## 2026-08-10 — [K3 regression / active S-A-E] support-wise near-rational repair
+
+On exact #1159 head `e603e0cedc`, replaced the invalid global inference from
+the existence of a common support to the absence of support-wise MCA-bad
+slopes.  An actual deployed KoalaBear line has a common support of size
+`2029680` and at least `67472` distinct finite near-rational bad slopes, each
+with its own identical size-`1116048` noncontained witness support.  This
+strictly refutes the former displayed `+1` allowance; the earlier July claim
+that the common-proximity branch was globally removed is superseded.
+
+The replacement two-anchor theorem is uniform over finite-field RS evaluation
+domains under `w=m-K>=1` and `3w<=n-K`: the near-rational support-wise
+MCA-bad slopes on one actual received line number at most `2w`.  The exact MCA
+charges are `134944` on KoalaBear and `134896` on Mersenne-31.  The proof uses
+two bad anchors, minimum-distance collapse of a third codeword difference,
+and an injective coordinate-ratio map on the anchors' union error support.
+It is a distinct-affine-slope theorem, with no layer-cake, moment, or
+asymptotic step.
+
+The active foundation and Grande Finale sources now preserve the identical
+bad witness through exact-support shrinking, common-support translation,
+rank-one injection, global code-line counting, owner localization, and the
+triple-collapse cases.  Fixed identically split kernels are tangent-paid only
+under the theorem's `n-a'<=t` guard (including deficiency one) and remain in
+the rank-one/spread residual otherwise; correction-ray prose is scoped to its
+actual support-wise owner.  Generated Lean blueprint/mining
+mirrors and conditional M31 notes were corrected; historical deployed
+whole-cell Q artifacts are retained only as toy/regression material.  The
+route-scoped partial `U_paid` C2 zero was kept only for the supplied
+pair-contained witness support and explicitly forbidden from deleting a
+slope merely because a different common support exists; its certificate and
+pinned-source replay were regenerated.
+
+The older four-row exact-completion compiler is now explicitly historical:
+its Grande Finale v3 MCA additive interface and list chronology are superseded
+by v4's maximum-type MCA S/A/E endgame and list `U_ext` atom.  It may still be
+used for row calibration, but its stale source hashes and
+`CURRENT_ARTIFACT_SET` terminal are not a live acceptance gate and it consumes
+no common-support/global-slope inference from the partial `U_paid` packet.
+
+Public-DAG reconciliation binds the valid two-anchor pair-proximity node, the
+refuted support-wise payment node, and the distinct LIST exact-shell node by
+commit/blob/content hashes.  The new result completes the exact displayed
+MCA `+1` seam left open by the DAG toy refutation; it neither refutes nor uses
+the LIST exact-shell result.  A Wolfram cloud run independently confirmed the
+exact deployed arithmetic; its algebra lines are identity sanity checks, not
+a proof of the theorem. A final wrapper repeat returned `Insufficient
+credits`; no acceptance gate depends on it. The exhaustive GF(7) syndrome quotient
+attains the sharp toy maximum `2w=2`; Sage and FLINT independently replay the
+finite-field and exact-algebra checks.
+
+Ledger movement is deliberately zero.  The active v4 maximum-type S/A/E
+reserve and first-match chronology have not been regenerated, and the common
+factor branch must still be separately routed before `thm:partial-relative`
+applies.  No value is assigned to `U_Q`, `U_BC`, `U_K3`, or `U_new`; neither
+KoalaBear nor any LIST row is claimed closed.  On the final canonical payload
+`1eb7b0aff6a89affe99ff0b723952d26eeb1c8712ff859ab11891d9dd20f7446`,
+independent source/custody review was GREEN, two independent mathematics
+reviews were GREEN for this scoped local repair, and independent certificate
+review was GREEN.  The first mathematics review caught the missing
+`n-a'<=t` tangent-payment guard; that claim was repaired, resealed, and then
+re-reviewed GREEN.  Final normal and optimized Python replays rejected all
+34 hostile mutations, Sage exhausted all 117649 toy syndrome pairs with
+maximum two, and FLINT independently replayed the exact arithmetic and
+root-count guards.
