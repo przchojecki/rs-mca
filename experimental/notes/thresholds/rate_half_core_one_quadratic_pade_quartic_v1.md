@@ -5,13 +5,13 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test with at most three scalar coefficients; on the complete separated locus the heavy row is nonzero and has exact correction orders; bare Layer-A row surplus plus saturation does not force rank
+direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test with at most two scalar coefficients; on the complete separated locus the heavy row is nonzero and has exact correction orders; a squarefree shared root reduces to one third-jet gate; bare Layer-A row surplus plus saturation does not force rank
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one scalar-quadratic u=4 extremal boundary
 quantifier: every field and profile satisfying the exact pair-floor interface and retained core-one quadratic packet
 projection_and_unit: projective parameter fibers and local intersection multiplicity
-claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on the separated double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, every passing remainder is nonzero and correction-coprime, and the center overlap has j<=2; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
+claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on the separated double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, every passing remainder is nonzero and correction-coprime, and the center overlap has j<=1; at a squarefree shared root D_1-divisibility is equivalent to one third-jet vanishing; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
 status: PROVED
 impact: ROUTE_CUT
 falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, or a residual parameter root outside the correction quartic
@@ -41,8 +41,8 @@ ledger. This note closes both structural gaps. It is a profile-level route
 cut, not a `LineRay` payment or an adjacent-row theorem.
 
 The proof source is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@c0bcb637256420ce8407619385a58afd39f7fde0`.
-The verifier records the thirty statement/proof SHA-256 values and can check
+`AllenGrahamHart/rs-mca-prize-dag@688bbbb511a795b3dbc80fbd2737d9fc44b9f58e`.
+The verifier records the thirty-four statement/proof SHA-256 values and can check
 them against a local source checkout with `--source-root`.
 
 ## 2. Every off-line fiber, including positive excess
@@ -446,21 +446,45 @@ T_j(tau)!=0,
 gcd(T_j,S_B)=1.                                    (41)
 ```
 
-The endpoint ordering also sharpens the overlap count. The heavy row lies
-outside `U=S_alpha union S_beta`. If either endpoint center were a
-correction root, `x_*` would be padded there, putting that center in both
-`g_*` and `S_B`, contrary to separatedness. Only the third center can be a
-correction root. The exact center deficit ledger allows at most one center
-root of `g_*`; these contributions are disjoint. Hence
+The full three-center source identity sharpens the overlap count. Every
+assigned-center error support is contained in
+`supp(b_0,b_1)=U=S_alpha union S_beta`, while `x_*` lies outside `U`. Thus a
+correction root at any center would make `x_*` padded there, putting that
+center in both `g_*` and `S_B`, contrary to separatedness. The exact center
+deficit ledger allows at most one center root of `g_*`. Hence
 
 ```text
-deg gcd(S_B,Lambda)<=1,
+gcd(S_B,Lambda)=1,
 deg gcd(g_*,Lambda)<=1,
-j=deg gcd(Lambda,g_*S_B^2)<=2.                     (42)
+j=deg gcd(Lambda,g_*S_B^2)<=1.                     (42)
 ```
 
-Thus the exact nonzero remainder has at most three scalar coefficients,
-not four, and none of its free factors can be a correction root.
+Thus the exact nonzero remainder has at most two scalar coefficients, and
+none of its free factors can be a correction root.
+
+## 15. A squarefree shared root is one third-jet gate
+
+Allow a simple common root `tau` of `g_*` and `S_B`, and let `z` be its base
+uniformizer. Then `Q(t,x_*)` has order four and `D_1` has order three. The
+correction branch always gives
+
+```text
+z^2 | F_0,       kappa_tau=(F_0/z^2) mod z.         (43)
+```
+
+The supported and correction contacts may be distinct normalized branches,
+so their orders are not added without this extra jet. The exact recurrence
+instead gives
+
+```text
+(F_i/z^2) mod z=x_*^i kappa_tau,
+D_1|F_i for every i       iff kappa_tau=0.          (44)
+```
+
+On the vanishing branch the cubic quotient extends and the regular Smith
+type is `[3]`. On the nonvanishing branch the canonical divided-row image
+has exact order two. This is a complete local bifurcation, not a decision of
+which branch the prize packet takes.
 
 ## Nonclaims
 
@@ -473,5 +497,6 @@ recurrence and exact heavy-row remainder. The nonvanishing theorem covers
 all center-overlap degrees, but does not exclude a nonzero passing remainder.
 The Layer-A fixture refutes only a
 generic count-and-saturation implication, not the structured endpoint
-configuration. Nonreduced/shared corrections and the two-simple correction
-remain open.
+configuration. The squarefree shared correction is reduced to `(43)--(44)`
+but not excluded. Nonreduced corrections and the two-simple correction remain
+open.
