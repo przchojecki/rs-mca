@@ -5,13 +5,13 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence whose heavy row has at most four scalar unknowns; bare Layer-A row surplus plus saturation does not force rank
+direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; the separated double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; on the center-disjoint locus the surviving scalar is nonzero; bare Layer-A row surplus plus saturation does not force rank
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one scalar-quadratic u=4 extremal boundary
 quantifier: every field and profile satisfying the exact pair-floor interface and retained core-one quadratic packet
 projection_and_unit: projective parameter fibers and local intersection multiplicity
-claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on the separated double-root locus the residual parameter-vector has degree at most three and its heavy row is prescribed up to at most four scalars; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
+claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on the separated double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, and center-disjoint passage gives R_lambda=c g_*S_B^2 with c nonzero; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
 status: PROVED
 impact: ROUTE_CUT
 falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, or a residual parameter root outside the correction quartic
@@ -41,8 +41,8 @@ ledger. This note closes both structural gaps. It is a profile-level route
 cut, not a `LineRay` payment or an adjacent-row theorem.
 
 The proof source is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@62dc0233cb3ca1a033957977912bbd21cc27d1d7`.
-The verifier records the twenty statement/proof SHA-256 values and can check
+`AllenGrahamHart/rs-mca-prize-dag@a97f137e71b761d76ad2c5a657a7d897add2480d`.
+The verifier records the twenty-four statement/proof SHA-256 values and can check
 them against a local source checkout with `--source-root`.
 
 ## 2. Every off-line fiber, including positive excess
@@ -377,6 +377,65 @@ global blocks, or impose the endpoint Hankel/source constraints. Those extra
 hypotheses remain available and must be used essentially by any positive
 Layer-A theorem.
 
+## 12. The heavy row is one barycentric remainder
+
+Let `X` be the classified row set, with `x_* notin X`, and let `P_x(t)` be
+the monic row-root polynomial.  If the connected scalar weld has its unique
+projective full-support kernel vector `lambda`, define
+
+```text
+L_X(Y)=product_(x in X)(Y-x),
+b_x=L_X(x_*)/((x_*-x)L_X'(x)),
+R_lambda(t)=sum_(x in X)b_x lambda_x P_x(t).       (37)
+```
+
+For the center-overlap factorization `(33)`, the augmented heavy-row gate is
+exactly
+
+```text
+H divides R_lambda.                                (38)
+```
+
+Equivalently, in a chart whose infinity is not a root of `H`, form the
+`(m-j) x |X|` matrix `B_H` whose `x`-column is the coefficient vector of
+`b_x rem_H(P_x)`.  Then the staged exclusion ledger is
+
+```text
+rank W=|X|                         => excluded;
+rank W=|X|-1 and Krow lambda!=0    => excluded;
+Krow lambda=0 and B_H lambda!=0   => excluded;
+B_H lambda=0                      => R_lambda=H T_j,
+                                      deg T_j<=j.   (39)
+```
+
+Thus the formerly qualitative augmented coefficient-MDS condition is one
+explicit univariate remainder.  No generic-rank assumption is used.
+
+## 13. Center-disjoint passage is nonzero
+
+Suppose additionally that `S_B` is squarefree,
+`gcd(g_*,S_B)=1`, and
+
+```text
+gcd(Lambda,g_*S_B^2)=1.                            (40)
+```
+
+Then the scalar left by `(34)` cannot vanish:
+
+```text
+G(t,x_*)=c g_*(t)S_B(t)^2,
+R_lambda(t)=c g_*(t)S_B(t)^2,       c!=0.          (41)
+```
+
+Indeed, `c=0` would make `X-x_*` a component of `G`.  At either root of
+`S_B`, the row polynomial `Q(t,x_*)` has order three.  If that slope is
+unsupported, multiplicativity of the resultant would force order at least
+three, whereas `(21)` gives exactly two.  If it is supported, the exact
+all-excess fiber factorization puts `x_*` in its actual-support or padding
+factor.  The first case contradicts first-jet transversality; the second
+forces `g_*` to vanish there, contrary to `gcd(g_*,S_B)=1`.  Hence the
+center-disjoint heavy row is a genuine projective row, not the zero row.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -384,7 +443,8 @@ This packet does not exclude either quadratic root arm, prove a live
 leaderboard score. It identifies the remaining degree-four geometry,
 rules out determinant multiplicity as a standalone closure argument, and
 reduces only the separated double-root correction to the printed cubic
-recurrence and bounded heavy-row gate. The Layer-A fixture refutes only a
+recurrence and exact heavy-row remainder. The nonvanishing theorem requires
+center-disjointness; center-overlap remains open. The Layer-A fixture refutes only a
 generic count-and-saturation implication, not the structured endpoint
 configuration. Nonreduced/shared corrections and the two-simple correction
 remain open.
