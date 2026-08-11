@@ -1,0 +1,30 @@
+{
+ "workboard_item": "MCA",
+ "row": "official maximal rate-half",
+ "object": "MCA",
+ "target_epsilon": "2^-128",
+ "n": 2199023255552,
+ "k": 1099511627776,
+ "campaign_repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag",
+ "campaign_commit": "4e77e95b3acf",
+ "LB1_C": "n < (a-k-1) log2 q",
+ "floor": "B_ca^far(a) >= n-a+1",
+ "safe_index_floor": 1082331758593,
+ "safe_index_floor_bits": "2^39.9773",
+ "bracket_top_value": "B_ca^far(3n/4) >= 549755813889 = 2^39+1 (budget 2^39 dead there)",
+ "tightness": "B_ca^far(n-r) = r+1 on the whole proved tall domain",
+ "files": [
+  {
+   "path": "notes/pilots_20260810/rh_overlap_cap/REPORT.md",
+   "sha256": "1168ee8f8294e8d7096bb47e5a0be4fa8c3ea72ff409ff64295564e75902df6e"
+  },
+  {
+   "path": "notes/pilots_20260810/rh_overlap_cap/d4_lb1.py",
+   "sha256": "8627c20d1888b64b35eb234e277c57995e878da55234d9306e8da1073d15e272"
+  },
+  {
+   "path": "notes/pilots_20260810/rh_overlap_cap/d2_maxcore.py",
+   "sha256": "65aaf267563442eaf674fb6b87e8bb7162774f4e36954b175574c1253193d878"
+  }
+ ]
+}

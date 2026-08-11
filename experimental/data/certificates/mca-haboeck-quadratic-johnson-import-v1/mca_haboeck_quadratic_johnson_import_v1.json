@@ -1,0 +1,33 @@
+{
+ "workboard_item": "MCA",
+ "row": "official maximal rate-half",
+ "object": "MCA",
+ "target_epsilon": "2^-128",
+ "n": 2199023255552,
+ "k": 1099511627776,
+ "campaign_repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag",
+ "campaign_commit": "4e77e95b3acf",
+ "source": "IACR ePrint 2025/2110 Theorem 2",
+ "upstream_audit_pin": "experimental/notes/audits/audit_bchks25_thm46_conditional_johnson_import.md @ 93fba1be",
+ "external_proof_audit": "github.com/latifkasuli/mca docs/bchks25-thm46-import-audit.md section \"Hab25 proof audit\"",
+ "excluded": "BCHKS25 linear refinement (conditional)",
+ "adversarial_certification": "28 attacks, no mathematical kill (campaign round 32)",
+ "files": [
+  {
+   "path": "background/nodes/haboeck_quadratic_johnson_mca_import/statement.md",
+   "sha256": "d98c9e58ba0d8931f2420706eb1a4d56c0a36e7ae17a5f67f588bea6dd8afe81"
+  },
+  {
+   "path": "background/nodes/haboeck_quadratic_johnson_mca_import/verify.py",
+   "sha256": "f066ffb55dd57d34d039b41a15a1028167b2dcb17ce70c5cf4351ae3eb94b043"
+  },
+  {
+   "path": "notes/pilots_20260810/rh_haboeck_seam/REPORT.md",
+   "sha256": "ae38606dd56d1b2fc992a62fc5ffefe8cca98e62939f9bb04c154a6d5ab14554"
+  },
+  {
+   "path": "notes/pilots_20260810/rh_haboeck_seam/rederive.py",
+   "sha256": "d277d43b8b4b16f55bc0757b61477ac3c2f9fa4da6e035a620f71f17ec53c201"
+  }
+ ]
+}
