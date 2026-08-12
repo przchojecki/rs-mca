@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "35ab25099d6c07c9e9e35ed0dc56875bce465c09"
+SOURCE_COMMIT = "57c64d1ce26d50f604d9c26bcafe2ab9911a60ac"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -56,18 +56,20 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_squarefree_center_overlap_exact_deficit_ledger/proof.md": "7bbdc2db7988c546df04e62695d9203d3ff80559acb1ba98b49f1f2ae920c624",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_macroscopic_parameter_factor/statement.md": "946dde2786e3d542c82145c262361f5e66297c34eff743a24bfe535e880ccac3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_macroscopic_parameter_factor/proof.md": "f2b39e7707a0360218d99ff322996314e6e2c6eaddfb4708610b942a31882701",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_corank_one_jet_vanishing_router/statement.md": "ebd5a75c502a5ea6c8216c0c6157a48aa6fb0438069977a0b6e788148181dd3d",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_corank_one_jet_vanishing_router/proof.md": "991412d8c6598bbb7bd0e7f834e6e3799ace1c6962f13d862294386569b71f78",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_corank_one_jet_vanishing_router/statement.md": "d792e0f254368b4c53a804cdd2c3dcf2f4289c7bc1b1e9807447a3480e6b767e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_corank_one_jet_vanishing_router/proof.md": "dce7b05c13e0585bcb2b27f3de34aa446b9987b37787932942bb7bac471dd17e",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_factor_degree_profile_trichotomy/statement.md": "e3e40287fca3898ede3f4d6f4e18db930191db1686dc349166624f05c7539ebb",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_factor_degree_profile_trichotomy/proof.md": "d9eb908cecd6b38f83802acd92aceb4332eeb1106db1e1404870dc06da334c53",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_higher_corank_smith_jet_router/statement.md": "166387f2c8445d18af3c33e28353a0fdb5e888a9e9a9bb7f45f2189f1c24b993",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_higher_corank_smith_jet_router/proof.md": "423724a704d224c9810ac337a6ed1970f8faf4ecc993723651025a5e1aedf824",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_normalization_collision_dichotomy/statement.md": "1a4ef31e5e50a253103afccfab445fe3cabce5ee9af0ffc567a37a5c455e0cfd",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_higher_corank_smith_jet_router/statement.md": "80df4071c0c6633a3b0bea7f9e08b7dfa37a8713689f91fca31654912b0a01d7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_higher_corank_smith_jet_router/proof.md": "33c20f3661307ae9cf36627c06485f053a76a1059272959bf85fc9d5082308b0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_normalization_collision_dichotomy/statement.md": "2ea5532df0f3eaa72842b6efab15388818e98853bad965bf0ee6e535b5d64094",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_normalization_collision_dichotomy/proof.md": "dae58a9195d4bb1b016ad7ab1ffc97d62566f34359840f96aca876e2765b48a4",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_pade_bezout_contact_module_presentation/statement.md": "e7261fe256c2169ce8179ab4500cf466cb01a1a2a081ea2583319251d43e5a89",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_pade_bezout_contact_module_presentation/proof.md": "c167dadedccd6d568dd22912c973517e9d9b7a8fc25618b3679649ea44cebd16",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/statement.md": "0ed4037e158ad44fb63caa779fa818ee6670a0a296781b23c3e95aca8cd37d2c",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/proof.md": "39e3ff67bbbe44a5974d7e1eae4f773b2ac8ce14f352f78d5f05481cd293f352",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/statement.md": "ad57623a827323d9f034148ab7c849c62927b9360046d09937f14bccaf6727b4",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/proof.md": "3036eb06a32bfb62bdb8467862ec8a4dc157783c2600b4d4f9070c17eefb55f2",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_truncated_source_minimal_recurrence_separation_fence/statement.md": "a039644be780608b7ead355eebdb2aa09250e0b69102d9fde6fc1b4e32fe72b7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_truncated_source_minimal_recurrence_separation_fence/proof.md": "bc2f29e50f55892a0b0e8ee6b458659a85a3978f7356b5717e41c28b7c2f1e69",
 }
 
 
@@ -126,8 +128,9 @@ class Formula:
     center_overlap_equals_deficit: int = 1
     macroscopic_factor_d_a0: int = 61083979321
     macroscopic_factor_d_a1: int = 78536544842
-    nonreduced_corank_one_unresolved_jets: int = 0
-    nonreduced_nonzero_jet_min_corank: int = 2
+    separated_corank_one_unresolved_jets: int = 0
+    nonreduced_nonzero_jet_min_corank: int = 1
+    automatic_source_separation: int = 0
     factor_content_degree: int = 0
     factor_degree_slack: int = 0
     factor_profile_count: int = 3
@@ -137,8 +140,8 @@ class Formula:
     huge_even_d_a1: int = 157073089684
     nonreduced_first_nonzero_third_jet: int = 0
     nonreduced_noncollision_nonzero_jet: int = 0
-    collision_regular_corank: int = 2
-    collision_profile_count: int = 2
+    collision_max_regular_corank: int = 2
+    collision_profile_count: int = 3
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -286,20 +289,69 @@ def verify_nonreduced_collision(formula: Formula) -> int:
         formula.nonreduced_noncollision_nonzero_jet == 0,
         "noncollision nonzero jet returned",
     )
-    require(formula.collision_regular_corank == 2, "collision corank changed")
+    require(formula.collision_max_regular_corank == 2, "collision corank changed")
 
     profiles = set()
-    for order_a in range(1, 7):
+    for order_a in range(0, 7):
         first_exponent = min(2, order_a)
         profile = (first_exponent, 4 - first_exponent)
         profiles.add(profile)
-        require(profile == ((1, 3) if order_a == 1 else (2, 2)), "Smith router")
+        expected = (0, 4) if order_a == 0 else ((1, 3) if order_a == 1 else (2, 2))
+        require(profile == expected, "Smith router")
     require(
-        profiles == {(1, 3), (2, 2)},
+        profiles == {(0, 4), (1, 3), (2, 2)},
         "collision Smith profile set changed",
     )
     require(len(profiles) == formula.collision_profile_count, "profile count changed")
-    return 3 + 6
+    return 3 + 7
+
+
+def verify_truncated_source_separation_fence() -> int:
+    prime = 101
+    degree = 13
+    source = list(range(1, 20))
+    certificates = {
+        1: [
+            19, 6, 47, 37, 31, 62, 4, 97, 45, 45, 10, 55, 19, 38, 15,
+            77, 48, 13, 31, 15, 14, 72, 34, 58, 80, 84, 20, 3, 7, 98, 28,
+        ],
+        2: [
+            17, 65, 86, 42, 83, 10, 82, 77, 54, 30, 27, 1, 42, 83, 12,
+            52, 41, 80, 17, 68, 91, 8, 26, 26, 17, 54, 22, 81, 40, 80,
+        ],
+    }
+
+    checks = 0
+    for regular_corank, certificate in certificates.items():
+        compressed_size = degree - regular_corank
+        compressed = list(range(30, 30 + compressed_size))
+        points = source + compressed
+        require(len(certificate) == len(points) and all(certificate), "fence vector")
+        require(set(source).isdisjoint(compressed), "fence supports")
+        for power in range(2 * degree + 1):
+            require(
+                sum(
+                    weight * pow(point, power, prime)
+                    for weight, point in zip(certificate, points)
+                ) % prime == 0,
+                "fence moment transfer",
+            )
+            checks += 1
+        moments = [
+            sum(
+                weight * pow(point, power, prime)
+                for weight, point in zip(certificate[:len(source)], source)
+            ) % prime
+            for power in range(2 * degree + 1)
+        ]
+        hankel = [
+            [moments[i + j] for j in range(degree + 1)]
+            for i in range(degree + 1)
+        ]
+        require(finite_field_rank(hankel, prime) == compressed_size, "fence rank")
+        require(30 not in source and 30 in compressed, "fence root separation")
+        checks += 2
+    return checks
 
 
 def verify_source(root: Path) -> int:
@@ -379,13 +431,14 @@ def replay(formula: Formula) -> dict[str, int]:
         "d_A=1 macroscopic factor bound changed",
     )
     require(
-        formula.nonreduced_corank_one_unresolved_jets == 0,
-        "corank-one nonreduced jet count changed",
+        formula.separated_corank_one_unresolved_jets == 0,
+        "separated corank-one jet count changed",
     )
     require(
-        formula.nonreduced_nonzero_jet_min_corank == 2,
+        formula.nonreduced_nonzero_jet_min_corank == 1,
         "nonzero-jet corank router changed",
     )
+    require(formula.automatic_source_separation == 0, "source fence changed")
     require(formula.factor_content_degree == 0, "factor content changed")
     require(formula.factor_degree_slack == 0, "factor degree slack changed")
     require(formula.factor_profile_count == 3, "factor trichotomy changed")
@@ -401,8 +454,8 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.nonreduced_noncollision_nonzero_jet == 0,
         "noncollision nonzero-jet count changed",
     )
-    require(formula.collision_regular_corank == 2, "collision corank changed")
-    require(formula.collision_profile_count == 2, "collision profile count changed")
+    require(formula.collision_max_regular_corank == 2, "collision corank changed")
+    require(formula.collision_profile_count == 3, "collision profile count changed")
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -552,15 +605,16 @@ def replay(formula: Formula) -> dict[str, int]:
         "nonreduced two-jet ledger failed",
     )
     require(
-        4 - 4 == formula.nonreduced_corank_one_unresolved_jets,
-        "corank-one Schur order failed",
+        4 - 4 == formula.separated_corank_one_unresolved_jets,
+        "separated corank-one Schur order failed",
     )
     require(
-        1 + 1 == formula.nonreduced_nonzero_jet_min_corank,
-        "higher-corank router failed",
+        1 == formula.nonreduced_nonzero_jet_min_corank,
+        "collision corank floor failed",
     )
+    require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 56, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 58, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -569,6 +623,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_layer_a_fixture(formula)
     factor_partition_checks, factor_feasible_profiles = verify_factor_profiles(formula)
     checks += verify_nonreduced_collision(formula)
+    checks += verify_truncated_source_separation_fence()
 
     return {
         "checks": checks + 15 + factor_partition_checks,
@@ -589,12 +644,13 @@ def replay(formula: Formula) -> dict[str, int]:
         "center_overlap_equals_deficit": formula.center_overlap_equals_deficit,
         "macroscopic_factor_d_a0": formula.macroscopic_factor_d_a0,
         "macroscopic_factor_d_a1": formula.macroscopic_factor_d_a1,
-        "nonreduced_corank_one_unresolved_jets": (
-            formula.nonreduced_corank_one_unresolved_jets
+        "separated_corank_one_unresolved_jets": (
+            formula.separated_corank_one_unresolved_jets
         ),
         "nonreduced_nonzero_jet_min_corank": (
             formula.nonreduced_nonzero_jet_min_corank
         ),
+        "automatic_source_separation": formula.automatic_source_separation,
         "factor_content_degree": formula.factor_content_degree,
         "factor_degree_slack": formula.factor_degree_slack,
         "factor_profile_count": formula.factor_profile_count,
@@ -609,7 +665,7 @@ def replay(formula: Formula) -> dict[str, int]:
         "nonreduced_noncollision_nonzero_jet": (
             formula.nonreduced_noncollision_nonzero_jet
         ),
-        "collision_regular_corank": formula.collision_regular_corank,
+        "collision_max_regular_corank": formula.collision_max_regular_corank,
         "collision_profile_count": formula.collision_profile_count,
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

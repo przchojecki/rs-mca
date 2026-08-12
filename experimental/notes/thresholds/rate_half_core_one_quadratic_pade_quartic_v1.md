@@ -5,16 +5,16 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; every squarefree double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; the heavy row is nonzero, has exact correction orders, and has overlap degree exactly d_A; the squarefree shared third jet vanishes by symmetric corank-one control; an unshared nonreduced correction is exactly a two-Hasse-jet gate, normalization forces every nonzero jet onto an exact double locator-root collision, and the Pade contact algebra reduces that collision to one scalar selecting Smith type [1,3] or [2,2]; every irreducible paired-biform factor splits in both proved directions, the biform has constant content, and its factor degrees obey one of three exact profiles with no domain-degree slack; bare Layer-A row surplus plus saturation does not force rank
+direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; every squarefree double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; the heavy row is nonzero, has exact correction orders, and has overlap degree exactly d_A; the squarefree shared third jet vanishes by symmetric corank-one control; an unshared nonreduced correction is exactly a two-Hasse-jet gate, normalization forces every nonzero jet onto an exact double locator-root collision, and the Pade contact algebra reduces that collision to two coefficients selecting Smith type [4], [1,3], or [2,2]; automatic separation of the compressed recurrence from the original source is explicitly refuted; every irreducible paired-biform factor splits in both proved directions, the biform has constant content, and its factor degrees obey one of three exact profiles with no domain-degree slack; bare Layer-A row surplus plus saturation does not force rank
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one scalar-quadratic u=4 extremal boundary
 quantifier: every odd-characteristic field and profile satisfying the exact pair-floor interface and retained core-one quadratic packet
 projection_and_unit: projective parameter fibers and local intersection multiplicity
-claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on every squarefree double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, every passing remainder is nonzero and correction-coprime, and j=d_A in {0,1}; at a squarefree shared root the third jet vanishes and the local Smith type is [3]; an unshared nonreduced root either closes with Smith [4] or is an exact double locator-root collision of regular corank two, where the first y-coefficient jet of P_F modulo the local quadratic selects [1,3] or [2,2]; every paired-biform factor Q_j obeys n_j=ceil((3p-3+d_A)m_j/(3e)), with exactly one of three odd/huge-even profiles and constant content; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
+claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on every squarefree double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, every passing remainder is nonzero and correction-coprime, and j=d_A in {0,1}; at a squarefree shared root the third jet vanishes and the local Smith type is [3]; an unshared nonreduced root either closes with Smith [4] or is an exact double locator-root collision of regular corank at most two, where a(0) and [z]a for P_F=b+ay modulo the local quadratic select [4], [1,3], or [2,2]; every paired-biform factor Q_j obeys n_j=ceil((3p-3+d_A)m_j/(3e)), with exactly one of three odd/huge-even profiles and constant content; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
 status: PROVED
 impact: ROUTE_CUT
-falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, a residual parameter root outside the correction quartic, a nonzero jet on the regular-corank-one nonreduced locus, nonconstant biform content, factor-degree slack, or a feasible factor profile outside the printed trichotomy
+falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, a residual parameter root outside the correction quartic, a nonzero jet on the separated regular-corank-one nonreduced locus, a collision profile outside [4]/[1,3]/[2,2], nonconstant biform content, factor-degree slack, or a feasible factor profile outside the printed trichotomy
 replay: python3 experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py --check
 ---
 
@@ -41,8 +41,8 @@ ledger. This note closes both structural gaps. It is a profile-level route
 cut, not a `LineRay` payment or an adjacent-row theorem.
 
 The proof source is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@35ab25099d6c07c9e9e35ed0dc56875bce465c09`.
-The verifier records fifty-six statement/proof SHA-256 values and can check
+`AllenGrahamHart/rs-mca-prize-dag@57c64d1ce26d50f604d9c26bcafe2ab9911a60ac`.
+The verifier records fifty-eight statement/proof SHA-256 values and can check
 them against a local source checkout with `--source-root`.
 
 ## 2. Every off-line fiber, including positive excess
@@ -584,19 +584,18 @@ on the official row. The Layer-A low-degree-factor mechanism is therefore
 impossible here. The remaining object is a macroscopic two-directionally
 split factor, not an arbitrary high-degree component.
 
-## 18. The regular-corank-one nonreduced profile has no free jet
+## 18. The separated regular-corank-one profile has no free jet
 
 Retain the unshared nonreduced correction of Section 16 and let `N(z)` be
 the regular symmetric block after removing the permanent primitive kernel.
 If
 
 ```text
-corank N(0)=1,                                     (55)
+corank N(0)=1,       P_tau(x_*)!=0,                (55)
 ```
 
-then the full specialized Hankel kernel has dimension two. Its minimal
-contracted-source locator `P_tau` has degree `d-1`. All roots of `P_tau`
-lie in `U_0`, while `x_*` lies outside `U_0`, so
+then the full specialized Hankel kernel has dimension two and its compressed
+minimal recurrence `P_tau` has degree `d-1`. The explicit separation gives
 
 ```text
 Q(tau,X)=c(X-x_*)P_tau(X),
@@ -625,10 +624,9 @@ kappa_2=kappa_3=0.                                 (59)
 ```
 
 Thus the cubic quotient extends and the regular Smith type is `[4]` on the
-ordinary corank-one locus. Any unshared nonreduced survivor carrying a
-nonzero obstruction jet must have regular corank at least two. This is a
-router, not an exclusion of that higher-corank locus; an abstract symmetric
-Smith type `[2,2]` shows that determinant order alone does not remove it.
+separated corank-one locus. A corank-one nonzero-jet survivor must instead
+satisfy `P_tau(x_*)=0`. This separation does not follow from
+`x_* notin U_0`: Section 21 records an exact truncated-moment counterexample.
 
 ## 19. Constant content and the exact factor-degree trichotomy
 
@@ -717,7 +715,7 @@ In both `s=2` cases, `kappa_2!=0` and the specialized locator has `x_*`
 as a root of exact multiplicity two. Thus a first-nonzero third jet and
 every noncollision nonzero-jet profile are impossible.
 
-## 21. The exact collision is one Pade coefficient
+## 21. The exact collision is two Pade coefficients
 
 The determinant identity also has a local-module refinement. If
 
@@ -746,7 +744,7 @@ factor, and reduce `P_F` modulo it:
 
 ```text
 q=y^2+c_1y+c_0,       P_F=b+ay mod q,
-ord_z(b,c_0,c_1,a)=(2,6,>=3,>=1).                 (72)
+ord_z(b,c_0,c_1,a)=(2,6,>=3,>=0).                 (72)
 ```
 
 Multiplication by `b+ay` has the two-by-two presentation
@@ -756,18 +754,28 @@ Multiplication by `b+ay` has the two-by-two presentation
 [ a        b-a c_1].                               (73)
 ```
 
-Its determinant has exact order four. The regular corank is exactly two,
+Its determinant has exact order four. The regular corank is at most two,
 and its complete positive Smith profile is
 
 ```text
-[z]a!=0:       [1,3],
-[z]a=0:        [2,2].                              (74)
+a(0)!=0:                  corank one, [4],
+a(0)=0, [z]a!=0:          corank two, [1,3],
+a(0)=0, [z]a=0:           corank two, [2,2].       (74)
 ```
 
 Thus the abstract corank-three and corank-four collision profiles do not
-occur. The nonreduced Lane-T escape is one explicit first-order Pade
-coefficient, not an unrestricted higher-corank singularity. This local
-collision classification makes no characteristic-two claim.
+occur. The nonreduced Lane-T escape is two explicit Pade coefficients, not
+an unrestricted higher-corank singularity. This local collision
+classification makes no characteristic-two claim.
+
+The unit-`a` profile cannot be discarded by original-source separation.
+Over `F_101` at `(e,p,d,n_0)=(5,7,13,19)`, explicit all-nonzero weights on
+`U_0={1,...,19}` have the same first 27 moments as all-nonzero weights on
+disjoint compressed supports of sizes 12 and 11 containing `x_*=30`.
+The corresponding Hankel matrices have regular coranks one and two, and
+their degree-13 kernel polynomials have `x_*` as an exact double root. This
+refutes the truncated Vandermonde inference only; it is not a global
+split-biform counterexample.
 
 ## Nonclaims
 
@@ -782,7 +790,7 @@ The Layer-A fixture refutes only a
 generic count-and-saturation implication, not the structured endpoint
 configuration. Squarefree shared corrections are absorbed into the unified
 constant/linear remainder gate. An unshared nonreduced correction remains
-open only in the two profiles `[1,3]` and `[2,2]`, selected by the scalar
-in `(74)`; neither profile is excluded here. A shared nonreduced correction
+open only in the three profiles `[4]`, `[1,3]`, and `[2,2]`, selected by
+the two coefficients in `(74)`; none is excluded here. A shared nonreduced correction
 and the two-simple correction remain open. The exact factor
 trichotomy is a restriction, not an exclusion or a `LineRay` payment.

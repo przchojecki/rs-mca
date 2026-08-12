@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T compressed-source separation correction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** REFUTED PREMISE / PROVED REPAIR. No global Lane-T packet or
+  prize claim is refuted.
+- **What is being added:** An exact `F_101` truncated-moment counterexample
+  shows that a compressed minimal recurrence can contain `x_*` outside the
+  original fixed source, in regular coranks one and two. The corank-one jet
+  theorem is repaired to require explicit compressed-recurrence separation;
+  the contact-algebra theorem now retains `[4]`, `[1,3]`, and `[2,2]`.
+- **How it is useful:** Removes an invalid Vandermonde-support inference
+  before promotion into Lane T, while preserving the normalization and
+  Pade-Bezout results. The remaining nonreduced wall is exactly two local
+  coefficients selecting three profiles.
+- **What to do next:** Use global split-biform/source identities to exclude
+  the three contact-algebra profiles; do not infer compressed support from
+  the original source without an additional theorem.
+
 ### 2026-08-12 - Lane-T exact nonreduced collision contact algebra
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -41,16 +63,15 @@ Keep entries concise and link to the relevant files.
   v4 atom, or leaderboard value is claimed.
 - **What is being added:** Normalization valuations force every unshared
   nonreduced nonzero jet onto an exact double locator-root collision. A
-  Pade-Bezout contact-module presentation then proves regular corank exactly
-  two and reduces the collision to one scalar selecting Smith type `[1,3]`
-  or `[2,2]`.
-- **How it is useful:** Replaces the previous broad "regular corank at least
-  two" Lane-T escape by one explicit first-order coefficient of `P_F` modulo
-  the local quadratic factor. Corank-three, corank-four, noncollision, and
+  Pade-Bezout contact-module presentation then proves regular corank at most
+  two and reduces the collision to two coefficients selecting Smith type
+  `[4]`, `[1,3]`, or `[2,2]`.
+- **How it is useful:** Replaces a broad higher-corank Lane-T escape by two
+  explicit coefficients of `P_F` modulo the local quadratic factor.
+  Corank-three, corank-four, noncollision, and
   first-nonzero-third-jet branches are removed.
-- **What to do next:** Compute or exclude the remaining coefficient `[z]a`
-  from the global contracted-source or split-biform identities, and treat
-  the two residual Smith profiles separately if it does not vanish.
+- **What to do next:** Compute or exclude `a(0),[z]a` from the global
+  contracted-source or split-biform identities, treating all three profiles.
 
 ### 2026-08-12 - Lane-T nonreduced router and exact factor profiles
 
@@ -62,14 +83,15 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / ROUTE CUT. No `LineRay` payment, adjacent endpoint,
   v4 atom, or leaderboard value is claimed.
 - **What is being added:** On the unshared nonreduced correction locus,
-  regular specialized corank one forces both obstruction jets to vanish;
-  any nonzero-jet survivor is routed to regular corank at least two. The
+  separated regular specialized corank one forces both obstruction jets to
+  vanish; a nonzero-jet survivor routes to compressed-recurrence collision
+  or regular corank at least two. The
   extremal paired split biform also has constant content, every factor lies
   exactly on its incidence degree envelope, and its factor degrees have one
   of three exhaustive odd/huge-even profiles with no residual degree slack.
 - **How it is useful:** Replaces two broad Lane-T escape clauses by a named
   higher-corank local locus and three exact global factor-degree profiles.
-  The verifier now pins 56 proof-source files, exhausts 25,504 small degree
+  The verifier now pins 58 proof-source files, exhausts 25,504 small degree
   partitions, and includes every new constant in its hostile mutation test.
 - **What to do next:** Attack the regular-corank-at-least-two nonreduced
   locus through its two-dimensional kernel geometry. For the global biform,
