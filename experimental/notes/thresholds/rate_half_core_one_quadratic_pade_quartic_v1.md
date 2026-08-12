@@ -1634,6 +1634,55 @@ distinct official subgroup points. This is a component floor, not a torus
 conclusion: the bidegree bound in `(151)` is macroscopic. A closure still
 needs a component-subdegree bound or a direct source/norm coupling.
 
+## 37. Every low-degree shape-A component is excluded
+
+The pure fibers sharpen the preceding aggregate count componentwise. Let
+`W` be a geometric off-diagonal fiber-product component of subdegree `h`
+over the shape-A curve, let `Z` be its image in the row-pair plane, and let
+`q` be the generic degree of `W -> Z`. Each pure fiber contributes the full
+`nh` reduced points to `W`. These points are base-field rational and etale,
+so Frobenius fixes the unique component through each point. Thus `W` and
+`Z` are base-field defined.
+
+Both row-coordinate functions on `W` have degree `mh`. Consequently `Z`
+has bidegree `(D,D)` with
+
+```text
+D=mh/q,                                               (154)
+```
+
+and the finite image map gives the componentwise subgroup floor
+
+```text
+#Z(H^2)>=ceil((e+7)nh/q)=ceil((e+7)nD/m).            (155)
+```
+
+A translated-subtorus image would have primitive exponents of equal
+absolute value, hence would be a graph `Y=cX` or `Y=c/X` with `c in H`.
+It would induce a deck automorphism of the degree-`n=2^38-3` cover. A
+nontrivial scaling has dyadic order and a reciprocal graph is an
+involution, while every deck-automorphism order divides the odd cover
+degree. The identity scaling is the deleted diagonal. Thus every image is
+non-toral.
+
+For `D` below the characteristic, Corvaja--Zannier gives
+
+```text
+#Z(H^2)<=max{3(4N^2D^4)^(1/3), 12N^2D^2/P_char}.    (156)
+```
+
+Comparing `(155)` and `(156)` at the official prime-field row yields
+
+```text
+D>=ceil((e+7)^3 n^3/(108N^2m^3))=39768216,
+#Z(H^2)>=10931403977394458172,
+q<4608h.                                             (157)
+```
+
+This closes the low-degree component route, not shape A. Any survivor is a
+high-degree non-toral component and must be attacked through the retained
+source, scalar-weld, or excess-norm identities.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1670,3 +1719,6 @@ quotients; Section 34 excludes both simultaneously. The surviving shape A
 is not excluded. Section 35 concentrates its norm but does not identify the
 residual polynomial `T`. Section 36 forces a large official point set on one
 shape-A component, but does not make that component low-degree or toral.
+Section 37 excludes every low-degree component in the prime-field branch,
+but leaves high-degree non-toral components and makes no extension-field
+claim.

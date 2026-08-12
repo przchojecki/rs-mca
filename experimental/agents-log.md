@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T shape-A componentwise degree floor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED prime-field component-degree floor; no Lane-T closure
+  claimed.
+- **What is being added:** Every geometric off-diagonal shape-A component is
+  base-field defined and non-toral. The exact subgroup-curve comparison
+  forces image bidegree at least `39768216`, at least
+  `10931403977394458172` official subgroup points, and image-map
+  multiplicity less than `4608` times its subdegree.
+- **How it is useful:** Closes the low-degree torus route and proves that any
+  remaining shape-A obstruction is genuinely macroscopic.
+- **What to do next:** Use the source/scalar-weld or concentrated excess norm
+  to constrain the surviving high-degree components.
+
 ### 2026-08-12 - Lane-T shape-A pure-split component floor
 
 - **Agent/model:** AllenGrahamHart / Codex.
