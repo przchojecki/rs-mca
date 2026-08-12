@@ -938,14 +938,15 @@ gives
 g_*(t) divides G(t,x_*).                            (91)
 ```
 
-The row has parameter degree at most `e-2`, so the quotient in `(91)` has
-degree at most four. Section 23 gives exact order two at the unsupported
-correction, while `g_*(tau)!=0` and
+The split biform is bihomogeneous of parameter degree `e-2`. Its nonzero
+specialization at the projective row `x_*` therefore has exact degree `e-2`,
+so the quotient in `(91)` has exact degree four. Section 23 gives exact order
+two at the unsupported correction, while `g_*(tau)!=0` and
 `S_B=c_S(t-tau)^2`. Consequently
 
 ```text
 G(t,x_*)=g_*(t)S_B(t)T_2(t),
-T_2!=0,       deg T_2<=2,       T_2(tau)!=0.       (92)
+T_2!=0,       deg T_2=2,        T_2(tau)!=0.       (92)
 ```
 
 Equivalently, for the value weights and unique weld vector in Section 23,
@@ -1010,6 +1011,73 @@ a nonzero geometric correction value. This is weaker than the squarefree
 `D_1`-divisible cubic vector: only `g_*S_B`, not `g_*S_B^2`, is asserted to
 divide the moments.
 
+## 26. Four exceptional roots compress the factor profiles
+
+Retain the exact factorization and degree notation
+
+```text
+G(t,X)=c product_j Q_j(t,X),       bideg Q_j=(m_j,n_j),
+M=e-2,       R=3p-3+d_A,       T=3e,
+q=9-2d_A.                                         (100)
+```
+
+For a factor `Q_j`, let `s_j` be the number of distinct roots of
+`Q_j(t,x_*)` in the `T` supported slopes, and put
+
+```text
+sigma_j=Tn_j-Rm_j,       u_j=m_j-s_j.             (101)
+```
+
+The classified grid already contains exactly `Rm_j` distinct zeros of
+`Q_j`. Each of the `s_j` roots adds a zero in the same parameter fiber on
+the new row `x_*`, while that fiber has at most `n_j` row roots. Hence
+
+```text
+s_j<=sigma_j,       u_j>=m_j-sigma_j.             (102)
+```
+
+Every factor specialization is a nonzero binary form of exact degree
+`m_j`. Moreover, the `e-6` distinct roots of `g_*` in `(92)` are all
+supported. Summing over factors gives the global four-root budget
+
+```text
+sum_j u_j<=4.                                      (103)
+```
+
+For the large-odd and huge-even classes in the exact factor trichotomy,
+respectively, `chi_j=2n_j-3m_j` is `-1` and `-2`. Since
+
+```text
+2sigma_j=3e chi_j+qm_j,                            (104)
+```
+
+equations `(102)--(103)` sharpen their thresholds to
+
+```text
+large odd:       (q-2)m_j>=3e-8,
+huge even:       (q-2)m_j>=6e-8.                  (105)
+```
+
+For `d_A=1`, two large-odd factors plus a small odd factor already have
+total degree greater than `e-2`; the same is true of one huge-even factor
+plus a small odd factor. Profiles II and III are therefore impossible.
+Only profile I remains: one large-odd factor, no small odd or huge even
+factor, and any number of ordinary-even companions.
+
+On the official row `e=183251937963`, the parity-compatible thresholds are
+
+```text
+d_A=0: large odd >=78536544841,
+       huge even >=157073089682;
+
+d_A=1: large odd >=109951162777,
+       huge even >=219902325554>e-2.               (106)
+```
+
+This compression does not exclude the remaining `d_A=1` profile I or the
+three `d_A=0` profiles. It does show that every surviving factorization is
+within four unsupported roots of saturating all factor-column capacities.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1026,4 +1094,6 @@ constant/linear remainder gate. An unshared nonreduced correction remains
 open only in the three profiles `[4]`, `[1,3]`, and `[2,2]`, selected by
 the two global split-biform jets in `(83)--(84)`; none is excluded here. A
 shared nonreduced correction and the two-simple correction remain open. The exact factor
-trichotomy is a restriction, not an exclusion or a `LineRay` payment.
+trichotomy is a restriction, not an exclusion or a `LineRay` payment. The
+four-root budget excludes two `d_A=1` profiles but does not exclude profile I
+or prove the final scalar-weld/quintic incompatibility.

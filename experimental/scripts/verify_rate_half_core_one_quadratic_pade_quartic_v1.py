@@ -11,7 +11,7 @@ from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "c2c32ef646e01aa7e57cd8032bae46c06e184ecf"
+SOURCE_COMMIT = "dba200751aab05717673866687ce470d073ae65f"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -75,10 +75,12 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_pade_split_jet_dictionary/proof.md": "901e98d33413f255a7dab03cf6ae0f7b6644da86da6503b7e5b0e8322e751cf6",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/statement.md": "ee34bff50a0717589009feb0e579a6db86e3cf9f3289b40db29de02e93d4d53b",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/proof.md": "ebfa59faeba87a8ab34c66cdd3fe68e09be9f8cfecbbf7083b0640285c74d5f6",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/statement.md": "92b3584357a169b79f275ab9cfdb28ffb9a7983fff6e9de5122af655dcaa10e3",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/proof.md": "ffb4ae334dadc118570c24ce03ca984a53d0702b38c10908cd246222babb8682",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/statement.md": "a59b64d49dbf086faab2a8cb68a5a7d239284b976f636598461c30d63dee5fbb",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/proof.md": "e7ece4d442da1f6f19d0340851591205b89b0b29b2956bfa7dc96ac4b3193828",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/statement.md": "67d9b8ad3b09bc36e2463b8cfde33e828a4ca201e2c4ee0b58f3b588f351af57",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/proof.md": "8af392216500f0683b8f1f08629ef9a229498af80d2a09813283a30b1ab2af05",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/statement.md": "6b7f6b77c3082eb4d2c9dbfe4447597b787f390436201c59c243391eb5e5a6cd",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/proof.md": "e47461eeb0b9134f8324d54eb2d9c831117da7f95c44f361f2a0c510127d00f5",
 }
 
 
@@ -155,6 +157,8 @@ class Formula:
     collision_barycentric_functional_count: int = 4
     collision_heavy_row_residual_degree: int = 2
     collision_divided_row_quotient_degree: int = 5
+    collision_unsupported_root_budget: int = 4
+    collision_d_a1_factor_profile_count: int = 1
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -580,6 +584,76 @@ def verify_nonreduced_divided_row_quotient(formula: Formula) -> int:
     return checks
 
 
+def verify_collision_factor_unsupported_root_budget(formula: Formula) -> int:
+    """Replay the sharpened thresholds and d_A=1 profile compression."""
+    checks = 0
+    budget_twice = 2 * formula.collision_unsupported_root_budget
+    for e in range(7, 80, 2):
+        total = e - 2
+        for d_a, q in ((0, 9), (1, 7)):
+            large = least_with_parity(3 * e - budget_twice, q - 2, 1)
+            huge = least_with_parity(6 * e - budget_twice, q - 2, 0)
+            require((q - 2) * large >= 3 * e - budget_twice, "budget large")
+            require(
+                (q - 2) * (large - 2) < 3 * e - budget_twice,
+                "budget large predecessor",
+            )
+            require((q - 2) * huge >= 6 * e - budget_twice, "budget huge")
+            require(
+                (q - 2) * (huge - 2) < 6 * e - budget_twice,
+                "budget huge predecessor",
+            )
+            checks += 4
+            if d_a == 1:
+                require(2 * large + 1 > total, "profile II survived")
+                require(huge + 1 > total, "profile III survived")
+                checks += 2
+
+    official = 183251937963
+    require(
+        least_with_parity(3 * official - budget_twice, 7, 1) == 78536544841,
+        "official d_A=0 large",
+    )
+    require(
+        least_with_parity(6 * official - budget_twice, 7, 0) == 157073089682,
+        "official d_A=0 huge",
+    )
+    require(
+        least_with_parity(3 * official - budget_twice, 5, 1) == 109951162777,
+        "official d_A=1 large",
+    )
+    require(
+        least_with_parity(6 * official - budget_twice, 5, 0) == 219902325554,
+        "official d_A=1 huge",
+    )
+    checks += 4
+
+    for q, chi, coefficient in (
+        (9, -1, 3),
+        (9, -2, 6),
+        (7, -1, 3),
+        (7, -2, 6),
+    ):
+        e = 101
+        threshold = least_with_parity(
+            coefficient * e - budget_twice,
+            q - 2,
+            1 if chi == -1 else 0,
+        )
+        sigma_twice = 3 * e * chi + q * threshold
+        require(
+            sigma_twice >= 2 * threshold - budget_twice,
+            "factor slack inequality",
+        )
+        checks += 1
+
+    require(
+        formula.collision_d_a1_factor_profile_count == 1,
+        "d_A=1 factor-profile count changed",
+    )
+    return checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -743,6 +817,14 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.collision_divided_row_quotient_degree == 5,
         "collision divided-row quotient changed",
     )
+    require(
+        formula.collision_unsupported_root_budget == 4,
+        "collision unsupported-root budget changed",
+    )
+    require(
+        formula.collision_d_a1_factor_profile_count == 1,
+        "collision d_A=1 factor-profile count changed",
+    )
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -901,7 +983,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 66, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 68, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -914,6 +996,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_barycentric_gate(formula)
     checks += verify_nonreduced_heavy_row_residual(formula)
     checks += verify_nonreduced_divided_row_quotient(formula)
+    checks += verify_collision_factor_unsupported_root_budget(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -967,6 +1050,12 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_divided_row_quotient_degree": (
             formula.collision_divided_row_quotient_degree
+        ),
+        "collision_unsupported_root_budget": (
+            formula.collision_unsupported_root_budget
+        ),
+        "collision_d_a1_factor_profile_count": (
+            formula.collision_d_a1_factor_profile_count
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

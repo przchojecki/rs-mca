@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T collision factor four-root budget
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** The heavy row has only four roots beyond the
+  squarefree supported factor. Combining this with the exact factor grid
+  yields `sum_j(m_j-s_j)<=4`, sharpened macroscopic-factor thresholds, and
+  excludes factor profiles II and III when `d_A=1`.
+- **How it is useful:** It leaves the `d_A=1` collision with one large-odd
+  factor and ordinary-even companions, sharply reducing the remaining
+  scalar-weld/quintic incompatibility problem.
+- **What to do next:** Exclude profile I by coupling its near-saturated
+  supported fibers to the bounded quintic divided-row vector.
+
 ### 2026-08-12 - Lane-T nonreduced divided-row quintic
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -58,7 +76,8 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** Every supported padded-heavy slope divides
   `G(t,x_*)`; after removing `g_*`, the exact double correction removes two
   of the remaining four degrees. Hence
-  `G(t,x_*)=g_*S_BT_2` with `deg T_2<=2` and `T_2(tau)!=0`.
+  `G(t,x_*)=g_*S_BT_2` with exact projective degree `deg T_2=2` and
+  `T_2(tau)!=0`.
 - **How it is useful:** Replaces the nonreduced outside row by a
   degree-`e-4` polynomial-remainder matrix on the unique weld vector and
   only three quotient coefficients.
