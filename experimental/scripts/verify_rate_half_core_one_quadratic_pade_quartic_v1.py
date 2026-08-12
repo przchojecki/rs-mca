@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "57c64d1ce26d50f604d9c26bcafe2ab9911a60ac"
+SOURCE_COMMIT = "1b6e12fd0ef2283c57dbf4b01281459b1a860754"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -67,9 +67,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_pade_bezout_contact_module_presentation/statement.md": "e7261fe256c2169ce8179ab4500cf466cb01a1a2a081ea2583319251d43e5a89",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_pade_bezout_contact_module_presentation/proof.md": "c167dadedccd6d568dd22912c973517e9d9b7a8fc25618b3679649ea44cebd16",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/statement.md": "ad57623a827323d9f034148ab7c849c62927b9360046d09937f14bccaf6727b4",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/proof.md": "3036eb06a32bfb62bdb8467862ec8a4dc157783c2600b4d4f9070c17eefb55f2",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/proof.md": "c42c27a6045be6cb1d6c0c325762b63355c6fab38d29d6d6ab627a75009e9b7a",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_truncated_source_minimal_recurrence_separation_fence/statement.md": "a039644be780608b7ead355eebdb2aa09250e0b69102d9fde6fc1b4e32fe72b7",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_truncated_source_minimal_recurrence_separation_fence/proof.md": "bc2f29e50f55892a0b0e8ee6b458659a85a3978f7356b5717e41c28b7c2f1e69",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_pade_split_jet_dictionary/statement.md": "5285637fe42f691a100848c6b03f121c3e436902caee8dcb06f3c8bc33426f7f",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_pade_split_jet_dictionary/proof.md": "901e98d33413f255a7dab03cf6ae0f7b6644da86da6503b7e5b0e8322e751cf6",
 }
 
 
@@ -142,6 +144,7 @@ class Formula:
     nonreduced_noncollision_nonzero_jet: int = 0
     collision_max_regular_corank: int = 2
     collision_profile_count: int = 3
+    collision_global_jet_count: int = 2
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -306,6 +309,66 @@ def verify_nonreduced_collision(formula: Formula) -> int:
     return 3 + 7
 
 
+def verify_collision_split_jet_dictionary(formula: Formula) -> int:
+    """Replay the low-order moment propagation and profile dictionary."""
+    prime = 101
+    x_star = 17
+    checks = 0
+
+    def add(left: list[int], right: list[int]) -> list[int]:
+        size = max(len(left), len(right))
+        return [
+            ((left[i] if i < len(left) else 0)
+             + (right[i] if i < len(right) else 0)) % prime
+            for i in range(size)
+        ]
+
+    def multiply(left: list[int], right: list[int]) -> list[int]:
+        out = [0] * (len(left) + len(right) - 1)
+        for i, x in enumerate(left):
+            for j, y in enumerate(right):
+                out[i + j] = (out[i + j] + x * y) % prime
+        return out
+
+    for lambda_0 in (0, 9):
+        for lambda_1 in (0, 13):
+            a = [lambda_0, lambda_1, 22, 5]
+            c_1 = [0, 0, 0, 7]
+            c_0 = [0, 0, 0, 0, 0, 0, 11]
+            derivative = add(a, add(multiply(c_1, [3, 8]), multiply(c_0, [4])))
+            require(derivative[:3] == a[:3], "quadratic reduction changed jets")
+            checks += 1
+
+            moments = [[lambda_0, lambda_1, 0, 0]]
+            for i in range(5):
+                source = [0, 0, 3 * (i + 1)]
+                q_x_h = [0, 0, 0, 5 * (i + 2)]
+                following = add(source, [(-value) % prime for value in q_x_h])
+                following = add(
+                    following,
+                    [(x_star * value) % prime for value in moments[-1]],
+                )
+                moments.append(following)
+                require(
+                    following[0] == pow(x_star, i + 1, prime) * lambda_0 % prime,
+                    "zeroth split jet did not propagate",
+                )
+                require(
+                    following[1] == pow(x_star, i + 1, prime) * lambda_1 % prime,
+                    "first split jet did not propagate",
+                )
+                checks += 2
+
+            profile = (4,)
+            if lambda_0 == 0:
+                profile = (1, 3) if lambda_1 else (2, 2)
+            require(profile in {(4,), (1, 3), (2, 2)}, "split-jet profile")
+            checks += 1
+
+    require(formula.collision_global_jet_count == 2, "global jet count changed")
+    return checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -456,6 +519,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.collision_max_regular_corank == 2, "collision corank changed")
     require(formula.collision_profile_count == 3, "collision profile count changed")
+    require(formula.collision_global_jet_count == 2, "collision jet count changed")
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -614,7 +678,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 58, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 60, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -623,6 +687,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_layer_a_fixture(formula)
     factor_partition_checks, factor_feasible_profiles = verify_factor_profiles(formula)
     checks += verify_nonreduced_collision(formula)
+    checks += verify_collision_split_jet_dictionary(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -667,6 +732,7 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_max_regular_corank": formula.collision_max_regular_corank,
         "collision_profile_count": formula.collision_profile_count,
+        "collision_global_jet_count": formula.collision_global_jet_count,
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),

@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T collision split-jet dictionary
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** The two coefficients routing an unshared
+  nonreduced exact collision are identified with the zeroth and first
+  parameter jets of the global split-biform derivative `G_X(t,x_*)`.
+  The audit also corrects `F_0=b` to the exact identity
+  `F_0=b+c_0R(z,0)`, without changing any valuation or Smith profile.
+- **How it is useful:** Replaces three anonymous local profiles by three
+  explicit global conditions on `G_X`: nonzero, simple parameter zero, or
+  double parameter zero. These are concrete targets for the retained
+  two-directional split-fiber geometry.
+- **What to do next:** Use the factor-degree trichotomy and clean split
+  fibers to rule out the three `G_X` jet behaviors; do not infer that any
+  line is empty from local contact length alone.
+
 ### 2026-08-12 - Lane-T compressed-source separation correction
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -747,6 +747,16 @@ q=y^2+c_1y+c_0,       P_F=b+ay mod q,
 ord_z(b,c_0,c_1,a)=(2,6,>=3,>=0).                 (72)
 ```
 
+More precisely, if `P_F=b+ay+qR`, then
+
+```text
+F_0=P_F(t,x_*)=b+c_0R(z,0).
+```
+
+Thus `F_0` is not literally the remainder coefficient `b`; their
+difference starts in order six, so `ord_z F_0=2` still gives
+`ord_z b=2`.
+
 Multiplication by `b+ay` has the two-by-two presentation
 
 ```text
@@ -777,6 +787,86 @@ their degree-13 kernel polynomials have `x_*` as an exact double root. This
 refutes the truncated Vandermonde inference only; it is not a global
 split-biform counterexample.
 
+## 22. The collision coefficients are global split-biform jets
+
+The two coefficients in `(74)` have an exact global interpretation. Define
+
+```text
+U(t,X)=[Q(t,X)-Q(t,x_*)]/(X-x_*),
+W(t,X)=[U(t,X)-U(t,x_*)]/(X-x_*).                 (75)
+```
+
+At an exact double collision,
+
+```text
+W_tau=Q(tau,X)/(X-x_*)^2,       W_tau(x_*)!=0.    (76)
+```
+
+Put
+
+```text
+A(t)=Phi_t(W(t,X))=P_(F,X)(t,x_*),
+E_i(t)=Phi_t(X^iW(t,X)),
+lambda_0=a(0),       lambda_1=[z]a.               (77)
+```
+
+From `P_F=b+ay+qR`, `ord c_1>=3`, and `ord c_0=6`,
+
+```text
+A=a mod z^3.                                      (78)
+```
+
+The identity
+
+```text
+Phi_t(X^iU)=Q_X(t,x_*)h_i+E_(i+1)-x_*E_i          (79)
+```
+
+together with the forced order two on the left and
+`ord_z Q_X(t,x_*)>=3` propagates the first two coefficients:
+
+```text
+[z^s]E_i=x_*^i lambda_s       (s=0,1).            (80)
+```
+
+If `lambda_0=0`, then `W_tau` lies in the specialized Hankel kernel and
+the differentiated self-pairing is
+
+```text
+[z]Phi_t(W(t,X)^2)=lambda_1W_tau(x_*).             (81)
+```
+
+Differentiate the exact Pade syzygy `(11)` in `X` and evaluate at `x_*`:
+
+```text
+Q_X B+Q B_X-Lambda G_X=L'F_0+LA.                 (82)
+```
+
+The heavy point lies outside `U_0`, and an unshared correction cannot be
+one of the three assigned centers: at such a center it would be a padded
+locator root and hence a root of `g_*`. Therefore
+`Lambda(tau)L(x_*)!=0`. Taking the constant and first parameter
+coefficients in `(82)` gives
+
+```text
+lambda_0=-Lambda(tau)G_X(tau,x_*)/L(x_*),
+
+lambda_0=0
+  => lambda_1=-Lambda(tau)[z]G_X(t,x_*)/L(x_*).   (83)
+```
+
+Consequently the complete local contact-algebra router is the following
+global split-biform jet dictionary:
+
+```text
+G_X(tau,x_*)!=0:                         [4];
+G_X(tau,x_*)=0, [z]G_X(t,x_*)!=0:        [1,3];
+G_X(tau,x_*)=[z]G_X(t,x_*)=0:            [2,2].   (84)
+```
+
+This identifies the exact remaining targets. It does not prove that any
+line of `(84)` is empty.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -791,6 +881,6 @@ generic count-and-saturation implication, not the structured endpoint
 configuration. Squarefree shared corrections are absorbed into the unified
 constant/linear remainder gate. An unshared nonreduced correction remains
 open only in the three profiles `[4]`, `[1,3]`, and `[2,2]`, selected by
-the two coefficients in `(74)`; none is excluded here. A shared nonreduced correction
-and the two-simple correction remain open. The exact factor
+the two global split-biform jets in `(83)--(84)`; none is excluded here. A
+shared nonreduced correction and the two-simple correction remain open. The exact factor
 trichotomy is a restriction, not an exclusion or a `LineRay` payment.
