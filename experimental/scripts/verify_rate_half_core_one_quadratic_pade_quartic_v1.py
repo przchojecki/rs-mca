@@ -11,7 +11,7 @@ from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "4313462fd2ae36fac631e7687098cf78e102b3f5"
+SOURCE_COMMIT = "466cd4d95aac9a4e96fe62d03adada45bd932f4f"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -94,7 +94,9 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quadratic_companion_torus_gcd_exclusion/statement.md": "cef1aaf5b7689cdb71387d9d4401b5d0a4143bdc74bba0e2c2b4b3c3d4e111a7",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quadratic_companion_torus_gcd_exclusion/proof.md": "16ead95c5b04937a930a53d79a7b20a9dee2d6ef36d1b92968f0eaa6fdbb7876",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quartic_companion_toral_deck_involution_router/statement.md": "9fb9ffbdd5ceeed4b9c794c5854fa9628bcb5e354a5a359c11fa60b8c742d25d",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quartic_companion_toral_deck_involution_router/proof.md": "4abf9e936f360786bcb1ec4bfc41bdcba40b84482dc52b4316a7639ae8c60d6b",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quartic_companion_toral_deck_involution_router/proof.md": "aa867d25e5dd9ae63cb30db5e23239661c84e7933c324d17c5937d5bf377f43f",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_companion_complete_shape_exclusion/statement.md": "c1771c79e77a3c9ac45639dcb063575c6dfa523efe3e7ba96cbb3b96599868e2",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_companion_complete_shape_exclusion/proof.md": "d06c610ab90e5b8ce3560e1fc6cd57dc9dd60d2beaec6675dac8c306377e1342",
 }
 
 
@@ -200,6 +202,10 @@ class Formula:
     collision_q4_full_fiber_floor: int = 549755813875
     collision_q4_pair_floor: int = 4123168604063
     collision_q4_quotient_row_degree: int = 3
+    collision_q4_residual_pair_floor: int = 3298534883250
+    collision_q4_residual_component_cap: int = 4
+    collision_q4_excluded_shape_count: int = 1
+    collision_final_shape_count: int = 1
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1310,6 +1316,59 @@ def verify_collision_quartic_toral_deck_router(formula: Formula) -> int:
     return 10
 
 
+def verify_collision_ordinary_companion_complete_exclusion(formula: Formula) -> int:
+    """Replay graph deletion, the second-torus margin, and the deck-group gate."""
+    N = 2**41
+    e = (2**39 + 1) // 3
+    full_fibers = 3 * e - 14
+    residual_pairs_per_fiber = 30 - 6
+    pair_floor = residual_pairs_per_fiber * full_fibers // 4
+
+    require(residual_pairs_per_fiber == 24, "Q4 known graph deletion")
+    require(
+        pair_floor == formula.collision_q4_residual_pair_floor,
+        "Q4 residual pair floor",
+    )
+    require(
+        5 - 1 == formula.collision_q4_residual_component_cap,
+        "Q4 residual component cap",
+    )
+    require(
+        64 * 17280000 * N**2 < pair_floor**3,
+        "Q4 four-component first term",
+    )
+    require(
+        4 * 4800 * N**2 < 2**167 * pair_floor,
+        "Q4 four-component characteristic term",
+    )
+    require(gcd(6, N) == 2, "Q4 second scaling order")
+    require(6 % 4 != 0, "degree-six deck group contains no V4")
+    require(
+        formula.collision_q4_excluded_shape_count == 1,
+        "Q4 excluded shape count",
+    )
+    require(
+        formula.collision_final_shape_count == 1,
+        "collision final shape count",
+    )
+
+    for prime, x, k in ((101, 7, 9), (127, 11, 25)):
+        reciprocal = lambda a, value: a * pow(value, -1, prime) % prime
+        antipodal = lambda value: -value % prime
+        require(
+            antipodal(reciprocal(k, x)) == reciprocal(k, antipodal(x)),
+            "antipodal/reciprocal V4 relation",
+        )
+        c = -k % prime
+        require(
+            reciprocal(c, reciprocal(k, x))
+            == reciprocal(k, reciprocal(c, x))
+            == antipodal(x),
+            "reciprocal/reciprocal V4 relation",
+        )
+    return 11
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1660,7 +1719,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 82, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 84, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1681,6 +1740,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_quadratic_subgroup_router(formula)
     checks += verify_collision_quadratic_torus_gcd_exclusion(formula)
     checks += verify_collision_quartic_toral_deck_router(formula)
+    checks += verify_collision_ordinary_companion_complete_exclusion(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -1802,6 +1862,16 @@ def replay(formula: Formula) -> dict[str, int]:
         "collision_q4_quotient_row_degree": (
             formula.collision_q4_quotient_row_degree
         ),
+        "collision_q4_residual_pair_floor": (
+            formula.collision_q4_residual_pair_floor
+        ),
+        "collision_q4_residual_component_cap": (
+            formula.collision_q4_residual_component_cap
+        ),
+        "collision_q4_excluded_shape_count": (
+            formula.collision_q4_excluded_shape_count
+        ),
+        "collision_final_shape_count": formula.collision_final_shape_count,
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),

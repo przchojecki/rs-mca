@@ -1477,6 +1477,65 @@ up to scalar normalization, with `R` of bidegree `(4,3)`. This is a proved
 router, not a shape-C exclusion. The two involution quotient arms and shape
 A are the remaining collision frontier.
 
+## 34. A second torus excludes shape C
+
+Return to the degree-six companion cover before passing to either quotient.
+On every one of the `F_6` full fibers from `(136)`, the known deck
+involution acts freely and accounts for exactly six of the thirty ordered
+off-diagonal pairs. The other twenty-four pairs lie on the at most four
+off-diagonal components remaining after its graph is deleted. Since a
+fixed row pair shares at most four parameter roots, those components contain
+at least
+
+```text
+P_res=24F_6/4=6F_6=3298534883250                  (141)
+```
+
+distinct points of `H^2`.
+
+If every residual component carrying one of these points were non-toral,
+Corvaja--Zannier with the same bidegree and Euler-characteristic bounds as
+Section 33 would make their union too small. The exact four-component
+margins are
+
+```text
+64*17280000*N^2 < P_res^3,
+4*4800*N^2 < P P_res.                              (142)
+```
+
+Thus a residual component carrying an actual subgroup point is another
+translated subtorus. If its two subdegrees over the companion curve are
+`h_1,h_2`, the common parameter map gives `6h_1=6h_2`; write the common
+value as `h`. The same coordinate-degree comparison as `(139)` then gives
+primitive exponents of absolute value one and `h=1`. The component is the
+graph of a second deck transformation
+
+```text
+eta(X)=cX       or       eta(X)=c/X,       c in H. (143)
+```
+
+It is distinct from the identity and from the first involution because the
+diagonal and first graph were deleted.
+
+The deck group order divides the separable cover degree six. A scaling in
+the dyadic group `H` whose order divides that deck group is either the
+identity or `X -> -X`. Comparing `(143)` with either first involution
+`X -> -X` or `X -> k/X`, two distinct survivors commute and generate a
+Klein four subgroup. This is impossible because four does not divide six.
+Hence shape C is empty.
+
+Section 32 already excludes the quadratic companions in B and D. The exact
+four-shape ledger therefore leaves only
+
+```text
+shape A: (m,n;r,b,t;ell)
+       =(e-2,(3e-7)/2;e-7,2,3;4),                 (144)
+```
+
+with no ordinary companion. This closes the companion alternatives, not
+the Lane-T collision packet: the unique large irreducible shape-A factor
+remains to be excluded.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1508,5 +1567,6 @@ does not exclude shape B or D.
 The subgroup-coincidence router in Section 31 does not by itself classify
 the coordinate-corner locus; the Corvaja--Zannier argument in Section 32
 does, and excludes B/D but not A/C.
-The quartic toral router reduces shape C to antipodal or reciprocal cubic
-quotients but does not exclude either quotient.
+The quartic toral router of Section 33 alone only reduces shape C to two
+quotients; Section 34 excludes both simultaneously. The surviving shape A
+is not excluded.

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T ordinary-companion complete exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exclusion of shapes B/C/D; no Lane-T closure claimed.
+- **What is being added:** Removing the first shape-C involution graph leaves
+  over three trillion subgroup pairs on at most four residual components.
+  Corvaja--Zannier forces a second toral deck graph, but the two
+  subgroup-compatible involutions generate an impossible Klein four
+  subgroup inside a degree-six deck group.
+- **How it is useful:** Completes the finite Lane-T ordinary-companion
+  program. The factorwise collision packet now has only shape A, a single
+  large irreducible odd factor with no low-degree companion.
+- **What to do next:** Attack shape A through its exact heavy-row record and
+  retained source/scalar-weld equations; no further companion case split is
+  needed.
+
 ### 2026-08-12 - Lane-T quartic companion deck-involution router
 
 - **Agent/model:** AllenGrahamHart / Codex.
