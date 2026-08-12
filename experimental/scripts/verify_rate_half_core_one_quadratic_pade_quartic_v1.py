@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "2ab0a04e5b84c09fc1027764253d8ba4cc3d0122"
+SOURCE_COMMIT = "35ab25099d6c07c9e9e35ed0dc56875bce465c09"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -60,6 +60,14 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_corank_one_jet_vanishing_router/proof.md": "991412d8c6598bbb7bd0e7f834e6e3799ace1c6962f13d862294386569b71f78",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_factor_degree_profile_trichotomy/statement.md": "e3e40287fca3898ede3f4d6f4e18db930191db1686dc349166624f05c7539ebb",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_factor_degree_profile_trichotomy/proof.md": "d9eb908cecd6b38f83802acd92aceb4332eeb1106db1e1404870dc06da334c53",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_higher_corank_smith_jet_router/statement.md": "166387f2c8445d18af3c33e28353a0fdb5e888a9e9a9bb7f45f2189f1c24b993",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_higher_corank_smith_jet_router/proof.md": "423724a704d224c9810ac337a6ed1970f8faf4ecc993723651025a5e1aedf824",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_normalization_collision_dichotomy/statement.md": "1a4ef31e5e50a253103afccfab445fe3cabce5ee9af0ffc567a37a5c455e0cfd",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_normalization_collision_dichotomy/proof.md": "dae58a9195d4bb1b016ad7ab1ffc97d62566f34359840f96aca876e2765b48a4",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_pade_bezout_contact_module_presentation/statement.md": "e7261fe256c2169ce8179ab4500cf466cb01a1a2a081ea2583319251d43e5a89",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_pade_bezout_contact_module_presentation/proof.md": "c167dadedccd6d568dd22912c973517e9d9b7a8fc25618b3679649ea44cebd16",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/statement.md": "0ed4037e158ad44fb63caa779fa818ee6670a0a296781b23c3e95aca8cd37d2c",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_exact_collision_bezout_smith_router/proof.md": "39e3ff67bbbe44a5974d7e1eae4f773b2ac8ce14f352f78d5f05481cd293f352",
 }
 
 
@@ -127,6 +135,10 @@ class Formula:
     large_odd_d_a1: int = 78536544843
     huge_even_d_a0: int = 122167958642
     huge_even_d_a1: int = 157073089684
+    nonreduced_first_nonzero_third_jet: int = 0
+    nonreduced_noncollision_nonzero_jet: int = 0
+    collision_regular_corank: int = 2
+    collision_profile_count: int = 2
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -250,6 +262,46 @@ def verify_factor_profiles(formula: Formula) -> tuple[int, int]:
     return checks, feasible
 
 
+def verify_nonreduced_collision(formula: Formula) -> int:
+    """Replay the normalization solutions and local quadratic Smith ledger."""
+    solutions = []
+    for multiplicities in ((2,), (1, 1)):
+        ramification_choices = ((1,), (2,)) if len(multiplicities) == 1 else ((1, 1),)
+        for ramification in ramification_choices:
+            for base_order in range(2, 5):
+                if all(
+                    e_b * base_order == 2 * m_b
+                    for e_b, m_b in zip(ramification, multiplicities)
+                ):
+                    solutions.append((multiplicities, ramification, base_order))
+    require(
+        solutions == [((2,), (1,), 4), ((2,), (2,), 2), ((1, 1), (1, 1), 2)],
+        "nonreduced normalization solutions changed",
+    )
+    require(
+        formula.nonreduced_first_nonzero_third_jet == 0,
+        "first-nonzero third jet returned",
+    )
+    require(
+        formula.nonreduced_noncollision_nonzero_jet == 0,
+        "noncollision nonzero jet returned",
+    )
+    require(formula.collision_regular_corank == 2, "collision corank changed")
+
+    profiles = set()
+    for order_a in range(1, 7):
+        first_exponent = min(2, order_a)
+        profile = (first_exponent, 4 - first_exponent)
+        profiles.add(profile)
+        require(profile == ((1, 3) if order_a == 1 else (2, 2)), "Smith router")
+    require(
+        profiles == {(1, 3), (2, 2)},
+        "collision Smith profile set changed",
+    )
+    require(len(profiles) == formula.collision_profile_count, "profile count changed")
+    return 3 + 6
+
+
 def verify_source(root: Path) -> int:
     checked = 0
     for relative, expected in SOURCE_HASHES.items():
@@ -341,6 +393,16 @@ def replay(formula: Formula) -> dict[str, int]:
     require(formula.large_odd_d_a1 == 78536544843, "d_A=1 odd threshold changed")
     require(formula.huge_even_d_a0 == 122167958642, "d_A=0 even threshold changed")
     require(formula.huge_even_d_a1 == 157073089684, "d_A=1 even threshold changed")
+    require(
+        formula.nonreduced_first_nonzero_third_jet == 0,
+        "first-nonzero third-jet count changed",
+    )
+    require(
+        formula.nonreduced_noncollision_nonzero_jet == 0,
+        "noncollision nonzero-jet count changed",
+    )
+    require(formula.collision_regular_corank == 2, "collision corank changed")
+    require(formula.collision_profile_count == 2, "collision profile count changed")
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -498,7 +560,7 @@ def replay(formula: Formula) -> dict[str, int]:
         "higher-corank router failed",
     )
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 48, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 56, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -506,6 +568,7 @@ def replay(formula: Formula) -> dict[str, int]:
 
     checks += verify_layer_a_fixture(formula)
     factor_partition_checks, factor_feasible_profiles = verify_factor_profiles(formula)
+    checks += verify_nonreduced_collision(formula)
 
     return {
         "checks": checks + 15 + factor_partition_checks,
@@ -540,6 +603,14 @@ def replay(formula: Formula) -> dict[str, int]:
         "large_odd_d_a1": formula.large_odd_d_a1,
         "huge_even_d_a0": formula.huge_even_d_a0,
         "huge_even_d_a1": formula.huge_even_d_a1,
+        "nonreduced_first_nonzero_third_jet": (
+            formula.nonreduced_first_nonzero_third_jet
+        ),
+        "nonreduced_noncollision_nonzero_jet": (
+            formula.nonreduced_noncollision_nonzero_jet
+        ),
+        "collision_regular_corank": formula.collision_regular_corank,
+        "collision_profile_count": formula.collision_profile_count,
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),
@@ -556,7 +627,10 @@ def tamper_selftest() -> int:
             replay(Formula(**values))
         except VerificationError:
             rejected += 1
-    require(rejected == 31, "tamper self-test did not reject every mutation")
+    require(
+        rejected == len(base.__dict__),
+        "tamper self-test did not reject every mutation",
+    )
     return rejected
 
 

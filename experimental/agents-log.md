@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T exact nonreduced collision contact algebra
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED / ROUTE CUT. No `LineRay` payment, adjacent endpoint,
+  v4 atom, or leaderboard value is claimed.
+- **What is being added:** Normalization valuations force every unshared
+  nonreduced nonzero jet onto an exact double locator-root collision. A
+  Pade-Bezout contact-module presentation then proves regular corank exactly
+  two and reduces the collision to one scalar selecting Smith type `[1,3]`
+  or `[2,2]`.
+- **How it is useful:** Replaces the previous broad "regular corank at least
+  two" Lane-T escape by one explicit first-order coefficient of `P_F` modulo
+  the local quadratic factor. Corank-three, corank-four, noncollision, and
+  first-nonzero-third-jet branches are removed.
+- **What to do next:** Compute or exclude the remaining coefficient `[z]a`
+  from the global contracted-source or split-biform identities, and treat
+  the two residual Smith profiles separately if it does not vanish.
+
 ### 2026-08-12 - Lane-T nonreduced router and exact factor profiles
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -47,7 +69,7 @@ Keep entries concise and link to the relevant files.
   of three exhaustive odd/huge-even profiles with no residual degree slack.
 - **How it is useful:** Replaces two broad Lane-T escape clauses by a named
   higher-corank local locus and three exact global factor-degree profiles.
-  The verifier pins 48 proof-source files, exhausts 25,504 small degree
+  The verifier now pins 56 proof-source files, exhausts 25,504 small degree
   partitions, and includes every new constant in its hostile mutation test.
 - **What to do next:** Attack the regular-corank-at-least-two nonreduced
   locus through its two-dimensional kernel geometry. For the global biform,
