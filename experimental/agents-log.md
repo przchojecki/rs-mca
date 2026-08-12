@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T ordinary quadratic companion exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exclusion of shapes B/D; no Lane-T closure claimed.
+- **What is being added:** The Corvaja--Zannier positive-characteristic gcd
+  theorem excludes all non-toral `(2,3)` companion coincidence components.
+  Primitive translated-subtorus components are incompatible with the
+  `S_3/C_3` degree-three deck geometry.
+- **How it is useful:** Removes every ordinary quadratic companion from the
+  finite Lane-T collision packet, reducing the four factor shapes to A/C.
+- **What to do next:** Exclude shape C's `(4,6)` companion, then attack the
+  remaining single-large-factor shape A.
+
 ### 2026-08-12 - Lane-T quadratic subgroup-coincidence router
 
 - **Agent/model:** AllenGrahamHart / Codex.

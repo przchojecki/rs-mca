@@ -7,11 +7,11 @@ import argparse
 import copy
 import hashlib
 from dataclasses import dataclass
-from math import comb
+from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "0d9c83d6bcececc54a1afd5fc5335879de27e760"
+SOURCE_COMMIT = "19f3c442d72e73ee4edf870375814bff2dd4129a"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -91,6 +91,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_two_branch_tangent_profile_router/proof.md": "b3e74fac2854fa78f959aeee332987308ab3e63cd4c50b1e15a00a236761f8b7",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quadratic_companion_subgroup_coincidence_router/statement.md": "206ae687a048e4ff93632bf297d470d0562b6cf045c33a82e297914041fd7b57",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quadratic_companion_subgroup_coincidence_router/proof.md": "408094584149953ef1f9e81caa8fb20891804ec3b727030fb25d9e2e059405a4",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quadratic_companion_torus_gcd_exclusion/statement.md": "cef1aaf5b7689cdb71387d9d4401b5d0a4143bdc74bba0e2c2b4b3c3d4e111a7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quadratic_companion_torus_gcd_exclusion/proof.md": "16ead95c5b04937a930a53d79a7b20a9dee2d6ef36d1b92968f0eaa6fdbb7876",
 }
 
 
@@ -188,6 +190,10 @@ class Formula:
     collision_q2_s3_subgroup_constant: int = 8192
     collision_q2_c3_subgroup_constant: int = 512
     collision_q2_vm_admissible_survivors: int = 0
+    collision_q2_s3_gcd_cube_constant: int = 27648
+    collision_q2_c3_gcd_cube_constant: int = 1728
+    collision_q2_excluded_shape_count: int = 2
+    collision_remaining_shape_count: int = 2
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1179,6 +1185,76 @@ def verify_collision_quadratic_subgroup_router(formula: Formula) -> int:
     return checks + 1
 
 
+def verify_collision_quadratic_torus_gcd_exclusion(formula: Formula) -> int:
+    """Replay the gcd margins and translated-subtorus character cases."""
+    N = 2**41
+    characteristic_floor = 2**167
+    full_fibers = 2**39 - 6
+    s3_points = 3 * full_fibers
+    c3_points = s3_points // 2
+
+    s3_cube_constant = 108 * (4 * 4) ** 2
+    c3_cube_constant = 108 * (2 * 2) ** 2
+    require(
+        s3_cube_constant == formula.collision_q2_s3_gcd_cube_constant,
+        "Q2 S3 gcd cube constant",
+    )
+    require(
+        c3_cube_constant == formula.collision_q2_c3_gcd_cube_constant,
+        "Q2 C3 gcd cube constant",
+    )
+    require(s3_cube_constant * N**2 < s3_points**3, "Q2 S3 gcd first term")
+    require(c3_cube_constant * N**2 < c3_points**3, "Q2 C3 gcd first term")
+    require(
+        192 * N**2 < characteristic_floor * s3_points,
+        "Q2 S3 gcd characteristic term",
+    )
+    require(
+        48 * N**2 < characteristic_floor * c3_points,
+        "Q2 C3 gcd characteristic term",
+    )
+
+    swap_invariant = set()
+    for r in range(-4, 5):
+        for s in range(-4, 5):
+            if r and s and gcd(abs(r), abs(s)) == 1:
+                if (s, r) in ((r, s), (-r, -s)):
+                    swap_invariant.add((r, s))
+    require(
+        swap_invariant == {(1, 1), (-1, -1), (1, -1), (-1, 1)},
+        "Q2 S3 translated-subtorus cases",
+    )
+
+    cyclic = set()
+    for q in (1, 2):
+        for r in range(-2, 3):
+            for s in range(-2, 3):
+                if r and s and gcd(abs(r), abs(s)) == 1:
+                    if q * abs(r) == q * abs(s) == 2:
+                        cyclic.add((q, r, s))
+    require(
+        cyclic
+        == {
+            (2, 1, 1),
+            (2, 1, -1),
+            (2, -1, 1),
+            (2, -1, -1),
+        },
+        "Q2 C3 translated-subtorus cases",
+    )
+    require(gcd(3, N) == 1, "Q2 dyadic 3-torsion")
+    require(2 % 3 != 0, "Q2 degree factors through cubic quotient")
+    require(
+        formula.collision_q2_excluded_shape_count == 2,
+        "Q2 excluded shape count",
+    )
+    require(
+        formula.collision_remaining_shape_count == 2,
+        "Q2 remaining shape count",
+    )
+    return 12
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1529,7 +1605,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 78, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 80, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1548,6 +1624,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_ordinary_companion_norm(formula)
     checks += verify_collision_two_branch_tangent_router(formula)
     checks += verify_collision_quadratic_subgroup_router(formula)
+    checks += verify_collision_quadratic_torus_gcd_exclusion(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -1653,6 +1730,16 @@ def replay(formula: Formula) -> dict[str, int]:
         "collision_q2_vm_admissible_survivors": (
             formula.collision_q2_vm_admissible_survivors
         ),
+        "collision_q2_s3_gcd_cube_constant": (
+            formula.collision_q2_s3_gcd_cube_constant
+        ),
+        "collision_q2_c3_gcd_cube_constant": (
+            formula.collision_q2_c3_gcd_cube_constant
+        ),
+        "collision_q2_excluded_shape_count": (
+            formula.collision_q2_excluded_shape_count
+        ),
+        "collision_remaining_shape_count": formula.collision_remaining_shape_count,
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),

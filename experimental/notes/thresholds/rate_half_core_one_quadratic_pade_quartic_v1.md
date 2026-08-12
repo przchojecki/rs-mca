@@ -1357,9 +1357,64 @@ exact strict comparisons are
 
 Therefore no dense off-diagonal component is VM-admissible. Every surviving
 ordinary quadratic companion lies in the coordinate-corner exceptional
-locus. This is a proved router, not an exclusion: the next task is to
-classify those determinantal corner degeneracies and use the dyadic subgroup
-to eliminate any scaling or inversion graphs that remain.
+locus. This is a proved router; Section 32 removes its exceptional locus.
+
+## 32. Corvaja--Zannier excludes every ordinary quadratic companion
+
+The coordinate-corner qualification in Section 31 can be removed by the
+stronger positive-characteristic gcd theorem of Corvaja--Zannier, JEMS 15
+(2013), Theorem 2 and Corollary 2. Let `Z` be a dense coincidence component
+of bidegree `(d_1,d_2)` and normalize it. The standard genus and toric
+boundary estimates give
+
+```text
+genus(Z)<=(d_1-1)(d_2-1),
+chi(Z)<=2d_1d_2.                                    (131)
+```
+
+If `Z` is not a translate of a one-dimensional subtorus, apply the theorem
+to its coordinate functions raised to the `N`th power. It gives
+
+```text
+#Z(H^2)<=max{
+  3(2N^2d_1d_2 chi)^(1/3),
+  12N^2d_1d_2/P
+}.                                                  (132)
+```
+
+For the `S_3` component, `d_1,d_2<=4`; for a cyclic orientation,
+`d_1,d_2<=2`. Both terms are below the Section-31 point floors by the exact
+comparisons
+
+```text
+27648N^2 < (3F)^3,       192N^2 < P(3F),
+ 1728N^2 < (3F/2)^3,      48N^2 < P(3F/2).          (133)
+```
+
+It remains to exclude translated subtori `X^rY^s=k`, with `(r,s)`
+primitive. In the `S_3` case, the unique off-diagonal component is
+swap-invariant, forcing `XY=k` or `X/Y=k` up to inversion. Since all six
+ordered pairs from a generic three-point fiber lie on that component,
+either relation identifies two distinct rows.
+
+In the cyclic case, write `sigma` for a deck generator and `q` for the
+degree from the original curve to one orientation image. Coordinate degree
+two gives
+
+```text
+q|r|=q|s|=2.                                        (134)
+```
+
+Primitivity leaves only `X(sigma P)=kX(P)` or
+`X(sigma P)=k/X(P)`. In the scaling case, a subgroup point puts `k` in the
+dyadic group `H`, while `sigma^3=1` gives `k^3=1`, hence `k=1`. In the
+inversion case, applying the relation twice makes `X` invariant under
+`sigma^2`. Either way `X` factors through the degree-three quotient, which
+is impossible for a degree-two coordinate.
+
+Thus no `(2,3)` companion exists. Shapes B and D are empty, and the
+collision factorization now has only shapes A and C. Shape C's `(4,6)`
+companion and shape A's single large factor remain open.
 
 ## Nonclaims
 
@@ -1376,8 +1431,7 @@ configuration. Squarefree shared corrections are absorbed into the unified
 constant/linear remainder gate. An unshared nonreduced correction remains
 open only in the three profiles `[4]`, `[1,3]`, and `[2,2]`, selected by
 the two global split-biform jets in `(83)--(84)`. After the factor-shape
-classification, profile `[4]` remains available only in shapes A and C;
-shapes B and D retain `[1,3]` and `[2,2]`. No shape is excluded here. A
+classification, profile `[4]` remains available only in shapes A and C. A
 shared nonreduced correction and the two-simple correction remain open. The exact factor
 trichotomy is a restriction, not an exclusion or a `LineRay` payment. The
 center-adjusted root budget excludes two `d_A=1` profiles but does not
@@ -1390,5 +1444,6 @@ The companion norm gate does not determine `E_Q(x_*)` or exclude a
 low-degree companion.
 The two-branch tangent router does not decide whether `Theta` vanishes and
 does not exclude shape B or D.
-The subgroup-coincidence router does not classify the coordinate-corner
-exceptional locus and therefore does not yet exclude a `(2,3)` companion.
+The subgroup-coincidence router in Section 31 does not by itself classify
+the coordinate-corner locus; the Corvaja--Zannier argument in Section 32
+does, and excludes B/D but not A/C.
