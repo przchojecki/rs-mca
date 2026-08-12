@@ -1078,6 +1078,54 @@ This compression does not exclude the remaining `d_A=1` profile I or the
 three `d_A=0` profiles. It does show that every surviving factorization is
 within four unsupported roots of saturating all factor-column capacities.
 
+## 27. The quintic vector is an automatic Cauchy transform
+
+The bounded quotient in Section 25 is explicit. For `0<=i<=d`, put
+
+```text
+D_i(t)=sum_(y in U_0) omega_y(t)y^i/(x_*-y),
+h_i(t)=sum_(y in U_0) omega_y(t)y^i.              (107)
+```
+
+Then `D_i` is parameter-linear and
+
+```text
+D_0=B(t,x_*)/L(x_*),
+D_(i+1)=x_*D_i-h_i.                               (108)
+```
+
+The split-biform source identity and one Lagrange leading-coefficient sum
+give the exact formula
+
+```text
+C_i(t)=-Lambda(t)x_*^iT_2(t)/L(x_*)
+       +a_QS_B(t)^2D_i(t).                        (109)
+```
+
+Indeed, for
+
+```text
+A_i(Y)=[Y^iG(t,Y)-x_*^iG(t,x_*)]/(Y-x_*),
+```
+
+one has `deg_Y A_i<=3p-5=|U_0|-3`, and therefore
+
+```text
+sum_y y^iG(t,y)/[L'(y)(y-x_*)]
+ =-x_*^iG(t,x_*)/L(x_*).                          (110)
+```
+
+Substitution of
+`Lambda G(t,y)=L'(y)omega_yQ(t,y)`, followed by the two heavy-row
+factorizations, gives `(109)`. Equations `(108)--(109)` reproduce the
+quintic cap, recurrence, and nonzero geometric correction value without an
+additional condition.
+
+Thus the quintic-only incompatibility route is closed as automatic. A final
+exclusion must use information not present in the degree-five cap itself,
+such as the unique scalar weld, the nearly saturated macroscopic factor, or
+an additional incidence/source constraint coupling them.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1095,5 +1143,6 @@ open only in the three profiles `[4]`, `[1,3]`, and `[2,2]`, selected by
 the two global split-biform jets in `(83)--(84)`; none is excluded here. A
 shared nonreduced correction and the two-simple correction remain open. The exact factor
 trichotomy is a restriction, not an exclusion or a `LineRay` payment. The
-four-root budget excludes two `d_A=1` profiles but does not exclude profile I
-or prove the final scalar-weld/quintic incompatibility.
+four-root budget excludes two `d_A=1` profiles but does not exclude profile I.
+The quintic closed form redirects the final problem to the scalar-weld and
+factor geometry; it does not itself exclude a collision.

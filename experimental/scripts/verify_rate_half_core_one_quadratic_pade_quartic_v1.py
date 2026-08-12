@@ -11,7 +11,7 @@ from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "dba200751aab05717673866687ce470d073ae65f"
+SOURCE_COMMIT = "1db2188634520c71aa4a83c5ac106bfb37e00f97"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -81,6 +81,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/proof.md": "8af392216500f0683b8f1f08629ef9a229498af80d2a09813283a30b1ab2af05",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/statement.md": "6b7f6b77c3082eb4d2c9dbfe4447597b787f390436201c59c243391eb5e5a6cd",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/proof.md": "e47461eeb0b9134f8324d54eb2d9c831117da7f95c44f361f2a0c510127d00f5",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_cauchy_closed_form/statement.md": "6907c4099eb4955c4775be566e5ba1c8f9d6ef339fc7cd369a75ea9c7f36b7f0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_cauchy_closed_form/proof.md": "bc575866643240c0663b2fba4931f5d6a3656b5b189a481c32ca41d7960beba2",
 }
 
 
@@ -159,6 +161,7 @@ class Formula:
     collision_divided_row_quotient_degree: int = 5
     collision_unsupported_root_budget: int = 4
     collision_d_a1_factor_profile_count: int = 1
+    collision_quintic_independent_gate_count: int = 0
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -654,6 +657,126 @@ def verify_collision_factor_unsupported_root_budget(formula: Formula) -> int:
     return checks
 
 
+def verify_collision_quintic_cauchy_closed_form(formula: Formula) -> int:
+    """Replay the Cauchy formula without symbolic-polynomial machinery."""
+    checks = 0
+    for prime in (101, 127):
+        e = 7
+        p = (3 * e - 1) // 2
+        n_0 = 3 * p - 2
+        d = 2 * p - 1
+        degree_x = p - 3
+        source = list(range(1, n_0 + 1))
+        x_star = n_0 + 9
+        gamma = n_0 + 3
+        a_q = 7
+
+        def inverse(value: int) -> int:
+            return pow(value % prime, prime - 2, prime)
+
+        def product(values) -> int:
+            answer = 1
+            for value in values:
+                answer = answer * value % prime
+            return answer
+
+        l_at_star = product(x_star - y for y in source)
+        l_prime = {
+            y: product(y - z for z in source if z != y)
+            for y in source
+        }
+
+        for t in range(12):
+            s_b = t * t % prime
+            g_star = (t - gamma) % prime
+            h_nr = g_star * s_b % prime
+            t_2 = (3 + 4 * t + t * t) % prime
+            g_heavy = h_nr * t_2 % prime
+            q_heavy = a_q * g_star * pow(s_b, 3, prime) % prime
+            lambda_value = (t + 1) * (t + 2) * (t + 3) % prime
+
+            def omega(y: int) -> int:
+                return (y + 2 + (2 * y + 1) * t) % prime
+
+            def k_value(y: int) -> int:
+                return sum(
+                    (
+                        degree + 2
+                        + (y + degree + 1) * t
+                        + (2 * degree + 1) * t * t
+                    )
+                    * pow(y, degree, prime)
+                    for degree in range(degree_x)
+                ) % prime
+
+            def g_value(y: int) -> int:
+                return (g_heavy + (y - x_star) * k_value(y)) % prime
+
+            source_product = {
+                y: lambda_value * g_value(y) * inverse(l_prime[y]) % prime
+                for y in source
+            }
+
+            previous_d = None
+            previous_c = None
+            previous_h = None
+            for i in range(d + 1):
+                d_i = sum(
+                    omega(y) * pow(y, i, prime) * inverse(x_star - y)
+                    for y in source
+                ) % prime
+                h_i = sum(omega(y) * pow(y, i, prime) for y in source) % prime
+                f_i = sum(
+                    pow(y, i, prime)
+                    * (source_product[y] - omega(y) * q_heavy)
+                    * inverse(y - x_star)
+                    for y in source
+                ) % prime
+                c_i = (
+                    -lambda_value
+                    * pow(x_star, i, prime)
+                    * t_2
+                    * inverse(l_at_star)
+                    + a_q * s_b * s_b * d_i
+                ) % prime
+                require(f_i == h_nr * c_i % prime, "quintic Cauchy formula")
+                checks += 1
+
+                if previous_d is not None:
+                    require(
+                        d_i == (x_star * previous_d - previous_h) % prime,
+                        "Cauchy recurrence",
+                    )
+                    require(
+                        c_i
+                        == (x_star * previous_c - a_q * s_b * s_b * previous_h)
+                        % prime,
+                        "closed-form quintic recurrence",
+                    )
+                    checks += 2
+                previous_d = d_i
+                previous_h = h_i
+                previous_c = c_i
+
+                if t == 0:
+                    require(
+                        c_i
+                        == -lambda_value
+                        * pow(x_star, i, prime)
+                        * t_2
+                        * inverse(l_at_star)
+                        % prime,
+                        "geometric correction value",
+                    )
+                    checks += 1
+
+    require(
+        formula.collision_quintic_independent_gate_count == 0,
+        "quintic independent-gate count changed",
+    )
+    return checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -825,6 +948,10 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.collision_d_a1_factor_profile_count == 1,
         "collision d_A=1 factor-profile count changed",
     )
+    require(
+        formula.collision_quintic_independent_gate_count == 0,
+        "collision quintic route-fence count changed",
+    )
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -983,7 +1110,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 68, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 70, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -997,6 +1124,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_nonreduced_heavy_row_residual(formula)
     checks += verify_nonreduced_divided_row_quotient(formula)
     checks += verify_collision_factor_unsupported_root_budget(formula)
+    checks += verify_collision_quintic_cauchy_closed_form(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -1056,6 +1184,9 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_d_a1_factor_profile_count": (
             formula.collision_d_a1_factor_profile_count
+        ),
+        "collision_quintic_independent_gate_count": (
+            formula.collision_quintic_independent_gate_count
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

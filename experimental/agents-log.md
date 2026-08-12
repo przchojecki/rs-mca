@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T quintic Cauchy route fence
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED route fence; no Lane-T closure claimed.
+- **What is being added:** Every divided-row quotient has the exact Cauchy
+  form `C_i=-Lambda*x_*^i*T_2/L(x_*)+a_Q*S_B^2*D_i`, with `D_i`
+  parameter-linear.
+- **How it is useful:** Shows that the quintic cap, recurrence, and geometric
+  correction value are automatic and cannot supply an independent
+  contradiction.
+- **What to do next:** Couple the unique scalar weld or the near-saturated
+  large-odd factor to an additional source/incidence constraint.
+
 ### 2026-08-12 - Lane-T collision factor four-root budget
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -44,9 +61,9 @@ Keep entries concise and link to the relevant files.
   excludes factor profiles II and III when `d_A=1`.
 - **How it is useful:** It leaves the `d_A=1` collision with one large-odd
   factor and ordinary-even companions, sharply reducing the remaining
-  scalar-weld/quintic incompatibility problem.
+  scalar-weld/factor incompatibility problem.
 - **What to do next:** Exclude profile I by coupling its near-saturated
-  supported fibers to the bounded quintic divided-row vector.
+  supported fibers to the unique scalar weld or another source constraint.
 
 ### 2026-08-12 - Lane-T nonreduced divided-row quintic
 
@@ -62,8 +79,8 @@ Keep entries concise and link to the relevant files.
 - **How it is useful:** Replaces the full degree-`e+1` moment image on the
   nonreduced locus by a six-coefficient vector whose correction value is a
   nonzero geometric progression.
-- **What to do next:** Prove the bounded quintic vector is incompatible with
-  the unique scalar weld and two-directional factor-degree trichotomy.
+- **What to do next:** Use the Cauchy closed form below to decide whether the
+  quotient supplies any condition beyond the heavy-row factorization.
 
 ### 2026-08-12 - Lane-T nonreduced heavy-row quadratic residual
 
