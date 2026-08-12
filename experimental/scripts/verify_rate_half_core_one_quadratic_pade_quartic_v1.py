@@ -11,7 +11,7 @@ from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "1d401c588d599d7a8a611f6e6201640769dab737"
+SOURCE_COMMIT = "b0eb63dac604227e72d79e59f1a73db4a726bd8f"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -75,6 +75,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_pade_split_jet_dictionary/proof.md": "901e98d33413f255a7dab03cf6ae0f7b6644da86da6503b7e5b0e8322e751cf6",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/statement.md": "ee34bff50a0717589009feb0e579a6db86e3cf9f3289b40db29de02e93d4d53b",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/proof.md": "ebfa59faeba87a8ab34c66cdd3fe68e09be9f8cfecbbf7083b0640285c74d5f6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/statement.md": "92b3584357a169b79f275ab9cfdb28ffb9a7983fff6e9de5122af655dcaa10e3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/proof.md": "ffb4ae334dadc118570c24ce03ca984a53d0702b38c10908cd246222babb8682",
 }
 
 
@@ -149,6 +151,7 @@ class Formula:
     collision_profile_count: int = 3
     collision_global_jet_count: int = 2
     collision_barycentric_functional_count: int = 4
+    collision_heavy_row_residual_degree: int = 2
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -485,6 +488,26 @@ def verify_collision_barycentric_gate(formula: Formula) -> int:
     return checks
 
 
+def verify_nonreduced_heavy_row_residual(formula: Formula) -> int:
+    """Replay the supported, correction, and residual degree ledger."""
+    checks = 0
+    for e in (7, 13, 183251937963):
+        supported_degree = e - 6
+        correction_degree = 2
+        residual_degree = formula.collision_heavy_row_residual_degree
+        require(
+            supported_degree + correction_degree + residual_degree == e - 2,
+            "nonreduced heavy-row degree",
+        )
+        require(
+            supported_degree + correction_degree == e - 4,
+            "nonreduced remainder modulus degree",
+        )
+        require(residual_degree == 2, "nonreduced residual degree changed")
+        checks += 3
+    return checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -639,6 +662,10 @@ def replay(formula: Formula) -> dict[str, int]:
     require(
         formula.collision_barycentric_functional_count == 4,
         "collision barycentric count changed",
+    )
+    require(
+        formula.collision_heavy_row_residual_degree == 2,
+        "collision heavy-row residual changed",
     )
 
     checks = 0
@@ -798,7 +825,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 62, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 64, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -809,6 +836,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_nonreduced_collision(formula)
     checks += verify_collision_split_jet_dictionary(formula)
     checks += verify_collision_barycentric_gate(formula)
+    checks += verify_nonreduced_heavy_row_residual(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -856,6 +884,9 @@ def replay(formula: Formula) -> dict[str, int]:
         "collision_global_jet_count": formula.collision_global_jet_count,
         "collision_barycentric_functional_count": (
             formula.collision_barycentric_functional_count
+        ),
+        "collision_heavy_row_residual_degree": (
+            formula.collision_heavy_row_residual_degree
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

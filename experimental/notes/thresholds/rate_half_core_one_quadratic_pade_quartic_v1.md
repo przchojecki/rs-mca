@@ -928,6 +928,38 @@ All summands in the zeroth equations are individually nonzero before the
 forced cancellations. Equation `(90)` is an explicit test on the realized
 row-root sets and weld vector; it is not yet a nonvanishing theorem.
 
+## 24. The nonreduced heavy row has only a quadratic residual
+
+Every root of the squarefree degree-`e-6` form `g_*` is a supported slope
+at which `x_*` is padded-heavy. The all-excess fiber factorization therefore
+gives
+
+```text
+g_*(t) divides G(t,x_*).                            (91)
+```
+
+The row has parameter degree at most `e-2`, so the quotient in `(91)` has
+degree at most four. Section 23 gives exact order two at the unsupported
+correction, while `g_*(tau)!=0` and
+`S_B=c_S(t-tau)^2`. Consequently
+
+```text
+G(t,x_*)=g_*(t)S_B(t)T_2(t),
+T_2!=0,       deg T_2<=2,       T_2(tau)!=0.       (92)
+```
+
+Equivalently, for the value weights and unique weld vector in Section 23,
+
+```text
+g_*S_B divides sum_x b_x lambda_xP_x(t).           (93)
+```
+
+The modulus in `(93)` has degree `e-4`, and the quotient has only three
+coefficients. Thus `(93)` is one explicit polynomial-remainder matrix on
+the weld vector, with the additional open condition that its quadratic
+quotient be nonzero at `tau`. No multiplicity above one is assumed at the
+supported padded fibers.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live

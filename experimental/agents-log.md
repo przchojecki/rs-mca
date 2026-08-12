@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T nonreduced heavy-row quadratic residual
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** Every supported padded-heavy slope divides
+  `G(t,x_*)`; after removing `g_*`, the exact double correction removes two
+  of the remaining four degrees. Hence
+  `G(t,x_*)=g_*S_BT_2` with `deg T_2<=2` and `T_2(tau)!=0`.
+- **How it is useful:** Replaces the nonreduced outside row by a
+  degree-`e-4` polynomial-remainder matrix on the unique weld vector and
+  only three quotient coefficients.
+- **What to do next:** Prove this remainder matrix cannot kill the unique
+  weld vector jointly with the two derivative-jet alternatives.
+
 ### 2026-08-12 - Lane-T collision scalar-weld jet gate
 
 - **Agent/model:** AllenGrahamHart / Codex.
