@@ -1137,6 +1137,69 @@ exclusion must use information not present in the degree-five cap itself,
 such as the unique scalar weld, the nearly saturated macroscopic factor, or
 an additional incidence/source constraint coupling them.
 
+## 28. Factorwise Bezout leaves only four collision shapes
+
+The corrected `d_A=1` branch has one large odd factor and only
+ordinary-even companions. For a factor `Q_j` of bidegree `(m_j,n_j)`,
+subtract its `(3p-2)m_j` transverse classified-grid intersections from its
+projective intersection with `Qbar`. The remaining capacity is
+
+```text
+c_j=e n_j+(3e-2-(3p-2))m_j.                      (111)
+```
+
+The `e-7` padded-heavy first copies and the four-unit local collision
+exhaust these capacities. If
+
+```text
+b_j=ord_tau Q_j(t,x_*),
+ell_j=I_((tau,x_*))(Qbar,Q_j),                    (112)
+```
+
+then reduction in the local quadratic contact algebra gives
+
+```text
+ell_j=2b_j.                                       (113)
+```
+
+Indeed, reducing the local factor to `u_j+v_jy` modulo
+`y^2+c_1y+c_0`, with `ord c_1>=3` and `ord c_0=6`, gives norm
+
+```text
+u_j^2-u_jv_jc_1+v_j^2c_0,
+```
+
+whose uniquely lowest order is `2b_j` for `b_j in {0,1,2}`.
+
+Write `r_j` for the factor's padded-heavy roots and
+`t_j=m_j-r_j-b_j`. Then
+
+```text
+sum_j(r_j,b_j,t_j)=(e-7,2,3),
+c_j=r_j+2b_j.                                     (114)
+```
+
+For the large factor and an ordinary factor respectively, this becomes
+
+```text
+m_L=e+2b_L-2t_L,
+m_j=2(b_j-t_j).                                   (115)
+```
+
+Since an ordinary factor has positive degree, the complete factorization
+has only four possible shapes:
+
+```text
+A. one large factor of degree e-2;
+B. one large factor of degree e-4 plus one (2,3) factor;
+C. one large factor of degree e-6 plus one (4,6) factor;
+D. one large factor of degree e-6 plus two (2,3) factors.   (116)
+```
+
+Here `(2,3)` and `(4,6)` are `(t,X)` bidegrees. The ordinary companions
+have total parameter degree at most four. This is a classification, not an
+exclusion: shape A and the low-degree companions in B--D remain open.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1158,3 +1221,5 @@ center-adjusted root budget excludes two `d_A=1` profiles but does not
 exclude profile I.
 The quintic closed form redirects the final problem to the scalar-weld and
 factor geometry; it does not itself exclude a collision.
+The factorwise Bezout classification narrows the surviving `d_A=1`
+factorization to four shapes but does not prove any shape empty.

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T factorwise Bezout shape classification
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** Factorwise projective intersection capacity and
+  the four-unit local contact module leave exactly four `d_A=1` shapes: an
+  irreducible large factor, or that factor with one `(2,3)`, one `(4,6)`,
+  or two `(2,3)` companions.
+- **How it is useful:** Replaces arbitrary ordinary-even companions by a
+  finite low-degree list; the large factor has degree at least `e-6`.
+- **What to do next:** Classify or exclude the `(2,3)` and `(4,6)` companion
+  factors, while attacking the irreducible shape separately through the
+  scalar weld and retained source equations.
+
 ### 2026-08-12 - Lane-T center-overlap correction
 
 - **Agent/model:** AllenGrahamHart / Codex.

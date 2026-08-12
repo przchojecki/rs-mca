@@ -11,7 +11,7 @@ from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "51dcd6dde3750737c2bde8cecab7f8b7f718cc51"
+SOURCE_COMMIT = "01298a193f5c8d508057e562d3dc7ef90b555f97"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -83,6 +83,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/proof.md": "3ae3d0c8bf775ac0d53da362112d0707026c95a0a5c8c96100d4290c05666aed",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_cauchy_closed_form/statement.md": "219b52b4bade5996628050c59fb39003bed2535fd561410521242978b3e862c7",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_cauchy_closed_form/proof.md": "96cf80c0b3065cae5a39c638fefa480b264c102400d669196d84f9524aeced7c",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factorwise_bezout_shape_classification/statement.md": "b7bd2842a782cd364e4483ca29f6423eec48db3cd337db0ba1512f7a59010aa4",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factorwise_bezout_shape_classification/proof.md": "65f4a55a62efdd316cecddd4ef906a560917111030467e58ce79491d7d2941ae",
 }
 
 
@@ -164,6 +166,9 @@ class Formula:
     collision_unsupported_root_budget_d_a1: int = 5
     collision_d_a1_factor_profile_count: int = 1
     collision_quintic_independent_gate_count: int = 0
+    collision_factor_shape_count: int = 4
+    collision_large_factor_max_deficit: int = 6
+    collision_ordinary_companion_degree_cap: int = 4
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -862,6 +867,77 @@ def verify_collision_quintic_cauchy_closed_form(formula: Formula) -> int:
     )
 
 
+def verify_collision_factorwise_bezout_shapes(formula: Formula) -> int:
+    """Exhaust the factorwise contact and heavy-row degree records."""
+    ordinary = []
+    for b in range(3):
+        for t in range(4):
+            m = 2 * (b - t)
+            r = m - b - t
+            if m > 0 and m % 2 == 0 and r >= 0:
+                n = 3 * m // 2
+                ell = 2 * b
+                require(3 * m // 2 == r + ell, "ordinary Bezout capacity")
+                ordinary.append((m, n, r, b, t, ell))
+    ordinary.sort()
+    require(
+        ordinary == [(2, 3, 1, 1, 0, 2), (4, 6, 2, 2, 0, 4)],
+        "ordinary factor records",
+    )
+
+    checks = 2
+    for e in list(range(7, 200, 2)) + [183251937963]:
+        shapes = []
+        for q_count in range(3):
+            for f_count in range(2):
+                companions = [ordinary[0]] * q_count + [ordinary[1]] * f_count
+                if sum(row[3] for row in companions) > 2:
+                    continue
+                large = (
+                    e - 2 - sum(row[0] for row in companions),
+                    (3 * e - 7) // 2 - sum(row[1] for row in companions),
+                    e - 7 - sum(row[2] for row in companions),
+                    2 - sum(row[3] for row in companions),
+                    3 - sum(row[4] for row in companions),
+                    4 - sum(row[5] for row in companions),
+                )
+                m, n, r, b, t, ell = large
+                if min(large) < 0 or m % 2 != 1:
+                    continue
+                if 2 * n - 3 * m != -1 or m != e + 2 * b - 2 * t:
+                    continue
+                if (3 * m - e) // 2 != r + ell:
+                    continue
+                if 7 * m < 3 * e or 5 * m < 3 * e - 10:
+                    continue
+                shapes.append((large, tuple(sorted(companions))))
+
+        expected_count = 1 if e == 7 else 2 if e == 9 else 4
+        require(len(shapes) == expected_count, "factor shape count")
+        for large, companions in shapes:
+            rows = (large, *companions)
+            require(sum(row[0] for row in rows) == e - 2, "shape m total")
+            require(sum(row[1] for row in rows) == (3 * e - 7) // 2,
+                    "shape n total")
+            require(sum(row[2] for row in rows) == e - 7, "shape padding total")
+            require(sum(row[3] for row in rows) == 2, "shape correction total")
+            require(sum(row[4] for row in rows) == 3, "shape residual total")
+            require(sum(row[5] for row in rows) == 4, "shape contact total")
+            checks += 6
+        checks += 1
+
+    require(formula.collision_factor_shape_count == 4, "factor shape count changed")
+    require(
+        formula.collision_large_factor_max_deficit == 6,
+        "large factor deficit changed",
+    )
+    require(
+        formula.collision_ordinary_companion_degree_cap == 4,
+        "ordinary companion cap changed",
+    )
+    return checks + 3
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1045,6 +1121,15 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.collision_quintic_independent_gate_count == 0,
         "collision quintic route-fence count changed",
     )
+    require(formula.collision_factor_shape_count == 4, "collision shape count changed")
+    require(
+        formula.collision_large_factor_max_deficit == 6,
+        "collision large-factor deficit changed",
+    )
+    require(
+        formula.collision_ordinary_companion_degree_cap == 4,
+        "collision ordinary-companion cap changed",
+    )
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -1203,7 +1288,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 70, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 72, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1218,6 +1303,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_nonreduced_divided_row_quotient(formula)
     checks += verify_collision_factor_unsupported_root_budget(formula)
     checks += verify_collision_quintic_cauchy_closed_form(formula)
+    checks += verify_collision_factorwise_bezout_shapes(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -1286,6 +1372,13 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_quintic_independent_gate_count": (
             formula.collision_quintic_independent_gate_count
+        ),
+        "collision_factor_shape_count": formula.collision_factor_shape_count,
+        "collision_large_factor_max_deficit": (
+            formula.collision_large_factor_max_deficit
+        ),
+        "collision_ordinary_companion_degree_cap": (
+            formula.collision_ordinary_companion_degree_cap
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
