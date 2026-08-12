@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T ordinary-companion norm gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no companion exclusion claimed.
+- **What is being added:** A `(2,3)` or `(4,6)` companion has a global norm
+  quotient of degree at most seven or fourteen, respectively. Removing its
+  forced simple or double heavy-row divisor leaves a degree-six or
+  degree-twelve residual reconstructed by classified-row tangent products.
+- **How it is useful:** Replaces the full companion curve by one bounded
+  residual polynomial with explicit nonzero values on all classified rows.
+- **What to do next:** Determine the residual at the heavy row or couple its
+  interpolation values to the source/Hankel equations.
+
 ### 2026-08-12 - Lane-T factorwise Bezout shape classification
 
 - **Agent/model:** AllenGrahamHart / Codex.

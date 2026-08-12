@@ -1200,6 +1200,43 @@ Here `(2,3)` and `(4,6)` are `(t,X)` bidegrees. The ordinary companions
 have total parameter degree at most four. This is a classification, not an
 exclusion: shape A and the low-degree companions in B--D remain open.
 
+## 29. Ordinary companions have bounded residual norms
+
+Let `Q` be one ordinary companion from Section 28, of bidegree
+`(m,3m/2)` with `m in {2,4}`. Taking its product norm over the `3e`
+off-line supported slopes gives
+
+```text
+N_Q(X)=product_delta Q(delta,X)=L_U0(X)^m S_Q(X),
+deg S_Q<=7m/2,       gcd(S_Q,L_U0)=1.             (117)
+```
+
+The exact classified-row order is `m`: every row has `m` distinct
+incident slopes, and the all-excess factorization makes each corresponding
+vertical root simple. At the heavy row, the shape record supplies `m/2`
+distinct supported roots, so
+
+```text
+(X-x_*)^(m/2) divides S_Q.                        (118)
+```
+
+Thus
+
+```text
+(m,n)=(2,3): S_Q=(X-x_*)E_Q,   deg E_Q<=6;
+(m,n)=(4,6): S_Q=(X-x_*)^2E_Q, deg E_Q<=12.      (119)
+```
+
+For every `x in U_0`, the value of `S_Q(x)` is the product of the incident
+vertical tangents and all nonincident fiber values, divided by
+`L_U0'(x)^m`. These values are nonzero and determine `S_Q` uniquely because
+`deg S_Q<=14<|U_0|`.
+
+Equation `(118)` is deliberately divisibility only. The two-dimensional
+intersection of `Q` with the source locator can be transverse at a padding
+point even when the vertical fiber has higher multiplicity. Therefore no
+claim that `E_Q(x_*)` is nonzero is made.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1223,3 +1260,5 @@ The quintic closed form redirects the final problem to the scalar-weld and
 factor geometry; it does not itself exclude a collision.
 The factorwise Bezout classification narrows the surviving `d_A=1`
 factorization to four shapes but does not prove any shape empty.
+The companion norm gate does not determine `E_Q(x_*)` or exclude a
+low-degree companion.
