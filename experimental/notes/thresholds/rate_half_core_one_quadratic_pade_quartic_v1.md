@@ -1578,6 +1578,62 @@ source-defined polynomial. Equation `(148)` does not identify `T` or
 exclude shape A; the next obstruction must couple it to the scalar weld or
 the retained Pade/source syzygy.
 
+## 36. Pure split fibers force a component point floor
+
+The exact shape-A ledgers give
+
+```text
+sum_delta a_delta=e,       sum_delta r_delta=e-7. (149)
+```
+
+There are `3e` off-line slopes. At least `2e` have `a_delta=0`, and at
+most `e-7` of those have positive padding. Consequently at least `e+7`
+slopes satisfy `a_delta=r_delta=0`. On each, the all-excess factorization
+reduces to
+
+```text
+G(delta,X)=zeta_delta A_delta(X),
+deg A_delta=n=(3e-7)/2,                            (150)
+```
+
+and all `n` roots are distinct classified rows.
+
+The biform `G` is absolutely irreducible. Indeed, if its geometric factors
+formed a Frobenius orbit of length `s>=2`, then every rational point in the
+classified `R`-by-`m` grid would lie on every conjugate factor. Two factors
+of bidegree `(m/s,n/s)` have intersection number at most
+`2mn/s^2<=mn/2<Rm`, contradicting Bezout.
+
+It follows that the divided off-diagonal resultant
+
+```text
+K_G(X,Y)=Res_t(G(t,X),G(t,Y))/(X-Y)^m             (151)
+```
+
+is nonzero and has bidegree at most
+`(m(n-1),m(n-1))`. The pure fibers supply `(e+7)n(n-1)` ordered pairs,
+while any fixed distinct row pair is shared by at most `m` parameter
+values. Hence the reduced official pair locus contains at least
+
+```text
+P_A=ceil((e+7)n(n-1)/m)
+   =75557863727701029814224.                       (152)
+```
+
+For the connected separable degree-`n` cover, geometric off-diagonal
+fiber-product components correspond to point-stabilizer orbits on the
+other `n-1` sheets. There are at most `n-1`, so one component image contains
+at least
+
+```text
+ceil(P_A/(n-1))>=ceil((e+7)n/(e-2))
+                       =n+14=274877906955          (153)
+```
+
+distinct official subgroup points. This is a component floor, not a torus
+conclusion: the bidegree bound in `(151)` is macroscopic. A closure still
+needs a component-subdegree bound or a direct source/norm coupling.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1612,4 +1668,5 @@ does, and excludes B/D but not A/C.
 The quartic toral router of Section 33 alone only reduces shape C to two
 quotients; Section 34 excludes both simultaneously. The surviving shape A
 is not excluded. Section 35 concentrates its norm but does not identify the
-residual polynomial `T`.
+residual polynomial `T`. Section 36 forces a large official point set on one
+shape-A component, but does not make that component low-degree or toral.

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T shape-A pure-split component floor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED component floor; no Lane-T closure claimed.
+- **What is being added:** The exact excess and padding ledgers force at least
+  `e+7` completely split shape-A fibers. Absolute irreducibility and the
+  divided off-diagonal resultant then force one geometric component image to
+  contain at least `n+14=274877906955` official subgroup pairs.
+- **How it is useful:** Converts the remaining single-factor alternative into
+  a component-level incidence target and identifies component subdegree or a
+  source/norm coupling as the next required input.
+- **What to do next:** Bound a component subdegree or show that the retained
+  source/scalar-weld equations are incompatible with the pure split fibers.
+
 ### 2026-08-12 - Lane-T shape-A concentrated excess norm
 
 - **Agent/model:** AllenGrahamHart / Codex.

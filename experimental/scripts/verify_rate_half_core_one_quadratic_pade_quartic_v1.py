@@ -11,7 +11,7 @@ from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "d54687e6b9de59d52864419e555dafd3f9ac7254"
+SOURCE_COMMIT = "28639101d2261db75d65d9c41b66e7975e3ba925"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -99,6 +99,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_companion_complete_shape_exclusion/proof.md": "d06c610ab90e5b8ce3560e1fc6cd57dc9dd60d2beaec6675dac8c306377e1342",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_norm_concentration/statement.md": "0e5c3cd397a2a04a6314d8b34093ff54f648d44127884da5b02b286844dddcb0",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_norm_concentration/proof.md": "92baf69c4b9d1a65d52c98c1f83a28717c090089d0e24d54042ee69e92f9b5c3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_pure_split_component_floor/statement.md": "c6a3c8fea3fefbf29b912aeee37d171205fd3a183e8201e766161755e861a64f",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_pure_split_component_floor/proof.md": "70497eb01127958eb7810271afb49d82a157c7444381b922fc21c420d91150d2",
 }
 
 
@@ -210,6 +212,10 @@ class Formula:
     collision_final_shape_count: int = 1
     collision_shape_a_padding_degree: int = 183251937956
     collision_shape_a_excess_norm_degree_cap: int = 183251937963
+    collision_shape_a_pure_fiber_floor: int = 183251937970
+    collision_shape_a_resultant_bidegree: int = 50371909149418411349340
+    collision_shape_a_pair_floor: int = 75557863727701029814224
+    collision_shape_a_component_floor: int = 274877906955
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1401,6 +1407,40 @@ def verify_collision_shape_a_norm_concentration(formula: Formula) -> int:
     return 6
 
 
+def verify_collision_shape_a_pure_split_component_floor(formula: Formula) -> int:
+    """Replay the exact pure-fiber, pair, and component floors."""
+    e = (2**39 + 1) // 3
+    m = e - 2
+    n = (3 * e - 7) // 2
+    pure_fibers = e + 7
+    resultant_bidegree = m * (n - 1)
+    pair_floor = ceil_div(pure_fibers * n * (n - 1), m)
+    component_floor = ceil_div(pair_floor, n - 1)
+
+    require(3 * e - e - (e - 7) == pure_fibers, "shape-A pure fibers")
+    require(
+        pure_fibers == formula.collision_shape_a_pure_fiber_floor,
+        "shape-A pure-fiber floor",
+    )
+    require(
+        resultant_bidegree == formula.collision_shape_a_resultant_bidegree,
+        "shape-A resultant bidegree",
+    )
+    require(
+        pair_floor == formula.collision_shape_a_pair_floor,
+        "shape-A pair floor",
+    )
+    require(
+        component_floor == formula.collision_shape_a_component_floor,
+        "shape-A component floor",
+    )
+    require(component_floor == n + 14, "shape-A n+14 floor")
+    require(13 * m < 9 * n < 14 * m, "shape-A ceiling interval")
+    require(2 * m * n // 4 <= m * n // 2, "shape-A Bezout orbit cap")
+    require((9 * e - 7) * m // 2 > m * n // 2, "shape-A grid margin")
+    return 9
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1751,7 +1791,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 86, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 88, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1774,6 +1814,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_quartic_toral_deck_router(formula)
     checks += verify_collision_ordinary_companion_complete_exclusion(formula)
     checks += verify_collision_shape_a_norm_concentration(formula)
+    checks += verify_collision_shape_a_pure_split_component_floor(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -1910,6 +1951,16 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_shape_a_excess_norm_degree_cap": (
             formula.collision_shape_a_excess_norm_degree_cap
+        ),
+        "collision_shape_a_pure_fiber_floor": (
+            formula.collision_shape_a_pure_fiber_floor
+        ),
+        "collision_shape_a_resultant_bidegree": (
+            formula.collision_shape_a_resultant_bidegree
+        ),
+        "collision_shape_a_pair_floor": formula.collision_shape_a_pair_floor,
+        "collision_shape_a_component_floor": (
+            formula.collision_shape_a_component_floor
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
