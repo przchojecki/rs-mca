@@ -867,6 +867,67 @@ G_X(tau,x_*)=[z]G_X(t,x_*)=0:            [2,2].   (84)
 This identifies the exact remaining targets. It does not prove that any
 line of `(84)` is empty.
 
+## 23. The split jets are explicit scalar-weld functionals
+
+The correction parameter in Section 22 is outside the supported slope set.
+Indeed, it is not an assigned center by `Lambda(tau)!=0`. If it were an
+off-line supported slope, the exact vertical-fiber gcd
+
+```text
+gcd_X(Q(tau,X),G(tau,X))=A_tau(X)R_tau(X)          (85)
+```
+
+would make the common root `x_* notin U_0` padded-heavy, contrary to
+`g_*(tau)!=0`. Thus every classified row-root polynomial below is nonzero
+at `tau`.
+
+Write the classified rows as
+
+```text
+G(t,x)=lambda_xP_x(t)       (x in X),              (86)
+```
+
+where `lambda` is the unique projective full-support vector allowed by the
+connected scalar weld. Put
+
+```text
+L_X(Y)=product_(x in X)(Y-x),
+b_x=L_X(x_*)/[(x_*-x)L_X'(x)],
+d_x=b_x[L_X'(x_*)/L_X(x_*)-1/(x_*-x)].            (87)
+```
+
+Coefficientwise Lagrange interpolation and its `X`-derivative give
+
+```text
+R(t):=G(t,x_*)
+     =sum_x b_x lambda_xP_x(t),
+
+J(t):=G_X(t,x_*)
+     =sum_x d_x lambda_xP_x(t).                   (88)
+```
+
+For Hasse coefficients at `tau`, define
+
+```text
+R_s=sum_x b_x lambda_xP_x^[s](tau),
+J_s=sum_x d_x lambda_xP_x^[s](tau).               (89)
+```
+
+The Pade syzygy has terms of orders six and two at the heavy point, so
+`ord_tau R=2`. The entire retained collision is therefore the finite gate
+
+```text
+R_0=R_1=0,       R_2!=0,
+
+J_0!=0:                    [4];
+J_0=0, J_1!=0:             [1,3];
+J_0=J_1=0:                 [2,2].                 (90)
+```
+
+All summands in the zeroth equations are individually nonzero before the
+forced cancellations. Equation `(90)` is an explicit test on the realized
+row-root sets and weld vector; it is not yet a nonvanishing theorem.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live

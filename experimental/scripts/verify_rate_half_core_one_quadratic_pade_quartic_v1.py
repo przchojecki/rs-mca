@@ -7,10 +7,11 @@ import argparse
 import copy
 import hashlib
 from dataclasses import dataclass
+from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "1b6e12fd0ef2283c57dbf4b01281459b1a860754"
+SOURCE_COMMIT = "1d401c588d599d7a8a611f6e6201640769dab737"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -72,6 +73,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_truncated_source_minimal_recurrence_separation_fence/proof.md": "bc2f29e50f55892a0b0e8ee6b458659a85a3978f7356b5717e41c28b7c2f1e69",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_pade_split_jet_dictionary/statement.md": "5285637fe42f691a100848c6b03f121c3e436902caee8dcb06f3c8bc33426f7f",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_pade_split_jet_dictionary/proof.md": "901e98d33413f255a7dab03cf6ae0f7b6644da86da6503b7e5b0e8322e751cf6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/statement.md": "ee34bff50a0717589009feb0e579a6db86e3cf9f3289b40db29de02e93d4d53b",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/proof.md": "ebfa59faeba87a8ab34c66cdd3fe68e09be9f8cfecbbf7083b0640285c74d5f6",
 }
 
 
@@ -145,6 +148,7 @@ class Formula:
     collision_max_regular_corank: int = 2
     collision_profile_count: int = 3
     collision_global_jet_count: int = 2
+    collision_barycentric_functional_count: int = 4
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -369,6 +373,118 @@ def verify_collision_split_jet_dictionary(formula: Formula) -> int:
     return checks
 
 
+def verify_collision_barycentric_gate(formula: Formula) -> int:
+    """Replay outside-row value and derivative interpolation."""
+    prime = 101
+
+    def inv(value: int) -> int:
+        return pow(value % prime, prime - 2, prime)
+
+    def multiply(left: list[int], right: list[int]) -> list[int]:
+        out = [0] * (len(left) + len(right) - 1)
+        for i, x in enumerate(left):
+            for j, y in enumerate(right):
+                out[i + j] = (out[i + j] + x * y) % prime
+        return out
+
+    def hasse(poly: list[int], point: int, order: int) -> int:
+        return sum(
+            comb(power, order) * coefficient * pow(point, power - order, prime)
+            for power, coefficient in enumerate(poly)
+            if power >= order
+        ) % prime
+
+    rows = [1, 2, 3, 4, 5]
+    x_star = 17
+    tau = 11
+    locator = [1]
+    for x in rows:
+        locator = multiply(locator, [(-x) % prime, 1])
+    locator_value = hasse(locator, x_star, 0)
+    locator_derivative = hasse(locator, x_star, 1)
+
+    value_weights = []
+    derivative_weights = []
+    for x in rows:
+        derivative_at_x = 1
+        for y in rows:
+            if y != x:
+                derivative_at_x = derivative_at_x * (x - y) % prime
+        value = locator_value * inv(x_star - x) * inv(derivative_at_x) % prime
+        derivative = value * (
+            locator_derivative * inv(locator_value) - inv(x_star - x)
+        ) % prime
+        value_weights.append(value)
+        derivative_weights.append(derivative)
+
+    base = multiply([(-tau) % prime, 1], [(-tau) % prime, 1])
+    base = multiply(base, [-29 % prime, 1])
+    jet_rows = (
+        [1],
+        [(-tau) % prime, 1],
+        multiply([(-tau) % prime, 1], [(-tau) % prime, 1]),
+    )
+
+    checks = 0
+    for expected_profile, jet_row in zip(((4,), (1, 3), (2, 2)), jet_rows):
+        rows_in_t = []
+        for x in rows:
+            size = max(len(base), len(jet_row))
+            row = [0] * size
+            for i, value in enumerate(base):
+                row[i] = (row[i] + value) % prime
+            for i, value in enumerate(jet_row):
+                row[i] = (row[i] + (x - x_star) * value) % prime
+            rows_in_t.append(row)
+
+        value_row = [
+            sum(
+                value_weights[i]
+                * (rows_in_t[i][power] if power < len(rows_in_t[i]) else 0)
+                for i in range(len(rows))
+            ) % prime
+            for power in range(max(map(len, rows_in_t)))
+        ]
+        derivative_row = [
+            sum(
+                derivative_weights[i]
+                * (rows_in_t[i][power] if power < len(rows_in_t[i]) else 0)
+                for i in range(len(rows))
+            ) % prime
+            for power in range(max(map(len, rows_in_t)))
+        ]
+
+        for power in range(len(value_row)):
+            require(
+                value_row[power] == (base[power] if power < len(base) else 0),
+                "barycentric value row",
+            )
+            require(
+                derivative_row[power]
+                == (jet_row[power] if power < len(jet_row) else 0),
+                "barycentric derivative row",
+            )
+            checks += 2
+
+        value_jets = [hasse(value_row, tau, order) for order in range(3)]
+        derivative_jets = [hasse(derivative_row, tau, order) for order in range(2)]
+        require(
+            value_jets[0] == value_jets[1] == 0 and value_jets[2] != 0,
+            "barycentric value order",
+        )
+        profile = (4,)
+        if derivative_jets[0] == 0:
+            profile = (1, 3) if derivative_jets[1] else (2, 2)
+        require(profile == expected_profile, "barycentric profile")
+        checks += 2
+
+    require(
+        formula.collision_barycentric_functional_count == 4,
+        "barycentric functional count changed",
+    )
+    return checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -520,6 +636,10 @@ def replay(formula: Formula) -> dict[str, int]:
     require(formula.collision_max_regular_corank == 2, "collision corank changed")
     require(formula.collision_profile_count == 3, "collision profile count changed")
     require(formula.collision_global_jet_count == 2, "collision jet count changed")
+    require(
+        formula.collision_barycentric_functional_count == 4,
+        "collision barycentric count changed",
+    )
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -678,7 +798,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 60, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 62, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -688,6 +808,7 @@ def replay(formula: Formula) -> dict[str, int]:
     factor_partition_checks, factor_feasible_profiles = verify_factor_profiles(formula)
     checks += verify_nonreduced_collision(formula)
     checks += verify_collision_split_jet_dictionary(formula)
+    checks += verify_collision_barycentric_gate(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -733,6 +854,9 @@ def replay(formula: Formula) -> dict[str, int]:
         "collision_max_regular_corank": formula.collision_max_regular_corank,
         "collision_profile_count": formula.collision_profile_count,
         "collision_global_jet_count": formula.collision_global_jet_count,
+        "collision_barycentric_functional_count": (
+            formula.collision_barycentric_functional_count
+        ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),

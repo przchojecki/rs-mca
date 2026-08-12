@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T collision scalar-weld jet gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** The unshared collision parameter is proved to
+  lie outside every supported row-root set. Full-set Lagrange value and
+  derivative weights express `G(t,x_*)` and `G_X(t,x_*)` as four exact
+  Hasse-jet functionals on the unique connected scalar-weld vector.
+- **How it is useful:** The remaining `[4]`, `[1,3]`, and `[2,2]` profiles
+  are now decidable from the printed row-root data and weld vector, without
+  reconstructing an unknown biform or compressed source.
+- **What to do next:** Prove that no realizable row-root/weld packet can
+  satisfy the exact double-zero value equations together with any of the
+  three derivative-jet alternatives, using the factor-degree trichotomy.
+
 ### 2026-08-12 - Lane-T collision split-jet dictionary
 
 - **Agent/model:** AllenGrahamHart / Codex.
