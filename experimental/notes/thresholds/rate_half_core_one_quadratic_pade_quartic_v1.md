@@ -1237,6 +1237,41 @@ intersection of `Q` with the source locator can be transverse at a padding
 point even when the vertical fiber has higher multiplicity. Therefore no
 claim that `E_Q(x_*)` is nonzero is made.
 
+## 30. Two-branch shapes exclude the `[4]` profile
+
+Shapes B and D each have exactly two factors of correction order one at the
+collision. Over a common splitting field, write their local germs as
+
+```text
+f_i(z,y)=a_i z+v_i y+O((z,y)^2),       a_i!=0,    (120)
+```
+
+where `z=t-tau` and `y=X-x_*`. All remaining factor germs form a unit
+`u(z,y)`, so `G=u f_1f_2`. The product rule gives
+
+```text
+G_X(tau,x_*)=0,
+[z]G_X(t,x_*)=u(0,0)(a_1v_2+a_2v_1).             (121)
+```
+
+Define the normalization-invariant tangent sum
+
+```text
+Theta=v_1/a_1+v_2/a_2.                            (122)
+```
+
+The split-jet dictionary `(83)--(84)` now routes B and D exactly:
+
+```text
+Theta!=0:       profile [1,3];
+Theta=0:        profile [2,2].                    (123)
+```
+
+Thus profile `[4]` is impossible in B and D. This does not exclude either
+shape or prove that `Theta` is nonzero. Shapes A and C have one collision
+factor of correction order two, so this product-rule vanishing does not
+restrict their profiles.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1251,7 +1286,9 @@ generic count-and-saturation implication, not the structured endpoint
 configuration. Squarefree shared corrections are absorbed into the unified
 constant/linear remainder gate. An unshared nonreduced correction remains
 open only in the three profiles `[4]`, `[1,3]`, and `[2,2]`, selected by
-the two global split-biform jets in `(83)--(84)`; none is excluded here. A
+the two global split-biform jets in `(83)--(84)`. After the factor-shape
+classification, profile `[4]` remains available only in shapes A and C;
+shapes B and D retain `[1,3]` and `[2,2]`. No shape is excluded here. A
 shared nonreduced correction and the two-simple correction remain open. The exact factor
 trichotomy is a restriction, not an exclusion or a `LineRay` payment. The
 center-adjusted root budget excludes two `d_A=1` profiles but does not
@@ -1262,3 +1299,5 @@ The factorwise Bezout classification narrows the surviving `d_A=1`
 factorization to four shapes but does not prove any shape empty.
 The companion norm gate does not determine `E_Q(x_*)` or exclude a
 low-degree companion.
+The two-branch tangent router does not decide whether `Theta` vanishes and
+does not exclude shape B or D.

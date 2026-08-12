@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T two-branch tangent-profile router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no factor-shape exclusion claimed.
+- **What is being added:** In collision shapes B and D, the two first-order
+  factor germs force `G_X(tau,x_*)=0`, excluding profile `[4]`. One
+  normalization-invariant tangent sum distinguishes `[1,3]` from `[2,2]`.
+- **How it is useful:** Replaces a three-profile local branch by one scalar
+  tangent-cancellation gate in each two-branch factor shape.
+- **What to do next:** Couple the tangent sum to the companion norm quotient
+  or the retained source/Hankel equations.
+
 ### 2026-08-12 - Lane-T ordinary-companion norm gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

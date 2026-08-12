@@ -11,7 +11,7 @@ from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "a22ff2c2e3d2c7dcf257244ed300bb737a9cbd2f"
+SOURCE_COMMIT = "00416046e65d7fce5b1c9d0b5135fefb6e6fae74"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -87,6 +87,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factorwise_bezout_shape_classification/proof.md": "65f4a55a62efdd316cecddd4ef906a560917111030467e58ce79491d7d2941ae",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_companion_norm_gate/statement.md": "52494e3757c6ea98d05dcf6f9e5793868c41c46753da82a8c285f89456b9cdbc",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_companion_norm_gate/proof.md": "de2fba5b1bf6d4a89a045a4e2264a9fc32b5b2a3ed12b99ae557fe0c51575f0f",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_two_branch_tangent_profile_router/statement.md": "16bcb089ccb0b35841a20e9ade2c27584640d9c52d75b94798080035b71d3657",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_two_branch_tangent_profile_router/proof.md": "b3e74fac2854fa78f959aeee332987308ab3e63cd4c50b1e15a00a236761f8b7",
 }
 
 
@@ -175,6 +177,9 @@ class Formula:
     collision_q2_reduced_norm_cap: int = 6
     collision_q4_norm_cap: int = 14
     collision_q4_reduced_norm_cap: int = 12
+    collision_two_branch_shape_count: int = 2
+    collision_two_branch_profile_count: int = 2
+    collision_two_branch_excluded_profile_count: int = 1
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -966,6 +971,91 @@ def verify_collision_ordinary_companion_norm(formula: Formula) -> int:
     return checks
 
 
+def verify_collision_two_branch_tangent_router(formula: Formula) -> int:
+    """Replay the product-rule profile router for shapes B and D."""
+
+    def multiply(left, right, prime):
+        product = {}
+        for (z_left, y_left), left_value in left.items():
+            for (z_right, y_right), right_value in right.items():
+                z_degree = z_left + z_right
+                y_degree = y_left + y_right
+                if z_degree > 2 or y_degree > 2:
+                    continue
+                key = (z_degree, y_degree)
+                product[key] = (
+                    product.get(key, 0) + left_value * right_value
+                ) % prime
+        return product
+
+    def derivative_y(polynomial, prime):
+        return {
+            (z_degree, y_degree - 1): y_degree * value % prime
+            for (z_degree, y_degree), value in polynomial.items()
+            if y_degree
+        }
+
+    shape_orders = {"A": (2,), "B": (1, 1), "C": (2,), "D": (1, 1)}
+    two_branch = tuple(
+        name for name, orders in shape_orders.items() if orders == (1, 1)
+    )
+    require(two_branch == ("B", "D"), "two-branch shape ledger")
+
+    checks = 1
+    for prime in (101, 127):
+        for a_1 in range(1, 6):
+            for a_2 in range(1, 6):
+                for v_1 in range(6):
+                    for v_2 in range(6):
+                        u_0 = (2 * a_1 + 3 * a_2 + 1) % prime
+                        require(u_0 != 0, "two-branch unit fixture")
+                        f_1 = {
+                            (1, 0): a_1,
+                            (0, 1): v_1,
+                            (2, 0): 7,
+                            (1, 1): 11,
+                            (0, 2): 13,
+                        }
+                        f_2 = {
+                            (1, 0): a_2,
+                            (0, 1): v_2,
+                            (2, 0): 17,
+                            (1, 1): 19,
+                            (0, 2): 23,
+                        }
+                        unit = {(0, 0): u_0, (1, 0): 29, (0, 1): 31}
+                        product = multiply(
+                            multiply(unit, f_1, prime), f_2, prime
+                        )
+                        g_x = derivative_y(product, prime)
+                        expected = u_0 * (a_1 * v_2 + a_2 * v_1) % prime
+                        require(
+                            g_x.get((0, 0), 0) == 0,
+                            "profile-four exclusion",
+                        )
+                        require(g_x.get((1, 0), 0) == expected, "tangent sum")
+                        require(
+                            (expected == 0)
+                            == ((v_1 * a_2 + v_2 * a_1) % prime == 0),
+                            "two-branch profile router",
+                        )
+                        checks += 4
+
+    require(
+        formula.collision_two_branch_shape_count == len(two_branch),
+        "two-branch shape count changed",
+    )
+    require(
+        formula.collision_two_branch_profile_count == 2,
+        "two-branch profile count changed",
+    )
+    require(
+        formula.collision_two_branch_excluded_profile_count == 1,
+        "two-branch excluded-profile count changed",
+    )
+    return checks + 3
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1316,7 +1406,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 74, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 76, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1333,6 +1423,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_quintic_cauchy_closed_form(formula)
     checks += verify_collision_factorwise_bezout_shapes(formula)
     checks += verify_collision_ordinary_companion_norm(formula)
+    checks += verify_collision_two_branch_tangent_router(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -1416,6 +1507,15 @@ def replay(formula: Formula) -> dict[str, int]:
         "collision_q4_norm_cap": formula.collision_q4_norm_cap,
         "collision_q4_reduced_norm_cap": (
             formula.collision_q4_reduced_norm_cap
+        ),
+        "collision_two_branch_shape_count": (
+            formula.collision_two_branch_shape_count
+        ),
+        "collision_two_branch_profile_count": (
+            formula.collision_two_branch_profile_count
+        ),
+        "collision_two_branch_excluded_profile_count": (
+            formula.collision_two_branch_excluded_profile_count
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
