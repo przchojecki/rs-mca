@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T quartic companion deck-involution router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no shape-C exclusion claimed.
+- **What is being added:** The `(4,6)` companion forces over four trillion
+  subgroup coincidences. Corvaja--Zannier and the five-component cover bound
+  force a toral component, which degree comparison promotes to an
+  antipodal or reciprocal deck involution.
+- **How it is useful:** Replaces the arbitrary shape-C companion by a
+  bidegree-`(4,3)` quotient in `X^2` or `X+k/X`.
+- **What to do next:** Transport the collision and source identities to the
+  two cubic quotient arms and exclude them separately.
+
 ### 2026-08-12 - Lane-T ordinary quadratic companion exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.

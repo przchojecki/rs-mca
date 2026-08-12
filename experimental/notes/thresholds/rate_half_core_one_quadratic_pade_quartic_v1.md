@@ -1416,6 +1416,67 @@ Thus no `(2,3)` companion exists. Shapes B and D are empty, and the
 collision factorization now has only shapes A and C. Shape C's `(4,6)`
 companion and shape A's single large factor remain open.
 
+## 33. Shape C has a toral deck involution
+
+Retain shape C's absolutely irreducible `(4,6)` companion `Q(t,X)`. The
+divided off-diagonal resultant
+
+```text
+L_Q(X,Y)=Res_t(Q(t,X),Q(t,Y))/(X-Y)^4              (135)
+```
+
+has bidegree at most `(20,20)`: the raw quartic resultant has bidegree at
+most `(24,24)`, and the diagonal has multiplicity four. The factorwise grid
+has `18e-14` incidences against capacity `18e`, so at least
+
+```text
+F_6=3e-14=2^39-13                                  (136)
+```
+
+slopes carry six distinct rows. Each gives thirty ordered pairs, and a
+fixed pair shares at most four parameter roots. Hence the reduced
+coincidence locus contains at least
+
+```text
+P_6=ceil(30F_6/4)=4123168604063                    (137)
+```
+
+distinct points of `H^2`.
+
+A connected degree-six cover has at most five geometric off-diagonal orbit
+components. If none were a translated subtorus, Corvaja--Zannier with
+`chi<=800` and bidegree at most `(20,20)` would make their total smaller
+than `(137)`. The exact five-component margins are
+
+```text
+125*17280000*N^2 < P_6^3,
+5*4800*N^2 < P P_6.                                (138)
+```
+
+Thus a component with an actual `H^2` point is a translated subtorus
+`X^aY^b=k`. Retaining the subdegree `h` over the companion curve and the
+degree `q` to the toral image gives
+
+```text
+q|a|=q|b|=4h.                                      (139)
+```
+
+Primitivity forces `|a|=|b|=1`; distinct row values then force `h=1`.
+The component is the graph of a deck automorphism. In the scaling case its
+order divides both six and `|H|=2^41`, so it is `X -> -X`. In the other
+case it is the involution `X -> k/X`, with `k in H`.
+
+Therefore the companion descends to a cubic row quotient:
+
+```text
+Q(t,X)=R(t,X^2),
+Q(t,X)=X^3R(t,X+k/X),                              (140)
+```
+
+up to scalar normalization, with `R` of bidegree `(4,3)`. This is a proved
+router, not a shape-C exclusion. The two involution quotient arms and shape
+A are the remaining collision frontier.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1447,3 +1508,5 @@ does not exclude shape B or D.
 The subgroup-coincidence router in Section 31 does not by itself classify
 the coordinate-corner locus; the Corvaja--Zannier argument in Section 32
 does, and excludes B/D but not A/C.
+The quartic toral router reduces shape C to antipodal or reciprocal cubic
+quotients but does not exclude either quotient.
