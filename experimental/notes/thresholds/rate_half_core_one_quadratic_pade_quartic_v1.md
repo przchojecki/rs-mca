@@ -928,38 +928,47 @@ All summands in the zeroth equations are individually nonzero before the
 forced cancellations. Equation `(90)` is an explicit test on the realized
 row-root sets and weld vector; it is not yet a nonvanishing theorem.
 
-## 24. The nonreduced heavy row has only a quadratic residual
+## 24. The nonreduced heavy row has a center-adjusted residual
 
-Every root of the squarefree degree-`e-6` form `g_*` is a supported slope
-at which `x_*` is padded-heavy. The all-excess fiber factorization therefore
-gives
+The degree-`e-6` squarefree form `g_*` contains exactly `d_A` roots at
+assigned padded-heavy centers. Put
 
 ```text
-g_*(t) divides G(t,x_*).                            (91)
+J_*=gcd(Lambda,g_*),       deg J_*=d_A,
+g_off=g_*/J_*.
+```
+
+The remaining `e-6-d_A` roots are the supported off-line slopes at which
+`x_*` is padded-heavy. The all-excess fiber factorization therefore gives
+
+```text
+g_off(t) divides G(t,x_*).                          (91)
 ```
 
 The split biform is bihomogeneous of parameter degree `e-2`. Its nonzero
 specialization at the projective row `x_*` therefore has exact degree `e-2`,
-so the quotient in `(91)` has exact degree four. Section 23 gives exact order
-two at the unsupported correction, while `g_*(tau)!=0` and
+so the quotient in `(91)` has exact degree `4+d_A`. Section 23 gives exact
+order two at the unsupported correction, while `g_off(tau)!=0` and
 `S_B=c_S(t-tau)^2`. Consequently
 
 ```text
-G(t,x_*)=g_*(t)S_B(t)T_2(t),
-T_2!=0,       deg T_2=2,        T_2(tau)!=0.       (92)
+G(t,x_*)=g_off(t)S_B(t)T_(2+d_A)(t),
+T_(2+d_A)!=0,       deg T_(2+d_A)=2+d_A,
+T_(2+d_A)(tau)!=0.                                  (92)
 ```
 
 Equivalently, for the value weights and unique weld vector in Section 23,
 
 ```text
-g_*S_B divides sum_x b_x lambda_xP_x(t).           (93)
+g_off S_B divides sum_x b_x lambda_xP_x(t).         (93)
 ```
 
-The modulus in `(93)` has degree `e-4`, and the quotient has only three
+The modulus in `(93)` has degree `e-4-d_A`, and the quotient has `3+d_A`
 coefficients. Thus `(93)` is one explicit polynomial-remainder matrix on
-the weld vector, with the additional open condition that its quadratic
+the weld vector, with the additional open condition that its residual
 quotient be nonzero at `tau`. No multiplicity above one is assumed at the
-supported padded fibers.
+supported padded fibers. In particular the residual is quadratic for
+`d_A=0` and cubic for `d_A=1`.
 
 ## 25. Every divided-row moment has a quintic quotient
 
@@ -992,17 +1001,18 @@ Equivalently, for the divided-row coefficient vector `u`,
 M(t)u(t)=g_*(t)S_B(t)C(t),       deg_t C<=5.      (97)
 ```
 
-Cancelling `g_*S_B` in the Pade syzygy gives the exact initial relation
+Writing `Lambda=J_*Lambda_0` and cancelling `g_*S_B` in the Pade syzygy
+gives the exact initial relation
 
 ```text
-a_QS_B^2B(t,x_*)-Lambda(t)T_2(t)
+a_QS_B^2B(t,x_*)-Lambda_0(t)T_(2+d_A)(t)
  =L_U0(x_*)C_0(t).                                (98)
 ```
 
 At the correction,
 
 ```text
-C_0(tau)=-Lambda(tau)T_2(tau)/L_U0(x_*)!=0,
+C_0(tau)=-Lambda_0(tau)T_(2+d_A)(tau)/L_U0(x_*)!=0,
 C_i(tau)=x_*^iC_0(tau).                           (99)
 ```
 
@@ -1011,7 +1021,7 @@ a nonzero geometric correction value. This is weaker than the squarefree
 `D_1`-divisible cubic vector: only `g_*S_B`, not `g_*S_B^2`, is asserted to
 divide the moments.
 
-## 26. Four exceptional roots compress the factor profiles
+## 26. The center-adjusted exceptional-root budget compresses the profiles
 
 Retain the exact factorization and degree notation
 
@@ -1037,11 +1047,11 @@ s_j<=sigma_j,       u_j>=m_j-sigma_j.             (102)
 ```
 
 Every factor specialization is a nonzero binary form of exact degree
-`m_j`. Moreover, the `e-6` distinct roots of `g_*` in `(92)` are all
-supported. Summing over factors gives the global four-root budget
+`m_j`. Moreover, the `e-6-d_A` distinct roots of `g_off` in `(92)` are all
+supported. Summing over factors gives the global center-adjusted budget
 
 ```text
-sum_j u_j<=4.                                      (103)
+sum_j u_j<=4+d_A.                                  (103)
 ```
 
 For the large-odd and huge-even classes in the exact factor trichotomy,
@@ -1054,13 +1064,14 @@ respectively, `chi_j=2n_j-3m_j` is `-1` and `-2`. Since
 equations `(102)--(103)` sharpen their thresholds to
 
 ```text
-large odd:       (q-2)m_j>=3e-8,
-huge even:       (q-2)m_j>=6e-8.                  (105)
+large odd:       (q-2)m_j>=3e-8-2d_A,
+huge even:       (q-2)m_j>=6e-8-2d_A.             (105)
 ```
 
 For `d_A=1`, two large-odd factors plus a small odd factor already have
-total degree greater than `e-2`; the same is true of one huge-even factor
-plus a small odd factor. Profiles II and III are therefore impossible.
+total degree greater than `e-2`, since `2(3e-10)/5+1>e-2` for `e>5`;
+the same is true of one huge-even factor plus a small odd factor, since
+`(6e-10)/5+1>e-2`. Profiles II and III are therefore impossible.
 Only profile I remains: one large-odd factor, no small odd or huge even
 factor, and any number of ordinary-even companions.
 
@@ -1076,7 +1087,7 @@ d_A=1: large odd >=109951162777,
 
 This compression does not exclude the remaining `d_A=1` profile I or the
 three `d_A=0` profiles. It does show that every surviving factorization is
-within four unsupported roots of saturating all factor-column capacities.
+within `4+d_A` unsupported roots of saturating all factor-column capacities.
 
 ## 27. The quintic vector is an automatic Cauchy transform
 
@@ -1098,7 +1109,7 @@ The split-biform source identity and one Lagrange leading-coefficient sum
 give the exact formula
 
 ```text
-C_i(t)=-Lambda(t)x_*^iT_2(t)/L(x_*)
+C_i(t)=-Lambda_0(t)x_*^iT_(2+d_A)(t)/L(x_*)
        +a_QS_B(t)^2D_i(t).                        (109)
 ```
 
@@ -1143,6 +1154,7 @@ open only in the three profiles `[4]`, `[1,3]`, and `[2,2]`, selected by
 the two global split-biform jets in `(83)--(84)`; none is excluded here. A
 shared nonreduced correction and the two-simple correction remain open. The exact factor
 trichotomy is a restriction, not an exclusion or a `LineRay` payment. The
-four-root budget excludes two `d_A=1` profiles but does not exclude profile I.
+center-adjusted root budget excludes two `d_A=1` profiles but does not
+exclude profile I.
 The quintic closed form redirects the final problem to the scalar-weld and
 factor geometry; it does not itself exclude a collision.

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T center-overlap correction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED correction to the four preceding Lane-T reductions.
+- **What is being added:** In the `d_A=1` profile, one root of `g_*` is an
+  assigned padded-heavy center rather than an off-line supported slope.
+  Writing `J_*=gcd(Lambda,g_*)`, `g_off=g_*/J_*`, and
+  `Lambda_0=Lambda/J_*` corrects the heavy-row residual degree from two to
+  `2+d_A` and the unsupported-root budget from four to `4+d_A`.
+- **How it is useful:** The corrected formulas retain the quintic moment
+  divisor, the Cauchy route fence, both `d_A=1` profile exclusions, and all
+  printed official thresholds. They remove an overstrong intermediate
+  assertion before later work relies on it.
+- **What to do next:** Use only the center-adjusted residual and root budget
+  when coupling the unique scalar weld to the surviving macroscopic factor.
+
 ### 2026-08-12 - Lane-T quintic Cauchy route fence
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -39,7 +59,8 @@ Keep entries concise and link to the relevant files.
   and `experimental/agents-log.md`.
 - **Status:** PROVED route fence; no Lane-T closure claimed.
 - **What is being added:** Every divided-row quotient has the exact Cauchy
-  form `C_i=-Lambda*x_*^i*T_2/L(x_*)+a_Q*S_B^2*D_i`, with `D_i`
+  form
+  `C_i=-Lambda_0*x_*^i*T_(2+d_A)/L(x_*)+a_Q*S_B^2*D_i`, with `D_i`
   parameter-linear.
 - **How it is useful:** Shows that the quintic cap, recurrence, and geometric
   correction value are automatic and cannot supply an independent
@@ -47,7 +68,7 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Couple the unique scalar weld or the near-saturated
   large-odd factor to an additional source/incidence constraint.
 
-### 2026-08-12 - Lane-T collision factor four-root budget
+### 2026-08-12 - Lane-T collision factor root budget
 
 - **Agent/model:** AllenGrahamHart / Codex.
 - **Files added or changed:**
@@ -55,10 +76,10 @@ Keep entries concise and link to the relevant files.
   `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
   and `experimental/agents-log.md`.
 - **Status:** PROVED reduction; no Lane-T closure claimed.
-- **What is being added:** The heavy row has only four roots beyond the
-  squarefree supported factor. Combining this with the exact factor grid
-  yields `sum_j(m_j-s_j)<=4`, sharpened macroscopic-factor thresholds, and
-  excludes factor profiles II and III when `d_A=1`.
+- **What is being added:** The heavy row has only `4+d_A` roots beyond the
+  squarefree off-line supported factor. Combining this with the exact factor
+  grid yields `sum_j(m_j-s_j)<=4+d_A`, sharpened macroscopic-factor
+  thresholds, and excludes factor profiles II and III when `d_A=1`.
 - **How it is useful:** It leaves the `d_A=1` collision with one large-odd
   factor and ordinary-even companions, sharply reducing the remaining
   scalar-weld/factor incompatibility problem.
@@ -82,7 +103,7 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Use the Cauchy closed form below to decide whether the
   quotient supplies any condition beyond the heavy-row factorization.
 
-### 2026-08-12 - Lane-T nonreduced heavy-row quadratic residual
+### 2026-08-12 - Lane-T nonreduced heavy-row residual
 
 - **Agent/model:** AllenGrahamHart / Codex.
 - **Files added or changed:**
@@ -90,14 +111,14 @@ Keep entries concise and link to the relevant files.
   `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
   and `experimental/agents-log.md`.
 - **Status:** PROVED reduction; no Lane-T closure claimed.
-- **What is being added:** Every supported padded-heavy slope divides
-  `G(t,x_*)`; after removing `g_*`, the exact double correction removes two
-  of the remaining four degrees. Hence
-  `G(t,x_*)=g_*S_BT_2` with exact projective degree `deg T_2=2` and
-  `T_2(tau)!=0`.
+- **What is being added:** Every off-line supported padded-heavy slope divides
+  `G(t,x_*)`; after removing `g_off=g_*/gcd(Lambda,g_*)`, the exact double
+  correction removes two of the remaining `4+d_A` degrees. Hence
+  `G(t,x_*)=g_off S_B T_(2+d_A)` with exact residual degree `2+d_A` and
+  `T_(2+d_A)(tau)!=0`.
 - **How it is useful:** Replaces the nonreduced outside row by a
-  degree-`e-4` polynomial-remainder matrix on the unique weld vector and
-  only three quotient coefficients.
+  degree-`e-4-d_A` polynomial-remainder matrix on the unique weld vector and
+  only `3+d_A` quotient coefficients.
 - **What to do next:** Prove this remainder matrix cannot kill the unique
   weld vector jointly with the two derivative-jet alternatives.
 

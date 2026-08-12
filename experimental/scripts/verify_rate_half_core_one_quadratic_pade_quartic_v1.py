@@ -11,7 +11,7 @@ from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "1db2188634520c71aa4a83c5ac106bfb37e00f97"
+SOURCE_COMMIT = "51dcd6dde3750737c2bde8cecab7f8b7f718cc51"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -75,14 +75,14 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_pade_split_jet_dictionary/proof.md": "901e98d33413f255a7dab03cf6ae0f7b6644da86da6503b7e5b0e8322e751cf6",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/statement.md": "ee34bff50a0717589009feb0e579a6db86e3cf9f3289b40db29de02e93d4d53b",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/proof.md": "ebfa59faeba87a8ab34c66cdd3fe68e09be9f8cfecbbf7083b0640285c74d5f6",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/statement.md": "a59b64d49dbf086faab2a8cb68a5a7d239284b976f636598461c30d63dee5fbb",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/proof.md": "e7ece4d442da1f6f19d0340851591205b89b0b29b2956bfa7dc96ac4b3193828",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/statement.md": "67d9b8ad3b09bc36e2463b8cfde33e828a4ca201e2c4ee0b58f3b588f351af57",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/proof.md": "8af392216500f0683b8f1f08629ef9a229498af80d2a09813283a30b1ab2af05",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/statement.md": "6b7f6b77c3082eb4d2c9dbfe4447597b787f390436201c59c243391eb5e5a6cd",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/proof.md": "e47461eeb0b9134f8324d54eb2d9c831117da7f95c44f361f2a0c510127d00f5",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_cauchy_closed_form/statement.md": "6907c4099eb4955c4775be566e5ba1c8f9d6ef339fc7cd369a75ea9c7f36b7f0",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_cauchy_closed_form/proof.md": "bc575866643240c0663b2fba4931f5d6a3656b5b189a481c32ca41d7960beba2",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/statement.md": "b03b5355fb3a09a62f2263754d3ce4b409c9c3019f357bc41387a4aad099afdb",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/proof.md": "54130913e897c1a95dd76d86365db4a25fc6d7ef261d548fe972b40d24ef9ac0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/statement.md": "d0cc1e4c299a4062d0ffb8a17757edad34e569e62850a2690a60b7e7cfa93749",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/proof.md": "6868035c13ef7fa281edf18603b62b0821852dfbe2c9b1ebb1a979cc0123c26d",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/statement.md": "ee09d10890920d345c4d05f949b1c286e809fbd0e716246161e26fc9da1f0cae",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_factor_profile_unsupported_root_budget/proof.md": "3ae3d0c8bf775ac0d53da362112d0707026c95a0a5c8c96100d4290c05666aed",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_cauchy_closed_form/statement.md": "219b52b4bade5996628050c59fb39003bed2535fd561410521242978b3e862c7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_cauchy_closed_form/proof.md": "96cf80c0b3065cae5a39c638fefa480b264c102400d669196d84f9524aeced7c",
 }
 
 
@@ -157,9 +157,11 @@ class Formula:
     collision_profile_count: int = 3
     collision_global_jet_count: int = 2
     collision_barycentric_functional_count: int = 4
-    collision_heavy_row_residual_degree: int = 2
+    collision_heavy_row_residual_degree_d_a0: int = 2
+    collision_heavy_row_residual_degree_d_a1: int = 3
     collision_divided_row_quotient_degree: int = 5
-    collision_unsupported_root_budget: int = 4
+    collision_unsupported_root_budget_d_a0: int = 4
+    collision_unsupported_root_budget_d_a1: int = 5
     collision_d_a1_factor_profile_count: int = 1
     collision_quintic_independent_gate_count: int = 0
 
@@ -499,22 +501,30 @@ def verify_collision_barycentric_gate(formula: Formula) -> int:
 
 
 def verify_nonreduced_heavy_row_residual(formula: Formula) -> int:
-    """Replay the supported, correction, and residual degree ledger."""
+    """Replay the center-adjusted supported and residual degree ledger."""
     checks = 0
     for e in (7, 13, 183251937963):
-        supported_degree = e - 6
-        correction_degree = 2
-        residual_degree = formula.collision_heavy_row_residual_degree
-        require(
-            supported_degree + correction_degree + residual_degree == e - 2,
-            "nonreduced heavy-row degree",
-        )
-        require(
-            supported_degree + correction_degree == e - 4,
-            "nonreduced remainder modulus degree",
-        )
-        require(residual_degree == 2, "nonreduced residual degree changed")
-        checks += 3
+        for d_a in (0, 1):
+            supported_degree = e - 6 - d_a
+            correction_degree = 2
+            residual_degree = (
+                formula.collision_heavy_row_residual_degree_d_a0
+                if d_a == 0
+                else formula.collision_heavy_row_residual_degree_d_a1
+            )
+            require(
+                supported_degree + correction_degree + residual_degree == e - 2,
+                "nonreduced heavy-row degree",
+            )
+            require(
+                supported_degree + correction_degree == e - 4 - d_a,
+                "nonreduced remainder modulus degree",
+            )
+            require(
+                residual_degree == 2 + d_a,
+                "nonreduced center-adjusted residual degree changed",
+            )
+            checks += 3
     return checks
 
 
@@ -590,10 +600,15 @@ def verify_nonreduced_divided_row_quotient(formula: Formula) -> int:
 def verify_collision_factor_unsupported_root_budget(formula: Formula) -> int:
     """Replay the sharpened thresholds and d_A=1 profile compression."""
     checks = 0
-    budget_twice = 2 * formula.collision_unsupported_root_budget
     for e in range(7, 80, 2):
         total = e - 2
         for d_a, q in ((0, 9), (1, 7)):
+            budget = (
+                formula.collision_unsupported_root_budget_d_a0
+                if d_a == 0
+                else formula.collision_unsupported_root_budget_d_a1
+            )
+            budget_twice = 2 * budget
             large = least_with_parity(3 * e - budget_twice, q - 2, 1)
             huge = least_with_parity(6 * e - budget_twice, q - 2, 0)
             require((q - 2) * large >= 3 * e - budget_twice, "budget large")
@@ -614,30 +629,52 @@ def verify_collision_factor_unsupported_root_budget(formula: Formula) -> int:
 
     official = 183251937963
     require(
-        least_with_parity(3 * official - budget_twice, 7, 1) == 78536544841,
+        least_with_parity(
+            3 * official - 2 * formula.collision_unsupported_root_budget_d_a0,
+            7,
+            1,
+        ) == 78536544841,
         "official d_A=0 large",
     )
     require(
-        least_with_parity(6 * official - budget_twice, 7, 0) == 157073089682,
+        least_with_parity(
+            6 * official - 2 * formula.collision_unsupported_root_budget_d_a0,
+            7,
+            0,
+        ) == 157073089682,
         "official d_A=0 huge",
     )
     require(
-        least_with_parity(3 * official - budget_twice, 5, 1) == 109951162777,
+        least_with_parity(
+            3 * official - 2 * formula.collision_unsupported_root_budget_d_a1,
+            5,
+            1,
+        ) == 109951162777,
         "official d_A=1 large",
     )
     require(
-        least_with_parity(6 * official - budget_twice, 5, 0) == 219902325554,
+        least_with_parity(
+            6 * official - 2 * formula.collision_unsupported_root_budget_d_a1,
+            5,
+            0,
+        ) == 219902325554,
         "official d_A=1 huge",
     )
     checks += 4
 
-    for q, chi, coefficient in (
-        (9, -1, 3),
-        (9, -2, 6),
-        (7, -1, 3),
-        (7, -2, 6),
+    for d_a, q, chi, coefficient in (
+        (0, 9, -1, 3),
+        (0, 9, -2, 6),
+        (1, 7, -1, 3),
+        (1, 7, -2, 6),
     ):
         e = 101
+        budget = (
+            formula.collision_unsupported_root_budget_d_a0
+            if d_a == 0
+            else formula.collision_unsupported_root_budget_d_a1
+        )
+        budget_twice = 2 * budget
         threshold = least_with_parity(
             coefficient * e - budget_twice,
             q - 2,
@@ -658,18 +695,32 @@ def verify_collision_factor_unsupported_root_budget(formula: Formula) -> int:
 
 
 def verify_collision_quintic_cauchy_closed_form(formula: Formula) -> int:
-    """Replay the Cauchy formula without symbolic-polynomial machinery."""
-    checks = 0
-    for prime in (101, 127):
-        e = 7
-        p = (3 * e - 1) // 2
-        n_0 = 3 * p - 2
-        d = 2 * p - 1
-        degree_x = p - 3
-        source = list(range(1, n_0 + 1))
-        x_star = n_0 + 9
-        gamma = n_0 + 3
-        a_q = 7
+    """Replay the center-adjusted Cauchy formula over two finite fields."""
+
+    def run_fixture(prime: int, d_a: int) -> int:
+        def trim(poly: list[int]) -> list[int]:
+            out = [value % prime for value in poly]
+            while len(out) > 1 and out[-1] == 0:
+                out.pop()
+            return out
+
+        def add(left: list[int], right: list[int]) -> list[int]:
+            size = max(len(left), len(right))
+            return trim([
+                (left[i] if i < len(left) else 0)
+                + (right[i] if i < len(right) else 0)
+                for i in range(size)
+            ])
+
+        def scale(poly: list[int], scalar: int) -> list[int]:
+            return trim([scalar * value for value in poly])
+
+        def multiply(left: list[int], right: list[int]) -> list[int]:
+            out = [0] * (len(left) + len(right) - 1)
+            for i, x in enumerate(left):
+                for j, y in enumerate(right):
+                    out[i + j] += x * y
+            return trim(out)
 
         def inverse(value: int) -> int:
             return pow(value % prime, prime - 2, prime)
@@ -680,101 +731,135 @@ def verify_collision_quintic_cauchy_closed_form(formula: Formula) -> int:
                 answer = answer * value % prime
             return answer
 
+        e = 7
+        p = (3 * e - 1) // 2
+        n_0 = 3 * p - 2
+        d = 2 * p - 1
+        degree_x = p - 3
+        source = list(range(1, n_0 + 1))
+        x_star = n_0 + 9
+        tau = 0
+        gamma = n_0 + 3
+        a_q = 7
+
+        s_b = [0, 0, 1]
+        j_star = [1] if d_a == 0 else [(-gamma) % prime, 1]
+        g_off = [(-gamma) % prime, 1] if d_a == 0 else [1]
+        g_star = multiply(j_star, g_off)
+        h_nr = multiply(g_star, s_b)
+        residual = [3, 4, 1] if d_a == 0 else [3, 4, 1, 1]
+        g_heavy = multiply(multiply(g_off, s_b), residual)
+        q_heavy = scale(
+            multiply(g_star, multiply(s_b, multiply(s_b, s_b))),
+            a_q,
+        )
+        lambda_0 = multiply([2, 1], [3, 1])
+        if d_a == 0:
+            lambda_0 = multiply([1, 1], lambda_0)
+        lambda_form = multiply(j_star, lambda_0)
+
+        def k_value(y: int) -> list[int]:
+            answer = [0]
+            power = 1
+            for degree in range(degree_x):
+                coefficient = [degree + 2, y + degree + 1, 2 * degree + 1]
+                answer = add(answer, scale(coefficient, power))
+                power = power * y % prime
+            return answer
+
+        def g_value(y: int) -> list[int]:
+            return add(g_heavy, scale(k_value(y), y - x_star))
+
         l_at_star = product(x_star - y for y in source)
         l_prime = {
             y: product(y - z for z in source if z != y)
             for y in source
         }
+        omega = {y: [y + 2, 2 * y + 1] for y in source}
+        source_product = {
+            y: scale(multiply(lambda_form, g_value(y)), inverse(l_prime[y]))
+            for y in source
+        }
 
-        for t in range(12):
-            s_b = t * t % prime
-            g_star = (t - gamma) % prime
-            h_nr = g_star * s_b % prime
-            t_2 = (3 + 4 * t + t * t) % prime
-            g_heavy = h_nr * t_2 % prime
-            q_heavy = a_q * g_star * pow(s_b, 3, prime) % prime
-            lambda_value = (t + 1) * (t + 2) * (t + 3) % prime
+        checks = 0
+        previous_d = None
+        previous_c = None
+        previous_h = None
+        for i in range(d + 1):
+            d_i = [0]
+            h_i = [0]
+            f_i = [0]
+            for y in source:
+                y_power = pow(y, i, prime)
+                d_i = add(
+                    d_i,
+                    scale(omega[y], y_power * inverse(x_star - y)),
+                )
+                h_i = add(h_i, scale(omega[y], y_power))
+                divided_value = scale(
+                    add(
+                        source_product[y],
+                        scale(multiply(omega[y], q_heavy), -1),
+                    ),
+                    inverse(y - x_star),
+                )
+                f_i = add(f_i, scale(divided_value, y_power))
 
-            def omega(y: int) -> int:
-                return (y + 2 + (2 * y + 1) * t) % prime
+            c_i = add(
+                scale(
+                    multiply(lambda_0, residual),
+                    -pow(x_star, i, prime) * inverse(l_at_star),
+                ),
+                scale(multiply(multiply(s_b, s_b), d_i), a_q),
+            )
+            require(f_i == multiply(h_nr, c_i), "quintic Cauchy formula")
+            require(
+                len(c_i) - 1 <= formula.collision_divided_row_quotient_degree,
+                "quintic degree",
+            )
+            checks += 2
 
-            def k_value(y: int) -> int:
-                return sum(
-                    (
-                        degree + 2
-                        + (y + degree + 1) * t
-                        + (2 * degree + 1) * t * t
-                    )
-                    * pow(y, degree, prime)
-                    for degree in range(degree_x)
-                ) % prime
+            if previous_d is not None:
+                require(
+                    d_i == add(scale(previous_d, x_star), scale(previous_h, -1)),
+                    "Cauchy recurrence",
+                )
+                require(
+                    c_i
+                    == add(
+                        scale(previous_c, x_star),
+                        scale(multiply(multiply(s_b, s_b), previous_h), -a_q),
+                    ),
+                    "closed-form quintic recurrence",
+                )
+                checks += 2
+            previous_d = d_i
+            previous_h = h_i
+            previous_c = c_i
 
-            def g_value(y: int) -> int:
-                return (g_heavy + (y - x_star) * k_value(y)) % prime
+            correction_value = c_i[0] % prime
+            expected = (
+                pow(x_star, i, prime)
+                * scale(
+                    multiply(lambda_0, residual),
+                    -inverse(l_at_star),
+                )[0]
+            ) % prime
+            require(correction_value == expected, "geometric correction value")
+            checks += 1
 
-            source_product = {
-                y: lambda_value * g_value(y) * inverse(l_prime[y]) % prime
-                for y in source
-            }
-
-            previous_d = None
-            previous_c = None
-            previous_h = None
-            for i in range(d + 1):
-                d_i = sum(
-                    omega(y) * pow(y, i, prime) * inverse(x_star - y)
-                    for y in source
-                ) % prime
-                h_i = sum(omega(y) * pow(y, i, prime) for y in source) % prime
-                f_i = sum(
-                    pow(y, i, prime)
-                    * (source_product[y] - omega(y) * q_heavy)
-                    * inverse(y - x_star)
-                    for y in source
-                ) % prime
-                c_i = (
-                    -lambda_value
-                    * pow(x_star, i, prime)
-                    * t_2
-                    * inverse(l_at_star)
-                    + a_q * s_b * s_b * d_i
-                ) % prime
-                require(f_i == h_nr * c_i % prime, "quintic Cauchy formula")
-                checks += 1
-
-                if previous_d is not None:
-                    require(
-                        d_i == (x_star * previous_d - previous_h) % prime,
-                        "Cauchy recurrence",
-                    )
-                    require(
-                        c_i
-                        == (x_star * previous_c - a_q * s_b * s_b * previous_h)
-                        % prime,
-                        "closed-form quintic recurrence",
-                    )
-                    checks += 2
-                previous_d = d_i
-                previous_h = h_i
-                previous_c = c_i
-
-                if t == 0:
-                    require(
-                        c_i
-                        == -lambda_value
-                        * pow(x_star, i, prime)
-                        * t_2
-                        * inverse(l_at_star)
-                        % prime,
-                        "geometric correction value",
-                    )
-                    checks += 1
+        require(tau not in source and x_star not in source, "fixture separation")
+        return checks + 1
 
     require(
         formula.collision_quintic_independent_gate_count == 0,
         "quintic independent-gate count changed",
     )
-    return checks
+    return sum(
+        run_fixture(prime, d_a)
+        for prime in (101, 127)
+        for d_a in (0, 1)
+    )
 
 
 def verify_truncated_source_separation_fence() -> int:
@@ -933,16 +1018,24 @@ def replay(formula: Formula) -> dict[str, int]:
         "collision barycentric count changed",
     )
     require(
-        formula.collision_heavy_row_residual_degree == 2,
-        "collision heavy-row residual changed",
+        formula.collision_heavy_row_residual_degree_d_a0 == 2,
+        "collision d_A=0 heavy-row residual changed",
+    )
+    require(
+        formula.collision_heavy_row_residual_degree_d_a1 == 3,
+        "collision d_A=1 heavy-row residual changed",
     )
     require(
         formula.collision_divided_row_quotient_degree == 5,
         "collision divided-row quotient changed",
     )
     require(
-        formula.collision_unsupported_root_budget == 4,
-        "collision unsupported-root budget changed",
+        formula.collision_unsupported_root_budget_d_a0 == 4,
+        "collision d_A=0 unsupported-root budget changed",
+    )
+    require(
+        formula.collision_unsupported_root_budget_d_a1 == 5,
+        "collision d_A=1 unsupported-root budget changed",
     )
     require(
         formula.collision_d_a1_factor_profile_count == 1,
@@ -1173,14 +1266,20 @@ def replay(formula: Formula) -> dict[str, int]:
         "collision_barycentric_functional_count": (
             formula.collision_barycentric_functional_count
         ),
-        "collision_heavy_row_residual_degree": (
-            formula.collision_heavy_row_residual_degree
+        "collision_heavy_row_residual_degree_d_a0": (
+            formula.collision_heavy_row_residual_degree_d_a0
+        ),
+        "collision_heavy_row_residual_degree_d_a1": (
+            formula.collision_heavy_row_residual_degree_d_a1
         ),
         "collision_divided_row_quotient_degree": (
             formula.collision_divided_row_quotient_degree
         ),
-        "collision_unsupported_root_budget": (
-            formula.collision_unsupported_root_budget
+        "collision_unsupported_root_budget_d_a0": (
+            formula.collision_unsupported_root_budget_d_a0
+        ),
+        "collision_unsupported_root_budget_d_a1": (
+            formula.collision_unsupported_root_budget_d_a1
         ),
         "collision_d_a1_factor_profile_count": (
             formula.collision_d_a1_factor_profile_count
