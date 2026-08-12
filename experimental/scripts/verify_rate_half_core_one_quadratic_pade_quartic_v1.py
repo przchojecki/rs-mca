@@ -11,7 +11,7 @@ from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "b0eb63dac604227e72d79e59f1a73db4a726bd8f"
+SOURCE_COMMIT = "c2c32ef646e01aa7e57cd8032bae46c06e184ecf"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -77,6 +77,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_barycentric_split_jet_gate/proof.md": "ebfa59faeba87a8ab34c66cdd3fe68e09be9f8cfecbbf7083b0640285c74d5f6",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/statement.md": "92b3584357a169b79f275ab9cfdb28ffb9a7983fff6e9de5122af655dcaa10e3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/proof.md": "ffb4ae334dadc118570c24ce03ca984a53d0702b38c10908cd246222babb8682",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/statement.md": "67d9b8ad3b09bc36e2463b8cfde33e828a4ca201e2c4ee0b58f3b588f351af57",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_divided_row_quintic_quotient/proof.md": "8af392216500f0683b8f1f08629ef9a229498af80d2a09813283a30b1ab2af05",
 }
 
 
@@ -152,6 +154,7 @@ class Formula:
     collision_global_jet_count: int = 2
     collision_barycentric_functional_count: int = 4
     collision_heavy_row_residual_degree: int = 2
+    collision_divided_row_quotient_degree: int = 5
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -508,6 +511,75 @@ def verify_nonreduced_heavy_row_residual(formula: Formula) -> int:
     return checks
 
 
+def verify_nonreduced_divided_row_quotient(formula: Formula) -> int:
+    """Replay the quintic degree and correction-value recurrence."""
+    prime = 101
+    tau = 17
+    x_star = 13
+
+    def add(left: list[int], right: list[int]) -> list[int]:
+        size = max(len(left), len(right))
+        return [
+            ((left[i] if i < len(left) else 0)
+             + (right[i] if i < len(right) else 0)) % prime
+            for i in range(size)
+        ]
+
+    def multiply(left: list[int], right: list[int]) -> list[int]:
+        out = [0] * (len(left) + len(right) - 1)
+        for i, x in enumerate(left):
+            for j, y in enumerate(right):
+                out[i + j] = (out[i + j] + x * y) % prime
+        return out
+
+    def value(poly: list[int], point: int) -> int:
+        return sum(
+            coefficient * pow(point, power, prime)
+            for power, coefficient in enumerate(poly)
+        ) % prime
+
+    s_b = multiply([(-tau) % prime, 1], [(-tau) % prime, 1])
+    s_b_squared = multiply(s_b, s_b)
+    quotient_rows = [[3, 4, 5, 6, 7, 8]]
+    checks = 0
+    for i in range(6):
+        h_i = [i + 2, 2 * i + 1]
+        forcing = multiply(s_b_squared, h_i)
+        following = add(
+            [(x_star * coefficient) % prime for coefficient in quotient_rows[-1]],
+            [(-coefficient) % prime for coefficient in forcing],
+        )
+        quotient_rows.append(following)
+        require(
+            len(following) - 1 <= formula.collision_divided_row_quotient_degree,
+            "divided-row quotient degree",
+        )
+        require(
+            value(following, tau)
+            == x_star * value(quotient_rows[-2], tau) % prime,
+            "divided-row correction recurrence",
+        )
+        checks += 2
+
+    require(value(quotient_rows[0], tau) != 0, "initial quotient value")
+    for i, row in enumerate(quotient_rows):
+        require(
+            value(row, tau)
+            == pow(x_star, i, prime) * value(quotient_rows[0], tau) % prime,
+            "geometric quotient vector",
+        )
+        checks += 1
+    checks += 1
+
+    for e in (7, 13, 183251937963):
+        require(
+            (e + 1) - (e - 4) == formula.collision_divided_row_quotient_degree,
+            "quintic degree subtraction",
+        )
+        checks += 1
+    return checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -667,6 +739,10 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.collision_heavy_row_residual_degree == 2,
         "collision heavy-row residual changed",
     )
+    require(
+        formula.collision_divided_row_quotient_degree == 5,
+        "collision divided-row quotient changed",
+    )
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -825,7 +901,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 64, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 66, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -837,6 +913,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_split_jet_dictionary(formula)
     checks += verify_collision_barycentric_gate(formula)
     checks += verify_nonreduced_heavy_row_residual(formula)
+    checks += verify_nonreduced_divided_row_quotient(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -887,6 +964,9 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_heavy_row_residual_degree": (
             formula.collision_heavy_row_residual_degree
+        ),
+        "collision_divided_row_quotient_degree": (
+            formula.collision_divided_row_quotient_degree
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

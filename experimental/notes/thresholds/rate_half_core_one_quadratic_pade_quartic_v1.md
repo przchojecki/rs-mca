@@ -960,6 +960,56 @@ the weld vector, with the additional open condition that its quadratic
 quotient be nonzero at `tau`. No multiplicity above one is assumed at the
 supported padded fibers.
 
+## 25. Every divided-row moment has a quintic quotient
+
+Let
+
+```text
+U(t,X)=[Q(t,X)-Q(t,x_*)]/(X-x_*),
+F_i(t)=Phi_t(X^iU(t,X)).                            (94)
+```
+
+Substitute `(92)` and `Q(t,x_*)=a_Qg_*S_B^3` into the Pade syzygy at
+`x_*`. Since `L_U0(x_*)!=0`, this forces
+
+```text
+F_0=g_*S_BC_0,       deg C_0<=5.                  (95)
+```
+
+The kernel recurrence propagates the same common divisor through every
+moment:
+
+```text
+F_i=g_*S_BC_i,
+C_(i+1)=x_*C_i-a_QS_B^2h_i,
+deg C_i<=5.                                       (96)
+```
+
+Equivalently, for the divided-row coefficient vector `u`,
+
+```text
+M(t)u(t)=g_*(t)S_B(t)C(t),       deg_t C<=5.      (97)
+```
+
+Cancelling `g_*S_B` in the Pade syzygy gives the exact initial relation
+
+```text
+a_QS_B^2B(t,x_*)-Lambda(t)T_2(t)
+ =L_U0(x_*)C_0(t).                                (98)
+```
+
+At the correction,
+
+```text
+C_0(tau)=-Lambda(tau)T_2(tau)/L_U0(x_*)!=0,
+C_i(tau)=x_*^iC_0(tau).                           (99)
+```
+
+Thus the nonreduced collision has a six-coefficient quotient vector with
+a nonzero geometric correction value. This is weaker than the squarefree
+`D_1`-divisible cubic vector: only `g_*S_B`, not `g_*S_B^2`, is asserted to
+divide the moments.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live

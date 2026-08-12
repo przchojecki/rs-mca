@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T nonreduced divided-row quintic
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** The common divisor `g_*S_B` propagates through
+  every canonical divided-row moment, leaving forms of degree at most five
+  with recurrence `C_(i+1)=x_*C_i-a_QS_B^2h_i`.
+- **How it is useful:** Replaces the full degree-`e+1` moment image on the
+  nonreduced locus by a six-coefficient vector whose correction value is a
+  nonzero geometric progression.
+- **What to do next:** Prove the bounded quintic vector is incompatible with
+  the unique scalar weld and two-directional factor-degree trichotomy.
+
 ### 2026-08-12 - Lane-T nonreduced heavy-row quadratic residual
 
 - **Agent/model:** AllenGrahamHart / Codex.
