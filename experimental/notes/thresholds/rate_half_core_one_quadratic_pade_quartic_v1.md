@@ -1536,6 +1536,48 @@ with no ordinary companion. This closes the companion alternatives, not
 the Lane-T collision packet: the unique large irreducible shape-A factor
 remains to be excluded.
 
+## 35. Shape A has one concentrated excess norm
+
+In the sole surviving shape A, `G` itself is the large factor of bidegree
+
+```text
+(m,n)=(e-2,(3e-7)/2).                              (145)
+```
+
+For every off-line slope, retain the all-excess factorization
+
+```text
+G(delta,X)=zeta_delta A_delta(X)H_delta(X)R_delta(X),
+deg H_delta=a_delta-q_delta.                       (146)
+```
+
+The total off-line padding degree is `e-7`. The squarefree heavy-row form
+already gives `e-7` distinct off-line slopes for which `x_*` is a padding
+root. Degree equality therefore leaves no other padding root:
+
+```text
+product_delta R_delta(X)=(X-x_*)^(e-7).            (147)
+```
+
+Each classified row lies on exactly `m` off-line fibers. Multiplying
+`(146)` and using `(147)` yields, up to one nonzero scalar `c`,
+
+```text
+product_delta G(delta,X)
+ =c L_U0(X)^(e-2)(X-x_*)^(e-7)T(X),
+T(X)=product_delta H_delta(X),
+deg T=e-sum_delta q_delta<=e.                      (148)
+```
+
+The exact norm theorem also gives `gcd(T,L_U0)=1`. Its tangent-value formula
+reconstructs `T` on every classified row after removing the two displayed
+power factors; there are `(9e-7)/2>e` such rows.
+
+Thus the remaining shape-A norm frontier is one degree-at-most-`e`
+source-defined polynomial. Equation `(148)` does not identify `T` or
+exclude shape A; the next obstruction must couple it to the scalar weld or
+the retained Pade/source syzygy.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1569,4 +1611,5 @@ the coordinate-corner locus; the Corvaja--Zannier argument in Section 32
 does, and excludes B/D but not A/C.
 The quartic toral router of Section 33 alone only reduces shape C to two
 quotients; Section 34 excludes both simultaneously. The surviving shape A
-is not excluded.
+is not excluded. Section 35 concentrates its norm but does not identify the
+residual polynomial `T`.

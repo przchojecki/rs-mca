@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T shape-A concentrated excess norm
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED shape-A reduction; no Lane-T closure claimed.
+- **What is being added:** The complete off-line padding degree `e-7` is
+  consumed by the `e-7` distinct slopes padded at the collision row. The
+  shape-A norm is therefore `L_U0^(e-2)(X-x_*)^(e-7)T`, up to scalar,
+  where `T` is the product of the excess residuals and has degree at most
+  `e`.
+- **How it is useful:** Replaces all remaining padding choices by one
+  source-defined excess norm, reconstructed by the classified-row tangent
+  products.
+- **What to do next:** Couple `T` to the scalar-weld, coefficient-MDS, and
+  Pade/source identities to exclude the sole surviving shape A.
+
 ### 2026-08-12 - Lane-T ordinary-companion complete exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.

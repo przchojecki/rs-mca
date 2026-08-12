@@ -11,7 +11,7 @@ from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "466cd4d95aac9a4e96fe62d03adada45bd932f4f"
+SOURCE_COMMIT = "d54687e6b9de59d52864419e555dafd3f9ac7254"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -97,6 +97,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quartic_companion_toral_deck_involution_router/proof.md": "aa867d25e5dd9ae63cb30db5e23239661c84e7933c324d17c5937d5bf377f43f",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_companion_complete_shape_exclusion/statement.md": "c1771c79e77a3c9ac45639dcb063575c6dfa523efe3e7ba96cbb3b96599868e2",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_companion_complete_shape_exclusion/proof.md": "d06c610ab90e5b8ce3560e1fc6cd57dc9dd60d2beaec6675dac8c306377e1342",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_norm_concentration/statement.md": "0e5c3cd397a2a04a6314d8b34093ff54f648d44127884da5b02b286844dddcb0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_norm_concentration/proof.md": "92baf69c4b9d1a65d52c98c1f83a28717c090089d0e24d54042ee69e92f9b5c3",
 }
 
 
@@ -206,6 +208,8 @@ class Formula:
     collision_q4_residual_component_cap: int = 4
     collision_q4_excluded_shape_count: int = 1
     collision_final_shape_count: int = 1
+    collision_shape_a_padding_degree: int = 183251937956
+    collision_shape_a_excess_norm_degree_cap: int = 183251937963
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1369,6 +1373,34 @@ def verify_collision_ordinary_companion_complete_exclusion(formula: Formula) -> 
     return 11
 
 
+def verify_collision_shape_a_norm_concentration(formula: Formula) -> int:
+    """Replay the exact shape-A padding and residual norm degrees."""
+    e = (2**39 + 1) // 3
+    m = e - 2
+    n = (3 * e - 7) // 2
+    row_count = (9 * e - 7) // 2
+    padding_degree = e - 7
+    excess_norm_cap = e
+
+    require(2 * n == 3 * e - 7, "shape-A row degree")
+    require(m + 2 == e, "shape-A parameter degree")
+    require(
+        padding_degree == formula.collision_shape_a_padding_degree,
+        "shape-A padding degree",
+    )
+    require(
+        excess_norm_cap == formula.collision_shape_a_excess_norm_degree_cap,
+        "shape-A excess norm cap",
+    )
+    require(
+        padding_degree + excess_norm_cap
+        == 2 * e - 7,
+        "shape-A norm split",
+    )
+    require(row_count > excess_norm_cap, "shape-A interpolation margin")
+    return 6
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1719,7 +1751,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 84, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 86, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1741,6 +1773,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_quadratic_torus_gcd_exclusion(formula)
     checks += verify_collision_quartic_toral_deck_router(formula)
     checks += verify_collision_ordinary_companion_complete_exclusion(formula)
+    checks += verify_collision_shape_a_norm_concentration(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -1872,6 +1905,12 @@ def replay(formula: Formula) -> dict[str, int]:
             formula.collision_q4_excluded_shape_count
         ),
         "collision_final_shape_count": formula.collision_final_shape_count,
+        "collision_shape_a_padding_degree": (
+            formula.collision_shape_a_padding_degree
+        ),
+        "collision_shape_a_excess_norm_degree_cap": (
+            formula.collision_shape_a_excess_norm_degree_cap
+        ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),
