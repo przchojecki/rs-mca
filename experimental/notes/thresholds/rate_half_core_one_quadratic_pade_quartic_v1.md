@@ -5,16 +5,16 @@ object: LINE
 target_epsilon: 2^-128 context; target-free structural theorem
 agreement: a=N-t=3N/4
 B_star: floor(q/2^128); no payment claimed
-direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; every squarefree double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; the heavy row is nonzero, has exact correction orders, and has overlap degree exactly d_A; the squarefree shared third jet vanishes by symmetric corank-one control; an unshared nonreduced correction is exactly a two-Hasse-jet gate; every irreducible paired-biform factor splits in both proved directions and one has macroscopic parameter degree; bare Layer-A row surplus plus saturation does not force rank
+direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; every squarefree double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; the heavy row is nonzero, has exact correction orders, and has overlap degree exactly d_A; the squarefree shared third jet vanishes by symmetric corank-one control; an unshared nonreduced correction is exactly a two-Hasse-jet gate and both jets vanish on the regular-corank-one locus; every irreducible paired-biform factor splits in both proved directions, the biform has constant content, and its factor degrees obey one of three exact profiles with no domain-degree slack; bare Layer-A row surplus plus saturation does not force rank
 architecture: DIRECT
 partition_digest: N/A
 atom_or_cell: symmetric-Hankel core-one scalar-quadratic u=4 extremal boundary
 quantifier: every field and profile satisfying the exact pair-floor interface and retained core-one quadratic packet
 projection_and_unit: projective parameter fibers and local intersection multiplicity
-claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on every squarefree double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, every passing remainder is nonzero and correction-coprime, and j=d_A in {0,1}; at a squarefree shared root the third jet vanishes and the local Smith type is [3]; an unshared double parameter root has exactly two unresolved Hasse jets; every paired-biform factor Q_j obeys 3e n_j>=(3p-3+d_A)m_j and one has m_j>=ceil(e/3) or ceil(3e/7); a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
+claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on every squarefree double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, every passing remainder is nonzero and correction-coprime, and j=d_A in {0,1}; at a squarefree shared root the third jet vanishes and the local Smith type is [3]; an unshared double parameter root has exactly two obstruction jets, both vanish if the regular specialized block has corank one, and a nonzero-jet survivor has corank at least two; every paired-biform factor Q_j obeys n_j=ceil((3p-3+d_A)m_j/(3e)), with exactly one of three odd/huge-even profiles and constant content; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
 status: PROVED
 impact: ROUTE_CUT
-falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, or a residual parameter root outside the correction quartic
+falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, a residual parameter root outside the correction quartic, a nonzero jet on the regular-corank-one nonreduced locus, nonconstant biform content, factor-degree slack, or a feasible factor profile outside the printed trichotomy
 replay: python3 experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py --check
 ---
 
@@ -41,8 +41,8 @@ ledger. This note closes both structural gaps. It is a profile-level route
 cut, not a `LineRay` payment or an adjacent-row theorem.
 
 The proof source is pinned to
-`AllenGrahamHart/rs-mca-prize-dag@f68d685e78da099e0a4dff362cc90ed2601a341f`.
-The verifier records the forty-four statement/proof SHA-256 values and can check
+`AllenGrahamHart/rs-mca-prize-dag@2ab0a04e5b84c09fc1027764253d8ba4cc3d0122`.
+The verifier records the forty-eight statement/proof SHA-256 values and can check
 them against a local source checkout with `--source-root`.
 
 ## 2. Every off-line fiber, including positive excess
@@ -584,6 +584,108 @@ on the official row. The Layer-A low-degree-factor mechanism is therefore
 impossible here. The remaining object is a macroscopic two-directionally
 split factor, not an arbitrary high-degree component.
 
+## 18. The regular-corank-one nonreduced profile has no free jet
+
+Retain the unshared nonreduced correction of Section 16 and let `N(z)` be
+the regular symmetric block after removing the permanent primitive kernel.
+If
+
+```text
+corank N(0)=1,                                     (55)
+```
+
+then the full specialized Hankel kernel has dimension two. Its minimal
+contracted-source locator `P_tau` has degree `d-1`. All roots of `P_tau`
+lie in `U_0`, while `x_*` lies outside `U_0`, so
+
+```text
+Q(tau,X)=c(X-x_*)P_tau(X),
+U_tau(x_*)=cP_tau(x_*)!=0.                         (56)
+```
+
+For a symmetric corank-one block with determinant order four, the Schur
+complement has order four. Therefore
+
+```text
+N(z)v(z) in z^2 F[[z]]^d
+       implies v(z)^T N(z)v(z) in z^4 F[[z]].      (57)
+```
+
+The order-two and order-three coefficients of the latter self-pairing are
+respectively
+
+```text
+kappa_2 U_tau(x_*),       kappa_3 U_tau(x_*).      (58)
+```
+
+Equations `(56)--(58)` force
+
+```text
+kappa_2=kappa_3=0.                                 (59)
+```
+
+Thus the cubic quotient extends and the regular Smith type is `[4]` on the
+ordinary corank-one locus. Any unshared nonreduced survivor carrying a
+nonzero obstruction jet must have regular corank at least two. This is a
+router, not an exclusion of that higher-corank locus; an abstract symmetric
+Smith type `[2,2]` shows that determinant order alone does not remove it.
+
+## 19. Constant content and the exact factor-degree trichotomy
+
+The content `c(X)` in `(51)` is constant. Indeed, a content root belongs to
+`U_0` because any clean parameter fiber is squarefree and split there. But
+every `y in U_0` has the nonzero dual-MDS source row
+
+```text
+G(t,y)=L_U0'(y) omega_y(t)Q(t,y)/Lambda_A(t),       (60)
+```
+
+contradicting a zero content row. Hence
+
+```text
+sum_j m_j=M,       sum_j n_j=N.                    (61)
+```
+
+Put `q=9-2d_A`. For each factor define
+
+```text
+n_j^min=ceil(Rm_j/T),       a_j=n_j-n_j^min>=0.
+```
+
+Classify an odd `m_j` as small when `qm_j<3e` and large otherwise;
+classify an even `m_j` as ordinary when `qm_j<6e` and huge otherwise.
+The exact rounding values are
+
+```text
+2n_j^min-3m_j = 1,-1,0,-2                         (62)
+```
+
+in those four classes. If `S,L,H` count the small-odd, large-odd, and
+huge-even factors and `E=sum_j a_j`, `(53)` and `(61)` give
+
+```text
+S-L-2H+2E=-1.                                     (63)
+```
+
+Degree alone gives `L<=2`, `H<=1`, and `H=1 => L=0`. Equation `(63)`
+then forces `E=0` and exactly one of
+
+```text
+(S,L,H)=(0,1,0),       (1,2,0),       (1,0,1).    (64)
+```
+
+All remaining factors are ordinary even, and every factor lies exactly on
+the incidence lower envelope
+
+```text
+n_j=ceil(Rm_j/T).                                  (65)
+```
+
+On the official row, the least parity-compatible large-odd degrees are
+`61083979321` for `d_A=0` and `78536544843` for `d_A=1`; the least huge-even
+degrees are `122167958642` and `157073089684`. This trichotomy exhausts the
+degree ledger but does not exclude any of its three profiles.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -596,7 +698,7 @@ all center-overlap degrees, but does not exclude a nonzero passing remainder.
 The Layer-A fixture refutes only a
 generic count-and-saturation implication, not the structured endpoint
 configuration. Squarefree shared corrections are absorbed into the unified
-constant/linear remainder gate. The unshared nonreduced correction remains
-open only through the two jets in `(47)`; shared nonreduced correction and
-the two-simple correction remain open. The macroscopic factor theorem is a
-factor-profile restriction, not an exclusion or a `LineRay` payment.
+constant/linear remainder gate. An unshared nonreduced correction remains
+open only on the regular-corank-at-least-two locus; shared nonreduced
+correction and the two-simple correction remain open. The exact factor
+trichotomy is a restriction, not an exclusion or a `LineRay` payment.

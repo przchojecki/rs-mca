@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T nonreduced router and exact factor profiles
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED / ROUTE CUT. No `LineRay` payment, adjacent endpoint,
+  v4 atom, or leaderboard value is claimed.
+- **What is being added:** On the unshared nonreduced correction locus,
+  regular specialized corank one forces both obstruction jets to vanish;
+  any nonzero-jet survivor is routed to regular corank at least two. The
+  extremal paired split biform also has constant content, every factor lies
+  exactly on its incidence degree envelope, and its factor degrees have one
+  of three exhaustive odd/huge-even profiles with no residual degree slack.
+- **How it is useful:** Replaces two broad Lane-T escape clauses by a named
+  higher-corank local locus and three exact global factor-degree profiles.
+  The verifier pins 48 proof-source files, exhausts 25,504 small degree
+  partitions, and includes every new constant in its hostile mutation test.
+- **What to do next:** Attack the regular-corank-at-least-two nonreduced
+  locus through its two-dimensional kernel geometry. For the global biform,
+  apply the retained Hankel/source equations separately to the one-large-odd,
+  two-large-odd, and huge-even profiles; incidence counting is now exhausted.
+
 ### 2026-08-11 - Lane-T core-one quadratic Pade/quartic eliminant
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -82,11 +106,11 @@ Keep entries concise and link to the relevant files.
   generic dimension-count shortcut.
 - **What to do next:** Decide whether the exact nonzero barycentric remainder
   can be divisible by `H`, using the canonical pair-union and
-  source geometry essentially. Attack the two named nonreduced Hasse jets,
-  the shared nonreduced profile, and the two-simple correction separately.
-  For the global route, combine the macroscopic factor's two-directional
-  splitting with the Hankel moment source or a base-field-normalized
-  split-pencil census. Independently review the Pade infinity normalization,
+  source geometry essentially. Attack the regular-corank-at-least-two
+  nonreduced locus, the shared nonreduced profile, and the two-simple
+  correction separately. For the global route, combine each of the three
+  exact factor profiles with the Hankel moment source or a
+  base-field-normalized split-pencil census. Independently review the Pade infinity normalization,
   correction-contact comparison, center-line cancellation, and the scope
   separation on the Layer-A fence before promotion.
 

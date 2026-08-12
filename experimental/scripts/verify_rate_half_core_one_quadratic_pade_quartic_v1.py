@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "f68d685e78da099e0a4dff362cc90ed2601a341f"
+SOURCE_COMMIT = "2ab0a04e5b84c09fc1027764253d8ba4cc3d0122"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -30,7 +30,7 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_quotient_cubic_residual/proof.md": "86bf14cfc6fece3cd739af15621a26c2cbf34b3b1e989c017418574d202886f2",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_row_center_overlap_factorization/statement.md": "f4ca71e7dad263b81b5bb6785e1c41c19d8bc130be1ecfa1508566b4f06710cb",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_row_center_overlap_factorization/proof.md": "caea37f7fa0254d84304850b700b50a810e6492fdd4293546664c0d36926a1e3",
-    "background/nodes/rate_half_layer_a_saturation_count_route_fence/statement.md": "6f28fea411e3bba5f055103229d09817e46aec18232c71cccb800297146bb36d",
+    "background/nodes/rate_half_layer_a_saturation_count_route_fence/statement.md": "79248b4c1402ac0d125e41ae6ed5c489938173abb28bad755bb2b4c7aebc035e",
     "background/nodes/rate_half_layer_a_saturation_count_route_fence/proof.md": "2658e564d4eda83af64cee8e2fdab73aff531a1eace1fe1ef2cfbd3f2f6d1cac",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_row_barycentric_remainder_gate/statement.md": "ce6c3e3c2a53f9f1259811e7150f28e3d1c71730cefb8b7039f0866d85ab35b1",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_heavy_row_barycentric_remainder_gate/proof.md": "2538c8ba0c5063a210fe91e8b599ec66151e950b9fa6dc29df0709b68fe0b42a",
@@ -56,6 +56,10 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_squarefree_center_overlap_exact_deficit_ledger/proof.md": "7bbdc2db7988c546df04e62695d9203d3ff80559acb1ba98b49f1f2ae920c624",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_macroscopic_parameter_factor/statement.md": "946dde2786e3d542c82145c262361f5e66297c34eff743a24bfe535e880ccac3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_macroscopic_parameter_factor/proof.md": "f2b39e7707a0360218d99ff322996314e6e2c6eaddfb4708610b942a31882701",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_corank_one_jet_vanishing_router/statement.md": "ebd5a75c502a5ea6c8216c0c6157a48aa6fb0438069977a0b6e788148181dd3d",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_corank_one_jet_vanishing_router/proof.md": "991412d8c6598bbb7bd0e7f834e6e3799ace1c6962f13d862294386569b71f78",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_factor_degree_profile_trichotomy/statement.md": "e3e40287fca3898ede3f4d6f4e18db930191db1686dc349166624f05c7539ebb",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_split_biform_factor_degree_profile_trichotomy/proof.md": "d9eb908cecd6b38f83802acd92aceb4332eeb1106db1e1404870dc06da334c53",
 }
 
 
@@ -66,6 +70,28 @@ class VerificationError(RuntimeError):
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise VerificationError(message)
+
+
+def ceil_div(left: int, right: int) -> int:
+    return (left + right - 1) // right
+
+
+def least_with_parity(numerator: int, denominator: int, parity: int) -> int:
+    value = ceil_div(numerator, denominator)
+    if value % 2 != parity:
+        value += 1
+    return value
+
+
+def partitions(total: int, ceiling: int | None = None):
+    if total == 0:
+        yield ()
+        return
+    if ceiling is None or ceiling > total:
+        ceiling = total
+    for first in range(ceiling, 0, -1):
+        for tail in partitions(total - first, first):
+            yield (first, *tail)
 
 
 @dataclass(frozen=True)
@@ -92,6 +118,15 @@ class Formula:
     center_overlap_equals_deficit: int = 1
     macroscopic_factor_d_a0: int = 61083979321
     macroscopic_factor_d_a1: int = 78536544842
+    nonreduced_corank_one_unresolved_jets: int = 0
+    nonreduced_nonzero_jet_min_corank: int = 2
+    factor_content_degree: int = 0
+    factor_degree_slack: int = 0
+    factor_profile_count: int = 3
+    large_odd_d_a0: int = 61083979321
+    large_odd_d_a1: int = 78536544843
+    huge_even_d_a0: int = 122167958642
+    huge_even_d_a1: int = 157073089684
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -151,6 +186,68 @@ def verify_layer_a_fixture(formula: Formula) -> int:
     require(24 - rank == formula.layer_a_nullity, "Layer-A nullity changed")
     require(26 - 24 == formula.layer_a_row_surplus, "Layer-A surplus changed")
     return 32
+
+
+def verify_factor_profiles(formula: Formula) -> tuple[int, int]:
+    checks = 0
+    feasible = 0
+    profile_counts = {(0, 1, 0): 0, (1, 2, 0): 0, (1, 0, 1): 0}
+
+    for e in range(7, 32, 2):
+        p = (3 * e - 1) // 2
+        capital_m = e - 2
+        capital_n = p - 3
+        for d_a in (0, 1):
+            q = 9 - 2 * d_a
+            row_count = 3 * p - 3 + d_a
+            slope_count = 3 * e
+            for factor_degrees in partitions(capital_m):
+                checks += 1
+                minima = [
+                    ceil_div(row_count * degree, slope_count)
+                    for degree in factor_degrees
+                ]
+                if sum(minima) > capital_n:
+                    continue
+
+                feasible += 1
+                slack = capital_n - sum(minima)
+                small = sum(
+                    degree % 2 == 1 and q * degree < 3 * e
+                    for degree in factor_degrees
+                )
+                large = sum(
+                    degree % 2 == 1 and q * degree >= 3 * e
+                    for degree in factor_degrees
+                )
+                huge = sum(
+                    degree % 2 == 0 and q * degree >= 6 * e
+                    for degree in factor_degrees
+                )
+                require(
+                    small - large - 2 * huge + 2 * slack == -1,
+                    "factor deficit equation failed",
+                )
+                require(slack == formula.factor_degree_slack, "factor slack changed")
+                profile = (small, large, huge)
+                require(profile in profile_counts, "factor profile escaped trichotomy")
+                profile_counts[profile] += 1
+
+    require(checks == 25504, "factor partition coverage changed")
+    require(feasible == 776, "feasible factor partition count changed")
+    require(
+        len(profile_counts) == formula.factor_profile_count,
+        "factor profile count changed",
+    )
+    require(
+        profile_counts == {
+            (0, 1, 0): 622,
+            (1, 2, 0): 73,
+            (1, 0, 1): 81,
+        },
+        "factor profile census changed",
+    )
+    return checks, feasible
 
 
 def verify_source(root: Path) -> int:
@@ -229,6 +326,21 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.macroscopic_factor_d_a1 == 78536544842,
         "d_A=1 macroscopic factor bound changed",
     )
+    require(
+        formula.nonreduced_corank_one_unresolved_jets == 0,
+        "corank-one nonreduced jet count changed",
+    )
+    require(
+        formula.nonreduced_nonzero_jet_min_corank == 2,
+        "nonzero-jet corank router changed",
+    )
+    require(formula.factor_content_degree == 0, "factor content changed")
+    require(formula.factor_degree_slack == 0, "factor degree slack changed")
+    require(formula.factor_profile_count == 3, "factor trichotomy changed")
+    require(formula.large_odd_d_a0 == 61083979321, "d_A=0 odd threshold changed")
+    require(formula.large_odd_d_a1 == 78536544843, "d_A=1 odd threshold changed")
+    require(formula.huge_even_d_a0 == 122167958642, "d_A=0 even threshold changed")
+    require(formula.huge_even_d_a1 == 157073089684, "d_A=1 even threshold changed")
 
     checks = 0
     for e in (7, 13, 127, 1009, 183251937963):
@@ -303,6 +415,8 @@ def replay(formula: Formula) -> dict[str, int]:
             slope_count = 3 * e
             factor_denominator = 9 - 2 * d_a
             threshold = (3 * e + factor_denominator - 1) // factor_denominator
+            large_odd = least_with_parity(3 * e, factor_denominator, 1)
+            huge_even = least_with_parity(6 * e, factor_denominator, 0)
             require(
                 2 * row_count == 9 * e - factor_denominator,
                 "factor row-count identity failed",
@@ -316,6 +430,25 @@ def replay(formula: Formula) -> dict[str, int]:
                 d_a == d_a * formula.center_overlap_equals_deficit,
                 "center overlap is not the deficit bit",
             )
+            require(
+                factor_denominator * large_odd >= 3 * e,
+                "large-odd threshold failed",
+            )
+            require(
+                factor_denominator * (large_odd - 2) < 3 * e,
+                "large-odd predecessor failed",
+            )
+            require(
+                factor_denominator * huge_even >= 6 * e,
+                "huge-even threshold failed",
+            )
+            require(
+                factor_denominator * (huge_even - 2) < 6 * e,
+                "huge-even predecessor failed",
+            )
+            require(3 * large_odd > e - 2, "three large factors fit")
+            require(2 * huge_even > e - 2, "two huge factors fit")
+            require(large_odd + huge_even > e - 2, "large and huge factors fit")
             if e == 183251937963:
                 expected = (
                     formula.macroscopic_factor_d_a0
@@ -323,7 +456,19 @@ def replay(formula: Formula) -> dict[str, int]:
                     else formula.macroscopic_factor_d_a1
                 )
                 require(threshold == expected, "official factor bound failed")
-            checks += 4
+                expected_large = (
+                    formula.large_odd_d_a0
+                    if d_a == 0
+                    else formula.large_odd_d_a1
+                )
+                expected_huge = (
+                    formula.huge_even_d_a0
+                    if d_a == 0
+                    else formula.huge_even_d_a1
+                )
+                require(large_odd == expected_large, "official odd threshold failed")
+                require(huge_even == expected_huge, "official even threshold failed")
+            checks += 13
 
     require(2 + 2 * 3 == 8, "double marked order failed")
     require(1 + 2 * 3 == 7, "simple marked order failed")
@@ -344,17 +489,26 @@ def replay(formula: Formula) -> dict[str, int]:
         formula.nonreduced_forced_order + formula.nonreduced_missing_jets == 4,
         "nonreduced two-jet ledger failed",
     )
+    require(
+        4 - 4 == formula.nonreduced_corank_one_unresolved_jets,
+        "corank-one Schur order failed",
+    )
+    require(
+        1 + 1 == formula.nonreduced_nonzero_jet_min_corank,
+        "higher-corank router failed",
+    )
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 44, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 48, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
     )
 
     checks += verify_layer_a_fixture(formula)
+    factor_partition_checks, factor_feasible_profiles = verify_factor_profiles(formula)
 
     return {
-        "checks": checks + 13,
+        "checks": checks + 15 + factor_partition_checks,
         "official_e": 183251937963,
         "pade_exponent": 2 * (3 * 183251937963 - 2) + 1,
         "residual_degree": formula.residual_degree,
@@ -372,6 +526,20 @@ def replay(formula: Formula) -> dict[str, int]:
         "center_overlap_equals_deficit": formula.center_overlap_equals_deficit,
         "macroscopic_factor_d_a0": formula.macroscopic_factor_d_a0,
         "macroscopic_factor_d_a1": formula.macroscopic_factor_d_a1,
+        "nonreduced_corank_one_unresolved_jets": (
+            formula.nonreduced_corank_one_unresolved_jets
+        ),
+        "nonreduced_nonzero_jet_min_corank": (
+            formula.nonreduced_nonzero_jet_min_corank
+        ),
+        "factor_content_degree": formula.factor_content_degree,
+        "factor_degree_slack": formula.factor_degree_slack,
+        "factor_profile_count": formula.factor_profile_count,
+        "factor_feasible_profiles": factor_feasible_profiles,
+        "large_odd_d_a0": formula.large_odd_d_a0,
+        "large_odd_d_a1": formula.large_odd_d_a1,
+        "huge_even_d_a0": formula.huge_even_d_a0,
+        "huge_even_d_a1": formula.huge_even_d_a1,
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
         "source_hashes": len(SOURCE_HASHES),
@@ -388,7 +556,7 @@ def tamper_selftest() -> int:
             replay(Formula(**values))
         except VerificationError:
             rejected += 1
-    require(rejected == 22, "tamper self-test did not reject every mutation")
+    require(rejected == 31, "tamper self-test did not reject every mutation")
     return rejected
 
 
