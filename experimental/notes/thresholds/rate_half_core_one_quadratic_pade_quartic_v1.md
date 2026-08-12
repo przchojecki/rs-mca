@@ -1272,6 +1272,95 @@ shape or prove that `Theta` is nonzero. Shapes A and C have one collision
 factor of correction order two, so this product-rule vanishing does not
 restrict their profiles.
 
+## 31. The ordinary quadratic coincidence curve is corner-exceptional
+
+Retain a `(2,3)` companion from shape B or D. Write `P` for the official
+prime-field characteristic, to distinguish it from the row integer denoted
+by `p` elsewhere in this packet. On the first residual row,
+
+```text
+N=2^41,             H=mu_N subset F_P^*,
+e=(2^39+1)/3,       |Gamma|=3e=2^39+1,
+|U_0|=(9e-7)/2,     U_0,Gamma subset H,
+P>2^167.                                             (124)
+```
+
+Write
+
+```text
+Q(t,X)=a(X)t^2+b(X)t+c(X),       deg a,b,c<=3.      (125)
+```
+
+Factorwise row saturation gives two distinct roots of `Q(-,x)` in `Gamma`
+for every `x in U_0`. This also proves that `Q` is absolutely irreducible:
+if its two geometric parameter-linear components were Frobenius-conjugate,
+every rational grid point would lie in their intersection, whose
+`P^1 x P^1` intersection number is at most three.
+
+Define the divided coefficient minors
+
+```text
+A=[a(X)b(Y)-a(Y)b(X)]/(X-Y),
+B=[a(X)c(Y)-a(Y)c(X)]/(X-Y),
+C=[b(X)c(Y)-b(Y)c(X)]/(X-Y),
+K_Q=B^2-AC.                                          (126)
+```
+
+The quadratic Sylvester determinant gives
+
+```text
+Res_t(Q(t,X),Q(t,Y))=(X-Y)^2K_Q(X,Y),
+bideg K_Q<=(4,4),       K_Q!=0.                     (127)
+```
+
+The grid has `9e-7` companion incidences. Since a slope has row degree at
+most three, its total defect from full triples is exactly seven. Hence at
+least
+
+```text
+F=3e-7=2^39-6                                        (128)
+```
+
+slopes carry three distinct rows. They supply six ordered off-diagonal
+pairs each, while a fixed pair can share at most two parameter roots. Thus
+`K_Q=0` contains at least `3F` distinct points of `H^2`.
+
+Call an absolutely irreducible component VM-admissible when, after swapping
+the coordinates and independently inverting either coordinate if needed,
+its cleared defining polynomial has nonzero constant term and nonconstant
+restriction at the second coordinate zero. These are exactly the affine
+coordinate hypotheses needed below.
+
+The degree-three projection `Q=0 -> P^1_t` has geometric monodromy `S_3` or
+`C_3`. In the first case its reduced off-diagonal image is one component of
+bidegree at most `(4,4)` containing the `3F` points. In the cyclic case the
+two deck orientations have bidegree at most `(2,2)` and each contains at
+least `3F/2` points. If two cyclic components were Frobenius-exchanged,
+those rational points would lie in their intersection, contradicting the
+Bezout cap eight; hence the distinct cyclic components are defined over
+`F_P`.
+
+Vyugin--Makarychev, arXiv:1504.01354, Theorem 2 bounds a VM-admissible
+bidegree-`(m,n)` component on `H^2` by
+
+```text
+16mn^2(m+n)N^(2/3).                                  (129)
+```
+
+Its subgroup-size hypotheses follow from `(124)`. The worst constants and
+exact strict comparisons are
+
+```text
+(4,4): 8192,       8192^3 N^2 < (3F)^3;
+(2,2):  512,        512^3 N^2 < (3F/2)^3.           (130)
+```
+
+Therefore no dense off-diagonal component is VM-admissible. Every surviving
+ordinary quadratic companion lies in the coordinate-corner exceptional
+locus. This is a proved router, not an exclusion: the next task is to
+classify those determinantal corner degeneracies and use the dyadic subgroup
+to eliminate any scaling or inversion graphs that remain.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1301,3 +1390,5 @@ The companion norm gate does not determine `E_Q(x_*)` or exclude a
 low-degree companion.
 The two-branch tangent router does not decide whether `Theta` vanishes and
 does not exclude shape B or D.
+The subgroup-coincidence router does not classify the coordinate-corner
+exceptional locus and therefore does not yet exclude a `(2,3)` companion.

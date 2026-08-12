@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-12 - Lane-T quadratic subgroup-coincidence router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no companion exclusion claimed.
+- **What is being added:** Exact factorwise saturation forces at least
+  `3(2^39-6)` subgroup points on the divided resultant of every `(2,3)`
+  companion. Degree-three monodromy and the Vyugin--Makarychev bound exclude
+  every coordinate-admissible dense coincidence component.
+- **How it is useful:** Restricts the B/D companion problem to a finite
+  coordinate-corner exceptional determinantal locus; generic low-degree
+  coincidence geometry cannot survive on the official dyadic subgroup.
+- **What to do next:** Classify the corner degeneracies and exclude the
+  resulting scaling/inversion graphs using the absence of order-three
+  torsion in `mu_(2^41)`.
+
 ### 2026-08-12 - Lane-T two-branch tangent-profile router
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -11,7 +11,7 @@ from math import comb
 from pathlib import Path
 
 
-SOURCE_COMMIT = "00416046e65d7fce5b1c9d0b5135fefb6e6fae74"
+SOURCE_COMMIT = "0d9c83d6bcececc54a1afd5fc5335879de27e760"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -89,6 +89,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_companion_norm_gate/proof.md": "de2fba5b1bf6d4a89a045a4e2264a9fc32b5b2a3ed12b99ae557fe0c51575f0f",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_two_branch_tangent_profile_router/statement.md": "16bcb089ccb0b35841a20e9ade2c27584640d9c52d75b94798080035b71d3657",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_two_branch_tangent_profile_router/proof.md": "b3e74fac2854fa78f959aeee332987308ab3e63cd4c50b1e15a00a236761f8b7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quadratic_companion_subgroup_coincidence_router/statement.md": "206ae687a048e4ff93632bf297d470d0562b6cf045c33a82e297914041fd7b57",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_ordinary_quadratic_companion_subgroup_coincidence_router/proof.md": "408094584149953ef1f9e81caa8fb20891804ec3b727030fb25d9e2e059405a4",
 }
 
 
@@ -180,6 +182,12 @@ class Formula:
     collision_two_branch_shape_count: int = 2
     collision_two_branch_profile_count: int = 2
     collision_two_branch_excluded_profile_count: int = 1
+    collision_q2_vertical_defect: int = 7
+    collision_q2_full_fiber_floor: int = 549755813882
+    collision_q2_pair_floor: int = 1649267441646
+    collision_q2_s3_subgroup_constant: int = 8192
+    collision_q2_c3_subgroup_constant: int = 512
+    collision_q2_vm_admissible_survivors: int = 0
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1056,6 +1064,121 @@ def verify_collision_two_branch_tangent_router(formula: Formula) -> int:
     return checks + 3
 
 
+def verify_collision_quadratic_subgroup_router(formula: Formula) -> int:
+    """Replay the seven-defect count and divided quadratic resultant."""
+
+    def evaluate(coefficients, value, prime):
+        total = 0
+        for coefficient in reversed(coefficients):
+            total = (total * value + coefficient) % prime
+        return total
+
+    def determinant(matrix, prime):
+        work = [[entry % prime for entry in row] for row in matrix]
+        value = 1
+        for column in range(len(work)):
+            pivot = next(
+                (row for row in range(column, len(work)) if work[row][column]),
+                None,
+            )
+            if pivot is None:
+                return 0
+            if pivot != column:
+                work[pivot], work[column] = work[column], work[pivot]
+                value = -value
+            pivot_value = work[column][column]
+            value = value * pivot_value % prime
+            inverse = pow(pivot_value, -1, prime)
+            for row in range(column + 1, len(work)):
+                multiplier = work[row][column] * inverse % prime
+                for index in range(column, len(work)):
+                    work[row][index] = (
+                        work[row][index] - multiplier * work[column][index]
+                    ) % prime
+        return value % prime
+
+    N = 2**41
+    e = (2**39 + 1) // 3
+    gamma_size = 3 * e
+    row_count = (9 * e - 7) // 2
+    incidences = 2 * row_count
+    defect = 3 * gamma_size - incidences
+    full_fibers = gamma_size - defect
+    pair_floor = 3 * full_fibers
+
+    require(defect == formula.collision_q2_vertical_defect, "Q2 vertical defect")
+    require(
+        full_fibers == formula.collision_q2_full_fiber_floor,
+        "Q2 full-fiber floor",
+    )
+    require(pair_floor == formula.collision_q2_pair_floor, "Q2 pair floor")
+
+    s3_constant = 16 * 4 * 4**2 * (4 + 4)
+    c3_constant = 16 * 2 * 2**2 * (2 + 2)
+    require(
+        s3_constant == formula.collision_q2_s3_subgroup_constant,
+        "Q2 S3 subgroup constant",
+    )
+    require(
+        c3_constant == formula.collision_q2_c3_subgroup_constant,
+        "Q2 C3 subgroup constant",
+    )
+    require(s3_constant**3 * N**2 < pair_floor**3, "Q2 S3 strict margin")
+    require(
+        c3_constant**3 * N**2 < (pair_floor // 2) ** 3,
+        "Q2 C3 strict margin",
+    )
+    require(10000 * (4 * 4) ** 3 < N**2, "Q2 subgroup lower size")
+    require((3 * N) ** 4 < (2**167) ** 3, "Q2 subgroup upper size")
+    require(2 * row_count > 3, "Q2 absolute irreducibility point floor")
+    require(pair_floor // 2 > 8, "Q2 cyclic Frobenius intersection")
+    require(
+        formula.collision_q2_vm_admissible_survivors == 0,
+        "Q2 VM-admissible survivor count",
+    )
+
+    fixtures = (
+        ((1, 2, 0, 1), (3, 1, 4, 1), (2, 0, 5, 2)),
+        ((2, 1, 3, 2), (1, 4, 0, 3), (5, 2, 1, 1)),
+        ((4, 0, 2, 1), (2, 3, 1, 2), (1, 5, 2, 3)),
+    )
+    checks = 12
+    hostile_sign_caught = False
+    for coefficients in fixtures:
+        for prime in (101, 127):
+            for x_value in range(1, 12):
+                for y_value in range(13, 24):
+                    first = tuple(
+                        evaluate(row, x_value, prime) for row in coefficients
+                    )
+                    second = tuple(
+                        evaluate(row, y_value, prime) for row in coefficients
+                    )
+                    a, b, c = first
+                    A, B, C = second
+                    sylvester = [
+                        [a, b, c, 0],
+                        [0, a, b, c],
+                        [A, B, C, 0],
+                        [0, A, B, C],
+                    ]
+                    resultant = determinant(sylvester, prime)
+                    delta = (x_value - y_value) % prime
+                    minor_ab = (a * B - A * b) * pow(delta, -1, prime) % prime
+                    minor_ac = (a * C - A * c) * pow(delta, -1, prime) % prime
+                    minor_bc = (b * C - B * c) * pow(delta, -1, prime) % prime
+                    divided = (minor_ac**2 - minor_ab * minor_bc) % prime
+                    hostile = (minor_ac**2 + minor_ab * minor_bc) % prime
+                    require(
+                        resultant == delta**2 * divided % prime,
+                        "Q2 divided resultant",
+                    )
+                    hostile_sign_caught |= hostile != divided
+                    checks += 1
+    require(hostile_sign_caught, "Q2 hostile resultant sign mutation")
+    return checks + 1
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1406,7 +1529,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 76, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 78, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1424,6 +1547,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_factorwise_bezout_shapes(formula)
     checks += verify_collision_ordinary_companion_norm(formula)
     checks += verify_collision_two_branch_tangent_router(formula)
+    checks += verify_collision_quadratic_subgroup_router(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -1516,6 +1640,18 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_two_branch_excluded_profile_count": (
             formula.collision_two_branch_excluded_profile_count
+        ),
+        "collision_q2_vertical_defect": formula.collision_q2_vertical_defect,
+        "collision_q2_full_fiber_floor": formula.collision_q2_full_fiber_floor,
+        "collision_q2_pair_floor": formula.collision_q2_pair_floor,
+        "collision_q2_s3_subgroup_constant": (
+            formula.collision_q2_s3_subgroup_constant
+        ),
+        "collision_q2_c3_subgroup_constant": (
+            formula.collision_q2_c3_subgroup_constant
+        ),
+        "collision_q2_vm_admissible_survivors": (
+            formula.collision_q2_vm_admissible_survivors
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
