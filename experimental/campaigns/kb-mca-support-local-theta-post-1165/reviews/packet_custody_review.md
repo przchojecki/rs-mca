@@ -2,8 +2,10 @@
 
 Date: 2026-08-13
 Reviewer role: isolated custody/certificate reviewer; not the generator
-Exact parent: `d4d653723f2f82390fd4351476e1926e55fb0caf` (PR #1165 head audited)
-Canonical payload: `2023122cdc8673f6e9200584a2bd9e53a81ab3967257c41ba834a1586ad393ec`
+Exact parent: `b6d30ef4f5ff966665b7672e1780a637509873a4` (PR #1165 head audited)
+Sealed packet tree before this external attestation:
+`a1194581e37c6ce28911b6458328788ac3ca7249`
+Canonical payload: `31ab611e5623641fcda5d786b3fd1a14b7e4400ed69a8bcf4e8716c95e68696b`
 
 ## Statement audited
 
@@ -36,7 +38,8 @@ KoalaBear closure.
 - the packet's Python, Sage, FLINT, and Wolfram replay sources;
 - all campaign contract, frontier, control, idea, dependency, claim, and
   review ledgers;
-- the bound independent source/mathematics review and literature memo;
+- the external independent source/mathematics review and the bound
+  literature memo;
 - the pinned PR #1165 parent source and its counterexample,
   proper-subspace, full-rank-gauge, punctured-Johnson, centered-Gram, and
   mean-centered-Gram verifier sources;
@@ -52,16 +55,19 @@ Ancestor guidance was the `math_code/AGENTS.md` chain plus this worktree's
 |---|---|---|
 | Exact PR #1165 parent | IMPORTED / PINNED | Parent commit, eleven parent paths, Git blob IDs, and SHA-256 values independently reproduced. |
 | PR #1160 `2w` theorem | IMPORTED / PINNED | Both external paths, Git blob IDs, and SHA-256 values independently reproduced; normal, optimized, and 34-mutation replay passed on an exact checkout. |
-| Final source/mathematics review | INDEPENDENT REVIEW | GREEN memo is included among the 19 packet-hashed files. |
+| Final source/mathematics review | INDEPENDENT REVIEW / EXTERNAL ATTESTATION | GREEN memo binds the exact final source blob and parent but is deliberately external to the canonical payload. |
 | Canonical manifest | EXACT CERTIFICATE | Strict JSON loaded; duplicate keys and floats are rejected; the payload hash was independently recomputed and matched. |
-| Packet file custody | EXACT CERTIFICATE | All 19 declared packet-file SHA-256 values independently recomputed and matched.  The manifest is intentionally outside its own file-hash set. |
+| Packet file custody | EXACT CERTIFICATE | All 18 declared packet-file SHA-256 values independently recomputed and matched.  The manifest and both review attestations are intentionally outside its file-hash set. |
 | Campaign evidence trail | EXACT METADATA | Actionable campaign audit passed with four claims, eight review rows, five dependencies, and no errors. |
 
-The PR #1165 parent advanced twice during review.  Each time the packet was
-restacked and all parent pins were regenerated.  The final parent is
-`d4d653723...`, whose centered-Gram and mean-centered-Gram continuations are
-explicitly reconciled as separate sparse-direction routes.  The new
-local-theta/gauge result is not a duplicate of either parent route.
+The PR #1165 parent ultimately advanced to `b6d30ef4...`.  The final
+restack regenerated all parent pins and separately audited the complete
+22-commit delta from `d4d653723...`.  That delta adds terminal-deficit,
+top-third-line, global-line, boundary-layer, recursive-core, interpolation,
+and common-factor continuations.  It extends the KoalaBear full-lift low
+wall through `e=96150`, pays Mersenne-31 through `e=130236`, and routes but
+does not pay `e=130237`.  Those are separate full-lift routes; they neither
+duplicate nor invalidate the KoalaBear support-local theta/error-rank lane.
 
 The focused delta from `07546f903...` to `d4d653723...` is independently
 sound.  For the new mean-centered Gram matrix (H=BPB^{\mathsf T}), the
@@ -71,6 +77,12 @@ bound on the off-diagonal sum; and the trace-rank inequality yields the
 stated cap.  The suffix-minimum closure is monotone and therefore valid for
 the deficit owner sum.  This parent theorem changes only the sparse-direction
 support walls, not the support-local theta or error-rank gauge proof.
+
+The final source-status repair was also checked directly.  Its routing table
+now prints the exact full-lift intervals `96151..1044238` for KoalaBear and
+`130237..1044241` for Mersenne-31 while retaining the distinct lower-rank
+walls.  The source compiles without undefined or duplicate-reference
+warnings.
 
 ## Certificate and replay audit
 
@@ -83,6 +95,10 @@ The following passed on the final payload:
 - independent FLINT rational/integer replay;
 - all seven pinned PR #1165 predecessor verifiers, including the new
   mean-centered-Gram profile (`109` checks, `2/2` mutations);
+- all 36 Python verifiers and independent auditors added in the 22-commit
+  parent delta;
+- all four independently compiled constant-memory C interval replays from
+  that delta;
 - PR #1160 normal, optimized, and 34-mutation replays;
 - independent big-integer recomputation of every displayed KoalaBear,
   Mersenne-31, and shortened-row threshold used by this packet;
@@ -91,15 +107,14 @@ The following passed on the final payload:
 - TeX Live compilation of `experimental/grande_finale.tex` to an isolated
   `/tmp` output directory.
 
-The exact Wolfram `.wl` bytes were separately evaluated through the Wolfram
-plugin and returned the expected
-`KB_MCA_SUPPORT_LOCAL_THETA_WOLFRAM_PASS` sentinel with slopes `87`, caps
-`8/759`, KoalaBear paid total `110390969172308040`, and slack
-`164589758939087047`.  The local cloud wrapper had a transport/credit error
-while returning status zero during preliminary review.  The release command
-was repaired to pipe through an exact sentinel check, and it now fails
-closed when that sentinel is absent.  Wrapper exit status alone is neither
-accepted by the manifest nor counted as evidence.
+The exact Wolfram `.wl` bytes (SHA-256
+`e887d72596b21f493063b42c48c73c044830e6b98129d3f1dc801a34d9b93264`)
+are unchanged from the earlier successful independent evaluation that
+returned `KB_MCA_SUPPORT_LOCAL_THETA_WOLFRAM_PASS`.  A fresh cloud replay
+was unavailable during this restack review, so it is not counted as fresh
+evidence.  The release command pipes through the exact sentinel and fails
+closed when transport or credit errors return status zero.  The final proof
+and arithmetic were freshly replayed by Python, Sage, and FLINT.
 
 ## Exact formulas and totals
 
@@ -122,8 +137,8 @@ Independent arithmetic reproduced:
 - shortened-row thresholds `4,49,757,11748`, with rank 14 infeasible at
   the maximum allowed margin.
 
-For the focused parent delta, an independent BigInt implementation also
-reproduced:
+For the earlier mean-centered parent rung, an independent BigInt
+implementation also reproduced:
 
 - KoalaBear endpoint `e=64047`: `T=5257459620`, terminal cap
   `180835154`, and exact profile `181731868`; at `e=64048`,
@@ -132,7 +147,13 @@ reproduced:
   `15184718`, and exact profile `16101127`; at `e=65455`, the legal
   profile is `17120123>16777215`;
 - ten new KoalaBear supports and thirty-six new Mersenne supports, exactly
-  the `46` supports claimed by the parent verifier.
+  the `46` supports claimed by that verifier.
+
+For the final 22-commit parent delta, the fresh verifier/auditor/C suite
+reproduced the complete paid Mersenne interval through `e=130236`, the
+adjacent `e=130237` common-factor route cut, and the KoalaBear full-lift wall
+through `e=96150`.  These values are parent compatibility checks, not
+credits imported into this packet's zero-movement v4 ledger.
 
 These values were recomputed from the formulas rather than accepted because
 the manifest and generator agreed.
@@ -167,8 +188,9 @@ identical received-line representative and transports no active owner.
 The `GF(257)` fixture is a toy-scale exact counterexample/regression: it
 falsifies the former cap (`87>8`) and lies below the repaired cap (`87<=759`).
 It is not used to extrapolate to KoalaBear.  Deployed totals are exact
-integer evaluations of a symbolic finite theorem, independently replayed
-across Python, Sage, FLINT, Wolfram, and a separate arithmetic derivation.
+integer evaluations of a symbolic finite theorem, freshly replayed across
+Python, Sage, FLINT, and a separate arithmetic derivation; the unchanged
+Wolfram source retains only its previously recorded independent replay.
 
 ## Scope and publication custody
 
@@ -178,11 +200,14 @@ the artifact-first research campaign.  Generated TeX, Sage-preparser, and
 Python cache files were removed before this final attestation.  No commit,
 push, or PR mutation was performed by this reviewer.
 
-The final manifest binds the exact parent, external dependency, mathematics
-review, formulas, tables, packet bytes, zero-ledger statement, and
-nonclosure statement.  This custody memo is deliberately external to that
-payload to avoid a self-referential hash cycle; its exact audited payload is
-printed at the top.
+The final manifest binds the exact parent, external dependency, formulas,
+tables, 18 packet files, zero-ledger statement, and nonclosure statement.
+It records the independent-review status but does not cryptographically
+contain either review memo.  The source/mathematics memo instead binds the
+exact final source blob, and this custody memo binds the exact payload
+printed at the top.  Both are deliberately external attestations and must
+travel in the same outer Git commit; canonical-manifest equality alone is
+not treated as proof of either review.
 
 ## Verdict
 
@@ -197,16 +222,19 @@ are consistent and ready for upstream handoff.**
 - The theorem moves no active-v4 ledger atom and does not close KoalaBear.
 - Rank-10/11/12 direction-exception families and the rank-at-least-13
   family remain open mathematics.
+- A fresh Wolfram Cloud execution was unavailable; the unchanged script's
+  prior replay is redundant evidence only, not a dependency of the verdict.
 - A final upstream overlap query should still be repeated immediately before
   push because the last redundant GitHub query encountered a transient
   network error; the exact audited parent object and hashes are unaffected.
 
 ## Minimal next action
 
-Stage exactly the audited scope, verify that the staged diff still produces
-payload `2023122cdc8673f6e9200584a2bd9e53a81ab3967257c41ba834a1586ad393ec`,
-then use the normal commit/push/ready-PR workflow.  The next mathematical
-attack is the actual-record direction-exception forest at error ranks
-10--12, retaining rank at least 13 as a separate unpaid terminal.
+Commit both external review attestations with the already sealed packet,
+verify that the staged packet still produces payload
+`31ab611e5623641fcda5d786b3fd1a14b7e4400ed69a8bcf4e8716c95e68696b`,
+then use the normal push/ready-PR workflow.  The next mathematical attack is
+the actual-record direction-exception forest at error ranks 10--12,
+retaining rank at least 13 as a separate unpaid terminal.
 
 **GREEN**
