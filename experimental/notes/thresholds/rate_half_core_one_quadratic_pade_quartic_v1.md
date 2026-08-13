@@ -2618,6 +2618,91 @@ rank-two and rank-three branches cannot occur in a full Shape-A source
 packet. The surviving tensor-rank interval starts at the macroscopic bound
 in `(247)`.
 
+## 52. Three-class restricted Koszul and source-Gram router
+
+The three source classes yield more than the lower bound `(247)`. Let
+
+```text
+V=span{G(t,x):x in U_0},       r=dim V=sr(G),
+q_alpha=ell_beta ell_theta
+```
+
+and define `q_beta,q_theta` cyclically. Each source class has size `n+2`
+or `n+3`, strictly larger than `deg_X G=n`. Hence each class alone samples
+the full coefficient space `V`. Equation `(245)` and the independent
+locator coefficients then give the exact generation identity
+
+```text
+F[t]_(<=e)=q_alpha V+q_beta V+q_theta V.           (248)
+```
+
+Equivalently, the restricted Koszul map
+
+```text
+Phi:V^3 -> F[t]_(<=e),
+(f_alpha,f_beta,f_theta)
+ |-> q_alpha f_alpha+q_beta f_beta+q_theta f_theta (249)
+```
+
+is surjective, with
+
+```text
+dim ker Phi=3r-(e+1).                              (250)
+```
+
+For the first inverse prolongation
+
+```text
+J={h:ell_alpha h,ell_beta h,ell_theta h all in V}, (251)
+```
+
+coprimality of the center forms gives
+
+```text
+q_alpha V intersect q_beta V intersect q_theta V
+ =ell_alpha ell_beta ell_theta J,
+2dim J<=3r-(e+1).                                  (252)
+```
+
+There is also an exact source-isotropy constraint. Put
+
+```text
+C_gamma=sum_(x in M_gamma)eta_x v_xv_x^T,          (253)
+```
+
+where `v_x` is the coefficient column of `Qbar(t,x)`. The two endpoint
+frame cancellations say
+
+```text
+sum_gamma ell_gamma(t)C_gamma=0.                   (254)
+```
+
+The unique relation among the three distinct line forms therefore gives
+nonzero `u_gamma` and one symmetric matrix `K` with
+
+```text
+C_gamma=u_gamma K.                                 (255)
+```
+
+Its image and rank satisfy
+
+```text
+im K subset ell_alpha ell_beta ell_theta J,
+max(0,2r-(n+2))<=rank K<=dim J.                    (256)
+```
+
+The lower bound is Sylvester's inequality applied to the full-rank
+class-evaluation matrix and its invertible diagonal source-weight matrix.
+At the minimum live rank, `(250)` has dimension two. Once
+
+```text
+r>=137438953472,                                   (257)
+```
+
+the common Gram matrix `K` is forced nonzero. This reduces the remaining
+macroscopic-rank problem to compatibility of `(248)--(256)` with the split
+fibers and Hankel source.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2692,3 +2777,6 @@ plane-genus budgets, but does not exclude that graph or address tensor rank
 at least four.
 Section 51 uses the full source partition to exclude every tensor rank below
 `61083979322`; it does not exclude the remaining macroscopic-rank interval.
+Section 52 gives the exact restricted Koszul and proportional Gram packet
+on that interval, but does not bound the inverse prolongation `J` sharply
+enough to exclude it.

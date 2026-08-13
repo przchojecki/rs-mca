@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T three-class Koszul/Gram router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED macroscopic structural router; no Shape-A exclusion.
+- **What is being added:** Each source class spans the full coefficient
+  space `V`; its three quadratic shifts generate all degree-`e` forms, with
+  exact restricted Koszul kernel dimension. Endpoint isotropy makes the
+  classwise weighted Gram matrices proportional, with common image in the
+  inverse prolongation of `V`.
+- **How it is useful:** It replaces open-ended macroscopic-rank geometry by
+  the explicit compatibility packet `(248)--(256)` and forces a nonzero
+  common Gram matrix in the upper part of the rank interval.
+- **What to do next:** Bound the inverse prolongation using split fibers, or
+  exclude the proportional Gram packet from the retained Hankel source.
+
 ### 2026-08-13 - Lane-T three-source-class rank amplification
 
 - **Agent/model:** AllenGrahamHart / Codex.

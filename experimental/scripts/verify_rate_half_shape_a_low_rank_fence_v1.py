@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "b7e0ab6e45b6d304b13efa4442ecd2fd7a3ea350"
+SOURCE_COMMIT = "93ba16ea39e44233d43cbfab09bce32460bfd262"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/probe_results.md": "603668188e6fa399919f0ce0955b4a7ccef06a549286a43e3e43b6f8ba922203",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_probe.py": "f783f91f9b22084d457c2f96205cb838e9b5b9f6562547f6b746825150229da9",
@@ -55,6 +55,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/audit.md": "ae4f9269fa885b9d1689afbc0134a9cc43d492e4ce509f67cb1c263ebd968ef3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/verify.py": "25f7ca8b3d1a03d557c76b54dc16b5898c9eb93c14650d9fe3eacb3a6272bf84",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/verify_audit.py": "be586b7fe9f293a376929c3812086fcc808269d08a842a5c0edb0b5aea919db8",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/statement.md": "280cce765cec9ea8588342d8b079618602c791c807f7c70bf9d7c349b79c4c9b",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/proof.md": "f727eeb1470b173d5551a1aab9153c4a946f0679acd12020c2165f98ca352fe5",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/audit.md": "1cf4fbc111b4b9b90fee785f1b60ed13ac2c44b89700969abb53d23b2abdada3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/verify.py": "365030a71544f75fcc7dc1f6bb15b8dc225f52e3aa8e96e67a71072ff1143b1e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/verify_audit.py": "d1971f9debb68b46aefde1294ef7a0fa593214dfbe11d30d3535746b046d5b66",
 }
 
 
@@ -253,6 +258,10 @@ class Formula:
     source_class_count: int = 3
     locator_x_degree: int = 549755813887
     source_rank_floor: int = 61083979322
+    minimum_koszul_kernel: int = 2
+    gram_nonzero_threshold: int = 137438953472
+    source_class_small: int = 274877906943
+    source_class_large: int = 274877906944
 
 
 def partition_probe() -> tuple[int, int, int]:
@@ -439,6 +448,22 @@ def replay(
     require(source_rank_floor == formula.source_rank_floor, "source rank floor")
     require(3 * (source_rank_floor - 1) < e + 1 <= 3 * source_rank_floor,
             "source rank ceiling interval")
+    minimum_koszul_kernel = 3 * source_rank_floor - (e + 1)
+    gram_nonzero_threshold = (n + 2) // 2 + 1
+    p = n + 3
+    require(
+        minimum_koszul_kernel == formula.minimum_koszul_kernel,
+        "minimum Koszul kernel",
+    )
+    require(
+        gram_nonzero_threshold == formula.gram_nonzero_threshold,
+        "Gram nonzero threshold",
+    )
+    require(p - 1 == formula.source_class_small, "small source class")
+    require(p == formula.source_class_large, "large source class")
+    require(2 * (gram_nonzero_threshold - 1) <= n + 2,
+            "Gram predecessor")
+    require(2 * gram_nonzero_threshold > n + 2, "Gram strictness")
     return {
         "profiles": profile_count,
         "cases": cases,
@@ -462,6 +487,8 @@ def replay(
         "zero_deficit_mass_floor": zero_deficit_mass_floor,
         "locator_x_degree": locator_x_degree,
         "source_rank_floor": source_rank_floor,
+        "minimum_koszul_kernel": minimum_koszul_kernel,
+        "gram_nonzero_threshold": gram_nonzero_threshold,
     }
 
 
