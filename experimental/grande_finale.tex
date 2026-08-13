@@ -7693,6 +7693,171 @@ same set.
 \end{proof}
 
 
+\begin{theorem}[Sub-square-root common-support interleaving collapse]
+\label{thm:subsquare-interleaving-collapse}
+Let \(C\leq\F^D\) be an \(\F\)-linear code, put \(q=|\F|\), and fix an
+agreement threshold \(A\).  Let \(L\) be the largest ordinary list size
+at agreement \(A\), over all received words.  For \(\mu\geq1\), let
+\(L_\mu\) be the corresponding largest list of \(\mu\)-tuples in
+\(C^\mu\) agreeing with one received \(\mu\)-tuple on one common support
+of size at least \(A\).  If \(1\leq L<q\), then
+\[
+ L\leq L_\mu\leq
+ \left\lfloor\frac{L(q-1)}{q-L}\right\rfloor .
+\]
+In particular, if \(L^2<q\), then \(L_\mu=L\) for every \(\mu\geq1\).
+\end{theorem}
+
+\begin{proof}
+The case \(\mu=1\) is the definition of \(L\), so assume \(\mu\geq2\).
+The diagonal embedding gives \(L_\mu\geq L\).  For the reverse bound fix
+a common-support list \(X\subseteq C^\mu\), \(N=|X|\), and for
+\(\alpha=(\alpha_2,\ldots,\alpha_\mu)\in\F^{\mu-1}\) project by
+\[
+ \Phi_\alpha(c_1,\ldots,c_\mu)
+ =c_1+\sum_{i=2}^\mu\alpha_i c_i.
+\]
+The projected set is an ordinary list at the identical agreement
+threshold, so it has at most \(L\) images.  Cauchy--Schwarz gives at least
+\((N^2/L-N)/2\) unordered colliding pairs for every \(\alpha\).  A fixed
+distinct pair collides for at most \(q^{\mu-2}\) choices of \(\alpha\): if
+some difference after the first component is nonzero, fix all other
+coefficients and solve for that coefficient; if all those differences
+vanish, the nonzero first difference prevents collision.  Summing over
+all \(q^{\mu-1}\) projections yields
+\[
+ q^{\mu-1}(N^2/L-N)\leq N(N-1)q^{\mu-2},
+\]
+and hence \(N\leq L(q-1)/(q-L)\).  Finally
+\[
+ \frac{L(q-1)}{q-L}-L=\frac{L(L-1)}{q-L}<1
+\]
+when \(L^2<q\); integrality and the diagonal lower bound give equality.
+\end{proof}
+
+\begin{theorem}[Margin/interleaving split for a gauged MCA family]
+\label{thm:mca-margin-interleaving-split}
+Let \(C=\RS[\F,D,K]\) have length \(n\), put \(m=K+w\leq n\), and
+let \(Z\) be a finite family of distinct slopes with exact
+same-support-pair-noncontained \(m\)-records.  Suppose their explanations
+lie in one affine flat \(c_0+C'\subseteq C\), where
+\(s=\dim C'\).  For each \(\gamma\in Z\), define
+\[
+ \theta_\gamma=
+ \min\left\{w+1,
+ \min_{b\in C'}|\{x\in S_\gamma:r_1(x)\ne b(x)\}|\right\}.
+\]
+Fix an integer \(T\) with \(2\leq T\leq w\), put
+\[
+ A=m-T+1>K,
+ \qquad
+ M_s(T)=
+ \left\lfloor
+ \frac{\binom{n-K+s}{s}}{\binom{w-T+1+s}{s}}
+ \right\rfloor,
+\]
+and assume \(M_s(T)^2<|\F|\).  Define
+\[
+ H_0(T)=\left\lfloor\frac nT\right\rfloor
+\]
+and, for \(1\leq j\leq s\),
+\[
+ H_j(T)=\left\lfloor\max\left\{
+ \frac{n^{\underline{j+1}}}
+ {mT(w+1)^{\overline{j-1}}},
+ \frac{(n-K+j)^{\underline{j+1}}}
+ {T(w+1)^{\overline j}}
+ \right\}\right\rfloor .
+\]
+Then
+\begin{equation}
+ |Z|\leq
+ \max_{0\leq j\leq s}H_j(T)+(n-A)M_s(T).
+ \label{eq:mca-margin-interleaving-split}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Partition \(Z=Z_{\rm hi}\sqcup Z_{\rm lo}\) according as
+\(\theta_\gamma\geq T\) or \(\theta_\gamma\leq T-1\).
+If the affine explanation span of \(Z_{\rm hi}\) has direction dimension
+\(j\geq1\), its direction space is contained in \(C'\); minimizing over
+that smaller space cannot decrease the margins.  Thus
+\cref{thm:support-transverse-affine-span-mca} gives
+\(|Z_{\rm hi}|\leq H_j(T)\).  If \(j=0\), every explanation equals one
+word.  Each support contains at least \(T\) coordinates where the line
+direction is nonzero, and at each coordinate the agreement equation
+determines at most one slope.  Incidence counting gives
+\(|Z_{\rm hi}|\leq H_0(T)\).
+
+For every \(\gamma\in Z_{\rm lo}\), choose \(b_\gamma\in C'\) with at
+most \(T-1\) mismatches on \(S_\gamma\), and put
+\(a_\gamma=h_\gamma-\gamma b_\gamma\in c_0+C'\).  The pair
+\((a_\gamma,b_\gamma)\) agrees with \((r_0,r_1)\) on at least \(A\)
+common coordinates.  Translating the first component by \(c_0\) places
+all such pairs in the two-fold common-support interleaving of \(C'\).
+The ordinary affine-span list compiler
+\cref{thm:affine-span-list} bounds each projected ordinary list by
+\(M_s(T)\).  The hypothesis \(M_s(T)^2<|\F|\) and
+\cref{thm:subsquare-interleaving-collapse} therefore bound the number of
+distinct pairs by \(M_s(T)\).
+
+For one fixed pair \((a,b)\), let
+\(H_{a,b}=\{x:r_0(x)=a(x),\ r_1(x)=b(x)\}\); then
+\(|H_{a,b}|\geq A\).  Pair noncontainment gives every owning slope an
+actual \(x\in S_\gamma\setminus H_{a,b}\).  At such an \(x\),
+\[
+ \gamma=-\frac{r_0(x)-a(x)}{r_1(x)-b(x)}.
+\]
+Choosing one exception coordinate per slope is injective, so the pair
+owns at most \(n-|H_{a,b}|\leq n-A\) slopes.  Adding the disjoint high and
+low bounds proves \eqref{eq:mca-margin-interleaving-split}.
+\end{proof}
+
+\begin{proposition}[KoalaBear affine-error rank-ten payment]
+\label{prop:kb-affine-error-rank-ten-payment}
+Retain the intrinsic near-rational deletion and exact post-deletion record
+selection of \cref{prop:kb-post-deletion-affine-error-router}.  If the
+selected error words have affine rank \(a=10\), and the received line is
+over the deployed sextic field
+\[
+ |\F|=2130706433^6,
+\]
+then
+\[
+ |Z_{\rm bad}|\leq
+ 2w+5143522968716559+56727790457914040
+ =61871313426765543<B_*.
+\]
+The slack is \(213109414684629544\).  Thus the direct KoalaBear
+post-near affine-error-rank-ten branch is paid.  The same printed split
+does not pay affine error ranks \(11\) or \(12\).
+\end{proposition}
+
+\begin{proof}
+The reversible gauge \cref{thm:mca-error-rank-gauge} converts error rank
+\(a=10\) into an explanation flat of dimension \(s=9\), preserving the
+slopes, errors, exact supports, and same-support pair noncontainment.  Use
+\cref{thm:mca-margin-interleaving-split} with \(T=667\).  Exact integer
+arithmetic gives
+\[
+ A=1115382,\qquad
+ M_9(667)=57781140652,\qquad
+ M_9(667)^2<2130706433^6=|\F|,
+\]
+\[
+ \max_{0\leq j\leq9}H_j(667)=5143522968716559,\qquad
+ (n-A)M_9(667)=56727790457914040.
+\]
+Adding the disjoint near charge \(2w=134944\) proves the displayed bound.
+An exhaustive exact scan of \(2\leq T\leq w\) shows that \(T=16\) is the
+first paying threshold and \(T=667\) is the unique minimizer for \(s=9\).
+For \(s=10\), corresponding to error rank \(11\), the minimum of this
+formula is \(1040506078215897711>B_*\), attained at \(T=876\); the
+minima at \(s=11,12\) are larger still.
+\end{proof}
+
+
 \begin{proposition}[Exact rank-flat and common-zero reductions at the active rows]
 \label{prop:active-rank-flat-common-zero}
 Consider the first affine dimensions not paid by

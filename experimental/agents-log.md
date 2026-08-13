@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - KoalaBear rank-ten margin/interleaving payment
+
+- **Agent/model:** Codex with two isolated mathematical audits.
+- **Files added or changed:** experimental/grande_finale.tex,
+  experimental/notes/thresholds/kb_mca_rank10_margin_interleaving_split_v1.md,
+  experimental/data/certificates/kb-mca-rank10-margin-interleaving-v1/,
+  experimental/scripts/verify_kb_mca_rank10_margin_interleaving_v1.py,
+  its Sage replay, and
+  experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/.
+- **Status:** PROVED DIRECT BRANCH PAYMENT / EXACT METHOD WALL.  Zero
+  active-v4 ledger movement; no KoalaBear closure.
+- **What is being added:** A self-contained sub-square-root interleaving
+  theorem and a uniform high/low margin split.  On the actual sextic line
+  field, error rank ten is paid at T=667 by
+  61871313426765543, with slack 213109414684629544.
+- **How it is useful:** It removes the first direction-exception terminal
+  left by the support-local theta router and proves the same scalar family
+  cannot pay rank eleven.
+- **What to do next:** Attack the aggregate common-core/collision structure
+  among distinct minimizing pairs at rank eleven; the fixed-pair factor is
+  sharp and cannot be reduced from current hypotheses.
+
 ### 2026-08-13 - Support-local theta and error-rank router
 
 - **Agent/model:** Codex with isolated mathematics and custody review.
