@@ -1,0 +1,9 @@
+review_id,claim_id,joint,reviewer_isolated,status,artifact,blocking_issue
+R-001,C-004,counterexample and proof-gap replay,true,pass,prior campaign counterexample_independent_replay.md,none
+R-002,C-001,abstract repaired theorem and constants,true,pass,prior campaign repaired_theorem_math_review.md,port review pending
+R-003A,C-001,final source and theorem proof,true,pass,reviews/final_source_math_review.md,none; GREEN on parent b6d30ef4 after 22-commit restack audit
+R-003B,C-002,final gauge and inverse proof,true,pass,reviews/final_source_math_review.md,none; GREEN on parent b6d30ef4; no full-lift overlap
+R-003C,C-003,final composition and arithmetic proof,true,pass,reviews/final_source_math_review.md,none; GREEN on parent b6d30ef4; units and zero movement unchanged
+R-004A,C-001,certificate custody and source provenance,true,pass,reviews/packet_custody_review.md,preliminary GREEN; durable final-payload memo external to packet hash
+R-004B,C-002,gauge certificate and finite-field replay,true,pass,reviews/packet_custody_review.md,preliminary GREEN; durable final-payload memo external to packet hash
+R-004C,C-003,ledger units totals and hostile mutations,true,pass,reviews/packet_custody_review.md,preliminary GREEN; durable final-payload memo external to packet hash
