@@ -2159,6 +2159,101 @@ Neither adjacent failure is an unsafe certificate.  The replay is in
 \path{experimental/verify_mca_full_lift_top_third_common_core_payment_v1.py}.
 \end{remark}
 
+\begin{theorem}[Cross-layer top-third global-line cap]
+\label{thm:full-lift-top-third-global-line}
+Retain the full-lift notation above and put
+\[
+ s=\left\lfloor\frac{e-K}{3}\right\rfloor,
+ \qquad r_{\min}=\max\{0,e-m\}.
+\]
+All selected explanations in the union of exact layers
+\[
+ r_{\min}\le r\le s,
+ \qquad h=e-r,
+\]
+lie on one common affine codeword line.  The number $L_{\mathrm{high}}$
+of explanations in this entire union satisfies
+\begin{equation}
+ L_{\mathrm{high}}\le N-m+1.
+ \label{eq:full-lift-top-third-global-line}
+\end{equation}
+Each explanation in the union owns at most one selected slope.
+\end{theorem}
+
+\begin{proof}
+For an explanation $a_i$, let $r_i\le s$ be its missed-coordinate
+allowance on the direction support $E$, and let $S_i\subseteq E$ be
+its inside agreement set.  For any three explanations,
+\[
+ |S_i\cap S_j\cap S_k|
+ \ge e-(r_i+r_j+r_k)
+ \ge e-3s
+ \ge K.
+\]
+For distinct slopes, the normalized pair difference
+\[
+ p_{ij}=\frac{a_i-a_j}{\gamma_i-\gamma_j}
+\]
+is a degree-$<K$ codeword equal to the gauged direction $q$ on
+$S_i\cap S_j$.  Hence $p_{ij}=p_{ik}$ by restriction injectivity on
+the displayed triple intersection.  Fixing two anchors synchronizes all
+pair directions and puts the entire cross-layer union on one affine
+codeword line.  Families of size at most two are immediate.
+
+Let $g$ be the line's total common agreement core.  As in
+\cref{thm:full-lift-total-core-line}, pair noncontainment gives
+$g\le m-1$.  Away from this core, each coordinate agrees for at most one
+line parameter.  Every selected explanation has at least $m-g$
+agreements off the common core when all $N$ coordinates are counted, so
+\[
+ L_{\mathrm{high}}(m-g)\le N-g.
+\]
+The right-hand ratio increases with $g$, and $g\le m-1$ yields
+$L_{\mathrm{high}}\le N-m+1$.  Finally $r_i\le s<e/2$, so the
+deficit-owner bound is one.
+\end{proof}
+
+\begin{corollary}[Full-lift global-line profile]
+\label{cor:full-lift-global-line-profile}
+Put $H=e-s-1$ and $u=\lfloor e/2\rfloor$.  If the positive
+punctured-Johnson caps $J_u,J_H$ exist, then
+\begin{equation}
+ |Z|\le (e-1)J_u+J_H+(N-m+1).
+ \label{eq:full-lift-global-line-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Deficits at most $H$ form the Johnson prefix and contribute at most
+$(e-1)J_u+J_H$.  Every remaining possible deficit belongs to the
+cross-layer union in
+\cref{thm:full-lift-top-third-global-line}; charge its line cap once.
+\end{proof}
+
+\begin{remark}[Exact cross-layer global-line walls]
+Exact integer evaluation of
+\eqref{eq:full-lift-global-line-profile} gives
+\[
+\begin{array}{c|r|r|r}
+\text{row}&\text{last paid }e&\text{endpoint bound}&\text{largest bound}\\ \hline
+\text{KoalaBear}&95943&6336049&6336049\text{ at }e=95943\\
+\text{Mersenne-31}&97908&6682339&6683188\text{ at }e=97907
+\end{array}
+\]
+At the adjacent supports $e=95944$ and $e=97909$, the respective
+$H$-prefix Johnson denominators are $-1037$ and $-965$.  The
+remaining full-lift intervals are therefore
+\[
+ 95944\le e\le1044238
+ \quad\text{and}\quad
+ 97909\le e\le1044241.
+\]
+This replaces the per-layer top-third charge by one global charge.  It does
+not repair the failed prefix cap, certify either adjacent support unsafe,
+or close a deployed row.  The exact replay is in
+\path{experimental/verify_mca_full_lift_top_third_global_line_payment_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

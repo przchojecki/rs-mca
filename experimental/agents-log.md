@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Full-lift cross-layer global-line synchronization
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_top_third_global_line_payment_v1.md`,
+  `experimental/verify_mca_full_lift_top_third_global_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** The top-third triple-overlap argument synchronizes
+  all exact high-deficit layers onto one affine explanation line, so the
+  pair-noncontained total-core cap `N-m+1` is charged once rather than once
+  per layer.
+- **How it is useful:** It moves the Mersenne-31 full-lift residual floor
+  from `e=67453` to `e=97909`; the KoalaBear floor remains `e=95944`, but
+  its endpoint profile drops to `6336049`.
+- **What to do next:** Replace the common low-agreement Johnson prefix at
+  `H`; both rows now stop at an adjacent nonpositive prefix denominator.
+
 ### 2026-08-13 - Full-lift top-third common-core continuation
 
 - **Agent/model:** Codex.
