@@ -188,6 +188,27 @@ The full-lift branches, of error ranks 15 and 7 respectively, do not receive
 this payment.  Their current high-support suffixes remain `e>=1044239` and
 `e>=1044242`, so their middle-support intervals are still open.
 
+The full-lift residual has a sharper exact formulation.  With
+
+```text
+W=C+span{r_1},
+```
+
+the selected errors form a full-affine-rank sparse list in one affine coset
+of `W`, with unit slope fibers and information-set maximal zero masks.  The
+complete generalized-weight hierarchy is
+
+```text
+d_1(W)=e,
+d_j(W)=N-K+j-1 for 2<=j<=K+1.
+```
+
+Thus every higher weight is already MDS-sharp.  Even at `e=N-K`, the generic
+corrected compiler gives `743896698428332665` on KoalaBear and `219426634`
+on Mersenne-31, above their respective budgets.  Replaying the same weight
+hierarchy cannot close the cell; a continuation must exploit structure of
+the codimension-one RS extension or improve the row-sharp affine-list count.
+
 ## Replay
 
 ```bash
@@ -203,5 +224,5 @@ Expected output:
 MCA_AFFINE_SPAN_INCIDENCE_COUNTEREXAMPLE_V1_PASS slopes=31 bound=23 direction_max=20 mutations=4/4
 MCA_AFFINE_SPAN_INCIDENCE_COUNTEREXAMPLE_V1_INDEPENDENT_PASS slopes=31 support_checks=31 field_values=1009 bound=23
 MCA_PROPER_SUBSPACE_OCCUPANCY_COMPILER_V1_PASS zero_normal_cases=616 adjacent=8 regression=471 toy_selections=540
-MCA_FULL_EXPLANATION_LIFTED_RANK_GAUGE_DICHOTOMY_V1_PASS gauges=625 hostile=1 adjacent=2
+MCA_FULL_EXPLANATION_LIFTED_RANK_GAUGE_DICHOTOMY_V1_PASS gauges=625 hostile=1 extensions=31 profile=1:5,2:25,3:1 adjacent=2 ceilings=2
 ```

@@ -1608,6 +1608,52 @@ lifted differences to the anchored error-vector differences.  Their affine
 rank is therefore \(\dim V\).
 \end{proof}
 
+\begin{theorem}[Full-lift near-MDS extension reduction]
+\label{thm:full-lift-near-mds-extension}
+Retain the hypotheses of
+\cref{thm:full-explanation-lifted-rank-dichotomy}, assume
+\(\dim V=K+1\), write \(N=|D|\), and put
+\[
+  W=C+\langle r_1\rangle,\qquad
+  e=\min_{b\in C}\wt(r_1-b).
+\]
+Then \(\dim W=K+1\), and the generalized Hamming weights of \(W\) are
+\[
+  d_1(W)=e,\qquad
+  d_j(W)=N-K+j-1\quad(2\le j\le K+1).
+  \tag{NM}
+\]
+The selected errors \(r_\gamma-c_\gamma\) lie in one affine coset of
+\(W\), have full affine rank \(K+1\), and determine their slopes uniquely.
+Moreover, if every selected maximal agreement support has size greater than
+\(K\), restriction of \(W\) to each such support is injective.
+\end{theorem}
+
+\begin{proof}
+Pair noncontainment gives \(r_1\notin C\), so \(W\) has dimension \(K+1\).
+Interpolation on \(K\) coordinates gives \(e\le N-K\).  Every nonzero word
+of \(W\) is either a nonzero RS word, of weight at least \(N-K+1\), or a
+nonzero scalar multiple of \(r_1-b\), of weight at least \(e\); a nearest
+\(b\) attains \(e\).  Thus \(d_1(W)=e\).
+
+Let \(A\le W\) have dimension \(j\ge2\).  If \(A\le C\), the RS MDS
+hierarchy gives \(|\operatorname{supp}A|\ge N-K+j\).  Otherwise
+\(\dim(A\cap C)=j-1\), and that RS subcode has at most \(K-j+1\) common
+zero coordinates.  Hence
+\[
+  |\operatorname{supp}A|\ge N-K+j-1.
+\]
+The generalized Singleton bound for the \([N,K+1]\) code \(W\) is the
+reverse inequality, proving \((\mathrm{NM})\).
+
+The map \((a,u)\mapsto ar_1-u\) is an isomorphism
+\(\F\oplus C\to W\), so the full lifted rank is exactly the error affine
+rank and equal errors have equal slopes.  Finally, a nonzero
+\(ar_1-u\in W\) vanishing on a selected support either contradicts the RS
+root bound when \(a=0\), or supplies simultaneous direction and base
+explanations when \(a\ne0\).  Pair noncontainment excludes both cases.
+\end{proof}
+
 \begin{remark}[Exact top-rank split at the first shortened rows]
 \label{rem:full-explanation-top-rank-split}
 The gauge preserves agreement supports, pair noncontainment, and
@@ -1626,7 +1672,18 @@ and \(h=\dim V\), equivalently the error affine rank.
 \end{array}
 \]
 The improvement is only in the \(h=K\) rows.  The full-lift \(h=K+1\)
-middle intervals remain unpaid and are the wider top-rank residuals.  A
+middle intervals remain unpaid and are the wider top-rank residuals.
+\Cref{thm:full-lift-near-mds-extension} shows that every generalized
+weight from rank two onward is already MDS-sharp.  Even at the best endpoint
+\(e=N-K\), the generic corrected compiler gives
+\[
+  743896698428332665>274980728111395087
+  \quad\text{and}\quad
+  219426634>16777215
+\]
+on KoalaBear and Mersenne-31, respectively.  Closing these cells therefore
+requires structure of the codimension-one RS extension beyond its weight
+hierarchy, or a sharper row-specific affine-list theorem.  A
 finite-field audit and the exact adjacent arithmetic are in
 \texttt{experimental/verify\_mca\_full\_explanation\_lifted\_rank\_gauge\_dichotomy\_v1.py}.
 \end{remark}

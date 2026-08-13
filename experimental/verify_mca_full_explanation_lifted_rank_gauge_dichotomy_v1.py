@@ -119,6 +119,81 @@ def audit_small_field() -> tuple[int, int]:
     return gauge_checks, 1
 
 
+def word_weight(word: tuple[int, ...]) -> int:
+    return sum(value != 0 for value in word)
+
+
+def span_word(
+    codeword: tuple[int, ...], scalar: int, direction: tuple[int, ...], prime: int
+) -> tuple[int, ...]:
+    return tuple((value + scalar * extra) % prime
+                 for value, extra in zip(codeword, direction))
+
+
+def dependent(
+    left: tuple[int, ...], right: tuple[int, ...], prime: int
+) -> bool:
+    return any(
+        all((b - scalar * a) % prime == 0 for a, b in zip(left, right))
+        for scalar in range(prime)
+    )
+
+
+def extension_weights(
+    words: frozenset[tuple[int, ...]], prime: int
+) -> tuple[int, int, int]:
+    nonzero = [word for word in words if any(word)]
+    first = min(map(word_weight, nonzero))
+    second = len(nonzero[0])
+    for index, left in enumerate(nonzero):
+        for right in nonzero[index + 1:]:
+            if dependent(left, right, prime):
+                continue
+            union = sum(a != 0 or b != 0 for a, b in zip(left, right))
+            second = min(second, union)
+    full = sum(
+        any(word[index] for word in words)
+        for index in range(len(nonzero[0]))
+    )
+    return first, second, full
+
+
+def audit_near_mds_extensions() -> tuple[int, dict[int, int]]:
+    prime, length = 5, 5
+    code = [
+        tuple((constant + slope * x) % prime for x in range(length))
+        for constant, slope in product(range(prime), repeat=2)
+    ]
+    code_set = frozenset(code)
+    extensions: dict[frozenset[tuple[int, ...]], int] = {}
+    for direction in product(range(prime), repeat=length):
+        if direction in code_set:
+            continue
+        extension = frozenset(
+            span_word(codeword, scalar, direction, prime)
+            for codeword in code
+            for scalar in range(prime)
+        )
+        distance = min(
+            word_weight(tuple((a - b) % prime
+                              for a, b in zip(direction, codeword)))
+            for codeword in code
+        )
+        if extension in extensions and extensions[extension] != distance:
+            raise ValueError("extension distance invariance")
+        extensions[extension] = distance
+    if len(extensions) != 31:
+        raise ValueError("extension census")
+    profile: dict[int, int] = {}
+    for extension, distance in extensions.items():
+        if extension_weights(extension, prime) != (distance, 4, 5):
+            raise ValueError("near-MDS hierarchy")
+        profile[distance] = profile.get(distance, 0) + 1
+    if profile != {1: 5, 2: 25, 3: 1}:
+        raise ValueError("extension profile")
+    return len(extensions), profile
+
+
 def falling(value: int, length: int) -> int:
     return prod(value - offset for offset in range(length))
 
@@ -164,7 +239,7 @@ def first_factor(
     return low
 
 
-def audit_deployed_walls() -> int:
+def audit_deployed_walls() -> tuple[int, int]:
     rows = (
         {
             "name": "KoalaBear",
@@ -176,6 +251,8 @@ def audit_deployed_walls() -> int:
             "low": 5,
             "frontier_j": 4337,
             "full_high": 1044239,
+            "mds_endpoint": 743896698428332665,
+            "required_top_factor": 182530,
         },
         {
             "name": "Mersenne-31",
@@ -187,9 +264,11 @@ def audit_deployed_walls() -> int:
             "low": 1,
             "frontier_j": 4334,
             "full_high": 1044242,
+            "mds_endpoint": 219426634,
+            "required_top_factor": 882143,
         },
     )
-    adjacent = 0
+    adjacent = ceilings = 0
     for row in rows:
         rank = row["K"] - 1
         factor = first_factor(
@@ -209,16 +288,31 @@ def audit_deployed_walls() -> int:
             raise ValueError(row["name"] + " full-lift arithmetic")
         if not row["low"] < row["drop_high"] < row["full_high"]:
             raise ValueError(row["name"] + " support ordering")
+        endpoint = occupancy_bound(
+            row["R"], row["d"], row["K"], row["K"], row["d"]
+        )
+        required = first_factor(
+            row["R"], row["d"], row["K"], row["K"], row["budget"]
+        )
+        if endpoint != row["mds_endpoint"] or not endpoint > row["budget"]:
+            raise ValueError(row["name"] + " MDS endpoint")
+        if required != row["required_top_factor"] or not required > row["d"]:
+            raise ValueError(row["name"] + " required top factor")
         adjacent += 1
-    return adjacent
+        ceilings += 1
+    return adjacent, ceilings
 
 
 def main() -> None:
     gauges, hostile = audit_small_field()
-    adjacent = audit_deployed_walls()
+    extensions, profile = audit_near_mds_extensions()
+    adjacent, ceilings = audit_deployed_walls()
+    profile_text = ",".join(f"{distance}:{count}"
+                            for distance, count in sorted(profile.items()))
     print(
         "MCA_FULL_EXPLANATION_LIFTED_RANK_GAUGE_DICHOTOMY_V1_PASS "
-        f"gauges={gauges} hostile={hostile} adjacent={adjacent}"
+        f"gauges={gauges} hostile={hostile} extensions={extensions} "
+        f"profile={profile_text} adjacent={adjacent} ceilings={ceilings}"
     )
 
 

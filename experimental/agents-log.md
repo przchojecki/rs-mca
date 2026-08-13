@@ -57,7 +57,11 @@ Keep entries concise and link to the relevant files.
   affine hyperplane of codeword gauges drops explanation rank to `K-1`, and
   lifted rank `K+1`, where no gauge drops rank.  This pays the rank-drop
   suffixes at `e>=992852` and `e>=1037876` while isolating the full-lift
-  middle intervals as the true remaining top-rank residuals.
+  middle intervals as the true remaining top-rank residuals.  The additional
+  near-MDS extension theorem proves that `W=C+<r_1>` has first generalized
+  weight `e` and every higher weight MDS-sharp.  Its generic endpoint bound
+  still exceeds both budgets, ruling out another weight-hierarchy replay as
+  a closure route.
 - **What to do next:** Replace the false ordered-basis denominator by a
   sharper aggregate theorem, or route the remaining top-rank K3 cells
   through a different slope compiler.  The common-core cancellation and
