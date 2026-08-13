@@ -1652,6 +1652,126 @@ makes no claim there.  The exact scan is in
 \texttt{experimental/verify\_mca\_sparse\_direction\_punctured\_johnson\_profile\_v1.py}.
 \end{remark}
 
+\begin{theorem}[Near-Johnson centered-Gram list compiler]
+\label{thm:near-johnson-centered-gram}
+Let \(S_1,\ldots,S_L\) be distinct \(A\)-subsets of an \(n\)-set such
+that \(|S_i\cap S_j|\le c\) for \(i\ne j\), where \(A>c\).  Put
+\[
+  g=nc-A^2\ge0,
+  \qquad
+  G=(A-c)^2-cg.
+\]
+If \(G>0\), then
+\begin{equation}
+  L\le\left\lfloor\frac{nA(A-c)}{G}\right\rfloor.
+  \label{eq:near-johnson-centered-gram}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let \(B\) be the \(L\)-by-\(n\) incidence matrix and put
+\[
+  H=BB^{\mathsf T}-c\mathbf1\mathbf1^{\mathsf T}.
+\]
+Every row of \(B\) has sum \(A\), so
+\(\mathbf1=A^{-1}B\mathbf1_n\).  The images of both summands defining
+\(H\) therefore lie in \(\operatorname{col}(B)\), and
+\begin{equation}
+  \operatorname{rank}(H)\le\operatorname{rank}(B)\le n.
+  \label{eq:centered-gram-rank}
+\end{equation}
+
+Write \(\delta_{ij}=c-|S_i\cap S_j|\).  Then
+\(0\le\delta_{ij}\le c\) is integral and
+\[
+ \operatorname{tr}(H)=L(A-c),\qquad
+ \operatorname{tr}(H^2)=L(A-c)^2+2\sum_{i<j}\delta_{ij}^2.
+\]
+If \(s_x\) is the incidence multiplicity at coordinate \(x\), then
+Cauchy--Schwarz gives
+\[
+ 2\sum_{i<j}|S_i\cap S_j|
+ =\sum_xs_x^2-LA
+ \ge \frac{L^2A^2}{n}-LA.
+\]
+Thus, for \(\Delta=\sum_{i<j}\delta_{ij}\),
+\[
+ 2\Delta\le L\left(\frac{Lg}{n}+A-c\right).
+\]
+Since \(\delta_{ij}^2\le c\delta_{ij}\),
+\[
+ \operatorname{tr}(H^2)
+ \le L\left((A-c)^2+c(A-c)+\frac{cLg}{n}\right).
+\]
+The symmetric trace-rank inequality
+\(\operatorname{rank}(H)\ge\operatorname{tr}(H)^2/
+\operatorname{tr}(H^2)\), together with
+\eqref{eq:centered-gram-rank}, yields
+\[
+  L\bigl((A-c)^2-cg\bigr)\le nA(A-c),
+\]
+which is \eqref{eq:near-johnson-centered-gram}.
+\end{proof}
+
+\begin{corollary}[Sparse-direction near-Johnson MCA payment]
+\label{cor:sparse-direction-near-johnson-mca}
+Retain the hypotheses of
+\cref{thm:sparse-direction-punctured-johnson-mca}, put
+\[
+ u=\lfloor e/2\rfloor,
+ \qquad n=N-e,
+ \qquad c=K-1,
+ \qquad A=m-e,
+\]
+and assume
+\[
+ (m-u)^2-nc>0,qquad
+ g=nc-A^2\ge0,qquad
+ G=(A-c)^2-cg>0.
+\]
+Define
+\[
+ J_u=\left\lfloor\frac{n(m-u-K+1)}{(m-u)^2-nc}\right\rfloor,
+ \qquad
+ Q_e=\left\lfloor\frac{nA(A-c)}G\right\rfloor.
+\]
+Then
+\begin{equation}
+  |Z|\le(e-1)J_u+Q_e.                              \label{eq:near-johnson-mca}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let \(N_u\) be the number of transformed explanations with outside deficit
+at most \(u\), and let \(N_e\) be their total number.  The deficit-owner
+bound gives
+\[
+ |Z|\le eN_u+(N_e-N_u)=(e-1)N_u+N_e.
+\]
+The ordinary Johnson argument on the punctured row gives \(N_u\le J_u\).
+For each explanation counted by \(N_e\), choose exactly \(A=m-e\) outside
+agreement coordinates.  Distinct degree-\(<K\) explanations give distinct
+blocks with intersections at most \(c=K-1\), so
+\cref{thm:near-johnson-centered-gram} gives \(N_e\le Q_e\).
+\end{proof}
+
+\begin{remark}[Exact centered-Gram support walls]
+Together with the preceding Johnson prefix, exact integer evaluation of
+\eqref{eq:near-johnson-mca} expands the low-support walls to
+\[
+\begin{array}{c|c|c|c}
+\text{row}&K&\text{last paid }e&\text{endpoint bound}\\ \hline
+\text{KoalaBear}&14&64037&198047217\\
+\text{Mersenne-31}&6&65418&16759641
+\end{array}
+\]
+against budgets \(274980728111395087\) and \(16777215\).  At KoalaBear
+\(e=64038\), the centered-Gram denominator is \(-36911\).  At Mersenne
+\(e=65419\), it remains positive, but the valid bound \(18212004\) exceeds
+budget.  The exact replay is in
+\path{experimental/verify_mca_sparse_direction_near_johnson_gram_rank_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
@@ -1768,17 +1888,17 @@ and \(h=\dim V\), equivalently the error affine rank.
 \[
 \begin{array}{c|c|c|c}
 \text{row}&q&h&\text{currently paid support range}\\ \hline
-\text{KoalaBear}&14&14&e\le63908\ \text{or}\ e\ge992852\\
-\text{KoalaBear}&14&15&e\le63908\ \text{or}\ e\ge1044239\\
-\text{Mersenne-31}&6&6&e\le65236\ \text{or}\ e\ge1037876\\
-\text{Mersenne-31}&6&7&e\le65236\ \text{or}\ e\ge1044242
+\text{KoalaBear}&14&14&e\le64037\ \text{or}\ e\ge992852\\
+\text{KoalaBear}&14&15&e\le64037\ \text{or}\ e\ge1044239\\
+\text{Mersenne-31}&6&6&e\le65418\ \text{or}\ e\ge1037876\\
+\text{Mersenne-31}&6&7&e\le65418\ \text{or}\ e\ge1044242
 \end{array}
 \]
 The improvement is only in the \(h=K\) rows.  The full-lift \(h=K+1\)
 middle intervals remain unpaid and are the wider top-rank residuals.
-After \cref{thm:sparse-direction-punctured-johnson-mca}, those full-lift
-intervals are exactly \(63909\le e\le1044238\) for KoalaBear and
-\(65237\le e\le1044241\) for Mersenne-31.
+After \cref{cor:sparse-direction-near-johnson-mca}, those full-lift
+intervals are exactly \(64038\le e\le1044238\) for KoalaBear and
+\(65419\le e\le1044241\) for Mersenne-31.
 \Cref{thm:full-lift-near-mds-extension} shows that every generalized
 weight from rank two onward is already MDS-sharp.  Even at the best endpoint
 \(e=N-K\), the generic corrected compiler gives

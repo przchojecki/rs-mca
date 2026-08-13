@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Near-Johnson centered-Gram payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_near_johnson_gram_rank_v1.md`,
+  `experimental/verify_mca_sparse_direction_near_johnson_gram_rank_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A centered incidence-Gram rank bound for
+  equal-size ordinary-list agreement blocks in the first post-Johnson
+  regime, followed by a two-threshold sparse-direction slope compiler.
+- **How it is useful:** It extends the low-support payments from `63908` to
+  `64037` on KoalaBear and from `65236` to `65418` on Mersenne-31.  The
+  endpoint slope bounds are `198047217` and `16759641`.
+- **What to do next:** A stronger post-Johnson list theorem is needed at
+  KoalaBear `e=64038`; at Mersenne `e=65419`, the Gram theorem remains valid
+  but misses budget by `1434789`.  Neither failure is an unsafe certificate.
+
 ### 2026-08-13 - Sparse-direction punctured Johnson profile
 
 - **Agent/model:** Codex.
