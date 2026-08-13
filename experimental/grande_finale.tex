@@ -2320,6 +2320,70 @@ moves.  The exact replay is in
 \path{experimental/verify_mca_full_lift_mean_centered_global_line_profile_v1.py}.
 \end{remark}
 
+\begin{corollary}[One-layer boundary-anchor continuation]
+\label{cor:full-lift-boundary-anchor-continuation}
+Retain the hypotheses and notation of
+\cref{cor:full-lift-mean-centered-global-line-profile}, and put
+\[
+ q=e-K-3s.
+\]
+For $0\le J\le H$, define
+\[
+ B^{(J)}_0=0,
+ \qquad B^{(J)}_h=\min_{h\le v\le J}C_v,
+ \qquad
+ P_J=\sum_{h=1}^{J}
+       (B^{(J)}_h-B^{(J)}_{h-1})
+       \left\lfloor\frac eh\right\rfloor,
+ \qquad P_0=0.
+\]
+If $H\ge2$, $q\ge1$, and $2(s+1)<e$, then
+\begin{equation}
+ |Z|\le\max\{P_H+1,\ P_{H-1}+N-m+1\}.
+ \label{eq:full-lift-boundary-anchor-continuation}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let $\mathcal A$ be the selected explanations with missed-coordinate
+allowance at most $s$, and let $\mathcal D$ be the exact boundary layer
+with allowance $s+1$.  If $|\mathcal A|\le1$, the complete prefix through
+$H$ and the one-slope ownership guard give $|Z|\le P_H+1$.
+
+Suppose $|\mathcal A|\ge2$, and choose distinct anchors $a,b\in\mathcal A$.
+For each $c\in\mathcal D$,
+\[
+ |S_a\cap S_b\cap S_c|
+ \ge e-s-s-(s+1)=K+q-1\ge K.
+\]
+The normalized pair differences for $(c,a)$ and $(c,b)$ agree with the
+gauged direction on this intersection.  Restriction injectivity for
+degree-$<K$ codewords makes them identical, so $c$ lies on the affine
+codeword line already containing $\mathcal A$.  Thus
+$\mathcal A\cup\mathcal D$ is one pair-noncontained line.  The guard
+$2(s+1)<e$ gives one-slope ownership throughout this union, and
+\cref{thm:full-lift-total-core-line} charges it by $N-m+1$.  The remaining
+prefix is bounded independently by $P_{H-1}$.
+\end{proof}
+
+\begin{remark}[First Mersenne boundary support]
+For Mersenne-31 at $e=98230$,
+\[
+ (s,q,H)=(32741,1,65488),\qquad
+ P_H=16434744,\qquad P_{H-1}=15506184,
+\]
+and $N-m+1=981129$.  Hence
+\eqref{eq:full-lift-boundary-anchor-continuation} gives
+\[
+ |Z|\le\max\{16434745,16487313\}=16487313<16777215,
+\]
+with slack $289902$.  At $e=98231$ the same legal bound is $17492173$,
+which exceeds budget by $714958$ and is not an unsafe certificate.  The
+Mersenne full-lift residual interval therefore starts at $e=98231$.
+The exact replay is in
+\path{experimental/verify_mca_full_lift_boundary_anchor_continuation_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
