@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "0223874d7"
+SOURCE_COMMIT = "14c0ad93b"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/statement.md": "6525db0f3f98127403a859cb06de798fbfaa981dc4c255b71cea89299df92587",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/proof.md": "29b08bed3273e1e3a54f027f1516231c65052e218394c5708a894fc246e5c55a",
@@ -41,6 +41,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_padded_center_pade_transversality/audit.md": "d7a8f10acbd34cc4b2bf341d509098c963d66e3d459e0d23dbcd488b387d643e",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_padded_center_pade_transversality/verify.py": "dc30f32cbeaf309f73f13ac65109627b5c46301a213d0083b45d8e833a16d96e",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_padded_center_pade_transversality/verify_audit.py": "dc07229ddaf35605742ca68c733197b07bd2c538dade03c3bc03e4fff1667130",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/statement.md": "7e897560c872f00f58ee87f83af5012a8758cba827b5a420a3e796e267576557",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/proof.md": "85fb9ab3f22135c457aab05176710408f850fd41f54a36c722a205455ed17d7e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/audit.md": "b445ed1154b0cfa78284aaf41ceb3f9b489352e31b3397a225debea386eeeb84",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/verify.py": "c401f054bbdac3f1bd748a6526b2c0e1764d4a240bd836c4f256492d35670910",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/verify_audit.py": "75c20483d7db026c5d355c8cd4ae2abacdc94c85ccf3459426c1a443096faeee",
 }
 
 
@@ -78,6 +83,11 @@ class Formula:
     padded_center_resultant_order: int = 1
     padded_center_intersection_length: int = 1
     padded_center_source_value_nonzero: int = 1
+    primitive_degree_maximum: int = 824633720829
+    primitive_degree_minimum: int = 274877906944
+    primitive_small_residual_offset: int = 549755813886
+    primitive_large_residual_offset: int = 549755813885
+    primitive_relation_dimension: int = 1
 
 
 def matrix_rank(rows: list[list[int]], modulus: int) -> int:
@@ -193,6 +203,17 @@ def replay(formula: Formula) -> dict[str, int]:
             "padded center intersection")
     require(formula.padded_center_source_value_nonzero == 1,
             "padded center source value")
+    before = total - 1
+    require(before == formula.primitive_degree_maximum,
+            "primitive degree maximum")
+    require(n + 3 == formula.primitive_degree_minimum,
+            "primitive degree minimum")
+    require(before - (n + 2) == formula.primitive_small_residual_offset,
+            "primitive small residual")
+    require(before - (n + 3) == formula.primitive_large_residual_offset,
+            "primitive large residual")
+    require(formula.primitive_relation_dimension == 1,
+            "primitive relation")
     return {
         "rank": r,
         "projection": projection,
@@ -205,6 +226,10 @@ def replay(formula: Formula) -> dict[str, int]:
         "small_pade_quotient_degree": formula.small_pade_quotient_degree,
         "large_pade_quotient_degree": formula.large_pade_quotient_degree,
         "padded_center_order": formula.padded_center_resultant_order,
+        "primitive_degree_range": (
+            formula.primitive_degree_minimum,
+            formula.primitive_degree_maximum,
+        ),
     }
 
 

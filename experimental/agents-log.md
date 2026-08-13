@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T primitive source pencil
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED primitive-pencil normal form; no Shape-A exclusion.
+- **What is being added:** Removing the fixed homogeneous gcd of
+  `B_src` gives a degree-`D` map from the domain line to the parameter
+  line. Its center fibers contain exactly the three source classes on
+  `U_0`, with pairwise-coprime residuals of exact printed degrees and one
+  nondegenerate three-term relation.
+- **How it is useful:** It consolidates the remaining three-defect problem
+  into fixed degree, off-grid roots, and ramification of one primitive
+  source map.
+- **What to do next:** Bound the fixed gcd or ramification using the Hankel
+  moments and proportional source-Gram packet.
+
 ### 2026-08-13 - Lane-T padded-center Padé transversality
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -3148,6 +3148,76 @@ both units, so `Qbar(gamma,X)` and `P_F(gamma,X)` are coprime. The
 source-numerator pencil does not send the outside padded point to the
 large center.
 
+## 60. Primitive source pencil and three center fibers
+
+Homogenize the parameter-linear source numerator as a section of
+`O(1,R-1)`. Its two parameter coefficients are independent: at every
+`x in U_0`,
+
+```text
+B_src(t,x)=omega_x(t)L_U0'(x),                   (309)
+```
+
+and the three source classes give three distinct roots of these nonzero
+linear forms.
+
+Let `H(X)` be the homogeneous gcd of the two coefficients, put `h=deg H`,
+and write
+
+```text
+B_src(t,X)=H(X)B_prim(t,X).                      (310)
+```
+
+The primitive pencil defines a morphism
+
+```text
+phi:P^1_X -> P^1_t,
+deg phi=D=R-1-h.                                 (311)
+```
+
+Equation `(309)` makes `H` coprime to `L_U0`; equation `(308)` also gives
+`H(x_*)!=0`. The center quotients in `(301)` therefore factor as
+
+```text
+C_gamma=H Cbar_gamma,
+B_prim(gamma,X)=L_Mgamma(X)Cbar_gamma(X).         (312)
+```
+
+Every fiber of the degree-`D` morphism has projective degree `D`. Hence
+the residual degrees are exactly
+
+```text
+deg Cbar_alpha=deg Cbar_beta=d-1-h,
+deg Cbar_(gamma_0)=d-2-h,                        (313)
+```
+
+so `0<=h<=d-2`. On `U_0`, the three center fibers are exactly the three
+source classes, as sets:
+
+```text
+phi^(-1)(gamma) intersect U_0=M_gamma.           (314)
+```
+
+Also `phi(x_*)!=gamma_0` by `(308)`. Distinct fibers of a morphism are
+disjoint, giving
+
+```text
+gcd(C_gamma,C_delta)=H,
+gcd(Cbar_gamma,Cbar_delta)=1       (gamma!=delta). (315)
+```
+
+Finally the unique relation among evaluation at three distinct points on
+`S_1(t)` has three nonzero coefficients. Applied to `B_prim`, it gives
+
+```text
+u_alpha L_Malpha Cbar_alpha
+ +u_beta L_Mbeta Cbar_beta
+ +u_theta L_Mtheta Cbar_theta=0,                 (316)
+```
+
+with every `u_gamma!=0`. The remaining primitive-pencil invariants are
+the fixed degree `h`, off-grid fiber roots, and ramification.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -3239,4 +3309,6 @@ coprime to its locator and factors the center-specialized Padé numerators;
 it does not yet relate the three quotient polynomials. Section 59 proves
 the padded-center Padé contact is unique and transverse and pins the source
 numerator nonzero there, but does not identify its unique parameter root at
-`x_*`.
+`x_*`. Section 60 primitive-normalizes the source pencil and gives its
+three exact center fibers and relation, but does not control its fixed
+degree or ramification.
