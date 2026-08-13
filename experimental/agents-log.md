@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Affine-span MCA compiler counterexample
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_affine_span_incidence_counterexample_v1.md`,
+  `experimental/verify_mca_affine_span_incidence_counterexample_v1.py`,
+  `experimental/verify_mca_affine_span_incidence_counterexample_v1_independent.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED COUNTEREXAMPLE / ROUTE CUT.
+- **What is being added:** An exact `GF(1009)` Reed--Solomon received line
+  with 31 direction-separated MCA-bad slopes against the affine-span
+  compiler's claimed bound 23.  Two independently structured verifiers
+  reconstruct every maximal support and same-support pair-noncontainment
+  check.
+- **How it is useful:** It retracts `thm:affine-span-mca` and the dependent
+  active-row MCA rank payments while identifying the precise missing input:
+  local full incident rank does not bound proper-subspace occupancy of the
+  incident normals.
+- **What to do next:** Replace the false ordered-basis denominator by a
+  proved proper-subspace occupancy theorem, or route the affected K3 cells
+  through a different slope compiler.  The common-core cancellation and
+  ordinary affine-span LIST results are unaffected.  The selector-free
+  all-LineRay error-affine-core set-pair theorem is also unaffected: it uses
+  a zero-mask/Bollobas argument, not the rejected incidence denominator.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from

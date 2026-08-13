@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
-> **Updated:** 2026-07-29
-> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
+> **Updated:** 2026-08-13
+> **State snapshot:** `main@93fba1be90b7e82d0d02911900b6da1c1c192b24`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -80,6 +80,7 @@ At this snapshot:
 - The cumulative M31 rank-seven compiler now reaches `Q=147594` locally.  Its adjacent `Q=147595`, `k=4981` survivor is reduced to a varying proper-`G`, zero-excess cross-cofactor incidence terminal requiring an aggregate cap `2157928`; no v4 atom, higher-rank theorem, or row closure follows.
 - The KoalaBear equality-wall PR stack proves local normalization, a `Q=6,u=2` geometry reduction, and exclusion of 60 labelled `P3+C3` cases, but retains 405 labelled conic cases and lacks global ownership/add-back.  The separate column-far transverse-secant certificate is per fixed union only.  No large `U_paid` claimed by an abstract candidate-record compiler is banked; the live active value remains `null`.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
+- The affine-span transverse MCA compiler `thm:affine-span-mca` is refuted even under its printed direction-separation hypothesis.  An exact `GF(1009)` rank-one family has 31 pair-noncontained bad slopes against the claimed bound 23, with direction agreement `20<m=21`.  The active-row MCA affine-span payments are therefore withdrawn.  The ordinary affine-span LIST theorem, common-core cancellation, directional Johnson compiler, gauge equivalence, and the selector-free all-LineRay error-affine-core set-pair theorem are not refuted by this example.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.

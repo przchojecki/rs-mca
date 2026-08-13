@@ -1392,92 +1392,69 @@ specific finite residual atom, not an unproved multiplicity principle.
 
 
 
-\begin{theorem}[Affine-span transverse MCA compiler]
-\label{thm:affine-span-mca}
-Let \(C=\RS[\F,D,K]\) have length \(n\), let
-\(r_\gamma=r_0+\gamma r_1\), and put \(m=K+w\).  Let
-\(\mathcal A=c_0+C'\subseteq C\) be an affine codeword subspace with
-\(\dim C'=s\ge1\).  Suppose the line direction is separated from the
-agreement ball,
-\begin{equation}
- \max_{c\in C}\operatorname{agr}(r_1,c)<m.
- \label{eq:direction-list-separated}
-\end{equation}
-Let \(Z\subseteq\F\) be a set of distinct slopes such that for every
-\(\gamma\in Z\) some \(c_\gamma\in\mathcal A\) satisfies
-\(\operatorname{agr}(r_\gamma,c_\gamma)\ge m\).  Then
-\begin{equation}
- |Z|\le
+\begin{proposition}[Counterexample to the affine-span transverse MCA compiler]
+\label{prop:affine-span-mca-counterexample}
+The affine-span MCA bound formerly printed here is false even under the
+direction-separation hypothesis.  There is a received line for
+\[
+ C=\RS[\F_{1009},\{0,\ldots,99\},1],
+ \qquad (n,K,m,w,s)=(100,1,21,20,1),
+\]
+with \(31\) distinct selected slopes and explanations in the
+one-dimensional constant code, while
+\[
+ \max_{c\in C}\operatorname{agr}(r_1,c)=20<21=m
+\]
+and the claimed bound was
+\[
  \left\lfloor
  \max\left\{
- \frac{n^{\underline{s+1}}}
-      {m\,w^{\overline s}},
- \frac{(n-K+s)^{\underline{s+1}}}
-      {w^{\overline{s+1}}}
+ \frac{100^{\underline2}}{21\cdot20},
+ \frac{100^{\underline2}}{20^{\overline2}}
  \right\}
- \right\rfloor .
- \label{eq:affine-span-mca}
-\end{equation}
-The second term is
-\(\binom{n-K+s}{s+1}/\binom{w+s}{s+1}\).  Failure of
-\eqref{eq:direction-list-separated} is an explicit direction-list cell:
-the direction word itself agrees with a codeword on at least \(m\)
-coordinates.
-\end{theorem}
+ \right\rfloor=23<31.
+\]
+Every selected maximal agreement support has size exactly \(21\) and is
+same-support pair-noncontained.
+\end{proposition}
 
 \begin{proof}
-Choose a basis \(c_1,\ldots,c_s\) of \(C'\), write
-\(c_\gamma=c_0+\sum_i\lambda_{\gamma,i}c_i\), and associate the parameter
-point
-\(p_\gamma=(\gamma,\lambda_{\gamma,1},\ldots,\lambda_{\gamma,s})\in
-\F^{s+1}\).  Agreement at coordinate \(x\) is an affine hyperplane with
-normal
-\[
- v_x=(r_1(x),-c_1(x),\ldots,-c_s(x)).
-\]
-Let \(z\) be the number of zero normals and let \(g\le z\) of them agree
-identically.  Since every \(c_i\) vanishes at those \(z\) coordinates,
-the polynomial-space argument of \cref{thm:affine-span-list} gives
-\(z\le K-s\).
+Partition the domain into sets \(C_0,E,T,W\) of sizes \(20,30,21,29\).
+Put \((r_0,r_1)=(0,0)\) on \(C_0\).  Index \(E\) by
+\(1\le i\le30\) and put \((r_0,r_1)=(-i^2,i)\) at its \(i\)-th point.
+For slope \(i\), the zero codeword then agrees exactly on \(C_0\) and
+that point of \(E\).
 
-The normals incident with any \(p_\gamma\) span \(\F^{s+1}\).  Otherwise
-a nonzero relation \((\delta,\mu)\) gives a word
-\(\delta r_1-\sum_i\mu_i c_i\) vanishing on at least \(m\) agreement
-coordinates.  If \(\delta=0\), a nonzero degree-\(<K\) codeword has more
-than \(K-1\) roots.  If \(\delta\ne0\), the direction word agrees with a
-codeword on at least \(m\) coordinates, contradicting
-\eqref{eq:direction-list-separated}.
+On \(T\), put \(r_0=1\) and choose \(21\) distinct fresh nonzero direction
+values avoiding \(1+i r_1=0\) for every \(1\le i\le30\).  At slope zero,
+the constant-one codeword agrees exactly on \(T\).  On \(W\), choose fresh
+direction values and choose each base value outside
+\(\{0,1\}\cup\{-i r_1:1\le i\le30\}\).  All choices exist in
+\(\F_{1009}\), and they remove every unintended selected agreement.
 
-If \(W\le\F^{s+1}\) has dimension \(r\), with \(1\le r\le s\), then the
-coordinates with \(v_x\in W\) are common zeros of the
-\((s+1-r)\)-dimensional space indexed by \(W^\perp\).  If the slope
-coordinate vanishes on that whole space, these are common zeros of
-\((s+1-r)\) independent codewords and number at most
-\(K-s-1+r\).  Otherwise the kernel of the slope coordinate supplies
-\(s-r\) independent codewords, giving the uniform bound
-\(K-s+r\).  Put \(c=z-g\).  After \(r\) independent incident normals
-have been chosen, at least
-\[
- (m-g)-(K-s+r-z)=w+s-r+c
-\]
-further incident normals lie outside their span.  Therefore each slope
-point is incident with at least
-\[
- (m-g)\prod_{r=1}^{s}(w+s-r+c)
-\]
-ordered bases.
-Counting ordered independent coordinate tuples gives
-\[
- |Z|\le
- \frac{(n-g-c)^{\underline{s+1}}}
- {(m-g)(w+c)^{\overline s}},
- \qquad g,c\ge0,\quad g+c\le K-s.
-\]
-For fixed \(c\), the successive ratio in \(g\) has the sign of
-\(n-c-(s+1)m+sg\), so again there is no interior maximum.  Both endpoint
-families decrease with \(c\).  The endpoints \((g,c)=(0,0)\) and
-\((K-s,0)\) give the two terms of \eqref{eq:affine-span-mca}.
+The direction is zero on \(C_0\) and takes distinct nonzero values elsewhere,
+so its maximum agreement with a constant is exactly \(20\).  The selected
+explanations are zero and one, hence have affine span one.  On a
+zero-explanation support, the core forces a simultaneous constant pair to be
+\((0,0)\), but the remaining direction value is nonzero.  On \(T\), the
+direction values are distinct.  Thus every support is pair-noncontained.
+
+The proof failure is the asserted proper-subspace occupancy bound for the
+incident normals.  On each zero-explanation support, \(20\) normals lie on
+one line and one is transverse.  There are only \(40\) ordered bases, not the
+claimed lower count \(m w=420\).  The complete deterministic reconstruction
+is in
+\texttt{experimental/verify\_mca\_affine\_span\_incidence\_counterexample\_v1.py}.
 \end{proof}
+
+\begin{remark}[Scope of the route cut]
+The counterexample retracts only the MCA incidence compiler and statements
+that use its ordered-basis denominator.  It does not refute the ordinary
+affine-span list theorem, common-core cancellation, the directional Johnson
+compiler, codeword-direction gauge equivalence, or the selector-free
+all-LineRay error-affine-core set-pair theorem, whose proof uses zero-mask
+restriction and the Bollobas set-pair inequality instead.
+\end{remark}
 
 \begin{theorem}[Directional Johnson ray compiler]
 \label{thm:directional-johnson-ray}
@@ -5185,35 +5162,15 @@ in \cref{prop:q-exact-target} gives the claim; the next-dimension values
 mark the limit of the recursive compiler.
 \end{proof}
 
-\begin{proposition}[Exact affine-span MCA payments at the active rows]
-\label{prop:active-affine-span-mca}
-Assume \eqref{eq:direction-list-separated}.  If the codeword explanations
-of an MCA chart lie in one affine subspace of the actual
-\(\RS[\F,D,k]\) code of dimension \(s\), then
-\cref{thm:affine-span-mca} gives
-\[
-\begin{array}{c|r|r|r}
-\text{row}&1\le s\le&
- \max\limits_{s\text{ in range}}|Z|&
- \text{compiler value at the next }s\\ \hline
-\text{KoalaBear MCA}&11&49107626893329409&1526096478566110535\\
-\text{Mersenne-31 MCA}&4&1756139&54600050
-\end{array}
-\tag{AF-MCA}\label{eq:active-affine-span-mca}
-\]
-Both in-range maxima fit the full challenge budget.  Thus a surviving
-separated-direction MCA chart has codeword affine-span dimension at least
-\(12\) on KoalaBear and at least \(5\) on Mersenne-31, unless it has
-already been paid by another cell.  If separation fails, the residual is
-the explicit direction-list cell of \eqref{eq:direction-list-separated}.
-\end{proposition}
-
-\begin{proof}
-Substitute \(K=k\), \(m=a_+\), and the exact row budgets into
-\eqref{eq:affine-span-mca}.  Exact falling- and rising-product arithmetic
-gives the displayed values.  At the next dimensions this compiler exceeds
-the full budget, which records only the limit of the estimate.
-\end{proof}
+\begin{remark}[Retraction of the active affine-span MCA payments]
+The former KoalaBear and Mersenne-31 MCA affine-span payments used the
+refuted ordered-basis denominator of
+\cref{prop:affine-span-mca-counterexample}.  Their falling- and
+rising-product evaluations were arithmetically correct evaluations of that
+expression, but they are not upper bounds for MCA slope families.  No
+affine-rank lower wall for a surviving MCA chart is claimed here.  The
+ordinary affine-span list payments immediately above are unaffected.
+\end{remark}
 
 
 \begin{proposition}[Exact rank-flat and common-zero reductions at the active rows]
