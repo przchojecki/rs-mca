@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Top-third affine-line sparse-direction branch close
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_top_third_affine_line_payment_v1.md`,
+  `experimental/verify_mca_sparse_direction_top_third_affine_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A triple-overlap theorem putting every exact
+  high-deficit layer on one affine codeword line, plus a top-third
+  exact-layer/profile compiler.
+- **How it is useful:** It pays every sparse-direction support `e<d` on
+  both deployed rows.  The residual intervals now begin at `e=67472` and
+  `e=67448`, the actual minimum-distance boundaries.
+- **What to do next:** Use the full-lift near-MDS extension structure for
+  `e>=d`.  Support-only ordinary-list bounds have now completed their
+  natural branch.
+
 ### 2026-08-13 - Terminal-deficit affine-line payment
 
 - **Agent/model:** Codex.

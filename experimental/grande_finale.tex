@@ -1968,6 +1968,117 @@ replay is in
 \path{experimental/verify_mca_sparse_direction_terminal_deficit_line_payment_v1.py}.
 \end{remark}
 
+\begin{theorem}[Top-third exact-layer affine-line cap]
+\label{thm:top-third-affine-line}
+Retain the sparse-direction notation of
+\cref{thm:sparse-direction-punctured-johnson-mca}.  Assume \(e\ge K\), put
+\[
+ s=\left\lfloor\frac{e-K}{3}\right\rfloor,
+ \qquad H=e-s-1,
+\]
+and assume \(N-m>s\).  For \(0\le r\le s\), let \(L_r\) be the number of
+selected explanations with exact outside deficit \(h=e-r\).  Then
+\begin{equation}
+ L_r\le
+ \left\lfloor\frac{N-e-(K-1)}{m-e+r-(K-1)}\right\rfloor.
+ \label{eq:top-third-affine-line}
+\end{equation}
+Every explanation counted by \(L_r\) owns at most one selected slope.
+\end{theorem}
+
+\begin{proof}
+For an explanation \(a_i\) in this layer, let \(S_i\subseteq E\) be its
+inside agreement set with its assigned slope.  Then
+\[
+ |E\setminus S_i|\le r.
+\]
+For explanations at distinct slopes \(\gamma_i,\gamma_j\), the normalized
+difference
+\[
+ p_{ij}=\frac{a_i-a_j}{\gamma_i-\gamma_j}
+\]
+is a degree-\(<K\) codeword and equals the gauged direction \(q\) on
+\(S_i\cap S_j\).  Any three inside agreement sets have intersection at
+least \(e-3r\ge K\).  Hence \(p_{ij}\) and \(p_{ik}\) agree on at least
+\(K\) evaluation coordinates and are equal.  Fixing two anchors puts the
+entire exact layer on one affine codeword line.
+
+Each member has \(A_r=m-e+r\) outside agreements.  The line has a common
+agreement core of size \(g\le K-1\), and outside that core each coordinate
+agrees for at most one line parameter.  Thus
+\[
+ L_r(A_r-g)\le N-e-g.
+\]
+The hypothesis \(N-m>s\) gives \(N-e>A_r\), so the ratio increases with
+\(g\); substituting \(g\le K-1\) proves
+\eqref{eq:top-third-affine-line}.  Finally \(r<e/2\), so the deficit-owner
+bound is \(\lfloor e/(e-r)\rfloor=1\).
+\end{proof}
+
+\begin{corollary}[Top-third sparse-direction profile]
+\label{cor:top-third-sparse-direction-profile}
+For \(1\le h\le H\), let \(C_h\) be a proved cumulative explanation cap
+and put
+\[
+ B_0=0,
+ \qquad B_h=\min_{h\le v\le H}C_v.
+\]
+Then
+\begin{align}
+ |Z|
+ &\le\sum_{h=1}^{H}(B_h-B_{h-1})
+       \left\lfloor\frac eh\right\rfloor
+   +\sum_{r=0}^{s}
+       \left\lfloor\frac{N-e-(K-1)}{m-e+r-(K-1)}\right\rfloor.
+ \label{eq:top-third-sparse-direction-profile}
+\end{align}
+If the positive punctured-Johnson caps \(J_h\) are defined through \(H\)
+and \(u=\lfloor e/2\rfloor\), the first sum is at most
+\[
+ (e-1)J_u+J_H.
+\]
+\end{corollary}
+
+\begin{proof}
+Apply cumulative summation by parts through \(H\).  The remaining exact
+layers are \(h=e-r\), \(0\le r\le s\); apply
+\cref{thm:top-third-affine-line}.  For the coarse prefix estimate, give
+layers through \(u\) weight at most \(e\) and all later prefix layers
+weight one.
+\end{proof}
+
+\begin{remark}[Complete sparse-direction branch payment]
+For the Johnson rational cap
+\[
+ F(n,A)=\frac{n(A-(K-1))}{A^2-n(K-1)},
+\]
+the function increases with \(n\) and decreases with \(A\).  Uniformly over
+\(K\le e<d\), conservative endpoint substitution gives
+\[
+ J_{\lfloor e/2\rfloor}\le31,
+ \qquad J_H\le47
+\]
+on both deployed rows.  Each affine-line summand is nondecreasing in \(e\),
+so its sum is maximal at \(e=d-1\).  The exact endpoint calculations are
+\[
+\begin{array}{c|r|r|r}
+\text{row}&\text{line sum}&\text{uniform total}&\text{budget}\\ \hline
+\text{KoalaBear}&9405342&11496959&274980728111395087\\
+\text{Mersenne-31}&9405365&11496238&16777215
+\end{array}
+\]
+Consequently every sparse-direction support \(1\le e<d\) is paid.  The
+remaining full-lift intervals are
+\[
+ 67472\le e\le1044238
+ \quad\text{and}\quad
+ 67448\le e\le1044241.
+\]
+This closes the low-support branch, not either deployed row.  The exact
+replay is in
+\path{experimental/verify_mca_sparse_direction_top_third_affine_line_payment_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
