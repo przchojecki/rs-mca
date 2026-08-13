@@ -1,0 +1,6 @@
+idea_id,title,track,status,forecast,first_unjustified_step,control_result,dependency_status,owner,artifact,last_updated
+I-001,Record-local core as owner,S,refuted,high,"core identity is invariant under overlapping critical records",C-002 fails,dependencies proved,Codex,public DAG 83eefd94f,2026-08-12
+I-002,Lexicographic complete-record selector,S,explored,low,"derive aggregate fibers from tie-breaking",selector total but count absent,source definitions available,Codex,campaign notes,2026-08-12
+I-003,Spread-link recursive forest,S,explored,medium,"row-sharp aggregate loss for support-size ~10^6",literature losses too large,primary literature located,Codex,Exa search,2026-08-12
+I-004,Same-owner maximum-type bypass,S/A/E,candidate,high,"prove degree-31 source coherence across every 31-overlap or route the first passport change","coherent all-local-core forests now force a global core",active v4 source,Codex,experimental/notes/thresholds/kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.md,2026-08-12
+I-005,Empty-global-core guarded collision search,S,explored,medium,"find a non-affine rank-defect incidence system after forcing empty full intersection","no fixture in 2000 prescribed systems or public one/two-swap neighborhood",D-003,Codex,experimental/campaigns/kb-mca-v4-common-core-forest-post-1163/scratch/search_guarded_core_collision.py,2026-08-12

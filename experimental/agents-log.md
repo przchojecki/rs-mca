@@ -4067,3 +4067,75 @@ on canonical payload
 Open PRs #1161 (symbolic rate-half Lane T) and #1162 (razor bracket) do not
 duplicate this active KoalaBear common-core route cut; their only likely
 textual overlap is `experimental/agents-log.md`.
+
+## 2026-08-12 — [MCA v4 S/A/E] guarded record-local core-owner route cut
+
+On exact #1163 head `e26c15b2d2c`, audited the first proposed ownership rule
+for the direct common-core forest.  The complete GF(11) critical atlas has
+seven actual support-wise MCA-bad slopes, unique degree-`<5` explanations,
+exact maximal supports, and shifted-lattice minimum `d1=w+1=3` at every
+slope.  Its seven critical order-six records have core histogram
+`{8,10}:1`, `{10}:5`, `{5,10}:1`; every slope occurs with at least two core
+values and five slopes occur with all three.  Record-local core identity is
+therefore not a disjoint slope owner even after the actual-degree and
+near-rational guards.
+
+The full fixture retains global core `{10}`.  The packet therefore also
+implements the stronger global-core-first compiler.  For any already-declared
+first-match slope set and one canonical complete record per slope, it takes
+the intersection of all selected maximal supports.  A nonempty intersection
+routes the entire line through one #1163 family, so local core choices are
+never summed; an empty intersection emits the single exact residual
+`EMPTY_GLOBAL_CORE_WITH_LOCAL_CRITICAL_CORES`.  On the GF(11) control the
+compiler returns `DIRECTION_LIST_SHORTENED_4`.
+
+This closes the ownership/add-back ambiguity on the nonempty-global-core
+branch but does not pay the #1163 staircase residuals or the empty-global-core
+branch.  It therefore does not move `U_S`, `U_A`, `U_E`, or the global ledger.
+The empty-core branch is further cut by an exact 33-vs-31 lemma: if every
+order-32 subfamily has a core and all records use one degree-at-most-31 source
+interpolant, a minimal empty cover supplies a private point where a nonzero
+degree-at-most-31 error polynomial has at least 32 roots, contradiction.  The
+two exact surviving terminals are `LOCAL_EMPTY_ORDER_32_CORE` and
+`NONCOHERENT_DEGREE_31_SOURCE_FOREST`.  Across one 31-overlap, however, the
+two degree-31 source interpolants differ exactly by
+`P(X) prod_{gamma in J}(Z-gamma)`.  Thus every first passport change lies on
+one genuine correction ray.  The source's `1963173` bound applies only at the
+primitive/no-common endpoint and is not imported directly.  Canceling the
+ray's automatic common subset directly and replaying the exact multipart clone count gives
+the guarded maximum `342921713716` at shortened dimension three; dimensions
+one and two are already fixed-family paid.  The integrated selector-free all-LineRay theorem further pays the
+complete actual pair family through error affine rank three: the exact rank-
+three cap is `157397034144292985`; after the disjoint `2w+31` add-back the
+slack is `117583693966967127`, while
+rank four already exceeds `B_*`.  The maximal live repair is therefore an
+aggregate same-owner or exact direction-multiplicity theorem on the rank-at-
+least-four ray forest.  Per-edge ray charges may not be summed.
+
+The deployed guard layer is explicit: the #1160 line terminates at the
+separate `2w=134944` near-rational owner and never enters BC/common-core;
+the 31-slope exception reserve remains disjoint.  Exact remaining calibration
+after both is `274980728111260112`.  Python normal and optimized modes replay
+all 1,764 interpolation seeds and reject the complete hostile-mutation suite;
+Sage and FLINT independently recover all seven `d1=3` values; Wolfram recovers
+the support/core atlas, non-affinity, and reserve arithmetic.  An exploratory
+empty-global-core search found no fixture in 2,000 prescribed systems or the
+one-/two-swap neighborhood of the certified record; this is recorded only as
+negative evidence.
+
+Fresh isolated review found and forced repairs to the witness interface,
+pair-indexed/common-subset cancellation, the exact shortened-row maximum,
+provenance labels, and the `2w+31` add-back.  After resealing, Theorems
+4.1--4.4 and the certificate were re-reviewed GREEN; active first-match
+chronology and any deployed banking remain YELLOW.  The final packet rejects
+29/29 hostile mutations, while the Sage and FLINT replays independently
+check the seven guarded records.  The exact canonical payload is
+`6d72f2303973d736b12533a96fb07aad9a9d74a61be0ca1a346c707e0ce6fd4e`.
+
+Upstream overlap was refreshed before publication.  The GF(11) collision and
+whole-line global-core router are prior public-DAG work; the newer nonempty-
+core composition sharpens that separate branch to
+`s=r=14, 31769<=e<=1044245`.  The successor's novel scope is therefore the
+degree-31/order-32 empty-core coherence fence, guarded 31-overlap correction-
+ray compiler, and selector-free low-rank gate.  PR #1156's denominator-root
+and coordinate-clone branch remains independent and is not imported.

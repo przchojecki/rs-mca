@@ -1,0 +1,15 @@
+{
+  "title": "KoalaBear v4 actual-record common-core forest after #1163",
+  "created": "2026-08-12",
+  "schema_version": 1,
+  "claim_statuses": [
+    "idea",
+    "explored",
+    "candidate",
+    "provisionally-verified",
+    "handoff",
+    "refuted",
+    "blocked",
+    "known"
+  ]
+}

@@ -1,0 +1,7 @@
+dependency_id,statement,source,version,scope,proof_status,independent_check,notes
+D-001,Support-wise near-rational slopes per line are at most 2w,PR #1160,c5f4ea7a0c,all finite-field RS rows under printed guards,proved,Sage+FLINT+review,"charge separately from 31"
+D-002,Same-record common-core cancellation is reversible,PR #1163,e26c15b2d,one selected explanation family,proved,Sage+FLINT+Wolfram+review,"no global chronology"
+D-003,Every displayed GF11 locator pair satisfies the actual s_5<=omega guard,current local packet,guarded-core-v1,certified seven-slope fixture,proved,Python+Sage+FLINT+Wolfram,"external 3f626c84d is provenance only; no general iff imported"
+D-004,#1160 displayed slopes have support size w-1 and fail the declared BC lower guard,PR #1160 note plus current local regression,c5f4ea7a0c,deployed constructed line,proved,direct support calculation+Python,"external d797d8ffd is provenance only"
+D-005,Record-local core is not slope invariant,current local replay of public-DAG fixture,guarded-core-v1,complete GF11 seven-record atlas,proved,Python+Sage+FLINT+isolated review,"external 83eefd94f is prior provenance; not deployed"
+D-006,All retained LineRay pairs obey the affine-core set-pair charge,integrated experimental packet,9262f63cf,transverse complete pair families,proved handwritten theorem,normal+optimized+tamper+finite exhaustive verifier,"Lean file is explicitly an unproved statement target"
