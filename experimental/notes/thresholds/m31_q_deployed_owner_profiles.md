@@ -55,12 +55,16 @@ ceil(C(n,a+)/p^w) = 1,993,678.
 
 The active Grande Finale source gives two scoped slope-level producers.
 
-### 2.1 Near-rational branch
+### 2.1 Near-rational supplied-certificate compiler
 
-`cor:near-rational-line` leaves at most one finite near-rational slope on one
-received line.  `M31NearRationalCertificate` records the deduplicated line-local
-slope image and its length bound `<=1`; `m31NearRationalProfile` compiles it to
-an exact paid profile with
+The former source claim that an arbitrary received line leaves at most one
+finite near-rational support-wise MCA-bad slope is withdrawn.  Its replacement
+is the MCA-only two-anchor bound `<=2w` under `3w<=n-K`; it supplies no payment
+for this note's list-row near-rational branch.  The Lean constructor here remains
+valid only as a compiler for an independently supplied
+`M31NearRationalCertificate` whose deduplicated line-local slope image already
+has length `<=1`; it does not produce that certificate or pay the whole
+near-rational branch.  On such a supplied singleton profile it returns
 
 ```text
 U_owner = 1,

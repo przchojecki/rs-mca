@@ -3682,3 +3682,460 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-08-09 — [K3] living progress branch opened (k3-433-progress-export)
+
+Four unit certificates: c112 source-line coverage COMPLETE (incl.
+the M01-R11/M02-R11 Singular-replay discharge at PR #1144's pinned
+commit); 433-1b cell 4 CLOSED (105/105 slices); 433-1b cells 12-13
+CLOSED; 433-1b universal structure (105 -> 60 orbit quotient +
+transports). 204 theorem nodes pinned by path + verifier sha256 in
+AllenGrahamHart/rs-mca-prize-dag @ 594aaa985; all verifiers
+coordinator-replayed. Ledger movement 0; K3 and the KoalaBear row
+remain open (cell 9 in flight; [5,8], [11], cell-3 xi4 residual).
+Incremental pushes will land here as cells close.
+
+## 2026-08-09 — [K3] 433-1b coordinate-positive cell 9 closed
+
+Added `kb-mca-v4-433-1b-cell9-close-v1`: 105/105 labeled slices paid
+by 30 endpoint labels and 75 active labels in 24 exact orbits. The packet
+pins 28 PROVED theorem nodes and verifier digests in
+AllenGrahamHart/rs-mca-prize-dag @ 68ac9e383; the executable aggregate
+reconstructs the universal router and checks the 17-owner partition. All 56
+node verifier and audit scripts were coordinator-replayed. Ledger movement 0;
+K3 and the KoalaBear row remain open ([5,8], [11], cell-3 xi4 residual).
+
+## 2026-08-09 — [K3] 433-1b source role cell 3 re-pinned complete
+
+Added `kb-mca-v4-433-1b-cell3-close-v1`. The common rank-drop branch is
+empty in all four source-sign rows, and a disjoint supplier census pays all
+`7 * 15 * 4 * 4 = 1680` principal systems, including all 240 `xi4` systems
+by exact outside-role transport. The packet pins 28 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ a001708ae. Modal replay
+`ap-jYkVRdvSHQuofSrzIJzAG1` passed all 28 primary verifiers and 28 audits.
+Ledger movement 0; K3 and the KoalaBear row remain open only on role orbits
+`[5,8]` and `[11]` within this exported workboard.
+
+## 2026-08-09 — [K3] 433-1b common-role orbit [5,8] closed
+
+Added `kb-mca-v4-433-1b-cells5-8-close-v1`. Cell 5 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over 24 quotient orbits,
+and all 30 endpoint labels are excluded because eight degree-16/degree-11
+eliminants have no deployed base-field root. An exact B/C transport closes
+cell 8 over all 1,680 signed principal systems, with the global rank-drop
+theorem paying the complement. The packet pins 23 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 3fa298743024. Ledger movement 0; K3 and
+the KoalaBear row remain open only on role orbit `[11]` within this exported
+workboard.
+
+## 2026-08-10 — [K3] 433-1b source-role cell 11 closed
+
+Added `kb-mca-v4-433-1b-cell11-close-v1`. Cell 11 is closed at 105/105:
+75 active labels are paid by 16 exact owner packets over all 24 quotient
+orbits, and the separate endpoint theorem pays the remaining 30 labels. The
+final pairings 7, 8, and 11 have complete direct equation and leading-boundary
+replays; a shared FLINT packet reconstructs 61 profiles and 302 roots through
+degree 5192. The packet pins 22 PROVED theorem nodes at
+AllenGrahamHart/rs-mca-prize-dag @ 7824a826a283. All 44 cell-11 verifier and
+hostile-audit scripts passed. The exported raw-label workboard now has no
+open role orbit. Ledger movement remains 0; K3 and the KoalaBear row remain
+open on labels-to-distinct-affine-slopes conversion, the genuine-pencil
+ledger, and fresh independent proof review.
+
+## 2026-08-10 — [K3] complete raw 433-1b to O0a workboard exclusion
+
+Added `kb-mca-v4-433-1b-raw-workboard-close-v1`. An explicit B/C
+duplicate-role transport closes the previously implicit cell-10 step from
+cell 9 over all 105 labels and 1,680 signed principal systems. Nine disjoint
+owner packets now cover all 15 role cells, 1,575 labels, and 25,200 signed
+principal systems; the global rank-drop theorem excludes the complement.
+The packet pins three aggregate PROVED nodes and hostile audits at
+AllenGrahamHart/rs-mca-prize-dag @ `8df090339e3e`. Ledger movement remains
+0. K3 remains open on eleven other positive routes, orientation/source-cover
+assembly, exact distinct-slope allocation, and independent review.
+
+## 2026-08-10 — [K3] repeated-BC O0b cell-11 off-guard route cut
+
+Added `kb-mca-v4-433-1b-o0b-cell11-offguard-v1`. Across eight source
+towers, three missing representatives, two outside signs, and 15 residual
+matchings, all 720 exact paired-product systems are empty at every deployed
+nonzero-guard source value. Nested norms leave 1,584 exceptional-root
+occurrences over 126 base values; exact all-pair replay excludes all 1,584.
+The packet pins two PROVED nodes and 19 source artifacts at
+AllenGrahamHart/rs-mca-prize-dag @ `81f218e38285`. Ledger movement remains
+0. Missing `BE/CF`, guard and selected-cofactor boundaries, cell 14,
+orientation, allocation, independent review, K3, and the KoalaBear row remain
+open.
+
+## 2026-08-10 — [K3] repeated-BC O0b cell-11 colored off-guard cut
+
+Added `kb-mca-v4-433-1b-o0b-cell11-colored-offguard-v1`.  The missing
+`BE/CF` endpoint product fixes the colored endpoint, and its reconstructed
+squared sum gives one necessary source-algebra consistency identity.  All 16
+exact norms are units on the deployed rational open: their only base-field
+roots are `x=0,1` for `BC-` and `x=0,-1` for `BC+`, all registered guards.
+The packet pins one PROVED node and four evidence files at
+AllenGrahamHart/rs-mca-prize-dag @ `96868562394e`.  Ledger movement is 0;
+finite guard/cofactor fibers and all later K3 obligations remain open.
+
+## 2026-08-10 — [K3] source-bound compiler maximal route cut
+
+Added `kb-mca-v4-k3-source-bound-compiler-route-cut-v1` on a clean worktree
+based on PR #1152 head `ed4877cce5f2`. Its mathematical scope is only the
+declared active residual slice `Z_BC^(m=2,r=4)`; neither the source-bound
+membership predicate nor an exhaustive reduction from all `Z_BC` is claimed.
+The packet replays the proved raw `433-1b -> O0a` exclusion (15 cells, 1575
+labels, 25200 signed systems, zero survivors), derives the exact 13-route
+table (2 raw-zero, 11 open), and fails closed at the first absent implication:
+there is no total canonical selector plus record-preserving
+reconstruction/projection and exact finite fiber bound from the declared
+slice to supplied actual components. A two-sided inverse would suffice but is
+stronger than necessary. The raw-zero routes have zero surviving raw systems
+and `null` distinct-slope payment.
+
+The same packet gives a rigorous transport cut for the proposed
+`433-1b -> O0b` versus closed-O0a route within the frozen natural
+record/role/gauge/typed-incidence map class. It does not exclude arbitrary
+orientation-changing algebraic maps. On repeated BC the guarded product ratio
+is `+1` versus `-1`; on split BC the outside incidence signatures are
+non-isomorphic under all six typed role permutations. Native O0b bookkeeping
+contains 408 rows / 42840 raw labels. The value 11304 is only a conditional
+candidate abstract-label-orbit workload: pinned `label_orbits.py` expressly
+says it is not a census or elimination, and it is not a representative count
+or payment. The source-cover value 8 likewise counts unresolved candidate
+row/passport combinations, not terminals. The per-supplied-record value 32099
+is directly bound to the pinned transverse-source compiler statement.
+
+PR #1155 is replayed and preserved as a valid guard-transplant regression
+route cut with a surviving exact point. Leaving the dirty
+`rs-mca-k3-433-cell11-cover` worktree and its uncommitted cover/transport files
+untouched is an operational author audit, not a proof claim or certificate
+input; the files are preserved and neither refuted nor deleted.
+
+Validation uses Python normal/optimized replay and hostile mutations, the raw
+dependency and PR #1155 replays, Sage finite-field/involution replay, FLINT
+integer/matrix replay, and Wolfram totals/permutation replay. Mutation and
+source-hash counts are reported by the current verifier rather than copied
+into this log. The tangent manifest/row expects `grande_finale.tex` Git blob
+`8a5d9791900ca9eed773feba146b92ad296704ce`, while PR #1152 contains
+`6b21d6ea937a8a9f85fc7ade6032d73efd4c7222`; both tangent-verifier modes fail
+the stale `active_v4` source gate. Thus manifest-declared `U_paid=981104` and
+the derived reserve arithmetic are not transitively source-revalidated by
+this packet. The honest outputs remain
+`U_remaining=U_positive=U_sourcecover=U_K3=U_K3_allocation=signed_slack=null`;
+the joint reserve `274980728110413983` is not an allocation or a newly banked
+value. Ledger movement is zero; K3 and the KoalaBear row remain open.
+
+The open-PR audit is a non-load-bearing temporal snapshot. At audit time,
+#1130 and draft #1132 supplied parameter-side and actual-component interfaces
+but not the active same-record bridge; #1152 was the dependency; #1153--#1155
+were local replay/route-cut layers; and draft #1156 concerned a different MCA
+exception router. The durable proof claim is only that the packet's pinned
+dependency set contains no declared-slice selector/reconstruction/projection
+theorem.
+
+Fresh post-repair proof and certificate/custody reviews were independently
+GREEN and PR-ready for success condition B. The certificate reviewer also
+rejected 41 additional targeted promotion mutations beyond the shipped 32.
+Neither review promoted the open K3 theorem, the stale tangent payment, or
+any null ledger output.
+
+## 2026-08-10 — [K3] active-slice semantic bridge direct-coordinate route cut
+
+Added `kb-mca-v4-k3-active-slice-semantic-bridge-route-cut-v1` on a clean
+worktree at exact #1157 head `d7f0fd9370`. Imported only #1139's three-file
+tangent source-pin repair; normal/optimized checks and tamper suites now pass,
+so the existing active atom `U_paid=981104` is source-revalidated. This is a
+pin refresh, not a new payment. The exact joint reserve is
+`274980728110413983`, not a K3 allocation.
+
+The source audit proves that current Q and BC manifest entries are English
+predicate labels rather than executable source relations and that
+`Z_BC^(m_in=2,r_out=4)` has no defined source-level membership predicate.
+The packet freezes the required typed actual-record relation, same-line
+selector/reconstruction, exact projection fibers, chronology preservation,
+and all-`Z_BC` complement fence. None is claimed proved.
+
+An exact countermodel uses the actual deployed subgroup
+`D=<1213133211>` of order `2^21` in `F_2130706433`. There are exactly 1071
+unordered pairs `{x,1-x}` inside `D`; the first 30 active and next six source
+pairs give monic squarefree coprime locators of degrees 60 and 12 satisfying
+`V_act/A^5=(P/Q^5) composed with h` for `h=T(1-T)` and the printed
+`W=<1,h>` source-pencil conditions. Nevertheless `tau(T)=1-T` sends `1 in D`
+to `0 notin D`. This rigorously cuts direct endpoint-coordinate carrier
+identification. It does not cut arbitrary conjugacy: `T-1/2` conjugates tau
+to `T -> -T`, which preserves the even-order carrier. No actual received
+line, MCA witness, active owner, K3 orientation, or slope payment is
+constructed.
+
+Python normal/optimized replay checked all 2,097,152 carrier points, the 1071
+pair census, source hashes, type-strict canonical JSON, and rejected 43
+semantic plus three parser mutations. External public-DAG source replay
+checked two pinned statements. Independent Sage and FLINT replays matched the degrees, gcds,
+fibers, coefficient hashes, carrier witness, and conjugacy disclosure.
+Wolfram's connected evaluator independently returned the same exact
+direct-coordinate result; the corrected local `wm.sh -file` repeat later hit
+the cloud account's `Insufficient credits` response. Exa
+literature search was non-load-bearing and found no project-specific
+same-record shortcut. Ledger movement remains zero; every K3 output and
+`U_Q,U_BC,U_new` remain null.
+
+The repaired tangent Lean package also builds. Its pre-existing
+`CORRESPONDENCE.md` incorrectly predicts an empty axiom census for every
+declaration; the actual census contains only standard `propext` and
+`Quot.sound`, with no user-declared axioms. This documentation drift does not
+alter the tangent theorem or payment, and the imported #1139 change remains
+the exact three-file source-pin repair.
+
+The historical equality-wall bypass was independently audited and is not a
+proved cap 68. Its target counts distinct source-map equivalence classes per
+transversal projective residue line after direction deduplication, not affine
+slopes. The exact exclusion interval is `3912 <= delta <= 118076`; five
+degree-12--16 low-excess windows and general excess remain open, and each
+direction can cost up to 1,894,736 slopes. A current-partition adapter would
+be necessary but not sufficient. K3 and the KoalaBear row remain open.
+
+Fresh independent reviews after the final reseal were GREEN for the narrow
+direct-coordinate route-cut mathematics and GREEN for certificate custody.
+The same mathematics review remains RED for K3 closure/payment, as required:
+the actual-slope `Rec_2_4` selector/reconstruction, exact projection fibers,
+chronology preservation, and all-`Z_BC` complement fence are still unproved.
+
+## 2026-08-10 — [K3] actual-record dimension-sensitivity audit
+
+Added `kb-mca-v4-k3-actual-record-source-dimension-route-cut-v1` in a clean
+worktree at exact #1158 head `5145fc8e0a`; every pre-existing dirty worktree
+was left untouched. At final refresh, upstream target `main` was `93fba1be3f`; #1157
+and #1158 were still open and absent from `main` by ancestry and artifact
+content. The public proof DAG master was
+pinned at `3edb8b31b6` and audited rather than trusted by its `PROVED` label.
+
+The packet constructs an actual deployed KoalaBear received pole line over
+`F_(p^6)`, an exact support of size `1116048`, explaining polynomial zero,
+and the full-degree affine slope `alpha`. Its direction word cannot be
+explained by degree less than `k`, or even less than `k+1`, on that support;
+the pair is column-far and the canonical tangent image is empty. The shifted
+interpolation minimum is exactly `67473` under both dimension conventions.
+With `K=k` it is the boundary numerical profile; with `K=k+1` it is the
+first-interior numerical profile. Independent source review found that the
+available Q theorem is restricted to its special prefix witness family and
+that neither numerical profile is proved equivalent to the frozen Q or BC
+slope predicate. The packet therefore assigns no Q, BC, or `U_new` owner and
+records the missing `SEM-QBC` dimension/priority adapter before
+`ActiveRec_2_4` as an open gap—not as success condition B.
+
+The scope fence is explicit. A weak-Popov basis is
+`g1=(Lambda_E,0)`, `g2=(L_(D-E) mod Lambda_E,L_(D-E))`; the zero-codeword
+support witnesses have `B=0` and lie on the pure `A*g1` ray. The packet does
+not prove primitive `r_out=4` survival, endpoint realization, membership in
+the thirteen K3 routes, a K3 payment, or any row closure. All unresolved
+ledger values remain null and ledger movement is zero.
+
+The strict canonical certificate binds five local and six public-DAG source
+files plus the packet files, a recursively strict schema, the exact huge
+support-count fingerprint, and hostile semantic/parser mutations. The primary
+check is fail-closed if the exact public-DAG checkout is absent. Python normal
+and optimized modes, Sage, and FLINT replay the field, carrier, root-count,
+lattice, profile, and toy-kernel calculations without making owner claims.
+The connected Wolfram evaluator independently returned every exact arithmetic
+check true after the semantic downgrade and explicitly returned the actual
+owner as not established by the pinned sources; the local wrapper separately reported `Insufficient
+credits`. Exa and TheoremSearch were non-load-bearing controls.
+
+After the final semantic downgrade and reseal, independent mathematics review
+was GREEN for the narrow actual-record/profile-sensitivity theorem and RED for
+K3 closure/payment, as scoped. Independent certificate review was GREEN at
+payload `75ee17e4de50c5a4a0acd360c9d94ba00748875527390212823631c4585b4970`:
+normal and optimized replay, all 11 source pins, Sage, FLINT, 62 semantic and
+three parser mutations, fail-closed no-DAG behavior, and 309-leaf resealed
+fuzzing passed with no accepted mutation. `SEM-QBC`, `Rec_2_4`, K3 payment,
+and the KoalaBear row remain open.
+
+## 2026-08-10 — [K3 regression / active S-A-E] support-wise near-rational repair
+
+On exact #1159 head `e603e0cedc`, replaced the invalid global inference from
+the existence of a common support to the absence of support-wise MCA-bad
+slopes.  An actual deployed KoalaBear line has a common support of size
+`2029680` and at least `67472` distinct finite near-rational bad slopes, each
+with its own identical size-`1116048` noncontained witness support.  This
+strictly refutes the former displayed `+1` allowance; the earlier July claim
+that the common-proximity branch was globally removed is superseded.
+
+The replacement two-anchor theorem is uniform over finite-field RS evaluation
+domains under `w=m-K>=1` and `3w<=n-K`: the near-rational support-wise
+MCA-bad slopes on one actual received line number at most `2w`.  The exact MCA
+charges are `134944` on KoalaBear and `134896` on Mersenne-31.  The proof uses
+two bad anchors, minimum-distance collapse of a third codeword difference,
+and an injective coordinate-ratio map on the anchors' union error support.
+It is a distinct-affine-slope theorem, with no layer-cake, moment, or
+asymptotic step.
+
+The active foundation and Grande Finale sources now preserve the identical
+bad witness through exact-support shrinking, common-support translation,
+rank-one injection, global code-line counting, owner localization, and the
+triple-collapse cases.  Fixed identically split kernels are tangent-paid only
+under the theorem's `n-a'<=t` guard (including deficiency one) and remain in
+the rank-one/spread residual otherwise; correction-ray prose is scoped to its
+actual support-wise owner.  Generated Lean blueprint/mining
+mirrors and conditional M31 notes were corrected; historical deployed
+whole-cell Q artifacts are retained only as toy/regression material.  The
+route-scoped partial `U_paid` C2 zero was kept only for the supplied
+pair-contained witness support and explicitly forbidden from deleting a
+slope merely because a different common support exists; its certificate and
+pinned-source replay were regenerated.
+
+The older four-row exact-completion compiler is now explicitly historical:
+its Grande Finale v3 MCA additive interface and list chronology are superseded
+by v4's maximum-type MCA S/A/E endgame and list `U_ext` atom.  It may still be
+used for row calibration, but its stale source hashes and
+`CURRENT_ARTIFACT_SET` terminal are not a live acceptance gate and it consumes
+no common-support/global-slope inference from the partial `U_paid` packet.
+
+Public-DAG reconciliation binds the valid two-anchor pair-proximity node, the
+refuted support-wise payment node, and the distinct LIST exact-shell node by
+commit/blob/content hashes.  The new result completes the exact displayed
+MCA `+1` seam left open by the DAG toy refutation; it neither refutes nor uses
+the LIST exact-shell result.  A Wolfram cloud run independently confirmed the
+exact deployed arithmetic; its algebra lines are identity sanity checks, not
+a proof of the theorem. A final wrapper repeat returned `Insufficient
+credits`; no acceptance gate depends on it. The exhaustive GF(7) syndrome quotient
+attains the sharp toy maximum `2w=2`; Sage and FLINT independently replay the
+finite-field and exact-algebra checks.
+
+Ledger movement is deliberately zero.  The active v4 maximum-type S/A/E
+reserve and first-match chronology have not been regenerated, and the common
+factor branch must still be separately routed before `thm:partial-relative`
+applies.  No value is assigned to `U_Q`, `U_BC`, `U_K3`, or `U_new`; neither
+KoalaBear nor any LIST row is claimed closed.  On the final canonical payload
+`1eb7b0aff6a89affe99ff0b723952d26eeb1c8712ff859ab11891d9dd20f7446`,
+independent source/custody review was GREEN, two independent mathematics
+reviews were GREEN for this scoped local repair, and independent certificate
+review was GREEN.  The first mathematics review caught the missing
+`n-a'<=t` tangent-payment guard; that claim was repaired, resealed, and then
+re-reviewed GREEN.  Final normal and optimized Python replays rejected all
+34 hostile mutations, Sage exhausted all 117649 toy syndrome pairs with
+maximum two, and FLINT independently replayed the exact arithmetic and
+root-count guards.
+
+## 2026-08-11 — [MCA v4 S/A/E] common-core shortening staircase route cut
+
+On exact #1160 head `c5f4ea7a0c`, constructed the missing local algebra for
+the tuple-level common intersection of one selected family of maximal
+agreement supports.  If its size is `c<k`, interpolation on the core and
+division by its squarefree locator give a typed reversible adapter
+
+`(n,k,m) -> (n-c,k-c,m-c)`.
+
+It preserves the finite affine slope, the declared explanation/support
+correspondences, identical-support noncontainment, and the three invariants
+`m-k`, `n-k`, and `n-m`.  It does not preserve literal identity of the
+received line, carrier, explanation, or support across rows.  Reverse
+scalar-locator owner transport separately requires denominator nonvanishing
+on the deleted core, and the converse hardness embedding requires a field
+with enough compatible fresh evaluation points.
+
+The exact KoalaBear staircase has two sharp walls.  The deployed order-32
+degree-18 interface survives exactly through `c=4130` and drops to degree 17
+at `c=4131`.  For a single fixed core, the generic support/secant compiler
+fits through shortened dimension `s=2`.  Under the explicit shortened
+direction-separation guard, the affine-span compiler gives
+`J_13=47876303026096432 < B_*`, while
+`J_14=743896698428332665 > B_*`.  Jo's slope-preserving shortening transfer
+does not bridge the degree wall: at `c=4131` its binomial multiplier alone
+has 3765 bits and exceeds `B_*`, and staged shortening has the same
+telescoping cost.
+
+This is a maximal route cut, not a payment.  The active source still lacks a
+chronology-correct whole-line selector for varying local 32-tuple cores.
+For this staircase route, every slope must be assigned disjointly to an
+earlier owner, one paid fixed-core family, a shortened direction-list
+residual, or `COMMON_CORE_SHORTENED_s_GE_14`.  A different maximum-type
+whole-line theorem may bypass that selector.  Fixed-core bounds may not be
+summed over core choices.  Accordingly `U_S`, `U_A`, `U_E`, and global
+ledger movement all remain zero; no KoalaBear or universal closure is
+claimed.
+
+The final packet pins the active v4 source, CAP25 support-wise MCA predicate,
+common-core compiler, #1160 control, and the reproduced Paving/Jo shortening
+theorem.  Python normal and optimized modes reject 16 hostile mutations;
+Sage preserves all five slopes of the exact GF(17) cancellation control;
+FLINT and Wolfram independently replay the integer walls; and JSON schema,
+packet hashes, and diff checks pass.  Independent mathematics and
+source/chronology reviews, plus independent certificate custody, are GREEN
+on canonical payload
+`f5aac02184e6e3c0c3acda8fc64929d37e3166ce74556e7b3d217cdc8a520b7c`.
+Open PRs #1161 (symbolic rate-half Lane T) and #1162 (razor bracket) do not
+duplicate this active KoalaBear common-core route cut; their only likely
+textual overlap is `experimental/agents-log.md`.
+
+## 2026-08-12 — [MCA v4 S/A/E] guarded record-local core-owner route cut
+
+On exact #1163 head `e26c15b2d2c`, audited the first proposed ownership rule
+for the direct common-core forest.  The complete GF(11) critical atlas has
+seven actual support-wise MCA-bad slopes, unique degree-`<5` explanations,
+exact maximal supports, and shifted-lattice minimum `d1=w+1=3` at every
+slope.  Its seven critical order-six records have core histogram
+`{8,10}:1`, `{10}:5`, `{5,10}:1`; every slope occurs with at least two core
+values and five slopes occur with all three.  Record-local core identity is
+therefore not a disjoint slope owner even after the actual-degree and
+near-rational guards.
+
+The full fixture retains global core `{10}`.  The packet therefore also
+implements the stronger global-core-first compiler.  For any already-declared
+first-match slope set and one canonical complete record per slope, it takes
+the intersection of all selected maximal supports.  A nonempty intersection
+routes the entire line through one #1163 family, so local core choices are
+never summed; an empty intersection emits the single exact residual
+`EMPTY_GLOBAL_CORE_WITH_LOCAL_CRITICAL_CORES`.  On the GF(11) control the
+compiler returns `DIRECTION_LIST_SHORTENED_4`.
+
+This closes the ownership/add-back ambiguity on the nonempty-global-core
+branch but does not pay the #1163 staircase residuals or the empty-global-core
+branch.  It therefore does not move `U_S`, `U_A`, `U_E`, or the global ledger.
+The empty-core branch is further cut by an exact 33-vs-31 lemma: if every
+order-32 subfamily has a core and all records use one degree-at-most-31 source
+interpolant, a minimal empty cover supplies a private point where a nonzero
+degree-at-most-31 error polynomial has at least 32 roots, contradiction.  The
+two exact surviving terminals are `LOCAL_EMPTY_ORDER_32_CORE` and
+`NONCOHERENT_DEGREE_31_SOURCE_FOREST`.  Across one 31-overlap, however, the
+two degree-31 source interpolants differ exactly by
+`P(X) prod_{gamma in J}(Z-gamma)`.  Thus every first passport change lies on
+one genuine correction ray.  The source's `1963173` bound applies only at the
+primitive/no-common endpoint and is not imported directly.  Canceling the
+ray's automatic common subset directly and replaying the exact multipart clone count gives
+the guarded maximum `342921713716` at shortened dimension three; dimensions
+one and two are already fixed-family paid.  The integrated selector-free all-LineRay theorem further pays the
+complete actual pair family through error affine rank three: the exact rank-
+three cap is `157397034144292985`; after the disjoint `2w+31` add-back the
+slack is `117583693966967127`, while
+rank four already exceeds `B_*`.  The maximal live repair is therefore an
+aggregate same-owner or exact direction-multiplicity theorem on the rank-at-
+least-four ray forest.  Per-edge ray charges may not be summed.
+
+The deployed guard layer is explicit: the #1160 line terminates at the
+separate `2w=134944` near-rational owner and never enters BC/common-core;
+the 31-slope exception reserve remains disjoint.  Exact remaining calibration
+after both is `274980728111260112`.  Python normal and optimized modes replay
+all 1,764 interpolation seeds and reject the complete hostile-mutation suite;
+Sage and FLINT independently recover all seven `d1=3` values; Wolfram recovers
+the support/core atlas, non-affinity, and reserve arithmetic.  An exploratory
+empty-global-core search found no fixture in 2,000 prescribed systems or the
+one-/two-swap neighborhood of the certified record; this is recorded only as
+negative evidence.
+
+Fresh isolated review found and forced repairs to the witness interface,
+pair-indexed/common-subset cancellation, the exact shortened-row maximum,
+provenance labels, and the `2w+31` add-back.  After resealing, Theorems
+4.1--4.4 and the certificate were re-reviewed GREEN; active first-match
+chronology and any deployed banking remain YELLOW.  The final packet rejects
+29/29 hostile mutations, while the Sage and FLINT replays independently
+check the seven guarded records.  The exact canonical payload is
+`6d72f2303973d736b12533a96fb07aad9a9d74a61be0ca1a346c707e0ce6fd4e`.
+
+Upstream overlap was refreshed before publication.  The GF(11) collision and
+whole-line global-core router are prior public-DAG work; the newer nonempty-
+core composition sharpens that separate branch to
+`s=r=14, 31769<=e<=1044245`.  The successor's novel scope is therefore the
+degree-31/order-32 empty-core coherence fence, guarded 31-overlap correction-
+ray compiler, and selector-free low-rank gate.  PR #1156's denominator-root
+and coordinate-clone branch remains independent and is not imported.

@@ -1,0 +1,395 @@
+{
+  "schema": "rs-mca-kb-v4-k3-actual-record-source-dimension-route-cut-v1",
+  "artifact_kind": "ACTUAL_RECORD_K_SHIFT_DIMENSION_SENSITIVITY_AUDIT",
+  "base_repository": {
+    "repository": "przchojecki/rs-mca",
+    "base_head": "5145fc8e0abca6325b8226294cdc2661e0891dcc",
+    "base_is_exact_pr1158_head": true,
+    "upstream_main_at_refresh": "93fba1be3f3299b0ba4708d88715377bbb656e45",
+    "pr1157_head": "d7f0fd9370b3c13ff93293f08e03cadddb59b921",
+    "pr1158_head": "5145fc8e0abca6325b8226294cdc2661e0891dcc",
+    "public_dag_repository": "AllenGrahamHart/rs-mca-prize-dag",
+    "public_dag_head_at_refresh": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+    "reconciled_prs": {
+      "1130": "a14a05d9ba80068133e93e2fa77d6d1dc8828829",
+      "1132": "543db66f570e066c0c14976b72b27bb873307111",
+      "1139": "8d43c6fa3a6ff04ea369ba7046fced6ae133b097",
+      "1143": "1646bbba7f3c5d52e1f4ed109c651053ef2e3d8c",
+      "1152": "ed4877cce5f227f33311fa93f5ff5e5f4150ae63",
+      "1155": "1cf13bb4058da19c5108bf79472394a598217bca",
+      "1156": "7c0e45eb4d5352b4e55bf70a48023fb60c7ce7fd",
+      "1157": "d7f0fd9370b3c13ff93293f08e03cadddb59b921",
+      "1158": "5145fc8e0abca6325b8226294cdc2661e0891dcc"
+    }
+  },
+  "source_bindings": [
+    {
+      "binding_id": "ACTUAL_REC::MCA_DEFINITION",
+      "repository": "przchojecki/rs-mca",
+      "commit": "5145fc8e0abca6325b8226294cdc2661e0891dcc",
+      "path": "experimental/Conjectures_and_Barriers_RS_MCA_v4_1.tex",
+      "line_ranges": ["104-122", "418-433", "540-609"],
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "f50d296131b471ec1e986bc0a28d81d6e0af0b11",
+      "sha256": "a26464d28d5c10284b73882ab081a04fa791659f94cbf22232055be05c59e66d",
+      "role": "ACTUAL_WITNESS_DEGREE_K_AND_SLOPE_GLOBAL_FIRST_MATCH"
+    },
+    {
+      "binding_id": "ACTUAL_REC::FINITE_ACTIVE_K_CONVENTION",
+      "repository": "przchojecki/rs-mca",
+      "commit": "5145fc8e0abca6325b8226294cdc2661e0891dcc",
+      "path": "experimental/grande_finale.tex",
+      "line_ranges": ["4660-4681", "4956-4977", "4997-5013"],
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "6b21d6ea937a8a9f85fc7ade6032d73efd4c7222",
+      "sha256": "336ba3c9a6d9483d0eab74677d6224aae23adf15d84891c6099f6d2f45cf226d",
+      "role": "PREFIX_Q_EFFECTIVE_DIMENSION_K_PLUS_ONE"
+    },
+    {
+      "binding_id": "ACTUAL_REC::LATTICE_CODE_DIMENSION",
+      "repository": "przchojecki/rs-mca",
+      "commit": "5145fc8e0abca6325b8226294cdc2661e0891dcc",
+      "path": "tex/cs25_cap_v13_2.tex",
+      "line_ranges": ["7618-7773", "7823-7864", "9482-9554", "9992-10028"],
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "5ceff5dbc4b1ac4cef53eae7eada32046e4bafeb",
+      "sha256": "356f1ad4b972746b664260191387b25a89a2e10fcc61962a49dc8282412f93ce",
+      "role": "RECEIVED_WORD_LATTICE_K_EQUALS_CODE_DIMENSION_AND_BALANCED_THRESHOLD"
+    },
+    {
+      "binding_id": "ACTUAL_REC::FIRST_MATCH_ROW",
+      "repository": "przchojecki/rs-mca",
+      "commit": "5145fc8e0abca6325b8226294cdc2661e0891dcc",
+      "path": "experimental/data/certificates/kb-mca-v4-tangent-source-adapter-v1/row_manifest.json",
+      "hash_kind": "SHA256",
+      "hash": "c416511796e3a196bf43f6a9f7155f499a6bf7c63dbbf52e2a64b4437e248a05",
+      "role": "FOUR_CELL_OWNER_ORDER_AND_OPAQUE_Q_BC_PREDICATES"
+    },
+    {
+      "binding_id": "ACTUAL_REC::PR1158_PARENT",
+      "repository": "przchojecki/rs-mca",
+      "commit": "5145fc8e0abca6325b8226294cdc2661e0891dcc",
+      "path": "experimental/data/certificates/kb-mca-v4-k3-active-slice-semantic-bridge-route-cut-v1/manifest.json",
+      "hash_kind": "SHA256",
+      "hash": "cdcdc7749b240ce62268ec79d9a08e12978751e0f2800ac2b84b139201925c6e",
+      "role": "PARENT_SEMANTIC_ROUTE_CUT_AND_TANGENT_PIN"
+    },
+    {
+      "binding_id": "PUBLIC_DAG::BC_COMPILER_STATEMENT",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/rate_half_kb_active_balanced_core_witness_compiler/statement.md",
+      "line_ranges": ["1-30"],
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "b6a6af5986a40ed15427aae12a548e33e6aff451",
+      "sha256": "0af4bedb718f465ca71e5ccd95c4fd6f8e6dd7b48408ea6c46e1c7132d61ddda",
+      "role": "POST_1158_PROVED_LABEL_AUDIT_TARGET"
+    },
+    {
+      "binding_id": "PUBLIC_DAG::BC_COMPILER_PROOF",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/rate_half_kb_active_balanced_core_witness_compiler/proof.md",
+      "line_ranges": ["3-60"],
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "91595e2046fac9b3e690e18ed5a0136fc9205972",
+      "sha256": "5e4d54e7c34938a2374bb0d9f3422b516b2b8cfea12f545235fc73e5d3325bad",
+      "role": "K_PLUS_ONE_SUBSTITUTION_AND_TAUTOLOGICAL_SELECTOR"
+    },
+    {
+      "binding_id": "PUBLIC_DAG::BC_COMPILER_SCHEMA",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/rate_half_kb_active_balanced_core_witness_compiler/certificate_schema.json",
+      "line_ranges": ["1-62"],
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "ced513e99adb807de2dfd621813f0cb6611052d4",
+      "sha256": "b0b0711124387038a48c9b5ae1ffbb4b33fdede260b22df2e8c77b84597e06f9",
+      "role": "STRING_ONLY_CERTIFICATE_FIELDS_AND_EFFECTIVE_DIMENSION_GUARD"
+    },
+    {
+      "binding_id": "PUBLIC_DAG::BC_COMPILER_VERIFIER",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/rate_half_kb_active_balanced_core_witness_compiler/verify.py",
+      "line_ranges": ["1-29"],
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "a2b2ded32b45102bda1d4ad866a485423f32b77d",
+      "sha256": "a89ab059ec4545feb14706e33b778f081f8de9dcd3873ff1d39140984c7f68b6",
+      "role": "STRUCTURAL_TOKEN_CHECK_NOT_ACTUAL_CERTIFICATE_REPLAY"
+    },
+    {
+      "binding_id": "PUBLIC_DAG::ORDER32_ADAPTER",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/rate_half_kb_active_bc_order32_adapter/statement.md",
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "47370105e64c04842138ec6f261796bd5d07eb87",
+      "sha256": "99bbef4bb34d336c098850cc2e66b4614de73075a020f7a1286baac389454e1e",
+      "role": "DOWNSTREAM_ADAPTER_INHERITING_BC_SEMANTIC_DEPENDENCY"
+    },
+    {
+      "binding_id": "PUBLIC_DAG::COMPONENT_BRIDGE",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "commit": "3edb8b31b6735a0a2302a578a21dc6e50bd64046",
+      "path": "background/nodes/rate_half_kb_active_balanced_core_component_bridge/statement.md",
+      "hash_kind": "GIT_BLOB_SHA1",
+      "hash": "efa9d130508b897974c9e09d6d4ddb4584f45bcf",
+      "sha256": "3a1f406acd3fa17000491f6d2290ac718776558d28d207b1fc22dc03bf97336f",
+      "role": "CONDITIONAL_REC_2_4_DOWNSTREAM_TARGET"
+    }
+  ],
+  "deployed_row": {
+    "row": "KoalaBear MCA at 2^-128",
+    "object": "MCA",
+    "base_prime": 2130706433,
+    "extension_degree": 6,
+    "field_cardinality": "93571093019388561295270373781649880353786165192103559169",
+    "n": 2097152,
+    "code_dimension_k": 1048576,
+    "agreement_m": 1116048,
+    "locator_degree_omega": 981104,
+    "actual_lattice_K": 1048576,
+    "actual_lattice_w": 67472,
+    "prefix_effective_K": 1048577,
+    "prefix_effective_w": 67471,
+    "B_star": 274980728111395087,
+    "U_paid": 981104,
+    "joint_unpaid_reserve": 274980728110413983,
+    "architecture_id": "GRANDE_FINALE_V4_KB_MCA_TANGENT_SOURCE_ADAPTER_V1",
+    "partition_sha256": "4fade91abc408264989babcff6f8f9bbd80bcec52545a5db15ac376bf17d88fc",
+    "unit": "DISTINCT_BAD_FINITE_SLOPES_PER_RECEIVED_LINE"
+  },
+  "actual_record_witness": {
+    "record_id": "KB_SPARSE_BOUNDARY_ACTUAL_RECORD_V1",
+    "carrier": {
+      "description": "D=<zeta> inside F_p^x",
+      "primitive_generator": 3,
+      "carrier_index": 1016,
+      "zeta": 1213133211,
+      "order": 2097152,
+      "exact_order_checks": ["zeta^n=1", "zeta^(n/2)=-1"]
+    },
+    "challenge_field": {
+      "model": "F_p[alpha]/(alpha^6+alpha+6)",
+      "modulus_coefficients_low_to_high": [6, 1, 0, 0, 0, 0, 1],
+      "modulus_irreducible": true,
+      "alpha_degree_over_F_p": 6,
+      "alpha_not_in_base_field": true
+    },
+    "error_size_e": 67473,
+    "error_set": "E={zeta^i:0<=i<67473}",
+    "witness_support": "S={zeta^i:67473<=i<1183521}",
+    "witness_support_size": 1116048,
+    "received_line": {
+      "r0": "indicator_E + alpha/(x-alpha)",
+      "r1": "-1/(x-alpha)",
+      "affine_slope": "alpha",
+      "received_word_at_slope": "indicator_E",
+      "explaining_polynomial": "0",
+      "explaining_polynomial_degree_lt_k": true
+    },
+    "actual_MCA_witness": true,
+    "pair_not_simultaneously_explained_on_S": true,
+    "direction_nonexplanation_reason": "If -1/(x-alpha)=g(x) on m points then (x-alpha)g(x)+1 has m roots but degree at most k (actual) or k+1 (effective), both below m",
+    "direction_unexplained_for_degree_lt_k": true,
+    "direction_unexplained_for_degree_lt_k_plus_one": true,
+    "full_extension_degree_slope": true,
+    "column_far": true,
+    "tangent_image_empty": true,
+    "lattice_vector": "(Lambda_E,0)",
+    "minimal_shifted_degree_actual_K": 67473,
+    "minimal_shifted_degree_effective_K": 67473,
+    "minimality_root_bound": {
+      "off_E_root_count": 2029679,
+      "actual_K_max_degree_N_below_e": 1116047,
+      "effective_K_max_degree_N_below_e": 1116048,
+      "max_degree_W_below_e": 67472,
+      "proof": "Any lower shifted-degree (W,N) has N=0 from off-E roots, then W=0 from the e nonzero error positions"
+    },
+    "actual_code_dimension_classification": {
+      "w": 67472,
+      "boundary_profile_value": 67473,
+      "d1_eq_boundary_profile": true,
+      "frozen_Q_membership_proved": false,
+      "frozen_BC_membership_proved": false
+    },
+    "effective_prefix_classification": {
+      "w": 67471,
+      "boundary_profile_value": 67472,
+      "first_interior_profile_value": 67473,
+      "d1_eq_first_interior_profile": true,
+      "frozen_Q_membership_proved": false,
+      "frozen_BC_membership_proved": false
+    },
+    "row_degree_profiles": {
+      "code_dimension": {
+        "d1": 67473,
+        "d2": 981104,
+        "d1_plus_d2": 1048577,
+        "m_prime": 1116048,
+        "degree_cap_B": 0,
+        "profile": "BOUNDARY_NUMERICAL_PROFILE"
+      },
+      "effective_dimension": {
+        "d1": 67473,
+        "d2": 981103,
+        "d1_plus_d2": 1048576,
+        "m_prime": 1116049,
+        "degree_cap_B": 1,
+        "profile": "FIRST_INTERIOR_NUMERICAL_PROFILE"
+      },
+      "difference": "K_PLUS_ONE_CREATES_EXACTLY_ONE_ADDITIONAL_B_COEFFICIENT"
+    },
+    "pure_ray_scope": {
+      "weak_popov_g1": "(Lambda_E,0)",
+      "weak_popov_g2": "(L_{D_minus_E} mod Lambda_E,L_{D_minus_E})",
+      "determinant": "Lambda_D",
+      "zero_codeword_supports_have_B": 0,
+      "primitive_r_out_4_membership_proved": false,
+      "endpoint_route_membership_proved": false,
+      "role": "PRE_REC_2_4_DIMENSION_SENSITIVITY_CONTROL_ONLY"
+    },
+    "zero_codeword_exact_m_supports": {
+      "formula": "binomial(2029679,1116048)",
+      "bit_length": 2015083,
+      "big_endian_byte_length": 251886,
+      "big_endian_sha256": "4d11045a6ab54a207e0c6ed148104a40f426f2ab4e5ef5e65453f1eca4710678",
+      "residues": {
+        "mod_2130706433": 864013898,
+        "mod_1000000007": 180951258,
+        "mod_4294967291": 633477545
+      }
+    }
+  },
+  "dimension_noninvariance": {
+    "same_actual_record": true,
+    "code_dimension_profile": {
+      "K": 1048576,
+      "w": 67472,
+      "d1": 67473,
+      "classification": "BOUNDARY_PROFILE",
+      "frozen_owner_membership_entailed": false
+    },
+    "effective_dimension_profile": {
+      "K": 1048577,
+      "w": 67471,
+      "d1": 67473,
+      "classification": "FIRST_INTERIOR_PROFILE",
+      "frozen_owner_membership_entailed": false
+    },
+    "d1_invariant": true,
+    "w_drop": 1,
+    "d2_drop": 1,
+    "m_prime_increase": 1,
+    "degree_cap_B_increase": 1,
+    "literal_profile_classification_invariant_under_K_plus_one": false,
+    "K_plus_one_semantics_preserving_adapter_proved": false,
+    "explicit_priority_map_supplied_by_bound_sources": false,
+    "frozen_Q_membership_proved_for_record": false,
+    "frozen_BC_membership_proved_for_record": false,
+    "frozen_U_new_membership_proved_for_record": false,
+    "actual_owner_status": "NOT_ESTABLISHED_BY_PINNED_SOURCES"
+  },
+  "public_dag_audit": {
+    "node_id": "rate_half_kb_active_balanced_core_witness_compiler",
+    "declared_status": "PROVED",
+    "selector_lemma_after_relation_is_supplied": true,
+    "source_bound_equivalence_to_frozen_BC_proved": false,
+    "typed_actual_certificate_validator_present": false,
+    "actual_received_pair_equations_checked": false,
+    "actual_MCA_noncontainment_checked": false,
+    "degree_lt_k_explanation_checked": false,
+    "Q_exclusion_executable": false,
+    "Q_exclusion_scope": "STRING_TAG_ON_CERTIFICATE_NOT_SLOPE_GLOBAL_EXISTENTIAL_EXCLUSION",
+    "code_dimension_to_effective_dimension_adapter_proved": false,
+    "support_ge_m_to_exact_m_normalization_proved": false,
+    "verifier_scope": "INTEGER_STRING_AND_PROOF_TOKEN_STRUCTURE_ONLY",
+    "downstream_order32_adapter_inherits_gap": true,
+    "downstream_component_bridge_remains_conditional": true
+  },
+  "missing_theorem": {
+    "theorem_id": "SEM_QBC_BEFORE_REC_2_4",
+    "weakest_required_statement": "Give explicit algebraic P_Q(r,w) and P_BC(r,w) on actual MCA witnesses; prove their slope projections equal the frozen Q and BC sets in both directions after slope-global first match; prove which K and shift govern P_BC; preserve original support and degree-<k explanation; and prove an all-witness complement fence.",
+    "required_clauses": [
+      "ACTUAL_WITNESS_SOUNDNESS",
+      "FROZEN_Q_PROJECTION_EQUIVALENCE",
+      "FROZEN_BC_PROJECTION_EQUIVALENCE",
+      "SLOPE_GLOBAL_Q_EXCLUSION_ACROSS_ALL_WITNESSES",
+      "CODE_DIMENSION_OR_K_PLUS_ONE_ADAPTER",
+      "SUPPORT_AT_LEAST_M_NORMALIZATION",
+      "ALL_Z_BC_COMPLEMENT_FENCE"
+    ],
+    "Rec_2_4_may_begin_after_this": true,
+    "endpoint_realization_current_status": "UNPROVED",
+    "thirteen_route_replay_current_status": "RAW_ONLY"
+  },
+  "ledger": {
+    "U_paid": 981104,
+    "U_Q": null,
+    "U_BC": null,
+    "U_new": null,
+    "U_remaining": null,
+    "U_positive": null,
+    "U_sourcecover": null,
+    "U_K3": null,
+    "U_K3_allocation": null,
+    "signed_slack": null,
+    "ledger_movement": 0
+  },
+  "conclusion": {
+    "outcome": "OPEN_MISSING_ADAPTER_GAP",
+    "actual_record_constructed": true,
+    "K_shift_profile_noninvariance_proved": true,
+    "public_DAG_source_bound_K_adapter_proved": false,
+    "actual_owner_collision_proved": false,
+    "frozen_owner_membership_proved": false,
+    "SEM_QBC_required": true,
+    "first_false_or_unproved_bridge": "CODE_DIMENSION_TO_EFFECTIVE_DIMENSION_AND_PRIORITY_MAP_BEFORE_REC_2_4",
+    "ActiveRec_2_4_defined": false,
+    "Rec_2_4_compiler_proved": false,
+    "K3_closed": false,
+    "KoalaBear_row_closed": false,
+    "universal_smooth_domain_result": false,
+    "ledger_movement": 0,
+    "proof_tier": "RIGOROUS_DIMENSION_SENSITIVITY_AND_MISSING_ADAPTER_AUDIT"
+  },
+  "packet_bindings": [
+    {
+      "path": "experimental/notes/thresholds/kb_mca_v4_k3_actual_record_source_dimension_route_cut_v1.md",
+      "sha256": "f31d294dc7da99157b2564134d3d8b029c235196f397e1035c8bc4828b869aac",
+      "role": "MATHEMATICAL_STATEMENT_AND_SCOPE"
+    },
+    {
+      "path": "experimental/data/certificates/kb-mca-v4-k3-actual-record-source-dimension-route-cut-v1/README.md",
+      "sha256": "bd22445f77f7796961da920d80a74739d27a67947814ba1ff6f42f6e3f15f069",
+      "role": "REPLAY_CONTRACT"
+    },
+    {
+      "path": "experimental/data/schemas/kb_mca_v4_k3_actual_record_source_dimension_route_cut_v1.schema.json",
+      "sha256": "0b01b52a1a2082e9eb5da568aaea4e831951249ba4110ee310afcac062c2f44a",
+      "role": "STRICT_CERTIFICATE_SCHEMA"
+    },
+    {
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_actual_record_source_dimension_route_cut_v1.py",
+      "sha256": "81d45fbed97cdb2be50936a1ee53e4dd2cca49e90a66c1131f5b121be644f26f",
+      "role": "PRIMARY_VERIFIER"
+    },
+    {
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_actual_record_source_dimension_route_cut_v1.sage",
+      "sha256": "ede7bb3f8c2f71627a4e202eb790ce91153a7a66625e98b9c8dd74fb2b3e3978",
+      "role": "INDEPENDENT_SAGE_REPLAY"
+    },
+    {
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_actual_record_source_dimension_route_cut_v1_flint.py",
+      "sha256": "e2501823ced7e4b5312b98476b5f7c96fd11013921e83e5bd4445c8d639985f7",
+      "role": "INDEPENDENT_FLINT_REPLAY"
+    },
+    {
+      "path": "experimental/scripts/verify_kb_mca_v4_k3_actual_record_source_dimension_route_cut_v1.wl",
+      "sha256": "774144daa90160b74fc905bfbb74e924ae58f472144f49cf72416da53e97eb08",
+      "role": "INDEPENDENT_WOLFRAM_REPLAY"
+    }
+  ],
+  "payload_sha256": "75ee17e4de50c5a4a0acd360c9d94ba00748875527390212823631c4585b4970"
+}

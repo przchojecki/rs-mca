@@ -1,0 +1,417 @@
+{
+  "schema": "rs-mca-kb-v4-guarded-record-local-core-owner-route-cut-v1",
+  "artifact_kind": "ACTUAL_GUARDED_RECORD_COLLISION_AND_ROUTE_CUT",
+  "base": {
+    "repository": "przchojecki/rs-mca",
+    "exact_pr1163_head": "e26c15b2d2c2f98ae12dda17b97c40981f76e1ff",
+    "upstream_main_at_refresh": "93fba1be3f3299b0ba4708d88715377bbb656e45"
+  },
+  "source_bindings": [
+    {
+      "id": "ACTIVE_V4",
+      "path": "experimental/grande_finale.tex",
+      "git_blob_sha1": "5e0cb1bad6b40c4db39f6b4cb3e5316aebeafe2f",
+      "sha256": "03b8806c5e71ebd41a97012fbdcc6442dabd4c8bf9383b7d832a48b0c55ce5ab",
+      "role": "S_A_E_CHRONOLOGY"
+    },
+    {
+      "id": "PR1163_STAIRCASE",
+      "path": "experimental/notes/thresholds/kb_mca_v4_common_core_shortening_staircase_route_cut_v1.md",
+      "git_blob_sha1": "65a308ac97912de3dfe637d8a10a2f84e3a19c47",
+      "sha256": "d04dbe2dda570e3caf7b3380885d89e597762aa99c190bd305884bfc0fcd3cb6",
+      "role": "FIXED_CORE_ADAPTER_AND_WALLS"
+    },
+    {
+      "id": "PR1160_TWO_ANCHOR",
+      "path": "experimental/notes/thresholds/kb_mca_supportwise_near_rational_two_anchor_repair_v1.md",
+      "git_blob_sha1": "12bc4a0f06189829a9490928e4855d1aa958f940",
+      "sha256": "7e75d67420f4ed37add3b4f6ea3aa45e043a782a6396f328b1e34ce659938989",
+      "role": "SEPARATE_2W_OWNER"
+    },
+    {
+      "id": "ALL_LINERAY_AFFINE_CORE",
+      "path": "experimental/notes/thresholds/all_lineray_affine_core_set_pair.md",
+      "git_blob_sha1": "aa9674f669e411c1c48ad3879365947b9de77888",
+      "sha256": "b69eaeebff0e535936f145dbea0f2ef00dd8a5a3171d46a7f5dbb7cd2d77d60a",
+      "role": "SELECTOR_FREE_LOW_AFFINE_RANK_PAYMENT"
+    }
+  ],
+  "external_provenance_not_imported": [
+    {
+      "commit": "83eefd94fd25fbe64f5fd1dc8d6766ccdcd7b41f",
+      "role": "ORIGINAL_TWO_RECORD_FIXTURE_PROVENANCE_ONLY"
+    },
+    {
+      "commit": "be4efd23a0eb226720b53fddadf4973f37441602",
+      "role": "WHOLE_LINE_GLOBAL_CORE_ROUTER_PRIOR_PROVENANCE_ONLY"
+    },
+    {
+      "commit": "d797d8ffd",
+      "role": "NEGATIVE_BC_REGRESSION_PROVENANCE_ONLY"
+    },
+    {
+      "commit": "fc74e16cd3f3acfa1030317e8d1636f492aca11f",
+      "role": "STRONGER_NONEMPTY_CORE_COMPOSITION_PROVENANCE_ONLY"
+    },
+    {
+      "commit": "67d17fff81130aed694ec2d1e7b8f6103e96a907",
+      "role": "PR1156_LARGE_CLONE_CONTINUATION_OUT_OF_SCOPE"
+    }
+  ],
+  "fixture": {
+    "field": 11,
+    "domain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "k": 5,
+    "m": 7,
+    "w": 2,
+    "critical_order": 6,
+    "received_line": {
+      "u": [
+        0,
+        1,
+        4,
+        10,
+        9,
+        6,
+        9,
+        4,
+        3,
+        0
+      ],
+      "v": [
+        7,
+        2,
+        10,
+        7,
+        9,
+        5,
+        2,
+        2,
+        9,
+        3
+      ]
+    },
+    "explanations": [
+      {
+        "slope": 0,
+        "coefficients": [
+          4,
+          6,
+          8,
+          8,
+          2
+        ],
+        "maximal_support": [
+          2,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "slope": 2,
+        "coefficients": [
+          10,
+          6,
+          10,
+          9,
+          1
+        ],
+        "maximal_support": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8,
+          10
+        ]
+      },
+      {
+        "slope": 3,
+        "coefficients": [
+          7,
+          9,
+          1,
+          8,
+          7
+        ],
+        "maximal_support": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "slope": 5,
+        "coefficients": [
+          0,
+          10,
+          2,
+          0,
+          1
+        ],
+        "maximal_support": [
+          1,
+          2,
+          5,
+          6,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "slope": 6,
+        "coefficients": [
+          8,
+          2,
+          3,
+          5,
+          3
+        ],
+        "maximal_support": [
+          2,
+          4,
+          5,
+          6,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "slope": 8,
+        "coefficients": [
+          10,
+          2,
+          2,
+          3,
+          6
+        ],
+        "maximal_support": [
+          1,
+          3,
+          5,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "slope": 9,
+        "coefficients": [
+          4,
+          8,
+          0,
+          10,
+          8
+        ],
+        "maximal_support": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          10
+        ]
+      }
+    ]
+  },
+  "exact_results": {
+    "displayed_slopes": 7,
+    "critical_records": 7,
+    "critical_core_histogram": [
+      {
+        "core": [
+          8,
+          10
+        ],
+        "records": 1
+      },
+      {
+        "core": [
+          10
+        ],
+        "records": 5
+      },
+      {
+        "core": [
+          5,
+          10
+        ],
+        "records": 1
+      }
+    ],
+    "global_core": [
+      10
+    ],
+    "shifted_minima": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "near_rational_threshold": 2,
+    "all_outside_near_rational": true,
+    "all_actual_degree_guarded": true,
+    "global_affine": false,
+    "record_local_core_is_slope_invariant": false,
+    "lexicographic_complete_record_selector_total": true,
+    "aggregate_selector_payment_proved": false
+  },
+  "global_core_first_compiler": {
+    "input": "ALREADY_DECLARED_FIRST_MATCH_SLOPE_SET_OF_SIZE_AT_LEAST_32_WITH_ONE_CANONICAL_COMPLETE_ACTUAL_RECORD_PER_SLOPE",
+    "global_affine_terminal": "GLOBAL_AFFINE_PAID",
+    "nonempty_global_core_uses_pr1163_once": true,
+    "fixed_core_terminals": [
+      "FIXED_CORE_GENERIC_PAID_s_LE_2",
+      "DIRECTION_SEPARATED_PAID_3_LE_s_LE_13",
+      "DIRECTION_LIST_SHORTENED_s",
+      "COMMON_CORE_SHORTENED_s_GE_14"
+    ],
+    "empty_global_core_terminal": "EMPTY_GLOBAL_CORE_WITH_LOCAL_CRITICAL_CORES",
+    "sums_over_record_local_cores": false,
+    "fixture_s": 4,
+    "fixture_terminal_without_direction_separation": "DIRECTION_LIST_SHORTENED_4",
+    "aggregate_payment_for_all_terminals_proved": false
+  },
+  "coherent_degree31_empty_core_fence": {
+    "common_source_degree_Z_at_most": 31,
+    "local_intersection_order": 32,
+    "minimal_empty_cover_lower_bound": 33,
+    "private_point_root_lower_bound": 32,
+    "coherent_empty_global_core_possible": false,
+    "empty_core_terminals": [
+      "LOCAL_EMPTY_ORDER_32_CORE",
+      "NONCOHERENT_DEGREE_31_SOURCE_FOREST"
+    ],
+    "line_global_source_coherence_proved_by_active_source": false,
+    "sharp_control": {
+      "field": 5,
+      "source_degree": 3,
+      "supports": 4,
+      "local_intersection_order": 3
+    }
+  },
+  "overlap_source_change_ray_compiler": {
+    "shared_slopes": 31,
+    "source_degree_Z_at_most": 31,
+    "difference_form": "H_PRIME_MINUS_H_EQUALS_P_X_TIMES_PRODUCT_OVER_SHARED_SLOPES",
+    "quotient_independent_of_Z": true,
+    "new_slope_scalar_nonzero": true,
+    "same_actual_record_preserved": true,
+    "printed_primitive_no_common_ray_bound": 1963173,
+    "printed_bound_not_imported_for_local_common_core": true,
+    "automatic_core": "P_X_ZERO_AND_E_X_Z_IDENTICALLY_ZERO",
+    "one_canonical_rich_point_per_slope_before_cancellation": true,
+    "automatic_core_may_be_strict_subset_of_maximal_support_intersection": true,
+    "common_subset_cancellation_proved_directly": true,
+    "does_not_invoke_pr1163_exact_core_statement": true,
+    "shortened_dimension_q_le_2_terminal": "FIXED_CORE_GENERIC_PAID_s_LE_2",
+    "guarded_shortened_ray_q_range": [
+      3,
+      1048576
+    ],
+    "guarded_shortened_ray_max_q": 3,
+    "guarded_shortened_ray_max": 342921713716,
+    "guarded_shortened_ray_slack": 274980385189681371,
+    "guarded_shortened_ray_formula": "FLOOR((R+q)/q)*(t+1)+FLOOR(31*C(R+q,2)/XI(d+q,q-1))",
+    "aggregate_direction_payment_proved": false,
+    "residual": "MULTIPLE_NONCOHERENT_CORRECTION_RAY_DIRECTIONS"
+  },
+  "all_lineray_low_rank_gate": {
+    "objects_counted": "DISTINCT_ACTUAL_SLOPE_EXPLANATION_PAIRS",
+    "one_complete_record_per_slope": true,
+    "transversality_from_same_support_noncontainment": true,
+    "residual_weight_t": 981104,
+    "rank_caps": [
+      {
+        "affine_rank": 0,
+        "cap": 1
+      },
+      {
+        "affine_rank": 1,
+        "cap": 981105
+      },
+      {
+        "affine_rank": 2,
+        "cap": 481284001065
+      },
+      {
+        "affine_rank": 3,
+        "cap": 157397034144292985
+      }
+    ],
+    "largest_budget_fitting_rank": 3,
+    "first_unpaid_rank": 4,
+    "first_unpaid_cap": 38605872343809750481845,
+    "earlier_disjoint_addback": 134975,
+    "rank3_slack_after_addback": 117583693966967127,
+    "residual": "HIGH_ALL_RAY_AFFINE_DIMENSION_AT_LEAST_4",
+    "active_v4_ledger_movement": 0,
+    "promotion_requires_source_and_independent_math_review": true
+  },
+  "deployed_guard": {
+    "B_star": 274980728111395087,
+    "w": 67472,
+    "near_rational_2w": 134944,
+    "exception_reserve": 31,
+    "charges_are_disjoint": true,
+    "joint_charge": 134975,
+    "remaining_after_both": 274980728111260112,
+    "pr1160_d1_upper": 67471,
+    "balanced_guard": 67472,
+    "pr1160_terminal": "NEAR_RATIONAL_2W",
+    "pr1160_enters_common_core_forest": false
+  },
+  "terminal": {
+    "label": "SEMANTIC_ROUTE_CUT_RECORD_LOCAL_CORE_OWNER_NONINVARIANCE",
+    "weakest_repair": "DEGREE31_SOURCE_COHERENCE_ACROSS_31_OVERLAPS_OR_EXACT_OWNER_FOR_FIRST_PASSPORT_CHANGE",
+    "U_S_movement": 0,
+    "U_A_movement": 0,
+    "U_E_movement": 0,
+    "global_ledger_movement": 0,
+    "KoalaBear_closed": false
+  },
+  "packet_files": [
+    "experimental/notes/thresholds/kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.md",
+    "experimental/data/certificates/kb-mca-v4-guarded-record-local-core-owner-route-cut-v1/README.md",
+    "experimental/scripts/verify_kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.py",
+    "experimental/scripts/verify_kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.sage",
+    "experimental/scripts/verify_kb_mca_v4_guarded_record_local_core_owner_route_cut_v1_flint.py",
+    "experimental/scripts/verify_kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.wl"
+  ],
+  "packet_file_sha256": {
+    "experimental/notes/thresholds/kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.md": "e8b753184ebf6d28104ad8373700d5167cc2aafbde27641a54005d4f9b77c324",
+    "experimental/data/certificates/kb-mca-v4-guarded-record-local-core-owner-route-cut-v1/README.md": "714ccf7aed46f99f67783af672411ee1785ae164d464ac23a0d100cde506f958",
+    "experimental/scripts/verify_kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.py": "d0e7f7290e343ef732b80137aa1ba006e1c50fe6eae5974e3698daf67d4f5b47",
+    "experimental/scripts/verify_kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.sage": "b09de63721b3e8b334f0f8e079c19a4606fe458431ad8ddb215ba6f47407dff3",
+    "experimental/scripts/verify_kb_mca_v4_guarded_record_local_core_owner_route_cut_v1_flint.py": "3560ac6b4d625db6a6755e33c115f76fd9e587e3125f84f02b6fbb6785801738",
+    "experimental/scripts/verify_kb_mca_v4_guarded_record_local_core_owner_route_cut_v1.wl": "e278b4912115cd9e6a7ca2c0d57fb0f534fa80ab64c16c6411808d6f9ad33dbc"
+  },
+  "payload_sha256": "6d72f2303973d736b12533a96fb07aad9a9d74a61be0ca1a346c707e0ce6fd4e"
+}

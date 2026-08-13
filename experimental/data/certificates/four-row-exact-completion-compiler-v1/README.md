@@ -1,9 +1,11 @@
 # Four-row exact-completion compiler certificate
 
-This directory contains the canonical open-state certificate for the four
-deployed Grande Finale v3 adjacent rows.  It recomputes the exact row
-calibration, binds the current proof artifacts, enforces one compatible
-first-match architecture, and emits a current-artifact architecture route cut.
+This directory contains the historical open-state certificate for the four
+deployed Grande Finale v3 adjacent rows. Active Grande Finale v4 supersedes
+its MCA atom interface and list chronology, so this certificate is not a
+current-source acceptance gate. It recomputes the exact row calibration,
+binds the v3 proof artifacts, enforces one compatible first-match architecture,
+and records the v3-era architecture route cut.
 
 It does **not** certify any row safe.  The canonical terminal is
 `ARCHITECTURE_ROUTE_CUT_CURRENT_ARTIFACT_SET`, and all four row-sharp `U_Q`

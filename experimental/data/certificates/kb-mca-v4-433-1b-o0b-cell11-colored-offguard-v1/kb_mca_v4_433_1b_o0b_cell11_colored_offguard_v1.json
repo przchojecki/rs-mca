@@ -1,0 +1,63 @@
+{
+  "K3_closed": false,
+  "KoalaBear_row_closed": false,
+  "bankability_contract": {
+    "B_star": 274980728111395087,
+    "agreement": 1116048,
+    "architecture": "positive-433-1b-O0b-common-repeat-cell11",
+    "atom_or_cell": "repeated-BC O0b cell-11 colored missing records",
+    "claimed_bound": "0 surviving colored source cases out of 16",
+    "direct_statement": "Missing BE and CF are impossible on every deployed off-guard repeated-BC O0b cell-11 source value.",
+    "falsifier": "a deployed non-guard root of either exact source-algebra norm, a missing source tower, or a pinned-blob mismatch",
+    "impact": "ROUTE_CUT",
+    "object": "MCA",
+    "projection_and_unit": "source consistency cases, not distinct bad slopes",
+    "quantifier": "all eight source towers and both colored missing records on the registered rational open",
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED",
+    "target_epsilon": "2^-128",
+    "workboard_item": "K3"
+  },
+  "evidence_files": {
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_colored_consistency_modal.py": "c78beb924d657c304cbb408aefbd4d24048490afd80513b106356bd144761b7c",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_colored_consistency_result.json": "ef33475d85bdb333c8a698b8a449191092dc2e8b9f409a97538be02a46b10c88",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_function_field_core.py": "336aace4780acce09d9cb53cc969635d16a038af0a5379338a746e086758aac7",
+    "experiments/prize_resolution/rate_half_kb_positive_433_1b_o0b_common_repeat_cell11_symmetric_tower_result.json": "e80940956518b958dafe74eb34e8ce4f00ce729e78646203bb0724057e6f7899"
+  },
+  "node": {
+    "id": "rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_colored_deployed_off_guard_consistency_exclusion",
+    "node_manifest_sha256": "97113031298bfdad17744240c939713c267bc8d28fe947eaadb96c7450b9d29e",
+    "path": "background/nodes/rate_half_kb_m2_r4_coordinate_positive_433_1b_o0b_common_repeat_cell11_colored_deployed_off_guard_consistency_exclusion",
+    "status": "PROVED",
+    "verify_audit_sha256": "87226a1b69683eeb9b76f55869a77d90ea0c86fe145f9286cf28cd369f3f7904",
+    "verify_sha256": "5a2a3c9ea1936f46bfa4452fb3faa5ce31ac3ffa96ab4aacdc8f2887a111925e"
+  },
+  "nonclaims": [
+    "Does not close K3 or the KoalaBear row.",
+    "Does not cover registered guard or selected-cofactor boundary fibers.",
+    "Does not close cell 14, assemble orientations, or convert source cases to distinct slopes."
+  ],
+  "provenance": {
+    "branch": "codex/full-prize-resolution-v12-20260807",
+    "commit": "96868562394ef11fb6a0b9173b06bfd4988f1457",
+    "evidence_file_count": 4,
+    "node_count": 1,
+    "repo": "https://github.com/AllenGrahamHart/rs-mca-prize-dag"
+  },
+  "schema": "kb-mca-v4-433-1b-o0b-cell11-colored-offguard-v1",
+  "statement": {
+    "claims": {
+      "BC_minus_roots": "x=0 with multiplicity 5 and x=1 with multiplicity 12; both guards",
+      "BC_plus_roots": "x=0 with multiplicity 4 and x=-1 with multiplicity 8; both guards",
+      "case_census": "8 source towers times 2 colored records equals 16",
+      "non_guard_roots": 0
+    },
+    "deployed_characteristic": 2130706433,
+    "ledger_movement": 0,
+    "row": "KoalaBear MCA at 2^-128",
+    "status": "PROVED_ROUTE_CUT_BOUNDARIES_OPEN",
+    "title": "Repeated-BC O0b cell-11 colored off-guard exclusion",
+    "workboard_item": "K3"
+  }
+}
+

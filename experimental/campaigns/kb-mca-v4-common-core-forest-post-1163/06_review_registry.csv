@@ -1,0 +1,9 @@
+review_id,claim_id,joint,reviewer_isolated,status,artifact,blocking_issue
+R-001,C-002,finite atlas and deployed integer arithmetic,true,GREEN,independent Wolfram Cloud evaluator replay 2026-08-12,none within the checked joint
+R-002,C-005,sharp degree/root boundary control,true,GREEN,independent Wolfram Cloud evaluator replay 2026-08-12,none within the checked joint
+R-003,C-006,31-overlap factor and new-slope ray image,true,GREEN,independent Wolfram Cloud evaluator replay 2026-08-12,aggregate direction theorem remains unreviewed and open
+R-004,C-007,exact all-LineRay rank cap wall,true,GREEN,independent Wolfram Cloud evaluator replay 2026-08-12,source chronology remains open
+R-005,C-004,global-core-first compiler and witness interface,true,GREEN,isolated fresh-context math-proof-audit on repaired theorem bound to packet payload 6d72f2303973d736b12533a96fb07aad9a9d74a61be0ca1a346c707e0ce6fd4e,active chronology and staircase residuals remain open
+R-006,C-005,33-vs-31 minimal-cover theorem,true,GREEN,isolated fresh-context math-proof-audit on repaired theorem bound to packet payload 6d72f2303973d736b12533a96fb07aad9a9d74a61be0ca1a346c707e0ce6fd4e,none within the abstract theorem
+R-007,C-006,31-overlap factor and guarded common-subset ray payment,true,GREEN,isolated fresh-context math-proof-audit on repaired theorem bound to packet payload 6d72f2303973d736b12533a96fb07aad9a9d74a61be0ca1a346c707e0ce6fd4e,aggregate multiple-direction owner remains open
+R-008,C-007,all-LineRay KoalaBear rank-three specialization and 2w+31 add-back,true,GREEN,isolated fresh-context math-proof-audit on repaired theorem bound to packet payload 6d72f2303973d736b12533a96fb07aad9a9d74a61be0ca1a346c707e0ce6fd4e,active S/A/E chronology and banking remain open

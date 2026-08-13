@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Structural preflight only; the Python verifier enforces recursively type-exact nested semantics and literal theorem/source constants.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "artifact_kind",
+    "base_repository",
+    "source_bindings",
+    "public_dag_bindings",
+    "repaired_sources",
+    "deployed_rows",
+    "actual_counterexample",
+    "two_anchor_theorem",
+    "chronology",
+    "regression_contract",
+    "packet_files",
+    "packet_file_sha256",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rs-mca-kb-supportwise-near-rational-two-anchor-repair-v1"
+    },
+    "artifact_kind": {
+      "const": "ACTUAL_SOURCE_FALSIFIER_AND_UNIFORM_TWO_ANCHOR_SLOPE_BOUND"
+    },
+    "base_repository": {"type": "object"},
+    "source_bindings": {"type": "array", "minItems": 2, "maxItems": 2},
+    "public_dag_bindings": {"type": "array", "minItems": 3, "maxItems": 3},
+    "repaired_sources": {"type": "array", "minItems": 2, "maxItems": 2},
+    "deployed_rows": {"type": "array", "minItems": 2, "maxItems": 2},
+    "actual_counterexample": {"type": "object"},
+    "two_anchor_theorem": {"type": "object"},
+    "chronology": {"type": "object"},
+    "regression_contract": {"type": "object"},
+    "packet_files": {"type": "array", "minItems": 7, "maxItems": 7, "uniqueItems": true},
+    "packet_file_sha256": {"type": "object"},
+    "payload_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}
