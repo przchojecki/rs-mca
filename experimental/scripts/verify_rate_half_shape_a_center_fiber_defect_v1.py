@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "04ae6011ff62187d0b101ef23a7ab0101f7f9db4"
+SOURCE_COMMIT = "da64b8969232c3c005292dc151bf7bbaa0bd35d7"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/statement.md": "6525db0f3f98127403a859cb06de798fbfaa981dc4c255b71cea89299df92587",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/proof.md": "29b08bed3273e1e3a54f027f1516231c65052e218394c5708a894fc246e5c55a",
@@ -46,7 +46,7 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/audit.md": "b445ed1154b0cfa78284aaf41ceb3f9b489352e31b3397a225debea386eeeb84",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/verify.py": "c401f054bbdac3f1bd748a6526b2c0e1764d4a240bd836c4f256492d35670910",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/verify_audit.py": "75c20483d7db026c5d355c8cd4ae2abacdc94c85ccf3459426c1a443096faeee",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/statement.md": "e4336708e1b8599755dd6e467231968746bb90d0f28acc224c21556ac2f5a899",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/statement.md": "fa75a8d34b027a8a970d7060e15aa52efa5266034ca725bdaf89ea6e9057a32f",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/proof.md": "6973fffba5a1cc803a2187a5389f513ec62ba530f3dfa698bb178dd1002a682a",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/audit.md": "4de3149e82cd9d6bbc086b506e389b2bcc04c20816bccfc583ddfe1b9f5012a2",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/verify.py": "fd1e0d891a952f3249ba265366624b6cfc291daaa5d7ee87bc221db6fd854636",
@@ -56,6 +56,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_source_multiplier_common_kernel_normal_form/audit.md": "bbeeb6edfe9d5d85a8ee693c74da3a96722ca83cc9eb1c32ce9e5d9004d0c4ce",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_source_multiplier_common_kernel_normal_form/verify.py": "918182e76ccd7668f6b79b1701d9b5046db63b332026c57be15f3c4725e090f5",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_source_multiplier_common_kernel_normal_form/verify_audit.py": "88c8c7b2471670a6899f68016aaf72e5fbb16c103d8db5afaa04e620c8a1f002",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_pade_parity_quotient_route_fence/statement.md": "7632054f3d204c8ec884b654d1439639f735a0b565a56ffc538f889dcbd1f9cd",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_pade_parity_quotient_route_fence/proof.md": "5aaf80ddc1536438d1b567514e93c30ca5ead4328d7298850e247bc37993c432",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_pade_parity_quotient_route_fence/audit.md": "faf69914671e4c42c6e801590747d6bae3e85a5c866f508a30ce266ea421f4fa",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_pade_parity_quotient_route_fence/verify.py": "a4d4e6b377125a53b4701122fb6a952f26d2569a4429012e86dd21491a04b2a0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_pade_parity_quotient_route_fence/verify_audit.py": "0e3eaaaedfc7309ada068a23b1cf83cf96b934dce6bca922889a55a2dca3b0a6",
 }
 
 
@@ -110,6 +115,12 @@ class Formula:
     source_multiplier_e3_dimension: int = 274877906946
     source_multiplier_orthogonal_dimension: int = 549755813884
     source_multiplier_intersection_floor: int = 183251937960
+    pade_parity_toy_exact_rank: int = 3
+    pade_parity_toy_excess_rank: int = 2
+    pade_parity_dual_degree: int = 549755813887
+    pade_parity_mandatory_dimension: int = 183251937964
+    pade_parity_quotient_dimension: int = 91625968982
+    pade_parity_kernel_floor: int = 183251937960
 
 
 def matrix_rank(rows: list[list[int]], modulus: int) -> int:
@@ -312,6 +323,35 @@ def source_multiplier_toy() -> tuple[int, int, int]:
     return matrix_rank(e3_rows, modulus), block_rank, global_rank
 
 
+def pade_parity_toy() -> tuple[int, int]:
+    modulus = 101
+    points = list(range(1, 11))
+    weights = []
+    for x in points:
+        derivative = 1
+        for y in points:
+            if y != x:
+                derivative = derivative * (x - y) % modulus
+        weights.append(pow(derivative, modulus - 2, modulus))
+
+    def pairing(right_degrees: tuple[int, ...]) -> int:
+        rows = [
+            [
+                sum(
+                    weight * pow(x, left + right, modulus)
+                    for x, weight in zip(points, weights)
+                ) % modulus
+                for right in right_degrees
+            ]
+            for left in range(3)
+        ]
+        return matrix_rank(rows, modulus)
+
+    exact = pairing((0, 1, 2, 3, 7, 8, 9))
+    excess = pairing((0, 1, 2, 3, 4, 7, 8))
+    return exact, excess
+
+
 def verify_source(root: Path) -> int:
     checked = 0
     for relative, expected in SOURCE_HASHES.items():
@@ -407,6 +447,21 @@ def replay(formula: Formula) -> dict[str, int]:
             "source multiplier orthogonal dimension")
     require(e - 3 == formula.source_multiplier_intersection_floor,
             "source multiplier intersection floor")
+    parity_exact, parity_excess = pade_parity_toy()
+    require(parity_exact == formula.pade_parity_toy_exact_rank,
+            "Pade parity toy exact")
+    require(parity_excess == formula.pade_parity_toy_excess_rank,
+            "Pade parity toy excess")
+    require(d == total - n - 2 == 2 * n + 5
+            == formula.pade_parity_dual_degree,
+            "Pade parity dual degree")
+    require(e + 1 == formula.pade_parity_mandatory_dimension,
+            "Pade parity mandatory block")
+    require(3 * r - (e + 1) == r
+            == formula.pade_parity_quotient_dimension,
+            "Pade parity quotient")
+    require(n + 1 - r == e - 3 == formula.pade_parity_kernel_floor,
+            "Pade parity kernel floor")
     return {
         "rank": r,
         "projection": projection,
@@ -439,6 +494,13 @@ def replay(formula: Formula) -> dict[str, int]:
             formula.source_multiplier_e3_dimension,
             formula.source_multiplier_orthogonal_dimension,
             formula.source_multiplier_intersection_floor,
+        ),
+        "pade_parity_toy_ranks": (parity_exact, parity_excess),
+        "pade_parity_dimensions": (
+            formula.pade_parity_dual_degree,
+            formula.pade_parity_mandatory_dimension,
+            formula.pade_parity_quotient_dimension,
+            formula.pade_parity_kernel_floor,
         ),
     }
 

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T mandatory Padé-parity quotient
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED route fence; no Shape-A exclusion.
+- **What is being added:** The global Padé identity places the `e+1`
+  dimensional locator coefficient block `J U_Q` inside `E_3`, while exact
+  RS residue duality makes it automatically invisible to `S_n`. Hence
+  `kappa=e-3+xi` at the boundary, with `xi` the additional right-radical
+  excess.
+- **How it is useful:** It prevents the Section-62 Padé intersection from
+  being pursued as a dimension-only rank contradiction and identifies the
+  exact quotient on which an independent Shape-A condition must act.
+- **What to do next:** Couple the quotient to collision/Hankel jets, the
+  fixed source factor, or split rows; do not seek `kappa<=e-4` from the
+  common-kernel normal form alone.
+
 ### 2026-08-13 - Lane-T global source-multiplier normal form
 
 - **Agent/model:** AllenGrahamHart / Codex.

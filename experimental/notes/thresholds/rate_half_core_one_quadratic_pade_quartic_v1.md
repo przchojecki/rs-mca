@@ -3397,6 +3397,81 @@ such a bound; the next step must use the structure of `J`, `varphi`, and
 `W_X`, for example through the fixed source factor, split rows, or the
 retained Hankel/source-Gram identities.
 
+## 63. Mandatory Padé-parity block and the quotient fence
+
+The global Padé identity further corrects the interpretation of `(331)`.
+Write
+
+```text
+Qbar(z,X)=sum_(i=0)^e z^i Q_i(X),
+U_Q=span{Q_0,...,Q_e} subset S_d,
+d=R-n-2=2n+5.                                    (335)
+```
+
+Modulo `L_U0`, the global identity is
+
+```text
+Qbar B_src=Lambda G.                              (336)
+```
+
+Since `B_src=J(z-varphi)` and `Lambda(varphi)=0`, write
+`Lambda(z)=(z-varphi)q_varphi(z)`. Cancelling the monic factor
+`z-varphi` in the split algebra polynomial ring gives
+
+```text
+J Qbar(z,X)=q_varphi(z)G(z,X).                    (337)
+```
+
+The coefficients of the quadratic `q_varphi` lie in
+`span{1,varphi,varphi^2}`. The primitive locator has `e+1` independent
+parameter coefficients, so
+
+```text
+dim U_Q=e+1,       J U_Q subset E_3.              (338)
+```
+
+For the residue pairing in `(326)`, standard RS duality gives the exact
+equality
+
+```text
+S_n^perp=S_d.                                     (339)
+```
+
+Indeed low-degree residue vanishing gives inclusion, and both sides have
+dimension `R-n-1`. Therefore the right radical of the pairing
+
+```text
+(h,E) |-> tau(hE/J),       h in S_n, E in E_3,   (340)
+```
+
+is exactly `E_3 intersect J S_d`. Put
+
+```text
+xi=dim(E_3 intersect J S_d)-(e+1)>=0.             (341)
+```
+
+Computing the rank of `(340)` from its right and left radicals gives
+
+```text
+rank T=3r-(e+1)-xi=dim ker Phi-xi,
+kappa=n+e+2-3r+xi.                                (342)
+```
+
+At the lower boundary this becomes
+
+```text
+rank T=r-xi,
+kappa=e-3+xi>=e-3=183251937960.                   (343)
+```
+
+Thus the complete `e-3` floor from Section 61 is mandatory locator parity,
+not an exceptional alignment that can be removed by refining ambient
+dimension. Section 62 remains an exact diagnostic normal form, but its
+standalone continuation is fenced: a boundary exclusion must import an
+independent collision/Hankel, fixed-factor, or split-row incompatibility.
+The excess `xi` measures additional right-radical rows; neither `xi=0` nor
+`xi>0` alone excludes Shape A.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -3496,3 +3571,6 @@ dimension `kappa`; it does not bound `kappa` or exclude Shape A.
 Section 62 rewrites that kernel as the owner-sensitive Padé intersection
 `S_n intersect J E_3^perp` with `dim E_3=3r`; it does not bound the
 intersection, and its ambient dimensions do not exclude Shape A.
+Section 63 proves that the `e-3` floor is automatic and fences the
+dimension-only continuation; it does not supply the independent
+incompatibility needed to exclude Shape A.
