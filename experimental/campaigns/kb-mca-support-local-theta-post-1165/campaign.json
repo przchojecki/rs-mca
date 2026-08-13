@@ -1,0 +1,15 @@
+{
+  "title": "KoalaBear support-local theta router after PR 1165",
+  "created": "2026-08-13",
+  "schema_version": 1,
+  "claim_statuses": [
+    "idea",
+    "explored",
+    "candidate",
+    "provisionally-verified",
+    "handoff",
+    "refuted",
+    "blocked",
+    "known"
+  ]
+}
