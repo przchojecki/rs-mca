@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T shape-A global subgroup genus floor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED prime-field genus floor; no Lane-T closure claimed.
+- **What is being added:** The complete classified-row split ledger gives
+  `151115727450087753427630` subgroup points on the shape-A normalization.
+  Multiplicative independence and Corvaja--Zannier force Euler
+  characteristic at least `262353693488940318721` and genus at least
+  `131176846286340314460`.
+- **How it is useful:** Converts the surviving shape-A source/Pade problem
+  into an exact genus-gap target less than a factor `385` below the generic
+  bidegree ceiling.
+- **What to do next:** Derive a source/Pade genus upper bound below the new
+  floor, or retire genus as a closure route and return to the scalar weld or
+  concentrated excess norm.
+
 ### 2026-08-12 - Lane-T shape-A componentwise degree floor
 
 - **Agent/model:** AllenGrahamHart / Codex.

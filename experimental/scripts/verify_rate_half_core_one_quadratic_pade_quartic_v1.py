@@ -11,7 +11,7 @@ from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "024869d1f4619f1e3495979ee092a476a23bfb57"
+SOURCE_COMMIT = "916f49a6ce0e46a5c139096de5222aba5974b5f8"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -103,6 +103,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_pure_split_component_floor/proof.md": "70497eb01127958eb7810271afb49d82a157c7444381b922fc21c420d91150d2",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_componentwise_degree_floor/statement.md": "4edd8a430d2999ae8774907455b3510f03c52fab2ae5b319181cc4e25c1ac0c0",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_componentwise_degree_floor/proof.md": "93d5febc3c8b7c21ffa0e0097545d724cfa231bf8a71c34cd86f0ebd43012afe",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_subgroup_genus_floor/statement.md": "4b29e09907aa576b1d85232838d33772229f1b597ccd6e20b07792d7df988fe9",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_subgroup_genus_floor/proof.md": "3625dc1fbc95e95b2a85a660c960a0e134adef59077480156390f63e932541fa",
 }
 
 
@@ -221,6 +223,10 @@ class Formula:
     collision_shape_a_component_min_bidegree: int = 39768216
     collision_shape_a_component_min_point_floor: int = 10931403977394458172
     collision_shape_a_component_multiplicity_ratio: int = 4608
+    collision_shape_a_global_point_floor: int = 151115727450087753427630
+    collision_shape_a_global_chi_floor: int = 262353693488940318721
+    collision_shape_a_global_genus_floor: int = 131176846286340314460
+    collision_shape_a_global_genus_ceiling: int = 50371909149143533442400
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1486,6 +1492,48 @@ def verify_collision_shape_a_componentwise_degree_floor(formula: Formula) -> int
     return 8
 
 
+def verify_collision_shape_a_global_genus_floor(formula: Formula) -> int:
+    """Replay the global subgroup-point, chi, and genus floors."""
+    e = (2**39 + 1) // 3
+    m = e - 2
+    n = (3 * e - 7) // 2
+    N = 2**41
+    characteristic_floor = 2**167
+    row_count = (9 * e - 7) // 2
+    point_floor = row_count * m
+    denominator = 54 * N**2 * m * n
+    chi_floor = ceil_div(point_floor**3, denominator)
+    genus_floor = ceil_div(chi_floor - 2 * (m + n) + 2, 2)
+    genus_ceiling = (m - 1) * (n - 1)
+
+    require(gcd(n, N) == 1 and n > 1, "shape-A subtorus exclusion")
+    require(
+        point_floor == formula.collision_shape_a_global_point_floor,
+        "shape-A global point floor",
+    )
+    require(
+        12 * N**2 * m * n < characteristic_floor,
+        "shape-A global characteristic branch",
+    )
+    require((chi_floor - 1) * denominator < point_floor**3, "chi strictness")
+    require(chi_floor * denominator >= point_floor**3, "chi ceiling")
+    require(
+        chi_floor == formula.collision_shape_a_global_chi_floor,
+        "shape-A global chi floor",
+    )
+    require(
+        genus_floor == formula.collision_shape_a_global_genus_floor,
+        "shape-A global genus floor",
+    )
+    require(
+        genus_ceiling == formula.collision_shape_a_global_genus_ceiling,
+        "shape-A global genus ceiling",
+    )
+    require(384 * genus_floor < genus_ceiling, "shape-A factor-384 endpoint")
+    require(genus_ceiling < 385 * genus_floor, "shape-A factor-385 gap")
+    return 10
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1836,7 +1884,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 90, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 92, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1861,6 +1909,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_shape_a_norm_concentration(formula)
     checks += verify_collision_shape_a_pure_split_component_floor(formula)
     checks += verify_collision_shape_a_componentwise_degree_floor(formula)
+    checks += verify_collision_shape_a_global_genus_floor(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -2016,6 +2065,18 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_shape_a_component_multiplicity_ratio": (
             formula.collision_shape_a_component_multiplicity_ratio
+        ),
+        "collision_shape_a_global_point_floor": (
+            formula.collision_shape_a_global_point_floor
+        ),
+        "collision_shape_a_global_chi_floor": (
+            formula.collision_shape_a_global_chi_floor
+        ),
+        "collision_shape_a_global_genus_floor": (
+            formula.collision_shape_a_global_genus_floor
+        ),
+        "collision_shape_a_global_genus_ceiling": (
+            formula.collision_shape_a_global_genus_ceiling
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

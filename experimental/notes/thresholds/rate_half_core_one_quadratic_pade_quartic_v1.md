@@ -1683,6 +1683,52 @@ This closes the low-degree component route, not shape A. Any survivor is a
 high-degree non-toral component and must be attacked through the retained
 source, scalar-weld, or excess-norm identities.
 
+## 38. Shape A has a global genus floor
+
+There is also a global consequence before passing to the off-diagonal
+fiber product. Let `C` be the normalization of the absolutely irreducible
+shape-A curve. Its coordinate functions have degrees
+
+```text
+deg_C(t)=n,       deg_C(X)=m.                         (158)
+```
+
+Every classified row contributes its `m` distinct off-line subgroup roots.
+Thus `C` contains at least
+
+```text
+P=Rm=151115727450087753427630                        (159)
+```
+
+distinct points with both coordinates in `H=mu_N`.
+
+The coordinate functions are multiplicatively independent modulo constants.
+Indeed, a translated-subtorus relation would make the shape-A biform a
+primitive binomial of bidegree `(m,n)`. At a fixed parameter in `H`, its row
+equation has at most `gcd(n,N)=1` solution in `H`. This contradicts any one
+of the pure fibers from Section 36, which has `n>1` distinct subgroup roots.
+
+Apply Corvaja--Zannier on `C` to `t^N,X^N`. If `S` is the union of their
+zero and pole supports and `chi_C=|S|+2g(C)-2`, then the exact point floor
+and the strict characteristic comparison `12N^2mn<2^167<P_char` give
+
+```text
+chi_C>=ceil(P^3/(54N^2mn))
+     =262353693488940318721.                         (160)
+```
+
+Since `|S|<=2(m+n)`,
+
+```text
+g(C)>=131176846286340314460.                         (161)
+```
+
+The full bidegree genus ceiling is
+`(m-1)(n-1)=50371909149143533442400`, less than `385` times the new floor.
+Thus this does not exclude shape A. It gives an exact target for the retained
+source/Pade structure: a genus upper bound below `(161)` would close the
+branch, while the generic bidegree ceiling cannot.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1721,4 +1767,5 @@ residual polynomial `T`. Section 36 forces a large official point set on one
 shape-A component, but does not make that component low-degree or toral.
 Section 37 excludes every low-degree component in the prime-field branch,
 but leaves high-degree non-toral components and makes no extension-field
-claim.
+claim. Section 38 forces a global shape-A genus floor but supplies no
+source-derived genus upper bound and therefore does not exclude shape A.
