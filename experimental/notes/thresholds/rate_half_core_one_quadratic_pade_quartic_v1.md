@@ -3028,6 +3028,75 @@ There is no domain multiplication-chain branch. The remaining Lane-T
 target is compatibility of the three actual center fibers with the
 proportional source-Gram, split-row, and collision identities.
 
+## 58. Center-fiber coprimality and Padé quotient
+
+For a center `gamma`, write
+
+```text
+L_U0=L_Mgamma L_rest,gamma,
+Qbar(gamma,X)=chi_gamma R_gamma(X)L_rest,gamma(X), (295)
+```
+
+where `R_gamma=1` on either small class and
+`R_(gamma_0)=X-x_*` on the large class. Every classified row of `G` has
+only off-line supported parameter roots, so
+
+```text
+G(gamma,x)!=0       (x in U_0).                  (296)
+```
+
+The only remaining possible center-locator common root is the large
+padded point `x_*`; Section 57 excludes it by the residual-cycle support
+argument. Hence
+
+```text
+gcd_X(Qbar(gamma,X),G(gamma,X))=1                (297)
+```
+
+for all three centers. In particular,
+
+```text
+G(gamma_0,x_*)!=0,       T_3(gamma_0)!=0,         (298)
+```
+
+where `G(t,x_*)=g_off S_B T_3`: both displayed fixed factors are units at
+`gamma_0`.
+
+Specialize the Padé identity
+
+```text
+Qbar B_src-Lambda G=L_U0 P_F                     (299)
+```
+
+at a center. Cancelling `L_rest,gamma` gives
+
+```text
+chi_gamma R_gamma B_src(gamma,X)
+ =L_Mgamma P_F(gamma,X).                         (300)
+```
+
+The factors `R_gamma` and `L_Mgamma` are coprime, including at the large
+center because `x_* notin U_0`. Thus there is a nonzero polynomial
+`C_gamma` such that
+
+```text
+B_src(gamma,X)=L_Mgamma(X)C_gamma(X),
+P_F(gamma,X)=chi_gamma R_gamma(X)C_gamma(X).      (301)
+```
+
+Nonzeroness follows by evaluating `B_src` at any root of
+`L_rest,gamma`, where it equals the nonzero source value
+`omega_x(gamma)L_U0'(x)`. Since `deg_X B_src<=|U_0|-1`,
+
+```text
+deg C_gamma<=d-1       on a small class,
+deg C_(gamma_0)<=d-2   on the large class.        (302)
+```
+
+The large-center contact numerator is therefore divisible by `X-x_*`,
+while the split-biform center fiber is nonzero there. The next coupling
+can be formulated through the three quotient polynomials in `(301)`.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -3114,4 +3183,6 @@ all cubic syzygies in that interval and identifies two small-class defect
 forms. Section 56 identifies them as actual center fibers and gives the
 exact large-class rank/factorization dichotomy. Section 57 excludes its
 rank-`r-2` multiplication-chain branch, but does not yet prove the three
-remaining center fibers incompatible.
+remaining center fibers incompatible. Section 58 proves each center fiber
+coprime to its locator and factors the center-specialized Padé numerators;
+it does not yet relate the three quotient polynomials.

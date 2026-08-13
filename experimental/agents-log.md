@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T center coprimality and Padé quotients
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED center-coprimality packet; no Shape-A exclusion.
+- **What is being added:** Every center locator is coprime to the
+  corresponding `G` fiber. At the large center both `G(gamma_0,x_*)` and
+  the cubic heavy residual are nonzero. The specialized Padé identity
+  factors through exact nonzero quotient polynomials `C_gamma`.
+- **How it is useful:** It removes all hidden center common roots and gives
+  a common polynomial interface for comparing the three canonical defects.
+- **What to do next:** Use parameter-linearity of `B_src` to derive and
+  exploit the three-term relation among `L_Mgamma C_gamma`.
+
 ### 2026-08-13 - Lane-T large-class rank-drop exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.
