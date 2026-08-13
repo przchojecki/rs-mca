@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T all-rank parameter-map birationality
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED all-rank structural reduction; no Shape-A exclusion.
+- **What is being added:** For every minimal tensor presentation of rank at
+  least two, active slopes are complete normalization fibers and at most one
+  slope is inactive. Exact official gcds force the parameter-map degree onto
+  its projective image to equal one.
+- **How it is useful:** The rank-three singularity theorem becomes a
+  specialization of a reusable birationality invariant, while every
+  rank-at-least-four survivor now also has a birational parameter image.
+- **What to do next:** Classify the higher-rank image or combine its
+  birationality with the source/Hankel and scalar-weld equations.
+
 ### 2026-08-13 - Lane-T rank-three birational singularity router
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -2414,6 +2414,45 @@ exclude the printed birational configuration. A rank-three close must now
 couple this complete-quadrilateral singularity ledger to the source,
 collision, or scalar-weld identities.
 
+## 48. All-rank parameter-map birationality
+
+The normalization-fiber argument in Section 47 does not use rank three.
+For any minimal tensor presentation of rank `r>=2`,
+
+```text
+G(t,X)=sum_(j=0)^(r-1)A_j(t)B_j(X),                (228)
+```
+
+the parameter coefficient map
+
+```text
+a:P^1 -> P^(r-1),       a(t)=[A_0(t):...:A_(r-1)(t)] (229)
+```
+
+is basepoint-free. If `d` is its degree onto the normalization of its image,
+then pullback of a generic hyperplane gives `d|m`.
+
+The all-excess column-deficit calculation `(222)` also remains independent
+of rank. At most one slope has no actual `U_0` incidence, while every active
+slope completes to a reduced degree-`d` normalization fiber by an incident
+simple split row. Therefore
+
+```text
+d | (3e-z),       z in {0,1}.                      (230)
+```
+
+The official gcds `(224)` force
+
+```text
+d=1.                                                (231)
+```
+
+Thus the parameter line is the normalization of its projective coefficient
+image in every surviving tensor rank. Section 47 specializes this to a
+degree-`m` plane curve in rank three. In rank at least four, `(231)` is a
+new exact structural invariant but does not control image degree,
+singularities, or linear normality.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2479,3 +2518,5 @@ tensor rank at least four.
 Section 47 proves that every rank-three parameter map is birational onto a
 degree-`m` rational plane curve and quantifies six enormous singular
 vertices; it does not prove that this singular curve cannot occur.
+Section 48 promotes the birationality statement to every tensor rank at
+least two; it does not classify the higher-dimensional coefficient image.
