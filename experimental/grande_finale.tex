@@ -2254,6 +2254,72 @@ or close a deployed row.  The exact replay is in
 \path{experimental/verify_mca_full_lift_top_third_global_line_payment_v1.py}.
 \end{remark}
 
+\begin{corollary}[Full-lift mean-centered global-line profile]
+\label{cor:full-lift-mean-centered-global-line-profile}
+Retain the notation of
+\cref{thm:full-lift-top-third-global-line}, put
+\[
+ H=e-s-1,
+ \qquad c=K-1,
+\]
+and assume $m-H>c$.  For every $1\le h\le H$, put
+$A_h=m-h$, and let $C_h$ be the punctured ordinary-Johnson cap when
+$A_h^2>(N-e)c$, and otherwise the cap in
+\cref{thm:mean-centered-gram-list} whenever its three hypotheses hold.
+Assume every $C_h$ is defined, and put
+\[
+ B_0=0,
+ \qquad B_h=\min_{h\le v\le H}C_v.
+\]
+Then
+\begin{equation}
+ |Z|\le
+ \sum_{h=1}^{H}(B_h-B_{h-1})
+       \left\lfloor\frac eh\right\rfloor
+ +(N-m+1).
+ \label{eq:full-lift-mean-centered-global-line-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let $N_h$ count transformed explanations with outside deficit at most
+$h$.  The earlier sparse-direction corollary was calibrated for $e<d$,
+but its ordinary set-system proof has no such hypothesis.  After puncturing
+the direction support, choose exactly $A_h=m-h$ outside agreement
+coordinates for every explanation.  The guard $m-H>c$ gives $A_h>c$
+throughout the prefix, and distinct degree-$<K$ explanations intersect in
+at most $c$ coordinates.  Thus $N_h\le C_h$.  For $v\ge h$, also
+$N_h\le N_v\le C_v$, so $N_h\le B_h$.  Summation by parts against the
+owner weights $\lfloor e/h\rfloor$ gives the displayed prefix charge.
+Every remaining deficit belongs to the cross-layer high union; apply
+\cref{thm:full-lift-top-third-global-line} once.
+\end{proof}
+
+\begin{remark}[Exact full-lift mean-centered walls]
+Exact evaluation of
+\eqref{eq:full-lift-mean-centered-global-line-profile} gives
+\[
+\begin{array}{c|r|r|r}
+\text{row}&\text{last paid }e&\text{endpoint bound}&\text{largest bound}\\ \hline
+\text{KoalaBear}&96150&479693401&479693401\text{ at }e=96150\\
+\text{Mersenne-31}&98229&16488216&16489118\text{ at }e=98228
+\end{array}
+\]
+At KoalaBear $e=96151$, the first undefined cap is at $h=H=64105$,
+where the mean-centered denominator is $-4625043784$.  At Mersenne-31
+$e=98230$, every cap remains defined but the profile is
+$17415873$, exceeding budget by $638658$.  The remaining full-lift
+intervals are
+\[
+ 96151\le e\le1044238
+ \quad\text{and}\quad
+ 98230\le e\le1044241.
+\]
+Neither adjacent failure is an unsafe certificate, and no deployed v4 atom
+moves.  The exact replay is in
+\path{experimental/verify_mca_full_lift_mean_centered_global_line_profile_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

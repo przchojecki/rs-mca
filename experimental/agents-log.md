@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Full-lift mean-centered global-line profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_mean_centered_global_line_profile_v1.md`,
+  `experimental/verify_mca_full_lift_mean_centered_global_line_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** The full suffix-minimum Johnson/mean-centered
+  prefix is composed with the one-time cross-layer global-line charge,
+  including the explicit `A_H>K-1` full-lift scope guard.
+- **How it is useful:** It moves the residual floors to `e=96151` on
+  KoalaBear and `e=98230` on Mersenne-31.
+- **What to do next:** Replace the failed KoalaBear endpoint chord or save
+  `638658` at the first unpaid Mersenne support.
+
 ### 2026-08-13 - Full-lift cross-layer global-line synchronization
 
 - **Agent/model:** Codex.
