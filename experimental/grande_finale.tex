@@ -2729,6 +2729,88 @@ and
 \path{experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.c}.
 \end{remark}
 
+\begin{corollary}[Residue-two repair at the fixed-cutoff wall]
+\label{cor:full-lift-fixed-cutoff-q2-anchor-repair}
+Retain the pair-noncontained Mersenne-31 full-lift hypotheses.  At
+\[
+ e=101156,\qquad (s,q,H)=(33716,2,67439),
+\]
+use the fixed-cutoff charge \((\mathrm{BS1})\) with \(h_0=65258\).
+Let \(\mathcal T\) be the synchronized top union, and let
+\(\mathcal D_1,\mathcal D_2\) be the exact layers of deficits
+\(H,H-1\).  The resulting charges are
+\[
+ F=16895280,\qquad
+ D_1=284224,\qquad D_2=258385.
+\]
+Then the complete slope family satisfies
+\[
+ |Z|\le16705799<16777215.
+\]
+Consequently this support is safe, and the residual Mersenne full-lift
+interval is \(101157\le e\le1044241\).
+\end{corollary}
+
+\begin{proof}
+Every member of \(\mathcal T\cup\mathcal D_1\cup\mathcal D_2\)
+owns at most one slope.  If \(|\mathcal T|\ge2\), two top anchors and
+any boundary member have at least
+\[
+ e-s-s-(s+2)=K+q-2=K
+\]
+common inside agreement coordinates.  Thus the top union and both
+boundary layers lie on one affine codeword line.  Removing both coarse
+boundary charges leaves
+\[
+ G=F-D_1-D_2=16352671.
+\]
+Unsafety would force at least \(16777215-G+1=424545\) members on that
+line.  Total-core packing then forces common core \(67452=m-2\), with
+at least \(67447\) core coordinates inside the gauged direction
+support.  The two-anchor absorption argument therefore synchronizes every
+assigned explanation of deficit at least \(33715\) onto the line.  The
+remaining punctured ordinary list has agreement at least \(33740\) and
+Johnson cap \(28\), whence
+\[
+ |Z|\le101156\cdot28+981129=3813497.
+\]
+
+Suppose next that \(|\mathcal T|=1\).  If
+\(|\mathcal D_1|\ge2\), the top anchor and any two first-boundary
+members share at least
+\[
+ e-s-2(s+1)=K
+\]
+inside coordinates, so \(\mathcal D_1\) is one affine codeword line.
+Its outside agreement is \(m-H=15\), and outside-core packing gives
+\(|\mathcal D_1|\le94742\).  The two subcases give
+\[
+ F-D_1+94742+1=16705799,\qquad
+ F-D_1+2=16611058.
+\]
+
+Finally suppose \(\mathcal T\) is empty.  If two first-boundary
+missed sets intersect, those two members and any third share at least
+\[
+ e-\{3(s+1)-1\}=K
+\]
+inside coordinates.  The layer is one affine line and contributes at
+most \(94742\), giving \(F-D_1+94742=16705798\).  Otherwise its
+missed sets are pairwise disjoint, so
+\(|\mathcal D_1|\le\lfloor e/(s+1)\rfloor=3\), giving
+\(F-D_1+3=16611059\).  These five exhaustive cases have maximum
+\(16705799\), as claimed.
+\end{proof}
+
+\begin{remark}[Scope and replay]
+At adjacent \(e=101157\), the residue resets to zero, so the preceding
+repair is inapplicable; no unsafe certificate is claimed.  The source-bound
+replay and independent constant audit are
+\path{experimental/verify_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py}
+and
+\path{experimental/audit_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

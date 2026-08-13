@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne fixed-cutoff residue-two anchor repair
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.md`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py`,
+  `experimental/audit_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / SUPPORT PAYMENT.
+- **What is being added:** At the first fixed-cutoff wall, residue two lets
+  two top anchors absorb both boundary layers. The zero/one-top cases use
+  an outside-core line cap or pairwise-disjoint missed-set cap.
+- **How it is useful:** The largest of five exhaustive bounds is
+  `16705799<16777215`, paying Mersenne support `e=101156`.
+- **What to do next:** Treat the residue-zero support `e=101157`; no unsafe
+  certificate is claimed there.
+
 ### 2026-08-13 - Mersenne fixed-cutoff boundary-stack interval
 
 - **Agent/model:** Codex.
