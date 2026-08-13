@@ -30,6 +30,948 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T mandatory Padé-parity quotient
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED route fence; no Shape-A exclusion.
+- **What is being added:** The global Padé identity places the `e+1`
+  dimensional locator coefficient block `J U_Q` inside `E_3`, while exact
+  RS residue duality makes it automatically invisible to `S_n`. Hence
+  `kappa=e-3+xi` at the boundary, with `xi` the additional right-radical
+  excess.
+- **How it is useful:** It prevents the Section-62 Padé intersection from
+  being pursued as a dimension-only rank contradiction and identifies the
+  exact quotient on which an independent Shape-A condition must act.
+- **What to do next:** Couple the quotient to collision/Hankel jets, the
+  fixed source factor, or split rows; do not seek `kappa<=e-4` from the
+  common-kernel normal form alone.
+
+### 2026-08-13 - Lane-T global source-multiplier normal form
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED common-kernel normal form; no Shape-A exclusion.
+- **What is being added:** In the split source algebra the source-pencil
+  ratio `varphi=-K/J` is the exact three-valued class label. The three
+  residue kernels combine as
+  `K_cap=S_n intersect J(W_X+varphi W_X+varphi^2W_X)^perp`, and the
+  multiplier space is a direct sum of dimension `3r`.
+- **How it is useful:** It turns the remaining Lane-T deficit into one
+  owner-sensitive Padé intersection and retains both the primitive class
+  map and the fixed source factor.
+- **What to do next:** Bound that intersection using the fixed factor,
+  split-row identities, or the retained Hankel/source-Gram packet; ambient
+  dimension alone is insufficient.
+
+### 2026-08-13 - Lane-T center residue-pairing common kernel
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED rank router; no Shape-A exclusion.
+- **What is being added:** Each classwise locator-interpolation map is the
+  restriction of an explicit rank-`n` residue form whose sole radical is
+  the corresponding center fiber. The combined rank is exactly
+  `n+1-kappa`, where `kappa` is the intersection dimension of the three
+  restricted orthogonal complements.
+- **How it is useful:** At the current half-rank boundary Shape A requires
+  `kappa>=e-3=183251937960`; proving `kappa<=e-4` raises the rank floor.
+- **What to do next:** Bound this explicit common kernel using the primitive
+  three-fiber relation and the retained Hankel/source-Gram packet. Do not
+  infer the bound from projective distinctness alone.
+
+### 2026-08-13 - Lane-T primitive source pencil
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED primitive-pencil normal form; no Shape-A exclusion.
+- **What is being added:** Removing the fixed homogeneous gcd of
+  `B_src` gives a degree-`D` map from the domain line to the parameter
+  line. Its center fibers contain exactly the three source classes on
+  `U_0`, with pairwise-coprime residuals of exact printed degrees and one
+  nondegenerate three-term relation.
+- **How it is useful:** It consolidates the remaining three-defect problem
+  into fixed degree, off-grid roots, and ramification of one primitive
+  source map.
+- **What to do next:** Bound the fixed gcd or ramification using the Hankel
+  moments and proportional source-Gram packet.
+
+### 2026-08-13 - Lane-T padded-center Padé transversality
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exact local contact; no Shape-A exclusion.
+- **What is being added:** The padded center is the unique common point of
+  the locator and Padé numerator over `gamma_0`, with local intersection
+  length one. Its quotient and source-numerator values at `x_*` are
+  nonzero.
+- **How it is useful:** It removes hidden tangency at the one outside
+  center root and pins the source-numerator map away from the large center
+  at `x_*`.
+- **What to do next:** Primitive-normalize the parameter-linear source
+  numerator and couple its three center fibers.
+
+### 2026-08-13 - Lane-T center coprimality and Padé quotients
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED center-coprimality packet; no Shape-A exclusion.
+- **What is being added:** Every center locator is coprime to the
+  corresponding `G` fiber. At the large center both `G(gamma_0,x_*)` and
+  the cubic heavy residual are nonzero. The specialized Padé identity
+  factors through exact nonzero quotient polynomials `C_gamma`.
+- **How it is useful:** It removes all hidden center common roots and gives
+  a common polynomial interface for comparing the three canonical defects.
+- **What to do next:** Use parameter-linearity of `B_src` to derive and
+  exploit the three-term relation among `L_Mgamma C_gamma`.
+
+### 2026-08-13 - Lane-T large-class rank-drop exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exclusion of the rank-`r-2` branch; no Shape-A
+  exclusion.
+- **What is being added:** The multiplication-chain branch creates a
+  residual common point `(gamma_0,x_*)` over an assigned center. The exact
+  four-core pushforward is supported only at the off-center collision, so
+  that branch is impossible and the large map also has rank `r-1`.
+- **How it is useful:** All three class maps now have one canonical defect,
+  namely the corresponding center fiber `G(gamma,X)`; no large-class
+  alternative remains.
+- **What to do next:** Couple the three center fibers to the proportional
+  source-Gram packet or derive a second residual common point from their
+  barycentric formulas.
+
+### 2026-08-13 - Lane-T center-fiber and large-class dichotomy
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED center-fiber identification and exact dichotomy; no
+  Shape-A exclusion.
+- **What is being added:** Every Koszul coordinate image is the
+  center-vanishing hyperplane, so each small-class defect is exactly
+  `G(gamma,X)`. The large interpolation map has rank `r-1` or `r-2`; the
+  latter forces `G(gamma_0,X)=(X-x_*)B_0(X)` inside `W_X` and removes the
+  center factor from the cubic heavy-row residual.
+- **How it is useful:** It replaces anonymous defect forms by fibers of one
+  coefficient map and splits the live Lane-T frontier into a
+  center-compatibility branch and a multiplication-chain branch.
+- **What to do next:** Exclude the `W_X` multiplication chain using the
+  split-row/scalar-weld ledgers, and test the three center fibers against
+  the proportional source-Gram packet.
+
+### 2026-08-13 - Lane-T live linear/quadratic profile and defects
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED live syzygy classification and defect router; no
+  Shape-A exclusion.
+- **What is being added:** The inverse-prolongation injection and the exact
+  small-class projection rank force `c_1=2r-e`, `c_2=e-r-1`, `c_3=0` for
+  every live rank. Each small class determines a unique projective domain
+  coefficient form with explicit barycentric values.
+- **How it is useful:** It eliminates all cubic minimal syzygies and replaces
+  the remaining source freedom by two concrete defect forms in one common
+  coefficient space.
+- **What to do next:** Compare those two forms through split-row incidence
+  and the collision/Hankel equations.
+
+### 2026-08-13 - Lane-T locator-interpolation half-rank amplification
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED macroscopic rank amplification; no Shape-A exclusion.
+- **What is being added:** The `n+1` dual-RS locator interpolation checks map
+  into the restricted Koszul kernel, and either small-class projection has
+  rank at least `r-1`. Thus `r>=(e+1)/2=91625968982`.
+- **How it is useful:** It excludes the former one-third boundary and raises
+  the live Shape-A interval to the upper half of the ambient coefficient
+  range.
+- **What to do next:** Control the common kernel of the three class maps or
+  exploit equality in the coordinate projection bounds.
+
+### 2026-08-13 - Lane-T coefficient syzygy-bundle cubic splitting
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED syzygy classification; no Shape-A exclusion.
+- **What is being added:** Quadratic multiplication surjectivity forces
+  `H^1(E(2))=0` for the coefficient evaluation bundle, so every minimal
+  syzygy has degree one, two, or three. Exact count equations classify all
+  profiles and leave only two at the minimum live rank.
+- **How it is useful:** It converts the macroscopic coefficient-space
+  problem into explicit integer splitting profiles and identifies the
+  inverse prolongation with the degree-one syzygy count.
+- **What to do next:** Couple the two minimum profiles, and then the general
+  profile equations, to split-fiber incidence and source-Gram nonvanishing.
+
+### 2026-08-13 - Lane-T three-class Koszul/Gram router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED macroscopic structural router; no Shape-A exclusion.
+- **What is being added:** Each source class spans the full coefficient
+  space `V`; its three quadratic shifts generate all degree-`e` forms, with
+  exact restricted Koszul kernel dimension. Endpoint isotropy makes the
+  classwise weighted Gram matrices proportional, with common image in the
+  inverse prolongation of `V`.
+- **How it is useful:** It replaces open-ended macroscopic-rank geometry by
+  the explicit compatibility packet `(248)--(256)` and forces a nonzero
+  common Gram matrix in the upper part of the rank interval.
+- **What to do next:** Bound the inverse prolongation using split fibers, or
+  exclude the proportional Gram packet from the retained Hankel source.
+
+### 2026-08-13 - Lane-T three-source-class rank amplification
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED macroscopic rank floor; no Shape-A exclusion.
+- **What is being added:** The `e+1` independent coefficients of the
+  first-degree primitive locator split across exactly three fixed
+  source-root classes after the dual-MDS transform. Hence
+  `e+1<=3sr(G)` and officially `sr(G)>=61083979322`.
+- **How it is useful:** It excludes every low-rank Shape-A model, including
+  all rank-two and rank-three branches, and redirects Lane T to genuinely
+  macroscopic coefficient rank.
+- **What to do next:** Exploit the three-class block structure or the
+  source/Hankel isotropy at macroscopic rank; do not continue rank-by-rank
+  attacks below the proved floor.
+
+### 2026-08-13 - Lane-T rank-three weighted incidence/genus router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED rank-three structural reduction; no Shape-A exclusion.
+- **What is being added:** Quotienting marked branches by equal points on the
+  two birational plane coefficient images produces an exact weighted
+  `C_4`-free graph. Its weighted degrees, total deficit, and both plane-genus
+  collision budgets are explicit; each side has at least ten image vertices.
+- **How it is useful:** This replaces the rank-three branch by a finite
+  incidence/genus obstruction compatible with the source/Hankel gates and
+  identifies at least `e+7` branch weight on multiple zero-deficit vertices.
+- **What to do next:** Exclude the weighted graph using its source/Hankel
+  realizability constraints or strengthen either delta-genus budget. Treat
+  tensor rank at least four separately.
+
+### 2026-08-13 - Lane-T all-rank domain-map birationality
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED all-rank structural reduction; no Shape-A exclusion.
+- **What is being added:** Each unit of domain coefficient-map fiber degree
+  outside `U_0` consumes at least `m` from an exact residual norm of degree
+  `2m-3`. At most one unit is missing, and the two official gcd alternatives
+  force the domain map to be birational in every tensor rank.
+- **How it is useful:** Both coefficient maps are now normalization maps.
+  Repeated row types must be treated as branches over image singularities,
+  not as a many-to-one cover.
+- **What to do next:** Combine the two birational images with the common
+  incidence biform, source/Hankel equations, or singularity budgets.
+
+### 2026-08-13 - Lane-T all-rank parameter-map birationality
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED all-rank structural reduction; no Shape-A exclusion.
+- **What is being added:** For every minimal tensor presentation of rank at
+  least two, active slopes are complete normalization fibers and at most one
+  slope is inactive. Exact official gcds force the parameter-map degree onto
+  its projective image to equal one.
+- **How it is useful:** The rank-three singularity theorem becomes a
+  specialization of a reusable birationality invariant, while every
+  rank-at-least-four survivor now also has a birational parameter image.
+- **What to do next:** Classify the higher-rank image or combine its
+  birationality with the source/Hankel and scalar-weld equations.
+
+### 2026-08-13 - Lane-T rank-three birational singularity router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED rank-three geometry router; no Shape-A exclusion.
+- **What is being added:** The exact active-column deficit and normalization
+  fiber completion force the rank-three parameter map to be birational onto
+  a rational plane curve of degree `183251937961`. The six vertices from
+  the four-row frame carry at least `183251937955` branches in total and
+  the printed local and total delta-invariant floors.
+- **How it is useful:** It removes smooth and low-singularity rank-three
+  models and replaces the open branch by one complete-quadrilateral
+  singularity problem that can be coupled to the source/Hankel, collision,
+  and scalar-weld identities.
+- **What to do next:** Prove that the official source data cannot realize
+  the six singular vertices, or construct a valid source-compatible model.
+  Do not bound a singular image-point fiber by the cover degree alone.
+
+### 2026-08-13 - Lane-T tensor-rank-three projective frame
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED rank-three route cut; no Shape-A exclusion claimed.
+- **What is being added:** Every rank-three official Shape-A survivor has
+  four general-position domain rows with no triple slope incidence. At least
+  `e-8` slopes repeat across the four rows, so one pair shares at least
+  `ceil((e-8)/6)=30541989660` official roots.
+- **How it is useful:** Together with the rank-two exclusion, this routes
+  every survivor to an explicit triple-free rank-three frame or tensor rank
+  at least four, exposing additional incidence structure for the retained
+  spread, collision, and source/Hankel gates.
+- **What to do next:** Exclude the rank-three frame using the official
+  support/source semantics, or prove a rank-at-least-four obstruction. Do not
+  count the pair floor alone as a Lane-T payment.
+
+### 2026-08-13 - Lane-T all-excess rank fence and rank-two exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED route fence and PROVED official low-rank exclusion;
+  all-partition scan is experimental evidence.
+- **What is being added:** An exact `F_211` biform gives a rank-`27/28`
+  all-excess matrix with all twenty-one residual blocks nonzero, refuting a
+  degree-ledger-only universal-rank route. A projective-pencil count then
+  proves every official Shape-A survivor has tensor rank at least three.
+- **How it is useful:** It corrects the interpretation of the Section 44
+  finite evidence and removes the complete separated/rank-two exception
+  class without claiming an official Shape-A close.
+- **What to do next:** Use spread, collision, or common source/Hankel
+  structure to classify or exclude tensor-rank-at-least-three kernels.
+
+### 2026-08-13 - Lane-T all-excess parameter-MDS gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exact gate; small-profile full rank is experimental.
+- **What is being added:** Every positive-excess residual polynomial is
+  included in one transposed dual-RS compatibility matrix. The exact excess
+  sum leaves only `4e` coefficient columns, and polynomial block degree
+  retains each fiber drop.
+- **How it is useful:** It replaces selected pure-fiber tests and
+  fiberwise residual choices by one exact all-fiber exclusion target. The
+  `e=7` matrix and 100 degree-preserving perturbations are full rank in two
+  fields.
+- **What to do next:** Prove that the official matrix has no kernel with
+  every residual block nonzero, or classify all exceptional incidence
+  profiles before using collision constraints.
+
+### 2026-08-13 - Lane-T scalar-weld residual-MDS flag
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no stacked-rank bound or Lane-T closure
+  claimed.
+- **What is being added:** After division by the known actual-support and
+  padding factors, every fiber residual is an exact RS interpolant whose
+  degree drop is the initial zero run of explicit parity rows. Every row is
+  applied to the same projective scalar-weld vector.
+- **How it is useful:** This removes the independent per-fiber freedom
+  exposed by the static-source fence and turns the remaining Shape-A norm
+  problem into one concrete stacked linear flag retaining the incidence,
+  padding, and common-biform coupling.
+- **What to do next:** Bound the stacked extra-parity rows on the unique
+  weld vector using the collision and classified-incidence structure.
+
+### 2026-08-13 - Lane-T static-source arbitrary-stagnation fence
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED route fence; no Shape-A model or Lane-T closure claimed.
+- **What is being added:** For every allowed omitted-recurrence run length,
+  an explicit barycentric construction gives all-nonzero static source
+  weights and middle Hankel corank exactly one while realizing that full
+  run. A residue pairing proves exact corank, and the replay checks all 560
+  bordered generalized-alternant terms in the `F_101` fixture.
+- **How it is useful:** It rules out deriving regular bordered-rank
+  non-stagnation from static source data, nonzero weights, and corank one
+  alone. The Lane-T endpoint must use the common parameter pencil, the
+  three-class source partition, the split-fiber weld, or collision geometry.
+- **What to do next:** Exploit that global coupling to bound the regular
+  flag, and handle the padding singular factor separately.
+
+### 2026-08-13 - Lane-T shape-A bordered-Hankel flag
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED determinantal presentation; no Lane-T closure claimed.
+- **What is being added:** Every omitted locator-recurrence defect is both a
+  replacement minor and, after bordering the source moment matrix, a
+  generalized-alternant source sum. The off-line degree-drop flag splits
+  exactly into a padding part of degree `e-7` and a regular source part of
+  degree `2e+7`.
+- **How it is useful:** Replaces the single opaque nested gcd by two typed
+  obligations. On the regular factor, degree drop is exactly stagnation of
+  the bordered Hankel column rank; the verifier replays the matrix identities
+  and all 252 source-subset terms in an independent `F_101` fixture.
+- **What to do next:** Control the padding singular flag or prove quantitative
+  non-stagnation of the regular bordered-source flag. Do not infer a payment
+  from the determinantal identities alone.
+
+### 2026-08-13 - Lane-T shape-A omitted-recurrence flag
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED source/Hankel coupling; no Lane-T closure claimed.
+- **What is being added:** For every off-line slope, the degree drop of the
+  shape-A biform is exactly the initial zero-run length of the omitted
+  locator-recurrence defects. The concentrated excess norm satisfies
+  `deg T=e-sum_r deg gcd(H_off,R_(d+1),...,R_(d+1+r))`.
+- **How it is useful:** Replaces the previously opaque norm `T` by one exact
+  nested recurrence flag already living in the retained Pade/Hankel source
+  system. The replay checks the official index weld and an independent
+  finite-field interpolation/layer-cake fixture.
+- **What to do next:** Bound or classify the nested gcd flag using the
+  scalar weld and collision jets; do not infer a payment from the identity
+  alone.
+
+### 2026-08-13 - Lane-T shape-A residual four-cycle rigidity
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED source-locator rigidity; no Lane-T closure claimed.
+- **What is being added:** The exact residual locator/biform intersection
+  cycle in shape A is `Z_4=2B`. A second fibre-algebra modification proves
+  `h^0(C_Q,O_(C_Q)(2B))=1`, without a smoothness or generic-gonality
+  assumption.
+- **How it is useful:** Prevents the residual four units from being treated
+  as an automatic quartic pencil and gives a sharp scalar-weld target: any
+  independently constructed second residual section would exclude shape A.
+- **What to do next:** Search the retained Pade/source identities for a
+  second section in `O_(C_Q)(2B)`; otherwise return to the concentrated
+  excess norm or a direct scalar-weld contradiction.
+
+### 2026-08-13 - Lane-T shape-A global subgroup genus floor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED prime-field genus floor; no Lane-T closure claimed.
+- **What is being added:** The complete classified-row split ledger gives
+  `151115727450087753427630` subgroup points on the shape-A normalization.
+  Multiplicative independence and Corvaja--Zannier force Euler
+  characteristic at least `262353693488940318721` and genus at least
+  `131176846286340314460`.
+- **How it is useful:** Converts the surviving shape-A source/Pade problem
+  into an exact genus-gap target less than a factor `385` below the generic
+  bidegree ceiling.
+- **What to do next:** Derive a source/Pade genus upper bound below the new
+  floor, or retire genus as a closure route and return to the scalar weld or
+  concentrated excess norm.
+
+### 2026-08-12 - Lane-T shape-A componentwise degree floor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED prime-field component-degree floor; no Lane-T closure
+  claimed.
+- **What is being added:** Every geometric off-diagonal shape-A component is
+  base-field defined and non-toral. The exact subgroup-curve comparison
+  forces image bidegree at least `39768216`, at least
+  `10931403977394458172` official subgroup points, and image-map
+  multiplicity less than `4608` times its subdegree.
+- **How it is useful:** Closes the low-degree torus route and proves that any
+  remaining shape-A obstruction is genuinely macroscopic.
+- **What to do next:** Use the source/scalar-weld or concentrated excess norm
+  to constrain the surviving high-degree components.
+
+### 2026-08-12 - Lane-T shape-A pure-split component floor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED component floor; no Lane-T closure claimed.
+- **What is being added:** The exact excess and padding ledgers force at least
+  `e+7` completely split shape-A fibers. Absolute irreducibility and the
+  divided off-diagonal resultant then force one geometric component image to
+  contain at least `n+14=274877906955` official subgroup pairs.
+- **How it is useful:** Converts the remaining single-factor alternative into
+  a component-level incidence target and identifies component subdegree or a
+  source/norm coupling as the next required input.
+- **What to do next:** Bound a component subdegree or show that the retained
+  source/scalar-weld equations are incompatible with the pure split fibers.
+
+### 2026-08-12 - Lane-T shape-A concentrated excess norm
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED shape-A reduction; no Lane-T closure claimed.
+- **What is being added:** The complete off-line padding degree `e-7` is
+  consumed by the `e-7` distinct slopes padded at the collision row. The
+  shape-A norm is therefore `L_U0^(e-2)(X-x_*)^(e-7)T`, up to scalar,
+  where `T` is the product of the excess residuals and has degree at most
+  `e`.
+- **How it is useful:** Replaces all remaining padding choices by one
+  source-defined excess norm, reconstructed by the classified-row tangent
+  products.
+- **What to do next:** Couple `T` to the scalar-weld, coefficient-MDS, and
+  Pade/source identities to exclude the sole surviving shape A.
+
+### 2026-08-12 - Lane-T ordinary-companion complete exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exclusion of shapes B/C/D; no Lane-T closure claimed.
+- **What is being added:** Removing the first shape-C involution graph leaves
+  over three trillion subgroup pairs on at most four residual components.
+  Corvaja--Zannier forces a second toral deck graph, but the two
+  subgroup-compatible involutions generate an impossible Klein four
+  subgroup inside a degree-six deck group.
+- **How it is useful:** Completes the finite Lane-T ordinary-companion
+  program. The factorwise collision packet now has only shape A, a single
+  large irreducible odd factor with no low-degree companion.
+- **What to do next:** Attack shape A through its exact heavy-row record and
+  retained source/scalar-weld equations; no further companion case split is
+  needed.
+
+### 2026-08-12 - Lane-T quartic companion deck-involution router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no shape-C exclusion claimed.
+- **What is being added:** The `(4,6)` companion forces over four trillion
+  subgroup coincidences. Corvaja--Zannier and the five-component cover bound
+  force a toral component, which degree comparison promotes to an
+  antipodal or reciprocal deck involution.
+- **How it is useful:** Replaces the arbitrary shape-C companion by a
+  bidegree-`(4,3)` quotient in `X^2` or `X+k/X`.
+- **What to do next:** Transport the collision and source identities to the
+  two cubic quotient arms and exclude them separately.
+
+### 2026-08-12 - Lane-T ordinary quadratic companion exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exclusion of shapes B/D; no Lane-T closure claimed.
+- **What is being added:** The Corvaja--Zannier positive-characteristic gcd
+  theorem excludes all non-toral `(2,3)` companion coincidence components.
+  Primitive translated-subtorus components are incompatible with the
+  `S_3/C_3` degree-three deck geometry.
+- **How it is useful:** Removes every ordinary quadratic companion from the
+  finite Lane-T collision packet, reducing the four factor shapes to A/C.
+- **What to do next:** Exclude shape C's `(4,6)` companion, then attack the
+  remaining single-large-factor shape A.
+
+### 2026-08-12 - Lane-T quadratic subgroup-coincidence router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no companion exclusion claimed.
+- **What is being added:** Exact factorwise saturation forces at least
+  `3(2^39-6)` subgroup points on the divided resultant of every `(2,3)`
+  companion. Degree-three monodromy and the Vyugin--Makarychev bound exclude
+  every coordinate-admissible dense coincidence component.
+- **How it is useful:** Restricts the B/D companion problem to a finite
+  coordinate-corner exceptional determinantal locus; generic low-degree
+  coincidence geometry cannot survive on the official dyadic subgroup.
+- **What to do next:** Classify the corner degeneracies and exclude the
+  resulting scaling/inversion graphs using the absence of order-three
+  torsion in `mu_(2^41)`.
+
+### 2026-08-12 - Lane-T two-branch tangent-profile router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no factor-shape exclusion claimed.
+- **What is being added:** In collision shapes B and D, the two first-order
+  factor germs force `G_X(tau,x_*)=0`, excluding profile `[4]`. One
+  normalization-invariant tangent sum distinguishes `[1,3]` from `[2,2]`.
+- **How it is useful:** Replaces a three-profile local branch by one scalar
+  tangent-cancellation gate in each two-branch factor shape.
+- **What to do next:** Couple the tangent sum to the companion norm quotient
+  or the retained source/Hankel equations.
+
+### 2026-08-12 - Lane-T ordinary-companion norm gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no companion exclusion claimed.
+- **What is being added:** A `(2,3)` or `(4,6)` companion has a global norm
+  quotient of degree at most seven or fourteen, respectively. Removing its
+  forced simple or double heavy-row divisor leaves a degree-six or
+  degree-twelve residual reconstructed by classified-row tangent products.
+- **How it is useful:** Replaces the full companion curve by one bounded
+  residual polynomial with explicit nonzero values on all classified rows.
+- **What to do next:** Determine the residual at the heavy row or couple its
+  interpolation values to the source/Hankel equations.
+
+### 2026-08-12 - Lane-T factorwise Bezout shape classification
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** Factorwise projective intersection capacity and
+  the four-unit local contact module leave exactly four `d_A=1` shapes: an
+  irreducible large factor, or that factor with one `(2,3)`, one `(4,6)`,
+  or two `(2,3)` companions.
+- **How it is useful:** Replaces arbitrary ordinary-even companions by a
+  finite low-degree list; the large factor has degree at least `e-6`.
+- **What to do next:** Classify or exclude the `(2,3)` and `(4,6)` companion
+  factors, while attacking the irreducible shape separately through the
+  scalar weld and retained source equations.
+
+### 2026-08-12 - Lane-T center-overlap correction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED correction to the four preceding Lane-T reductions.
+- **What is being added:** In the `d_A=1` profile, one root of `g_*` is an
+  assigned padded-heavy center rather than an off-line supported slope.
+  Writing `J_*=gcd(Lambda,g_*)`, `g_off=g_*/J_*`, and
+  `Lambda_0=Lambda/J_*` corrects the heavy-row residual degree from two to
+  `2+d_A` and the unsupported-root budget from four to `4+d_A`.
+- **How it is useful:** The corrected formulas retain the quintic moment
+  divisor, the Cauchy route fence, both `d_A=1` profile exclusions, and all
+  printed official thresholds. They remove an overstrong intermediate
+  assertion before later work relies on it.
+- **What to do next:** Use only the center-adjusted residual and root budget
+  when coupling the unique scalar weld to the surviving macroscopic factor.
+
+### 2026-08-12 - Lane-T quintic Cauchy route fence
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED route fence; no Lane-T closure claimed.
+- **What is being added:** Every divided-row quotient has the exact Cauchy
+  form
+  `C_i=-Lambda_0*x_*^i*T_(2+d_A)/L(x_*)+a_Q*S_B^2*D_i`, with `D_i`
+  parameter-linear.
+- **How it is useful:** Shows that the quintic cap, recurrence, and geometric
+  correction value are automatic and cannot supply an independent
+  contradiction.
+- **What to do next:** Couple the unique scalar weld or the near-saturated
+  large-odd factor to an additional source/incidence constraint.
+
+### 2026-08-12 - Lane-T collision factor root budget
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** The heavy row has only `4+d_A` roots beyond the
+  squarefree off-line supported factor. Combining this with the exact factor
+  grid yields `sum_j(m_j-s_j)<=4+d_A`, sharpened macroscopic-factor
+  thresholds, and excludes factor profiles II and III when `d_A=1`.
+- **How it is useful:** It leaves the `d_A=1` collision with one large-odd
+  factor and ordinary-even companions, sharply reducing the remaining
+  scalar-weld/factor incompatibility problem.
+- **What to do next:** Exclude profile I by coupling its near-saturated
+  supported fibers to the unique scalar weld or another source constraint.
+
+### 2026-08-12 - Lane-T nonreduced divided-row quintic
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** The common divisor `g_*S_B` propagates through
+  every canonical divided-row moment, leaving forms of degree at most five
+  with recurrence `C_(i+1)=x_*C_i-a_QS_B^2h_i`.
+- **How it is useful:** Replaces the full degree-`e+1` moment image on the
+  nonreduced locus by a six-coefficient vector whose correction value is a
+  nonzero geometric progression.
+- **What to do next:** Use the Cauchy closed form below to decide whether the
+  quotient supplies any condition beyond the heavy-row factorization.
+
+### 2026-08-12 - Lane-T nonreduced heavy-row residual
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** Every off-line supported padded-heavy slope divides
+  `G(t,x_*)`; after removing `g_off=g_*/gcd(Lambda,g_*)`, the exact double
+  correction removes two of the remaining `4+d_A` degrees. Hence
+  `G(t,x_*)=g_off S_B T_(2+d_A)` with exact residual degree `2+d_A` and
+  `T_(2+d_A)(tau)!=0`.
+- **How it is useful:** Replaces the nonreduced outside row by a
+  degree-`e-4-d_A` polynomial-remainder matrix on the unique weld vector and
+  only `3+d_A` quotient coefficients.
+- **What to do next:** Prove this remainder matrix cannot kill the unique
+  weld vector jointly with the two derivative-jet alternatives.
+
+### 2026-08-12 - Lane-T collision scalar-weld jet gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** The unshared collision parameter is proved to
+  lie outside every supported row-root set. Full-set Lagrange value and
+  derivative weights express `G(t,x_*)` and `G_X(t,x_*)` as four exact
+  Hasse-jet functionals on the unique connected scalar-weld vector.
+- **How it is useful:** The remaining `[4]`, `[1,3]`, and `[2,2]` profiles
+  are now decidable from the printed row-root data and weld vector, without
+  reconstructing an unknown biform or compressed source.
+- **What to do next:** Prove that no realizable row-root/weld packet can
+  satisfy the exact double-zero value equations together with any of the
+  three derivative-jet alternatives, using the factor-degree trichotomy.
+
+### 2026-08-12 - Lane-T collision split-jet dictionary
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no Lane-T closure claimed.
+- **What is being added:** The two coefficients routing an unshared
+  nonreduced exact collision are identified with the zeroth and first
+  parameter jets of the global split-biform derivative `G_X(t,x_*)`.
+  The audit also corrects `F_0=b` to the exact identity
+  `F_0=b+c_0R(z,0)`, without changing any valuation or Smith profile.
+- **How it is useful:** Replaces three anonymous local profiles by three
+  explicit global conditions on `G_X`: nonzero, simple parameter zero, or
+  double parameter zero. These are concrete targets for the retained
+  two-directional split-fiber geometry.
+- **What to do next:** Use the factor-degree trichotomy and clean split
+  fibers to rule out the three `G_X` jet behaviors; do not infer that any
+  line is empty from local contact length alone.
+
+### 2026-08-12 - Lane-T compressed-source separation correction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** REFUTED PREMISE / PROVED REPAIR. No global Lane-T packet or
+  prize claim is refuted.
+- **What is being added:** An exact `F_101` truncated-moment counterexample
+  shows that a compressed minimal recurrence can contain `x_*` outside the
+  original fixed source, in regular coranks one and two. The corank-one jet
+  theorem is repaired to require explicit compressed-recurrence separation;
+  the contact-algebra theorem now retains `[4]`, `[1,3]`, and `[2,2]`.
+- **How it is useful:** Removes an invalid Vandermonde-support inference
+  before promotion into Lane T, while preserving the normalization and
+  Pade-Bezout results. The remaining nonreduced wall is exactly two local
+  coefficients selecting three profiles.
+- **What to do next:** Use global split-biform/source identities to exclude
+  the three contact-algebra profiles; do not infer compressed support from
+  the original source without an additional theorem.
+
+### 2026-08-12 - Lane-T exact nonreduced collision contact algebra
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED / ROUTE CUT. No `LineRay` payment, adjacent endpoint,
+  v4 atom, or leaderboard value is claimed.
+- **What is being added:** Normalization valuations force every unshared
+  nonreduced nonzero jet onto an exact double locator-root collision. A
+  Pade-Bezout contact-module presentation then proves regular corank at most
+  two and reduces the collision to two coefficients selecting Smith type
+  `[4]`, `[1,3]`, or `[2,2]`.
+- **How it is useful:** Replaces a broad higher-corank Lane-T escape by two
+  explicit coefficients of `P_F` modulo the local quadratic factor.
+  Corank-three, corank-four, noncollision, and
+  first-nonzero-third-jet branches are removed.
+- **What to do next:** Compute or exclude `a(0),[z]a` from the global
+  contracted-source or split-biform identities, treating all three profiles.
+
+### 2026-08-12 - Lane-T nonreduced router and exact factor profiles
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED / ROUTE CUT. No `LineRay` payment, adjacent endpoint,
+  v4 atom, or leaderboard value is claimed.
+- **What is being added:** On the unshared nonreduced correction locus,
+  separated regular specialized corank one forces both obstruction jets to
+  vanish; a nonzero-jet survivor routes to compressed-recurrence collision
+  or regular corank at least two. The
+  extremal paired split biform also has constant content, every factor lies
+  exactly on its incidence degree envelope, and its factor degrees have one
+  of three exhaustive odd/huge-even profiles with no residual degree slack.
+- **How it is useful:** Replaces two broad Lane-T escape clauses by a named
+  higher-corank local locus and three exact global factor-degree profiles.
+  The verifier now pins 58 proof-source files, exhausts 25,504 small degree
+  partitions, and includes every new constant in its hostile mutation test.
+- **What to do next:** Attack the regular-corank-at-least-two nonreduced
+  locus through its two-dimensional kernel geometry. For the global biform,
+  apply the retained Hankel/source equations separately to the one-large-odd,
+  two-large-odd, and huge-even profiles; incidence counting is now exhausted.
+
+### 2026-08-11 - Lane-T core-one quadratic Pade/quartic eliminant
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED / ROUTE CUT. No `LineRay` payment, adjacent endpoint,
+  v4 atom, or leaderboard value is claimed.
+- **What is being added:** Extends the existing core-one quadratic pair-floor
+  packet from selected zero-excess fibers to every off-line fiber, proves an
+  exact four-unit residual projective intersection ledger, and identifies
+  its parameter eliminant with the regular Kronecker correction quartic via
+  a normalized contracted-Pade resultant. The follow-up proves perfect
+  supported first jets away from the correction divisor, an exact rank-`e`
+  coefficient-plane evaluation theorem at ordinary rank-one loss, and a
+  degree-three Hankel recurrence for squarefree double-root corrections
+  disjoint from the supported divisor. The latest extension factors the
+  fixed heavy row through the supported/correction divisor and reduces its
+  augmented coefficient-MDS condition to the single exact barycentric
+  remainder `H|R_lambda`. On the complete squarefree supported-disjoint
+  locus the heavy row is proved nonzero, has exact correction-root orders,
+  and has overlap degree exactly `d_A` (at most two scalar coefficients). A
+  squarefree shared third jet is proved to vanish, so the same gate covers
+  every squarefree double-root correction. The current extension identifies
+  the overlap degree exactly as `j=d_A`, reduces an unshared nonreduced
+  correction to two explicit Hasse jets, and proves that every irreducible
+  paired-biform factor splits in both certified directions. One such factor
+  has parameter degree at least `ceil(e/3)` for `d_A=0` or `ceil(3e/7)`
+  for `d_A=1`.
+  It also adds an exact `m=2` route fence showing that
+  Layer-A row surplus plus pointwise saturation alone does not force rank.
+- **How it is useful:** Replaces an anonymous biform residual by the packet's
+  existing correction forms: `S_B^2` in the double-root arm and `S_1S_2` in
+  the two-simple arm. The formerly qualitative heavy-row wall is now the
+  explicit matrix test `B_H lambda=0`; every passing separated candidate
+  produces a genuine correction-coprime projective row rather than the zero
+  row, and the three- and four-scalar overlap cases are excluded. At a shared
+  root symmetric corank-one control forces the cubic quotient to extend with
+  Smith type `[3]`; the order-two branch is eliminated. It also records an explicit symmetric-pencil
+  countermodel showing that marked orders eight and seven require a genuine
+  Hankel/source/split-fiber input to exclude. On the separated double-root
+  locus each correction is one Smith chain of type `[2]`, not `[1,1]`; all
+  but at most three heavy-row roots are prescribed. The exact-deficit ledger
+  removes overlap as an independent branch variable. The factor theorem
+  rules out every bounded-degree common-factor mechanism while retaining a
+  macroscopic two-directionally split component as the live wall. The
+  Layer-A fence keeps
+  the stronger canonical pair-union/Hankel theorem live while retiring a
+  generic dimension-count shortcut.
+- **What to do next:** Decide whether the exact nonzero barycentric remainder
+  can be divisible by `H`, using the canonical pair-union and
+  source geometry essentially. Attack the regular-corank-at-least-two
+  nonreduced locus, the shared nonreduced profile, and the two-simple
+  correction separately. For the global route, combine each of the three
+  exact factor profiles with the Hankel moment source or a
+  base-field-normalized split-pencil census. Independently review the Pade infinity normalization,
+  correction-contact comparison, center-line cancellation, and the scope
+  separation on the Layer-A fence before promotion.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from

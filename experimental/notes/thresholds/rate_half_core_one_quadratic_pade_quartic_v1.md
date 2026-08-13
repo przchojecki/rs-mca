@@ -1,0 +1,3576 @@
+---
+workboard_item: T
+row: symbolic rate-half half-distance core-one quadratic floor profile
+object: LINE
+target_epsilon: 2^-128 context; target-free structural theorem
+agreement: a=N-t=3N/4
+B_star: floor(q/2^128); no payment claimed
+direct_statement: every extremal split-biform fiber has its complete padding factor; the residual projective intersection cycle has degree four; its parameter eliminant is exactly the regular Kronecker correction quartic; ordinary supported rank loss is first-jet transverse; every squarefree double-root correction reduces to a cubic Hankel recurrence whose heavy row is one exact barycentric remainder test; the heavy row is nonzero, has exact correction orders, and has overlap degree exactly d_A; the squarefree shared third jet vanishes by symmetric corank-one control; an unshared nonreduced correction is exactly a two-Hasse-jet gate, normalization forces every nonzero jet onto an exact double locator-root collision, and the Pade contact algebra reduces that collision to two coefficients selecting Smith type [4], [1,3], or [2,2]; automatic separation of the compressed recurrence from the original source is explicitly refuted; every irreducible paired-biform factor splits in both proved directions, the biform has constant content, and its factor degrees obey one of three exact profiles with no domain-degree slack; bare Layer-A row surplus plus saturation does not force rank
+architecture: DIRECT
+partition_digest: N/A
+atom_or_cell: symmetric-Hankel core-one scalar-quadratic u=4 extremal boundary
+quantifier: every odd-characteristic field and profile satisfying the exact pair-floor interface and retained core-one quadratic packet
+projection_and_unit: projective parameter fibers and local intersection multiplicity
+claimed_bound: after one copy of every actual-support and padded common point, exactly four projective intersection units remain; their parameter divisor is S_B^2 in the double-root arm and S_1S_2 in the two-simple arm; outside at most four correction slopes the supported derivative pairing is perfect; on every squarefree double-root locus the heavy-row gate is H|R_lambda, equivalently B_H lambda=0, every passing remainder is nonzero and correction-coprime, and j=d_A in {0,1}; at a squarefree shared root the third jet vanishes and the local Smith type is [3]; an unshared nonreduced root either closes with Smith [4] or is an exact double locator-root collision of regular corank at most two, where a(0) and [z]a for P_F=b+ay modulo the local quadratic select [4], [1,3], or [2,2]; every paired-biform factor Q_j obeys n_j=ceil((3p-3+d_A)m_j/(3e)), with exactly one of three odd/huge-even profiles and constant content; a separate exact m=2 fixture has Layer-A rank 20 rather than 24 despite 26 saturated incidence rows
+status: PROVED
+impact: ROUTE_CUT
+falsifier: a missing positive-excess padding factor, residual intersection degree other than four, wrong Pade leading-coefficient exponent, a residual parameter root outside the correction quartic, a nonzero jet on the separated regular-corank-one nonreduced locus, a collision profile outside [4]/[1,3]/[2,2], nonconstant biform content, factor-degree slack, or a feasible factor profile outside the printed trichotomy
+replay: python3 experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py --check
+---
+
+# Rate-half core-one quadratic Pade/quartic eliminant
+
+## 1. Relation to the Lane-T frontier
+
+The companion pair-floor packet reduces the extremal core-one quadratic
+boundary to two coprime biforms
+
+```text
+Q(t,X),       G(t,X)
+```
+
+with bidegrees
+
+```text
+(e,3e-2),       (e-2,p-3),       2p=3e-1.          (1)
+```
+
+It previously supplied full split fibers only at zero excess and left the
+regular Kronecker quartic `E_4` unrelated to the biform intersection
+ledger. This note closes both structural gaps. It is a profile-level route
+cut, not a `LineRay` payment or an adjacent-row theorem.
+
+The proof source is pinned to
+`AllenGrahamHart/rs-mca-prize-dag@57c64d1ce26d50f604d9c26bcafe2ab9911a60ac`.
+The verifier records fifty-eight statement/proof SHA-256 values and can check
+them against a local source checkout with `--source-root`.
+
+## 2. Every off-line fiber, including positive excess
+
+For an off-line supported slope `delta`, let
+
+```text
+I_delta=S_delta intersect U_0,
+P_delta=S_delta\U,
+A_delta=product_(x in I_delta)(X-x),
+B_delta=product_(x in P_delta)(X-x).                (2)
+```
+
+Write `a_delta` for its union excess and `r_delta` for its padded-heavy
+degree. The center difference is a nonzero RS word supported on a set of
+size `d_min+a_delta`. Factoring its forced `k-1-a_delta` zeros leaves a
+nonzero polynomial `H_delta` with `deg H_delta<=a_delta`. The exact fiber
+factorizations are
+
+```text
+Q(delta,X)=chi_delta A_delta B_delta R_delta,
+G(delta,X)=zeta_delta A_delta H_delta R_delta.      (3)
+```
+
+At `x in P_delta`, both endpoint centers equal the received word, while
+the selected center has nonzero error. Hence `H_delta(x)!=0`, and therefore
+
+```text
+gcd(B_delta,H_delta)=1,
+gcd_X(Q(delta,-),G(delta,-))=A_delta R_delta.       (4)
+```
+
+Thus all positive-excess padding is mandatory in the split-biform
+intersection. At every actual-support root the first-jet difference remains
+
+```text
+G_t/Q_t-G_X/Q_X
+ =(x-s_0)v_xL_U0'(x)e_delta(x)/Lambda(delta)!=0,    (5)
+```
+
+so every actual-support intersection is transverse.
+
+## 3. Exact four-unit residual
+
+The two curves are coprime. Their projective intersection number is
+
+```text
+I=(3e-2)(e-2)+e(3e-7)/2
+  =(9e^2-23e+8)/2.                                 (6)
+```
+
+There are `3e` off-line slopes, and on slope `delta` the mandatory common
+polynomial `A_delta R_delta` has degree `n-a_delta`, where
+`n=(3e-7)/2`. Since `sum_delta a_delta=e`, the mandatory first copies have
+total degree
+
+```text
+sum_delta(n-a_delta)=3en-e=I-4.                    (7)
+```
+
+After subtracting one copy of every such actual-support and padding point,
+the residual effective projective intersection cycle `Z_4` therefore has
+
+```text
+deg Z_4=4.                                         (8)
+```
+
+This count is projective and does not lose a parameter- or domain-infinity
+fiber.
+
+## 4. Contracted Pade numerator
+
+Let
+
+```text
+L(X)=L_U0(X),       d=3e-2,       a(t)=lc_X Q(t,X),
+Phi_t(h)=sum_(x in U_0)omega_x(t)h(x).              (9)
+```
+
+Define the canonical second-kind numerator and its companion polynomial by
+
+```text
+B(t,X)=sum_x omega_x(t)L(X)/(X-x),
+P_F(t,X)=sum_x omega_x(t)[Q(t,X)-Q(t,x)]/(X-x).    (10)
+```
+
+Lagrange interpolation of `G` gives the exact Pade syzygy
+
+```text
+QB-Lambda G=LP_F.                                  (11)
+```
+
+If the regular Kronecker determinant is normalized by
+
+```text
+adj M_1=D_1qq^T,       deg D_1=e-2,                (12)
+```
+
+then the formal fixed-degree resultant is
+
+```text
+Res_X^(d,d-1)(Q,P_F)=c a^(2d+1)D_1.                (13)
+```
+
+For a generic separable fiber, represent the first `d` moments on the roots
+`r_i` of `Q` with weights `theta_i`. Then
+
+```text
+P_F(r_i)=theta_iQ_X(r_i),
+Vand(r_1,...,r_d)^2 product_i theta_i=D_1a^2,       (14)
+```
+
+and the root-product definition of the resultant proves `(13)`. Polynomial
+continuation covers inseparable fibers and degree drops.
+
+The exponent `2d+1` is essential. It is the complete domain-infinity
+contact of the core-stripped Forney numerator. Removing it identifies
+
+```text
+div(D_1)=pi_*div(s_F).                              (15)
+```
+
+The raw resultant degree is `2de-e+d`; subtracting `e(2d+1)` leaves
+`d-2e=e-2`, exactly the degrees on both sides of `(15)`.
+
+## 5. The regular quartic is the correction quartic
+
+The proved contact divisors are
+
+```text
+double root: div(s_F)=R_*+2B,
+two simple:  div(s_F)=R_1+R_2+P_1+P_2,             (16)
+```
+
+where `deg B=2`, `deg P_1=1`, and `deg P_2=3`. Let `S_B,S_1,S_2` cut out
+their parameter pushforwards. Comparing `(15)` with the supported
+rank-loss factorization of `D_1` gives
+
+```text
+double root: D_1=c g_*S_B^2,       E_4=c' S_B^2,
+
+two simple:  D_1=c G_1G_2S_1S_2,  E_4=c' S_1S_2.  (17)
+```
+
+Cancellation in `(17)` is polynomial cancellation and does not require
+the correction and supported factors to be disjoint.
+
+## 6. Exact parameter eliminant
+
+Take the `X`-resultant of `(11)`. The formal leading-coefficient exponent is
+
+```text
+|U_0|+d-1-(p-3)=2d+1,                              (18)
+```
+
+so `(13)` cancels it completely and yields
+
+```text
+Lambda^d Res_X(Q,G)=c D_1 Res_X(Q,L).              (19)
+```
+
+The row roots of `Q` and the exact supported rank-loss factors of `D_1`
+cancel every center-line factor. At an off-line slope they combine as
+
+```text
+(n-a_delta-r_delta)+r_delta=n-a_delta.             (20)
+```
+
+Therefore
+
+```text
+Res_X(Q,G)
+ =c E_4 product_(delta off line)
+          ell_delta^(n-a_delta),                   (21)
+
+pi_*Z_4=div(E_4).                                  (22)
+```
+
+Equations `(17),(22)` locate the four units exactly in parameter space:
+
+```text
+double root: pi_*Z_4=2div(S_B),
+two simple:  pi_*Z_4=div(S_1)+div(S_2).             (23)
+```
+
+No additional unsupported or infinity parameter fiber remains.
+
+## 7. Marked orders and the remaining wall
+
+The rank-one marked determinant identities sharpen to
+
+```text
+double root: g_*^3S_B^8,
+two simple:  G_1^5G_2S_1^7S_2,
+             G_1G_2^5S_1S_2^7.                    (24)
+```
+
+Orders eight and seven are not abstract symmetric-pencil contradictions.
+A standard symmetric singular Kronecker block with kernel coordinate `z^3`,
+direct-summed with `[[0,z],[z,1]]` or `[z]`, realizes exactly those marked
+orders. Hence the next exclusion must use a genuinely prize-specific input:
+the Hankel anti-diagonal equations, the three-class contracted source,
+simultaneous split fibers, or the received-word/Forney identities.
+
+## 8. Supported first jets and coefficient-plane rank
+
+Let `gamma` be a supported slope with residual rank loss `c_gamma>0`.
+Away from `S_B` in the double-root arm or `S_1S_2` in the two-simple arm,
+the exact regular factor gives
+
+```text
+ord_gamma(D_1)=c_gamma.                            (25)
+```
+
+The specialized symmetric Hankel kernel is
+
+```text
+ker M_gamma=Q_min F[X]_(<=c_gamma).                (26)
+```
+
+All positive local Smith exponents are therefore one. The derivative
+moment form
+
+```text
+B_gamma(A,B)=dot Phi(Q_min^2AB)                    (27)
+```
+
+has rank `c_gamma` and radical exactly `span{R_gamma}`. There are at most
+two exceptional projective slopes in the double-root arm and at most four
+in the two-simple arm.
+
+This interacts with the common coefficient plane
+`W_q=span(q_0,...,q_e)`. Since `W_q` is totally isotropic for every endpoint
+combination, its image in the nondegenerate quotient of `(27)` is totally
+isotropic. Hence
+
+```text
+dim((W_q intersect ker M_gamma)/span(Q_gamma))
+ <=floor(c_gamma/2).                               (28)
+```
+
+If `E_gamma=(Q_i(x))` is evaluated on the exact contracted actual support,
+
+```text
+e-floor(c_gamma/2)<=rank E_gamma<=e.               (29)
+```
+
+In particular an ordinary rank-one loss slope has exact rank `e`; the
+primitive locator is the only coefficient-plane vector vanishing on its
+whole actual support. Rank two has rank `e-1` or `e`.
+
+## 9. Separated double-root correction: cubic residual
+
+Assume in the double-root arm that `S_B` is squarefree and
+`gcd(g_*,S_B)=1`. Divide the fixed heavy row:
+
+```text
+U(t,X)=[Q(t,X)-Q(t,x_*)]/(X-x_*).                  (30)
+```
+
+The first quotient moment is `P_F(t,x_*)`. Supported kernel divisibility,
+the contact divisor `R_*+2B`, and the higher vertical contact `R_*+3B`
+give
+
+```text
+P_F(t,x_*)=D_1(t)C_0(t),
+M(t)U(t)=D_1(t)C(t),       deg_t C<=3,             (31)
+
+C_(i+1)=x_*C_i-kappa S_Bh_i.                      (32)
+```
+
+Thus each of the two separated correction roots has one positive regular
+Smith invariant of exponent two: type `[2]`, not `[1,1]`. This is a true
+Hankel/Forney reduction beyond the abstract marked-order fence. It does not
+exclude the resulting cubic recurrence. Nonreduced `S_B` and roots shared
+with `g_*` remain outside `(30)--(32)`.
+
+## 10. Heavy-row center overlap
+
+Still on the separated double-root locus, put
+
+```text
+J=gcd(Lambda,g_*S_B^2),       j=deg J<=3,
+Lambda=J Lambda_0,            g_*S_B^2=JH.         (33)
+```
+
+The cubic bracket in `(31),(32)` and coprimality of `Lambda_0,H` give a
+form `T_j` of degree at most `j` such that
+
+```text
+a_QS_BB(t,x_*)-a_D L_U0(x_*)C_0(t)=Lambda_0T_j,
+G(t,x_*)=H(t)T_j(t).                               (34)
+```
+
+Thus all but at most three roots of the fixed heavy row are prescribed.
+If `J=1`, then `T_j` is a scalar, possibly zero. Writing
+
+```text
+G(t,X)=sum_(r=0)^(e-2)g_r(X)t^r,       deg_X g_r<=n,
+```
+
+shows that evaluation at `x_*` augments the existing coefficient-RS gate by
+only the `j+1<=4` scalar coefficients of `T_j`. This is an exact adapter to
+the split-biform boundary, not a proof that the augmented matrix has full
+rank.
+
+## 11. Layer-A saturation-count route fence
+
+A separate exact family rules out a tempting generic-rank shortcut. Over an
+odd field containing `mu_32`, let `W` be any thirteen points of `mu_16`, let
+the nine slopes be `mu_8 union {eta}` with `eta notin mu_8`, and set
+
+```text
+Q(Z,X)=Z^2-X^4.                                    (35)
+```
+
+For every `x in W`, the two incident slopes are `+x^2,-x^2`. Hence the
+Layer-A evaluation matrix at `m=2,rho=7,T=9,a=13` has 26 saturated
+incidence rows and 24 columns. Nevertheless,
+
+```text
+ker E={A(X)(Z^2-X^4): deg A<=3},
+rank E=20,       nullity E=4.                      (36)
+```
+
+Indeed, writing a kernel biform as
+`a_2(X)Z^2+a_1(X)Z+a_0(X)`, evaluation at both signs on thirteen points
+forces `a_1=0` and `a_0=-X^4a_2`, then `deg a_2<=3`. Thus positive row
+surplus `3m^2-5m=2` plus pointwise saturation does not force full rank.
+This does not realize the canonical pair-union supports, complete all nine
+global blocks, or impose the endpoint Hankel/source constraints. Those extra
+hypotheses remain available and must be used essentially by any positive
+Layer-A theorem.
+
+## 12. The heavy row is one barycentric remainder
+
+Let `X` be the classified row set, with `x_* notin X`, and let `P_x(t)` be
+the monic row-root polynomial.  If the connected scalar weld has its unique
+projective full-support kernel vector `lambda`, define
+
+```text
+L_X(Y)=product_(x in X)(Y-x),
+b_x=L_X(x_*)/((x_*-x)L_X'(x)),
+R_lambda(t)=sum_(x in X)b_x lambda_x P_x(t).       (37)
+```
+
+For the center-overlap factorization `(33)`, the augmented heavy-row gate is
+exactly
+
+```text
+H divides R_lambda.                                (38)
+```
+
+Equivalently, in a chart whose infinity is not a root of `H`, form the
+`(m-j) x |X|` matrix `B_H` whose `x`-column is the coefficient vector of
+`b_x rem_H(P_x)`.  Then the staged exclusion ledger is
+
+```text
+rank W=|X|                         => excluded;
+rank W=|X|-1 and Krow lambda!=0    => excluded;
+Krow lambda=0 and B_H lambda!=0   => excluded;
+B_H lambda=0                      => R_lambda=H T_j,
+                                      deg T_j<=j.   (39)
+```
+
+Thus the formerly qualitative augmented coefficient-MDS condition is one
+explicit univariate remainder.  No generic-rank assumption is used.
+
+## 13. Every separated heavy row is nonzero
+
+Suppose that `S_B` is squarefree and `gcd(g_*,S_B)=1`. There is no
+restriction on correction-center overlap. Then
+
+```text
+G(t,x_*)!=0,
+R_lambda(t)=G(t,x_*)!=0                             (40)
+```
+
+for every passing connected-weld candidate. Indeed, a zero row would make
+`X-x_*` a component of `G`. At either root of `S_B`, the row polynomial
+`Q(t,x_*)` has order three. If that root is not off-line supported, including
+when it is a center, `(21)` gives exact resultant order two, a contradiction.
+If it is off-line supported, the exact
+all-excess fiber factorization puts `x_*` in its actual-support or padding
+factor.  The first case contradicts first-jet transversality; the second
+forces `g_*` to vanish there, contrary to `gcd(g_*,S_B)=1`.  Hence the
+separated heavy row is a genuine projective row for every overlap degree
+`j=0,1,2,3`.
+
+## 14. Exact correction jets and the overlap cap
+
+At a root `tau` of `S_B`, put `c_tau=ord_tau Lambda`, which is zero or one.
+On the normalized curve, `X-x_*` has order three and the Forney section has
+order two. The Pade syzygy subtracts one exactly when `tau` is a center,
+while fixed-row substitution changes the value only from order three onward.
+Consequently
+
+```text
+ord_tau G(t,x_*)=2-c_tau=ord_tau H,
+T_j(tau)!=0,
+gcd(T_j,S_B)=1.                                    (41)
+```
+
+The full three-center source identity sharpens the overlap count. Every
+assigned-center error support is contained in
+`supp(b_0,b_1)=U=S_alpha union S_beta`, while `x_*` lies outside `U`. Thus a
+correction root at any center would make `x_*` padded there, putting that
+center in both `g_*` and `S_B`, contrary to separatedness. The exact center
+deficit ledger allows at most one center root of `g_*`. Hence
+
+```text
+gcd(S_B,Lambda)=1,
+deg gcd(g_*,Lambda)<=1,
+j=deg gcd(Lambda,g_*S_B^2)<=1.                     (42)
+```
+
+Thus the exact nonzero remainder has at most two scalar coefficients, and
+none of its free factors can be a correction root.
+
+## 15. A squarefree shared root is one third-jet gate
+
+Allow a simple common root `tau` of `g_*` and `S_B`, and let `z` be its base
+uniformizer. Then `Q(t,x_*)` has order four and `D_1` has order three. The
+correction branch always gives
+
+```text
+z^2 | F_0,       kappa_tau=(F_0/z^2) mod z.         (43)
+```
+
+The supported and correction contacts may be distinct normalized branches,
+so their orders are not added without this extra jet. The exact recurrence
+instead gives
+
+```text
+(F_i/z^2) mod z=x_*^i kappa_tau,
+D_1|F_i for every i       iff kappa_tau=0.          (44)
+```
+
+The nonvanishing branch is in fact impossible. At a shared supported slope,
+the specialized regular symmetric Hankel block has corank one and determinant
+order three. A symmetric Schur-complement lemma forces `u^TMu` to order at
+least three, while its order-two coefficient is
+`kappa_tau U_tau(x_*)`. The padded root is simple, so `U_tau(x_*)!=0` and
+
+```text
+kappa_tau=0,
+D_1|F_i for every i,
+Smith_tau(D_1)=[3].                                 (45)
+```
+
+Consequently the cubic quotient, center-overlap factorization, exact
+correction orders, and barycentric remainder gate extend to every
+squarefree `S_B`, whether or not it shares roots with `g_*`. A correction
+center is necessarily already the unique possible padded-heavy center, so
+the same cap `j<=1` holds. Every squarefree double-root survivor is therefore
+one nonzero constant/linear remainder case.
+
+## 16. Nonreduced correction is exactly two Hasse jets
+
+Suppose instead that `S_B=c_S ell_tau^2` and `g_*(tau)!=0`. With
+`z=ell_tau`, the heavy row and regular determinant have exact orders
+
+```text
+ord_tau Q(t,x_*)=6,       ord_tau D_1=4.           (46)
+```
+
+Correction contact forces `z^2|F_0`, but no addition of orders from
+possibly distinct normalized branches is made. Define
+
+```text
+kappa_2=[z^2]F_0,       kappa_3=[z^3]F_0.          (47)
+```
+
+The exact moment recurrence starts its error in order six, so
+
+```text
+[z^s]F_i=x_*^i kappa_s       for s=2,3,            (48)
+D_1|F_i for every i
+       iff kappa_2=kappa_3=0.                       (49)
+```
+
+On the vanishing branch the cubic quotient extends and the regular Smith
+type is `[4]`. This is a two-scalar decision gate, not a proof that either
+jet vanishes. A nonreduced root also shared with `g_*` has a different
+determinant order and is not included.
+
+## 17. Exact deficit overlap and a macroscopic split factor
+
+The full source partition identifies the center roots of `g_*` exactly with
+the deficit indicators `r_gamma`. A correction center is already one of
+those padded-heavy centers. Therefore, without a supported/correction
+disjointness hypothesis,
+
+```text
+J=gcd(Lambda,g_*S_B^2)=gcd(Lambda,g_*),
+j=deg J=d_A.                                        (50)
+```
+
+Thus `d_A=0` gives a nonzero scalar remainder quotient, while `d_A=1`
+gives a nonzero quotient of degree at most one. The overlap degree is not an
+independent branch parameter.
+
+There is also a global factor restriction unavailable from bare Layer-A
+counting. Put
+
+```text
+M=e-2,       N=p-3,       R=3p-3+d_A,       T=3e,
+G=c(X) product_j Q_j,       (m_j,n_j)=bideg Q_j.    (51)
+```
+
+Every classified row has exactly `M` distinct roots among the `T` supported
+slopes. Counting each factor's grid zeros in both directions closes with
+equality and gives
+
+```text
+T n_j>=R m_j.                                      (52)
+```
+
+Equality in the total row ledger forces every `Q_j(-,x)` to split
+completely and disjointly on every classified row. Exact degree on each of
+the at least `e+6+d_A` clean parameter fibers likewise makes every
+`Q_j(delta,-)` split over `U_0` there.
+
+Finally,
+
+```text
+R/T=3/2-(9-2d_A)/(6e),       N=(3M-1)/2.           (53)
+```
+
+If all factor degrees were below `3e/(9-2d_A)`, integer rounding in `(52)`
+would give `sum n_j>=N+1`. Hence one irreducible factor satisfies
+
+```text
+d_A=0: m_j>=ceil(e/3)=61083979321,
+d_A=1: m_j>=ceil(3e/7)=78536544842                 (54)
+```
+
+on the official row. The Layer-A low-degree-factor mechanism is therefore
+impossible here. The remaining object is a macroscopic two-directionally
+split factor, not an arbitrary high-degree component.
+
+## 18. The separated regular-corank-one profile has no free jet
+
+Retain the unshared nonreduced correction of Section 16 and let `N(z)` be
+the regular symmetric block after removing the permanent primitive kernel.
+If
+
+```text
+corank N(0)=1,       P_tau(x_*)!=0,                (55)
+```
+
+then the full specialized Hankel kernel has dimension two and its compressed
+minimal recurrence `P_tau` has degree `d-1`. The explicit separation gives
+
+```text
+Q(tau,X)=c(X-x_*)P_tau(X),
+U_tau(x_*)=cP_tau(x_*)!=0.                         (56)
+```
+
+For a symmetric corank-one block with determinant order four, the Schur
+complement has order four. Therefore
+
+```text
+N(z)v(z) in z^2 F[[z]]^d
+       implies v(z)^T N(z)v(z) in z^4 F[[z]].      (57)
+```
+
+The order-two and order-three coefficients of the latter self-pairing are
+respectively
+
+```text
+kappa_2 U_tau(x_*),       kappa_3 U_tau(x_*).      (58)
+```
+
+Equations `(56)--(58)` force
+
+```text
+kappa_2=kappa_3=0.                                 (59)
+```
+
+Thus the cubic quotient extends and the regular Smith type is `[4]` on the
+separated corank-one locus. A corank-one nonzero-jet survivor must instead
+satisfy `P_tau(x_*)=0`. This separation does not follow from
+`x_* notin U_0`: Section 21 records an exact truncated-moment counterexample.
+
+## 19. Constant content and the exact factor-degree trichotomy
+
+The content `c(X)` in `(51)` is constant. Indeed, a content root belongs to
+`U_0` because any clean parameter fiber is squarefree and split there. But
+every `y in U_0` has the nonzero dual-MDS source row
+
+```text
+G(t,y)=L_U0'(y) omega_y(t)Q(t,y)/Lambda_A(t),       (60)
+```
+
+contradicting a zero content row. Hence
+
+```text
+sum_j m_j=M,       sum_j n_j=N.                    (61)
+```
+
+Put `q=9-2d_A`. For each factor define
+
+```text
+n_j^min=ceil(Rm_j/T),       a_j=n_j-n_j^min>=0.
+```
+
+Classify an odd `m_j` as small when `qm_j<3e` and large otherwise;
+classify an even `m_j` as ordinary when `qm_j<6e` and huge otherwise.
+The exact rounding values are
+
+```text
+2n_j^min-3m_j = 1,-1,0,-2                         (62)
+```
+
+in those four classes. If `S,L,H` count the small-odd, large-odd, and
+huge-even factors and `E=sum_j a_j`, `(53)` and `(61)` give
+
+```text
+S-L-2H+2E=-1.                                     (63)
+```
+
+Degree alone gives `L<=2`, `H<=1`, and `H=1 => L=0`. Equation `(63)`
+then forces `E=0` and exactly one of
+
+```text
+(S,L,H)=(0,1,0),       (1,2,0),       (1,0,1).    (64)
+```
+
+All remaining factors are ordinary even, and every factor lies exactly on
+the incidence lower envelope
+
+```text
+n_j=ceil(Rm_j/T).                                  (65)
+```
+
+On the official row, the least parity-compatible large-odd degrees are
+`61083979321` for `d_A=0` and `78536544843` for `d_A=1`; the least huge-even
+degrees are `122167958642` and `157073089684`. This trichotomy exhausts the
+degree ledger but does not exclude any of its three profiles.
+
+## 20. Normalization forces every nonzero jet onto collision
+
+Retain the unshared nonreduced correction. On the normalization, write
+
+```text
+B=sum_b m_b b,       e_b=ord_b(t-tau),
+s=ord_tau F_0.                                      (66)
+```
+
+The exact vertical and contact divisors are `R_*+3B` and `R_*+2B`.
+Because `g_*(tau)!=0`, no point of `R_*` lies above `tau`. Substituting the
+fixed value `x_*` into `P_F` changes its branch value only by a multiple of
+`X-x_*`, of order `3m_b`, while `P_F` itself has exact order `2m_b`.
+Therefore
+
+```text
+e_b s=2m_b.                                        (67)
+```
+
+Since `deg B=2` and `s>=2`, exactly three patterns remain:
+
+```text
+B=2b, e_b=1:                  s=4, Smith [4];
+B=2b, e_b=2:                  s=2;
+B=b_1+b_2, e_(b_1)=e_(b_2)=1: s=2.                (68)
+```
+
+In both `s=2` cases, `kappa_2!=0` and the specialized locator has `x_*`
+as a root of exact multiplicity two. Thus a first-nonzero third jet and
+every noncollision nonzero-jet profile are impossible.
+
+## 21. The exact collision is two Pade coefficients
+
+The determinant identity also has a local-module refinement. If
+
+```text
+K_Q(X,Z)=[Q(X)-Q(Z)]/(X-Z),
+H=(Phi(X^(i+j)))_(0<=i,j<d),                       (69)
+```
+
+and `T_Q` is the coefficient matrix of `K_Q`, then
+
+```text
+Bez(Q,P_F)=T_Q H T_Q^T,
+det T_Q=+-lc_X(Q)^d.                               (70)
+```
+
+Hence, on a finite degree-preserving chart, the regular Hankel block has
+the same complete Smith invariants as the contact algebra
+
+```text
+F[[z]][X]/(Q,P_F).                                 (71)
+```
+
+In odd residue characteristic, at the exact double collision put
+`y=X-x_*`, isolate the quadratic Hensel
+factor, and reduce `P_F` modulo it:
+
+```text
+q=y^2+c_1y+c_0,       P_F=b+ay mod q,
+ord_z(b,c_0,c_1,a)=(2,6,>=3,>=0).                 (72)
+```
+
+More precisely, if `P_F=b+ay+qR`, then
+
+```text
+F_0=P_F(t,x_*)=b+c_0R(z,0).
+```
+
+Thus `F_0` is not literally the remainder coefficient `b`; their
+difference starts in order six, so `ord_z F_0=2` still gives
+`ord_z b=2`.
+
+Multiplication by `b+ay` has the two-by-two presentation
+
+```text
+[ b       -a c_0 ]
+[ a        b-a c_1].                               (73)
+```
+
+Its determinant has exact order four. The regular corank is at most two,
+and its complete positive Smith profile is
+
+```text
+a(0)!=0:                  corank one, [4],
+a(0)=0, [z]a!=0:          corank two, [1,3],
+a(0)=0, [z]a=0:           corank two, [2,2].       (74)
+```
+
+Thus the abstract corank-three and corank-four collision profiles do not
+occur. The nonreduced Lane-T escape is two explicit Pade coefficients, not
+an unrestricted higher-corank singularity. This local collision
+classification makes no characteristic-two claim.
+
+The unit-`a` profile cannot be discarded by original-source separation.
+Over `F_101` at `(e,p,d,n_0)=(5,7,13,19)`, explicit all-nonzero weights on
+`U_0={1,...,19}` have the same first 27 moments as all-nonzero weights on
+disjoint compressed supports of sizes 12 and 11 containing `x_*=30`.
+The corresponding Hankel matrices have regular coranks one and two, and
+their degree-13 kernel polynomials have `x_*` as an exact double root. This
+refutes the truncated Vandermonde inference only; it is not a global
+split-biform counterexample.
+
+## 22. The collision coefficients are global split-biform jets
+
+The two coefficients in `(74)` have an exact global interpretation. Define
+
+```text
+U(t,X)=[Q(t,X)-Q(t,x_*)]/(X-x_*),
+W(t,X)=[U(t,X)-U(t,x_*)]/(X-x_*).                 (75)
+```
+
+At an exact double collision,
+
+```text
+W_tau=Q(tau,X)/(X-x_*)^2,       W_tau(x_*)!=0.    (76)
+```
+
+Put
+
+```text
+A(t)=Phi_t(W(t,X))=P_(F,X)(t,x_*),
+E_i(t)=Phi_t(X^iW(t,X)),
+lambda_0=a(0),       lambda_1=[z]a.               (77)
+```
+
+From `P_F=b+ay+qR`, `ord c_1>=3`, and `ord c_0=6`,
+
+```text
+A=a mod z^3.                                      (78)
+```
+
+The identity
+
+```text
+Phi_t(X^iU)=Q_X(t,x_*)h_i+E_(i+1)-x_*E_i          (79)
+```
+
+together with the forced order two on the left and
+`ord_z Q_X(t,x_*)>=3` propagates the first two coefficients:
+
+```text
+[z^s]E_i=x_*^i lambda_s       (s=0,1).            (80)
+```
+
+If `lambda_0=0`, then `W_tau` lies in the specialized Hankel kernel and
+the differentiated self-pairing is
+
+```text
+[z]Phi_t(W(t,X)^2)=lambda_1W_tau(x_*).             (81)
+```
+
+Differentiate the exact Pade syzygy `(11)` in `X` and evaluate at `x_*`:
+
+```text
+Q_X B+Q B_X-Lambda G_X=L'F_0+LA.                 (82)
+```
+
+The heavy point lies outside `U_0`, and an unshared correction cannot be
+one of the three assigned centers: at such a center it would be a padded
+locator root and hence a root of `g_*`. Therefore
+`Lambda(tau)L(x_*)!=0`. Taking the constant and first parameter
+coefficients in `(82)` gives
+
+```text
+lambda_0=-Lambda(tau)G_X(tau,x_*)/L(x_*),
+
+lambda_0=0
+  => lambda_1=-Lambda(tau)[z]G_X(t,x_*)/L(x_*).   (83)
+```
+
+Consequently the complete local contact-algebra router is the following
+global split-biform jet dictionary:
+
+```text
+G_X(tau,x_*)!=0:                         [4];
+G_X(tau,x_*)=0, [z]G_X(t,x_*)!=0:        [1,3];
+G_X(tau,x_*)=[z]G_X(t,x_*)=0:            [2,2].   (84)
+```
+
+This identifies the exact remaining targets. It does not prove that any
+line of `(84)` is empty.
+
+## 23. The split jets are explicit scalar-weld functionals
+
+The correction parameter in Section 22 is outside the supported slope set.
+Indeed, it is not an assigned center by `Lambda(tau)!=0`. If it were an
+off-line supported slope, the exact vertical-fiber gcd
+
+```text
+gcd_X(Q(tau,X),G(tau,X))=A_tau(X)R_tau(X)          (85)
+```
+
+would make the common root `x_* notin U_0` padded-heavy, contrary to
+`g_*(tau)!=0`. Thus every classified row-root polynomial below is nonzero
+at `tau`.
+
+Write the classified rows as
+
+```text
+G(t,x)=lambda_xP_x(t)       (x in X),              (86)
+```
+
+where `lambda` is the unique projective full-support vector allowed by the
+connected scalar weld. Put
+
+```text
+L_X(Y)=product_(x in X)(Y-x),
+b_x=L_X(x_*)/[(x_*-x)L_X'(x)],
+d_x=b_x[L_X'(x_*)/L_X(x_*)-1/(x_*-x)].            (87)
+```
+
+Coefficientwise Lagrange interpolation and its `X`-derivative give
+
+```text
+R(t):=G(t,x_*)
+     =sum_x b_x lambda_xP_x(t),
+
+J(t):=G_X(t,x_*)
+     =sum_x d_x lambda_xP_x(t).                   (88)
+```
+
+For Hasse coefficients at `tau`, define
+
+```text
+R_s=sum_x b_x lambda_xP_x^[s](tau),
+J_s=sum_x d_x lambda_xP_x^[s](tau).               (89)
+```
+
+The Pade syzygy has terms of orders six and two at the heavy point, so
+`ord_tau R=2`. The entire retained collision is therefore the finite gate
+
+```text
+R_0=R_1=0,       R_2!=0,
+
+J_0!=0:                    [4];
+J_0=0, J_1!=0:             [1,3];
+J_0=J_1=0:                 [2,2].                 (90)
+```
+
+All summands in the zeroth equations are individually nonzero before the
+forced cancellations. Equation `(90)` is an explicit test on the realized
+row-root sets and weld vector; it is not yet a nonvanishing theorem.
+
+## 24. The nonreduced heavy row has a center-adjusted residual
+
+The degree-`e-6` squarefree form `g_*` contains exactly `d_A` roots at
+assigned padded-heavy centers. Put
+
+```text
+J_*=gcd(Lambda,g_*),       deg J_*=d_A,
+g_off=g_*/J_*.
+```
+
+The remaining `e-6-d_A` roots are the supported off-line slopes at which
+`x_*` is padded-heavy. The all-excess fiber factorization therefore gives
+
+```text
+g_off(t) divides G(t,x_*).                          (91)
+```
+
+The split biform is bihomogeneous of parameter degree `e-2`. Its nonzero
+specialization at the projective row `x_*` therefore has exact degree `e-2`,
+so the quotient in `(91)` has exact degree `4+d_A`. Section 23 gives exact
+order two at the unsupported correction, while `g_off(tau)!=0` and
+`S_B=c_S(t-tau)^2`. Consequently
+
+```text
+G(t,x_*)=g_off(t)S_B(t)T_(2+d_A)(t),
+T_(2+d_A)!=0,       deg T_(2+d_A)=2+d_A,
+T_(2+d_A)(tau)!=0.                                  (92)
+```
+
+Equivalently, for the value weights and unique weld vector in Section 23,
+
+```text
+g_off S_B divides sum_x b_x lambda_xP_x(t).         (93)
+```
+
+The modulus in `(93)` has degree `e-4-d_A`, and the quotient has `3+d_A`
+coefficients. Thus `(93)` is one explicit polynomial-remainder matrix on
+the weld vector, with the additional open condition that its residual
+quotient be nonzero at `tau`. No multiplicity above one is assumed at the
+supported padded fibers. In particular the residual is quadratic for
+`d_A=0` and cubic for `d_A=1`.
+
+## 25. Every divided-row moment has a quintic quotient
+
+Let
+
+```text
+U(t,X)=[Q(t,X)-Q(t,x_*)]/(X-x_*),
+F_i(t)=Phi_t(X^iU(t,X)).                            (94)
+```
+
+Substitute `(92)` and `Q(t,x_*)=a_Qg_*S_B^3` into the Pade syzygy at
+`x_*`. Since `L_U0(x_*)!=0`, this forces
+
+```text
+F_0=g_*S_BC_0,       deg C_0<=5.                  (95)
+```
+
+The kernel recurrence propagates the same common divisor through every
+moment:
+
+```text
+F_i=g_*S_BC_i,
+C_(i+1)=x_*C_i-a_QS_B^2h_i,
+deg C_i<=5.                                       (96)
+```
+
+Equivalently, for the divided-row coefficient vector `u`,
+
+```text
+M(t)u(t)=g_*(t)S_B(t)C(t),       deg_t C<=5.      (97)
+```
+
+Writing `Lambda=J_*Lambda_0` and cancelling `g_*S_B` in the Pade syzygy
+gives the exact initial relation
+
+```text
+a_QS_B^2B(t,x_*)-Lambda_0(t)T_(2+d_A)(t)
+ =L_U0(x_*)C_0(t).                                (98)
+```
+
+At the correction,
+
+```text
+C_0(tau)=-Lambda_0(tau)T_(2+d_A)(tau)/L_U0(x_*)!=0,
+C_i(tau)=x_*^iC_0(tau).                           (99)
+```
+
+Thus the nonreduced collision has a six-coefficient quotient vector with
+a nonzero geometric correction value. This is weaker than the squarefree
+`D_1`-divisible cubic vector: only `g_*S_B`, not `g_*S_B^2`, is asserted to
+divide the moments.
+
+## 26. The center-adjusted exceptional-root budget compresses the profiles
+
+Retain the exact factorization and degree notation
+
+```text
+G(t,X)=c product_j Q_j(t,X),       bideg Q_j=(m_j,n_j),
+M=e-2,       R=3p-3+d_A,       T=3e,
+q=9-2d_A.                                         (100)
+```
+
+For a factor `Q_j`, let `s_j` be the number of distinct roots of
+`Q_j(t,x_*)` in the `T` supported slopes, and put
+
+```text
+sigma_j=Tn_j-Rm_j,       u_j=m_j-s_j.             (101)
+```
+
+The classified grid already contains exactly `Rm_j` distinct zeros of
+`Q_j`. Each of the `s_j` roots adds a zero in the same parameter fiber on
+the new row `x_*`, while that fiber has at most `n_j` row roots. Hence
+
+```text
+s_j<=sigma_j,       u_j>=m_j-sigma_j.             (102)
+```
+
+Every factor specialization is a nonzero binary form of exact degree
+`m_j`. Moreover, the `e-6-d_A` distinct roots of `g_off` in `(92)` are all
+supported. Summing over factors gives the global center-adjusted budget
+
+```text
+sum_j u_j<=4+d_A.                                  (103)
+```
+
+For the large-odd and huge-even classes in the exact factor trichotomy,
+respectively, `chi_j=2n_j-3m_j` is `-1` and `-2`. Since
+
+```text
+2sigma_j=3e chi_j+qm_j,                            (104)
+```
+
+equations `(102)--(103)` sharpen their thresholds to
+
+```text
+large odd:       (q-2)m_j>=3e-8-2d_A,
+huge even:       (q-2)m_j>=6e-8-2d_A.             (105)
+```
+
+For `d_A=1`, two large-odd factors plus a small odd factor already have
+total degree greater than `e-2`, since `2(3e-10)/5+1>e-2` for `e>5`;
+the same is true of one huge-even factor plus a small odd factor, since
+`(6e-10)/5+1>e-2`. Profiles II and III are therefore impossible.
+Only profile I remains: one large-odd factor, no small odd or huge even
+factor, and any number of ordinary-even companions.
+
+On the official row `e=183251937963`, the parity-compatible thresholds are
+
+```text
+d_A=0: large odd >=78536544841,
+       huge even >=157073089682;
+
+d_A=1: large odd >=109951162777,
+       huge even >=219902325554>e-2.               (106)
+```
+
+This compression does not exclude the remaining `d_A=1` profile I or the
+three `d_A=0` profiles. It does show that every surviving factorization is
+within `4+d_A` unsupported roots of saturating all factor-column capacities.
+
+## 27. The quintic vector is an automatic Cauchy transform
+
+The bounded quotient in Section 25 is explicit. For `0<=i<=d`, put
+
+```text
+D_i(t)=sum_(y in U_0) omega_y(t)y^i/(x_*-y),
+h_i(t)=sum_(y in U_0) omega_y(t)y^i.              (107)
+```
+
+Then `D_i` is parameter-linear and
+
+```text
+D_0=B(t,x_*)/L(x_*),
+D_(i+1)=x_*D_i-h_i.                               (108)
+```
+
+The split-biform source identity and one Lagrange leading-coefficient sum
+give the exact formula
+
+```text
+C_i(t)=-Lambda_0(t)x_*^iT_(2+d_A)(t)/L(x_*)
+       +a_QS_B(t)^2D_i(t).                        (109)
+```
+
+Indeed, for
+
+```text
+A_i(Y)=[Y^iG(t,Y)-x_*^iG(t,x_*)]/(Y-x_*),
+```
+
+one has `deg_Y A_i<=3p-5=|U_0|-3`, and therefore
+
+```text
+sum_y y^iG(t,y)/[L'(y)(y-x_*)]
+ =-x_*^iG(t,x_*)/L(x_*).                          (110)
+```
+
+Substitution of
+`Lambda G(t,y)=L'(y)omega_yQ(t,y)`, followed by the two heavy-row
+factorizations, gives `(109)`. Equations `(108)--(109)` reproduce the
+quintic cap, recurrence, and nonzero geometric correction value without an
+additional condition.
+
+Thus the quintic-only incompatibility route is closed as automatic. A final
+exclusion must use information not present in the degree-five cap itself,
+such as the unique scalar weld, the nearly saturated macroscopic factor, or
+an additional incidence/source constraint coupling them.
+
+## 28. Factorwise Bezout leaves only four collision shapes
+
+The corrected `d_A=1` branch has one large odd factor and only
+ordinary-even companions. For a factor `Q_j` of bidegree `(m_j,n_j)`,
+subtract its `(3p-2)m_j` transverse classified-grid intersections from its
+projective intersection with `Qbar`. The remaining capacity is
+
+```text
+c_j=e n_j+(3e-2-(3p-2))m_j.                      (111)
+```
+
+The `e-7` padded-heavy first copies and the four-unit local collision
+exhaust these capacities. If
+
+```text
+b_j=ord_tau Q_j(t,x_*),
+ell_j=I_((tau,x_*))(Qbar,Q_j),                    (112)
+```
+
+then reduction in the local quadratic contact algebra gives
+
+```text
+ell_j=2b_j.                                       (113)
+```
+
+Indeed, reducing the local factor to `u_j+v_jy` modulo
+`y^2+c_1y+c_0`, with `ord c_1>=3` and `ord c_0=6`, gives norm
+
+```text
+u_j^2-u_jv_jc_1+v_j^2c_0,
+```
+
+whose uniquely lowest order is `2b_j` for `b_j in {0,1,2}`.
+
+Write `r_j` for the factor's padded-heavy roots and
+`t_j=m_j-r_j-b_j`. Then
+
+```text
+sum_j(r_j,b_j,t_j)=(e-7,2,3),
+c_j=r_j+2b_j.                                     (114)
+```
+
+For the large factor and an ordinary factor respectively, this becomes
+
+```text
+m_L=e+2b_L-2t_L,
+m_j=2(b_j-t_j).                                   (115)
+```
+
+Since an ordinary factor has positive degree, the complete factorization
+has only four possible shapes:
+
+```text
+A. one large factor of degree e-2;
+B. one large factor of degree e-4 plus one (2,3) factor;
+C. one large factor of degree e-6 plus one (4,6) factor;
+D. one large factor of degree e-6 plus two (2,3) factors.   (116)
+```
+
+Here `(2,3)` and `(4,6)` are `(t,X)` bidegrees. The ordinary companions
+have total parameter degree at most four. This is a classification, not an
+exclusion: shape A and the low-degree companions in B--D remain open.
+
+## 29. Ordinary companions have bounded residual norms
+
+Let `Q` be one ordinary companion from Section 28, of bidegree
+`(m,3m/2)` with `m in {2,4}`. Taking its product norm over the `3e`
+off-line supported slopes gives
+
+```text
+N_Q(X)=product_delta Q(delta,X)=L_U0(X)^m S_Q(X),
+deg S_Q<=7m/2,       gcd(S_Q,L_U0)=1.             (117)
+```
+
+The exact classified-row order is `m`: every row has `m` distinct
+incident slopes, and the all-excess factorization makes each corresponding
+vertical root simple. At the heavy row, the shape record supplies `m/2`
+distinct supported roots, so
+
+```text
+(X-x_*)^(m/2) divides S_Q.                        (118)
+```
+
+Thus
+
+```text
+(m,n)=(2,3): S_Q=(X-x_*)E_Q,   deg E_Q<=6;
+(m,n)=(4,6): S_Q=(X-x_*)^2E_Q, deg E_Q<=12.      (119)
+```
+
+For every `x in U_0`, the value of `S_Q(x)` is the product of the incident
+vertical tangents and all nonincident fiber values, divided by
+`L_U0'(x)^m`. These values are nonzero and determine `S_Q` uniquely because
+`deg S_Q<=14<|U_0|`.
+
+Equation `(118)` is deliberately divisibility only. The two-dimensional
+intersection of `Q` with the source locator can be transverse at a padding
+point even when the vertical fiber has higher multiplicity. Therefore no
+claim that `E_Q(x_*)` is nonzero is made.
+
+## 30. Two-branch shapes exclude the `[4]` profile
+
+Shapes B and D each have exactly two factors of correction order one at the
+collision. Over a common splitting field, write their local germs as
+
+```text
+f_i(z,y)=a_i z+v_i y+O((z,y)^2),       a_i!=0,    (120)
+```
+
+where `z=t-tau` and `y=X-x_*`. All remaining factor germs form a unit
+`u(z,y)`, so `G=u f_1f_2`. The product rule gives
+
+```text
+G_X(tau,x_*)=0,
+[z]G_X(t,x_*)=u(0,0)(a_1v_2+a_2v_1).             (121)
+```
+
+Define the normalization-invariant tangent sum
+
+```text
+Theta=v_1/a_1+v_2/a_2.                            (122)
+```
+
+The split-jet dictionary `(83)--(84)` now routes B and D exactly:
+
+```text
+Theta!=0:       profile [1,3];
+Theta=0:        profile [2,2].                    (123)
+```
+
+Thus profile `[4]` is impossible in B and D. This does not exclude either
+shape or prove that `Theta` is nonzero. Shapes A and C have one collision
+factor of correction order two, so this product-rule vanishing does not
+restrict their profiles.
+
+## 31. The ordinary quadratic coincidence curve is corner-exceptional
+
+Retain a `(2,3)` companion from shape B or D. Write `P` for the official
+prime-field characteristic, to distinguish it from the row integer denoted
+by `p` elsewhere in this packet. On the first residual row,
+
+```text
+N=2^41,             H=mu_N subset F_P^*,
+e=(2^39+1)/3,       |Gamma|=3e=2^39+1,
+|U_0|=(9e-7)/2,     U_0,Gamma subset H,
+P>2^167.                                             (124)
+```
+
+Write
+
+```text
+Q(t,X)=a(X)t^2+b(X)t+c(X),       deg a,b,c<=3.      (125)
+```
+
+Factorwise row saturation gives two distinct roots of `Q(-,x)` in `Gamma`
+for every `x in U_0`. This also proves that `Q` is absolutely irreducible:
+if its two geometric parameter-linear components were Frobenius-conjugate,
+every rational grid point would lie in their intersection, whose
+`P^1 x P^1` intersection number is at most three.
+
+Define the divided coefficient minors
+
+```text
+A=[a(X)b(Y)-a(Y)b(X)]/(X-Y),
+B=[a(X)c(Y)-a(Y)c(X)]/(X-Y),
+C=[b(X)c(Y)-b(Y)c(X)]/(X-Y),
+K_Q=B^2-AC.                                          (126)
+```
+
+The quadratic Sylvester determinant gives
+
+```text
+Res_t(Q(t,X),Q(t,Y))=(X-Y)^2K_Q(X,Y),
+bideg K_Q<=(4,4),       K_Q!=0.                     (127)
+```
+
+The grid has `9e-7` companion incidences. Since a slope has row degree at
+most three, its total defect from full triples is exactly seven. Hence at
+least
+
+```text
+F=3e-7=2^39-6                                        (128)
+```
+
+slopes carry three distinct rows. They supply six ordered off-diagonal
+pairs each, while a fixed pair can share at most two parameter roots. Thus
+`K_Q=0` contains at least `3F` distinct points of `H^2`.
+
+Call an absolutely irreducible component VM-admissible when, after swapping
+the coordinates and independently inverting either coordinate if needed,
+its cleared defining polynomial has nonzero constant term and nonconstant
+restriction at the second coordinate zero. These are exactly the affine
+coordinate hypotheses needed below.
+
+The degree-three projection `Q=0 -> P^1_t` has geometric monodromy `S_3` or
+`C_3`. In the first case its reduced off-diagonal image is one component of
+bidegree at most `(4,4)` containing the `3F` points. In the cyclic case the
+two deck orientations have bidegree at most `(2,2)` and each contains at
+least `3F/2` points. If two cyclic components were Frobenius-exchanged,
+those rational points would lie in their intersection, contradicting the
+Bezout cap eight; hence the distinct cyclic components are defined over
+`F_P`.
+
+Vyugin--Makarychev, arXiv:1504.01354, Theorem 2 bounds a VM-admissible
+bidegree-`(m,n)` component on `H^2` by
+
+```text
+16mn^2(m+n)N^(2/3).                                  (129)
+```
+
+Its subgroup-size hypotheses follow from `(124)`. The worst constants and
+exact strict comparisons are
+
+```text
+(4,4): 8192,       8192^3 N^2 < (3F)^3;
+(2,2):  512,        512^3 N^2 < (3F/2)^3.           (130)
+```
+
+Therefore no dense off-diagonal component is VM-admissible. Every surviving
+ordinary quadratic companion lies in the coordinate-corner exceptional
+locus. This is a proved router; Section 32 removes its exceptional locus.
+
+## 32. Corvaja--Zannier excludes every ordinary quadratic companion
+
+The coordinate-corner qualification in Section 31 can be removed by the
+stronger positive-characteristic gcd theorem of Corvaja--Zannier, JEMS 15
+(2013), Theorem 2 and Corollary 2. Let `Z` be a dense coincidence component
+of bidegree `(d_1,d_2)` and normalize it. The standard genus and toric
+boundary estimates give
+
+```text
+genus(Z)<=(d_1-1)(d_2-1),
+chi(Z)<=2d_1d_2.                                    (131)
+```
+
+If `Z` is not a translate of a one-dimensional subtorus, apply the theorem
+to its coordinate functions raised to the `N`th power. It gives
+
+```text
+#Z(H^2)<=max{
+  3(2N^2d_1d_2 chi)^(1/3),
+  12N^2d_1d_2/P
+}.                                                  (132)
+```
+
+For the `S_3` component, `d_1,d_2<=4`; for a cyclic orientation,
+`d_1,d_2<=2`. Both terms are below the Section-31 point floors by the exact
+comparisons
+
+```text
+27648N^2 < (3F)^3,       192N^2 < P(3F),
+ 1728N^2 < (3F/2)^3,      48N^2 < P(3F/2).          (133)
+```
+
+It remains to exclude translated subtori `X^rY^s=k`, with `(r,s)`
+primitive. In the `S_3` case, the unique off-diagonal component is
+swap-invariant, forcing `XY=k` or `X/Y=k` up to inversion. Since all six
+ordered pairs from a generic three-point fiber lie on that component,
+either relation identifies two distinct rows.
+
+In the cyclic case, write `sigma` for a deck generator and `q` for the
+degree from the original curve to one orientation image. Coordinate degree
+two gives
+
+```text
+q|r|=q|s|=2.                                        (134)
+```
+
+Primitivity leaves only `X(sigma P)=kX(P)` or
+`X(sigma P)=k/X(P)`. In the scaling case, a subgroup point puts `k` in the
+dyadic group `H`, while `sigma^3=1` gives `k^3=1`, hence `k=1`. In the
+inversion case, applying the relation twice makes `X` invariant under
+`sigma^2`. Either way `X` factors through the degree-three quotient, which
+is impossible for a degree-two coordinate.
+
+Thus no `(2,3)` companion exists. Shapes B and D are empty, and the
+collision factorization now has only shapes A and C. Shape C's `(4,6)`
+companion and shape A's single large factor remain open.
+
+## 33. Shape C has a toral deck involution
+
+Retain shape C's absolutely irreducible `(4,6)` companion `Q(t,X)`. The
+divided off-diagonal resultant
+
+```text
+L_Q(X,Y)=Res_t(Q(t,X),Q(t,Y))/(X-Y)^4              (135)
+```
+
+has bidegree at most `(20,20)`: the raw quartic resultant has bidegree at
+most `(24,24)`, and the diagonal has multiplicity four. The factorwise grid
+has `18e-14` incidences against capacity `18e`, so at least
+
+```text
+F_6=3e-14=2^39-13                                  (136)
+```
+
+slopes carry six distinct rows. Each gives thirty ordered pairs, and a
+fixed pair shares at most four parameter roots. Hence the reduced
+coincidence locus contains at least
+
+```text
+P_6=ceil(30F_6/4)=4123168604063                    (137)
+```
+
+distinct points of `H^2`.
+
+A connected degree-six cover has at most five geometric off-diagonal orbit
+components. If none were a translated subtorus, Corvaja--Zannier with
+`chi<=800` and bidegree at most `(20,20)` would make their total smaller
+than `(137)`. The exact five-component margins are
+
+```text
+125*17280000*N^2 < P_6^3,
+5*4800*N^2 < P P_6.                                (138)
+```
+
+Thus a component with an actual `H^2` point is a translated subtorus
+`X^aY^b=k`. Retaining the subdegree `h` over the companion curve and the
+degree `q` to the toral image gives
+
+```text
+q|a|=q|b|=4h.                                      (139)
+```
+
+Primitivity forces `|a|=|b|=1`; distinct row values then force `h=1`.
+The component is the graph of a deck automorphism. In the scaling case its
+order divides both six and `|H|=2^41`, so it is `X -> -X`. In the other
+case it is the involution `X -> k/X`, with `k in H`.
+
+Therefore the companion descends to a cubic row quotient:
+
+```text
+Q(t,X)=R(t,X^2),
+Q(t,X)=X^3R(t,X+k/X),                              (140)
+```
+
+up to scalar normalization, with `R` of bidegree `(4,3)`. This is a proved
+router, not a shape-C exclusion. The two involution quotient arms and shape
+A are the remaining collision frontier.
+
+## 34. A second torus excludes shape C
+
+Return to the degree-six companion cover before passing to either quotient.
+On every one of the `F_6` full fibers from `(136)`, the known deck
+involution acts freely and accounts for exactly six of the thirty ordered
+off-diagonal pairs. The other twenty-four pairs lie on the at most four
+off-diagonal components remaining after its graph is deleted. Since a
+fixed row pair shares at most four parameter roots, those components contain
+at least
+
+```text
+P_res=24F_6/4=6F_6=3298534883250                  (141)
+```
+
+distinct points of `H^2`.
+
+If every residual component carrying one of these points were non-toral,
+Corvaja--Zannier with the same bidegree and Euler-characteristic bounds as
+Section 33 would make their union too small. The exact four-component
+margins are
+
+```text
+64*17280000*N^2 < P_res^3,
+4*4800*N^2 < P P_res.                              (142)
+```
+
+Thus a residual component carrying an actual subgroup point is another
+translated subtorus. If its two subdegrees over the companion curve are
+`h_1,h_2`, the common parameter map gives `6h_1=6h_2`; write the common
+value as `h`. The same coordinate-degree comparison as `(139)` then gives
+primitive exponents of absolute value one and `h=1`. The component is the
+graph of a second deck transformation
+
+```text
+eta(X)=cX       or       eta(X)=c/X,       c in H. (143)
+```
+
+It is distinct from the identity and from the first involution because the
+diagonal and first graph were deleted.
+
+The deck group order divides the separable cover degree six. A scaling in
+the dyadic group `H` whose order divides that deck group is either the
+identity or `X -> -X`. Comparing `(143)` with either first involution
+`X -> -X` or `X -> k/X`, two distinct survivors commute and generate a
+Klein four subgroup. This is impossible because four does not divide six.
+Hence shape C is empty.
+
+Section 32 already excludes the quadratic companions in B and D. The exact
+four-shape ledger therefore leaves only
+
+```text
+shape A: (m,n;r,b,t;ell)
+       =(e-2,(3e-7)/2;e-7,2,3;4),                 (144)
+```
+
+with no ordinary companion. This closes the companion alternatives, not
+the Lane-T collision packet: the unique large irreducible shape-A factor
+remains to be excluded.
+
+## 35. Shape A has one concentrated excess norm
+
+In the sole surviving shape A, `G` itself is the large factor of bidegree
+
+```text
+(m,n)=(e-2,(3e-7)/2).                              (145)
+```
+
+For every off-line slope, retain the all-excess factorization
+
+```text
+G(delta,X)=zeta_delta A_delta(X)H_delta(X)R_delta(X),
+deg H_delta=a_delta-q_delta.                       (146)
+```
+
+The total off-line padding degree is `e-7`. The squarefree heavy-row form
+already gives `e-7` distinct off-line slopes for which `x_*` is a padding
+root. Degree equality therefore leaves no other padding root:
+
+```text
+product_delta R_delta(X)=(X-x_*)^(e-7).            (147)
+```
+
+Each classified row lies on exactly `m` off-line fibers. Multiplying
+`(146)` and using `(147)` yields, up to one nonzero scalar `c`,
+
+```text
+product_delta G(delta,X)
+ =c L_U0(X)^(e-2)(X-x_*)^(e-7)T(X),
+T(X)=product_delta H_delta(X),
+deg T=e-sum_delta q_delta<=e.                      (148)
+```
+
+The exact norm theorem also gives `gcd(T,L_U0)=1`. Its tangent-value formula
+reconstructs `T` on every classified row after removing the two displayed
+power factors; there are `(9e-7)/2>e` such rows.
+
+Thus the remaining shape-A norm frontier is one degree-at-most-`e`
+source-defined polynomial. Equation `(148)` does not identify `T` or
+exclude shape A; the next obstruction must couple it to the scalar weld or
+the retained Pade/source syzygy.
+
+## 36. Pure split fibers force a component point floor
+
+The exact shape-A ledgers give
+
+```text
+sum_delta a_delta=e,       sum_delta r_delta=e-7. (149)
+```
+
+There are `3e` off-line slopes. At least `2e` have `a_delta=0`, and at
+most `e-7` of those have positive padding. Consequently at least `e+7`
+slopes satisfy `a_delta=r_delta=0`. On each, the all-excess factorization
+reduces to
+
+```text
+G(delta,X)=zeta_delta A_delta(X),
+deg A_delta=n=(3e-7)/2,                            (150)
+```
+
+and all `n` roots are distinct classified rows.
+
+The biform `G` is absolutely irreducible. Indeed, if its geometric factors
+formed a Frobenius orbit of length `s>=2`, then every rational point in the
+classified `R`-by-`m` grid would lie on every conjugate factor. Two factors
+of bidegree `(m/s,n/s)` have intersection number at most
+`2mn/s^2<=mn/2<Rm`, contradicting Bezout.
+
+It follows that the divided off-diagonal resultant
+
+```text
+K_G(X,Y)=Res_t(G(t,X),G(t,Y))/(X-Y)^m             (151)
+```
+
+is nonzero and has bidegree at most
+`(m(n-1),m(n-1))`. The pure fibers supply `(e+7)n(n-1)` ordered pairs,
+while any fixed distinct row pair is shared by at most `m` parameter
+values. Hence the reduced official pair locus contains at least
+
+```text
+P_A=ceil((e+7)n(n-1)/m)
+   =75557863727701029814224.                       (152)
+```
+
+For the connected separable degree-`n` cover, geometric off-diagonal
+fiber-product components correspond to point-stabilizer orbits on the
+other `n-1` sheets. There are at most `n-1`, so one component image contains
+at least
+
+```text
+ceil(P_A/(n-1))>=ceil((e+7)n/(e-2))
+                       =n+14=274877906955          (153)
+```
+
+distinct official subgroup points. This is a component floor, not a torus
+conclusion: the bidegree bound in `(151)` is macroscopic. A closure still
+needs a component-subdegree bound or a direct source/norm coupling.
+
+## 37. Every low-degree shape-A component is excluded
+
+The pure fibers sharpen the preceding aggregate count componentwise. Let
+`W` be a geometric off-diagonal fiber-product component of subdegree `h`
+over the shape-A curve, let `Z` be its image in the row-pair plane, and let
+`q` be the generic degree of `W -> Z`. Each pure fiber contributes the full
+`nh` reduced points to `W`. These points are base-field rational and etale,
+so Frobenius fixes the unique component through each point. Thus `W` and
+`Z` are base-field defined.
+
+Both row-coordinate functions on `W` have degree `mh`. Consequently `Z`
+has bidegree `(D,D)` with
+
+```text
+D=mh/q,                                               (154)
+```
+
+and the finite image map gives the componentwise subgroup floor
+
+```text
+#Z(H^2)>=ceil((e+7)nh/q)=ceil((e+7)nD/m).            (155)
+```
+
+A translated-subtorus image would have primitive exponents of equal
+absolute value, hence would be a graph `Y=cX` or `Y=c/X` with `c in H`.
+It would induce a deck automorphism of the degree-`n=2^38-3` cover. A
+nontrivial scaling has dyadic order and a reciprocal graph is an
+involution, while every deck-automorphism order divides the odd cover
+degree. The identity scaling is the deleted diagonal. Thus every image is
+non-toral.
+
+For `D` below the characteristic, Corvaja--Zannier gives
+
+```text
+#Z(H^2)<=max{3(4N^2D^4)^(1/3), 12N^2D^2/P_char}.    (156)
+```
+
+Comparing `(155)` and `(156)` at the official prime-field row yields
+
+```text
+D>=ceil((e+7)^3 n^3/(108N^2m^3))=39768216,
+#Z(H^2)>=10931403977394458172,
+q<4608h.                                             (157)
+```
+
+This closes the low-degree component route, not shape A. Any survivor is a
+high-degree non-toral component and must be attacked through the retained
+source, scalar-weld, or excess-norm identities.
+
+## 38. Shape A has a global genus floor
+
+There is also a global consequence before passing to the off-diagonal
+fiber product. Let `C` be the normalization of the absolutely irreducible
+shape-A curve. Its coordinate functions have degrees
+
+```text
+deg_C(t)=n,       deg_C(X)=m.                         (158)
+```
+
+Every classified row contributes its `m` distinct off-line subgroup roots.
+Thus `C` contains at least
+
+```text
+P=Rm=151115727450087753427630                        (159)
+```
+
+distinct points with both coordinates in `H=mu_N`.
+
+The coordinate functions are multiplicatively independent modulo constants.
+Indeed, a translated-subtorus relation would make the shape-A biform a
+primitive binomial of bidegree `(m,n)`. At a fixed parameter in `H`, its row
+equation has at most `gcd(n,N)=1` solution in `H`. This contradicts any one
+of the pure fibers from Section 36, which has `n>1` distinct subgroup roots.
+
+Apply Corvaja--Zannier on `C` to `t^N,X^N`. If `S` is the union of their
+zero and pole supports and `chi_C=|S|+2g(C)-2`, then the exact point floor
+and the strict characteristic comparison `12N^2mn<2^167<P_char` give
+
+```text
+chi_C>=ceil(P^3/(54N^2mn))
+     =262353693488940318721.                         (160)
+```
+
+Since `|S|<=2(m+n)`,
+
+```text
+g(C)>=131176846286340314460.                         (161)
+```
+
+The full bidegree genus ceiling is
+`(m-1)(n-1)=50371909149143533442400`, less than `385` times the new floor.
+Thus this does not exclude shape A. It gives an exact target for the retained
+source/Pade structure: a genus upper bound below `(161)` would close the
+branch, while the generic bidegree ceiling cannot.
+
+## 39. The residual four-cycle is rigid
+
+The exact four-core has a sharper interpretation on the normalized
+source-locator curve `C_Q`; it should not be interpreted as a quartic pencil.
+Let `B` be the degree-two correction divisor from the double-root normal
+form. Its vertical and contact divisors are
+
+```text
+div_(C_Q)(X-x_*)=R_*+3B,
+div_(C_Q)(s_F)=R_*+2B,       deg R_*=e-6.            (162)
+```
+
+At every normalized point `b` occurring in `B` with multiplicity `m_b`, the
+contact calculation gives `ord_b P_F=2m_b`. Restricting the Pade syzygy to
+`Q=0` preserves this order because `Lambda(tau)` and `L_U0(x_*)` are units.
+The factorwise Bezout ledger places all four residual intersection units at
+this collision. Hence the pullback of the residual projective cycle is
+
+```text
+Z_4=sum_b 2m_b b=2B.                                (163)
+```
+
+This divisor is rigid. For `d=3e-2`, the first correction modification is
+
+```text
+pi_*O_(C_Q)(B)
+ =O direct_sum O(1-d)^2 direct_sum O(-d)^(e-3).    (164)
+```
+
+The quotient from `B` to `2B` has length two and is killed by the base
+uniformizer `X-x_*`. Its two modification directions vanish on the nonempty
+residual fibre `R_*`, so they miss the constant fibre-algebra line. Removing
+their possible constant components by a bundle automorphism gives an
+embedding
+
+```text
+pi_*O_(C_Q)(2B)
+ subset O direct_sum O(2-d)^2 direct_sum O(1-d)^(e-3). (165)
+```
+
+All nonconstant summands have negative degree. The canonical effective-
+divisor section therefore spans the entire section space:
+
+```text
+h^0(C_Q,O_(C_Q)(2B))=1.                             (166)
+```
+
+This argument uses neither smoothness nor a generic-gonality assertion for
+the locator curve. It turns the four-core into a precise source rigidity
+test: a second independently constructed residual section would immediately
+contradict `(166)`, but the four residual units alone supply no such section.
+
+## 40. The excess norm is an omitted-recurrence flag
+
+The concentrated norm from Section 35 admits an exact source/Hankel
+description. Retain shape A and put
+
+```text
+R=|U_0|=3p-2,       d=2p-1=3e-2,
+n=p-3=(3e-7)/2,     R-d-2=n.                       (167)
+```
+
+Write the source moments and normalized locator as
+
+```text
+h_j(t)=sum_(x in U_0) omega_x(t)x^j,
+Q(t,X)=sum_(i=0)^d q_i(t)X^i,                     (168)
+```
+
+and define the omitted recurrence defects
+
+```text
+R_j(t)=sum_(i=0)^d q_i(t)h_(i+j)(t).              (169)
+```
+
+For an off-line supported slope `delta`, let
+
+```text
+q_delta=n-deg_X G(delta,X).                        (170)
+```
+
+Then, for every `0<=r<n`,
+
+```text
+q_delta>=r+1
+ iff R_(d+1)(delta)=...=R_(d+1+r)(delta)=0.        (171)
+```
+
+Indeed, dual MDS gives polynomials
+
+```text
+H_x(t)=omega_x(t)Q(t,x)/Lambda(t)
+      =G(t,x)/L_U0'(x),
+sum_x H_x(t)x^j=0                  (0<=j<=d).       (172)
+```
+
+Lagrange interpolation therefore writes
+
+```text
+G(t,X)=sum_x H_x(t)L_U0(X)/(X-x).                  (173)
+```
+
+For `k>=0`, the coefficient of `X^(R-1-k)` in
+`L_U0(X)/(X-x)` is a monic degree-`k` polynomial in `x`. Consequently the
+top coefficients of `G` are unitriangular in the first omitted moments:
+
+```text
+[X^(n-r)]G
+ =S_(d+1+r)+sum_(j=d+1)^(d+r) a_(r,j)S_j,
+S_j=sum_x H_x x^j.                                 (174)
+```
+
+Multiplying `(172)` by `x^j` and summing gives
+
+```text
+Lambda(t)S_j(t)=R_j(t).                            (175)
+```
+
+The scalar `Lambda(delta)` is nonzero off-line, so `(174)--(175)` prove
+`(171)`. Every specialized fiber is nonzero, hence the initial zero run has
+length exactly `q_delta`.
+
+Let `H_off(t)` be the squarefree polynomial whose roots are all `3e`
+off-line supported slopes, and put
+
+```text
+C_r=gcd(H_off,R_(d+1),...,R_(d+1+r))       (monic).
+                                                               (176)
+```
+
+Squarefreeness makes `deg C_r` the number of slopes with
+`q_delta>=r+1`. The integer layer-cake identity and `(148)` now give
+
+```text
+sum_delta q_delta=sum_(r=0)^(n-1)deg C_r,
+deg T=e-sum_(r=0)^(n-1)deg C_r.                   (177)
+```
+
+In particular, the first degree-drop locus is exactly the off-line root
+set of
+
+```text
+R_(d+1)=Lambda(t)[X^n]G(t,X).                     (178)
+```
+
+This couples the concentrated excess norm directly to the retained
+source/Hankel equations. It does not bound the nested gcd flag. A shape-A
+exclusion still requires a theorem showing that the flag in `(176)` is
+incompatible with the scalar weld, the collision jets, or the exact excess
+sum.
+
+## 41. The omitted defects form a bordered-Hankel source flag
+
+The flag in `(176)` has an exact determinantal presentation. Put
+
+```text
+M(t)=(h_(i+j)(t))_(0<=i,j<=d),
+M(t)q(t)=0,       adj M(t)=D_1(t)q(t)q(t)^T,       (179)
+v_s(t)=(h_(d+1+s+i)(t))_(0<=i<=d).
+```
+
+The primitive kernel vector satisfies `q^T v_s=R_(d+1+s)`. Replacing
+column `k` of `M` by `v_s` therefore gives
+
+```text
+det M[k<-v_s]=D_1 q_k R_(d+1+s).                  (180)
+```
+
+Since the entries of `q` have gcd one, the gcd of all replacement minors
+through level `r` is, up to the fixed scalar normalization of `D_1`,
+
+```text
+D_1 gcd(R_(d+1),...,R_(d+1+r)).                   (181)
+```
+
+There is a second, source-visible form. Let `widehat M_s` be the moment
+submatrix with row and column exponent set
+
+```text
+E_s={0,1,...,d,d+1+s}.
+```
+
+The bordered determinant formula and `(179)` give
+
+```text
+det widehat M_s=-D_1 R_(d+1+s)^2.                 (182)
+```
+
+Writing the source moments as `h_j=sum_x omega_x x^j`, let
+
+```text
+A_s(J)=det(x^a)_(a in E_s,x in J).
+```
+
+Cauchy--Binet turns `(182)` into the exact source census
+
+```text
+B_s:=sum_(J subset U_0, |J|=d+2)
+          A_s(J)^2 product_(x in J)omega_x
+    =-D_1 R_(d+1+s)^2.                            (183)
+```
+
+For `s=0`, `A_0(J)` is the ordinary Vandermonde determinant. In shape A,
+
+```text
+R_(d+1+s)=Lambda Theta_s,       deg Theta_s<=e-2,
+D_1=c_D g_* S_B^2,
+B_s=c'_D g_*(S_B Lambda Theta_s)^2,               (184)
+```
+
+with `Theta_0=[X^n]G`.
+
+The complete off-line flag now splits canonically. Write
+
+```text
+H_off=g_off H_reg,
+g_off=g_*/gcd(g_*,Lambda),
+deg g_off=e-7=183251937956,
+deg H_reg=2e+7=366503875933.                       (185)
+```
+
+The factors in `(185)` are squarefree and `gcd(H_reg,D_1)=1`. Hence, for
+
+```text
+C_r^pad=gcd(g_off,R_(d+1),...,R_(d+1+r)),
+C_r^reg=gcd(H_reg,B_0,...,B_r),                    (186)
+```
+
+the flag in `(176)` factors exactly as
+
+```text
+C_r=C_r^pad C_r^reg.                               (187)
+```
+
+At a root `delta` of `H_reg`, `M(delta)` has rank exactly `d`. Its column
+space is the hyperplane perpendicular to `q(delta)`, so `(171)` becomes
+
+```text
+q_delta>=r+1
+ iff rank [M(delta)|v_0(delta)|...|v_r(delta)]=d.  (188)
+```
+
+Thus the remaining Shape-A problem has two precisely separated parts: the
+`e-7` padding singular flag and a regular source-subset rank-stagnation
+flag. Equations `(179)--(188)` do not bound either part or exclude Shape A.
+The next useful theorem must control the padding flag, or prove quantitative
+non-stagnation of the bordered source columns on `H_reg`.
+
+## 42. Static source data permit arbitrary rank stagnation
+
+The regular non-stagnation alternative at the end of Section 41 cannot be
+proved from one source fiber alone. More generally, let `d,n>=0`, put
+`R=d+n+2`, and let `U` be any `R` distinct field elements. If the field has
+at least `R+d+1` elements, then every prescribed run length
+
+```text
+0<=q<=n                                                     (189)
+```
+
+occurs with all source weights nonzero and middle Hankel corank exactly one.
+Indeed, choose distinct `r_1,...,r_d,a` outside `U` and set
+
+```text
+Q(X)=product_i(X-r_i),       G(X)=(X-a)^(n-q),
+L(X)=product_(x in U)(X-x),
+omega_x=G(x)/(Q(x)L'(x)).                              (190)
+```
+
+For every polynomial `A` of degree at most `R-1`, Lagrange interpolation
+gives
+
+```text
+sum_(x in U) A(x)/L'(x)=[X^(R-1)]A(X).                 (191)
+```
+
+Consequently the coefficient vector of `Q` lies in the kernel of
+`M=(h_(i+j))_(0<=i,j<=d)`. This is the complete kernel. On polynomials
+`P,S` of degree less than `d`, the residue theorem gives the exact pairing
+
+```text
+sum_(x in U)omega_xP(x)S(x)
+ =-sum_(i=1)^d G(r_i)P(r_i)S(r_i)/(Q'(r_i)L(r_i)).     (192)
+```
+
+All diagonal coefficients on the right are nonzero, and evaluation at the
+`d` distinct roots of `Q` is an isomorphism. Thus the pairing is
+nondegenerate on the degree-less-than-`d` complement of `Q`, proving
+`rank M=d`.
+
+Finally, `(191)` evaluates the omitted defects exactly:
+
+```text
+R_(d+1)=...=R_(d+q)=0,
+R_(d+1+q)=lc(G)!=0.                                   (193)
+```
+
+Hence static all-nonzero weights, exact corank one, the replacement-minor
+identities `(180)`, and the bordered source identities `(183)` permit every
+run length allowed by the source surplus. The next Shape-A theorem must use
+structure coupling different parameter values: for example the common
+parameter-linear source pencil, its three-class partition, the split-fiber
+weld, or the collision geometry. Equations `(189)--(193)` construct one
+static moment functional; they do not realize Shape A or refute a theorem
+using that global coupling.
+
+## 43. The scalar weld couples all residual degree drops
+
+The fiberwise freedom exhibited in Section 42 disappears once the common
+split biform is restored. On the `R=|U_0|` classified rows write
+
+```text
+G(t,x)=lambda_xP_x(t),       lambda_x!=0,             (194)
+```
+
+with `P_x` monic of degree `m=e-2`. The coefficient-MDS and connected-weld
+gates make `lambda` one projective vector, recoverable from any passing
+weld certificate.
+
+Fix an off-line supported slope `delta`. With the all-excess notation of
+Section 17,
+
+```text
+X_delta=U_0\I_delta,
+G(delta,X)=zeta_delta A_delta(X)H_delta(X)R_delta(X),
+deg H_delta=a_delta-q_delta.                         (195)
+```
+
+Every padded root lies outside `U_0`. Thus for `x in X_delta`, the values
+
+```text
+u_(delta,x)(lambda)
+ =lambda_xP_x(delta)/[A_delta(x)R_delta(x)]
+ =zeta_delta H_delta(x)                              (196)
+```
+
+are well defined. Put
+
+```text
+L_delta(X)=product_(x in X_delta)(X-x),
+E_(delta,j)(lambda)
+ =sum_(x in X_delta)
+   u_(delta,x)(lambda)x^j/L_delta'(x).               (197)
+```
+
+Since `|X_delta|=3e+a_delta+r_delta`, leading-coefficient extraction for
+the degree-`a_delta-q_delta` polynomial in `(196)` gives the exact flag
+
+```text
+j_delta=3e+r_delta-1,
+E_(delta,j)=0                         (0<=j<j_delta),
+E_(delta,j_delta)=...=E_(delta,j_delta+q_delta-1)=0,
+E_(delta,j_delta+q_delta)
+             =zeta_delta lc(H_delta)!=0.             (198)
+```
+
+Equivalently, define the explicit rows
+
+```text
+K_(delta,s),x
+ =1_(x in X_delta)P_x(delta)x^(j_delta+s)
+   /[A_delta(x)R_delta(x)L_delta'(x)].               (199)
+```
+
+Then `q_delta` is exactly the initial zero-run length of
+
+```text
+K_(delta,0)lambda,K_(delta,1)lambda,... .            (200)
+```
+
+Combining `(200)` with the concentrated norm identity gives
+
+```text
+deg T=e-sum_(delta in Gamma)q_delta.                 (201)
+```
+
+All summands in `(201)` are therefore controlled by one weld vector and
+the classified support/padding data; there are no independent residual
+coefficients to choose fiber by fiber. This does not yet bound the stacked
+flag. The next closing statement must prove that the unique passing
+`lambda` cannot sustain the required collection of extra parity zeros.
+
+## 44. All residual fibers form one `4e`-column MDS gate
+
+Bounding only the extra zero runs in Section 43 is not by itself an
+exclusion: the current Shape-A ledger does not force any `q_delta>0`. The
+complete all-fiber compatibility problem nevertheless has a smaller exact
+linear presentation.
+
+For each `delta in Gamma`, put
+
+```text
+D_delta(X)=A_delta(X)R_delta(X),
+C_delta(X)=zeta_delta H_delta(X)
+              =sum_(h=0)^a_delta c_(delta,h)X^h.    (202)
+```
+
+Then
+
+```text
+deg D_delta=n-a_delta,
+C_delta!=0,
+deg C_delta=a_delta-q_delta,
+G(delta,X)=D_delta(X)C_delta(X).                     (203)
+```
+
+Write `D_delta=sum_j d_(delta,j)X^j` and let
+`L_Gamma(T)=product_(delta in Gamma)(T-delta)`. Define `K_all` with columns
+`(delta,h)`, `0<=h<=a_delta`, and rows `(i,l)`,
+
+```text
+0<=i<=n,       0<=l<=2e,
+
+(K_all)_((i,l),(delta,h))
+ =d_(delta,i-h)delta^l/L_Gamma'(delta),             (204)
+```
+
+using zero for an out-of-range coefficient of `D_delta`. The complete
+fiber family interpolates to one biform of bidegree at most `(e-2,n)` if
+and only if
+
+```text
+K_all c=0.                                          (205)
+```
+
+Indeed, for each `X^i` coefficient, `(204)` is exactly the dual-RS parity
+system on the `3e` slopes for parameter degree at most `e-2`. Necessity is
+immediate from `G`; conversely the parity system reconstructs every
+coefficient polynomial of `G` uniquely.
+
+The exact Shape-A excess sum gives the compression
+
+```text
+sum_delta a_delta=e,
+#columns(K_all)=sum_delta(a_delta+1)=4e.             (206)
+```
+
+Officially the matrix has
+
+```text
+733007751852 columns,
+100743818300944219985234 printed parity rows.        (207)
+```
+
+A Shape-A survivor requires every polynomial block `C_delta` to be
+nonzero; its block degree recovers `q_delta` by `(203)`.
+
+The smallest `e=7` analogue supplies calibrated evidence. For the cyclic
+degree table with fourteen zero-excess and seven excess-one slopes,
+`K_all` is `120 x 28` and has rank `28` over both `F_337` and `F_421`.
+Fifty deterministic degree-preserving switches in each field also have
+rank `28`. These 102 rank computations do not prove the official matrix
+full rank. The next theorem is the absence of a block-supported kernel, or
+a classification of the incidence profiles on which one can occur.
+
+## 45. Degree-ledger rank fence and official rank-two exclusion
+
+The small-profile evidence in Section 44 remains robust after removing its
+initial excess-profile bias: all fifteen integer partitions of total excess
+seven were tested through one base incidence table and twenty
+degree-preserving switches in each of `F_337` and `F_421`. All `630`
+matrices have rank `28`. This is still sampled incidence evidence, not a
+universal theorem.
+
+In fact, the broader degree-ledger-only full-rank statement is false. Work
+over `F_211`, where `2` has order `210`, and put
+
+```text
+C={2^(35i):0<=i<4},
+X={x!=0:x^7 in C},
+Gamma={0} union {delta!=0:delta^5 in C}.            (208)
+```
+
+Then `|X|=28`, `|Gamma|=21`, and
+
+```text
+G(t,X)=t^5-X^7                                     (209)
+```
+
+has exactly five `Gamma`-roots on every `X`-row. Its twenty nonzero
+parameter fibers have seven `X`-roots, while the zero fiber has none. Thus
+the excess profile is `(7,0,...,0)`. Taking
+
+```text
+D_delta=X^7-delta^5, C_delta=-1       (delta!=0),
+D_0=1,                 C_0=-X^7,                    (210)
+```
+
+gives a `K_all` kernel with every one of its twenty-one polynomial blocks
+nonzero. Direct exact elimination gives
+
+```text
+rank K_all=27<28.                                  (211)
+```
+
+This example does not satisfy or test the official three-center source,
+spread, collision, or positive-padding constraints. It is a route fence:
+the row/fiber degree ledger alone cannot prove universal full rank.
+
+The low-rank mechanism in `(209)` is nevertheless impossible on the
+official Shape-A profile. More generally, let `e>=9`,
+
+```text
+m=e-2,       n=(3e-7)/2,
+R=(9e-7)/2=3n+7,       |Gamma|=3e.                 (212)
+```
+
+Suppose every one of the `R` rows of a biform has exact degree `m` and
+`m` distinct roots in `Gamma`, and every `Gamma`-fiber is nonzero. Then the
+biform cannot have tensor separation rank at most two:
+
+```text
+G(t,X)!=A_0(t)B_0(X)+A_1(t)B_1(X).                 (213)
+```
+
+To prove this, first divide out common factors in the `A`-pair. Any
+nonconstant common factor must contribute all of its degree as roots in
+`Gamma`, since every row already has the maximum `m` distinct roots. Those
+roots would make complete parameter fibers zero, a contradiction. Hence the
+parameter pencil is primitive.
+
+Distinct projective row types `[B_0(x):B_1(x)]` then have disjoint
+`m`-element root sets in `Gamma`: a shared root of two independent pencil
+members would be a common root of `A_0,A_1`. Since
+
+```text
+4m=4e-8>3e,
+```
+
+at most three row types occur. After removing a common `B`-factor, each
+fixed projective type is the zero set of one nonzero polynomial of degree at
+most `n`, so it occurs on at most `n` rows. A globally constant type instead
+makes the biform rank one and again produces `m` zero parameter fibers.
+Thus `R<=3n`, contradicting `(212)`.
+
+Every official Shape-A survivor satisfies the row and fiber hypotheses.
+Consequently its coefficient tensor has separation rank at least three.
+The remaining route is now accurately scoped: classify or exclude
+rank-at-least-three `K_all` kernels using the spread, collision, or common
+source/Hankel structure.
+
+## 46. Tensor-rank-three projective-frame router
+
+The first surviving tensor rank already forces a rigid incidence frame.
+Assume the Shape-A biform has a minimal rank-three presentation
+
+```text
+G(t,X)=A_0(t)B_0(X)+A_1(t)B_1(X)+A_2(t)B_2(X),    (214)
+```
+
+with both triples independent, and define
+
+```text
+b(x)=[B_0(x):B_1(x):B_2(x)] in P^2.              (215)
+```
+
+Every projective line `ell=0` contains at most `n` of the domain-row
+images. Indeed, its preimage is the zero set of the nonzero polynomial
+`ell(B_0,B_1,B_2)` of degree at most `n`; identically zero would contradict
+minimal rank three.
+
+Choose three noncollinear images. Their three pair-lines contain at most
+`3n` rows. Since `R=3n+7`, at least seven rows remain outside those lines,
+and any one supplies a fourth image in general position. For the four row
+polynomials `P_i(t)=G(t,x_i)`, every three are independent and there is a
+unique projective circuit
+
+```text
+c_1P_1+c_2P_2+c_3P_3+c_4P_4=0,                  (216)
+```
+
+with every `c_i` nonzero.
+
+No slope can root three of the four rows. The circuit would make it root
+the fourth, and three independent coefficient rows would then force
+`A_0(delta)=A_1(delta)=A_2(delta)=0`. This would make the complete
+parameter fiber `G(delta,X)` zero, contrary to the all-excess fiber gate.
+
+Each row has `m=e-2` distinct roots in the `3e`-element slope set. If `u`
+is their union size and `d_2` counts slopes occurring twice, the absence of
+triple incidences gives
+
+```text
+4m=u+d_2,
+d_2>=4(e-2)-3e=e-8.                              (217)
+```
+
+Each repeated slope contributes to exactly one of the six pair
+intersections. Hence
+
+```text
+sum_(1<=i<j<=4)|A_i intersect A_j|>=e-8,
+max_(i<j)|A_i intersect A_j|>=ceil((e-8)/6).       (218)
+```
+
+At the official row these quantities are respectively
+
+```text
+183251937955,       30541989660.                  (219)
+```
+
+Together with Section 45, every official survivor therefore either has
+tensor rank three and contains this triple-free four-row frame, or has
+tensor rank at least four. This is a route cut, not an exclusion of either
+branch.
+
+## 47. Rank-three birational parameter curve and six singular vertices
+
+A singular image point prevents one from bounding a pair overlap by the
+degree of the parameter map alone: several normalization branches may map
+to the same point. Keeping those branches gives an exact stronger normal
+form for every rank-three survivor.
+
+Let
+
+```text
+a:P^1_t -> C_a subset P^2,
+a(t)=[A_0(t):A_1(t):A_2(t)]                       (220)
+```
+
+be the parameter map from `(214)`. It is basepoint-free. A common finite
+basepoint would divide every exact split row and hence lie in `Gamma`, where
+it would create a zero parameter fiber; exact row degree removes infinity.
+If `d` is the degree onto the image and `c=deg C_a`, then
+
+```text
+m=dc.                                               (221)
+```
+
+The all-excess ledger gives
+
+```text
+|I_delta|=n-a_delta-r_delta,
+sum_delta(a_delta+r_delta)=2e-7.                   (222)
+```
+
+An empty actual column costs `n=(3e-7)/2`, so at most one of the `3e`
+slopes has no `U_0` incidence. Every active slope belongs to a complete
+reduced degree-`d` normalization fiber: an incident row-line vanishes on
+the complete fiber, while its pullback has only simple roots and all of
+them lie in `Gamma`. Therefore
+
+```text
+d divides 3e-z for some z in {0,1}.                 (223)
+```
+
+Since `d|m`, `e=m+2`, and the official `m=183251937961` is coprime to both
+`6` and `5`,
+
+```text
+gcd(m,3e)=gcd(m,6)=1,
+gcd(m,3e-1)=gcd(m,5)=1.                            (224)
+```
+
+Thus `d=1`, `c=m`, and `a` is the normalization map of a rational plane
+curve of degree `m`.
+
+Return to the four coefficient lines from Section 46. Their general
+position gives six distinct pair vertices `p_ij`. Birationality identifies
+the common roots of rows `i,j` exactly with the geometric branches of
+`C_a` above `p_ij`. Writing their branch counts as `r_ij`,
+
+```text
+sum_(i<j)r_ij>=e-8=m-6,
+max_(i<j)r_ij>=30541989660.                         (225)
+```
+
+A reduced plane singularity with `r` branches has delta invariant at least
+`binom(r,2)`. Hence one vertex contributes at least
+
+```text
+466406566180502462970,                              (226)
+```
+
+and convex minimization over the six distinct vertices gives the total
+floor
+
+```text
+2798439396930304829525.                             (227)
+```
+
+This removes smooth and low-singularity rank-three models but does not
+exclude the printed birational configuration. A rank-three close must now
+couple this complete-quadrilateral singularity ledger to the source,
+collision, or scalar-weld identities.
+
+## 48. All-rank parameter-map birationality
+
+The normalization-fiber argument in Section 47 does not use rank three.
+For any minimal tensor presentation of rank `r>=2`,
+
+```text
+G(t,X)=sum_(j=0)^(r-1)A_j(t)B_j(X),                (228)
+```
+
+the parameter coefficient map
+
+```text
+a:P^1 -> P^(r-1),       a(t)=[A_0(t):...:A_(r-1)(t)] (229)
+```
+
+is basepoint-free. If `d` is its degree onto the normalization of its image,
+then pullback of a generic hyperplane gives `d|m`.
+
+The all-excess column-deficit calculation `(222)` also remains independent
+of rank. At most one slope has no actual `U_0` incidence, while every active
+slope completes to a reduced degree-`d` normalization fiber by an incident
+simple split row. Therefore
+
+```text
+d | (3e-z),       z in {0,1}.                      (230)
+```
+
+The official gcds `(224)` force
+
+```text
+d=1.                                                (231)
+```
+
+Thus the parameter line is the normalization of its projective coefficient
+image in every surviving tensor rank. Section 47 specializes this to a
+degree-`m` plane curve in rank three. In rank at least four, `(231)` is a
+new exact structural invariant but does not control image degree,
+singularities, or linear normality.
+
+## 49. All-rank domain-map birationality
+
+The domain coefficient map is birational as well. For any minimal tensor
+presentation `(228)`, put
+
+```text
+b:P^1_X -> P^(r-1),       b(X)=[B_0(X):...:B_(r-1)(X)]. (232)
+```
+
+It is basepoint-free. A common basepoint in `U_0` would give a zero row;
+one outside `U_0` would consume at least `3e` from the residual homogeneous
+norm divisor, which has degree only `2e-7`. Exact pure split fibers give
+`b^*O(1)=O(n)`, so the degree `d_X` onto the image divides `n`.
+
+Fix a normalization fiber through `x in U_0`. Every one of the `m`
+incident parameter hyperplanes contains its complete scheme-theoretic
+fiber. The actual-support root at every `U_0` point is simple, so inside
+points are unramified. An outside point of ramification index `h` is rooted
+to order at least `h` by all `m` incident fibers and therefore consumes at
+least `mh` from
+
+```text
+N(X)/L_U0(X)^m.
+```
+
+The exact residual degree is
+
+```text
+3en-Rm=2e-7=2m-3.                                  (233)
+```
+
+Thus the total scheme-theoretic outside fiber degree is at most one. The
+fibers partition `U_0`, giving
+
+```text
+d_X | R       or       d_X | (R+1).                (234)
+```
+
+Officially `R=3n+7` and `n` is odd, so
+
+```text
+gcd(n,R)=gcd(n,7)=1,
+gcd(n,R+1)=gcd(n,8)=1.                             (235)
+```
+
+Hence `d_X=1`. Both source lines are now the normalizations of their
+projective coefficient images in every rank. Repeated row types can occur
+only as distinct branches over singular image points; `(235)` does not
+bound their number or exclude such singularities.
+
+## 50. Rank-three weighted incidence/genus router
+
+In tensor rank three, Sections 48--49 turn the complete marked incidence
+table into a finite weighted graph. The two coefficient images are
+nondegenerate rational plane curves `C_t,C_X` of degrees `m,n`. Group the
+`T=3e` marked parameter points by equal image on `C_t`, with weights `s_P`,
+and group the `R=3n+7` domain points by equal image on `C_X`, with weights
+`l_Q`. Join two image vertices when their coefficient pairing vanishes.
+
+Distinct parameter image points give distinct lines in the domain
+coefficient plane, and two such lines meet in one point. The image graph is
+therefore simple and `C_4`-free. Exact row splitting and the all-excess
+fiber ledger give
+
+```text
+sum_P s_P=3e,                    sum_Q l_Q=3n+7,
+sum_(P~Q)s_P=m                    for every Q,
+sum_(Q~P)l_Q=n-w_P               for every P,
+sum_P s_Pw_P=2e-7,              w_P>=0.            (236)
+```
+
+Here `w_P` is the common value `a_delta+r_delta` on the parameter-image
+group `P`. The two normalization maps also charge every collision of marked
+branches to a plane delta invariant:
+
+```text
+sum_P binom(s_P,2)<=binom(m-1,2),
+sum_Q binom(l_Q,2)<=binom(n-1,2).                  (237)
+```
+
+In particular
+
+```text
+s_P<=m-1,                     l_Q<=n-1.            (238)
+```
+
+Cauchy--Schwarz and `(237)` give at least ten image vertices on each side:
+
+```text
+sum_P s_P^2<=e^2-4e+12,       (3e)^2>9 sum_P s_P^2,
+sum_Q l_Q^2<=n^2+9,           (3n+7)^2>9 sum_Q l_Q^2. (239)
+```
+
+Every domain vertex consequently has at least two neighbours. Since the
+positive integral deficits consume branch weight at most `2e-7`, the
+zero-deficit parameter vertices carry total weight at least
+
+```text
+3e-(2e-7)=e+7.                                    (240)
+```
+
+This requires at least two such vertices by `(238)`, and each has at least
+two domain neighbours. Thus rank-three Shape A is reduced to a weighted
+`C_4`-free incidence graph satisfying `(236)--(240)`, together with the
+source/Hankel constraints already recorded in Sections 40--44.
+
+## 51. Three-source-class rank amplification
+
+The full source packet actually rules out the entire low-rank branch. The
+first-degree marked-source frame writes the primitive locator as
+
+```text
+Qbar(t,X)=sum_(i=0)^e t^i Q_i(X),
+deg_X Qbar=d=3e-2,                                  (241)
+```
+
+and proves that its `e+1` coefficient vectors are independent. Thus
+
+```text
+sr(Qbar)=e+1.                                      (242)
+```
+
+In Shape A, `d_A=1`, so the classified domain is the disjoint union of the
+three source-root classes `M_alpha,M_beta,M_theta`. On `M_gamma`, the source
+form has the shape
+
+```text
+omega_x(t)=eta_x ell_gamma(t),       eta_x!=0.     (243)
+```
+
+The dual-MDS identity
+
+```text
+H_x=omega_x Qbar(t,x)/Lambda_A
+   =G(t,x)/L_U0'(x)                                 (244)
+```
+
+therefore gives
+
+```text
+Qbar(t,x)=eta_x^(-1)
+ product_(gamma'!=gamma)ell_(gamma')(t) H_x(t)
+                      for x in M_gamma.            (245)
+```
+
+Evaluation on `U_0` preserves the coefficient rank of both biforms: its
+size `R=(9e-7)/2` exceeds `deg_X G=(3e-7)/2` and `deg_X Qbar=3e-2`.
+The three fixed quadratic multipliers in `(245)` consequently imply
+
+```text
+e+1=sr(Qbar)<=3sr(G),
+sr(G)>=ceil((e+1)/3).                              (246)
+```
+
+At the official value `e=183251937963`, this is
+
+```text
+sr(G)>=61083979322.                                (247)
+```
+
+Thus Sections 45--50 remain valid conditional geometry, but their
+rank-two and rank-three branches cannot occur in a full Shape-A source
+packet. The surviving tensor-rank interval starts at the macroscopic bound
+in `(247)`.
+
+## 52. Three-class restricted Koszul and source-Gram router
+
+The three source classes yield more than the lower bound `(247)`. Let
+
+```text
+V=span{G(t,x):x in U_0},       r=dim V=sr(G),
+q_alpha=ell_beta ell_theta
+```
+
+and define `q_beta,q_theta` cyclically. Each source class has size `n+2`
+or `n+3`, strictly larger than `deg_X G=n`. Hence each class alone samples
+the full coefficient space `V`. Equation `(245)` and the independent
+locator coefficients then give the exact generation identity
+
+```text
+F[t]_(<=e)=q_alpha V+q_beta V+q_theta V.           (248)
+```
+
+Equivalently, the restricted Koszul map
+
+```text
+Phi:V^3 -> F[t]_(<=e),
+(f_alpha,f_beta,f_theta)
+ |-> q_alpha f_alpha+q_beta f_beta+q_theta f_theta (249)
+```
+
+is surjective, with
+
+```text
+dim ker Phi=3r-(e+1).                              (250)
+```
+
+For the first inverse prolongation
+
+```text
+J={h:ell_alpha h,ell_beta h,ell_theta h all in V}, (251)
+```
+
+coprimality of the center forms gives
+
+```text
+q_alpha V intersect q_beta V intersect q_theta V
+ =ell_alpha ell_beta ell_theta J,
+2dim J<=3r-(e+1).                                  (252)
+```
+
+There is also an exact source-isotropy constraint. Put
+
+```text
+C_gamma=sum_(x in M_gamma)eta_x v_xv_x^T,          (253)
+```
+
+where `v_x` is the coefficient column of `Qbar(t,x)`. The two endpoint
+frame cancellations say
+
+```text
+sum_gamma ell_gamma(t)C_gamma=0.                   (254)
+```
+
+The unique relation among the three distinct line forms therefore gives
+nonzero `u_gamma` and one symmetric matrix `K` with
+
+```text
+C_gamma=u_gamma K.                                 (255)
+```
+
+Its image and rank satisfy
+
+```text
+im K subset ell_alpha ell_beta ell_theta J,
+max(0,2r-(n+2))<=rank K<=dim J.                    (256)
+```
+
+The lower bound is Sylvester's inequality applied to the full-rank
+class-evaluation matrix and its invertible diagonal source-weight matrix.
+At the minimum live rank, `(250)` has dimension two. Once
+
+```text
+r>=137438953472,                                   (257)
+```
+
+the common Gram matrix `K` is forced nonzero. This reduces the remaining
+macroscopic-rank problem to compatibility of `(248)--(256)` with the split
+fibers and Hankel source.
+
+## 53. Coefficient syzygy-bundle cubic splitting
+
+The restricted Koszul surjectivity classifies the coefficient linear
+series. Let
+
+```text
+0 -> E -> V tensor O_P1 -> O_P1(m) -> 0            (258)
+```
+
+be its evaluation sequence, after base change to an algebraic closure if
+needed. Write
+
+```text
+E=sum_(i=1)^(r-1) O_P1(-mu_i).                     (259)
+```
+
+Twisting `(258)` by `O(2)`, the global-section map is exactly the
+surjection `(249)`. Thus
+
+```text
+H^1(E(2))=0.                                       (260)
+```
+
+On `P^1`, `(260)` is equivalent to
+
+```text
+mu_i in {1,2,3}       for every i.                 (261)
+```
+
+If `c_j` counts the summands of degree `j`, rank, degree, and quadratic
+section counts give
+
+```text
+c_1+c_2+c_3=r-1,
+c_1+2c_2+3c_3=m,
+2c_1+c_2=3r-(e+1).                                 (262)
+```
+
+The inverse prolongation in `(251)` is precisely the space of linear
+syzygies, so
+
+```text
+dim J=c_1.                                         (263)
+```
+
+Putting `K_2=3r-(e+1)`, all profiles are
+
+```text
+c_2=K_2-2c_1,
+c_3=r-1-K_2+c_1,
+max(0,2r-e)<=c_1<=floor(K_2/2).                    (264)
+```
+
+At the minimum official rank, `K_2=2` and exactly two profiles remain:
+
+```text
+(c_1,c_2,c_3)=(1,0,61083979320),
+(c_1,c_2,c_3)=(0,2,61083979319).                   (265)
+```
+
+A nonzero common source-Gram matrix forces `c_1>0`, so at minimum rank it
+selects the first profile. More generally `(256)` gives
+
+```text
+c_1>=max(0,2r-(n+2)).                              (266)
+```
+
+The remaining Shape-A problem is now a degree-`1/2/3` syzygy-profile
+problem coupled to the split fibers and the proportional source-Gram
+matrix.
+
+## 54. Locator-interpolation half-rank amplification
+
+The primitive locator supplies a large family inside the restricted
+Koszul kernel. Since
+
+```text
+deg_X Qbar=d=3e-2,
+R-d-2=n,                                            (267)
+```
+
+dual-RS interpolation gives, for every `h in F[X]_(<=n)`,
+
+```text
+sum_(x in U_0)Qbar(t,x)h(x)/L_U0'(x)=0.            (268)
+```
+
+Using `(245)`, define
+
+```text
+T_gamma(h)=sum_(x in M_gamma)
+ eta_x^(-1)H_x(t)h(x)/L_U0'(x).                    (269)
+```
+
+Then
+
+```text
+(T_alpha(h),T_beta(h),T_theta(h)) in ker Phi.      (270)
+```
+
+For either source class of size `n+2`, a minimal presentation of `G` makes
+the projected map factor as
+
+```text
+T_gamma=E_B^T D E_n,
+D_x=eta_x^(-1)/L_U0'(x)^2.                         (271)
+```
+
+The three factors have ranks `r`, `n+2`, and `n+1` in the relevant senses,
+with `D` invertible. Sylvester's inequality gives
+
+```text
+rank T_gamma>=r-1.                                 (272)
+```
+
+Since `dim ker Phi=3r-(e+1)`, equations `(270)--(272)` force
+
+```text
+3r-(e+1)>=r-1,
+r>=(e+1)/2=91625968982.                            (273)
+```
+
+At equality, `dim ker Phi=r`. Thus the former one-third boundary and both
+profiles in `(265)` are excluded.
+
+## 55. Live linear/quadratic profile and small-class defects
+
+The projection in Section 54 also removes every cubic syzygy throughout the
+live interval. For a small-class coordinate projection
+
+```text
+pi_gamma:ker Phi -> V,                             (274)
+```
+
+equation `(272)` gives
+
+```text
+dim ker pi_gamma<=3r-(e+1)-(r-1)=2r-e.             (275)
+```
+
+The inverse prolongation `J`, of dimension `c_1`, injects into this kernel
+through the Koszul relation between the other two quadratic generators.
+On the other hand `c_3>=0` in `(264)` gives `c_1>=2r-e`. Therefore
+
+```text
+c_1=2r-e,
+c_2=e-r-1,
+c_3=0,                                             (276)
+E=O(-1)^(2r-e) direct_sum O(-2)^(e-r-1),
+S_1V=S_(e-1).                                      (277)
+```
+
+At the lower boundary the unique profile is
+
+```text
+(c_1,c_2,c_3)=(1,91625968980,0).                   (278)
+```
+
+Equality in `(275)--(276)` makes each small-class map in `(271)` have exact
+rank `r-1`. Its one-dimensional left kernel gives a unique projective
+nonzero form `B_gamma` in the common domain coefficient space `W_X` with
+
+```text
+B_gamma(x)
+ =kappa_gamma eta_x L_U0'(x)^2/L_Mgamma'(x)
+ =kappa_gamma eta_x L_Mgamma'(x)L_rest,gamma(x)^2
+                         for x in M_gamma,          (279)
+```
+
+where `kappa_gamma!=0` and `L_U0=L_Mgamma L_rest,gamma`. In particular the
+defect form has no root on its own small source class. Section 56 identifies
+these forms canonically and resolves the corresponding large-class defect
+space up to one exact rank/factorization dichotomy.
+
+## 56. Center-fiber defects and the large-class dichotomy
+
+For any center `gamma`, set
+
+```text
+V_gamma={f in V:f(gamma)=0}.                      (280)
+```
+
+A restricted Koszul syzygy
+
+```text
+q_alpha f_alpha+q_beta f_beta+q_theta f_theta=0
+```
+
+has `f_gamma(gamma)=0`, since only `q_gamma` is nonzero at `gamma`.
+Moreover, a syzygy with one zero coordinate is generated by an `h` whose
+multiples by the other two center forms lie in `V`. Those two distinct
+forms span `S_1`, so the third multiple also lies in `V`; hence `h in J`.
+Using `(276)` gives, for all three centers,
+
+```text
+ker pi_gamma isomorphic to J,
+im pi_gamma=V_gamma,       rank pi_gamma=r-1.     (281)
+```
+
+For either small class, `(272)` is therefore equality onto `V_gamma`:
+
+```text
+im T_gamma=V_gamma.                              (282)
+```
+
+The minimal presentation `G=sum_j A_jB_j` canonically identifies `V^*`
+with `W_X` by
+
+```text
+iota(lambda)=sum_j lambda(A_j)B_j(X).             (283)
+```
+
+The annihilator of `(282)` is spanned by center evaluation. Consequently
+the form in `(279)` is exactly
+
+```text
+B_gamma proportional to iota(ev_gamma)=G(gamma,X). (284)
+```
+
+This also follows directly from the center locator. If
+`L_rest,gamma=L_(U_0\M_gamma)`, then a small center has
+
+```text
+Qbar(gamma,X)=chi_gamma L_rest,gamma(X),
+G(gamma,x)=kappa_gamma eta_x L_Mgamma'(x)
+                         L_rest,gamma(x)^2
+                                      (x in M_gamma).          (285)
+```
+
+Thus the two defects are actual fibers of the same parameter coefficient
+map, rather than unrelated forms in `W_X`.
+
+Let `gamma_0` be the unique center with the large class. The center-deficit
+ledger gives
+
+```text
+|M_(gamma_0)|=n+3,
+Qbar(gamma_0,X)=chi_0(X-x_*)L_rest,0(X),          (286)
+```
+
+where `x_*` is the unique padded center root. On this class the matrix
+`E_B^TDE_n` has rank at least `r-2` and at most `r-1`. Its transpose
+kernel lies in the two-dimensional dual RS code with numerators of degree
+at most one; the center row corresponds to
+
+```text
+(x-x_*)/L_M0'(x).                                (287)
+```
+
+Hence exactly one of the following occurs:
+
+```text
+rank T_(gamma_0)=r-1:
+  ker T_(gamma_0)^*=span{G(gamma_0,X)};
+
+rank T_(gamma_0)=r-2:
+  G(gamma_0,X)=(X-x_*)B_0(X)
+  for a nonzero B_0 in W_X with deg B_0<=n-1.    (288)
+```
+
+Indeed, in the second case the defect space is the full dual RS code, so
+one may choose `B_0` corresponding to `1/L_M0'(x)`. Equation `(287)` then
+gives the equality in `(288)` at `n+3` points. The difference has degree at
+most `n+1`, so the equality is polynomial and its leading coefficient
+forces `deg B_0<=n-1`.
+
+Finally the center-adjusted heavy row is
+
+```text
+G(t,x_*)=g_off(t)S_B(t)T_3(t),       deg T_3=3.  (289)
+```
+
+In the rank-`r-2` branch, `(288)` makes its value at `gamma_0` zero.
+The factors `g_off` and `S_B` are units there: the unique center factor was
+removed from `g_off`, and the collision is not a center. Therefore
+
+```text
+T_3=ell_(gamma_0)T_2,       deg T_2=2.            (290)
+```
+
+The alternatives are explicit; Section 57 excludes the second one by the
+already proved support of the residual four-core.
+
+## 57. Exclusion of the large-class rank drop
+
+Suppose the second branch of `(288)` occurs. Equations `(286)` and `(288)`
+make
+
+```text
+(gamma_0,x_*)                                    (291)
+```
+
+a common point of the coprime curves `Qbar=0` and `G=0`. This point is not
+among the mandatory intersections subtracted in the exact four-core:
+those are the roots of `A_delta R_delta` over the `3e` off-line supported
+slopes, whereas `gamma_0` is an assigned center and `x_*` lies outside
+`U_0`. The positive local intersection at `(291)` therefore survives in
+the effective residual cycle `Z_4`, so its parameter pushforward contains
+`gamma_0`.
+
+The exact resultant identification from Section 24 gives
+
+```text
+pi_*Z_4=div(E_4)=2div(S_B).                      (292)
+```
+
+In the retained nonreduced collision, `S_B=c_S ell_tau^2`; hence `(292)`
+is supported only at `tau`. Unsharedness places `tau` off the three
+assigned centers, so `tau!=gamma_0`. This contradicts `(291)`. Therefore
+
+```text
+rank T_(gamma_0)=r-1.                             (293)
+```
+
+Together with `(281)--(284)`, all three class maps now satisfy
+
+```text
+im T_gamma=V_gamma,
+ker T_gamma^*=span{G(gamma,X)}.                  (294)
+```
+
+There is no domain multiplication-chain branch. The remaining Lane-T
+target is compatibility of the three actual center fibers with the
+proportional source-Gram, split-row, and collision identities.
+
+## 58. Center-fiber coprimality and Padé quotient
+
+For a center `gamma`, write
+
+```text
+L_U0=L_Mgamma L_rest,gamma,
+Qbar(gamma,X)=chi_gamma R_gamma(X)L_rest,gamma(X), (295)
+```
+
+where `R_gamma=1` on either small class and
+`R_(gamma_0)=X-x_*` on the large class. Every classified row of `G` has
+only off-line supported parameter roots, so
+
+```text
+G(gamma,x)!=0       (x in U_0).                  (296)
+```
+
+The only remaining possible center-locator common root is the large
+padded point `x_*`; Section 57 excludes it by the residual-cycle support
+argument. Hence
+
+```text
+gcd_X(Qbar(gamma,X),G(gamma,X))=1                (297)
+```
+
+for all three centers. In particular,
+
+```text
+G(gamma_0,x_*)!=0,       T_3(gamma_0)!=0,         (298)
+```
+
+where `G(t,x_*)=g_off S_B T_3`: both displayed fixed factors are units at
+`gamma_0`.
+
+Specialize the Padé identity
+
+```text
+Qbar B_src-Lambda G=L_U0 P_F                     (299)
+```
+
+at a center. Cancelling `L_rest,gamma` gives
+
+```text
+chi_gamma R_gamma B_src(gamma,X)
+ =L_Mgamma P_F(gamma,X).                         (300)
+```
+
+The factors `R_gamma` and `L_Mgamma` are coprime, including at the large
+center because `x_* notin U_0`. Thus there is a nonzero polynomial
+`C_gamma` such that
+
+```text
+B_src(gamma,X)=L_Mgamma(X)C_gamma(X),
+P_F(gamma,X)=chi_gamma R_gamma(X)C_gamma(X).      (301)
+```
+
+Nonzeroness follows by evaluating `B_src` at any root of
+`L_rest,gamma`, where it equals the nonzero source value
+`omega_x(gamma)L_U0'(x)`. Since `deg_X B_src<=|U_0|-1`,
+
+```text
+deg C_gamma<=d-1       on a small class,
+deg C_(gamma_0)<=d-2   on the large class.        (302)
+```
+
+The large-center contact numerator is therefore divisible by `X-x_*`,
+while the split-biform center fiber is nonzero there. The next coupling
+can be formulated through the three quotient polynomials in `(301)`.
+
+## 59. Padded-center Padé transversality
+
+At the large center, equations `(295),(301)` read
+
+```text
+Qbar(gamma_0,X)=chi_0(X-x_*)L_rest,0(X),
+P_F(gamma_0,X)=chi_0(X-x_*)C_0(X).               (303)
+```
+
+The formal Padé resultant is
+
+```text
+Res_X^(d,d-1)(Qbar,P_F)=c_F a^(2d+1)D_1.          (304)
+```
+
+Here `a(gamma_0)=chi_0` is a unit, while
+`D_1=c_Dg_*S_B^2` has exact order one at `gamma_0`: the center is a
+simple root of squarefree `g_*`, and the off-center correction makes
+`S_B` a unit. Thus
+
+```text
+ord_(gamma_0) Res_X(Qbar,P_F)=1.                 (305)
+```
+
+The common point `(gamma_0,x_*)` displayed in `(303)` consumes this entire
+resultant order. It is therefore the unique common point in the fiber and
+has local intersection multiplicity one. In particular,
+
+```text
+C_0(x_*)!=0.                                     (306)
+```
+
+Differentiate the center-specialized Padé identity in `X` at `x_*`:
+
+```text
+Qbar_X(gamma_0,x_*)B_src(gamma_0,x_*)
+ =L_U0(x_*)P_(F,X)(gamma_0,x_*).                 (307)
+```
+
+All factors other than `B_src` are units by `(303),(306)` and
+`x_* notin U_0`. Hence
+
+```text
+B_src(gamma_0,x_*)!=0.                           (308)
+```
+
+At either small center, `D_1` and the leading locator coefficient are
+both units, so `Qbar(gamma,X)` and `P_F(gamma,X)` are coprime. The
+source-numerator pencil does not send the outside padded point to the
+large center.
+
+## 60. Primitive source pencil and three center fibers
+
+Homogenize the parameter-linear source numerator as a section of
+`O(1,R-1)`. Its two parameter coefficients are independent: at every
+`x in U_0`,
+
+```text
+B_src(t,x)=omega_x(t)L_U0'(x),                   (309)
+```
+
+and the three source classes give three distinct roots of these nonzero
+linear forms.
+
+Let `H(X)` be the homogeneous gcd of the two coefficients, put `h=deg H`,
+and write
+
+```text
+B_src(t,X)=H(X)B_prim(t,X).                      (310)
+```
+
+The primitive pencil defines a morphism
+
+```text
+phi:P^1_X -> P^1_t,
+deg phi=D=R-1-h.                                 (311)
+```
+
+Equation `(309)` makes `H` coprime to `L_U0`; equation `(308)` also gives
+`H(x_*)!=0`. The center quotients in `(301)` therefore factor as
+
+```text
+C_gamma=H Cbar_gamma,
+B_prim(gamma,X)=L_Mgamma(X)Cbar_gamma(X).         (312)
+```
+
+Every fiber of the degree-`D` morphism has projective degree `D`. Hence
+the residual degrees are exactly
+
+```text
+deg Cbar_alpha=deg Cbar_beta=d-1-h,
+deg Cbar_(gamma_0)=d-2-h,                        (313)
+```
+
+so `0<=h<=d-2`. On `U_0`, the three center fibers are exactly the three
+source classes, as sets:
+
+```text
+phi^(-1)(gamma) intersect U_0=M_gamma.           (314)
+```
+
+Also `phi(x_*)!=gamma_0` by `(308)`. Distinct fibers of a morphism are
+disjoint, giving
+
+```text
+gcd(C_gamma,C_delta)=H,
+gcd(Cbar_gamma,Cbar_delta)=1       (gamma!=delta). (315)
+```
+
+Finally the unique relation among evaluation at three distinct points on
+`S_1(t)` has three nonzero coefficients. Applied to `B_prim`, it gives
+
+```text
+u_alpha L_Malpha Cbar_alpha
+ +u_beta L_Mbeta Cbar_beta
+ +u_theta L_Mtheta Cbar_theta=0,                 (316)
+```
+
+with every `u_gamma!=0`. The remaining primitive-pencil invariants are
+the fixed degree `h`, off-grid fiber roots, and ramification.
+
+## 61. Center residue pairings and the common-kernel rank deficit
+
+The three locator-interpolation maps admit one intrinsic residue
+normalization. Put `S_n=F[X]_(<=n)`. For a small center set
+`R_gamma=1`, and at the large center put
+
+```text
+R_(gamma_0)=X-x_*.
+```
+
+For `f,h in S_n`, define
+
+```text
+beta_gamma(f,h)=sum_(x in M_gamma)
+ R_gamma(x)f(x)h(x)/[G(gamma,x)L_Mgamma'(x)].     (317)
+```
+
+All denominators are units by Section 58. The form has exact rank `n` and
+
+```text
+rad(beta_gamma)=span{G(gamma,X)}.                (318)
+```
+
+For a small class, the dual RS parity space on `n+2` points is generated
+by `1/L_Mgamma'`: a radical vector `f` therefore makes `f/G_gamma`
+constant on the class, hence polynomially `f` is proportional to
+`G_gamma`. For the large class, the dual parity space on `n+3` points is
+generated by `(aX+b)/L_Mgamma'`. Thus
+
+```text
+(X-x_*)f=(aX+b)G(gamma_0,X).                     (319)
+```
+
+The two sides have degree at most `n+1` and agree on `n+3` points. Since
+`G(gamma_0,x_*)!=0`, coprimality forces `aX+b` to be proportional to
+`X-x_*`, and again `f` is proportional to the center fiber. This proves
+the radical upper bound in both class sizes. Conversely, substituting
+`f=G(gamma,X)` leaves the standard barycentric sum with numerator
+`R_gamma h` of degree at most `|M_gamma|-2`, so it vanishes. This proves
+`(318)`.
+
+Under a minimal tensor presentation, the interpolation weights satisfy
+
+```text
+eta_x^(-1)/L_U0'(x)^2
+ =c_gamma R_gamma(x)/
+   [G(gamma,x)L_Mgamma'(x)].                      (320)
+```
+
+Hence `T_gamma:S_n->V` is exactly the restriction of `(317)` to the
+common domain coefficient space `W_X`, up to a nonzero scalar. In
+particular,
+
+```text
+ker T_gamma=W_X^(perp,beta_gamma),
+dim ker T_gamma=n-r+2.                            (321)
+```
+
+Define the now-explicit common defect
+
+```text
+K_cap=intersection_gamma ker T_gamma,
+kappa=dim K_cap.                                  (322)
+```
+
+For the combined interpolation map `T:S_n->ker Phi`, rank-nullity and
+`dim ker Phi=3r-(e+1)` give
+
+```text
+rank T=n+1-kappa,
+r>=ceil((5e-3-2kappa)/6).                         (323)
+```
+
+At the current lower boundary `r=(e+1)/2`, survival therefore requires
+
+```text
+kappa>=e-3=183251937960.                          (324)
+```
+
+Thus a proof of `kappa<=e-4` already raises the separation-rank floor by
+one. The point is diagnostic as well as quantitative: the next theorem is
+not an anonymous rank estimate, but a bound on the intersection of three
+explicit orthogonal complements. Nonproportionality of the three center
+fibers alone does not prove that bound; one must still use the primitive
+source-pencil or retained Hankel/source-Gram coupling.
+
+## 62. Global source multiplier and one Padé intersection
+
+The three orthogonal complements in Section 61 admit one common
+source-algebra normal form. Choose an affine parameter coordinate `z` in
+which all three centers are finite and write the parameter-linear source
+numerator as
+
+```text
+B_src(z,X)=J(X)z+K(X).                            (325)
+```
+
+Let
+
+```text
+A=F[X]/(L_U0),
+tau(F)=sum_(x in U_0)F(x)/L_U0'(x),
+varphi=-K/J in A.                                (326)
+```
+
+For `x in M_gamma`, source interpolation gives
+
+```text
+J(x)=eta_x L_U0'(x)!=0,       varphi(x)=gamma.   (327)
+```
+
+Thus `J` is a unit of `A`, and `varphi` is the exact three-valued class
+label:
+
+```text
+(varphi-alpha)(varphi-beta)(varphi-gamma_0)=0
+                                                    in A. (328)
+```
+
+Let `W_X subset S_n` be the `r`-dimensional domain coefficient space of
+`G`, and put
+
+```text
+E_3=W_X+varphi W_X+varphi^2W_X subset A.          (329)
+```
+
+This sum is direct. Indeed, a relation
+`f_0+varphi f_1+varphi^2f_2=0` restricts on each `M_gamma` to a polynomial
+`f_0+gamma f_1+gamma^2f_2` of degree at most `n` with at least `n+2`
+roots. Each restriction is therefore the zero polynomial, and the three
+distinct center values give `f_0=f_1=f_2=0` by Vandermonde inversion.
+Consequently,
+
+```text
+dim E_3=3r.                                       (330)
+```
+
+The three class indicators are the degree-two Lagrange polynomials in
+`varphi`. Rewriting the residue forms `(317)` through `(327)` therefore
+shows that their common kernel `(322)` is exactly
+
+```text
+K_cap=S_n intersect J E_3^perp,                  (331)
+```
+
+where orthogonality is for the nondegenerate residue pairing
+`(F,H)|->tau(FH)`. Equivalently, `h in K_cap` precisely when, for every
+`f in W_X` and `s=0,1,2`,
+
+```text
+sum_(x in U_0)
+ f(x)h(x)varphi(x)^s/[J(x)L_U0'(x)]=0.           (332)
+```
+
+This description retains the fixed factor of the source pencil. If
+`B_src=H B_prim`, then `J=H J_prim`, `K=H K_prim`, and
+`varphi=-K_prim/J_prim`; the class label is primitive, while multiplication
+by `J` in `(331)` records the fixed factor.
+
+At the current lower boundary,
+
+```text
+dim E_3=3(e+1)/2=n+5=274877906946,
+dim E_3^perp=2n+2=549755813884,                  (333)
+```
+
+whereas survival still requires
+
+```text
+dim(S_n intersect J E_3^perp)>=e-3
+                              =183251937960.      (334)
+```
+
+Equation `(331)` is the exact owner-sensitive Padé alignment that must now
+be bounded. The ambient dimensions in `(333)` do not by themselves give
+such a bound; the next step must use the structure of `J`, `varphi`, and
+`W_X`, for example through the fixed source factor, split rows, or the
+retained Hankel/source-Gram identities.
+
+## 63. Mandatory Padé-parity block and the quotient fence
+
+The global Padé identity further corrects the interpretation of `(331)`.
+Write
+
+```text
+Qbar(z,X)=sum_(i=0)^e z^i Q_i(X),
+U_Q=span{Q_0,...,Q_e} subset S_d,
+d=R-n-2=2n+5.                                    (335)
+```
+
+Modulo `L_U0`, the global identity is
+
+```text
+Qbar B_src=Lambda G.                              (336)
+```
+
+Since `B_src=J(z-varphi)` and `Lambda(varphi)=0`, write
+`Lambda(z)=(z-varphi)q_varphi(z)`. Cancelling the monic factor
+`z-varphi` in the split algebra polynomial ring gives
+
+```text
+J Qbar(z,X)=q_varphi(z)G(z,X).                    (337)
+```
+
+The coefficients of the quadratic `q_varphi` lie in
+`span{1,varphi,varphi^2}`. The primitive locator has `e+1` independent
+parameter coefficients, so
+
+```text
+dim U_Q=e+1,       J U_Q subset E_3.              (338)
+```
+
+For the residue pairing in `(326)`, standard RS duality gives the exact
+equality
+
+```text
+S_n^perp=S_d.                                     (339)
+```
+
+Indeed low-degree residue vanishing gives inclusion, and both sides have
+dimension `R-n-1`. Therefore the right radical of the pairing
+
+```text
+(h,E) |-> tau(hE/J),       h in S_n, E in E_3,   (340)
+```
+
+is exactly `E_3 intersect J S_d`. Put
+
+```text
+xi=dim(E_3 intersect J S_d)-(e+1)>=0.             (341)
+```
+
+Computing the rank of `(340)` from its right and left radicals gives
+
+```text
+rank T=3r-(e+1)-xi=dim ker Phi-xi,
+kappa=n+e+2-3r+xi.                                (342)
+```
+
+At the lower boundary this becomes
+
+```text
+rank T=r-xi,
+kappa=e-3+xi>=e-3=183251937960.                   (343)
+```
+
+Thus the complete `e-3` floor from Section 61 is mandatory locator parity,
+not an exceptional alignment that can be removed by refining ambient
+dimension. Section 62 remains an exact diagnostic normal form, but its
+standalone continuation is fenced: a boundary exclusion must import an
+independent collision/Hankel, fixed-factor, or split-row incompatibility.
+The excess `xi` measures additional right-radical rows; neither `xi=0` nor
+`xi>0` alone excludes Shape A.
+
+## Nonclaims
+
+This packet does not exclude either quadratic root arm, prove a live
+`LineRay` census, pay a v4 atom, move an adjacent endpoint, or change a
+leaderboard score. It identifies the remaining degree-four geometry,
+rules out determinant multiplicity as a standalone closure argument, and
+reduces only the separated double-root correction to the printed cubic
+recurrence and exact heavy-row remainder. The nonvanishing theorem covers
+all center-overlap degrees, but does not exclude a nonzero passing remainder.
+The Layer-A fixture refutes only a
+generic count-and-saturation implication, not the structured endpoint
+configuration. Squarefree shared corrections are absorbed into the unified
+constant/linear remainder gate. An unshared nonreduced correction remains
+open only in the three profiles `[4]`, `[1,3]`, and `[2,2]`, selected by
+the two global split-biform jets in `(83)--(84)`. After the factor-shape
+classification, profile `[4]` remains available only in shapes A and C. A
+shared nonreduced correction and the two-simple correction remain open. The exact factor
+trichotomy is a restriction, not an exclusion or a `LineRay` payment. The
+center-adjusted root budget excludes two `d_A=1` profiles but does not
+exclude profile I.
+The quintic closed form redirects the final problem to the scalar-weld and
+factor geometry; it does not itself exclude a collision.
+The factorwise Bezout classification narrows the surviving `d_A=1`
+factorization to four shapes but does not prove any shape empty.
+The companion norm gate does not determine `E_Q(x_*)` or exclude a
+low-degree companion.
+The two-branch tangent router does not decide whether `Theta` vanishes and
+does not exclude shape B or D.
+The subgroup-coincidence router in Section 31 does not by itself classify
+the coordinate-corner locus; the Corvaja--Zannier argument in Section 32
+does, and excludes B/D but not A/C.
+The quartic toral router of Section 33 alone only reduces shape C to two
+quotients; Section 34 excludes both simultaneously. The surviving shape A
+is not excluded. Section 35 concentrates its norm but does not identify the
+residual polynomial `T`. Section 36 forces a large official point set on one
+shape-A component, but does not make that component low-degree or toral.
+Section 37 excludes every low-degree component in the prime-field branch,
+but leaves high-degree non-toral components and makes no extension-field
+claim. Section 38 forces a global shape-A genus floor but supplies no
+source-derived genus upper bound and therefore does not exclude shape A.
+Section 39 identifies the residual four-cycle with `2B` and proves it rigid;
+it does not construct the second section needed to exclude shape A.
+Section 40 identifies every fiber degree drop and `deg T` with a nested
+omitted-recurrence gcd flag; it does not bound that flag or exclude shape A.
+Section 41 presents that flag by replacement minors and bordered source
+determinants, but proves neither padding-flag control nor regular
+rank non-stagnation. Section 42 proves that no such regular non-stagnation
+bound follows from one static all-nonzero exact-corank-one source alone; it
+does not realize the global Shape-A parameter pencil.
+Section 43 restores that pencil and reduces every degree drop to a stacked
+linear flag on its unique scalar-weld vector, but does not prove a rank
+bound for that flag or exclude Shape A.
+Section 44 includes every positive-excess residual coefficient in one
+`4e`-column parameter-MDS gate. Its small-profile full ranks are evidence,
+not a universal rank theorem or an official Shape-A exclusion.
+Section 45 gives an exact block-supported small-profile kernel and therefore
+fences a degree-ledger-only rank proof. It also excludes tensor rank at most
+two on every official Shape-A survivor, but does not control tensor rank
+three or higher and does not close Lane T.
+Section 46 forces a triple-free four-row projective frame and a large pair
+overlap in the rank-three branch, but does not exclude that frame or control
+tensor rank at least four.
+Section 47 proves that every rank-three parameter map is birational onto a
+degree-`m` rational plane curve and quantifies six enormous singular
+vertices; it does not prove that this singular curve cannot occur.
+Section 48 promotes the birationality statement to every tensor rank at
+least two; it does not classify the higher-dimensional coefficient image.
+Section 49 proves the dual domain coefficient map is birational in every
+rank; repeated row types at singular image points remain possible.
+Section 50 compresses rank three to a weighted `C_4`-free graph with two
+plane-genus budgets, but does not exclude that graph or address tensor rank
+at least four.
+Section 51 uses the full source partition to exclude every tensor rank below
+`61083979322`; it does not exclude the remaining macroscopic-rank interval.
+Section 52 gives the exact restricted Koszul and proportional Gram packet
+on that interval, but does not bound the inverse prolongation `J` sharply
+enough to exclude it.
+Section 53 excludes all coefficient syzygy splitting degrees at least four,
+but does not exclude either minimum-rank profile or all higher-rank
+degree-`1/2/3` profiles.
+Section 54 supersedes the earlier one-third floor by the official half-rank
+floor, but does not exclude the upper-half interval. Section 55 eliminates
+all cubic syzygies in that interval and identifies two small-class defect
+forms. Section 56 identifies them as actual center fibers and gives the
+exact large-class rank/factorization dichotomy. Section 57 excludes its
+rank-`r-2` multiplication-chain branch, but does not yet prove the three
+remaining center fibers incompatible. Section 58 proves each center fiber
+coprime to its locator and factors the center-specialized Padé numerators;
+it does not yet relate the three quotient polynomials. Section 59 proves
+the padded-center Padé contact is unique and transverse and pins the source
+numerator nonzero there, but does not identify its unique parameter root at
+`x_*`. Section 60 primitive-normalizes the source pencil and gives its
+three exact center fibers and relation, but does not control its fixed
+degree or ramification. Section 61 identifies all three interpolation maps
+with explicit corank-one residue pairings and isolates their common-kernel
+dimension `kappa`; it does not bound `kappa` or exclude Shape A.
+Section 62 rewrites that kernel as the owner-sensitive Padé intersection
+`S_n intersect J E_3^perp` with `dim E_3=3r`; it does not bound the
+intersection, and its ambient dimensions do not exclude Shape A.
+Section 63 proves that the `e-3` floor is automatic and fences the
+dimension-only continuation; it does not supply the independent
+incompatibility needed to exclude Shape A.
