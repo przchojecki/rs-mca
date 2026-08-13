@@ -3096,6 +3096,74 @@ and
 \path{experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.c}.
 \end{remark}
 
+\begin{corollary}[Lower-aware joint-core charge]
+\label{cor:full-lift-lower-aware-joint-core-charge}
+In the setting of
+Corollary~\ref{cor:full-lift-joint-core-charge}, suppose the actual total
+cores also have certified lower bounds
+\(0\le\ell_i\le g_i\).  Sort the \(\ell_i\) decreasingly, start with
+\(x_i=\ell_i\), and distribute
+\[
+ S_r-\sum_i\ell_i
+\]
+units by filling \(x_1\) to \(m-1\), then \(x_2\), and so on.  Whenever
+the lower bounds are feasible, the removed lines contain at most
+\[
+ L_r^{\rm low}=\left\lfloor\sum_{i=1}^r
+          \frac{N-x_i}{m-x_i}\right\rfloor              \tag{LA1}
+\]
+assigned slopes.  Consequently the residual peeling target may be
+strengthened to \(B-L_r^{\rm low}\).
+\end{corollary}
+
+\begin{proof}
+Since line labels do not occur in the objective, sort both the lower bounds
+and a feasible core vector decreasingly.  This preserves the constraints:
+if \(\ell_i\ge\ell_j\) but \(g_i<g_j\), then swapping the two core values
+preserves both lower bounds.
+
+For two nonterminal coordinates \(x_i\ge x_j\), transfer mass from
+\(x_j-\ell_j\) to \(x_i\), stopping when \(x_i=m-1\) or
+\(x_j=\ell_j\).  Convexity of
+\(f(g)=(N-g)/(m-g)\) gives
+\[
+ f(x_i+d)+f(x_j-d)\ge f(x_i)+f(x_j).
+\]
+Iterating the exchange, and using monotonicity to spend all of the allowed
+mass, gives exactly the greedy vector in the statement.  Equation (JC1)
+supplies the common sum budget \(S_r\), so flooring the rational sum proves
+(LA1).
+\end{proof}
+
+\begin{remark}[Exact Mersenne lower-aware payment]
+At \(e=130220\) and \(e=130221\), the first 37 removed lines have forced
+total-core lower-bound runs \(15816\cdot4,2046\cdot33\).  The maximizing
+vectors are respectively
+\[
+ 18769,15816\cdot3,2046\cdot33
+ \quad\hbox{and}\quad
+ 18770,15816\cdot3,2046\cdot33,
+\]
+and both charges are \(609\).  One final threshold \(20\) is forced.  The
+38 inside-core lower bounds then give
+\[
+ 5\cdot15811+33\cdot2041-\binom{38}{2}\cdot5
+ =142893>e.
+\]
+Thus both supports are safe.
+
+At adjacent \(e=130222\), the compiler reaches 288 removed lines.  The
+maximizing vector is \(67453\cdot5,1037,0\cdot282\), its charge is
+\(4910044\), and the residual target \(11867171\) lies below the certified
+base \(12148280\).  This is a method wall, not an unsafe certificate; the
+Mersenne residual is now \(130222\le e\le1044241\).
+
+The endpoint replay and independent rational audit are
+\path{experimental/verify_mca_full_lift_lower_aware_joint_core_charge_v1.py}
+and
+\path{experimental/audit_mca_full_lift_lower_aware_joint_core_charge_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

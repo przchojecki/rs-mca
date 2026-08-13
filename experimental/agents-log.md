@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne lower-aware joint-core charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_lower_aware_joint_core_charge_v1.md`,
+  `experimental/verify_mca_full_lift_lower_aware_joint_core_charge_v1.py`,
+  `experimental/audit_mca_full_lift_lower_aware_joint_core_charge_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / TWO-SUPPORT PAYMENT.
+- **What is being added:** A majorization envelope retains every forced
+  total-core lower bound when maximizing the convex charge of previously
+  peeled parameterized lines.
+- **How it is useful:** It pays Mersenne supports `e=130220,130221`; both
+  terminate after 38 lines with packing lower bound `142893`.
+- **What to do next:** Add structure beyond first-order pairwise core
+  intersections at the adjacent residual-base wall `e=130222`, or bridge to
+  the high-support interval.
+
 ### 2026-08-13 - Mersenne joint-core charge peeling
 
 - **Agent/model:** Codex.
