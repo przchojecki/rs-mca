@@ -3370,6 +3370,64 @@ and
 \path{experimental/audit_mca_full_lift_interpolation_common_factor_router_v1.py}.
 \end{remark}
 
+\begin{corollary}[Common-factor mass concentration]
+\label{cor:full-lift-common-factor-mass}
+In the unsafe branch of
+Corollary~\ref{cor:full-lift-interpolation-common-factor-router}, let $P$ be
+the full common interpolation factor and put
+$d=\deg_{Y,Z}P$.  At least
+\[
+ 7583-(52-d)^2\ge4982                              \tag{FM1}
+\]
+distinct selected polynomial pairs lie on $P$.  Moreover,
+\[
+ \#\{x\in E:P(x,r_0(x),r_1(x))=0\}\ge126188.       \tag{FM2}
+\]
+Thus at most $4049$ of the $130237$ inside coordinates are exceptional to
+the factor relation.
+\end{corollary}
+
+\begin{proof}
+After $7582$ low-core lines have been removed, the capped charge is
+$881897$, the target is $15895318$, and the strict line-bank threshold is
+still two.  Hence unsafety forces $7583$ distinct polynomial-pair cores.
+
+Divide every interpolation-kernel member by the full gcd $P$.  The cofactor
+family has gcd one and total $(Y,Z)$-degree at most $52-d$.  Two generic
+cofactors are coprime, so affine Bezout permits at most $(52-d)^2$ selected
+pairs outside $P=0$.  This proves (FM1), whose right side is minimized at
+$d=1$.
+
+For each of $t$ captured pairs, its inside core $U_i$ has size at least
+$u=807$ and lies in the set on the left of (FM2).  Distinct pair cores meet
+in at most five coordinates.  If $m_x$ is the core-incidence multiplicity,
+then
+\[
+ \sum_xm_x\ge tu,
+ \qquad
+ \sum_x\binom{m_x}{2}\le5\binom{t}{2}.
+\]
+Cauchy's inequality therefore gives
+\[
+ \left|\bigcup_iU_i\right|
+ \ge\left\lceil\frac{tu^2}{u+5(t-1)}\right\rceil.
+\]
+This is increasing in $t$.  At $t=4982$ it equals $126188$, proving (FM2).
+\end{proof}
+
+\begin{remark}
+The set in (FM2) is not asserted to be a common core shared by all captured
+sections.  Nor does the corollary assert that $P$ is irreducible, rational,
+or a split pencil.  Its output is a degree-at-most-$52$ relation holding on
+at least $96.89\%$ of the inside support and carrying at least $4982$
+degree-five polynomial sections.
+
+The exact calibration and all-degree audit are
+\path{experimental/verify_mca_full_lift_common_factor_mass_router_v1.py}
+and
+\path{experimental/audit_mca_full_lift_common_factor_mass_router_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

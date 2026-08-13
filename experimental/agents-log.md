@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne common-factor mass router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_mass_router_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_mass_router_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_mass_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / FACTOR CONCENTRATION.
+- **What is being added:** Cofactor Bezout captures at least 4,982 of the
+  7,583 selected pairs on the full interpolation factor; core incidence
+  puts the received pair on it at least 126,188 times.
+- **How it is useful:** The first Mersenne residual now has at most 4,049
+  inside exceptions to one degree-at-most-52 factor relation.
+- **What to do next:** Classify or charge that near-total factor without
+  assuming irreducibility, rationality, or split-pencil form.
+
 ### 2026-08-13 - Mersenne interpolation common-factor router
 
 - **Agent/model:** Codex.
