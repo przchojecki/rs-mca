@@ -3311,6 +3311,65 @@ and
 \path{experimental/audit_mca_full_lift_exact_layer_slot_core_packing_v1.py}.
 \end{remark}
 
+\begin{corollary}[First-wall interpolation common-factor router]
+\label{cor:full-lift-interpolation-common-factor-router}
+At Mersenne full-lift support $e=130237$, give $(X,Y,Z)$ weights
+$(1,5,5)$ and let $I_{264}$ be the vector space of weighted-degree at most
+$264$ polynomials vanishing at all gauged inside received points
+$(x,r_0(x),r_1(x))$.  Then
+\[
+ \dim I_{264}\ge 938.                              \tag{IF1}
+\]
+If the selected family is unsafe, the nonzero members of $I_{264}$ have a
+common factor of positive $(Y,Z)$-degree over the algebraic closure of
+$\F(X)$.
+\end{corollary}
+
+\begin{proof}
+The weight-$(1,5,5)$ monomial count is
+\[
+ \sum_{s=0}^{52}(s+1)(264-5s+1)=131175.
+\]
+Evaluation at the $130237$ received points has rank at most $130237$, which
+proves (IF1).
+
+In the complementary capped-core branch, every selected line at cutoff
+$65521$ has exact layer at least $65522$ and at least two members.  By
+Corollary~\ref{cor:full-lift-exact-layer-slot-core}, its inside core has
+size at least $807$.  Write the line as
+$c_\gamma=a+\gamma b$.  Its inside core is precisely the set on which
+$(r_0,r_1)=(a,b)$.
+
+For $Q\in I_{264}$, substitution gives a polynomial
+$Q(X,a(X),b(X))$ of degree at most $264$.  It has at least $807$ distinct
+roots, hence vanishes identically.  Thus every selected pair $(a,b)$ is a
+common $\F(X)$-rational zero of the interpolation kernel.
+
+After $2704$ removed lines, the capped convex charge is $132203$ and the
+residual target is $16645012$.  With base $13961576$ and group count
+$1933560$, the next strict pigeonhole threshold remains two.  Therefore an
+unsafe family forces $2705$ distinct polynomial-pair cores.
+
+Suppose instead that the kernel has no common factor of positive
+$(Y,Z)$-degree.  Over the algebraic closure of $\F(X)$, two generic kernel
+members are then coprime.  Their total $(Y,Z)$-degrees are at most
+$\lfloor264/5\rfloor=52$.  Affine Bezout bounds their common zero set by
+$52^2=2704$, contradicting the $2705$ distinct selected pairs.
+\end{proof}
+
+\begin{remark}[Common-factor residual]
+The corollary pays the coprime interpolation branch but does not identify
+the residual factor with a split pencil.  A further theorem must classify
+its ruled components or charge their line/core mass.  The Mersenne support
+residual remains $130237\le e\le1044241$, with its first support reduced to
+this common-factor branch.
+
+The exact calibration and independent audit are
+\path{experimental/verify_mca_full_lift_interpolation_common_factor_router_v1.py}
+and
+\path{experimental/audit_mca_full_lift_interpolation_common_factor_router_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

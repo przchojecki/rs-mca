@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne interpolation common-factor router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_interpolation_common_factor_router_v1.md`,
+  `experimental/verify_mca_full_lift_interpolation_common_factor_router_v1.py`,
+  `experimental/audit_mca_full_lift_interpolation_common_factor_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / COPRIME BRANCH PAYMENT.
+- **What is being added:** A 938-dimensional weight-264 interpolation
+  kernel and a `2705>52^2` Bezout contradiction pay the coprime branch at
+  Mersenne support `e=130237`.
+- **How it is useful:** Every unsafe survivor now forces a common factor of
+  positive `(Y,Z)` degree over the algebraic closure of `F(X)`.
+- **What to do next:** Classify and charge that factor; do not assume without
+  proof that it is a split pencil.
+
 ### 2026-08-13 - Mersenne exact-layer slot-core packing
 
 - **Agent/model:** Codex.
