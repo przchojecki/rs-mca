@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T center residue-pairing common kernel
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED rank router; no Shape-A exclusion.
+- **What is being added:** Each classwise locator-interpolation map is the
+  restriction of an explicit rank-`n` residue form whose sole radical is
+  the corresponding center fiber. The combined rank is exactly
+  `n+1-kappa`, where `kappa` is the intersection dimension of the three
+  restricted orthogonal complements.
+- **How it is useful:** At the current half-rank boundary Shape A requires
+  `kappa>=e-3=183251937960`; proving `kappa<=e-4` raises the rank floor.
+- **What to do next:** Bound this explicit common kernel using the primitive
+  three-fiber relation and the retained Hankel/source-Gram packet. Do not
+  infer the bound from projective distinctness alone.
+
 ### 2026-08-13 - Lane-T primitive source pencil
 
 - **Agent/model:** AllenGrahamHart / Codex.

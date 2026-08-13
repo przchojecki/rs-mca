@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "14c0ad93b"
+SOURCE_COMMIT = "1bf81a36f"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/statement.md": "6525db0f3f98127403a859cb06de798fbfaa981dc4c255b71cea89299df92587",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/proof.md": "29b08bed3273e1e3a54f027f1516231c65052e218394c5708a894fc246e5c55a",
@@ -46,6 +46,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/audit.md": "b445ed1154b0cfa78284aaf41ceb3f9b489352e31b3397a225debea386eeeb84",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/verify.py": "c401f054bbdac3f1bd748a6526b2c0e1764d4a240bd836c4f256492d35670910",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_primitive_source_pencil_three_center_fibers/verify_audit.py": "75c20483d7db026c5d355c8cd4ae2abacdc94c85ccf3459426c1a443096faeee",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/statement.md": "e4336708e1b8599755dd6e467231968746bb90d0f28acc224c21556ac2f5a899",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/proof.md": "6973fffba5a1cc803a2187a5389f513ec62ba530f3dfa698bb178dd1002a682a",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/audit.md": "4de3149e82cd9d6bbc086b506e389b2bcc04c20816bccfc583ddfe1b9f5012a2",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/verify.py": "fd1e0d891a952f3249ba265366624b6cfc291daaa5d7ee87bc221db6fd854636",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/verify_audit.py": "61f3885726c0844b508a1b0510558176fada600b6b9539de2425ad02549aba21",
 }
 
 
@@ -88,6 +93,12 @@ class Formula:
     primitive_small_residual_offset: int = 549755813886
     primitive_large_residual_offset: int = 549755813885
     primitive_relation_dimension: int = 1
+    residue_form_rank: int = 274877906941
+    residue_toy_form_rank: int = 4
+    residue_toy_restricted_rank: int = 2
+    residue_toy_combined_rank: int = 5
+    common_kernel_boundary: int = 183251937960
+    zero_kappa_rank_floor: int = 152709948302
 
 
 def matrix_rank(rows: list[list[int]], modulus: int) -> int:
@@ -143,6 +154,71 @@ def dual_rs_toy(class_size: int) -> int:
         for form in forms
     ]
     return matrix_rank(rows, modulus)
+
+
+def center_residue_toy() -> tuple[int, int, int]:
+    modulus = 211
+    degree = 4
+    centers = (
+        ([147, 69, 51, 42, 34, 104], [18, 54, 113], None),
+        ([95, 101, 140, 7, 67, 21], [42, 29, 88], None),
+        ([151, 117, 76, 2, 132, 88, 52], [154, 14, 27], 200),
+    )
+
+    def value(coefficients: list[int], x: int) -> int:
+        return sum(
+            coefficient * pow(x, power, modulus)
+            for power, coefficient in enumerate(coefficients)
+        ) % modulus
+
+    def gram(
+        points: list[int], coefficients: list[int], x_star: int | None
+    ) -> list[list[int]]:
+        weights = []
+        for x in points:
+            derivative = 1
+            for y in points:
+                if x != y:
+                    derivative = derivative * (x - y) % modulus
+            g_value = value(coefficients, x)
+            require(g_value != 0, "residue toy center nonvanishing")
+            r_value = 1 if x_star is None else x - x_star
+            weights.append(
+                r_value
+                * pow(g_value * derivative % modulus, modulus - 2, modulus)
+                % modulus
+            )
+        return [
+            [
+                sum(
+                    weight * pow(x, i + j, modulus)
+                    for x, weight in zip(points, weights)
+                )
+                % modulus
+                for j in range(degree + 1)
+            ]
+            for i in range(degree + 1)
+        ]
+
+    forms = []
+    for points, coefficients, x_star in centers:
+        form = gram(points, coefficients, x_star)
+        require(matrix_rank(form, modulus) == degree, "residue toy form rank")
+        radical = coefficients + [0] * (degree + 1 - len(coefficients))
+        image = [
+            sum(row[i] * radical[i] for i in range(degree + 1)) % modulus
+            for row in form
+        ]
+        require(image == [0] * (degree + 1), "residue toy radical")
+        forms.append(form)
+
+    restricted = [form[:3] for form in forms]
+    require(
+        all(matrix_rank(form, modulus) == 2 for form in restricted),
+        "residue toy restricted rank",
+    )
+    combined = [row for form in restricted for row in form]
+    return degree, 2, matrix_rank(combined, modulus)
 
 
 def verify_source(root: Path) -> int:
@@ -214,6 +290,18 @@ def replay(formula: Formula) -> dict[str, int]:
             "primitive large residual")
     require(formula.primitive_relation_dimension == 1,
             "primitive relation")
+    residue_form, residue_restricted, residue_combined = center_residue_toy()
+    require(n == formula.residue_form_rank, "official residue form rank")
+    require(residue_form == formula.residue_toy_form_rank,
+            "residue toy form")
+    require(residue_restricted == formula.residue_toy_restricted_rank,
+            "residue toy restriction")
+    require(residue_combined == formula.residue_toy_combined_rank,
+            "residue toy combination")
+    require(n + 1 - r == formula.common_kernel_boundary == e - 3,
+            "common-kernel boundary")
+    require((5 * e - 3) // 6 == formula.zero_kappa_rank_floor,
+            "zero-kappa floor")
     return {
         "rank": r,
         "projection": projection,
@@ -230,6 +318,13 @@ def replay(formula: Formula) -> dict[str, int]:
             formula.primitive_degree_minimum,
             formula.primitive_degree_maximum,
         ),
+        "residue_toy_ranks": (
+            residue_form,
+            residue_restricted,
+            residue_combined,
+        ),
+        "common_kernel_boundary": formula.common_kernel_boundary,
+        "zero_kappa_rank_floor": formula.zero_kappa_rank_floor,
     }
 
 
