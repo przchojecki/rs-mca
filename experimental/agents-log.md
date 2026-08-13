@@ -4214,3 +4214,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-08-13 - KoalaBear rank-eleven pair/core route cut
+
+- **Agent/model:** Codex with isolated exploration, adversarial, upstream, and
+  review lanes.
+- **Exact parent:** PR #1167 head
+  `491ccdf53d54846f5a013b808960645275c64ed3`.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_pair_core_route_cut_v1.md`,
+  exact Python/Sage verifiers, canonical certificate packet, research
+  campaign, `agents.md`, and this log.
+- **Status:** PROVED LOCAL ROUTE CUT / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A nonuniform support-margin resource theorem, an
+  actual fixed minimizing-pair compiler, exact rank-eleven terminals
+  `weight >= 743449148, deficiency <= 8` and
+  `slopes >= 200632, deficiency <= 4`, and two exact core-deficiency method
+  ceilings.  Neither ceiling fits the KoalaBear budget.
+- **Controls:** normal and optimized Python, hostile mutations, exact Sage
+  parallel-star sharpness, Wolfram integer replay, full TeX compilation, and
+  a targeted 55-result Exa literature sweep with no imported lemma.
+- **Nonclaim:** Error rank eleven remains unpaid; no active-v4 atom moves and
+  KoalaBear is not closed.
+- **What to do next:** Prove a same-line cross-pair collision theorem or a
+  chronology-correct owner for dense parallel pair cores.  Another scalar
+  threshold or smaller per-pair multiplier is ruled out.

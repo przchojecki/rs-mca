@@ -7857,6 +7857,193 @@ formula is \(1040506078215897711>B_*\), attained at \(T=876\); the
 minima at \(s=11,12\) are larger still.
 \end{proof}
 
+\begin{theorem}[Nonuniform support-margin resource]
+\label{thm:mca-nonuniform-support-margin}
+Retain the hypotheses and notation of
+\cref{thm:support-transverse-affine-span-mca}, but define the individual
+support margins
+\[
+ \theta_\gamma=\min\left\{w+1,
+  \min_{b\in C'}|\{x\in S_\gamma:r_1(x)\ne b(x)\}|\right\}.
+\]
+Then
+\begin{equation}
+ \sum_{\gamma\in Z}\theta_\gamma\le C_s,
+ \qquad
+ C_s=\left\lfloor\max\left\{
+ \frac{n^{\underline{s+1}}}{m(w+1)^{\overline{s-1}}},
+ \frac{(n-K+s)^{\underline{s+1}}}{(w+1)^{\overline s}}
+ \right\}\right\rfloor .
+ \label{eq:mca-nonuniform-support-margin}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Use the ordered-normal-basis proof of
+\cref{thm:support-transverse-affine-span-mca}, before replacing the
+individual final-extension counts by their minimum.  With the proof's
+global zero-normal parameters \((z,g)\), the parameter point belonging to
+\(\gamma\) owns at least
+\[
+ (m-g)\theta_\gamma(w+1)^{\overline{s-1}}
+\]
+ordered independent coordinate-normal tuples.  One independent
+\((s+1)\)-tuple determines at most one parameter point.  Summing first gives
+\[
+ (m-g)(w+1)^{\overline{s-1}}
+ \sum_\gamma\theta_\gamma
+ \le (n-z)^{\underline{s+1}}.
+\]
+Here \((z,g)\) are global: a zero normal's affine incidence equation is either
+identically satisfied on the parameter flat or never satisfied.  Now
+\(0\le g\le z\le K-s\).  For fixed \(z\), the ratio is largest at \(g=z\),
+and the successive-ratio calculation in the cited proof puts its maximum at
+\(z=0\) or \(z=K-s\).  These are the two terms in
+\eqref{eq:mca-nonuniform-support-margin}.
+\end{proof}
+
+\begin{theorem}[Weighted minimizing-pair core route cut]
+\label{thm:mca-weighted-pair-core-route-cut}
+Retain the hypotheses of
+\cref{thm:mca-nonuniform-support-margin}.  Fix
+\(1\le\tau\le w-1\), and put
+\[
+ Q_s(\tau)=\left\lfloor
+  \frac{\binom{n-K+s}{s}}{\binom{w-\tau+s}{s}}
+ \right\rfloor ,
+ \qquad Q_s(\tau)^2<|\F|.
+\]
+For every \(\gamma\) with \(\theta_\gamma\le\tau\), fix one minimizing
+\(b_\gamma\in C'\), and put
+\[
+ a_\gamma=c_\gamma-\gamma b_\gamma,
+ \qquad \lambda_\gamma=\tau+1-\theta_\gamma,
+\]
+and group records by their ordered pair \((a_\gamma,b_\gamma)\).  If
+\(|Z|\ge E\) and \((\tau+1)E>C_s\), some fixed pair has total weight at
+least
+\begin{equation}
+ L_s(\tau,E)=\left\lceil
+ \frac{\max\{0,(\tau+1)E-C_s\}}{Q_s(\tau)}
+ \right\rceil .
+ \label{eq:mca-weighted-pair-load}
+\end{equation}
+For a fixed pair \((a,b)\), write
+\[
+ H_{a,b}=\{x\in D:r_0(x)=a(x),\ r_1(x)=b(x)\},
+ \qquad \delta=\max\{1,m-|H_{a,b}|\}.
+\]
+The pair owns at most
+\begin{equation}
+ c_\delta=\left\lfloor\frac{n-m+\delta}{\delta}\right\rfloor
+ \label{eq:mca-pair-core-multiplicity}
+\end{equation}
+records, and its weight is at most
+\(c_\delta(\tau+1-\delta)\).
+\end{theorem}
+
+\begin{proof}
+The positive-part identity and
+\eqref{eq:mca-nonuniform-support-margin} give
+\[
+ \sum_{\theta_\gamma\le\tau}
+   (\tau+1-\theta_\gamma)
+ =\sum_{\gamma\in Z}(\tau+1-\theta_\gamma)_+
+ \ge (\tau+1)|Z|-C_s.
+\]
+The selected pair \((a_\gamma,b_\gamma)\) agrees with the received pair on
+at least \(m-\tau>K\) coordinates.  The ordinary affine-span list theorem
+and the sub-square interleaving collapse
+\cref{thm:subsquare-interleaving-collapse} bound the number of distinct
+ordered pairs by \(Q_s(\tau)\).  Pigeonholing proves
+\eqref{eq:mca-weighted-pair-load}; there is no bipartite factor two because
+the interleaving theorem counts complete ordered pairs.
+
+Fix one pair and an owning record.  On \(S_\gamma\), the identity
+\[
+ r_0-a=-\gamma(r_1-b)
+\]
+shows that
+\(S_\gamma\cap H_{a,b}=\{x\in S_\gamma:r_1(x)=b(x)\}\).  Since the margin
+cap is inactive, \(\theta_\gamma=|S_\gamma\setminus H_{a,b}|\ge\delta\).
+For distinct finite slopes these exception sets are disjoint: at a point
+outside \(H_{a,b}\), the displayed equation determines \(\gamma\) uniquely.
+Their union lies in \(D\setminus H_{a,b}\).  Division by \(\delta\), with
+the harmless overestimate \(n-|H_{a,b}|\le n-m+1\) when
+\(|H_{a,b}|\ge m\), proves \eqref{eq:mca-pair-core-multiplicity}.  Each
+edge weight is at most \(\tau+1-\delta\), proving the final assertion.
+\end{proof}
+
+\begin{proposition}[KoalaBear rank-eleven pair-core terminal]
+\label{prop:kb-rank-eleven-pair-core-terminal}
+Retain the intrinsic near deletion, exact record selection, and reversible
+gauge of \cref{prop:kb-post-deletion-affine-error-router}.  Suppose the
+selected error words have affine rank \(11\), so the gauged explanations
+lie in an affine ten-flat over the deployed field
+\(|\F|=2130706433^6\).  If the received line has more than \(B_*\) bad
+slopes, then for each row below there exists a fixed actual minimizing pair
+satisfying that row.  The pairs supplied by the two independently optimized
+cutoffs need not coincide.
+\[
+\begin{array}{c|r|r|r}
+ \tau&\text{pair weight}&\text{owned slopes}&\delta\le\ \\ \hline
+ 6486&743449148&114624&8\\
+ 1795&360132809&200632&4
+\end{array}
+\tag{PC11}\label{eq:kb-rank-eleven-pair-core-terminal}
+\]
+Parallel records are allowed; the owned-slope column is not a
+distinct-neighbor degree.
+
+Moreover, the complete one-cutoff upper bound obtained from the printed
+high-margin theorem, all cumulative interleaved pair caps, and the exact
+core-deficiency multiplicities has unique minimum
+\[
+ 813929118931913384
+ =134944+5401690553097387+808527428378681053
+ >B_*
+\]
+at cutoff \(J=19737\).  Thus those inputs do not pay rank eleven.  The
+remaining theorem must couple different fixed pairs or route the dense
+parallel pair cores to a chronology-correct owner.
+\end{proposition}
+
+\begin{proof}
+An over-budget line leaves at least
+\(E=B_*-2w+1\) post-near slopes.  Apply
+\cref{thm:mca-weighted-pair-core-route-cut} with \(s=10\).  Exact integer
+optimization of \eqref{eq:mca-weighted-pair-load} gives the two rows of
+\eqref{eq:kb-rank-eleven-pair-core-terminal}; comparison with
+\(c_\delta(\tau+1-\delta)\) gives the displayed deficiency walls.
+
+For the final assertion, first fix one minimizing \(b_\gamma\), and hence
+one pair type \((a_\gamma,b_\gamma)\), for every selected record, once and
+for all cutoffs.  Let \(G(t)\) count distinct selected pair types
+whose deficiency is at most \(t\).  Such a pair has common agreement at
+least \(m-t\), so interleaving gives \(G(t)\le Q_{10}(t)\).  Since
+\(c_\delta\) decreases, summation by parts bounds the low records through
+\(J\) by
+\[
+ Q_{10}(1)c_1+
+ \sum_{\delta=2}^{J}
+   \bigl(Q_{10}(\delta)-Q_{10}(\delta-1)\bigr)c_\delta.
+\]
+The records with margin at least \(J+1\) are bounded by the maximum of the
+support-transverse theorem over affine subranks \(0\le j\le10\).  Scanning
+all \(1\le J\le w-1\), subject to the exact sub-square guard, gives the
+unique displayed minimum.  The release certificate recomputes every term,
+the adjacent cutoffs, and hostile mutations.
+\end{proof}
+
+\begin{remark}[Scope of the rank-eleven route cut]
+The proposition moves no active-v4 atom and does not close KoalaBear.  A
+small constant-code star shows that the fixed-pair multiplicity and parallel
+edges are genuine under the local hypotheses, so no simple-graph expansion
+or smaller per-pair multiplier may be inferred.  The missing result is an
+actual-record cross-pair compatibility or owner theorem, not another scalar
+threshold optimization.
+\end{remark}
+
 
 \begin{proposition}[Exact rank-flat and common-zero reductions at the active rows]
 \label{prop:active-rank-flat-common-zero}
