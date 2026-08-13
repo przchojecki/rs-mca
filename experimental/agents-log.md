@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne exact-layer slot-core packing
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_exact_layer_slot_core_packing_v1.md`,
+  `experimental/verify_mca_full_lift_exact_layer_slot_core_packing_v1.py`,
+  `experimental/audit_mca_full_lift_exact_layer_slot_core_packing_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / ELEVEN-SUPPORT PAYMENT.
+- **What is being added:** Exact-layer incidence forces a selected
+  `lambda`-member affine explanation slot to have inside core at least
+  `ceil((lambda*h-e)/(lambda-1))`.
+- **How it is useful:** Combined with the capped-core dichotomy, three lines
+  pay every Mersenne support `130226<=e<=130236`.
+- **What to do next:** Control the size-two primitive shift-pair bank at
+  `e=130237`, or bridge to the high-support interval.
+
 ### 2026-08-13 - Mersenne core-dichotomy capped charge
 
 - **Agent/model:** Codex.
