@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne residue-zero direction-class router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_residue_zero_direction_router_v1.md`,
+  `experimental/verify_mca_full_lift_residue_zero_direction_router_v1.py`,
+  `experimental/audit_mca_full_lift_residue_zero_direction_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / STRUCTURAL ROUTER.
+- **What is being added:** A constant-block Johnson count permits at most
+  three normalized direction classes in the first residue-zero boundary
+  layer; outside-core line packing then caps that layer at `1450`.
+- **How it is useful:** Any unsafe Mersenne family at `e=98232` must put at
+  least `343071` slopes on the synchronized top line, forcing its common
+  core to have size at least `m-2`.
+- **What to do next:** Classify and pay the one- and two-private-coordinate
+  affine-line strata. No safety or unsafety claim is made at this support.
+
 ### 2026-08-13 - Mersenne residue-two boundary continuation
 
 - **Agent/model:** Codex.

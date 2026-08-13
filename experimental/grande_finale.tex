@@ -2466,6 +2466,110 @@ $98232\le e\le1044241$.  The exact replay is in
 \path{experimental/verify_mca_full_lift_two_boundary_layer_continuation_v1.py}.
 \end{remark}
 
+\begin{corollary}[Boundary direction-class router]
+\label{cor:full-lift-boundary-direction-router}
+Retain the pair-noncontained full-lift hypotheses and notation of
+\cref{thm:full-lift-top-third-global-line}, put
+\[
+ H=e-s-1,\qquad c=K-1,
+\]
+For $1\le h\le H-1$, define $C_h$ by the punctured Johnson or
+mean-centered rule in
+\cref{cor:full-lift-mean-centered-global-line-profile}, and suppose every
+such cap is defined.  Define the independently truncated prefix
+\[
+ B_0=0,\qquad B_h=\min_{h\le v\le H-1}C_v,
+ \qquad
+ P_{H-1}=\sum_{h=1}^{H-1}(B_h-B_{h-1})
+                 \left\lfloor\frac eh\right\rfloor.
+\]
+Let $\mathcal D$ be the exact deficit-$H$ layer, and write $q_{\rm dir}$
+for the gauged direction on its support $E$.  Put
+\[
+ A=2H-e,
+ \qquad
+ J=\left\lfloor\frac{e(A-c)}{A^2-ec}\right\rfloor,
+ \qquad
+ Q=\left\lfloor\frac{N-e-c}{m-H-c}\right\rfloor.
+\]
+If
+\[
+ A>0,\qquad A^2>ec,\qquad N-e>m-H>c,
+\]
+then
+\begin{equation}
+ |\mathcal D|\le 1+J(Q-1).
+ \label{eq:full-lift-boundary-direction-cap}
+\end{equation}
+If $\mathcal T$ is the synchronized union of deficits greater than $H$,
+then consequently
+\begin{equation}
+ |Z|\le P_{H-1}+1+J(Q-1)+|\mathcal T|.
+ \label{eq:full-lift-boundary-direction-router}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The claim is immediate when $\mathcal D$ is empty.  Otherwise fix an anchor
+$(\gamma_0,c_0)\in\mathcal D$.  For every other member put
+\[
+ p_\gamma=\frac{c_\gamma-c_0}{\gamma-\gamma_0}.
+\]
+The chosen size-$H$ inside agreement sets meet in at least $A=2H-e$
+coordinates, and on this intersection $p_\gamma=q_{\rm dir}$.  Thus the
+intrinsic set
+\[
+ U_p=\{x\in E:q_{\rm dir}(x)=p(x)\}
+\]
+has size at least $A$ for every represented direction $p$.  Such a $p$ is
+nonzero: otherwise the two explanations would be the same codeword, while
+on their nonempty inside intersection that codeword would equal received
+words whose difference is $(\gamma-\gamma_0)q_{\rm dir}\ne0$.
+
+For distinct represented directions $p,p'$, the intersection
+$U_p\cap U_{p'}$ lies in the zero set of the nonzero degree-$<K$ codeword
+$p-p'$, and hence has size at most $c$.  Choosing $A$ points from every
+$U_p$ and applying the constant-block Johnson double count gives at most
+$J$ represented directions.
+
+For a fixed $p$, its members and the anchor lie on the affine codeword line
+$c_0+(\gamma-\gamma_0)p$.  Outside $E$ the received direction vanishes, so
+the common agreement core of this line lies in the zero set of the nonzero
+codeword $p$ and has size at most $c$.  Every member has $m-H$ outside
+agreements.  Since $N-e>m-H>c$, outside-core packing bounds the line by
+$Q$.  The anchor is repeated in each line closure, so each of the at most
+$J$ classes contributes at most $Q-1$ nonanchors.  This proves
+\eqref{eq:full-lift-boundary-direction-cap}.  The boundary and top layers
+have one-slope ownership; the independently truncated prefix charges all
+lower deficits, proving \eqref{eq:full-lift-boundary-direction-router}.
+\end{proof}
+
+\begin{remark}[First residue-zero Mersenne router]
+At Mersenne-31 $e=98232$,
+\[
+ (s,H,A)=(32742,65489,32746),\qquad J=3,\qquad Q=484,
+\]
+so $|\mathcal D|\le1450$.  The exact prefix is
+$P_{H-1}=16432695$, and therefore
+\[
+ |Z|\le16434145+|\mathcal T|.
+\]
+An unsafe family would need $|\mathcal T|\ge343071$.  If $g$ is the total
+common core of this affine line, line packing gives
+\[
+ g\ge
+ \left\lceil\frac{|\mathcal T|m-N}{|\mathcal T|-1}\right\rceil
+ \ge67452=m-2.
+\]
+Thus the first residue-zero obstruction is reduced to the one- and
+two-private-coordinate line strata.  This is a structural router, not a
+safety or unsafety certificate at $e=98232$, and the Mersenne residual
+interval remains $98232\le e\le1044241$.  The exact replay is in
+\path{experimental/verify_mca_full_lift_residue_zero_direction_router_v1.py},
+with an independent endpoint audit in
+\path{experimental/audit_mca_full_lift_residue_zero_direction_router_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
