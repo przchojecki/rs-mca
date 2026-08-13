@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T tensor-rank-three projective frame
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED rank-three route cut; no Shape-A exclusion claimed.
+- **What is being added:** Every rank-three official Shape-A survivor has
+  four general-position domain rows with no triple slope incidence. At least
+  `e-8` slopes repeat across the four rows, so one pair shares at least
+  `ceil((e-8)/6)=30541989660` official roots.
+- **How it is useful:** Together with the rank-two exclusion, this routes
+  every survivor to an explicit triple-free rank-three frame or tensor rank
+  at least four, exposing additional incidence structure for the retained
+  spread, collision, and source/Hankel gates.
+- **What to do next:** Exclude the rank-three frame using the official
+  support/source semantics, or prove a rank-at-least-four obstruction. Do not
+  count the pair floor alone as a Lane-T payment.
+
 ### 2026-08-13 - Lane-T all-excess rank fence and rank-two exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.

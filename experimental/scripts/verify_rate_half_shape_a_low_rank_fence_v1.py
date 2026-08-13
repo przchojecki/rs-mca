@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Replay the Shape-A all-excess rank fence and rank-two exclusion."""
+"""Replay the Shape-A rank fence and low-rank projective routers."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "2d376a7e2061b0adc214e071c01dd270c0f2421c"
+SOURCE_COMMIT = "2871b3bdd2b5b2d5161cbb57b204b8b920faa67c"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/probe_results.md": "603668188e6fa399919f0ce0955b4a7ccef06a549286a43e3e43b6f8ba922203",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_probe.py": "f783f91f9b22084d457c2f96205cb838e9b5b9f6562547f6b746825150229da9",
@@ -24,6 +24,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_two_biform_exclusion/audit.md": "a05990b75ff20c33599b0a3c41404ba4c8fe65388dae7cb1f45023cec893570f",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_two_biform_exclusion/verify.py": "15a9638bfc8d5dfb48169b954e2be2ccaee695e8c9f077c655f1fbaa70d9a1fc",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_two_biform_exclusion/verify_audit.py": "25d91265ec5cb0aac486883cbbe8cd1c683b7c0e7bc85d7888564dce90b800b7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_projective_frame_router/statement.md": "ff65f8ae7097f8fa2caadb2764880ad3e2a098fc0b145c275dbc8ace0a9fcbbe",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_projective_frame_router/proof.md": "131c76e92f4ecdec4eb52a8b2fdb2aabeb183f9cc5fc3358198e9ce094e7c5da",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_projective_frame_router/audit.md": "859cf7359a527782d72de8eae05efb96d28513b309701d929d53d917c7501e4c",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_projective_frame_router/verify.py": "2ca82d2787f27cd069a8814c5cf39b2f177b6b0b168d1c3b5730f504676f1250",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_projective_frame_router/verify_audit.py": "ac6b57be2bcfa49f271098e0687d82bba4edc3c3bc131880fc1268c7ac939e5e",
 }
 
 
@@ -206,6 +211,8 @@ class Formula:
     fence_rank: int = 27
     rank_two_onset: int = 9
     official_row_surplus: int = 7
+    rank_three_repeated_floor: int = 183251937955
+    rank_three_pair_floor: int = 30541989660
 
 
 def partition_probe() -> tuple[int, int, int]:
@@ -305,6 +312,13 @@ def replay(formula: Formula) -> dict[str, int]:
     row_count = (9 * e - 7) // 2
     require(row_count - 3 * n == formula.official_row_surplus, "row surplus")
     require((3 * e) // (e - 2) == 3, "official row-type cap")
+    repeated_floor = 4 * (e - 2) - 3 * e
+    pair_floor = (repeated_floor + 5) // 6
+    require(
+        repeated_floor == formula.rank_three_repeated_floor,
+        "rank-three repeated-slope floor",
+    )
+    require(pair_floor == formula.rank_three_pair_floor, "rank-three pair floor")
     return {
         "profiles": profile_count,
         "cases": cases,
@@ -313,6 +327,8 @@ def replay(formula: Formula) -> dict[str, int]:
         "blocks": blocks,
         "onset": onset,
         "official_surplus": row_count - 3 * n,
+        "rank_three_repeated_floor": repeated_floor,
+        "rank_three_pair_floor": pair_floor,
     }
 
 

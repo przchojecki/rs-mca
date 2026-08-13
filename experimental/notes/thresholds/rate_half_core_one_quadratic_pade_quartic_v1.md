@@ -2269,6 +2269,71 @@ The remaining route is now accurately scoped: classify or exclude
 rank-at-least-three `K_all` kernels using the spread, collision, or common
 source/Hankel structure.
 
+## 46. Tensor-rank-three projective-frame router
+
+The first surviving tensor rank already forces a rigid incidence frame.
+Assume the Shape-A biform has a minimal rank-three presentation
+
+```text
+G(t,X)=A_0(t)B_0(X)+A_1(t)B_1(X)+A_2(t)B_2(X),    (214)
+```
+
+with both triples independent, and define
+
+```text
+b(x)=[B_0(x):B_1(x):B_2(x)] in P^2.              (215)
+```
+
+Every projective line `ell=0` contains at most `n` of the domain-row
+images. Indeed, its preimage is the zero set of the nonzero polynomial
+`ell(B_0,B_1,B_2)` of degree at most `n`; identically zero would contradict
+minimal rank three.
+
+Choose three noncollinear images. Their three pair-lines contain at most
+`3n` rows. Since `R=3n+7`, at least seven rows remain outside those lines,
+and any one supplies a fourth image in general position. For the four row
+polynomials `P_i(t)=G(t,x_i)`, every three are independent and there is a
+unique projective circuit
+
+```text
+c_1P_1+c_2P_2+c_3P_3+c_4P_4=0,                  (216)
+```
+
+with every `c_i` nonzero.
+
+No slope can root three of the four rows. The circuit would make it root
+the fourth, and three independent coefficient rows would then force
+`A_0(delta)=A_1(delta)=A_2(delta)=0`. This would make the complete
+parameter fiber `G(delta,X)` zero, contrary to the all-excess fiber gate.
+
+Each row has `m=e-2` distinct roots in the `3e`-element slope set. If `u`
+is their union size and `d_2` counts slopes occurring twice, the absence of
+triple incidences gives
+
+```text
+4m=u+d_2,
+d_2>=4(e-2)-3e=e-8.                              (217)
+```
+
+Each repeated slope contributes to exactly one of the six pair
+intersections. Hence
+
+```text
+sum_(1<=i<j<=4)|A_i intersect A_j|>=e-8,
+max_(i<j)|A_i intersect A_j|>=ceil((e-8)/6).       (218)
+```
+
+At the official row these quantities are respectively
+
+```text
+183251937955,       30541989660.                  (219)
+```
+
+Together with Section 45, every official survivor therefore either has
+tensor rank three and contains this triple-free four-row frame, or has
+tensor rank at least four. This is a route cut, not an exclusion of either
+branch.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2328,3 +2393,6 @@ Section 45 gives an exact block-supported small-profile kernel and therefore
 fences a degree-ledger-only rank proof. It also excludes tensor rank at most
 two on every official Shape-A survivor, but does not control tensor rank
 three or higher and does not close Lane T.
+Section 46 forces a triple-free four-row projective frame and a large pair
+overlap in the rank-three branch, but does not exclude that frame or control
+tensor rank at least four.
