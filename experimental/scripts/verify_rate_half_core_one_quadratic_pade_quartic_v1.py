@@ -11,7 +11,7 @@ from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "916f49a6ce0e46a5c139096de5222aba5974b5f8"
+SOURCE_COMMIT = "7d19de99ced580b0b21cf8aca20e1d8ca85c08ee"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -105,6 +105,8 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_componentwise_degree_floor/proof.md": "93d5febc3c8b7c21ffa0e0097545d724cfa231bf8a71c34cd86f0ebd43012afe",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_subgroup_genus_floor/statement.md": "4b29e09907aa576b1d85232838d33772229f1b597ccd6e20b07792d7df988fe9",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_subgroup_genus_floor/proof.md": "3625dc1fbc95e95b2a85a660c960a0e134adef59077480156390f63e932541fa",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_residual_four_cycle_rigidity/statement.md": "5ac92a9a0af5e414370bc78e3110db3c17b870009a5a578612fbcaf6d08e3ef9",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_residual_four_cycle_rigidity/proof.md": "707af9b50c3e6afe2c6a544a12cd25b919bdf126718070454d370c40811e4ca6",
 }
 
 
@@ -227,6 +229,11 @@ class Formula:
     collision_shape_a_global_chi_floor: int = 262353693488940318721
     collision_shape_a_global_genus_floor: int = 131176846286340314460
     collision_shape_a_global_genus_ceiling: int = 50371909149143533442400
+    collision_shape_a_residual_divisor_multiplier: int = 2
+    collision_shape_a_residual_cycle_degree: int = 4
+    collision_shape_a_residual_section_dimension: int = 1
+    collision_shape_a_second_modification_constant_rank: int = 0
+    collision_shape_a_second_modification_negative_ceiling: int = -549755813885
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1534,6 +1541,56 @@ def verify_collision_shape_a_global_genus_floor(formula: Formula) -> int:
     return 10
 
 
+def verify_collision_shape_a_residual_four_cycle_rigidity(
+    formula: Formula,
+) -> int:
+    """Replay the residual 2B divisor and second-modification section cap."""
+    e = (2**39 + 1) // 3
+    d = 3 * e - 2
+    deg_r = e - 6
+    deg_b = 2
+
+    require(deg_r > 0, "shape-A proper residual fibre divisor")
+    require(deg_r + 3 * deg_b == e, "shape-A vertical divisor degree")
+    require(deg_r + 2 * deg_b == e - 2, "shape-A contact divisor degree")
+    require(
+        formula.collision_shape_a_residual_divisor_multiplier == 2,
+        "shape-A residual divisor multiplier",
+    )
+    require(
+        formula.collision_shape_a_residual_cycle_degree == 2 * deg_b,
+        "shape-A residual cycle degree",
+    )
+
+    for partition in ((2,), (1, 1)):
+        require(sum(partition) == deg_b, "shape-A correction partition")
+        require(
+            sum(
+                formula.collision_shape_a_residual_divisor_multiplier * value
+                for value in partition
+            )
+            == formula.collision_shape_a_residual_cycle_degree,
+            "shape-A normalized residual length",
+        )
+
+    require(
+        formula.collision_shape_a_second_modification_constant_rank == 0,
+        "shape-A constant modification direction",
+    )
+    negative_ceiling = (1 - d) + 1
+    require(
+        negative_ceiling
+        == formula.collision_shape_a_second_modification_negative_ceiling
+        < 0,
+        "shape-A second modification negativity",
+    )
+    require(
+        formula.collision_shape_a_residual_section_dimension == 1,
+        "shape-A residual section dimension",
+    )
+    return 12
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1884,7 +1941,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 92, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 94, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1910,6 +1967,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_shape_a_pure_split_component_floor(formula)
     checks += verify_collision_shape_a_componentwise_degree_floor(formula)
     checks += verify_collision_shape_a_global_genus_floor(formula)
+    checks += verify_collision_shape_a_residual_four_cycle_rigidity(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -2077,6 +2135,21 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_shape_a_global_genus_ceiling": (
             formula.collision_shape_a_global_genus_ceiling
+        ),
+        "collision_shape_a_residual_divisor_multiplier": (
+            formula.collision_shape_a_residual_divisor_multiplier
+        ),
+        "collision_shape_a_residual_cycle_degree": (
+            formula.collision_shape_a_residual_cycle_degree
+        ),
+        "collision_shape_a_residual_section_dimension": (
+            formula.collision_shape_a_residual_section_dimension
+        ),
+        "collision_shape_a_second_modification_constant_rank": (
+            formula.collision_shape_a_second_modification_constant_rank
+        ),
+        "collision_shape_a_second_modification_negative_ceiling": (
+            formula.collision_shape_a_second_modification_negative_ceiling
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

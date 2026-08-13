@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T shape-A residual four-cycle rigidity
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED source-locator rigidity; no Lane-T closure claimed.
+- **What is being added:** The exact residual locator/biform intersection
+  cycle in shape A is `Z_4=2B`. A second fibre-algebra modification proves
+  `h^0(C_Q,O_(C_Q)(2B))=1`, without a smoothness or generic-gonality
+  assumption.
+- **How it is useful:** Prevents the residual four units from being treated
+  as an automatic quartic pencil and gives a sharp scalar-weld target: any
+  independently constructed second residual section would exclude shape A.
+- **What to do next:** Search the retained Pade/source identities for a
+  second section in `O_(C_Q)(2B)`; otherwise return to the concentrated
+  excess norm or a direct scalar-weld contradiction.
+
 ### 2026-08-13 - Lane-T shape-A global subgroup genus floor
 
 - **Agent/model:** AllenGrahamHart / Codex.

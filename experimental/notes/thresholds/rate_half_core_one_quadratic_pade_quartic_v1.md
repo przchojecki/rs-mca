@@ -1729,6 +1729,58 @@ Thus this does not exclude shape A. It gives an exact target for the retained
 source/Pade structure: a genus upper bound below `(161)` would close the
 branch, while the generic bidegree ceiling cannot.
 
+## 39. The residual four-cycle is rigid
+
+The exact four-core has a sharper interpretation on the normalized
+source-locator curve `C_Q`; it should not be interpreted as a quartic pencil.
+Let `B` be the degree-two correction divisor from the double-root normal
+form. Its vertical and contact divisors are
+
+```text
+div_(C_Q)(X-x_*)=R_*+3B,
+div_(C_Q)(s_F)=R_*+2B,       deg R_*=e-6.            (162)
+```
+
+At every normalized point `b` occurring in `B` with multiplicity `m_b`, the
+contact calculation gives `ord_b P_F=2m_b`. Restricting the Pade syzygy to
+`Q=0` preserves this order because `Lambda(tau)` and `L_U0(x_*)` are units.
+The factorwise Bezout ledger places all four residual intersection units at
+this collision. Hence the pullback of the residual projective cycle is
+
+```text
+Z_4=sum_b 2m_b b=2B.                                (163)
+```
+
+This divisor is rigid. For `d=3e-2`, the first correction modification is
+
+```text
+pi_*O_(C_Q)(B)
+ =O direct_sum O(1-d)^2 direct_sum O(-d)^(e-3).    (164)
+```
+
+The quotient from `B` to `2B` has length two and is killed by the base
+uniformizer `X-x_*`. Its two modification directions vanish on the nonempty
+residual fibre `R_*`, so they miss the constant fibre-algebra line. Removing
+their possible constant components by a bundle automorphism gives an
+embedding
+
+```text
+pi_*O_(C_Q)(2B)
+ subset O direct_sum O(2-d)^2 direct_sum O(1-d)^(e-3). (165)
+```
+
+All nonconstant summands have negative degree. The canonical effective-
+divisor section therefore spans the entire section space:
+
+```text
+h^0(C_Q,O_(C_Q)(2B))=1.                             (166)
+```
+
+This argument uses neither smoothness nor a generic-gonality assertion for
+the locator curve. It turns the four-core into a precise source rigidity
+test: a second independently constructed residual section would immediately
+contradict `(166)`, but the four residual units alone supply no such section.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1769,3 +1821,5 @@ Section 37 excludes every low-degree component in the prime-field branch,
 but leaves high-degree non-toral components and makes no extension-field
 claim. Section 38 forces a global shape-A genus floor but supplies no
 source-derived genus upper bound and therefore does not exclude shape A.
+Section 39 identifies the residual four-cycle with `2B` and proves it rigid;
+it does not construct the second section needed to exclude shape A.
