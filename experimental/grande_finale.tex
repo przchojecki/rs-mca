@@ -1881,6 +1881,93 @@ but the exact profile is \(17120123>16777215\).  The replay is in
 \path{experimental/verify_mca_sparse_direction_mean_centered_gram_profile_v1.py}.
 \end{remark}
 
+\begin{theorem}[Terminal-deficit affine-line cap]
+\label{thm:terminal-deficit-affine-line}
+Retain the sparse-direction notation of
+\cref{thm:sparse-direction-punctured-johnson-mca}, assume \(e\ge K\), and
+put
+\[
+ n=N-e,
+ \qquad A=m-e,
+ \qquad c=K-1.
+\]
+If \(A>c\), then the number \(L_e\) of transformed explanations that own a
+selected slope and have exact outside deficit \(e\) satisfies
+\begin{equation}
+ L_e\le\left\lfloor\frac{n-c}{A-c}\right\rfloor.
+ \label{eq:terminal-deficit-affine-line}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+An exact-deficit-\(e\) explanation has exactly \(A=m-e\) outside
+agreements.  To own a selected slope it must therefore agree at all \(e\)
+coordinates of the direction support \(E\).  If two such explanations have
+slopes \(\gamma\ne\delta\), their normalized difference is a nonzero
+degree-\(<K\) codeword \(p\) whose restriction to \(E\) is the gauged
+direction \(q|_E\).  Every further terminal explanation gives the same
+normalized difference: the two codewords agree on \(E\), and evaluation on
+\(E\) is injective because \(e\ge K\).  Thus all terminal explanations lie
+on one affine codeword line.
+
+Outside \(E\), let \(G\) be the common agreement core on the zeros of
+\(p\), and write \(g=|G|\le K-1=c\).  Away from \(G\), a coordinate can be
+an agreement for at most one affine-line parameter.  Since each terminal
+explanation has \(A-g\) agreements away from the core,
+\[
+ L_e(A-g)\le n-g.
+\]
+The ratio \((n-g)/(A-g)\) increases with \(g\), so \(g\le c\) gives
+\eqref{eq:terminal-deficit-affine-line}.  The case \(L_e\le1\) is
+immediate.
+\end{proof}
+
+\begin{corollary}[Prefix-plus-terminal sparse-direction profile]
+\label{cor:prefix-terminal-sparse-direction-profile}
+For every \(1\le h<e\), let \(C_h\) be a proved cumulative cap on the
+number \(N_h\) of transformed explanations with outside deficit at most
+\(h\), and put
+\[
+ B_0=0,
+ \qquad B_h=\min_{h\le v<e}C_v.
+\]
+Then
+\begin{equation}
+ |Z|\le
+ \sum_{h=1}^{e-1}(B_h-B_{h-1})\left\lfloor\frac eh\right\rfloor
+ +\left\lfloor\frac{N-e-(K-1)}{m-e-(K-1)}\right\rfloor.
+ \label{eq:prefix-terminal-sparse-direction-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For \(h<e\), monotonicity gives
+\(N_h\le\min_{h\le v<e}C_v=B_h\).  Sum the nonincreasing owner weights
+\(\lfloor e/h\rfloor\) by parts over the prefix layers, then apply
+\cref{thm:terminal-deficit-affine-line} to the exact terminal layer, whose
+owner weight is one.
+\end{proof}
+
+\begin{remark}[Exact terminal-line support walls]
+Using the Johnson/mean-centered cumulative caps for \(h<e\),
+\eqref{eq:prefix-terminal-sparse-direction-profile} pays one further
+support in each deployed row:
+\[
+\begin{array}{c|c|c|r|r}
+\text{row}&K&\text{last paid }e&\text{terminal cap}&\text{total profile}\\ \hline
+\text{KoalaBear}&14&64048&287&181326343\\
+\text{Mersenne-31}&6&65455&493&16100647
+\end{array}
+\]
+At KoalaBear \(e=64049\), the cumulative cap at \(h=e-1\) is unavailable.
+At Mersenne \(e=65456\), the valid profile is
+\(17119507>16777215\).  The remaining full-lift intervals are therefore
+\(64049\le e\le1044238\) and \(65456\le e\le1044241\).  This is a
+support-wall refinement, not a proof of either deployed row.  The exact
+replay is in
+\path{experimental/verify_mca_sparse_direction_terminal_deficit_line_payment_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

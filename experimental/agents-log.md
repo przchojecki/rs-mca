@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Terminal-deficit affine-line payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_terminal_deficit_line_payment_v1.md`,
+  `experimental/verify_mca_sparse_direction_terminal_deficit_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** An affine-codeword-line theorem for the exact
+  terminal deficit layer of the sparse-direction compiler, plus a
+  prefix-plus-terminal slope profile.
+- **How it is useful:** It pays one further support in each deployed row,
+  moving the low-support walls to `e=64048` on KoalaBear and `e=65455` on
+  Mersenne-31, with profile bounds `181326343` and `16100647`.
+- **What to do next:** Control the last several high-deficit layers jointly
+  or retain the full-lift near-MDS extension structure.  KoalaBear
+  `e=64049` lacks the penultimate cumulative cap; Mersenne `e=65456` remains
+  valid but over budget by `342292`.
+
 ### 2026-08-13 - Mean-centered Gram profile
 
 - **Agent/model:** Codex.
