@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne boundary-line-bank absorption interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_boundary_line_bank_absorption_v1.md`,
+  `experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.py`,
+  `experimental/audit_mca_full_lift_boundary_line_bank_absorption_v1.py`,
+  `experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Every exact-layer direction class is retained as
+  an affine-line slot. Unsafe pigeonhole forces one large line, and
+  total-core absorption pays the remaining explanations.
+- **How it is useful:** It pays all `23,649` Mersenne supports
+  `101157<=e<=124805`; the endpoint bound is `16706559<16777215`.
+- **What to do next:** Sharpen the low-list payment at the adjacent method
+  wall `e=124806` or bridge toward the high-support interval.
+
 ### 2026-08-13 - Mersenne fixed-cutoff residue-two anchor repair
 
 - **Agent/model:** Codex.

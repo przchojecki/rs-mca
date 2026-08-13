@@ -2811,6 +2811,109 @@ and
 \path{experimental/audit_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py}.
 \end{remark}
 
+\begin{corollary}[Boundary direction-class affine-line bank]
+\label{cor:full-lift-boundary-line-bank}
+Retain the pair-noncontained full-lift hypotheses and put
+\[
+ s=\left\lfloor\frac{e-K}{3}\right\rfloor,\qquad
+ H=e-s-1,\qquad U=\min(H,m),\qquad c=K-1.
+\]
+Fix \(h_0<U\), and let \(P_{h_0}(e)\) be the independently truncated
+Johnson/mean-centered prefix through \(h_0\).  For
+\(h_0<h\le U\), put
+\[
+ A_h=2h-e,\qquad
+ J_h=\left\lfloor\frac{e(A_h-c)}{A_h^2-ec}\right\rfloor,
+\]
+and suppose
+\[
+ 2h>e,\qquad A_h>c,\qquad A_h^2>ec
+\]
+throughout this range.  Define
+\[
+ G_e=\mathbf 1_{\{H<m\}}+\sum_{h=h_0+1}^{U}J_h,\qquad
+ C_e=P_{h_0}(e)+\sum_{h=h_0+1}^{U}(1-J_h).
+\]
+Then there are \(G_e\) affine explanation-line slots
+\(\mathcal L_i\) such that
+\[
+ |Z|\le C_e+\sum_{i=1}^{G_e}|\mathcal L_i|.        \tag{LB1}
+\]
+In particular, for target budget \(B\), unsafety forces one slot to
+have size at least
+\[
+ \lambda_e=
+ \left\lceil\frac{B-C_e+1}{G_e}\right\rceil.       \tag{LB2}
+\]
+If \(\lambda_e\ge2\), put
+\[
+ g_e=\left\lceil\frac{\lambda_em-N}{\lambda_e-1}\right\rceil,
+ \quad u_e=g_e-c,\quad a_e=e-u_e+K.
+\]
+When the punctured ordinary-Johnson cap
+\[
+ M_e=\left\lfloor
+ \frac{(N-e)(m-a_e+1-c)}
+ {(m-a_e+1)^2-(N-e)c}
+ \right\rfloor
+\]
+is defined and \(eM_e+N-m+1\le B\), the support is safe.
+\end{corollary}
+
+\begin{proof}
+Fix one anchor in an exact layer \(h_0<h\le U\).  Every selected
+explanation owns at most one slope because \(2h>e\).  Relative to the
+anchor, each nonzero normalized codeword direction agrees with the gauged
+direction on at least \(A_h\) inside coordinates.  Distinct directions
+have agreement blocks meeting in at most \(c\), so the constant-block
+Johnson count permits at most \(J_h\) direction classes.
+
+Each class together with the anchor is one affine explanation line.  Pad
+to exactly \(J_h\) classes with anchor-only slots.  The exact layer then
+satisfies
+\[
+ |\mathcal D_h|
+ =1-J_h+\sum_{j=1}^{J_h}|\mathcal L_{h,j}|.
+\]
+If \(H<m\), the cross-layer top union contributes one further affine line.
+Summing these identities and the prefix proves (LB1).  Notice that this
+argument uses no outside-core denominator.
+
+If the family is unsafe, pigeonhole gives (LB2).  Total-core line packing
+forces a common core of size at least \(g_e\), of which at least \(u_e\)
+coordinates lie inside the gauged direction support.  Two anchors from
+the large slot synchronize every assigned explanation of deficit at least
+\(a_e\) onto that same line.  The remaining explanations have outside
+agreement at least \(m-a_e+1\); the punctured ordinary-Johnson cap counts
+them, and the conservative owner multiplier \(e\) completes the payment.
+\end{proof}
+
+\begin{remark}[Exact Mersenne line-bank interval]
+For Mersenne-31, take \(h_0=65272\).  Exact replay pays every support
+\[
+ 101157\le e\le124805.
+\]
+At the endpoint,
+\[
+ \begin{aligned}
+ P_{h_0}&=1636955,& C_e&=1604577,&G_e&=34560,\\
+ \lambda_e&=440,&g_e&=65220,&M_e&=126,\\
+ eM_e+N-m+1&=16706559.
+ \end{aligned}
+\]
+The final margin is \(70656\).  At adjacent \(e=124806\), the same legal
+compiler gives \(16831491\), above budget by \(54276\).  This is a method
+wall, not an unsafe certificate.  The Mersenne residual interval is now
+\(124806\le e\le1044241\).
+
+The source-bound endpoint replay, independent audit, and full
+constant-memory interval replay are
+\path{experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.py},
+\path{experimental/audit_mca_full_lift_boundary_line_bank_absorption_v1.py},
+and
+\path{experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.c}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
