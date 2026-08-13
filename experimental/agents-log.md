@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Sparse-direction punctured Johnson profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_punctured_johnson_profile_v1.md`,
+  `experimental/verify_mca_sparse_direction_punctured_johnson_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A field-general ordinary-list Johnson incidence
+  cap after puncturing the codeword-gauged direction support, combined with
+  the deficit-dependent `floor(e/h)` slope-owner profile.  Exact arithmetic
+  pays `e<=63908` on KoalaBear and `e<=65236` on Mersenne-31, against the
+  previous top-rank low-support walls `e<=5` and `e<=1`.
+- **How it is useful:** It removes over sixty thousand support values from
+  each top-rank MCA residual without using the refuted affine-incidence
+  denominator.  The full-lift middle intervals are now exactly
+  `63909<=e<=1044238` and `65237<=e<=1044241`.
+- **What to do next:** Attack the adjacent nonpositive-Johnson strip using
+  the codimension-one near-MDS extension structure or a row-sharp
+  post-Johnson list theorem.  Denominator failure is not an unsafe-row
+  certificate.
+
 ### 2026-08-13 - Affine-span MCA compiler repair and top-rank split
 
 - **Agent/model:** Codex.

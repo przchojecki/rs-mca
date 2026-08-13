@@ -1549,6 +1549,109 @@ cells.  The exact replay is in
 \texttt{experimental/verify\_mca\_proper\_subspace\_occupancy\_compiler\_v1.py}.
 \end{remark}
 
+\begin{theorem}[Sparse-direction punctured Johnson MCA profile]
+\label{thm:sparse-direction-punctured-johnson-mca}
+Let \(C=\RS[\F,D,K]\) have
+\[
+  N=R+K,\qquad m=d+K,
+\]
+and let \(r_\gamma=r_0+\gamma r_1\).  Suppose
+\[
+  r_1=b+q,\qquad b\in C,\qquad
+  E=\operatorname{supp}(q),\qquad |E|=e<d.
+\]
+For every selected slope, assume an exact size-\(m\), same-support
+pair-noncontained agreement witness with explanation \(c_\gamma\), and put
+\(a_\gamma=c_\gamma-\gamma b\).  For each distinct selected transformed
+explanation define
+\[
+ h_a=m-|\{x\in D\setminus E:a(x)=r_0(x)\}|.
+\]
+Then \(1\le h_a\le e\), and one deficit-\(h\) explanation owns at most
+\(\lfloor e/h\rfloor\) selected slopes.
+
+Assume
+\begin{equation}
+  \Delta_e=(m-e)^2-(N-e)(K-1)>0.
+  \label{eq:punctured-johnson-positive}
+\end{equation}
+Put \(J_0=0\) and, for \(1\le h\le e\),
+\begin{equation}
+ J_h=\left\lfloor
+ \frac{(N-e)(m-h-K+1)}{(m-h)^2-(N-e)(K-1)}
+ \right\rfloor .
+ \label{eq:punctured-johnson-cap}
+\end{equation}
+The selected slope set \(Z\) satisfies
+\begin{equation}
+ |Z|\le \sum_{h=1}^e(J_h-J_{h-1})\left\lfloor\frac eh\right\rfloor
+ \le (e-1)J_{\lfloor e/2\rfloor}+J_e.
+ \label{eq:punctured-johnson-profile}
+\end{equation}
+For \(e=1\), the term indexed by zero in the last expression is zero.
+\end{theorem}
+
+\begin{proof}
+Outside \(E\), the direction equals \(b\).  If \(a\) agreed with \(r_0\)
+on at least \(m\) outside coordinates, an \(m\)-subset there would be
+simultaneously explained by \((a,b)\), contrary to same-support
+pair noncontainment.  Hence \(h_a\ge1\).  A size-\(m\) witness can use at
+most \(e\) coordinates of \(E\), so \(h_a\le e\).
+
+For \(x\in E\), agreement at slope \(\gamma\) is equivalent to
+\[
+  \frac{a(x)-r_0(x)}{q(x)}=\gamma.
+\]
+These ratio fibers are disjoint.  A deficit-\(h\) explanation needs at
+least \(h\) inside agreements, and therefore owns at most
+\(\lfloor e/h\rfloor\) slopes.
+
+Puncture \(E\) and fix \(h\).  Each explanation of deficit at most \(h\)
+has an agreement set of size at least \(A=m-h\) in length \(n'=N-e\).
+Agreement sets of two distinct degree-\(<K\) polynomials intersect in at
+most \(K-1\) coordinates.  If there are \(L\) explanations and \(s_x\)
+is the incidence multiplicity at coordinate \(x\), then
+\[
+ \sum_xs_x\ge LA,
+ \qquad
+ \sum_x\binom{s_x}{2}\le(K-1)\binom L2.
+\]
+Cauchy--Schwarz gives
+\[
+ \sum_x\binom{s_x}{2}\ge
+ \frac12\left(\frac{L^2A^2}{n'}-LA\right).
+\]
+Since \(A^2>n'(K-1)\), comparison yields \(L\le J_h\).  Condition
+\eqref{eq:punctured-johnson-positive} is the weakest, \(h=e\), denominator and hence makes
+every \(J_h\) legal.  The Johnson fractions are nondecreasing in \(h\).
+Applying their cumulative caps to the nonincreasing owner weights proves
+the first inequality in \eqref{eq:punctured-johnson-profile}.
+
+Finally put \(u=\lfloor e/2\rfloor\).  Bound all weights with \(h\le u\)
+by \(e\); every weight with \(h>u\) equals one.  The two telescoping blocks
+give
+\[
+ eJ_u+(J_e-J_u)=(e-1)J_u+J_e.
+\]
+\end{proof}
+
+\begin{remark}[Exact sparse-direction support walls]
+At the first shortened KoalaBear and Mersenne-31 rows, exact integer
+evaluation gives
+\[
+\begin{array}{c|c|c|c|c}
+\text{row}&K&\text{last paid }e&\Delta_e&
+ (e-1)J_{\lfloor e/2\rfloor}+J_e\\ \hline
+\text{KoalaBear}&14&63908&1218&4607583\\
+\text{Mersenne-31}&6&65236&2794&2605443
+\end{array}
+\]
+against budgets \(274980728111395087\) and \(16777215\).  At the adjacent
+supports the denominators are \(-5924\) and \(-1636\), so this theorem
+makes no claim there.  The exact scan is in
+\texttt{experimental/verify\_mca\_sparse\_direction\_punctured\_johnson\_profile\_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
@@ -1665,14 +1768,17 @@ and \(h=\dim V\), equivalently the error affine rank.
 \[
 \begin{array}{c|c|c|c}
 \text{row}&q&h&\text{currently paid support range}\\ \hline
-\text{KoalaBear}&14&14&e\le5\ \text{or}\ e\ge992852\\
-\text{KoalaBear}&14&15&e\le5\ \text{or}\ e\ge1044239\\
-\text{Mersenne-31}&6&6&e\le1\ \text{or}\ e\ge1037876\\
-\text{Mersenne-31}&6&7&e\le1\ \text{or}\ e\ge1044242
+\text{KoalaBear}&14&14&e\le63908\ \text{or}\ e\ge992852\\
+\text{KoalaBear}&14&15&e\le63908\ \text{or}\ e\ge1044239\\
+\text{Mersenne-31}&6&6&e\le65236\ \text{or}\ e\ge1037876\\
+\text{Mersenne-31}&6&7&e\le65236\ \text{or}\ e\ge1044242
 \end{array}
 \]
 The improvement is only in the \(h=K\) rows.  The full-lift \(h=K+1\)
 middle intervals remain unpaid and are the wider top-rank residuals.
+After \cref{thm:sparse-direction-punctured-johnson-mca}, those full-lift
+intervals are exactly \(63909\le e\le1044238\) for KoalaBear and
+\(65237\le e\le1044241\) for Mersenne-31.
 \Cref{thm:full-lift-near-mds-extension} shows that every generalized
 weight from rank two onward is already MDS-sharp.  Even at the best endpoint
 \(e=N-K\), the generic corrected compiler gives
