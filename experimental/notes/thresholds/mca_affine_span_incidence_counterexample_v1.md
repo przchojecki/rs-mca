@@ -127,11 +127,45 @@ The distinction matters for the common-core PR stack: its fixed-core
 codeword-affine-span payments inherit the refuted denominator, while its
 separate all-LineRay payment through error affine rank three does not.
 
+## Correct replacement
+
+The proved replacement is `thm:proper-subspace-mca`.  For affine explanation
+rank `s`, direction-coset support
+
+```text
+e=min_(b in C) wt(r_1-b),    t=n-m,    L=max(1,e-t),
+```
+
+it gives
+
+```text
+|Z| <= floor((1/L) max{
+  n_fall_(s+1)/(m (w+1)_rise_(s-1)),
+  (n-K+s)_fall_(s+1)/(w+1)_rise_s
+}).
+```
+
+The factor `L` is the exact safe repair: pair noncontainment gives one final
+transverse normal, while direction-coset distance can raise that count.  It
+is not replaced by `w` without proof.
+
+At the first common-core-shortened rows, the corrected compiler pays all
+KoalaBear ranks through 9 and Mersenne rank 1 for every `e`.  Its next exact
+support walls are
+
+```text
+KoalaBear q=10,11,12,13: e>=981108,981153,981861,992852;
+Mersenne  q=2,3,4,5:     e>=981144,981363,984779,1037876.
+```
+
+The top ranks remain unpaid by this compiler.
+
 ## Replay
 
 ```bash
 python3 experimental/verify_mca_affine_span_incidence_counterexample_v1.py
 python3 experimental/verify_mca_affine_span_incidence_counterexample_v1_independent.py
+python3 experimental/verify_mca_proper_subspace_occupancy_compiler_v1.py
 ```
 
 Expected output:
@@ -139,4 +173,5 @@ Expected output:
 ```text
 MCA_AFFINE_SPAN_INCIDENCE_COUNTEREXAMPLE_V1_PASS slopes=31 bound=23 direction_max=20 mutations=4/4
 MCA_AFFINE_SPAN_INCIDENCE_COUNTEREXAMPLE_V1_INDEPENDENT_PASS slopes=31 support_checks=31 field_values=1009 bound=23
+MCA_PROPER_SUBSPACE_OCCUPANCY_COMPILER_V1_PASS zero_normal_cases=616 adjacent=8 regression=471 toy_selections=540
 ```

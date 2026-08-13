@@ -1456,6 +1456,99 @@ all-LineRay error-affine-core set-pair theorem, whose proof uses zero-mask
 restriction and the Bollobas set-pair inequality instead.
 \end{remark}
 
+\begin{theorem}[Pair-noncontained proper-subspace MCA compiler]
+\label{thm:proper-subspace-mca}
+Let \(C=\RS[\F,D,K]\) have length \(n\), let
+\(r_\gamma=r_0+\gamma r_1\), put \(w=m-K>0\), and let
+\(\mathcal A=c_0+C'\subseteq C\) have \(\dim C'=s\), where
+\(1\le s\le K\).  Let \(Z\subseteq\F\) be a set of distinct slopes such
+that for every \(\gamma\in Z\), some \(c_\gamma\in\mathcal A\) has
+agreement at least \(m\), and its maximal agreement support is
+same-support pair-noncontained.  Define
+\[
+ e=\min_{b\in C}\wt(r_1-b),\qquad
+ L=\max\{1,e-(n-m)\}.
+\]
+Then
+\begin{equation}
+ |Z|\le\left\lfloor\frac1L\max\left\{
+ \frac{n^{\underline{s+1}}}
+      {m(w+1)^{\overline{s-1}}},
+ \frac{(n-K+s)^{\underline{s+1}}}
+      {(w+1)^{\overline s}}
+ \right\}\right\rfloor .
+ \label{eq:proper-subspace-mca}
+\end{equation}
+For \(s=1\), the empty rising product in the first denominator is one.
+\end{theorem}
+
+\begin{proof}
+Choose a basis \(c_1,\ldots,c_s\) of \(C'\).  As in the rejected proof,
+the agreement hyperplane at coordinate \(x\) has normal
+\[
+ v_x=(r_1(x),-c_1(x),\ldots,-c_s(x))\in\F^{s+1}.
+\]
+The normals incident with every selected parameter point span
+\(\F^{s+1}\).  Indeed, an annihilator with zero slope coordinate would
+give a nonzero codeword with at least \(m>K-1\) roots.  An annihilator with
+nonzero slope coordinate would give simultaneous codeword explanations for
+\(r_0\) and \(r_1\) on the same maximal support, contrary to
+pair noncontainment.
+
+Let \(W<\F^{s+1}\) have dimension \(j<s\), and put
+\(X_W=\{x:v_x\in W\}\).  If the slope coordinate vanishes on
+\(W^\perp\), then \(s+1-j\) independent codewords vanish on \(X_W\).
+Otherwise the kernel of that coordinate supplies \(s-j\) independent
+codewords.  The MDS generalized-weight formula gives in either case
+\[
+ |X_W|\le K-s+j.
+\]
+Consequently, after \(j=1,\ldots,s-1\) independent incident normals have
+been selected, there are at least \(w+s-j\) choices outside their span.
+These factors multiply to \((w+1)^{\overline{s-1}}\).
+
+After \(s\) independent normals have been selected, local full rank leaves
+at least one final choice.  If their hyperplane has an annihilator with
+nonzero slope coordinate, it contains at most \(n-e\) coordinate normals
+and leaves at least \(e-(n-m)\) incident choices.  If that slope coordinate
+is zero, the ordinary root bound leaves at least \(w+1\).  Interpolation on
+\(K\) coordinates gives \(e\le n-K\), so every case leaves at least \(L\)
+final choices.
+
+Let \(z\) be the number of zero normals and let \(g\le z\) be those whose
+agreement hyperplane contains every parameter point.  Common-zero MDS gives
+\(z\le K-s\).  Every selected point is therefore incident with at least
+\[
+ (m-g)(w+1)^{\overline{s-1}}L
+\]
+ordered normal bases, while there are at most
+\((n-z)^{\underline{s+1}}\) ordered independent coordinate tuples.
+For fixed \(z\), the resulting ratio is largest at \(g=z\).  Its successive
+ratio in \(z\) has the sign of
+\(n-(s+1)m+sz\), so its maximum on \(0\le z\le K-s\) is at an endpoint.
+The endpoints \(z=0\) and \(z=K-s\) are precisely the two terms in
+\eqref{eq:proper-subspace-mca}.
+\end{proof}
+
+\begin{remark}[Exact first shortened-row calibration]
+For a shortened row \((n,K,m)=(R+K,K,d+K)\), the last factor is
+\(L=\max\{1,e-(R-d)\}\le d\).  At the first residual dimensions from the
+common-core staircase, exact integer evaluation gives
+\[
+\begin{array}{c|c|c|c}
+\text{row}&K&\text{paid for every }e&\text{additional paid walls}\\ \hline
+\text{KoalaBear}&14&s\le9&
+s=10,11,12,13:\ e\ge981108,981153,981861,992852\\
+\text{Mersenne-31}&6&s\le1&
+s=2,3,4,5:\ e\ge981144,981363,984779,1037876
+\end{array}
+\]
+At top rank, the required factors are \(182530>d=67472\) and
+\(882143>d=67448\), respectively, so this compiler does not pay those
+cells.  The exact replay is in
+\texttt{experimental/verify\_mca\_proper\_subspace\_occupancy\_compiler\_v1.py}.
+\end{remark}
+
 \begin{theorem}[Directional Johnson ray compiler]
 \label{thm:directional-johnson-ray}
 Retain the hypotheses and notation of \cref{thm:fixed-union-ray}, but allow
