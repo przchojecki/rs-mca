@@ -2183,6 +2183,92 @@ rank `28`. These 102 rank computations do not prove the official matrix
 full rank. The next theorem is the absence of a block-supported kernel, or
 a classification of the incidence profiles on which one can occur.
 
+## 45. Degree-ledger rank fence and official rank-two exclusion
+
+The small-profile evidence in Section 44 remains robust after removing its
+initial excess-profile bias: all fifteen integer partitions of total excess
+seven were tested through one base incidence table and twenty
+degree-preserving switches in each of `F_337` and `F_421`. All `630`
+matrices have rank `28`. This is still sampled incidence evidence, not a
+universal theorem.
+
+In fact, the broader degree-ledger-only full-rank statement is false. Work
+over `F_211`, where `2` has order `210`, and put
+
+```text
+C={2^(35i):0<=i<4},
+X={x!=0:x^7 in C},
+Gamma={0} union {delta!=0:delta^5 in C}.            (208)
+```
+
+Then `|X|=28`, `|Gamma|=21`, and
+
+```text
+G(t,X)=t^5-X^7                                     (209)
+```
+
+has exactly five `Gamma`-roots on every `X`-row. Its twenty nonzero
+parameter fibers have seven `X`-roots, while the zero fiber has none. Thus
+the excess profile is `(7,0,...,0)`. Taking
+
+```text
+D_delta=X^7-delta^5, C_delta=-1       (delta!=0),
+D_0=1,                 C_0=-X^7,                    (210)
+```
+
+gives a `K_all` kernel with every one of its twenty-one polynomial blocks
+nonzero. Direct exact elimination gives
+
+```text
+rank K_all=27<28.                                  (211)
+```
+
+This example does not satisfy or test the official three-center source,
+spread, collision, or positive-padding constraints. It is a route fence:
+the row/fiber degree ledger alone cannot prove universal full rank.
+
+The low-rank mechanism in `(209)` is nevertheless impossible on the
+official Shape-A profile. More generally, let `e>=9`,
+
+```text
+m=e-2,       n=(3e-7)/2,
+R=(9e-7)/2=3n+7,       |Gamma|=3e.                 (212)
+```
+
+Suppose every one of the `R` rows of a biform has exact degree `m` and
+`m` distinct roots in `Gamma`, and every `Gamma`-fiber is nonzero. Then the
+biform cannot have tensor separation rank at most two:
+
+```text
+G(t,X)!=A_0(t)B_0(X)+A_1(t)B_1(X).                 (213)
+```
+
+To prove this, first divide out common factors in the `A`-pair. Any
+nonconstant common factor must contribute all of its degree as roots in
+`Gamma`, since every row already has the maximum `m` distinct roots. Those
+roots would make complete parameter fibers zero, a contradiction. Hence the
+parameter pencil is primitive.
+
+Distinct projective row types `[B_0(x):B_1(x)]` then have disjoint
+`m`-element root sets in `Gamma`: a shared root of two independent pencil
+members would be a common root of `A_0,A_1`. Since
+
+```text
+4m=4e-8>3e,
+```
+
+at most three row types occur. After removing a common `B`-factor, each
+fixed projective type is the zero set of one nonzero polynomial of degree at
+most `n`, so it occurs on at most `n` rows. A globally constant type instead
+makes the biform rank one and again produces `m` zero parameter fibers.
+Thus `R<=3n`, contradicting `(212)`.
+
+Every official Shape-A survivor satisfies the row and fiber hypotheses.
+Consequently its coefficient tensor has separation rank at least three.
+The remaining route is now accurately scoped: classify or exclude
+rank-at-least-three `K_all` kernels using the spread, collision, or common
+source/Hankel structure.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2238,3 +2324,7 @@ bound for that flag or exclude Shape A.
 Section 44 includes every positive-excess residual coefficient in one
 `4e`-column parameter-MDS gate. Its small-profile full ranks are evidence,
 not a universal rank theorem or an official Shape-A exclusion.
+Section 45 gives an exact block-supported small-profile kernel and therefore
+fences a degree-ledger-only rank proof. It also excludes tensor rank at most
+two on every official Shape-A survivor, but does not control tensor rank
+three or higher and does not close Lane T.

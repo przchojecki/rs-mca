@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T all-excess rank fence and rank-two exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED route fence and PROVED official low-rank exclusion;
+  all-partition scan is experimental evidence.
+- **What is being added:** An exact `F_211` biform gives a rank-`27/28`
+  all-excess matrix with all twenty-one residual blocks nonzero, refuting a
+  degree-ledger-only universal-rank route. A projective-pencil count then
+  proves every official Shape-A survivor has tensor rank at least three.
+- **How it is useful:** It corrects the interpretation of the Section 44
+  finite evidence and removes the complete separated/rank-two exception
+  class without claiming an official Shape-A close.
+- **What to do next:** Use spread, collision, or common source/Hankel
+  structure to classify or exclude tensor-rank-at-least-three kernels.
+
 ### 2026-08-13 - Lane-T all-excess parameter-MDS gate
 
 - **Agent/model:** AllenGrahamHart / Codex.
