@@ -1880,6 +1880,103 @@ exclusion still requires a theorem showing that the flag in `(176)` is
 incompatible with the scalar weld, the collision jets, or the exact excess
 sum.
 
+## 41. The omitted defects form a bordered-Hankel source flag
+
+The flag in `(176)` has an exact determinantal presentation. Put
+
+```text
+M(t)=(h_(i+j)(t))_(0<=i,j<=d),
+M(t)q(t)=0,       adj M(t)=D_1(t)q(t)q(t)^T,       (179)
+v_s(t)=(h_(d+1+s+i)(t))_(0<=i<=d).
+```
+
+The primitive kernel vector satisfies `q^T v_s=R_(d+1+s)`. Replacing
+column `k` of `M` by `v_s` therefore gives
+
+```text
+det M[k<-v_s]=D_1 q_k R_(d+1+s).                  (180)
+```
+
+Since the entries of `q` have gcd one, the gcd of all replacement minors
+through level `r` is, up to the fixed scalar normalization of `D_1`,
+
+```text
+D_1 gcd(R_(d+1),...,R_(d+1+r)).                   (181)
+```
+
+There is a second, source-visible form. Let `widehat M_s` be the moment
+submatrix with row and column exponent set
+
+```text
+E_s={0,1,...,d,d+1+s}.
+```
+
+The bordered determinant formula and `(179)` give
+
+```text
+det widehat M_s=-D_1 R_(d+1+s)^2.                 (182)
+```
+
+Writing the source moments as `h_j=sum_x omega_x x^j`, let
+
+```text
+A_s(J)=det(x^a)_(a in E_s,x in J).
+```
+
+Cauchy--Binet turns `(182)` into the exact source census
+
+```text
+B_s:=sum_(J subset U_0, |J|=d+2)
+          A_s(J)^2 product_(x in J)omega_x
+    =-D_1 R_(d+1+s)^2.                            (183)
+```
+
+For `s=0`, `A_0(J)` is the ordinary Vandermonde determinant. In shape A,
+
+```text
+R_(d+1+s)=Lambda Theta_s,       deg Theta_s<=e-2,
+D_1=c_D g_* S_B^2,
+B_s=c'_D g_*(S_B Lambda Theta_s)^2,               (184)
+```
+
+with `Theta_0=[X^n]G`.
+
+The complete off-line flag now splits canonically. Write
+
+```text
+H_off=g_off H_reg,
+g_off=g_*/gcd(g_*,Lambda),
+deg g_off=e-7=183251937956,
+deg H_reg=2e+7=366503875933.                       (185)
+```
+
+The factors in `(185)` are squarefree and `gcd(H_reg,D_1)=1`. Hence, for
+
+```text
+C_r^pad=gcd(g_off,R_(d+1),...,R_(d+1+r)),
+C_r^reg=gcd(H_reg,B_0,...,B_r),                    (186)
+```
+
+the flag in `(176)` factors exactly as
+
+```text
+C_r=C_r^pad C_r^reg.                               (187)
+```
+
+At a root `delta` of `H_reg`, `M(delta)` has rank exactly `d`. Its column
+space is the hyperplane perpendicular to `q(delta)`, so `(171)` becomes
+
+```text
+q_delta>=r+1
+ iff rank [M(delta)|v_0(delta)|...|v_r(delta)]=d.  (188)
+```
+
+Thus the remaining Shape-A problem has two precisely separated parts: the
+`e-7` padding singular flag and a regular source-subset rank-stagnation
+flag. Equations `(179)--(188)` do not bound either part or exclude Shape A.
+The next useful theorem must control the padding flag, or prove quantitative
+non-stagnation of the bordered source columns on `H_reg`.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1924,3 +2021,6 @@ Section 39 identifies the residual four-cycle with `2B` and proves it rigid;
 it does not construct the second section needed to exclude shape A.
 Section 40 identifies every fiber degree drop and `deg T` with a nested
 omitted-recurrence gcd flag; it does not bound that flag or exclude shape A.
+Section 41 presents that flag by replacement minors and bordered source
+determinants, but proves neither padding-flag control nor regular
+rank non-stagnation.

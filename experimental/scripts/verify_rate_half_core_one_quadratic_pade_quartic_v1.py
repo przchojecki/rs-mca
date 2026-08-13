@@ -7,11 +7,12 @@ import argparse
 import copy
 import hashlib
 from dataclasses import dataclass
+from itertools import combinations
 from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "5d46985dff2c42dbab5b78794c353ea14c47d447"
+SOURCE_COMMIT = "1e08388888ab2457d8f1e2bcb8de5afd1464ff80"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -112,11 +113,21 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/dependency_subdag.md": "09a565bac59a2cbc9dd02a65b155f49e07b5ce8ca55024e0f6504ec62d37dfad",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/node.json": "cdb97c1c9401087f2a3433c953dd2b25b3d250c53878597d0d31ca7cad6f4078",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/proof.md": "dd1d56ba2e94e3bc7779fc0c31c16b7cee907860e1d8760b9f93732b02b1e018",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/provenance.md": "d9840068b1bf74db81add33192ccc71c76ef6a3902e9c02711b4399c5597aa2b",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/provenance.md": "8a6ace027ef21bd612433181574c1d02aeee70ccbac6e35a342cbd2632c5a1a3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/result.md": "5368e124c4a47ff6e65ec9a2a4f7e312c656942fe76c19569bcb63704379b07b",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/statement.md": "2ff8aa7df67b18c5b3e724f329f0c25f51c92460ea2796383e0ad940fc637fa5",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/verify.py": "cdad923c947d7759d8096156e4c1b88f7515be07b25138cbdf5af9d8aa4dbad3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/verify_audit.py": "43eabea2562251854a2cbac17d22d8592c1e13fc2703146ed8c587e670268386",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/audit.md": "23908b68f0e302a69071926c91563696e0d98338c534ca76615fa21f0b096828",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/claim_contract.md": "dc023e893208cd6345639b3339c4bb4344bae6f23044edef09d361445bf3c96d",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/dependency_subdag.md": "599b98f36e15856a2b14f4fa0575ad6022346f96414ac8d7979557b4854e6e20",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/node.json": "e9355eea4d8a2c464322a45b280829fb3af7676fa5be4b6a17a5c6b41dff3b0d",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/proof.md": "99ed9d06054e002c4792278a6812e50adb96eaaa56074644a83f0f3f4b7c11fa",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/provenance.md": "d2a7d90a8e4d7abc3c41e017fc304724c35da01f35e5fe099500f0ee551fb1a9",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/result.md": "8f744a443836c0bbea16f5a986f6cdf9865cc473c7be5d27c16c82540a76c119",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/statement.md": "c24ad834f13ee4d7f7aa7a153f2ef46855e462fbbf3995b127a401678aa38f3e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/verify.py": "5f9af4d4451ae365d4c491ea0ed6ec7927948b9accd6bc4b0b1c8e45e346e4e1",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/verify_audit.py": "059a36811e369ece743f9512e784285ac47bc1dc72a24d41a3d1f9029fb16751",
 }
 
 
@@ -249,6 +260,11 @@ class Formula:
     collision_shape_a_omitted_recurrence_length: int = 274877906941
     collision_shape_a_offline_slope_count: int = 549755813889
     collision_shape_a_fixture_layer_cake: int = 3
+    collision_shape_a_bordered_matrix_size: int = 549755813889
+    collision_shape_a_padding_flag_degree: int = 183251937956
+    collision_shape_a_regular_flag_degree: int = 366503875933
+    collision_shape_a_bordered_source_subset_size: int = 549755813889
+    collision_shape_a_bordered_fixture_subset_checks: int = 252
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1724,6 +1740,177 @@ def verify_collision_shape_a_omitted_recurrence_flag(formula: Formula) -> int:
     return 18
 
 
+def verify_collision_shape_a_bordered_hankel_flag(formula: Formula) -> int:
+    """Replay the replacement-minor, bordered-square, and source-sum flags."""
+    e = (2**39 + 1) // 3
+    d = 3 * e - 2
+    matrix_size = d + 2
+    padding_degree = e - 7
+    regular_degree = 2 * e + 7
+
+    require(e == 183251937963, "shape-A bordered official e")
+    require(d == formula.collision_shape_a_source_locator_degree,
+            "shape-A bordered locator degree")
+    require(matrix_size == formula.collision_shape_a_bordered_matrix_size,
+            "shape-A bordered matrix size")
+    require(matrix_size == formula.collision_shape_a_bordered_source_subset_size,
+            "shape-A bordered source subset size")
+    require(padding_degree == formula.collision_shape_a_padding_flag_degree,
+            "shape-A padding flag degree")
+    require(regular_degree == formula.collision_shape_a_regular_flag_degree,
+            "shape-A regular flag degree")
+    require(padding_degree + regular_degree
+            == formula.collision_shape_a_offline_slope_count,
+            "shape-A bordered flag partition")
+
+    prime = 101
+
+    def determinant(matrix: list[list[int]]) -> int:
+        work = [[entry % prime for entry in row] for row in matrix]
+        value = 1
+        for column in range(len(work)):
+            pivot = next(
+                (row for row in range(column, len(work))
+                 if work[row][column]),
+                None,
+            )
+            if pivot is None:
+                return 0
+            if pivot != column:
+                work[column], work[pivot] = work[pivot], work[column]
+                value = -value
+            pivot_value = work[column][column]
+            value = value * pivot_value % prime
+            inverse = pow(pivot_value, prime - 2, prime)
+            for row in range(column + 1, len(work)):
+                if not work[row][column]:
+                    continue
+                scale = work[row][column] * inverse % prime
+                for index in range(column, len(work)):
+                    work[row][index] = (
+                        work[row][index] - scale * work[column][index]
+                    ) % prime
+        return value % prime
+
+    def solve(matrix: list[list[int]], right: list[int]) -> list[int]:
+        augmented = [
+            [entry % prime for entry in row] + [target % prime]
+            for row, target in zip(matrix, right)
+        ]
+        size = len(matrix)
+        for column in range(size):
+            pivot = next(
+                (row for row in range(column, size)
+                 if augmented[row][column]),
+                None,
+            )
+            require(pivot is not None, "shape-A source reconstruction rank")
+            augmented[column], augmented[pivot] = (
+                augmented[pivot], augmented[column]
+            )
+            inverse = pow(augmented[column][column], prime - 2, prime)
+            augmented[column] = [
+                entry * inverse % prime for entry in augmented[column]
+            ]
+            for row in range(size):
+                if row == column or not augmented[row][column]:
+                    continue
+                scale = augmented[row][column]
+                augmented[row] = [
+                    (left - scale * right_entry) % prime
+                    for left, right_entry
+                    in zip(augmented[row], augmented[column])
+                ]
+        return [augmented[index][-1] for index in range(size)]
+
+    moments = [1, 0, 1, 0, 1, 2, 3, 4, 5]
+    fixture_d = 2
+    middle = [
+        [moments[i + j] for j in range(fixture_d + 1)]
+        for i in range(fixture_d + 1)
+    ]
+    kernel = [-1, 0, 1]
+    require(finite_field_rank(middle, prime) == fixture_d,
+            "shape-A bordered middle rank")
+    require(
+        all(
+            sum(middle[i][j] * kernel[j] for j in range(fixture_d + 1))
+            % prime == 0
+            for i in range(fixture_d + 1)
+        ),
+        "shape-A bordered primitive kernel",
+    )
+
+    defects = []
+    for s in (0, 1):
+        exponent = fixture_d + 1 + s
+        vector = [moments[exponent + i] for i in range(fixture_d + 1)]
+        defect = sum(
+            left * right for left, right in zip(kernel, vector)
+        ) % prime
+        defects.append(defect)
+        for column in range(fixture_d + 1):
+            replaced = [row[:] for row in middle]
+            for row in range(fixture_d + 1):
+                replaced[row][column] = vector[row]
+            require(
+                determinant(replaced) == kernel[column] * defect % prime,
+                "shape-A replacement-minor identity",
+            )
+
+        exponents = list(range(fixture_d + 1)) + [exponent]
+        bordered = [
+            [moments[left + right] for right in exponents]
+            for left in exponents
+        ]
+        require(
+            determinant(bordered) == -defect * defect % prime,
+            "shape-A bordered determinant square",
+        )
+    require(defects == [2, 2], "shape-A bordered fixture defects")
+
+    points = list(range(1, 10))
+    vandermonde = [
+        [pow(point, power, prime) for point in points]
+        for power in range(len(points))
+    ]
+    weights = solve(vandermonde, moments)
+    require(
+        all(
+            sum(
+                weight * pow(point, power, prime)
+                for point, weight in zip(points, weights)
+            ) % prime == moments[power] % prime
+            for power in range(len(moments))
+        ),
+        "shape-A source moment reconstruction",
+    )
+
+    subset_checks = 0
+    for s, defect in enumerate(defects):
+        exponents = list(range(fixture_d + 1)) + [fixture_d + 1 + s]
+        source_sum = 0
+        for subset in combinations(range(len(points)), fixture_d + 2):
+            alternant = determinant([
+                [pow(points[index], exponent, prime) for index in subset]
+                for exponent in exponents
+            ])
+            subset_weight = 1
+            for index in subset:
+                subset_weight = subset_weight * weights[index] % prime
+            source_sum = (
+                source_sum + alternant * alternant * subset_weight
+            ) % prime
+            subset_checks += 1
+        require(source_sum == -defect * defect % prime,
+                "shape-A bordered source subset sum")
+    require(
+        subset_checks == formula.collision_shape_a_bordered_fixture_subset_checks,
+        "shape-A bordered source subset count",
+    )
+    return subset_checks + 22
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -2074,7 +2261,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 104, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 114, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -2102,6 +2289,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_shape_a_global_genus_floor(formula)
     checks += verify_collision_shape_a_residual_four_cycle_rigidity(formula)
     checks += verify_collision_shape_a_omitted_recurrence_flag(formula)
+    checks += verify_collision_shape_a_bordered_hankel_flag(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -2299,6 +2487,21 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_shape_a_fixture_layer_cake": (
             formula.collision_shape_a_fixture_layer_cake
+        ),
+        "collision_shape_a_bordered_matrix_size": (
+            formula.collision_shape_a_bordered_matrix_size
+        ),
+        "collision_shape_a_padding_flag_degree": (
+            formula.collision_shape_a_padding_flag_degree
+        ),
+        "collision_shape_a_regular_flag_degree": (
+            formula.collision_shape_a_regular_flag_degree
+        ),
+        "collision_shape_a_bordered_source_subset_size": (
+            formula.collision_shape_a_bordered_source_subset_size
+        ),
+        "collision_shape_a_bordered_fixture_subset_checks": (
+            formula.collision_shape_a_bordered_fixture_subset_checks
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

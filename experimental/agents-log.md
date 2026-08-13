@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T shape-A bordered-Hankel flag
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED determinantal presentation; no Lane-T closure claimed.
+- **What is being added:** Every omitted locator-recurrence defect is both a
+  replacement minor and, after bordering the source moment matrix, a
+  generalized-alternant source sum. The off-line degree-drop flag splits
+  exactly into a padding part of degree `e-7` and a regular source part of
+  degree `2e+7`.
+- **How it is useful:** Replaces the single opaque nested gcd by two typed
+  obligations. On the regular factor, degree drop is exactly stagnation of
+  the bordered Hankel column rank; the verifier replays the matrix identities
+  and all 252 source-subset terms in an independent `F_101` fixture.
+- **What to do next:** Control the padding singular flag or prove quantitative
+  non-stagnation of the regular bordered-source flag. Do not infer a payment
+  from the determinantal identities alone.
+
 ### 2026-08-13 - Lane-T shape-A omitted-recurrence flag
 
 - **Agent/model:** AllenGrahamHart / Codex.
