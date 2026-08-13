@@ -6,13 +6,14 @@ from __future__ import annotations
 import argparse
 import copy
 import hashlib
+import random
 from dataclasses import dataclass
 from itertools import combinations
 from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "b25caad721a6a11136f4e6576e173cc412e78c63"
+SOURCE_COMMIT = "2b13f71b0d67a36dc5e810e3a0f867586912c473"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -148,6 +149,16 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/statement.md": "8d2f20c293cba15ca9269f7bdc7aa1652cb8ec811c778eb6b73e2accad493f7d",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/verify.py": "17b7848da84e448235708a6e9132d28f2de5f153836e2f7f00d1dcd558a2a48e",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/verify_audit.py": "fc551cdd0439a68d2b97fd4ca859aa52db858befcfdeb5169453015c66290e1c",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/audit.md": "35a399ed5b189d90813b3597ab419427361d7ce5567a11b13f150263d7533528",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/claim_contract.md": "19c0e3a231ccf93baca145ad5e2c084855dbfc7626104f1100bea5d3343588ee",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/dependency_subdag.md": "f97ff0b0bb4c3f2a5bef9fa87f5ccb4002e9ec79631f14ea262a34e1382469d7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/node.json": "460f50e36d241de2727251d79ff8de0a493cdfa283d9977eb802dece6159a60d",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/proof.md": "9f7343d6ddb0b4f5af9cbbc6295efa1f7609c10632243068dd1d0648c06807d6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/provenance.md": "5197ef737ad5a88f91fbcc4965ff186402af4e38037114593ef7855404c6b4a5",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/result.md": "619574d94f305a1815b651742a36d07e4d6341ef5ccf3a853cef9cb5f939cb06",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/statement.md": "3fa9e6890f5b48afedeb1197ae71e66649a4b4947aadbf0047aad629469bce38",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify.py": "991fb4841dc6bda4f63a26a35fe9448129740d79e13a3d4e5bfd1d37c80c15de",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_audit.py": "7d10cd9fc867fb16d34a48d22439d01c7a6b9a533f688c7f40131c1578713b5c",
 }
 
 
@@ -296,6 +307,12 @@ class Formula:
     collision_shape_a_residual_mds_fixture_cases: int = 4
     collision_shape_a_residual_mds_fixture_parities: int = 22
     collision_shape_a_residual_mds_fixture_rows: int = 108
+    collision_shape_a_all_excess_columns: int = 733007751852
+    collision_shape_a_all_excess_rows: int = 100743818300944219985234
+    collision_shape_a_all_excess_small_columns: int = 28
+    collision_shape_a_all_excess_small_rows: int = 120
+    collision_shape_a_all_excess_trials_per_field: int = 50
+    collision_shape_a_all_excess_field_count: int = 2
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -2349,6 +2366,242 @@ def verify_collision_shape_a_scalar_weld_residual_mds_flag(
     return cases + parity_checks + row_checks
 
 
+def verify_collision_shape_a_all_excess_parameter_mds_gate(
+    formula: Formula,
+) -> int:
+    """Replay the 4e-column all-fiber parameter-MDS gate."""
+    official_e = 183251937963
+    official_n = (3 * official_e - 7) // 2
+    require(
+        4 * official_e == formula.collision_shape_a_all_excess_columns,
+        "shape-A all-excess official columns",
+    )
+    require(
+        (official_n + 1) * (2 * official_e + 1)
+        == formula.collision_shape_a_all_excess_rows,
+        "shape-A all-excess official rows",
+    )
+
+    offsets = (0, 1, 7, 8, 14)
+    trials = formula.collision_shape_a_all_excess_trials_per_field
+    require(trials == 50, "shape-A all-excess trial count")
+
+    def prime_factors(value: int) -> list[int]:
+        factors = []
+        divisor = 2
+        while divisor * divisor <= value:
+            if value % divisor == 0:
+                factors.append(divisor)
+                while value % divisor == 0:
+                    value //= divisor
+            divisor += 1
+        if value > 1:
+            factors.append(value)
+        return factors
+
+    def primitive_root(modulus: int) -> int:
+        factors = prime_factors(modulus - 1)
+        for candidate in range(2, modulus):
+            if all(
+                pow(candidate, (modulus - 1) // factor, modulus) != 1
+                for factor in factors
+            ):
+                return candidate
+        raise VerificationError("shape-A all-excess primitive root")
+
+    def multiply(
+        left: list[int], right: list[int], modulus: int
+    ) -> list[int]:
+        product = [0] * (len(left) + len(right) - 1)
+        for i, left_entry in enumerate(left):
+            for j, right_entry in enumerate(right):
+                product[i + j] = (
+                    product[i + j] + left_entry * right_entry
+                ) % modulus
+        return product
+
+    def root_polynomial(roots: list[int], modulus: int) -> list[int]:
+        polynomial = [1]
+        for root in roots:
+            polynomial = multiply(
+                polynomial, [-root % modulus, 1], modulus
+            )
+        return polynomial
+
+    def all_excess_matrix(
+        incidence: list[set[int]],
+        domain: list[int],
+        slopes: list[int],
+        modulus: int,
+    ) -> tuple[list[list[int]], int]:
+        e = 7
+        n = 7
+        excesses = [
+            n - sum(column in row for row in incidence)
+            for column in range(len(slopes))
+        ]
+        require(sum(excesses) == e, "shape-A all-excess e=7 sum")
+
+        slope_weights = []
+        for index, slope in enumerate(slopes):
+            derivative = 1
+            for other_index, other in enumerate(slopes):
+                if index != other_index:
+                    derivative = derivative * (slope - other) % modulus
+            slope_weights.append(pow(derivative, modulus - 2, modulus))
+
+        known = []
+        columns = []
+        for delta_index, excess in enumerate(excesses):
+            roots = [
+                domain[row]
+                for row in range(len(domain))
+                if delta_index in incidence[row]
+            ]
+            polynomial = root_polynomial(roots, modulus)
+            require(
+                len(polynomial) - 1 == n - excess,
+                "shape-A all-excess known locator degree",
+            )
+            known.append(polynomial)
+            for residual_degree in range(excess + 1):
+                columns.append((delta_index, residual_degree))
+        require(
+            len(columns) == formula.collision_shape_a_all_excess_small_columns,
+            "shape-A all-excess small columns",
+        )
+
+        rows = []
+        for coefficient in range(n + 1):
+            for power in range(2 * e + 1):
+                row = []
+                for delta_index, residual_degree in columns:
+                    known_degree = coefficient - residual_degree
+                    known_coefficient = (
+                        known[delta_index][known_degree]
+                        if 0 <= known_degree < len(known[delta_index])
+                        else 0
+                    )
+                    row.append(
+                        known_coefficient
+                        * pow(slopes[delta_index], power, modulus)
+                        * slope_weights[delta_index]
+                        % modulus
+                    )
+                rows.append(row)
+        require(
+            len(rows) == formula.collision_shape_a_all_excess_small_rows,
+            "shape-A all-excess small rows",
+        )
+        return rows, len(columns)
+
+    def switched_copy(
+        base: list[set[int]], rng: random.Random
+    ) -> list[set[int]]:
+        incidence = [row.copy() for row in base]
+        for _ in range(120):
+            first, second = rng.sample(range(28), 2)
+            left = rng.choice(tuple(incidence[first]))
+            right = rng.choice(tuple(incidence[second]))
+            if (
+                left != right
+                and right not in incidence[first]
+                and left not in incidence[second]
+            ):
+                incidence[first].remove(left)
+                incidence[first].add(right)
+                incidence[second].remove(right)
+                incidence[second].add(left)
+        return incidence
+
+    checks = 0
+    fields = (337, 421)
+    require(
+        len(fields) == formula.collision_shape_a_all_excess_field_count,
+        "shape-A all-excess field count",
+    )
+    for modulus in fields:
+        generator = primitive_root(modulus)
+        domain = [
+            pow(generator, (modulus - 1) // 28 * exponent, modulus)
+            for exponent in range(28)
+        ]
+        slopes = [
+            pow(generator, (modulus - 1) // 21 * exponent, modulus)
+            for exponent in range(21)
+        ]
+        base = [
+            {(row + offset) % 21 for offset in offsets}
+            for row in range(28)
+        ]
+        rows, columns = all_excess_matrix(base, domain, slopes, modulus)
+        require(
+            finite_field_rank(rows, modulus) == columns == 28,
+            "shape-A all-excess base full rank",
+        )
+        checks += 1
+
+        rng = random.Random(20260813)
+        for _ in range(trials):
+            rows, columns = all_excess_matrix(
+                switched_copy(base, rng), domain, slopes, modulus
+            )
+            require(
+                finite_field_rank(rows, modulus) == columns == 28,
+                "shape-A all-excess switched full rank",
+            )
+            checks += 1
+
+        fixture_slopes = list(range(1, 8))
+        values = []
+        for slope in fixture_slopes:
+            values.extend([
+                (3 + 2 * slope + slope * slope) % modulus,
+                (5 + slope) % modulus,
+                (7 + 4 * slope + 2 * slope * slope) % modulus,
+                (11 + 3 * slope) % modulus,
+            ])
+        parity_rows = []
+        for coefficient in range(4):
+            for power in range(4):
+                parity_row = []
+                for slope in fixture_slopes:
+                    derivative = 1
+                    for other in fixture_slopes:
+                        if other != slope:
+                            derivative = derivative * (slope - other) % modulus
+                    for residual_degree in range(4):
+                        parity_row.append(
+                            (1 if residual_degree == coefficient else 0)
+                            * pow(slope, power, modulus)
+                            * pow(derivative, modulus - 2, modulus)
+                            % modulus
+                        )
+                parity_rows.append(parity_row)
+        for parity_row in parity_rows:
+            require(
+                sum(
+                    left * right for left, right in zip(parity_row, values)
+                ) % modulus == 0,
+                "shape-A all-excess positive equivalence",
+            )
+            checks += 1
+        corrupted = values[:]
+        corrupted[0] = (corrupted[0] + 1) % modulus
+        require(
+            any(
+                sum(
+                    left * right
+                    for left, right in zip(parity_row, corrupted)
+                ) % modulus
+                for parity_row in parity_rows
+            ),
+            "shape-A all-excess corruption rejection",
+        )
+        checks += 1
+    return checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -2699,7 +2952,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 134, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 144, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -2730,6 +2983,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_shape_a_bordered_hankel_flag(formula)
     checks += verify_collision_shape_a_static_source_arbitrary_drop(formula)
     checks += verify_collision_shape_a_scalar_weld_residual_mds_flag(formula)
+    checks += verify_collision_shape_a_all_excess_parameter_mds_gate(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -2975,6 +3229,24 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_shape_a_residual_mds_fixture_rows": (
             formula.collision_shape_a_residual_mds_fixture_rows
+        ),
+        "collision_shape_a_all_excess_columns": (
+            formula.collision_shape_a_all_excess_columns
+        ),
+        "collision_shape_a_all_excess_rows": (
+            formula.collision_shape_a_all_excess_rows
+        ),
+        "collision_shape_a_all_excess_small_columns": (
+            formula.collision_shape_a_all_excess_small_columns
+        ),
+        "collision_shape_a_all_excess_small_rows": (
+            formula.collision_shape_a_all_excess_small_rows
+        ),
+        "collision_shape_a_all_excess_trials_per_field": (
+            formula.collision_shape_a_all_excess_trials_per_field
+        ),
+        "collision_shape_a_all_excess_field_count": (
+            formula.collision_shape_a_all_excess_field_count
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

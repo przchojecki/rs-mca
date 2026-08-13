@@ -2110,6 +2110,79 @@ coefficients to choose fiber by fiber. This does not yet bound the stacked
 flag. The next closing statement must prove that the unique passing
 `lambda` cannot sustain the required collection of extra parity zeros.
 
+## 44. All residual fibers form one `4e`-column MDS gate
+
+Bounding only the extra zero runs in Section 43 is not by itself an
+exclusion: the current Shape-A ledger does not force any `q_delta>0`. The
+complete all-fiber compatibility problem nevertheless has a smaller exact
+linear presentation.
+
+For each `delta in Gamma`, put
+
+```text
+D_delta(X)=A_delta(X)R_delta(X),
+C_delta(X)=zeta_delta H_delta(X)
+              =sum_(h=0)^a_delta c_(delta,h)X^h.    (202)
+```
+
+Then
+
+```text
+deg D_delta=n-a_delta,
+C_delta!=0,
+deg C_delta=a_delta-q_delta,
+G(delta,X)=D_delta(X)C_delta(X).                     (203)
+```
+
+Write `D_delta=sum_j d_(delta,j)X^j` and let
+`L_Gamma(T)=product_(delta in Gamma)(T-delta)`. Define `K_all` with columns
+`(delta,h)`, `0<=h<=a_delta`, and rows `(i,l)`,
+
+```text
+0<=i<=n,       0<=l<=2e,
+
+(K_all)_((i,l),(delta,h))
+ =d_(delta,i-h)delta^l/L_Gamma'(delta),             (204)
+```
+
+using zero for an out-of-range coefficient of `D_delta`. The complete
+fiber family interpolates to one biform of bidegree at most `(e-2,n)` if
+and only if
+
+```text
+K_all c=0.                                          (205)
+```
+
+Indeed, for each `X^i` coefficient, `(204)` is exactly the dual-RS parity
+system on the `3e` slopes for parameter degree at most `e-2`. Necessity is
+immediate from `G`; conversely the parity system reconstructs every
+coefficient polynomial of `G` uniquely.
+
+The exact Shape-A excess sum gives the compression
+
+```text
+sum_delta a_delta=e,
+#columns(K_all)=sum_delta(a_delta+1)=4e.             (206)
+```
+
+Officially the matrix has
+
+```text
+733007751852 columns,
+100743818300944219985234 printed parity rows.        (207)
+```
+
+A Shape-A survivor requires every polynomial block `C_delta` to be
+nonzero; its block degree recovers `q_delta` by `(203)`.
+
+The smallest `e=7` analogue supplies calibrated evidence. For the cyclic
+degree table with fourteen zero-excess and seven excess-one slopes,
+`K_all` is `120 x 28` and has rank `28` over both `F_337` and `F_421`.
+Fifty deterministic degree-preserving switches in each field also have
+rank `28`. These 102 rank computations do not prove the official matrix
+full rank. The next theorem is the absence of a block-supported kernel, or
+a classification of the incidence profiles on which one can occur.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2162,3 +2235,6 @@ does not realize the global Shape-A parameter pencil.
 Section 43 restores that pencil and reduces every degree drop to a stacked
 linear flag on its unique scalar-weld vector, but does not prove a rank
 bound for that flag or exclude Shape A.
+Section 44 includes every positive-excess residual coefficient in one
+`4e`-column parameter-MDS gate. Its small-profile full ranks are evidence,
+not a universal rank theorem or an official Shape-A exclusion.

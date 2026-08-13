@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T all-excess parameter-MDS gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exact gate; small-profile full rank is experimental.
+- **What is being added:** Every positive-excess residual polynomial is
+  included in one transposed dual-RS compatibility matrix. The exact excess
+  sum leaves only `4e` coefficient columns, and polynomial block degree
+  retains each fiber drop.
+- **How it is useful:** It replaces selected pure-fiber tests and
+  fiberwise residual choices by one exact all-fiber exclusion target. The
+  `e=7` matrix and 100 degree-preserving perturbations are full rank in two
+  fields.
+- **What to do next:** Prove that the official matrix has no kernel with
+  every residual block nonzero, or classify all exceptional incidence
+  profiles before using collision constraints.
+
 ### 2026-08-13 - Lane-T scalar-weld residual-MDS flag
 
 - **Agent/model:** AllenGrahamHart / Codex.
