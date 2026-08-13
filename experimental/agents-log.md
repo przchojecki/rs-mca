@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne recursive line-peeling core-packing interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_recursive_line_peeling_core_packing_v1.md`,
+  `experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.py`,
+  `experimental/audit_mca_full_lift_recursive_line_peeling_core_packing_v1.py`,
+  `experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Repeatedly remove a forced parameterized affine
+  explanation line. The residual either enters the exact weighted prefix or
+  produces distinct inside cores whose pairwise intersections are at most
+  `K-1`, contradicting support-size packing.
+- **How it is useful:** It pays all `5,393` Mersenne supports
+  `124806<=e<=130198`; `3,837` terminate by prefix and `1,556` by core
+  packing, with at most five lines.
+- **What to do next:** Replace the residual-base obstruction at the adjacent
+  method wall `e=130199` or bridge toward the high-support interval.
+
 ### 2026-08-13 - Mersenne boundary-line-bank absorption interval
 
 - **Agent/model:** Codex.

@@ -2914,6 +2914,104 @@ and
 \path{experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.c}.
 \end{remark}
 
+\begin{corollary}[Recursive affine-line peeling and inside-core packing]
+\label{cor:full-lift-recursive-line-peeling}
+Assume the hypotheses of
+Corollary~\ref{cor:full-lift-boundary-line-bank}, suppose \(H\ge m\), and
+put \(Q=N-m+1\).  Fix a cutoff \(b<m\) for which the prefix and every
+line-bank guard are valid.  Let \(\mathcal Z_r\) be the residual assigned
+slopes after \(r\) affine lines have been removed, with
+\(\mathcal Z_0=Z\) and deficit ceiling \(U_0=m\), and charge the removed
+lines by \(rQ\).
+Put
+\[
+ T_r=B-rQ,\qquad
+ G_r=\sum_{h=b+1}^{U_r}J_h,\qquad
+ C_r=P_b(e)+(U_r-b)-G_r.
+\]
+If the suffix-minimum prefix through \(U_r\) is defined and at most \(T_r\),
+then the support is safe.  Otherwise, whenever \(G_r>0\) and
+\(T_r-C_r+1>0\), an unsafe residual forces an affine line of size at least
+\[
+ \lambda_r=\left\lceil\frac{T_r-C_r+1}{G_r}\right\rceil.       \tag{RP1}
+\]
+For \(\lambda_r\ge2\), define
+\[
+ g_r=\max\left(0,
+       \left\lceil\frac{\lambda_rm-N}{\lambda_r-1}\right\rceil\right),
+ \qquad u_r=\max(g_r-c,0),
+ \qquad U_{r+1}=\min(U_r,e-u_r+K-1).             \tag{RP2}
+\]
+Remove the whole selected line and repeat.  The selected lines are distinct,
+and their inside-core sets \(I_i\) satisfy
+\[
+ |I_i|\ge u_i,\qquad |I_i\cap I_j|\le c.
+\]
+Consequently, if at any stage
+\[
+ \sum_{i=0}^{r}u_i-\binom{r+1}{2}c>e,             \tag{RP3}
+\]
+the assumed unsafe family is impossible.  Thus termination either at the
+weighted prefix or at (RP3) certifies safety.
+\end{corollary}
+
+\begin{proof}
+Apply the exact-layer line-bank identity to the residual assigned family.
+Empty layers only improve the resulting inequality, so
+\[
+ |\mathcal Z_r|\le C_r+\sum_{i=1}^{G_r}|\mathcal L_i|.
+\]
+If the original family is unsafe after \(r\) line charges, then
+\(|\mathcal Z_r|>T_r\), and pigeonhole gives (RP1).  The guard
+\(\lambda_r\ge2\) makes the selected slot an actual affine line rather than
+a padded singleton.  Total-core line packing gives \(g_r\).  At most \(c\)
+core coordinates lie outside the gauged direction support, and the
+common-core absorption argument places every residual explanation of
+deficit at least \(e-u_r+K\) on the same line.  Removing the whole line costs
+at most \(Q\) and gives (RP2).  Even when (RP2) does not lower the deficit
+ceiling, the selected line is absent from the next residual.
+
+Write a selected line as \(c_\gamma=a_i+\gamma b_i\).  Its total common
+core consists of coordinates where
+\((r_0,r_1)=(a_i,b_i)\).  Distinct selected lines have distinct codeword
+pairs.  At least one of \(a_i-a_j\) and \(b_i-b_j\) is therefore a nonzero
+degree-\(<K\) codeword, so two total cores, and hence two inside cores, meet
+in at most \(c=K-1\) coordinates.  Since every inside core lies in the same
+\(e\)-coordinate support, first-order inclusion--exclusion gives the reverse
+of (RP3), proving the contradiction.
+\end{proof}
+
+\begin{remark}[Exact Mersenne recursive-peeling interval]
+For Mersenne-31, start from \(b=65304\).  When its first line-bank layer
+fails a guard, take the least legal cutoff and add two guard layers.  Exact
+replay checks every prefix and line-bank denominator under this printed
+rule.  It pays all
+\[
+ 124806\le e\le130198.
+\]
+Of these \(5393\) supports, \(3837\) terminate at the weighted prefix and
+\(1556\) at (RP3), with at most five peeled lines.  The first packing
+termination is \(e=128340\), where two inside cores give
+\(62822+66574-5=129391>128340\).  At the last support, the five inside-core
+lower bounds give
+\[
+ 37718+33617+28204+20729+12942-10\cdot5
+ =133160>130198.
+\]
+At adjacent \(e=130199\), nine legal peels give packing lower bound
+\(126052\le130199\); the next residual target is \(7947054\), while the
+certified base charge is \(8154082\), so (RP1) no longer forces a line.  This
+is a method wall, not an unsafe certificate.  The Mersenne residual interval
+is now \(130199\le e\le1044241\).
+
+The endpoint replay, independent audit, and full constant-memory interval
+replay are
+\path{experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.py},
+\path{experimental/audit_mca_full_lift_recursive_line_peeling_core_packing_v1.py},
+and
+\path{experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.c}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
