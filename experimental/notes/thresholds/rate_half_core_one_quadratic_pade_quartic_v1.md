@@ -2703,6 +2703,77 @@ the common Gram matrix `K` is forced nonzero. This reduces the remaining
 macroscopic-rank problem to compatibility of `(248)--(256)` with the split
 fibers and Hankel source.
 
+## 53. Coefficient syzygy-bundle cubic splitting
+
+The restricted Koszul surjectivity classifies the coefficient linear
+series. Let
+
+```text
+0 -> E -> V tensor O_P1 -> O_P1(m) -> 0            (258)
+```
+
+be its evaluation sequence, after base change to an algebraic closure if
+needed. Write
+
+```text
+E=sum_(i=1)^(r-1) O_P1(-mu_i).                     (259)
+```
+
+Twisting `(258)` by `O(2)`, the global-section map is exactly the
+surjection `(249)`. Thus
+
+```text
+H^1(E(2))=0.                                       (260)
+```
+
+On `P^1`, `(260)` is equivalent to
+
+```text
+mu_i in {1,2,3}       for every i.                 (261)
+```
+
+If `c_j` counts the summands of degree `j`, rank, degree, and quadratic
+section counts give
+
+```text
+c_1+c_2+c_3=r-1,
+c_1+2c_2+3c_3=m,
+2c_1+c_2=3r-(e+1).                                 (262)
+```
+
+The inverse prolongation in `(251)` is precisely the space of linear
+syzygies, so
+
+```text
+dim J=c_1.                                         (263)
+```
+
+Putting `K_2=3r-(e+1)`, all profiles are
+
+```text
+c_2=K_2-2c_1,
+c_3=r-1-K_2+c_1,
+max(0,2r-e)<=c_1<=floor(K_2/2).                    (264)
+```
+
+At the minimum official rank, `K_2=2` and exactly two profiles remain:
+
+```text
+(c_1,c_2,c_3)=(1,0,61083979320),
+(c_1,c_2,c_3)=(0,2,61083979319).                   (265)
+```
+
+A nonzero common source-Gram matrix forces `c_1>0`, so at minimum rank it
+selects the first profile. More generally `(256)` gives
+
+```text
+c_1>=max(0,2r-(n+2)).                              (266)
+```
+
+The remaining Shape-A problem is now a degree-`1/2/3` syzygy-profile
+problem coupled to the split fibers and the proportional source-Gram
+matrix.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2780,3 +2851,6 @@ Section 51 uses the full source partition to exclude every tensor rank below
 Section 52 gives the exact restricted Koszul and proportional Gram packet
 on that interval, but does not bound the inverse prolongation `J` sharply
 enough to exclude it.
+Section 53 excludes all coefficient syzygy splitting degrees at least four,
+but does not exclude either minimum-rank profile or all higher-rank
+degree-`1/2/3` profiles.

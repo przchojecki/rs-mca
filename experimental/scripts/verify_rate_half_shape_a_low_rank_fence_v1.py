@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "93ba16ea39e44233d43cbfab09bce32460bfd262"
+SOURCE_COMMIT = "995c5381285975c04eae2f884bb49ba390004eae"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/probe_results.md": "603668188e6fa399919f0ce0955b4a7ccef06a549286a43e3e43b6f8ba922203",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_probe.py": "f783f91f9b22084d457c2f96205cb838e9b5b9f6562547f6b746825150229da9",
@@ -60,6 +60,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/audit.md": "1cf4fbc111b4b9b90fee785f1b60ed13ac2c44b89700969abb53d23b2abdada3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/verify.py": "365030a71544f75fcc7dc1f6bb15b8dc225f52e3aa8e96e67a71072ff1143b1e",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/verify_audit.py": "d1971f9debb68b46aefde1294ef7a0fa593214dfbe11d30d3535746b046d5b66",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/statement.md": "7aa18872e9b15c1c6d27039c615f76d5ae7e1bf91e8600b6061fe41505eac326",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/proof.md": "a326ebd372b7741e029924c17c6f87e77bbc7355efeaf0bc6aae7f973b0b5cae",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/audit.md": "0b8844d48809dafd6763faa2aca1646a4e8b0dbe320bca1d749451610a7b7602",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/verify.py": "a3f135acad1a1d2990ce035ef23b62cbcc4e65f1704c32208fdb5e8a6eecd581",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/verify_audit.py": "8e91a5f42d5c1a3ecc2354d03a93345130227f89261c59f5cc92a81790c82af7",
 }
 
 
@@ -262,6 +267,8 @@ class Formula:
     gram_nonzero_threshold: int = 137438953472
     source_class_small: int = 274877906943
     source_class_large: int = 274877906944
+    profile_linear_c3: int = 61083979320
+    profile_quadratic_c3: int = 61083979319
 
 
 def partition_probe() -> tuple[int, int, int]:
@@ -464,6 +471,20 @@ def replay(
     require(2 * (gram_nonzero_threshold - 1) <= n + 2,
             "Gram predecessor")
     require(2 * gram_nonzero_threshold > n + 2, "Gram strictness")
+    profile_linear = (1, 0, source_rank_floor - 2)
+    profile_quadratic = (0, 2, source_rank_floor - 3)
+    require(
+        profile_linear == (1, 0, formula.profile_linear_c3),
+        "linear minimum profile",
+    )
+    require(
+        profile_quadratic == (0, 2, formula.profile_quadratic_c3),
+        "quadratic minimum profile",
+    )
+    for c1, c2, c3 in (profile_linear, profile_quadratic):
+        require(c1 + c2 + c3 == source_rank_floor - 1, "profile rank")
+        require(c1 + 2 * c2 + 3 * c3 == m, "profile degree")
+        require(2 * c1 + c2 == minimum_koszul_kernel, "profile sections")
     return {
         "profiles": profile_count,
         "cases": cases,
@@ -489,6 +510,8 @@ def replay(
         "source_rank_floor": source_rank_floor,
         "minimum_koszul_kernel": minimum_koszul_kernel,
         "gram_nonzero_threshold": gram_nonzero_threshold,
+        "profile_linear": profile_linear,
+        "profile_quadratic": profile_quadratic,
     }
 
 

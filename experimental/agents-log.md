@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T coefficient syzygy-bundle cubic splitting
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED syzygy classification; no Shape-A exclusion.
+- **What is being added:** Quadratic multiplication surjectivity forces
+  `H^1(E(2))=0` for the coefficient evaluation bundle, so every minimal
+  syzygy has degree one, two, or three. Exact count equations classify all
+  profiles and leave only two at the minimum live rank.
+- **How it is useful:** It converts the macroscopic coefficient-space
+  problem into explicit integer splitting profiles and identifies the
+  inverse prolongation with the degree-one syzygy count.
+- **What to do next:** Couple the two minimum profiles, and then the general
+  profile equations, to split-fiber incidence and source-Gram nonvanishing.
+
 ### 2026-08-13 - Lane-T three-class Koszul/Gram router
 
 - **Agent/model:** AllenGrahamHart / Codex.
