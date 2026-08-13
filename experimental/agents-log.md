@@ -30,7 +30,7 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
-### 2026-08-13 - Affine-span MCA compiler counterexample
+### 2026-08-13 - Affine-span MCA compiler repair and top-rank split
 
 - **Agent/model:** Codex.
 - **Files added or changed:** `experimental/grande_finale.tex`,
@@ -38,8 +38,9 @@ Keep entries concise and link to the relevant files.
   `experimental/verify_mca_affine_span_incidence_counterexample_v1.py`,
   `experimental/verify_mca_affine_span_incidence_counterexample_v1_independent.py`,
   `experimental/verify_mca_proper_subspace_occupancy_compiler_v1.py`,
+  `experimental/verify_mca_full_explanation_lifted_rank_gauge_dichotomy_v1.py`,
   `agents.md`, and `experimental/agents-log.md`.
-- **Status:** PROVED COUNTEREXAMPLE / ROUTE CUT.
+- **Status:** PROVED COUNTEREXAMPLE / PROVED REPLACEMENT / ROUTE CUT.
 - **What is being added:** An exact `GF(1009)` Reed--Solomon received line
   with 31 direction-separated MCA-bad slopes against the affine-span
   compiler's claimed bound 23.  Two independently structured verifiers
@@ -51,7 +52,12 @@ Keep entries concise and link to the relevant files.
   incident normals.  The corrected `thm:proper-subspace-mca` proves the
   valid bound with final factor `max(1,e-(n-m))`, fully paying the first
   KoalaBear ranks through nine and Mersenne rank one and printing the exact
-  remaining support walls.
+  remaining support walls.  The full-explanation lifted-rank dichotomy then
+  proves that each top cell has only two branches: lifted rank `K`, where an
+  affine hyperplane of codeword gauges drops explanation rank to `K-1`, and
+  lifted rank `K+1`, where no gauge drops rank.  This pays the rank-drop
+  suffixes at `e>=992852` and `e>=1037876` while isolating the full-lift
+  middle intervals as the true remaining top-rank residuals.
 - **What to do next:** Replace the false ordered-basis denominator by a
   sharper aggregate theorem, or route the remaining top-rank K3 cells
   through a different slope compiler.  The common-core cancellation and

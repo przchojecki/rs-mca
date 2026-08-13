@@ -1549,6 +1549,88 @@ cells.  The exact replay is in
 \texttt{experimental/verify\_mca\_proper\_subspace\_occupancy\_compiler\_v1.py}.
 \end{remark}
 
+\begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
+\label{thm:full-explanation-lifted-rank-dichotomy}
+Let \(C\leq\F^D\) have dimension \(K\), let
+\(r_\gamma=r_0+\gamma r_1\), and let \(Z\subseteq\F\) contain distinct
+slopes.  For every \(\gamma\in Z\), choose \(c_\gamma\in C\), and assume
+that the \(c_\gamma\) have full affine rank \(K\).  Fix
+\(\gamma_0\in Z\) and put
+\[
+ V=\operatorname{span}\{(\gamma-\gamma_0,
+                 c_\gamma-c_{\gamma_0}):\gamma\in Z\}
+       \leq \F\oplus C.
+\]
+Then \(\dim V\in\{K,K+1\}\), and exactly one of the following holds.
+\begin{enumerate}
+\item If \(\dim V=K\), there is a unique nonzero linear functional
+  \(\ell:C\to\F\) such that
+  \(V=\{(\ell(u),u):u\in C\}\).  The gauge
+  \[
+     r_1\longmapsto r_1-b,
+     \qquad c_\gamma\longmapsto c_\gamma-\gamma b
+  \]
+  drops the explanation affine rank to exactly \(K-1\) precisely for
+  \(b\in C\) satisfying \(\ell(b)=1\).  Thus the rank-dropping gauges form
+  an affine hyperplane in \(C\).
+\item If \(\dim V=K+1\), then \(V=\F\oplus C\), and every \(b\in C\)
+  leaves the explanation affine rank equal to \(K\).
+\end{enumerate}
+If, in addition, every chosen maximal agreement support is same-support
+pair-noncontained, then \(r_1\notin C\), and the selected error vectors
+\(r_\gamma-c_\gamma\) have affine rank exactly \(\dim V\).
+\end{theorem}
+
+\begin{proof}
+Projection of \(V\) to \(C\) is onto because the explanations have full
+affine rank.  Hence \(K\leq\dim V\leq K+1\).  If \(\dim V=K\), projection
+is an isomorphism and \(V\) is the graph of a unique functional \(\ell\).
+It is nonzero because the slopes are not all equal.  On anchored
+differences, the gauge is the map
+\[
+  T_b:V\longrightarrow C,\qquad T_b(a,u)=u-ab.
+\]
+For \(V=\{(\ell(u),u):u\in C\}\), this map is
+\(u\mapsto u-\ell(u)b\).  It has rank \(K-1\) exactly when
+\(\ell(b)=1\), in which case its image is \(\ker\ell\); otherwise it is
+invertible.  If \(\dim V=K+1\), then \(V=\F\oplus C\), and \(T_b\) is
+surjective for every \(b\).
+
+Suppose now that \(r_1\in C\).  On any selected agreement support,
+\(r_1\) explains the direction and \(c_\gamma-\gamma r_1\in C\) explains
+the base, contradicting pair noncontainment.  Thus \(r_1\notin C\).  The
+linear map
+\[
+  (a,u)\longmapsto ar_1-u
+\]
+is consequently injective on \(\F\oplus C\), and it sends the anchored
+lifted differences to the anchored error-vector differences.  Their affine
+rank is therefore \(\dim V\).
+\end{proof}
+
+\begin{remark}[Exact top-rank split at the first shortened rows]
+\label{rem:full-explanation-top-rank-split}
+The gauge preserves agreement supports, pair noncontainment, and
+\(e=\min_{b\in C}\wt(r_1-b)\).  Therefore the \(\dim V=K\) branch may use
+\cref{thm:proper-subspace-mca} at explanation rank \(K-1\).  Combining
+this with the already separate low-support and recursive-direction gates
+gives the following exact routing table; \(q\) is explanation affine rank
+and \(h=\dim V\), equivalently the error affine rank.
+\[
+\begin{array}{c|c|c|c}
+\text{row}&q&h&\text{currently paid support range}\\ \hline
+\text{KoalaBear}&14&14&e\le5\ \text{or}\ e\ge992852\\
+\text{KoalaBear}&14&15&e\le5\ \text{or}\ e\ge1044239\\
+\text{Mersenne-31}&6&6&e\le1\ \text{or}\ e\ge1037876\\
+\text{Mersenne-31}&6&7&e\le1\ \text{or}\ e\ge1044242
+\end{array}
+\]
+The improvement is only in the \(h=K\) rows.  The full-lift \(h=K+1\)
+middle intervals remain unpaid and are the wider top-rank residuals.  A
+finite-field audit and the exact adjacent arithmetic are in
+\texttt{experimental/verify\_mca\_full\_explanation\_lifted\_rank\_gauge\_dichotomy\_v1.py}.
+\end{remark}
+
 \begin{theorem}[Directional Johnson ray compiler]
 \label{thm:directional-johnson-ray}
 Retain the hypotheses and notation of \cref{thm:fixed-union-ray}, but allow

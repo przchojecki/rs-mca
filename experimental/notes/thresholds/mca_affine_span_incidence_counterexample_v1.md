@@ -160,12 +160,41 @@ Mersenne  q=2,3,4,5:     e>=981144,981363,984779,1037876.
 
 The top ranks remain unpaid by this compiler.
 
+## Full-explanation top-rank split
+
+The proved lifted-rank gauge dichotomy now resolves the internal structure of
+each top-rank cell.  If the selected explanations have affine rank `K`, fix an
+anchor and let
+
+```text
+V=span{(gamma-gamma_0,c_gamma-c_gamma0)} <= F direct_sum C.
+```
+
+Then `dim(V)` is `K` or `K+1`.  In the rank-`K` branch, `V` is the graph of
+a nonzero functional `ell:C->F`, and exactly the gauges `ell(b)=1` drop the
+explanation rank to `K-1`.  In the rank-`K+1` branch, every gauge retains
+rank `K`.  Pair noncontainment also forces `r_1 notin C`, so `dim(V)` equals
+the affine rank of the selected error vectors.
+
+Consequently, the corrected compiler at rank `K-1` pays the top-rank
+rank-drop branches at
+
+```text
+KoalaBear:   e>=992852 when lifted/error rank is 14;
+Mersenne-31: e>=1037876 when lifted/error rank is 6.
+```
+
+The full-lift branches, of error ranks 15 and 7 respectively, do not receive
+this payment.  Their current high-support suffixes remain `e>=1044239` and
+`e>=1044242`, so their middle-support intervals are still open.
+
 ## Replay
 
 ```bash
 python3 experimental/verify_mca_affine_span_incidence_counterexample_v1.py
 python3 experimental/verify_mca_affine_span_incidence_counterexample_v1_independent.py
 python3 experimental/verify_mca_proper_subspace_occupancy_compiler_v1.py
+python3 experimental/verify_mca_full_explanation_lifted_rank_gauge_dichotomy_v1.py
 ```
 
 Expected output:
@@ -174,4 +203,5 @@ Expected output:
 MCA_AFFINE_SPAN_INCIDENCE_COUNTEREXAMPLE_V1_PASS slopes=31 bound=23 direction_max=20 mutations=4/4
 MCA_AFFINE_SPAN_INCIDENCE_COUNTEREXAMPLE_V1_INDEPENDENT_PASS slopes=31 support_checks=31 field_values=1009 bound=23
 MCA_PROPER_SUBSPACE_OCCUPANCY_COMPILER_V1_PASS zero_normal_cases=616 adjacent=8 regression=471 toy_selections=540
+MCA_FULL_EXPLANATION_LIFTED_RANK_GAUGE_DICHOTOMY_V1_PASS gauges=625 hostile=1 adjacent=2
 ```
