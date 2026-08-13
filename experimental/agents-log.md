@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne joint-core charge peeling
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_joint_core_charge_peeling_v1.md`,
+  `experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.py`,
+  `experimental/audit_mca_full_lift_joint_core_charge_peeling_v1.py`,
+  `experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Pairwise core geometry bounds the sum of the
+  actual cores of all peeled parameterized lines. Convex concentration then
+  gives a joint line charge that replaces the independent worst-case charge.
+- **How it is useful:** It pays all 21 Mersenne supports
+  `130199<=e<=130219`; the endpoint uses 13 lines and packing lower bound
+  `134835>130219`.
+- **What to do next:** Add structure for the zero-core line population at
+  the adjacent method wall `e=130220` or bridge to the high-support interval.
+
 ### 2026-08-13 - Mersenne recursive line-peeling core-packing interval
 
 - **Agent/model:** Codex.

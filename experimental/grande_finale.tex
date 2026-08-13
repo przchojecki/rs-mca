@@ -3012,6 +3012,90 @@ and
 \path{experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.c}.
 \end{remark}
 
+\begin{corollary}[Joint-core charge for peeled explanation lines]
+\label{cor:full-lift-joint-core-charge}
+In the setting of
+Corollary~\ref{cor:full-lift-recursive-line-peeling}, suppose \(r\)
+distinct parameterized affine explanation lines have been removed, and let
+\(g_i\) be their actual total common-core sizes.  Put
+\[
+ S_r=\min\left\{r(m-1),e+\binom{r+1}{2}c\right\},
+ \quad q_r=\left\lfloor\frac{S_r}{m-1}\right\rfloor,
+ \quad z_r=S_r-q_r(m-1),
+\]
+and \(f(g)=(N-g)/(m-g)\), \(Q=N-m+1\).  Their total number of assigned
+slopes is at most
+\[
+ L_r=
+ \begin{cases}
+  rQ,&q_r=r,\\
+  \left\lfloor
+   q_rQ+f(z_r)+(r-q_r-1)f(0)
+  \right\rfloor,&q_r<r.
+ \end{cases}                                      \tag{JC1}
+\]
+Consequently the residual peeling target may be strengthened from
+\(B-rQ\) to \(B-L_r\).
+\end{corollary}
+
+\begin{proof}
+Let \(I_i\) be the part of the \(i\)th total core inside the fixed
+\(e\)-coordinate gauged direction support.  Distinct parameterized lines
+have distinct codeword pairs, so
+\(|I_i\cap I_j|\le c\).  Each line direction is a nonzero degree-\(<K\)
+codeword, so at most \(c\) further core coordinates lie outside that
+support.  Therefore
+\[
+ \sum_i g_i\le e+\binom r2c+rc
+              =e+\binom{r+1}{2}c,
+\]
+and \(g_i\le m-1\) by pair noncontainment.
+
+Off-core agreement sets on one line are disjoint, giving the rational cap
+\(f(g_i)\).  The function
+\[
+ f(g)=1+\frac{N-m}{m-g}
+\]
+is increasing and convex.  Moving core mass from the smaller of two
+interior arguments to the larger cannot decrease their sum.  Repeating
+this exchange concentrates all available mass at \(m-1\), at most one
+remainder \(z_r\), and zero.  The total number of slopes is integral, so
+flooring the resulting rational sum gives (JC1).
+\end{proof}
+
+\begin{remark}[Exact Mersenne joint-charge interval]
+Using \(B-L_r\) in the recursive line bank pays every support
+\[
+ 130199\le e\le130219.
+\]
+All 21 supports terminate by inside-core packing, using between four and
+thirteen lines.  At the endpoint, the thresholds are \(21\) and then twelve
+copies of \(18\), giving
+\[
+ 18393+12\cdot9736-\binom{13}{2}\cdot5
+ =134835>130219.
+\]
+At adjacent \(e=130220\), the first threshold is \(20\) and the next 42 are
+\(16\).  Their packing lower bound is only
+\[
+ 15811+42\cdot2041-\binom{43}{2}\cdot5
+ =97018.
+\]
+For \(r=43\), the joint core allowance is
+\(134950=2(m-1)+44\), the exact joint charge is \(1962895\), and the next
+threshold drops to \(13\), whose forced-core lower bound is zero.  Later
+thresholds cannot increase.  This is a method wall, not an unsafe
+certificate; the Mersenne residual is now
+\(130220\le e\le1044241\).
+
+The endpoint replay, independent rational audit, and full interval replay
+are
+\path{experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.py},
+\path{experimental/audit_mca_full_lift_joint_core_charge_peeling_v1.py},
+and
+\path{experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.c}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
