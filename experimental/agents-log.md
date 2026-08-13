@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T three-source-class rank amplification
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED macroscopic rank floor; no Shape-A exclusion.
+- **What is being added:** The `e+1` independent coefficients of the
+  first-degree primitive locator split across exactly three fixed
+  source-root classes after the dual-MDS transform. Hence
+  `e+1<=3sr(G)` and officially `sr(G)>=61083979322`.
+- **How it is useful:** It excludes every low-rank Shape-A model, including
+  all rank-two and rank-three branches, and redirects Lane T to genuinely
+  macroscopic coefficient rank.
+- **What to do next:** Exploit the three-class block structure or the
+  source/Hankel isotropy at macroscopic rank; do not continue rank-by-rank
+  attacks below the proved floor.
+
 ### 2026-08-13 - Lane-T rank-three weighted incidence/genus router
 
 - **Agent/model:** AllenGrahamHart / Codex.

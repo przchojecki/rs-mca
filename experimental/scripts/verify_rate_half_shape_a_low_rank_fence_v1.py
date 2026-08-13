@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "0aa768f483664ba929886b60c75eec90f690aac5"
+SOURCE_COMMIT = "b7e0ab6e45b6d304b13efa4442ecd2fd7a3ea350"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/probe_results.md": "603668188e6fa399919f0ce0955b4a7ccef06a549286a43e3e43b6f8ba922203",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_probe.py": "f783f91f9b22084d457c2f96205cb838e9b5b9f6562547f6b746825150229da9",
@@ -50,6 +50,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_weighted_c4_free_incidence_genus_router/audit.md": "c0f9f8282119c0b185c57b72696f4de63cbc65dcfc73be11d8d0be6e186b4c90",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_weighted_c4_free_incidence_genus_router/verify.py": "0e9bf61b84159a5a06927c24e7b8852510d9701f9be1c5345e0de39077972990",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_weighted_c4_free_incidence_genus_router/verify_audit.py": "596f002bcac26b038d9e8cec9e6f8f483706fdd3b2fae790fc16e1bcfd4ad148",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/statement.md": "ceb0e9292fee28760493dae3072e0a46f85e6606b9ce10df0418a2ff71727f38",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/proof.md": "2194928f15b0521ae1b0d8fc836ba0a043e101162866526071fef9dc1134113e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/audit.md": "ae4f9269fa885b9d1689afbc0134a9cc43d492e4ce509f67cb1c263ebd968ef3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/verify.py": "25f7ca8b3d1a03d557c76b54dc16b5898c9eb93c14650d9fe3eacb3a6272bf84",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/verify_audit.py": "be586b7fe9f293a376929c3812086fcc808269d08a842a5c0edb0b5aea919db8",
 }
 
 
@@ -245,6 +250,9 @@ class Formula:
     parameter_image_floor: int = 10
     domain_image_floor: int = 10
     zero_deficit_mass_floor: int = 183251937970
+    source_class_count: int = 3
+    locator_x_degree: int = 549755813887
+    source_rank_floor: int = 61083979322
 
 
 def partition_probe() -> tuple[int, int, int]:
@@ -423,6 +431,14 @@ def replay(
         "zero-deficit mass floor",
     )
     require(zero_deficit_mass_floor > m - 1, "two zero-deficit vertices")
+    locator_x_degree = 3 * e - 2
+    source_rank_floor = (e + 3) // 3
+    require(formula.source_class_count == 3, "source class count")
+    require(locator_x_degree == formula.locator_x_degree, "locator X-degree")
+    require(row_count > locator_x_degree, "locator evaluation injection")
+    require(source_rank_floor == formula.source_rank_floor, "source rank floor")
+    require(3 * (source_rank_floor - 1) < e + 1 <= 3 * source_rank_floor,
+            "source rank ceiling interval")
     return {
         "profiles": profile_count,
         "cases": cases,
@@ -444,6 +460,8 @@ def replay(
         "parameter_image_floor": parameter_image_floor,
         "domain_image_floor": domain_image_floor,
         "zero_deficit_mass_floor": zero_deficit_mass_floor,
+        "locator_x_degree": locator_x_degree,
+        "source_rank_floor": source_rank_floor,
     }
 
 

@@ -2559,6 +2559,65 @@ two domain neighbours. Thus rank-three Shape A is reduced to a weighted
 `C_4`-free incidence graph satisfying `(236)--(240)`, together with the
 source/Hankel constraints already recorded in Sections 40--44.
 
+## 51. Three-source-class rank amplification
+
+The full source packet actually rules out the entire low-rank branch. The
+first-degree marked-source frame writes the primitive locator as
+
+```text
+Qbar(t,X)=sum_(i=0)^e t^i Q_i(X),
+deg_X Qbar=d=3e-2,                                  (241)
+```
+
+and proves that its `e+1` coefficient vectors are independent. Thus
+
+```text
+sr(Qbar)=e+1.                                      (242)
+```
+
+In Shape A, `d_A=1`, so the classified domain is the disjoint union of the
+three source-root classes `M_alpha,M_beta,M_theta`. On `M_gamma`, the source
+form has the shape
+
+```text
+omega_x(t)=eta_x ell_gamma(t),       eta_x!=0.     (243)
+```
+
+The dual-MDS identity
+
+```text
+H_x=omega_x Qbar(t,x)/Lambda_A
+   =G(t,x)/L_U0'(x)                                 (244)
+```
+
+therefore gives
+
+```text
+Qbar(t,x)=eta_x^(-1)
+ product_(gamma'!=gamma)ell_(gamma')(t) H_x(t)
+                      for x in M_gamma.            (245)
+```
+
+Evaluation on `U_0` preserves the coefficient rank of both biforms: its
+size `R=(9e-7)/2` exceeds `deg_X G=(3e-7)/2` and `deg_X Qbar=3e-2`.
+The three fixed quadratic multipliers in `(245)` consequently imply
+
+```text
+e+1=sr(Qbar)<=3sr(G),
+sr(G)>=ceil((e+1)/3).                              (246)
+```
+
+At the official value `e=183251937963`, this is
+
+```text
+sr(G)>=61083979322.                                (247)
+```
+
+Thus Sections 45--50 remain valid conditional geometry, but their
+rank-two and rank-three branches cannot occur in a full Shape-A source
+packet. The surviving tensor-rank interval starts at the macroscopic bound
+in `(247)`.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2631,3 +2690,5 @@ rank; repeated row types at singular image points remain possible.
 Section 50 compresses rank three to a weighted `C_4`-free graph with two
 plane-genus budgets, but does not exclude that graph or address tensor rank
 at least four.
+Section 51 uses the full source partition to exclude every tensor rank below
+`61083979322`; it does not exclude the remaining macroscopic-rank interval.
