@@ -2983,10 +2983,50 @@ removed from `g_off`, and the collision is not a center. Therefore
 T_3=ell_(gamma_0)T_2,       deg T_2=2.            (290)
 ```
 
-The remaining alternatives are now explicit. The rank-`r-1` branch asks
-for compatibility of three center-fiber defects. The rank-`r-2` branch
-forces the multiplication chain `B_0,(X-x_*)B_0 in W_X` and a quadratic
-heavy-row residual.
+The alternatives are explicit; Section 57 excludes the second one by the
+already proved support of the residual four-core.
+
+## 57. Exclusion of the large-class rank drop
+
+Suppose the second branch of `(288)` occurs. Equations `(286)` and `(288)`
+make
+
+```text
+(gamma_0,x_*)                                    (291)
+```
+
+a common point of the coprime curves `Qbar=0` and `G=0`. This point is not
+among the mandatory intersections subtracted in the exact four-core:
+those are the roots of `A_delta R_delta` over the `3e` off-line supported
+slopes, whereas `gamma_0` is an assigned center and `x_*` lies outside
+`U_0`. The positive local intersection at `(291)` therefore survives in
+the effective residual cycle `Z_4`, so its parameter pushforward contains
+`gamma_0`.
+
+The exact resultant identification from Section 24 gives
+
+```text
+pi_*Z_4=div(E_4)=2div(S_B).                      (292)
+```
+
+In the retained nonreduced collision, `S_B=c_S ell_tau^2`; hence `(292)`
+is supported only at `tau`. Unsharedness places `tau` off the three
+assigned centers, so `tau!=gamma_0`. This contradicts `(291)`. Therefore
+
+```text
+rank T_(gamma_0)=r-1.                             (293)
+```
+
+Together with `(281)--(284)`, all three class maps now satisfy
+
+```text
+im T_gamma=V_gamma,
+ker T_gamma^*=span{G(gamma,X)}.                  (294)
+```
+
+There is no domain multiplication-chain branch. The remaining Lane-T
+target is compatibility of the three actual center fibers with the
+proportional source-Gram, split-row, and collision identities.
 
 ## Nonclaims
 
@@ -3072,5 +3112,6 @@ Section 54 supersedes the earlier one-third floor by the official half-rank
 floor, but does not exclude the upper-half interval. Section 55 eliminates
 all cubic syzygies in that interval and identifies two small-class defect
 forms. Section 56 identifies them as actual center fibers and gives the
-exact large-class rank/factorization dichotomy, but does not exclude either
-branch.
+exact large-class rank/factorization dichotomy. Section 57 excludes its
+rank-`r-2` multiplication-chain branch, but does not yet prove the three
+remaining center fibers incompatible.

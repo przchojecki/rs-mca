@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "7b70a9337"
+SOURCE_COMMIT = "5e2d69025"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/statement.md": "6525db0f3f98127403a859cb06de798fbfaa981dc4c255b71cea89299df92587",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/proof.md": "29b08bed3273e1e3a54f027f1516231c65052e218394c5708a894fc246e5c55a",
@@ -22,6 +22,13 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_extremal_dual_mds_split_biform_reduction/proof.md": "03cbd1b1dfc702bb79b9974a76104bceba00758595bb78af706fa75b1261a857",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/statement.md": "b03b5355fb3a09a62f2263754d3ce4b409c9c3019f357bc41387a4aad099afdb",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_heavy_row_quadratic_residual_factorization/proof.md": "54130913e897c1a95dd76d86365db4a25fc6d7ef261d548fe972b40d24ef9ac0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_large_class_center_residual_exclusion/statement.md": "4457a7b6ef5612d88d2bbee0dadd229b2ceb4fa272fc3bc5fc395c995d3bc1e1",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_large_class_center_residual_exclusion/proof.md": "ca006d05891e6e2cee6deb6932d83388af385868dbe740411e737e90a8087a38",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_large_class_center_residual_exclusion/audit.md": "0bc8759ed5729868d9b2b38d28e72af09d3a2d1744b630aae77e0e08f1a2e244",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_large_class_center_residual_exclusion/verify.py": "acdf2ed5200e56811cf72bf1b6da249704aaedd717d2597e859122b83e94230c",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_large_class_center_residual_exclusion/verify_audit.py": "bb09991e07d6d2887daf553c2a79ae89a312ec9a98dbe35b798834f0e62506b0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_extremal_resultant_regular_quartic_identification/statement.md": "c8de176f5c5d3a3081737b9cbfe702d3cb821cfc881510fac8bc3cf26f03ebf6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_extremal_resultant_regular_quartic_identification/proof.md": "fa8b278e41e9c579f729c82c2756715693e5f1895e33590f27dc190e606eb9c3",
 }
 
 
@@ -49,6 +56,9 @@ class Formula:
     residual_after: int = 2
     small_toy_rank: int = 3
     large_toy_rank: int = 2
+    exact_large_rank: int = 91625968981
+    residual_degree: int = 4
+    multiplication_chain_dimension: int = 0
 
 
 def matrix_rank(rows: list[list[int]], modulus: int) -> int:
@@ -143,6 +153,12 @@ def replay(formula: Formula) -> dict[str, int]:
     large_toy = dual_rs_toy(6)
     require(small_toy == formula.small_toy_rank, "small toy rank")
     require(large_toy == formula.large_toy_rank, "large toy rank")
+    require(r - 1 == formula.exact_large_rank, "exact large rank")
+    require(formula.residual_degree == 4, "residual degree")
+    require(formula.multiplication_chain_dimension == 0,
+            "multiplication chain excluded")
+    residual_support = {"tau": formula.residual_degree}
+    require("gamma_0" not in residual_support, "center residual support")
     return {
         "rank": r,
         "projection": projection,
@@ -150,6 +166,8 @@ def replay(formula: Formula) -> dict[str, int]:
         "large_class": n + 3,
         "small_toy_rank": small_toy,
         "large_toy_rank": large_toy,
+        "exact_large_rank": r - 1,
+        "residual_degree": formula.residual_degree,
     }
 
 

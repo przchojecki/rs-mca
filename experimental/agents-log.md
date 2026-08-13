@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T large-class rank-drop exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exclusion of the rank-`r-2` branch; no Shape-A
+  exclusion.
+- **What is being added:** The multiplication-chain branch creates a
+  residual common point `(gamma_0,x_*)` over an assigned center. The exact
+  four-core pushforward is supported only at the off-center collision, so
+  that branch is impossible and the large map also has rank `r-1`.
+- **How it is useful:** All three class maps now have one canonical defect,
+  namely the corresponding center fiber `G(gamma,X)`; no large-class
+  alternative remains.
+- **What to do next:** Couple the three center fibers to the proportional
+  source-Gram packet or derive a second residual common point from their
+  barycentric formulas.
+
 ### 2026-08-13 - Lane-T center-fiber and large-class dichotomy
 
 - **Agent/model:** AllenGrahamHart / Codex.
