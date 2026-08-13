@@ -12,7 +12,7 @@ from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "1e08388888ab2457d8f1e2bcb8de5afd1464ff80"
+SOURCE_COMMIT = "7041f043656506656ef00d4260f46b6170c0a12e"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -123,11 +123,21 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/dependency_subdag.md": "599b98f36e15856a2b14f4fa0575ad6022346f96414ac8d7979557b4854e6e20",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/node.json": "e9355eea4d8a2c464322a45b280829fb3af7676fa5be4b6a17a5c6b41dff3b0d",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/proof.md": "99ed9d06054e002c4792278a6812e50adb96eaaa56074644a83f0f3f4b7c11fa",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/provenance.md": "d2a7d90a8e4d7abc3c41e017fc304724c35da01f35e5fe099500f0ee551fb1a9",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/provenance.md": "beb876e448625eb1ed0842eeab0606b4c6f45812feff5c4dfcff04874805d76f",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/result.md": "8f744a443836c0bbea16f5a986f6cdf9865cc473c7be5d27c16c82540a76c119",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/statement.md": "c24ad834f13ee4d7f7aa7a153f2ef46855e462fbbf3995b127a401678aa38f3e",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/verify.py": "5f9af4d4451ae365d4c491ea0ed6ec7927948b9accd6bc4b0b1c8e45e346e4e1",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_omitted_recurrence_bordered_hankel_flag/verify_audit.py": "059a36811e369ece743f9512e784285ac47bc1dc72a24d41a3d1f9029fb16751",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/audit.md": "0f6f376f2189afce3d7f9317edbb2c388f6042eda59310411fa968b2a23f391e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/claim_contract.md": "866308e1cfdb7ba6e9c105f7c0342ed52a700f1dbfcf19112ba684196aa08fe9",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/dependency_subdag.md": "d74e7ec3873860c8c7e5239aa8744e700b829333030c452c2bd1664dbd70deea",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/node.json": "5c95d496fdebb7708df42fd3d878ab8f97d8dc1d3b794d84a875ef60ac1385b0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/proof.md": "2e7ff7d77fc2cca3c8f414d744f3550a81a03179bbda2ed1aa690e7de2b502bf",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/provenance.md": "c874593c241af0e7bffa61821d30018ff836d4db34d0bb3e3b075390d0ee98b0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/result.md": "0919c976162705e51afbc73375a8c2fb65e8dc09fca12fd991af9a9a50648e3c",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/statement.md": "309415ae75fcdc79b5b318a1e7695b87e7dd15931494d05e5f27d6d66ee71cc4",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/verify.py": "a21820ebb3fb2f1dc898bffa1d07de7aa15af315fd0a21c465f20947604780f6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/verify_audit.py": "61e8ff55d7ae3e598d3e8d5aa58ab784d7a1e50ceb91a377ca96b29c7094b470",
 }
 
 
@@ -265,6 +275,11 @@ class Formula:
     collision_shape_a_regular_flag_degree: int = 366503875933
     collision_shape_a_bordered_source_subset_size: int = 549755813889
     collision_shape_a_bordered_fixture_subset_checks: int = 252
+    collision_shape_a_static_drop_fixture_cases: int = 4
+    collision_shape_a_static_drop_source_count: int = 8
+    collision_shape_a_static_drop_maximum: int = 3
+    collision_shape_a_static_drop_residue_checks: int = 36
+    collision_shape_a_static_drop_subset_checks: int = 560
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1911,6 +1926,241 @@ def verify_collision_shape_a_bordered_hankel_flag(formula: Formula) -> int:
     return subset_checks + 22
 
 
+def verify_collision_shape_a_static_source_arbitrary_drop(
+    formula: Formula,
+) -> int:
+    """Replay arbitrary bordered-rank stagnation for a static source."""
+    prime = 101
+    d = 3
+    n = 3
+    source = list(range(1, 9))
+    roots = [20, 21, 22]
+    auxiliary_root = 30
+
+    require(
+        len(source) == formula.collision_shape_a_static_drop_source_count,
+        "shape-A static-drop source count",
+    )
+    require(
+        n == formula.collision_shape_a_static_drop_maximum,
+        "shape-A static-drop maximum",
+    )
+    require(len(source) == d + n + 2, "shape-A static-drop dimensions")
+    require(
+        len(set(source + roots + [auxiliary_root]))
+        == len(source) + len(roots) + 1,
+        "shape-A static-drop point separation",
+    )
+
+    def multiply(left: list[int], right: list[int]) -> list[int]:
+        product = [0] * (len(left) + len(right) - 1)
+        for i, left_entry in enumerate(left):
+            for j, right_entry in enumerate(right):
+                product[i + j] = (
+                    product[i + j] + left_entry * right_entry
+                ) % prime
+        return product
+
+    def evaluate(polynomial: list[int], value: int) -> int:
+        result = 0
+        for coefficient in reversed(polynomial):
+            result = (result * value + coefficient) % prime
+        return result
+
+    def determinant(matrix: list[list[int]]) -> int:
+        work = [[entry % prime for entry in row] for row in matrix]
+        value = 1
+        for column in range(len(work)):
+            pivot = next(
+                (row for row in range(column, len(work))
+                 if work[row][column]),
+                None,
+            )
+            if pivot is None:
+                return 0
+            if pivot != column:
+                work[column], work[pivot] = work[pivot], work[column]
+                value = -value
+            pivot_value = work[column][column]
+            value = value * pivot_value % prime
+            inverse = pow(pivot_value, prime - 2, prime)
+            for row in range(column + 1, len(work)):
+                if not work[row][column]:
+                    continue
+                scale = work[row][column] * inverse % prime
+                for index in range(column, len(work)):
+                    work[row][index] = (
+                        work[row][index] - scale * work[column][index]
+                    ) % prime
+        return value % prime
+
+    locator = [1]
+    for root in roots:
+        locator = multiply(locator, [-root % prime, 1])
+
+    cases = 0
+    residue_checks = 0
+    subset_checks = 0
+    for drop in range(n + 1):
+        residual = [1]
+        for _ in range(n - drop):
+            residual = multiply(residual, [-auxiliary_root % prime, 1])
+
+        weights = []
+        for point in source:
+            q_value = evaluate(locator, point)
+            source_derivative = 1
+            for other in source:
+                if other != point:
+                    source_derivative = (
+                        source_derivative * (point - other)
+                    ) % prime
+            denominator = q_value * source_derivative % prime
+            require(denominator, "shape-A static-drop source denominator")
+            weights.append(
+                evaluate(residual, point)
+                * pow(denominator, prime - 2, prime)
+                % prime
+            )
+        require(all(weights), "shape-A static-drop nonzero weights")
+
+        moment_limit = 2 * (d + 1 + drop)
+        moments = [
+            sum(
+                weight * pow(point, power, prime)
+                for point, weight in zip(source, weights)
+            ) % prime
+            for power in range(moment_limit + 1)
+        ]
+        middle = [
+            [moments[i + j] for j in range(d + 1)]
+            for i in range(d + 1)
+        ]
+        require(
+            finite_field_rank(middle, prime) == d,
+            "shape-A static-drop exact middle corank",
+        )
+        require(
+            all(
+                sum(
+                    middle[i][j] * locator[j] for j in range(d + 1)
+                ) % prime == 0
+                for i in range(d + 1)
+            ),
+            "shape-A static-drop locator kernel",
+        )
+
+        defects = [
+            sum(locator[i] * moments[i + j] for i in range(d + 1))
+            % prime
+            for j in range(d + 1, d + 2 + drop)
+        ]
+        require(
+            defects[:drop] == [0] * drop,
+            "shape-A static-drop initial zero run",
+        )
+        require(
+            defects[drop] == residual[-1] == 1,
+            "shape-A static-drop first omitted defect",
+        )
+
+        for left in range(d):
+            for right in range(d):
+                root_pairing = 0
+                for root in roots:
+                    q_derivative = 1
+                    for other in roots:
+                        if other != root:
+                            q_derivative = q_derivative * (root - other) % prime
+                    source_locator_value = 1
+                    for point in source:
+                        source_locator_value = (
+                            source_locator_value * (root - point)
+                        ) % prime
+                    coefficient = (
+                        evaluate(residual, root)
+                        * pow(
+                            q_derivative * source_locator_value % prime,
+                            prime - 2,
+                            prime,
+                        )
+                    ) % prime
+                    root_pairing = (
+                        root_pairing
+                        - coefficient * pow(root, left + right, prime)
+                    ) % prime
+                require(
+                    moments[left + right] == root_pairing,
+                    "shape-A static-drop residue pairing",
+                )
+                residue_checks += 1
+
+        regular_factor = determinant([row[:d] for row in middle[:d]])
+        require(regular_factor, "shape-A static-drop adjugate scalar")
+        for level in range(drop + 1):
+            vector = [
+                moments[d + 1 + level + i] for i in range(d + 1)
+            ]
+            defect = defects[level]
+            for column in range(d + 1):
+                replaced = [row[:] for row in middle]
+                for row in range(d + 1):
+                    replaced[row][column] = vector[row]
+                require(
+                    determinant(replaced)
+                    == regular_factor * locator[column] * defect % prime,
+                    "shape-A static-drop replacement minor",
+                )
+
+            exponents = list(range(d + 1)) + [d + 1 + level]
+            bordered = [
+                [moments[left + right] for right in exponents]
+                for left in exponents
+            ]
+            bordered_value = determinant(bordered)
+            require(
+                bordered_value
+                == -regular_factor * defect * defect % prime,
+                "shape-A static-drop bordered square",
+            )
+
+            source_sum = 0
+            for subset in combinations(range(len(source)), d + 2):
+                alternant = determinant([
+                    [
+                        pow(source[index], exponent, prime)
+                        for index in subset
+                    ]
+                    for exponent in exponents
+                ])
+                subset_weight = 1
+                for index in subset:
+                    subset_weight = subset_weight * weights[index] % prime
+                source_sum = (
+                    source_sum + alternant * alternant * subset_weight
+                ) % prime
+                subset_checks += 1
+            require(
+                source_sum == bordered_value,
+                "shape-A static-drop source Cauchy-Binet",
+            )
+        cases += 1
+
+    require(
+        cases == formula.collision_shape_a_static_drop_fixture_cases,
+        "shape-A static-drop fixture cases",
+    )
+    require(
+        residue_checks == formula.collision_shape_a_static_drop_residue_checks,
+        "shape-A static-drop residue count",
+    )
+    require(
+        subset_checks == formula.collision_shape_a_static_drop_subset_checks,
+        "shape-A static-drop subset count",
+    )
+    return cases + residue_checks + subset_checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -2261,7 +2511,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 114, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 124, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -2290,6 +2540,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_shape_a_residual_four_cycle_rigidity(formula)
     checks += verify_collision_shape_a_omitted_recurrence_flag(formula)
     checks += verify_collision_shape_a_bordered_hankel_flag(formula)
+    checks += verify_collision_shape_a_static_source_arbitrary_drop(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -2502,6 +2753,21 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_shape_a_bordered_fixture_subset_checks": (
             formula.collision_shape_a_bordered_fixture_subset_checks
+        ),
+        "collision_shape_a_static_drop_fixture_cases": (
+            formula.collision_shape_a_static_drop_fixture_cases
+        ),
+        "collision_shape_a_static_drop_source_count": (
+            formula.collision_shape_a_static_drop_source_count
+        ),
+        "collision_shape_a_static_drop_maximum": (
+            formula.collision_shape_a_static_drop_maximum
+        ),
+        "collision_shape_a_static_drop_residue_checks": (
+            formula.collision_shape_a_static_drop_residue_checks
+        ),
+        "collision_shape_a_static_drop_subset_checks": (
+            formula.collision_shape_a_static_drop_subset_checks
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

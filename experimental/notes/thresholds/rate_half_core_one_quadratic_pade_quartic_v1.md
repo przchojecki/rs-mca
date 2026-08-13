@@ -1977,6 +1977,63 @@ flag. Equations `(179)--(188)` do not bound either part or exclude Shape A.
 The next useful theorem must control the padding flag, or prove quantitative
 non-stagnation of the bordered source columns on `H_reg`.
 
+## 42. Static source data permit arbitrary rank stagnation
+
+The regular non-stagnation alternative at the end of Section 41 cannot be
+proved from one source fiber alone. More generally, let `d,n>=0`, put
+`R=d+n+2`, and let `U` be any `R` distinct field elements. If the field has
+at least `R+d+1` elements, then every prescribed run length
+
+```text
+0<=q<=n                                                     (189)
+```
+
+occurs with all source weights nonzero and middle Hankel corank exactly one.
+Indeed, choose distinct `r_1,...,r_d,a` outside `U` and set
+
+```text
+Q(X)=product_i(X-r_i),       G(X)=(X-a)^(n-q),
+L(X)=product_(x in U)(X-x),
+omega_x=G(x)/(Q(x)L'(x)).                              (190)
+```
+
+For every polynomial `A` of degree at most `R-1`, Lagrange interpolation
+gives
+
+```text
+sum_(x in U) A(x)/L'(x)=[X^(R-1)]A(X).                 (191)
+```
+
+Consequently the coefficient vector of `Q` lies in the kernel of
+`M=(h_(i+j))_(0<=i,j<=d)`. This is the complete kernel. On polynomials
+`P,S` of degree less than `d`, the residue theorem gives the exact pairing
+
+```text
+sum_(x in U)omega_xP(x)S(x)
+ =-sum_(i=1)^d G(r_i)P(r_i)S(r_i)/(Q'(r_i)L(r_i)).     (192)
+```
+
+All diagonal coefficients on the right are nonzero, and evaluation at the
+`d` distinct roots of `Q` is an isomorphism. Thus the pairing is
+nondegenerate on the degree-less-than-`d` complement of `Q`, proving
+`rank M=d`.
+
+Finally, `(191)` evaluates the omitted defects exactly:
+
+```text
+R_(d+1)=...=R_(d+q)=0,
+R_(d+1+q)=lc(G)!=0.                                   (193)
+```
+
+Hence static all-nonzero weights, exact corank one, the replacement-minor
+identities `(180)`, and the bordered source identities `(183)` permit every
+run length allowed by the source surplus. The next Shape-A theorem must use
+structure coupling different parameter values: for example the common
+parameter-linear source pencil, its three-class partition, the split-fiber
+weld, or the collision geometry. Equations `(189)--(193)` construct one
+static moment functional; they do not realize Shape A or refute a theorem
+using that global coupling.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2023,4 +2080,6 @@ Section 40 identifies every fiber degree drop and `deg T` with a nested
 omitted-recurrence gcd flag; it does not bound that flag or exclude shape A.
 Section 41 presents that flag by replacement minors and bordered source
 determinants, but proves neither padding-flag control nor regular
-rank non-stagnation.
+rank non-stagnation. Section 42 proves that no such regular non-stagnation
+bound follows from one static all-nonzero exact-corank-one source alone; it
+does not realize the global Shape-A parameter pencil.

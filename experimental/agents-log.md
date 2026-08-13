@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T static-source arbitrary-stagnation fence
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED route fence; no Shape-A model or Lane-T closure claimed.
+- **What is being added:** For every allowed omitted-recurrence run length,
+  an explicit barycentric construction gives all-nonzero static source
+  weights and middle Hankel corank exactly one while realizing that full
+  run. A residue pairing proves exact corank, and the replay checks all 560
+  bordered generalized-alternant terms in the `F_101` fixture.
+- **How it is useful:** It rules out deriving regular bordered-rank
+  non-stagnation from static source data, nonzero weights, and corank one
+  alone. The Lane-T endpoint must use the common parameter pencil, the
+  three-class source partition, the split-fiber weld, or collision geometry.
+- **What to do next:** Exploit that global coupling to bound the regular
+  flag, and handle the padding singular factor separately.
+
 ### 2026-08-13 - Lane-T shape-A bordered-Hankel flag
 
 - **Agent/model:** AllenGrahamHart / Codex.
