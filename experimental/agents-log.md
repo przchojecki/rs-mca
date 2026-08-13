@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T padded-center Padé transversality
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED exact local contact; no Shape-A exclusion.
+- **What is being added:** The padded center is the unique common point of
+  the locator and Padé numerator over `gamma_0`, with local intersection
+  length one. Its quotient and source-numerator values at `x_*` are
+  nonzero.
+- **How it is useful:** It removes hidden tangency at the one outside
+  center root and pins the source-numerator map away from the large center
+  at `x_*`.
+- **What to do next:** Primitive-normalize the parameter-linear source
+  numerator and couple its three center fibers.
+
 ### 2026-08-13 - Lane-T center coprimality and Padé quotients
 
 - **Agent/model:** AllenGrahamHart / Codex.

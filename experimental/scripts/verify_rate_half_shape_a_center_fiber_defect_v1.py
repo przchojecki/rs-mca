@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "a41f0595b"
+SOURCE_COMMIT = "0223874d7"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/statement.md": "6525db0f3f98127403a859cb06de798fbfaa981dc4c255b71cea89299df92587",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/proof.md": "29b08bed3273e1e3a54f027f1516231c65052e218394c5708a894fc246e5c55a",
@@ -36,6 +36,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_coprimality_and_pade_quotient/verify_audit.py": "7907ba45d601a66b46ef3e1db55e991211ad6596523388094fa209c7b536f44b",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_pade_regular_factor_identity/statement.md": "de1ffaa7a71b105c5526a16dbff1838ae5b6529acc73d94428964ef8039b199c",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_pade_regular_factor_identity/proof.md": "6a84f32f36fb249177181c67251e03b5d0b62c430c1576ff110220d1ea84cd18",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_padded_center_pade_transversality/statement.md": "4a08bea17d88cd610667184269388af34b67561eba0205f4b804fa25c314327c",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_padded_center_pade_transversality/proof.md": "5a0c1689a3ea6f108176ceab0f9177e6ebee1a53eab505f6deb147cdf005a4c2",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_padded_center_pade_transversality/audit.md": "d7a8f10acbd34cc4b2bf341d509098c963d66e3d459e0d23dbcd488b387d643e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_padded_center_pade_transversality/verify.py": "dc30f32cbeaf309f73f13ac65109627b5c46301a213d0083b45d8e833a16d96e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_padded_center_pade_transversality/verify_audit.py": "dc07229ddaf35605742ca68c733197b07bd2c538dade03c3bc03e4fff1667130",
 }
 
 
@@ -70,6 +75,9 @@ class Formula:
     large_padded_value_nonzero: int = 1
     small_pade_quotient_degree: int = 549755813886
     large_pade_quotient_degree: int = 549755813885
+    padded_center_resultant_order: int = 1
+    padded_center_intersection_length: int = 1
+    padded_center_source_value_nonzero: int = 1
 
 
 def matrix_rank(rows: list[list[int]], modulus: int) -> int:
@@ -178,6 +186,13 @@ def replay(formula: Formula) -> dict[str, int]:
             "small Pade quotient")
     require(total - 1 - (n + 3) == formula.large_pade_quotient_degree,
             "large Pade quotient")
+    require(formula.padded_center_resultant_order == 1,
+            "padded center resultant")
+    require(formula.padded_center_intersection_length
+            == formula.padded_center_resultant_order,
+            "padded center intersection")
+    require(formula.padded_center_source_value_nonzero == 1,
+            "padded center source value")
     return {
         "rank": r,
         "projection": projection,
@@ -189,6 +204,7 @@ def replay(formula: Formula) -> dict[str, int]:
         "residual_degree": formula.residual_degree,
         "small_pade_quotient_degree": formula.small_pade_quotient_degree,
         "large_pade_quotient_degree": formula.large_pade_quotient_degree,
+        "padded_center_order": formula.padded_center_resultant_order,
     }
 
 

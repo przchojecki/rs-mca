@@ -3097,6 +3097,57 @@ The large-center contact numerator is therefore divisible by `X-x_*`,
 while the split-biform center fiber is nonzero there. The next coupling
 can be formulated through the three quotient polynomials in `(301)`.
 
+## 59. Padded-center Padé transversality
+
+At the large center, equations `(295),(301)` read
+
+```text
+Qbar(gamma_0,X)=chi_0(X-x_*)L_rest,0(X),
+P_F(gamma_0,X)=chi_0(X-x_*)C_0(X).               (303)
+```
+
+The formal Padé resultant is
+
+```text
+Res_X^(d,d-1)(Qbar,P_F)=c_F a^(2d+1)D_1.          (304)
+```
+
+Here `a(gamma_0)=chi_0` is a unit, while
+`D_1=c_Dg_*S_B^2` has exact order one at `gamma_0`: the center is a
+simple root of squarefree `g_*`, and the off-center correction makes
+`S_B` a unit. Thus
+
+```text
+ord_(gamma_0) Res_X(Qbar,P_F)=1.                 (305)
+```
+
+The common point `(gamma_0,x_*)` displayed in `(303)` consumes this entire
+resultant order. It is therefore the unique common point in the fiber and
+has local intersection multiplicity one. In particular,
+
+```text
+C_0(x_*)!=0.                                     (306)
+```
+
+Differentiate the center-specialized Padé identity in `X` at `x_*`:
+
+```text
+Qbar_X(gamma_0,x_*)B_src(gamma_0,x_*)
+ =L_U0(x_*)P_(F,X)(gamma_0,x_*).                 (307)
+```
+
+All factors other than `B_src` are units by `(303),(306)` and
+`x_* notin U_0`. Hence
+
+```text
+B_src(gamma_0,x_*)!=0.                           (308)
+```
+
+At either small center, `D_1` and the leading locator coefficient are
+both units, so `Qbar(gamma,X)` and `P_F(gamma,X)` are coprime. The
+source-numerator pencil does not send the outside padded point to the
+large center.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -3185,4 +3236,7 @@ exact large-class rank/factorization dichotomy. Section 57 excludes its
 rank-`r-2` multiplication-chain branch, but does not yet prove the three
 remaining center fibers incompatible. Section 58 proves each center fiber
 coprime to its locator and factors the center-specialized Padé numerators;
-it does not yet relate the three quotient polynomials.
+it does not yet relate the three quotient polynomials. Section 59 proves
+the padded-center Padé contact is unique and transverse and pins the source
+numerator nonzero there, but does not identify its unique parameter root at
+`x_*`.
