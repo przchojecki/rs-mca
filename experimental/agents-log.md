@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T center-fiber and large-class dichotomy
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED center-fiber identification and exact dichotomy; no
+  Shape-A exclusion.
+- **What is being added:** Every Koszul coordinate image is the
+  center-vanishing hyperplane, so each small-class defect is exactly
+  `G(gamma,X)`. The large interpolation map has rank `r-1` or `r-2`; the
+  latter forces `G(gamma_0,X)=(X-x_*)B_0(X)` inside `W_X` and removes the
+  center factor from the cubic heavy-row residual.
+- **How it is useful:** It replaces anonymous defect forms by fibers of one
+  coefficient map and splits the live Lane-T frontier into a
+  center-compatibility branch and a multiplication-chain branch.
+- **What to do next:** Exclude the `W_X` multiplication chain using the
+  split-row/scalar-weld ledgers, and test the three center fibers against
+  the proportional source-Gram packet.
+
 ### 2026-08-13 - Lane-T live linear/quadratic profile and defects
 
 - **Agent/model:** AllenGrahamHart / Codex.
