@@ -3164,6 +3164,73 @@ and
 \path{experimental/audit_mca_full_lift_lower_aware_joint_core_charge_v1.py}.
 \end{remark}
 
+\begin{corollary}[Core-dichotomy capped charge]
+\label{cor:full-lift-core-dichotomy-capped-charge}
+Fix an integer absorption cutoff $b$.  At every line selected by the
+recursive bank, split on its actual total core $g$.
+
+If $g\ge e+10-b$, every explanation of deficit at least $b+1$ lies on
+that line, and the original family has size at most
+\[
+ P_e(b)+(N-m+1),                                  \tag{CD1}
+\]
+where $P_e(b)$ is the exact weighted prefix through $b$.
+
+In the complementary branch, every peeled core has the individual cap
+\[
+ g_i\le G_e:=e+9-b.                               \tag{CD2}
+\]
+The lower-aware convex envelope remains valid after replacing its fill
+ceiling by $G_e$ and its common budget by
+\[
+ S_r=\min\left\{rG_e,e+\binom{r+1}{2}c\right\}.   \tag{CD3}
+\]
+\end{corollary}
+
+\begin{proof}
+A selected line has at least $g-c$ core coordinates inside the gauged
+direction support.  An explanation with inside agreement size $h$ and
+two line anchors shares at least $(g-c)+h-e$ of those coordinates.
+Restriction injectivity therefore puts it on the line whenever
+\[
+ h\ge e-g+c+K=e-g+11.
+\]
+The high-core threshold in the statement makes this at most $b+1$,
+proving (CD1).
+
+The integer complement of the high-core branch is (CD2).  Under that cap,
+sort the forced core lower bounds and greedily spend (CD3), filling each
+coordinate only to $G_e$.  The convex exchange in
+Corollary~\ref{cor:full-lift-lower-aware-joint-core-charge} applies
+unchanged and proves the capped joint charge.
+\end{proof}
+
+\begin{remark}[Exact Mersenne core-dichotomy payment]
+Take $b=65450$.  On $130222\le e\le130226$, the high-core bound (CD1)
+is at most $5161307<16777215$.  In the complementary branch,
+$e=130222,130223$ force fourteen threshold-18 lines and
+\[
+ 14\cdot9736-\binom{14}{2}\cdot5=135849>e.
+\]
+The next two supports force seventy threshold-16 lines and
+\[
+ 70\cdot2041-\binom{70}{2}\cdot5=130795>e.
+\]
+Thus every support $130222\le e\le130225$ is safe.
+
+At adjacent $e=130226$, the first threshold is 14 and has zero forced
+core.  After 14763 zero-lower-bound peels, the capped budget is
+$545032556=8412\cdot64785+61136$, the charge is $3199542$, and the
+next pigeonhole threshold is one.  This is a method wall, not an unsafe
+certificate; the Mersenne residual is now
+$130226\le e\le1044241$.
+
+The endpoint replay and independent rational audit are
+\path{experimental/verify_mca_full_lift_core_dichotomy_capped_charge_v1.py}
+and
+\path{experimental/audit_mca_full_lift_core_dichotomy_capped_charge_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

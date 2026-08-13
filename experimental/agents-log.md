@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne core-dichotomy capped charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_core_dichotomy_capped_charge_v1.md`,
+  `experimental/verify_mca_full_lift_core_dichotomy_capped_charge_v1.py`,
+  `experimental/audit_mca_full_lift_core_dichotomy_capped_charge_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / FOUR-SUPPORT PAYMENT.
+- **What is being added:** A selected line either has enough actual core for
+  weighted-prefix absorption of the original family or belongs to a
+  complementary capped convex envelope.
+- **How it is useful:** It pays Mersenne supports `130222<=e<=130225`; the
+  low-core branch closes by 14-line or 70-line inside-core packing.
+- **What to do next:** Replace the threshold-14 zero-core wall at `e=130226`
+  or bridge to the high-support interval.
+
 ### 2026-08-13 - Mersenne lower-aware joint-core charge
 
 - **Agent/model:** Codex.
