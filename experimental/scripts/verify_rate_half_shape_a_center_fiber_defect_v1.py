@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "1bf81a36f"
+SOURCE_COMMIT = "04ae6011ff62187d0b101ef23a7ab0101f7f9db4"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/statement.md": "6525db0f3f98127403a859cb06de798fbfaa981dc4c255b71cea89299df92587",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_fiber_defect_and_large_class_dichotomy/proof.md": "29b08bed3273e1e3a54f027f1516231c65052e218394c5708a894fc246e5c55a",
@@ -51,6 +51,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/audit.md": "4de3149e82cd9d6bbc086b506e389b2bcc04c20816bccfc583ddfe1b9f5012a2",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/verify.py": "fd1e0d891a952f3249ba265366624b6cfc291daaa5d7ee87bc221db6fd854636",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_center_residue_pairing_common_kernel_router/verify_audit.py": "61f3885726c0844b508a1b0510558176fada600b6b9539de2425ad02549aba21",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_source_multiplier_common_kernel_normal_form/statement.md": "a17eb9d5de92e217dfd10f6bdd3c48ef89ae4ba2c8803ce77b9ed6b247bb91b1",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_source_multiplier_common_kernel_normal_form/proof.md": "0158feccaa9aa5020eb46b424f8ade923308311a79d6d98116919bd1b3d2e2b7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_source_multiplier_common_kernel_normal_form/audit.md": "bbeeb6edfe9d5d85a8ee693c74da3a96722ca83cc9eb1c32ce9e5d9004d0c4ce",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_source_multiplier_common_kernel_normal_form/verify.py": "918182e76ccd7668f6b79b1701d9b5046db63b332026c57be15f3c4725e090f5",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_source_multiplier_common_kernel_normal_form/verify_audit.py": "88c8c7b2471670a6899f68016aaf72e5fbb16c103d8db5afaa04e620c8a1f002",
 }
 
 
@@ -99,6 +104,12 @@ class Formula:
     residue_toy_combined_rank: int = 5
     common_kernel_boundary: int = 183251937960
     zero_kappa_rank_floor: int = 152709948302
+    source_multiplier_toy_e3_rank: int = 9
+    source_multiplier_toy_block_rank: int = 9
+    source_multiplier_toy_global_rank: int = 9
+    source_multiplier_e3_dimension: int = 274877906946
+    source_multiplier_orthogonal_dimension: int = 549755813884
+    source_multiplier_intersection_floor: int = 183251937960
 
 
 def matrix_rank(rows: list[list[int]], modulus: int) -> int:
@@ -221,6 +232,86 @@ def center_residue_toy() -> tuple[int, int, int]:
     return degree, 2, matrix_rank(combined, modulus)
 
 
+def source_multiplier_toy() -> tuple[int, int, int]:
+    modulus = 211
+    centers = (
+        (2, [147, 69, 51, 42, 34, 104], [18, 54, 113], None),
+        (5, [95, 101, 140, 7, 67, 21], [42, 29, 88], None),
+        (9, [151, 117, 76, 2, 132, 88, 52], [154, 14, 27], 200),
+    )
+    domain = [x for _, points, _, _ in centers for x in points]
+
+    def value(coefficients: list[int], x: int) -> int:
+        return sum(
+            coefficient * pow(x, power, modulus)
+            for power, coefficient in enumerate(coefficients)
+        ) % modulus
+
+    def derivative(x: int) -> int:
+        out = 1
+        for y in domain:
+            if y != x:
+                out = out * (x - y) % modulus
+        return out
+
+    phi: dict[int, int] = {}
+    j_value: dict[int, int] = {}
+    block_rows = []
+    for gamma, points, coefficients, x_star in centers:
+        other = [x for x in domain if x not in points]
+        for x in points:
+            rest = 1
+            for y in other:
+                rest = rest * (x - y) % modulus
+            r_value = 1 if x_star is None else x - x_star
+            denominator = r_value * rest % modulus
+            require(denominator != 0, "source multiplier denominator")
+            j_value[x] = value(coefficients, x) * pow(
+                denominator, modulus - 2, modulus
+            ) % modulus
+            require(j_value[x] != 0, "source multiplier unit")
+            phi[x] = gamma
+        for degree in range(3):
+            block_rows.append([
+                (
+                    pow(x, degree, modulus)
+                    * pow(j_value[x] * derivative(x) % modulus,
+                          modulus - 2, modulus)
+                    if x in points else 0
+                ) % modulus
+                for x in domain
+            ])
+
+    global_rows = [
+        [
+            pow(phi[x], power, modulus)
+            * pow(x, degree, modulus)
+            * pow(j_value[x] * derivative(x) % modulus,
+                  modulus - 2, modulus)
+            % modulus
+            for x in domain
+        ]
+        for power in range(3)
+        for degree in range(3)
+    ]
+    e3_rows = [
+        [
+            pow(phi[x], power, modulus) * pow(x, degree, modulus) % modulus
+            for x in domain
+        ]
+        for power in range(3)
+        for degree in range(3)
+    ]
+    block_rank = matrix_rank(block_rows, modulus)
+    global_rank = matrix_rank(global_rows, modulus)
+    require(
+        matrix_rank(block_rows + global_rows, modulus)
+        == block_rank == global_rank,
+        "source indicator/multiplier row-space identity",
+    )
+    return matrix_rank(e3_rows, modulus), block_rank, global_rank
+
+
 def verify_source(root: Path) -> int:
     checked = 0
     for relative, expected in SOURCE_HASHES.items():
@@ -302,6 +393,20 @@ def replay(formula: Formula) -> dict[str, int]:
             "common-kernel boundary")
     require((5 * e - 3) // 6 == formula.zero_kappa_rank_floor,
             "zero-kappa floor")
+    multiplier_e3, multiplier_block, multiplier_global = source_multiplier_toy()
+    require(multiplier_e3 == formula.source_multiplier_toy_e3_rank,
+            "source multiplier toy E3")
+    require(multiplier_block == formula.source_multiplier_toy_block_rank,
+            "source multiplier toy block")
+    require(multiplier_global == formula.source_multiplier_toy_global_rank,
+            "source multiplier toy global")
+    require(3 * r == n + 5 == formula.source_multiplier_e3_dimension,
+            "source multiplier E3 dimension")
+    require(total - 3 * r == 2 * n + 2
+            == formula.source_multiplier_orthogonal_dimension,
+            "source multiplier orthogonal dimension")
+    require(e - 3 == formula.source_multiplier_intersection_floor,
+            "source multiplier intersection floor")
     return {
         "rank": r,
         "projection": projection,
@@ -325,6 +430,16 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "common_kernel_boundary": formula.common_kernel_boundary,
         "zero_kappa_rank_floor": formula.zero_kappa_rank_floor,
+        "source_multiplier_toy_ranks": (
+            multiplier_e3,
+            multiplier_block,
+            multiplier_global,
+        ),
+        "source_multiplier_dimensions": (
+            formula.source_multiplier_e3_dimension,
+            formula.source_multiplier_orthogonal_dimension,
+            formula.source_multiplier_intersection_floor,
+        ),
     }
 
 

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T global source-multiplier normal form
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_center_fiber_defect_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED common-kernel normal form; no Shape-A exclusion.
+- **What is being added:** In the split source algebra the source-pencil
+  ratio `varphi=-K/J` is the exact three-valued class label. The three
+  residue kernels combine as
+  `K_cap=S_n intersect J(W_X+varphi W_X+varphi^2W_X)^perp`, and the
+  multiplier space is a direct sum of dimension `3r`.
+- **How it is useful:** It turns the remaining Lane-T deficit into one
+  owner-sensitive Padé intersection and retains both the primitive class
+  map and the fixed source factor.
+- **What to do next:** Bound that intersection using the fixed factor,
+  split-row identities, or the retained Hankel/source-Gram packet; ambient
+  dimension alone is insufficient.
+
 ### 2026-08-13 - Lane-T center residue-pairing common kernel
 
 - **Agent/model:** AllenGrahamHart / Codex.

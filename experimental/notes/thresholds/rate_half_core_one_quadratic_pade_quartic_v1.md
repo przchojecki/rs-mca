@@ -3304,6 +3304,99 @@ explicit orthogonal complements. Nonproportionality of the three center
 fibers alone does not prove that bound; one must still use the primitive
 source-pencil or retained Hankel/source-Gram coupling.
 
+## 62. Global source multiplier and one Padé intersection
+
+The three orthogonal complements in Section 61 admit one common
+source-algebra normal form. Choose an affine parameter coordinate `z` in
+which all three centers are finite and write the parameter-linear source
+numerator as
+
+```text
+B_src(z,X)=J(X)z+K(X).                            (325)
+```
+
+Let
+
+```text
+A=F[X]/(L_U0),
+tau(F)=sum_(x in U_0)F(x)/L_U0'(x),
+varphi=-K/J in A.                                (326)
+```
+
+For `x in M_gamma`, source interpolation gives
+
+```text
+J(x)=eta_x L_U0'(x)!=0,       varphi(x)=gamma.   (327)
+```
+
+Thus `J` is a unit of `A`, and `varphi` is the exact three-valued class
+label:
+
+```text
+(varphi-alpha)(varphi-beta)(varphi-gamma_0)=0
+                                                    in A. (328)
+```
+
+Let `W_X subset S_n` be the `r`-dimensional domain coefficient space of
+`G`, and put
+
+```text
+E_3=W_X+varphi W_X+varphi^2W_X subset A.          (329)
+```
+
+This sum is direct. Indeed, a relation
+`f_0+varphi f_1+varphi^2f_2=0` restricts on each `M_gamma` to a polynomial
+`f_0+gamma f_1+gamma^2f_2` of degree at most `n` with at least `n+2`
+roots. Each restriction is therefore the zero polynomial, and the three
+distinct center values give `f_0=f_1=f_2=0` by Vandermonde inversion.
+Consequently,
+
+```text
+dim E_3=3r.                                       (330)
+```
+
+The three class indicators are the degree-two Lagrange polynomials in
+`varphi`. Rewriting the residue forms `(317)` through `(327)` therefore
+shows that their common kernel `(322)` is exactly
+
+```text
+K_cap=S_n intersect J E_3^perp,                  (331)
+```
+
+where orthogonality is for the nondegenerate residue pairing
+`(F,H)|->tau(FH)`. Equivalently, `h in K_cap` precisely when, for every
+`f in W_X` and `s=0,1,2`,
+
+```text
+sum_(x in U_0)
+ f(x)h(x)varphi(x)^s/[J(x)L_U0'(x)]=0.           (332)
+```
+
+This description retains the fixed factor of the source pencil. If
+`B_src=H B_prim`, then `J=H J_prim`, `K=H K_prim`, and
+`varphi=-K_prim/J_prim`; the class label is primitive, while multiplication
+by `J` in `(331)` records the fixed factor.
+
+At the current lower boundary,
+
+```text
+dim E_3=3(e+1)/2=n+5=274877906946,
+dim E_3^perp=2n+2=549755813884,                  (333)
+```
+
+whereas survival still requires
+
+```text
+dim(S_n intersect J E_3^perp)>=e-3
+                              =183251937960.      (334)
+```
+
+Equation `(331)` is the exact owner-sensitive Padé alignment that must now
+be bounded. The ambient dimensions in `(333)` do not by themselves give
+such a bound; the next step must use the structure of `J`, `varphi`, and
+`W_X`, for example through the fixed source factor, split rows, or the
+retained Hankel/source-Gram identities.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -3400,3 +3493,6 @@ three exact center fibers and relation, but does not control its fixed
 degree or ramification. Section 61 identifies all three interpolation maps
 with explicit corank-one residue pairings and isolates their common-kernel
 dimension `kappa`; it does not bound `kappa` or exclude Shape A.
+Section 62 rewrites that kernel as the owner-sensitive Padé intersection
+`S_n intersect J E_3^perp` with `dim E_3=3r`; it does not bound the
+intersection, and its ambient dimensions do not exclude Shape A.
