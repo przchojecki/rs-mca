@@ -420,16 +420,15 @@
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/04_dependency_ledger.csv",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/05_claim_registry.csv",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/06_review_registry.csv",
-    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/literature_sweep.md",
-    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/final_source_math_review.md"
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/literature_sweep.md"
   ],
   "packet_file_sha256": {
     "agents.md": "67d30170bba1ef50d1ffa6d09ee25d1d90441be1a2f37a73e1efe123226b6155",
     "experimental/agents-log.md": "fdb5020fbfc4d534f9b344b94564236cb155153522be7a7608e1c52ca40b8261",
-    "experimental/grande_finale.tex": "a91be559295ef59c62f73540737db61608a5836f5f30e7290bda5e7faa7476d7",
+    "experimental/grande_finale.tex": "56ef3acaccf6ff45da2fde5c921d914b91b748214f19ac1c263d3638a9fa4b14",
     "experimental/notes/thresholds/kb_mca_support_local_theta_and_error_rank_router_v1.md": "5d2da358edee72853057c8d6a68bddaae2e134baba932941ef56b6258abd1f85",
     "experimental/data/certificates/kb-mca-support-local-theta-router-v1/README.md": "82921042a774a2f9856c1d7a36a6bc7f37d3c12c4b2c13ea2b97838bec37540c",
-    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.py": "75c6daebd19b20ae14b0633b5371bd50ef80fdacc920fca7fde379473fc07628",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.py": "03285c10fb02c8b53b064d7b9dfcada4b9d0a9ed0aa18a8755ef84ddefcf7f55",
     "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.sage": "8e40b791c99514ba0437102769f67d7a0537b6de9d2546338e16526ab16f7696",
     "experimental/scripts/verify_kb_mca_support_local_theta_router_v1_flint.py": "f6e9e88258d57edf9169fd44d8c59b4f4d6f20df317260766470add16e616e1c",
     "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.wl": "e887d72596b21f493063b42c48c73c044830e6b98129d3f1dc801a34d9b93264",
@@ -441,8 +440,7 @@
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/04_dependency_ledger.csv": "c86253d3337269d0da295402f10d22df8ed5d167c3e285dea02e211f84d4b230",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/05_claim_registry.csv": "871fe3d833684dc642a38337b3cd6b7e9e38f40baaa0158c3a340a665affacdb",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/06_review_registry.csv": "78fdf643e11652e94f57fcc92ecf9f6a1c7e69544295ea748dee2dc13a65fe6a",
-    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/literature_sweep.md": "e6a3381e90eb7979ea617a13175f1764dfdd48c5b402e82c416a080fcf2288aa",
-    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/final_source_math_review.md": "777855d10220d138dbf66269ea39c6a63f212a25da2a948a9fe19271143351f1"
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/literature_sweep.md": "e6a3381e90eb7979ea617a13175f1764dfdd48c5b402e82c416a080fcf2288aa"
   },
-  "payload_sha256": "ce3f448a268f6b5e650f38db16c82d74f26487dffa0451d7536254767afc1f6b"
+  "payload_sha256": "85958274b46dde8fb4a2db67d0d497262c3229bc89baaa62f99b74dfd1d83229"
 }

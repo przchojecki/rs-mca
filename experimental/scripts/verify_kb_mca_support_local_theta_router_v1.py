@@ -42,7 +42,6 @@ PACKET_FILES = [
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/05_claim_registry.csv",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/06_review_registry.csv",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/literature_sweep.md",
-    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/final_source_math_review.md",
 ]
 
 

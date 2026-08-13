@@ -3860,16 +3860,17 @@ and \(h=\dim V\), equivalently the error affine rank.
 \begin{array}{c|c|c|c}
 \text{row}&q&h&\text{currently paid support range}\\ \hline
 \text{KoalaBear}&14&14&e\le64047\ \text{or}\ e\ge992852\\
-\text{KoalaBear}&14&15&e\le64047\ \text{or}\ e\ge1044239\\
+\text{KoalaBear}&14&15&e\le96150\ \text{or}\ e\ge1044239\\
 \text{Mersenne-31}&6&6&e\le65454\ \text{or}\ e\ge1037876\\
 \text{Mersenne-31}&6&7&e\le130236\ \text{or}\ e\ge1044242
 \end{array}
 \]
-The improvement is only in the \(h=K\) rows.  The full-lift \(h=K+1\)
-middle intervals remain unpaid and are the wider top-rank residuals.
+The proper-subspace/gauge improvement is only in the \(h=K\) rows.  The
+separate full-lift continuations extend the printed low walls in the
+\(h=K+1\) rows, but their remaining middle intervals stay unpaid.
 After the sparse-direction, centered-Gram, exact-layer, and interpolation
 continuations, the full-lift intervals are
-\(64048\le e\le1044238\) for KoalaBear and
+\(96151\le e\le1044238\) for KoalaBear and
 \(130237\le e\le1044241\) for Mersenne-31.  The latter first support is
 not paid: \cref{cor:full-lift-interpolation-common-factor-router} routes it
 to the separately declared common-factor branch.
