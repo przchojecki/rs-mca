@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T rank-three weighted incidence/genus router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED rank-three structural reduction; no Shape-A exclusion.
+- **What is being added:** Quotienting marked branches by equal points on the
+  two birational plane coefficient images produces an exact weighted
+  `C_4`-free graph. Its weighted degrees, total deficit, and both plane-genus
+  collision budgets are explicit; each side has at least ten image vertices.
+- **How it is useful:** This replaces the rank-three branch by a finite
+  incidence/genus obstruction compatible with the source/Hankel gates and
+  identifies at least `e+7` branch weight on multiple zero-deficit vertices.
+- **What to do next:** Exclude the weighted graph using its source/Hankel
+  realizability constraints or strengthen either delta-genus budget. Treat
+  tensor rank at least four separately.
+
 ### 2026-08-13 - Lane-T all-rank domain-map birationality
 
 - **Agent/model:** AllenGrahamHart / Codex.

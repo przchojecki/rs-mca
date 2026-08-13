@@ -2503,6 +2503,62 @@ projective coefficient images in every rank. Repeated row types can occur
 only as distinct branches over singular image points; `(235)` does not
 bound their number or exclude such singularities.
 
+## 50. Rank-three weighted incidence/genus router
+
+In tensor rank three, Sections 48--49 turn the complete marked incidence
+table into a finite weighted graph. The two coefficient images are
+nondegenerate rational plane curves `C_t,C_X` of degrees `m,n`. Group the
+`T=3e` marked parameter points by equal image on `C_t`, with weights `s_P`,
+and group the `R=3n+7` domain points by equal image on `C_X`, with weights
+`l_Q`. Join two image vertices when their coefficient pairing vanishes.
+
+Distinct parameter image points give distinct lines in the domain
+coefficient plane, and two such lines meet in one point. The image graph is
+therefore simple and `C_4`-free. Exact row splitting and the all-excess
+fiber ledger give
+
+```text
+sum_P s_P=3e,                    sum_Q l_Q=3n+7,
+sum_(P~Q)s_P=m                    for every Q,
+sum_(Q~P)l_Q=n-w_P               for every P,
+sum_P s_Pw_P=2e-7,              w_P>=0.            (236)
+```
+
+Here `w_P` is the common value `a_delta+r_delta` on the parameter-image
+group `P`. The two normalization maps also charge every collision of marked
+branches to a plane delta invariant:
+
+```text
+sum_P binom(s_P,2)<=binom(m-1,2),
+sum_Q binom(l_Q,2)<=binom(n-1,2).                  (237)
+```
+
+In particular
+
+```text
+s_P<=m-1,                     l_Q<=n-1.            (238)
+```
+
+Cauchy--Schwarz and `(237)` give at least ten image vertices on each side:
+
+```text
+sum_P s_P^2<=e^2-4e+12,       (3e)^2>9 sum_P s_P^2,
+sum_Q l_Q^2<=n^2+9,           (3n+7)^2>9 sum_Q l_Q^2. (239)
+```
+
+Every domain vertex consequently has at least two neighbours. Since the
+positive integral deficits consume branch weight at most `2e-7`, the
+zero-deficit parameter vertices carry total weight at least
+
+```text
+3e-(2e-7)=e+7.                                    (240)
+```
+
+This requires at least two such vertices by `(238)`, and each has at least
+two domain neighbours. Thus rank-three Shape A is reduced to a weighted
+`C_4`-free incidence graph satisfying `(236)--(240)`, together with the
+source/Hankel constraints already recorded in Sections 40--44.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2572,3 +2628,6 @@ Section 48 promotes the birationality statement to every tensor rank at
 least two; it does not classify the higher-dimensional coefficient image.
 Section 49 proves the dual domain coefficient map is birational in every
 rank; repeated row types at singular image points remain possible.
+Section 50 compresses rank three to a weighted `C_4`-free graph with two
+plane-genus budgets, but does not exclude that graph or address tensor rank
+at least four.

@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "f8d4459a54e8df7ac69b7abcd39716da69c20199"
+SOURCE_COMMIT = "0aa768f483664ba929886b60c75eec90f690aac5"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/probe_results.md": "603668188e6fa399919f0ce0955b4a7ccef06a549286a43e3e43b6f8ba922203",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_probe.py": "f783f91f9b22084d457c2f96205cb838e9b5b9f6562547f6b746825150229da9",
@@ -45,6 +45,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_domain_map_birationality/audit.md": "4c17091d15435f9fb805cb46ad70573e91bef3f87f1afc000d451943aebdae18",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_domain_map_birationality/verify.py": "d20e6f3d69a1236dcbc0215152caca7430d01ee03b72159b21e4d0198ae7bfb0",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_domain_map_birationality/verify_audit.py": "e8e47437f9c2b38a0bb4e86a60492f94e38cb657ffe92fc8323a5a32ce9723e7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_weighted_c4_free_incidence_genus_router/statement.md": "1b45f310922e724a02c8c55844e197d461f9aa08d84a28bda22ee2be2b0c5eb8",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_weighted_c4_free_incidence_genus_router/proof.md": "75ee389b98877a0985be9446546a24aa402e927c709756e788fa960dd71da20c",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_weighted_c4_free_incidence_genus_router/audit.md": "c0f9f8282119c0b185c57b72696f4de63cbc65dcfc73be11d8d0be6e186b4c90",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_weighted_c4_free_incidence_genus_router/verify.py": "0e9bf61b84159a5a06927c24e7b8852510d9701f9be1c5345e0de39077972990",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_weighted_c4_free_incidence_genus_router/verify_audit.py": "596f002bcac26b038d9e8cec9e6f8f483706fdd3b2fae790fc16e1bcfd4ad148",
 }
 
 
@@ -237,6 +242,9 @@ class Formula:
     maximum_outside_fiber_degree: int = 1
     domain_complete_gcd: int = 1
     domain_one_outside_gcd: int = 1
+    parameter_image_floor: int = 10
+    domain_image_floor: int = 10
+    zero_deficit_mass_floor: int = 183251937970
 
 
 def partition_probe() -> tuple[int, int, int]:
@@ -319,13 +327,17 @@ def verify_source(root: Path) -> int:
     return checked
 
 
-def replay(formula: Formula) -> dict[str, int]:
-    profile_count, cases, minimum_rank = partition_probe()
+def replay(
+    formula: Formula,
+    probe: tuple[int, int, int] | None = None,
+    fence: tuple[int, int] | None = None,
+) -> dict[str, int]:
+    profile_count, cases, minimum_rank = probe or partition_probe()
     require(profile_count == formula.partition_count, "partition count")
     require(cases == formula.partition_cases, "partition cases")
     require(minimum_rank == 28, "partition minimum rank")
 
-    fence_rank, blocks = degree_ledger_fence()
+    fence_rank, blocks = fence or degree_ledger_fence()
     require(fence_rank == formula.fence_rank, "fence rank")
     require(blocks == 21, "fence block support")
 
@@ -383,6 +395,34 @@ def replay(formula: Formula) -> dict[str, int]:
         domain_one_outside_gcd == formula.domain_one_outside_gcd,
         "domain one-outside gcd",
     )
+    parameter_branches = 3 * e
+    parameter_square_cap = parameter_branches + (m - 1) * (m - 2)
+    domain_square_cap = row_count + (n - 1) * (n - 2)
+    parameter_image_floor = (
+        parameter_branches**2 + parameter_square_cap - 1
+    ) // parameter_square_cap
+    domain_image_floor = (
+        row_count**2 + domain_square_cap - 1
+    ) // domain_square_cap
+    zero_deficit_mass_floor = parameter_branches - residual_norm
+    require(
+        parameter_square_cap == e * e - 4 * e + 12,
+        "parameter square cap",
+    )
+    require(domain_square_cap == n * n + 9, "domain square cap")
+    require(
+        parameter_image_floor == formula.parameter_image_floor,
+        "parameter image floor",
+    )
+    require(
+        domain_image_floor == formula.domain_image_floor,
+        "domain image floor",
+    )
+    require(
+        zero_deficit_mass_floor == formula.zero_deficit_mass_floor,
+        "zero-deficit mass floor",
+    )
+    require(zero_deficit_mass_floor > m - 1, "two zero-deficit vertices")
     return {
         "profiles": profile_count,
         "cases": cases,
@@ -401,17 +441,22 @@ def replay(formula: Formula) -> dict[str, int]:
         "maximum_outside_fiber_degree": maximum_outside,
         "domain_complete_gcd": domain_complete_gcd,
         "domain_one_outside_gcd": domain_one_outside_gcd,
+        "parameter_image_floor": parameter_image_floor,
+        "domain_image_floor": domain_image_floor,
+        "zero_deficit_mass_floor": zero_deficit_mass_floor,
     }
 
 
 def tamper_selftest() -> int:
     base = Formula()
+    probe = partition_probe()
+    fence = degree_ledger_fence()
     rejected = 0
     for field in base.__dict__:
         values = dict(base.__dict__)
         values[field] += 1
         try:
-            replay(Formula(**values))
+            replay(Formula(**values), probe=probe, fence=fence)
         except VerificationError:
             rejected += 1
     require(rejected == len(base.__dict__), "hostile mutations")
