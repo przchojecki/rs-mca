@@ -3862,14 +3862,17 @@ and \(h=\dim V\), equivalently the error affine rank.
 \text{KoalaBear}&14&14&e\le64047\ \text{or}\ e\ge992852\\
 \text{KoalaBear}&14&15&e\le64047\ \text{or}\ e\ge1044239\\
 \text{Mersenne-31}&6&6&e\le65454\ \text{or}\ e\ge1037876\\
-\text{Mersenne-31}&6&7&e\le65454\ \text{or}\ e\ge1044242
+\text{Mersenne-31}&6&7&e\le130236\ \text{or}\ e\ge1044242
 \end{array}
 \]
 The improvement is only in the \(h=K\) rows.  The full-lift \(h=K+1\)
 middle intervals remain unpaid and are the wider top-rank residuals.
-After \cref{cor:mean-centered-sparse-direction-profile}, those full-lift
-intervals are exactly \(64048\le e\le1044238\) for KoalaBear and
-\(65455\le e\le1044241\) for Mersenne-31.
+After the sparse-direction, centered-Gram, exact-layer, and interpolation
+continuations, the full-lift intervals are
+\(64048\le e\le1044238\) for KoalaBear and
+\(130237\le e\le1044241\) for Mersenne-31.  The latter first support is
+not paid: \cref{cor:full-lift-interpolation-common-factor-router} routes it
+to the separately declared common-factor branch.
 \Cref{thm:full-lift-near-mds-extension} shows that every generalized
 weight from rank two onward is already MDS-sharp.  Even at the best endpoint
 \(e=N-K\), the generic corrected compiler gives

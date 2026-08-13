@@ -2,7 +2,7 @@
 
 ## Current record
 
-PR #1165 exact head `d4d653723f2f82390fd4351476e1926e55fb0caf`
+PR #1165 exact head `b6d30ef4f5ff966665b7672e1780a637509873a4`
 refutes the former MCA affine-span compiler and proves the global
 proper-subspace replacement with `L=max(1,e-(n-m))`, a full-explanation
 lifted-rank split, a punctured-Johnson sparse-direction profile, and its

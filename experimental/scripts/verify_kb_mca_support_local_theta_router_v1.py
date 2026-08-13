@@ -20,7 +20,7 @@ MANIFEST = ROOT / (
     "experimental/data/certificates/"
     "kb-mca-support-local-theta-router-v1/manifest.json"
 )
-PARENT_HEAD = "d4d653723f2f82390fd4351476e1926e55fb0caf"
+PARENT_HEAD = "b6d30ef4f5ff966665b7672e1780a637509873a4"
 UPSTREAM_MAIN = "93fba1be3f3299b0ba4708d88715377bbb656e45"
 
 PACKET_FILES = [
@@ -478,9 +478,9 @@ def build_manifest() -> dict[str, Any]:
             source_binding(
                 "ACTIVE_V4_AFTER_PR1165_REPAIR",
                 "experimental/grande_finale.tex",
-                "60bd5ca5c4e61791bccb89b87e9d7f01ee7b1b45",
-                "9f77f20bd0eaf87555f9344a545d4117d68710fadb2b3fb4d8407921c1e2ff65",
-                "GLOBAL_REPAIR_FULL_RANK_SPLIT_PUNCTURED_AND_GRAM_PROFILES",
+                "df10d48605336f73e111aca620a1ec696aab6906",
+                "0020079d6fcb2016fca37cf2b01252ba5ed5128c47c6b293b00f17f7b3435d9d",
+                "GLOBAL_REPAIR_FULL_RANK_SPLIT_GRAM_AND_FULL_LIFT_CONTINUATIONS",
             ),
             source_binding(
                 "PR1165_COUNTEREXAMPLE_NOTE",

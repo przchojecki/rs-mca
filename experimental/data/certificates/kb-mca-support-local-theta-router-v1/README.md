@@ -1,7 +1,7 @@
 # KoalaBear support-local theta router v1
 
 Stacked on exact PR #1165 head
-`d4d653723f2f82390fd4351476e1926e55fb0caf`, this packet sharpens its
+`b6d30ef4f5ff966665b7672e1780a637509873a4`, this packet sharpens its
 global proper-subspace compiler with an exact selected-support margin and a
 reversible error-rank gauge.
 
