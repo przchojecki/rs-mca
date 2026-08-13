@@ -2079,6 +2079,86 @@ replay is in
 \path{experimental/verify_mca_sparse_direction_top_third_affine_line_payment_v1.py}.
 \end{remark}
 
+\begin{theorem}[Pair-noncontained total-core line cap]
+\label{thm:full-lift-total-core-line}
+Retain the notation of \cref{thm:top-third-affine-line}, but allow
+\(e\ge d\).  Put
+\[
+ r_{\min}=\max\{0,e-m\},
+ \qquad t=N-m.
+\]
+For \(r_{\min}\le r\le s\), set \(A_r=m-e+r\).  Then the exact-layer count
+satisfies
+\begin{equation}
+ L_r\le Q_r,\qquad
+ Q_r=
+ \begin{cases}
+ t+1,&A_r\le K-1,\\[2mm]
+ \left\lfloor\dfrac{N-e-(K-1)}{A_r-(K-1)}\right\rfloor,
+     &A_r>K-1.
+ \end{cases}
+ \label{eq:full-lift-total-core-line}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The triple-overlap proof of \cref{thm:top-third-affine-line} still puts the
+exact layer on an affine explanation line
+\(a_\gamma=A+\gamma p\).  A coordinate agrees for every line parameter
+exactly when \(A=r_0\) and \(p=q\) there.  If this total common agreement
+core had at least \(m\) coordinates, the codeword pair \((A,b+p)\) would
+explain the received pair on an \(m\)-set, contradicting pair
+noncontainment.  Thus its size \(g\) is at most \(m-1\).  Away from the
+core, each coordinate agrees for at most one parameter, and therefore
+\[
+ L_r(m-g)\le N-g,
+ \qquad L_r\le N-m+1=t+1.
+\]
+When \(A_r>K-1\), outside-coordinate packing gives the second branch as in
+\cref{thm:top-third-affine-line}.  That branch is no larger than \(t+1\):
+after clearing its positive denominator, the difference is
+\(t(A_r-K)+r\ge0\).
+\end{proof}
+
+\begin{corollary}[Full-lift common-core profile]
+\label{cor:full-lift-common-core-profile}
+If the positive punctured-Johnson caps exist through \(H=e-s-1\), then
+\begin{equation}
+ |Z|\le
+ (e-1)J_{\lfloor e/2\rfloor}+J_H
+ +\sum_{r=r_{\min}}^{s}Q_r.
+ \label{eq:full-lift-common-core-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Deficits through \(H\) use the two-threshold Johnson prefix.  Deficits
+above \(H\) and at most \(m\) are exactly the layers
+\(r_{\min}\le r\le s\); apply \cref{thm:full-lift-total-core-line}.
+\end{proof}
+
+\begin{remark}[Exact full-lift common-core walls]
+Exact integer evaluation of
+\eqref{eq:full-lift-common-core-profile} extends the complete walls to
+\[
+\begin{array}{c|r|r|r}
+\text{row}&\text{last paid }e&\text{endpoint bound}&\text{next bound}\\ \hline
+\text{KoalaBear}&95943&27414298&\text{undefined}\\
+\text{Mersenne-31}&67452&16266965&17248067
+\end{array}
+\]
+At KoalaBear \(e=95944\), the prefix Johnson denominator at \(H\) is
+\(-1037\).  The adjacent Mersenne bound exceeds budget by \(470852\).
+The remaining full-lift intervals are
+\[
+ 95944\le e\le1044238
+ \quad\text{and}\quad
+ 67453\le e\le1044241.
+\]
+Neither adjacent failure is an unsafe certificate.  The replay is in
+\path{experimental/verify_mca_full_lift_top_third_common_core_payment_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

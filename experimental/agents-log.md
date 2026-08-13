@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Full-lift top-third common-core continuation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_top_third_common_core_payment_v1.md`,
+  `experimental/verify_mca_full_lift_top_third_common_core_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A pair-noncontained total-core cap for affine
+  explanation lines whose outside agreement is at most `K-1`, followed by
+  the full-lift top-third profile.
+- **How it is useful:** It moves the residual floors to `e=95944` on
+  KoalaBear and `e=67453` on Mersenne-31.
+- **What to do next:** Replace the failed low-agreement Johnson prefix on
+  KoalaBear and save `470852` at the first unpaid Mersenne support.
+
 ### 2026-08-13 - Top-third affine-line sparse-direction branch close
 
 - **Agent/model:** Codex.
