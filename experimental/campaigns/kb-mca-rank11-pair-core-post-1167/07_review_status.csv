@@ -1,0 +1,16 @@
+claim_id,axis,status,reviewer,independence,evidence,artifact_version,review_date,notes
+C-001,formal_evidence,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,ordered-basis injection and exact controls GREEN
+C-001,statement_alignment,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,separate row-wise existentials and positive-load guard exact
+C-001,result_boundary,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,route cut only and zero ledger movement
+C-001,public_wording,pass,rank11_barrier_adversary,isolated custody reviewer,reviews/independent_certificate_review.md,c7108e0e,2026-08-13,route-cut wording and nonclaims exact
+C-001,specialist_or_external_review,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,independent mathematics GREEN
+C-002,formal_evidence,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,high-subrank and Abel LP GREEN
+C-002,statement_alignment,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,one minimizer fixed globally before nested scan
+C-002,result_boundary,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,both exact ceilings remain over budget
+C-002,public_wording,pass,rank11_barrier_adversary,isolated custody reviewer,reviews/independent_certificate_review.md,c7108e0e,2026-08-13,unconditional and conditional dependency classes separated
+C-002,specialist_or_external_review,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,independent mathematics GREEN
+C-003,formal_evidence,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,GF7 and GF11 controls delimit local implication
+C-003,statement_alignment,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,missing theorem stated at actual fixed-pair level
+C-003,result_boundary,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,no payment or closure claim
+C-003,public_wording,pass,rank11_barrier_adversary,isolated custody reviewer,reviews/independent_certificate_review.md,c7108e0e,2026-08-13,primitive terminal and zero ledger movement exact
+C-003,specialist_or_external_review,pass,upstream_rank11_audit,fresh isolated reviewer,reviews/independent_math_review.md,post-quantifier-repair,2026-08-13,independent mathematics GREEN

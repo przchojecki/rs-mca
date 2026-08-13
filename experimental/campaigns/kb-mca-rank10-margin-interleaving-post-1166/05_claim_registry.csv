@@ -1,0 +1,4 @@
+claim_id,statement,status,scope,dependencies,controls,review_joints,rederivation,formalization,owner,artifact,notes
+C-001,sub-square interleaving projection theorem,provisionally-verified,all finite-field linear codes,D-004,C-004,projection collision and field guard,manual plus exact controls,none,root,experimental/grande_finale.tex,no external lemma
+C-002,uniform margin/interleaving split,provisionally-verified,one gauged actual-record family,D-001;D-002;D-004,C-003;C-005,high/low partition and fixed-pair injection,independent adversarial audit,none,root,experimental/grande_finale.tex,distinct slopes
+C-003,Koala error rank ten paid,provisionally-verified,post-near selected family,D-001;D-002;D-003;D-004,C-001;C-002;C-004,exact thresholds and sextic field,Python Sage Wolfram,none,root,certificate,zero v4 movement
