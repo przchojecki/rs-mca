@@ -350,19 +350,18 @@ handoff.
 - The separate Mersenne `e=130237` common-factor branch remains unpaid: the
   projective-star population and higher-degree component classification are
   open and confer no Koala ledger credit.
-- Final release custody must update review-status metadata after this memo
-  without changing the frozen theorem, and must rerun canonical hashes after
-  any packet-file change.
+- Any later in-packet change must trigger a fresh canonical reseal; the
+  external review memo itself is deliberately outside that hash boundary.
 - A fresh Wolfram execution remains unavailable until cloud credits are
   restored; this is an evidence-redundancy issue, not a proof gap.
 
-## Minimal next action
+## Recommended next action
 
-Reseal the packet after the in-packet review-registry update, rerun
-normal/optimized/tamper checks, and hand the GREEN theorem packet to upstream.
-The maximal successor attack remains the actual-record Koala direction-
-exception forest at error ranks `10--12`, with rank `>=13` retained as a
-separate terminal.  The Mersenne common-factor classification is an
-independent frontier lane, not a substitute for that attack.
+The in-packet registry is resealed and the final normal, optimized, and
+`32/32` hostile-mutation checks pass on a clean worktree.  Hand the GREEN
+packet to upstream.  The maximal successor attack remains the actual-record
+Koala direction-exception forest at error ranks `10--12`, with rank `>=13`
+retained as a separate terminal.  The Mersenne common-factor classification
+is an independent frontier lane, not a substitute for that attack.
 
 **GREEN**
