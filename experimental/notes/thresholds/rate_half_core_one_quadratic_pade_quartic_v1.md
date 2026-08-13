@@ -2034,6 +2034,82 @@ weld, or the collision geometry. Equations `(189)--(193)` construct one
 static moment functional; they do not realize Shape A or refute a theorem
 using that global coupling.
 
+## 43. The scalar weld couples all residual degree drops
+
+The fiberwise freedom exhibited in Section 42 disappears once the common
+split biform is restored. On the `R=|U_0|` classified rows write
+
+```text
+G(t,x)=lambda_xP_x(t),       lambda_x!=0,             (194)
+```
+
+with `P_x` monic of degree `m=e-2`. The coefficient-MDS and connected-weld
+gates make `lambda` one projective vector, recoverable from any passing
+weld certificate.
+
+Fix an off-line supported slope `delta`. With the all-excess notation of
+Section 17,
+
+```text
+X_delta=U_0\I_delta,
+G(delta,X)=zeta_delta A_delta(X)H_delta(X)R_delta(X),
+deg H_delta=a_delta-q_delta.                         (195)
+```
+
+Every padded root lies outside `U_0`. Thus for `x in X_delta`, the values
+
+```text
+u_(delta,x)(lambda)
+ =lambda_xP_x(delta)/[A_delta(x)R_delta(x)]
+ =zeta_delta H_delta(x)                              (196)
+```
+
+are well defined. Put
+
+```text
+L_delta(X)=product_(x in X_delta)(X-x),
+E_(delta,j)(lambda)
+ =sum_(x in X_delta)
+   u_(delta,x)(lambda)x^j/L_delta'(x).               (197)
+```
+
+Since `|X_delta|=3e+a_delta+r_delta`, leading-coefficient extraction for
+the degree-`a_delta-q_delta` polynomial in `(196)` gives the exact flag
+
+```text
+j_delta=3e+r_delta-1,
+E_(delta,j)=0                         (0<=j<j_delta),
+E_(delta,j_delta)=...=E_(delta,j_delta+q_delta-1)=0,
+E_(delta,j_delta+q_delta)
+             =zeta_delta lc(H_delta)!=0.             (198)
+```
+
+Equivalently, define the explicit rows
+
+```text
+K_(delta,s),x
+ =1_(x in X_delta)P_x(delta)x^(j_delta+s)
+   /[A_delta(x)R_delta(x)L_delta'(x)].               (199)
+```
+
+Then `q_delta` is exactly the initial zero-run length of
+
+```text
+K_(delta,0)lambda,K_(delta,1)lambda,... .            (200)
+```
+
+Combining `(200)` with the concentrated norm identity gives
+
+```text
+deg T=e-sum_(delta in Gamma)q_delta.                 (201)
+```
+
+All summands in `(201)` are therefore controlled by one weld vector and
+the classified support/padding data; there are no independent residual
+coefficients to choose fiber by fiber. This does not yet bound the stacked
+flag. The next closing statement must prove that the unique passing
+`lambda` cannot sustain the required collection of extra parity zeros.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2083,3 +2159,6 @@ determinants, but proves neither padding-flag control nor regular
 rank non-stagnation. Section 42 proves that no such regular non-stagnation
 bound follows from one static all-nonzero exact-corank-one source alone; it
 does not realize the global Shape-A parameter pencil.
+Section 43 restores that pencil and reduces every degree drop to a stacked
+linear flag on its unique scalar-weld vector, but does not prove a rank
+bound for that flag or exclude Shape A.

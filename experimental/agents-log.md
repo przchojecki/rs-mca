@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T scalar-weld residual-MDS flag
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED reduction; no stacked-rank bound or Lane-T closure
+  claimed.
+- **What is being added:** After division by the known actual-support and
+  padding factors, every fiber residual is an exact RS interpolant whose
+  degree drop is the initial zero run of explicit parity rows. Every row is
+  applied to the same projective scalar-weld vector.
+- **How it is useful:** This removes the independent per-fiber freedom
+  exposed by the static-source fence and turns the remaining Shape-A norm
+  problem into one concrete stacked linear flag retaining the incidence,
+  padding, and common-biform coupling.
+- **What to do next:** Bound the stacked extra-parity rows on the unique
+  weld vector using the collision and classified-incidence structure.
+
 ### 2026-08-13 - Lane-T static-source arbitrary-stagnation fence
 
 - **Agent/model:** AllenGrahamHart / Codex.

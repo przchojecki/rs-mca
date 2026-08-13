@@ -12,7 +12,7 @@ from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "dc77d82bed8117edb629e07328abf9d489bdb2b5"
+SOURCE_COMMIT = "dadd5edf528b6787cfdf846e93e696de191c0c77"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -138,6 +138,16 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/statement.md": "309415ae75fcdc79b5b318a1e7695b87e7dd15931494d05e5f27d6d66ee71cc4",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/verify.py": "a21820ebb3fb2f1dc898bffa1d07de7aa15af315fd0a21c465f20947604780f6",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_shape_a_static_source_arbitrary_drop_fence/verify_audit.py": "61e8ff55d7ae3e598d3e8d5aa58ab784d7a1e50ceb91a377ca96b29c7094b470",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/audit.md": "7605d59384d48a8cb2a893d2615739001f398c34d07c28f2d776a4abd64484b2",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/claim_contract.md": "e5367e8ac994ffd5077f34f7c0138ed9bc261f2739dfff2b892e48d215e60e5f",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/dependency_subdag.md": "f521dd7df8324b84ef279ff69860dcab62bf764aba55a851a41a4e8f84da7c78",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/node.json": "eca80ef5ae6bddb711c683cc64a1e506a1f72398294551e65e19b61a398f07e6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/proof.md": "1b6e217600923d29738a8c28412252330f3ba31d2d88c2eef5285f21cd7896f9",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/provenance.md": "a6f61f0eb8bae9662f32f718c2b7fddc73c4bc5148bb0af29b6cd35b5f6fdf5f",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/result.md": "846f3eae2510b07877fc930552d44871b3d661097ac0414837eaf26698c38ee0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/statement.md": "8d2f20c293cba15ca9269f7bdc7aa1652cb8ec811c778eb6b73e2accad493f7d",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/verify.py": "17b7848da84e448235708a6e9132d28f2de5f153836e2f7f00d1dcd558a2a48e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_scalar_weld_residual_mds_flag/verify_audit.py": "fc551cdd0439a68d2b97fd4ca859aa52db858befcfdeb5169453015c66290e1c",
 }
 
 
@@ -280,6 +290,12 @@ class Formula:
     collision_shape_a_static_drop_maximum: int = 3
     collision_shape_a_static_drop_residue_checks: int = 36
     collision_shape_a_static_drop_subset_checks: int = 560
+    collision_shape_a_residual_mds_row_surplus: int = 549755813889
+    collision_shape_a_residual_mds_unpadded_start: int = 549755813888
+    collision_shape_a_residual_mds_padded_start: int = 549755813889
+    collision_shape_a_residual_mds_fixture_cases: int = 4
+    collision_shape_a_residual_mds_fixture_parities: int = 22
+    collision_shape_a_residual_mds_fixture_rows: int = 108
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -2161,6 +2177,178 @@ def verify_collision_shape_a_static_source_arbitrary_drop(
     return cases + residue_checks + subset_checks
 
 
+def verify_collision_shape_a_scalar_weld_residual_mds_flag(
+    formula: Formula,
+) -> int:
+    """Replay the globally welded residual interpolation flag."""
+    official_e = 183251937963
+    row_surplus = 3 * official_e
+    require(
+        row_surplus == formula.collision_shape_a_residual_mds_row_surplus,
+        "shape-A residual-MDS row surplus",
+    )
+    require(
+        row_surplus - 1
+        == formula.collision_shape_a_residual_mds_unpadded_start,
+        "shape-A residual-MDS unpadded start",
+    )
+    require(
+        row_surplus
+        == formula.collision_shape_a_residual_mds_padded_start,
+        "shape-A residual-MDS padded start",
+    )
+
+    prime = 101
+    source = list(range(1, 10))
+    incidence = source[:2]
+    complement = source[2:]
+    excess = 3
+    padding_degree = 1
+    parameter_degree = 5
+    delta = 40
+    padding_root = 20
+    residual_root = 30
+
+    def multiply(left: list[int], right: list[int]) -> list[int]:
+        product = [0] * (len(left) + len(right) - 1)
+        for i, left_entry in enumerate(left):
+            for j, right_entry in enumerate(right):
+                product[i + j] = (
+                    product[i + j] + left_entry * right_entry
+                ) % prime
+        while len(product) > 1 and product[-1] == 0:
+            product.pop()
+        return product
+
+    def evaluate(polynomial: list[int], value: int) -> int:
+        result = 0
+        for coefficient in reversed(polynomial):
+            result = (result * value + coefficient) % prime
+        return result
+
+    def power_linear(root: int, exponent: int) -> list[int]:
+        result = [1]
+        for _ in range(exponent):
+            result = multiply(result, [-root % prime, 1])
+        return result
+
+    actual = [1]
+    for point in incidence:
+        actual = multiply(actual, [-point % prime, 1])
+    padding = power_linear(padding_root, padding_degree)
+    generic_degree = len(incidence) + padding_degree + excess
+    generic_coefficient = [1] + [0] * (generic_degree - 1) + [1]
+    row_scalars = [evaluate(generic_coefficient, point) for point in source]
+    require(all(row_scalars), "shape-A residual-MDS row scalars")
+
+    fixture_surplus = len(source) - generic_degree
+    parity_start = fixture_surplus + padding_degree - 1
+    require(
+        fixture_surplus == 3 and parity_start == 3,
+        "shape-A residual-MDS fixture start",
+    )
+
+    cases = 0
+    parity_checks = 0
+    row_checks = 0
+    for drop in range(excess + 1):
+        residual = power_linear(residual_root, excess - drop)
+        fiber = multiply(multiply(actual, padding), residual)
+        require(
+            len(fiber) - 1 == generic_degree - drop,
+            "shape-A residual-MDS fiber drop",
+        )
+
+        residual_values = []
+        for point, row_scalar in zip(source, row_scalars):
+            fiber_value = evaluate(fiber, point)
+            row_value = fiber_value * pow(row_scalar, prime - 2, prime) % prime
+            require(
+                (row_value == 0) == (point in incidence),
+                "shape-A residual-MDS incidence",
+            )
+            for parameter in (0, delta, 70):
+                parameter_term = pow(
+                    parameter - delta, parameter_degree, prime
+                )
+                require(
+                    (
+                        fiber_value
+                        + parameter_term
+                        * evaluate(generic_coefficient, point)
+                    ) % prime
+                    == row_scalar * (parameter_term + row_value) % prime,
+                    "shape-A residual-MDS global row weld",
+                )
+                row_checks += 1
+            if point not in incidence:
+                denominator = (
+                    evaluate(actual, point) * evaluate(padding, point)
+                ) % prime
+                require(denominator, "shape-A residual-MDS denominator")
+                residual_values.append(
+                    (
+                        point,
+                        row_scalar
+                        * row_value
+                        * pow(denominator, prime - 2, prime)
+                        % prime,
+                    )
+                )
+
+        require(
+            all(
+                value == evaluate(residual, point)
+                for point, value in residual_values
+            ),
+            "shape-A residual-MDS residual reconstruction",
+        )
+        parities = []
+        for power in range(parity_start + drop + 1):
+            value = 0
+            for point, residual_value in residual_values:
+                derivative = 1
+                for other, _ in residual_values:
+                    if other != point:
+                        derivative = derivative * (point - other) % prime
+                value = (
+                    value
+                    + residual_value
+                    * pow(point, power, prime)
+                    * pow(derivative, prime - 2, prime)
+                ) % prime
+            parities.append(value)
+            parity_checks += 1
+        require(
+            parities[:parity_start] == [0] * parity_start,
+            "shape-A residual-MDS base parities",
+        )
+        require(
+            parities[parity_start:parity_start + drop] == [0] * drop,
+            "shape-A residual-MDS extra run",
+        )
+        require(
+            parities[parity_start + drop] == residual[-1] == 1,
+            "shape-A residual-MDS first nonzero parity",
+        )
+        cases += 1
+
+    require(
+        cases == formula.collision_shape_a_residual_mds_fixture_cases,
+        "shape-A residual-MDS fixture cases",
+    )
+    require(
+        parity_checks
+        == formula.collision_shape_a_residual_mds_fixture_parities,
+        "shape-A residual-MDS fixture parities",
+    )
+    require(
+        row_checks == formula.collision_shape_a_residual_mds_fixture_rows,
+        "shape-A residual-MDS fixture row checks",
+    )
+    return cases + parity_checks + row_checks
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -2511,7 +2699,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 124, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 134, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -2541,6 +2729,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_shape_a_omitted_recurrence_flag(formula)
     checks += verify_collision_shape_a_bordered_hankel_flag(formula)
     checks += verify_collision_shape_a_static_source_arbitrary_drop(formula)
+    checks += verify_collision_shape_a_scalar_weld_residual_mds_flag(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -2768,6 +2957,24 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_shape_a_static_drop_subset_checks": (
             formula.collision_shape_a_static_drop_subset_checks
+        ),
+        "collision_shape_a_residual_mds_row_surplus": (
+            formula.collision_shape_a_residual_mds_row_surplus
+        ),
+        "collision_shape_a_residual_mds_unpadded_start": (
+            formula.collision_shape_a_residual_mds_unpadded_start
+        ),
+        "collision_shape_a_residual_mds_padded_start": (
+            formula.collision_shape_a_residual_mds_padded_start
+        ),
+        "collision_shape_a_residual_mds_fixture_cases": (
+            formula.collision_shape_a_residual_mds_fixture_cases
+        ),
+        "collision_shape_a_residual_mds_fixture_parities": (
+            formula.collision_shape_a_residual_mds_fixture_parities
+        ),
+        "collision_shape_a_residual_mds_fixture_rows": (
+            formula.collision_shape_a_residual_mds_fixture_rows
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,
