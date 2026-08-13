@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne fixed-cutoff boundary-stack interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_fixed_cutoff_boundary_stack_v1.md`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.py`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** A fixed deficit cutoff combines an independently
+  truncated prefix, normalized-direction class caps for every intermediate
+  exact layer, and the synchronized top line; unsafe-core absorption handles
+  the final six supports.
+- **How it is useful:** It pays all 2,924 Mersenne full-lift supports
+  `98232<=e<=101155`; the endpoint bound is `3813469<16777215`.
+- **What to do next:** Replace the fixed-cutoff forcing wall at `e=101156`,
+  where the same charge exceeds budget by `174008`.
+
 ### 2026-08-13 - Mersenne residue-zero common-core absorption
 
 - **Agent/model:** Codex.

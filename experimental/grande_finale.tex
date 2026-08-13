@@ -2634,6 +2634,101 @@ and
 \path{experimental/audit_mca_full_lift_residue_zero_core_absorption_v1.py}.
 \end{remark}
 
+\begin{corollary}[Fixed-cutoff boundary-stack continuation]
+\label{cor:full-lift-fixed-cutoff-boundary-stack}
+Retain the pair-noncontained full-lift hypotheses and notation above.  Fix
+a target slope budget $B$ and $h_0<H$, and let $P_{h_0}(e)$ be the independently truncated
+Johnson/mean-centered prefix through $h_0$.  For every $h_0<h\le H$, put
+\[
+ A_h=2h-e,
+ \qquad
+ J_h=\left\lfloor\frac{e(A_h-c)}{A_h^2-ec}\right\rfloor,
+ \qquad
+ Q_h=\left\lfloor\frac{N-e-c}{m-h-c}\right\rfloor,
+\]
+and suppose
+\[
+ 2h>e,\qquad A_h^2>ec,\qquad N-e>m-h>c
+\]
+throughout this range.  Define
+\[
+ F_e=P_{h_0}(e)+\sum_{h=h_0+1}^{H}\{1+J_h(Q_h-1)\}.
+ \tag{BS1}
+\]
+Then
+\[
+ |Z|\le F_e+|\mathcal T|.                           \tag{BS2}
+\]
+In particular, $F_e+N-m+1\le B$ implies safety.  Otherwise suppose
+$F_e<B$, and put
+\[
+ L_e=B-F_e+1,
+ \qquad
+ g_e=\left\lceil\frac{L_em-N}{L_e-1}\right\rceil,
+ \qquad
+ u_e=g_e-c,
+ \qquad
+ a_e=e-u_e+K.
+\]
+If the punctured ordinary-Johnson cap
+\[
+ M_e=\left\lfloor
+ \frac{(N-e)(m-a_e+1-c)}{(m-a_e+1)^2-(N-e)c}
+ \right\rfloor                                      \tag{BS3}
+\]
+is defined and
+\[
+ eM_e+N-m+1\le B,                                  \tag{BS4}
+\]
+then the support is safe.
+\end{corollary}
+
+\begin{proof}
+The prefix handles deficits through $h_0$.  Fix an exact layer
+$h_0<h\le H$.  Every explanation owns one slope.  Relative to an anchor,
+its nonzero normalized codeword direction agrees with the gauged direction
+on at least $A_h=2h-e$ coordinates.  Distinct directions have intrinsic
+agreement sets meeting in at most $c$ coordinates, so the constant-block
+Johnson count gives at most $J_h$ classes.  Each class and the anchor form
+one nonzero affine line.  Its outside common core has size at most $c$, and
+outside-core packing gives $Q_h$ members.  Subtracting the repeated anchor
+prices the layer by $1+J_h(Q_h-1)$.  The unpriced top union is the one
+synchronized line $\mathcal T$, proving (BS2).
+
+If (BS2) does not pay directly and the family is unsafe, then
+$|\mathcal T|\ge L_e$ and total-core line packing forces core at least
+$g_e$.  At most $c$ core coordinates lie outside the gauged direction
+support, so at least $u_e$ lie inside it.  The two-anchor argument from
+\cref{cor:full-lift-residue-zero-core-absorption} absorbs every assigned
+pair of deficit at least $a_e$ into the same line.  The remaining
+explanations have outside agreement at least $m-a_e+1$; (BS3) counts them,
+the conservative owner multiplier $e$ prices their slopes, and (BS4) pays.
+\end{proof}
+
+\begin{remark}[Exact fixed-cutoff Mersenne interval]
+For Mersenne-31, take $h_0=65200$.  Exact integer replay pays every support
+\[
+ 98232\le e\le101155.
+\]
+The direct branch applies through $e=101149$; the final six supports use
+core absorption.  At $e=101155$,
+\[
+ \begin{aligned}
+ F_e&=16667033,& L_e&=110183,& g_e&=67446,\\
+ M_e&=28,& eM_e+N-m+1&=3813469.
+ \end{aligned}
+\]
+The final bound has slack $12963746$.  At adjacent $e=101156$, the same
+fixed-cutoff charge is $16951223$, above budget by $174008$.  This is a
+fixed-cutoff method wall, not an unsafe certificate.  The Mersenne
+full-lift residual interval is now $101156\le e\le1044241$.
+
+The endpoint verifier and full constant-memory C replay are
+\path{experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.py}
+and
+\path{experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.c}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

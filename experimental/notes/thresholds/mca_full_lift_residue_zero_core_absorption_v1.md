@@ -45,9 +45,10 @@ This contradicts unsafety, with exact margin `13242054`.
 
 ## Consequence and nonclaims
 
-Mersenne-31 full-lift support `e=98232` is safe. The residual interval is
-now `98233<=e<=1044241`. This does not pay `e=98233`, close the deployed
-row, or provide an adjacent unsafe certificate.
+Mersenne-31 full-lift support `e=98232` is safe.  The successor fixed-cutoff
+boundary-stack theorem extends this payment through `e=101155`.  This node
+alone does not pay `e=98233`, close the deployed row, or provide an adjacent
+unsafe certificate.
 
 ## Replay
 
