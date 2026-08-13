@@ -2378,10 +2378,92 @@ and $N-m+1=981129$.  Hence
  |Z|\le\max\{16434745,16487313\}=16487313<16777215,
 \]
 with slack $289902$.  At $e=98231$ the same legal bound is $17492173$,
-which exceeds budget by $714958$ and is not an unsafe certificate.  The
-Mersenne full-lift residual interval therefore starts at $e=98231$.
+which exceeds budget by $714958$; the residue-two refinement below repairs
+that proof-method failure.
 The exact replay is in
 \path{experimental/verify_mca_full_lift_boundary_anchor_continuation_v1.py}.
+\end{remark}
+
+\begin{corollary}[Residue-two boundary-layer continuation]
+\label{cor:full-lift-two-boundary-layer-continuation}
+Retain the hypotheses and notation of
+\cref{cor:full-lift-boundary-anchor-continuation}.  Suppose in addition
+that
+\[
+ q=2,\qquad H\ge3,\qquad 2(s+2)<e,\qquad m-H>c,
+\]
+and put
+\[
+ Q_H=\left\lfloor\frac{N-e-c}{m-H-c}\right\rfloor,
+ \qquad
+ \Delta_H=\left\lfloor\frac{e}{s+1}\right\rfloor.
+\]
+Then
+\begin{equation}
+ |Z|\le\max\left\{
+ \begin{array}{l}
+ P_{H-2}+N-m+1,\\
+ P_{H-1}+Q_H+1,\\
+ P_{H-1}+2,\\
+ P_{H-1}+Q_H,\\
+ P_{H-1}+\Delta_H
+ \end{array}\right\}.
+ \label{eq:full-lift-two-boundary-layer-continuation}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let $\mathcal A$ be the top-third union, and let
+$\mathcal D_1,\mathcal D_2$ be the exact layers of deficits $H,H-1$.
+Choose inside agreement sets at their layer sizes, so their missed sets
+have sizes $s+1,s+2$.  The guard $2(s+2)<e$ gives one-slope ownership.
+
+If $|\mathcal A|\ge2$, two top anchors meet every member of
+$\mathcal D_1\cup\mathcal D_2$ on at least
+\[
+ e-s-s-(s+2)=K+q-2=K
+\]
+common coordinates.  Restriction injectivity puts all three layers on one
+affine codeword line.  Total-core packing charges it by $N-m+1$, leaving
+$P_{H-2}$.
+
+Suppose $\mathcal A$ has one member.  If $|\mathcal D_1|\ge2$, that member
+and any two boundary members have at least
+$e-s-2(s+1)=K$ common coordinates, so $\mathcal D_1$ is one affine line.
+Charge the top member separately.  Every boundary member has exactly
+$m-H$ outside agreements, and outside-core line packing bounds the layer by
+$Q_H$.  This gives $P_{H-1}+Q_H+1$.  If
+$|\mathcal D_1|\le1$, direct charging gives $P_{H-1}+2$.
+
+Finally suppose $\mathcal A$ is empty, and write $R_i$ for the size-$(s+1)$
+missed set of a member of $\mathcal D_1$.  If some $R_a,R_b$ intersect,
+then every third member has
+\[
+ |S_a\cap S_b\cap S_j|
+ \ge e-(3(s+1)-1)=K+q-2=K.
+\]
+The fixed pair synchronizes the whole layer, giving $P_{H-1}+Q_H$.
+Otherwise the $R_i$ are pairwise disjoint, whence
+$|\mathcal D_1|(s+1)\le e$ and the charge is
+$P_{H-1}+\Delta_H$.  These cases are exhaustive.
+\end{proof}
+
+\begin{remark}[Second Mersenne boundary support]
+At Mersenne-31 $e=98231$,
+\[
+ (s,q,H)=(32741,2,65489),\quad
+ P_{H-2}=15505282,\quad P_{H-1}=16433719,
+\]
+while $N-m+1=981129$, $Q_H=484$, and $\Delta_H=3$.  The five cases in
+\eqref{eq:full-lift-two-boundary-layer-continuation} are
+\[
+ 16486411,\quad16434204,\quad16433721,\quad16434203,\quad16433722.
+\]
+Thus $|Z|\le16486411<16777215$, with slack $290804$.  At $e=98232$ the
+residue resets to $q=0$, so this corollary is inapplicable; that is not an
+unsafe certificate.  The Mersenne full-lift residual interval is now
+$98232\le e\le1044241$.  The exact replay is in
+\path{experimental/verify_mca_full_lift_two_boundary_layer_continuation_v1.py}.
 \end{remark}
 
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]

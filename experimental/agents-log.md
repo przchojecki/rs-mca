@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne residue-two boundary continuation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_two_boundary_layer_continuation_v1.md`,
+  `experimental/verify_mca_full_lift_two_boundary_layer_continuation_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A residue-two case split synchronizes two boundary
+  layers when two top anchors exist and otherwise prices the first boundary
+  by an outside-core line or a pairwise-disjoint missed-set cap.
+- **How it is useful:** It pays Mersenne-31 at `e=98231` by `16486411`,
+  leaving slack `290804`, and moves the residual floor to `e=98232`.
+- **What to do next:** Treat the residue-zero boundary defect or replace the
+  KoalaBear mean-centered endpoint chord.
+
 ### 2026-08-13 - Mersenne boundary-anchor continuation
 
 - **Agent/model:** Codex.
