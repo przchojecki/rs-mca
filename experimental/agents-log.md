@@ -30,6 +30,42 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T live linear/quadratic profile and defects
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED live syzygy classification and defect router; no
+  Shape-A exclusion.
+- **What is being added:** The inverse-prolongation injection and the exact
+  small-class projection rank force `c_1=2r-e`, `c_2=e-r-1`, `c_3=0` for
+  every live rank. Each small class determines a unique projective domain
+  coefficient form with explicit barycentric values.
+- **How it is useful:** It eliminates all cubic minimal syzygies and replaces
+  the remaining source freedom by two concrete defect forms in one common
+  coefficient space.
+- **What to do next:** Compare those two forms through split-row incidence
+  and the collision/Hankel equations.
+
+### 2026-08-13 - Lane-T locator-interpolation half-rank amplification
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED macroscopic rank amplification; no Shape-A exclusion.
+- **What is being added:** The `n+1` dual-RS locator interpolation checks map
+  into the restricted Koszul kernel, and either small-class projection has
+  rank at least `r-1`. Thus `r>=(e+1)/2=91625968982`.
+- **How it is useful:** It excludes the former one-third boundary and raises
+  the live Shape-A interval to the upper half of the ambient coefficient
+  range.
+- **What to do next:** Control the common kernel of the three class maps or
+  exploit equality in the coordinate projection bounds.
+
 ### 2026-08-13 - Lane-T coefficient syzygy-bundle cubic splitting
 
 - **Agent/model:** AllenGrahamHart / Codex.

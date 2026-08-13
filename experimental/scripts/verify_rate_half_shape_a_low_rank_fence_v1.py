@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "995c5381285975c04eae2f884bb49ba390004eae"
+SOURCE_COMMIT = "eb7819d5f0c4f0f20947b28fbe5717dcd768edea"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/probe_results.md": "603668188e6fa399919f0ce0955b4a7ccef06a549286a43e3e43b6f8ba922203",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_probe.py": "f783f91f9b22084d457c2f96205cb838e9b5b9f6562547f6b746825150229da9",
@@ -55,16 +55,26 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/audit.md": "ae4f9269fa885b9d1689afbc0134a9cc43d492e4ce509f67cb1c263ebd968ef3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/verify.py": "25f7ca8b3d1a03d557c76b54dc16b5898c9eb93c14650d9fe3eacb3a6272bf84",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_source_class_rank_amplification/verify_audit.py": "be586b7fe9f293a376929c3812086fcc808269d08a842a5c0edb0b5aea919db8",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/statement.md": "280cce765cec9ea8588342d8b079618602c791c807f7c70bf9d7c349b79c4c9b",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/statement.md": "d7be28ea675f519791321c9645ab789d0cd56407be2b5e1b35fa62d4d2fc1163",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/proof.md": "f727eeb1470b173d5551a1aab9153c4a946f0679acd12020c2165f98ca352fe5",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/audit.md": "1cf4fbc111b4b9b90fee785f1b60ed13ac2c44b89700969abb53d23b2abdada3",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/verify.py": "365030a71544f75fcc7dc1f6bb15b8dc225f52e3aa8e96e67a71072ff1143b1e",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_three_class_koszul_gram_router/verify_audit.py": "d1971f9debb68b46aefde1294ef7a0fa593214dfbe11d30d3535746b046d5b66",
-    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/statement.md": "7aa18872e9b15c1c6d27039c615f76d5ae7e1bf91e8600b6061fe41505eac326",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/statement.md": "dbafebff0969a574256c67e502fca7e930bae7320642541d3bdd4ebba3a9955b",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/proof.md": "a326ebd372b7741e029924c17c6f87e77bbc7355efeaf0bc6aae7f973b0b5cae",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/audit.md": "0b8844d48809dafd6763faa2aca1646a4e8b0dbe320bca1d749451610a7b7602",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/verify.py": "a3f135acad1a1d2990ce035ef23b62cbcc4e65f1704c32208fdb5e8a6eecd581",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_coefficient_syzygy_bundle_cubic_splitting/verify_audit.py": "8e91a5f42d5c1a3ecc2354d03a93345130227f89261c59f5cc92a81790c82af7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_locator_interpolation_syzygy_rank_amplification/statement.md": "e562c63ad7d9f3ee2bbdb88f71b6d4d7cbee38ac2d9d0e6e751be254024aa516",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_locator_interpolation_syzygy_rank_amplification/proof.md": "793b832aaaa4c22ef39bc1000b0db8da4f5605aaf7ff235ffa933d688f6fc2d7",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_locator_interpolation_syzygy_rank_amplification/audit.md": "88401a67b91db187f2a6d8636f0ac9139cc1c5af29c49adb98c7ca7f9bea582d",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_locator_interpolation_syzygy_rank_amplification/verify.py": "5e7a4524985692f49c1221959c2272a7e354de228e7b790674dc83b53d435b2b",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_locator_interpolation_syzygy_rank_amplification/verify_audit.py": "40f9b72506c99e7975e2bf74fae2e044ab4b3fa59e0750acadfee7b0281499b0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_live_linear_quadratic_syzygy_and_small_class_defect/statement.md": "9fcaeaa70a58ac26582698e0df3651ff435a2ddc8855bd1b9ee9c1aea7ed9286",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_live_linear_quadratic_syzygy_and_small_class_defect/proof.md": "45019f223a448640dfc10033a0dc54cff6f259c79be3e2be23f4323ffdf3df3f",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_live_linear_quadratic_syzygy_and_small_class_defect/audit.md": "5fb55ea920c5eacce5aa79cb323fbc0d240fc222ef3d97dd2c3d056b5e8b46ce",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_live_linear_quadratic_syzygy_and_small_class_defect/verify.py": "a325c934449b40cd7a34d658790b35d872212b135dee9ad7b3f4548cf98f8140",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_live_linear_quadratic_syzygy_and_small_class_defect/verify_audit.py": "ba2db8cf3e091c572b20e8d6049cc0fc1f1b8316bd4a0d8a7f0335ada1f2dcee",
 }
 
 
@@ -269,6 +279,9 @@ class Formula:
     source_class_large: int = 274877906944
     profile_linear_c3: int = 61083979320
     profile_quadratic_c3: int = 61083979319
+    interpolation_rank_floor: int = 91625968982
+    live_boundary_c1: int = 1
+    live_boundary_c2: int = 91625968980
 
 
 def partition_probe() -> tuple[int, int, int]:
@@ -485,6 +498,31 @@ def replay(
         require(c1 + c2 + c3 == source_rank_floor - 1, "profile rank")
         require(c1 + 2 * c2 + 3 * c3 == m, "profile degree")
         require(2 * c1 + c2 == minimum_koszul_kernel, "profile sections")
+    interpolation_rank_floor = (e + 1) // 2
+    live_kernel = 3 * interpolation_rank_floor - (e + 1)
+    live_profile = (
+        2 * interpolation_rank_floor - e,
+        e - interpolation_rank_floor - 1,
+        0,
+    )
+    require(
+        interpolation_rank_floor == formula.interpolation_rank_floor,
+        "interpolation rank floor",
+    )
+    require(live_kernel == interpolation_rank_floor, "live boundary kernel")
+    require(
+        live_profile == (formula.live_boundary_c1,
+                         formula.live_boundary_c2, 0),
+        "live boundary profile",
+    )
+    require(3 * source_rank_floor - (e + 1) < source_rank_floor - 1,
+            "former boundary exclusion")
+    for sample in (interpolation_rank_floor,
+                   interpolation_rank_floor + 1, e - 2, e - 1):
+        c1, c2, c3 = 2 * sample - e, e - sample - 1, 0
+        require(min(c1, c2, c3) >= 0, "live profile nonnegative")
+        require(c1 + c2 + c3 == sample - 1, "live profile rank")
+        require(c1 + 2 * c2 + 3 * c3 == m, "live profile degree")
     return {
         "profiles": profile_count,
         "cases": cases,
@@ -512,6 +550,8 @@ def replay(
         "gram_nonzero_threshold": gram_nonzero_threshold,
         "profile_linear": profile_linear,
         "profile_quadratic": profile_quadratic,
+        "interpolation_rank_floor": interpolation_rank_floor,
+        "live_profile": live_profile,
     }
 
 

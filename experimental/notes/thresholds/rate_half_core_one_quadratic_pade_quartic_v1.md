@@ -2774,6 +2774,109 @@ The remaining Shape-A problem is now a degree-`1/2/3` syzygy-profile
 problem coupled to the split fibers and the proportional source-Gram
 matrix.
 
+## 54. Locator-interpolation half-rank amplification
+
+The primitive locator supplies a large family inside the restricted
+Koszul kernel. Since
+
+```text
+deg_X Qbar=d=3e-2,
+R-d-2=n,                                            (267)
+```
+
+dual-RS interpolation gives, for every `h in F[X]_(<=n)`,
+
+```text
+sum_(x in U_0)Qbar(t,x)h(x)/L_U0'(x)=0.            (268)
+```
+
+Using `(245)`, define
+
+```text
+T_gamma(h)=sum_(x in M_gamma)
+ eta_x^(-1)H_x(t)h(x)/L_U0'(x).                    (269)
+```
+
+Then
+
+```text
+(T_alpha(h),T_beta(h),T_theta(h)) in ker Phi.      (270)
+```
+
+For either source class of size `n+2`, a minimal presentation of `G` makes
+the projected map factor as
+
+```text
+T_gamma=E_B^T D E_n,
+D_x=eta_x^(-1)/L_U0'(x)^2.                         (271)
+```
+
+The three factors have ranks `r`, `n+2`, and `n+1` in the relevant senses,
+with `D` invertible. Sylvester's inequality gives
+
+```text
+rank T_gamma>=r-1.                                 (272)
+```
+
+Since `dim ker Phi=3r-(e+1)`, equations `(270)--(272)` force
+
+```text
+3r-(e+1)>=r-1,
+r>=(e+1)/2=91625968982.                            (273)
+```
+
+At equality, `dim ker Phi=r`. Thus the former one-third boundary and both
+profiles in `(265)` are excluded.
+
+## 55. Live linear/quadratic profile and small-class defects
+
+The projection in Section 54 also removes every cubic syzygy throughout the
+live interval. For a small-class coordinate projection
+
+```text
+pi_gamma:ker Phi -> V,                             (274)
+```
+
+equation `(272)` gives
+
+```text
+dim ker pi_gamma<=3r-(e+1)-(r-1)=2r-e.             (275)
+```
+
+The inverse prolongation `J`, of dimension `c_1`, injects into this kernel
+through the Koszul relation between the other two quadratic generators.
+On the other hand `c_3>=0` in `(264)` gives `c_1>=2r-e`. Therefore
+
+```text
+c_1=2r-e,
+c_2=e-r-1,
+c_3=0,                                             (276)
+E=O(-1)^(2r-e) direct_sum O(-2)^(e-r-1),
+S_1V=S_(e-1).                                      (277)
+```
+
+At the lower boundary the unique profile is
+
+```text
+(c_1,c_2,c_3)=(1,91625968980,0).                   (278)
+```
+
+Equality in `(275)--(276)` makes each small-class map in `(271)` have exact
+rank `r-1`. Its one-dimensional left kernel gives a unique projective
+nonzero form `B_gamma` in the common domain coefficient space `W_X` with
+
+```text
+B_gamma(x)
+ =kappa_gamma eta_x L_U0'(x)^2/L_Mgamma'(x)
+ =kappa_gamma eta_x L_Mgamma'(x)L_rest,gamma(x)^2
+                         for x in M_gamma,          (279)
+```
+
+where `kappa_gamma!=0` and `L_U0=L_Mgamma L_rest,gamma`. In particular the
+defect form has no root on its own small source class. The next exact target
+is compatibility of the two forms `(279)` with the split rows and the
+collision/Hankel equations.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2854,3 +2957,7 @@ enough to exclude it.
 Section 53 excludes all coefficient syzygy splitting degrees at least four,
 but does not exclude either minimum-rank profile or all higher-rank
 degree-`1/2/3` profiles.
+Section 54 supersedes the earlier one-third floor by the official half-rank
+floor, but does not exclude the upper-half interval. Section 55 eliminates
+all cubic syzygies in that interval and identifies two small-class defect
+forms; it does not yet prove those forms incompatible.
