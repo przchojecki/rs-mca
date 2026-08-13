@@ -3428,6 +3428,69 @@ and
 \path{experimental/audit_mca_full_lift_common_factor_mass_router_v1.py}.
 \end{remark}
 
+\begin{corollary}[Linear factor gives a projective star]
+\label{cor:full-lift-linear-factor-projective-star}
+In the setting of Corollary~\ref{cor:full-lift-common-factor-mass}, suppose
+the full common interpolation factor has total $(Y,Z)$-degree one.  Then,
+after projective rescaling, it has a primitive equation
+\[
+ P(X,Y,Z)=AY+BZ+C(X),
+ \qquad A,B\in\F,\quad (A,B)\ne(0,0),\quad \deg C\le5. \tag{LS1}
+\]
+All captured affine explanation lines share one $\F$-rational projective
+slope--codeword center.  If $A\ne0$, the center is finite:
+\[
+ \gamma_*=B/A,qquad c_*=-C/A.
+\]
+If $A=0$, every captured line has the same direction codeword $-C/B$, the
+center at projective slope infinity.
+\end{corollary}
+
+\begin{proof}
+Initially work over the algebraic closure and write
+$P=A(X)Y+B(X)Z+C(X)$ primitively.  The factor-mass corollary supplies at
+least $4982$ distinct sections $(a_i,b_i)\in\F[X]_{<6}^2$.  Subtracting two
+section equations and removing $\gcd(A,B)$ gives
+\[
+ (a_i,b_i)=(a_0+Bt_i,b_0-At_i),
+ \qquad
+ \deg t_i\le s:=5-\max(\deg A,\deg B).             \tag{LS2}
+\]
+Indeed, one section shows that $\gcd(A,B)$ also divides $C$, so primitivity
+makes it a unit.  In particular $\deg A,\deg B\le5$.
+
+Since $A$ and $B$ are coprime, the received pair induces a scalar word
+$\tau$ on every inside coordinate: use
+$(r_0-a_0)/B$ where $B\ne0$, and $-(r_1-b_0)/A$ otherwise.  Each $t_i$
+agrees with $\tau$ on its core of at least $807$ coordinates.  The ordinary
+constant-block Johnson cap for degree $s$ is
+\[
+ J_s=\left\lfloor
+ \frac{130237(807-s)}{807^2-130237s}\right\rfloor.
+\]
+For $s=0,1,2,3,4$ its exact values are
+$161,201,268,401,802$.  If either $A$ or $B$ were nonconstant, then
+$s\le4$, contradicting $4982>802$.  Hence $A,B$ are constants and
+$\deg C\le5$.
+
+If $A\ne0$, two distinct captured $\F$-rational pairs give
+$B/A=-(a_i-a_j)/(b_i-b_j)\in\F$, and then
+$-C/A=a_i+(B/A)b_i\in\F[X]_{<6}$.  Every captured line passes through that
+finite center.  If $A=0$, the common direction $-C/B$ lies in
+$\F[X]_{<6}$, proving the projective-infinity case.
+\end{proof}
+
+\begin{remark}
+This identifies the degree-one branch with the primitive projective-star
+shape; it does not prove the star population bound.  The complementary
+common-factor branch has $(Y,Z)$-degree at least two.
+
+The exact Johnson replay and independent audit are
+\path{experimental/verify_mca_full_lift_linear_factor_projective_star_router_v1.py}
+and
+\path{experimental/audit_mca_full_lift_linear_factor_projective_star_router_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let

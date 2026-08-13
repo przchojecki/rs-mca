@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne linear-factor projective-star router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_linear_factor_projective_star_router_v1.md`,
+  `experimental/verify_mca_full_lift_linear_factor_projective_star_router_v1.py`,
+  `experimental/audit_mca_full_lift_linear_factor_projective_star_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / LINEAR-FACTOR CLASSIFICATION.
+- **What is being added:** Polynomial-section parameterization and an exact
+  ordinary-Johnson cap of 802 exclude every nonconstant-coefficient linear
+  factor against the 4,982 captured sections.
+- **How it is useful:** The only degree-one survivor is an `F`-rational
+  projective star; the complementary factor branch has degree at least two.
+- **What to do next:** Prove the primitive-star population bound or classify
+  and charge the higher-degree factor branch.
+
 ### 2026-08-13 - Mersenne common-factor mass router
 
 - **Agent/model:** Codex.
