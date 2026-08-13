@@ -2561,13 +2561,77 @@ common core of this affine line, line packing gives
  \left\lceil\frac{|\mathcal T|m-N}{|\mathcal T|-1}\right\rceil
  \ge67452=m-2.
 \]
-Thus the first residue-zero obstruction is reduced to the one- and
-two-private-coordinate line strata.  This is a structural router, not a
-safety or unsafety certificate at $e=98232$, and the Mersenne residual
-interval remains $98232\le e\le1044241$.  The exact replay is in
+Thus the first residue-zero obstruction is reduced to a near-maximal-core
+line.  The router alone is not a safety or unsafety certificate at
+$e=98232$; the following corollary absorbs the remaining layers into this
+line.  The exact router replay is in
 \path{experimental/verify_mca_full_lift_residue_zero_direction_router_v1.py},
 with an independent endpoint audit in
 \path{experimental/audit_mca_full_lift_residue_zero_direction_router_v1.py}.
+\end{remark}
+
+\begin{corollary}[First residue-zero Mersenne payment]
+\label{cor:full-lift-residue-zero-core-absorption}
+Under the pair-noncontained full-lift hypotheses, the Mersenne-31 support
+$e=98232$ is safe:
+\[
+ |Z|\le16777215.
+\]
+Consequently its full-lift residual interval starts at $e=98233$.
+\end{corollary}
+
+\begin{proof}
+Suppose instead that $|Z|>16777215$.  By the preceding router, the
+synchronized top line $\mathcal T$ has at least $343071$ members and total
+common agreement core $G$ of size at least $67452=m-2$.  Write the line as
+$c_\gamma=A_0+\gamma p$.  Its direction $p$ is nonzero.  Outside the
+gauged direction support $E$, a coordinate common to two line members must
+be a zero of $p$, so
+\[
+ |G\cap E|\ge67452-(K-1)=67447=:u.                 \tag{1}
+\]
+
+Take any selected slope $\delta$ whose assigned explanation has outside
+deficit $h\ge e-u+K=30791$.  Ownership supplies an inside agreement set
+$S_\delta$ of size $h$.  Choose two distinct top anchors.  By (1),
+\[
+ |G\cap E\cap S_\delta|\ge u+h-e\ge K.
+\]
+On these coordinates, both normalized differences from $c_\delta$ to the
+two anchors equal the gauged direction.  Restriction injectivity makes the
+two degree-$<K$ differences equal.  Subtracting their defining equations
+then identifies this common difference with $p$, and hence
+$c_\delta=A_0+\delta p$.  Thus every assigned pair with $h\ge30791$ joins
+the same affine line.  The nonzero direction makes its slope parameter
+injective, and total-core line packing charges all these slopes once by
+\[
+ N-m+1=981129.                                      \tag{2}
+\]
+
+Every remaining assigned explanation has $h\le30790$, so after puncturing
+$E$ it agrees with the outside received word on at least
+$m-30790=36664$ coordinates.  The ordinary Johnson count gives at most
+\[
+ \left\lfloor
+ \frac{950350(36664-5)}{36664^2-950350\cdot5}
+ \right\rfloor=26                                  \tag{3}
+\]
+distinct explanations.  Each owns at most $e=98232$ slopes.  Combining
+(2) and (3) yields
+\[
+ |Z|\le98232\cdot26+981129
+     =3535161<16777215,
+\]
+the desired contradiction.
+\end{proof}
+
+\begin{remark}[Exact absorption margin]
+The contradiction bound has margin $13242054$.  This payment does not
+claim safety at $e=98233$ or provide an unsafe certificate.  Its exact
+replay and independent audit are
+\path{experimental/verify_mca_full_lift_residue_zero_core_absorption_v1.py}
+and
+\path{experimental/audit_mca_full_lift_residue_zero_core_absorption_v1.py}.
 \end{remark}
 
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne residue-zero common-core absorption
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_residue_zero_core_absorption_v1.md`,
+  `experimental/verify_mca_full_lift_residue_zero_core_absorption_v1.py`,
+  `experimental/audit_mca_full_lift_residue_zero_core_absorption_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / SUPPORT PAYMENT.
+- **What is being added:** The near-maximal core forced by the residue-zero
+  router synchronizes every assigned explanation of deficit at least
+  `30791` onto the same line. One punctured Johnson cap bounds the lower
+  explanations by `26`.
+- **How it is useful:** The contradiction bound
+  `98232*26+981129=3535161<16777215` pays Mersenne full-lift support
+  `e=98232` and moves the residual floor to `e=98233`.
+- **What to do next:** Test the same unsafe-core absorption compiler at
+  `e=98233` and locate its exact interval wall.
+
 ### 2026-08-13 - Mersenne residue-zero direction-class router
 
 - **Agent/model:** Codex.
@@ -45,8 +64,8 @@ Keep entries concise and link to the relevant files.
 - **How it is useful:** Any unsafe Mersenne family at `e=98232` must put at
   least `343071` slopes on the synchronized top line, forcing its common
   core to have size at least `m-2`.
-- **What to do next:** Classify and pay the one- and two-private-coordinate
-  affine-line strata. No safety or unsafety claim is made at this support.
+- **What to do next:** Apply the successor common-core absorption theorem.
+  The router itself makes no safety or unsafety claim at this support.
 
 ### 2026-08-13 - Mersenne residue-two boundary continuation
 

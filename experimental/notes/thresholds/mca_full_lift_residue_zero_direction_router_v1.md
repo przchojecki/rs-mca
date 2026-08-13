@@ -62,10 +62,10 @@ forces `g>=67452=m-2`.
 
 ## Nonclaims
 
-This does not prove safety or unsafety at `e=98232`. The Mersenne residual
-interval remains `98232<=e<=1044241`. The next task is the exact
-classification of affine lines whose members have only one or two private
-agreement coordinates beyond the total common core.
+This router alone does not prove safety or unsafety at `e=98232`. Its
+near-maximal-core terminal is discharged by the successor common-core
+absorption theorem, which pays this support without classifying the private
+coordinates individually.
 
 ## Replay
 
