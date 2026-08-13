@@ -1772,6 +1772,115 @@ budget.  The exact replay is in
 \path{experimental/verify_mca_sparse_direction_near_johnson_gram_rank_v1.py}.
 \end{remark}
 
+\begin{theorem}[Mean-centered Gram list compiler]
+\label{thm:mean-centered-gram-list}
+Let \(S_1,\ldots,S_L\) be distinct \(A\)-subsets of an \(n\)-set with
+\(|S_i\cap S_j|\le c\) for \(i\ne j\), where \(A>c\).  Put
+\[
+ g=nc-A^2,
+ \qquad
+ T=(n-A)^2-(n-1)g.
+\]
+If
+\[
+ g\ge0,
+ \qquad
+ 2A^2\ge nc,
+ \qquad
+ T>0,
+\]
+then
+\begin{equation}
+ L\le\left\lfloor
+ \frac{(n-1)n^2(A-c)}{AT}
+ \right\rfloor.
+ \label{eq:mean-centered-gram-list}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let \(B\) be the incidence matrix and put
+\[
+ P=I_n-\frac1nJ_n,
+ \qquad
+ H=BPB^{\mathsf T}.
+\]
+Then \(H\) is positive semidefinite and has rank at most \(n-1\).  Set
+\(p=A^2/n\).  The diagonal entries are \(A-p\), while an off-diagonal
+entry is
+\[
+ x_{ij}=|S_i\cap S_j|-p\in[-p,c-p].
+\]
+Convexity gives the endpoint-chord inequality
+\[
+ x_{ij}^2\le(c-2p)x_{ij}+p(c-p).
+\]
+The assumption \(2A^2\ge nc\) makes the chord slope nonpositive.  Since
+\(H\) is positive semidefinite,
+\[
+ 2\sum_{i<j}x_{ij}\ge-L(A-p).
+\]
+With \(C=p(c-p)=A^2g/n^2\), the preceding two displays imply
+\[
+ \operatorname{tr}(H^2)\le CL^2+A(A-c)L.
+\]
+Now \(\operatorname{tr}(H)=L(A-p)\).  The PSD trace-rank inequality gives
+\[
+ L\bigl((A-p)^2-(n-1)C\bigr)\le(n-1)A(A-c).
+\]
+Finally,
+\[
+ (A-p)^2-(n-1)C=\frac{A^2T}{n^2},
+\]
+which proves \eqref{eq:mean-centered-gram-list}.
+\end{proof}
+
+\begin{corollary}[Exact mean-centered sparse-direction profile]
+\label{cor:mean-centered-sparse-direction-profile}
+Retain the sparse-direction notation of
+\cref{thm:sparse-direction-punctured-johnson-mca}.  For each deficit
+threshold \(1\le h\le e\), put \(A_h=m-h\) and let \(C_h\) be the
+ordinary Johnson cap when \(A_h^2>(N-e)(K-1)\), and otherwise the cap in
+\cref{thm:mean-centered-gram-list} whenever its three hypotheses hold.
+Assume every \(C_h\) is defined, and put
+\[
+ B_0=0,
+ \qquad
+ B_h=\min_{h\le v\le e}C_v.
+\]
+Then
+\begin{equation}
+ |Z|\le\sum_{h=1}^e(B_h-B_{h-1})
+                    \left\lfloor\frac eh\right\rfloor.
+ \label{eq:mean-centered-sparse-direction-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let \(N_h\) count distinct transformed explanations with outside deficit at
+most \(h\).  Puncturing the direction support and applying the appropriate
+ordinary-list theorem gives \(N_h\le C_h\).  For every \(v\ge h\), also
+\(N_h\le N_v\le C_v\), hence \(N_h\le B_h\).  The suffix minima are
+nondecreasing.  Apply the deficit owner weight \(\lfloor e/h\rfloor\) and
+sum by parts.
+\end{proof}
+
+\begin{remark}[Exact mean-centered support walls]
+The complete exact profile in
+\eqref{eq:mean-centered-sparse-direction-profile} expands the walls to
+\[
+\begin{array}{c|c|c|c}
+\text{row}&K&\text{last paid }e&\text{endpoint profile}\\ \hline
+\text{KoalaBear}&14&64047&181731868\\
+\text{Mersenne-31}&6&65454&16101127
+\end{array}
+\]
+At KoalaBear \(e=64048\), the endpoint denominator is
+\(T=-1499457466\).  At Mersenne \(e=65455\), every cap remains defined,
+but the exact profile is \(17120123>16777215\).  The replay is in
+\path{experimental/verify_mca_sparse_direction_mean_centered_gram_profile_v1.py}.
+\end{remark}
+
 \begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
 \label{thm:full-explanation-lifted-rank-dichotomy}
 Let \(C\leq\F^D\) have dimension \(K\), let
@@ -1888,17 +1997,17 @@ and \(h=\dim V\), equivalently the error affine rank.
 \[
 \begin{array}{c|c|c|c}
 \text{row}&q&h&\text{currently paid support range}\\ \hline
-\text{KoalaBear}&14&14&e\le64037\ \text{or}\ e\ge992852\\
-\text{KoalaBear}&14&15&e\le64037\ \text{or}\ e\ge1044239\\
-\text{Mersenne-31}&6&6&e\le65418\ \text{or}\ e\ge1037876\\
-\text{Mersenne-31}&6&7&e\le65418\ \text{or}\ e\ge1044242
+\text{KoalaBear}&14&14&e\le64047\ \text{or}\ e\ge992852\\
+\text{KoalaBear}&14&15&e\le64047\ \text{or}\ e\ge1044239\\
+\text{Mersenne-31}&6&6&e\le65454\ \text{or}\ e\ge1037876\\
+\text{Mersenne-31}&6&7&e\le65454\ \text{or}\ e\ge1044242
 \end{array}
 \]
 The improvement is only in the \(h=K\) rows.  The full-lift \(h=K+1\)
 middle intervals remain unpaid and are the wider top-rank residuals.
-After \cref{cor:sparse-direction-near-johnson-mca}, those full-lift
-intervals are exactly \(64038\le e\le1044238\) for KoalaBear and
-\(65419\le e\le1044241\) for Mersenne-31.
+After \cref{cor:mean-centered-sparse-direction-profile}, those full-lift
+intervals are exactly \(64048\le e\le1044238\) for KoalaBear and
+\(65455\le e\le1044241\) for Mersenne-31.
 \Cref{thm:full-lift-near-mds-extension} shows that every generalized
 weight from rank two onward is already MDS-sharp.  Even at the best endpoint
 \(e=N-K\), the generic corrected compiler gives

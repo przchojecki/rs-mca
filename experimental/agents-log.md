@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mean-centered Gram profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_mean_centered_gram_profile_v1.md`,
+  `experimental/verify_mca_sparse_direction_mean_centered_gram_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A PSD incidence Gram theorem centered at the
+  block mean, plus the suffix-minimum closure needed to combine its raw
+  cumulative caps with the positive-Johnson caps.
+- **How it is useful:** It strengthens the preceding centered-Gram rung and
+  extends the low-support walls to `e=64047` on KoalaBear and `e=65454` on
+  Mersenne-31.  The endpoint profiles are `181731868` and `16101127`.
+- **What to do next:** KoalaBear `e=64048` lies beyond the positive PSD
+  chord denominator.  Mersenne `e=65455` remains theorem-legal but misses
+  budget by `342908`.  Neither failure is an unsafe certificate.
+
 ### 2026-08-13 - Near-Johnson centered-Gram payment
 
 - **Agent/model:** Codex.
