@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T rank-three birational singularity router
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED rank-three geometry router; no Shape-A exclusion.
+- **What is being added:** The exact active-column deficit and normalization
+  fiber completion force the rank-three parameter map to be birational onto
+  a rational plane curve of degree `183251937961`. The six vertices from
+  the four-row frame carry at least `183251937955` branches in total and
+  the printed local and total delta-invariant floors.
+- **How it is useful:** It removes smooth and low-singularity rank-three
+  models and replaces the open branch by one complete-quadrilateral
+  singularity problem that can be coupled to the source/Hankel, collision,
+  and scalar-weld identities.
+- **What to do next:** Prove that the official source data cannot realize
+  the six singular vertices, or construct a valid source-compatible model.
+  Do not bound a singular image-point fiber by the cover degree alone.
+
 ### 2026-08-13 - Lane-T tensor-rank-three projective frame
 
 - **Agent/model:** AllenGrahamHart / Codex.

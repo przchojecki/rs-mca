@@ -2334,6 +2334,86 @@ tensor rank three and contains this triple-free four-row frame, or has
 tensor rank at least four. This is a route cut, not an exclusion of either
 branch.
 
+## 47. Rank-three birational parameter curve and six singular vertices
+
+A singular image point prevents one from bounding a pair overlap by the
+degree of the parameter map alone: several normalization branches may map
+to the same point. Keeping those branches gives an exact stronger normal
+form for every rank-three survivor.
+
+Let
+
+```text
+a:P^1_t -> C_a subset P^2,
+a(t)=[A_0(t):A_1(t):A_2(t)]                       (220)
+```
+
+be the parameter map from `(214)`. It is basepoint-free. A common finite
+basepoint would divide every exact split row and hence lie in `Gamma`, where
+it would create a zero parameter fiber; exact row degree removes infinity.
+If `d` is the degree onto the image and `c=deg C_a`, then
+
+```text
+m=dc.                                               (221)
+```
+
+The all-excess ledger gives
+
+```text
+|I_delta|=n-a_delta-r_delta,
+sum_delta(a_delta+r_delta)=2e-7.                   (222)
+```
+
+An empty actual column costs `n=(3e-7)/2`, so at most one of the `3e`
+slopes has no `U_0` incidence. Every active slope belongs to a complete
+reduced degree-`d` normalization fiber: an incident row-line vanishes on
+the complete fiber, while its pullback has only simple roots and all of
+them lie in `Gamma`. Therefore
+
+```text
+d divides 3e-z for some z in {0,1}.                 (223)
+```
+
+Since `d|m`, `e=m+2`, and the official `m=183251937961` is coprime to both
+`6` and `5`,
+
+```text
+gcd(m,3e)=gcd(m,6)=1,
+gcd(m,3e-1)=gcd(m,5)=1.                            (224)
+```
+
+Thus `d=1`, `c=m`, and `a` is the normalization map of a rational plane
+curve of degree `m`.
+
+Return to the four coefficient lines from Section 46. Their general
+position gives six distinct pair vertices `p_ij`. Birationality identifies
+the common roots of rows `i,j` exactly with the geometric branches of
+`C_a` above `p_ij`. Writing their branch counts as `r_ij`,
+
+```text
+sum_(i<j)r_ij>=e-8=m-6,
+max_(i<j)r_ij>=30541989660.                         (225)
+```
+
+A reduced plane singularity with `r` branches has delta invariant at least
+`binom(r,2)`. Hence one vertex contributes at least
+
+```text
+466406566180502462970,                              (226)
+```
+
+and convex minimization over the six distinct vertices gives the total
+floor
+
+```text
+2798439396930304829525.                             (227)
+```
+
+This removes smooth and low-singularity rank-three models but does not
+exclude the printed birational configuration. A rank-three close must now
+couple this complete-quadrilateral singularity ledger to the source,
+collision, or scalar-weld identities.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2396,3 +2476,6 @@ three or higher and does not close Lane T.
 Section 46 forces a triple-free four-row projective frame and a large pair
 overlap in the rank-three branch, but does not exclude that frame or control
 tensor rank at least four.
+Section 47 proves that every rank-three parameter map is birational onto a
+degree-`m` rational plane curve and quantifies six enormous singular
+vertices; it does not prove that this singular curve cannot occur.

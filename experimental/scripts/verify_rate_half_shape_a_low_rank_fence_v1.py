@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""Replay the Shape-A rank fence and low-rank projective routers."""
+"""Replay the Shape-A rank fence and rank-three geometry routers."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
+import math
 import random
 from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "2871b3bdd2b5b2d5161cbb57b204b8b920faa67c"
+SOURCE_COMMIT = "a7905e44830ebd7753ac08ab7c9df4757a859fe2"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/probe_results.md": "603668188e6fa399919f0ce0955b4a7ccef06a549286a43e3e43b6f8ba922203",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_probe.py": "f783f91f9b22084d457c2f96205cb838e9b5b9f6562547f6b746825150229da9",
@@ -29,6 +30,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_projective_frame_router/audit.md": "859cf7359a527782d72de8eae05efb96d28513b309701d929d53d917c7501e4c",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_projective_frame_router/verify.py": "2ca82d2787f27cd069a8814c5cf39b2f177b6b0b168d1c3b5730f504676f1250",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_projective_frame_router/verify_audit.py": "ac6b57be2bcfa49f271098e0687d82bba4edc3c3bc131880fc1268c7ac939e5e",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_parameter_curve_birational_singularity_router/statement.md": "a231366efc21c51023482d699695fb921276497de4619db373fc9fb1e0044cd3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_parameter_curve_birational_singularity_router/proof.md": "229a02b14cc6883536af9b73190b9d253314668127d942e2a64ce7707b99a199",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_parameter_curve_birational_singularity_router/audit.md": "8645a83f4f8693dac5c9ed1f7db9c6f33161da87cb85979b38d1c497cc00553d",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_parameter_curve_birational_singularity_router/verify.py": "83b250276c327f62708c77bb3668c92177c01ecf58dc9e3a7d3baf97fc026ce3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_tensor_rank_three_parameter_curve_birational_singularity_router/verify_audit.py": "df268b77a83763422ffb20aea5d134c05c7e811fa9466ba390ca572ebb18d0f2",
 }
 
 
@@ -213,6 +219,10 @@ class Formula:
     official_row_surplus: int = 7
     rank_three_repeated_floor: int = 183251937955
     rank_three_pair_floor: int = 30541989660
+    maximum_empty_columns: int = 1
+    normalization_degree: int = 1
+    local_delta_floor: int = 466406566180502462970
+    six_vertex_delta_floor: int = 2798439396930304829525
 
 
 def partition_probe() -> tuple[int, int, int]:
@@ -308,6 +318,7 @@ def replay(formula: Formula) -> dict[str, int]:
     onset = next(e for e in range(7, 20, 2) if 4 * (e - 2) > 3 * e)
     require(onset == formula.rank_two_onset, "rank-two onset")
     e = 183251937963
+    m = e - 2
     n = (3 * e - 7) // 2
     row_count = (9 * e - 7) // 2
     require(row_count - 3 * n == formula.official_row_surplus, "row surplus")
@@ -319,6 +330,27 @@ def replay(formula: Formula) -> dict[str, int]:
         "rank-three repeated-slope floor",
     )
     require(pair_floor == formula.rank_three_pair_floor, "rank-three pair floor")
+    n = (3 * e - 7) // 2
+    total_deficit = 2 * e - 7
+    maximum_empty = total_deficit // n
+    require(maximum_empty == formula.maximum_empty_columns, "empty columns")
+    require(2 * n > total_deficit, "two empty columns")
+    normalization_degree = max(
+        math.gcd(m, 3 * e),
+        math.gcd(m, 3 * e - 1),
+    )
+    require(
+        normalization_degree == formula.normalization_degree,
+        "normalization degree",
+    )
+    local_delta = pair_floor * (pair_floor - 1) // 2
+    require(local_delta == formula.local_delta_floor, "local delta floor")
+    low, extra = divmod(repeated_floor, 6)
+    six_delta = (
+        extra * (low + 1) * low // 2
+        + (6 - extra) * low * (low - 1) // 2
+    )
+    require(six_delta == formula.six_vertex_delta_floor, "six delta floor")
     return {
         "profiles": profile_count,
         "cases": cases,
@@ -329,6 +361,10 @@ def replay(formula: Formula) -> dict[str, int]:
         "official_surplus": row_count - 3 * n,
         "rank_three_repeated_floor": repeated_floor,
         "rank_three_pair_floor": pair_floor,
+        "maximum_empty_columns": maximum_empty,
+        "normalization_degree": normalization_degree,
+        "local_delta_floor": local_delta,
+        "six_vertex_delta_floor": six_delta,
     }
 
 
