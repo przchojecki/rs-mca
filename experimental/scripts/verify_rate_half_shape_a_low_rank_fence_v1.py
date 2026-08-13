@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-SOURCE_COMMIT = "d4bb2f4728b7653c52531091a228b19daf65b7da"
+SOURCE_COMMIT = "f8d4459a54e8df7ac69b7abcd39716da69c20199"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/probe_results.md": "603668188e6fa399919f0ce0955b4a7ccef06a549286a43e3e43b6f8ba922203",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_mds_gate/verify_probe.py": "f783f91f9b22084d457c2f96205cb838e9b5b9f6562547f6b746825150229da9",
@@ -40,6 +40,11 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_map_birationality/audit.md": "565e1b1273dd68c9677ccf3d1d96a0ca420a04fb75aaac1d5cb28e59f4975448",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_map_birationality/verify.py": "5baf7c7cba71326a0cad05236ee2b22a2ca0f54f44732351eabdacfa698e0413",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_parameter_map_birationality/verify_audit.py": "2af906340debdc5e37007256718197ef882eb783a3c5abbbd0ae37e55f2f6216",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_domain_map_birationality/statement.md": "7619908e46a0799f4ebf16400a302b4ce5a10933333abe8d18e13fa9fd537f67",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_domain_map_birationality/proof.md": "2a9014eb6199a12ad8be8335bc00c95cf34c401f61ccd22f63fe97dd136817eb",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_domain_map_birationality/audit.md": "4c17091d15435f9fb805cb46ad70573e91bef3f87f1afc000d451943aebdae18",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_domain_map_birationality/verify.py": "d20e6f3d69a1236dcbc0215152caca7430d01ee03b72159b21e4d0198ae7bfb0",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_all_excess_domain_map_birationality/verify_audit.py": "e8e47437f9c2b38a0bb4e86a60492f94e38cb657ffe92fc8323a5a32ce9723e7",
 }
 
 
@@ -228,6 +233,10 @@ class Formula:
     normalization_degree: int = 1
     local_delta_floor: int = 466406566180502462970
     six_vertex_delta_floor: int = 2798439396930304829525
+    residual_norm_degree: int = 366503875919
+    maximum_outside_fiber_degree: int = 1
+    domain_complete_gcd: int = 1
+    domain_one_outside_gcd: int = 1
 
 
 def partition_probe() -> tuple[int, int, int]:
@@ -356,6 +365,24 @@ def replay(formula: Formula) -> dict[str, int]:
         + (6 - extra) * low * (low - 1) // 2
     )
     require(six_delta == formula.six_vertex_delta_floor, "six delta floor")
+    residual_norm = 3 * e * n - row_count * m
+    require(residual_norm == formula.residual_norm_degree, "residual norm")
+    require(residual_norm == 2 * m - 3, "residual norm identity")
+    maximum_outside = residual_norm // m
+    require(
+        maximum_outside == formula.maximum_outside_fiber_degree,
+        "outside fiber-degree cap",
+    )
+    domain_complete_gcd = math.gcd(n, row_count)
+    domain_one_outside_gcd = math.gcd(n, row_count + 1)
+    require(
+        domain_complete_gcd == formula.domain_complete_gcd,
+        "domain complete gcd",
+    )
+    require(
+        domain_one_outside_gcd == formula.domain_one_outside_gcd,
+        "domain one-outside gcd",
+    )
     return {
         "profiles": profile_count,
         "cases": cases,
@@ -370,6 +397,10 @@ def replay(formula: Formula) -> dict[str, int]:
         "normalization_degree": normalization_degree,
         "local_delta_floor": local_delta,
         "six_vertex_delta_floor": six_delta,
+        "residual_norm_degree": residual_norm,
+        "maximum_outside_fiber_degree": maximum_outside,
+        "domain_complete_gcd": domain_complete_gcd,
+        "domain_one_outside_gcd": domain_one_outside_gcd,
     }
 
 

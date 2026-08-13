@@ -2453,6 +2453,56 @@ degree-`m` plane curve in rank three. In rank at least four, `(231)` is a
 new exact structural invariant but does not control image degree,
 singularities, or linear normality.
 
+## 49. All-rank domain-map birationality
+
+The domain coefficient map is birational as well. For any minimal tensor
+presentation `(228)`, put
+
+```text
+b:P^1_X -> P^(r-1),       b(X)=[B_0(X):...:B_(r-1)(X)]. (232)
+```
+
+It is basepoint-free. A common basepoint in `U_0` would give a zero row;
+one outside `U_0` would consume at least `3e` from the residual homogeneous
+norm divisor, which has degree only `2e-7`. Exact pure split fibers give
+`b^*O(1)=O(n)`, so the degree `d_X` onto the image divides `n`.
+
+Fix a normalization fiber through `x in U_0`. Every one of the `m`
+incident parameter hyperplanes contains its complete scheme-theoretic
+fiber. The actual-support root at every `U_0` point is simple, so inside
+points are unramified. An outside point of ramification index `h` is rooted
+to order at least `h` by all `m` incident fibers and therefore consumes at
+least `mh` from
+
+```text
+N(X)/L_U0(X)^m.
+```
+
+The exact residual degree is
+
+```text
+3en-Rm=2e-7=2m-3.                                  (233)
+```
+
+Thus the total scheme-theoretic outside fiber degree is at most one. The
+fibers partition `U_0`, giving
+
+```text
+d_X | R       or       d_X | (R+1).                (234)
+```
+
+Officially `R=3n+7` and `n` is odd, so
+
+```text
+gcd(n,R)=gcd(n,7)=1,
+gcd(n,R+1)=gcd(n,8)=1.                             (235)
+```
+
+Hence `d_X=1`. Both source lines are now the normalizations of their
+projective coefficient images in every rank. Repeated row types can occur
+only as distinct branches over singular image points; `(235)` does not
+bound their number or exclude such singularities.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -2520,3 +2570,5 @@ degree-`m` rational plane curve and quantifies six enormous singular
 vertices; it does not prove that this singular curve cannot occur.
 Section 48 promotes the birationality statement to every tensor rank at
 least two; it does not classify the higher-dimensional coefficient image.
+Section 49 proves the dual domain coefficient map is birational in every
+rank; repeated row types at singular image points remain possible.

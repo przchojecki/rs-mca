@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T all-rank domain-map birationality
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_shape_a_low_rank_fence_v1.py`, and
+  `experimental/agents-log.md`.
+- **Status:** PROVED all-rank structural reduction; no Shape-A exclusion.
+- **What is being added:** Each unit of domain coefficient-map fiber degree
+  outside `U_0` consumes at least `m` from an exact residual norm of degree
+  `2m-3`. At most one unit is missing, and the two official gcd alternatives
+  force the domain map to be birational in every tensor rank.
+- **How it is useful:** Both coefficient maps are now normalization maps.
+  Repeated row types must be treated as branches over image singularities,
+  not as a many-to-one cover.
+- **What to do next:** Combine the two birational images with the common
+  incidence biform, source/Hankel equations, or singularity budgets.
+
 ### 2026-08-13 - Lane-T all-rank parameter-map birationality
 
 - **Agent/model:** AllenGrahamHart / Codex.
