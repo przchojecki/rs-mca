@@ -3428,6 +3428,62 @@ and
 \path{experimental/audit_mca_full_lift_common_factor_mass_router_v1.py}.
 \end{remark}
 
+\begin{corollary}[Common-factor weighted-degree bound]
+\label{cor:full-lift-common-factor-weighted-degree}
+In the setting of Corollary~\ref{cor:full-lift-common-factor-mass}, the
+primitive full gcd satisfies
+\[
+ \operatorname{wdeg}_{(1,5,5)}P\le217,
+ \qquad \deg_{Y,Z}P\le43.                       \tag{WD1}
+\]
+Consequently, if $\deg_{Y,Z}P\ge2$, then at least $5083$ selected
+degree-five polynomial pairs lie on $P$, and
+\[
+ \#\{x\in E:P(x,r_0(x),r_1(x))=0\}\ge126266. \tag{WD2}
+\]
+Thus this higher-degree branch has at most $3971$ exceptional inside
+coordinates.
+\end{corollary}
+
+\begin{proof}
+Work over the algebraic closure.  Gauss's lemma makes the primitive
+representative $P$ a polynomial divisor of every member of $I_{264}$.  If
+$w=\operatorname{wdeg}_{(1,5,5)}P$, division by $P$ embeds the
+at-least-$938$-dimensional kernel into weighted degree at most $264-w$.
+The exact weighted-monomial count
+\[
+ M(D)=\sum_{s=0}^{\lfloor D/5\rfloor}(s+1)(D-5s+1)
+\]
+satisfies
+\[
+ M(46)=935<938\le990=M(47).
+\]
+Hence $264-w\ge47$, proving $w\le217$ and
+$\deg_{Y,Z}P\le\lfloor217/5\rfloor=43$.
+
+In the higher-degree branch, the factor-mass bound is minimized at $d=2$:
+\[
+ 7583-(52-d)^2\ge7583-50^2=5083.
+\]
+Applying the same core-incidence inequality as in
+Corollary~\ref{cor:full-lift-common-factor-mass} gives
+\[
+ \left\lceil
+ \frac{5083\cdot807^2}{807+5(5083-1)}
+ \right\rceil=126266,
+\]
+which proves (WD2).
+\end{proof}
+
+\begin{remark}
+The full gcd in this corollary may be reducible.  No irreducible-component
+classification or safety claim is implicit.  The exact threshold replay and
+independent enumeration are
+\path{experimental/verify_mca_full_lift_common_factor_weighted_degree_bound_v1.py}
+and
+\path{experimental/audit_mca_full_lift_common_factor_weighted_degree_bound_v1.py}.
+\end{remark}
+
 \begin{corollary}[Linear factor gives a projective star]
 \label{cor:full-lift-linear-factor-projective-star}
 In the setting of Corollary~\ref{cor:full-lift-common-factor-mass}, suppose

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne common-factor weighted-degree bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_weighted_degree_bound_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_weighted_degree_bound_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_weighted_degree_bound_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / WEIGHTED-DEGREE BOUND.
+- **What is being added:** Kernel quotient dimension and the exact
+  `M(46)<938<=M(47)` threshold force full-gcd weighted degree at most
+  217 and `(Y,Z)` degree at most 43.
+- **How it is useful:** The higher-degree branch now carries at least 5,083
+  sections and 126,266 inside factor points, leaving at most 3,971
+  exceptions.
+- **What to do next:** Classify the possibly reducible degree-2--43 gcd or
+  pay the separate MCA projective-star population.
+
 ### 2026-08-13 - Mersenne linear-factor projective-star router
 
 - **Agent/model:** Codex.
