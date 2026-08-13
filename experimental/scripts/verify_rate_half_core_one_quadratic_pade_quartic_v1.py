@@ -11,7 +11,7 @@ from math import comb, gcd
 from pathlib import Path
 
 
-SOURCE_COMMIT = "7d19de99ced580b0b21cf8aca20e1d8ca85c08ee"
+SOURCE_COMMIT = "5d46985dff2c42dbab5b78794c353ea14c47d447"
 SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/statement.md": "0ef4e2eda6c08df7ef172c7f4e3e5e12ad8832644f0171cc8d92ec395819f193",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_paired_all_excess_residual_fiber_factorization/proof.md": "e35416d3950a743d4466f32c6c360c618087046377978b1e86f5fff8d467bc62",
@@ -107,6 +107,16 @@ SOURCE_HASHES = {
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_global_subgroup_genus_floor/proof.md": "3625dc1fbc95e95b2a85a660c960a0e134adef59077480156390f63e932541fa",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_residual_four_cycle_rigidity/statement.md": "5ac92a9a0af5e414370bc78e3110db3c17b870009a5a578612fbcaf6d08e3ef9",
     "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_residual_four_cycle_rigidity/proof.md": "707af9b50c3e6afe2c6a544a12cd25b919bdf126718070454d370c40811e4ca6",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/audit.md": "466e67e2defabcb366e18e8b8ac097228bd1ab32bf171132fbd912079f82f943",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/claim_contract.md": "21d2d0dd163993337aaac760c2bbd37611ea4611a3875a4759979a0ba693fe66",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/dependency_subdag.md": "09a565bac59a2cbc9dd02a65b155f49e07b5ce8ca55024e0f6504ec62d37dfad",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/node.json": "cdb97c1c9401087f2a3433c953dd2b25b3d250c53878597d0d31ca7cad6f4078",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/proof.md": "dd1d56ba2e94e3bc7779fc0c31c16b7cee907860e1d8760b9f93732b02b1e018",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/provenance.md": "d9840068b1bf74db81add33192ccc71c76ef6a3902e9c02711b4399c5597aa2b",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/result.md": "5368e124c4a47ff6e65ec9a2a4f7e312c656942fe76c19569bcb63704379b07b",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/statement.md": "2ff8aa7df67b18c5b3e724f329f0c25f51c92460ea2796383e0ad940fc637fa5",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/verify.py": "cdad923c947d7759d8096156e4c1b88f7515be07b25138cbdf5af9d8aa4dbad3",
+    "background/nodes/rate_half_ca_hankel_a1_first_degree_core_one_quadratic_gap_four_double_root_nonreduced_unshared_collision_shape_a_excess_norm_omitted_recurrence_flag/verify_audit.py": "43eabea2562251854a2cbac17d22d8592c1e13fc2703146ed8c587e670268386",
 }
 
 
@@ -234,6 +244,11 @@ class Formula:
     collision_shape_a_residual_section_dimension: int = 1
     collision_shape_a_second_modification_constant_rank: int = 0
     collision_shape_a_second_modification_negative_ceiling: int = -549755813885
+    collision_shape_a_source_row_count: int = 824633720830
+    collision_shape_a_source_locator_degree: int = 549755813887
+    collision_shape_a_omitted_recurrence_length: int = 274877906941
+    collision_shape_a_offline_slope_count: int = 549755813889
+    collision_shape_a_fixture_layer_cake: int = 3
 
 
 def finite_field_rank(matrix: list[list[int]], prime: int) -> int:
@@ -1591,6 +1606,124 @@ def verify_collision_shape_a_residual_four_cycle_rigidity(
     return 12
 
 
+def verify_collision_shape_a_omitted_recurrence_flag(formula: Formula) -> int:
+    """Replay the exact degree-drop/omitted-recurrence layer cake."""
+    e = (2**39 + 1) // 3
+    p = (3 * e - 1) // 2
+    rows = 3 * p - 2
+    locator_degree = 2 * p - 1
+    recurrence_length = p - 3
+
+    require(
+        rows == formula.collision_shape_a_source_row_count,
+        "shape-A source row count",
+    )
+    require(
+        locator_degree == formula.collision_shape_a_source_locator_degree,
+        "shape-A source locator degree",
+    )
+    require(
+        recurrence_length == formula.collision_shape_a_omitted_recurrence_length,
+        "shape-A omitted recurrence length",
+    )
+    require(
+        rows - locator_degree - 2 == recurrence_length,
+        "shape-A coefficient/recurrence index weld",
+    )
+    require(
+        3 * e == formula.collision_shape_a_offline_slope_count,
+        "shape-A off-line slope count",
+    )
+
+    prime = 101
+    points = tuple(range(1, 9))
+
+    def multiply(left: list[int], right: list[int]) -> list[int]:
+        product = [0] * (len(left) + len(right) - 1)
+        for i, a in enumerate(left):
+            for j, b in enumerate(right):
+                product[i + j] = (product[i + j] + a * b) % prime
+        return product
+
+    locator = [1]
+    for point in points:
+        locator = multiply(locator, [-point % prime, 1])
+
+    derivatives = []
+    for point in points:
+        quotient = [0] * (len(locator) - 1)
+        carry = locator[-1]
+        quotient[-1] = carry
+        for index in range(len(locator) - 2, 0, -1):
+            carry = (locator[index] + point * carry) % prime
+            quotient[index - 1] = carry
+        require(
+            (locator[0] + point * carry) % prime == 0,
+            "shape-A fixture synthetic remainder",
+        )
+        derivative = sum(
+            coefficient * pow(point, index, prime)
+            for index, coefficient in enumerate(quotient)
+        ) % prime
+        require(derivative != 0, "shape-A fixture distinct points")
+        derivatives.append(derivative)
+
+    fixture_d = 3
+    fixture_n = len(points) - fixture_d - 2
+    expected_drops = (2, 1, 0)
+    for slope, expected_drop in zip((10, 11, 12), expected_drops):
+        coefficients = [
+            7,
+            5,
+            (slope - 10) % prime,
+            (slope - 10) * (slope - 11) % prime,
+        ]
+        while len(coefficients) > 1 and coefficients[-1] == 0:
+            coefficients.pop()
+        require(
+            fixture_n - (len(coefficients) - 1) == expected_drop,
+            "shape-A fixture degree drop",
+        )
+
+        weights = []
+        for point, derivative in zip(points, derivatives):
+            value = sum(
+                coefficient * pow(point, index, prime)
+                for index, coefficient in enumerate(coefficients)
+            ) % prime
+            weights.append(value * pow(derivative, prime - 2, prime) % prime)
+        moments = tuple(
+            sum(
+                weight * pow(point, power, prime)
+                for weight, point in zip(weights, points)
+            ) % prime
+            for power in range(fixture_d + 1 + fixture_n)
+        )
+        require(
+            all(value == 0 for value in moments[: fixture_d + 1]),
+            "shape-A fixture forced moments",
+        )
+        zero_run = 0
+        for value in moments[fixture_d + 1 :]:
+            if value:
+                break
+            zero_run += 1
+        require(zero_run == expected_drop, "shape-A fixture recurrence flag")
+
+    layer_cake = sum(
+        1
+        for drop in expected_drops
+        for level in range(1, fixture_n + 1)
+        if drop >= level
+    )
+    require(
+        layer_cake == sum(expected_drops)
+        == formula.collision_shape_a_fixture_layer_cake,
+        "shape-A fixture nested-gcd layer cake",
+    )
+    return 18
+
+
 def verify_truncated_source_separation_fence() -> int:
     prime = 101
     degree = 13
@@ -1941,7 +2074,7 @@ def replay(formula: Formula) -> dict[str, int]:
     )
     require(formula.automatic_source_separation == 0, "separation fence failed")
     require(len(SOURCE_COMMIT) == 40, "source commit pin malformed")
-    require(len(SOURCE_HASHES) == 94, "source hash inventory changed")
+    require(len(SOURCE_HASHES) == 104, "source hash inventory changed")
     require(
         all(len(digest) == 64 for digest in SOURCE_HASHES.values()),
         "source hash malformed",
@@ -1968,6 +2101,7 @@ def replay(formula: Formula) -> dict[str, int]:
     checks += verify_collision_shape_a_componentwise_degree_floor(formula)
     checks += verify_collision_shape_a_global_genus_floor(formula)
     checks += verify_collision_shape_a_residual_four_cycle_rigidity(formula)
+    checks += verify_collision_shape_a_omitted_recurrence_flag(formula)
     checks += verify_truncated_source_separation_fence()
 
     return {
@@ -2150,6 +2284,21 @@ def replay(formula: Formula) -> dict[str, int]:
         ),
         "collision_shape_a_second_modification_negative_ceiling": (
             formula.collision_shape_a_second_modification_negative_ceiling
+        ),
+        "collision_shape_a_source_row_count": (
+            formula.collision_shape_a_source_row_count
+        ),
+        "collision_shape_a_source_locator_degree": (
+            formula.collision_shape_a_source_locator_degree
+        ),
+        "collision_shape_a_omitted_recurrence_length": (
+            formula.collision_shape_a_omitted_recurrence_length
+        ),
+        "collision_shape_a_offline_slope_count": (
+            formula.collision_shape_a_offline_slope_count
+        ),
+        "collision_shape_a_fixture_layer_cake": (
+            formula.collision_shape_a_fixture_layer_cake
         ),
         "layer_a_rank": formula.layer_a_rank,
         "layer_a_nullity": formula.layer_a_nullity,

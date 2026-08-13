@@ -1781,6 +1781,105 @@ the locator curve. It turns the four-core into a precise source rigidity
 test: a second independently constructed residual section would immediately
 contradict `(166)`, but the four residual units alone supply no such section.
 
+## 40. The excess norm is an omitted-recurrence flag
+
+The concentrated norm from Section 35 admits an exact source/Hankel
+description. Retain shape A and put
+
+```text
+R=|U_0|=3p-2,       d=2p-1=3e-2,
+n=p-3=(3e-7)/2,     R-d-2=n.                       (167)
+```
+
+Write the source moments and normalized locator as
+
+```text
+h_j(t)=sum_(x in U_0) omega_x(t)x^j,
+Q(t,X)=sum_(i=0)^d q_i(t)X^i,                     (168)
+```
+
+and define the omitted recurrence defects
+
+```text
+R_j(t)=sum_(i=0)^d q_i(t)h_(i+j)(t).              (169)
+```
+
+For an off-line supported slope `delta`, let
+
+```text
+q_delta=n-deg_X G(delta,X).                        (170)
+```
+
+Then, for every `0<=r<n`,
+
+```text
+q_delta>=r+1
+ iff R_(d+1)(delta)=...=R_(d+1+r)(delta)=0.        (171)
+```
+
+Indeed, dual MDS gives polynomials
+
+```text
+H_x(t)=omega_x(t)Q(t,x)/Lambda(t)
+      =G(t,x)/L_U0'(x),
+sum_x H_x(t)x^j=0                  (0<=j<=d).       (172)
+```
+
+Lagrange interpolation therefore writes
+
+```text
+G(t,X)=sum_x H_x(t)L_U0(X)/(X-x).                  (173)
+```
+
+For `k>=0`, the coefficient of `X^(R-1-k)` in
+`L_U0(X)/(X-x)` is a monic degree-`k` polynomial in `x`. Consequently the
+top coefficients of `G` are unitriangular in the first omitted moments:
+
+```text
+[X^(n-r)]G
+ =S_(d+1+r)+sum_(j=d+1)^(d+r) a_(r,j)S_j,
+S_j=sum_x H_x x^j.                                 (174)
+```
+
+Multiplying `(172)` by `x^j` and summing gives
+
+```text
+Lambda(t)S_j(t)=R_j(t).                            (175)
+```
+
+The scalar `Lambda(delta)` is nonzero off-line, so `(174)--(175)` prove
+`(171)`. Every specialized fiber is nonzero, hence the initial zero run has
+length exactly `q_delta`.
+
+Let `H_off(t)` be the squarefree polynomial whose roots are all `3e`
+off-line supported slopes, and put
+
+```text
+C_r=gcd(H_off,R_(d+1),...,R_(d+1+r))       (monic).
+                                                               (176)
+```
+
+Squarefreeness makes `deg C_r` the number of slopes with
+`q_delta>=r+1`. The integer layer-cake identity and `(148)` now give
+
+```text
+sum_delta q_delta=sum_(r=0)^(n-1)deg C_r,
+deg T=e-sum_(r=0)^(n-1)deg C_r.                   (177)
+```
+
+In particular, the first degree-drop locus is exactly the off-line root
+set of
+
+```text
+R_(d+1)=Lambda(t)[X^n]G(t,X).                     (178)
+```
+
+This couples the concentrated excess norm directly to the retained
+source/Hankel equations. It does not bound the nested gcd flag. A shape-A
+exclusion still requires a theorem showing that the flag in `(176)` is
+incompatible with the scalar weld, the collision jets, or the exact excess
+sum.
+
 ## Nonclaims
 
 This packet does not exclude either quadratic root arm, prove a live
@@ -1823,3 +1922,5 @@ claim. Section 38 forces a global shape-A genus floor but supplies no
 source-derived genus upper bound and therefore does not exclude shape A.
 Section 39 identifies the residual four-cycle with `2B` and proves it rigid;
 it does not construct the second section needed to exclude shape A.
+Section 40 identifies every fiber degree drop and `deg T` with a nested
+omitted-recurrence gcd flag; it does not bound that flag or exclude shape A.

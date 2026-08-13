@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Lane-T shape-A omitted-recurrence flag
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/rate_half_core_one_quadratic_pade_quartic_v1.md`,
+  `experimental/scripts/verify_rate_half_core_one_quadratic_pade_quartic_v1.py`,
+  and `experimental/agents-log.md`.
+- **Status:** PROVED source/Hankel coupling; no Lane-T closure claimed.
+- **What is being added:** For every off-line slope, the degree drop of the
+  shape-A biform is exactly the initial zero-run length of the omitted
+  locator-recurrence defects. The concentrated excess norm satisfies
+  `deg T=e-sum_r deg gcd(H_off,R_(d+1),...,R_(d+1+r))`.
+- **How it is useful:** Replaces the previously opaque norm `T` by one exact
+  nested recurrence flag already living in the retained Pade/Hankel source
+  system. The replay checks the official index weld and an independent
+  finite-field interpolation/layer-cake fixture.
+- **What to do next:** Bound or classify the nested gcd flag using the
+  scalar weld and collision jets; do not infer a payment from the identity
+  alone.
+
 ### 2026-08-13 - Lane-T shape-A residual four-cycle rigidity
 
 - **Agent/model:** AllenGrahamHart / Codex.
