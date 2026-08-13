@@ -3484,6 +3484,67 @@ and
 \path{experimental/audit_mca_full_lift_common_factor_weighted_degree_bound_v1.py}.
 \end{remark}
 
+\begin{corollary}[Base-field component descent]
+\label{cor:full-lift-common-factor-base-field-descent}
+Retain the higher-degree branch of
+Corollary~\ref{cor:full-lift-common-factor-weighted-degree}.  Over the
+deployed Mersenne field
+\[
+ \F=\F_{p^4},\qquad p=2^{31}-1,
+\]
+let $P_{\rm bf}$ be the product of the geometric irreducible components of
+$P$ that are individually defined over $\F(X)$.  At least $5079$ selected
+polynomial pairs lie on $P_{\rm bf}$, and one absolutely irreducible
+$\F(X)$-component contains at least $132$ selected pairs.  Moreover,
+\[
+ \#\{x\in E:P_{\rm bf}(x,r_0(x),r_1(x))=0\}\ge126263. \tag{FD1}
+\]
+Thus at most $3974$ inside coordinates are exceptional to the base-field
+component union.
+\end{corollary}
+
+\begin{proof}
+Factor the radical of $P$ geometrically as $\prod_iR_i$, with
+$\delta_i=\deg_{Y,Z}R_i$ and $\sum_i\delta_i\le d\le43$.  Since
+$p>d$, a component field of definition cannot have nontrivial purely
+inseparable degree.  If $R_i$ is not defined over $\F(X)$, it therefore
+has a distinct conjugate $R_i^\sigma$.  Every $\F(X)$-rational point of
+$R_i$ also lies on $R_i^\sigma$, so Bezout bounds their number by
+$\delta_i^2$.
+
+Assign each selected pair outside the base-field component union to one
+non-base-field component containing it.  At most
+\[
+ \sum_{R_i\ {m not\ over}\ \F(X)}\delta_i^2\le d^2
+\]
+pairs are assigned.  Hence the retained number is at least
+\[
+ 7583-(52-d)^2-d^2=4879+104d-2d^2.
+\]
+This concave expression has endpoint values $5079$ and $5653$ on
+$2\le d\le43$, proving the uniform $5079$ bound.  There are at most $d$
+components, and exact integer minimization gives
+\[
+ \min_{2\le d\le43}
+ \left\lceil\frac{7583-(52-d)^2-d^2}{d}\right\rceil=132.
+\]
+Finally, the core-incidence bound at $t=5079$ gives
+\[
+ \left\lceil
+ \frac{5079\cdot807^2}{807+5(5079-1)}
+ \right\rceil=126263,
+\]
+which proves (FD1).
+\end{proof}
+
+\begin{remark}
+This is a base-field normalization, not an irreducibility or split-pencil
+theorem.  The exact degree scan and independent degree-partition audit are
+\path{experimental/verify_mca_full_lift_common_factor_base_field_descent_v1.py}
+and
+\path{experimental/audit_mca_full_lift_common_factor_base_field_descent_v1.py}.
+\end{remark}
+
 \begin{corollary}[Linear factor gives a projective star]
 \label{cor:full-lift-linear-factor-projective-star}
 In the setting of Corollary~\ref{cor:full-lift-common-factor-mass}, suppose

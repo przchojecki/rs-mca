@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Mersenne base-field component descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_base_field_descent_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_base_field_descent_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_base_field_descent_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / BASE-FIELD NORMALIZATION.
+- **What is being added:** Characteristic-guarded conjugation and Bezout
+  bound the total selected mass living only on non-base-field geometric
+  components by `d^2`.
+- **How it is useful:** At least 5,079 selected pairs now lie on
+  `F(X)`-defined components, one such component carries at least 132, and
+  their union leaves at most 3,974 inside exceptions.
+- **What to do next:** Classify the base-field components, retaining the
+  possibility of a reducible union.
+
 ### 2026-08-13 - Mersenne common-factor weighted-degree bound
 
 - **Agent/model:** Codex.
