@@ -1530,6 +1530,141 @@ The endpoints \(z=0\) and \(z=K-s\) are precisely the two terms in
 \eqref{eq:proper-subspace-mca}.
 \end{proof}
 
+\begin{theorem}[Support-transverse affine-span MCA compiler]
+\label{thm:support-transverse-affine-span-mca}
+Retain the code, received line, affine explanation space, and parameters of
+\cref{thm:proper-subspace-mca}, with \(n\ge m=K+w\), \(w>0\), and
+\(1\le s\le K\).  Let \(\varnothing\ne Z\subseteq\F\) be a set of
+distinct slopes.  Suppose that for every \(\gamma\in Z\) there are a
+codeword \(c_\gamma\in\mathcal A\) and an exact \(m\)-set
+\(S_\gamma\subseteq D\) such that \(r_\gamma=c_\gamma\) on
+\(S_\gamma\), while no pair in \(C^2\) explains \((r_0,r_1)\)
+simultaneously on that same set.  Define
+\begin{equation}
+ \theta_0=
+ \min_{\substack{\gamma\in Z\\ b\in C'}}
+ |\{x\in S_\gamma:r_1(x)\ne b(x)\}|,
+ \qquad
+ \theta=\min\{\theta_0,w+1\}.
+ \label{eq:support-local-mca-theta}
+\end{equation}
+Then \(\theta\ge1\), and
+\begin{equation}
+ |Z|\le
+ \left\lfloor
+ \max\left\{
+ \frac{n^{\underline{s+1}}}
+      {m\,\theta\,(w+1)^{\overline{s-1}}},
+ \frac{(n-K+s)^{\underline{s+1}}}
+      {\theta\,(w+1)^{\overline s}}
+ \right\}
+ \right\rfloor .
+ \label{eq:support-local-proper-subspace-mca}
+\end{equation}
+The first rising product is empty when \(s=1\).  If \(e,L\) are the
+global direction-coset quantities of \cref{thm:proper-subspace-mca}, then
+\(\theta\ge L\).  Thus \eqref{eq:support-local-proper-subspace-mca}
+refines that theorem whenever the selected supports have more local
+transversality than is forced by the global direction distance.
+\end{theorem}
+
+\begin{proof}
+Choose a basis \(c_1,\ldots,c_s\) of \(C'\) and use the same incident
+normal count as in \cref{thm:proper-subspace-mca}.  The lower-dimensional
+proper-normal-subspace argument is unchanged and supplies the factors
+\((w+1)^{\overline{s-1}}\).  At the final step, let
+\((\delta,\mu)\) span the annihilator of the selected \(s\)-space.  If
+\(\delta=0\), the ordinary root bound leaves at least
+\(w+1\ge\theta\) incident choices outside it.  If \(\delta\ne0\), put
+\(b=\delta^{-1}\sum_i\mu_i c_i\in C'\).  Every point of the actual
+support \(S_\gamma\) on which \(r_1\ne b\) has normal outside the
+selected space, so \eqref{eq:support-local-mca-theta} supplies at least
+\(\theta\) final choices.  Pair noncontainment gives \(\theta_0\ge1\):
+if \(r_1=b\) on \(S_\gamma\), then
+\((c_\gamma-\gamma b,b)\) explains \((r_0,r_1)\) there.
+
+Keeping the zero-normal parameters $z,g$ from the preceding proof, every
+selected point therefore owns at least
+\((m-g)\theta(w+1)^{\overline{s-1}}\) ordered bases, while there are at
+most $(n-z)^{\underline{s+1}}$ ordered independent coordinate tuples.
+For fixed $z$, the ratio is largest at $g=z$; its successive ratio in
+$z$ again has the sign of $n-(s+1)m+sz$.  The two endpoints
+$z=0,K-s$ give \eqref{eq:support-local-proper-subspace-mca}.
+Finally, for every \(b\in C'\subseteq C\),
+\[
+ |\{x\in S_\gamma:r_1(x)\ne b(x)\}|
+\ge \wt(r_1-b)-(n-m)\ge e-(n-m).
+\]
+Moreover \(e\le n-K\), so \(e-(n-m)\le w\).  If this difference is at
+most one, then $L=1\le\theta$; otherwise the preceding inequality and
+the cap $w+1$ give \(\theta\ge e-(n-m)=L\).  Hence \(\theta\ge L\).
+\end{proof}
+
+\begin{theorem}[Support-wise MCA error-rank gauge]
+\label{thm:mca-error-rank-gauge}
+Let \(C\le\F^D\) be a linear code, let
+\(r_\gamma=r_0+\gamma r_1\), and let \(Z\) contain at least two distinct
+slopes.  For every \(\gamma\in Z\), choose \(h_\gamma\in C\) and a
+support \(S_\gamma\) on which \(r_\gamma=h_\gamma\), with no
+simultaneous \(C^2\)-explanation of \((r_0,r_1)\) on that same support.
+Put
+\[
+ e_\gamma=r_\gamma-h_\gamma,
+ \qquad
+ a=\dim\Span\{e_\gamma-e_{\gamma_0}:\gamma\in Z\}.
+\]
+Then \(a\ge1\), and there is a codeword \(b\in C\) such that the
+two-way gauge
+\begin{equation}
+ r'_0=r_0,\qquad r'_1=r_1-b,
+ \qquad h'_\gamma=h_\gamma-\gamma b
+ \label{eq:mca-error-rank-gauge}
+\end{equation}
+preserves every finite slope, error word, agreement support, and
+same-support containment predicate, while
+\[
+ \dim\operatorname{Aff}\{h'_\gamma:\gamma\in Z\}=a-1.
+\]
+This is a reversible codeword translation, not identity of the received-line
+representative.
+\end{theorem}
+
+\begin{proof}
+First \(r_1\notin C\).  Otherwise, on every selected support the pair
+\((h_\gamma-\gamma r_1,r_1)\) would explain \((r_0,r_1)\), contrary
+to the hypothesis.  Fix \(\gamma_0\), and consider
+\[
+ E=\Span\{(\gamma-\gamma_0,h_\gamma-h_{\gamma_0}):\gamma\in Z\}
+ \le\F\oplus C.
+\]
+The map \((\delta,c)\mapsto\delta r_1-c\) is injective on \(E\): a
+kernel element with \(\delta\ne0\) would put \(r_1\) in \(C\), while
+\(\delta=0\) forces \(c=0\).  Its image is the affine error-difference
+space, so \(\dim E=a\).  The slope projection on \(E\) is nonzero;
+choose \((1,b)\in E\).  Under \eqref{eq:mca-error-rank-gauge}, the
+explanation differences are the image of \(E\) under
+\((\delta,c)\mapsto c-\delta b\), namely the kernel of the slope
+projection.  Their dimension is \(a-1\).
+
+The identity
+\[
+ r_0+\gamma(r_1-b)-(h_\gamma-\gamma b)
+ =r_0+\gamma r_1-h_\gamma
+\]
+proves error and support preservation.  Subtracting \(b\) from the second
+codeword of a simultaneous explanation, and adding it back for the inverse,
+proves preservation of same-support containment.
+\end{proof}
+
+\begin{remark}[Relation to the full-explanation lifted-rank split]
+When the selected explanations have full affine rank (K), the lifted pair
+space (E) above has dimension (K) or (K+1).  The gauge theorem gives
+explanation rank (K-1) in the first branch and (K) in the second.  Thus it
+is the arbitrary-rank existence adapter underlying the two numerical cases
+of \cref{thm:full-explanation-lifted-rank-dichotomy} below.  That theorem is
+sharper at full rank: it classifies every gauge, rather than selecting one.
+\end{remark}
+
 \begin{remark}[Exact first shortened-row calibration]
 For a shortened row \((n,K,m)=(R+K,K,d+K)\), the last factor is
 \(L=\max\{1,e-(R-d)\}\le d\).  At the first residual dimensions from the
@@ -7456,15 +7591,102 @@ in \cref{prop:q-exact-target} gives the claim; the next-dimension values
 mark the limit of the recursive compiler.
 \end{proof}
 
-\begin{remark}[Retraction of the active affine-span MCA payments]
+\begin{remark}[Retraction of the former active affine-span MCA payments]
 The former KoalaBear and Mersenne-31 MCA affine-span payments used the
 refuted ordered-basis denominator of
 \cref{prop:affine-span-mca-counterexample}.  Their falling- and
 rising-product evaluations were arithmetically correct evaluations of that
-expression, but they are not upper bounds for MCA slope families.  No
-affine-rank lower wall for a surviving MCA chart is claimed here.  The
-ordinary affine-span list payments immediately above are unaffected.
+expression, but they are not upper bounds for MCA slope families.  They
+therefore imply no affine-rank lower wall for a surviving MCA chart.  The
+ordinary affine-span list payments immediately above are unaffected.  The
+next proposition gives a distinct conditional wall from the repaired
+support-transverse theorem, with its deleted stratum and local margin stated
+explicitly.
 \end{remark}
+
+\begin{proposition}[Conditional post-deletion affine-error router on KoalaBear]
+\label{prop:kb-post-deletion-affine-error-router}
+Use the KoalaBear parameters
+\[
+ (n,k,m,w,B_*)=
+ (2097152,1048576,1116048,67472,274980728111395087).
+\]
+On one received line, let \(Z_{\rm bad}\) be the finite support-wise
+MCA-bad slopes and define the intrinsic near-rational stratum
+\[
+ N=\{\gamma\in Z_{\rm bad}:\min_{c\in C}\wt(r_\gamma-c)\le w\},
+ \qquad Z=Z_{\rm bad}\setminus N.
+\]
+Suppose \(|N|\le2w=134944\), as supplied under the printed KoalaBear
+hypotheses by the separately pinned two-anchor near-rational theorem.  Its
+guards hold here because $w\ge1$ and
+$3w=202416\le1048576=n-k$.
+For every \(\gamma\in Z\), choose one exact same-support-noncontained
+\(m\)-record, and let \(a\) be the affine rank of the resulting error
+words.  If \(a\le9\), then
+\[
+ |Z_{\rm bad}|\le
+ 110390969172173096+134944
+ =110390969172308040<B_*,
+\]
+with slack \(164589758939087047\).
+
+For \(|Z|\ge2\), apply \cref{thm:mca-error-rank-gauge} and recompute the
+margin \(\theta\) of \eqref{eq:support-local-mca-theta} in the translated
+explanation direction space.  At error ranks \(a=10,11,12\), the line is
+also paid whenever respectively
+\[
+ \theta\ge13,\qquad \theta\ge388,
+ \qquad \theta\ge12050.
+\]
+Consequently an over-budget line forces \(a\ge10\) for every selected
+post-deletion family.  At ranks \(10,11,12\), every such gauge emits an
+actual selected support and a codeword direction agreeing with the original
+\(r_1\) on all but at most respectively \(12,387,12049\) support
+coordinates.
+\end{proposition}
+
+\begin{proof}
+The exact-record selection is legitimate.  Given a bad witness
+\((S,c)\) with \(|S|\ge m\), suppose every \(m\)-subset of \(S\) were
+pair-contained.  Adjacent \(m\)-subsets overlap in
+\(m-1\ge K\) coordinates, so Reed--Solomon uniqueness makes their
+explaining pairs identical.  Connectedness of the \(m\)-subset Johnson
+graph would then glue one pair explaining all of \(S\), contradicting
+badness.  Hence some exact \(m\)-subwitness is pair-noncontained.
+
+If \(|Z|\le1\), the displayed bound is immediate.  Otherwise
+\cref{thm:mca-error-rank-gauge} gives a translated explanation family of
+affine dimension \(s=a-1\).  For \(2\le a\le9\), apply
+\cref{thm:support-transverse-affine-span-mca} with \(\theta\ge1\).  The
+largest cap occurs at \(s=8\) and is \(110390969172173096\).
+
+If \(a=1\), all translated explanations coincide.  Same-support
+noncontainment forces each selected support to contain a coordinate where
+the translated line direction is nonzero; at such a coordinate the
+agreement equation determines at most one finite slope.  Hence \(|Z|\le n\),
+which is smaller than the displayed cap.  The case \(a=0\) has at most one
+slope, since the injective map in the proof of
+\cref{thm:mca-error-rank-gauge} has nonzero slope projection.
+
+For \(a=10,11,12\), substitute \(s=9,10,11\) in
+\eqref{eq:support-local-proper-subspace-mca}.  Exact integer arithmetic
+shows that the least paying margins after the \(2w\) add-back are
+\(13,388,12050\).  At the preceding integers the totals are respectively
+\[
+ 285894151677963688,\qquad
+ 275500176064828033,\qquad
+ 274992929018868606,
+\]
+all strictly above \(B_*\).  Negating the paying condition gives the three
+same-record direction-exception terminals.  Explicitly, if $b_0\in C$
+is the gauge codeword from \cref{thm:mca-error-rank-gauge} and failure of
+the relevant margin produces $b_1$ in the translated explanation
+direction space, then $r'_1=r_1-b_0$ agrees with $b_1$ off the printed
+exception set.  Thus the inverse gauge transports the terminal to the
+original record as $r_1=b_0+b_1$ on the identical support outside that
+same set.
+\end{proof}
 
 
 \begin{proposition}[Exact rank-flat and common-zero reductions at the active rows]

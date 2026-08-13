@@ -1,0 +1,448 @@
+{
+  "schema": "rs-mca-kb-support-local-theta-router-v1",
+  "artifact_kind": "POST_1165_SUPPORT_LOCAL_REFINEMENT_GAUGE_AND_ROUTE_CUT",
+  "base": {
+    "repository": "przchojecki/rs-mca",
+    "exact_pr1165_head": "d4d653723f2f82390fd4351476e1926e55fb0caf",
+    "official_upstream_main_at_refresh": "93fba1be3f3299b0ba4708d88715377bbb656e45"
+  },
+  "source_bindings_at_parent": [
+    {
+      "id": "ACTIVE_V4_AFTER_PR1165_REPAIR",
+      "path": "experimental/grande_finale.tex",
+      "git_blob_sha1": "60bd5ca5c4e61791bccb89b87e9d7f01ee7b1b45",
+      "sha256": "9f77f20bd0eaf87555f9344a545d4117d68710fadb2b3fb4d8407921c1e2ff65",
+      "role": "GLOBAL_REPAIR_FULL_RANK_SPLIT_PUNCTURED_AND_GRAM_PROFILES"
+    },
+    {
+      "id": "PR1165_COUNTEREXAMPLE_NOTE",
+      "path": "experimental/notes/thresholds/mca_affine_span_incidence_counterexample_v1.md",
+      "git_blob_sha1": "984fe1fa4ff4ff34ed8a78499937243169ef9ffe",
+      "sha256": "83446a16a91f401ee76bbd89da888fa98638272eadfcc784cc3b1c7e94419883",
+      "role": "PARENT_COUNTEREXAMPLE_GLOBAL_REPAIR_AND_TOP_RANK_SCOPE"
+    },
+    {
+      "id": "PR1165_GLOBAL_REPAIR_VERIFIER",
+      "path": "experimental/verify_mca_proper_subspace_occupancy_compiler_v1.py",
+      "git_blob_sha1": "ee46de85140dc3e79a120f28fe447475d3303844",
+      "sha256": "9e319700ddfe6378a9cadbc902723db2a56726d26e34aa84dda3dfb5f8046f96",
+      "role": "PARENT_GLOBAL_L_FACTOR_AND_WALLS"
+    },
+    {
+      "id": "PR1165_COUNTEREXAMPLE_VERIFIER",
+      "path": "experimental/verify_mca_affine_span_incidence_counterexample_v1.py",
+      "git_blob_sha1": "3355975c6661551e78611083ebce343d3c540fda",
+      "sha256": "26c07a19f94007cca71cfcfabf1a4e053e27abfd3196c33f805971f2ecde939b",
+      "role": "PARENT_GF1009_REGRESSION"
+    },
+    {
+      "id": "PR1165_INDEPENDENT_COUNTEREXAMPLE_VERIFIER",
+      "path": "experimental/verify_mca_affine_span_incidence_counterexample_v1_independent.py",
+      "git_blob_sha1": "a447210884b2d3b9f7707f0af7913f7e9654c718",
+      "sha256": "bf48d7d533863b7b953e8080e5cd82f5159be4a3453e0d2391afc8f5437fff15",
+      "role": "PARENT_INDEPENDENT_GF1009_REPLAY"
+    },
+    {
+      "id": "PR1165_FULL_RANK_GAUGE_VERIFIER",
+      "path": "experimental/verify_mca_full_explanation_lifted_rank_gauge_dichotomy_v1.py",
+      "git_blob_sha1": "1ebd91022c7231354e5684be0dd0c61edd8d156e",
+      "sha256": "92abd35176f143a1fa9fb09b5a8b6641715d425300011f1031547286d359f567",
+      "role": "PARENT_FULL_EXPLANATION_GAUGE_OVERLAP_BOUNDARY"
+    },
+    {
+      "id": "PR1165_PUNCTURED_JOHNSON_VERIFIER",
+      "path": "experimental/verify_mca_sparse_direction_punctured_johnson_profile_v1.py",
+      "git_blob_sha1": "806738813012ff4aeda97db6b0c02473f4d0ea45",
+      "sha256": "b4fee5a75fcc716dee3c8ce02e129ad51e15bd537dc7404451d0bb58faf07c86",
+      "role": "PARENT_SPARSE_DIRECTION_ROUTE_OVERLAP_BOUNDARY"
+    },
+    {
+      "id": "PR1165_NEAR_JOHNSON_GRAM_NOTE",
+      "path": "experimental/notes/thresholds/mca_sparse_direction_near_johnson_gram_rank_v1.md",
+      "git_blob_sha1": "d303cb19770a258c1c8f2dfc0cd53401658b3ea1",
+      "sha256": "e155d107a5dc31c6de9ad8fbb3395cee70937467fb798633c50e0e34e94272b6",
+      "role": "PARENT_CENTERED_GRAM_CONTINUATION_SCOPE"
+    },
+    {
+      "id": "PR1165_NEAR_JOHNSON_GRAM_VERIFIER",
+      "path": "experimental/verify_mca_sparse_direction_near_johnson_gram_rank_v1.py",
+      "git_blob_sha1": "0e013330a0cba9aa985b73a856bcbae6dcc0673b",
+      "sha256": "5dd10235bb005ddfaeb0481952fae344886261bf5b62be66d8aa588bfe4cb4b6",
+      "role": "PARENT_CENTERED_GRAM_EXACT_WALLS"
+    },
+    {
+      "id": "PR1165_MEAN_CENTERED_GRAM_NOTE",
+      "path": "experimental/notes/thresholds/mca_sparse_direction_mean_centered_gram_profile_v1.md",
+      "git_blob_sha1": "aebf91a811eaeace0266a1a051219b240e0ec40f",
+      "sha256": "f8d7bbbfcf2cd20a72e30d6e06cdac1489204369d62b485ab6ea11685f7d8d94",
+      "role": "PARENT_MEAN_CENTERED_GRAM_CONTINUATION_SCOPE"
+    },
+    {
+      "id": "PR1165_MEAN_CENTERED_GRAM_VERIFIER",
+      "path": "experimental/verify_mca_sparse_direction_mean_centered_gram_profile_v1.py",
+      "git_blob_sha1": "5e55d792a38d7285979df7b2f867c3d6cbd46a1f",
+      "sha256": "f9b8ef1b5b3f4a64876f5eb19f7cf535c4780086f0d97e1bf9af96c29aa6c152",
+      "role": "PARENT_MEAN_CENTERED_GRAM_EXACT_WALLS"
+    }
+  ],
+  "external_source_bindings": [
+    {
+      "id": "PR1160_NEAR_RATIONAL_2W_THEOREM",
+      "path": "experimental/notes/thresholds/kb_mca_supportwise_near_rational_two_anchor_repair_v1.md",
+      "git_blob_sha1": "12bc4a0f06189829a9490928e4855d1aa958f940",
+      "sha256": "7e75d67420f4ed37add3b4f6ea3aa45e043a782a6396f328b1e34ce659938989",
+      "role": "INTRINSIC_NEAR_RATIONAL_STRATUM_BOUND_LE_2W",
+      "commit": "c5f4ea7a0c78828c901ae5f3428894a8b2e2806b"
+    },
+    {
+      "id": "PR1160_NEAR_RATIONAL_2W_VERIFIER",
+      "path": "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1.py",
+      "git_blob_sha1": "3b4533b53e947466de55262e3577108f125738c0",
+      "sha256": "5d284cb0f857f2ff7c0797e911a2047009d6883d54f9d0df0a682627c09b5a35",
+      "role": "INTRINSIC_NEAR_RATIONAL_STRATUM_EXACT_REPLAY",
+      "commit": "c5f4ea7a0c78828c901ae5f3428894a8b2e2806b"
+    }
+  ],
+  "external_provenance": [
+    {
+      "commit": "3a13f2dcdcab95f57fdda8a3a8beea024b0dd1de",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "status": "REFUTED_AT_FINAL_NORMAL_FLAT_STEP"
+    },
+    {
+      "commit": "60db12dc5e741e24acaca032382bbbfa721ce499",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "status": "RANK_WALL_CONSEQUENCE_SUPERSEDED"
+    },
+    {
+      "commit": "fc74e16cd3f3acfa1030317e8d1636f492aca11f",
+      "repository": "AllenGrahamHart/rs-mca-prize-dag",
+      "status": "COMPOSITION_REQUIRES_REAUDIT_WHERE_IT_USES_3A13"
+    },
+    {
+      "commit": "c5f4ea7a0c78828c901ae5f3428894a8b2e2806b",
+      "repository": "przchojecki/rs-mca",
+      "status": "PR1160_EXTERNAL_2W_DELETION_DEPENDENCY_NOT_IN_PARENT"
+    },
+    {
+      "search": "Exa targeted primary-source incidence/design-matrix sweep",
+      "sources_reviewed": 24,
+      "load_bearing_external_lemma_imported": false
+    }
+  ],
+  "counterexample": {
+    "field": 257,
+    "domain": "GF(257)^*",
+    "n": 256,
+    "K": 1,
+    "m": 86,
+    "w": 85,
+    "slopes": 87,
+    "support_sizes": [
+      86
+    ],
+    "incident_normal_ranks": [
+      2
+    ],
+    "explanation_affine_rank": 1,
+    "error_affine_rank": 2,
+    "global_core_size": 0,
+    "direction_max_agreement": 85,
+    "minimum_near_distance": 170,
+    "old_printed_cap": 8,
+    "repaired_theta1_cap": 759,
+    "fixture_sha256": "74974b9062986c5e2afb08fb2a9dd2745409bca21bde790a3c73da31ad4a559b"
+  },
+  "support_local_refinement": {
+    "name": "SUPPORT_LOCAL_REFINEMENT_OF_PROPER_SUBSPACE_COMPILER",
+    "theta_definition": "MIN(w+1,MIN_{gamma,b_in_Cprime}|{x_in_Sgamma:r1(x)!=b(x)}|)",
+    "theta_codeword_space": "DIRECTION_SPACE_CPRIME_NOT_AFFINE_TRANSLATE",
+    "bound": "FLOOR_MAX(n_(s+1)/(m*theta*(w+1)^(rise s-1)),(n-K+s)_(s+1)/(theta*(w+1)^(rise s)))",
+    "empty_rising_product_at_s1": 1,
+    "endpoint_profile_checks": 10716,
+    "relation_to_pr1165_global_factor": "THETA_GE_L",
+    "theta_recomputed_after_gauge": true,
+    "independent_math_review": "GREEN_FINAL_SOURCE_MATH_REVIEW"
+  },
+  "gauge": {
+    "kind": "REVERSIBLE_CODEWORD_TRANSLATION",
+    "relation_to_pr1165": "ARBITRARY_RANK_EXTENSION_OF_FULL_EXPLANATION_EXISTENCE_BRANCH",
+    "preserves": [
+      "SLOPE_SET",
+      "ERROR_WORDS",
+      "EXACT_AGREEMENT_SUPPORTS",
+      "SAME_SUPPORT_PAIR_NONCONTAINMENT"
+    ],
+    "does_not_preserve_literal_received_line_representative": true,
+    "explanation_rank_from_error_rank": "s=a-1_FOR_AT_LEAST_TWO_SLOPES",
+    "owner_chronology_recomputed_after_gauge": false
+  },
+  "wolfram_replay": {
+    "required_stdout_sentinel": "KB_MCA_SUPPORT_LOCAL_THETA_WOLFRAM_PASS",
+    "wrapper_exit_status_alone_is_accepted": false
+  },
+  "exact_tables": {
+    "KoalaBear": {
+      "n": 2097152,
+      "K": 1048576,
+      "m": 1116048,
+      "w": 67472,
+      "budget": 274980728111395087,
+      "near_charge_2w": 134944,
+      "theta1_caps_s1_through_s9": [
+        16295594,
+        253241283,
+        3935435218,
+        118319201475,
+        3677348367069,
+        114289853114503,
+        3552007973114420,
+        110390969172173096,
+        3430729820133944932
+      ],
+      "transitions_s8_through_s11": [
+        {
+          "explanation_rank": 8,
+          "minimum_theta": 1,
+          "exception_ceiling_if_unpaid": 0,
+          "cap": 110390969172173096,
+          "cap_plus_2w": 110390969172308040,
+          "slack": 164589758939087047,
+          "previous_total": null
+        },
+        {
+          "explanation_rank": 9,
+          "minimum_theta": 13,
+          "exception_ceiling_if_unpaid": 12,
+          "cap": 263902293856457302,
+          "cap_plus_2w": 263902293856592246,
+          "slack": 11078434254802841,
+          "previous_total": 285894151677963688
+        },
+        {
+          "explanation_rank": 10,
+          "minimum_theta": 388,
+          "exception_ceiling_if_unpaid": 387,
+          "cap": 274790124064526354,
+          "cap_plus_2w": 274790124064661298,
+          "slack": 190604046733789,
+          "previous_total": 275500176064828033
+        },
+        {
+          "explanation_rank": 11,
+          "minimum_theta": 12050,
+          "exception_ceiling_if_unpaid": 12049,
+          "cap": 274970108028773601,
+          "cap_plus_2w": 274970108028908545,
+          "slack": 10620082486542,
+          "previous_total": 274992929018868606
+        }
+      ],
+      "paid_error_rank_at_most": 9,
+      "paid_total": 110390969172308040,
+      "paid_slack": 164589758939087047,
+      "error_rank_10_11_12_exception_ceilings": [
+        12,
+        387,
+        12049
+      ]
+    },
+    "Mersenne31_stress_control": {
+      "n": 2097152,
+      "K": 1048576,
+      "m": 1116024,
+      "w": 67448,
+      "budget": 16777215,
+      "transitions_s1_through_s4": [
+        {
+          "explanation_rank": 1,
+          "minimum_theta": 1,
+          "cap": 16301393,
+          "cap_plus_2w": 16436289,
+          "slack": 340926
+        },
+        {
+          "explanation_rank": 2,
+          "minimum_theta": 16,
+          "cap": 15838845,
+          "cap_plus_2w": 15973741,
+          "slack": 803474
+        },
+        {
+          "explanation_rank": 3,
+          "minimum_theta": 237,
+          "cap": 16622943,
+          "cap_plus_2w": 16757839,
+          "slack": 19376
+        },
+        {
+          "explanation_rank": 4,
+          "minimum_theta": 7118,
+          "cap": 16640642,
+          "cap_plus_2w": 16775538,
+          "slack": 1677
+        }
+      ]
+    },
+    "shortened_complete_code": {
+      "R": 1048576,
+      "d": 67472,
+      "rows_s1_through_s14": [
+        {
+          "rank": 1,
+          "theta1_cap": 16295594,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 2,
+          "theta1_cap": 253241283,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 3,
+          "theta1_cap": 3935435218,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 4,
+          "theta1_cap": 61156835934,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 5,
+          "theta1_cap": 950366735057,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 6,
+          "theta1_cap": 14768331186162,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 7,
+          "theta1_cap": 229490967859328,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 8,
+          "theta1_cap": 3566101912297072,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 9,
+          "theta1_cap": 55413538236037195,
+          "minimum_theta": 1,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 10,
+          "theta1_cap": 861057176799343503,
+          "minimum_theta": 4,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 11,
+          "theta1_cap": 13379567622193637007,
+          "minimum_theta": 49,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 12,
+          "theta1_cap": 207896005776491930567,
+          "minimum_theta": 757,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 13,
+          "theta1_cap": 3230309917776778498663,
+          "minimum_theta": 11748,
+          "theta_is_feasible": true
+        },
+        {
+          "rank": 14,
+          "theta1_cap": 50192198036356461575939,
+          "minimum_theta": 182530,
+          "theta_is_feasible": false
+        }
+      ],
+      "automatic_theta_paid_through_rank": 9,
+      "rank_10_11_12_13_exception_ceilings": [
+        3,
+        48,
+        756,
+        11747
+      ],
+      "first_unpaid_even_at_maximum_theta": 14
+    }
+  },
+  "route_cut": {
+    "conditional_partition": "Z_BAD=N_DISJOINT_UNION_Z_WITH_|N|_LE_2w",
+    "pr1160_supplies_partition_when_integrated": true,
+    "exception_reserve_31_used": false,
+    "post_deletion_error_rank_at_most_9": "PAID",
+    "post_deletion_error_rank_10": "DIRECTION_EXCEPTIONS_LE_12",
+    "post_deletion_error_rank_11": "DIRECTION_EXCEPTIONS_LE_387",
+    "post_deletion_error_rank_12": "DIRECTION_EXCEPTIONS_LE_12049",
+    "post_deletion_error_rank_at_least_13": "UNPAID_HIGH_RANK",
+    "active_v4_ledger_movement": 0,
+    "KoalaBear_closed": false
+  },
+  "nonduplicate_scope": [
+    "SUPPORT_LOCAL_THETA_REFINES_PR1165_GLOBAL_L",
+    "REVERSIBLE_ERROR_TO_EXPLANATION_RANK_GAUGE",
+    "CONDITIONAL_DIRECT_KOALA_ERROR_RANK_NINE_PAYMENT",
+    "EXACT_RANK_10_11_12_DIRECTION_EXCEPTION_TERMINALS",
+    "GF257_SMOOTH_DOMAIN_INDEPENDENT_REGRESSION"
+  ],
+  "packet_files": [
+    "agents.md",
+    "experimental/agents-log.md",
+    "experimental/grande_finale.tex",
+    "experimental/notes/thresholds/kb_mca_support_local_theta_and_error_rank_router_v1.md",
+    "experimental/data/certificates/kb-mca-support-local-theta-router-v1/README.md",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.py",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.sage",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1_flint.py",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.wl",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/campaign.json",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/00_contract.md",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/01_frontier_map.md",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/02_controls.md",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/03_idea_ledger.csv",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/04_dependency_ledger.csv",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/05_claim_registry.csv",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/06_review_registry.csv",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/literature_sweep.md",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/final_source_math_review.md"
+  ],
+  "packet_file_sha256": {
+    "agents.md": "c2f79ca9d95988f35c5419d261812d11b12950cb26b88394bf7c3cbcd44fa273",
+    "experimental/agents-log.md": "c562d0272d4359399fb9bc0632943e92297ca2de0ca5b02c099897e6bda67986",
+    "experimental/grande_finale.tex": "658b53857f9532feef85e54e7cdbfb829ce6f143c36a88bd0a23ec09197badaf",
+    "experimental/notes/thresholds/kb_mca_support_local_theta_and_error_rank_router_v1.md": "5d2da358edee72853057c8d6a68bddaae2e134baba932941ef56b6258abd1f85",
+    "experimental/data/certificates/kb-mca-support-local-theta-router-v1/README.md": "978bffcb2242d59ecd456311b93f010c8d6f279461be680440fce91526bd64d5",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.py": "96cbec1a0a76e7ccf8ae93b7aa2b49f5e9608c6079b932ce61b0ff8625fe8c23",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.sage": "8e40b791c99514ba0437102769f67d7a0537b6de9d2546338e16526ab16f7696",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1_flint.py": "f6e9e88258d57edf9169fd44d8c59b4f4d6f20df317260766470add16e616e1c",
+    "experimental/scripts/verify_kb_mca_support_local_theta_router_v1.wl": "e887d72596b21f493063b42c48c73c044830e6b98129d3f1dc801a34d9b93264",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/campaign.json": "7ae847329f905bcc9d684ee3b16569679c0f06cb0d050f65912fd836c897a5f7",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/00_contract.md": "b44034686d589020bb4d9feaab7635ba1ba5ce272c9762abe03780882bc1da7e",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/01_frontier_map.md": "fc73d5ba08a78ab56984083e25b3474a7cbdf9afa513636d6e6ecca5bbead7e1",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/02_controls.md": "cb468b478d50f026288edb8543d100d0d9457ce9f0d7eb7f07420a96a3aa70fc",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/03_idea_ledger.csv": "27f5e2c6ed44519a452e6fe212314a0a5532679ce93adce8afc0a8f63e25e805",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/04_dependency_ledger.csv": "abf5ac2186e4f72e6ced77346eaa70e7445649a2eaeeb0c0aa38874eb743dc56",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/05_claim_registry.csv": "871fe3d833684dc642a38337b3cd6b7e9e38f40baaa0158c3a340a665affacdb",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/06_review_registry.csv": "78fdf643e11652e94f57fcc92ecf9f6a1c7e69544295ea748dee2dc13a65fe6a",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/literature_sweep.md": "e6a3381e90eb7979ea617a13175f1764dfdd48c5b402e82c416a080fcf2288aa",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/final_source_math_review.md": "777855d10220d138dbf66269ea39c6a63f212a25da2a948a9fe19271143351f1"
+  },
+  "payload_sha256": "2023122cdc8673f6e9200584a2bd9e53a81ab3967257c41ba834a1586ad393ec"
+}

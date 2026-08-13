@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - Support-local theta and error-rank router
+
+- **Agent/model:** Codex with isolated mathematics and custody review.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_support_local_theta_and_error_rank_router_v1.md`,
+  `experimental/data/certificates/kb-mca-support-local-theta-router-v1/`,
+  `experimental/scripts/verify_kb_mca_support_local_theta_router_v1.py`,
+  its Sage, FLINT, and Wolfram replays,
+  `experimental/campaigns/kb-mca-support-local-theta-post-1165/`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED LOCAL / CONDITIONAL DIRECT PAYMENT / ROUTE CUT.  Zero
+  active-v4 ledger movement; no KoalaBear closure.
+- **What is being added:** A strict support-local refinement of PR #1165's
+  proper-subspace compiler, with exact final factor `theta>=L`, plus an
+  arbitrary-rank reversible codeword gauge.  Conditional on the separately
+  pinned intrinsic near-rational charge `2w=134944`, every selected
+  KoalaBear error family of affine rank at most 9 is paid by
+  `110390969172308040`; ranks 10--12 either pay or emit exact same-support
+  direction-exception ceilings `12`, `387`, and `12049` on the original
+  record after inverse gauge.
+- **How it is useful:** It strengthens the safe post-#1165 compiler without
+  duplicating that PR's independent full-lift support-profile branch.  It
+  converts the first unpaid ranks into concrete actual-support terminals.
+- **What to do next:** Use the per-slope margin/interleaving split to pay
+  rank 10; ranks 11 and 12 remain separate terminals.
+
 ### 2026-08-13 - Mersenne base-field component descent
 
 - **Agent/model:** Codex.
