@@ -2,8 +2,12 @@
 
 Date: 2026-08-13
 Reviewer role: isolated source/mathematics reviewer; not the generator
-Exact parent: `d4d653723f2f82390fd4351476e1926e55fb0caf` (current PR #1165 head)
-Canonical packet payload audited: `fb0b78c20b06b1b563eb11cb766aac7deec978547a82ebe91481d23fab3af178`
+Exact parent: `b6d30ef4f5ff966665b7672e1780a637509873a4` (current PR #1165 head)
+Restacked successor source audited: `experimental/grande_finale.tex` Git blob
+`a7de93eedf0288bf81912658a299555aab0c3f46` (SHA-256
+`56ef3acaccf6ff45da2fde5c921d914b91b748214f19ac1c263d3638a9fa4b14`).
+This memo is intentionally external to the canonical packet hash.  It does
+not embed a manifest payload and thereby avoids a circular self-attestation.
 
 ## Statement audited
 
@@ -45,6 +49,9 @@ closure.
 - The Python, Sage, FLINT, and Wolfram replay sources for this packet.
 - The PR #1165 proper-subspace, full-rank-gauge, punctured-Johnson, and
   centered-Gram verifier sources.
+- Every theorem, corollary, verifier, and independent auditor added in the
+  22-commit parent delta `d4d653723..b6d30ef4`, from the terminal-deficit
+  affine-line cap through the common-factor base-field descent.
 - PR #1160 commit `c5f4ea7a0c78828c901ae5f3428894a8b2e2806b`, especially the
   two-anchor near-rational proof and its exact `2w` scope.
 - Campaign contract, frontier map, controls, dependency ledger, claim
@@ -61,6 +68,7 @@ Ancestor guidance was `math_code/AGENTS.md` plus this worktree's
 | Reed--Solomon root bound and MDS generalized weights | PROVEN | Used with exactly the stated dimensions; no hidden field-size or asymptotic hypothesis. |
 | PR #1165 full-explanation lifted-rank dichotomy | IMPORTED / PROVEN | Compatible and sharper at explanation rank `K`; the new gauge is a genuine arbitrary-rank existence theorem rather than a conflicting classification. |
 | PR #1165 punctured-Johnson, near-Johnson Gram, and mean-centered Gram continuations | IMPORTED / PROVEN | Separate sparse-direction routes. They neither imply nor conflict with the support-local `theta` theorem. Their exact verifiers passed. |
+| PR #1165 later full-lift line/core/interpolation chain | IMPORTED / PROVEN | The 22-commit restack delta was audited separately.  It extends the Koala full-lift low wall through `e=96150`, pays Mersenne through `e=130236`, and routes—not pays—`e=130237` to a common-factor branch.  It does not consume or alter the local-`theta`, arbitrary-rank-gauge, exact-`m`, or intrinsic-`2w` interfaces. |
 | PR #1160 intrinsic near-rational theorem | IMPORTED / PROVEN | The source proof gives at most `2w` near-rational support-wise bad slopes when `w>=1` and `3w<=n-k`. KoalaBear satisfies these guards: `3w=202416<=1048576`. |
 | Exact integer thresholds and ceilings | CERTIFIED EXACT | Independently replayed in Python/Sage/FLINT; details below. |
 
@@ -218,17 +226,45 @@ The note, manifest, README, workboard, and source agree that:
 These nonclaims are honest. The parent centered-Gram continuations extend a
 different sparse-direction support interval and create no overlap conflict.
 
-The focused delta from parent `07546f903` to `d4d653723` is also sound. For
-the mean-centered incidence Gram matrix `H=BPB^T`, positivity and
-`rank(H)<=n-1` are exact. The endpoint-chord inequality for each
-off-diagonal entry has slope `c-2A^2/n<=0`; combining it with
-`1^T H 1>=0` gives the printed trace-square bound. The trace-rank inequality
-then yields the denominator `A^2 T/n^2`. For the sparse-direction profile,
-the suffix closure `B_h=min_{v>=h} C_v` is nondecreasing and Abel summation
-with the decreasing owner weights `floor(e/h)` gives the stated profile.
-This shifts only the parent sparse-direction endpoints to `e<=64047` on
-KoalaBear and `e<=65454` on Mersenne-31. It changes no hypothesis, normal
-count, gauge map, threshold, or terminal in the support-local successor.
+### 7. Focused 22-commit parent-restack audit
+
+The parent delta `d4d653723..b6d30ef4` contains 22 additive commits and adds
+1727 lines to `experimental/grande_finale.tex` without deleting or editing
+the proper-subspace theorem or any successor interface.  I checked the
+following dependency groups rather than treating the delta as mere status
+prose.
+
+- The terminal and top-third affine-line arguments use the exact-layer owner
+  weight and the degree-`<K` restriction injection with their printed guards.
+  The global top-line synchronization and its total-core cap do not import a
+  local-`theta` factor.
+- The residue-zero, fixed-cutoff, boundary-line-bank, and recursive-peeling
+  routes preserve disjoint slope ownership.  A removed explanation line is
+  charged once; distinct line cores meet in at most `K-1`; and the convex
+  joint-core charge is maximized by the printed endpoint fill.  The
+  exact-layer incidence inequality
+  `lambda*h <= e+(lambda-1)u` has the correct direction and ceiling.
+- At Mersenne support `e=130237`, weighted interpolation gives kernel
+  dimension at least `131175-130237=938`.  The `2705>52^2` comparison
+  correctly forces a positive-`(Y,Z)`-degree common factor.  Cofactor Bezout,
+  core-incidence Cauchy, weighted-degree dimension counting, base-field
+  descent, and the degree-one projective-star split preserve their units and
+  guards.  They do **not** pay the projective-star population or classify the
+  higher-degree component.
+
+The exact current status is therefore:
+
+- Koala full lift is paid through `e=96150`, leaving
+  `96151<=e<=1044238`;
+- Mersenne full lift is paid through `e=130236`, leaving
+  `130237<=e<=1044241`, with the first support only routed to the common-factor
+  branch.
+
+The repaired routing-table prose now distinguishes the proper-subspace/gauge
+improvement from these separate full-lift continuations.  None of the 22
+commits references the local `theta`, the arbitrary-rank gauge, the exact-`m`
+subwitness bridge, the near-rational `2w` add-back, or the Koala conditional
+router.  The parent and successor are adjacent but nonoverlapping proof lanes.
 
 ## Parameter dependence
 
@@ -276,9 +312,15 @@ Checks run against the final parent included:
 - parent near-Johnson centered-Gram verifier: PASS;
 - parent mean-centered Gram verifier: PASS (`109` checks and `2/2`
   mutations);
+- all 36 Python verifiers/independent auditors added in the 22-commit parent
+  delta: PASS;
+- all four compiled constant-memory C interval replays added in that delta:
+  PASS;
+- the final Koala/Mersenne full-lift mean-centered global-line replay: PASS
+  (`548` checks and `4/4` mutations);
 - campaign actionable audit: PASS;
 - `git diff --check`: PASS;
-- TeX Live compilation to `/tmp`: PASS, 100 pages.
+- TeX Live compilation to `/tmp`: PASS, 118 pages.
 
 The configured Wolfram Cloud replay could not be rerun by this reviewer
 because the account returned `Insufficient credits`. Its script is
@@ -293,8 +335,11 @@ satisfied.**
 
 The support-local theorem, `theta>=L`, arbitrary-rank gauge, intrinsic `2w`
 composition, inverse-gauge exception terminals, exact ranks/ceilings, and
-scope/nonclaims are all correct on the exact parent. No mathematical repair
-is required before independent custody review and upstream handoff.
+scope/nonclaims are all correct on exact parent `b6d30ef4`.  The 22 new
+parent commits neither duplicate nor invalidate them.  The corrected parent
+ranges and the external-attestation custody design are sound.  No further
+mathematical repair is required before final packet reseal and upstream
+handoff.
 
 ## Remaining risks
 
@@ -302,6 +347,9 @@ is required before independent custody review and upstream handoff.
   deployed ledger movement is essential.
 - The rank-10/11/12 direction-exception families and rank-at-least-13 family
   remain genuine open terminals.
+- The separate Mersenne `e=130237` common-factor branch remains unpaid: the
+  projective-star population and higher-degree component classification are
+  open and confer no Koala ledger credit.
 - Final release custody must update review-status metadata after this memo
   without changing the frozen theorem, and must rerun canonical hashes after
   any packet-file change.
@@ -310,10 +358,11 @@ is required before independent custody review and upstream handoff.
 
 ## Minimal next action
 
-Complete the separate custody review, regenerate only review/custody metadata
-and canonical hashes if needed, rerun normal/optimized/tamper checks, and then
-hand the GREEN theorem packet to upstream. The next mathematical attack is the
-actual-record direction-exception forest at error ranks `10--12`, with rank
-`>=13` retained as a separate terminal.
+Reseal the packet after the in-packet review-registry update, rerun
+normal/optimized/tamper checks, and hand the GREEN theorem packet to upstream.
+The maximal successor attack remains the actual-record Koala direction-
+exception forest at error ranks `10--12`, with rank `>=13` retained as a
+separate terminal.  The Mersenne common-factor classification is an
+independent frontier lane, not a substitute for that attack.
 
 **GREEN**

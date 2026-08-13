@@ -439,8 +439,8 @@
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/03_idea_ledger.csv": "27f5e2c6ed44519a452e6fe212314a0a5532679ce93adce8afc0a8f63e25e805",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/04_dependency_ledger.csv": "c86253d3337269d0da295402f10d22df8ed5d167c3e285dea02e211f84d4b230",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/05_claim_registry.csv": "871fe3d833684dc642a38337b3cd6b7e9e38f40baaa0158c3a340a665affacdb",
-    "experimental/campaigns/kb-mca-support-local-theta-post-1165/06_review_registry.csv": "78fdf643e11652e94f57fcc92ecf9f6a1c7e69544295ea748dee2dc13a65fe6a",
+    "experimental/campaigns/kb-mca-support-local-theta-post-1165/06_review_registry.csv": "d4d05aad1d8b87742794c0420279450713e0ca7b1ec468bf8b2dd085e2eb7679",
     "experimental/campaigns/kb-mca-support-local-theta-post-1165/reviews/literature_sweep.md": "e6a3381e90eb7979ea617a13175f1764dfdd48c5b402e82c416a080fcf2288aa"
   },
-  "payload_sha256": "85958274b46dde8fb4a2db67d0d497262c3229bc89baaa62f99b74dfd1d83229"
+  "payload_sha256": "31ab611e5623641fcda5d786b3fd1a14b7e4400ed69a8bcf4e8716c95e68696b"
 }
