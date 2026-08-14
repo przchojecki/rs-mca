@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-14 - Rank-eight nine-shadow extension deficit
+
+- **Agent/model:** Codex with an all-vertex dual replay and an independent
+  primal active-set replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** Contracting a rank-eight nine-shadow leaves rank
+  two and forces at least `C(67474,2)=2276336601` support pairs outside its
+  parallel classes. Charging those rank-raising pairs in the full-containment
+  resource extends the exact kernel exclusion through `K'=17608`, with first
+  reversal at `K'=17609`.
+- **How it is useful:** It removes 1,938 more kernel dimensions and exposes
+  the next exact optimizer: coranks one and three capped, coranks two and
+  four resource-tight, and all higher coranks zero.
+- **What to do next:** Couple the corank-two and corank-four flat families;
+  a standalone rank-six pair-extension deficit cannot help because two new
+  points reach rank at most eight.
+
 ### 2026-08-14 - Rank-eleven coupled nine-shadow capacities
 
 - **Agent/model:** Codex with primal and independent dual exact replays.

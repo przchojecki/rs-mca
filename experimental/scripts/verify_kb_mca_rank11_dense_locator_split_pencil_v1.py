@@ -8,6 +8,7 @@ import copy
 import hashlib
 import json
 from fractions import Fraction
+from functools import cache
 from math import comb, isqrt, prod
 from pathlib import Path
 from typing import Any
@@ -177,6 +178,20 @@ SOURCE_NODES = {
         "commit": "0620558d5eb0a49e03000b2a2fc16ec826e2e2fb",
         "tree": "f396ad96d235ca25e2f313ff38819be9aa668139",
         "contract_sha256": "7d56dc863b2bb327c392b33405098b5163a305e4a909a007482e32bfbd00f7e4",
+    },
+    "kernel_rank8_nine_shadow_extension_deficit": {
+        "id": "rate_half_mca_rank11_kernel_rank8_nineshadow_extension_deficit",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_rank8_nineshadow_extension_deficit",
+        "commit": "8c0dac47b86bec6b355fa174130aafee2c2e6b18",
+        "tree": "0ddfc4509b2ccdcd818e89f0314a6d74f4e3aa67",
+        "contract_sha256": "f78e2d0d08b3c4535a1ef2db02e2bde7956b4c0eebe67e3de2c8cebc0441ec2a",
+    },
+    "kernel_rank8_nine_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_rank8_nineshadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_rank8_nineshadow_capacity_cut",
+        "commit": "8c0dac47b86bec6b355fa174130aafee2c2e6b18",
+        "tree": "8780eadecc3902a9e90523186a93560393caec82",
+        "contract_sha256": "bd95dca74b2f9018d78e9b89571d1175b7c5ad219bc48b6ec57167651d6835b3",
     },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -394,6 +409,82 @@ def kernel_full_shadow_optimum(kprime: int) -> tuple[Fraction, list[Fraction]]:
     return best, best_allocation
 
 
+def kernel_rank8_shadow_data(
+    kprime: int,
+) -> tuple[list[Fraction], list[Fraction], list[Fraction], Fraction, Fraction]:
+    weights, caps, _ = kernel_shadow_weights_caps(kprime)
+    shadow_budget = Fraction(comb(67472 + kprime, 9))
+    support_extensions = Fraction(comb(67472 + kprime - 9, 2))
+    coefficients = []
+    for dimension, cap in enumerate(caps, 1):
+        if not cap:
+            coefficients.append(Fraction(0))
+        elif dimension == 1:
+            coefficients.append(52 + 3 * support_extensions / comb(kprime - 10, 2))
+        elif dimension == 2:
+            coefficients.append(55 + Fraction(6 * comb(67474, 2), comb(kprime - 11, 2)))
+        else:
+            coefficients.append(Fraction(55))
+    return weights, caps, coefficients, shadow_budget, support_extensions * shadow_budget
+
+
+def kernel_rank8_shadow_optimum(
+    kprime: int,
+) -> tuple[Fraction, Fraction, Fraction, list[int], list[int], list[int]]:
+    weights, caps, coefficients, shadow_budget, containment_budget = kernel_rank8_shadow_data(kprime)
+    active = [index for index, cap in enumerate(caps) if cap]
+    candidates = {(Fraction(0), Fraction(0))}
+    for index in active:
+        candidates.add((1 / weights[index], Fraction(0)))
+        candidates.add((Fraction(0), 1 / coefficients[index]))
+    for offset, left in enumerate(active):
+        for right in active[offset + 1:]:
+            determinant = weights[left] * coefficients[right] - weights[right] * coefficients[left]
+            if not determinant:
+                continue
+            lam = (coefficients[right] - coefficients[left]) / determinant
+            mu = (weights[left] - weights[right]) / determinant
+            if lam >= 0 and mu >= 0:
+                candidates.add((lam, mu))
+
+    best = None
+    best_data = None
+    for lam, mu in sorted(candidates):
+        value = lam * shadow_budget + mu * containment_budget
+        tight, capped, zero = [], [], []
+        for index in active:
+            coverage = lam * weights[index] + mu * coefficients[index]
+            if coverage == 1:
+                tight.append(index + 1)
+            elif coverage < 1:
+                capped.append(index + 1)
+                value += (1 - coverage) * caps[index]
+            else:
+                zero.append(index + 1)
+        if best is None or value < best:
+            best = value
+            best_data = (lam, mu, tight, capped, zero)
+    require(best is not None and best_data is not None, f"rank-eight shadow dual {kprime}")
+    return best, *best_data
+
+
+def kernel_rank8_shadow_patterns(end: int) -> list[list[object]]:
+    output = []
+    start = 10
+    current = None
+    for kprime in range(start, end + 1):
+        _, _, _, tight, capped, zero = kernel_rank8_shadow_optimum(kprime)
+        pattern = [tight, capped, zero]
+        if current is None:
+            current = pattern
+        elif pattern != current:
+            output.append([start, kprime - 1, *current])
+            start, current = kprime, pattern
+    require(current is not None, "rank-eight shadow pattern ledger")
+    output.append([start, end, *current])
+    return output
+
+
 def kernel_demand_ceiling(kprime: int) -> int:
     return ceil_ratio(
         495405467 * 274980728111260126 * comb(67472 + kprime, 11),
@@ -505,6 +596,7 @@ def dense_root_model() -> dict[str, int]:
     return {"roots": 18, "high_rank": 10}
 
 
+@cache
 def expected() -> dict[str, Any]:
     budget = 274980728111395087
     near = 134944
@@ -598,6 +690,28 @@ def expected() -> dict[str, Any]:
     containment_endpoint_capacity = scaled_fraction_floor(containment_endpoint_optimum)
     containment_wall_demand = kernel_demand_ceiling(containment_wall)
     containment_wall_capacity = scaled_fraction_floor(containment_wall_optimum)
+    rank8_shadow_endpoint = 17608
+    rank8_shadow_wall = 17609
+    (
+        rank8_shadow_endpoint_optimum,
+        rank8_shadow_endpoint_lambda,
+        rank8_shadow_endpoint_mu,
+        rank8_shadow_endpoint_tight,
+        rank8_shadow_endpoint_capped,
+        rank8_shadow_endpoint_zero,
+    ) = kernel_rank8_shadow_optimum(rank8_shadow_endpoint)
+    (
+        rank8_shadow_wall_optimum,
+        rank8_shadow_wall_lambda,
+        rank8_shadow_wall_mu,
+        rank8_shadow_wall_tight,
+        rank8_shadow_wall_capped,
+        rank8_shadow_wall_zero,
+    ) = kernel_rank8_shadow_optimum(rank8_shadow_wall)
+    rank8_shadow_endpoint_demand = kernel_demand_ceiling(rank8_shadow_endpoint)
+    rank8_shadow_endpoint_capacity = scaled_fraction_floor(rank8_shadow_endpoint_optimum)
+    rank8_shadow_wall_demand = kernel_demand_ceiling(rank8_shadow_wall)
+    rank8_shadow_wall_capacity = scaled_fraction_floor(rank8_shadow_wall_optimum)
     rank8_last_open = 37995
     rank8_first_closed = 37996
     rank8_last_demand = rank8_weighted_demand(rank8_last_open)
@@ -861,6 +975,47 @@ def expected() -> dict[str, Any]:
             "wall_excess": containment_wall_capacity - containment_wall_demand,
             "capacity_formula": "exact two-resource LP with individual ambient/record caps",
         },
+        "kernel_rank8_nine_shadow_extension_deficit": {
+            "rank8_closure_offset": 2,
+            "outside_rank8_closure_minimum": 67474,
+            "outside_parallel_class_partner_minimum": 67473,
+            "independent_pair_floor": comb(67474, 2),
+            "rank8_bad_extension_formula": "C(m_prime-9,2)-C(67474,2)",
+            "rank8_resource_coefficient_formula": "55+6*C(67474,2)/C(K_prime-11,2)",
+            "resource_formula": "[52+3*E0/E1]*I1+[55+6*C(67474,2)/E2]*I2+55*sum_d_ge_3 I_d <= E0*C(m_prime,9)",
+        },
+        "kernel_rank8_nine_shadow_capacity_cut": {
+            "closed_K_prime_minimum": 10,
+            "closed_K_prime_maximum": rank8_shadow_endpoint,
+            "first_open_K_prime": rank8_shadow_wall,
+            "endpoint_branch_pattern": kernel_shadow_weights_caps(rank8_shadow_endpoint)[2],
+            "endpoint_tight_coranks": rank8_shadow_endpoint_tight,
+            "endpoint_capped_coranks": rank8_shadow_endpoint_capped,
+            "endpoint_zero_coranks": rank8_shadow_endpoint_zero,
+            "endpoint_dual_lambda_numerator": rank8_shadow_endpoint_lambda.numerator,
+            "endpoint_dual_lambda_denominator": rank8_shadow_endpoint_lambda.denominator,
+            "endpoint_dual_mu_numerator": rank8_shadow_endpoint_mu.numerator,
+            "endpoint_dual_mu_denominator": rank8_shadow_endpoint_mu.denominator,
+            "endpoint_optimum_numerator": rank8_shadow_endpoint_optimum.numerator,
+            "endpoint_optimum_denominator": rank8_shadow_endpoint_optimum.denominator,
+            "endpoint_demand": rank8_shadow_endpoint_demand,
+            "endpoint_capacity": rank8_shadow_endpoint_capacity,
+            "endpoint_gap": rank8_shadow_endpoint_demand - rank8_shadow_endpoint_capacity,
+            "wall_tight_coranks": rank8_shadow_wall_tight,
+            "wall_capped_coranks": rank8_shadow_wall_capped,
+            "wall_zero_coranks": rank8_shadow_wall_zero,
+            "wall_dual_lambda_numerator": rank8_shadow_wall_lambda.numerator,
+            "wall_dual_lambda_denominator": rank8_shadow_wall_lambda.denominator,
+            "wall_dual_mu_numerator": rank8_shadow_wall_mu.numerator,
+            "wall_dual_mu_denominator": rank8_shadow_wall_mu.denominator,
+            "wall_optimum_numerator": rank8_shadow_wall_optimum.numerator,
+            "wall_optimum_denominator": rank8_shadow_wall_optimum.denominator,
+            "wall_demand": rank8_shadow_wall_demand,
+            "wall_capacity": rank8_shadow_wall_capacity,
+            "wall_excess": rank8_shadow_wall_capacity - rank8_shadow_wall_demand,
+            "pattern_ledger": kernel_rank8_shadow_patterns(rank8_shadow_wall),
+            "capacity_formula": "exact two-resource LP with rank-eight extension deficit and individual ambient/record caps",
+        },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
             "owner_flat_dimension": 4,
@@ -898,7 +1053,7 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 15670,
+            "kernel_dominant_lane_closed_through_Kprime": 17608,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
@@ -995,7 +1150,22 @@ def validate(value: object) -> dict[str, int]:
     require(all(value > 0 for value in wall_allocation[:2]) and all(value == 0 for value in wall_allocation[2:]), "full-shadow wall support")
     require(containment_cut["endpoint_gap"] == 60244744187647715538325354175068999745872308513185869854532, "full-shadow endpoint")
     require(containment_cut["wall_excess"] == 291105561463347587484268984669020036510369238771859813045635, "full-shadow wall excess")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 15670, "kernel claim")
+    rank8_deficit = value["kernel_rank8_nine_shadow_extension_deficit"]
+    require(rank8_deficit["independent_pair_floor"] == comb(67474, 2) == 2276336601, "rank-eight pair floor")
+    require(rank8_deficit["outside_rank8_closure_minimum"] == 67474, "rank-eight contraction outside floor")
+    rank8_shadow_cut = value["kernel_rank8_nine_shadow_capacity_cut"]
+    for kprime in range(10, rank8_shadow_cut["closed_K_prime_maximum"] + 1):
+        optimum, _, _, _, _, _ = kernel_rank8_shadow_optimum(kprime)
+        require(kernel_demand_ratio(kprime) > optimum, f"kernel rank-eight-shadow cut {kprime}")
+    rank8_endpoint = kernel_rank8_shadow_optimum(17608)
+    rank8_wall = kernel_rank8_shadow_optimum(17609)
+    require(kernel_demand_ratio(17609) < rank8_wall[0], "kernel rank-eight-shadow wall")
+    require(rank8_endpoint[3:] == ([2, 4], [1, 3], [5, 6, 7, 8, 9]), "rank-eight-shadow endpoint pattern")
+    require(rank8_wall[3:] == rank8_endpoint[3:], "rank-eight-shadow wall pattern")
+    require(rank8_shadow_cut["pattern_ledger"] == kernel_rank8_shadow_patterns(17609), "rank-eight-shadow pattern ledger")
+    require(rank8_shadow_cut["endpoint_gap"] == 126547040539829546354916747965612889135249249684319416999204, "rank-eight-shadow endpoint")
+    require(rank8_shadow_cut["wall_excess"] == 165662859003771823867021831078593815988062146919602894849014, "rank-eight-shadow wall excess")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 17608, "kernel claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -1049,6 +1219,8 @@ def validate(value: object) -> dict[str, int]:
         "shadow_wall_excess": shadow_cut["wall_excess"],
         "containment_endpoint_gap": containment_cut["endpoint_gap"],
         "containment_wall_excess": containment_cut["wall_excess"],
+        "rank8_shadow_endpoint_gap": rank8_shadow_cut["endpoint_gap"],
+        "rank8_shadow_wall_excess": rank8_shadow_cut["wall_excess"],
         "rank8_last_gap": rank8_cut["last_open_gap"],
         "rank8_first_gap": rank8_cut["first_closed_gap"],
         "dense_owner_first_excess": dense_owner["first_forced_excess"],
@@ -1086,6 +1258,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_nine_shadow_containment_coupling"].__setitem__("shadows_per_eleven_subset", 54),
         lambda item: item["kernel_nine_shadow_containment_capacity_cut"].__setitem__("closed_K_prime_maximum", 15671),
         lambda item: item["kernel_nine_shadow_containment_capacity_cut"].__setitem__("endpoint_optimum_denominator", 3820255350),
+        lambda item: item["kernel_rank8_nine_shadow_extension_deficit"].__setitem__("independent_pair_floor", 2276336600),
+        lambda item: item["kernel_rank8_nine_shadow_capacity_cut"].__setitem__("closed_K_prime_maximum", 17609),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
@@ -1140,6 +1314,8 @@ def main() -> None:
         f"shadow_wall_excess={result['shadow_wall_excess']} "
         f"containment_endpoint_gap={result['containment_endpoint_gap']} "
         f"containment_wall_excess={result['containment_wall_excess']} "
+        f"rank8_shadow_endpoint_gap={result['rank8_shadow_endpoint_gap']} "
+        f"rank8_shadow_wall_excess={result['rank8_shadow_wall_excess']} "
         f"rank8_last_gap={result['rank8_last_gap']} "
         f"rank8_first_gap={result['rank8_first_gap']} "
         f"dense_owner_first_excess={result['dense_owner_first_excess']} "

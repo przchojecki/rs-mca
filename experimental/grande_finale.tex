@@ -11274,6 +11274,88 @@ both boundary rows and gives the same signs and capacities as the primal
 replay.
 \end{proof}
 
+\begin{proposition}[Rank-eight nine-shadow extension deficit]
+\label{prop:kb-rank11-kernel-rank8-nine-shadow-deficit}
+Let $U$ be a rank-eight nine-subset of one exact support $S$.  At least
+\[
+ L_2=\binom{67474}{2}=2276336601
+\]
+unordered pairs in $S\setminus U$ raise its rank to ten.  Consequently,
+with
+\[
+ E_2=\binom{K'-11}{2},
+\]
+the full-containment resource of
+Proposition~\ref{prop:kb-rank11-kernel-nine-shadow-containment} sharpens to
+\[
+ \left(52+3\frac{E_0}{E_1}\right)I_1(S)
+ +\left(55+6\frac{L_2}{E_2}\right)I_2(S)
+ +55\sum_{d=3}^{9}I_d(S)
+ \le E_0\binom{m'}9.
+ \tag{R8S}
+\]
+A zero extension coefficient again forces the corresponding incidence
+count to vanish.
+\end{proposition}
+
+\begin{proof}
+Put $C=\operatorname{cl}_S(U)$, $c=|C|$, and $X=S\setminus C$.
+The generalized-MDS closure bound used in
+Proposition~\ref{prop:kb-rank11-kernel-nine-shadow} gives $c\le K'-2$,
+so $q=|X|\ge67474$.  Contracting by $U$ leaves a rank-two matroid on $X$.
+Every parallel class $P\subset X$ has
+\[
+ |P|\le K'-1-c,
+\]
+because $C\cup P$ is contained in a rank-nine closure, whose generalized-MDS
+cap is $K'-1$.  Hence every $x\in X$ has at least
+\[
+ q-(K'-1-c)=m'-K'+1=67473
+\]
+partners outside its parallel class.  Dividing the ordered count by two
+gives at least $q\cdot67473/2\ge\binom{67474}{2}$ rank-raising pairs.
+
+Let $J_2$ count rank-eight nine-subsets of $S$.  Such a subset has at most
+$E_0-L_2$ kernel extensions.  Refining the first inequality in the proof of
+Proposition~\ref{prop:kb-rank11-kernel-nine-shadow-containment} therefore
+gives
+\[
+ 55\sum_d I_d
+ \le E_0\binom{m'}9-(E_0-E_1)J_1-L_2J_2.
+\]
+The shared-shadow resource gives $3I_1\le E_1J_1$ and
+$6I_2\le E_2J_2$.  Substitution and rearrangement give (R8S).
+\end{proof}
+
+\begin{corollary}[Rank-eight-deficit nine-shadow capacity cut]
+\label{cor:kb-rank11-kernel-rank8-nine-shadow-capacity}
+The individual ambient/record caps, the shared rank-preserving resource,
+and (R8S) exclude the dominant kernel lane for
+\[
+ 10\le K'\le17608.
+\]
+At $K'=17608$, integer demand exceeds floored capacity by
+\[
+126547040539829546354916747965612889135249249684319416999204.
+\]
+At $K'=17609$, capacity exceeds demand by
+\[
+165662859003771823867021831078593815988062146919602894849014,
+\]
+so no larger interval is claimed by this method.
+\end{corollary}
+
+\begin{proof}
+The primary replay enumerates all nonnegative vertices of the two-resource
+dual and checks all $17599$ closed rows exactly.  At the endpoint and wall,
+coranks one and three attain their individual caps, coranks two and four are
+resource-tight, coranks five through nine vanish, and both shared resources
+bind.  An independently written replay reconstructs the primal optimizer
+from the printed fifteen-interval active-set ledger and verifies feasibility,
+complementary slackness, and strong duality on every row.  It obtains the
+same rational optima and the displayed opposite boundary signs.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -11393,13 +11475,17 @@ Proposition~\ref{prop:kb-rank11-kernel-nine-shadow-containment} supplies a
 second resource; Corollary~\ref{cor:kb-rank11-kernel-nine-shadow-containment-capacity}
 extends the interval through $K'=15670$, but not above the printed $15671$
 method wall.
+Proposition~\ref{prop:kb-rank11-kernel-rank8-nine-shadow-deficit} prices
+the rank-eight shadow extension deficit, and
+Corollary~\ref{cor:kb-rank11-kernel-rank8-nine-shadow-capacity} extends the
+exact interval through $K'=17608$, but not above the printed $17609$ wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
-$10\le K'\le15670$, rank eight plus kernel on $15671\le K'\le22525$,
+$10\le K'\le17608$, rank eight plus kernel on $17609\le K'\le22525$,
 dense-owner chronology plus kernel on $22526\le K'\le37995$, and kernel
 only above.
 The fence does not instantiate the fixed

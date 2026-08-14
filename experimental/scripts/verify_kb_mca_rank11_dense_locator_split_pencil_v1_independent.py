@@ -146,6 +146,20 @@ FIXED_CHART_SOURCES = {
         "tree": "f396ad96d235ca25e2f313ff38819be9aa668139",
         "contract_sha256": "7d56dc863b2bb327c392b33405098b5163a305e4a909a007482e32bfbd00f7e4",
     },
+    "kernel_rank8_nine_shadow_extension_deficit": {
+        "id": "rate_half_mca_rank11_kernel_rank8_nineshadow_extension_deficit",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_rank8_nineshadow_extension_deficit",
+        "commit": "8c0dac47b86bec6b355fa174130aafee2c2e6b18",
+        "tree": "0ddfc4509b2ccdcd818e89f0314a6d74f4e3aa67",
+        "contract_sha256": "f78e2d0d08b3c4535a1ef2db02e2bde7956b4c0eebe67e3de2c8cebc0441ec2a",
+    },
+    "kernel_rank8_nine_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_rank8_nineshadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_rank8_nineshadow_capacity_cut",
+        "commit": "8c0dac47b86bec6b355fa174130aafee2c2e6b18",
+        "tree": "8780eadecc3902a9e90523186a93560393caec82",
+        "contract_sha256": "bd95dca74b2f9018d78e9b89571d1175b7c5ad219bc48b6ec57167651d6835b3",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -315,6 +329,86 @@ def independent_full_shadow_bound(kprime: int) -> Fraction:
     return individual if dual is None else min(individual, dual)
 
 
+def independent_rank8_shadow_primal(
+    kprime: int, ledger: list[list[object]]
+) -> tuple[Fraction, Fraction, Fraction, list[Fraction]]:
+    caps, weights = independent_shadow_caps_weights(kprime)
+    shadow_budget = Fraction(comb(67472 + kprime, 9))
+    support_extensions = Fraction(comb(67472 + kprime - 9, 2))
+    containment_budget = support_extensions * shadow_budget
+    coefficients = []
+    for dimension, cap in enumerate(caps, 1):
+        if not cap:
+            coefficients.append(Fraction(0))
+        elif dimension == 1:
+            coefficients.append(52 + 3 * support_extensions / comb(kprime - 10, 2))
+        elif dimension == 2:
+            coefficients.append(55 + Fraction(6 * comb(67474, 2), comb(kprime - 11, 2)))
+        else:
+            coefficients.append(Fraction(55))
+
+    pattern = next(
+        (row[2:] for row in ledger if row[0] <= kprime <= row[1]),
+        None,
+    )
+    require(pattern is not None, f"rank-eight shadow ledger row {kprime}")
+    tight, capped, zero = pattern
+    active = {index + 1 for index, cap in enumerate(caps) if cap}
+    require(active == set(tight) | set(capped) | set(zero), f"rank-eight shadow partition {kprime}")
+
+    if not tight:
+        lam, mu = Fraction(0), Fraction(0)
+    elif len(tight) == 1:
+        require(tight == [1], f"rank-eight shadow singleton {kprime}")
+        lam, mu = Fraction(0), 1 / coefficients[0]
+    else:
+        require(len(tight) == 2, f"rank-eight shadow tight count {kprime}")
+        left, right = tight[0] - 1, tight[1] - 1
+        determinant = weights[left] * coefficients[right] - weights[right] * coefficients[left]
+        lam = (coefficients[right] - coefficients[left]) / determinant
+        mu = (weights[left] - weights[right]) / determinant
+    require(lam >= 0 and mu >= 0, f"rank-eight shadow dual signs {kprime}")
+
+    for dimension in active:
+        coverage = lam * weights[dimension - 1] + mu * coefficients[dimension - 1]
+        if dimension in tight:
+            require(coverage == 1, f"rank-eight shadow tight d={dimension} K={kprime}")
+        elif dimension in capped:
+            require(coverage < 1, f"rank-eight shadow capped d={dimension} K={kprime}")
+        else:
+            require(coverage > 1, f"rank-eight shadow zero d={dimension} K={kprime}")
+
+    allocation = [Fraction(0) for _ in range(9)]
+    for dimension in capped:
+        allocation[dimension - 1] = caps[dimension - 1]
+    remaining_shadow = shadow_budget - sum(weights[i] * allocation[i] for i in range(9))
+    remaining_containment = containment_budget - sum(
+        coefficients[i] * allocation[i] for i in range(9)
+    )
+    if len(tight) == 1:
+        allocation[tight[0] - 1] = remaining_containment / coefficients[tight[0] - 1]
+    elif len(tight) == 2:
+        left, right = tight[0] - 1, tight[1] - 1
+        determinant = weights[left] * coefficients[right] - weights[right] * coefficients[left]
+        allocation[left] = (
+            remaining_shadow * coefficients[right] - weights[right] * remaining_containment
+        ) / determinant
+        allocation[right] = (
+            weights[left] * remaining_containment - remaining_shadow * coefficients[left]
+        ) / determinant
+    require(all(0 <= value <= cap for value, cap in zip(allocation, caps)), f"rank-eight shadow bounds {kprime}")
+    require(sum(weights[i] * allocation[i] for i in range(9)) <= shadow_budget, f"rank-eight shadow first resource {kprime}")
+    require(sum(coefficients[i] * allocation[i] for i in range(9)) <= containment_budget, f"rank-eight shadow second resource {kprime}")
+
+    dual = lam * shadow_budget + mu * containment_budget
+    for dimension in capped:
+        coverage = lam * weights[dimension - 1] + mu * coefficients[dimension - 1]
+        dual += (1 - coverage) * caps[dimension - 1]
+    primal = sum(allocation, Fraction(0))
+    require(primal == dual, f"rank-eight shadow strong duality {kprime}")
+    return primal, lam, mu, allocation
+
+
 def independent_kernel_demand(kprime: int) -> int:
     return ceiling(
         Fraction(
@@ -399,6 +493,8 @@ def main() -> None:
     kernel_shadow_cut = data["kernel_nine_shadow_capacity_cut"]
     kernel_containment = data["kernel_nine_shadow_containment_coupling"]
     kernel_containment_cut = data["kernel_nine_shadow_containment_capacity_cut"]
+    kernel_rank8_shadow_deficit = data["kernel_rank8_nine_shadow_extension_deficit"]
+    kernel_rank8_shadow_cut = data["kernel_rank8_nine_shadow_capacity_cut"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
@@ -788,6 +884,47 @@ def main() -> None:
     }, "kernel full-shadow capacity constants")
     require(independent_kernel_demand_ratio(15671) < containment_wall_optimum, "kernel full-shadow wall")
 
+    require(kernel_rank8_shadow_deficit == {
+        "rank8_closure_offset": 2,
+        "outside_rank8_closure_minimum": 67474,
+        "outside_parallel_class_partner_minimum": 67473,
+        "independent_pair_floor": comb(67474, 2),
+        "rank8_bad_extension_formula": "C(m_prime-9,2)-C(67474,2)",
+        "rank8_resource_coefficient_formula": "55+6*C(67474,2)/C(K_prime-11,2)",
+        "resource_formula": "[52+3*E0/E1]*I1+[55+6*C(67474,2)/E2]*I2+55*sum_d_ge_3 I_d <= E0*C(m_prime,9)",
+    }, "rank-eight nine-shadow extension deficit")
+    require(comb(67474, 2) == 2276336601, "rank-eight independent-pair floor")
+    rank8_shadow_checks = 0
+    rank8_shadow_ledger = kernel_rank8_shadow_cut["pattern_ledger"]
+    for kprime in range(10, 17609):
+        optimum, _, _, _ = independent_rank8_shadow_primal(kprime, rank8_shadow_ledger)
+        require(independent_kernel_demand_ratio(kprime) > optimum, f"rank-eight shadow primal {kprime}")
+        rank8_shadow_checks += 1
+    rank8_shadow_endpoint = independent_rank8_shadow_primal(17608, rank8_shadow_ledger)
+    rank8_shadow_wall = independent_rank8_shadow_primal(17609, rank8_shadow_ledger)
+    rank8_shadow_endpoint_scaled = 274980728111260126 * rank8_shadow_endpoint[0]
+    rank8_shadow_wall_scaled = 274980728111260126 * rank8_shadow_wall[0]
+    rank8_shadow_endpoint_capacity = rank8_shadow_endpoint_scaled.numerator // rank8_shadow_endpoint_scaled.denominator
+    rank8_shadow_wall_capacity = rank8_shadow_wall_scaled.numerator // rank8_shadow_wall_scaled.denominator
+    rank8_shadow_endpoint_demand = independent_kernel_demand(17608)
+    rank8_shadow_wall_demand = independent_kernel_demand(17609)
+    require(kernel_rank8_shadow_cut["closed_K_prime_maximum"] == 17608, "rank-eight shadow endpoint row")
+    require(kernel_rank8_shadow_cut["first_open_K_prime"] == 17609, "rank-eight shadow wall row")
+    require(kernel_rank8_shadow_cut["endpoint_tight_coranks"] == [2, 4], "rank-eight shadow endpoint tight")
+    require(kernel_rank8_shadow_cut["endpoint_capped_coranks"] == [1, 3], "rank-eight shadow endpoint capped")
+    require(kernel_rank8_shadow_cut["endpoint_zero_coranks"] == [5, 6, 7, 8, 9], "rank-eight shadow endpoint zero")
+    require(rank8_shadow_endpoint[0] == Fraction(kernel_rank8_shadow_cut["endpoint_optimum_numerator"], kernel_rank8_shadow_cut["endpoint_optimum_denominator"]), "rank-eight shadow endpoint optimum")
+    require(rank8_shadow_wall[0] == Fraction(kernel_rank8_shadow_cut["wall_optimum_numerator"], kernel_rank8_shadow_cut["wall_optimum_denominator"]), "rank-eight shadow wall optimum")
+    require(rank8_shadow_endpoint[1] == Fraction(kernel_rank8_shadow_cut["endpoint_dual_lambda_numerator"], kernel_rank8_shadow_cut["endpoint_dual_lambda_denominator"]), "rank-eight shadow endpoint lambda")
+    require(rank8_shadow_endpoint[2] == Fraction(kernel_rank8_shadow_cut["endpoint_dual_mu_numerator"], kernel_rank8_shadow_cut["endpoint_dual_mu_denominator"]), "rank-eight shadow endpoint mu")
+    require(rank8_shadow_wall[1] == Fraction(kernel_rank8_shadow_cut["wall_dual_lambda_numerator"], kernel_rank8_shadow_cut["wall_dual_lambda_denominator"]), "rank-eight shadow wall lambda")
+    require(rank8_shadow_wall[2] == Fraction(kernel_rank8_shadow_cut["wall_dual_mu_numerator"], kernel_rank8_shadow_cut["wall_dual_mu_denominator"]), "rank-eight shadow wall mu")
+    require(rank8_shadow_endpoint_capacity == kernel_rank8_shadow_cut["endpoint_capacity"], "rank-eight shadow endpoint capacity")
+    require(rank8_shadow_wall_capacity == kernel_rank8_shadow_cut["wall_capacity"], "rank-eight shadow wall capacity")
+    require(rank8_shadow_endpoint_demand - rank8_shadow_endpoint_capacity == 126547040539829546354916747965612889135249249684319416999204, "rank-eight shadow endpoint gap")
+    require(rank8_shadow_wall_capacity - rank8_shadow_wall_demand == 165662859003771823867021831078593815988062146919602894849014, "rank-eight shadow wall excess")
+    require(independent_kernel_demand_ratio(17609) < rank8_shadow_wall[0], "rank-eight shadow wall")
+
     require(rank8_owner_cap == {
         "kernel_dimension": 2,
         "owner_flat_dimension": 4,
@@ -856,7 +993,7 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 15670,
+        "kernel_dominant_lane_closed_through_Kprime": 17608,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
@@ -886,6 +1023,9 @@ def main() -> None:
         f"containment_checks={containment_checks} "
         f"containment_endpoint_gap={containment_endpoint_demand-containment_endpoint_capacity} "
         f"containment_wall_excess={containment_wall_capacity-containment_wall_demand} "
+        f"rank8_shadow_checks={rank8_shadow_checks} "
+        f"rank8_shadow_endpoint_gap={rank8_shadow_endpoint_demand-rank8_shadow_endpoint_capacity} "
+        f"rank8_shadow_wall_excess={rank8_shadow_wall_capacity-rank8_shadow_wall_demand} "
         f"rank8_last_gap={rank8_last_cap-rank8_last_demand} "
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "
