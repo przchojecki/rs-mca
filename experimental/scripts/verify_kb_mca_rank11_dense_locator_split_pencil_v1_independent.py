@@ -160,6 +160,20 @@ FIXED_CHART_SOURCES = {
         "tree": "8780eadecc3902a9e90523186a93560393caec82",
         "contract_sha256": "bd95dca74b2f9018d78e9b89571d1175b7c5ad219bc48b6ec57167651d6835b3",
     },
+    "kernel_two_step_nine_shadow_hierarchy": {
+        "id": "rate_half_mca_rank11_kernel_two_step_nineshadow_hierarchy",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_two_step_nineshadow_hierarchy",
+        "commit": "770a3823e2f9f80d98ba11fcc7b62711728657b8",
+        "tree": "f737cb00316ac8c8471739adae997de23d46507b",
+        "contract_sha256": "b62be3d37c39c2f482b2e50dcc638acf2c39fb49ebe14f56e11e7adb35eaf317",
+    },
+    "kernel_two_step_nine_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_two_step_nineshadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_two_step_nineshadow_capacity_cut",
+        "commit": "770a3823e2f9f80d98ba11fcc7b62711728657b8",
+        "tree": "828122e33c5e9799b22d3a21015c8c52ca27a4e7",
+        "contract_sha256": "2e8396fb8eb41b2d3d4d9f8f6e13ab52bd51f814b348d2fcb00b98dbc04caaae",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -409,6 +423,93 @@ def independent_rank8_shadow_primal(
     return primal, lam, mu, allocation
 
 
+def independent_two_step_recurrence(
+    kprime: int,
+) -> tuple[Fraction, list[Fraction], Fraction, Fraction, dict[int, Fraction]]:
+    caps, shadow = independent_shadow_caps_weights(kprime)
+    shadow_budget = Fraction(comb(67472 + kprime, 9))
+    support_extensions = Fraction(comb(67472 + kprime - 9, 2))
+    containment_budget = support_extensions * shadow_budget
+    containment = []
+    for dimension in range(1, 10):
+        if dimension == 1:
+            containment.append(52 + Fraction(3 * support_extensions, comb(kprime - 10, 2)))
+        elif dimension == 2:
+            containment.append(55 + Fraction(6 * comb(67474, 2), comb(kprime - 11, 2)))
+        else:
+            containment.append(Fraction(55))
+    raising = {
+        dimension: Fraction(
+            comb(dimension + 2, 2) * comb(67472 + dimension, 2),
+            comb(kprime - dimension - 9, 2),
+        )
+        for dimension in range(3, 10)
+    }
+    multiplicity = {dimension: comb(11 - dimension, 2) for dimension in range(3, 10)}
+
+    factors = [Fraction(1), Fraction(1)] + [Fraction(0) for _ in range(7)]
+    for dimension in range(3, 10):
+        factors[dimension - 1] = (
+            multiplicity[dimension] * factors[dimension - 3] / raising[dimension]
+        )
+    odd_base = caps[0]
+    odd_price = sum(containment[index] * factors[index] for index in range(0, 9, 2))
+    even_price = sum(containment[index] * factors[index] for index in range(1, 9, 2))
+    even_base = (containment_budget - odd_price * odd_base) / even_price
+    allocation = [
+        factor * (odd_base if index % 2 == 0 else even_base)
+        for index, factor in enumerate(factors)
+    ]
+
+    def hierarchy_multipliers(mu: Fraction) -> dict[int, Fraction]:
+        values: dict[int, Fraction] = {}
+        for parity_top in (9, 8):
+            for dimension in range(parity_top, 2, -2):
+                child = (
+                    multiplicity[dimension + 2] * values[dimension + 2]
+                    if dimension + 2 <= 9
+                    else Fraction(0)
+                )
+                values[dimension] = (
+                    1 - mu * containment[dimension - 1] + child
+                ) / raising[dimension]
+        return values
+
+    def even_equation(mu: Fraction) -> Fraction:
+        values = hierarchy_multipliers(mu)
+        return mu * containment[1] - multiplicity[4] * values[4] - 1
+
+    at_zero, at_one = even_equation(Fraction(0)), even_equation(Fraction(1))
+    mu = -at_zero / (at_one - at_zero)
+    hierarchy_dual = hierarchy_multipliers(mu)
+    eta = 1 - mu * containment[0] + multiplicity[3] * hierarchy_dual[3]
+    require(mu >= 0 and eta >= 0, f"two-step base dual signs {kprime}")
+    require(all(value >= 0 for value in hierarchy_dual.values()), f"two-step hierarchy dual signs {kprime}")
+    for dimension in range(1, 10):
+        coverage = mu * containment[dimension - 1]
+        if dimension == 1:
+            coverage += eta
+        if dimension >= 3:
+            coverage += raising[dimension] * hierarchy_dual[dimension]
+        if dimension + 2 <= 9:
+            coverage -= multiplicity[dimension + 2] * hierarchy_dual[dimension + 2]
+        require(coverage == 1, f"two-step dual equality d={dimension} K={kprime}")
+
+    require(all(0 < value <= cap for value, cap in zip(allocation, caps)), f"two-step primal caps {kprime}")
+    require(allocation[0] == caps[0], f"two-step primal cap equality {kprime}")
+    require(sum(shadow[i] * allocation[i] for i in range(9)) < shadow_budget, f"two-step shadow slack {kprime}")
+    require(sum(containment[i] * allocation[i] for i in range(9)) == containment_budget, f"two-step containment {kprime}")
+    for dimension in range(3, 10):
+        require(
+            raising[dimension] * allocation[dimension - 1]
+            == multiplicity[dimension] * allocation[dimension - 3],
+            f"two-step primal d={dimension} K={kprime}",
+        )
+    optimum = sum(allocation, Fraction(0))
+    require(mu * containment_budget + eta * caps[0] == optimum, f"two-step strong duality {kprime}")
+    return optimum, allocation, mu, eta, hierarchy_dual
+
+
 def independent_kernel_demand(kprime: int) -> int:
     return ceiling(
         Fraction(
@@ -495,6 +596,8 @@ def main() -> None:
     kernel_containment_cut = data["kernel_nine_shadow_containment_capacity_cut"]
     kernel_rank8_shadow_deficit = data["kernel_rank8_nine_shadow_extension_deficit"]
     kernel_rank8_shadow_cut = data["kernel_rank8_nine_shadow_capacity_cut"]
+    kernel_two_step_hierarchy = data["kernel_two_step_nine_shadow_hierarchy"]
+    kernel_two_step_cut = data["kernel_two_step_nine_shadow_capacity_cut"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
@@ -925,6 +1028,82 @@ def main() -> None:
     require(rank8_shadow_wall_capacity - rank8_shadow_wall_demand == 165662859003771823867021831078593815988062146919602894849014, "rank-eight shadow wall excess")
     require(independent_kernel_demand_ratio(17609) < rank8_shadow_wall[0], "rank-eight shadow wall")
 
+    expected_hierarchy = [
+        [
+            dimension,
+            comb(dimension + 2, 2),
+            67472 + dimension,
+            67471 + dimension,
+            comb(67472 + dimension, 2),
+            11 - dimension,
+            comb(11 - dimension, 2),
+        ]
+        for dimension in range(3, 10)
+    ]
+    require(kernel_two_step_hierarchy == {
+        "support_offset": 67472,
+        "corank_minimum": 3,
+        "corank_maximum": 9,
+        "couplings": expected_hierarchy,
+        "same_rank_extension_formula": "C(K_prime-d-9,2)",
+        "inequality_formula": "C(d+2,2)*C(67472+d,2)*I_d/C(K_prime-d-9,2) <= C(11-d,2)*I_(d-2)",
+    }, "two-step hierarchy")
+    closure_checks = 0
+    for dimension, _, _, _, pair_floor, coloop_cap, multiplicity in expected_hierarchy:
+        for kprime in (dimension + 11, 101, 17609, 18102):
+            mprime = 67472 + kprime
+            for closure_size in range(kprime - dimension + 1):
+                outside = mprime - closure_size
+                parallel_cap = kprime - dimension + 1 - closure_size
+                require(outside * (outside - parallel_cap) // 2 >= pair_floor, f"two-step pair d={dimension} K={kprime}")
+                closure_checks += 1
+        require(coloop_cap == 11 - dimension, f"two-step coloop cap d={dimension}")
+        require(multiplicity == comb(coloop_cap, 2), f"two-step multiplicity d={dimension}")
+
+    two_step_checks = 0
+    for kprime in range(17609, 18102):
+        optimum, allocation, _, _, hierarchy_dual = independent_two_step_recurrence(kprime)
+        require(independent_kernel_demand_ratio(kprime) > optimum, f"two-step recurrence {kprime}")
+        require(all(value > 0 for value in allocation), f"two-step allocation {kprime}")
+        require(len(hierarchy_dual) == 7, f"two-step dual count {kprime}")
+        two_step_checks += 1
+    two_step_endpoint = independent_two_step_recurrence(18101)[0]
+    two_step_wall = independent_two_step_recurrence(18102)[0]
+    two_step_endpoint_scaled = 274980728111260126 * two_step_endpoint
+    two_step_wall_scaled = 274980728111260126 * two_step_wall
+    two_step_endpoint_capacity = two_step_endpoint_scaled.numerator // two_step_endpoint_scaled.denominator
+    two_step_wall_capacity = two_step_wall_scaled.numerator // two_step_wall_scaled.denominator
+    two_step_endpoint_demand = independent_kernel_demand(18101)
+    two_step_wall_demand = independent_kernel_demand(18102)
+    require(kernel_two_step_cut == {
+        "previous_closed_K_prime": 17608,
+        "replay_K_prime_minimum": 17609,
+        "closed_K_prime_maximum": 18101,
+        "first_open_K_prime": 18102,
+        "replay_rows": 494,
+        "endpoint_branch_pattern": [choice for _, _, choice in independent_kernel_hybrid_terms(18101)],
+        "active_individual_caps": [1],
+        "active_shared_resources": ["full_containment_nine_shadow"],
+        "slack_shared_resources": ["rank_preserving_nine_shadow"],
+        "active_hierarchy_coranks": list(range(3, 10)),
+        "positive_coranks": list(range(1, 10)),
+        "endpoint_optimum_numerator": two_step_endpoint.numerator,
+        "endpoint_optimum_denominator": two_step_endpoint.denominator,
+        "endpoint_demand": two_step_endpoint_demand,
+        "endpoint_capacity": two_step_endpoint_capacity,
+        "endpoint_gap": two_step_endpoint_demand - two_step_endpoint_capacity,
+        "wall_optimum_numerator": two_step_wall.numerator,
+        "wall_optimum_denominator": two_step_wall.denominator,
+        "wall_demand": two_step_wall_demand,
+        "wall_capacity": two_step_wall_capacity,
+        "wall_excess": two_step_wall_capacity - two_step_wall_demand,
+        "capacity_formula": "exact full-containment plus two-step hierarchy LP with individual ambient/record caps",
+    }, "two-step capacity constants")
+    require(two_step_checks == 493, "two-step replay count")
+    require(two_step_endpoint_demand - two_step_endpoint_capacity == 33462159928103132226516704640419847248244116666500998762314, "two-step endpoint gap")
+    require(two_step_wall_capacity - two_step_wall_demand == 275016496133605602641019628236447268989861205055439981187167, "two-step wall excess")
+    require(independent_kernel_demand_ratio(18102) < two_step_wall, "two-step wall")
+
     require(rank8_owner_cap == {
         "kernel_dimension": 2,
         "owner_flat_dimension": 4,
@@ -993,7 +1172,7 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 17608,
+        "kernel_dominant_lane_closed_through_Kprime": 18101,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
@@ -1026,6 +1205,10 @@ def main() -> None:
         f"rank8_shadow_checks={rank8_shadow_checks} "
         f"rank8_shadow_endpoint_gap={rank8_shadow_endpoint_demand-rank8_shadow_endpoint_capacity} "
         f"rank8_shadow_wall_excess={rank8_shadow_wall_capacity-rank8_shadow_wall_demand} "
+        f"two_step_checks={two_step_checks+1} "
+        f"two_step_closure_checks={closure_checks} "
+        f"two_step_endpoint_gap={two_step_endpoint_demand-two_step_endpoint_capacity} "
+        f"two_step_wall_excess={two_step_wall_capacity-two_step_wall_demand} "
         f"rank8_last_gap={rank8_last_cap-rank8_last_demand} "
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "

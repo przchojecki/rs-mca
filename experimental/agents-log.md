@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Two-step nine-shadow hierarchy
+
+- **Agent/model:** Codex with an exact primal/Gaussian-dual replay and an
+  independently derived odd/even dual recurrence.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** For every kernel corank `3<=d<=9`, rank-raising
+  support pairs and loopless target-coloop multiplicities prove
+  `C(d+2,2)C(67472+d,2)I_d/C(K'-d-9,2)<=C(11-d,2)I_(d-2)`. The seven
+  inequalities extend the exact kernel exclusion through `K'=18101`, with
+  first reversal at `K'=18102`.
+- **How it is useful:** It couples both parity chains across all kernel
+  coranks and removes 493 further dimensions. The stable wall has every
+  corank positive, with the corank-one cap, full containment, and every
+  hierarchy row tight.
+- **What to do next:** Strengthen the corank-one cap, the full-containment
+  coefficient, or one hierarchy row, or identify an independent resource
+  violated by the `K'=18102` optimizer.
+
 ### 2026-08-14 - Rank-eight nine-shadow extension deficit
 
 - **Agent/model:** Codex with an all-vertex dual replay and an independent

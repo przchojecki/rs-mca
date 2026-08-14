@@ -179,6 +179,20 @@
         "tree": "8780eadecc3902a9e90523186a93560393caec82",
         "contract_sha256": "bd95dca74b2f9018d78e9b89571d1175b7c5ad219bc48b6ec57167651d6835b3"
       },
+      "kernel_two_step_nine_shadow_hierarchy": {
+        "id": "rate_half_mca_rank11_kernel_two_step_nineshadow_hierarchy",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_two_step_nineshadow_hierarchy",
+        "commit": "770a3823e2f9f80d98ba11fcc7b62711728657b8",
+        "tree": "f737cb00316ac8c8471739adae997de23d46507b",
+        "contract_sha256": "b62be3d37c39c2f482b2e50dcc638acf2c39fb49ebe14f56e11e7adb35eaf317"
+      },
+      "kernel_two_step_nine_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_two_step_nineshadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_two_step_nineshadow_capacity_cut",
+        "commit": "770a3823e2f9f80d98ba11fcc7b62711728657b8",
+        "tree": "828122e33c5e9799b22d3a21015c8c52ca27a4e7",
+        "contract_sha256": "2e8396fb8eb41b2d3d4d9f8f6e13ab52bd51f814b348d2fcb00b98dbc04caaae"
+      },
       "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -834,6 +848,136 @@
     ],
     "capacity_formula": "exact two-resource LP with rank-eight extension deficit and individual ambient/record caps"
   },
+  "kernel_two_step_nine_shadow_hierarchy": {
+    "support_offset": 67472,
+    "corank_minimum": 3,
+    "corank_maximum": 9,
+    "couplings": [
+      [
+        3,
+        10,
+        67475,
+        67474,
+        2276404075,
+        8,
+        28
+      ],
+      [
+        4,
+        15,
+        67476,
+        67475,
+        2276471550,
+        7,
+        21
+      ],
+      [
+        5,
+        21,
+        67477,
+        67476,
+        2276539026,
+        6,
+        15
+      ],
+      [
+        6,
+        28,
+        67478,
+        67477,
+        2276606503,
+        5,
+        10
+      ],
+      [
+        7,
+        36,
+        67479,
+        67478,
+        2276673981,
+        4,
+        6
+      ],
+      [
+        8,
+        45,
+        67480,
+        67479,
+        2276741460,
+        3,
+        3
+      ],
+      [
+        9,
+        55,
+        67481,
+        67480,
+        2276808940,
+        2,
+        1
+      ]
+    ],
+    "same_rank_extension_formula": "C(K_prime-d-9,2)",
+    "inequality_formula": "C(d+2,2)*C(67472+d,2)*I_d/C(K_prime-d-9,2) <= C(11-d,2)*I_(d-2)"
+  },
+  "kernel_two_step_nine_shadow_capacity_cut": {
+    "previous_closed_K_prime": 17608,
+    "replay_K_prime_minimum": 17609,
+    "closed_K_prime_maximum": 18101,
+    "first_open_K_prime": 18102,
+    "replay_rows": 494,
+    "endpoint_branch_pattern": [
+      "ambient",
+      "ambient",
+      "ambient",
+      "ambient",
+      "record",
+      "record",
+      "record",
+      "record",
+      "record"
+    ],
+    "active_individual_caps": [
+      1
+    ],
+    "active_shared_resources": [
+      "full_containment_nine_shadow"
+    ],
+    "slack_shared_resources": [
+      "rank_preserving_nine_shadow"
+    ],
+    "active_hierarchy_coranks": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "positive_coranks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "endpoint_optimum_numerator": 2500416399741782515084484996877742960792033212301991875247750920467384887754935050861995214106978406,
+    "endpoint_optimum_denominator": 111888238403707947349577341988748320372855631471247937,
+    "endpoint_demand": 6145150518177008457868052836919021202638029676756627945009298824,
+    "endpoint_capacity": 6145117056017080354735826320214380782790781432639961444010536510,
+    "endpoint_gap": 33462159928103132226516704640419847248244116666500998762314,
+    "wall_optimum_numerator": 7673294420290924796474038823564080764323543518907607228411247246451045976552900201907950692736865738563286,
+    "wall_optimum_denominator": 343301998967392009318492365087033156542330110914867039371395,
+    "wall_demand": 6145940540215739534303387602895040150468622553659545361502351922,
+    "wall_capacity": 6146215556711873139906028622523276597737612414864600801483539089,
+    "wall_excess": 275016496133605602641019628236447268989861205055439981187167,
+    "capacity_formula": "exact full-containment plus two-step hierarchy LP with individual ambient/record caps"
+  },
   "rank8_owner_pair_weight_cap": {
     "kernel_dimension": 2,
     "owner_flat_dimension": 4,
@@ -871,7 +1015,7 @@
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated": true,
-    "kernel_dominant_lane_closed_through_Kprime": 17608,
+    "kernel_dominant_lane_closed_through_Kprime": 18101,
     "rank8_owner_flat_closed_from_Kprime": 37996,
     "rank8_dense_owner_terminal_from_Kprime": 22526,
     "chronology_owner": false,

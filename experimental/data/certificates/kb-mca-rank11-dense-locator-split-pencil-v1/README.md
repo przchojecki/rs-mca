@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages twenty-eight proved local route cuts after the fixed
+This certificate packages thirty proved local route cuts after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -58,6 +58,11 @@ rank-eleven anchor-star reduction:
 - the resulting sharpened two-resource LP exclusion through `K'=17608`,
   with coranks one and three capped, coranks two and four resource-tight,
   and first reversal at `K'=17609`;
+- seven two-step nine-shadow inequalities coupling corank `d` to corank
+  `d-2`, proved by rank-raising pair counts and loopless target-coloop
+  multiplicities;
+- the resulting exact hierarchy-saturated exclusion through `K'=18101`,
+  with all nine coranks positive and first reversal at `K'=18102`;
 - the rank-eight marked owner-pair cap `981105*C(n'-9,2)`;
 - exact exclusion of the rank-eight owner-flat target for
   `37996<=K'<=1048576`, with the last failed row `K'=37995` printed;
@@ -73,7 +78,8 @@ The primary verifier replays the endpoint arithmetic and a finite-field
 normalization model.  The independent verifier recomputes the ratios by a
 separate method, exhausts all `981104` admissible owner-core sizes, all
 `11763` hybrid rows, all `15436` one-shadow rows, all `15661`
-full-containment rows, and all `17599` rank-eight-deficit rows, checks all
+full-containment rows, all `17599` rank-eight-deficit rows, and all `494`
+two-step boundary rows, checks all
 `11` rank-eight monotonicity
 factors and both dense-owner bridge boundary rows, and checks a toy
 affine-plane line design. Both reject
@@ -81,6 +87,6 @@ proof-critical manifest mutations.
 
 The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, pay the fixed-kernel branch above `K'=17608` or the rank-eight branch
+lane, pay the fixed-kernel branch above `K'=18101` or the rank-eight branch
 below `K'=22526`, assign the bridged dense owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.
