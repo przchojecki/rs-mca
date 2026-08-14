@@ -187,13 +187,13 @@
     "experimental/scripts/verify_kb_mca_dense_core_owner_substrate_v1_independent.py"
   ],
   "packet_file_sha256": {
-    "agents.md": "5c08df113f4843f9cae90e7b7b7d99b958e7eedd02abf21393f4b5a127e4f68f",
-    "experimental/agents-log.md": "e88b0bf6029920887ed9f1daa1323afbcdf39abba704ea7072b70a88a5d10e32",
-    "experimental/grande_finale.tex": "edfe5d23013dc8329531e278a98920bd94404013eeac3ded94c3952852dc17f9",
+    "agents.md": "d7c4a71f05cdab54541b2774769dd8cb12852f1b13365b2ee1aa8affc1290d9b",
+    "experimental/agents-log.md": "ae3b27cc6ae56cc3753761fefbf24d86c7fed7f678e1d44ee7aa0ae9f765f69a",
+    "experimental/grande_finale.tex": "1ba5874a433f3c15a3fa5b8d8d9427fc160ca821f5eea104d7a4d45f5c7a4bd5",
     "experimental/notes/thresholds/kb_mca_dense_core_owner_substrate_v1.md": "9d760277542ee125c1f44d61a694e04b859b25ffe56912763159cedb4afe8567",
     "experimental/data/certificates/kb-mca-dense-core-owner-substrate-v1/README.md": "44e6cd274578ff9d6c8da3e1022c908b91132bebff3af931caca0fc6a3a6e6a5",
     "experimental/scripts/verify_kb_mca_dense_core_owner_substrate_v1.py": "d76ea235023f57ef4859d8478d3087d67d056d5a8ba1a7141084c5c25f44ea1e",
     "experimental/scripts/verify_kb_mca_dense_core_owner_substrate_v1_independent.py": "fd0e758be539fa14ffea77b83c458f3cdf3090a5177c02811ef189513d0ae949"
   },
-  "payload_sha256": "245be1cc768811a756298ee1b1049dfd2212be10f48b8c9fda2c31db7fc09a58"
+  "payload_sha256": "c0629eeb58b3553dfc10b5e789524c0f5aa0b8a8cbcdedb23ced52f0661268d4"
 }

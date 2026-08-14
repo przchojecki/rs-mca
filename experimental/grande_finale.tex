@@ -10643,6 +10643,26 @@ two by rank--nullity.  The owner deficiency in the full-rank case is at most
 $m'-10-E(K')\le22320$.
 \end{proof}
 
+\begin{proposition}[Record-intrinsic full-rank star owner]
+\label{prop:kb-rank11-component-star-owner-unique}
+In the full-rank branch of
+Corollary~\ref{cor:kb-rank11-component-star}, the owner of support deficiency
+at most $22320$ is unique for its record.  In particular it is independent
+of the ten-subset used to expose it.
+\end{proposition}
+
+\begin{proof}
+Suppose two owner pairs have within-support cores $A_p,A_q$, each of size at
+least $m'-22320$.  Inclusion--exclusion inside the exact support gives
+\[
+ |A_p\cap A_q|\ge m'-2\cdot22320=K'+22832.
+\]
+If the pairs are distinct, at least one component of their difference is a
+nonzero RS polynomial of degree below $K'$.  Every coordinate in
+$A_p\cap A_q$ is a root of that component, so the RS root bound gives
+$|A_p\cap A_q|\le K'-1$, a contradiction.  The gap is uniformly $22833$.
+\end{proof}
+
 \begin{proposition}[One fixed rank-nine split-pencil cell]
 \label{prop:kb-rank11-split-pencil-cell}
 Fix a rank-nine ten-subset $B$ and let $g$ records be routed to this cell.

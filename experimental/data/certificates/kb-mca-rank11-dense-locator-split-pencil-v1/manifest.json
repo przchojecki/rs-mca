@@ -25,6 +25,13 @@
         "tree": "39e1b4222d88c7d50e343fb215d98ecca302c7f2",
         "contract_sha256": "23894520514168a69e1de5e638705c2036c6303e678bd295c124fe4278a917f7"
       },
+      "component_star_large_owner_uniqueness": {
+        "id": "rate_half_mca_rank11_component_star_large_owner_uniqueness",
+        "path": "background/nodes/rate_half_mca_rank11_component_star_large_owner_uniqueness",
+        "commit": "b6f4705196e52e0940d592ca21363d9fd8a920b2",
+        "tree": "4c8d49092349cc1c78c265be3845d5a526144b25",
+        "contract_sha256": "731e65b2926b11ef0d192e11fb55e5eac280e0d93038270fe131d79b9ca7b076"
+      },
       "rank9_split_pencil_cell": {
         "id": "rate_half_mca_rank11_rank9_split_pencil_cell_ledger",
         "path": "background/nodes/rate_half_mca_rank11_rank9_split_pencil_cell_ledger",
@@ -114,6 +121,13 @@
       "KERNEL_PLANE"
     ]
   },
+  "component_star_large_owner_uniqueness": {
+    "large_owner_deficiency_ceiling": 22320,
+    "two_owner_deficiency_sum": 44640,
+    "distance_margin_after_two_owners": 22832,
+    "intersection_over_root_cap": 22833,
+    "owner_count_per_record": 1
+  },
   "rank9_split_pencil_cell": {
     "cell_size": 10,
     "cell_rank": 9,
@@ -180,6 +194,7 @@
     "incidence_is_record_count": false,
     "cross_cell_census": false,
     "fixed_chart_output_suffices_for_payment": false,
+    "full_rank_star_owner_is_record_intrinsic": true,
     "chronology_owner": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,

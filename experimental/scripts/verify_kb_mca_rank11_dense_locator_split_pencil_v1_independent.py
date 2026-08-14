@@ -20,6 +20,13 @@ PAIRCORE_SOURCE = {
     "contract_sha256": "e899fbb6893e61495371f689f6a2ca5eb196d0bbc6d6ec8dc39b34eb9965c252",
 }
 FIXED_CHART_SOURCES = {
+    "component_star_large_owner_uniqueness": {
+        "id": "rate_half_mca_rank11_component_star_large_owner_uniqueness",
+        "path": "background/nodes/rate_half_mca_rank11_component_star_large_owner_uniqueness",
+        "commit": "b6f4705196e52e0940d592ca21363d9fd8a920b2",
+        "tree": "4c8d49092349cc1c78c265be3845d5a526144b25",
+        "contract_sha256": "731e65b2926b11ef0d192e11fb55e5eac280e0d93038270fe131d79b9ca7b076",
+    },
     "component_ninesubset_concentrator": {
         "id": "rate_half_mca_rank11_component_ninesubset_lane_concentrator",
         "path": "background/nodes/rate_half_mca_rank11_component_ninesubset_lane_concentrator",
@@ -97,6 +104,7 @@ def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
     star = data["component_star"]
+    owner_unique = data["component_star_large_owner_uniqueness"]
     cell = data["rank9_split_pencil_cell"]
     paircore = data["rank9_split_pencil_paircore"]
     concentrator = data["component_ninesubset_concentrator"]
@@ -140,6 +148,16 @@ def main() -> None:
     extensions = ceiling(Fraction(98 * (m_max - 10), 100))
     require(m_max - 10 - extensions == star["full_rank_owner_deficiency_ceiling"] == 22320, "owner deficiency")
     require(extensions - (1048576 - 11) == star["rank9_extension_floor"] == 45153, "pencil extensions")
+    owner_deficiency = star["full_rank_owner_deficiency_ceiling"]
+    root_gap = (67472 + 10 - 2 * owner_deficiency) - (10 - 1)
+    require(root_gap == 22833, "owner uniqueness root gap")
+    require(owner_unique == {
+        "large_owner_deficiency_ceiling": owner_deficiency,
+        "two_owner_deficiency_sum": 2 * owner_deficiency,
+        "distance_margin_after_two_owners": 67472 - 2 * owner_deficiency,
+        "intersection_over_root_cap": root_gap,
+        "owner_count_per_record": 1,
+    }, "owner uniqueness constants")
 
     owner_cap = 2097152 - m_max + 1
     weighted = owner_cap * (2097152 - 10)
@@ -264,6 +282,7 @@ def main() -> None:
         "incidence_is_record_count": False,
         "cross_cell_census": False,
         "fixed_chart_output_suffices_for_payment": False,
+        "full_rank_star_owner_is_record_intrinsic": True,
         "chronology_owner": False,
         "rank11_paid": False,
         "active_v4_ledger_movement": 0,

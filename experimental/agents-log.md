@@ -4266,7 +4266,7 @@ Keep entries concise and link to the relevant files.
 
 ### 2026-08-14 - Rank-eleven dense-locator and split-pencil route
 
-- **Agent/model:** Codex, importing nine public prize-DAG theorems after
+- **Agent/model:** Codex, importing ten public prize-DAG theorems after
   source, proof-boundary, arithmetic, and independent finite-model replay.
 - **Exact parent:** PR #1169 head
   `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
@@ -4290,6 +4290,10 @@ Keep entries concise and link to the relevant files.
   explicit weighted-plane realization then gives `4070408` exact-support,
   pair-noncontained slopes under the local rank-nine target conclusions,
   fencing any attempt to pay `2578110` from those conclusions alone.
+- **Owner key:** In the full-rank star branch, deficiency at most `22320`
+  makes the owner unique for its record.  Two candidates force an
+  intersection `22833` above the RS root cap, so weighted aggregation no
+  longer depends on the exposing ten-subset.
 - **Unit guard:** The first abundance result counts record/eleven-subset
   incidences.  Only the separately proved threshold argument converts it to
   a record floor.  Neither number is a distinct component count.

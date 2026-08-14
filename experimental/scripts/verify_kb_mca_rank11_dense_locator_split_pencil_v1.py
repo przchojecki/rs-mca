@@ -37,6 +37,13 @@ SOURCE_NODES = {
         "tree": "39e1b4222d88c7d50e343fb215d98ecca302c7f2",
         "contract_sha256": "23894520514168a69e1de5e638705c2036c6303e678bd295c124fe4278a917f7",
     },
+    "component_star_large_owner_uniqueness": {
+        "id": "rate_half_mca_rank11_component_star_large_owner_uniqueness",
+        "path": "background/nodes/rate_half_mca_rank11_component_star_large_owner_uniqueness",
+        "commit": "b6f4705196e52e0940d592ca21363d9fd8a920b2",
+        "tree": "4c8d49092349cc1c78c265be3845d5a526144b25",
+        "contract_sha256": "731e65b2926b11ef0d192e11fb55e5eac280e0d93038270fe131d79b9ca7b076",
+    },
     "rank9_split_pencil_cell": {
         "id": "rate_half_mca_rank11_rank9_split_pencil_cell_ledger",
         "path": "background/nodes/rate_half_mca_rank11_rank9_split_pencil_cell_ledger",
@@ -263,6 +270,13 @@ def expected() -> dict[str, Any]:
             "low_rank_kernel_dimension_floor": 2,
             "routes": ["LARGE_AFFINE_OWNER", "RANK9_OWNER_PENCIL", "KERNEL_PLANE"],
         },
+        "component_star_large_owner_uniqueness": {
+            "large_owner_deficiency_ceiling": deficiency,
+            "two_owner_deficiency_sum": 2 * deficiency,
+            "distance_margin_after_two_owners": 67472 - 2 * deficiency,
+            "intersection_over_root_cap": 67472 - 2 * deficiency + 1,
+            "owner_count_per_record": 1,
+        },
         "rank9_split_pencil_cell": {
             "cell_size": 10,
             "cell_rank": 9,
@@ -329,6 +343,7 @@ def expected() -> dict[str, Any]:
             "incidence_is_record_count": False,
             "cross_cell_census": False,
             "fixed_chart_output_suffices_for_payment": False,
+            "full_rank_star_owner_is_record_intrinsic": True,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -350,6 +365,9 @@ def validate(value: object) -> dict[str, int]:
         )
         require(current <= component["isolated_equivalent_ceiling"], "endpoint monotonicity")
     require(18 * 11 == component["isolated_bezout"], "multihomogeneous Bezout")
+    owner_unique = value["component_star_large_owner_uniqueness"]
+    require(owner_unique["intersection_over_root_cap"] == 22833, "large-owner root gap")
+    require(owner_unique["owner_count_per_record"] == 1, "record-intrinsic owner")
     require(value["claims"]["active_v4_ledger_movement"] == 0, "ledger movement")
     fence = value["rank9_fixed_chart_local_cap_fence"]
     require(fence["rich_slope_count"] > value["component_ninesubset_targets"]["fixed_selector_record_floor"], "local-cap fence")
@@ -370,6 +388,7 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["component_incidence"].__setitem__("isolated_bezout", 197),
         lambda item: item["component_incidence"].__setitem__("component_incidence_ppb_floor", 990810935),
         lambda item: item["component_star"].__setitem__("rank9_extension_floor", 45152),
+        lambda item: item["component_star_large_owner_uniqueness"].__setitem__("intersection_over_root_cap", 22832),
         lambda item: item["rank9_split_pencil_cell"].__setitem__("sharp_fixed_cell_record_cap", 45567659),
         lambda item: item["rank9_split_pencil_cell"].__setitem__("rounding_rule", "ceil"),
         lambda item: item["rank9_split_pencil_paircore"].__setitem__("low_common_core_plane_cap", 1434406),
@@ -378,6 +397,7 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["component_ninesubset_targets"].__setitem__("rank8_error_rank_ceiling", 4),
         lambda item: item["rank9_fixed_chart_local_cap_fence"].__setitem__("rich_slope_count", 2578110),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
+        lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
         lambda item: item["claims"].__setitem__("rank11_paid", True),
         lambda item: item["source_prize_dag"]["nodes"]["component_star"].__setitem__("commit", "0" * 40),
