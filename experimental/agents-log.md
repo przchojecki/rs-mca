@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - All-step kernel-shadow hierarchy
+
+- **Agent/model:** Codex with an exact primal/Gaussian-dual replay and an
+  independent forward/backward tree recurrence.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** For every `2<=t<d<=9`, coloopless-dual shadow
+  counts, rank-raising support `t`-sets, and target-coloop multiplicities
+  prove
+  `C(d+2,t)C(67472+d,t)I_d/C(K'-d-11+t,t)<=C(9-d+t,t)I_(d-t)`.
+  The 28 inequalities extend exact kernel exclusion through `K'=18158`,
+  with first reversal at `K'=18159`.
+- **How it is useful:** It removes 57 further kernel dimensions. The exact
+  optimizer has all nine coranks positive and a seven-edge hierarchy tree;
+  ten additional tight rows are independently checked cycle identities.
+- **What to do next:** Attack the `K'=18159` optimizer through a stronger
+  corank-one cap, full-containment coefficient, or a genuinely new shared
+  resource; further step sizes are already exhausted by this hierarchy.
+
 ### 2026-08-15 - Two-step nine-shadow hierarchy
 
 - **Agent/model:** Codex with an exact primal/Gaussian-dual replay and an

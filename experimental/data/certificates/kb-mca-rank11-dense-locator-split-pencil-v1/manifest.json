@@ -193,6 +193,20 @@
         "tree": "828122e33c5e9799b22d3a21015c8c52ca27a4e7",
         "contract_sha256": "2e8396fb8eb41b2d3d4d9f8f6e13ab52bd51f814b348d2fcb00b98dbc04caaae"
       },
+      "kernel_multistep_shadow_hierarchy": {
+        "id": "rate_half_mca_rank11_kernel_multistep_shadow_hierarchy",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_multistep_shadow_hierarchy",
+        "commit": "28b82fda1bb777ee6c609446d87a6322108b7c16",
+        "tree": "058dda0c6c37a53a7f67693b33b0aaa294ab35e7",
+        "contract_sha256": "c7561d9192a00cd97530d61adff244cccfec97ce248fbe23c6074d641c33053b"
+      },
+      "kernel_three_step_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_three_step_shadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_three_step_shadow_capacity_cut",
+        "commit": "28b82fda1bb777ee6c609446d87a6322108b7c16",
+        "tree": "948a43bb37ed08bc01ceea42dfa26a8b1e59c7a5",
+        "contract_sha256": "1645081d2c338bd79210f3417f2520c14bfc72d0351af70fbb042b3ecd408636"
+      },
       "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -978,6 +992,471 @@
     "wall_excess": 275016496133605602641019628236447268989861205055439981187167,
     "capacity_formula": "exact full-containment plus two-step hierarchy LP with individual ambient/record caps"
   },
+  "kernel_multistep_shadow_hierarchy": {
+    "support_offset": 67472,
+    "corank_minimum": 3,
+    "corank_maximum": 9,
+    "step_minimum": 2,
+    "coupling_count": 28,
+    "couplings": [
+      [
+        2,
+        3,
+        10,
+        67475,
+        2276404075,
+        8,
+        28
+      ],
+      [
+        2,
+        4,
+        15,
+        67476,
+        2276471550,
+        7,
+        21
+      ],
+      [
+        2,
+        5,
+        21,
+        67477,
+        2276539026,
+        6,
+        15
+      ],
+      [
+        2,
+        6,
+        28,
+        67478,
+        2276606503,
+        5,
+        10
+      ],
+      [
+        2,
+        7,
+        36,
+        67479,
+        2276673981,
+        4,
+        6
+      ],
+      [
+        2,
+        8,
+        45,
+        67480,
+        2276741460,
+        3,
+        3
+      ],
+      [
+        2,
+        9,
+        55,
+        67481,
+        2276808940,
+        2,
+        1
+      ],
+      [
+        3,
+        4,
+        20,
+        67476,
+        51200880454900,
+        8,
+        56
+      ],
+      [
+        3,
+        5,
+        35,
+        67477,
+        51203156926450,
+        7,
+        35
+      ],
+      [
+        3,
+        6,
+        56,
+        67478,
+        51205433465476,
+        6,
+        20
+      ],
+      [
+        3,
+        7,
+        84,
+        67479,
+        51207710071979,
+        5,
+        10
+      ],
+      [
+        3,
+        8,
+        120,
+        67480,
+        51209986745960,
+        4,
+        4
+      ],
+      [
+        3,
+        9,
+        165,
+        67481,
+        51212263487420,
+        3,
+        1
+      ],
+      [
+        4,
+        5,
+        35,
+        67477,
+        863720452613821825,
+        8,
+        70
+      ],
+      [
+        4,
+        6,
+        70,
+        67478,
+        863771655770748275,
+        7,
+        35
+      ],
+      [
+        4,
+        7,
+        126,
+        67479,
+        863822861204213751,
+        6,
+        15
+      ],
+      [
+        4,
+        8,
+        210,
+        67480,
+        863874068914285730,
+        5,
+        5
+      ],
+      [
+        4,
+        9,
+        330,
+        67481,
+        863925278901031690,
+        4,
+        1
+      ],
+      [
+        5,
+        6,
+        56,
+        67478,
+        11656425740295093821470,
+        8,
+        56
+      ],
+      [
+        5,
+        7,
+        126,
+        67479,
+        11657289511950864569745,
+        7,
+        21
+      ],
+      [
+        5,
+        8,
+        252,
+        67480,
+        11658153334812068783496,
+        6,
+        6
+      ],
+      [
+        5,
+        9,
+        462,
+        67481,
+        11659017208880983069226,
+        5,
+        1
+      ],
+      [
+        6,
+        7,
+        84,
+        67479,
+        131093992088228772663162355,
+        8,
+        28
+      ],
+      [
+        6,
+        8,
+        210,
+        67480,
+        131105649377740723527732100,
+        7,
+        7
+      ],
+      [
+        6,
+        9,
+        462,
+        67481,
+        131117307531075535596515596,
+        6,
+        1
+      ],
+      [
+        7,
+        8,
+        120,
+        67480,
+        1263746083730525368472885102200,
+        8,
+        8
+      ],
+      [
+        7,
+        9,
+        330,
+        67481,
+        1263877189379903109196412834300,
+        7,
+        1
+      ],
+      [
+        8,
+        9,
+        165,
+        67481,
+        10659856184527447798739844947694775,
+        8,
+        1
+      ]
+    ],
+    "triple_couplings": [
+      [
+        4,
+        20,
+        67476,
+        51200880454900,
+        8,
+        56
+      ],
+      [
+        5,
+        35,
+        67477,
+        51203156926450,
+        7,
+        35
+      ],
+      [
+        6,
+        56,
+        67478,
+        51205433465476,
+        6,
+        20
+      ],
+      [
+        7,
+        84,
+        67479,
+        51207710071979,
+        5,
+        10
+      ],
+      [
+        8,
+        120,
+        67480,
+        51209986745960,
+        4,
+        4
+      ],
+      [
+        9,
+        165,
+        67481,
+        51212263487420,
+        3,
+        1
+      ]
+    ],
+    "spanning_shadow_formula": "C(d+2,t)",
+    "same_rank_extension_formula": "C(K_prime-d-11+t,t)",
+    "rank_raising_extension_formula": "C(67472+d,t)",
+    "target_multiplicity_formula": "C(9-d+t,t)",
+    "inequality_formula": "C(d+2,t)*C(67472+d,t)*I_d/C(K_prime-d-11+t,t) <= C(9-d+t,t)*I_(d-t)"
+  },
+  "kernel_three_step_shadow_capacity_cut": {
+    "previous_closed_K_prime": 18101,
+    "replay_K_prime_minimum": 18102,
+    "closed_K_prime_maximum": 18158,
+    "first_open_K_prime": 18159,
+    "replay_rows": 58,
+    "endpoint_branch_pattern": [
+      "ambient",
+      "ambient",
+      "ambient",
+      "ambient",
+      "record",
+      "record",
+      "record",
+      "record",
+      "record"
+    ],
+    "active_individual_caps": [
+      1
+    ],
+    "active_shared_resources": [
+      "full_containment_nine_shadow"
+    ],
+    "slack_shared_resources": [
+      "rank_preserving_nine_shadow"
+    ],
+    "positive_coranks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "dual_tree": [
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        9
+      ]
+    ],
+    "tight_hierarchy_rows": [
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        3,
+        9
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        5,
+        9
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        9
+      ]
+    ],
+    "endpoint_optimum_numerator": 221965735620143543553293611844110736925708076430552096440498812565720164059665228385072438042355170196,
+    "endpoint_optimum_denominator": 9860404222256876155036284719345192914158377741575367687,
+    "endpoint_demand": 6190329419383137937103470436045324830679845457190311905886439975,
+    "endpoint_capacity": 6190040308774317612303529317738786430780587262078244244582129477,
+    "endpoint_gap": 289110608820324799941118306538399899258195112067661304310498,
+    "wall_optimum_numerator": 93078854715756750340340952804346140570181863433697074716513863043479369501356510636101039580903822381641384851,
+    "wall_optimum_denominator": 4134112707137142884124420727680888247347725735781356800215173060,
+    "wall_demand": 6191124719822442007616296156376982137070145367258392884991377499,
+    "wall_capacity": 6191145006113138342394285625644457013839621042766438994363453944,
+    "wall_excess": 20286290696334777989469267474876769475675508046109372076445,
+    "capacity_formula": "exact full-containment plus all-step hierarchy LP with individual ambient/record caps"
+  },
   "rank8_owner_pair_weight_cap": {
     "kernel_dimension": 2,
     "owner_flat_dimension": 4,
@@ -1015,7 +1494,7 @@
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated": true,
-    "kernel_dominant_lane_closed_through_Kprime": 18101,
+    "kernel_dominant_lane_closed_through_Kprime": 18158,
     "rank8_owner_flat_closed_from_Kprime": 37996,
     "rank8_dense_owner_terminal_from_Kprime": 22526,
     "chronology_owner": false,

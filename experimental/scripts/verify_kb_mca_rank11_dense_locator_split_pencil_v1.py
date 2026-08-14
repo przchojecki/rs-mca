@@ -207,6 +207,20 @@ SOURCE_NODES = {
         "tree": "828122e33c5e9799b22d3a21015c8c52ca27a4e7",
         "contract_sha256": "2e8396fb8eb41b2d3d4d9f8f6e13ab52bd51f814b348d2fcb00b98dbc04caaae",
     },
+    "kernel_multistep_shadow_hierarchy": {
+        "id": "rate_half_mca_rank11_kernel_multistep_shadow_hierarchy",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_multistep_shadow_hierarchy",
+        "commit": "28b82fda1bb777ee6c609446d87a6322108b7c16",
+        "tree": "058dda0c6c37a53a7f67693b33b0aaa294ab35e7",
+        "contract_sha256": "c7561d9192a00cd97530d61adff244cccfec97ce248fbe23c6074d641c33053b",
+    },
+    "kernel_three_step_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_three_step_shadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_three_step_shadow_capacity_cut",
+        "commit": "28b82fda1bb777ee6c609446d87a6322108b7c16",
+        "tree": "948a43bb37ed08bc01ceea42dfa26a8b1e59c7a5",
+        "contract_sha256": "1645081d2c338bd79210f3417f2520c14bfc72d0351af70fbb042b3ecd408636",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -592,6 +606,121 @@ def kernel_two_step_certificate(
     return optimum, allocation, dual, branches
 
 
+def multistep_hierarchy_rows() -> list[list[int]]:
+    return [
+        [
+            step,
+            dimension,
+            comb(dimension + 2, step),
+            67472 + dimension,
+            comb(67472 + dimension, step),
+            9 - dimension + step,
+            comb(9 - dimension + step, step),
+        ]
+        for step in range(2, 9)
+        for dimension in range(step + 1, 10)
+    ]
+
+
+def multistep_raising(kprime: int, step: int, dimension: int) -> Fraction:
+    return Fraction(
+        comb(dimension + 2, step) * comb(67472 + dimension, step),
+        comb(kprime - dimension - 11 + step, step),
+    )
+
+
+def multistep_multiplicity(step: int, dimension: int) -> int:
+    return comb(9 - dimension + step, step)
+
+
+MULTISTEP_DUAL_TREE = [[2, 3], [2, 4], [2, 6], [2, 8], [3, 5], [2, 7], [2, 9]]
+MULTISTEP_TIGHT_ROWS = [
+    [2, 3], [2, 4], [2, 6], [2, 7], [2, 8], [2, 9],
+    [3, 5], [3, 7], [3, 8], [3, 9],
+    [4, 6], [4, 8], [4, 9],
+    [5, 7], [5, 9], [6, 8], [7, 9],
+]
+
+
+def multistep_tree_factors(
+    kprime: int,
+    tree: list[list[int]],
+) -> tuple[list[Fraction], list[int]]:
+    factors = [Fraction(0) for _ in range(9)]
+    roots = [0 for _ in range(9)]
+    factors[0] = factors[1] = Fraction(1)
+    roots[0], roots[1] = 1, 2
+    changed = True
+    while changed:
+        changed = False
+        for step, source in tree:
+            target = source - step
+            source_index, target_index = source - 1, target - 1
+            ratio = Fraction(
+                multistep_multiplicity(step, source),
+                multistep_raising(kprime, step, source),
+            )
+            if roots[target_index] and not roots[source_index]:
+                factors[source_index] = ratio * factors[target_index]
+                roots[source_index] = roots[target_index]
+                changed = True
+            elif roots[source_index] and not roots[target_index]:
+                factors[target_index] = factors[source_index] / ratio
+                roots[target_index] = roots[source_index]
+                changed = True
+    require(all(roots), f"multistep tree spans K={kprime}")
+    return factors, roots
+
+
+def kernel_multistep_certificate(
+    kprime: int,
+) -> tuple[Fraction, list[Fraction], list[Fraction], list[str], list[list[int]]]:
+    _, caps, coefficients, shadow_budget, containment_budget = kernel_rank8_shadow_data(kprime)
+    shadow = kernel_shadow_weights_caps(kprime)[0]
+    factors, roots = multistep_tree_factors(kprime, MULTISTEP_DUAL_TREE)
+    first_base = caps[0]
+    first_price = sum(coefficients[i] * factors[i] for i in range(9) if roots[i] == 1)
+    second_price = sum(coefficients[i] * factors[i] for i in range(9) if roots[i] == 2)
+    second_base = (containment_budget - first_price * first_base) / second_price
+    allocation = [
+        factors[index] * (first_base if roots[index] == 1 else second_base)
+        for index in range(9)
+    ]
+    require(all(0 < value <= cap for value, cap in zip(allocation, caps)), f"multistep caps K={kprime}")
+    require(allocation[0] == caps[0], f"multistep corank-one cap K={kprime}")
+    require(all(allocation[index] < caps[index] for index in range(1, 9)), f"multistep other caps K={kprime}")
+    require(sum(coefficients[i] * allocation[i] for i in range(9)) == containment_budget, f"multistep containment K={kprime}")
+    require(sum(shadow[i] * allocation[i] for i in range(9)) < shadow_budget, f"multistep shadow slack K={kprime}")
+
+    tight = []
+    for step in range(2, 9):
+        for dimension in range(step + 1, 10):
+            left = multistep_raising(kprime, step, dimension) * allocation[dimension - 1]
+            right = multistep_multiplicity(step, dimension) * allocation[dimension - step - 1]
+            require(left <= right, f"multistep t={step} d={dimension} K={kprime}")
+            if left == right:
+                tight.append([step, dimension])
+    require(tight == MULTISTEP_TIGHT_ROWS, f"multistep tight rows K={kprime}")
+
+    dual_matrix = []
+    for dimension in range(1, 10):
+        row = [coefficients[dimension - 1], Fraction(1 if dimension == 1 else 0)]
+        for step, source in MULTISTEP_DUAL_TREE:
+            coefficient = Fraction(0)
+            if dimension == source:
+                coefficient += multistep_raising(kprime, step, source)
+            if dimension == source - step:
+                coefficient -= multistep_multiplicity(step, source)
+            row.append(coefficient)
+        dual_matrix.append(row)
+    dual = solve_exact(dual_matrix, [Fraction(1) for _ in range(9)])
+    require(all(value >= 0 for value in dual), f"multistep dual signs K={kprime}")
+    optimum = sum(allocation, Fraction(0))
+    require(dual[0] * containment_budget + dual[1] * caps[0] == optimum, f"multistep strong duality K={kprime}")
+    branches = kernel_shadow_weights_caps(kprime)[2]
+    return optimum, allocation, dual, branches, tight
+
+
 def kernel_demand_ceiling(kprime: int) -> int:
     return ceil_ratio(
         495405467 * 274980728111260126 * comb(67472 + kprime, 11),
@@ -827,6 +956,20 @@ def expected() -> dict[str, Any]:
     two_step_endpoint_capacity = scaled_fraction_floor(two_step_endpoint_optimum)
     two_step_wall_demand = kernel_demand_ceiling(two_step_wall)
     two_step_wall_capacity = scaled_fraction_floor(two_step_wall_optimum)
+    multistep_endpoint = 18158
+    multistep_wall = 18159
+    (
+        multistep_endpoint_optimum,
+        _,
+        _,
+        multistep_endpoint_branches,
+        multistep_endpoint_tight,
+    ) = kernel_multistep_certificate(multistep_endpoint)
+    multistep_wall_optimum, _, _, _, _ = kernel_multistep_certificate(multistep_wall)
+    multistep_endpoint_demand = kernel_demand_ceiling(multistep_endpoint)
+    multistep_endpoint_capacity = scaled_fraction_floor(multistep_endpoint_optimum)
+    multistep_wall_demand = kernel_demand_ceiling(multistep_wall)
+    multistep_wall_capacity = scaled_fraction_floor(multistep_wall_optimum)
     rank8_last_open = 37995
     rank8_first_closed = 37996
     rank8_last_demand = rank8_weighted_demand(rank8_last_open)
@@ -1163,6 +1306,45 @@ def expected() -> dict[str, Any]:
             "wall_excess": two_step_wall_capacity - two_step_wall_demand,
             "capacity_formula": "exact full-containment plus two-step hierarchy LP with individual ambient/record caps",
         },
+        "kernel_multistep_shadow_hierarchy": {
+            "support_offset": 67472,
+            "corank_minimum": 3,
+            "corank_maximum": 9,
+            "step_minimum": 2,
+            "coupling_count": 28,
+            "couplings": multistep_hierarchy_rows(),
+            "triple_couplings": [row[1:] for row in multistep_hierarchy_rows() if row[0] == 3],
+            "spanning_shadow_formula": "C(d+2,t)",
+            "same_rank_extension_formula": "C(K_prime-d-11+t,t)",
+            "rank_raising_extension_formula": "C(67472+d,t)",
+            "target_multiplicity_formula": "C(9-d+t,t)",
+            "inequality_formula": "C(d+2,t)*C(67472+d,t)*I_d/C(K_prime-d-11+t,t) <= C(9-d+t,t)*I_(d-t)",
+        },
+        "kernel_three_step_shadow_capacity_cut": {
+            "previous_closed_K_prime": two_step_endpoint,
+            "replay_K_prime_minimum": two_step_wall,
+            "closed_K_prime_maximum": multistep_endpoint,
+            "first_open_K_prime": multistep_wall,
+            "replay_rows": 58,
+            "endpoint_branch_pattern": multistep_endpoint_branches,
+            "active_individual_caps": [1],
+            "active_shared_resources": ["full_containment_nine_shadow"],
+            "slack_shared_resources": ["rank_preserving_nine_shadow"],
+            "positive_coranks": list(range(1, 10)),
+            "dual_tree": MULTISTEP_DUAL_TREE,
+            "tight_hierarchy_rows": multistep_endpoint_tight,
+            "endpoint_optimum_numerator": multistep_endpoint_optimum.numerator,
+            "endpoint_optimum_denominator": multistep_endpoint_optimum.denominator,
+            "endpoint_demand": multistep_endpoint_demand,
+            "endpoint_capacity": multistep_endpoint_capacity,
+            "endpoint_gap": multistep_endpoint_demand - multistep_endpoint_capacity,
+            "wall_optimum_numerator": multistep_wall_optimum.numerator,
+            "wall_optimum_denominator": multistep_wall_optimum.denominator,
+            "wall_demand": multistep_wall_demand,
+            "wall_capacity": multistep_wall_capacity,
+            "wall_excess": multistep_wall_capacity - multistep_wall_demand,
+            "capacity_formula": "exact full-containment plus all-step hierarchy LP with individual ambient/record caps",
+        },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
             "owner_flat_dimension": 4,
@@ -1200,7 +1382,7 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 18101,
+            "kernel_dominant_lane_closed_through_Kprime": 18158,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
@@ -1339,7 +1521,37 @@ def validate(value: object) -> dict[str, int]:
     require(kernel_demand_ratio(18102) < two_step_wall, "kernel two-step wall")
     require(two_step_cut["endpoint_gap"] == 33462159928103132226516704640419847248244116666500998762314, "two-step endpoint gap")
     require(two_step_cut["wall_excess"] == 275016496133605602641019628236447268989861205055439981187167, "two-step wall excess")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 18101, "kernel claim")
+    multistep_hierarchy = value["kernel_multistep_shadow_hierarchy"]
+    require(multistep_hierarchy["couplings"] == multistep_hierarchy_rows(), "multistep hierarchy rows")
+    require(multistep_hierarchy["coupling_count"] == 28, "multistep hierarchy count")
+    require(multistep_hierarchy["triple_couplings"] == [row[1:] for row in multistep_hierarchy_rows() if row[0] == 3], "triple hierarchy rows")
+    multistep_hierarchy_checks = 0
+    for step, dimension, shadows, outside, raising_floor, coloops, multiplicity in multistep_hierarchy["couplings"]:
+        require(shadows == comb(dimension + 2, step), f"multistep shadows t={step} d={dimension}")
+        require(outside == 67472 + dimension, f"multistep outside t={step} d={dimension}")
+        require(raising_floor == comb(outside, step), f"multistep raising t={step} d={dimension}")
+        require(coloops == 9 - dimension + step, f"multistep coloops t={step} d={dimension}")
+        require(multiplicity == comb(coloops, step), f"multistep multiplicity t={step} d={dimension}")
+        multistep_hierarchy_checks += 1
+    multistep_cut = value["kernel_three_step_shadow_capacity_cut"]
+    multistep_checks = 0
+    for kprime in range(multistep_cut["replay_K_prime_minimum"], multistep_cut["closed_K_prime_maximum"] + 1):
+        optimum, allocation, dual, branches, tight = kernel_multistep_certificate(kprime)
+        require(kernel_demand_ratio(kprime) > optimum, f"kernel multistep cut {kprime}")
+        require(all(number > 0 for number in allocation), f"multistep positive support {kprime}")
+        require(all(number >= 0 for number in dual), f"multistep dual {kprime}")
+        require(branches == multistep_cut["endpoint_branch_pattern"], f"multistep branches {kprime}")
+        require(tight == multistep_cut["tight_hierarchy_rows"], f"multistep tight rows {kprime}")
+        multistep_checks += 1
+    multistep_endpoint = kernel_multistep_certificate(18158)[0]
+    multistep_wall = kernel_multistep_certificate(18159)[0]
+    require(multistep_checks == multistep_cut["replay_rows"] - 1, "multistep closed row count")
+    require(multistep_endpoint == Fraction(multistep_cut["endpoint_optimum_numerator"], multistep_cut["endpoint_optimum_denominator"]), "multistep endpoint optimum")
+    require(multistep_wall == Fraction(multistep_cut["wall_optimum_numerator"], multistep_cut["wall_optimum_denominator"]), "multistep wall optimum")
+    require(kernel_demand_ratio(18159) < multistep_wall, "kernel multistep wall")
+    require(multistep_cut["endpoint_gap"] == 289110608820324799941118306538399899258195112067661304310498, "multistep endpoint gap")
+    require(multistep_cut["wall_excess"] == 20286290696334777989469267474876769475675508046109372076445, "multistep wall excess")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 18158, "kernel claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -1399,6 +1611,10 @@ def validate(value: object) -> dict[str, int]:
         "two_step_checks": two_step_checks + 1,
         "two_step_endpoint_gap": two_step_cut["endpoint_gap"],
         "two_step_wall_excess": two_step_cut["wall_excess"],
+        "multistep_hierarchy_checks": multistep_hierarchy_checks,
+        "multistep_checks": multistep_checks + 1,
+        "multistep_endpoint_gap": multistep_cut["endpoint_gap"],
+        "multistep_wall_excess": multistep_cut["wall_excess"],
         "rank8_last_gap": rank8_cut["last_open_gap"],
         "rank8_first_gap": rank8_cut["first_closed_gap"],
         "dense_owner_first_excess": dense_owner["first_forced_excess"],
@@ -1440,6 +1656,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_rank8_nine_shadow_capacity_cut"].__setitem__("closed_K_prime_maximum", 17609),
         lambda item: item["kernel_two_step_nine_shadow_hierarchy"]["couplings"][0].__setitem__(4, 2276404074),
         lambda item: item["kernel_two_step_nine_shadow_capacity_cut"].__setitem__("closed_K_prime_maximum", 18102),
+        lambda item: item["kernel_multistep_shadow_hierarchy"]["couplings"][7].__setitem__(4, 51200880454901),
+        lambda item: item["kernel_three_step_shadow_capacity_cut"].__setitem__("closed_K_prime_maximum", 18159),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
@@ -1500,6 +1718,10 @@ def main() -> None:
         f"two_step_checks={result['two_step_checks']} "
         f"two_step_endpoint_gap={result['two_step_endpoint_gap']} "
         f"two_step_wall_excess={result['two_step_wall_excess']} "
+        f"multistep_hierarchy_checks={result['multistep_hierarchy_checks']} "
+        f"multistep_checks={result['multistep_checks']} "
+        f"multistep_endpoint_gap={result['multistep_endpoint_gap']} "
+        f"multistep_wall_excess={result['multistep_wall_excess']} "
         f"rank8_last_gap={result['rank8_last_gap']} "
         f"rank8_first_gap={result['rank8_first_gap']} "
         f"dense_owner_first_excess={result['dense_owner_first_excess']} "

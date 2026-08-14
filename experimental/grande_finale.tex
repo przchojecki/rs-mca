@@ -11441,6 +11441,93 @@ recurrences.  Both verify feasibility and strong duality on all $494$ rows
 and obtain the displayed opposite boundary signs.
 \end{proof}
 
+\begin{proposition}[Multistep kernel-shadow hierarchy]
+\label{prop:kb-rank11-kernel-multistep-shadow}
+For one exact support $S$, let $I_d(S)$ count rank-$(10-d)$
+eleven-subsets.  For every $2\le t<d\le9$, put
+\[
+ s_{d,t}=\binom{d+2}{t},\quad
+ L_{d,t}=\binom{67472+d}{t},\quad
+ E_{d,t}=\binom{K'-d-11+t}{t},\quad
+ Q_{d,t}=\binom{9-d+t}{t}.
+\]
+Then
+\[
+ \frac{s_{d,t}L_{d,t}}{E_{d,t}}I_d(S)
+ \le Q_{d,t}I_{d-t}(S).
+ \tag{MS}
+\]
+There are 28 such inequalities; the seven rows with $t=2$ are
+Proposition~\ref{prop:kb-rank11-kernel-two-step-nine-shadow}.
+\end{proposition}
+
+\begin{proof}
+Let $N$ be the dual of the evaluation matroid on a source eleven-set.
+It is coloopless of rank $d+1$, because the evaluation matroid is loopless.
+Write $f_j$ for the number of independent $j$-sets of $N$.  Every
+independent $j$-set has at least $d+2-j$ one-point extensions.  Otherwise
+at most $d+1-j$ elements lie outside its closure.  Rank forces equality,
+and deleting any one of those elements leaves rank at most $d$, making
+each such element a coloop, a contradiction.  Double counting extensions
+therefore gives
+\[
+ (j+1)f_{j+1}\ge(d+2-j)f_j.
+\]
+Iteration from $f_0=1$ yields $f_t\ge\binom{d+2}{t}$.  Taking complements
+gives at least $s_{d,t}$ spanning $(11-t)$-shadows per source.  A fixed
+shadow has at most $E_{d,t}$ same-rank source extensions by the
+generalized-MDS closure cap.
+
+Starting from such a shadow, after $j$ independent support points have been
+adjoined its closure has size at most $K'-d+j$.  Thus at least
+$67472+d-j$ support points raise rank at the next step.  Dividing the
+resulting ordered count by $t!$ gives at least $L_{d,t}$ rank-raising
+$t$-sets.
+
+Conversely, fix a resulting rank-$(10-d+t)$ target eleven-set.  By the
+dual-rank identity, a complementary $t$-set produces a rank-$(10-d)$
+shadow exactly when all its elements are coloops of the target matroid.
+A loopless rank-$(10-d+t)$ matroid on eleven elements has at most
+$9-d+t$ coloops, or all remaining elements would be loops.  Hence the
+target contains at most $Q_{d,t}$ source shadows.  The two double counts
+give \textup{(MS)}.
+\end{proof}
+
+\begin{corollary}[All-step kernel-shadow capacity cut]
+\label{cor:kb-rank11-kernel-multistep-shadow-capacity}
+The individual ambient/record caps, full containment, and the 28
+inequalities \textup{(MS)} exclude the dominant kernel lane for
+\[
+ 10\le K'\le18158.
+\]
+At $K'=18158$, integer demand exceeds floored capacity by
+\[
+289110608820324799941118306538399899258195112067661304310498.
+\]
+At $K'=18159$, capacity exceeds demand by
+\[
+20286290696334777989469267474876769475675508046109372076445,
+\]
+so no larger interval is claimed by this method.
+\end{corollary}
+
+\begin{proof}
+On all 58 replayed rows $18102\le K'\le18159$, the exact certificate uses
+the hierarchy tree
+\[
+(t,d)=(2,3),(2,4),(2,6),(2,8),(3,5),(2,7),(2,9).
+\]
+The corank-one cap and full-containment resource bind, all nine coranks are
+positive, and every other cap and the rank-preserving shadow resource are
+slack.  Seventeen hierarchy rows bind; the ten tight rows outside the tree
+are checked as exact cycle identities.  The primary replay solves the nine
+dual equations by rational Gaussian elimination.  An independently written
+replay reconstructs both primal factors and dual multipliers by forward and
+backward tree recurrences.  Both check all 28 inequalities, feasibility,
+and strong duality on every row and obtain the displayed opposite boundary
+signs.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -11569,13 +11656,17 @@ remaining coranks two ranks at a time, and
 Corollary~\ref{cor:kb-rank11-kernel-two-step-nine-shadow-capacity} extends
 the exact interval through $K'=18101$, but not above the printed $18102$
 wall.
+Proposition~\ref{prop:kb-rank11-kernel-multistep-shadow} supplies all 28
+step sizes, and
+Corollary~\ref{cor:kb-rank11-kernel-multistep-shadow-capacity} extends the
+exact interval through $K'=18158$, but not above the printed $18159$ wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
-$10\le K'\le18101$, rank eight plus kernel on $18102\le K'\le22525$,
+$10\le K'\le18158$, rank eight plus kernel on $18159\le K'\le22525$,
 dense-owner chronology plus kernel on $22526\le K'\le37995$, and kernel
 only above.
 The fence does not instantiate the fixed
