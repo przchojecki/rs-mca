@@ -136,6 +136,13 @@ SOURCE_NODES = {
         "tree": "215c4c6801da15652103458deb833a099c3da1cd",
         "contract_sha256": "dad2aa8f83ec9cd1bbcebad2f7b127efd2037743df539e2f2662629a4a1c1396",
     },
+    "rank8_dense_owner_terminal_bridge": {
+        "id": "rate_half_mca_rank11_rank8_dense_owner_terminal_bridge",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_dense_owner_terminal_bridge",
+        "commit": "ab1551006e0da01a3357065cf218bc303e4a7098",
+        "tree": "92bae9306cabf755ddf1b180ea6dcc8db3be3944",
+        "contract_sha256": "c77779cfc39566264dbfa48bfe4081eb6c46a4913c579e21e1bcf204de13da67",
+    },
 }
 
 
@@ -363,6 +370,13 @@ def expected() -> dict[str, Any]:
     rank8_last_cap = rank8_owner_pair_cap(rank8_last_open)
     rank8_first_demand = rank8_weighted_demand(rank8_first_closed)
     rank8_first_cap = rank8_owner_pair_cap(rank8_first_closed)
+    dense_owner_last = 22525
+    dense_owner_first = 22526
+    dense_owner_multiplier = 200631
+    dense_owner_last_weight = rank8_weighted_demand(dense_owner_last)
+    dense_owner_last_pairs = comb(1048576 + dense_owner_last - 9, 2)
+    dense_owner_first_weight = rank8_weighted_demand(dense_owner_first)
+    dense_owner_first_pairs = comb(1048576 + dense_owner_first - 9, 2)
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -543,6 +557,16 @@ def expected() -> dict[str, Any]:
             "closed_K_prime_maximum": 1048576,
             "ratio_formula": "constant*C(m_prime,11)/C(n_prime,11)",
         },
+        "rank8_dense_owner_terminal_bridge": {
+            "last_unforced_K_prime": dense_owner_last,
+            "last_unforced_deficit": dense_owner_multiplier * dense_owner_last_pairs - dense_owner_last_weight,
+            "first_forced_K_prime": dense_owner_first,
+            "first_forced_excess": dense_owner_first_weight - dense_owner_multiplier * dense_owner_first_pairs,
+            "owner_record_floor": 200632,
+            "owner_core_deficiency_ceiling": 4,
+            "delta5_record_cap": 196221,
+            "terminal_interval_maximum": 37995,
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
@@ -552,6 +576,7 @@ def expected() -> dict[str, Any]:
             "rank9_fixed_target_eliminated": True,
             "kernel_dominant_lane_closed_through_Kprime": 4598,
             "rank8_owner_flat_closed_from_Kprime": 37996,
+            "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -609,6 +634,19 @@ def validate(value: object) -> dict[str, int]:
             f"rank-eight monotone factor {index}",
         )
     require(value["claims"]["rank8_owner_flat_closed_from_Kprime"] == 37996, "rank-eight claim")
+    dense_owner = value["rank8_dense_owner_terminal_bridge"]
+    require(dense_owner == {
+        "last_unforced_K_prime": 22525,
+        "last_unforced_deficit": 1170919108090,
+        "first_forced_K_prime": 22526,
+        "first_forced_excess": 11714977255865,
+        "owner_record_floor": 200632,
+        "owner_core_deficiency_ceiling": 4,
+        "delta5_record_cap": 196221,
+        "terminal_interval_maximum": 37995,
+    }, "dense-owner terminal bridge")
+    require(1 + 981104 // 5 == dense_owner["delta5_record_cap"], "dense-owner deficiency cut")
+    require(value["claims"]["rank8_dense_owner_terminal_from_Kprime"] == 22526, "dense-owner claim")
     return {
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
@@ -622,6 +660,7 @@ def validate(value: object) -> dict[str, int]:
         "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
         "rank8_last_gap": rank8_cut["last_open_gap"],
         "rank8_first_gap": rank8_cut["first_closed_gap"],
+        "dense_owner_first_excess": dense_owner["first_forced_excess"],
     }
 
 
@@ -646,6 +685,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
+        lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
+        lambda item: item["claims"].__setitem__("rank8_dense_owner_terminal_from_Kprime", 22525),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
         lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated", False),
@@ -690,6 +731,7 @@ def main() -> None:
         f"kernel_wall_gap={result['kernel_wall_gap']} "
         f"rank8_last_gap={result['rank8_last_gap']} "
         f"rank8_first_gap={result['rank8_first_gap']} "
+        f"dense_owner_first_excess={result['dense_owner_first_excess']} "
         f"controls={controls} manifest_sha256={hashlib.sha256(MANIFEST.read_bytes()).hexdigest()}"
     )
 

@@ -11097,6 +11097,38 @@ persists through the deployed endpoint. The failed preceding row records
 the honest method wall.
 \end{proof}
 
+\begin{corollary}[Rank-eight bridge to the dense-owner terminal]
+\label{cor:kb-rank11-rank8-dense-owner-bridge}
+For every $22526\le K'\le37995$, a surviving rank-eight fixed chart
+contains one owner pair that owns at least $200632$ selected records and
+whose complete pair core has deficiency at most four.
+\end{corollary}
+
+\begin{proof}
+With the notation in the preceding proof, let $q_p$ count coordinate pairs
+determining owner $p$ and $t_p$ its selected records. Then
+\[
+ W_B\le\sum_p t_p q_p,\qquad
+ \sum_p q_p\le\binom{n'-9}{2}.
+\]
+At $K'=22526$, exact replay gives
+\[
+ W_B-200631\binom{n'-9}{2}=11714977255865.
+\]
+Thus some $t_p\ge200632$. If that owner's pair-core deficiency were at
+least five, fixed-owner exception disjointness would give
+\[
+ t_p\le1+\left\lfloor\frac{981104}{5}\right\rfloor
+     =196221,
+\]
+a contradiction. Hence its deficiency is at most four.
+
+The weighted-average ratio is again a positive constant times
+$\binom{m'}{11}/\binom{n'}{11}$, so the conclusion persists through
+$K'=37995$. At $K'=22525$, the comparison misses by
+$1170919108090$, and no smaller interval is claimed.
+\end{proof}
+
 \begin{remark}[Typed scope of the rank-eleven packet]
 \label{rem:kb-rank11-dense-locator-scope}
 The density in Proposition~\ref{prop:kb-rank11-component-incidence} is a
@@ -11115,8 +11147,13 @@ also eliminates kernel-lane domination through $K'=4598$, but not above
 the printed $4599$ method wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
-Thus the remaining intervals are rank eight only on $10\le K'\le4598$,
-rank eight plus kernel on $4599\le K'\le37995$, and kernel only above.
+Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
+surviving rank-eight interval to the guarded dense-owner terminal, but does
+not assign chronology or coalesce the multiple owners allowed by the
+explicit fence. Thus the remaining intervals are rank eight only on
+$10\le K'\le4598$, rank eight plus kernel on $4599\le K'\le22525$,
+dense-owner chronology plus kernel on $22526\le K'\le37995$, and kernel
+only above.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,

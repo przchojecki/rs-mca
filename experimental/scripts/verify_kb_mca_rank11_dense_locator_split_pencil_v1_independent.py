@@ -104,6 +104,13 @@ FIXED_CHART_SOURCES = {
         "tree": "215c4c6801da15652103458deb833a099c3da1cd",
         "contract_sha256": "dad2aa8f83ec9cd1bbcebad2f7b127efd2037743df539e2f2662629a4a1c1396",
     },
+    "rank8_dense_owner_terminal_bridge": {
+        "id": "rate_half_mca_rank11_rank8_dense_owner_terminal_bridge",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_dense_owner_terminal_bridge",
+        "commit": "ab1551006e0da01a3357065cf218bc303e4a7098",
+        "tree": "92bae9306cabf755ddf1b180ea6dcc8db3be3944",
+        "contract_sha256": "c77779cfc39566264dbfa48bfe4081eb6c46a4913c579e21e1bcf204de13da67",
+    },
 }
 
 
@@ -228,6 +235,7 @@ def main() -> None:
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
+    dense_owner = data["rank8_dense_owner_terminal_bridge"]
     require(
         data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
         == PAIRCORE_SOURCE,
@@ -498,6 +506,21 @@ def main() -> None:
             f"rank-eight factor {index}",
         )
         monotone_factors += 1
+    dense_last_weight = independent_rank8_demand(22525)
+    dense_last_pairs = (1048576 + 22525 - 9) * (1048576 + 22525 - 10) // 2
+    dense_first_weight = independent_rank8_demand(22526)
+    dense_first_pairs = (1048576 + 22526 - 9) * (1048576 + 22526 - 10) // 2
+    require(dense_owner == {
+        "last_unforced_K_prime": 22525,
+        "last_unforced_deficit": 200631 * dense_last_pairs - dense_last_weight,
+        "first_forced_K_prime": 22526,
+        "first_forced_excess": dense_first_weight - 200631 * dense_first_pairs,
+        "owner_record_floor": 200632,
+        "owner_core_deficiency_ceiling": 4,
+        "delta5_record_cap": 196221,
+        "terminal_interval_maximum": 37995,
+    }, "dense-owner terminal bridge")
+    require(1 + 981104 // 5 == dense_owner["delta5_record_cap"] < dense_owner["owner_record_floor"], "dense-owner deficiency")
 
     core_checks = 0
     for owner_core in range(2 * m - n, m):
@@ -519,6 +542,7 @@ def main() -> None:
         "rank9_fixed_target_eliminated": True,
         "kernel_dominant_lane_closed_through_Kprime": 4598,
         "rank8_owner_flat_closed_from_Kprime": 37996,
+        "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
         "rank11_paid": False,
         "active_v4_ledger_movement": 0,
@@ -537,6 +561,7 @@ def main() -> None:
         f"rank8_last_gap={rank8_last_cap-rank8_last_demand} "
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "
+        f"dense_owner_first_excess={dense_owner['first_forced_excess']} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 

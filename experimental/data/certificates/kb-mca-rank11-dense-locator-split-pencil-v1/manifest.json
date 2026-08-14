@@ -122,6 +122,13 @@
         "commit": "9e44f19b0217069bfdfb74763d36d6a9c873e8d7",
         "tree": "215c4c6801da15652103458deb833a099c3da1cd",
         "contract_sha256": "dad2aa8f83ec9cd1bbcebad2f7b127efd2037743df539e2f2662629a4a1c1396"
+      },
+      "rank8_dense_owner_terminal_bridge": {
+        "id": "rate_half_mca_rank11_rank8_dense_owner_terminal_bridge",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_dense_owner_terminal_bridge",
+        "commit": "ab1551006e0da01a3357065cf218bc303e4a7098",
+        "tree": "92bae9306cabf755ddf1b180ea6dcc8db3be3944",
+        "contract_sha256": "c77779cfc39566264dbfa48bfe4081eb6c46a4913c579e21e1bcf204de13da67"
       }
     }
   },
@@ -305,6 +312,16 @@
     "closed_K_prime_maximum": 1048576,
     "ratio_formula": "constant*C(m_prime,11)/C(n_prime,11)"
   },
+  "rank8_dense_owner_terminal_bridge": {
+    "last_unforced_K_prime": 22525,
+    "last_unforced_deficit": 1170919108090,
+    "first_forced_K_prime": 22526,
+    "first_forced_excess": 11714977255865,
+    "owner_record_floor": 200632,
+    "owner_core_deficiency_ceiling": 4,
+    "delta5_record_cap": 196221,
+    "terminal_interval_maximum": 37995
+  },
   "claims": {
     "local_theorem_packet": true,
     "incidence_is_record_count": false,
@@ -314,6 +331,7 @@
     "rank9_fixed_target_eliminated": true,
     "kernel_dominant_lane_closed_through_Kprime": 4598,
     "rank8_owner_flat_closed_from_Kprime": 37996,
+    "rank8_dense_owner_terminal_from_Kprime": 22526,
     "chronology_owner": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,

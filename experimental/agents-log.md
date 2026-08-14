@@ -30,6 +30,19 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-14 - Rank-eight dense-owner terminal bridge
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Status:** PROVED LOCAL ROUTE CUT / ZERO LEDGER MOVEMENT.
+- **What is being added:** For `22526<=K'<=37995`, weighted owner-pair
+  averaging forces one owner with at least `200632` records; the
+  deficiency-sensitive multiplicity bound forces core deficiency at most
+  four.
+- **How it is useful:** The rank-eight chart itself now reaches #1169's
+  guarded chronology terminal with marked weight retained.
+- **Nonclaim:** The owner is not chronology-assigned or globally unique;
+  the twelve-owner fence remains compatible.
+
 ### 2026-08-14 - Rank-eleven rank-eight owner-pair capacity
 
 - **Agent/model:** Codex with primary and independent exact replays.
