@@ -1,0 +1,102 @@
+{
+  "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
+  "exact_parent": "b4bad860750f91955dbaead8f2b5a0fdef1f1343",
+  "source_prize_dag": {
+    "repository": "AllenGrahamHart/rs-mca-prize-dag",
+    "nodes": {
+      "dense_root_highspan": {
+        "id": "rate_half_mca_rank11_dense_root_highspan_saturation",
+        "path": "background/nodes/rate_half_mca_rank11_dense_root_highspan_saturation",
+        "commit": "e30d06ff5793dde8ed0a2413a23d33d6dbd389fa",
+        "tree": "5b461ef0609c5755de695d39b77fd11032fbfc99",
+        "contract_sha256": "9847a084251f60c01dabceda6a29f64b11df92cdb06352e922a19fa4ba1e79a6"
+      },
+      "component_incidence": {
+        "id": "rate_half_mca_rank11_dense_locator_component_incidence_dichotomy",
+        "path": "background/nodes/rate_half_mca_rank11_dense_locator_component_incidence_dichotomy",
+        "commit": "2aea009ba11c88e65f7654b7b4f786d6cf428d0a",
+        "tree": "ef5092f58c21a4ea798aef75182c3d938b02365c",
+        "contract_sha256": "6eec697bc3729eab2aba4d282b3c1536e862826cc7c1c17379c2df4ebf55d59b"
+      },
+      "component_star": {
+        "id": "rate_half_mca_rank11_component_star_owner_pencil_router",
+        "path": "background/nodes/rate_half_mca_rank11_component_star_owner_pencil_router",
+        "commit": "20eb40d59f751f5e8872329c2ef22437c99037e4",
+        "tree": "39e1b4222d88c7d50e343fb215d98ecca302c7f2",
+        "contract_sha256": "23894520514168a69e1de5e638705c2036c6303e678bd295c124fe4278a917f7"
+      },
+      "rank9_split_pencil_cell": {
+        "id": "rate_half_mca_rank11_rank9_split_pencil_cell_ledger",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_split_pencil_cell_ledger",
+        "commit": "51cb474f63b364de6d1193bac98476d63ebfea6e",
+        "tree": "41906278691510040285434141ea6957069d0d25",
+        "contract_sha256": "150863c70ede9590605eaa93eb97a16da4edb6883d6ede80c60c1c12d9795cf3"
+      }
+    }
+  },
+  "row": {
+    "name": "KoalaBear MCA",
+    "n": 2097152,
+    "k": 1048576,
+    "agreement": 1116048,
+    "budget": 274980728111395087,
+    "near_charge": 134944,
+    "unit": "distinct bad finite slopes per received line"
+  },
+  "dense_root_saturation": {
+    "anchor_count": 32,
+    "dense_root_count": 18,
+    "quotient_degree_maximum": 13,
+    "correction_dimension": 10,
+    "triangular_coefficient_start": 18,
+    "triangular_coefficient_end": 31
+  },
+  "component_incidence": {
+    "R": 1048576,
+    "d": 67472,
+    "K_min": 10,
+    "K_max": 1048576,
+    "tuple_size": 11,
+    "coordinate_bidegree": [18, 1],
+    "isolated_bezout": 198,
+    "removed_dense_records": 18,
+    "non_dense_record_floor": 274980728111260126,
+    "isolated_equivalent_ceiling": 2526815879272440,
+    "isolated_incidence_ppb_ceiling": 9189066,
+    "component_incidence_ppb_floor": 990810934,
+    "one_lane_ppb_floor": 495405467
+  },
+  "component_star": {
+    "threshold_percent": 98,
+    "record_fraction_ppb_floor": 540546700,
+    "threshold_record_floor": 148639925144138894,
+    "full_rank_owner_deficiency_ceiling": 22320,
+    "rank9_extension_floor": 45153,
+    "low_rank_kernel_dimension_floor": 2,
+    "routes": [
+      "LARGE_AFFINE_OWNER",
+      "RANK9_OWNER_PENCIL",
+      "KERNEL_PLANE"
+    ]
+  },
+  "rank9_split_pencil_cell": {
+    "cell_size": 10,
+    "cell_rank": 9,
+    "kernel_dimension": 1,
+    "fixed_owner_slope_cap": 981105,
+    "common_root_core_floor": 10,
+    "weighted_petal_incidence_cap": 2057516501910,
+    "source_weak_ceiling_cap": 45567659,
+    "sharp_fixed_cell_record_cap": 45567658,
+    "rounding_rule": "floor(weighted_petal_incidence_cap/rank9_extension_floor)"
+  },
+  "claims": {
+    "local_theorem_packet": true,
+    "incidence_is_record_count": false,
+    "cross_cell_census": false,
+    "chronology_owner": false,
+    "rank11_paid": false,
+    "active_v4_ledger_movement": 0,
+    "KoalaBear_closed": false
+  }
+}

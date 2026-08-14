@@ -10477,6 +10477,238 @@ All comparisons are exact integer comparisons with the row budgets.
 \Cref{prop:min-support-transitions} proves that the first-unpaid charts already satisfy $a\le70831$ on KoalaBear and $a\le111528$ on Mersenne-31 at zero outside mismatch, with positive mismatch shrinking the residual further.  It also confines the boundary top seam to $a=1$.  Thus \cref{cor:transitions} is not merely an abstract monotonicity statement: it removes correction dimensions $10$--$12$ on substantial parts of the KoalaBear wedge and dimension $4$ on a substantial part of the Mersenne wedge, while the genuine top-seam endpoint remains the exact-minimum-distance case.
 \end{remark}
 
+\section{A rank-eleven dense-locator component route}
+\label{sec:rank11-dense-locator-route}
+
+We record a local theorem packet for the post-near rank-eleven route.  Its
+input is the following pinned setup, supplied by the public prize-DAG source
+listed in the companion certificate.  Let
+\[
+ R=1048576,\qquad d=67472,\qquad
+ n'=R+K',\qquad m'=d+K',\qquad 10\le K'\le1048576.
+\]
+There is a fixed ten-dimensional correction space $V'$, a degree-at-most
+$31$ interpolant $H(X,Z)$, and one affine pair $(a'_0,b'_0)$.  The deviation
+\[
+ D_H(X,Z)=H(X,Z)-a'_0(X)-Zb'_0(X)
+\]
+vanishes at eighteen distinct dense-pair anchor slopes, while ten other
+values of $D_H$ span $V'$.  Every coefficient of $D_H$ lies in $V'$.  The
+post-near family has distinct slopes and, if the original line is unsafe,
+contains at least
+\[
+ N_{\min}=274980728111260126
+\]
+non-dense records after the exact $134944$ near charge and the eighteen
+dense anchors.  These hypotheses are the scope of this section; no statement
+here silently promotes an arbitrary rank-eleven family into this setup.
+
+\begin{proposition}[Dense-root high-coefficient saturation]
+\label{prop:kb-rank11-dense-root-saturation}
+Let
+\[
+ q(Z)=\prod_{i=1}^{18}(Z-\gamma_i)
+\]
+be the monic locator of the dense anchor slopes.  Then
+\[
+ D_H=qG,\qquad \deg_ZG\le13,
+ \qquad
+ \Span\{H_j:j\ge2\}=V'.
+\]
+Consequently, if a correction space $W\le V'$ absorbs every coefficient
+$H_j$ with $j\ge2$, then $W=V'$ and $\dim W=10$.
+\end{proposition}
+
+\begin{proof}
+The eighteen vector-valued zeroes give the coefficientwise divisibility
+$q\mid D_H$.  Write $q=Z^{18}+q_{17}Z^{17}+\cdots+q_0$ and
+$G=\sum_{j=0}^{13}G_jZ^j$.  Descending from degree $31$ to degree $18$, the
+coefficients of $D_H$ recover $G_{13},G_{12},\ldots,G_0$ by a triangular
+system with diagonal one.  Hence
+\[
+ \Span\{(D_H)_{18},\ldots,(D_H)_{31}\}
+ =\Span\{G_0,\ldots,G_{13}\}.
+\]
+The ten nonzero anchor values span $V'$, while every coefficient of $D_H$
+lies in $V'$, so both displayed spans equal $V'$.  Subtracting the affine
+pair changes only coefficients zero and one, hence $(D_H)_j=H_j$ for
+$j\ge2$.  If $W$ absorbs those coefficients, then $V'\le W\le V'$.
+\end{proof}
+
+For a non-dense record of slope $\gamma$, put
+\[
+ R_\gamma=
+ \frac{h'_\gamma-a'_0-\gamma b'_0}{q(\gamma)}\in V'.
+\]
+This is well-defined because the record slopes are distinct from the roots
+of $q$.  At a coordinate $x$, rich agreement is the equation
+\begin{equation}
+ (a'_0-r'_0)(x)+Z(b'_0-r'_1)(x)+q(Z)R(x)=0.
+ \label{eq:kb-rank11-dense-locator-coordinate}
+\end{equation}
+
+\begin{proposition}[Dense-locator component-incidence bound]
+\label{prop:kb-rank11-component-incidence}
+For every eleven-coordinate tuple, the isolated solutions of
+\eqref{eq:kb-rank11-dense-locator-coordinate} in
+$\mathbf P^1_Z\times\mathbf P^{10}_R$, counted with local multiplicity, have
+total multiplicity at most $198$.  Uniformly in $K'$,
+\[
+ A_{\rm iso}(K')=
+ \ceil{198\frac{\binom{n'}{11}}{\binom{m'}{11}}}
+ \le2526815879272440.
+\]
+Thus at least $990810934$ parts per billion of all pairs consisting of a
+non-dense record and an eleven-subset of its support lie on a
+positive-dimensional component through that record.
+
+At such a point, the component is either a full-evaluation-rank affine-owner
+component or a rank-deficient kernel component.  At least one of these two
+lanes carries $495405467$ parts per billion of all incidences.
+\end{proposition}
+
+\begin{proof}
+After bihomogenization, each coordinate equation has divisor class at most
+$18H_Z+H_R$.  Generic independent perturbations in these basepoint-free
+classes make eleven equations intersect properly.  Every isolated point of
+the original intersection persists with at least its local intersection
+multiplicity, while the total generic intersection number is
+\[
+ (18H_Z+H_R)^{11}=18\cdot11H_ZH_R^{10}=198H_ZH_R^{10}.
+\]
+Summing this bound over all eleven-coordinate tuples and dividing by the
+$\binom{m'}{11}$ tuples contributed by each record gives $A_{\rm iso}(K')$.
+The binomial ratio is the product, for $0\le i\le10$, of
+\[
+ \frac{1048576+K'-i}{67472+K'-i}.
+\]
+Every factor decreases with $K'$, so the maximum occurs at $K'=10$ and the
+displayed integer follows by exact evaluation.  Dividing it by
+$N_{\min}$ gives an isolated-incidence ceiling of $9189066$ parts per
+billion, leaving the stated component floor.
+
+For the classification, inspect evaluation of $V'$ on the eleven-tuple.  At
+rank ten, ten independent coordinate equations determine one rational
+correction curve; an extra equation vanishes identically precisely on an
+affine-owner component.  At rank at most nine, the compatible fiber contains
+a positive-dimensional evaluation kernel.  These alternatives are
+exhaustive, and halving the total component floor gives the one-lane floor.
+\end{proof}
+
+\begin{corollary}[Component-star owner-pencil trichotomy]
+\label{cor:kb-rank11-component-star}
+At least $540546700$ parts per billion of the non-dense records have at
+least $98$ percent of their eleven-subsets on a positive-dimensional
+component.  In particular, there are at least
+\[
+ 148639925144138894
+\]
+such records.  For each one there is a ten-subset $B$ of its support with at
+least
+\[
+ E(K')=\ceil{\frac{98(m'-10)}{100}}
+\]
+component extensions, and exactly one of the following holds:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\operatorname{rank}(\operatorname{ev}_B)=10$, and one affine owner
+has support deficiency at most $22320$;
+\item $\operatorname{rank}(\operatorname{ev}_B)=9$, and at least $45153$
+full-rank extensions lie on one owner pencil with direction
+$\beta(-\gamma u,u)$, where $\ker(\operatorname{ev}_B)=\F u$;
+\item $\operatorname{rank}(\operatorname{ev}_B)\le8$, and the evaluation
+kernel has dimension at least two.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+If $\alpha$ is the fraction of records above the $98$-percent threshold,
+then Proposition~\ref{prop:kb-rank11-component-incidence} gives
+\[
+ \frac{990810934}{10^9}\le
+ \alpha+(1-\alpha)\frac{98}{100},
+\]
+so $\alpha\ge540546700/10^9$.  Multiplication by $N_{\min}$ and integer
+rounding gives the absolute floor.  Double-counting pairs $(B,x)$ inside one
+support gives a ten-subset with $E(K')$ extensions.
+
+At full rank those equations determine one owner.  At rank nine, a kernel
+word $u$ already has ten roots and has at most $K'-11$ further roots, leaving
+at least
+\[
+ E(K')-(K'-11)\ge45153
+\]
+full-rank extensions.  Any two corresponding owners differ by
+$\beta(-\gamma u,u)$.  Rank at most eight gives kernel dimension at least
+two by rank--nullity.  The owner deficiency in the full-rank case is at most
+$m'-10-E(K')\le22320$.
+\end{proof}
+
+\begin{proposition}[One fixed rank-nine split-pencil cell]
+\label{prop:kb-rank11-split-pencil-cell}
+Fix a rank-nine ten-subset $B$ and let $g$ records be routed to this cell.
+All owners agreeing with the received pair on $B$ form an affine plane
+$\Pi_B$ with directions $(u,0)$ and $(0,u)$.  Each record slope $\gamma$
+defines a line of direction $(-\gamma u,u)$ in $\Pi_B$.  If $t_p$ is the
+number of record lines through owner point $p$, then
+\[
+ \sum_p\binom{t_p}{2}=\binom g2.
+\]
+Moreover, if $J_B$ is the common owner-plane core on $Z(u)$ and
+$C_p=J_B\mathbin{\dot\cup}P_p$, then the petals $P_p$ are pairwise disjoint
+and
+\[
+ 45153g\le\sum_pt_p|P_p|
+ \le981105(2097152-10)=2057516501910.
+\]
+Consequently
+\[
+ \boxed{g\le
+ \floor{2057516501910/45153}=45567658}.
+\]
+\end{proposition}
+
+\begin{proof}
+All agreeing owner pairs differ by $(\alpha u,\beta u)$.  Ownership at slope
+$\gamma$ cuts out one affine line with direction $(-\gamma u,u)$, and
+distinct slopes give distinct directions.  Every pair of record lines has
+one intersection point, proving the block-design identity.
+
+On $Z(u)$ every point of $\Pi_B$ has the same pair value.  Away from $Z(u)$,
+evaluation identifies the parameter plane bijectively with the pair-value
+plane, so at most one owner agrees at a coordinate.  This proves the common
+core and disjoint-petal decomposition.  Every record supplies at least
+$45153$ full-rank extension incidences in petals on its line.
+
+For a fixed owner with core size $c_p<m'$, the outside-core agreement sets of
+its distinct slopes are disjoint.  Hence
+\[
+ t_p(m'-c_p)\le n'-c_p,
+ \qquad t_p\le n'-m'+1=981105.
+\]
+Finally $|J_B|\ge10$, so $\sum_p|P_p|\le2097152-10$, giving the displayed
+weighted cap and its integer floor quotient by $45153$.
+\end{proof}
+
+\begin{remark}[Integer rounding repair]
+The public source node recorded the valid weaker bound $45567659$ by taking
+a ceiling.  Since $g$ is an integer and $45153g\le2057516501910$, the sharp
+consequence is the floor $45567658$ printed above.  Both values and the
+rounding direction are retained in the companion certificate.
+\end{remark}
+
+\begin{remark}[Typed scope of the rank-eleven packet]
+\label{rem:kb-rank11-dense-locator-scope}
+The density in Proposition~\ref{prop:kb-rank11-component-incidence} is a
+record/coordinate-subset incidence density, not a record or component count.
+The corollary is recordwise, and
+Proposition~\ref{prop:kb-rank11-split-pencil-cell} is local to one fixed
+cell.  The packet does not count cells, correct for cross-cell overlap,
+construct the chronology owner required by
+Remark~\ref{rem:mca-dense-core-owner-acceptance-contract}, pay either the
+large-owner or kernel-plane branch, move an active-v4 atom, or close
+KoalaBear.
+\end{remark}
+
 \section{The new spread residual}
 
 \begin{theorem}[spread residual after core-relative incidence]\label{thm:residual}
