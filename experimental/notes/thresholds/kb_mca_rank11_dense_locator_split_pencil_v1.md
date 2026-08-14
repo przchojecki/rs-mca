@@ -5,7 +5,7 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; and one fixed nine-subset carries at least 2578110 records in one typed component lane, routed to a fixed kernel chart, a shared-core rank-nine plane, or a rank-eight owner flat of error rank at most three.
+direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; one fixed nine-subset carries at least 2578110 records in one typed component lane; and an explicit 4070408-slope weighted-plane model proves that this fixed-chart output alone is not a payment.
 architecture: POST_NEAR_ERROR_RANK11_DENSE_LOCATOR_COMPONENT_ROUTE_V1
 partition_digest: inherited post-near rank-eleven route of PRs 1168 and 1169; no new first-match atom or partition digest
 atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, its lifted owner plane, and one fixed nine-coordinate component chart
@@ -14,7 +14,7 @@ projection_and_unit: Distinct bad finite slopes per received line at record leve
 claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records; one typed fixed nine-subset >=2578110 records
 status: PROVED LOCAL THEOREM PACKET / GLOBAL ROW OPEN
 impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL AND FIXED-CHART LEDGER
-falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; or failure to find the printed 2578110-record fixed nine-subset target.
+falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure to find the printed 2578110-record fixed nine-subset target; or a defect in the exact-support, direction-distinctness, component, or pair-noncontainment checks of the 4070408-slope fence.
 replay: python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1_independent.py
 ---
 
@@ -25,14 +25,15 @@ Status: **PROVED LOCAL THEOREM PACKET / ZERO DEPLOYED LEDGER MOVEMENT**.
 Exact parent: PR #1169 head
 `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
 
-This packet imports eight public, commit- and tree-pinned prize-DAG theorems.
+This packet imports nine public, commit- and tree-pinned prize-DAG theorems.
 They begin after the rank-eleven branch has produced one fixed degree-31
 anchor interpolant, eighteen dense-pair roots, and a ten-dimensional
 relative correction space.  They end with an exact ledger for one fixed
 rank-nine ten-coordinate cell, a low-core/large-shared-core dichotomy for
 its lifted owner plane, and one overlap-correct fixed nine-coordinate target.
 They do not select the complete component lane or assign chronology across
-different targets.
+different targets.  A final local-cap fence shows why that missing coupling
+cannot be replaced by another inequality on the fixed chart alone.
 
 Throughout, write
 
@@ -318,9 +319,58 @@ shows that anchored error differences lie in `span(U,r_1-B_*)`, of
 dimension at most three.  These are fixed populated targets, not aggregate
 payments.
 
-## 7. Exact impact on the open route
+## 7. Fixed-chart local-cap fence
 
-The packet supplies eight route cuts.
+The rank-nine target, considered without the weighted multiplicities of its
+ancestor incidence census, is not locally contradictory.  On the official
+row take a nonzero RS word `u` with exactly `K-1` evaluation roots `J`.  The
+outside coordinate and rich-support weights are
+
+```text
+N=n-(K-1)=1048577,       L=m-(K-1)=67473.
+```
+
+Give eight owner points weight `L-1=67472`, and give each of the remaining
+`508801` coordinates its own unit owner point.  Place the heavy points at
+`P_i=(c+iM,0)` and the unit points at `Q_j=(j,1)`, where `M=508801`.  The
+lines through `P_i,Q_j` have distinct parameters
+
+```text
+gamma_(i,j)=c+iM-j,
+```
+
+because their eight difference intervals are consecutive and disjoint.
+There are
+
+```text
+8M=4070408>2578110
+```
+
+such lines.  With received columns
+
+```text
+r_0(x)=alpha_x u(x),       r_1(x)=beta_x u(x),
+```
+
+the line `alpha+gamma beta=c+iM` uses the codeword `(c+iM)u` and has exact
+support `J`, one heavy fibre, and one unit fibre, hence size `m`.  A
+containing polynomial pair would have its second component equal to zero on
+the `m-1>K-1` coordinates in `J` and the heavy fibre, but equal to nonzero
+`u` at the unit fibre.  The RS root bound forbids this.  Two heavy-fibre
+coordinates adjoined to the fixed nine roots give the required rank-ten
+eleven-subset and fixed-owner component.  Error differences lie in
+`span(r_1,u)`.
+
+The KoalaBear base prime exceeds `18*4070408`, so a common translation avoids
+the eighteen dense slopes.  This still does not construct the fixed
+32-anchor/18-root ancestor packet or an unsafe line.  It proves only that
+the target output in isolation admits more than the selector floor.  The
+next theorem must retain pre-deduplication component weights, couple charts,
+or use a specific dense-anchor identity that excludes this model.
+
+## 8. Exact impact on the open route
+
+The packet supplies nine route cuts.
 
 1. High-core absorption has exactly dimension ten, not a range `2,...,10`.
 2. More than 99 percent of record/eleven-subset incidences enter an affine
@@ -335,15 +385,17 @@ The packet supplies eight route cuts.
 7. The rank-nine plane cap remains `1434405` for that nine-coordinate chart.
 8. The fixed chart is a kernel target, a shared-core rank-nine plane, or a
    rank-eight owner flat with selected error rank at most three.
+9. The rank-nine target output alone admits `4070408` exact-support slopes;
+   therefore its local hypotheses do not pay the `2578110` selector floor.
 
 It does not select the complete component lane, recursively cover its
 remainder, construct a chronology-correct owner satisfying PR #1169, or pay
 the fixed kernel, shared-core, and rank-eight targets.  Therefore `U_BC`,
 `U_new`, error rank eleven, and the KoalaBear row remain open.
 
-## 8. Provenance and replay
+## 9. Provenance and replay
 
-The manifest pins the eight public source nodes by commit, Git tree, and
+The manifest pins the nine public source nodes by commit, Git tree, and
 source-contract SHA-256.  The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an

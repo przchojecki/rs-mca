@@ -41,6 +41,13 @@ FIXED_CHART_SOURCES = {
         "tree": "4b2ba55d7280db1378e17e05a9d59217630c544e",
         "contract_sha256": "6bcbfc8f5ae87e892898137660af54014a48c57f5d55295327923af6ab5f6e4b",
     },
+    "rank9_fixed_chart_local_cap_fence": {
+        "id": "rate_half_mca_rank11_rank9_fixed_chart_local_cap_fence",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_fixed_chart_local_cap_fence",
+        "commit": "3004fb4628bda19a33b9de4de3ffaa1c646c24e7",
+        "tree": "dd42039516fc8ef146fa37a0fd3d7b00baf1f95c",
+        "contract_sha256": "1cb156081477cb7438193899419d8c537054a9ee4570d5f6fdb5ec03868cdeca",
+    },
 }
 
 
@@ -95,6 +102,7 @@ def main() -> None:
     concentrator = data["component_ninesubset_concentrator"]
     ninecell = data["rank9_ninecell_paircore"]
     targets = data["component_ninesubset_targets"]
+    local_fence = data["rank9_fixed_chart_local_cap_fence"]
     require(
         data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
         == PAIRCORE_SOURCE,
@@ -207,6 +215,39 @@ def main() -> None:
         ],
     }, "target routes")
 
+    fixed_core = 1048576 - 1
+    outside_weight = n - fixed_core
+    outside_support = m - fixed_core
+    heavy_count = 8
+    heavy_weight = outside_support - 1
+    light_count = outside_weight - heavy_count * heavy_weight
+    fence_slopes = heavy_count * light_count
+    require(local_fence == {
+        "common_core_size": fixed_core,
+        "outside_coordinate_weight": outside_weight,
+        "outside_support_weight": outside_support,
+        "heavy_owner_count": heavy_count,
+        "heavy_owner_weight": heavy_weight,
+        "unit_owner_count": light_count,
+        "rich_slope_count": fence_slopes,
+        "selector_floor_excess": fence_slopes - selector_records,
+        "base_prime": 2130706433,
+        "forbidden_slope_count": 18,
+        "error_affine_rank_ceiling": 2,
+    }, "local-cap fence constants")
+    intervals = [
+        (i * light_count - (light_count - 1), i * light_count)
+        for i in range(heavy_count)
+    ]
+    require(
+        all(left[1] + 1 == right[0] for left, right in zip(intervals, intervals[1:])),
+        "disjoint direction intervals",
+    )
+    require(sum(high - low + 1 for low, high in intervals) == fence_slopes, "direction count")
+    require(fixed_core + heavy_weight + 1 == m, "exact fence support")
+    require(fixed_core + heavy_weight > 1048576 - 1, "pair root bound")
+    require(fence_slopes == 4070408 > selector_records, "strict local fence")
+
     core_checks = 0
     for owner_core in range(2 * m - n, m):
         owner_multiplicity = (n - owner_core) // (m - owner_core)
@@ -222,6 +263,7 @@ def main() -> None:
         "local_theorem_packet": True,
         "incidence_is_record_count": False,
         "cross_cell_census": False,
+        "fixed_chart_output_suffices_for_payment": False,
         "chronology_owner": False,
         "rank11_paid": False,
         "active_v4_ledger_movement": 0,
@@ -232,6 +274,7 @@ def main() -> None:
         f"endpoint={endpoint} records={records} cell_cap={fixed_cell} "
         f"plane_cap={plane_cap} core_checks={core_checks} "
         f"selector_records={selector_records} ninecell_cap={ninecell_cap} "
+        f"local_fence_slopes={fence_slopes} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 

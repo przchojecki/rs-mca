@@ -72,6 +72,13 @@ SOURCE_NODES = {
         "tree": "4b2ba55d7280db1378e17e05a9d59217630c544e",
         "contract_sha256": "6bcbfc8f5ae87e892898137660af54014a48c57f5d55295327923af6ab5f6e4b",
     },
+    "rank9_fixed_chart_local_cap_fence": {
+        "id": "rate_half_mca_rank11_rank9_fixed_chart_local_cap_fence",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_fixed_chart_local_cap_fence",
+        "commit": "3004fb4628bda19a33b9de4de3ffaa1c646c24e7",
+        "tree": "dd42039516fc8ef146fa37a0fd3d7b00baf1f95c",
+        "contract_sha256": "1cb156081477cb7438193899419d8c537054a9ee4570d5f6fdb5ec03868cdeca",
+    },
 }
 
 
@@ -201,6 +208,13 @@ def expected() -> dict[str, Any]:
     ninecell_next_fails_by = (
         (ninecell_cap + 1) * ninecell_cap - ninecell_resource
     )
+    common_core = 1048576 - 1
+    outside_weight = 2097152 - common_core
+    outside_support = 1116048 - common_core
+    heavy_owners = 8
+    heavy_weight = outside_support - 1
+    unit_owners = outside_weight - heavy_owners * heavy_weight
+    local_fence_slopes = heavy_owners * unit_owners
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -297,10 +311,24 @@ def expected() -> dict[str, Any]:
                 "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
             ],
         },
+        "rank9_fixed_chart_local_cap_fence": {
+            "common_core_size": common_core,
+            "outside_coordinate_weight": outside_weight,
+            "outside_support_weight": outside_support,
+            "heavy_owner_count": heavy_owners,
+            "heavy_owner_weight": heavy_weight,
+            "unit_owner_count": unit_owners,
+            "rich_slope_count": local_fence_slopes,
+            "selector_floor_excess": local_fence_slopes - selector_records,
+            "base_prime": 2130706433,
+            "forbidden_slope_count": 18,
+            "error_affine_rank_ceiling": 2,
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
             "cross_cell_census": False,
+            "fixed_chart_output_suffices_for_payment": False,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -323,12 +351,16 @@ def validate(value: object) -> dict[str, int]:
         require(current <= component["isolated_equivalent_ceiling"], "endpoint monotonicity")
     require(18 * 11 == component["isolated_bezout"], "multihomogeneous Bezout")
     require(value["claims"]["active_v4_ledger_movement"] == 0, "ledger movement")
+    fence = value["rank9_fixed_chart_local_cap_fence"]
+    require(fence["rich_slope_count"] > value["component_ninesubset_targets"]["fixed_selector_record_floor"], "local-cap fence")
+    require(fence["base_prime"] > fence["forbidden_slope_count"] * fence["rich_slope_count"], "forbidden-slope translate")
     return {
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
         "cell_cap": value["rank9_split_pencil_cell"]["sharp_fixed_cell_record_cap"],
         "plane_cap": value["rank9_split_pencil_paircore"]["low_common_core_plane_cap"],
         "selector_records": value["component_ninesubset_concentrator"]["fixed_selector_record_floor"],
+        "local_fence_slopes": fence["rich_slope_count"],
     }
 
 
@@ -344,6 +376,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["component_ninesubset_concentrator"].__setitem__("fixed_selector_record_floor", 2578109),
         lambda item: item["rank9_ninecell_paircore"].__setitem__("ordered_pair_resource_ceiling", 2057517483014),
         lambda item: item["component_ninesubset_targets"].__setitem__("rank8_error_rank_ceiling", 4),
+        lambda item: item["rank9_fixed_chart_local_cap_fence"].__setitem__("rich_slope_count", 2578110),
+        lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
         lambda item: item["claims"].__setitem__("rank11_paid", True),
         lambda item: item["source_prize_dag"]["nodes"]["component_star"].__setitem__("commit", "0" * 40),
@@ -373,6 +407,7 @@ def main() -> None:
         f"component_ppb={result['component_ppb']} cell_cap={result['cell_cap']} "
         f"plane_cap={result['plane_cap']} "
         f"selector_records={result['selector_records']} "
+        f"local_fence_slopes={result['local_fence_slopes']} "
         f"controls={controls} manifest_sha256={hashlib.sha256(MANIFEST.read_bytes()).hexdigest()}"
     )
 

@@ -10814,6 +10814,66 @@ $\operatorname{span}(U,r_1-B_*)$, of dimension at most three.  Exact locator
 multiplication in the reverse common-core lift is injective, proving (N3).
 \end{proof}
 
+\begin{proposition}[A fixed-chart local-cap fence]
+\label{prop:kb-rank11-fixed-chart-local-cap-fence}
+The local rank-nine conclusions of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, considered
+without the weighted component incidences of their ancestors, admit an
+official-row family of
+\[
+ 4070408>2578110
+\]
+distinct pair-noncontained exact-support slopes.  The family has common
+owner-plane core $K-1$, every record has a rank-ten eleven-subset on an
+affine-owner component, and its errors have affine rank at most two.
+\end{proposition}
+
+\begin{proof}
+Choose $J\subset D$ with $|J|=K-1$ and put
+\[
+ u(X)=\prod_{x\in J}(X-x).
+\]
+Fix a nine-subset $B\subset J$.  Nine interpolation polynomials of degree at
+most eight together with $u$ span a ten-dimensional RS space whose
+evaluation on $B$ has rank nine and kernel $Fu$.
+
+Outside $J$, the coordinate and rich-support weights are
+\[
+ N=n-(K-1)=1048577,\qquad L=m-(K-1)=67473.
+\]
+Give eight owner points $P_i=(c+iM,0)$ weight $L-1=67472$, where
+$M=508801$, and give the remaining $M$ coordinates weight one at
+$Q_j=(j,1)$, $0\le j<M$.  The values
+\[
+ \gamma_{i,j}=c+iM-j
+\]
+are distinct because their eight difference intervals are consecutive and
+disjoint.  There are $8M=4070408$ of them.  Since the KoalaBear base prime
+is greater than $18\cdot4070408$, the common translate $c$ may also avoid
+any prescribed eighteen slopes.
+
+Label an outside coordinate by $(\alpha_x,\beta_x)$ and define
+\[
+ r_0(x)=\alpha_xu(x),\qquad r_1(x)=\beta_xu(x),
+\]
+with both columns zero on $J$.  At slope $\gamma_{i,j}$ use the codeword
+$h_{i,j}=(c+iM)u$.  The line
+$\alpha+\gamma_{i,j}\beta=c+iM$ contains exactly $P_i$ and $Q_j$ among the
+assigned owner points.  Its support therefore has size
+$(K-1)+(L-1)+1=m$.
+
+A containing polynomial pair would have its second component equal to zero
+on $J$ and the heavy fibre, altogether $m-1>K-1$ coordinates, and hence
+zero identically by the RS root bound.  At $Q_j$ it would instead have to
+equal the nonzero value of $u$, a contradiction.  Two coordinates in the
+heavy fibre adjoined to $B$ give evaluation rank ten and the fixed-owner
+component through $P_i$.  Finally
+\[
+ e_{i,j}=r_0+\gamma_{i,j}r_1-(c+iM)u,
+\]
+so all anchored error differences lie in $\operatorname{span}(r_1,u)$.
+\end{proof}
+
 \begin{remark}[Typed scope of the rank-eleven packet]
 \label{rem:kb-rank11-dense-locator-scope}
 The density in Proposition~\ref{prop:kb-rank11-component-incidence} is a
@@ -10823,7 +10883,10 @@ Proposition~\ref{prop:kb-rank11-split-pencil-cell} is local to one fixed
 cell, and Proposition~\ref{prop:kb-rank11-split-pencil-paircore} remains
 local to one lifted owner plane.  Proposition~\ref{prop:kb-rank11-component-ninesubset-target}
 selects one fixed populated chart, not the complete component lane.  The
-packet does not pay that chart or recursively cover the remaining records,
+local conclusions alone do not pay that chart by
+Proposition~\ref{prop:kb-rank11-fixed-chart-local-cap-fence}.  That fence
+does not instantiate the fixed dense-anchor ancestors or an unsafe line.
+The packet does not recursively cover the remaining records,
 construct the chronology owner required by
 Remark~\ref{rem:mca-dense-core-owner-acceptance-contract}, pay either the
 large-owner or kernel-plane branch, move an active-v4 atom, or close

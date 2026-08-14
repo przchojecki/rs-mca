@@ -4266,7 +4266,7 @@ Keep entries concise and link to the relevant files.
 
 ### 2026-08-14 - Rank-eleven dense-locator and split-pencil route
 
-- **Agent/model:** Codex, importing eight public prize-DAG theorems after
+- **Agent/model:** Codex, importing nine public prize-DAG theorems after
   source, proof-boundary, arithmetic, and independent finite-model replay.
 - **Exact parent:** PR #1169 head
   `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
@@ -4286,7 +4286,10 @@ Keep entries concise and link to the relevant files.
   `134944`-coordinate received-pair core in every larger rank-nine plane.
   A typed nine-subset selector further puts at least `2578110` records on
   one fixed chart.  It routes to a fixed kernel, a shared-core rank-nine
-  plane, or a rank-eight owner flat with error rank at most three.
+  plane, or a rank-eight owner flat with error rank at most three.  An
+  explicit weighted-plane realization then gives `4070408` exact-support,
+  pair-noncontained slopes under the local rank-nine target conclusions,
+  fencing any attempt to pay `2578110` from those conclusions alone.
 - **Unit guard:** The first abundance result counts record/eleven-subset
   incidences.  Only the separately proved threshold argument converts it to
   a record floor.  Neither number is a distinct component count.
@@ -4294,12 +4297,14 @@ Keep entries concise and link to the relevant files.
   base-field-normalized split-pencil cell ledger satisfying the deployed
   slope unit, followed by a low-core/large-shared-core plane dichotomy.  It
   now supplies one overlap-correct fixed chart, but not a complete-lane
-  selector, payment of its target, or the chronology-correct owner required
-  by the #1169 acceptance contract.
+  selector or payment.  The local-cap fence shows that the next step must
+  retain pre-deduplication weights, couple charts, or invoke additional
+  dense-anchor structure before entering the chronology-correct owner
+  required by the #1169 acceptance contract.
 - **Nonclaim:** No complete-lane, shared-core, fixed-kernel, or rank-eight
   target payment; no large-owner or kernel-plane
   payment, rank-eleven payment, active-v4 movement, KoalaBear closure, or
   prize closure.
-- **What to do next:** Recursively compress or pay the fixed kernel,
-  shared-core, and rank-eight targets, or route them into the guarded
-  chronology-owner interface.
+- **What to do next:** Preserve weighted component incidences through a
+  guarded chronology-owner assignment, or prove the exact dense-anchor
+  identity that excludes the weighted-plane fence.

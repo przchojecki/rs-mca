@@ -59,6 +59,13 @@
         "commit": "1ae1bb841771f40c4b6e74cf6a1954595237de1e",
         "tree": "4b2ba55d7280db1378e17e05a9d59217630c544e",
         "contract_sha256": "6bcbfc8f5ae87e892898137660af54014a48c57f5d55295327923af6ab5f6e4b"
+      },
+      "rank9_fixed_chart_local_cap_fence": {
+        "id": "rate_half_mca_rank11_rank9_fixed_chart_local_cap_fence",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_fixed_chart_local_cap_fence",
+        "commit": "3004fb4628bda19a33b9de4de3ffaa1c646c24e7",
+        "tree": "dd42039516fc8ef146fa37a0fd3d7b00baf1f95c",
+        "contract_sha256": "1cb156081477cb7438193899419d8c537054a9ee4570d5f6fdb5ec03868cdeca"
       }
     }
   },
@@ -155,10 +162,24 @@
       "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3"
     ]
   },
+  "rank9_fixed_chart_local_cap_fence": {
+    "common_core_size": 1048575,
+    "outside_coordinate_weight": 1048577,
+    "outside_support_weight": 67473,
+    "heavy_owner_count": 8,
+    "heavy_owner_weight": 67472,
+    "unit_owner_count": 508801,
+    "rich_slope_count": 4070408,
+    "selector_floor_excess": 1492298,
+    "base_prime": 2130706433,
+    "forbidden_slope_count": 18,
+    "error_affine_rank_ceiling": 2
+  },
   "claims": {
     "local_theorem_packet": true,
     "incidence_is_record_count": false,
     "cross_cell_census": false,
+    "fixed_chart_output_suffices_for_payment": false,
     "chronology_owner": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
