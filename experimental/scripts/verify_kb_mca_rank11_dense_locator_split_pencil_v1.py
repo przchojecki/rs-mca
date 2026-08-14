@@ -122,6 +122,20 @@ SOURCE_NODES = {
         "tree": "a55878b5c4b9c7b3b3e67e4fcc7e71e23c75abff",
         "contract_sha256": "9fffc92c3682c65db6ac6c1f4b4fc7509c14516f41f2d9c7ebfe8750a7760312",
     },
+    "rank8_owner_pair_weight_cap": {
+        "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
+        "commit": "9e44f19b0217069bfdfb74763d36d6a9c873e8d7",
+        "tree": "ee5e4aa7f501997f94c85c61ab71adecfe4139c7",
+        "contract_sha256": "478aa8e2affd878acaf36cd1fd313fcdb857b552e5edf28dda1e4ad1c59cb32c",
+    },
+    "rank8_weighted_capacity_cut": {
+        "id": "rate_half_mca_rank11_rank8_weighted_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_weighted_capacity_cut",
+        "commit": "9e44f19b0217069bfdfb74763d36d6a9c873e8d7",
+        "tree": "215c4c6801da15652103458deb833a099c3da1cd",
+        "contract_sha256": "dad2aa8f83ec9cd1bbcebad2f7b127efd2037743df539e2f2662629a4a1c1396",
+    },
 }
 
 
@@ -181,6 +195,20 @@ def kernel_demand_ceiling(kprime: int) -> int:
         495405467 * 274980728111260126 * comb(67472 + kprime, 11),
         10**9,
     )
+
+
+def rank8_weighted_demand(kprime: int) -> int:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    return ceil_ratio(
+        55 * 495405467 * 274980728111260126 * comb(mprime, 11),
+        10**9 * comb(nprime, 9),
+    )
+
+
+def rank8_owner_pair_cap(kprime: int) -> int:
+    nprime = 1048576 + kprime
+    return 981105 * comb(nprime - 9, 2)
 
 
 def rank_mod(vectors: list[list[int]], field: int) -> int:
@@ -329,6 +357,12 @@ def expected() -> dict[str, Any]:
     kernel_endpoint_capacity = kernel_capacity(kernel_endpoint)
     kernel_wall_demand = kernel_demand_ceiling(kernel_wall)
     kernel_wall_capacity = kernel_capacity(kernel_wall)
+    rank8_last_open = 37995
+    rank8_first_closed = 37996
+    rank8_last_demand = rank8_weighted_demand(rank8_last_open)
+    rank8_last_cap = rank8_owner_pair_cap(rank8_last_open)
+    rank8_first_demand = rank8_weighted_demand(rank8_first_closed)
+    rank8_first_cap = rank8_owner_pair_cap(rank8_first_closed)
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -489,6 +523,26 @@ def expected() -> dict[str, Any]:
             "wall_capacity": kernel_wall_capacity,
             "capacity_formula": "sum_d C(n_prime,10-d)*M_d*C(K_prime-10,d+1)",
         },
+        "rank8_owner_pair_weight_cap": {
+            "kernel_dimension": 2,
+            "owner_flat_dimension": 4,
+            "fixed_subset_size": 9,
+            "fixed_owner_record_cap": 981105,
+            "coordinate_pair_resource_formula": "C(n_prime-9,2)",
+            "weighted_cap_formula": "981105*C(n_prime-9,2)",
+        },
+        "rank8_weighted_capacity_cut": {
+            "last_open_K_prime": rank8_last_open,
+            "last_open_demand": rank8_last_demand,
+            "last_open_cap": rank8_last_cap,
+            "last_open_gap": rank8_last_cap - rank8_last_demand,
+            "first_closed_K_prime": rank8_first_closed,
+            "first_closed_demand": rank8_first_demand,
+            "first_closed_cap": rank8_first_cap,
+            "first_closed_gap": rank8_first_demand - rank8_first_cap,
+            "closed_K_prime_maximum": 1048576,
+            "ratio_formula": "constant*C(m_prime,11)/C(n_prime,11)",
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
@@ -497,6 +551,7 @@ def expected() -> dict[str, Any]:
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
             "kernel_dominant_lane_closed_through_Kprime": 4598,
+            "rank8_owner_flat_closed_from_Kprime": 37996,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -533,6 +588,27 @@ def validate(value: object) -> dict[str, int]:
         require(kernel_demand_ceiling(kprime) > kernel_capacity(kprime), f"kernel cut {kprime}")
     require(kernel_demand_ceiling(4599) <= kernel_capacity(4599), "kernel wall")
     require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 4598, "kernel claim")
+    rank8_cap = value["rank8_owner_pair_weight_cap"]
+    require(rank8_cap == {
+        "kernel_dimension": 2,
+        "owner_flat_dimension": 4,
+        "fixed_subset_size": 9,
+        "fixed_owner_record_cap": 981105,
+        "coordinate_pair_resource_formula": "C(n_prime-9,2)",
+        "weighted_cap_formula": "981105*C(n_prime-9,2)",
+    }, "rank-eight owner-pair cap")
+    rank8_cut = value["rank8_weighted_capacity_cut"]
+    require(rank8_weighted_demand(37995) <= rank8_owner_pair_cap(37995), "rank-eight last open")
+    require(rank8_weighted_demand(37996) > rank8_owner_pair_cap(37996), "rank-eight first closed")
+    require(rank8_cut["first_closed_gap"] == 36370688210984, "rank-eight first gap")
+    require(rank8_cut["last_open_gap"] == 18174297527234, "rank-eight last gap")
+    for index in range(11):
+        require(
+            Fraction(105469 - index, 1086573 - index)
+            > Fraction(105468 - index, 1086572 - index),
+            f"rank-eight monotone factor {index}",
+        )
+    require(value["claims"]["rank8_owner_flat_closed_from_Kprime"] == 37996, "rank-eight claim")
     return {
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
@@ -544,6 +620,8 @@ def validate(value: object) -> dict[str, int]:
         "weighted_cap": weighted_elimination["boundary_cap"],
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
         "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
+        "rank8_last_gap": rank8_cut["last_open_gap"],
+        "rank8_first_gap": rank8_cut["first_closed_gap"],
     }
 
 
@@ -566,6 +644,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank9_weighted_target_elimination"].__setitem__("boundary_gap", 6701539979372921063),
         lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
+        lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
+        lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
         lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated", False),
@@ -608,6 +688,8 @@ def main() -> None:
         f"weighted_cap={result['weighted_cap']} "
         f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "
         f"kernel_wall_gap={result['kernel_wall_gap']} "
+        f"rank8_last_gap={result['rank8_last_gap']} "
+        f"rank8_first_gap={result['rank8_first_gap']} "
         f"controls={controls} manifest_sha256={hashlib.sha256(MANIFEST.read_bytes()).hexdigest()}"
     )
 

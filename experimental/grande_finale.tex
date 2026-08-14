@@ -11036,6 +11036,67 @@ $95457494746881463288875361950515757435711627164872173764503$,
 which records the honest method wall.
 \end{proof}
 
+\begin{proposition}[Rank-eight owner-pair capacity]
+\label{prop:kb-rank11-rank8-owner-pair-capacity}
+In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
+rank-eight affine-owner fixed target is impossible for every
+\[
+ 37996\le K'\le1048576.
+\]
+For a fixed rank-eight nine-subset, its marked component load is at most
+\[
+ W_B\le981105\binom{n'-9}{2}.
+ \tag{R8W}
+\]
+At $K'=37996$, the weighted selector demand is
+$579191514708840299$, while the right side of (R8W) is
+$579155144020629315$, a gap of $36370688210984$.
+At $K'=37995$, the cap still exceeds demand by $18174297527234$.
+\end{proposition}
+
+\begin{proof}
+Fix a rank-eight nine-subset $B$ and put
+$U=\ker(\operatorname{ev}_B)$, so $\dim U=2$. Owners agreeing with the
+received pair on $B$ form one affine translate of $U^2$.
+
+Every marked extension has the form $T=B\cup\{x,y\}$ with
+$\operatorname{rank}(\operatorname{ev}_T)=10$. Therefore evaluation on
+$\{x,y\}$ is an isomorphism from $U$ to $\mathbb F^2$. The two equations
+for the first received column determine the first $U$-coordinate of the
+owner uniquely, and the two equations for the second column determine the
+second $U$-coordinate uniquely. Thus one unordered coordinate pair
+$\{x,y\}$ determines at most one owner point $p$.
+
+Let $q_p$ count the full-rank coordinate pairs outside $B$ that determine
+$p$, and let $t_p$ count the selected records owned by $p$. Coordinate-pair
+uniqueness and fixed-owner exception disjointness give
+\[
+ \sum_p q_p\le\binom{n'-9}{2},
+ \qquad
+ t_p\le n'-m'+1=981105.
+\]
+Consequently
+\[
+ W_B\le\sum_p t_p q_p
+     \le981105\binom{n'-9}{2},
+\]
+in the selector's marked $(\text{record},T)$ unit.
+
+For uniformity, if $L(K')$ denotes the unrounded selector demand and
+$U(K')$ the displayed cap, then
+\[
+ \frac{L(K')}{U(K')}
+ =\text{constant}\cdot
+   \frac{\binom{m'}{11}}{\binom{n'}{11}},
+\]
+using
+$\binom{n'}9\binom{n'-9}2=55\binom{n'}{11}$.
+Each factor $(m'-i)/(n'-i)$, $0\le i\le10$, strictly increases with $K'$
+because $n'-m'=981104$. The exact positive gap at $K'=37996$ therefore
+persists through the deployed endpoint. The failed preceding row records
+the honest method wall.
+\end{proof}
+
 \begin{remark}[Typed scope of the rank-eleven packet]
 \label{rem:kb-rank11-dense-locator-scope}
 The density in Proposition~\ref{prop:kb-rank11-component-incidence} is a
@@ -11051,7 +11112,12 @@ does not carry the marked weight in
 Proposition~\ref{prop:kb-rank11-rank9-weighted-exclusion}, which eliminates
 the rank-nine alternative. Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
 also eliminates kernel-lane domination through $K'=4598$, but not above
-the printed $4599$ method wall. The fence does not instantiate the fixed
+the printed $4599$ method wall.
+Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
+rank-eight target from $K'=37996$ onward, but not below its printed wall.
+Thus the remaining intervals are rank eight only on $10\le K'\le4598$,
+rank eight plus kernel on $4599\le K'\le37995$, and kernel only above.
+The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,
 construct the chronology owner required by

@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-14 - Rank-eleven rank-eight owner-pair capacity
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** An independent coordinate pair determines at most
+  one owner in the rank-eight affine `U^2` flat, so marked load is at most
+  `981105*C(n'-9,2)`. Exact comparison closes rank eight for
+  `37996<=K'<=1048576`.
+- **How it is useful:** It leaves only the kernel lane above `K'=37995` and
+  prints the exact rank-eight/kernel frontier on all residual dimensions.
+- **What to do next:** Couple rank-eight owner cores below the wall and
+  compress kernel bases above `K'=4598`.
+
 ### 2026-08-14 - Rank-eleven kernel canonical-basis capacity
 
 - **Agent/model:** Codex with primary and independent exact replays.

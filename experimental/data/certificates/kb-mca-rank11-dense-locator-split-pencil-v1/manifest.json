@@ -108,6 +108,20 @@
         "commit": "b16e254492023dadba37f0caff043ed189d80a0f",
         "tree": "a55878b5c4b9c7b3b3e67e4fcc7e71e23c75abff",
         "contract_sha256": "9fffc92c3682c65db6ac6c1f4b4fc7509c14516f41f2d9c7ebfe8750a7760312"
+      },
+      "rank8_owner_pair_weight_cap": {
+        "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
+        "commit": "9e44f19b0217069bfdfb74763d36d6a9c873e8d7",
+        "tree": "ee5e4aa7f501997f94c85c61ab71adecfe4139c7",
+        "contract_sha256": "478aa8e2affd878acaf36cd1fd313fcdb857b552e5edf28dda1e4ad1c59cb32c"
+      },
+      "rank8_weighted_capacity_cut": {
+        "id": "rate_half_mca_rank11_rank8_weighted_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_weighted_capacity_cut",
+        "commit": "9e44f19b0217069bfdfb74763d36d6a9c873e8d7",
+        "tree": "215c4c6801da15652103458deb833a099c3da1cd",
+        "contract_sha256": "dad2aa8f83ec9cd1bbcebad2f7b127efd2037743df539e2f2662629a4a1c1396"
       }
     }
   },
@@ -271,6 +285,26 @@
     "wall_capacity": 929365465753464049635514279100756055244773737572652812396430010,
     "capacity_formula": "sum_d C(n_prime,10-d)*M_d*C(K_prime-10,d+1)"
   },
+  "rank8_owner_pair_weight_cap": {
+    "kernel_dimension": 2,
+    "owner_flat_dimension": 4,
+    "fixed_subset_size": 9,
+    "fixed_owner_record_cap": 981105,
+    "coordinate_pair_resource_formula": "C(n_prime-9,2)",
+    "weighted_cap_formula": "981105*C(n_prime-9,2)"
+  },
+  "rank8_weighted_capacity_cut": {
+    "last_open_K_prime": 37995,
+    "last_open_demand": 579135903691691071,
+    "last_open_cap": 579154077989218305,
+    "last_open_gap": 18174297527234,
+    "first_closed_K_prime": 37996,
+    "first_closed_demand": 579191514708840299,
+    "first_closed_cap": 579155144020629315,
+    "first_closed_gap": 36370688210984,
+    "closed_K_prime_maximum": 1048576,
+    "ratio_formula": "constant*C(m_prime,11)/C(n_prime,11)"
+  },
   "claims": {
     "local_theorem_packet": true,
     "incidence_is_record_count": false,
@@ -279,6 +313,7 @@
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated": true,
     "kernel_dominant_lane_closed_through_Kprime": 4598,
+    "rank8_owner_flat_closed_from_Kprime": 37996,
     "chronology_owner": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
