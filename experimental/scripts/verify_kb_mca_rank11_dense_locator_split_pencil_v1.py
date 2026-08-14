@@ -51,6 +51,27 @@ SOURCE_NODES = {
         "tree": "a74872d50f946260fc65c6a798e069d6e17ace59",
         "contract_sha256": "e899fbb6893e61495371f689f6a2ca5eb196d0bbc6d6ec8dc39b34eb9965c252",
     },
+    "component_ninesubset_concentrator": {
+        "id": "rate_half_mca_rank11_component_ninesubset_lane_concentrator",
+        "path": "background/nodes/rate_half_mca_rank11_component_ninesubset_lane_concentrator",
+        "commit": "1ae1bb841771f40c4b6e74cf6a1954595237de1e",
+        "tree": "4cae12dccd27f70f9373a746f763805d9b59f0dd",
+        "contract_sha256": "f3e7cebc5b859df1d9950ca5cf49c085a994b91c949da3e49fbe701ffe169192",
+    },
+    "rank9_ninecell_paircore": {
+        "id": "rate_half_mca_rank11_rank9_ninecell_paircore_extension",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_ninecell_paircore_extension",
+        "commit": "1ae1bb841771f40c4b6e74cf6a1954595237de1e",
+        "tree": "bf907dcbd67a65b2d6f51bbcbb6ad0df49da5789",
+        "contract_sha256": "8d91c142853cbc92720abb7372d677287dd1e83d3755e12361d322a617d2fe78",
+    },
+    "component_ninesubset_targets": {
+        "id": "rate_half_mca_rank11_component_ninesubset_target_router",
+        "path": "background/nodes/rate_half_mca_rank11_component_ninesubset_target_router",
+        "commit": "1ae1bb841771f40c4b6e74cf6a1954595237de1e",
+        "tree": "4b2ba55d7280db1378e17e05a9d59217630c544e",
+        "contract_sha256": "6bcbfc8f5ae87e892898137660af54014a48c57f5d55295327923af6ab5f6e4b",
+    },
 }
 
 
@@ -170,6 +191,16 @@ def expected() -> dict[str, Any]:
     paircore_resource = paircore_coefficient * (2097152 - 10)
     plane_cap = (1 + isqrt(1 + 4 * paircore_resource)) // 2
     next_integer_fails_by = (plane_cap + 1) * plane_cap - paircore_resource
+    lane_ppb = component_ppb // 2
+    selector_records = ceil_ratio(
+        lane_ppb * non_dense * comb(67472 + 10, 9),
+        10**9 * comb(1048576 + 10, 9),
+    )
+    ninecell_resource = paircore_coefficient * (2097152 - 9)
+    ninecell_cap = (1 + isqrt(1 + 4 * ninecell_resource)) // 2
+    ninecell_next_fails_by = (
+        (ninecell_cap + 1) * ninecell_cap - ninecell_resource
+    )
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -238,6 +269,34 @@ def expected() -> dict[str, Any]:
             "next_integer_fails_by": next_integer_fails_by,
             "large_shared_pair_core_floor": pair_intersection,
         },
+        "component_ninesubset_concentrator": {
+            "selector_size": 9,
+            "component_tuple_size": 11,
+            "subsets_per_component_tuple": comb(11, 9),
+            "extension_multiplicity": "C(m_prime-9,2)",
+            "dominant_lane_incidence_ppb_floor": lane_ppb,
+            "uniform_endpoint_K_prime": 10,
+            "fixed_selector_record_floor": selector_records,
+        },
+        "rank9_ninecell_paircore": {
+            "fixed_cell_size": 9,
+            "common_core_floor": 9,
+            "ordered_pair_resource_ceiling": ninecell_resource,
+            "low_common_core_plane_cap": ninecell_cap,
+            "next_integer_fails_by": ninecell_next_fails_by,
+            "large_shared_pair_core_floor": pair_intersection,
+        },
+        "component_ninesubset_targets": {
+            "fixed_selector_record_floor": selector_records,
+            "population_excess_over_plane_cap": selector_records - ninecell_cap,
+            "rank8_kernel_dimension": 2,
+            "rank8_error_rank_ceiling": 3,
+            "routes": [
+                "FIXED_KERNEL_NINESUBSET_CHART",
+                "RANK9_SHARED_PAIR_CORE_PLANE",
+                "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
+            ],
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
@@ -269,6 +328,7 @@ def validate(value: object) -> dict[str, int]:
         "component_ppb": component["component_incidence_ppb_floor"],
         "cell_cap": value["rank9_split_pencil_cell"]["sharp_fixed_cell_record_cap"],
         "plane_cap": value["rank9_split_pencil_paircore"]["low_common_core_plane_cap"],
+        "selector_records": value["component_ninesubset_concentrator"]["fixed_selector_record_floor"],
     }
 
 
@@ -281,6 +341,9 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank9_split_pencil_cell"].__setitem__("sharp_fixed_cell_record_cap", 45567659),
         lambda item: item["rank9_split_pencil_cell"].__setitem__("rounding_rule", "ceil"),
         lambda item: item["rank9_split_pencil_paircore"].__setitem__("low_common_core_plane_cap", 1434406),
+        lambda item: item["component_ninesubset_concentrator"].__setitem__("fixed_selector_record_floor", 2578109),
+        lambda item: item["rank9_ninecell_paircore"].__setitem__("ordered_pair_resource_ceiling", 2057517483014),
+        lambda item: item["component_ninesubset_targets"].__setitem__("rank8_error_rank_ceiling", 4),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
         lambda item: item["claims"].__setitem__("rank11_paid", True),
         lambda item: item["source_prize_dag"]["nodes"]["component_star"].__setitem__("commit", "0" * 40),
@@ -309,6 +372,7 @@ def main() -> None:
         f"roots={result['roots']} high_rank={result['high_rank']} "
         f"component_ppb={result['component_ppb']} cell_cap={result['cell_cap']} "
         f"plane_cap={result['plane_cap']} "
+        f"selector_records={result['selector_records']} "
         f"controls={controls} manifest_sha256={hashlib.sha256(MANIFEST.read_bytes()).hexdigest()}"
     )
 

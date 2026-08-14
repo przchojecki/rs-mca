@@ -19,6 +19,29 @@ PAIRCORE_SOURCE = {
     "tree": "a74872d50f946260fc65c6a798e069d6e17ace59",
     "contract_sha256": "e899fbb6893e61495371f689f6a2ca5eb196d0bbc6d6ec8dc39b34eb9965c252",
 }
+FIXED_CHART_SOURCES = {
+    "component_ninesubset_concentrator": {
+        "id": "rate_half_mca_rank11_component_ninesubset_lane_concentrator",
+        "path": "background/nodes/rate_half_mca_rank11_component_ninesubset_lane_concentrator",
+        "commit": "1ae1bb841771f40c4b6e74cf6a1954595237de1e",
+        "tree": "4cae12dccd27f70f9373a746f763805d9b59f0dd",
+        "contract_sha256": "f3e7cebc5b859df1d9950ca5cf49c085a994b91c949da3e49fbe701ffe169192",
+    },
+    "rank9_ninecell_paircore": {
+        "id": "rate_half_mca_rank11_rank9_ninecell_paircore_extension",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_ninecell_paircore_extension",
+        "commit": "1ae1bb841771f40c4b6e74cf6a1954595237de1e",
+        "tree": "bf907dcbd67a65b2d6f51bbcbb6ad0df49da5789",
+        "contract_sha256": "8d91c142853cbc92720abb7372d677287dd1e83d3755e12361d322a617d2fe78",
+    },
+    "component_ninesubset_targets": {
+        "id": "rate_half_mca_rank11_component_ninesubset_target_router",
+        "path": "background/nodes/rate_half_mca_rank11_component_ninesubset_target_router",
+        "commit": "1ae1bb841771f40c4b6e74cf6a1954595237de1e",
+        "tree": "4b2ba55d7280db1378e17e05a9d59217630c544e",
+        "contract_sha256": "6bcbfc8f5ae87e892898137660af54014a48c57f5d55295327923af6ab5f6e4b",
+    },
+}
 
 
 def require(condition: bool, message: str) -> None:
@@ -69,10 +92,21 @@ def main() -> None:
     star = data["component_star"]
     cell = data["rank9_split_pencil_cell"]
     paircore = data["rank9_split_pencil_paircore"]
+    concentrator = data["component_ninesubset_concentrator"]
+    ninecell = data["rank9_ninecell_paircore"]
+    targets = data["component_ninesubset_targets"]
     require(
         data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
         == PAIRCORE_SOURCE,
         "pair-core source pin",
+    )
+    require(
+        {
+            key: data["source_prize_dag"]["nodes"][key]
+            for key in FIXED_CHART_SOURCES
+        }
+        == FIXED_CHART_SOURCES,
+        "fixed-chart source pins",
     )
 
     endpoint = ceiling(independent_binomial_ratio(10))
@@ -127,6 +161,52 @@ def main() -> None:
     require(plane_cap == 1434405, "low-core plane cap")
     require(next_integer_fails_by == 2636520, "next integer gap")
 
+    selector_ratio = Fraction(495405467 * non_dense, 10**9)
+    for index in range(9):
+        selector_ratio *= Fraction(67482 - index, 1048586 - index)
+    selector_records = ceiling(selector_ratio)
+    require(selector_records == 2578110, "nine-subset endpoint")
+    require(concentrator == {
+        "selector_size": 9,
+        "component_tuple_size": 11,
+        "subsets_per_component_tuple": 55,
+        "extension_multiplicity": "C(m_prime-9,2)",
+        "dominant_lane_incidence_ppb_floor": 495405467,
+        "uniform_endpoint_K_prime": 10,
+        "fixed_selector_record_floor": selector_records,
+    }, "concentrator constants")
+
+    ninecell_resource = coefficient * (n - 9)
+    ninecell_cap = (1 + isqrt(1 + 4 * ninecell_resource)) // 2
+    require(ninecell == {
+        "fixed_cell_size": 9,
+        "common_core_floor": 9,
+        "ordered_pair_resource_ceiling": ninecell_resource,
+        "low_common_core_plane_cap": ninecell_cap,
+        "next_integer_fails_by": (ninecell_cap + 1) * ninecell_cap - ninecell_resource,
+        "large_shared_pair_core_floor": 2 * m - n,
+    }, "nine-cell constants")
+    require(ninecell_cap == 1434405, "nine-cell cap")
+
+    rank8_error_differences = [[-1, 0, 1], [0, -1, 2], [0, 0, 3]]
+    determinant = (
+        rank8_error_differences[0][0]
+        * rank8_error_differences[1][1]
+        * rank8_error_differences[2][2]
+    )
+    require(determinant != 0, "sharp rank-three model")
+    require(targets == {
+        "fixed_selector_record_floor": selector_records,
+        "population_excess_over_plane_cap": selector_records - ninecell_cap,
+        "rank8_kernel_dimension": 2,
+        "rank8_error_rank_ceiling": 3,
+        "routes": [
+            "FIXED_KERNEL_NINESUBSET_CHART",
+            "RANK9_SHARED_PAIR_CORE_PLANE",
+            "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
+        ],
+    }, "target routes")
+
     core_checks = 0
     for owner_core in range(2 * m - n, m):
         owner_multiplicity = (n - owner_core) // (m - owner_core)
@@ -151,6 +231,7 @@ def main() -> None:
         "KB_MCA_RANK11_DENSE_LOCATOR_SPLIT_PENCIL_V1_INDEPENDENT_PASS "
         f"endpoint={endpoint} records={records} cell_cap={fixed_cell} "
         f"plane_cap={plane_cap} core_checks={core_checks} "
+        f"selector_records={selector_records} ninecell_cap={ninecell_cap} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 

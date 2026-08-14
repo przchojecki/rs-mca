@@ -10751,6 +10751,69 @@ so $g\le1434405$.  Thus any larger plane lies in the alternative
 $j\ge134944$.
 \end{proof}
 
+\begin{proposition}[Fixed nine-subset component target]
+\label{prop:kb-rank11-component-ninesubset-target}
+One of the affine-owner and rank-deficient component lanes admits a fixed
+nine-coordinate subset $B$ carrying at least
+\[
+ 2578110
+\]
+distinct records in that same lane.  Moreover, one of the following holds.
+\begin{enumerate}[label=\textup{(N\arabic*)}]
+\item every retained record has a rank-deficient component extension whose
+kernel lies in the same nonzero $\ker(\operatorname{ev}_B)$;
+\item $\operatorname{rank}(\operatorname{ev}_B)=9$, and after lifting to the
+original row the resulting owner plane has a common received-pair core of
+size at least $134944$;
+\item $\operatorname{rank}(\operatorname{ev}_B)=8$, the retained owners lie
+in one affine $U^2$ flat with $\dim U=2$, and the retained errors have affine
+rank at most three.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Choose the heavier component lane.  It carries at least
+$\lambda=495405467/10^9$ of all record/eleven-subset incidences.  Mark all
+$\binom{11}{9}=55$ nine-subsets of every such eleven-subset.  A fixed
+record/nine-subset pair is marked at most $\binom{m'-9}{2}$ times, while
+\[
+ 55\binom{m'}{11}=\binom{m'}9\binom{m'-9}2.
+\]
+Averaging over the domain nine-subsets gives one $B$ carrying at least
+\[
+ \ceil{\lambda\,274980728111260126
+        \frac{\binom{m'}9}{\binom{n'}9}}
+ \ge2578110.
+\]
+The nine factors in the binomial ratio increase with $K'$, and exact
+evaluation at $K'=10$ gives the displayed endpoint.
+
+In the rank-deficient lane, restriction from an extending eleven-subset
+puts every component kernel inside the fixed nonzero
+$\ker(\operatorname{ev}_B)$, proving (N1).  In the affine-owner lane, an
+evaluation-rank-ten eleven-subset loses at most two ranks on restriction to
+$B$, so the rank on $B$ is eight or nine.
+
+At rank nine the owners form one affine plane.  The nine-coordinate version
+of Proposition~\ref{prop:kb-rank11-split-pencil-paircore} has ordered-pair
+resource
+\[
+ 981105(2097152-9)=2057517483015
+ <1434406\cdot1434405,
+\]
+so its low-core cap remains $1434405$.  Since $2578110>1434405$, the
+reversible original-row lift forces the shared core in (N2).
+
+At rank eight put $U=\ker(\operatorname{ev}_B)$, so $\dim U=2$, and anchor
+one retained owner $(A_*,B_*)$.  Every retained explanation has the form
+\[
+ h_\gamma=A_*+\gamma B_*+v_\gamma,\qquad v_\gamma\in U.
+\]
+Hence anchored error differences lie in
+$\operatorname{span}(U,r_1-B_*)$, of dimension at most three.  Exact locator
+multiplication in the reverse common-core lift is injective, proving (N3).
+\end{proof}
+
 \begin{remark}[Typed scope of the rank-eleven packet]
 \label{rem:kb-rank11-dense-locator-scope}
 The density in Proposition~\ref{prop:kb-rank11-component-incidence} is a
@@ -10758,8 +10821,9 @@ record/coordinate-subset incidence density, not a record or component count.
 The corollary is recordwise, and
 Proposition~\ref{prop:kb-rank11-split-pencil-cell} is local to one fixed
 cell, and Proposition~\ref{prop:kb-rank11-split-pencil-paircore} remains
-local to one lifted owner plane.  The packet does not count planes, pay the
-large shared-core branch, correct for cross-cell overlap,
+local to one lifted owner plane.  Proposition~\ref{prop:kb-rank11-component-ninesubset-target}
+selects one fixed populated chart, not the complete component lane.  The
+packet does not pay that chart or recursively cover the remaining records,
 construct the chronology owner required by
 Remark~\ref{rem:mca-dense-core-owner-acceptance-contract}, pay either the
 large-owner or kernel-plane branch, move an active-v4 atom, or close

@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; every rank-nine star is a split-pencil cell carrying at most 45567658 records; and every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core.
+direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; and one fixed nine-subset carries at least 2578110 records in one typed component lane, routed to a fixed kernel chart, a shared-core rank-nine plane, or a rank-eight owner flat of error rank at most three.
 architecture: POST_NEAR_ERROR_RANK11_DENSE_LOCATOR_COMPONENT_ROUTE_V1
 partition_digest: inherited post-near rank-eleven route of PRs 1168 and 1169; no new first-match atom or partition digest
-atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, and its lifted owner plane
+atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, its lifted owner plane, and one fixed nine-coordinate component chart
 quantifier: Every survivor satisfying the pinned rank-eleven 32-anchor, 18-dense-root, ten-dimensional correction-space setup, uniformly for 10<=K'<=1048576
 projection_and_unit: Distinct bad finite slopes per received line at record level; record/coordinate-subset incidences only where explicitly stated
-claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records
+claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records; one typed fixed nine-subset >=2578110 records
 status: PROVED LOCAL THEOREM PACKET / GLOBAL ROW OPEN
-impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL CELL AND PAIR-CORE LEDGER
-falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; or a lifted plane above 1434405 records whose shared pair core has size below 134944.
+impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL AND FIXED-CHART LEDGER
+falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; or failure to find the printed 2578110-record fixed nine-subset target.
 replay: python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1_independent.py
 ---
 
@@ -25,13 +25,14 @@ Status: **PROVED LOCAL THEOREM PACKET / ZERO DEPLOYED LEDGER MOVEMENT**.
 Exact parent: PR #1169 head
 `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
 
-This packet imports five public, commit- and tree-pinned prize-DAG theorems.
+This packet imports eight public, commit- and tree-pinned prize-DAG theorems.
 They begin after the rank-eleven branch has produced one fixed degree-31
 anchor interpolant, eighteen dense-pair roots, and a ten-dimensional
 relative correction space.  They end with an exact ledger for one fixed
-rank-nine ten-coordinate cell and a low-core/large-shared-core dichotomy for
-its lifted owner plane.  They do not count those planes or assign a chronology
-owner across them.
+rank-nine ten-coordinate cell, a low-core/large-shared-core dichotomy for
+its lifted owner plane, and one overlap-correct fixed nine-coordinate target.
+They do not select the complete component lane or assign chronology across
+different targets.
 
 Throughout, write
 
@@ -272,9 +273,54 @@ resource by `2636520`.  Hence every larger plane has `j>=134944`, a pair core
 shared by all owners and records in that plane.  This theorem is plane-local:
 it neither counts different planes nor pays the large shared-core branch.
 
-## 6. Exact impact on the open route
+## 6. Nine-subset concentration and fixed-target routing
 
-The packet supplies five route cuts.
+Choose the heavier of the affine-owner and rank-deficient component lanes.
+It carries at least `495405467/10^9` of all record/eleven-subset incidences.
+Mark all `55=C(11,9)` nine-subsets of every such eleven-subset.  One fixed
+`(record,B)` pair is marked at most `C(m'-9,2)` times, and
+
+```text
+55*C(m',11)=C(m',9)*C(m'-9,2).
+```
+
+Averaging over domain nine-subsets therefore gives one fixed `B` carrying
+at least
+
+```text
+ceil((495405467/10^9)*274980728111260126
+     *C(m',9)/C(n',9))
+>=2578110
+```
+
+distinct records in that same lane.  The endpoint is `K'=10`, because all
+nine factors in `C(m',9)/C(n',9)` increase with `K'`.
+
+In the kernel lane, every retained rank-deficient eleven-subset has kernel
+inside the same nonzero `ker(ev_B)`.  In the affine-owner lane, a rank-ten
+eleven-subset restricts to rank eight or nine on `B`.  At rank nine, the
+nine-cell ordered-pair resource is
+
+```text
+981105*(2097152-9)=2057517483015,
+```
+
+whose integer plane cap remains `1434405`.  Since `2578110` exceeds that
+cap by `1143705`, the lifted plane shares at least `134944` received
+coordinate pairs.  At rank eight, with `U=ker(ev_B)` of dimension two, all
+selected owners lie in one affine `U^2` flat.  Writing
+
+```text
+h_gamma=A_*+gamma B_*+v_gamma,  v_gamma in U,
+```
+
+shows that anchored error differences lie in `span(U,r_1-B_*)`, of
+dimension at most three.  These are fixed populated targets, not aggregate
+payments.
+
+## 7. Exact impact on the open route
+
+The packet supplies eight route cuts.
 
 1. High-core absorption has exactly dimension ten, not a range `2,...,10`.
 2. More than 99 percent of record/eleven-subset incidences enter an affine
@@ -284,21 +330,25 @@ The packet supplies five route cuts.
 4. One fixed rank-nine pencil cell carries at most `45567658` records.
 5. One lifted rank-nine plane either carries at most `1434405` records or
    has a shared pair core of size at least `134944`.
+6. One typed component lane has a fixed nine-subset carrying at least
+   `2578110` distinct records.
+7. The rank-nine plane cap remains `1434405` for that nine-coordinate chart.
+8. The fixed chart is a kernel target, a shared-core rank-nine plane, or a
+   rank-eight owner flat with selected error rank at most three.
 
-It does not supply the cross-plane count needed to aggregate these bounds, an
-overlap-correct selector for the component incidences, a chronology-correct
-owner satisfying PR #1169, or a payment for the large-owner and kernel-plane
-branches.  Therefore `U_BC`, `U_new`, error rank eleven, and the KoalaBear
-row remain open.
+It does not select the complete component lane, recursively cover its
+remainder, construct a chronology-correct owner satisfying PR #1169, or pay
+the fixed kernel, shared-core, and rank-eight targets.  Therefore `U_BC`,
+`U_new`, error rank eleven, and the KoalaBear row remain open.
 
-## 7. Provenance and replay
+## 8. Provenance and replay
 
-The manifest pins the five public source nodes by commit, Git tree, and
+The manifest pins the eight public source nodes by commit, Git tree, and
 source-contract SHA-256.  The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an
-exhaustive check of all `981104` admissible owner-core sizes, together with a
-finite affine-plane line-design model.
+exhaustive check of all `981104` admissible owner-core sizes, the independent
+nine-subset product endpoint, and finite affine-plane/rank-three models.
 
 ```text
 python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py
