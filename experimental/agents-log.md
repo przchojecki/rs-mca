@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-14 - Rank-eleven record/ambient kernel hybrid
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** A support-internal per-record capacity is combined
+  stratumwise with the ambient all-bases cap. Normalization in the unknown
+  actual record count is monotone, and exact replay excludes dominant
+  kernel lanes through `K'=11772`.
+- **How it is useful:** The exact branch pattern `AARRRRRRR` identifies
+  simultaneous cross-stratum saturation as the next obstruction.
+- **What to do next:** Couple the ambient `d=1,2` flat profile to the
+  record-support `d>=3` profile; both separate estimates are sharp.
+
 ### 2026-08-14 - Rank-eleven kernel multi-basis compression
 
 - **Agent/model:** Codex with primary and independent exact replays.

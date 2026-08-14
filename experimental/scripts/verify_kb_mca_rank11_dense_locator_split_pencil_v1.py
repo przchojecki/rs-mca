@@ -136,6 +136,20 @@ SOURCE_NODES = {
         "tree": "f4b0f0a84e71a4e8b78c18c405776c7d5f78263d",
         "contract_sha256": "47cd5f4ee795bc82161711e65e1fdbfd70cc86d0947854a4ed9aa320508b8a64",
     },
+    "kernel_record_support_capacity": {
+        "id": "rate_half_mca_rank11_kernel_record_support_capacity",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_record_support_capacity",
+        "commit": "11a8c12ffa1061e899b36a912277caef2b11a3de",
+        "tree": "c7a7d8a8498ae167efbb4174b8a4bbcb054a1608",
+        "contract_sha256": "ede7f01e37f1f856118ba73b3c94af8b99658361cac2e747f7f69fe24d3a7e7e",
+    },
+    "kernel_hybrid_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_hybrid_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_hybrid_capacity_cut",
+        "commit": "11a8c12ffa1061e899b36a912277caef2b11a3de",
+        "tree": "9921a1975991825967e67cf6f5d3350ee96488f1",
+        "contract_sha256": "ce3e5d908adba2db8ce0a12cd0f464d1d9b45b0602203f9f5a8adef7e0d51837",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -221,6 +235,25 @@ def kernel_multibasis_capacity(kprime: int) -> int:
         decorated = comb(nprime, rank) * kernel_record_cap(kprime, dimension) * extensions
         total += decorated // (dimension + 2)
     return total
+
+
+def kernel_hybrid_terms(kprime: int) -> list[tuple[int, int, str]]:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    extra = kprime - 10
+    rows = []
+    for dimension in range(1, 10):
+        rank = 10 - dimension
+        extensions = comb(extra, dimension + 1) if extra >= dimension + 1 else 0
+        ambient = comb(nprime, rank) * kernel_record_cap(kprime, dimension) * extensions // (dimension + 2)
+        per_record = comb(mprime, rank) * extensions // (dimension + 2)
+        support = 274980728111260126 * per_record
+        rows.append((ambient, support, "ambient" if ambient <= support else "record"))
+    return rows
+
+
+def kernel_hybrid_capacity(kprime: int) -> int:
+    return sum(min(ambient, support) for ambient, support, _ in kernel_hybrid_terms(kprime))
 
 
 def kernel_demand_ceiling(kprime: int) -> int:
@@ -396,6 +429,12 @@ def expected() -> dict[str, Any]:
     multibasis_endpoint_capacity = kernel_multibasis_capacity(multibasis_endpoint)
     multibasis_wall_demand = kernel_demand_ceiling(multibasis_wall)
     multibasis_wall_capacity = kernel_multibasis_capacity(multibasis_wall)
+    hybrid_endpoint = 11772
+    hybrid_wall = 11773
+    hybrid_endpoint_demand = kernel_demand_ceiling(hybrid_endpoint)
+    hybrid_endpoint_capacity = kernel_hybrid_capacity(hybrid_endpoint)
+    hybrid_wall_demand = kernel_demand_ceiling(hybrid_wall)
+    hybrid_wall_capacity = kernel_hybrid_capacity(hybrid_wall)
     rank8_last_open = 37995
     rank8_first_closed = 37996
     rank8_last_demand = rank8_weighted_demand(rank8_last_open)
@@ -588,6 +627,25 @@ def expected() -> dict[str, Any]:
             "wall_excess": multibasis_wall_capacity - multibasis_wall_demand,
             "capacity_formula": "sum_d floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))",
         },
+        "kernel_record_support_capacity": {
+            "correction_dimension": 10,
+            "component_subset_size": 11,
+            "basis_multiplicities": list(range(3, 12)),
+            "capacity_formula": "floor(C(m_prime,10-d)*C(K_prime-10,d+1)/(d+2))",
+        },
+        "kernel_hybrid_capacity_cut": {
+            "closed_K_prime_minimum": 10,
+            "closed_K_prime_maximum": hybrid_endpoint,
+            "first_open_K_prime": hybrid_wall,
+            "endpoint_branch_pattern": ["ambient", "ambient"] + ["record"] * 7,
+            "endpoint_demand": hybrid_endpoint_demand,
+            "endpoint_capacity": hybrid_endpoint_capacity,
+            "endpoint_gap": hybrid_endpoint_demand - hybrid_endpoint_capacity,
+            "wall_demand": hybrid_wall_demand,
+            "wall_capacity": hybrid_wall_capacity,
+            "wall_excess": hybrid_wall_capacity - hybrid_wall_demand,
+            "capacity_formula": "sum_d min(A_d,N_min*P_d)",
+        },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
             "owner_flat_dimension": 4,
@@ -625,7 +683,7 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 11641,
+            "kernel_dominant_lane_closed_through_Kprime": 11772,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
@@ -680,7 +738,21 @@ def validate(value: object) -> dict[str, int]:
     require(kernel_demand_ceiling(11642) < kernel_multibasis_capacity(11642), "kernel multi-basis wall")
     require(multibasis_cut["endpoint_gap"] == 17769453550459149385453824948016076737082337523706893862084, "kernel multi-basis endpoint")
     require(multibasis_cut["wall_excess"] == 187031323586740190878769118921060658362307444191332937452616, "kernel multi-basis wall excess")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 11641, "kernel claim")
+    record_support = value["kernel_record_support_capacity"]
+    require(record_support == {
+        "correction_dimension": 10,
+        "component_subset_size": 11,
+        "basis_multiplicities": list(range(3, 12)),
+        "capacity_formula": "floor(C(m_prime,10-d)*C(K_prime-10,d+1)/(d+2))",
+    }, "kernel record-support constants")
+    hybrid_cut = value["kernel_hybrid_capacity_cut"]
+    for kprime in range(10, hybrid_cut["closed_K_prime_maximum"] + 1):
+        require(kernel_demand_ceiling(kprime) > kernel_hybrid_capacity(kprime), f"kernel hybrid cut {kprime}")
+    require([choice for _, _, choice in kernel_hybrid_terms(11772)] == ["ambient", "ambient"] + ["record"] * 7, "kernel hybrid branches")
+    require(kernel_demand_ceiling(11773) < kernel_hybrid_capacity(11773), "kernel hybrid wall")
+    require(hybrid_cut["endpoint_gap"] == 76504076505592948633027913576880724493595282142849410185084, "kernel hybrid endpoint")
+    require(hybrid_cut["wall_excess"] == 139343682529231472322825521514042608524569163680782450618944, "kernel hybrid wall excess")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 11772, "kernel claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -728,6 +800,8 @@ def validate(value: object) -> dict[str, int]:
         "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
         "multibasis_endpoint_gap": multibasis_cut["endpoint_gap"],
         "multibasis_wall_excess": multibasis_cut["wall_excess"],
+        "hybrid_endpoint_gap": hybrid_cut["endpoint_gap"],
+        "hybrid_wall_excess": hybrid_cut["wall_excess"],
         "rank8_last_gap": rank8_cut["last_open_gap"],
         "rank8_first_gap": rank8_cut["first_closed_gap"],
         "dense_owner_first_excess": dense_owner["first_forced_excess"],
@@ -756,6 +830,9 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_multibasis_decoration_compression"]["basis_multiplicities"].__setitem__(0, 2),
         lambda item: item["kernel_multibasis_capacity_cut"].__setitem__("closed_K_prime_maximum", 11642),
         lambda item: item["kernel_multibasis_capacity_cut"].__setitem__("wall_excess", 187031323586740190878769118921060658362307444191332937452615),
+        lambda item: item["kernel_record_support_capacity"]["basis_multiplicities"].__setitem__(2, 4),
+        lambda item: item["kernel_hybrid_capacity_cut"]["endpoint_branch_pattern"].__setitem__(2, "ambient"),
+        lambda item: item["kernel_hybrid_capacity_cut"].__setitem__("closed_K_prime_maximum", 11773),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
@@ -804,6 +881,8 @@ def main() -> None:
         f"kernel_wall_gap={result['kernel_wall_gap']} "
         f"multibasis_endpoint_gap={result['multibasis_endpoint_gap']} "
         f"multibasis_wall_excess={result['multibasis_wall_excess']} "
+        f"hybrid_endpoint_gap={result['hybrid_endpoint_gap']} "
+        f"hybrid_wall_excess={result['hybrid_wall_excess']} "
         f"rank8_last_gap={result['rank8_last_gap']} "
         f"rank8_first_gap={result['rank8_first_gap']} "
         f"dense_owner_first_excess={result['dense_owner_first_excess']} "

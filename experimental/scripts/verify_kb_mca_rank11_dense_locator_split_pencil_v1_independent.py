@@ -104,6 +104,20 @@ FIXED_CHART_SOURCES = {
         "tree": "f4b0f0a84e71a4e8b78c18c405776c7d5f78263d",
         "contract_sha256": "47cd5f4ee795bc82161711e65e1fdbfd70cc86d0947854a4ed9aa320508b8a64",
     },
+    "kernel_record_support_capacity": {
+        "id": "rate_half_mca_rank11_kernel_record_support_capacity",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_record_support_capacity",
+        "commit": "11a8c12ffa1061e899b36a912277caef2b11a3de",
+        "tree": "c7a7d8a8498ae167efbb4174b8a4bbcb054a1608",
+        "contract_sha256": "ede7f01e37f1f856118ba73b3c94af8b99658361cac2e747f7f69fe24d3a7e7e",
+    },
+    "kernel_hybrid_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_hybrid_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_hybrid_capacity_cut",
+        "commit": "11a8c12ffa1061e899b36a912277caef2b11a3de",
+        "tree": "9921a1975991825967e67cf6f5d3350ee96488f1",
+        "contract_sha256": "ce3e5d908adba2db8ce0a12cd0f464d1d9b45b0602203f9f5a8adef7e0d51837",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -190,6 +204,29 @@ def independent_kernel_multibasis_capacity(kprime: int) -> int:
     return total
 
 
+def independent_kernel_hybrid_terms(kprime: int) -> list[tuple[int, int, str]]:
+    rows = []
+    for rank in range(9, 0, -1):
+        dimension = 10 - rank
+        extension = comb(kprime - 10, dimension + 1)
+        ambient = (
+            comb(1048576 + kprime, rank)
+            * independent_kernel_record_cap(kprime, rank)
+            * extension
+            // (dimension + 2)
+        )
+        support = (
+            274980728111260126
+            * (comb(67472 + kprime, rank) * extension // (dimension + 2))
+        )
+        rows.append((ambient, support, "ambient" if ambient <= support else "record"))
+    return rows
+
+
+def independent_kernel_hybrid_capacity(kprime: int) -> int:
+    return sum(min(ambient, support) for ambient, support, _ in independent_kernel_hybrid_terms(kprime))
+
+
 def independent_kernel_demand(kprime: int) -> int:
     return ceiling(
         Fraction(
@@ -264,6 +301,8 @@ def main() -> None:
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
     kernel_multibasis_cut = data["kernel_multibasis_capacity_cut"]
+    kernel_record_support = data["kernel_record_support_capacity"]
+    kernel_hybrid_cut = data["kernel_hybrid_capacity_cut"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
@@ -533,6 +572,39 @@ def main() -> None:
         "capacity_formula": "sum_d floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))",
     }, "kernel multi-basis capacity constants")
     require(multibasis_wall_capacity > multibasis_wall_demand, "kernel multi-basis wall")
+    require(kernel_record_support == {
+        "correction_dimension": 10,
+        "component_subset_size": 11,
+        "basis_multiplicities": [d + 2 for d in range(1, 10)],
+        "capacity_formula": "floor(C(m_prime,10-d)*C(K_prime-10,d+1)/(d+2))",
+    }, "kernel record-support constants")
+    hybrid_checks = 0
+    for kprime in range(10, 11773):
+        require(
+            independent_kernel_demand(kprime) > independent_kernel_hybrid_capacity(kprime),
+            f"kernel hybrid capacity {kprime}",
+        )
+        hybrid_checks += 1
+    hybrid_endpoint_demand = independent_kernel_demand(11772)
+    hybrid_endpoint_capacity = independent_kernel_hybrid_capacity(11772)
+    hybrid_wall_demand = independent_kernel_demand(11773)
+    hybrid_wall_capacity = independent_kernel_hybrid_capacity(11773)
+    hybrid_branches = [choice for _, _, choice in independent_kernel_hybrid_terms(11772)]
+    require(kernel_hybrid_cut == {
+        "closed_K_prime_minimum": 10,
+        "closed_K_prime_maximum": 11772,
+        "first_open_K_prime": 11773,
+        "endpoint_branch_pattern": hybrid_branches,
+        "endpoint_demand": hybrid_endpoint_demand,
+        "endpoint_capacity": hybrid_endpoint_capacity,
+        "endpoint_gap": hybrid_endpoint_demand - hybrid_endpoint_capacity,
+        "wall_demand": hybrid_wall_demand,
+        "wall_capacity": hybrid_wall_capacity,
+        "wall_excess": hybrid_wall_capacity - hybrid_wall_demand,
+        "capacity_formula": "sum_d min(A_d,N_min*P_d)",
+    }, "kernel hybrid capacity constants")
+    require(hybrid_branches == ["ambient", "ambient"] + ["record"] * 7, "kernel hybrid branches")
+    require(hybrid_wall_capacity > hybrid_wall_demand, "kernel hybrid wall")
 
     require(rank8_owner_cap == {
         "kernel_dimension": 2,
@@ -602,7 +674,7 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 11641,
+        "kernel_dominant_lane_closed_through_Kprime": 11772,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
@@ -623,6 +695,9 @@ def main() -> None:
         f"multibasis_checks={multibasis_checks} "
         f"multibasis_endpoint_gap={multibasis_endpoint_demand-multibasis_endpoint_capacity} "
         f"multibasis_wall_excess={multibasis_wall_capacity-multibasis_wall_demand} "
+        f"hybrid_checks={hybrid_checks} "
+        f"hybrid_endpoint_gap={hybrid_endpoint_demand-hybrid_endpoint_capacity} "
+        f"hybrid_wall_excess={hybrid_wall_capacity-hybrid_wall_demand} "
         f"rank8_last_gap={rank8_last_cap-rank8_last_demand} "
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "

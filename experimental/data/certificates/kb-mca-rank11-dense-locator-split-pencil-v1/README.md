@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages twenty proved local route cuts after the fixed
+This certificate packages twenty-two proved local route cuts after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -39,6 +39,11 @@ rank-eleven anchor-star reduction:
 - exact exclusion of kernel-lane domination on all 11,632 shortenings
   `10<=K'<=11641` after the resulting per-stratum division, with the
   refined comparison reversing at `K'=11642`;
+- a support-internal per-record capacity
+  `floor(C(m',10-d)*C(K'-10,d+1)/(d+2))` that uses no `M_d` factor;
+- an ambient/record hybrid cut excluding kernel-lane domination through
+  `K'=11772`, with branch pattern `AARRRRRRR` and first reversal at
+  `K'=11773`;
 - the rank-eight marked owner-pair cap `981105*C(n'-9,2)`;
 - exact exclusion of the rank-eight owner-flat target for
   `37996<=K'<=1048576`, with the last failed row `K'=37995` printed;
@@ -53,13 +58,13 @@ and tests the one-unit repair independently.
 The primary verifier replays the endpoint arithmetic and a finite-field
 normalization model.  The independent verifier recomputes the ratios by a
 separate method, exhausts all `981104` admissible owner-core sizes and all
-`11632` refined kernel-capacity rows, checks all `11` rank-eight monotonicity
+`11763` hybrid kernel-capacity rows, checks all `11` rank-eight monotonicity
 factors and both dense-owner bridge boundary rows, and checks a toy
 affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, pay the fixed-kernel branch above `K'=11641` or the rank-eight branch
+lane, pay the fixed-kernel branch above `K'=11772` or the rank-eight branch
 below `K'=22526`, assign the bridged dense owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.

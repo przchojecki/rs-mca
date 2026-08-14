@@ -11086,6 +11086,57 @@ factor $d+2$ is sharp from looplessness alone: take $9-d$ coloops and one
 parallel class of size $d+2$.
 \end{proof}
 
+\begin{corollary}[Record-support/ambient kernel-capacity hybrid]
+\label{cor:kb-rank11-kernel-hybrid-capacity}
+For one residual record with exact support $S$, $|S|=m'$, the number of
+rank-$(10-d)$ eleven-subsets of $S$ is at most
+\[
+ P_d(K')=\left\lfloor
+ \frac{\binom{m'}{10-d}\binom{K'-10}{d+1}}{d+2}
+ \right\rfloor .
+\]
+Combining this with the ambient all-bases capacity $A_d(K')$ from
+Corollary~\ref{cor:kb-rank11-kernel-multibasis-capacity}, the kernel lane
+cannot carry its dominant-lane incidence floor for
+\[
+ 10\le K'\le11772.
+\]
+At $K'=11772$, the integer demand exceeds the hybrid capacity by
+\[
+76504076505592948633027913576880724493595282142849410185084.
+\]
+At $K'=11773$, the hybrid capacity exceeds demand by
+\[
+139343682529231472322825521514042608524569163680782450618944,
+\]
+so no larger interval is claimed.
+\end{corollary}
+
+\begin{proof}
+For one record, decorate each rank-$(10-d)$ eleven-subset of $S$ by all
+its bases. A fixed basis $B\subset S$ has at most
+$\binom{K'-10}{d+1}$ same-rank extensions, and every eleven-set has at
+least $d+2$ bases. There are at most $\binom{m'}{10-d}$ candidate bases,
+which proves the displayed per-record bound without using $M_d(K')$.
+
+Let $R_{\rm act}\ge N_{\min}=274980728111260126$ be the actual residual
+record count and let $I_d$ be the rank-$(10-d)$ incidence count. The two
+bounds give
+\[
+ I_d\le\min\{A_d(K'),R_{\rm act}P_d(K')\}.
+\]
+After division by $R_{\rm act}$, each term
+$\min\{A_d/R_{\rm act},P_d\}$ is nonincreasing in $R_{\rm act}$. Hence it
+suffices to compare
+\[
+ \sum_{d=1}^9\min\{A_d(K'),N_{\min}P_d(K')\}
+\]
+with the integer demand at $N_{\min}$. Exact replay of all $11763$ rows
+gives the stated interval and endpoint gap. At both boundary rows the
+ambient branch is selected for $d=1,2$ and the record-support branch for
+$d=3,\ldots,9$. The next-row calculation gives the displayed reversal.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -11195,15 +11246,16 @@ Proposition~\ref{prop:kb-rank11-rank9-weighted-exclusion}, which eliminates
 the rank-nine alternative. Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
 first eliminates kernel-lane domination through $K'=4598$. Retaining every
 basis decoration in Corollary~\ref{cor:kb-rank11-kernel-multibasis-capacity}
-extends that interval through $K'=11641$, but not above the printed $11642$
-method wall.
+extends that interval through $K'=11641$. The record-support/ambient hybrid
+of Corollary~\ref{cor:kb-rank11-kernel-hybrid-capacity} extends it through
+$K'=11772$, but not above the printed $11773$ method wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
-$10\le K'\le11641$, rank eight plus kernel on $11642\le K'\le22525$,
+$10\le K'\le11772$, rank eight plus kernel on $11773\le K'\le22525$,
 dense-owner chronology plus kernel on $22526\le K'\le37995$, and kernel
 only above.
 The fence does not instantiate the fixed
