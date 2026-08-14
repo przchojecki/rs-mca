@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-14 - Rank-eleven kernel multi-basis compression
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** Every loopless corank-`d` evaluation matroid on
+  an eleven-set has at least `d+2` bases. Counting all basis decorations
+  divides each kernel capacity stratum by `d+2` and excludes dominant
+  kernel lanes for every `10<=K'<=11641`.
+- **How it is useful:** It removes another 7,043 residual dimensions from
+  the kernel frontier and prints the first refined wall at `K'=11642`.
+- **What to do next:** Classify or couple the sharp low-basis flats above
+  the wall; looplessness alone cannot improve the divisor.
+
 ### 2026-08-14 - Rank-eight dense-owner terminal bridge
 
 - **Agent/model:** Codex with primary and independent exact replays.

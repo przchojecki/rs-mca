@@ -90,6 +90,20 @@ FIXED_CHART_SOURCES = {
         "tree": "a55878b5c4b9c7b3b3e67e4fcc7e71e23c75abff",
         "contract_sha256": "9fffc92c3682c65db6ac6c1f4b4fc7509c14516f41f2d9c7ebfe8750a7760312",
     },
+    "kernel_multibasis_decoration_compression": {
+        "id": "rate_half_mca_rank11_kernel_multibasis_decoration_compression",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_multibasis_decoration_compression",
+        "commit": "103807c376fb5ec90ec2158ea8c617dab2a95538",
+        "tree": "1dca4b03b66d63b2120f11b35414e7edebda2417",
+        "contract_sha256": "2db1ee7ecda1fb2498203ee3eec190f732d149e21e1aa8df87d8e52aafd16f52",
+    },
+    "kernel_multibasis_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_multibasis_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_multibasis_capacity_cut",
+        "commit": "103807c376fb5ec90ec2158ea8c617dab2a95538",
+        "tree": "f4b0f0a84e71a4e8b78c18c405776c7d5f78263d",
+        "contract_sha256": "47cd5f4ee795bc82161711e65e1fdbfd70cc86d0947854a4ed9aa320508b8a64",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -158,6 +172,21 @@ def independent_kernel_capacity(kprime: int) -> int:
             * independent_kernel_record_cap(kprime, rank)
             * extensions
         )
+    return total
+
+
+def independent_kernel_multibasis_capacity(kprime: int) -> int:
+    total = 0
+    for rank in range(9, 0, -1):
+        dimension = 10 - rank
+        extras = kprime - 10
+        extensions = comb(extras, dimension + 1) if extras >= dimension + 1 else 0
+        decorated = (
+            comb(1048576 + kprime, rank)
+            * independent_kernel_record_cap(kprime, rank)
+            * extensions
+        )
+        total += decorated // (dimension + 2)
     return total
 
 
@@ -233,6 +262,8 @@ def main() -> None:
     weighted_elimination = data["rank9_weighted_target_elimination"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
+    kernel_multibasis = data["kernel_multibasis_decoration_compression"]
+    kernel_multibasis_cut = data["kernel_multibasis_capacity_cut"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
@@ -471,6 +502,37 @@ def main() -> None:
         "capacity_formula": "sum_d C(n_prime,10-d)*M_d*C(K_prime-10,d+1)",
     }, "kernel capacity constants")
     require(kernel_wall_demand < kernel_wall_capacity, "kernel method wall")
+    require(kernel_multibasis == {
+        "correction_dimension": 10,
+        "component_subset_size": 11,
+        "global_common_zero_count": 0,
+        "basis_multiplicities": [d + 2 for d in range(1, 10)],
+        "capacity_formula": "floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))",
+    }, "kernel multi-basis constants")
+    multibasis_checks = 0
+    for kprime in range(10, 11642):
+        require(
+            independent_kernel_demand(kprime) > independent_kernel_multibasis_capacity(kprime),
+            f"kernel multi-basis capacity {kprime}",
+        )
+        multibasis_checks += 1
+    multibasis_endpoint_demand = independent_kernel_demand(11641)
+    multibasis_endpoint_capacity = independent_kernel_multibasis_capacity(11641)
+    multibasis_wall_demand = independent_kernel_demand(11642)
+    multibasis_wall_capacity = independent_kernel_multibasis_capacity(11642)
+    require(kernel_multibasis_cut == {
+        "closed_K_prime_minimum": 10,
+        "closed_K_prime_maximum": 11641,
+        "first_open_K_prime": 11642,
+        "endpoint_demand": multibasis_endpoint_demand,
+        "endpoint_capacity": multibasis_endpoint_capacity,
+        "endpoint_gap": multibasis_endpoint_demand - multibasis_endpoint_capacity,
+        "wall_demand": multibasis_wall_demand,
+        "wall_capacity": multibasis_wall_capacity,
+        "wall_excess": multibasis_wall_capacity - multibasis_wall_demand,
+        "capacity_formula": "sum_d floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))",
+    }, "kernel multi-basis capacity constants")
+    require(multibasis_wall_capacity > multibasis_wall_demand, "kernel multi-basis wall")
 
     require(rank8_owner_cap == {
         "kernel_dimension": 2,
@@ -540,7 +602,7 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 4598,
+        "kernel_dominant_lane_closed_through_Kprime": 11641,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
@@ -558,6 +620,9 @@ def main() -> None:
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
         f"kernel_wall_gap={kernel_wall_capacity-kernel_wall_demand} "
+        f"multibasis_checks={multibasis_checks} "
+        f"multibasis_endpoint_gap={multibasis_endpoint_demand-multibasis_endpoint_capacity} "
+        f"multibasis_wall_excess={multibasis_wall_capacity-multibasis_wall_demand} "
         f"rank8_last_gap={rank8_last_cap-rank8_last_demand} "
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "

@@ -11036,6 +11036,56 @@ $95457494746881463288875361950515757435711627164872173764503$,
 which records the honest method wall.
 \end{proof}
 
+\begin{corollary}[All-bases kernel-capacity compression]
+\label{cor:kb-rank11-kernel-multibasis-capacity}
+In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
+rank-deficient component lane cannot carry its dominant-lane incidence floor
+for any residual dimension
+\[
+ 10\le K'\le11641.
+\]
+More precisely, its capacity is at most
+\[
+ \operatorname{Cap}_{\rm all}(K')=
+ \sum_{d=1}^{9}\left\lfloor
+ \frac{\binom{n'}{10-d}M_d(K')\binom{K'-10}{d+1}}{d+2}
+ \right\rfloor .
+\]
+At $K'=11641$, the integer demand exceeds this capacity by
+\[
+17769453550459149385453824948016076737082337523706893862084.
+\]
+At $K'=11642$, the capacity exceeds demand by
+\[
+187031323586740190878769118921060658362307444191332937452616,
+\]
+so no larger interval is claimed.
+\end{corollary}
+
+\begin{proof}
+The evaluation matroid on a rank-$(10-d)$ eleven-set $T$ is loopless:
+a loop would be a coordinate at which the complete residual correction
+space vanishes, contrary to its empty global common zero set. Fix a basis
+$B$ of $T$. For every $e\in T\setminus B$, the fundamental circuit
+$C(e,B)$ contains some $b_e\in B$, and
+$(B\setminus\{b_e\})\cup\{e\}$ is a basis. These $d+1$ bases are pairwise
+distinct and differ from $B$. Hence $T$ has at least $d+2$ rank bases.
+
+Decorate each $(\gamma,T)$ incidence by every one of its bases. For a
+fixed basis, the common quotient, cancellation, support-local record cap,
+and $\binom{K'-10}{d+1}$ extension bound in the proof of
+Proposition~\ref{prop:kb-rank11-kernel-basis-capacity} apply unchanged;
+none used the canonical tie-break. Thus the numerator of each summand in
+the displayed capacity bounds the decorated
+incidences, while every undecorated incidence is represented at least
+$d+2$ times. Division and the integer floor prove the capacity formula.
+
+Exact integer replay of all $11632$ rows gives the displayed interval and
+endpoint gap. The next-row calculation gives the stated reversal. The
+factor $d+2$ is sharp from looplessness alone: take $9-d$ coloops and one
+parallel class of size $d+2$.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -11143,15 +11193,17 @@ Proposition~\ref{prop:kb-rank11-fixed-chart-local-cap-fence}.  That fence
 does not carry the marked weight in
 Proposition~\ref{prop:kb-rank11-rank9-weighted-exclusion}, which eliminates
 the rank-nine alternative. Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
-also eliminates kernel-lane domination through $K'=4598$, but not above
-the printed $4599$ method wall.
+first eliminates kernel-lane domination through $K'=4598$. Retaining every
+basis decoration in Corollary~\ref{cor:kb-rank11-kernel-multibasis-capacity}
+extends that interval through $K'=11641$, but not above the printed $11642$
+method wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
-$10\le K'\le4598$, rank eight plus kernel on $4599\le K'\le22525$,
+$10\le K'\le11641$, rank eight plus kernel on $11642\le K'\le22525$,
 dense-owner chronology plus kernel on $22526\le K'\le37995$, and kernel
 only above.
 The fence does not instantiate the fixed

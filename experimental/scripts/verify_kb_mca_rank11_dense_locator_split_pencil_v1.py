@@ -122,6 +122,20 @@ SOURCE_NODES = {
         "tree": "a55878b5c4b9c7b3b3e67e4fcc7e71e23c75abff",
         "contract_sha256": "9fffc92c3682c65db6ac6c1f4b4fc7509c14516f41f2d9c7ebfe8750a7760312",
     },
+    "kernel_multibasis_decoration_compression": {
+        "id": "rate_half_mca_rank11_kernel_multibasis_decoration_compression",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_multibasis_decoration_compression",
+        "commit": "103807c376fb5ec90ec2158ea8c617dab2a95538",
+        "tree": "1dca4b03b66d63b2120f11b35414e7edebda2417",
+        "contract_sha256": "2db1ee7ecda1fb2498203ee3eec190f732d149e21e1aa8df87d8e52aafd16f52",
+    },
+    "kernel_multibasis_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_multibasis_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_multibasis_capacity_cut",
+        "commit": "103807c376fb5ec90ec2158ea8c617dab2a95538",
+        "tree": "f4b0f0a84e71a4e8b78c18c405776c7d5f78263d",
+        "contract_sha256": "47cd5f4ee795bc82161711e65e1fdbfd70cc86d0947854a4ed9aa320508b8a64",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -194,6 +208,18 @@ def kernel_capacity(kprime: int) -> int:
         extra = kprime - 10
         extensions = comb(extra, dimension + 1) if extra >= dimension + 1 else 0
         total += comb(nprime, rank) * kernel_record_cap(kprime, dimension) * extensions
+    return total
+
+
+def kernel_multibasis_capacity(kprime: int) -> int:
+    nprime = 1048576 + kprime
+    total = 0
+    for dimension in range(1, 10):
+        rank = 10 - dimension
+        extra = kprime - 10
+        extensions = comb(extra, dimension + 1) if extra >= dimension + 1 else 0
+        decorated = comb(nprime, rank) * kernel_record_cap(kprime, dimension) * extensions
+        total += decorated // (dimension + 2)
     return total
 
 
@@ -364,6 +390,12 @@ def expected() -> dict[str, Any]:
     kernel_endpoint_capacity = kernel_capacity(kernel_endpoint)
     kernel_wall_demand = kernel_demand_ceiling(kernel_wall)
     kernel_wall_capacity = kernel_capacity(kernel_wall)
+    multibasis_endpoint = 11641
+    multibasis_wall = 11642
+    multibasis_endpoint_demand = kernel_demand_ceiling(multibasis_endpoint)
+    multibasis_endpoint_capacity = kernel_multibasis_capacity(multibasis_endpoint)
+    multibasis_wall_demand = kernel_demand_ceiling(multibasis_wall)
+    multibasis_wall_capacity = kernel_multibasis_capacity(multibasis_wall)
     rank8_last_open = 37995
     rank8_first_closed = 37996
     rank8_last_demand = rank8_weighted_demand(rank8_last_open)
@@ -537,6 +569,25 @@ def expected() -> dict[str, Any]:
             "wall_capacity": kernel_wall_capacity,
             "capacity_formula": "sum_d C(n_prime,10-d)*M_d*C(K_prime-10,d+1)",
         },
+        "kernel_multibasis_decoration_compression": {
+            "correction_dimension": 10,
+            "component_subset_size": 11,
+            "global_common_zero_count": 0,
+            "basis_multiplicities": list(range(3, 12)),
+            "capacity_formula": "floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))",
+        },
+        "kernel_multibasis_capacity_cut": {
+            "closed_K_prime_minimum": 10,
+            "closed_K_prime_maximum": multibasis_endpoint,
+            "first_open_K_prime": multibasis_wall,
+            "endpoint_demand": multibasis_endpoint_demand,
+            "endpoint_capacity": multibasis_endpoint_capacity,
+            "endpoint_gap": multibasis_endpoint_demand - multibasis_endpoint_capacity,
+            "wall_demand": multibasis_wall_demand,
+            "wall_capacity": multibasis_wall_capacity,
+            "wall_excess": multibasis_wall_capacity - multibasis_wall_demand,
+            "capacity_formula": "sum_d floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))",
+        },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
             "owner_flat_dimension": 4,
@@ -574,7 +625,7 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 4598,
+            "kernel_dominant_lane_closed_through_Kprime": 11641,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
@@ -612,7 +663,24 @@ def validate(value: object) -> dict[str, int]:
     for kprime in range(10, kernel_cut["closed_K_prime_maximum"] + 1):
         require(kernel_demand_ceiling(kprime) > kernel_capacity(kprime), f"kernel cut {kprime}")
     require(kernel_demand_ceiling(4599) <= kernel_capacity(4599), "kernel wall")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 4598, "kernel claim")
+    multibasis = value["kernel_multibasis_decoration_compression"]
+    require(multibasis == {
+        "correction_dimension": 10,
+        "component_subset_size": 11,
+        "global_common_zero_count": 0,
+        "basis_multiplicities": list(range(3, 12)),
+        "capacity_formula": "floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))",
+    }, "kernel multi-basis constants")
+    multibasis_cut = value["kernel_multibasis_capacity_cut"]
+    for kprime in range(10, multibasis_cut["closed_K_prime_maximum"] + 1):
+        require(
+            kernel_demand_ceiling(kprime) > kernel_multibasis_capacity(kprime),
+            f"kernel multi-basis cut {kprime}",
+        )
+    require(kernel_demand_ceiling(11642) < kernel_multibasis_capacity(11642), "kernel multi-basis wall")
+    require(multibasis_cut["endpoint_gap"] == 17769453550459149385453824948016076737082337523706893862084, "kernel multi-basis endpoint")
+    require(multibasis_cut["wall_excess"] == 187031323586740190878769118921060658362307444191332937452616, "kernel multi-basis wall excess")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 11641, "kernel claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -658,6 +726,8 @@ def validate(value: object) -> dict[str, int]:
         "weighted_cap": weighted_elimination["boundary_cap"],
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
         "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
+        "multibasis_endpoint_gap": multibasis_cut["endpoint_gap"],
+        "multibasis_wall_excess": multibasis_cut["wall_excess"],
         "rank8_last_gap": rank8_cut["last_open_gap"],
         "rank8_first_gap": rank8_cut["first_closed_gap"],
         "dense_owner_first_excess": dense_owner["first_forced_excess"],
@@ -683,6 +753,9 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank9_weighted_target_elimination"].__setitem__("boundary_gap", 6701539979372921063),
         lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
+        lambda item: item["kernel_multibasis_decoration_compression"]["basis_multiplicities"].__setitem__(0, 2),
+        lambda item: item["kernel_multibasis_capacity_cut"].__setitem__("closed_K_prime_maximum", 11642),
+        lambda item: item["kernel_multibasis_capacity_cut"].__setitem__("wall_excess", 187031323586740190878769118921060658362307444191332937452615),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
@@ -729,6 +802,8 @@ def main() -> None:
         f"weighted_cap={result['weighted_cap']} "
         f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "
         f"kernel_wall_gap={result['kernel_wall_gap']} "
+        f"multibasis_endpoint_gap={result['multibasis_endpoint_gap']} "
+        f"multibasis_wall_excess={result['multibasis_wall_excess']} "
         f"rank8_last_gap={result['rank8_last_gap']} "
         f"rank8_first_gap={result['rank8_first_gap']} "
         f"dense_owner_first_excess={result['dense_owner_first_excess']} "

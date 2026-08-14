@@ -109,6 +109,20 @@
         "tree": "a55878b5c4b9c7b3b3e67e4fcc7e71e23c75abff",
         "contract_sha256": "9fffc92c3682c65db6ac6c1f4b4fc7509c14516f41f2d9c7ebfe8750a7760312"
       },
+      "kernel_multibasis_decoration_compression": {
+        "id": "rate_half_mca_rank11_kernel_multibasis_decoration_compression",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_multibasis_decoration_compression",
+        "commit": "103807c376fb5ec90ec2158ea8c617dab2a95538",
+        "tree": "1dca4b03b66d63b2120f11b35414e7edebda2417",
+        "contract_sha256": "2db1ee7ecda1fb2498203ee3eec190f732d149e21e1aa8df87d8e52aafd16f52"
+      },
+      "kernel_multibasis_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_multibasis_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_multibasis_capacity_cut",
+        "commit": "103807c376fb5ec90ec2158ea8c617dab2a95538",
+        "tree": "f4b0f0a84e71a4e8b78c18c405776c7d5f78263d",
+        "contract_sha256": "47cd5f4ee795bc82161711e65e1fdbfd70cc86d0947854a4ed9aa320508b8a64"
+      },
       "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -292,6 +306,35 @@
     "wall_capacity": 929365465753464049635514279100756055244773737572652812396430010,
     "capacity_formula": "sum_d C(n_prime,10-d)*M_d*C(K_prime-10,d+1)"
   },
+  "kernel_multibasis_decoration_compression": {
+    "correction_dimension": 10,
+    "component_subset_size": 11,
+    "global_common_zero_count": 0,
+    "basis_multiplicities": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "capacity_formula": "floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))"
+  },
+  "kernel_multibasis_capacity_cut": {
+    "closed_K_prime_minimum": 10,
+    "closed_K_prime_maximum": 11641,
+    "first_open_K_prime": 11642,
+    "endpoint_demand": 2591384066635142502908383042256351622731341380873039963561978373,
+    "endpoint_capacity": 2591366297181592043758997588431403606654604298535516256668116289,
+    "endpoint_gap": 17769453550459149385453824948016076737082337523706893862084,
+    "wall_demand": 2591744422433696117405077127353817203908414876886966153966883140,
+    "wall_capacity": 2591931453757282857595955896472738264566777184331157486904335756,
+    "wall_excess": 187031323586740190878769118921060658362307444191332937452616,
+    "capacity_formula": "sum_d floor(C(n_prime,10-d)*M_d*C(K_prime-10,d+1)/(d+2))"
+  },
   "rank8_owner_pair_weight_cap": {
     "kernel_dimension": 2,
     "owner_flat_dimension": 4,
@@ -329,7 +372,7 @@
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated": true,
-    "kernel_dominant_lane_closed_through_Kprime": 4598,
+    "kernel_dominant_lane_closed_through_Kprime": 11641,
     "rank8_owner_flat_closed_from_Kprime": 37996,
     "rank8_dense_owner_terminal_from_Kprime": 22526,
     "chronology_owner": false,
