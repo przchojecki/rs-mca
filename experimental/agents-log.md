@@ -4239,3 +4239,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Prove a same-line cross-pair collision theorem or a
   chronology-correct owner for dense parallel pair cores.  Another scalar
   threshold or smaller per-pair multiplier is ruled out.
+
+### 2026-08-14 - Dense-core owner substrate and reserve repricing
+
+- **Agent/model:** Codex, importing four public prize-DAG nodes after a
+  source, arithmetic, and claim-boundary replay.
+- **Exact parent:** PR #1168 head
+  `6a5dcdae1591fc7f044eda6a942bfe178521a48c`.
+- **Files added or changed:** `agents.md`, `experimental/grande_finale.tex`,
+  the dense-core owner threshold note, canonical manifest, primary and
+  independent Python verifiers, certificate README, and this log.
+- **Status:** PROVED INTERFACE PACKET / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The separate-`2w` reserve repricing, an explicit
+  counterexample to silent `k -> k+1` badness transport, the exact
+  degree/same-support guarded lattice adapter, and one typed deployed
+  pole-line witness with all owner fields unassigned.
+- **Bridge to #1168:** A chronology owner for the `delta<=4`, `200632`-slope
+  terminal must meet the repriced owner target when reusing S/A/E, preserve
+  the actual line/support/chronology, pass the degree and pair-noncontainment
+  guards, accept the typed pole line, and reject the unguarded mutation.
+- **Nonclaim:** No dense-core owner theorem, rank-eleven payment, active-v4
+  movement, KoalaBear closure, or prize closure.
+- **What to do next:** Prove the same-line cross-pair/chronology theorem
+  against this acceptance contract rather than introducing another
+  unguarded profile transport.

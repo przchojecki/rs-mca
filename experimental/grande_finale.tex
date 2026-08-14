@@ -8044,6 +8044,177 @@ actual-record cross-pair compatibility or owner theorem, not another scalar
 threshold optimization.
 \end{remark}
 
+\begin{proposition}[Two-anchor reserve repricing]
+\label{prop:mca-two-anchor-reserve-repricing}
+Suppose the near-rational first-match set has size at most $2w$, the
+residual exception set has size at most $31$, and a large rational owner
+has size $g>2m-K$.  If the active S/A/E assembly is used after those two
+sets, then its contained-owner input must be required at the target
+\begin{equation}
+ B_{\rm owner}^{(2w)}(g)
+ \le B_*-(2w+31)-(n-g).
+ \label{eq:mca-two-anchor-repriced-owner}
+\end{equation}
+With this target the four charges sum exactly to $B_*$.  On the deployed
+KoalaBear row, the targets at $g=2m-K+1$ and $g=n$ are respectively
+\[
+ 274980728110346481,
+ \qquad
+ 274980728111260112.
+\]
+On the Mersenne-31 arithmetic stress row they are respectively
+\[
+ 15728609,
+ \qquad
+ 16642288.
+\]
+The corresponding full-owner targets are at least $4807520$ and $9$
+times the proved exact average ceilings.
+\end{proposition}
+
+\begin{proof}
+Write $N$ for the near-rational set and $E$ for the residual exception
+set.  Since $2w$ equals $134944$ on KoalaBear and $134896$ on the
+Mersenne-31 stress row, neither bound can be absorbed into the $31$-slope
+bound without an additional containment theorem.  Charging the two sets in
+first-match order leaves at most $n-g$ crossing slopes, so the remaining
+target is forced by
+\[
+ 2w+31+(n-g)+\bigl(B_*-(2w+31)-(n-g)\bigr)=B_*.
+\]
+Substitution at the two endpoints gives the displayed integers.  Exact
+division of the full-owner targets by the average ceilings gives quotients
+$4807520$ and $9$, with positive remainders.  This proves arithmetic
+viability, not the contained-owner bound in
+\eqref{eq:mca-two-anchor-repriced-owner}.
+\end{proof}
+
+\begin{theorem}[Degree-guarded effective-shift witness adapter]
+\label{thm:mca-degree-guarded-shift-adapter}
+Let $D$ be an $n$-point Reed--Solomon evaluation domain, let
+$k<m\le n$, put $\omega=n-m$, and for a word $U$ define
+\[
+ \mathcal M_U=\{(W,N):W(x)U(x)=N(x)\text{ for every }x\in D\}.
+\]
+For a nonzero vector define
+\[
+ s_k(W,N)=\max\{\deg W,\deg N-(k-1)\},\qquad
+ s_{k+1}(W,N)=\max\{\deg W,\deg N-k\}.
+\]
+Then
+\[
+ s_{k+1}(W,N)\le s_k(W,N)\le s_{k+1}(W,N)+1,
+\]
+and the two lattice minima obey the same inequalities.
+
+Suppose $W$ is the monic split squarefree locator of $D\setminus T$,
+where $|T|=m$, and $N=Wc$.  Under the effective envelope
+$s_{k+1}(W,N)\le\omega$, the following are equivalent:
+\begin{equation}
+ \deg c<k,
+ \qquad \deg N\le\omega+k-1,
+ \qquad s_k(W,N)\le\omega.
+ \label{eq:mca-effective-shift-degree-guard}
+\end{equation}
+They hold exactly when the lattice vector reconstructs a degree-below-$k$
+explanation of $U$ on the identical support $T$.  Conversely every such
+explanation has a unique guarded representation.
+
+For a received line $U=u+\gamma v$, interpolate $u|_T$ and $v|_T$ to
+their unique degree-below-$m$ polynomials.  The pair is simultaneously
+code-explained on $T$ if and only if both interpolants have degree below
+$k$.  Thus a guarded explanation together with failure of this pair test
+is an actual support-wise MCA-bad witness on the same line, slope, and
+support.
+\end{theorem}
+
+\begin{proof}
+Put $a=\deg W$ and $b=\deg N-k$, with the usual convention
+$\deg 0=-\infty$.  Then
+\[
+ s_{k+1}=\max\{a,b\},\qquad s_k=\max\{a,b+1\},
+\]
+which proves the one-step comparison, including after taking minima.
+Since $\deg W=\omega$ and $N=Wc$, the effective cap permits
+$\deg c\le k$, while each condition in
+\eqref{eq:mca-effective-shift-degree-guard} removes exactly the degree-$k$
+coefficient.
+
+At every point of $T$, $W$ is nonzero, so the lattice identity gives
+$U=c$.  Conversely an explanation $h$ on $T$ gives
+\[
+ W=\prod_{x\in D\setminus T}(X-x),\qquad N=Wh.
+\]
+The monic locator and $h$ are unique because $m\ge k$.  Finally, unique
+degree-below-$m$ interpolation on $T$ turns simultaneous pair
+explainability into the two stated degree tests.
+\end{proof}
+
+\begin{proposition}[Transport mutation and typed pole-line control]
+\label{prop:mca-effective-shift-controls}
+On the deployed KoalaBear row let $D=\langle\zeta\rangle$ have order
+$2^{21}$, let $E$ be the first $67473$ subgroup powers, and let $S$
+be the following $1116048$ powers.
+
+First, for
+\[
+ u=\mathbf 1_E,\qquad v=X^k,\qquad\gamma=0,
+\]
+the identical slope/support record is support-wise MCA-bad for
+$RS[\F,D,k]$ but not for $RS[\F,D,k+1]$.  Hence silent dimension
+transport does not preserve badness or first-owner semantics.
+
+Second, over the deployed sextic extension, let $\alpha$ be a root of
+$X^6+X+6$ and set
+\[
+ v(x)=-\frac1{x-\alpha},\qquad
+ u(x)=\mathbf 1_E(x)+\frac{\alpha}{x-\alpha},\qquad
+ \gamma=\alpha.
+\]
+This is an actual support-wise MCA-bad witness on $S$, it passes
+\eqref{eq:mca-effective-shift-degree-guard} with quotient zero, and its
+lattice minimum is exactly $67473$ under both shifts.  Its Q, BC, and
+new-owner fields remain unassigned.
+\end{proposition}
+
+\begin{proof}
+For the first record, zero explains $u$ on $S$.  A degree-below-$k$
+polynomial agreeing with $X^k$ on $m>k$ points would make a nonzero
+degree-$k$ polynomial have more than $k$ roots.  At dimension $k+1$,
+the pair $(0,X^k)$ is a simultaneous explanation on the same support.
+
+For the pole line, direct cancellation gives
+$u+\alpha v=\mathbf 1_E$, again explained by zero on $S$.  If $g$ of
+degree below $k+1$ agreed with $v$ there, then
+$(X-\alpha)g+1$ would have $m>k+1$ roots and degree at most $k+1$,
+which is impossible.  The complement locator with numerator zero therefore
+passes the guarded adapter.
+
+The prefix locator gives shifted degree $67473$.  If a nonzero lattice
+vector had shifted degree at most $67472$, its numerator would vanish on
+all $2097152-67473=2029679$ points outside $E$, while its degree would be
+at most $1116048$ under either shift.  Thus the numerator is zero.  The
+denominator would then vanish at all $67473$ points of $E$ despite
+degree at most $67472$, another contradiction.  No owner inference occurs
+in this argument.
+\end{proof}
+
+\begin{remark}[Acceptance contract for the rank-eleven owner route]
+\label{rem:mca-dense-core-owner-acceptance-contract}
+The pair-core terminal of
+\cref{prop:kb-rank-eleven-pair-core-terminal} forces a possibly fixed pair
+of deficiency at most $4$ owning at least $200632$ slopes.  A
+chronology-correct owner theorem for that terminal may use the preceding
+results as an interface: if it reuses S/A/E it must prove the repriced bound
+\eqref{eq:mca-two-anchor-repriced-owner}; if it computes certificates in the
+effective $k+1$ envelope it must impose
+\eqref{eq:mca-effective-shift-degree-guard} and exact-support pair
+noncontainment; and it must preserve the actual line, support, slope, and
+owner chronology.  The preceding results prove witness soundness and
+arithmetic consistency only.  They do not construct the owner, pay rank
+eleven, move an active-v4 atom, or close KoalaBear.
+\end{remark}
+
 
 \begin{proposition}[Exact rank-flat and common-zero reductions at the active rows]
 \label{prop:active-rank-flat-common-zero}
