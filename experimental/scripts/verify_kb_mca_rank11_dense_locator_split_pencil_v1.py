@@ -86,6 +86,27 @@ SOURCE_NODES = {
         "tree": "dd42039516fc8ef146fa37a0fd3d7b00baf1f95c",
         "contract_sha256": "1cb156081477cb7438193899419d8c537054a9ee4570d5f6fdb5ec03868cdeca",
     },
+    "component_ninesubset_weighted_concentrator": {
+        "id": "rate_half_mca_rank11_component_ninesubset_weighted_concentrator",
+        "path": "background/nodes/rate_half_mca_rank11_component_ninesubset_weighted_concentrator",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "c553262475b8e70070f3ffd61a2d70ecf5086161",
+        "contract_sha256": "050954321fc65a504b801b19dc0787e21d31f979f8062319ea67055e37709895",
+    },
+    "rank9_weighted_component_cap": {
+        "id": "rate_half_mca_rank11_rank9_weighted_component_cap",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_weighted_component_cap",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "1148246aa2b5df2295cfedb1dc26764ad050758a",
+        "contract_sha256": "d8000c85400cd931d846b9da91d7203720fb31cedce7abcd08318bf4879a22b5",
+    },
+    "rank9_weighted_target_elimination": {
+        "id": "rate_half_mca_rank11_rank9_weighted_target_elimination",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_weighted_target_elimination",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "671ed959f3e958354f111b0a3211c7af9106d537",
+        "contract_sha256": "78436c5e0cc6cd9d313e8d4de24e849d87676a4236be6e2c09b203576a002ab9",
+    },
 }
 
 
@@ -222,6 +243,26 @@ def expected() -> dict[str, Any]:
     heavy_weight = outside_support - 1
     unit_owners = outside_weight - heavy_owners * heavy_weight
     local_fence_slopes = heavy_owners * unit_owners
+    weighted_selector_endpoint = ceil_ratio(
+        lane_ppb
+        * non_dense
+        * comb(67472 + 10, 9)
+        * comb(67472 + 10 - 9, 2),
+        10**9 * comb(1048576 + 10, 9),
+    )
+    weighted_boundary_k = 67473
+    weighted_boundary_n = 1048576 + weighted_boundary_k
+    weighted_boundary_m = 67472 + weighted_boundary_k
+    weighted_boundary_demand = ceil_ratio(
+        lane_ppb
+        * non_dense
+        * comb(weighted_boundary_m, 9)
+        * comb(weighted_boundary_m - 9, 2),
+        10**9 * comb(weighted_boundary_n, 9),
+    )
+    weighted_boundary_cap = (
+        owner_cap * (weighted_boundary_m - 10) * weighted_boundary_n
+    )
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -338,12 +379,37 @@ def expected() -> dict[str, Any]:
             "forbidden_slope_count": 18,
             "error_affine_rank_ceiling": 2,
         },
+        "component_ninesubset_weighted_concentrator": {
+            "weighted_endpoint_K_prime": 10,
+            "marked_component_extension_floor": weighted_selector_endpoint,
+            "deduplicated_record_floor": selector_records,
+            "weight_unit": "record_component_eleven_subset_containing_fixed_ninesubset",
+        },
+        "rank9_weighted_component_cap": {
+            "fixed_owner_record_cap": owner_cap,
+            "cap_formula": "981105*(m_prime-10)*n_prime",
+            "boundary_K_prime": weighted_boundary_k,
+            "boundary_cap": weighted_boundary_cap,
+        },
+        "rank9_weighted_target_elimination": {
+            "small_dimension_ceiling": 67472,
+            "weighted_boundary_K_prime": weighted_boundary_k,
+            "forced_common_core_floor": pair_intersection,
+            "boundary_demand": weighted_boundary_demand,
+            "boundary_cap": weighted_boundary_cap,
+            "boundary_gap": weighted_boundary_demand - weighted_boundary_cap,
+            "remaining_routes": [
+                "FIXED_KERNEL_NINESUBSET_CHART",
+                "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
+            ],
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
             "cross_cell_census": False,
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
+            "rank9_fixed_target_eliminated": True,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -372,6 +438,9 @@ def validate(value: object) -> dict[str, int]:
     fence = value["rank9_fixed_chart_local_cap_fence"]
     require(fence["rich_slope_count"] > value["component_ninesubset_targets"]["fixed_selector_record_floor"], "local-cap fence")
     require(fence["base_prime"] > fence["forbidden_slope_count"] * fence["rich_slope_count"], "forbidden-slope translate")
+    weighted_elimination = value["rank9_weighted_target_elimination"]
+    require(weighted_elimination["boundary_demand"] > weighted_elimination["boundary_cap"], "weighted target gap")
+    require(value["claims"]["rank9_fixed_target_eliminated"], "rank-nine elimination")
     return {
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
@@ -379,6 +448,8 @@ def validate(value: object) -> dict[str, int]:
         "plane_cap": value["rank9_split_pencil_paircore"]["low_common_core_plane_cap"],
         "selector_records": value["component_ninesubset_concentrator"]["fixed_selector_record_floor"],
         "local_fence_slopes": fence["rich_slope_count"],
+        "weighted_demand": weighted_elimination["boundary_demand"],
+        "weighted_cap": weighted_elimination["boundary_cap"],
     }
 
 
@@ -396,8 +467,12 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank9_ninecell_paircore"].__setitem__("ordered_pair_resource_ceiling", 2057517483014),
         lambda item: item["component_ninesubset_targets"].__setitem__("rank8_error_rank_ceiling", 4),
         lambda item: item["rank9_fixed_chart_local_cap_fence"].__setitem__("rich_slope_count", 2578110),
+        lambda item: item["component_ninesubset_weighted_concentrator"].__setitem__("marked_component_extension_floor", 5868470021012019),
+        lambda item: item["rank9_weighted_component_cap"].__setitem__("boundary_cap", 147748596828055574),
+        lambda item: item["rank9_weighted_target_elimination"].__setitem__("boundary_gap", 6701539979372921063),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
+        lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated", False),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
         lambda item: item["claims"].__setitem__("rank11_paid", True),
         lambda item: item["source_prize_dag"]["nodes"]["component_star"].__setitem__("commit", "0" * 40),
@@ -428,6 +503,8 @@ def main() -> None:
         f"plane_cap={result['plane_cap']} "
         f"selector_records={result['selector_records']} "
         f"local_fence_slopes={result['local_fence_slopes']} "
+        f"weighted_demand={result['weighted_demand']} "
+        f"weighted_cap={result['weighted_cap']} "
         f"controls={controls} manifest_sha256={hashlib.sha256(MANIFEST.read_bytes()).hexdigest()}"
     )
 

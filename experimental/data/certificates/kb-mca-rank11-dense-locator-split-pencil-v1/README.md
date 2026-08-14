@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages ten proved local route cuts after the fixed
+This certificate packages thirteen proved local route cuts after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -22,7 +22,13 @@ rank-eleven anchor-star reduction:
   kernel chart, or a rank-eight owner flat with error rank at most three;
 - an official-row weighted-plane construction with `4070408` exact-support
   slopes, proving that the rank-nine fixed-chart output alone cannot be
-  capped below its `2578110` selector floor.
+  capped below its `2578110` selector floor;
+- a fixed-nine-subset marked-extension floor of `5868470021012020` at the
+  shortest residual endpoint;
+- the rank-nine marked-load cap `981105*(m'-10)*n'` in the same incidence
+  unit;
+- uniform elimination of the rank-nine fixed target, leaving only the
+  fixed-kernel and rank-eight owner-flat alternatives.
 
 The pinned source node stated the weaker but valid ceiling `45567659`.
 This packet applies integer flooring to the same proved weighted inequality
@@ -34,8 +40,8 @@ separate method, exhausts all `981104` admissible owner-core sizes, and checks
 a toy affine-plane line design.  Both reject proof-critical manifest
 mutations.
 
-The owner key remains recordwise.  The local-cap fence does not instantiate the dense-anchor ancestors or an
+The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, count all rank-nine planes, pay the large shared-core or fixed-kernel branches,
+lane, pay the fixed-kernel or rank-eight branches,
 assign a first-match chronology owner, pay error rank eleven, move an active
 v4 atom, or close KoalaBear.

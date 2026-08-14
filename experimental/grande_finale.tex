@@ -10894,6 +10894,71 @@ component through $P_i$.  Finally
 so all anchored error differences lie in $\operatorname{span}(r_1,u)$.
 \end{proof}
 
+\begin{proposition}[Weighted exclusion of the rank-nine fixed target]
+\label{prop:kb-rank11-rank9-weighted-exclusion}
+In the fixed target of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, alternative
+\textup{(N2)} is empty for every residual dimension
+$10\le K'\le1048576$.  Before deduplication, one fixed nine-subset carries
+marked component-extension weight at least
+\[
+ \ceil{\frac{495405467}{10^9}\,274980728111260126
+        \frac{\binom{m'}9\binom{m'-9}2}{\binom{n'}9}}.
+ \tag{W9}\label{eq:kb-rank11-weighted-nine-target}
+\]
+Every rank-nine chart has marked weight at most
+\[
+ 981105(m'-10)n'.
+ \tag{C9}\label{eq:kb-rank11-weighted-nine-cap}
+\]
+At the first dimension not excluded by the common-core size, $K'=67473$,
+the two integer bounds are
+\[
+ 6849288576200976639>147748596828055575.
+\]
+Consequently the fixed target reduces to \textup{(N1)} or \textup{(N3)}.
+\end{proposition}
+
+\begin{proof}
+The marking argument in the proof of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target} produces
+$55I$ marked triples $(\gamma,T,B)$.  Average over $B$ without dividing by
+$\binom{m'-9}{2}$ and use
+\[
+ 55\binom{m'}{11}=\binom{m'}9\binom{m'-9}2
+\]
+to obtain \eqref{eq:kb-rank11-weighted-nine-target}.  At $K'=10$ its
+right side is $5868470021012020$; dividing by the maximum extension
+multiplicity recovers the $2578110$ distinct records used above.
+
+Now fix a rank-nine chart and let $u$ span its evaluation kernel on $B$.
+Write $C_p=J\sqcup P_p$ for the pair core of an owner point in the affine
+owner plane.  The petals $P_p$ are pairwise disjoint.  A rank-ten extension
+$T=B\cup\{x,y\}$ determines one owner point $p$, both added coordinates
+lie in $C_p$, and at least one lies outside $Z(u)$, hence in $P_p$.
+Therefore one owner point contributes at most
+\[
+ |P_p|\,|C_p\setminus B|\le |P_p|(m'-10)
+\]
+extensions per owned record.  Pair noncontainment gives $|C_p|<m'$, while
+fixed-owner exception disjointness gives at most
+$n'-m'+1=981105$ owned records.  Summing the disjoint petals proves
+\eqref{eq:kb-rank11-weighted-nine-cap}.
+
+The $2578110>1434405$ distinct records also force
+$|J|\ge134944$.  If $K'\le67472$, then $m'\le134944$, contradicting
+$J\subset C_p$ and $|C_p|<m'$.  It remains to take $K'\ge67473$.
+Exact cross-multiplication at $K'=67473$ gives the displayed strict gap
+$6701539979372921064$.  Finally, after cancelling
+$\binom{m'-9}{2}=(m'-9)(m'-10)/2$, the ratio of the unrounded lower bound
+to \eqref{eq:kb-rank11-weighted-nine-cap} is a positive constant times
+\[
+ \frac{\binom{m'}9}{\binom{n'}9}\frac{m'-9}{n'}.
+\]
+Every factor increases with $K'$ because $n'-m'=981104$.  The boundary
+contradiction therefore persists through the deployed endpoint.
+\end{proof}
+
 \begin{remark}[Typed scope of the rank-eleven packet]
 \label{rem:kb-rank11-dense-locator-scope}
 The density in Proposition~\ref{prop:kb-rank11-component-incidence} is a
@@ -10903,13 +10968,17 @@ Proposition~\ref{prop:kb-rank11-split-pencil-cell} is local to one fixed
 cell, and Proposition~\ref{prop:kb-rank11-split-pencil-paircore} remains
 local to one lifted owner plane.  Proposition~\ref{prop:kb-rank11-component-ninesubset-target}
 selects one fixed populated chart, not the complete component lane.  The
-local conclusions alone do not pay that chart by
+deduplicated local conclusions alone do not pay that chart by
 Proposition~\ref{prop:kb-rank11-fixed-chart-local-cap-fence}.  That fence
-does not instantiate the fixed dense-anchor ancestors or an unsafe line.
-The packet does not recursively cover the remaining records,
+does not carry the marked weight in
+Proposition~\ref{prop:kb-rank11-rank9-weighted-exclusion}, which eliminates
+the rank-nine alternative.  The fence does not instantiate the fixed
+dense-anchor ancestors or an unsafe line.  The packet does not recursively
+cover the remaining records,
 construct the chronology owner required by
 Remark~\ref{rem:mca-dense-core-owner-acceptance-contract}, pay either the
-large-owner or kernel-plane branch, move an active-v4 atom, or close
+large-owner, fixed-kernel, rank-eight, or kernel-plane branch, move an
+active-v4 atom, or close
 KoalaBear.
 \end{remark}
 

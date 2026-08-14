@@ -55,6 +55,27 @@ FIXED_CHART_SOURCES = {
         "tree": "dd42039516fc8ef146fa37a0fd3d7b00baf1f95c",
         "contract_sha256": "1cb156081477cb7438193899419d8c537054a9ee4570d5f6fdb5ec03868cdeca",
     },
+    "component_ninesubset_weighted_concentrator": {
+        "id": "rate_half_mca_rank11_component_ninesubset_weighted_concentrator",
+        "path": "background/nodes/rate_half_mca_rank11_component_ninesubset_weighted_concentrator",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "c553262475b8e70070f3ffd61a2d70ecf5086161",
+        "contract_sha256": "050954321fc65a504b801b19dc0787e21d31f979f8062319ea67055e37709895",
+    },
+    "rank9_weighted_component_cap": {
+        "id": "rate_half_mca_rank11_rank9_weighted_component_cap",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_weighted_component_cap",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "1148246aa2b5df2295cfedb1dc26764ad050758a",
+        "contract_sha256": "d8000c85400cd931d846b9da91d7203720fb31cedce7abcd08318bf4879a22b5",
+    },
+    "rank9_weighted_target_elimination": {
+        "id": "rate_half_mca_rank11_rank9_weighted_target_elimination",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_weighted_target_elimination",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "671ed959f3e958354f111b0a3211c7af9106d537",
+        "contract_sha256": "78436c5e0cc6cd9d313e8d4de24e849d87676a4236be6e2c09b203576a002ab9",
+    },
 }
 
 
@@ -111,6 +132,9 @@ def main() -> None:
     ninecell = data["rank9_ninecell_paircore"]
     targets = data["component_ninesubset_targets"]
     local_fence = data["rank9_fixed_chart_local_cap_fence"]
+    weighted_concentrator = data["component_ninesubset_weighted_concentrator"]
+    weighted_cap = data["rank9_weighted_component_cap"]
+    weighted_elimination = data["rank9_weighted_target_elimination"]
     require(
         data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
         == PAIRCORE_SOURCE,
@@ -202,6 +226,17 @@ def main() -> None:
         "fixed_selector_record_floor": selector_records,
     }, "concentrator constants")
 
+    marked_endpoint = ceiling(
+        selector_ratio * comb(67482 - 9, 2)
+    )
+    require(marked_endpoint == 5868470021012020, "weighted selector endpoint")
+    require(weighted_concentrator == {
+        "weighted_endpoint_K_prime": 10,
+        "marked_component_extension_floor": marked_endpoint,
+        "deduplicated_record_floor": selector_records,
+        "weight_unit": "record_component_eleven_subset_containing_fixed_ninesubset",
+    }, "weighted concentrator constants")
+
     ninecell_resource = coefficient * (n - 9)
     ninecell_cap = (1 + isqrt(1 + 4 * ninecell_resource)) // 2
     require(ninecell == {
@@ -266,6 +301,43 @@ def main() -> None:
     require(fixed_core + heavy_weight > 1048576 - 1, "pair root bound")
     require(fence_slopes == 4070408 > selector_records, "strict local fence")
 
+    boundary_k = 67473
+    boundary_n = 1048576 + boundary_k
+    boundary_m = 67472 + boundary_k
+    boundary_ratio = Fraction(495405467 * non_dense, 10**9)
+    for index in range(9):
+        boundary_ratio *= Fraction(boundary_m - index, boundary_n - index)
+    boundary_ratio *= comb(boundary_m - 9, 2)
+    boundary_demand = ceiling(boundary_ratio)
+    boundary_cap = coefficient * (boundary_m - 10) * boundary_n
+    require(weighted_cap == {
+        "fixed_owner_record_cap": coefficient,
+        "cap_formula": "981105*(m_prime-10)*n_prime",
+        "boundary_K_prime": boundary_k,
+        "boundary_cap": boundary_cap,
+    }, "weighted rank-nine cap")
+    require(weighted_elimination == {
+        "small_dimension_ceiling": 67472,
+        "weighted_boundary_K_prime": boundary_k,
+        "forced_common_core_floor": 2 * m - n,
+        "boundary_demand": boundary_demand,
+        "boundary_cap": boundary_cap,
+        "boundary_gap": boundary_demand - boundary_cap,
+        "remaining_routes": [
+            "FIXED_KERNEL_NINESUBSET_CHART",
+            "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
+        ],
+    }, "weighted rank-nine elimination")
+    require(boundary_demand == 6849288576200976639, "weighted boundary demand")
+    require(boundary_cap == 147748596828055575, "weighted boundary cap")
+    ratios = []
+    for k_value in (67473, 67474, 100000, 1048576):
+        n_value, m_value = 1048576 + k_value, 67472 + k_value
+        ratio = Fraction(comb(m_value, 9), comb(n_value, 9))
+        ratio *= Fraction(m_value - 9, n_value)
+        ratios.append(ratio)
+    require(all(a < b for a, b in zip(ratios, ratios[1:])), "weighted ratio monotonicity")
+
     core_checks = 0
     for owner_core in range(2 * m - n, m):
         owner_multiplicity = (n - owner_core) // (m - owner_core)
@@ -283,6 +355,7 @@ def main() -> None:
         "cross_cell_census": False,
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
+        "rank9_fixed_target_eliminated": True,
         "chronology_owner": False,
         "rank11_paid": False,
         "active_v4_ledger_movement": 0,
@@ -294,6 +367,7 @@ def main() -> None:
         f"plane_cap={plane_cap} core_checks={core_checks} "
         f"selector_records={selector_records} ninecell_cap={ninecell_cap} "
         f"local_fence_slopes={fence_slopes} "
+        f"weighted_demand={boundary_demand} weighted_cap={boundary_cap} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 

@@ -4266,7 +4266,7 @@ Keep entries concise and link to the relevant files.
 
 ### 2026-08-14 - Rank-eleven dense-locator and split-pencil route
 
-- **Agent/model:** Codex, importing ten public prize-DAG theorems after
+- **Agent/model:** Codex, importing thirteen public prize-DAG theorems after
   source, proof-boundary, arithmetic, and independent finite-model replay.
 - **Exact parent:** PR #1169 head
   `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
@@ -4289,7 +4289,12 @@ Keep entries concise and link to the relevant files.
   plane, or a rank-eight owner flat with error rank at most three.  An
   explicit weighted-plane realization then gives `4070408` exact-support,
   pair-noncontained slopes under the local rank-nine target conclusions,
-  fencing any attempt to pay `2578110` from those conclusions alone.
+  fencing any attempt to pay `2578110` from those conclusions alone. The
+  repaired continuation keeps the pre-deduplication marked weight: at the
+  shortest endpoint it is `5868470021012020`. A rank-nine chart carries at
+  most `981105*(m'-10)*n'` such incidences. The exact boundary demand
+  `6849288576200976639` exceeds the cap `147748596828055575`, and the ratio
+  increases with shortening dimension, eliminating the rank-nine target.
 - **Owner key:** In the full-rank star branch, deficiency at most `22320`
   makes the owner unique for its record.  Two candidates force an
   intersection `22833` above the RS root cap, so weighted aggregation no
@@ -4300,15 +4305,14 @@ Keep entries concise and link to the relevant files.
 - **Bridge to #1169:** The rank-nine lane is now a concrete
   base-field-normalized split-pencil cell ledger satisfying the deployed
   slope unit, followed by a low-core/large-shared-core plane dichotomy.  It
-  now supplies one overlap-correct fixed chart, but not a complete-lane
-  selector or payment.  The local-cap fence shows that the next step must
-  retain pre-deduplication weights, couple charts, or invoke additional
-  dense-anchor structure before entering the chronology-correct owner
-  required by the #1169 acceptance contract.
-- **Nonclaim:** No complete-lane, shared-core, fixed-kernel, or rank-eight
-  target payment; no large-owner or kernel-plane
+  now supplies one overlap-correct fixed chart and eliminates its rank-nine
+  alternative by retaining pre-deduplication weight. The fixed-kernel and
+  rank-eight alternatives still need payment before entering the
+  chronology-correct owner required by the #1169 acceptance contract.
+- **Nonclaim:** No complete-lane, fixed-kernel, or rank-eight target payment;
+  no large-owner or kernel-plane
   payment, rank-eleven payment, active-v4 movement, KoalaBear closure, or
   prize closure.
-- **What to do next:** Preserve weighted component incidences through a
-  guarded chronology-owner assignment, or prove the exact dense-anchor
-  identity that excludes the weighted-plane fence.
+- **What to do next:** Preserve weighted component incidences through the
+  fixed-kernel and rank-eight branches, then construct a guarded
+  chronology-owner assignment.

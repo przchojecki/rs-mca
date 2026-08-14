@@ -73,6 +73,27 @@
         "commit": "3004fb4628bda19a33b9de4de3ffaa1c646c24e7",
         "tree": "dd42039516fc8ef146fa37a0fd3d7b00baf1f95c",
         "contract_sha256": "1cb156081477cb7438193899419d8c537054a9ee4570d5f6fdb5ec03868cdeca"
+      },
+      "component_ninesubset_weighted_concentrator": {
+        "id": "rate_half_mca_rank11_component_ninesubset_weighted_concentrator",
+        "path": "background/nodes/rate_half_mca_rank11_component_ninesubset_weighted_concentrator",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "c553262475b8e70070f3ffd61a2d70ecf5086161",
+        "contract_sha256": "050954321fc65a504b801b19dc0787e21d31f979f8062319ea67055e37709895"
+      },
+      "rank9_weighted_component_cap": {
+        "id": "rate_half_mca_rank11_rank9_weighted_component_cap",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_weighted_component_cap",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "1148246aa2b5df2295cfedb1dc26764ad050758a",
+        "contract_sha256": "d8000c85400cd931d846b9da91d7203720fb31cedce7abcd08318bf4879a22b5"
+      },
+      "rank9_weighted_target_elimination": {
+        "id": "rate_half_mca_rank11_rank9_weighted_target_elimination",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_weighted_target_elimination",
+        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
+        "tree": "671ed959f3e958354f111b0a3211c7af9106d537",
+        "contract_sha256": "78436c5e0cc6cd9d313e8d4de24e849d87676a4236be6e2c09b203576a002ab9"
       }
     }
   },
@@ -189,12 +210,37 @@
     "forbidden_slope_count": 18,
     "error_affine_rank_ceiling": 2
   },
+  "component_ninesubset_weighted_concentrator": {
+    "weighted_endpoint_K_prime": 10,
+    "marked_component_extension_floor": 5868470021012020,
+    "deduplicated_record_floor": 2578110,
+    "weight_unit": "record_component_eleven_subset_containing_fixed_ninesubset"
+  },
+  "rank9_weighted_component_cap": {
+    "fixed_owner_record_cap": 981105,
+    "cap_formula": "981105*(m_prime-10)*n_prime",
+    "boundary_K_prime": 67473,
+    "boundary_cap": 147748596828055575
+  },
+  "rank9_weighted_target_elimination": {
+    "small_dimension_ceiling": 67472,
+    "weighted_boundary_K_prime": 67473,
+    "forced_common_core_floor": 134944,
+    "boundary_demand": 6849288576200976639,
+    "boundary_cap": 147748596828055575,
+    "boundary_gap": 6701539979372921064,
+    "remaining_routes": [
+      "FIXED_KERNEL_NINESUBSET_CHART",
+      "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3"
+    ]
+  },
   "claims": {
     "local_theorem_packet": true,
     "incidence_is_record_count": false,
     "cross_cell_census": false,
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
+    "rank9_fixed_target_eliminated": true,
     "chronology_owner": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
