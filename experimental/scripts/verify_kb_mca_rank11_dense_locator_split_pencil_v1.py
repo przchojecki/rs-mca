@@ -7,7 +7,8 @@ import argparse
 import copy
 import hashlib
 import json
-from math import comb, isqrt
+from fractions import Fraction
+from math import comb, isqrt, prod
 from pathlib import Path
 from typing import Any
 
@@ -107,6 +108,20 @@ SOURCE_NODES = {
         "tree": "671ed959f3e958354f111b0a3211c7af9106d537",
         "contract_sha256": "78436c5e0cc6cd9d313e8d4de24e849d87676a4236be6e2c09b203576a002ab9",
     },
+    "kernel_canonical_basis_globalizer": {
+        "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
+        "commit": "b16e254492023dadba37f0caff043ed189d80a0f",
+        "tree": "ab27bebc2af47d7e7f3baa6254d241064e27efd2",
+        "contract_sha256": "98de8b079e0de815c691dcebfd49ad2520dc7ca3c232ea62b34eb4e94ecbfdfa",
+    },
+    "kernel_rankstratified_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_rankstratified_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_rankstratified_capacity_cut",
+        "commit": "b16e254492023dadba37f0caff043ed189d80a0f",
+        "tree": "a55878b5c4b9c7b3b3e67e4fcc7e71e23c75abff",
+        "contract_sha256": "9fffc92c3682c65db6ac6c1f4b4fc7509c14516f41f2d9c7ebfe8750a7760312",
+    },
 }
 
 
@@ -121,6 +136,51 @@ def require(condition: bool, message: str) -> None:
 
 def ceil_ratio(numerator: int, denominator: int) -> int:
     return (numerator + denominator - 1) // denominator
+
+
+def falling(value: int, length: int) -> int:
+    return prod(range(value - length + 1, value + 1))
+
+
+def rising(value: int, length: int) -> int:
+    return prod(range(value, value + length))
+
+
+def kernel_record_cap(kprime: int, dimension: int) -> int:
+    if dimension == 9:
+        return 61871313426630599
+    rank = 10 - dimension
+    shortened_k = kprime - rank
+    shortened_n = 1048576 + shortened_k
+    shortened_m = 67472 + shortened_k
+    zero_endpoint = Fraction(
+        falling(shortened_n, dimension + 1),
+        shortened_m * rising(67473, dimension - 1),
+    )
+    maximum_endpoint = Fraction(
+        falling(1048576 + dimension, dimension + 1),
+        rising(67473, dimension),
+    )
+    value = max(zero_endpoint, maximum_endpoint)
+    return value.numerator // value.denominator
+
+
+def kernel_capacity(kprime: int) -> int:
+    nprime = 1048576 + kprime
+    total = 0
+    for dimension in range(1, 10):
+        rank = 10 - dimension
+        extra = kprime - 10
+        extensions = comb(extra, dimension + 1) if extra >= dimension + 1 else 0
+        total += comb(nprime, rank) * kernel_record_cap(kprime, dimension) * extensions
+    return total
+
+
+def kernel_demand_ceiling(kprime: int) -> int:
+    return ceil_ratio(
+        495405467 * 274980728111260126 * comb(67472 + kprime, 11),
+        10**9,
+    )
 
 
 def rank_mod(vectors: list[list[int]], field: int) -> int:
@@ -263,6 +323,12 @@ def expected() -> dict[str, Any]:
     weighted_boundary_cap = (
         owner_cap * (weighted_boundary_m - 10) * weighted_boundary_n
     )
+    kernel_endpoint = 4598
+    kernel_wall = 4599
+    kernel_endpoint_demand = kernel_demand_ceiling(kernel_endpoint)
+    kernel_endpoint_capacity = kernel_capacity(kernel_endpoint)
+    kernel_wall_demand = kernel_demand_ceiling(kernel_wall)
+    kernel_wall_capacity = kernel_capacity(kernel_wall)
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -403,6 +469,26 @@ def expected() -> dict[str, Any]:
                 "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
             ],
         },
+        "kernel_canonical_basis_globalizer": {
+            "correction_dimension": 10,
+            "component_subset_size": 11,
+            "rank_minimum": 1,
+            "rank_maximum": 9,
+            "extra_common_zero_offset": 10,
+            "rank9_record_cap": 61871313426630599,
+            "fixed_basis_capacity_formula": "M_d*C(K_prime-10,d+1)",
+        },
+        "kernel_rankstratified_capacity_cut": {
+            "closed_K_prime_minimum": 10,
+            "closed_K_prime_maximum": kernel_endpoint,
+            "first_open_K_prime": kernel_wall,
+            "endpoint_demand": kernel_endpoint_demand,
+            "endpoint_capacity": kernel_endpoint_capacity,
+            "endpoint_gap": kernel_endpoint_demand - kernel_endpoint_capacity,
+            "wall_demand": kernel_wall_demand,
+            "wall_capacity": kernel_wall_capacity,
+            "capacity_formula": "sum_d C(n_prime,10-d)*M_d*C(K_prime-10,d+1)",
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
@@ -410,6 +496,7 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
+            "kernel_dominant_lane_closed_through_Kprime": 4598,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -441,6 +528,11 @@ def validate(value: object) -> dict[str, int]:
     weighted_elimination = value["rank9_weighted_target_elimination"]
     require(weighted_elimination["boundary_demand"] > weighted_elimination["boundary_cap"], "weighted target gap")
     require(value["claims"]["rank9_fixed_target_eliminated"], "rank-nine elimination")
+    kernel_cut = value["kernel_rankstratified_capacity_cut"]
+    for kprime in range(10, kernel_cut["closed_K_prime_maximum"] + 1):
+        require(kernel_demand_ceiling(kprime) > kernel_capacity(kprime), f"kernel cut {kprime}")
+    require(kernel_demand_ceiling(4599) <= kernel_capacity(4599), "kernel wall")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 4598, "kernel claim")
     return {
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
@@ -450,6 +542,8 @@ def validate(value: object) -> dict[str, int]:
         "local_fence_slopes": fence["rich_slope_count"],
         "weighted_demand": weighted_elimination["boundary_demand"],
         "weighted_cap": weighted_elimination["boundary_cap"],
+        "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
+        "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
     }
 
 
@@ -470,6 +564,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["component_ninesubset_weighted_concentrator"].__setitem__("marked_component_extension_floor", 5868470021012019),
         lambda item: item["rank9_weighted_component_cap"].__setitem__("boundary_cap", 147748596828055574),
         lambda item: item["rank9_weighted_target_elimination"].__setitem__("boundary_gap", 6701539979372921063),
+        lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
+        lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
         lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated", False),
@@ -491,8 +587,13 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--write", action="store_true")
     parser.add_argument("--tamper-selftest", action="store_true")
     args = parser.parse_args()
+    if args.write:
+        MANIFEST.write_text(json.dumps(expected(), indent=2) + "\n")
+        print(f"WROTE {MANIFEST}")
+        return
     value = json.loads(MANIFEST.read_text())
     result = validate(value)
     controls = tamper_selftest(value) if args.tamper_selftest else 0
@@ -505,6 +606,8 @@ def main() -> None:
         f"local_fence_slopes={result['local_fence_slopes']} "
         f"weighted_demand={result['weighted_demand']} "
         f"weighted_cap={result['weighted_cap']} "
+        f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "
+        f"kernel_wall_gap={result['kernel_wall_gap']} "
         f"controls={controls} manifest_sha256={hashlib.sha256(MANIFEST.read_bytes()).hexdigest()}"
     )
 

@@ -6,7 +6,7 @@ from __future__ import annotations
 import json
 from fractions import Fraction
 from itertools import combinations
-from math import comb, isqrt
+from math import comb, isqrt, prod
 from pathlib import Path
 
 
@@ -76,6 +76,20 @@ FIXED_CHART_SOURCES = {
         "tree": "671ed959f3e958354f111b0a3211c7af9106d537",
         "contract_sha256": "78436c5e0cc6cd9d313e8d4de24e849d87676a4236be6e2c09b203576a002ab9",
     },
+    "kernel_canonical_basis_globalizer": {
+        "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
+        "commit": "b16e254492023dadba37f0caff043ed189d80a0f",
+        "tree": "ab27bebc2af47d7e7f3baa6254d241064e27efd2",
+        "contract_sha256": "98de8b079e0de815c691dcebfd49ad2520dc7ca3c232ea62b34eb4e94ecbfdfa",
+    },
+    "kernel_rankstratified_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_rankstratified_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_rankstratified_capacity_cut",
+        "commit": "b16e254492023dadba37f0caff043ed189d80a0f",
+        "tree": "a55878b5c4b9c7b3b3e67e4fcc7e71e23c75abff",
+        "contract_sha256": "9fffc92c3682c65db6ac6c1f4b4fc7509c14516f41f2d9c7ebfe8750a7760312",
+    },
 }
 
 
@@ -86,6 +100,53 @@ def require(condition: bool, message: str) -> None:
 
 def ceiling(value: Fraction) -> int:
     return -(-value.numerator // value.denominator)
+
+
+def short_fall(value: int, length: int) -> int:
+    return prod(value - offset for offset in range(length))
+
+
+def short_rise(value: int, length: int) -> int:
+    return prod(value + offset for offset in range(length))
+
+
+def independent_kernel_record_cap(kprime: int, rank: int) -> int:
+    dimension = 10 - rank
+    if dimension == 9:
+        return 61871313426630599
+    shortened_k = kprime - rank
+    first = Fraction(
+        short_fall(1048576 + shortened_k, dimension + 1),
+        (67472 + shortened_k) * short_rise(67473, dimension - 1),
+    )
+    second = Fraction(
+        short_fall(1048576 + dimension, dimension + 1),
+        short_rise(67473, dimension),
+    )
+    return int(max(first, second))
+
+
+def independent_kernel_capacity(kprime: int) -> int:
+    total = 0
+    for rank in range(9, 0, -1):
+        dimension = 10 - rank
+        extras = kprime - 10
+        extensions = comb(extras, dimension + 1) if extras >= dimension + 1 else 0
+        total += (
+            comb(1048576 + kprime, rank)
+            * independent_kernel_record_cap(kprime, rank)
+            * extensions
+        )
+    return total
+
+
+def independent_kernel_demand(kprime: int) -> int:
+    return ceiling(
+        Fraction(
+            495405467 * 274980728111260126 * comb(67472 + kprime, 11),
+            10**9,
+        )
+    )
 
 
 def independent_binomial_ratio(k_value: int) -> Fraction:
@@ -135,6 +196,8 @@ def main() -> None:
     weighted_concentrator = data["component_ninesubset_weighted_concentrator"]
     weighted_cap = data["rank9_weighted_component_cap"]
     weighted_elimination = data["rank9_weighted_target_elimination"]
+    kernel_globalizer = data["kernel_canonical_basis_globalizer"]
+    kernel_cut = data["kernel_rankstratified_capacity_cut"]
     require(
         data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
         == PAIRCORE_SOURCE,
@@ -338,6 +401,39 @@ def main() -> None:
         ratios.append(ratio)
     require(all(a < b for a, b in zip(ratios, ratios[1:])), "weighted ratio monotonicity")
 
+    require(kernel_globalizer == {
+        "correction_dimension": 10,
+        "component_subset_size": 11,
+        "rank_minimum": 1,
+        "rank_maximum": 9,
+        "extra_common_zero_offset": 10,
+        "rank9_record_cap": 61871313426630599,
+        "fixed_basis_capacity_formula": "M_d*C(K_prime-10,d+1)",
+    }, "kernel basis constants")
+    kernel_checks = 0
+    for kprime in range(10, 4599):
+        require(
+            independent_kernel_demand(kprime) > independent_kernel_capacity(kprime),
+            f"kernel capacity {kprime}",
+        )
+        kernel_checks += 1
+    kernel_endpoint_demand = independent_kernel_demand(4598)
+    kernel_endpoint_capacity = independent_kernel_capacity(4598)
+    kernel_wall_demand = independent_kernel_demand(4599)
+    kernel_wall_capacity = independent_kernel_capacity(4599)
+    require(kernel_cut == {
+        "closed_K_prime_minimum": 10,
+        "closed_K_prime_maximum": 4598,
+        "first_open_K_prime": 4599,
+        "endpoint_demand": kernel_endpoint_demand,
+        "endpoint_capacity": kernel_endpoint_capacity,
+        "endpoint_gap": kernel_endpoint_demand - kernel_endpoint_capacity,
+        "wall_demand": kernel_wall_demand,
+        "wall_capacity": kernel_wall_capacity,
+        "capacity_formula": "sum_d C(n_prime,10-d)*M_d*C(K_prime-10,d+1)",
+    }, "kernel capacity constants")
+    require(kernel_wall_demand < kernel_wall_capacity, "kernel method wall")
+
     core_checks = 0
     for owner_core in range(2 * m - n, m):
         owner_multiplicity = (n - owner_core) // (m - owner_core)
@@ -356,6 +452,7 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
+        "kernel_dominant_lane_closed_through_Kprime": 4598,
         "chronology_owner": False,
         "rank11_paid": False,
         "active_v4_ledger_movement": 0,
@@ -368,6 +465,9 @@ def main() -> None:
         f"selector_records={selector_records} ninecell_cap={ninecell_cap} "
         f"local_fence_slopes={fence_slopes} "
         f"weighted_demand={boundary_demand} weighted_cap={boundary_cap} "
+        f"kernel_checks={kernel_checks} "
+        f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
+        f"kernel_wall_gap={kernel_wall_capacity-kernel_wall_demand} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 

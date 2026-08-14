@@ -10959,6 +10959,83 @@ Every factor increases with $K'$ because $n'-m'=981104$.  The boundary
 contradiction therefore persists through the deployed endpoint.
 \end{proof}
 
+\begin{proposition}[Canonical kernel-basis capacity]
+\label{prop:kb-rank11-kernel-basis-capacity}
+In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
+rank-deficient component lane cannot carry its dominant-lane incidence floor
+for any residual dimension
+\[
+ 10\le K'\le4598.
+\]
+More precisely, for $1\le d\le9$, put $r=10-d$ and let $M_d(K')$
+be the support-local record cap after cancelling $r$ coordinates; for
+$d=9$, take $M_9=61871313426630599$.  The complete kernel-lane
+capacity is at most
+\begin{equation}
+ \operatorname{Cap}(K')=
+ \sum_{d=1}^{9}\binom{n'}{10-d}M_d(K')
+                    \binom{K'-10}{d+1}.
+ \tag{CK}\label{eq:kb-rank11-kernel-basis-capacity}
+\end{equation}
+For every $10\le K'\le4598$, this is strictly below
+\[
+ \frac{495405467}{10^9}\,274980728111260126\binom{m'}{11}.
+\]
+At $K'=4598$, the integer demand exceeds the capacity by
+\[
+219272330501201744129177266158988707697316238048878827197685.
+\]
+At $K'=4599$ the comparison reverses, so no larger interval is claimed.
+\end{proposition}
+
+\begin{proof}
+Fix a rank-deficient eleven-subset $T$, let
+$r=\operatorname{rank}(\operatorname{ev}_T)$, and choose one canonical
+rank basis $B\subset T$, $|B|=r$.  Rank zero is absent because the
+ten-dimensional residual correction space has empty global common zero
+set.  Put $H=\ker(\operatorname{ev}_B)$, so $\dim H=d=10-r$.
+
+Solving the coordinate equations on $B$ determines the quotient
+component modulo $H$.  If two selected slopes use the same $B$, every
+remaining compatibility condition is affine-linear in the slope and has
+two roots, hence is an identity.  Thus, after one common affine codeword-pair
+translation, all records assigned to $B$ have explanations in $H$.
+Every word of $H$ and both translated received columns vanish on $B$,
+so exact locator cancellation preserves slopes, supports, and pair
+noncontainment.  Support-local transversality bounds the resulting family by
+$M_d(K')$; at $d=9$, use the uniform post-near
+margin/interleaving cap printed above.
+
+Since $T$ and $B$ have the same evaluation rank, the $d+1$
+coordinates of $T\setminus B$ are common zeros of $H$.  A
+$d$-dimensional subspace of degree-$<K'$ polynomials has at most
+$K'-d$ common zeros.  The $r=10-d$ basis coordinates are already among
+them, leaving at most $K'-10$ choices.  Hence one canonical basis carries
+at most
+\[
+ M_d(K')\binom{K'-10}{d+1}
+\]
+incidences.  There are at most $\binom{n'}r$ bases of rank $r$, and
+canonical assignment counts each tuple once, proving
+\eqref{eq:kb-rank11-kernel-basis-capacity}.
+
+For $d\le8$, the exact cap used in the replay is
+\[
+M_d(K')=\left\lfloor\max\left\{
+ \frac{(1048576+J)_{\underline{d+1}}}
+      {(67472+J)(67473)_{\overline{d-1}}},
+ \frac{(1048576+d)_{\underline{d+1}}}
+      {(67473)_{\overline d}}
+\right\}\right\rfloor,
+\qquad J=K'-(10-d).
+\]
+Exact integer evaluation of this finite sum on all $4589$ rows gives the
+displayed strict interval and endpoint gap.  At $K'=4599$, capacity
+exceeds the integer demand by
+$95457494746881463288875361950515757435711627164872173764503$,
+which records the honest method wall.
+\end{proof}
+
 \begin{remark}[Typed scope of the rank-eleven packet]
 \label{rem:kb-rank11-dense-locator-scope}
 The density in Proposition~\ref{prop:kb-rank11-component-incidence} is a
@@ -10972,7 +11049,9 @@ deduplicated local conclusions alone do not pay that chart by
 Proposition~\ref{prop:kb-rank11-fixed-chart-local-cap-fence}.  That fence
 does not carry the marked weight in
 Proposition~\ref{prop:kb-rank11-rank9-weighted-exclusion}, which eliminates
-the rank-nine alternative.  The fence does not instantiate the fixed
+the rank-nine alternative. Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
+also eliminates kernel-lane domination through $K'=4598$, but not above
+the printed $4599$ method wall. The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,
 construct the chronology owner required by

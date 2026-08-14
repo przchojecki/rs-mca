@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; the full-rank star owner of deficiency at most 22320 is unique for its record; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; one fixed nine-subset carries at least 2578110 records and 5868470021012020 marked component extensions at the shortest endpoint; retaining that weight eliminates the rank-nine fixed target uniformly, leaving only the fixed-kernel and rank-eight owner-flat alternatives.
+direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; the full-rank star owner of deficiency at most 22320 is unique for its record; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; one fixed nine-subset carries at least 2578110 records and 5868470021012020 marked component extensions at the shortest endpoint; retaining that weight eliminates the rank-nine fixed target uniformly; canonical rank-basis capacities also exclude kernel-lane domination for every 10<=K'<=4598, with first method wall K'=4599.
 architecture: POST_NEAR_ERROR_RANK11_DENSE_LOCATOR_COMPONENT_ROUTE_V1
 partition_digest: inherited post-near rank-eleven route of PRs 1168 and 1169; no new first-match atom or partition digest
 atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, its lifted owner plane, and one fixed nine-coordinate component chart
 quantifier: Every survivor satisfying the pinned rank-eleven 32-anchor, 18-dense-root, ten-dimensional correction-space setup, uniformly for 10<=K'<=1048576
 projection_and_unit: Distinct bad finite slopes per received line at record level; record/coordinate-subset incidences only where explicitly stated
-claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records; one typed fixed nine-subset >=2578110 records and weighted endpoint >=5868470021012020; rank-nine weighted boundary demand 6849288576200976639 exceeds cap 147748596828055575
+claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records; one typed fixed nine-subset >=2578110 records and weighted endpoint >=5868470021012020; rank-nine weighted boundary demand 6849288576200976639 exceeds cap 147748596828055575; kernel capacity is below demand through K'=4598 by endpoint gap 219272330501201744129177266158988707697316238048878827197685
 status: PROVED LOCAL THEOREM PACKET / GLOBAL ROW OPEN
 impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL AND FIXED-CHART LEDGER
-falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure of the marked 5868470021012020 endpoint; a rank-nine chart exceeding 981105*(m'-10)*n' marked extensions; nonmonotonicity of the printed demand/cap ratio; or a defect in the exact-support, direction-distinctness, component, or pair-noncontainment checks of the 4070408-slope fence.
+falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure of the marked 5868470021012020 endpoint; a rank-nine chart exceeding 981105*(m'-10)*n' marked extensions; a kernel chart violating M_d*C(K'-10,d+1); failure of the exact capacity comparison at any 10<=K'<=4598; or a defect in the 4070408-slope fence.
 replay: python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1_independent.py
 ---
 
@@ -25,7 +25,7 @@ Status: **PROVED LOCAL THEOREM PACKET / ZERO DEPLOYED LEDGER MOVEMENT**.
 Exact parent: PR #1169 head
 `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
 
-This packet imports thirteen public, commit- and tree-pinned prize-DAG theorems.
+This packet imports fifteen public, commit- and tree-pinned prize-DAG theorems.
 They begin after the rank-eleven branch has produced one fixed degree-31
 anchor interpolant, eighteen dense-pair roots, and a ten-dimensional
 relative correction space.  They end with an exact ledger for one fixed
@@ -35,7 +35,8 @@ They do not select the complete component lane or assign chronology across
 different targets.  A final local-cap fence shows why that missing coupling
 cannot be replaced by another deduplicated-record inequality on the fixed
 chart alone. Retaining the marked component-extension weight does eliminate
-the rank-nine fixed target.
+the rank-nine fixed target. Canonical rank-basis capacities then remove the
+dominant kernel lane on the first 4,589 residual dimensions.
 
 Throughout, write
 
@@ -424,9 +425,46 @@ The `4070408`-slope model remains a valid fence against deduplicated record
 counting. It does not carry the marked extension weight and is not a
 counterexample to this weighted elimination.
 
-## 9. Exact impact on the open route
+## 9. Canonical kernel bases and the finite capacity cut
 
-The packet supplies thirteen route cuts.
+For a rank-deficient component eleven-subset `T`, put
+
+```text
+r=rank(ev_T),  d=10-r,
+```
+
+and choose one canonical rank basis `B subset T`, `|B|=r`. All records
+assigned to the same `B` share one quotient solution. After one affine
+translation and exact cancellation of `B`, they lie in a single rank-`d`
+explanation family. The remaining `d+1` coordinates of `T` are common zeros
+of its kernel space. Generalized MDS leaves only `K'-10` additional common
+zeros, so one basis carries at most
+
+```text
+M_d(K')*C(K'-10,d+1)
+```
+
+incidences. Assigning each tuple to one canonical basis makes these caps
+summable. With `M_9=61871313426630599`, the complete capacity is
+
+```text
+Cap(K')=sum_(d=1)^9 C(n',10-d) M_d(K') C(K'-10,d+1).
+```
+
+Exact replay proves `Cap(K')` is below the dominant kernel-lane demand for
+all `10<=K'<=4598`. At the final closed row the integer gap is
+
+```text
+219272330501201744129177266158988707697316238048878827197685.
+```
+
+At `K'=4599` capacity exceeds demand by
+`95457494746881463288875361950515757435711627164872173764503`, so the
+larger interval remains open.
+
+## 10. Exact impact on the open route
+
+The packet supplies fifteen route cuts.
 
 1. High-core absorption has exactly dimension ten, not a range `2,...,10`.
 2. More than 99 percent of record/eleven-subset incidences enter an affine
@@ -451,20 +489,25 @@ The packet supplies thirteen route cuts.
     `981105*(m'-10)*n'`.
 13. The rank-nine fixed target is empty uniformly; only the fixed-kernel and
     rank-eight owner-flat alternatives remain.
+14. Every fixed kernel rank-basis chart has exact capacity
+    `M_d*C(K'-10,d+1)`.
+15. Summed kernel capacity excludes dominant kernel lanes for
+    `10<=K'<=4598`; `K'=4599` is the first method wall.
 
 It does not select the complete component lane, recursively cover its
 remainder, construct a chronology-correct owner satisfying PR #1169, or pay
-the fixed kernel and rank-eight targets. Therefore `U_BC`,
+the fixed kernel above `K'=4598` and rank-eight targets. Therefore `U_BC`,
 `U_new`, error rank eleven, and the KoalaBear row remain open.
 
-## 10. Provenance and replay
+## 11. Provenance and replay
 
-The manifest pins the thirteen public source nodes by commit, Git tree, and
+The manifest pins the fifteen public source nodes by commit, Git tree, and
 source-contract SHA-256.  The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an
 exhaustive check of all `981104` admissible owner-core sizes, the independent
-nine-subset product endpoint, and finite affine-plane/rank-three models.
+nine-subset product endpoint, all `4589` closed kernel-capacity rows, and
+finite affine-plane/rank-three models.
 
 ```text
 python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py

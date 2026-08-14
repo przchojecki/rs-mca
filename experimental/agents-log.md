@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-14 - Rank-eleven kernel canonical-basis capacity
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  `experimental/data/certificates/kb-mca-rank11-dense-locator-split-pencil-v1/`,
+  both packet verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** Canonical rank bases turn all records over one
+  kernel chart into one shortened rank-`d` explanation family and cap its
+  incidence load by `M_d*C(K'-10,d+1)`. Summing all nine ranks excludes a
+  dominant kernel lane for every `10<=K'<=4598`.
+- **How it is useful:** Together with the weighted rank-nine exclusion, this
+  leaves only the rank-eight owner flat on the first 4,589 shortenings.
+- **What to do next:** Improve cross-basis overlap above the exact
+  `K'=4599` capacity wall and derive the weighted rank-eight owner-pair cap.
+
 ### 2026-08-13 - KoalaBear rank-ten margin/interleaving payment
 
 - **Agent/model:** Codex with two isolated mathematical audits.

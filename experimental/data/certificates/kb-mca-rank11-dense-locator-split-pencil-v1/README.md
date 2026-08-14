@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages thirteen proved local route cuts after the fixed
+This certificate packages fifteen proved local route cuts after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -28,7 +28,12 @@ rank-eleven anchor-star reduction:
 - the rank-nine marked-load cap `981105*(m'-10)*n'` in the same incidence
   unit;
 - uniform elimination of the rank-nine fixed target, leaving only the
-  fixed-kernel and rank-eight owner-flat alternatives.
+  fixed-kernel and rank-eight owner-flat alternatives;
+- canonical rank-basis globalization of every kernel chart, with fixed-basis
+  capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
+- exact exclusion of kernel-lane domination on all 4,589 shortenings
+  `10<=K'<=4598`, with the inequality reversing at the honest method wall
+  `K'=4599`.
 
 The pinned source node stated the weaker but valid ceiling `45567659`.
 This packet applies integer flooring to the same proved weighted inequality
@@ -36,12 +41,12 @@ and tests the one-unit repair independently.
 
 The primary verifier replays the endpoint arithmetic and a finite-field
 normalization model.  The independent verifier recomputes the ratios by a
-separate method, exhausts all `981104` admissible owner-core sizes, and checks
-a toy affine-plane line design.  Both reject proof-critical manifest
-mutations.
+separate method, exhausts all `981104` admissible owner-core sizes and all
+`4589` closed kernel-capacity rows, and checks a toy affine-plane line design.
+Both reject proof-critical manifest mutations.
 
 The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, pay the fixed-kernel or rank-eight branches,
+lane, pay the fixed-kernel branch above `K'=4598` or the rank-eight branch,
 assign a first-match chronology owner, pay error rank eleven, move an active
 v4 atom, or close KoalaBear.
