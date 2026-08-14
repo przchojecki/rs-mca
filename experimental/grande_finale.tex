@@ -11137,6 +11137,143 @@ ambient branch is selected for $d=1,2$ and the record-support branch for
 $d=3,\ldots,9$. The next-row calculation gives the displayed reversal.
 \end{proof}
 
+\begin{proposition}[Shared kernel nine-shadow resource]
+\label{prop:kb-rank11-kernel-nine-shadow}
+For one residual record with exact support $S$, let $I_d(S)$ count the
+rank-$(10-d)$ eleven-subsets of $S$. Then
+\[
+ \sum_{d=1}^{9}
+ \frac{\binom{d+2}{2}}{\binom{K'-d-9}{2}}I_d(S)
+ \le \binom{m'}9,
+\]
+where a zero extension coefficient forces the corresponding incidence
+count to vanish.
+\end{proposition}
+
+\begin{proof}
+Fix a counted corank-$d$ eleven-set $T$ and put $r=10-d$. Its evaluation
+matroid $M$ is loopless. The dual $M^*$ has rank $c=d+1$ and no coloops,
+and a nine-subset spans $M$ exactly when its complementary pair is
+independent in $M^*$.
+
+Ignore the loops of $M^*$ and partition its remaining elements into
+parallel classes. If there are at least $c+1$ classes, representatives of
+any $c+1$ classes give at least $\binom{c+1}{2}$ independent pairs. If
+there are exactly $c$ classes, each has size at least two, since a singleton
+class would be a coloop. The cross-class pairs then number at least
+$4\binom c2\ge\binom{c+1}{2}$. Thus $T$ has at least
+$\binom{d+2}{2}$ spanning nine-subsets.
+
+Fix such a rank-$r$ nine-subset $U\subset S$. Its kernel has dimension
+$d$, so generalized MDS bounds its common-zero set, and hence the closure
+of $U$, by $K'-d$ coordinates. Apart from the nine coordinates of $U$,
+there are at most $K'-d-9$ choices. Thus $U$ has at most
+$\binom{K'-d-9}{2}$ same-rank eleven-set extensions. Double counting
+spanning pairs $(T,U)$ in each rank and summing over the rank partition of
+the $\binom{m'}9$ nine-subsets proves the proposition.
+\end{proof}
+
+\begin{corollary}[One-shadow kernel-capacity cut]
+\label{cor:kb-rank11-kernel-nine-shadow-capacity}
+Intersecting the inequality in
+Proposition~\ref{prop:kb-rank11-kernel-nine-shadow} with the individual
+ambient/record caps excludes the dominant kernel lane for
+\[
+ 10\le K'\le15445.
+\]
+At $K'=15445$, the integer demand exceeds capacity by
+\[
+178044655461817065880792270525721984196903835342334290540589.
+\]
+At $K'=15446$, capacity exceeds demand by
+\[
+124087038578417364551353992932097013573495323735890481286577,
+\]
+so no larger interval is claimed by this one-resource method.
+\end{corollary}
+
+\begin{proof}
+After division by the actual record count, corank $d$ has upper bound
+$u_d=\min\{A_d/N_{\min},P_d\}$. Its weight in that inequality is
+$w_d=\binom{d+2}{2}/\binom{K'-d-9}{2}$, which increases with $d$.
+The exact capacity is therefore the fractional-knapsack optimum obtained
+by filling coranks in order. Exact rational replay checks all $15436$
+rows. At both boundary rows corank one is full, corank two is partial, and
+all higher coranks vanish. The displayed next-row reversal is exact, not a
+rounding artifact.
+\end{proof}
+
+\begin{proposition}[Full nine-shadow containment resource]
+\label{prop:kb-rank11-kernel-nine-shadow-containment}
+With $I_d(S)$ as above, put
+\[
+ E_0=\binom{m'-9}{2},\qquad E_1=\binom{K'-10}{2}.
+\]
+Then
+\[
+ \left(52+3\frac{E_0}{E_1}\right)I_1(S)
+ +55\sum_{d=2}^{9}I_d(S)
+ \le E_0\binom{m'}9.
+\]
+When $E_1=0$, the corank-one term is absent because $I_1(S)=0$.
+\end{proposition}
+
+\begin{proof}
+Let $J_1$ count rank-nine nine-subsets of $S$. Every kernel eleven-set
+contains exactly $\binom{11}{9}=55$ nine-subsets. A rank-nine nine-subset
+can only extend inside its rank-nine closure, giving at most $E_1$
+extensions; every lower-rank nine-subset has at most the unrestricted
+support-pair count $E_0$. Hence, with $I=\sum_d I_d$,
+\[
+ 55I\le E_1J_1+E_0\left(\binom{m'}9-J_1\right).
+\]
+The corank-one case of Proposition~\ref{prop:kb-rank11-kernel-nine-shadow}
+gives $3I_1\le E_1J_1$. Since $E_0>E_1$, substituting this lower bound
+for $J_1$ and rearranging gives the proposition.
+\end{proof}
+
+\begin{corollary}[Two-resource nine-shadow kernel-capacity cut]
+\label{cor:kb-rank11-kernel-nine-shadow-containment-capacity}
+The individual ambient/record caps together with
+Propositions~\ref{prop:kb-rank11-kernel-nine-shadow} and
+\ref{prop:kb-rank11-kernel-nine-shadow-containment} exclude the dominant
+kernel lane for
+\[
+ 10\le K'\le15670.
+\]
+At $K'=15670$, the integer demand exceeds capacity by
+\[
+60244744187647715538325354175068999745872308513185869854532.
+\]
+At $K'=15671$, capacity exceeds demand by
+\[
+291105561463347587484268984669020036510369238771859813045635,
+\]
+so no larger interval is claimed.
+\end{corollary}
+
+\begin{proof}
+The primary exact optimizer enumerates every cap breakpoint and every
+intersection of the rank-preserving and full-containment resource bounds.
+It checks all $15661$ rows. At both boundary rows only coranks one and two
+are positive, both resource inequalities bind, and both individual caps
+are slack.
+
+For an independent certificate, write $w_1,w_2$ for the first two weights
+in Proposition~\ref{prop:kb-rank11-kernel-nine-shadow} and
+$v_1=52+3E_0/E_1$. Put
+\[
+ D=v_1w_2-55w_1,\qquad
+ \lambda=\frac{v_1-55}{D},\qquad
+ \mu=\frac{w_2-w_1}{D}.
+\]
+Exact replay verifies $\lambda,\mu\ge0$,
+$\lambda w_1+\mu v_1=\lambda w_2+55\mu=1$, and
+$\lambda w_d+55\mu\ge1$ for $d\ge3$. The resulting dual bound is exact at
+both boundary rows and gives the same signs and capacities as the primal
+replay.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -11248,14 +11385,21 @@ first eliminates kernel-lane domination through $K'=4598$. Retaining every
 basis decoration in Corollary~\ref{cor:kb-rank11-kernel-multibasis-capacity}
 extends that interval through $K'=11641$. The record-support/ambient hybrid
 of Corollary~\ref{cor:kb-rank11-kernel-hybrid-capacity} extends it through
-$K'=11772$, but not above the printed $11773$ method wall.
+$K'=11772$. Proposition~\ref{prop:kb-rank11-kernel-nine-shadow} couples the
+corank strata and Corollary~\ref{cor:kb-rank11-kernel-nine-shadow-capacity}
+extends the exact interval through $K'=15445$. Counting all contained
+nine-subsets in
+Proposition~\ref{prop:kb-rank11-kernel-nine-shadow-containment} supplies a
+second resource; Corollary~\ref{cor:kb-rank11-kernel-nine-shadow-containment-capacity}
+extends the interval through $K'=15670$, but not above the printed $15671$
+method wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
-$10\le K'\le11772$, rank eight plus kernel on $11773\le K'\le22525$,
+$10\le K'\le15670$, rank eight plus kernel on $15671\le K'\le22525$,
 dense-owner chronology plus kernel on $22526\le K'\le37995$, and kernel
 only above.
 The fence does not instantiate the fixed

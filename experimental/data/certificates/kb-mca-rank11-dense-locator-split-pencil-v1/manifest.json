@@ -137,6 +137,34 @@
         "tree": "9921a1975991825967e67cf6f5d3350ee96488f1",
         "contract_sha256": "ce3e5d908adba2db8ce0a12cd0f464d1d9b45b0602203f9f5a8adef7e0d51837"
       },
+      "kernel_nine_shadow_coupling": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_coupling",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_coupling",
+        "commit": "26c4396652ebeaa4036b5cf0d226fd412a7f38b6",
+        "tree": "8a916d6371274ed5bb55ac8a734e47988385a63a",
+        "contract_sha256": "191af0d208a5cce6a6339bfc265de3be1bf8ca86b1c6da298ade68142e80c63e"
+      },
+      "kernel_nine_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_capacity_cut",
+        "commit": "26c4396652ebeaa4036b5cf0d226fd412a7f38b6",
+        "tree": "f69573f892c12735b6f111aef40d05e71b4118a7",
+        "contract_sha256": "1bbf5e021b422c8124ac339fc14cf79e50b0368d4b42cd1b22fd4a59307ca75e"
+      },
+      "kernel_nine_shadow_containment_coupling": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_containment_coupling",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_containment_coupling",
+        "commit": "0620558d5eb0a49e03000b2a2fc16ec826e2e2fb",
+        "tree": "0d809e2286193d2ad9c63781d58278ee79dfd15d",
+        "contract_sha256": "3ba2ac2f6053c753f3a60e2df8152f4bde8221deb772648699f99c9c5c314056"
+      },
+      "kernel_nine_shadow_containment_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_containment_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_containment_capacity_cut",
+        "commit": "0620558d5eb0a49e03000b2a2fc16ec826e2e2fb",
+        "tree": "f396ad96d235ca25e2f313ff38819be9aa668139",
+        "contract_sha256": "7d56dc863b2bb327c392b33405098b5163a305e4a909a007482e32bfbd00f7e4"
+      },
       "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -388,6 +416,100 @@
     "wall_excess": 139343682529231472322825521514042608524569163680782450618944,
     "capacity_formula": "sum_d min(A_d,N_min*P_d)"
   },
+  "kernel_nine_shadow_coupling": {
+    "correction_dimension": 10,
+    "component_subset_size": 11,
+    "shadow_subset_size": 9,
+    "spanning_shadow_coefficients": [
+      3,
+      6,
+      10,
+      15,
+      21,
+      28,
+      36,
+      45,
+      55
+    ],
+    "extension_formula": "C(K_prime-d-9,2)",
+    "resource_formula": "sum_d C(d+2,2)*I_d/C(K_prime-d-9,2) <= C(m_prime,9)"
+  },
+  "kernel_nine_shadow_capacity_cut": {
+    "closed_K_prime_minimum": 10,
+    "closed_K_prime_maximum": 15445,
+    "first_open_K_prime": 15446,
+    "endpoint_branch_pattern": [
+      "ambient",
+      "ambient",
+      "ambient",
+      "ambient",
+      "record",
+      "record",
+      "record",
+      "record",
+      "record"
+    ],
+    "endpoint_frontier_corank": 2,
+    "endpoint_active_coranks": [
+      1,
+      2
+    ],
+    "wall_frontier_corank": 2,
+    "wall_active_coranks": [
+      1,
+      2
+    ],
+    "endpoint_demand": 4344088209787446708963641497455555028744633393303455877367677479,
+    "endpoint_capacity": 4343910165131984891897760705185029306760436489468113543077136890,
+    "endpoint_gap": 178044655461817065880792270525721984196903835342334290540589,
+    "wall_demand": 4344664578131587275065401301289634311619616096420518827596862523,
+    "wall_capacity": 4344788665170165692429952655282566408633189591744254718078149100,
+    "wall_excess": 124087038578417364551353992932097013573495323735890481286577,
+    "capacity_formula": "fractional knapsack under the shared rank-preserving nine-shadow resource"
+  },
+  "kernel_nine_shadow_containment_coupling": {
+    "shadows_per_eleven_subset": 55,
+    "rank9_spanning_shadow_minimum": 3,
+    "support_extension_formula": "C(m_prime-9,2)",
+    "rank9_extension_formula": "C(K_prime-10,2)",
+    "rank9_coefficient_formula": "52+3*C(m_prime-9,2)/C(K_prime-10,2)",
+    "resource_formula": "rank9_coefficient*I_1+55*sum_d_ge_2 I_d <= C(m_prime-9,2)*C(m_prime,9)"
+  },
+  "kernel_nine_shadow_containment_capacity_cut": {
+    "closed_K_prime_minimum": 10,
+    "closed_K_prime_maximum": 15670,
+    "first_open_K_prime": 15671,
+    "endpoint_branch_pattern": [
+      "ambient",
+      "ambient",
+      "ambient",
+      "ambient",
+      "record",
+      "record",
+      "record",
+      "record",
+      "record"
+    ],
+    "endpoint_active_coranks": [
+      1,
+      2
+    ],
+    "endpoint_active_resources": [
+      "rank_preserving_nine_shadow",
+      "full_containment_nine_shadow"
+    ],
+    "endpoint_optimum_numerator": 62176956232002773733507067906853505051254769431503212000,
+    "endpoint_optimum_denominator": 3820255349,
+    "endpoint_demand": 4475537178738548139330981218648452557243318003039175890361321166,
+    "endpoint_capacity": 4475476933994360491615442893294277488243572130730662704491466634,
+    "endpoint_gap": 60244744187647715538325354175068999745872308513185869854532,
+    "wall_optimum_numerator": 103359702314434750352523159319103402099983871032887600,
+    "wall_optimum_denominator": 6349253,
+    "wall_demand": 4476129380405368666077993690300826287914174911305949586829516020,
+    "wall_capacity": 4476420485966832013665477959285495307950685280544721446642561655,
+    "wall_excess": 291105561463347587484268984669020036510369238771859813045635,
+    "capacity_formula": "exact two-resource LP with individual ambient/record caps"
+  },
   "rank8_owner_pair_weight_cap": {
     "kernel_dimension": 2,
     "owner_flat_dimension": 4,
@@ -425,7 +547,7 @@
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated": true,
-    "kernel_dominant_lane_closed_through_Kprime": 11772,
+    "kernel_dominant_lane_closed_through_Kprime": 15670,
     "rank8_owner_flat_closed_from_Kprime": 37996,
     "rank8_dense_owner_terminal_from_Kprime": 22526,
     "chronology_owner": false,

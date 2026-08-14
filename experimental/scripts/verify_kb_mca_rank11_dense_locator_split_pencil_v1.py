@@ -150,6 +150,34 @@ SOURCE_NODES = {
         "tree": "9921a1975991825967e67cf6f5d3350ee96488f1",
         "contract_sha256": "ce3e5d908adba2db8ce0a12cd0f464d1d9b45b0602203f9f5a8adef7e0d51837",
     },
+    "kernel_nine_shadow_coupling": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_coupling",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_coupling",
+        "commit": "26c4396652ebeaa4036b5cf0d226fd412a7f38b6",
+        "tree": "8a916d6371274ed5bb55ac8a734e47988385a63a",
+        "contract_sha256": "191af0d208a5cce6a6339bfc265de3be1bf8ca86b1c6da298ade68142e80c63e",
+    },
+    "kernel_nine_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_capacity_cut",
+        "commit": "26c4396652ebeaa4036b5cf0d226fd412a7f38b6",
+        "tree": "f69573f892c12735b6f111aef40d05e71b4118a7",
+        "contract_sha256": "1bbf5e021b422c8124ac339fc14cf79e50b0368d4b42cd1b22fd4a59307ca75e",
+    },
+    "kernel_nine_shadow_containment_coupling": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_containment_coupling",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_containment_coupling",
+        "commit": "0620558d5eb0a49e03000b2a2fc16ec826e2e2fb",
+        "tree": "0d809e2286193d2ad9c63781d58278ee79dfd15d",
+        "contract_sha256": "3ba2ac2f6053c753f3a60e2df8152f4bde8221deb772648699f99c9c5c314056",
+    },
+    "kernel_nine_shadow_containment_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_containment_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_containment_capacity_cut",
+        "commit": "0620558d5eb0a49e03000b2a2fc16ec826e2e2fb",
+        "tree": "f396ad96d235ca25e2f313ff38819be9aa668139",
+        "contract_sha256": "7d56dc863b2bb327c392b33405098b5163a305e4a909a007482e32bfbd00f7e4",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -256,11 +284,130 @@ def kernel_hybrid_capacity(kprime: int) -> int:
     return sum(min(ambient, support) for ambient, support, _ in kernel_hybrid_terms(kprime))
 
 
+def kernel_shadow_weights_caps(kprime: int) -> tuple[list[Fraction], list[Fraction], list[str]]:
+    weights = []
+    caps = []
+    branches = []
+    for dimension, (ambient, support, branch) in enumerate(kernel_hybrid_terms(kprime), 1):
+        cap = Fraction(min(ambient, support), 274980728111260126)
+        caps.append(cap)
+        branches.append(branch)
+        if not cap:
+            weights.append(Fraction(0))
+            continue
+        weights.append(Fraction(comb(dimension + 2, 2), comb(kprime - dimension - 9, 2)))
+    return weights, caps, branches
+
+
+def kernel_nine_shadow_optimum(kprime: int) -> tuple[Fraction, int, list[Fraction]]:
+    weights, caps, _ = kernel_shadow_weights_caps(kprime)
+    remaining = Fraction(comb(67472 + kprime, 9))
+    total = Fraction(0)
+    frontier = 0
+    allocation = []
+    require([weight for weight in weights if weight] == sorted(weight for weight in weights if weight), "nine-shadow weight order")
+    for dimension, (weight, cap) in enumerate(zip(weights, caps), 1):
+        if not cap:
+            allocation.append(Fraction(0))
+            continue
+        take = min(cap, remaining / weight)
+        allocation.append(take)
+        total += take
+        remaining -= weight * take
+        if take < cap and not frontier:
+            frontier = dimension
+    return total, frontier, allocation
+
+
+def lower_shadow_maximum(budget: Fraction, weights: list[Fraction], caps: list[Fraction]) -> Fraction:
+    total = Fraction(0)
+    for weight, cap in zip(weights[1:], caps[1:]):
+        if not cap:
+            continue
+        take = min(cap, max(Fraction(0), budget) / weight)
+        total += take
+        budget -= weight * take
+    return total
+
+
+def kernel_full_shadow_optimum(kprime: int) -> tuple[Fraction, list[Fraction]]:
+    weights, caps, _ = kernel_shadow_weights_caps(kprime)
+    shadow_budget = Fraction(comb(67472 + kprime, 9))
+    support_extensions = Fraction(comb(67472 + kprime - 9, 2))
+    if not caps[0]:
+        return kernel_nine_shadow_optimum(kprime)[0], kernel_nine_shadow_optimum(kprime)[2]
+
+    rank9_extensions = Fraction(comb(kprime - 10, 2))
+    rank9_coefficient = 52 + 3 * support_extensions / rank9_extensions
+    candidates = {Fraction(0), caps[0]}
+    cumulative_weighted_cap = Fraction(0)
+    cumulative_cap = Fraction(0)
+    for weight, cap in zip(weights[1:], caps[1:]):
+        if not cap:
+            continue
+        kink = (shadow_budget - cumulative_weighted_cap) / weights[0]
+        if 0 <= kink <= caps[0]:
+            candidates.add(kink)
+        denominator = rank9_coefficient / 55 - weights[0] / weight
+        numerator = (
+            support_extensions * shadow_budget / 55
+            - cumulative_cap
+            - (shadow_budget - cumulative_weighted_cap) / weight
+        )
+        if denominator:
+            crossing = numerator / denominator
+            if 0 <= crossing <= caps[0]:
+                candidates.add(crossing)
+        cumulative_weighted_cap += weight * cap
+        cumulative_cap += cap
+
+    all_lower_crossing = (
+        support_extensions * shadow_budget - 55 * cumulative_cap
+    ) / rank9_coefficient
+    if 0 <= all_lower_crossing <= caps[0]:
+        candidates.add(all_lower_crossing)
+
+    best = Fraction(-1)
+    best_allocation = []
+    for x1 in candidates:
+        if weights[0] * x1 > shadow_budget:
+            continue
+        qmax = lower_shadow_maximum(shadow_budget - weights[0] * x1, weights, caps)
+        cmax = (support_extensions * shadow_budget - rank9_coefficient * x1) / 55
+        remaining_count = max(Fraction(0), min(qmax, cmax, sum(caps[1:], Fraction(0))))
+        remaining_shadow = shadow_budget - weights[0] * x1
+        allocation = [x1]
+        for weight, cap in zip(weights[1:], caps[1:]):
+            if not cap:
+                allocation.append(Fraction(0))
+                continue
+            take = min(cap, remaining_count, remaining_shadow / weight)
+            allocation.append(take)
+            remaining_count -= take
+            remaining_shadow -= weight * take
+        require(remaining_count == 0, "full-shadow lower allocation")
+        value = sum(allocation, Fraction(0))
+        if value > best:
+            best = value
+            best_allocation = allocation
+    require(best >= 0 and len(best_allocation) == 9, "full-shadow optimizer")
+    return best, best_allocation
+
+
 def kernel_demand_ceiling(kprime: int) -> int:
     return ceil_ratio(
         495405467 * 274980728111260126 * comb(67472 + kprime, 11),
         10**9,
     )
+
+
+def kernel_demand_ratio(kprime: int) -> Fraction:
+    return Fraction(495405467 * comb(67472 + kprime, 11), 10**9)
+
+
+def scaled_fraction_floor(value: Fraction) -> int:
+    scaled = 274980728111260126 * value
+    return scaled.numerator // scaled.denominator
 
 
 def rank8_weighted_demand(kprime: int) -> int:
@@ -435,6 +582,22 @@ def expected() -> dict[str, Any]:
     hybrid_endpoint_capacity = kernel_hybrid_capacity(hybrid_endpoint)
     hybrid_wall_demand = kernel_demand_ceiling(hybrid_wall)
     hybrid_wall_capacity = kernel_hybrid_capacity(hybrid_wall)
+    shadow_endpoint = 15445
+    shadow_wall = 15446
+    shadow_endpoint_optimum, shadow_endpoint_frontier, shadow_endpoint_allocation = kernel_nine_shadow_optimum(shadow_endpoint)
+    shadow_wall_optimum, shadow_wall_frontier, shadow_wall_allocation = kernel_nine_shadow_optimum(shadow_wall)
+    shadow_endpoint_demand = kernel_demand_ceiling(shadow_endpoint)
+    shadow_endpoint_capacity = scaled_fraction_floor(shadow_endpoint_optimum)
+    shadow_wall_demand = kernel_demand_ceiling(shadow_wall)
+    shadow_wall_capacity = scaled_fraction_floor(shadow_wall_optimum)
+    containment_endpoint = 15670
+    containment_wall = 15671
+    containment_endpoint_optimum, containment_endpoint_allocation = kernel_full_shadow_optimum(containment_endpoint)
+    containment_wall_optimum, containment_wall_allocation = kernel_full_shadow_optimum(containment_wall)
+    containment_endpoint_demand = kernel_demand_ceiling(containment_endpoint)
+    containment_endpoint_capacity = scaled_fraction_floor(containment_endpoint_optimum)
+    containment_wall_demand = kernel_demand_ceiling(containment_wall)
+    containment_wall_capacity = scaled_fraction_floor(containment_wall_optimum)
     rank8_last_open = 37995
     rank8_first_closed = 37996
     rank8_last_demand = rank8_weighted_demand(rank8_last_open)
@@ -646,6 +809,58 @@ def expected() -> dict[str, Any]:
             "wall_excess": hybrid_wall_capacity - hybrid_wall_demand,
             "capacity_formula": "sum_d min(A_d,N_min*P_d)",
         },
+        "kernel_nine_shadow_coupling": {
+            "correction_dimension": 10,
+            "component_subset_size": 11,
+            "shadow_subset_size": 9,
+            "spanning_shadow_coefficients": [comb(d + 2, 2) for d in range(1, 10)],
+            "extension_formula": "C(K_prime-d-9,2)",
+            "resource_formula": "sum_d C(d+2,2)*I_d/C(K_prime-d-9,2) <= C(m_prime,9)",
+        },
+        "kernel_nine_shadow_capacity_cut": {
+            "closed_K_prime_minimum": 10,
+            "closed_K_prime_maximum": shadow_endpoint,
+            "first_open_K_prime": shadow_wall,
+            "endpoint_branch_pattern": kernel_shadow_weights_caps(shadow_endpoint)[2],
+            "endpoint_frontier_corank": shadow_endpoint_frontier,
+            "endpoint_active_coranks": [index + 1 for index, value in enumerate(shadow_endpoint_allocation) if value],
+            "wall_frontier_corank": shadow_wall_frontier,
+            "wall_active_coranks": [index + 1 for index, value in enumerate(shadow_wall_allocation) if value],
+            "endpoint_demand": shadow_endpoint_demand,
+            "endpoint_capacity": shadow_endpoint_capacity,
+            "endpoint_gap": shadow_endpoint_demand - shadow_endpoint_capacity,
+            "wall_demand": shadow_wall_demand,
+            "wall_capacity": shadow_wall_capacity,
+            "wall_excess": shadow_wall_capacity - shadow_wall_demand,
+            "capacity_formula": "fractional knapsack under the shared rank-preserving nine-shadow resource",
+        },
+        "kernel_nine_shadow_containment_coupling": {
+            "shadows_per_eleven_subset": 55,
+            "rank9_spanning_shadow_minimum": 3,
+            "support_extension_formula": "C(m_prime-9,2)",
+            "rank9_extension_formula": "C(K_prime-10,2)",
+            "rank9_coefficient_formula": "52+3*C(m_prime-9,2)/C(K_prime-10,2)",
+            "resource_formula": "rank9_coefficient*I_1+55*sum_d_ge_2 I_d <= C(m_prime-9,2)*C(m_prime,9)",
+        },
+        "kernel_nine_shadow_containment_capacity_cut": {
+            "closed_K_prime_minimum": 10,
+            "closed_K_prime_maximum": containment_endpoint,
+            "first_open_K_prime": containment_wall,
+            "endpoint_branch_pattern": kernel_shadow_weights_caps(containment_endpoint)[2],
+            "endpoint_active_coranks": [index + 1 for index, value in enumerate(containment_endpoint_allocation) if value],
+            "endpoint_active_resources": ["rank_preserving_nine_shadow", "full_containment_nine_shadow"],
+            "endpoint_optimum_numerator": containment_endpoint_optimum.numerator,
+            "endpoint_optimum_denominator": containment_endpoint_optimum.denominator,
+            "endpoint_demand": containment_endpoint_demand,
+            "endpoint_capacity": containment_endpoint_capacity,
+            "endpoint_gap": containment_endpoint_demand - containment_endpoint_capacity,
+            "wall_optimum_numerator": containment_wall_optimum.numerator,
+            "wall_optimum_denominator": containment_wall_optimum.denominator,
+            "wall_demand": containment_wall_demand,
+            "wall_capacity": containment_wall_capacity,
+            "wall_excess": containment_wall_capacity - containment_wall_demand,
+            "capacity_formula": "exact two-resource LP with individual ambient/record caps",
+        },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
             "owner_flat_dimension": 4,
@@ -683,7 +898,7 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 11772,
+            "kernel_dominant_lane_closed_through_Kprime": 15670,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
@@ -752,7 +967,35 @@ def validate(value: object) -> dict[str, int]:
     require(kernel_demand_ceiling(11773) < kernel_hybrid_capacity(11773), "kernel hybrid wall")
     require(hybrid_cut["endpoint_gap"] == 76504076505592948633027913576880724493595282142849410185084, "kernel hybrid endpoint")
     require(hybrid_cut["wall_excess"] == 139343682529231472322825521514042608524569163680782450618944, "kernel hybrid wall excess")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 11772, "kernel claim")
+    shadow_coupling = value["kernel_nine_shadow_coupling"]
+    require(shadow_coupling["spanning_shadow_coefficients"] == [3, 6, 10, 15, 21, 28, 36, 45, 55], "nine-shadow coefficients")
+    shadow_cut = value["kernel_nine_shadow_capacity_cut"]
+    for kprime in range(10, shadow_cut["closed_K_prime_maximum"] + 1):
+        optimum, _, _ = kernel_nine_shadow_optimum(kprime)
+        require(kernel_demand_ratio(kprime) > optimum, f"kernel nine-shadow cut {kprime}")
+    require(kernel_demand_ratio(15446) < kernel_nine_shadow_optimum(15446)[0], "kernel nine-shadow wall")
+    require(shadow_cut["endpoint_frontier_corank"] == shadow_cut["wall_frontier_corank"] == 2, "nine-shadow frontier")
+    require(shadow_cut["endpoint_active_coranks"] == shadow_cut["wall_active_coranks"] == [1, 2], "nine-shadow support")
+    require(shadow_cut["endpoint_gap"] == 178044655461817065880792270525721984196903835342334290540589, "nine-shadow endpoint")
+    require(shadow_cut["wall_excess"] == 124087038578417364551353992932097013573495323735890481286577, "nine-shadow wall excess")
+    containment = value["kernel_nine_shadow_containment_coupling"]
+    require(containment["shadows_per_eleven_subset"] == comb(11, 9), "full-containment shadows")
+    require(containment["rank9_spanning_shadow_minimum"] == 3, "full-containment rank-nine shadow floor")
+    containment_cut = value["kernel_nine_shadow_containment_capacity_cut"]
+    for kprime in range(10, containment_cut["closed_K_prime_maximum"] + 1):
+        optimum, _ = kernel_full_shadow_optimum(kprime)
+        require(kernel_demand_ratio(kprime) > optimum, f"kernel full-shadow cut {kprime}")
+    endpoint_optimum, endpoint_allocation = kernel_full_shadow_optimum(15670)
+    wall_optimum, wall_allocation = kernel_full_shadow_optimum(15671)
+    require(kernel_demand_ratio(15671) < wall_optimum, "kernel full-shadow wall")
+    require(endpoint_optimum == Fraction(containment_cut["endpoint_optimum_numerator"], containment_cut["endpoint_optimum_denominator"]), "full-shadow endpoint optimum")
+    require(wall_optimum == Fraction(containment_cut["wall_optimum_numerator"], containment_cut["wall_optimum_denominator"]), "full-shadow wall optimum")
+    require(containment_cut["endpoint_active_coranks"] == [1, 2], "full-shadow active coranks")
+    require(all(value > 0 for value in endpoint_allocation[:2]) and all(value == 0 for value in endpoint_allocation[2:]), "full-shadow endpoint support")
+    require(all(value > 0 for value in wall_allocation[:2]) and all(value == 0 for value in wall_allocation[2:]), "full-shadow wall support")
+    require(containment_cut["endpoint_gap"] == 60244744187647715538325354175068999745872308513185869854532, "full-shadow endpoint")
+    require(containment_cut["wall_excess"] == 291105561463347587484268984669020036510369238771859813045635, "full-shadow wall excess")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 15670, "kernel claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -802,6 +1045,10 @@ def validate(value: object) -> dict[str, int]:
         "multibasis_wall_excess": multibasis_cut["wall_excess"],
         "hybrid_endpoint_gap": hybrid_cut["endpoint_gap"],
         "hybrid_wall_excess": hybrid_cut["wall_excess"],
+        "shadow_endpoint_gap": shadow_cut["endpoint_gap"],
+        "shadow_wall_excess": shadow_cut["wall_excess"],
+        "containment_endpoint_gap": containment_cut["endpoint_gap"],
+        "containment_wall_excess": containment_cut["wall_excess"],
         "rank8_last_gap": rank8_cut["last_open_gap"],
         "rank8_first_gap": rank8_cut["first_closed_gap"],
         "dense_owner_first_excess": dense_owner["first_forced_excess"],
@@ -833,6 +1080,12 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_record_support_capacity"]["basis_multiplicities"].__setitem__(2, 4),
         lambda item: item["kernel_hybrid_capacity_cut"]["endpoint_branch_pattern"].__setitem__(2, "ambient"),
         lambda item: item["kernel_hybrid_capacity_cut"].__setitem__("closed_K_prime_maximum", 11773),
+        lambda item: item["kernel_nine_shadow_coupling"]["spanning_shadow_coefficients"].__setitem__(0, 2),
+        lambda item: item["kernel_nine_shadow_capacity_cut"].__setitem__("closed_K_prime_maximum", 15446),
+        lambda item: item["kernel_nine_shadow_capacity_cut"].__setitem__("wall_excess", 124087038578417364551353992932097013573495323735890481286576),
+        lambda item: item["kernel_nine_shadow_containment_coupling"].__setitem__("shadows_per_eleven_subset", 54),
+        lambda item: item["kernel_nine_shadow_containment_capacity_cut"].__setitem__("closed_K_prime_maximum", 15671),
+        lambda item: item["kernel_nine_shadow_containment_capacity_cut"].__setitem__("endpoint_optimum_denominator", 3820255350),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
@@ -883,6 +1136,10 @@ def main() -> None:
         f"multibasis_wall_excess={result['multibasis_wall_excess']} "
         f"hybrid_endpoint_gap={result['hybrid_endpoint_gap']} "
         f"hybrid_wall_excess={result['hybrid_wall_excess']} "
+        f"shadow_endpoint_gap={result['shadow_endpoint_gap']} "
+        f"shadow_wall_excess={result['shadow_wall_excess']} "
+        f"containment_endpoint_gap={result['containment_endpoint_gap']} "
+        f"containment_wall_excess={result['containment_wall_excess']} "
         f"rank8_last_gap={result['rank8_last_gap']} "
         f"rank8_first_gap={result['rank8_first_gap']} "
         f"dense_owner_first_excess={result['dense_owner_first_excess']} "

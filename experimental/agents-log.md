@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-14 - Rank-eleven coupled nine-shadow capacities
+
+- **Agent/model:** Codex with primal and independent dual exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** Spanning nine-subsets give one shared resource
+  across all kernel coranks; all 55 contained nine-subsets give a second,
+  independent resource. Their exact two-resource LP excludes dominant
+  kernel lanes through `K'=15670`, with first reversal at `K'=15671`.
+- **How it is useful:** It extends the kernel interval by 3,898 dimensions
+  beyond the record/ambient hybrid and identifies simultaneous corank-one
+  and corank-two shadow saturation as the next obstruction.
+- **What to do next:** Couple the rank-nine and rank-eight flat families;
+  additional uncoupled total-shadow inequalities are slack at the wall.
+
 ### 2026-08-14 - Rank-eleven record/ambient kernel hybrid
 
 - **Agent/model:** Codex with primary and independent exact replays.

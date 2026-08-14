@@ -118,6 +118,34 @@ FIXED_CHART_SOURCES = {
         "tree": "9921a1975991825967e67cf6f5d3350ee96488f1",
         "contract_sha256": "ce3e5d908adba2db8ce0a12cd0f464d1d9b45b0602203f9f5a8adef7e0d51837",
     },
+    "kernel_nine_shadow_coupling": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_coupling",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_coupling",
+        "commit": "26c4396652ebeaa4036b5cf0d226fd412a7f38b6",
+        "tree": "8a916d6371274ed5bb55ac8a734e47988385a63a",
+        "contract_sha256": "191af0d208a5cce6a6339bfc265de3be1bf8ca86b1c6da298ade68142e80c63e",
+    },
+    "kernel_nine_shadow_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_capacity_cut",
+        "commit": "26c4396652ebeaa4036b5cf0d226fd412a7f38b6",
+        "tree": "f69573f892c12735b6f111aef40d05e71b4118a7",
+        "contract_sha256": "1bbf5e021b422c8124ac339fc14cf79e50b0368d4b42cd1b22fd4a59307ca75e",
+    },
+    "kernel_nine_shadow_containment_coupling": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_containment_coupling",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_containment_coupling",
+        "commit": "0620558d5eb0a49e03000b2a2fc16ec826e2e2fb",
+        "tree": "0d809e2286193d2ad9c63781d58278ee79dfd15d",
+        "contract_sha256": "3ba2ac2f6053c753f3a60e2df8152f4bde8221deb772648699f99c9c5c314056",
+    },
+    "kernel_nine_shadow_containment_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_nine_shadow_containment_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_nine_shadow_containment_capacity_cut",
+        "commit": "0620558d5eb0a49e03000b2a2fc16ec826e2e2fb",
+        "tree": "f396ad96d235ca25e2f313ff38819be9aa668139",
+        "contract_sha256": "7d56dc863b2bb327c392b33405098b5163a305e4a909a007482e32bfbd00f7e4",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -227,6 +255,66 @@ def independent_kernel_hybrid_capacity(kprime: int) -> int:
     return sum(min(ambient, support) for ambient, support, _ in independent_kernel_hybrid_terms(kprime))
 
 
+def independent_shadow_caps_weights(kprime: int) -> tuple[list[Fraction], list[Fraction]]:
+    caps = []
+    weights = []
+    for dimension, (ambient, support, _) in enumerate(independent_kernel_hybrid_terms(kprime), 1):
+        cap = Fraction(min(ambient, support), 274980728111260126)
+        caps.append(cap)
+        weights.append(
+            Fraction(comb(dimension + 2, 2), comb(kprime - dimension - 9, 2))
+            if cap else Fraction(0)
+        )
+    return caps, weights
+
+
+def independent_nine_shadow_dual(kprime: int) -> tuple[Fraction, int]:
+    caps, weights = independent_shadow_caps_weights(kprime)
+    budget = Fraction(comb(67472 + kprime, 9))
+    spent = Fraction(0)
+    for index, (cap, weight) in enumerate(zip(caps, weights)):
+        if cap and spent + weight * cap > budget:
+            multiplier = 1 / weight
+            bound = multiplier * budget
+            for earlier in range(index):
+                bound += (1 - multiplier * weights[earlier]) * caps[earlier]
+            return bound, index + 1
+        spent += weight * cap
+    return sum(caps, Fraction(0)), 0
+
+
+def independent_full_shadow_resource_dual(kprime: int) -> Fraction | None:
+    if kprime < 13:
+        return None
+    budget = Fraction(comb(67472 + kprime, 9))
+    support_extensions = Fraction(comb(67472 + kprime - 9, 2))
+    rank9_extensions = Fraction(comb(kprime - 10, 2))
+    rank8_extensions = Fraction(comb(kprime - 11, 2))
+    w1 = Fraction(3, rank9_extensions)
+    w2 = Fraction(6, rank8_extensions)
+    v1 = 52 + 3 * support_extensions / rank9_extensions
+    determinant = v1 * w2 - 55 * w1
+    require(determinant > 0, f"full-shadow determinant {kprime}")
+    lam = (v1 - 55) / determinant
+    mu = (w2 - w1) / determinant
+    require(lam >= 0 and mu >= 0, f"full-shadow dual signs {kprime}")
+    require(lam * w1 + mu * v1 == 1, f"full-shadow dual d1 {kprime}")
+    require(lam * w2 + 55 * mu == 1, f"full-shadow dual d2 {kprime}")
+    for dimension in range(3, 10):
+        if kprime - dimension - 9 < 2:
+            continue
+        weight = Fraction(comb(dimension + 2, 2), comb(kprime - dimension - 9, 2))
+        require(lam * weight + 55 * mu >= 1, f"full-shadow dual d{dimension} {kprime}")
+    return lam * budget + mu * support_extensions * budget
+
+
+def independent_full_shadow_bound(kprime: int) -> Fraction:
+    caps, _ = independent_shadow_caps_weights(kprime)
+    individual = sum(caps, Fraction(0))
+    dual = independent_full_shadow_resource_dual(kprime)
+    return individual if dual is None else min(individual, dual)
+
+
 def independent_kernel_demand(kprime: int) -> int:
     return ceiling(
         Fraction(
@@ -234,6 +322,10 @@ def independent_kernel_demand(kprime: int) -> int:
             10**9,
         )
     )
+
+
+def independent_kernel_demand_ratio(kprime: int) -> Fraction:
+    return Fraction(495405467 * comb(67472 + kprime, 11), 10**9)
 
 
 def independent_rank8_demand(kprime: int) -> int:
@@ -303,6 +395,10 @@ def main() -> None:
     kernel_multibasis_cut = data["kernel_multibasis_capacity_cut"]
     kernel_record_support = data["kernel_record_support_capacity"]
     kernel_hybrid_cut = data["kernel_hybrid_capacity_cut"]
+    kernel_shadow_coupling = data["kernel_nine_shadow_coupling"]
+    kernel_shadow_cut = data["kernel_nine_shadow_capacity_cut"]
+    kernel_containment = data["kernel_nine_shadow_containment_coupling"]
+    kernel_containment_cut = data["kernel_nine_shadow_containment_capacity_cut"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
@@ -606,6 +702,92 @@ def main() -> None:
     require(hybrid_branches == ["ambient", "ambient"] + ["record"] * 7, "kernel hybrid branches")
     require(hybrid_wall_capacity > hybrid_wall_demand, "kernel hybrid wall")
 
+    require(kernel_shadow_coupling == {
+        "correction_dimension": 10,
+        "component_subset_size": 11,
+        "shadow_subset_size": 9,
+        "spanning_shadow_coefficients": [3, 6, 10, 15, 21, 28, 36, 45, 55],
+        "extension_formula": "C(K_prime-d-9,2)",
+        "resource_formula": "sum_d C(d+2,2)*I_d/C(K_prime-d-9,2) <= C(m_prime,9)",
+    }, "kernel nine-shadow coupling")
+    shadow_checks = 0
+    for kprime in range(10, 15446):
+        bound, _ = independent_nine_shadow_dual(kprime)
+        require(independent_kernel_demand_ratio(kprime) > bound, f"kernel nine-shadow dual {kprime}")
+        shadow_checks += 1
+    shadow_endpoint_optimum, shadow_endpoint_frontier = independent_nine_shadow_dual(15445)
+    shadow_wall_optimum, shadow_wall_frontier = independent_nine_shadow_dual(15446)
+    shadow_endpoint_scaled = 274980728111260126 * shadow_endpoint_optimum
+    shadow_wall_scaled = 274980728111260126 * shadow_wall_optimum
+    shadow_endpoint_capacity = shadow_endpoint_scaled.numerator // shadow_endpoint_scaled.denominator
+    shadow_wall_capacity = shadow_wall_scaled.numerator // shadow_wall_scaled.denominator
+    shadow_endpoint_demand = independent_kernel_demand(15445)
+    shadow_wall_demand = independent_kernel_demand(15446)
+    require(kernel_shadow_cut == {
+        "closed_K_prime_minimum": 10,
+        "closed_K_prime_maximum": 15445,
+        "first_open_K_prime": 15446,
+        "endpoint_branch_pattern": [choice for _, _, choice in independent_kernel_hybrid_terms(15445)],
+        "endpoint_frontier_corank": shadow_endpoint_frontier,
+        "endpoint_active_coranks": [1, 2],
+        "wall_frontier_corank": shadow_wall_frontier,
+        "wall_active_coranks": [1, 2],
+        "endpoint_demand": shadow_endpoint_demand,
+        "endpoint_capacity": shadow_endpoint_capacity,
+        "endpoint_gap": shadow_endpoint_demand - shadow_endpoint_capacity,
+        "wall_demand": shadow_wall_demand,
+        "wall_capacity": shadow_wall_capacity,
+        "wall_excess": shadow_wall_capacity - shadow_wall_demand,
+        "capacity_formula": "fractional knapsack under the shared rank-preserving nine-shadow resource",
+    }, "kernel nine-shadow capacity constants")
+    require(shadow_endpoint_frontier == shadow_wall_frontier == 2, "kernel nine-shadow frontier")
+    require(independent_kernel_demand_ratio(15446) < shadow_wall_optimum, "kernel nine-shadow wall")
+
+    require(kernel_containment == {
+        "shadows_per_eleven_subset": 55,
+        "rank9_spanning_shadow_minimum": 3,
+        "support_extension_formula": "C(m_prime-9,2)",
+        "rank9_extension_formula": "C(K_prime-10,2)",
+        "rank9_coefficient_formula": "52+3*C(m_prime-9,2)/C(K_prime-10,2)",
+        "resource_formula": "rank9_coefficient*I_1+55*sum_d_ge_2 I_d <= C(m_prime-9,2)*C(m_prime,9)",
+    }, "kernel full-containment coupling")
+    containment_checks = 0
+    for kprime in range(10, 15671):
+        require(
+            independent_kernel_demand_ratio(kprime) > independent_full_shadow_bound(kprime),
+            f"kernel full-shadow dual {kprime}",
+        )
+        containment_checks += 1
+    containment_endpoint_optimum = independent_full_shadow_resource_dual(15670)
+    containment_wall_optimum = independent_full_shadow_resource_dual(15671)
+    require(containment_endpoint_optimum is not None and containment_wall_optimum is not None, "full-shadow boundary duals")
+    containment_endpoint_scaled = 274980728111260126 * containment_endpoint_optimum
+    containment_wall_scaled = 274980728111260126 * containment_wall_optimum
+    containment_endpoint_capacity = containment_endpoint_scaled.numerator // containment_endpoint_scaled.denominator
+    containment_wall_capacity = containment_wall_scaled.numerator // containment_wall_scaled.denominator
+    containment_endpoint_demand = independent_kernel_demand(15670)
+    containment_wall_demand = independent_kernel_demand(15671)
+    require(kernel_containment_cut == {
+        "closed_K_prime_minimum": 10,
+        "closed_K_prime_maximum": 15670,
+        "first_open_K_prime": 15671,
+        "endpoint_branch_pattern": [choice for _, _, choice in independent_kernel_hybrid_terms(15670)],
+        "endpoint_active_coranks": [1, 2],
+        "endpoint_active_resources": ["rank_preserving_nine_shadow", "full_containment_nine_shadow"],
+        "endpoint_optimum_numerator": containment_endpoint_optimum.numerator,
+        "endpoint_optimum_denominator": containment_endpoint_optimum.denominator,
+        "endpoint_demand": containment_endpoint_demand,
+        "endpoint_capacity": containment_endpoint_capacity,
+        "endpoint_gap": containment_endpoint_demand - containment_endpoint_capacity,
+        "wall_optimum_numerator": containment_wall_optimum.numerator,
+        "wall_optimum_denominator": containment_wall_optimum.denominator,
+        "wall_demand": containment_wall_demand,
+        "wall_capacity": containment_wall_capacity,
+        "wall_excess": containment_wall_capacity - containment_wall_demand,
+        "capacity_formula": "exact two-resource LP with individual ambient/record caps",
+    }, "kernel full-shadow capacity constants")
+    require(independent_kernel_demand_ratio(15671) < containment_wall_optimum, "kernel full-shadow wall")
+
     require(rank8_owner_cap == {
         "kernel_dimension": 2,
         "owner_flat_dimension": 4,
@@ -674,7 +856,7 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 11772,
+        "kernel_dominant_lane_closed_through_Kprime": 15670,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
@@ -698,6 +880,12 @@ def main() -> None:
         f"hybrid_checks={hybrid_checks} "
         f"hybrid_endpoint_gap={hybrid_endpoint_demand-hybrid_endpoint_capacity} "
         f"hybrid_wall_excess={hybrid_wall_capacity-hybrid_wall_demand} "
+        f"shadow_checks={shadow_checks} "
+        f"shadow_endpoint_gap={shadow_endpoint_demand-shadow_endpoint_capacity} "
+        f"shadow_wall_excess={shadow_wall_capacity-shadow_wall_demand} "
+        f"containment_checks={containment_checks} "
+        f"containment_endpoint_gap={containment_endpoint_demand-containment_endpoint_capacity} "
+        f"containment_wall_excess={containment_wall_capacity-containment_wall_demand} "
         f"rank8_last_gap={rank8_last_cap-rank8_last_demand} "
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "
