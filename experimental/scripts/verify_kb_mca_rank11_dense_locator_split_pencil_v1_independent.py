@@ -6,12 +6,19 @@ from __future__ import annotations
 import json
 from fractions import Fraction
 from itertools import combinations
-from math import comb
+from math import comb, isqrt
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "experimental/data/certificates/kb-mca-rank11-dense-locator-split-pencil-v1/manifest.json"
+PAIRCORE_SOURCE = {
+    "id": "rate_half_mca_rank11_rank9_split_pencil_paircore_dichotomy",
+    "path": "background/nodes/rate_half_mca_rank11_rank9_split_pencil_paircore_dichotomy",
+    "commit": "0e547404a4426b9c2e5672d44b7f23e726756e01",
+    "tree": "a74872d50f946260fc65c6a798e069d6e17ace59",
+    "contract_sha256": "e899fbb6893e61495371f689f6a2ca5eb196d0bbc6d6ec8dc39b34eb9965c252",
+}
 
 
 def require(condition: bool, message: str) -> None:
@@ -61,6 +68,12 @@ def main() -> None:
     component = data["component_incidence"]
     star = data["component_star"]
     cell = data["rank9_split_pencil_cell"]
+    paircore = data["rank9_split_pencil_paircore"]
+    require(
+        data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
+        == PAIRCORE_SOURCE,
+        "pair-core source pin",
+    )
 
     endpoint = ceiling(independent_binomial_ratio(10))
     require(endpoint == 2526815879272440, "isolated endpoint")
@@ -95,6 +108,35 @@ def main() -> None:
     require(fixed_cell == cell["sharp_fixed_cell_record_cap"] == 45567658, "sharp fixed-cell cap")
     require(cell["rounding_rule"].startswith("floor"), "rounding rule")
 
+    n = 2097152
+    m = 1116048
+    common_core = 2 * m - n - 1
+    coefficient = n - m + 1
+    ordered_resource = coefficient * (n - 10)
+    plane_cap = (1 + isqrt(1 + 4 * ordered_resource)) // 2
+    next_integer_fails_by = (plane_cap + 1) * plane_cap - ordered_resource
+    require(paircore == {
+        "two_support_intersection_floor": 2 * m - n,
+        "low_common_core_max": common_core,
+        "ordered_pair_petal_coefficient": coefficient,
+        "ordered_pair_resource_ceiling": ordered_resource,
+        "low_common_core_plane_cap": plane_cap,
+        "next_integer_fails_by": next_integer_fails_by,
+        "large_shared_pair_core_floor": 2 * m - n,
+    }, "pair-core constants")
+    require(plane_cap == 1434405, "low-core plane cap")
+    require(next_integer_fails_by == 2636520, "next integer gap")
+
+    core_checks = 0
+    for owner_core in range(2 * m - n, m):
+        owner_multiplicity = (n - owner_core) // (m - owner_core)
+        require(
+            owner_multiplicity * (owner_multiplicity - 1)
+            <= coefficient * (owner_core - common_core),
+            "owner ordered pairs paid by petals",
+        )
+        core_checks += 1
+
     points, slopes, design_pairs = affine_plane_design()
     require(data["claims"] == {
         "local_theorem_packet": True,
@@ -108,6 +150,7 @@ def main() -> None:
     print(
         "KB_MCA_RANK11_DENSE_LOCATOR_SPLIT_PENCIL_V1_INDEPENDENT_PASS "
         f"endpoint={endpoint} records={records} cell_cap={fixed_cell} "
+        f"plane_cap={plane_cap} core_checks={core_checks} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 

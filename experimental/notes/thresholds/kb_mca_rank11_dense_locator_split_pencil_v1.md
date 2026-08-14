@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; every rank-nine star is a split-pencil cell carrying at most 45567658 records.
+direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; every rank-nine star is a split-pencil cell carrying at most 45567658 records; and every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core.
 architecture: POST_NEAR_ERROR_RANK11_DENSE_LOCATOR_COMPONENT_ROUTE_V1
 partition_digest: inherited post-near rank-eleven route of PRs 1168 and 1169; no new first-match atom or partition digest
-atom_or_cell: rank-eleven dense-locator component family and one fixed rank-nine split-pencil cell
+atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, and its lifted owner plane
 quantifier: Every survivor satisfying the pinned rank-eleven 32-anchor, 18-dense-root, ten-dimensional correction-space setup, uniformly for 10<=K'<=1048576
 projection_and_unit: Distinct bad finite slopes per received line at record level; record/coordinate-subset incidences only where explicitly stated
-claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records
+claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records
 status: PROVED LOCAL THEOREM PACKET / GLOBAL ROW OPEN
-impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL CELL LEDGER
-falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; or a fixed rank-nine cell with more than 45567658 assigned records.
+impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL CELL AND PAIR-CORE LEDGER
+falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; or a lifted plane above 1434405 records whose shared pair core has size below 134944.
 replay: python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1_independent.py
 ---
 
@@ -25,12 +25,13 @@ Status: **PROVED LOCAL THEOREM PACKET / ZERO DEPLOYED LEDGER MOVEMENT**.
 Exact parent: PR #1169 head
 `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
 
-This packet imports four public, commit- and tree-pinned prize-DAG theorems.
+This packet imports five public, commit- and tree-pinned prize-DAG theorems.
 They begin after the rank-eleven branch has produced one fixed degree-31
 anchor interpolant, eighteen dense-pair roots, and a ten-dimensional
 relative correction space.  They end with an exact ledger for one fixed
-rank-nine ten-coordinate cell.  They do not count those cells or assign a
-chronology owner across them.
+rank-nine ten-coordinate cell and a low-core/large-shared-core dichotomy for
+its lifted owner plane.  They do not count those planes or assign a chronology
+owner across them.
 
 Throughout, write
 
@@ -228,9 +229,52 @@ Equation (4.2) has an integer left side `45153*g`, so its sharp consequence
 uses the floor, not the ceiling.  The manifest retains both numbers and the
 replayers enforce this one-unit rounding repair.
 
-## 5. Exact impact on the open route
+## 5. Pair-core plane dichotomy
 
-The packet supplies four route cuts.
+Lift one fixed residual rank-nine owner plane back to the original row.  Let
+`J` be the coordinates where every owner in the plane equals the received
+pair, put `j=|J|>=10`, and write `P_p=C_p minus J` for the pair-core petal of
+owner `p`.  The petals are pairwise disjoint.  If two record lines meet at
+`p`, their size-`1116048` supports intersect in at least
+
+```text
+2*1116048-2097152=134944
+```
+
+coordinates.  The two distinct slope equations recover both received
+columns there, so this intersection lies in `C_p`.
+
+In the low-common-core branch `j<=134943`, put
+
+```text
+D=2097152-1116048=981104,
+x=1116048-|C_p|,  y=t_p-1.
+```
+
+Fixed-owner exception disjointness gives `yx<=D`.  Therefore
+
+```text
+D+1-x-y=(D-yx)+(y-1)(x-1)>=0,
+|P_p|>=t_p-1,  and  t_p<=D+1.
+```
+
+Doubling the line-design identity and summing over the disjoint petals gives
+
+```text
+g(g-1)=sum_p t_p(t_p-1)
+      <=981105*sum_p |P_p|
+      <=981105*(2097152-10)
+       =2057516501910.
+```
+
+Exact integer comparison yields `g<=1434405`; the next integer exceeds the
+resource by `2636520`.  Hence every larger plane has `j>=134944`, a pair core
+shared by all owners and records in that plane.  This theorem is plane-local:
+it neither counts different planes nor pays the large shared-core branch.
+
+## 6. Exact impact on the open route
+
+The packet supplies five route cuts.
 
 1. High-core absorption has exactly dimension ten, not a range `2,...,10`.
 2. More than 99 percent of record/eleven-subset incidences enter an affine
@@ -238,20 +282,23 @@ The packet supplies four route cuts.
 3. More than half of records have a 98-percent star and enter a large-owner,
    rank-nine pencil, or kernel-plane target.
 4. One fixed rank-nine pencil cell carries at most `45567658` records.
+5. One lifted rank-nine plane either carries at most `1434405` records or
+   has a shared pair core of size at least `134944`.
 
-It does not supply the cross-cell count needed to multiply (4.3), an
+It does not supply the cross-plane count needed to aggregate these bounds, an
 overlap-correct selector for the component incidences, a chronology-correct
 owner satisfying PR #1169, or a payment for the large-owner and kernel-plane
 branches.  Therefore `U_BC`, `U_new`, error rank eleven, and the KoalaBear
 row remain open.
 
-## 6. Provenance and replay
+## 7. Provenance and replay
 
-The manifest pins the four public source nodes by commit, Git tree, and
+The manifest pins the five public source nodes by commit, Git tree, and
 source-contract SHA-256.  The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an
-exhaustive affine-plane line-design model.
+exhaustive check of all `981104` admissible owner-core sizes, together with a
+finite affine-plane line-design model.
 
 ```text
 python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py

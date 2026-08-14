@@ -10696,13 +10696,70 @@ consequence is the floor $45567658$ printed above.  Both values and the
 rounding direction are retained in the companion certificate.
 \end{remark}
 
+\begin{proposition}[Split-pencil pair-core dichotomy]
+\label{prop:kb-rank11-split-pencil-paircore}
+Lift one fixed residual rank-nine owner plane to the original KoalaBear row.
+Let $J$ be the coordinates where every owner in the plane equals the received
+pair, let $j=|J|\ge10$, and let $g$ be the number of record lines in the
+plane.  Then either
+\[
+ g\le1434405,
+\]
+or the entire owner plane has a common received-pair core of size
+\[
+ j\ge134944.
+\]
+\end{proposition}
+
+\begin{proof}
+Write $C_p$ for the pair core of owner $p$ and
+$P_p=C_p\setminus J$.  Proposition~\ref{prop:kb-rank11-split-pencil-cell}
+gives pairwise disjoint petals $P_p$ and
+$\sum_p\binom{t_p}{2}=\binom g2$.
+
+If two distinct record lines meet at $p$, their selected original supports,
+each of size $m=1116048$, intersect in at least
+\[
+ 2m-n=2(1116048)-2097152=134944
+\]
+coordinates.  The two distinct slope equalities recover both received
+columns there, so the intersection lies in $C_p$.
+
+Assume $j\le134943$.  Put $D=n-m=981104$,
+$x=m-|C_p|$, and $y=t_p-1$ at a point with $t_p\ge2$.
+Pair noncontainment gives $x\ge1$, while fixed-owner exception
+disjointness gives $yx\le D$.  Since $m-j\ge D+1$ and
+\[
+ D+1-x-y=(D-yx)+(y-1)(x-1)\ge0,
+\]
+we have $|P_p|=|C_p|-j\ge t_p-1$ and $t_p\le D+1$.
+Consequently
+\[
+\begin{split}
+ g(g-1)
+  &=\sum_p t_p(t_p-1)\\
+  &\le981105\sum_p|P_p|\\
+  &\le981105(2097152-10)=2057516501910.
+\end{split}
+\]
+Now
+\[
+ 1434405\cdot1434404\le2057516501910
+ <1434406\cdot1434405,
+\]
+so $g\le1434405$.  Thus any larger plane lies in the alternative
+$j\ge134944$.
+\end{proof}
+
 \begin{remark}[Typed scope of the rank-eleven packet]
 \label{rem:kb-rank11-dense-locator-scope}
 The density in Proposition~\ref{prop:kb-rank11-component-incidence} is a
 record/coordinate-subset incidence density, not a record or component count.
 The corollary is recordwise, and
 Proposition~\ref{prop:kb-rank11-split-pencil-cell} is local to one fixed
-cell.  The packet does not count cells, correct for cross-cell overlap,
+cell, and Proposition~\ref{prop:kb-rank11-split-pencil-paircore} remains
+local to one lifted owner plane.  The packet does not count planes, pay the
+large shared-core branch, correct for cross-cell overlap,
 construct the chronology owner required by
 Remark~\ref{rem:mca-dense-core-owner-acceptance-contract}, pay either the
 large-owner or kernel-plane branch, move an active-v4 atom, or close

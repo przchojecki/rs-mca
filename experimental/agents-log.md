@@ -4266,7 +4266,7 @@ Keep entries concise and link to the relevant files.
 
 ### 2026-08-14 - Rank-eleven dense-locator and split-pencil route
 
-- **Agent/model:** Codex, importing four public prize-DAG theorems after
+- **Agent/model:** Codex, importing five public prize-DAG theorems after
   source, proof-boundary, arithmetic, and independent finite-model replay.
 - **Exact parent:** PR #1169 head
   `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
@@ -4281,17 +4281,21 @@ Keep entries concise and link to the relevant files.
   pencil, or kernel plane; and the affine-plane/petal ledger caps one fixed
   rank-nine split-pencil cell at `45567658` records.  The last integer
   repairs the source node's valid but nonsharp ceiling by flooring its proved
-  weighted inequality.
+  weighted inequality.  A plane-level pair-core theorem then caps the
+  low-common-core branch at `1434405` records and forces a shared
+  `134944`-coordinate received-pair core in every larger rank-nine plane.
 - **Unit guard:** The first abundance result counts record/eleven-subset
   incidences.  Only the separately proved threshold argument converts it to
   a record floor.  Neither number is a distinct component count.
 - **Bridge to #1169:** The rank-nine lane is now a concrete
   base-field-normalized split-pencil cell ledger satisfying the deployed
-  slope unit.  It does not yet supply the cross-cell census or the
-  chronology-correct owner required by the #1169 acceptance contract.
-- **Nonclaim:** No cross-cell payment, large-owner payment, kernel-plane
+  slope unit, followed by a low-core/large-shared-core plane dichotomy.  It
+  does not yet supply the cross-plane census, payment of the shared core, or
+  the chronology-correct owner required by the #1169 acceptance contract.
+- **Nonclaim:** No cross-plane or shared-core payment, large-owner payment,
+  kernel-plane
   payment, rank-eleven payment, active-v4 movement, KoalaBear closure, or
   prize closure.
-- **What to do next:** Prove an overlap-correct selector and cross-cell
+- **What to do next:** Prove an overlap-correct selector and cross-plane
   census, or route the large-owner/kernel-plane alternatives into the
   guarded chronology-owner interface.

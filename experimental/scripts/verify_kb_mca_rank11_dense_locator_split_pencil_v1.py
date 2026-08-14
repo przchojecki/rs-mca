@@ -7,7 +7,7 @@ import argparse
 import copy
 import hashlib
 import json
-from math import comb
+from math import comb, isqrt
 from pathlib import Path
 from typing import Any
 
@@ -43,6 +43,13 @@ SOURCE_NODES = {
         "commit": "51cb474f63b364de6d1193bac98476d63ebfea6e",
         "tree": "41906278691510040285434141ea6957069d0d25",
         "contract_sha256": "150863c70ede9590605eaa93eb97a16da4edb6883d6ede80c60c1c12d9795cf3",
+    },
+    "rank9_split_pencil_paircore": {
+        "id": "rate_half_mca_rank11_rank9_split_pencil_paircore_dichotomy",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_split_pencil_paircore_dichotomy",
+        "commit": "0e547404a4426b9c2e5672d44b7f23e726756e01",
+        "tree": "a74872d50f946260fc65c6a798e069d6e17ace59",
+        "contract_sha256": "e899fbb6893e61495371f689f6a2ca5eb196d0bbc6d6ec8dc39b34eb9965c252",
     },
 }
 
@@ -158,6 +165,11 @@ def expected() -> dict[str, Any]:
     owner_cap = 2097152 - m_max + 1
     weighted = owner_cap * (2097152 - 10)
     cell = weighted // pencil
+    pair_intersection = 2 * 1116048 - 2097152
+    paircore_coefficient = 981104 + 1
+    paircore_resource = paircore_coefficient * (2097152 - 10)
+    plane_cap = (1 + isqrt(1 + 4 * paircore_resource)) // 2
+    next_integer_fails_by = (plane_cap + 1) * plane_cap - paircore_resource
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -217,6 +229,15 @@ def expected() -> dict[str, Any]:
             "sharp_fixed_cell_record_cap": cell,
             "rounding_rule": "floor(weighted_petal_incidence_cap/rank9_extension_floor)",
         },
+        "rank9_split_pencil_paircore": {
+            "two_support_intersection_floor": pair_intersection,
+            "low_common_core_max": pair_intersection - 1,
+            "ordered_pair_petal_coefficient": paircore_coefficient,
+            "ordered_pair_resource_ceiling": paircore_resource,
+            "low_common_core_plane_cap": plane_cap,
+            "next_integer_fails_by": next_integer_fails_by,
+            "large_shared_pair_core_floor": pair_intersection,
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
@@ -247,6 +268,7 @@ def validate(value: object) -> dict[str, int]:
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
         "cell_cap": value["rank9_split_pencil_cell"]["sharp_fixed_cell_record_cap"],
+        "plane_cap": value["rank9_split_pencil_paircore"]["low_common_core_plane_cap"],
     }
 
 
@@ -258,6 +280,7 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["component_star"].__setitem__("rank9_extension_floor", 45152),
         lambda item: item["rank9_split_pencil_cell"].__setitem__("sharp_fixed_cell_record_cap", 45567659),
         lambda item: item["rank9_split_pencil_cell"].__setitem__("rounding_rule", "ceil"),
+        lambda item: item["rank9_split_pencil_paircore"].__setitem__("low_common_core_plane_cap", 1434406),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
         lambda item: item["claims"].__setitem__("rank11_paid", True),
         lambda item: item["source_prize_dag"]["nodes"]["component_star"].__setitem__("commit", "0" * 40),
@@ -285,6 +308,7 @@ def main() -> None:
         "KB_MCA_RANK11_DENSE_LOCATOR_SPLIT_PENCIL_V1_PASS "
         f"roots={result['roots']} high_rank={result['high_rank']} "
         f"component_ppb={result['component_ppb']} cell_cap={result['cell_cap']} "
+        f"plane_cap={result['plane_cap']} "
         f"controls={controls} manifest_sha256={hashlib.sha256(MANIFEST.read_bytes()).hexdigest()}"
     )
 

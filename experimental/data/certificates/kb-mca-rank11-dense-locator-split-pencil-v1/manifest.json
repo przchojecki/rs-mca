@@ -31,6 +31,13 @@
         "commit": "51cb474f63b364de6d1193bac98476d63ebfea6e",
         "tree": "41906278691510040285434141ea6957069d0d25",
         "contract_sha256": "150863c70ede9590605eaa93eb97a16da4edb6883d6ede80c60c1c12d9795cf3"
+      },
+      "rank9_split_pencil_paircore": {
+        "id": "rate_half_mca_rank11_rank9_split_pencil_paircore_dichotomy",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_split_pencil_paircore_dichotomy",
+        "commit": "0e547404a4426b9c2e5672d44b7f23e726756e01",
+        "tree": "a74872d50f946260fc65c6a798e069d6e17ace59",
+        "contract_sha256": "e899fbb6893e61495371f689f6a2ca5eb196d0bbc6d6ec8dc39b34eb9965c252"
       }
     }
   },
@@ -89,6 +96,15 @@
     "source_weak_ceiling_cap": 45567659,
     "sharp_fixed_cell_record_cap": 45567658,
     "rounding_rule": "floor(weighted_petal_incidence_cap/rank9_extension_floor)"
+  },
+  "rank9_split_pencil_paircore": {
+    "two_support_intersection_floor": 134944,
+    "low_common_core_max": 134943,
+    "ordered_pair_petal_coefficient": 981105,
+    "ordered_pair_resource_ceiling": 2057516501910,
+    "low_common_core_plane_cap": 1434405,
+    "next_integer_fails_by": 2636520,
+    "large_shared_pair_core_floor": 134944
   },
   "claims": {
     "local_theorem_packet": true,
