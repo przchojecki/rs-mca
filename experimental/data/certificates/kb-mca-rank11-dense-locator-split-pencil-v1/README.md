@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages fifty proved local results after the fixed
+This certificate packages fifty-one proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -30,6 +30,10 @@ rank-eleven anchor-star reduction:
 - exact weighted elimination of the rank-nine fixed target from
   `K'=20618` onward; the former low-row core comparison mixed original and
   residual rows, so rank nine is reopened on `10<=K'<=20617`;
+- a residual-unit petal-pair cap
+  `floor(981105*(n'-j)*(m'+j-20)/2)`, with `9<=j<=K'-1`, whose exact first
+  crossing at `K'=15635` closes rank nine on `15635..20617` without using
+  the original-row common-core floor;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -156,7 +160,7 @@ proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `10<=K'<=20617` is open; the
+lane. The low rank-nine interval `10<=K'<=15634` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not

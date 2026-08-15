@@ -109,6 +109,13 @@ SOURCE_NODES = {
         "tree": "7044fbca17167f49a1bd890f21d1ec1d5282f74d",
         "contract_sha256": "28cfa4f50ea4ffa9a61888148c3916b0638906117d6efdbd2a779d8f4a925d94",
     },
+    "rank9_residual_petal_capacity_cut": {
+        "id": "rate_half_mca_rank11_rank9_residual_petal_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_residual_petal_capacity_cut",
+        "commit": "6a5ffb3d8b55f52e5bf0b1ba43bda2fb8e8f5fd1",
+        "tree": "c5a753ba2494a92eb0349584ba83a74ffeb95691",
+        "contract_sha256": "2980ce37664731e481b65d74ea39f4635ef8e9cba09bd8c22d48cc1493d1a1a8",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1506,6 +1513,62 @@ def expected() -> dict[str, Any]:
     weighted_boundary_cap = (
         owner_cap * (weighted_boundary_m - 10) * weighted_boundary_n
     )
+    residual_petal_last_open_k = 15634
+    residual_petal_last_open_n = 1048576 + residual_petal_last_open_k
+    residual_petal_last_open_m = 67472 + residual_petal_last_open_k
+    residual_petal_last_open_numerator = (
+        lane_ppb
+        * non_dense
+        * comb(residual_petal_last_open_m, 9)
+        * comb(residual_petal_last_open_m - 9, 2)
+    )
+    residual_petal_last_open_denominator = (
+        10**9 * comb(residual_petal_last_open_n, 9)
+    )
+    residual_petal_last_open_demand = ceil_ratio(
+        residual_petal_last_open_numerator,
+        residual_petal_last_open_denominator,
+    )
+    residual_petal_last_open_j = residual_petal_last_open_k - 1
+    residual_petal_last_open_cap_twice = (
+        owner_cap
+        * (residual_petal_last_open_n - residual_petal_last_open_j)
+        * (residual_petal_last_open_m + residual_petal_last_open_j - 20)
+    )
+    residual_petal_last_open_cap = residual_petal_last_open_cap_twice // 2
+    residual_petal_last_open_raw_cross = (
+        2 * residual_petal_last_open_numerator
+        - residual_petal_last_open_cap_twice
+        * residual_petal_last_open_denominator
+    )
+    residual_petal_boundary_k = 15635
+    residual_petal_boundary_n = 1048576 + residual_petal_boundary_k
+    residual_petal_boundary_m = 67472 + residual_petal_boundary_k
+    residual_petal_boundary_numerator = (
+        lane_ppb
+        * non_dense
+        * comb(residual_petal_boundary_m, 9)
+        * comb(residual_petal_boundary_m - 9, 2)
+    )
+    residual_petal_boundary_denominator = (
+        10**9 * comb(residual_petal_boundary_n, 9)
+    )
+    residual_petal_boundary_demand = ceil_ratio(
+        residual_petal_boundary_numerator,
+        residual_petal_boundary_denominator,
+    )
+    residual_petal_boundary_j = residual_petal_boundary_k - 1
+    residual_petal_boundary_cap_twice = (
+        owner_cap
+        * (residual_petal_boundary_n - residual_petal_boundary_j)
+        * (residual_petal_boundary_m + residual_petal_boundary_j - 20)
+    )
+    residual_petal_boundary_cap = residual_petal_boundary_cap_twice // 2
+    residual_petal_boundary_raw_cross = (
+        2 * residual_petal_boundary_numerator
+        - residual_petal_boundary_cap_twice
+        * residual_petal_boundary_denominator
+    )
     kernel_endpoint = 4598
     kernel_wall = 4599
     kernel_endpoint_demand = kernel_demand_ceiling(kernel_endpoint)
@@ -1798,6 +1861,27 @@ def expected() -> dict[str, Any]:
                 "RANK9_SHARED_PAIR_CORE_PLANE",
                 "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
             ],
+        },
+        "rank9_residual_petal_capacity_cut": {
+            "common_core_minimum": 9,
+            "common_core_maximum_formula": "K_prime-1",
+            "petal_pair_formula": "s*(j-9)+C(s,2)",
+            "capacity_formula": "floor(981105*(n_prime-j)*(m_prime+j-20)/2)",
+            "worst_core_on_claimed_interval": "j=K_prime-1",
+            "last_open_K_prime": residual_petal_last_open_k,
+            "last_open_demand": residual_petal_last_open_demand,
+            "last_open_cap": residual_petal_last_open_cap,
+            "last_open_gap": residual_petal_last_open_cap - residual_petal_last_open_demand,
+            "last_open_raw_cross": residual_petal_last_open_raw_cross,
+            "first_closed_K_prime": residual_petal_boundary_k,
+            "first_closed_demand": residual_petal_boundary_demand,
+            "first_closed_cap": residual_petal_boundary_cap,
+            "first_closed_gap": residual_petal_boundary_demand - residual_petal_boundary_cap,
+            "first_closed_raw_cross": residual_petal_boundary_raw_cross,
+            "closed_K_prime_maximum": weighted_last_open_k,
+            "remaining_rank9_interval": [10, residual_petal_last_open_k],
+            "combined_rank9_closed_from_Kprime": residual_petal_boundary_k,
+            "original_row_common_core_used": False,
         },
         "kernel_canonical_basis_globalizer": {
             "correction_dimension": 10,
@@ -2399,8 +2483,9 @@ def expected() -> dict[str, Any]:
             "cross_cell_census": False,
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
-            "rank9_fixed_target_eliminated_from_Kprime": 20618,
+            "rank9_fixed_target_eliminated_from_Kprime": 15635,
             "rank9_low_shortening_reopened": True,
+            "rank9_remaining_interval": [10, 15634],
             "kernel_dominant_lane_closed_through_Kprime": 1048576,
             "kernel_fixed_lane_closed": True,
             "kernel_uniform_corank2_cap_proved": True,
@@ -2440,16 +2525,33 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
     require(fence["rich_slope_count"] > value["component_ninesubset_targets"]["fixed_selector_record_floor"], "local-cap fence")
     require(fence["base_prime"] > fence["forbidden_slope_count"] * fence["rich_slope_count"], "forbidden-slope translate")
     weighted_elimination = value["rank9_weighted_target_elimination"]
+    residual_petal = value["rank9_residual_petal_capacity_cut"]
     require(
         weighted_elimination["first_closed_demand"]
         > weighted_elimination["first_closed_cap"],
         "weighted target gap",
     )
     require(
-        value["claims"]["rank9_fixed_target_eliminated_from_Kprime"] == 20618,
-        "rank-nine repaired boundary",
+        value["claims"]["rank9_fixed_target_eliminated_from_Kprime"] == 15635,
+        "rank-nine residual-petal boundary",
     )
     require(value["claims"]["rank9_low_shortening_reopened"] is True, "rank-nine reopened interval")
+    require(value["claims"]["rank9_remaining_interval"] == [10, 15634], "rank-nine remaining interval")
+    require(residual_petal["last_open_raw_cross"] < 0, "residual-petal last raw cross")
+    require(residual_petal["first_closed_raw_cross"] > 0, "residual-petal first raw cross")
+    for kprime in range(10, 20618):
+        nprime, mprime = 1048576 + kprime, 67472 + kprime
+        numerator = (
+            495405467
+            * 274980728111260126
+            * comb(mprime, 9)
+            * comb(mprime - 9, 2)
+        )
+        denominator = 10**9 * comb(nprime, 9)
+        j = kprime - 1
+        cap_twice = 981105 * (nprime - j) * (mprime + j - 20)
+        raw_cross = 2 * numerator - cap_twice * denominator
+        require((raw_cross > 0) == (kprime >= 15635), f"residual-petal crossing K'={kprime}")
     kernel_cut = value["kernel_rankstratified_capacity_cut"]
     for kprime in range(10, kernel_cut["closed_K_prime_maximum"] + 1):
         require(kernel_demand_ceiling(kprime) > kernel_capacity(kprime), f"kernel cut {kprime}")
@@ -3034,6 +3136,7 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["component_ninesubset_weighted_concentrator"].__setitem__("marked_component_extension_floor", 5868470021012019),
         lambda item: item["rank9_weighted_component_cap"].__setitem__("boundary_cap", 92395178310909599),
         lambda item: item["rank9_weighted_target_elimination"].__setitem__("first_closed_gap", 2403530864990),
+        lambda item: item["rank9_residual_petal_capacity_cut"].__setitem__("first_closed_gap", 3381772318664),
         lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
         lambda item: item["kernel_multibasis_decoration_compression"]["basis_multiplicities"].__setitem__(0, 2),
@@ -3093,7 +3196,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["claims"].__setitem__("rank8_Kprime11_fixed_circuit_census_proved", False),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
-        lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated_from_Kprime", 20619),
+        lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated_from_Kprime", 15636),
+        lambda item: item["claims"].__setitem__("rank9_remaining_interval", [10, 15635]),
         lambda item: item["claims"].__setitem__("rank9_low_shortening_reopened", False),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
         lambda item: item["claims"].__setitem__("rank11_paid", True),

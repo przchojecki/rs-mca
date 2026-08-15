@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Rank-nine residual petal-pair capacity
+
+- **Agent/model:** Codex with exact residual-row arithmetic and independent
+  factor replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED RESIDUAL-INTERVAL ELIMINATION. Zero active-v4 ledger
+  movement; no KoalaBear closure.
+- **What is being added:** In a fixed rank-nine residual chart, owner petals
+  give the marked capacity
+  `floor(981105*(n'-j)*(m'+j-20)/2)` for `9<=j<=K'-1`. Demand first exceeds
+  this cap at `K'=15635` by `3381772318665`; the cap still wins at `15634`
+  by `1881744358235`.
+- **How it is useful:** It closes rank nine on `15635..20617`; together with
+  the repaired high-row cut, rank nine now survives only on `10..15634`.
+  The proof remains wholly in residual units and uses no original-row
+  `134944` core floor.
+- **What to do next:** Couple owner-labelled line incidence with the same
+  petal budget on `10..15634`; do not sum chart-local caps after
+  deduplication.
+
 ### 2026-08-15 - Rank-nine reverse-shortening scope repair
 
 - **Agent/model:** Codex with exact adjacent-row arithmetic and independent
@@ -48,8 +70,8 @@ Keep entries concise and link to the relevant files.
   `20618..1048576` while reopening the exact rank-nine interval
   `10..20617` before the packet is reviewed or merged.
 - **What to do next:** Seek a residual-unit owner-plane or chronology bound
-  on `10..20617`; never transport the original-row pair-core floor without
-  subtracting the deleted locator core.
+  on the now-refined interval `10..15634`; never transport the original-row
+  pair-core floor without subtracting the deleted locator core.
 
 ### 2026-08-15 - Rank-eight codimension-one circuit-shadow census
 
@@ -4706,8 +4728,9 @@ Keep entries concise and link to the relevant files.
   repaired continuation keeps the pre-deduplication marked weight: at the
   shortest endpoint it is `5868470021012020`. A rank-nine chart carries at
   most `981105*(m'-10)*n'` such incidences. The later scope audit places the
-  exact first weighted crossing at `K'=20618`; it retracts this entry's
-  former all-row elimination claim and reopens `10<=K'<=20617`.
+  exact first coarse weighted crossing at `K'=20618`; it retracts this
+  entry's former all-row elimination claim.  The residual-petal refinement
+  then closes `15635..20617`, leaving `10<=K'<=15634` open.
 - **Owner key:** In the full-rank star branch, deficiency at most `22320`
   makes the owner unique for its record.  Two candidates force an
   intersection `22833` above the RS root cap, so weighted aggregation no
@@ -4719,7 +4742,8 @@ Keep entries concise and link to the relevant files.
   base-field-normalized split-pencil cell ledger satisfying the deployed
   slope unit, followed by a low-core/large-shared-core plane dichotomy.  It
   now supplies one overlap-correct fixed chart and eliminates its rank-nine
-  alternative by retaining pre-deduplication weight only from `K'=20618`.
+  alternative by retaining pre-deduplication weight and exact residual
+  petal pairs from `K'=15635`.
   Below that row the rank-nine, fixed-kernel, and rank-eight alternatives
   still need payment before entering the
   chronology-correct owner required by the #1169 acceptance contract.

@@ -95,6 +95,13 @@
         "tree": "7044fbca17167f49a1bd890f21d1ec1d5282f74d",
         "contract_sha256": "28cfa4f50ea4ffa9a61888148c3916b0638906117d6efdbd2a779d8f4a925d94"
       },
+      "rank9_residual_petal_capacity_cut": {
+        "id": "rate_half_mca_rank11_rank9_residual_petal_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_residual_petal_capacity_cut",
+        "commit": "6a5ffb3d8b55f52e5bf0b1ba43bda2fb8e8f5fd1",
+        "tree": "c5a753ba2494a92eb0349584ba83a74ffeb95691",
+        "contract_sha256": "2980ce37664731e481b65d74ea39f4635ef8e9cba09bd8c22d48cc1493d1a1a8"
+      },
       "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -509,6 +516,30 @@
       "RANK9_SHARED_PAIR_CORE_PLANE",
       "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3"
     ]
+  },
+  "rank9_residual_petal_capacity_cut": {
+    "common_core_minimum": 9,
+    "common_core_maximum_formula": "K_prime-1",
+    "petal_pair_formula": "s*(j-9)+C(s,2)",
+    "capacity_formula": "floor(981105*(n_prime-j)*(m_prime+j-20)/2)",
+    "worst_core_on_claimed_interval": "j=K_prime-1",
+    "last_open_K_prime": 15634,
+    "last_open_demand": 50777401704768572,
+    "last_open_cap": 50779283449126807,
+    "last_open_gap": 1881744358235,
+    "last_open_raw_cross": -18157619613263943707902051344298221552552276539946798639022884527164800,
+    "first_closed_K_prime": 15635,
+    "first_closed_demand": 50783693985583057,
+    "first_closed_cap": 50780312213264392,
+    "first_closed_gap": 3381772318665,
+    "first_closed_raw_cross": 32632198107169110848930789755311997983757628901001052346612176459768400,
+    "closed_K_prime_maximum": 20617,
+    "remaining_rank9_interval": [
+      10,
+      15634
+    ],
+    "combined_rank9_closed_from_Kprime": 15635,
+    "original_row_common_core_used": false
   },
   "kernel_canonical_basis_globalizer": {
     "correction_dimension": 10,
@@ -2453,8 +2484,12 @@
     "cross_cell_census": false,
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
-    "rank9_fixed_target_eliminated_from_Kprime": 20618,
+    "rank9_fixed_target_eliminated_from_Kprime": 15635,
     "rank9_low_shortening_reopened": true,
+    "rank9_remaining_interval": [
+      10,
+      15634
+    ],
     "kernel_dominant_lane_closed_through_Kprime": 1048576,
     "kernel_fixed_lane_closed": true,
     "kernel_uniform_corank2_cap_proved": true,

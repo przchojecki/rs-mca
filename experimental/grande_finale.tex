@@ -10969,6 +10969,83 @@ original-row core of size $134944$ need not contain any residual core of
 that size.  No conclusion for $10\le K'\le20617$ is claimed here.
 \end{proof}
 
+\begin{proposition}[Residual petal-pair refinement of the rank-nine target]
+\label{prop:kb-rank11-rank9-residual-petal-capacity}
+In the fixed target of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, alternative
+\textup{(N2)} is empty for every
+\[
+ 15635\le K'\le20617.
+\]
+More precisely, let $J$ be the common core of one residual rank-nine owner
+plane and put $j=|J|$. Then $9\le j\le K'-1$, and its marked
+component-extension weight satisfies
+\[
+ W_B\le
+ \floor{\frac{981105(n'-j)(m'+j-20)}2}.
+ \tag{RP9}\label{eq:kb-rank11-residual-petal-cap}
+\]
+The exact adjacent integer bounds at the first crossing are
+\[
+ \begin{array}{c|rr}
+ K'&\text{demand}&\text{cap}\\ \hline
+ 15634&50777401704768572&50779283449126807\\
+ 15635&50783693985583057&50780312213264392.
+ \end{array}
+\]
+Together with
+Proposition~\ref{prop:kb-rank11-rank9-weighted-exclusion}, this removes the
+rank-nine target for every $K'\ge15635$.  It remains open for
+$10\le K'\le15634$.
+\end{proposition}
+
+\begin{proof}
+Let $u$ span the evaluation kernel on the fixed nine-set $B$.  Owners
+agreeing on $B$ form one affine plane.  If $J$ is the set of coordinates
+where the complete plane agrees with the received pair, then
+$B\subseteq J\subseteq Z(u)$.  Since $u$ is nonzero of degree below $K'$,
+\[
+ 9\le j\le K'-1.                                      \tag{1}
+\]
+Write the core of owner $p$ as $C_p=J\sqcup P_p$ and put
+$s_p=|P_p|$.  The petals $P_p$ are pairwise disjoint, and support-wise
+pair noncontainment gives $s_p\le m'-j-1$.
+
+A marked extension $B\cup\{x,y\}$ has at least one coordinate outside
+$Z(u)$, hence in $P_p$ for its owner.  The number of available unordered
+pairs for $p$ is therefore at most
+\[
+ q_p=s_p(j-9)+\binom{s_p}{2}.
+\]
+Owners with $s_p=0$ contribute no marked extension.  For every remaining
+owner,
+\[
+ \frac{q_p}{s_p}
+ \le j-9+\frac{m'-j-2}{2}
+ =\frac{m'+j-20}{2}.                                 \tag{2}
+\]
+At most $981105$ selected records have the same owner.  Summing (2) and
+using $\sum_p s_p\le n'-j$ proves \eqref{eq:kb-rank11-residual-petal-cap};
+the floor is valid because $W_B$ is integral.
+
+The unfloored envelope $F(j)=(n'-j)(m'+j-20)$ has forward difference
+\[
+ F(j+1)-F(j)=981104-2j+19>0
+\]
+through the claimed interval.  Its maximum is therefore at $j=K'-1$.
+Exact cross-multiplication against \eqref{eq:kb-rank11-weighted-nine-target}
+is negative at $K'=15634$ and positive at $K'=15635$.  The ratio of the
+lower bound to the unfloored cap is a positive constant times nine factors
+$(m'-i)/(n'-i)$, $0\le i\le8$, and
+\[
+ \frac{(K'+67463)(K'+67462)}{2K'+67451}.
+\]
+The nine factors increase because $n'-m'=981104$.  After cancelling the
+positive common factor $K'+67463$, the last factor has forward
+cross-difference $2(K'-11)>0$.  Thus the contradiction persists through
+$K'=20617$.  No original-row $134944$ core floor is used.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -12456,7 +12533,10 @@ deduplicated local conclusions alone do not pay that chart by
 Proposition~\ref{prop:kb-rank11-fixed-chart-local-cap-fence}.  That fence
 does not carry the marked weight in
 Proposition~\ref{prop:kb-rank11-rank9-weighted-exclusion}, which eliminates
-the rank-nine alternative. Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
+the rank-nine alternative from $K'=20618$ onward.
+Proposition~\ref{prop:kb-rank11-rank9-residual-petal-capacity} extends that
+elimination down to $K'=15635$ without transporting the original-row core
+floor. Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
 first eliminates kernel-lane domination through $K'=4598$. Retaining every
 basis decoration in Corollary~\ref{cor:kb-rank11-kernel-multibasis-capacity}
 extends that interval through $K'=11641$. The record-support/ambient hybrid
@@ -12510,8 +12590,10 @@ Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Proposition~\ref{prop:kb-rank11-rank8-minimal-shortening-exclusion}
-removes the shortest row. Thus the remaining intervals are rank eight only on
-$11\le K'\le22525$, dense-owner chronology only on
+removes rank eight from the shortest row. Thus the remaining intervals are
+rank nine only at $K'=10$, rank nine or rank eight on
+$11\le K'\le15634$, rank eight only on $15635\le K'\le22525$,
+dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
 $37996\le K'\le1048576$.
 Proposition~\ref{prop:kb-rank11-rank8-fixed-chart-local-cap-fence} shows

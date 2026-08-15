@@ -77,6 +77,13 @@ FIXED_CHART_SOURCES = {
         "tree": "7044fbca17167f49a1bd890f21d1ec1d5282f74d",
         "contract_sha256": "28cfa4f50ea4ffa9a61888148c3916b0638906117d6efdbd2a779d8f4a925d94",
     },
+    "rank9_residual_petal_capacity_cut": {
+        "id": "rate_half_mca_rank11_rank9_residual_petal_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_residual_petal_capacity_cut",
+        "commit": "6a5ffb3d8b55f52e5bf0b1ba43bda2fb8e8f5fd1",
+        "tree": "c5a753ba2494a92eb0349584ba83a74ffeb95691",
+        "contract_sha256": "2980ce37664731e481b65d74ea39f4635ef8e9cba09bd8c22d48cc1493d1a1a8",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1212,6 +1219,7 @@ def main() -> None:
     weighted_concentrator = data["component_ninesubset_weighted_concentrator"]
     weighted_cap = data["rank9_weighted_component_cap"]
     weighted_elimination = data["rank9_weighted_target_elimination"]
+    residual_petal = data["rank9_residual_petal_capacity_cut"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -1471,6 +1479,71 @@ def main() -> None:
         ratio *= Fraction(m_value - 9, n_value)
         ratios.append(ratio)
     require(all(a < b for a, b in zip(ratios, ratios[1:])), "weighted ratio monotonicity")
+
+    def residual_petal_row(kprime: int) -> tuple[int, int, int]:
+        nprime, mprime = 1048576 + kprime, 67472 + kprime
+        numerator = (
+            495405467
+            * non_dense
+            * comb(mprime, 9)
+            * comb(mprime - 9, 2)
+        )
+        denominator = 10**9 * comb(nprime, 9)
+        j = kprime - 1
+        cap_twice = coefficient * (nprime - j) * (mprime + j - 20)
+        return ceiling(Fraction(numerator, denominator)), cap_twice // 2, 2 * numerator - cap_twice * denominator
+
+    residual_last = residual_petal_row(15634)
+    residual_first = residual_petal_row(15635)
+    require(residual_petal == {
+        "common_core_minimum": 9,
+        "common_core_maximum_formula": "K_prime-1",
+        "petal_pair_formula": "s*(j-9)+C(s,2)",
+        "capacity_formula": "floor(981105*(n_prime-j)*(m_prime+j-20)/2)",
+        "worst_core_on_claimed_interval": "j=K_prime-1",
+        "last_open_K_prime": 15634,
+        "last_open_demand": residual_last[0],
+        "last_open_cap": residual_last[1],
+        "last_open_gap": residual_last[1] - residual_last[0],
+        "last_open_raw_cross": residual_last[2],
+        "first_closed_K_prime": 15635,
+        "first_closed_demand": residual_first[0],
+        "first_closed_cap": residual_first[1],
+        "first_closed_gap": residual_first[0] - residual_first[1],
+        "first_closed_raw_cross": residual_first[2],
+        "closed_K_prime_maximum": 20617,
+        "remaining_rank9_interval": [10, 15634],
+        "combined_rank9_closed_from_Kprime": 15635,
+        "original_row_common_core_used": False,
+    }, "residual-petal capacity constants")
+    require(residual_last[:2] == (50777401704768572, 50779283449126807), "residual-petal last row")
+    require(residual_first[:2] == (50783693985583057, 50780312213264392), "residual-petal first row")
+    require(residual_last[2] == -18157619613263943707902051344298221552552276539946798639022884527164800, "residual-petal last raw cross")
+    require(residual_first[2] == 32632198107169110848930789755311997983757628901001052346612176459768400, "residual-petal first raw cross")
+    residual_petal_checks = 0
+    for kprime in range(10, 20618):
+        require((residual_petal_row(kprime)[2] > 0) == (kprime >= 15635), f"residual-petal row {kprime}")
+        residual_petal_checks += 1
+    residual_petal_factor_checks = 0
+    for kprime in range(12, 20618):
+        nprime, mprime = 1048576 + kprime, 67472 + kprime
+        for index in range(9):
+            require(
+                (mprime + 1 - index) * (nprime - index)
+                - (mprime - index) * (nprime + 1 - index)
+                == 981104,
+                f"residual-petal RS factor K'={kprime}",
+            )
+            residual_petal_factor_checks += 1
+        terminal_cross = (
+            (kprime + 67464) * (kprime + 67463) * (2 * kprime + 67451)
+            - (kprime + 67463) * (kprime + 67462) * (2 * kprime + 67453)
+        )
+        require(
+            terminal_cross == 2 * (kprime - 11) * (kprime + 67463) > 0,
+            f"residual-petal terminal factor K'={kprime}",
+        )
+        residual_petal_factor_checks += 1
 
     require(kernel_globalizer == {
         "correction_dimension": 10,
@@ -2330,8 +2403,9 @@ def main() -> None:
         "cross_cell_census": False,
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
-        "rank9_fixed_target_eliminated_from_Kprime": 20618,
+        "rank9_fixed_target_eliminated_from_Kprime": 15635,
         "rank9_low_shortening_reopened": True,
+        "rank9_remaining_interval": [10, 15634],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -2352,6 +2426,8 @@ def main() -> None:
         f"plane_cap={plane_cap} core_checks={core_checks} "
         f"selector_records={selector_records} ninecell_cap={ninecell_cap} "
         f"local_fence_slopes={fence_slopes} "
+        f"residual_petal_checks={residual_petal_checks} "
+        f"residual_petal_factor_checks={residual_petal_factor_checks} "
         f"uniform_projective_frame_sample_checks={uniform_sample_checks} "
         f"weighted_demand={boundary_demand} weighted_cap={boundary_cap} "
         f"kernel_checks={kernel_checks} "
